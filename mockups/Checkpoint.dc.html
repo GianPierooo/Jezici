@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body{ margin:0; font-family:'Nunito',system-ui,sans-serif; }
+  .jz-scroll::-webkit-scrollbar{ display:none; }
+  @keyframes jzBob{ 0%,100%{ transform:translateY(0) rotate(-3deg) } 50%{ transform:translateY(-9px) rotate(3deg) } }
+  @keyframes jzCheer{ 0%,100%{ transform:translateY(0) rotate(-2deg) } 50%{ transform:translateY(-11px) rotate(2deg) } }
+  @keyframes jzFall{ 0%{ transform:translateY(-20px) rotate(0); opacity:0 } 12%{ opacity:1 } 100%{ transform:translateY(300px) rotate(420deg); opacity:.9 } }
+  @keyframes jzGlow{ 0%,100%{ opacity:.4; transform:scale(1) } 50%{ opacity:.85; transform:scale(1.12) } }
+  @keyframes jzTwinkle{ 0%,100%{ opacity:.3 } 50%{ opacity:1 } }
+</style>
+</helmet>
+
+<div style="min-height:100vh; width:100%; background:#E9EBF2; padding:40px; font-family:'Nunito',sans-serif; display:flex; align-items:flex-start; gap:64px;">
+
+  <!-- ================= FRAME A — PORTAL INTRO ================= -->
+  <div style="display:flex; flex-direction:column; gap:18px;">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <span style="font-size:13px; font-weight:900; letter-spacing:2px; color:#8A90A8;">FRAME A</span>
+      <span style="font-size:15px; font-weight:900; color:#1A1A2E;">Intro · portal del checkpoint</span>
+    </div>
+
+    <div style="position:relative; width:390px; height:844px; background:#0B0B16; border-radius:52px; padding:11px; box-shadow:0 40px 80px -24px rgba(48,40,110,.45);">
+      <div style="position:relative; width:368px; height:822px; border-radius:42px; overflow:hidden; display:flex; flex-direction:column;">
+        <div style="position:absolute; top:11px; left:50%; transform:translateX(-50%); width:118px; height:34px; background:#0B0B16; border-radius:20px; z-index:60;"></div>
+
+        <!-- scene -->
+        <div style="position:relative; flex:1; background:linear-gradient(180deg,#5B4ECF 0%,#6C5CE7 45%,#8273E8 100%); overflow:hidden;">
+          <!-- stars -->
+          <div style="position:absolute; left:40px; top:90px; width:5px; height:5px; border-radius:50%; background:#fff; animation:jzTwinkle 2.4s ease-in-out infinite;"></div>
+          <div style="position:absolute; left:300px; top:110px; width:4px; height:4px; border-radius:50%; background:#fff; animation:jzTwinkle 3s ease-in-out infinite .5s;"></div>
+          <div style="position:absolute; left:250px; top:74px; width:6px; height:6px; border-radius:50%; background:#FFD86B; animation:jzTwinkle 2.7s ease-in-out infinite .8s;"></div>
+          <div style="position:absolute; left:80px; top:140px; width:4px; height:4px; border-radius:50%; background:#fff; animation:jzTwinkle 3.2s ease-in-out infinite .3s;"></div>
+          <!-- distant mountains -->
+          <svg width="368" height="200" viewBox="0 0 368 200" style="position:absolute; left:0; bottom:0;" fill="none">
+            <path d="M0 120 L70 50 L140 110 L210 40 L290 110 L368 60 L368 200 L0 200 Z" fill="#5849C9" opacity=".6"/>
+            <path d="M0 150 L80 90 L160 150 L240 80 L320 150 L368 110 L368 200 L0 200 Z" fill="#6F60E0" opacity=".7"/>
+            <path d="M0 200 Q120 150 220 180 Q300 200 368 168 L368 200 Z" fill="#8273E8"/>
+          </svg>
+
+          <!-- top bar -->
+          <div style="position:relative; padding:50px 18px 0; display:flex; align-items:center; justify-content:space-between; z-index:5;">
+            <button style="width:36px; height:36px; border:none; border-radius:12px; background:rgba(255,255,255,.16); display:grid; place-items:center; cursor:pointer;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+            <span style="font-size:11px; font-weight:900; letter-spacing:1.5px; color:rgba(255,255,255,.75);">UNIDAD 3 · EN EL TRABAJO</span>
+            <div style="width:36px;"></div>
+          </div>
+
+          <!-- portal -->
+          <div style="position:relative; margin:30px auto 0; width:180px; z-index:4;">
+            <div style="position:absolute; left:50%; top:54%; transform:translate(-50%,-50%); width:200px; height:200px; border-radius:50%; background:radial-gradient(circle,rgba(255,201,60,.5),transparent 65%); animation:jzGlow 2.8s ease-in-out infinite;"></div>
+            <svg width="180" height="176" viewBox="0 0 180 176" style="position:relative;">
+              <ellipse cx="90" cy="166" rx="64" ry="9" fill="#000" opacity=".18"/>
+              <rect x="20" y="150" width="140" height="18" rx="7" fill="#4B3FA8"/>
+              <rect x="14" y="144" width="152" height="16" rx="7" fill="#6A5BD6"/>
+              <rect x="26" y="48" width="30" height="100" rx="10" fill="#5E51C9"/><rect x="124" y="48" width="30" height="100" rx="10" fill="#5E51C9"/>
+              <rect x="26" y="48" width="12" height="100" rx="6" fill="#8474F0"/><rect x="124" y="48" width="12" height="100" rx="6" fill="#8474F0"/>
+              <path d="M26 64 A64 56 0 0 1 154 64 L154 40 A64 56 0 0 0 26 40 Z" fill="#5E51C9"/>
+              <path d="M26 58 A64 56 0 0 1 154 58 L154 44 A64 56 0 0 0 26 44 Z" fill="#8474F0"/>
+              <path d="M56 148 L56 70 A34 32 0 0 1 124 70 L124 148 Z" fill="url(#pg)"/>
+              <ellipse cx="90" cy="104" rx="20" ry="24" fill="#FFF3CC" opacity=".9"/>
+              <defs><linearGradient id="pg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE9A8"/><stop offset="1" stop-color="#FFC93C"/></linearGradient></defs>
+              <path d="M90 30 l4.2 8.5 9.4 1.4-6.8 6.6 1.6 9.3L90 59 81.6 63.8l1.6-9.3-6.8-6.6 9.4-1.4L90 30Z" fill="#FFD86B"/>
+            </svg>
+          </div>
+
+          <!-- parrot guardian -->
+          <div style="position:absolute; right:34px; bottom:18px; width:84px; z-index:5; animation:jzBob 3s ease-in-out infinite;">
+            <div style="position:absolute; left:-92px; top:-6px; background:#fff; color:#6C5CE7; font-size:10.5px; font-weight:900; padding:7px 11px; border-radius:13px; white-space:nowrap; box-shadow:0 6px 14px rgba(0,0,0,.2);">¡Demuestra lo que sabes!
+              <div style="position:absolute; right:-5px; top:13px; width:10px; height:10px; background:#fff; transform:rotate(45deg);"></div>
+            </div>
+            <svg width="84" height="90" viewBox="0 0 84 90">
+              <path d="M28 58q-7 18-3 26 7-5 12-18z" fill="#FF7A00"/><path d="M40 60q-1 19 4 26 7-7 7-20z" fill="#FFC93C"/>
+              <ellipse cx="46" cy="52" rx="23" ry="25" fill="#FF4D6D"/><ellipse cx="50" cy="56" rx="13" ry="17" fill="#FFE3E8"/>
+              <path d="M30 46q-9 8-5 24 13 3 18-10-4-12-13-14z" fill="#FFC93C"/>
+              <circle cx="40" cy="28" r="20" fill="#FF6B6B"/><ellipse cx="45" cy="30" rx="13" ry="12" fill="#FFF4E8"/>
+              <path d="M33 11q-3-9 4-9 3 4 1 9z" fill="#6C5CE7"/><path d="M41 8q1-8 7-6 0 5-3 9z" fill="#8273E8"/>
+              <circle cx="43" cy="27" r="6.2" fill="#fff"/><circle cx="44.5" cy="28" r="3.3" fill="#1A1A2E"/><circle cx="46" cy="26.6" r="1.1" fill="#fff"/>
+              <path d="M57 30q11 1 10 8-6 4-11-1z" fill="#FFC93C"/>
+            </svg>
+          </div>
+
+          <!-- title -->
+          <div style="position:absolute; left:0; right:0; bottom:118px; text-align:center; z-index:4; padding:0 24px;">
+            <div style="display:inline-block; background:rgba(255,201,60,.95); color:#5B3A00; font-size:11px; font-weight:900; letter-spacing:2px; padding:5px 14px; border-radius:10px;">⚑ CHECKPOINT</div>
+            <div style="font-size:26px; font-weight:900; color:#fff; margin-top:10px; text-shadow:0 2px 8px rgba(0,0,0,.2);">El portal de la Unidad 3</div>
+          </div>
+        </div>
+
+        <!-- info sheet -->
+        <div style="flex:none; background:#F5F6FB; border-radius:28px 28px 0 0; margin-top:-22px; position:relative; z-index:10; padding:20px 20px 28px;">
+          <div style="font-size:13px; font-weight:800; color:#7A7F96; text-align:center; margin-bottom:14px;">Supera el portal para abrir la siguiente región del mapa</div>
+
+          <div style="font-size:11px; font-weight:900; letter-spacing:.5px; color:#9A9FB8; margin-bottom:8px;">QUÉ ENTRA</div>
+          <div style="display:flex; flex-wrap:wrap; gap:7px; margin-bottom:16px;">
+            <span style="font-size:11.5px; font-weight:900; color:#6C5CE7; background:#EDEBFF; padding:5px 11px; border-radius:9px;">Reuniones</span>
+            <span style="font-size:11.5px; font-weight:900; color:#6C5CE7; background:#EDEBFF; padding:5px 11px; border-radius:9px;">Correos</span>
+            <span style="font-size:11.5px; font-weight:900; color:#6C5CE7; background:#EDEBFF; padding:5px 11px; border-radius:9px;">Llamadas</span>
+            <span style="font-size:11.5px; font-weight:900; color:#6C5CE7; background:#EDEBFF; padding:5px 11px; border-radius:9px;">Vocabulario laboral</span>
+          </div>
+
+          <div style="display:flex; gap:10px; margin-bottom:18px;">
+            <div style="flex:1; background:#fff; border-radius:15px; padding:12px 10px; text-align:center; box-shadow:0 4px 0 #ECEDF6;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF7A00" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:3px;"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg>
+              <div style="font-size:15px; font-weight:900; color:#1A1A2E;">8 min</div>
+              <div style="font-size:9.5px; font-weight:800; color:#9A9FB8;">cronometrado</div>
+            </div>
+            <div style="flex:1; background:#fff; border-radius:15px; padding:12px 10px; text-align:center; box-shadow:0 4px 0 #ECEDF6;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ECC71" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:3px;"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="0.6" fill="#2ECC71"/></svg>
+              <div style="font-size:15px; font-weight:900; color:#1A1A2E;">80%</div>
+              <div style="font-size:9.5px; font-weight:800; color:#9A9FB8;">para pasar</div>
+            </div>
+            <div style="flex:1; background:#fff; border-radius:15px; padding:12px 10px; text-align:center; box-shadow:0 4px 0 #ECEDF6;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6C5CE7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:3px;"><path d="M9.5 9a2.5 2.5 0 1 1 3 2.4c-.8.2-1 .8-1 1.6M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+              <div style="font-size:15px; font-weight:900; color:#1A1A2E;">15</div>
+              <div style="font-size:9.5px; font-weight:800; color:#9A9FB8;">preguntas</div>
+            </div>
+          </div>
+
+          <button style="width:100%; height:58px; border:none; border-radius:18px; background:linear-gradient(160deg,#FFDD7A,#F4B400); color:#1A1A2E; font-family:Nunito; font-size:17px; font-weight:900; letter-spacing:.5px; cursor:pointer; box-shadow:0 6px 0 #D69400, 0 12px 22px rgba(244,180,0,.35);" style-active="transform:translateY(4px); box-shadow:0 2px 0 #D69400;">Empezar checkpoint</button>
+          <div style="text-align:center; font-size:11px; font-weight:800; color:#9A9FB8; margin-top:11px;">No cuesta vidas · puedes reintentarlo cuando quieras</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FRAME B — RESULTADO ================= -->
+  <div style="display:flex; flex-direction:column; gap:18px;">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <span style="font-size:13px; font-weight:900; letter-spacing:2px; color:#8A90A8;">FRAME B</span>
+      <span style="font-size:15px; font-weight:900; color:#1A1A2E;">Resultado · aprobado / no aprobado</span>
+    </div>
+
+    <div style="position:relative; width:390px; height:844px; background:#0B0B16; border-radius:52px; padding:11px; box-shadow:0 40px 80px -24px rgba(48,40,110,.45);">
+      <div style="position:relative; width:368px; height:822px; background:#F5F6FB; border-radius:42px; overflow:hidden;">
+        <div style="position:absolute; top:11px; left:50%; transform:translateX(-50%); width:118px; height:34px; background:#0B0B16; border-radius:20px; z-index:60;"></div>
+
+        <div class="jz-scroll" style="position:absolute; inset:0; overflow-y:auto; overflow-x:hidden;">
+
+          <!-- celebration -->
+          <div style="position:relative; height:300px; background:linear-gradient(160deg,#7A6BF0,#6C5CE7 58%,#5B4ECF); overflow:hidden;">
+            <div style="position:absolute; left:40px; top:70px; width:10px; height:10px; background:#FFC93C; border-radius:2px; transform:rotate(20deg); animation:jzFall 2.6s linear infinite;"></div>
+            <div style="position:absolute; left:120px; top:54px; width:8px; height:13px; background:#FF6B6B; border-radius:2px; animation:jzFall 3.1s linear infinite .3s;"></div>
+            <div style="position:absolute; left:250px; top:60px; width:10px; height:10px; background:#3FE08A; border-radius:50%; animation:jzFall 2.9s linear infinite .6s;"></div>
+            <div style="position:absolute; left:305px; top:50px; width:11px; height:11px; background:#FFD86B; border-radius:2px; transform:rotate(40deg); animation:jzFall 3.3s linear infinite .15s;"></div>
+            <div style="position:absolute; left:70px; top:110px; width:8px; height:8px; background:#fff; border-radius:50%; opacity:.8; animation:jzFall 3.4s linear infinite .2s;"></div>
+            <div style="position:absolute; left:210px; top:46px; width:9px; height:9px; background:#FFC93C; border-radius:50%; animation:jzFall 3.2s linear infinite .45s;"></div>
+
+            <div style="position:absolute; left:50%; top:140px; transform:translate(-50%,-50%); width:200px; height:200px; border-radius:50%; background:radial-gradient(circle, rgba(255,201,60,.4), transparent 70%); animation:jzGlow 2.8s ease-in-out infinite;"></div>
+
+            <div style="position:absolute; left:50%; top:42px; transform:translateX(-50%); width:124px; animation:jzCheer 2.4s ease-in-out infinite;">
+              <svg width="124" height="128" viewBox="0 0 120 124">
+                <ellipse cx="60" cy="118" rx="28" ry="6" fill="#000" opacity=".12"/>
+                <path d="M40 64 Q10 40 8 12 Q30 22 44 56 Z" fill="#FFC93C"/><path d="M38 60 Q16 40 13 18 Q28 28 42 54 Z" fill="#FFD86B"/>
+                <path d="M80 64 Q110 40 112 12 Q90 22 76 56 Z" fill="#FFC93C"/><path d="M82 60 Q104 40 107 18 Q92 28 78 54 Z" fill="#FFD86B"/>
+                <path d="M48 96 q-6 20 -2 26 7-5 11-18z" fill="#FF7A00"/><path d="M62 98 q1 20 6 26 6-7 5-20z" fill="#FFC93C"/>
+                <ellipse cx="60" cy="80" rx="30" ry="32" fill="#FF4D6D"/><ellipse cx="62" cy="84" rx="17" ry="22" fill="#FFE3E8"/>
+                <circle cx="58" cy="46" r="26" fill="#FF6B6B"/><ellipse cx="64" cy="49" rx="17" ry="16" fill="#FFF4E8"/>
+                <path d="M48 22 q-4-12 5-12 4 6 1 13z" fill="#6C5CE7"/><path d="M58 18 q1-11 9-8 0 7-4 12z" fill="#8273E8"/><path d="M68 20 q4-8 11-4-1 7-7 9z" fill="#6C5CE7"/>
+                <path d="M50 44 q5-6 11 0" fill="none" stroke="#1A1A2E" stroke-width="3" stroke-linecap="round"/>
+                <path d="M67 44 q5-6 11 0" fill="none" stroke="#1A1A2E" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="48" cy="56" r="4.5" fill="#FFB3B3" opacity=".7"/><circle cx="80" cy="56" r="4.5" fill="#FFB3B3" opacity=".7"/>
+                <path d="M80 48 q16 0 16 9 -8 5 -16 0z" fill="#FFC93C"/><path d="M80 55 q8 5 15 3 -3 6 -15 4z" fill="#E0A020"/>
+              </svg>
+            </div>
+
+            <div style="position:absolute; left:0; right:0; bottom:22px; text-align:center;">
+              <div style="display:inline-block; background:rgba(46,204,113,.95); color:#063D20; font-size:11px; font-weight:900; letter-spacing:2px; padding:5px 14px; border-radius:10px;">✓ CHECKPOINT SUPERADO</div>
+              <div style="font-size:27px; font-weight:900; color:#fff; margin-top:9px;">¡Unidad 3 superada!</div>
+              <div style="font-size:13px; font-weight:800; color:rgba(255,255,255,.82); margin-top:2px;">En el trabajo · 88% de aciertos</div>
+            </div>
+          </div>
+
+          <div style="padding:18px 16px 30px; display:flex; flex-direction:column; gap:15px;">
+
+            <!-- map reveal -->
+            <div style="position:relative; background:linear-gradient(180deg,#EAF4FF,#FFFFFF); border-radius:22px; padding:16px; overflow:hidden; box-shadow:0 6px 0 #ECEDF6, 0 14px 26px rgba(60,55,120,.08);">
+              <div style="display:inline-flex; align-items:center; gap:6px; background:#2ECC71; color:#fff; font-size:10px; font-weight:900; letter-spacing:1px; padding:4px 11px; border-radius:9px;">✦ NUEVA REGIÓN DESBLOQUEADA</div>
+              <div style="position:relative; height:108px; margin-top:8px;">
+                <svg width="336" height="108" viewBox="0 0 336 108" style="display:block;">
+                  <path d="M0 86 Q90 60 180 80 Q260 96 336 56 L336 108 L0 108 Z" fill="#D9F0E2"/>
+                  <path d="M0 70 Q80 60 150 72" fill="none" stroke="#C7BEF0" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 11"/>
+                  <path d="M186 64 Q250 52 320 36" fill="none" stroke="#9FD9C2" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 11"/>
+                  <!-- coast hint -->
+                  <path d="M250 60 Q290 54 336 60 L336 108 L250 108 Z" fill="#BFE7F0" opacity=".7"/>
+                </svg>
+                <!-- portal open (left) -->
+                <div style="position:absolute; left:6px; top:30px; text-align:center;">
+                  <div style="width:48px; height:44px; border-radius:14px 14px 10px 10px; background:linear-gradient(160deg,#8474F0,#6C5CE7); display:grid; place-items:center; box-shadow:0 4px 0 #4B3FC9; position:relative;"><div style="width:20px; height:26px; border-radius:10px 10px 4px 4px; background:linear-gradient(180deg,#FFE9A8,#FFC93C);"></div><div style="position:absolute; -webkit-box-pack:center; bottom:-7px; left:50%; transform:translateX(-50%); width:18px; height:18px; border-radius:50%; background:#2ECC71; display:grid; place-items:center; border:2px solid #fff;"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div></div>
+                  <div style="font-size:8.5px; font-weight:900; color:#6C5CE7; margin-top:9px;">UNIDAD 3 ✓</div>
+                </div>
+                <!-- next region (right) -->
+                <div style="position:absolute; right:2px; top:8px; text-align:center;">
+                  <div style="position:relative; width:50px; height:50px; margin:0 auto;">
+                    <div style="position:absolute; inset:-4px; border-radius:50%; background:radial-gradient(circle,rgba(46,204,113,.4),transparent 70%); animation:jzGlow 2.4s ease-in-out infinite;"></div>
+                    <div style="position:relative; width:50px; height:50px; border-radius:50%; background:linear-gradient(160deg,#3FD97E,#2ECC71); display:grid; place-items:center; box-shadow:0 4px 0 #1E9B52;"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 5.3c0-.9 1-1.5 1.8-1l9 6.7c.7.5.7 1.5 0 2l-9 6.7c-.8.5-1.8-.1-1.8-1V5.3Z"/></svg></div>
+                  </div>
+                  <div style="font-size:8.5px; font-weight:900; color:#1B8E4E; margin-top:6px;">UNIDAD 4 · DE VIAJE</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- rewards -->
+            <div style="display:flex; gap:12px;">
+              <div style="flex:1; display:flex; align-items:center; gap:10px; background:#fff; border-radius:18px; padding:14px; box-shadow:0 5px 0 #ECEDF6;">
+                <div style="width:40px; height:40px; border-radius:12px; background:#EDEBFF; display:grid; place-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#6C5CE7"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></div>
+                <div><div style="font-size:18px; font-weight:900; color:#6C5CE7;">+120</div><div style="font-size:10px; font-weight:900; color:#9A9FB8;">XP BONUS</div></div>
+              </div>
+              <div style="flex:1; display:flex; align-items:center; gap:10px; background:#fff; border-radius:18px; padding:14px; box-shadow:0 5px 0 #ECEDF6;">
+                <div style="width:40px; height:40px; border-radius:12px; background:#FFF4D6; display:grid; place-items:center;"><svg width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#F4B400"/><circle cx="12" cy="12" r="6.2" fill="#FFD86B"/><path d="M12 8l1.1 2.3 2.5.3-1.9 1.7.5 2.5L12 13.4 9.7 14.6l.5-2.5-1.9-1.7 2.5-.3L12 8Z" fill="#E09A00"/></svg></div>
+                <div><div style="font-size:18px; font-weight:900; color:#E09A00;">+50</div><div style="font-size:10px; font-weight:900; color:#9A9FB8;">ORO</div></div>
+              </div>
+            </div>
+
+            <button style="width:100%; height:58px; border:none; border-radius:18px; background:linear-gradient(160deg,#8A7BF6,#6C5CE7); color:#fff; font-family:Nunito; font-size:17px; font-weight:900; letter-spacing:.5px; cursor:pointer; box-shadow:0 6px 0 #4B3FC9, 0 14px 24px rgba(108,92,231,.4); display:flex; align-items:center; justify-content:center; gap:9px;" style-active="transform:translateY(4px); box-shadow:0 2px 0 #4B3FC9;">Continuar el viaje<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+
+            <!-- secondary: no aprobado -->
+            <div style="border:1.5px dashed #D7DAE6; border-radius:20px; padding:15px; background:#FBFBFE; margin-top:4px;">
+              <div style="display:flex; align-items:center; gap:7px; margin-bottom:11px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#9097AE"><path d="M12 2 1 21h22L12 2Zm0 6 6.5 11h-13L12 8Zm-1 4v3h2v-3h-2Zm0 4v2h2v-2h-2Z"/></svg>
+                <span style="font-size:11px; font-weight:900; letter-spacing:.5px; color:#9097AE;">SI NO LLEGAS AL 80%…</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:12px;">
+                <div style="position:relative; flex:none; width:50px; height:50px;">
+                  <svg width="50" height="50" viewBox="0 0 50 50" style="transform:rotate(-90deg);"><circle cx="25" cy="25" r="21" fill="none" stroke="#F0F1F8" stroke-width="6"/><circle cx="25" cy="25" r="21" fill="none" stroke="#FF6B6B" stroke-width="6" stroke-linecap="round" stroke-dasharray="132" stroke-dashoffset="47"/></svg>
+                  <div style="position:absolute; inset:0; display:grid; place-items:center; font-size:13px; font-weight:900; color:#FF4D6D;">64%</div>
+                </div>
+                <div style="flex:1;">
+                  <div style="font-size:14px; font-weight:900; color:#1A1A2E;">Aún no superas el portal</div>
+                  <div style="font-size:11.5px; font-weight:800; color:#7A7F96; margin-top:1px;">Te faltaron 16 puntos. ¡Casi!</div>
+                </div>
+              </div>
+              <div style="font-size:11px; font-weight:900; letter-spacing:.4px; color:#9A9FB8; margin:13px 0 7px;">REFUERZA ESTOS TEMAS</div>
+              <div style="display:flex; flex-direction:column; gap:7px;">
+                <div style="display:flex; align-items:center; gap:9px; background:#fff; border-radius:12px; padding:9px 11px; box-shadow:0 0 0 1.5px #EEF0F7 inset;">
+                  <span style="flex:none; width:22px; height:22px; border-radius:7px; background:#FFEFEF; display:grid; place-items:center; font-size:11px;">⏱</span>
+                  <span style="flex:1; font-size:12.5px; font-weight:900; color:#1A1A2E;">Pasado simple vs continuo</span>
+                  <span style="font-size:10px; font-weight:900; color:#FF4D6D;">3 fallos</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:9px; background:#fff; border-radius:12px; padding:9px 11px; box-shadow:0 0 0 1.5px #EEF0F7 inset;">
+                  <span style="flex:none; width:22px; height:22px; border-radius:7px; background:#EDEBFF; display:grid; place-items:center; font-size:11px;">💼</span>
+                  <span style="flex:1; font-size:12.5px; font-weight:900; color:#1A1A2E;">Vocabulario de reuniones</span>
+                  <span style="font-size:10px; font-weight:900; color:#FF4D6D;">2 fallos</span>
+                </div>
+              </div>
+              <button style="width:100%; margin-top:12px; height:48px; border:none; border-radius:14px; background:#FF6B6B; color:#fff; font-family:Nunito; font-size:14px; font-weight:900; cursor:pointer; box-shadow:0 4px 0 #DC4545;" style-active="transform:translateY(3px); box-shadow:0 1px 0 #DC4545;">Reforzar y reintentar</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

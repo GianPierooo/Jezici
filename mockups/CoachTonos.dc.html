@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body{ margin:0; font-family:'Nunito',system-ui,sans-serif; }
+</style>
+</helmet>
+
+<div style="min-height:100vh; width:100%; background:#E9EBF2; padding:44px; font-family:'Nunito',sans-serif;">
+
+  <!-- title -->
+  <div style="margin-bottom:28px;">
+    <div style="display:inline-flex; align-items:center; gap:9px; background:#EDEBFF; border-radius:12px; padding:6px 13px; margin-bottom:12px;">
+      <svg width="18" height="18" viewBox="0 0 84 90"><ellipse cx="46" cy="52" rx="23" ry="25" fill="#FF4D6D"/><circle cx="40" cy="28" r="20" fill="#FF6B6B"/><path d="M57 30q11 1 10 8-6 4-11-1z" fill="#FFC93C"/><circle cx="43" cy="27" r="6" fill="#fff"/><circle cx="44.5" cy="28" r="3" fill="#1A1A2E"/></svg>
+      <span style="font-size:12px; font-weight:900; letter-spacing:1.5px; color:#6C5CE7;">JEZICI · COACH ADAPTATIVO</span>
+    </div>
+    <div style="font-size:30px; font-weight:900; color:#1A1A2E;">El mismo recordatorio, en 4 voces</div>
+    <div style="font-size:14px; font-weight:700; color:#7A809B; margin-top:6px; max-width:620px;">El test de personalidad del onboarding elige el tono. Cada estilo llega como <b style="color:#1A1A2E;">notificación push</b> y como <b style="color:#1A1A2E;">correo</b>, siempre reforzado con tu progreso.</div>
+  </div>
+
+  <!-- rows -->
+  <div style="display:flex; flex-direction:column; gap:30px;">
+    <sc-for list="{{ items }}" as="s" hint-placeholder-count="4">
+      <div style="background:#fff; border-radius:24px; padding:22px; box-shadow:0 2px 0 #E0E2EC, 0 14px 30px rgba(60,55,120,.06);">
+        <!-- style header -->
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
+          <span style="{{ s.dotStyle }}"></span>
+          <div style="flex:1;">
+            <div style="font-size:19px; font-weight:900; color:#1A1A2E;">{{ s.name }}</div>
+            <div style="font-size:12.5px; font-weight:700; color:#9097AE;">{{ s.desc }}</div>
+          </div>
+          <span style="{{ s.tagStyle }}">{{ s.tag }}</span>
+        </div>
+
+        <div style="display:flex; gap:30px; align-items:flex-start; flex-wrap:wrap;">
+
+          <!-- PUSH -->
+          <div>
+            <div style="font-size:10.5px; font-weight:900; letter-spacing:1px; color:#A7ABC3; margin-bottom:9px;">NOTIFICACIÓN · PANTALLA DE BLOQUEO</div>
+            <div style="position:relative; width:294px; height:380px; border-radius:34px; background:linear-gradient(165deg,#4B3FA8,#6C5CE7 55%,#8273E8); overflow:hidden; box-shadow:0 16px 30px rgba(48,40,110,.3); padding:20px 16px;">
+              <svg width="294" height="380" viewBox="0 0 294 380" style="position:absolute; inset:0; opacity:.4;" fill="none" stroke="#fff" stroke-width="1.3"><path d="M-20 120 Q70 96 150 130 T320 116" opacity=".14"/><path d="M-20 220 Q90 196 170 230 T320 214" opacity=".1"/></svg>
+              <!-- status -->
+              <div style="position:relative; display:flex; justify-content:space-between; align-items:center; color:#fff;">
+                <span style="font-size:12px; font-weight:800;">9:41</span>
+                <div style="display:flex; gap:5px; align-items:center;"><svg width="16" height="11" viewBox="0 0 18 12" fill="#fff"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="4" width="3" height="8" rx="1"/><rect x="10" y="2" width="3" height="10" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><div style="width:22px; height:11px; border:1.4px solid rgba(255,255,255,.6); border-radius:3px; padding:1.4px;"><div style="width:70%; height:100%; background:#fff; border-radius:1px;"></div></div></div>
+              </div>
+              <!-- clock -->
+              <div style="position:relative; text-align:center; margin-top:26px; color:#fff;">
+                <div style="font-size:15px; font-weight:800; opacity:.85;">lunes, 16 de junio</div>
+                <div style="font-size:62px; font-weight:900; line-height:1; letter-spacing:1px;">9:41</div>
+              </div>
+              <!-- notification -->
+              <div style="position:relative; margin-top:30px; background:rgba(255,255,255,.92); backdrop-filter:blur(10px); border-radius:20px; padding:13px; box-shadow:0 8px 20px rgba(0,0,0,.18);">
+                <div style="display:flex; align-items:center; gap:9px; margin-bottom:9px;">
+                  <span style="flex:none; width:34px; height:34px; border-radius:9px; background:#fff; display:grid; place-items:center; box-shadow:0 0 0 1px rgba(0,0,0,.05);">
+                    <svg width="26" height="26" viewBox="0 0 84 90"><ellipse cx="46" cy="52" rx="23" ry="25" fill="#FF4D6D"/><circle cx="40" cy="28" r="20" fill="#FF6B6B"/><path d="M33 11q-3-9 4-9 3 4 1 9z" fill="#FFC93C"/><path d="M57 30q11 1 10 8-6 4-11-1z" fill="#FFC93C"/><ellipse cx="45" cy="30" rx="12" ry="11" fill="#FFF4E8"/><circle cx="43" cy="27" r="5.5" fill="#fff"/><circle cx="44.5" cy="28" r="3" fill="#1A1A2E"/></svg>
+                  </span>
+                  <span style="flex:1; font-size:12px; font-weight:900; color:#1A1A2E; letter-spacing:.3px;">JEZICI</span>
+                  <span style="font-size:11px; font-weight:700; color:#9A9FB8;">ahora</span>
+                </div>
+                <div style="font-size:14px; font-weight:800; color:#1A1A2E; line-height:1.35;">{{ s.message }}</div>
+                <!-- progress -->
+                <div style="margin-top:11px;">
+                  <div style="display:flex; justify-content:space-between; font-size:10px; font-weight:900; color:#9A9FB8; margin-bottom:4px;"><span>{{ s.plabel }}</span><span style="{{ s.pctTextStyle }}">{{ s.pctText }}</span></div>
+                  <div style="height:7px; background:#EEF0F6; border-radius:5px; overflow:hidden;"><div style="{{ s.barStyle }}"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- EMAIL -->
+          <div style="flex:1; min-width:340px; max-width:420px;">
+            <div style="font-size:10.5px; font-weight:900; letter-spacing:1px; color:#A7ABC3; margin-bottom:9px;">CORREO</div>
+            <div style="border-radius:20px; overflow:hidden; box-shadow:0 16px 30px rgba(48,40,110,.12); border:1.5px solid #ECEDF4;">
+              <!-- email header -->
+              <div style="display:flex; align-items:center; gap:11px; padding:15px 16px; border-bottom:1.5px solid #F2F3F8; background:#fff;">
+                <span style="flex:none; width:42px; height:42px; border-radius:50%; background:#EDEBFF; display:grid; place-items:center;">
+                  <svg width="30" height="30" viewBox="0 0 84 90"><ellipse cx="46" cy="52" rx="23" ry="25" fill="#FF4D6D"/><circle cx="40" cy="28" r="20" fill="#FF6B6B"/><path d="M33 11q-3-9 4-9 3 4 1 9z" fill="#FFC93C"/><path d="M41 8q1-8 7-6 0 5-3 9z" fill="#FF8585"/><path d="M57 30q11 1 10 8-6 4-11-1z" fill="#FFC93C"/><ellipse cx="45" cy="30" rx="13" ry="12" fill="#FFF4E8"/><circle cx="43" cy="27" r="6" fill="#fff"/><circle cx="44.5" cy="28" r="3" fill="#1A1A2E"/></svg>
+                </span>
+                <div style="flex:1; min-width:0;">
+                  <div style="display:flex; align-items:baseline; gap:6px;"><span style="font-size:14px; font-weight:900; color:#1A1A2E;">Jezici</span><span style="font-size:11px; font-weight:700; color:#9A9FB8;">· Tu coach</span></div>
+                  <div style="font-size:11.5px; font-weight:700; color:#9A9FB8;">para ti · 9:41</div>
+                </div>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C2C6D6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7-5 7 5v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V9Z"/><path d="M5 9l7 5 7-5"/></svg>
+              </div>
+              <!-- email body -->
+              <div style="padding:16px; background:#fff;">
+                <div style="{{ s.subjectStyle }}">{{ s.subject }}</div>
+                <div style="font-size:14px; font-weight:700; color:#4A4F66; line-height:1.5; margin-top:8px;">{{ s.message }}</div>
+                <!-- progress block -->
+                <div style="{{ s.progBlockStyle }}">
+                  <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:7px;">
+                    <span style="font-size:12px; font-weight:900; color:#1A1A2E;">{{ s.plabel }}</span>
+                    <span style="{{ s.pctTextStyle }}">{{ s.pctText }}</span>
+                  </div>
+                  <div style="height:9px; background:#EEF0F6; border-radius:6px; overflow:hidden;"><div style="{{ s.barStyle }}"></div></div>
+                </div>
+                <button style="{{ s.btnStyle }}">{{ s.cta }}</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  DATA = [
+    { name:'Mano dura', desc:'Directo y sin rodeos', tag:'Firme', accent:'#FF4D6D', light:'#FFE7EC',
+      message:'Faltaste hoy. Eso no va. Vuelve ya.', subject:'No lo dejes pasar',
+      plabel:'Racha de 11 días', pctText:'¡no la pierdas!', pct:88, cta:'Recuperar mi racha' },
+    { name:'Motivación positiva', desc:'Energía y celebración', tag:'Animado', accent:'#6C5CE7', light:'#EDEBFF',
+      message:'¡12 días imparable! Hoy te toca brillar 💪', subject:'¡Hoy te toca brillar! ✨',
+      plabel:'Racha 12 días 🔥', pctText:'80% de tu meta', pct:80, cta:'Seguir brillando' },
+    { name:'Recordatorio de rezago', desc:'Te compara con tu liga', tag:'Competitivo', accent:'#FF7A00', light:'#FFF1E3',
+      message:'Vas 2 días atrás. 3 de tu liga te pasaron.', subject:'Te están adelantando',
+      plabel:'Liga Oro · bajaste al 7º', pctText:'-2 días', pct:38, cta:'Alcanzarlos' },
+    { name:'Suave', desc:'Amable y sin presión', tag:'Tranquilo', accent:'#2ECC71', light:'#E7F9EF',
+      message:'Cuando puedas, una lección rápida te mantiene en ritmo 🙂', subject:'Una lección cuando puedas',
+      plabel:'Meta de hoy · 20/30 XP', pctText:'casi ahí', pct:66, cta:'Cuando quieras' },
+  ];
+  renderVals() {
+    const items = this.DATA.map(s => ({
+      name: s.name, desc: s.desc, tag: s.tag, message: s.message, subject: s.subject,
+      plabel: s.plabel, pctText: s.pctText, cta: s.cta,
+      dotStyle: { flex:'none', width:'14px', height:'14px', borderRadius:'50%', background: s.accent, boxShadow:'0 0 0 4px '+s.light },
+      tagStyle: { fontSize:'11px', fontWeight:'900', letterSpacing:'.4px', color: s.accent, background: s.light, padding:'5px 11px', borderRadius:'9px' },
+      barStyle: { width: s.pct + '%', height:'100%', borderRadius:'6px', background: s.accent },
+      pctTextStyle: { fontSize:'10px', fontWeight:'900', color: s.accent },
+      subjectStyle: { fontSize:'16px', fontWeight:'900', color:'#1A1A2E' },
+      progBlockStyle: { background: s.light, borderRadius:'13px', padding:'12px 13px', marginTop:'15px' },
+      btnStyle: {
+        width:'100%', marginTop:'14px', height:'46px', border:'none', borderRadius:'13px',
+        background: s.accent, color:'#fff', fontFamily:'Nunito', fontSize:'14px', fontWeight:'900',
+        cursor:'pointer', boxShadow:'0 4px 0 rgba(0,0,0,.12)',
+      },
+    }));
+    return { items };
+  }
+}
+</script>
+</body>
+</html>

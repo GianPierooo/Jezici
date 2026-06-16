@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body{ margin:0; font-family:'Nunito',system-ui,sans-serif; }
+  @keyframes jzBob{ 0%,100%{ transform:translateY(0) rotate(-3deg) } 50%{ transform:translateY(-8px) rotate(3deg) } }
+  @keyframes jzCheer{ 0%,100%{ transform:translateY(0) rotate(-2deg) } 50%{ transform:translateY(-11px) rotate(2deg) } }
+  @keyframes jzFall{ 0%{ transform:translateY(-20px) rotate(0); opacity:0 } 12%{ opacity:1 } 100%{ transform:translateY(360px) rotate(420deg); opacity:.9 } }
+  @keyframes jzGlow{ 0%,100%{ opacity:.45; transform:scale(1) } 50%{ opacity:.85; transform:scale(1.1) } }
+  @keyframes jzDash{ to{ stroke-dashoffset:-32 } }
+</style>
+</helmet>
+
+<div style="min-height:100vh; width:100%; background:#E9EBF2; padding:40px; font-family:'Nunito',sans-serif; display:flex; align-items:flex-start; gap:64px;">
+
+  <!-- ================= FRAME A ================= -->
+  <div style="display:flex; flex-direction:column; gap:18px;">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <span style="font-size:13px; font-weight:900; letter-spacing:2px; color:#8A90A8;">FRAME A</span>
+      <span style="font-size:15px; font-weight:900; color:#1A1A2E;">Paso de pregunta</span>
+    </div>
+
+    <div style="position:relative; width:390px; height:844px; background:#0B0B16; border-radius:52px; padding:11px; box-shadow:0 40px 80px -24px rgba(48,40,110,.45);">
+      <div style="position:relative; width:368px; height:822px; background:#F5F6FB; border-radius:42px; overflow:hidden; display:flex; flex-direction:column;">
+        <div style="position:absolute; top:11px; left:50%; transform:translateX(-50%); width:118px; height:34px; background:#0B0B16; border-radius:20px; z-index:60;"></div>
+
+        <!-- top: back + progress -->
+        <div style="flex:none; padding:52px 20px 6px; display:flex; align-items:center; gap:14px;">
+          <button style="flex:none; width:36px; height:36px; border:none; border-radius:12px; background:#EBEDF5; display:grid; place-items:center; cursor:pointer;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6C5CE7" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <div style="flex:1; display:flex; gap:5px;">
+            <span style="flex:1; height:7px; border-radius:4px; background:#6C5CE7;"></span>
+            <span style="flex:1; height:7px; border-radius:4px; background:#6C5CE7;"></span>
+            <span style="flex:1; height:7px; border-radius:4px; background:#6C5CE7;"></span>
+            <span style="flex:1; height:7px; border-radius:4px; background:#6C5CE7;"></span>
+            <span style="flex:1; height:7px; border-radius:4px; background:#6C5CE7;"></span>
+            <span style="flex:1; height:7px; border-radius:4px; background:#E2E5F0;"></span>
+            <span style="flex:1; height:7px; border-radius:4px; background:#E2E5F0;"></span>
+            <span style="flex:1; height:7px; border-radius:4px; background:#E2E5F0;"></span>
+            <span style="flex:1; height:7px; border-radius:4px; background:#E2E5F0;"></span>
+          </div>
+          <span style="flex:none; font-size:12px; font-weight:900; color:#9A9FB8;">5/9</span>
+        </div>
+
+        <!-- body -->
+        <div style="flex:1; padding:8px 20px 0; overflow:hidden;">
+          <!-- parrot + bubble -->
+          <div style="display:flex; align-items:flex-end; gap:12px; margin-top:8px;">
+            <div style="flex:none; width:66px; animation:jzBob 3s ease-in-out infinite;">
+              <svg width="66" height="70" viewBox="0 0 84 90">
+                <path d="M28 58q-7 18-3 26 7-5 12-18z" fill="#FF7A00"/><path d="M40 60q-1 19 4 26 7-7 7-20z" fill="#FFC93C"/>
+                <ellipse cx="46" cy="52" rx="23" ry="25" fill="#6C5CE7"/><ellipse cx="50" cy="56" rx="13" ry="17" fill="#EDEBFF"/>
+                <path d="M30 46q-9 8-5 24 13 3 18-10-4-12-13-14z" fill="#FFC93C"/>
+                <circle cx="40" cy="28" r="20" fill="#7B6CF1"/><ellipse cx="45" cy="30" rx="13" ry="12" fill="#FFF4E8"/>
+                <path d="M33 11q-3-9 4-9 3 4 1 9z" fill="#FF6B6B"/><path d="M41 8q1-8 7-6 0 5-3 9z" fill="#FF8585"/>
+                <circle cx="43" cy="27" r="6.2" fill="#fff"/><circle cx="44.5" cy="28" r="3.3" fill="#1A1A2E"/><circle cx="46" cy="26.6" r="1.1" fill="#fff"/>
+                <path d="M57 30q11 1 10 8-6 4-11-1z" fill="#FF6B6B"/>
+              </svg>
+            </div>
+            <div style="position:relative; background:#fff; border-radius:16px; border-bottom-left-radius:4px; padding:10px 14px; box-shadow:0 4px 0 #ECEDF6, 0 8px 16px rgba(60,55,120,.08); margin-bottom:8px;">
+              <span style="font-size:13px; font-weight:800; color:#1A1A2E;">¡Hagamos un plan a tu medida! 🦜</span>
+            </div>
+          </div>
+
+          <!-- question -->
+          <div style="font-size:26px; font-weight:900; color:#1A1A2E; line-height:1.15; margin-top:22px;">¿Cuánto tiempo al día quieres dedicar?</div>
+
+          <!-- options -->
+          <div style="display:flex; flex-direction:column; gap:11px; margin-top:20px;">
+            <sc-for list="{{ optItems }}" as="o" hint-placeholder-count="6">
+              <button onClick="{{ o.onTap }}" style="{{ o.rowStyle }}">
+                <span style="{{ o.iconWrapStyle }}">
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="{{ o.iconStroke }}" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/></svg>
+                </span>
+                <span style="flex:1; text-align:left; font-size:18px; font-weight:900; color:#1A1A2E;">{{ o.time }}</span>
+                <span style="{{ o.badgeStyle }}">{{ o.label }}</span>
+                <span style="{{ o.checkStyle }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+
+        <!-- footer continue -->
+        <div style="flex:none; padding:14px 20px 30px; background:linear-gradient(to top,#F5F6FB 70%,rgba(245,246,251,0));">
+          <button style="width:100%; height:58px; border:none; border-radius:18px; background:linear-gradient(160deg,#8A7BF6,#6C5CE7); color:#fff; font-family:Nunito; font-size:17px; font-weight:900; letter-spacing:1px; cursor:pointer; box-shadow:0 6px 0 #4B3FC9, 0 14px 24px rgba(108,92,231,.4);" style-active="transform:translateY(4px); box-shadow:0 2px 0 #4B3FC9;">Continuar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FRAME B ================= -->
+  <div style="display:flex; flex-direction:column; gap:18px;">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <span style="font-size:13px; font-weight:900; letter-spacing:2px; color:#8A90A8;">FRAME B</span>
+      <span style="font-size:15px; font-weight:900; color:#1A1A2E;">Tu plan · el momento mágico</span>
+    </div>
+
+    <div style="position:relative; width:390px; height:844px; background:#0B0B16; border-radius:52px; padding:11px; box-shadow:0 40px 80px -24px rgba(48,40,110,.45);">
+      <div style="position:relative; width:368px; height:822px; background:#F5F6FB; border-radius:42px; overflow:hidden; display:flex; flex-direction:column;">
+        <div style="position:absolute; top:11px; left:50%; transform:translateX(-50%); width:118px; height:34px; background:#0B0B16; border-radius:20px; z-index:60;"></div>
+
+        <!-- celebration header -->
+        <div style="flex:none; position:relative; height:230px; background:linear-gradient(160deg,#7A6BF0,#6C5CE7 60%,#5B4ECF); overflow:hidden;">
+          <div style="position:absolute; left:40px; top:60px; width:10px; height:10px; background:#FFC93C; border-radius:2px; transform:rotate(20deg); animation:jzFall 2.6s linear infinite;"></div>
+          <div style="position:absolute; left:120px; top:46px; width:8px; height:13px; background:#FF6B6B; border-radius:2px; animation:jzFall 3.1s linear infinite .3s;"></div>
+          <div style="position:absolute; left:240px; top:54px; width:10px; height:10px; background:#3FE08A; border-radius:50%; animation:jzFall 2.9s linear infinite .6s;"></div>
+          <div style="position:absolute; left:300px; top:44px; width:11px; height:11px; background:#FFD86B; border-radius:2px; transform:rotate(40deg); animation:jzFall 3.3s linear infinite .15s;"></div>
+          <div style="position:absolute; left:70px; top:96px; width:8px; height:8px; background:#fff; border-radius:50%; opacity:.8; animation:jzFall 3.4s linear infinite .2s;"></div>
+          <div style="position:absolute; left:200px; top:40px; width:9px; height:9px; background:#FFC93C; border-radius:50%; animation:jzFall 3.2s linear infinite .45s;"></div>
+
+          <div style="position:absolute; left:50%; top:128px; transform:translate(-50%,-50%); width:180px; height:180px; border-radius:50%; background:radial-gradient(circle, rgba(255,201,60,.4), transparent 70%); animation:jzGlow 2.8s ease-in-out infinite;"></div>
+
+          <!-- cheering parrot -->
+          <div style="position:absolute; left:50%; top:34px; transform:translateX(-50%); width:126px; animation:jzCheer 2.4s ease-in-out infinite;">
+            <svg width="126" height="130" viewBox="0 0 120 124">
+              <ellipse cx="60" cy="118" rx="28" ry="6" fill="#000" opacity=".12"/>
+              <path d="M40 64 Q10 40 8 12 Q30 22 44 56 Z" fill="#FFC93C"/><path d="M38 60 Q16 40 13 18 Q28 28 42 54 Z" fill="#FFD86B"/>
+              <path d="M80 64 Q110 40 112 12 Q90 22 76 56 Z" fill="#FFC93C"/><path d="M82 60 Q104 40 107 18 Q92 28 78 54 Z" fill="#FFD86B"/>
+              <path d="M48 96 q-6 20 -2 26 7-5 11-18z" fill="#FF7A00"/><path d="M62 98 q1 20 6 26 6-7 5-20z" fill="#FFC93C"/>
+              <ellipse cx="60" cy="80" rx="30" ry="32" fill="#6C5CE7"/><ellipse cx="62" cy="84" rx="17" ry="22" fill="#EDEBFF"/>
+              <circle cx="58" cy="46" r="26" fill="#7B6CF1"/><ellipse cx="64" cy="49" rx="17" ry="16" fill="#FFF4E8"/>
+              <path d="M48 22 q-4-12 5-12 4 6 1 13z" fill="#FF6B6B"/><path d="M58 18 q1-11 9-8 0 7-4 12z" fill="#FF8585"/><path d="M68 20 q4-8 11-4-1 7-7 9z" fill="#FF6B6B"/>
+              <path d="M50 44 q5-6 11 0" fill="none" stroke="#1A1A2E" stroke-width="3" stroke-linecap="round"/>
+              <path d="M67 44 q5-6 11 0" fill="none" stroke="#1A1A2E" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="48" cy="56" r="4.5" fill="#FF9D9D" opacity=".6"/><circle cx="80" cy="56" r="4.5" fill="#FF9D9D" opacity=".6"/>
+              <path d="M80 48 q16 0 16 9 -8 5 -16 0z" fill="#FF6B6B"/><path d="M80 55 q8 5 15 3 -3 6 -15 4z" fill="#E8553E"/>
+            </svg>
+          </div>
+
+          <div style="position:absolute; left:0; right:0; bottom:20px; text-align:center;">
+            <div style="font-size:12px; font-weight:900; letter-spacing:2.5px; color:rgba(255,255,255,.72);">PERSONALIZADO PARA TI</div>
+            <div style="font-size:25px; font-weight:900; color:#fff; margin-top:2px;">¡Tu plan está listo! 🎉</div>
+          </div>
+        </div>
+
+        <!-- body -->
+        <div style="flex:1; padding:18px 18px 0; overflow:hidden; display:flex; flex-direction:column; gap:14px;">
+
+          <!-- journey map A2 -> B2 -->
+          <div style="position:relative; background:linear-gradient(180deg,#EFF4FF,#FFFFFF); border-radius:20px; padding:14px; box-shadow:0 5px 0 #ECEDF6, 0 12px 22px rgba(60,55,120,.07); overflow:hidden;">
+            <svg width="332" height="124" viewBox="0 0 332 124" style="display:block;">
+              <!-- hills -->
+              <path d="M0 100 Q80 70 160 92 Q240 110 332 64 L332 124 L0 124 Z" fill="#D9F0E2"/>
+              <path d="M0 116 Q90 96 180 110 Q260 120 332 98 L332 124 L0 124 Z" fill="#BFE7CD"/>
+              <!-- ascending dotted path -->
+              <path d="M44 98 C100 96 96 60 150 58 C210 56 200 34 292 24" fill="none" stroke="#C7BEF0" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 12" style="animation:jzDash 1.4s linear infinite;"/>
+              <!-- mid milestones -->
+              <circle cx="150" cy="58" r="8" fill="#fff" stroke="#C7BEF0" stroke-width="3"/>
+              <text x="150" y="44" font-family="Nunito" font-size="11" font-weight="900" fill="#9A9FB8" text-anchor="middle">B1</text>
+              <!-- summit flag at B2 -->
+              <path d="M280 24 L300 14 L320 24 L300 30 Z" fill="#F4B400"/>
+              <rect x="291" y="6" width="3" height="20" fill="#8C6A2E"/>
+              <path d="M294 6 L312 11 L294 16 Z" fill="#FF6B6B"/>
+            </svg>
+            <!-- A2 start pin -->
+            <div style="position:absolute; left:18px; bottom:14px; text-align:center;">
+              <div style="width:42px; height:42px; border-radius:50%; background:linear-gradient(160deg,#8A7BF6,#6C5CE7); display:grid; place-items:center; color:#fff; font-size:15px; font-weight:900; box-shadow:0 4px 0 #4B3FC9; border:3px solid #fff;">A2</div>
+              <div style="font-size:9.5px; font-weight:900; color:#6C5CE7; margin-top:3px;">ESTÁS AQUÍ</div>
+            </div>
+            <!-- B2 goal -->
+            <div style="position:absolute; right:14px; top:30px; text-align:center;">
+              <div style="width:46px; height:46px; border-radius:50%; background:linear-gradient(160deg,#FFDD7A,#F4B400); display:grid; place-items:center; color:#fff; font-size:16px; font-weight:900; box-shadow:0 4px 0 #D69400; border:3px solid #fff;">B2</div>
+              <div style="font-size:9.5px; font-weight:900; color:#C98A12; margin-top:3px;">TU META</div>
+            </div>
+          </div>
+
+          <!-- big data card -->
+          <div style="background:#fff; border-radius:20px; padding:18px; text-align:center; box-shadow:0 5px 0 #ECEDF6, 0 12px 22px rgba(60,55,120,.07);">
+            <div style="font-size:13px; font-weight:800; color:#9A9FB8;">Con <b style="color:#1A1A2E;">{{ planMin }} min/día</b> llegas a <b style="color:#6C5CE7;">B2</b> el</div>
+            <div style="font-size:27px; font-weight:900; color:#6C5CE7; line-height:1.1; margin-top:6px;">{{ planDate }}</div>
+            <sc-if value="{{ fast }}" hint-placeholder-val="{{ false }}">
+              <div style="display:inline-block; margin-top:8px; background:#E5F8EE; color:#1B8E4E; font-size:11px; font-weight:900; padding:4px 11px; border-radius:9px;">⚡ ¡La mitad de tiempo!</div>
+            </sc-if>
+            <div style="font-size:11.5px; font-weight:800; color:#B0B4C8; margin-top:10px;">≈ 360 horas · 7 días/semana</div>
+          </div>
+
+          <!-- lever card -->
+          <div style="{{ leverCardStyle }}">
+            <div style="flex:1;">
+              <div style="font-size:14px; font-weight:900; color:#1A1A2E;">{{ leverTitle }}</div>
+              <div style="font-size:11.5px; font-weight:800; color:#7A7F96; margin-top:2px; line-height:1.3;">{{ leverText }}</div>
+            </div>
+            <button onClick="{{ onToggleFast }}" style="{{ trackStyle }}">
+              <span style="{{ knobStyle }}"></span>
+            </button>
+          </div>
+
+          <!-- start -->
+          <button style="margin-top:auto; margin-bottom:26px; width:100%; height:60px; border:none; border-radius:18px; background:linear-gradient(160deg,#FF8585,#FF6B6B); color:#fff; font-family:Nunito; font-size:17px; font-weight:900; letter-spacing:.5px; cursor:pointer; box-shadow:0 6px 0 #DC4545, 0 14px 26px rgba(255,107,107,.4); display:flex; align-items:center; justify-content:center; gap:9px;" style-active="transform:translateY(4px); box-shadow:0 2px 0 #DC4545;">
+            Empezar mi viaje
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { minutes: '15', fast: false };
+  OPTS = [
+    { v:'5',   label:'Relajado' },
+    { v:'10',  label:'Ligero' },
+    { v:'15',  label:'Recomendado' },
+    { v:'20',  label:'Constante' },
+    { v:'30',  label:'Intenso' },
+    { v:'45+', label:'Experto' },
+  ];
+  renderVals() {
+    const { minutes, fast } = this.state;
+    const optItems = this.OPTS.map(o => {
+      const sel = o.v === minutes;
+      return {
+        time: o.v + ' min',
+        label: o.label,
+        onTap: () => this.setState({ minutes: o.v }),
+        rowStyle: {
+          display:'flex', alignItems:'center', gap:'13px', width:'100%',
+          border:'2.5px solid ' + (sel ? '#6C5CE7' : '#EAECF4'),
+          background: sel ? '#F4F2FF' : '#fff', borderRadius:'18px',
+          padding:'13px 15px', cursor:'pointer',
+          boxShadow: sel ? '0 5px 0 #D6D0F6' : '0 4px 0 #ECEDF6', transition:'all .15s',
+        },
+        iconWrapStyle: {
+          flex:'none', width:'34px', height:'34px', borderRadius:'11px',
+          background: sel ? '#6C5CE7' : '#F1F2F8', display:'grid', placeItems:'center',
+        },
+        iconStroke: sel ? '#ffffff' : '#9A9FB8',
+        badgeStyle: {
+          fontSize:'11px', fontWeight:'900', padding:'4px 10px', borderRadius:'9px',
+          background: sel ? '#6C5CE7' : '#F1F2F8', color: sel ? '#fff' : '#9A9FB8',
+        },
+        checkStyle: {
+          flex:'none', width:'24px', height:'24px', borderRadius:'50%',
+          background: sel ? '#6C5CE7' : 'transparent',
+          display:'grid', placeItems:'center',
+          visibility: sel ? 'visible' : 'hidden',
+        },
+      };
+    });
+    return {
+      optItems,
+      fast,
+      planMin: fast ? '30' : '15',
+      planDate: fast ? '28 oct 2026' : '12 mar 2027',
+      onToggleFast: () => this.setState(s => ({ fast: !s.fast })),
+      leverTitle: fast ? '🚀 ¡Vas a toda máquina!' : '¿Quieres llegar más rápido?',
+      leverText: fast ? 'Plan de 30 min/día activado: llegas a B2 en la mitad del tiempo.' : 'Sube a 30 min/día y llegas en la mitad del tiempo 💪',
+      leverCardStyle: {
+        display:'flex', alignItems:'center', gap:'14px',
+        background: fast ? 'linear-gradient(120deg,#E5F8EE,#EDFBF2)' : 'linear-gradient(120deg,#FFF1F1,#FFF6EC)',
+        border: '1.5px solid ' + (fast ? '#BCEBCF' : '#FFD9D9'),
+        borderRadius:'18px', padding:'14px 15px',
+      },
+      trackStyle: {
+        flex:'none', width:'54px', height:'31px', borderRadius:'16px', border:'none',
+        background: fast ? '#2ECC71' : '#D0D5E2', position:'relative', cursor:'pointer',
+        transition:'background .2s', boxShadow:'inset 0 1px 3px rgba(0,0,0,.12)',
+      },
+      knobStyle: {
+        position:'absolute', top:'3px', left: fast ? '26px' : '3px',
+        width:'25px', height:'25px', borderRadius:'50%', background:'#fff',
+        transition:'left .2s', boxShadow:'0 2px 5px rgba(0,0,0,.25)',
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body{ margin:0; font-family:'Nunito',system-ui,sans-serif; }
+  @keyframes jzBob{ 0%,100%{ transform:translateY(0) rotate(-3deg) } 50%{ transform:translateY(-8px) rotate(3deg) } }
+  @keyframes jzRise{ 0%{ transform:translateY(40px); opacity:0 } 100%{ transform:translateY(0); opacity:1 } }
+  @keyframes jzPulseHeart{ 0%,100%{ transform:scale(1) } 50%{ transform:scale(1.12) } }
+</style>
+</helmet>
+
+<div style="min-height:100vh; width:100%; background:radial-gradient(120% 90% at 50% 0%, #E7E3FF 0%, #EEF0F8 60%, #E6E8F4 100%); display:flex; align-items:center; justify-content:center; padding:32px 16px; font-family:'Nunito',sans-serif;">
+
+  <div style="position:relative; width:390px; height:844px; background:#0B0B16; border-radius:52px; padding:11px; box-shadow:0 40px 80px -20px rgba(48,40,110,.5), 0 0 0 2px rgba(255,255,255,.06) inset;">
+    <div style="position:relative; width:368px; height:822px; border-radius:42px; overflow:hidden;">
+      <div style="position:absolute; top:11px; left:50%; transform:translateX(-50%); width:118px; height:34px; background:#0B0B16; border-radius:20px; z-index:60;"></div>
+
+      <!-- dimmed backdrop (lesson behind) -->
+      <div style="position:absolute; inset:0; background:linear-gradient(180deg,#4B3FA8,#6C5CE7);"></div>
+      <div style="position:absolute; inset:0; opacity:.25;">
+        <div style="position:absolute; left:30px; top:90px; width:120px; height:16px; border-radius:8px; background:#fff;"></div>
+        <div style="position:absolute; left:30px; top:130px; width:300px; height:54px; border-radius:16px; background:#fff;"></div>
+        <div style="position:absolute; left:30px; top:210px; width:140px; height:46px; border-radius:12px; background:#fff;"></div>
+        <div style="position:absolute; left:185px; top:210px; width:140px; height:46px; border-radius:12px; background:#fff;"></div>
+      </div>
+      <div style="position:absolute; inset:0; background:rgba(20,16,44,.55); backdrop-filter:blur(3px);"></div>
+
+      <!-- close -->
+      <button style="position:absolute; top:46px; right:18px; z-index:30; width:36px; height:36px; border:none; border-radius:12px; background:rgba(255,255,255,.16); display:grid; place-items:center; cursor:pointer;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+
+      <!-- ===== MODAL ===== -->
+      <div style="position:absolute; left:0; right:0; bottom:0; z-index:20; animation:jzRise .35s ease;">
+        <!-- parrot above sheet -->
+        <div style="position:relative; height:74px;">
+          <div style="position:absolute; left:50%; bottom:-6px; transform:translateX(-50%); width:124px; animation:jzBob 3s ease-in-out infinite; z-index:2;">
+            <svg width="124" height="116" viewBox="0 0 120 112">
+              <!-- raised wing offering heart -->
+              <path d="M30 70 Q6 52 6 26 Q26 32 40 62 Z" fill="#FFC93C"/><path d="M30 66 Q12 52 12 32 Q26 38 38 60 Z" fill="#FFD86B"/>
+              <!-- small heart in wing -->
+              <path d="M14 22 c-2-4 4-7 6-3 2-4 8-1 6 3 -1 3 -6 6 -6 6 s-5-3-6-6Z" fill="#FF4D6D"/>
+              <!-- tail -->
+              <path d="M50 88 q-6 18 -2 24 7-5 11-16z" fill="#FF7A00"/><path d="M62 90 q1 18 6 24 6-7 5-18z" fill="#FFC93C"/>
+              <!-- body -->
+              <ellipse cx="62" cy="72" rx="28" ry="30" fill="#FF4D6D"/><ellipse cx="64" cy="76" rx="15" ry="20" fill="#FFE3E8"/>
+              <!-- right wing down -->
+              <path d="M86 64 q14 8 10 26 -12 2 -16 -10z" fill="#FFC93C"/>
+              <!-- head -->
+              <circle cx="58" cy="42" r="24" fill="#FF6B6B"/><ellipse cx="64" cy="45" rx="15" ry="14" fill="#FFF4E8"/>
+              <path d="M47 20 q-3-10 4-10 4 5 1 11z" fill="#FFC93C"/><path d="M57 16 q1-9 8-7 0 6-4 11z" fill="#FFD86B"/>
+              <!-- happy eyes -->
+              <path d="M50 40 q5-5 10 0" fill="none" stroke="#1A1A2E" stroke-width="2.8" stroke-linecap="round"/>
+              <path d="M66 40 q5-5 10 0" fill="none" stroke="#1A1A2E" stroke-width="2.8" stroke-linecap="round"/>
+              <circle cx="49" cy="50" r="4" fill="#FF9D9D" opacity=".6"/><circle cx="79" cy="50" r="4" fill="#FF9D9D" opacity=".6"/>
+              <path d="M78 42 q14 0 14 8 -7 4 -14 0z" fill="#FFC93C"/>
+            </svg>
+          </div>
+        </div>
+
+        <div style="background:#fff; border-radius:30px 30px 0 0; padding:14px 20px 30px; box-shadow:0 -10px 40px rgba(0,0,0,.3);">
+          <div style="width:42px; height:5px; border-radius:3px; background:#E4E6EE; margin:0 auto 16px;"></div>
+
+          <!-- empty hearts -->
+          <div style="display:flex; justify-content:center; gap:7px; margin-bottom:12px;">
+            <svg width="26" height="24" viewBox="0 0 24 22" fill="none" stroke="#E2E5F0" stroke-width="2.4"><path d="M12 20S2 13.4 2 7.4C2 4 4.6 1.8 7.4 1.8c1.9 0 3.5 1 4.6 2.6C13.1 2.8 14.7 1.8 16.6 1.8 19.4 1.8 22 4 22 7.4 22 13.4 12 20 12 20Z"/></svg>
+            <svg width="26" height="24" viewBox="0 0 24 22" fill="none" stroke="#E2E5F0" stroke-width="2.4"><path d="M12 20S2 13.4 2 7.4C2 4 4.6 1.8 7.4 1.8c1.9 0 3.5 1 4.6 2.6C13.1 2.8 14.7 1.8 16.6 1.8 19.4 1.8 22 4 22 7.4 22 13.4 12 20 12 20Z"/></svg>
+            <svg width="26" height="24" viewBox="0 0 24 22" fill="none" stroke="#E2E5F0" stroke-width="2.4"><path d="M12 20S2 13.4 2 7.4C2 4 4.6 1.8 7.4 1.8c1.9 0 3.5 1 4.6 2.6C13.1 2.8 14.7 1.8 16.6 1.8 19.4 1.8 22 4 22 7.4 22 13.4 12 20 12 20Z"/></svg>
+            <svg width="26" height="24" viewBox="0 0 24 22" fill="none" stroke="#E2E5F0" stroke-width="2.4"><path d="M12 20S2 13.4 2 7.4C2 4 4.6 1.8 7.4 1.8c1.9 0 3.5 1 4.6 2.6C13.1 2.8 14.7 1.8 16.6 1.8 19.4 1.8 22 4 22 7.4 22 13.4 12 20 12 20Z"/></svg>
+            <svg width="26" height="24" viewBox="0 0 24 22" fill="none" stroke="#E2E5F0" stroke-width="2.4"><path d="M12 20S2 13.4 2 7.4C2 4 4.6 1.8 7.4 1.8c1.9 0 3.5 1 4.6 2.6C13.1 2.8 14.7 1.8 16.6 1.8 19.4 1.8 22 4 22 7.4 22 13.4 12 20 12 20Z"/></svg>
+          </div>
+
+          <div style="text-align:center;">
+            <div style="font-size:23px; font-weight:900; color:#1A1A2E;">Te quedaste sin vidas ❤️</div>
+            <div style="font-size:13px; font-weight:800; color:#9A9FB8; margin-top:6px; max-width:280px; margin-left:auto; margin-right:auto;">¡Tranqui, le pasa a todos! Vuelven solas, o elige cómo seguir ahora 💪</div>
+          </div>
+
+          <!-- timer (wait) -->
+          <div style="display:flex; align-items:center; gap:13px; background:#F6F7FB; border-radius:16px; padding:14px; margin-top:18px;">
+            <div style="position:relative; flex:none; width:46px; height:46px; display:grid; place-items:center;">
+              <svg width="46" height="46" viewBox="0 0 46 46" style="position:absolute; transform:rotate(-90deg);"><circle cx="23" cy="23" r="19" fill="none" stroke="#E7E9F2" stroke-width="5"/><circle cx="23" cy="23" r="19" fill="none" stroke="#FF4D6D" stroke-width="5" stroke-linecap="round" stroke-dasharray="119" stroke-dashoffset="48"/></svg>
+              <svg width="18" height="17" viewBox="0 0 24 22" fill="#FF4D6D" style="animation:jzPulseHeart 1.6s ease-in-out infinite;"><path d="M12 21S1.5 14.6 1.5 7.6C1.5 4 4.2 1.5 7.4 1.5c2.1 0 3.7 1.1 4.6 2.7C12.9 2.6 14.5 1.5 16.6 1.5 19.8 1.5 22.5 4 22.5 7.6 22.5 14.6 12 21 12 21Z"/></svg>
+            </div>
+            <div style="flex:1;">
+              <div style="font-size:12px; font-weight:800; color:#9A9FB8;">Próxima vida gratis en</div>
+              <div style="font-size:22px; font-weight:900; color:#1A1A2E; line-height:1; margin-top:1px;">{{ timeText }}</div>
+            </div>
+            <div style="flex:none; width:74px;">
+              <div style="height:7px; background:#E7E9F2; border-radius:5px; overflow:hidden;"><div style="{{ barStyle }}"></div></div>
+              <div style="font-size:10px; font-weight:900; color:#9A9FB8; text-align:right; margin-top:4px;">+1 ❤️</div>
+            </div>
+          </div>
+
+          <!-- options -->
+          <div style="display:flex; flex-direction:column; gap:11px; margin-top:14px;">
+            <!-- watch ad (free) -->
+            <button style="display:flex; align-items:center; gap:13px; width:100%; border:none; border-radius:16px; background:#fff; padding:14px 15px; cursor:pointer; box-shadow:0 0 0 2px #E5F8EE inset, 0 4px 0 #DCEFE3; text-align:left;" style-active="transform:translateY(3px); box-shadow:0 0 0 2px #E5F8EE inset, 0 1px 0 #DCEFE3;">
+              <span style="flex:none; width:40px; height:40px; border-radius:12px; background:#E7F9EF; display:grid; place-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#2ECC71"><path d="M8 5.3c0-.9 1-1.5 1.8-1l9 6.7c.7.5.7 1.5 0 2l-9 6.7c-.8.5-1.8-.1-1.8-1V5.3Z"/></svg></span>
+              <span style="flex:1;"><span style="display:block; font-size:14.5px; font-weight:900; color:#1A1A2E;">Ver un anuncio</span><span style="font-size:11.5px; font-weight:800; color:#3CA86A;">Recupera 1 vida · gratis</span></span>
+              <span style="font-size:11px; font-weight:900; color:#1B8E4E; background:#E5F8EE; padding:4px 10px; border-radius:9px;">+1 ❤️</span>
+            </button>
+
+            <!-- refill with gold -->
+            <button style="display:flex; align-items:center; gap:13px; width:100%; border:none; border-radius:16px; background:#fff; padding:14px 15px; cursor:pointer; box-shadow:0 4px 0 #ECEDF6; text-align:left;" style-active="transform:translateY(3px); box-shadow:0 1px 0 #ECEDF6;">
+              <span style="flex:none; width:40px; height:40px; border-radius:12px; background:#FFF4D6; display:grid; place-items:center;"><svg width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#F4B400"/><circle cx="12" cy="12" r="6.2" fill="#FFD86B"/><path d="M12 8l1.1 2.3 2.5.3-1.9 1.7.5 2.5L12 13.4 9.7 14.6l.5-2.5-1.9-1.7 2.5-.3L12 8Z" fill="#E09A00"/></svg></span>
+              <span style="flex:1;"><span style="display:block; font-size:14.5px; font-weight:900; color:#1A1A2E;">Recargar todas</span><span style="font-size:11.5px; font-weight:800; color:#9A9FB8;">Rellena tus 5 vidas al instante</span></span>
+              <span style="display:inline-flex; align-items:center; gap:4px; font-size:13px; font-weight:900; color:#C98A12;"><svg width="15" height="15" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#F4B400"/><circle cx="12" cy="12" r="5.5" fill="#FFD86B"/></svg>350</span>
+            </button>
+
+            <!-- premium -->
+            <button style="display:flex; align-items:center; gap:13px; width:100%; border:none; border-radius:16px; background:linear-gradient(135deg,#6C5CE7,#5B4ECF); padding:15px; cursor:pointer; box-shadow:0 5px 0 #4B3FC9, 0 12px 22px rgba(108,92,231,.3); text-align:left; position:relative; overflow:hidden;" style-active="transform:translateY(3px); box-shadow:0 2px 0 #4B3FC9;">
+              <span style="flex:none; width:40px; height:40px; border-radius:12px; background:linear-gradient(150deg,#FFDD7A,#F4B400); display:grid; place-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="#5B3A00"><path d="M12 21S3 14 3 8.2C3 5 5.4 3 8 3c1.7 0 3.2 1 4 2.3C12.8 4 14.3 3 16 3c2.6 0 5 2 5 5.2C21 14 12 21 12 21Z"/></svg></span>
+              <span style="flex:1;"><span style="display:block; font-size:14.5px; font-weight:900; color:#fff;">Vidas ilimitadas</span><span style="font-size:11.5px; font-weight:800; color:rgba(255,255,255,.8);">Nunca más esperes · con Premium</span></span>
+              <span style="font-size:10px; font-weight:900; color:#5B3A00; background:linear-gradient(120deg,#FFDD7A,#F4B400); padding:4px 9px; border-radius:8px;">PREMIUM</span>
+            </button>
+          </div>
+
+          <div style="text-align:center; margin-top:16px;">
+            <button style="border:none; background:none; font-family:Nunito; font-size:14px; font-weight:900; color:#9097AE; cursor:pointer;">Ahora no</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { secs: 28 * 60 + 14 };
+  componentDidMount() {
+    this._t = setInterval(() => {
+      this.setState(s => ({ secs: s.secs > 0 ? s.secs - 1 : 30 * 60 }));
+    }, 1000);
+  }
+  componentWillUnmount() { clearInterval(this._t); }
+  renderVals() {
+    const s = this.state.secs;
+    const mm = String(Math.floor(s / 60)).padStart(2, '0');
+    const ss = String(s % 60).padStart(2, '0');
+    const pct = Math.max(0, Math.min(100, (1 - s / (30 * 60)) * 100));
+    return {
+      timeText: mm + ':' + ss,
+      barStyle: {
+        width: pct + '%', height: '100%', borderRadius: '5px',
+        background: 'linear-gradient(90deg,#FF8585,#FF4D6D)', transition: 'width 1s linear',
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

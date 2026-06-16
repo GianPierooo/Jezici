@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body{ margin:0; font-family:'Nunito',system-ui,sans-serif; }
+  .jz-scroll::-webkit-scrollbar{ display:none; }
+  @keyframes jzBob{ 0%,100%{ transform:translateY(0) rotate(-3deg) } 50%{ transform:translateY(-7px) rotate(3deg) } }
+  @keyframes jzGlow{ 0%,100%{ opacity:.4; transform:scale(1) } 50%{ opacity:.8; transform:scale(1.1) } }
+  @keyframes jzFade{ 0%,100%{ opacity:.35 } 50%{ opacity:.6 } }
+</style>
+</helmet>
+
+<div style="min-height:100vh; width:100%; background:radial-gradient(120% 90% at 50% 0%, #E7E3FF 0%, #EEF0F8 60%, #E6E8F4 100%); display:flex; align-items:center; justify-content:center; padding:32px 16px; font-family:'Nunito',sans-serif;">
+
+  <div style="position:relative; width:390px; height:844px; background:#0B0B16; border-radius:52px; padding:11px; box-shadow:0 40px 80px -20px rgba(48,40,110,.5), 0 0 0 2px rgba(255,255,255,.06) inset;">
+    <div style="position:relative; width:368px; height:822px; background:#F5F6FB; border-radius:42px; overflow:hidden;">
+      <div style="position:absolute; top:11px; left:50%; transform:translateX(-50%); width:118px; height:34px; background:#0B0B16; border-radius:20px; z-index:60;"></div>
+
+      <div class="jz-scroll" style="position:absolute; inset:0; overflow-y:auto; overflow-x:hidden;">
+
+        <!-- ===== HEADER ===== -->
+        <div style="position:relative; padding:54px 20px 30px; background:linear-gradient(150deg,#7A6BF0 0%,#6C5CE7 60%,#5B4ECF 100%); overflow:hidden;">
+          <svg width="368" height="150" viewBox="0 0 368 150" style="position:absolute; inset:0; opacity:.5;" fill="none" stroke="#fff" stroke-width="1.4">
+            <path d="M-20 50 Q90 24 180 60 T380 50" opacity=".15"/><path d="M-20 88 Q100 58 190 94 T380 86" opacity=".12"/>
+          </svg>
+          <div style="position:absolute; right:16px; top:46px; width:74px; animation:jzBob 3s ease-in-out infinite;">
+            <svg width="74" height="80" viewBox="0 0 84 90">
+              <path d="M28 58q-7 18-3 26 7-5 12-18z" fill="#FF7A00"/><path d="M40 60q-1 19 4 26 7-7 7-20z" fill="#FFC93C"/>
+              <ellipse cx="46" cy="52" rx="23" ry="25" fill="#FFC93C"/><ellipse cx="50" cy="56" rx="13" ry="17" fill="#FFF1C9"/>
+              <path d="M30 46q-9 8-5 24 13 3 18-10-4-12-13-14z" fill="#FF8A4D"/>
+              <circle cx="40" cy="28" r="20" fill="#FFD25C"/><ellipse cx="45" cy="30" rx="13" ry="12" fill="#FFF4E8"/>
+              <path d="M33 11q-3-9 4-9 3 4 1 9z" fill="#FF6B6B"/><path d="M41 8q1-8 7-6 0 5-3 9z" fill="#FF8585"/>
+              <circle cx="43" cy="27" r="6.2" fill="#fff"/><circle cx="44.5" cy="28" r="3.3" fill="#1A1A2E"/><circle cx="46" cy="26.6" r="1.1" fill="#fff"/>
+              <path d="M57 30q11 1 10 8-6 4-11-1z" fill="#FF6B6B"/>
+            </svg>
+          </div>
+          <div style="position:relative;">
+            <div style="font-size:13px; font-weight:900; letter-spacing:1.6px; color:rgba(255,255,255,.7);">ENTRENAMIENTO</div>
+            <div style="font-size:28px; font-weight:900; color:#fff; line-height:1; margin-top:3px;">Practicar</div>
+            <div style="font-size:13px; font-weight:800; color:rgba(255,255,255,.85); margin-top:8px; max-width:230px;">Refuerza lo que ya viste y no lo olvides 🧠</div>
+          </div>
+        </div>
+
+        <div style="padding:0 16px 110px; margin-top:-14px; position:relative; z-index:2; display:flex; flex-direction:column; gap:16px;">
+
+          <!-- ===== RESCATE DE PALABRAS (hero) ===== -->
+          <div style="position:relative; background:#fff; border-radius:24px; overflow:hidden; box-shadow:0 7px 0 #ECEDF6, 0 18px 32px rgba(60,55,120,.1);">
+            <div style="position:relative; padding:16px 18px 14px; background:linear-gradient(135deg,#FFE9D6,#FFE0E0); overflow:hidden;">
+              <div style="position:absolute; right:10px; bottom:-6px; width:70px; animation:jzBob 3.2s ease-in-out infinite;">
+                <svg width="70" height="76" viewBox="0 0 84 90">
+                  <path d="M28 58q-7 18-3 26 7-5 12-18z" fill="#FF7A00"/><path d="M40 60q-1 19 4 26 7-7 7-20z" fill="#FFC93C"/>
+                  <ellipse cx="46" cy="52" rx="23" ry="25" fill="#6C5CE7"/><ellipse cx="50" cy="56" rx="13" ry="17" fill="#EDEBFF"/>
+                  <path d="M30 46q-9 8-5 24 13 3 18-10-4-12-13-14z" fill="#FFC93C"/>
+                  <circle cx="40" cy="28" r="20" fill="#7B6CF1"/><ellipse cx="45" cy="30" rx="13" ry="12" fill="#FFF4E8"/>
+                  <path d="M33 11q-3-9 4-9 3 4 1 9z" fill="#FF6B6B"/><path d="M41 8q1-8 7-6 0 5-3 9z" fill="#FF8585"/>
+                  <circle cx="43" cy="27" r="6.2" fill="#fff"/><circle cx="44.5" cy="28" r="3.3" fill="#1A1A2E"/><circle cx="46" cy="26.6" r="1.1" fill="#fff"/>
+                  <path d="M57 30q11 1 10 8-6 4-11-1z" fill="#FF6B6B"/>
+                </svg>
+              </div>
+              <div style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,.65); border-radius:9px; padding:4px 10px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#E8650A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg>
+                <span style="font-size:10px; font-weight:900; letter-spacing:.6px; color:#E8650A;">REPASO ESPACIADO</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:12px; margin-top:12px;">
+                <div style="position:relative; flex:none; width:58px; height:58px;">
+                  <div style="position:absolute; inset:-3px; border-radius:18px; background:radial-gradient(circle,rgba(255,107,107,.45),transparent 70%); animation:jzGlow 2.6s ease-in-out infinite;"></div>
+                  <div style="position:relative; width:58px; height:58px; border-radius:18px; background:linear-gradient(150deg,#FF8C8C,#FF5C5C); display:grid; place-items:center; color:#fff; font-size:24px; font-weight:900; box-shadow:0 5px 0 #DC4545;">24</div>
+                </div>
+                <div style="flex:1;">
+                  <div style="font-size:17px; font-weight:900; color:#1A1A2E; line-height:1.1;">palabras por repasar</div>
+                  <div style="font-size:12px; font-weight:800; color:#C9683E; margin-top:2px;">Antes de que se te olviden</div>
+                </div>
+              </div>
+              <!-- fading word chips -->
+              <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:13px;">
+                <span style="font-size:11px; font-weight:900; color:#1A1A2E; background:rgba(255,255,255,.8); padding:4px 9px; border-radius:8px;">meeting</span>
+                <span style="font-size:11px; font-weight:900; color:#1A1A2E; background:rgba(255,255,255,.7); padding:4px 9px; border-radius:8px; opacity:.8;">schedule</span>
+                <span style="font-size:11px; font-weight:900; color:#1A1A2E; background:rgba(255,255,255,.6); padding:4px 9px; border-radius:8px; animation:jzFade 3s ease-in-out infinite;">deadline</span>
+                <span style="font-size:11px; font-weight:900; color:#1A1A2E; background:rgba(255,255,255,.5); padding:4px 9px; border-radius:8px; animation:jzFade 3.4s ease-in-out infinite .4s;">budget</span>
+                <span style="font-size:11px; font-weight:800; color:#9A7A66; background:rgba(255,255,255,.4); padding:4px 9px; border-radius:8px; animation:jzFade 3.8s ease-in-out infinite .8s;">+20 más</span>
+              </div>
+            </div>
+            <div style="padding:14px 18px 18px;">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+                <span style="font-size:11.5px; font-weight:900; color:#7A7F96;">Memoria media de estas palabras</span>
+                <span style="font-size:12px; font-weight:900; color:#FF7A00;">58%</span>
+              </div>
+              <div style="height:10px; background:#F0F1F8; border-radius:6px; overflow:hidden;"><div style="width:58%; height:100%; border-radius:6px; background:linear-gradient(90deg,#FFC93C,#FF7A00);"></div></div>
+              <button style="width:100%; margin-top:14px; height:54px; border:none; border-radius:16px; background:linear-gradient(160deg,#FF8585,#FF6B6B); color:#fff; font-family:Nunito; font-size:16px; font-weight:900; letter-spacing:.5px; cursor:pointer; box-shadow:0 6px 0 #DC4545, 0 12px 22px rgba(255,107,107,.35);" style-active="transform:translateY(4px); box-shadow:0 2px 0 #DC4545;">Rescatar ahora 🪝</button>
+            </div>
+          </div>
+
+          <!-- ===== REFUERZA SKILL DÉBIL ===== -->
+          <div style="display:flex; align-items:center; gap:13px; background:#fff; border-radius:20px; padding:15px; box-shadow:0 5px 0 #ECEDF6, 0 12px 22px rgba(60,55,120,.07);">
+            <div style="flex:none; width:46px; height:46px; border-radius:14px; background:#E7F9EF; display:grid; place-items:center;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2ECC71" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+            </div>
+            <div style="flex:1; min-width:0;">
+              <div style="font-size:14px; font-weight:900; color:#1A1A2E;">Refuerza tu punto débil</div>
+              <div style="display:flex; align-items:center; gap:7px; margin-top:5px;">
+                <span style="font-size:11.5px; font-weight:800; color:#7A7F96;">Speaking</span>
+                <div style="flex:1; height:6px; background:#F0F1F8; border-radius:4px; overflow:hidden; max-width:90px;"><div style="width:40%; height:100%; background:#FF6B6B; border-radius:4px;"></div></div>
+                <span style="font-size:11px; font-weight:900; color:#fff; background:#FF6B6B; padding:1px 7px; border-radius:7px;">A2</span>
+              </div>
+            </div>
+            <button style="flex:none; align-self:stretch; border:none; border-radius:13px; background:#6C5CE7; color:#fff; font-family:Nunito; font-size:12px; font-weight:900; padding:0 13px; cursor:pointer; box-shadow:0 4px 0 #4B3FC9;" style-active="transform:translateY(3px); box-shadow:0 1px 0 #4B3FC9;">Practicar</button>
+          </div>
+
+          <!-- ===== PRÁCTICA POR HABILIDAD ===== -->
+          <div>
+            <div style="font-size:16px; font-weight:900; color:#1A1A2E; margin-bottom:12px;">Practica por habilidad</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:11px;">
+              <button style="display:flex; align-items:center; gap:11px; background:#fff; border:none; border-radius:18px; padding:14px; cursor:pointer; box-shadow:0 4px 0 #ECEDF6, 0 10px 18px rgba(60,55,120,.06);" style-active="transform:translateY(3px); box-shadow:0 1px 0 #ECEDF6;">
+                <div style="flex:none; width:40px; height:40px; border-radius:13px; background:#EDEBFF; display:grid; place-items:center;"><svg width="21" height="21" viewBox="0 0 24 24" fill="#6C5CE7"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H11v16H5.5A1.5 1.5 0 0 0 4 20.5v-16ZM20 4.5A1.5 1.5 0 0 0 18.5 3H13v16h5.5a1.5 1.5 0 0 1 1.5 1.5v-16Z"/></svg></div>
+                <div style="text-align:left;"><div style="font-size:13.5px; font-weight:900; color:#1A1A2E;">Vocabulario</div><div style="font-size:10.5px; font-weight:800; color:#9A9FB8;">320 palabras</div></div>
+              </button>
+              <button style="display:flex; align-items:center; gap:11px; background:#fff; border:none; border-radius:18px; padding:14px; cursor:pointer; box-shadow:0 4px 0 #ECEDF6, 0 10px 18px rgba(60,55,120,.06);" style-active="transform:translateY(3px); box-shadow:0 1px 0 #ECEDF6;">
+                <div style="flex:none; width:40px; height:40px; border-radius:13px; background:#FFEFEF; display:grid; place-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF5C5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h10M4 12h16M4 17h8"/><circle cx="18" cy="7" r="2.4"/></svg></div>
+                <div style="text-align:left;"><div style="font-size:13.5px; font-weight:900; color:#1A1A2E;">Gramática</div><div style="font-size:10.5px; font-weight:800; color:#9A9FB8;">28 reglas</div></div>
+              </button>
+              <button style="display:flex; align-items:center; gap:11px; background:#fff; border:none; border-radius:18px; padding:14px; cursor:pointer; box-shadow:0 4px 0 #ECEDF6, 0 10px 18px rgba(60,55,120,.06);" style-active="transform:translateY(3px); box-shadow:0 1px 0 #ECEDF6;">
+                <div style="flex:none; width:40px; height:40px; border-radius:13px; background:#FFF4D6; display:grid; place-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E09A00" stroke-width="2" stroke-linecap="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="3" y="13" width="4" height="7" rx="2" fill="#E09A00" stroke="none"/><rect x="17" y="13" width="4" height="7" rx="2" fill="#E09A00" stroke="none"/></svg></div>
+                <div style="text-align:left;"><div style="font-size:13.5px; font-weight:900; color:#1A1A2E;">Listening</div><div style="font-size:10.5px; font-weight:800; color:#9A9FB8;">42 audios</div></div>
+              </button>
+              <button style="display:flex; align-items:center; gap:11px; background:#fff; border:none; border-radius:18px; padding:14px; cursor:pointer; box-shadow:0 4px 0 #ECEDF6, 0 10px 18px rgba(60,55,120,.06);" style-active="transform:translateY(3px); box-shadow:0 1px 0 #ECEDF6;">
+                <div style="flex:none; width:40px; height:40px; border-radius:13px; background:#E7F9EF; display:grid; place-items:center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#2ECC71" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></div>
+                <div style="text-align:left;"><div style="font-size:13.5px; font-weight:900; color:#1A1A2E;">Speaking</div><div style="font-size:10.5px; font-weight:800; color:#9A9FB8;">Habla y repite</div></div>
+              </button>
+            </div>
+          </div>
+
+          <!-- ===== CRONOMETRADA ===== -->
+          <div style="position:relative; border-radius:22px; padding:17px; background:linear-gradient(135deg,#6C5CE7,#5B4ECF); overflow:hidden; box-shadow:0 6px 0 #4B3FC9, 0 14px 26px rgba(108,92,231,.3);">
+            <div style="position:absolute; right:-20px; top:-20px; width:110px; height:110px; border-radius:50%; background:rgba(255,255,255,.08);"></div>
+            <div style="position:relative; display:flex; align-items:center; gap:14px;">
+              <div style="flex:none; width:52px; height:52px; border-radius:16px; background:linear-gradient(150deg,#FFDD7A,#F4B400); display:grid; place-items:center; box-shadow:0 4px 0 #D69400;">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg>
+              </div>
+              <div style="flex:1;">
+                <div style="display:flex; align-items:center; gap:7px;"><span style="font-size:16px; font-weight:900; color:#fff;">Contrarreloj</span><span style="font-size:10px; font-weight:900; color:#1A1A2E; background:#FFC93C; padding:2px 8px; border-radius:7px;">+XP EXTRA</span></div>
+                <div style="font-size:12px; font-weight:800; color:rgba(255,255,255,.85); margin-top:2px;">Responde rápido y gana XP extra · 90s</div>
+              </div>
+            </div>
+            <button style="position:relative; width:100%; margin-top:13px; height:50px; border:none; border-radius:14px; background:#fff; color:#6C5CE7; font-family:Nunito; font-size:14px; font-weight:900; cursor:pointer; box-shadow:0 5px 0 rgba(0,0,0,.18);" style-active="transform:translateY(3px); box-shadow:0 2px 0 rgba(0,0,0,.18);">Empezar contrarreloj</button>
+          </div>
+
+          <!-- ===== XP NOTE ===== -->
+          <div style="display:flex; align-items:flex-start; gap:8px; padding:2px 8px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#A7ABC3" style="flex:none; margin-top:1px;"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm0 5a1.3 1.3 0 1 1 0 2.6A1.3 1.3 0 0 1 12 7Zm1.4 11h-2.8v-1.4h.7V12h-.7v-1.4h2.1V16.6h.7V18Z"/></svg>
+            <span style="font-size:11px; font-weight:700; color:#9097AE; line-height:1.45;">La práctica da un poco menos de XP que una lección nueva. Para ganar más, <b style="color:#6C5CE7;">avanza en el mapa</b>.</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ===== BOTTOM NAV ===== -->
+      <div style="position:absolute; left:14px; right:14px; bottom:18px; z-index:40; height:62px; background:rgba(255,255,255,.94); backdrop-filter:blur(14px); border-radius:24px; box-shadow:0 10px 28px rgba(40,50,110,.2), 0 0 0 1px rgba(255,255,255,.6) inset; display:flex; align-items:center; justify-content:space-around; padding:0 6px;">
+        <button onClick="{{ onAprender }}" style="{{ navAprender }}">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="{{ cAprender }}" stroke-width="2.1" stroke-linejoin="round" stroke-linecap="round"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4Z"/><path d="M9 4v13M15 6.5v13"/></svg>
+        </button>
+        <button onClick="{{ onPracticar }}" style="{{ navPracticar }}">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="{{ cPracticar }}" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5l11 11M4 9l-1.5 1.5a2.1 2.1 0 0 0 0 3L9 20a2.1 2.1 0 0 0 3 0L13.5 18.5M10.5 5.5 12 4a2.1 2.1 0 0 1 3 0l6.5 6.5a2.1 2.1 0 0 1 0 3L20 14"/></svg>
+        </button>
+        <button onClick="{{ onConversar }}" style="{{ navConversar }}">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="{{ cConversar }}" stroke-width="2.1" stroke-linejoin="round"><path d="M3.5 6.5A2.5 2.5 0 0 1 6 4h7a2.5 2.5 0 0 1 2.5 2.5v4A2.5 2.5 0 0 1 13 13H8l-3.5 3v-3a2 2 0 0 1-1-1.8V6.5Z"/><path d="M15.5 9.5H18a2.5 2.5 0 0 1 2.5 2.5v3.5a2 2 0 0 1-1 1.8V20L16 17.5h-3" stroke-linecap="round"/></svg>
+        </button>
+        <button onClick="{{ onLigas }}" style="{{ navLigas }}">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="{{ cLigas }}" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v3a5 5 0 0 1-10 0V4Z"/><path d="M7 5H4.5v1.5a3 3 0 0 0 3 3M17 5h2.5v1.5a3 3 0 0 1-3 3M12 12v4M8.5 20h7L15 16.5H9L8.5 20Z"/></svg>
+        </button>
+        <button onClick="{{ onPerfil }}" style="{{ navPerfil }}">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="{{ cPerfil }}" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { activeTab: 'practicar' };
+  renderVals() {
+    const active = this.state.activeTab;
+    const on = (t) => () => this.setState({ activeTab: t });
+    const c = (t) => active === t ? '#6C5CE7' : '#AEB3CC';
+    const nav = (t) => ({
+      width: '48px', height: '48px', border: 'none', borderRadius: '16px',
+      background: active === t ? '#EDEBFF' : 'transparent',
+      display: 'grid', placeItems: 'center', cursor: 'pointer', transition: 'background .2s'
+    });
+    return {
+      onAprender: on('aprender'), onPracticar: on('practicar'),
+      onConversar: on('conversar'), onLigas: on('ligas'), onPerfil: on('perfil'),
+      cAprender: c('aprender'), cPracticar: c('practicar'), cConversar: c('conversar'),
+      cLigas: c('ligas'), cPerfil: c('perfil'),
+      navAprender: nav('aprender'), navPracticar: nav('practicar'), navConversar: nav('conversar'),
+      navLigas: nav('ligas'), navPerfil: nav('perfil'),
+    };
+  }
+}
+</script>
+</body>
+</html>

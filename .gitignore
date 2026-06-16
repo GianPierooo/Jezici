@@ -1,0 +1,33 @@
+# ── Secretos / entorno ───────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+secrets/
+
+# ── Supabase ─────────────────────────────────────────────────────────
+supabase/.branches/
+supabase/.temp/
+supabase/.env
+
+# ── Node / herramientas ──────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ── Flutter / Dart (cuando arranque la app) ──────────────────────────
+.dart_tool/
+.packages
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+*.iml
+
+# ── SO / editores ────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

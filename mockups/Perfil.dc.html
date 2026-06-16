@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body{ margin:0; font-family:'Nunito',system-ui,sans-serif; }
+  .jz-scroll::-webkit-scrollbar{ display:none; }
+  @keyframes jzBob{ 0%,100%{ transform:translateY(0) rotate(-3deg) } 50%{ transform:translateY(-6px) rotate(3deg) } }
+  @keyframes jzSheen{ 0%{ background-position:-160% 0 } 60%,100%{ background-position:260% 0 } }
+  @keyframes jzGlow{ 0%,100%{ opacity:.5; transform:scale(1) } 50%{ opacity:.9; transform:scale(1.08) } }
+</style>
+</helmet>
+
+<div style="min-height:100vh; width:100%; background:radial-gradient(120% 90% at 50% 0%, #E7E3FF 0%, #EEF0F8 60%, #E6E8F4 100%); display:flex; align-items:center; justify-content:center; padding:32px 16px; font-family:'Nunito',sans-serif;">
+
+  <!-- DEVICE -->
+  <div style="position:relative; width:390px; height:844px; background:#0B0B16; border-radius:52px; padding:11px; box-shadow:0 40px 80px -20px rgba(48,40,110,.5), 0 0 0 2px rgba(255,255,255,.06) inset;">
+    <div style="position:relative; width:368px; height:822px; background:#F5F6FB; border-radius:42px; overflow:hidden;">
+
+      <!-- dynamic island -->
+      <div style="position:absolute; top:11px; left:50%; transform:translateX(-50%); width:118px; height:34px; background:#0B0B16; border-radius:20px; z-index:60;"></div>
+
+      <!-- SCROLL -->
+      <div class="jz-scroll" style="position:absolute; inset:0; overflow-y:auto; overflow-x:hidden;">
+
+        <!-- ===== HEADER (passport banner) ===== -->
+        <div style="position:relative; padding:54px 18px 26px; background:linear-gradient(150deg,#7A6BF0 0%,#6C5CE7 55%,#5B4ECF 100%); overflow:hidden;">
+          <svg width="368" height="230" viewBox="0 0 368 230" style="position:absolute; inset:0; opacity:.5;" fill="none" stroke="#fff" stroke-width="1.4">
+            <path d="M-20 60 Q90 30 180 70 T380 60" opacity=".18"/>
+            <path d="M-20 92 Q100 60 190 100 T380 90" opacity=".15"/>
+            <path d="M-20 130 Q80 100 200 140 T380 128" opacity=".12"/>
+            <path d="M-20 172 Q120 144 220 184 T380 170" opacity=".1"/>
+            <circle cx="300" cy="48" r="40" opacity=".12"/><circle cx="300" cy="48" r="26" opacity=".12"/>
+          </svg>
+
+          <!-- top row: title + gear -->
+          <div style="position:relative; display:flex; align-items:center; justify-content:space-between; margin-bottom:18px;">
+            <span style="font-size:13px; font-weight:900; letter-spacing:1.6px; color:rgba(255,255,255,.78);">MI PERFIL</span>
+            <button style="width:38px; height:38px; border:none; border-radius:13px; background:rgba(255,255,255,.16); display:grid; place-items:center; cursor:pointer; box-shadow:inset 0 0 0 1px rgba(255,255,255,.2);">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M21.5 12h-3M5.5 12h-3M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1M18.7 18.7l-2.1-2.1M7.4 7.4 5.3 5.3" stroke-linecap="round"/></svg>
+            </button>
+          </div>
+
+          <!-- avatar + identity -->
+          <div style="position:relative; display:flex; align-items:center; gap:15px;">
+            <div style="position:relative; flex:none; width:78px; height:78px;">
+              <svg width="78" height="78" viewBox="0 0 78 78" style="position:absolute; inset:0; transform:rotate(-90deg);">
+                <circle cx="39" cy="39" r="35" fill="none" stroke="rgba(255,255,255,.25)" stroke-width="5"/>
+                <circle cx="39" cy="39" r="35" fill="none" stroke="#FFC93C" stroke-width="5" stroke-linecap="round" stroke-dasharray="220" stroke-dashoffset="40"/>
+              </svg>
+              <div style="position:absolute; inset:6px; border-radius:50%; background:linear-gradient(160deg,#FFE3C2,#FFC9A0); display:grid; place-items:center; overflow:hidden; box-shadow:inset 0 0 0 2px rgba(255,255,255,.5);">
+                <svg width="50" height="52" viewBox="0 0 84 90" style="margin-top:8px;">
+                  <ellipse cx="46" cy="52" rx="23" ry="25" fill="#6C5CE7"/>
+                  <ellipse cx="50" cy="56" rx="13" ry="17" fill="#EDEBFF"/>
+                  <path d="M30 46q-9 8-5 24 13 3 18-10-4-12-13-14z" fill="#FFC93C"/>
+                  <circle cx="40" cy="28" r="20" fill="#7B6CF1"/>
+                  <ellipse cx="45" cy="30" rx="13" ry="12" fill="#FFF4E8"/>
+                  <path d="M33 11q-3-9 4-9 3 4 1 9z" fill="#FF6B6B"/><path d="M41 8q1-8 7-6 0 5-3 9z" fill="#FF8585"/>
+                  <circle cx="43" cy="27" r="6.2" fill="#fff"/><circle cx="44.5" cy="28" r="3.3" fill="#1A1A2E"/><circle cx="46" cy="26.6" r="1.1" fill="#fff"/>
+                  <path d="M57 30q11 1 10 8-6 4-11-1z" fill="#FF6B6B"/>
+                </svg>
+              </div>
+              <div style="position:absolute; bottom:-4px; left:50%; transform:translateX(-50%); background:#FFC93C; color:#1A1A2E; font-size:11px; font-weight:900; padding:2px 9px; border-radius:9px; box-shadow:0 3px 8px rgba(0,0,0,.25); border:2px solid #6C5CE7;">14</div>
+            </div>
+            <div style="flex:1; min-width:0;">
+              <div style="font-size:21px; font-weight:900; color:#fff; line-height:1.1;">Lucía Marín</div>
+              <div style="display:inline-flex; align-items:center; gap:5px; margin-top:5px; background:rgba(255,255,255,.16); border-radius:10px; padding:3px 9px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="#FFC93C"><path d="M3 21 12 3l9 18-9-4-9 4Z"/></svg>
+                <span style="font-size:12px; font-weight:800; color:#fff;">Exploradora · Nivel de viajero 14</span>
+              </div>
+              <div style="margin-top:9px;">
+                <div style="display:flex; justify-content:space-between; font-size:10.5px; font-weight:800; color:rgba(255,255,255,.85); margin-bottom:3px;"><span>2 340 XP</span><span>Nivel 15 · 2 800</span></div>
+                <div style="height:7px; background:rgba(255,255,255,.22); border-radius:5px; overflow:hidden;"><div style="width:82%; height:100%; background:#FFC93C; border-radius:5px;"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- language chip -->
+          <button style="position:relative; margin-top:16px; width:100%; display:flex; align-items:center; gap:10px; background:rgba(255,255,255,.14); border:none; border-radius:15px; padding:10px 12px; cursor:pointer; box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);">
+            <span style="width:30px; height:30px; border-radius:9px; overflow:hidden; display:grid; place-items:center; font-size:20px; box-shadow:0 0 0 1.5px rgba(255,255,255,.3) inset;">🇬🇧</span>
+            <div style="flex:1; text-align:left;">
+              <div style="font-size:9px; font-weight:900; letter-spacing:1px; color:rgba(255,255,255,.65);">IDIOMA ACTIVO</div>
+              <div style="font-size:14px; font-weight:900; color:#fff;">Inglés · Objetivo B2</div>
+            </div>
+            <span style="font-size:11px; font-weight:900; color:rgba(255,255,255,.8);">Cambiar ›</span>
+          </button>
+        </div>
+
+        <div style="padding:18px 16px 110px; display:flex; flex-direction:column; gap:16px; margin-top:-10px; position:relative; z-index:2;">
+
+          <!-- ===== SKILLS PANEL (hero) ===== -->
+          <div style="background:#fff; border-radius:24px; padding:18px; box-shadow:0 6px 0 #ECEDF6, 0 16px 30px rgba(60,55,120,.1);">
+            <div style="display:flex; align-items:center; justify-content:space-between;">
+              <div>
+                <div style="font-size:18px; font-weight:900; color:#1A1A2E;">Tus 4 habilidades</div>
+                <div style="font-size:12px; font-weight:800; color:#9A9FB8; margin-top:1px;">Equilíbralas para certificar tu nivel</div>
+              </div>
+              <span style="font-size:11px; font-weight:900; color:#6C5CE7; background:#EDEBFF; padding:5px 10px; border-radius:10px;">2 / 4 en B1</span>
+            </div>
+
+            <!-- radar -->
+            <div style="position:relative; width:260px; height:228px; margin:10px auto 4px;">
+              <svg width="260" height="228" viewBox="0 0 260 228">
+                <!-- rings -->
+                <g fill="none" stroke="#EDEEF6" stroke-width="1.5">
+                  <polygon points="130,94 148,112 130,130 112,112"/>
+                  <polygon points="130,76 166,112 130,148 94,112"/>
+                  <polygon points="130,40 202,112 130,184 58,112"/>
+                </g>
+                <!-- goal ring B1 -->
+                <polygon points="130,58 184,112 130,166 76,112" fill="none" stroke="#6C5CE7" stroke-width="2" stroke-dasharray="5 5" opacity=".75"/>
+                <!-- axes -->
+                <g stroke="#E4E6F0" stroke-width="1.4">
+                  <line x1="130" y1="112" x2="130" y2="40"/><line x1="130" y1="112" x2="202" y2="112"/>
+                  <line x1="130" y1="112" x2="130" y2="184"/><line x1="130" y1="112" x2="58" y2="112"/>
+                </g>
+                <!-- user polygon: R=B1(54) up, L=B1(54) right, S=A2(36) down, W=A2(36) left -->
+                <polygon points="130,58 184,112 130,148 94,112" fill="rgba(108,92,231,.16)" stroke="#6C5CE7" stroke-width="2.5" stroke-linejoin="round"/>
+                <!-- vertices -->
+                <circle cx="130" cy="58" r="5.5" fill="#6C5CE7" stroke="#fff" stroke-width="2"/>
+                <circle cx="184" cy="112" r="5.5" fill="#6C5CE7" stroke="#fff" stroke-width="2"/>
+                <circle cx="130" cy="148" r="5.5" fill="#FF6B6B" stroke="#fff" stroke-width="2"/>
+                <circle cx="94" cy="112" r="5.5" fill="#FF6B6B" stroke="#fff" stroke-width="2"/>
+                <!-- goal tag -->
+                <rect x="150" y="48" width="56" height="17" rx="8" fill="#6C5CE7"/>
+                <text x="178" y="60" font-family="Nunito" font-size="10" font-weight="900" fill="#fff" text-anchor="middle">META B1</text>
+              </svg>
+              <!-- tip labels -->
+              <div style="position:absolute; left:130px; top:6px; transform:translateX(-50%); text-align:center;">
+                <div style="font-size:11px; font-weight:900; color:#1A1A2E;">Reading</div>
+                <div style="display:inline-block; margin-top:2px; font-size:10px; font-weight:900; color:#fff; background:#6C5CE7; padding:1px 7px; border-radius:7px;">B1</div>
+              </div>
+              <div style="position:absolute; left:212px; top:101px; text-align:left;">
+                <div style="font-size:11px; font-weight:900; color:#1A1A2E;">Listening</div>
+                <div style="display:inline-block; margin-top:2px; font-size:10px; font-weight:900; color:#fff; background:#6C5CE7; padding:1px 7px; border-radius:7px;">B1</div>
+              </div>
+              <div style="position:absolute; left:130px; top:190px; transform:translateX(-50%); text-align:center;">
+                <div style="display:inline-block; margin-bottom:2px; font-size:10px; font-weight:900; color:#fff; background:#FF6B6B; padding:1px 7px; border-radius:7px;">A2</div>
+                <div style="font-size:11px; font-weight:900; color:#1A1A2E;">Speaking</div>
+              </div>
+              <div style="position:absolute; left:48px; top:101px; transform:translateX(-100%); text-align:right;">
+                <div style="font-size:11px; font-weight:900; color:#1A1A2E;">Writing</div>
+                <div style="display:inline-block; margin-top:2px; font-size:10px; font-weight:900; color:#fff; background:#FF6B6B; padding:1px 7px; border-radius:7px;">A2</div>
+              </div>
+            </div>
+
+            <!-- weak-skill alert -->
+            <div style="display:flex; align-items:center; gap:11px; background:linear-gradient(120deg,#FFF1F1,#FFF6EC); border:1.5px solid #FFD9D9; border-radius:16px; padding:11px 13px;">
+              <div style="flex:none; width:42px; animation:jzBob 3s ease-in-out infinite;">
+                <svg width="42" height="44" viewBox="0 0 84 90">
+                  <path d="M28 58q-7 18-3 26 7-5 12-18z" fill="#FF7A00"/><path d="M40 60q-1 19 4 26 7-7 7-20z" fill="#FFC93C"/>
+                  <ellipse cx="46" cy="52" rx="23" ry="25" fill="#6C5CE7"/><ellipse cx="50" cy="56" rx="13" ry="17" fill="#EDEBFF"/>
+                  <path d="M30 46q-9 8-5 24 13 3 18-10-4-12-13-14z" fill="#FFC93C"/>
+                  <circle cx="40" cy="28" r="20" fill="#7B6CF1"/><ellipse cx="45" cy="30" rx="13" ry="12" fill="#FFF4E8"/>
+                  <path d="M33 11q-3-9 4-9 3 4 1 9z" fill="#FF6B6B"/><path d="M41 8q1-8 7-6 0 5-3 9z" fill="#FF8585"/>
+                  <circle cx="43" cy="27" r="6.2" fill="#fff"/><circle cx="44.5" cy="28" r="3.3" fill="#1A1A2E"/><circle cx="46" cy="26.6" r="1.1" fill="#fff"/>
+                  <path d="M57 30q11 1 10 8-6 4-11-1z" fill="#FF6B6B"/>
+                </svg>
+              </div>
+              <div style="flex:1;">
+                <div style="font-size:13px; font-weight:900; color:#1A1A2E; line-height:1.25;">Tu punto débil es <span style="color:#FF5C5C;">Speaking</span></div>
+                <div style="font-size:11.5px; font-weight:700; color:#7A7F96; margin-top:1px;">Súbelo a B1 (junto con Writing) y certificarás tu primer nivel completo.</div>
+              </div>
+              <button style="flex:none; align-self:stretch; border:none; border-radius:13px; background:#FF6B6B; color:#fff; font-family:Nunito; font-size:11px; font-weight:900; padding:0 12px; cursor:pointer; box-shadow:0 4px 0 #DC4545;" style-active="transform:translateY(3px); box-shadow:0 1px 0 #DC4545;">Practicar</button>
+            </div>
+
+            <!-- skill rows -->
+            <div style="display:flex; flex-direction:column; gap:9px; margin-top:13px;">
+              <!-- Reading -->
+              <div style="display:flex; align-items:center; gap:11px;">
+                <div style="flex:none; width:38px; height:38px; border-radius:12px; background:#EDEBFF; display:grid; place-items:center;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="#6C5CE7"><path d="M4 4.5A1.5 1.5 0 0 1 5.5 3H11v16H5.5A1.5 1.5 0 0 0 4 20.5v-16ZM20 4.5A1.5 1.5 0 0 0 18.5 3H13v16h5.5a1.5 1.5 0 0 1 1.5 1.5v-16Z"/></svg>
+                </div>
+                <div style="flex:1;">
+                  <div style="display:flex; align-items:center; justify-content:space-between;"><span style="font-size:13px; font-weight:900; color:#1A1A2E;">Reading</span><span style="font-size:11px; font-weight:800; color:#9A9FB8;">B1 → B2</span></div>
+                  <div style="height:7px; background:#F0F1F8; border-radius:5px; overflow:hidden; margin-top:4px;"><div style="width:55%; height:100%; background:#6C5CE7; border-radius:5px;"></div></div>
+                </div>
+                <span style="flex:none; font-size:12px; font-weight:900; color:#fff; background:#6C5CE7; padding:3px 9px; border-radius:9px;">B1</span>
+              </div>
+              <!-- Listening -->
+              <div style="display:flex; align-items:center; gap:11px;">
+                <div style="flex:none; width:38px; height:38px; border-radius:12px; background:#EDEBFF; display:grid; place-items:center;">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6C5CE7" stroke-width="2" stroke-linecap="round"><path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="3" y="13" width="4" height="7" rx="2" fill="#6C5CE7" stroke="none"/><rect x="17" y="13" width="4" height="7" rx="2" fill="#6C5CE7" stroke="none"/></svg>
+                </div>
+                <div style="flex:1;">
+                  <div style="display:flex; align-items:center; justify-content:space-between;"><span style="font-size:13px; font-weight:900; color:#1A1A2E;">Listening</span><span style="font-size:11px; font-weight:800; color:#9A9FB8;">B1 → B2</span></div>
+                  <div style="height:7px; background:#F0F1F8; border-radius:5px; overflow:hidden; margin-top:4px;"><div style="width:38%; height:100%; background:#6C5CE7; border-radius:5px;"></div></div>
+                </div>
+                <span style="flex:none; font-size:12px; font-weight:900; color:#fff; background:#6C5CE7; padding:3px 9px; border-radius:9px;">B1</span>
+              </div>
+              <!-- Writing -->
+              <div style="display:flex; align-items:center; gap:11px;">
+                <div style="flex:none; width:38px; height:38px; border-radius:12px; background:#FFEFEF; display:grid; place-items:center;">
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FF5C5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4l6 6L9 21l-6 1 1-6L14 4Z"/><path d="M13 5l6 6"/></svg>
+                </div>
+                <div style="flex:1;">
+                  <div style="display:flex; align-items:center; justify-content:space-between;"><span style="font-size:13px; font-weight:900; color:#1A1A2E;">Writing</span><span style="font-size:11px; font-weight:800; color:#FF5C5C;">A2 → B1 · 70%</span></div>
+                  <div style="height:7px; background:#F0F1F8; border-radius:5px; overflow:hidden; margin-top:4px;"><div style="width:70%; height:100%; background:#FF6B6B; border-radius:5px;"></div></div>
+                </div>
+                <span style="flex:none; font-size:12px; font-weight:900; color:#fff; background:#FF6B6B; padding:3px 9px; border-radius:9px;">A2</span>
+              </div>
+              <!-- Speaking -->
+              <div style="display:flex; align-items:center; gap:11px;">
+                <div style="flex:none; width:38px; height:38px; border-radius:12px; background:#FFEFEF; display:grid; place-items:center;">
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#FF5C5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>
+                </div>
+                <div style="flex:1;">
+                  <div style="display:flex; align-items:center; justify-content:space-between;"><span style="font-size:13px; font-weight:900; color:#1A1A2E;">Speaking</span><span style="font-size:11px; font-weight:800; color:#FF5C5C;">A2 → B1 · 40%</span></div>
+                  <div style="height:7px; background:#F0F1F8; border-radius:5px; overflow:hidden; margin-top:4px;"><div style="width:40%; height:100%; background:#FF6B6B; border-radius:5px;"></div></div>
+                </div>
+                <span style="flex:none; font-size:12px; font-weight:900; color:#fff; background:#FF6B6B; padding:3px 9px; border-radius:9px;">A2</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== CERTIFICADOS ===== -->
+          <div style="background:#fff; border-radius:24px; padding:18px; box-shadow:0 6px 0 #ECEDF6, 0 16px 30px rgba(60,55,120,.1);">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:14px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#FFC93C"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 7.7l5.4-.8L12 2Z"/></svg>
+              <span style="font-size:17px; font-weight:900; color:#1A1A2E;">Certificados</span>
+            </div>
+            <div style="display:flex; gap:12px;">
+              <!-- obtained A2 -->
+              <div style="flex:1; background:linear-gradient(160deg,#FFFaED,#FFF1CF); border-radius:18px; padding:14px 12px; text-align:center; box-shadow:inset 0 0 0 1.5px #F4DCA0;">
+                <div style="position:relative; width:64px; height:64px; margin:0 auto;">
+                  <div style="position:absolute; inset:0; border-radius:50%; background:radial-gradient(circle,rgba(255,201,60,.5),transparent 70%); animation:jzGlow 3s ease-in-out infinite;"></div>
+                  <div style="position:relative; width:64px; height:64px; border-radius:50%; background:linear-gradient(160deg,#FFDD7A,#F4B400); display:grid; place-items:center; overflow:hidden; box-shadow:0 5px 0 #D69400, 0 8px 14px rgba(244,180,0,.4);">
+                    <div style="position:absolute; inset:0; background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.8) 50%,transparent 60%); background-size:240% 100%; animation:jzSheen 3.4s ease-in-out infinite;"></div>
+                    <span style="position:relative; font-size:22px; font-weight:900; color:#fff;">A2</span>
+                  </div>
+                  <div style="position:absolute; bottom:-2px; right:-2px; width:22px; height:22px; border-radius:50%; background:#2ECC71; display:grid; place-items:center; border:2.5px solid #fff;">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+                  </div>
+                </div>
+                <div style="font-size:13px; font-weight:900; color:#1A1A2E; margin-top:9px;">Inglés A2</div>
+                <div style="font-size:10px; font-weight:800; color:#C98A12; margin-top:1px;">Verificado · examen Jezici</div>
+                <div style="font-size:10px; font-weight:700; color:#B0A48A; margin-top:1px;">08 nov 2025</div>
+              </div>
+              <!-- locked B1 -->
+              <div style="flex:1; background:#F6F7FB; border-radius:18px; padding:14px 12px; text-align:center; box-shadow:inset 0 0 0 1.5px #E7E9F2;">
+                <div style="position:relative; width:64px; height:64px; margin:0 auto;">
+                  <div style="width:64px; height:64px; border-radius:50%; background:linear-gradient(160deg,#D6DAE7,#BFC5D8); display:grid; place-items:center; box-shadow:0 5px 0 #AAB1C6;">
+                    <span style="font-size:22px; font-weight:900; color:#fff; opacity:.85;">B1</span>
+                  </div>
+                  <div style="position:absolute; bottom:-2px; right:-2px; width:22px; height:22px; border-radius:50%; background:#8A90A8; display:grid; place-items:center; border:2.5px solid #fff;">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="#fff"><path d="M7 10V8a5 5 0 0 1 10 0v2h.5A1.5 1.5 0 0 1 19 11.5v6A1.5 1.5 0 0 1 17.5 19h-11A1.5 1.5 0 0 1 5 17.5v-6A1.5 1.5 0 0 1 6.5 10H7Z"/></svg>
+                  </div>
+                </div>
+                <div style="font-size:13px; font-weight:900; color:#6B7188; margin-top:9px;">Inglés B1</div>
+                <div style="font-size:10px; font-weight:800; color:#9097AE; margin-top:2px; line-height:1.25;">Necesitas B1 en las<br>4 habilidades</div>
+                <div style="display:flex; justify-content:center; gap:4px; margin-top:7px;">
+                  <span style="width:14px; height:6px; border-radius:3px; background:#2ECC71;"></span>
+                  <span style="width:14px; height:6px; border-radius:3px; background:#2ECC71;"></span>
+                  <span style="width:14px; height:6px; border-radius:3px; background:#FF6B6B;"></span>
+                  <span style="width:14px; height:6px; border-radius:3px; background:#FF6B6B;"></span>
+                </div>
+                <div style="font-size:9.5px; font-weight:900; color:#9097AE; margin-top:4px;">2 de 4 habilidades listas</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== MI PLAN ===== -->
+          <div style="background:#fff; border-radius:24px; padding:18px; box-shadow:0 6px 0 #ECEDF6, 0 16px 30px rgba(60,55,120,.1);">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:14px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6C5CE7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/><path d="M3 21h18"/></svg>
+              <span style="font-size:17px; font-weight:900; color:#1A1A2E;">Mi plan</span>
+            </div>
+            <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:7px;">
+              <span style="font-size:13px; font-weight:900; color:#1A1A2E;">Avance a <span style="color:#6C5CE7;">B2</span></span>
+              <span style="font-size:15px; font-weight:900; color:#6C5CE7;">34%</span>
+            </div>
+            <div style="height:11px; background:#F0F1F8; border-radius:7px; overflow:hidden;"><div style="width:34%; height:100%; background:linear-gradient(90deg,#8C7DF2,#6C5CE7); border-radius:7px;"></div></div>
+            <div style="display:flex; align-items:center; gap:6px; margin-top:9px; color:#9A9FB8;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9A9FB8" stroke-width="2" stroke-linecap="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>
+              <span style="font-size:12px; font-weight:800;">A este ritmo llegas a B2 el <span style="color:#6C5CE7;">12 mar 2027</span></span>
+            </div>
+            <div style="display:flex; align-items:center; gap:12px; margin-top:14px; padding-top:14px; border-top:1.5px solid #F0F1F8;">
+              <div style="position:relative; width:46px; height:46px;">
+                <svg width="46" height="46" viewBox="0 0 46 46" style="transform:rotate(-90deg);"><circle cx="23" cy="23" r="19" fill="none" stroke="#F0F1F8" stroke-width="6"/><circle cx="23" cy="23" r="19" fill="none" stroke="#FFC93C" stroke-width="6" stroke-linecap="round" stroke-dasharray="119" stroke-dashoffset="40"/></svg>
+                <div style="position:absolute; inset:0; display:grid; place-items:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="#F4B400"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></div>
+              </div>
+              <div style="flex:1;">
+                <div style="font-size:13px; font-weight:900; color:#1A1A2E;">Meta diaria</div>
+                <div style="font-size:11.5px; font-weight:800; color:#9A9FB8;">20 / 30 XP · ¡10 XP para hoy!</div>
+              </div>
+              <span style="font-size:11px; font-weight:900; color:#E8a200; background:#FFF4D6; padding:5px 10px; border-radius:10px;">66%</span>
+            </div>
+          </div>
+
+          <!-- ===== ESTADÍSTICAS ===== -->
+          <div style="background:#fff; border-radius:24px; padding:18px; box-shadow:0 6px 0 #ECEDF6, 0 16px 30px rgba(60,55,120,.1);">
+            <div style="display:flex; align-items:center; gap:8px; margin-bottom:13px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6C5CE7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg>
+              <span style="font-size:17px; font-weight:900; color:#1A1A2E;">Estadísticas</span>
+            </div>
+
+            <!-- streak + calendar -->
+            <div style="background:linear-gradient(120deg,#FFF3E6,#FFEFE0); border-radius:16px; padding:13px 14px;">
+              <div style="display:flex; align-items:center; gap:9px; margin-bottom:11px;">
+                <svg width="22" height="26" viewBox="0 0 24 28"><path d="M13 1c1 5 6 6 6 12 0 1.6-.5 3-1.3 4.2C19.2 16.9 20 15 20 13c2 2.5 3 5.6 3 8 0 .2 0 .5-.1.7C22 25.6 17.5 28 12 28S2 25.6.9 21.7C.5 20.4.5 19 1 17.6c.8 2 2.6 3.4 4.6 3.7-1-1-1.6-2.4-1.6-4 0-3 2.5-4.6 2-8 3 .7 4.3 3 4.4 5.2C11.6 16 12 13 11 10c-.7-2.2.2-7 2-9Z" fill="#FF7A00"/><path d="M12 28c-3.4 0-6-2.2-6-5.2 0-2.1 1.4-3.6 2.6-5C8.5 19 9.5 20 11 20c1.9 0 3-1.6 3-3.6 1.6 1.3 3 3 3 5.2 0 3.3-2.6 6.4-5 6.4Z" fill="#FFC93C"/></svg>
+                <div style="flex:1;"><span style="font-size:19px; font-weight:900; color:#E8650A;">12 días</span> <span style="font-size:12px; font-weight:800; color:#C9893E;">de racha</span></div>
+                <span style="font-size:10px; font-weight:900; color:#C9893E;">Mejor: 28</span>
+              </div>
+              <div style="display:flex; justify-content:space-between;">
+                <div style="text-align:center;"><div style="width:30px; height:30px; border-radius:10px; background:#FF7A00; display:grid; place-items:center; box-shadow:0 3px 0 #D96400;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div><div style="font-size:9px; font-weight:900; color:#C9893E; margin-top:3px;">L</div></div>
+                <div style="text-align:center;"><div style="width:30px; height:30px; border-radius:10px; background:#FF7A00; display:grid; place-items:center; box-shadow:0 3px 0 #D96400;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div><div style="font-size:9px; font-weight:900; color:#C9893E; margin-top:3px;">M</div></div>
+                <div style="text-align:center;"><div style="width:30px; height:30px; border-radius:10px; background:#FF7A00; display:grid; place-items:center; box-shadow:0 3px 0 #D96400;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div><div style="font-size:9px; font-weight:900; color:#C9893E; margin-top:3px;">X</div></div>
+                <div style="text-align:center;"><div style="width:30px; height:30px; border-radius:10px; background:#FF7A00; display:grid; place-items:center; box-shadow:0 3px 0 #D96400;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div><div style="font-size:9px; font-weight:900; color:#C9893E; margin-top:3px;">J</div></div>
+                <div style="text-align:center;"><div style="width:30px; height:30px; border-radius:10px; background:#FFC93C; display:grid; place-items:center; box-shadow:0 0 0 2.5px #FF7A00;"><span style="font-size:12px;">🔥</span></div><div style="font-size:9px; font-weight:900; color:#E8650A; margin-top:3px;">HOY</div></div>
+                <div style="text-align:center;"><div style="width:30px; height:30px; border-radius:10px; background:#FCE3CB; display:grid; place-items:center;"></div><div style="font-size:9px; font-weight:900; color:#C9A98A; margin-top:3px;">S</div></div>
+                <div style="text-align:center;"><div style="width:30px; height:30px; border-radius:10px; background:#FCE3CB; display:grid; place-items:center;"></div><div style="font-size:9px; font-weight:900; color:#C9A98A; margin-top:3px;">D</div></div>
+              </div>
+            </div>
+
+            <!-- stat tiles -->
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:11px;">
+              <div style="display:flex; align-items:center; gap:10px; background:#F6F7FB; border-radius:15px; padding:12px;">
+                <div style="width:36px; height:36px; border-radius:11px; background:#EDEBFF; display:grid; place-items:center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="#6C5CE7"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></div>
+                <div><div style="font-size:16px; font-weight:900; color:#1A1A2E;">12 480</div><div style="font-size:10.5px; font-weight:800; color:#9A9FB8;">XP total</div></div>
+              </div>
+              <div style="display:flex; align-items:center; gap:10px; background:#F6F7FB; border-radius:15px; padding:12px;">
+                <div style="width:36px; height:36px; border-radius:11px; background:#FFF4D6; display:grid; place-items:center;"><svg width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#F4B400"/><circle cx="12" cy="12" r="6.2" fill="#FFD86B"/><path d="M12 8l1.1 2.3 2.5.3-1.9 1.7.5 2.5L12 13.4 9.7 14.6l.5-2.5-1.9-1.7 2.5-.3L12 8Z" fill="#E09A00"/></svg></div>
+                <div><div style="font-size:16px; font-weight:900; color:#1A1A2E;">340</div><div style="font-size:10.5px; font-weight:800; color:#9A9FB8;">Oro</div></div>
+              </div>
+              <div style="display:flex; align-items:center; gap:10px; background:#F6F7FB; border-radius:15px; padding:12px;">
+                <div style="width:36px; height:36px; border-radius:11px; background:#FFF4D6; display:grid; place-items:center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#E09A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v3a5 5 0 0 1-10 0V4Z"/><path d="M7 5H4.5v1.5a3 3 0 0 0 3 3M17 5h2.5v1.5a3 3 0 0 1-3 3M12 12v4M8.5 20h7"/></svg></div>
+                <div><div style="font-size:15px; font-weight:900; color:#1A1A2E;">Liga Oro</div><div style="font-size:10.5px; font-weight:800; color:#9A9FB8;">Puesto 4º</div></div>
+              </div>
+              <div style="display:flex; align-items:center; gap:10px; background:#F6F7FB; border-radius:15px; padding:12px;">
+                <div style="width:36px; height:36px; border-radius:11px; background:#FFEFEF; display:grid; place-items:center;"><svg width="19" height="19" viewBox="0 0 24 24" fill="#FF6B6B"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4L4.2 7.7l5.4-.8L12 2Z"/></svg></div>
+                <div><div style="font-size:16px; font-weight:900; color:#1A1A2E;">23</div><div style="font-size:10.5px; font-weight:800; color:#9A9FB8;">Logros</div></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ===== BOTTOM NAV (icons only, Perfil active) ===== -->
+      <div style="position:absolute; left:14px; right:14px; bottom:18px; z-index:40; height:62px; background:rgba(255,255,255,.94); backdrop-filter:blur(14px); border-radius:24px; box-shadow:0 10px 28px rgba(40,50,110,.2), 0 0 0 1px rgba(255,255,255,.6) inset; display:flex; align-items:center; justify-content:space-around; padding:0 6px;">
+        <button onClick="{{ onAprender }}" style="{{ navAprender }}">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="{{ cAprender }}" stroke-width="2.1" stroke-linejoin="round" stroke-linecap="round"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4Z"/><path d="M9 4v13M15 6.5v13"/></svg>
+        </button>
+        <button onClick="{{ onPracticar }}" style="{{ navPracticar }}">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="{{ cPracticar }}" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5l11 11M4 9l-1.5 1.5a2.1 2.1 0 0 0 0 3L9 20a2.1 2.1 0 0 0 3 0L13.5 18.5M10.5 5.5 12 4a2.1 2.1 0 0 1 3 0l6.5 6.5a2.1 2.1 0 0 1 0 3L20 14"/></svg>
+        </button>
+        <button onClick="{{ onConversar }}" style="{{ navConversar }}">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="{{ cConversar }}" stroke-width="2.1" stroke-linejoin="round"><path d="M3.5 6.5A2.5 2.5 0 0 1 6 4h7a2.5 2.5 0 0 1 2.5 2.5v4A2.5 2.5 0 0 1 13 13H8l-3.5 3v-3a2 2 0 0 1-1-1.8V6.5Z"/><path d="M15.5 9.5H18a2.5 2.5 0 0 1 2.5 2.5v3.5a2 2 0 0 1-1 1.8V20L16 17.5h-3" stroke-linecap="round"/></svg>
+        </button>
+        <button onClick="{{ onLigas }}" style="{{ navLigas }}">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="{{ cLigas }}" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v3a5 5 0 0 1-10 0V4Z"/><path d="M7 5H4.5v1.5a3 3 0 0 0 3 3M17 5h2.5v1.5a3 3 0 0 1-3 3M12 12v4M8.5 20h7L15 16.5H9L8.5 20Z"/></svg>
+        </button>
+        <button onClick="{{ onPerfil }}" style="{{ navPerfil }}">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="{{ cPerfil }}" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { activeTab: 'perfil' };
+  renderVals() {
+    const active = this.state.activeTab;
+    const on = (t) => () => this.setState({ activeTab: t });
+    const c = (t) => active === t ? '#6C5CE7' : '#AEB3CC';
+    const nav = (t) => ({
+      width: '48px', height: '48px', border: 'none', borderRadius: '16px',
+      background: active === t ? '#EDEBFF' : 'transparent',
+      display: 'grid', placeItems: 'center', cursor: 'pointer', transition: 'background .2s'
+    });
+    return {
+      onAprender: on('aprender'), onPracticar: on('practicar'),
+      onConversar: on('conversar'), onLigas: on('ligas'), onPerfil: on('perfil'),
+      cAprender: c('aprender'), cPracticar: c('practicar'), cConversar: c('conversar'),
+      cLigas: c('ligas'), cPerfil: c('perfil'),
+      navAprender: nav('aprender'), navPracticar: nav('practicar'), navConversar: nav('conversar'),
+      navLigas: nav('ligas'), navPerfil: nav('perfil'),
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body{ margin:0; font-family:'Nunito',system-ui,sans-serif; }
+  .jz-map::-webkit-scrollbar{ display:none; }
+  @keyframes jzPulse{ 0%{ transform:scale(.85); opacity:.6 } 70%{ transform:scale(1.55); opacity:0 } 100%{ opacity:0 } }
+  @keyframes jzBob{ 0%,100%{ transform:translateY(0) rotate(-3deg) } 50%{ transform:translateY(-9px) rotate(3deg) } }
+  @keyframes jzFloat{ 0%,100%{ transform:translate(-50%,0) } 50%{ transform:translate(-50%,-7px) } }
+  @keyframes jzSheen{ 0%{ background-position:-160% 0 } 60%,100%{ background-position:260% 0 } }
+  @keyframes jzSpark{ 0%,100%{ transform:scale(.6); opacity:.3 } 50%{ transform:scale(1.15); opacity:1 } }
+  @keyframes jzGlow{ 0%,100%{ opacity:.5; transform:scale(1) } 50%{ opacity:.9; transform:scale(1.08) } }
+  @keyframes jzSway{ 0%,100%{ transform:rotate(-6deg) } 50%{ transform:rotate(6deg) } }
+</style>
+</helmet>
+
+<div style="min-height:100vh; width:100%; background:radial-gradient(120% 90% at 50% 0%, #E7E3FF 0%, #EEF0F8 60%, #E6E8F4 100%); display:flex; align-items:center; justify-content:center; padding:32px 16px; font-family:'Nunito',sans-serif;">
+
+  <!-- DEVICE -->
+  <div style="position:relative; width:390px; height:844px; background:#0B0B16; border-radius:52px; padding:11px; box-shadow:0 40px 80px -20px rgba(48,40,110,.5), 0 0 0 2px rgba(255,255,255,.06) inset;">
+    <div style="position:relative; width:368px; height:822px; background:#DDE7F5; border-radius:42px; overflow:hidden;">
+
+      <!-- ===== MAP SCROLL (full bleed, scrolls under chrome) ===== -->
+      <div class="jz-map" ref="{{ scrollRef }}" style="position:absolute; inset:0; overflow-y:auto; overflow-x:hidden;">
+        <div style="position:relative; width:368px; height:1860px; background:linear-gradient(to top, #C8B7F2 0%, #BBA8EE 8%, #B9C2F2 26%, #BFD4F5 44%, #C8E2F3 60%, #D8EEFA 74%, #EAF4FF 86%, #FFF7E2 100%);">
+
+          <!-- ===== SCENERY ===== -->
+          <svg width="368" height="1860" viewBox="0 0 368 1860" style="position:absolute; inset:0; z-index:0; display:block;">
+            <!-- sun glow at summit -->
+            <circle cx="184" cy="250" r="150" fill="#FFE9A8" opacity=".55"/>
+            <circle cx="184" cy="250" r="92" fill="#FFF3CC" opacity=".7"/>
+            <!-- distant mountains -->
+            <path d="M0 470 L46 330 L96 400 L150 290 L210 390 L262 300 L312 392 L368 320 L368 480 Z" fill="#9D8FE0"/>
+            <path d="M150 290 L168 318 L132 318 Z" fill="#fff" opacity=".85"/>
+            <path d="M262 300 L278 326 L246 326 Z" fill="#fff" opacity=".85"/>
+            <path d="M0 500 L60 380 L120 450 L180 360 L250 450 L300 380 L368 460 L368 520 Z" fill="#B4A8EA"/>
+            <path d="M0 470 L46 330 L96 400 L150 290 L210 390 L262 300 L312 392 L368 320" fill="none" stroke="#8B7BD6" stroke-width="2" opacity=".4"/>
+            <!-- big summit peak (center, behind certificate) -->
+            <path d="M104 470 L184 250 L264 470 Z" fill="#8676D2"/>
+            <path d="M184 250 L214 332 L154 332 Z" fill="#FFFFFF"/>
+            <path d="M184 250 L184 332 L154 332 Z" fill="#E7EDFF"/>
+            <path d="M104 470 L184 250 L184 470 Z" fill="#9486DE" opacity=".7"/>
+
+            <!-- clouds -->
+            <g fill="#FFFFFF" opacity=".88">
+              <ellipse cx="70" cy="430" rx="40" ry="15"/><ellipse cx="96" cy="420" rx="26" ry="16"/>
+              <ellipse cx="300" cy="392" rx="42" ry="15"/><ellipse cx="276" cy="384" rx="24" ry="15"/>
+              <ellipse cx="186" cy="540" rx="34" ry="12"/>
+            </g>
+
+            <!-- coastal region (next unit) -->
+            <path d="M0 700 Q184 662 368 700 L368 880 L0 880 Z" fill="#8AD3E6"/>
+            <path d="M0 760 Q120 740 220 766 Q300 786 368 760 L368 880 L0 880 Z" fill="#6FC4DD"/>
+            <path d="M0 700 Q184 662 368 700 L368 724 Q184 690 0 724 Z" fill="#FBE6BC"/>
+            <!-- little sailboat -->
+            <g transform="translate(250 718)"><path d="M0 14 L26 14 L21 22 L5 22 Z" fill="#FF6B6B"/><path d="M13 14 L13 -8 L28 12 Z" fill="#fff"/><path d="M13 14 L13 -8 L0 12 Z" fill="#EDEFF7"/></g>
+
+            <!-- rolling hills -->
+            <path d="M0 1010 Q92 928 200 990 Q300 1044 368 968 L368 1860 L0 1860 Z" fill="#86DBA3"/>
+            <path d="M0 1150 Q120 1078 232 1140 Q312 1184 368 1120 L368 1860 L0 1860 Z" fill="#56CC88"/>
+            <path d="M0 1310 Q108 1244 224 1310 Q304 1356 368 1300 L368 1860 L0 1860 Z" fill="#37BB70"/>
+            <path d="M0 1500 Q116 1448 244 1512 Q316 1548 368 1500 L368 1860 L0 1860 Z" fill="#27A45F"/>
+
+            <!-- pine trees -->
+            <g>
+              <g transform="translate(40 1108)"><rect x="-2" y="22" width="4" height="10" fill="#7A4B28"/><path d="M0 -10 L13 16 L-13 16 Z" fill="#1F9457"/><path d="M0 0 L11 22 L-11 22 Z" fill="#2BA866"/></g>
+              <g transform="translate(322 1066)"><rect x="-2" y="22" width="4" height="10" fill="#7A4B28"/><path d="M0 -10 L13 16 L-13 16 Z" fill="#1F9457"/><path d="M0 0 L11 22 L-11 22 Z" fill="#2BA866"/></g>
+              <g transform="translate(64 1268)"><rect x="-2" y="24" width="5" height="12" fill="#7A4B28"/><path d="M0 -12 L15 18 L-15 18 Z" fill="#1C8C50"/><path d="M0 2 L13 26 L-13 26 Z" fill="#28A05E"/></g>
+              <g transform="translate(310 1238)"><rect x="-2" y="24" width="5" height="12" fill="#7A4B28"/><path d="M0 -12 L15 18 L-15 18 Z" fill="#1C8C50"/><path d="M0 2 L13 26 L-13 26 Z" fill="#28A05E"/></g>
+              <g transform="translate(36 1420)"><rect x="-2" y="26" width="5" height="13" fill="#6B4023"/><path d="M0 -14 L17 20 L-17 20 Z" fill="#178046"/><path d="M0 4 L14 30 L-14 30 Z" fill="#239455"/></g>
+            </g>
+
+            <!-- city / workplace district (bottom) -->
+            <g>
+              <rect x="6" y="1640" width="50" height="220" rx="6" fill="#7E6FE6"/>
+              <rect x="60" y="1590" width="44" height="270" rx="6" fill="#6C5CE7"/>
+              <rect x="300" y="1610" width="56" height="250" rx="6" fill="#7E6FE6"/>
+              <rect x="256" y="1668" width="42" height="192" rx="6" fill="#6155C9"/>
+              <rect x="284" y="1700" width="36" height="160" rx="5" fill="#FF8585"/>
+              <g fill="#FFE08A">
+                <rect x="16" y="1660" width="10" height="12" rx="2"/><rect x="34" y="1660" width="10" height="12" rx="2"/>
+                <rect x="16" y="1684" width="10" height="12" rx="2"/><rect x="34" y="1684" width="10" height="12" rx="2"/>
+                <rect x="70" y="1610" width="10" height="12" rx="2"/><rect x="86" y="1610" width="10" height="12" rx="2"/>
+                <rect x="70" y="1634" width="10" height="12" rx="2"/><rect x="86" y="1634" width="10" height="12" rx="2"/>
+                <rect x="312" y="1632" width="11" height="13" rx="2"/><rect x="332" y="1632" width="11" height="13" rx="2"/>
+                <rect x="312" y="1658" width="11" height="13" rx="2"/><rect x="332" y="1658" width="11" height="13" rx="2"/>
+                <rect x="266" y="1690" width="9" height="11" rx="2"/><rect x="282" y="1690" width="9" height="11" rx="2"/>
+              </g>
+            </g>
+
+            <!-- ===== TRAIL / ROAD ===== -->
+            <path d="M96 1860 C96 1780 96 1760 96 1700 C96 1660 250 1660 250 1600 C250 1540 110 1540 110 1480 C110 1420 262 1420 262 1350 C262 1290 130 1290 130 1220 C130 1160 255 1160 255 1090 C255 1018 184 1010 184 930 C184 858 135 848 135 775 C135 720 250 730 250 680 C250 600 184 560 184 470 C184 408 184 360 184 300"
+              fill="none" stroke="#E4C79A" stroke-width="40" stroke-linecap="round"/>
+            <path d="M96 1860 C96 1780 96 1760 96 1700 C96 1660 250 1660 250 1600 C250 1540 110 1540 110 1480 C110 1420 262 1420 262 1350 C262 1290 130 1290 130 1220 C130 1160 255 1160 255 1090 C255 1018 184 1010 184 930 C184 858 135 848 135 775 C135 720 250 730 250 680 C250 600 184 560 184 470 C184 408 184 360 184 300"
+              fill="none" stroke="#FFF3DE" stroke-width="30" stroke-linecap="round"/>
+            <path d="M96 1860 C96 1780 96 1760 96 1700 C96 1660 250 1660 250 1600 C250 1540 110 1540 110 1480 C110 1420 262 1420 262 1350 C262 1290 130 1290 130 1220 C130 1160 255 1160 255 1090 C255 1018 184 1010 184 930 C184 858 135 848 135 775 C135 720 250 730 250 680 C250 600 184 560 184 470 C184 408 184 360 184 300"
+              fill="none" stroke="#D9B483" stroke-width="4" stroke-linecap="round" stroke-dasharray="1 18" opacity=".8"/>
+            <!-- faded portion above portal -->
+            <rect x="0" y="300" width="368" height="640" fill="url(#fadeUp)" opacity="0"/>
+            <defs><linearGradient id="fadeUp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
+          </svg>
+
+          <!-- veil over upper (locked) regions to push them back -->
+          <div style="position:absolute; left:0; right:0; top:0; height:600px; background:linear-gradient(to bottom, rgba(220,225,245,.35), rgba(220,225,245,0)); pointer-events:none; z-index:1;"></div>
+
+          <!-- ===== SUMMIT CERTIFICATE ===== -->
+          <div style="position:absolute; left:50%; top:300px; transform:translateX(-50%); width:200px; text-align:center; z-index:3;">
+            <div style="position:absolute; left:50%; top:18px; transform:translate(-50%,-50%); width:150px; height:150px; border-radius:50%; background:radial-gradient(circle, rgba(255,215,90,.6), rgba(255,215,90,0) 70%); animation:jzGlow 3s ease-in-out infinite;"></div>
+            <div style="position:relative; display:inline-block; background:linear-gradient(160deg,#fff,#FFF6E2); border-radius:18px; padding:12px 16px 14px; box-shadow:0 8px 0 #E7B23A, 0 16px 30px rgba(231,178,58,.45);">
+              <div style="font-size:9px; font-weight:900; letter-spacing:1.6px; color:#C98A12;">TU META · CERTIFICADO</div>
+              <div style="display:flex; align-items:center; justify-content:center; gap:8px; margin-top:3px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="#F4B400"><path d="M5 3h14a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-5l-2 4-2-4H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><circle cx="12" cy="9" r="3.2" fill="#fff"/></svg>
+                <span style="font-size:26px; font-weight:900; color:#1A1A2E; letter-spacing:.5px;">B2</span>
+              </div>
+              <div style="font-size:10px; font-weight:800; color:#9A9FB8; margin-top:1px;">Fluidez · Avanzado</div>
+            </div>
+            <div style="margin-top:6px; font-size:11px; font-weight:900; color:#6C5CE7; text-shadow:0 1px 2px rgba(255,255,255,.8);">⛰ LA CIMA</div>
+          </div>
+
+          <!-- region label: De viaje (locked, faded) -->
+          <div style="position:absolute; left:50%; top:610px; transform:translateX(-50%); z-index:3; display:flex; align-items:center; gap:7px; background:rgba(255,255,255,.78); backdrop-filter:blur(3px); border-radius:13px; padding:6px 13px; box-shadow:0 4px 12px rgba(40,60,110,.15);">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="#9AA0BC"><path d="M7 10V8a5 5 0 0 1 10 0v2h.5A1.5 1.5 0 0 1 19 11.5v7A1.5 1.5 0 0 1 17.5 20h-11A1.5 1.5 0 0 1 5 18.5v-7A1.5 1.5 0 0 1 6.5 10H7Z"/></svg>
+            <span style="font-size:11px; font-weight:900; letter-spacing:.6px; color:#7A809B;">UNIDAD 4 · DE VIAJE</span>
+          </div>
+
+          <!-- teaser locked nodes -->
+          <div style="position:absolute; left:103px; top:743px; width:64px; height:64px; border-radius:50%; background:linear-gradient(160deg,#C8CEDE,#AEB5CB); display:grid; place-items:center; box-shadow:0 5px 0 #98A0B8; opacity:.85; z-index:2;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" opacity=".85"><path d="M7 10V8a5 5 0 0 1 10 0v2h.5A1.5 1.5 0 0 1 19 11.5v7A1.5 1.5 0 0 1 17.5 20h-11A1.5 1.5 0 0 1 5 18.5v-7A1.5 1.5 0 0 1 6.5 10H7Z"/></svg>
+          </div>
+          <div style="position:absolute; left:218px; top:648px; width:64px; height:64px; border-radius:50%; background:linear-gradient(160deg,#C8CEDE,#AEB5CB); display:grid; place-items:center; box-shadow:0 5px 0 #98A0B8; opacity:.7; z-index:2;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" opacity=".8"><path d="M7 10V8a5 5 0 0 1 10 0v2h.5A1.5 1.5 0 0 1 19 11.5v7A1.5 1.5 0 0 1 17.5 20h-11A1.5 1.5 0 0 1 5 18.5v-7A1.5 1.5 0 0 1 6.5 10H7Z"/></svg>
+          </div>
+
+          <!-- ===== CHECKPOINT PORTAL (examen) ===== -->
+          <div style="position:absolute; left:50%; top:866px; transform:translateX(-50%); width:128px; z-index:4;">
+            <div style="position:absolute; left:50%; top:54px; transform:translateX(-50%); width:120px; height:120px; border-radius:50%; background:radial-gradient(circle, rgba(108,92,231,.45), rgba(108,92,231,0) 70%); animation:jzGlow 2.6s ease-in-out infinite;"></div>
+            <button onClick="{{ onLesson }}" style="position:relative; display:block; width:128px; height:118px; border:none; background:none; cursor:pointer;" style-active="transform:translateY(3px)">
+              <svg width="128" height="118" viewBox="0 0 128 118">
+                <!-- base -->
+                <rect x="14" y="100" width="100" height="14" rx="5" fill="#5E51B8"/>
+                <rect x="10" y="96" width="108" height="12" rx="5" fill="#7A6BE0"/>
+                <!-- pillars -->
+                <rect x="18" y="34" width="22" height="68" rx="7" fill="#6C5CE7"/>
+                <rect x="88" y="34" width="22" height="68" rx="7" fill="#6C5CE7"/>
+                <rect x="18" y="34" width="9" height="68" rx="5" fill="#8979F0"/>
+                <rect x="88" y="34" width="9" height="68" rx="5" fill="#8979F0"/>
+                <!-- arch -->
+                <path d="M18 44 A46 40 0 0 1 110 44 L110 30 A46 40 0 0 0 18 30 Z" fill="#6C5CE7"/>
+                <path d="M18 40 A46 40 0 0 1 110 40 L110 32 A46 40 0 0 0 18 32 Z" fill="#8979F0"/>
+                <!-- portal glow -->
+                <path d="M40 100 L40 50 A24 22 0 0 1 88 50 L88 100 Z" fill="url(#portalG)"/>
+                <ellipse cx="64" cy="74" rx="13" ry="15" fill="#FFF3CC" opacity=".9"/>
+                <defs><linearGradient id="portalG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE9A8"/><stop offset="1" stop-color="#FFC93C"/></linearGradient></defs>
+                <!-- star key on arch -->
+                <path d="M64 24 l3 6 6.6.6-5 4.3 1.6 6.5L64 44.8 58.2 48l1.6-6.5-5-4.3 6.6-.6z" fill="#FFD86B"/>
+              </svg>
+            </button>
+            <div style="margin-top:2px; text-align:center;">
+              <span style="display:inline-block; background:#1A1A2E; color:#fff; font-size:10px; font-weight:900; letter-spacing:1px; padding:5px 12px; border-radius:11px; box-shadow:0 4px 10px rgba(0,0,0,.25);">EXAMEN · UNIDAD 3</span>
+            </div>
+          </div>
+
+          <!-- ===== locked nodes (unit 3 upper) ===== -->
+          <div style="position:absolute; left:219px; top:1054px; width:72px; height:72px; border-radius:50%; background:linear-gradient(160deg,#C8CEDE,#AEB5CB); display:grid; place-items:center; box-shadow:0 6px 0 #969EB8; z-index:2;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff" opacity=".9"><path d="M7 10V8a5 5 0 0 1 10 0v2h.5A1.5 1.5 0 0 1 19 11.5v7A1.5 1.5 0 0 1 17.5 20h-11A1.5 1.5 0 0 1 5 18.5v-7A1.5 1.5 0 0 1 6.5 10H7Z"/></svg>
+          </div>
+          <div style="position:absolute; left:94px; top:1184px; width:72px; height:72px; border-radius:50%; background:linear-gradient(160deg,#C8CEDE,#AEB5CB); display:grid; place-items:center; box-shadow:0 6px 0 #969EB8; z-index:2;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff" opacity=".9"><path d="M7 10V8a5 5 0 0 1 10 0v2h.5A1.5 1.5 0 0 1 19 11.5v7A1.5 1.5 0 0 1 17.5 20h-11A1.5 1.5 0 0 1 5 18.5v-7A1.5 1.5 0 0 1 6.5 10H7Z"/></svg>
+          </div>
+
+          <!-- ===== MISSION node ===== -->
+          <div style="position:absolute; left:224px; top:1310px; width:76px; z-index:4;">
+            <button onClick="{{ onLesson }}" style="position:relative; width:76px; height:76px; border:none; border-radius:22px; background:linear-gradient(160deg,#FF8C8C,#FF5C5C); display:grid; place-items:center; cursor:pointer; box-shadow:0 7px 0 #D94545, 0 14px 22px rgba(255,92,92,.4);" style-active="transform:translateY(4px); box-shadow:0 3px 0 #D94545;">
+              <svg width="38" height="38" viewBox="0 0 24 24" fill="none"><path d="M12 2.6 9.4 8 3.6 8.6l4.4 4-1.4 5.8L12 15.6l5.4 2.8-1.4-5.8 4.4-4L14.6 8 12 2.6Z" fill="#fff"/></svg>
+              <div style="position:absolute; top:-7px; right:-7px; width:10px; height:10px; color:#FFE08A; animation:jzSpark 1.8s ease-in-out infinite;"><svg viewBox="0 0 24 24" fill="#FFE08A"><path d="M12 0l2 10 10 2-10 2-2 10-2-10L0 12l10-2 2-10Z"/></svg></div>
+            </button>
+            <div style="position:absolute; right:84px; top:8px; width:150px; text-align:right;">
+              <div style="display:inline-block; background:#fff; border-radius:13px; padding:7px 11px; box-shadow:0 4px 0 #F3D3D3, 0 8px 16px rgba(255,92,92,.18);">
+                <div style="font-size:9px; font-weight:900; letter-spacing:1px; color:#FF5C5C;">★ MISIÓN</div>
+                <div style="font-size:12.5px; font-weight:900; color:#1A1A2E; line-height:1.15; margin-top:1px;">100 palabras<br>esenciales</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ===== AVAILABLE (actual) node ===== -->
+          <div style="position:absolute; left:66px; top:1436px; width:88px; height:88px; z-index:6;">
+            <div style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:88px; height:88px; border-radius:50%; background:#FF6B6B; animation:jzPulse 2s ease-out infinite;"></div>
+            <svg width="88" height="88" viewBox="0 0 88 88" style="position:absolute; inset:0; transform:rotate(-90deg);">
+              <circle cx="44" cy="44" r="40" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="6"/>
+              <circle cx="44" cy="44" r="40" fill="none" stroke="#FF6B6B" stroke-width="6" stroke-linecap="round" stroke-dasharray="251" stroke-dashoffset="226"/>
+            </svg>
+            <button onClick="{{ onStart }}" style="position:absolute; inset:7px; border:none; border-radius:50%; background:linear-gradient(160deg,#8A7BF6,#6C5CE7); display:grid; place-items:center; cursor:pointer; box-shadow:0 7px 0 #4B3FC9, 0 14px 26px rgba(108,92,231,.55);" style-active="transform:translateY(4px); box-shadow:0 3px 0 #4B3FC9;">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="#fff"><path d="M8 5.3c0-.9 1-1.5 1.8-1l9 6.7c.7.5.7 1.5 0 2l-9 6.7c-.8.5-1.8-.1-1.8-1V5.3Z"/></svg>
+            </button>
+            <div style="position:absolute; left:50%; top:-42px; animation:jzFloat 2.3s ease-in-out infinite;">
+              <div style="background:#fff; color:#6C5CE7; font-size:12px; font-weight:900; letter-spacing:1.2px; padding:8px 16px; border-radius:14px; box-shadow:0 5px 0 #E0DDF7, 0 10px 18px rgba(108,92,231,.3); white-space:nowrap;">EMPIEZA</div>
+              <div style="position:absolute; left:50%; bottom:-5px; transform:translateX(-50%) rotate(45deg); width:12px; height:12px; background:#fff;"></div>
+            </div>
+          </div>
+          <div style="position:absolute; left:30px; top:1530px; width:160px; text-align:center; z-index:6;">
+            <span style="display:inline-block; background:#6C5CE7; color:#fff; font-size:11px; font-weight:900; padding:5px 12px; border-radius:11px; box-shadow:0 4px 10px rgba(108,92,231,.35);">Lección 5 · Llamadas</span>
+          </div>
+
+          <!-- ===== PARROT companion ===== -->
+          <div style="position:absolute; left:168px; top:1452px; width:74px; animation:jzBob 3.1s ease-in-out infinite; transform-origin:bottom center; z-index:7;">
+            <svg width="74" height="80" viewBox="0 0 84 90">
+              <ellipse cx="42" cy="84" rx="22" ry="5" fill="#1A1A2E" opacity=".12"/>
+              <path d="M28 58q-7 18-3 26 7-5 12-18z" fill="#FF7A00"/>
+              <path d="M40 60q-1 19 4 26 7-7 7-20z" fill="#FFC93C"/>
+              <ellipse cx="46" cy="52" rx="23" ry="25" fill="#6C5CE7"/>
+              <ellipse cx="50" cy="56" rx="13" ry="17" fill="#EDEBFF"/>
+              <path d="M30 46q-9 8-5 24 13 3 18-10-4-12-13-14z" fill="#FFC93C"/>
+              <path d="M30 46q-9 8-5 24 4 1 7-1-3-12 2-21z" fill="#E9A700" opacity=".5"/>
+              <path d="M24 60 q-2 8 4 11 8 2 11-4 -3 4 -10 2 -6 -3 -5 -9z" fill="#FF6B6B"/>
+              <circle cx="40" cy="28" r="20" fill="#7B6CF1"/>
+              <ellipse cx="45" cy="30" rx="13" ry="12" fill="#FFF4E8"/>
+              <path d="M33 11q-3-9 4-9 3 4 1 9z" fill="#FF6B6B"/>
+              <path d="M40 8q1-8 7-6 0 5-3 9z" fill="#FF8585"/>
+              <path d="M47 9q3-6 8-3-1 5-5 7z" fill="#FF6B6B"/>
+              <circle cx="43" cy="27" r="6.2" fill="#fff"/>
+              <circle cx="44.5" cy="28" r="3.3" fill="#1A1A2E"/>
+              <circle cx="46" cy="26.6" r="1.1" fill="#fff"/>
+              <path d="M57 30q11 1 10 8-6 4-11-1z" fill="#FF6B6B"/>
+              <path d="M56 36q6 4 10 1-3 5-10 2z" fill="#E8553E"/>
+              <path d="M44 78v7M51 78v7" stroke="#FF7A00" stroke-width="3.4" stroke-linecap="round"/>
+            </svg>
+            <div style="position:absolute; right:-10px; top:-20px; background:#1A1A2E; color:#fff; font-size:10px; font-weight:800; padding:5px 9px; border-radius:11px; white-space:nowrap; box-shadow:0 6px 12px rgba(0,0,0,.22);">¡A la cima! 💪
+              <div style="position:absolute; left:12px; bottom:-5px; width:9px; height:9px; background:#1A1A2E; transform:rotate(45deg);"></div>
+            </div>
+          </div>
+
+          <!-- ===== MASTERED (dorado) node ===== -->
+          <button onClick="{{ onLesson }}" style="position:absolute; left:214px; top:1564px; width:72px; height:72px; border:none; border-radius:50%; background:linear-gradient(160deg,#FFDD7A,#FFC02E); display:grid; place-items:center; cursor:pointer; overflow:hidden; box-shadow:0 6px 0 #E0980C, 0 12px 20px rgba(255,192,46,.5); z-index:5;" style-active="transform:translateY(4px); box-shadow:0 2px 0 #E0980C;">
+            <div style="position:absolute; inset:0; background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.85) 48%,transparent 60%); background-size:240% 100%; animation:jzSheen 3.4s ease-in-out infinite;"></div>
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="#fff" style="position:relative;"><path d="M3 8.5l4.2 3.4L12 4l4.8 7.9L21 8.5 19 19H5L3 8.5Z"/></svg>
+          </button>
+          <!-- little pennant on mastered -->
+          <div style="position:absolute; left:248px; top:1540px; z-index:6;"><svg width="26" height="30" viewBox="0 0 26 30"><rect x="0" y="0" width="3" height="30" fill="#8C6A2E"/><path d="M3 2 L24 7 L3 12 Z" fill="#FF6B6B"/></svg></div>
+
+          <!-- ===== COMPLETED node ===== -->
+          <button onClick="{{ onLesson }}" style="position:absolute; left:60px; top:1664px; width:72px; height:72px; border:none; border-radius:50%; background:linear-gradient(160deg,#3FD97E,#28BD66); display:grid; place-items:center; cursor:pointer; box-shadow:0 6px 0 #1E9B52, 0 12px 18px rgba(40,189,102,.4); z-index:5;" style-active="transform:translateY(4px); box-shadow:0 2px 0 #1E9B52;">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+          </button>
+
+          <!-- region banner: current unit (bottom) -->
+          <div style="position:absolute; left:50%; top:1772px; transform:translateX(-50%); z-index:6; display:flex; align-items:center; gap:9px; background:#fff; border-radius:16px; padding:9px 15px; box-shadow:0 6px 0 #E2D8FA, 0 12px 22px rgba(108,92,231,.22);">
+            <div style="width:30px; height:30px; border-radius:9px; background:linear-gradient(150deg,#7A6BF0,#5E4FD6); display:grid; place-items:center;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="#fff"><path d="M3 21V8l6-5 6 5v13h-4v-6H7v6H3Zm14 0v-9l4 3v6h-4Z"/></svg>
+            </div>
+            <div>
+              <div style="font-size:9px; font-weight:900; letter-spacing:1.2px; color:#8A7DE0;">UNIDAD 3 · EN EL TRABAJO</div>
+              <div style="font-size:14px; font-weight:900; color:#1A1A2E; line-height:1; margin-top:1px;">Reuniones y correos</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ===== TOP BAR (minimal, fixed) ===== -->
+      <div style="position:absolute; top:0; left:0; right:0; z-index:30; padding-top:30px;">
+        <div style="margin:0 12px; padding:7px 9px; display:flex; align-items:center; justify-content:space-between; gap:8px; background:rgba(255,255,255,.82); backdrop-filter:blur(14px); border-radius:20px; box-shadow:0 6px 18px rgba(40,50,110,.14);">
+          <!-- flag -->
+          <button style="display:flex; align-items:center; gap:5px; background:#F4F5FB; border:none; border-radius:13px; padding:5px 8px 5px 6px; cursor:pointer;">
+            <span style="width:24px; height:24px; border-radius:7px; overflow:hidden; display:grid; place-items:center; font-size:16px; box-shadow:0 0 0 1.5px rgba(0,0,0,.05) inset;">🇬🇧</span>
+            <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="#A7ABC3" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5l3 3 3-3"/></svg>
+          </button>
+          <!-- stats -->
+          <div style="display:flex; align-items:center; gap:13px;">
+            <div style="display:flex; align-items:center; gap:4px;">
+              <svg width="16" height="19" viewBox="0 0 24 28"><path d="M13 1c1 5 6 6 6 12 0 1.6-.5 3-1.3 4.2C19.2 16.9 20 15 20 13c2 2.5 3 5.6 3 8 0 .2 0 .5-.1.7C22 25.6 17.5 28 12 28S2 25.6.9 21.7C.5 20.4.5 19 1 17.6c.8 2 2.6 3.4 4.6 3.7-1-1-1.6-2.4-1.6-4 0-3 2.5-4.6 2-8 3 .7 4.3 3 4.4 5.2C11.6 16 12 13 11 10c-.7-2.2.2-7 2-9Z" fill="#FF7A00"/><path d="M12 28c-3.4 0-6-2.2-6-5.2 0-2.1 1.4-3.6 2.6-5C8.5 19 9.5 20 11 20c1.9 0 3-1.6 3-3.6 1.6 1.3 3 3 3 5.2 0 3.3-2.6 6.4-5 6.4Z" fill="#FFC93C"/></svg>
+              <span style="font-size:15px; font-weight:900; color:#E8650A;">12</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:4px;">
+              <svg width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#F4B400"/><circle cx="12" cy="12" r="10" fill="none" stroke="#E09A00" stroke-width="1.5"/><circle cx="12" cy="12" r="7" fill="#FFD86B"/><path d="M12 7.5l1.3 2.7 3 .4-2.2 2.1.5 3-2.6-1.4-2.6 1.4.5-3-2.2-2.1 3-.4L12 7.5Z" fill="#E09A00"/></svg>
+              <span style="font-size:15px; font-weight:900; color:#C98A12;">340</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:4px;">
+              <svg width="18" height="17" viewBox="0 0 24 22"><path d="M12 21S1.5 14.6 1.5 7.6C1.5 4 4.2 1.5 7.4 1.5c2.1 0 3.7 1.1 4.6 2.7C12.9 2.6 14.5 1.5 16.6 1.5 19.8 1.5 22.5 4 22.5 7.6 22.5 14.6 12 21 12 21Z" fill="#FF4D6D"/></svg>
+              <span style="font-size:15px; font-weight:900; color:#E03457;">5</span>
+            </div>
+            <!-- daily goal ring -->
+            <button style="position:relative; width:34px; height:34px; border:none; background:none; cursor:pointer; padding:0;">
+              <svg width="34" height="34" viewBox="0 0 34 34" style="transform:rotate(-90deg);">
+                <circle cx="17" cy="17" r="14" fill="rgba(108,92,231,.12)" stroke="#E2DEF8" stroke-width="4"/>
+                <circle cx="17" cy="17" r="14" fill="none" stroke="#6C5CE7" stroke-width="4" stroke-linecap="round" stroke-dasharray="88" stroke-dashoffset="29"/>
+              </svg>
+              <div style="position:absolute; inset:0; display:grid; place-items:center;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="#6C5CE7"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== BOTTOM NAV (icons only) ===== -->
+      <div style="position:absolute; left:14px; right:14px; bottom:18px; z-index:40; height:62px; background:rgba(255,255,255,.92); backdrop-filter:blur(14px); border-radius:24px; box-shadow:0 10px 28px rgba(40,50,110,.2), 0 0 0 1px rgba(255,255,255,.6) inset; display:flex; align-items:center; justify-content:space-around; padding:0 6px;">
+        <button onClick="{{ onAprender }}" style="{{ navAprender }}">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="{{ cAprender }}" stroke-width="2.1" stroke-linejoin="round" stroke-linecap="round"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4Z"/><path d="M9 4v13M15 6.5v13"/></svg>
+        </button>
+        <button onClick="{{ onPracticar }}" style="{{ navPracticar }}">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="{{ cPracticar }}" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5l11 11M4 9l-1.5 1.5a2.1 2.1 0 0 0 0 3L9 20a2.1 2.1 0 0 0 3 0L13.5 18.5M10.5 5.5 12 4a2.1 2.1 0 0 1 3 0l6.5 6.5a2.1 2.1 0 0 1 0 3L20 14"/></svg>
+        </button>
+        <button onClick="{{ onConversar }}" style="{{ navConversar }}">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="{{ cConversar }}" stroke-width="2.1" stroke-linejoin="round"><path d="M3.5 6.5A2.5 2.5 0 0 1 6 4h7a2.5 2.5 0 0 1 2.5 2.5v4A2.5 2.5 0 0 1 13 13H8l-3.5 3v-3a2 2 0 0 1-1-1.8V6.5Z"/><path d="M15.5 9.5H18a2.5 2.5 0 0 1 2.5 2.5v3.5a2 2 0 0 1-1 1.8V20L16 17.5h-3" stroke-linecap="round"/></svg>
+        </button>
+        <button onClick="{{ onLigas }}" style="{{ navLigas }}">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="{{ cLigas }}" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v3a5 5 0 0 1-10 0V4Z"/><path d="M7 5H4.5v1.5a3 3 0 0 0 3 3M17 5h2.5v1.5a3 3 0 0 1-3 3M12 12v4M8.5 20h7L15 16.5H9L8.5 20Z"/></svg>
+        </button>
+        <button onClick="{{ onPerfil }}" style="{{ navPerfil }}">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="{{ cPerfil }}" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { activeTab: 'aprender' };
+  componentDidMount() {
+    const go = () => { if (this._scroll) this._scroll.scrollTop = this._scroll.scrollHeight; };
+    go(); setTimeout(go, 60); setTimeout(go, 250); setTimeout(go, 700);
+  }
+  renderVals() {
+    const active = this.state.activeTab;
+    const on = (t) => () => this.setState({ activeTab: t });
+    const c = (t) => active === t ? '#6C5CE7' : '#AEB3CC';
+    const nav = (t) => ({
+      width: '48px', height: '48px', border: 'none', borderRadius: '16px',
+      background: active === t ? '#EDEBFF' : 'transparent',
+      display: 'grid', placeItems: 'center', cursor: 'pointer', transition: 'background .2s'
+    });
+    return {
+      scrollRef: (el) => { this._scroll = el; },
+      onLesson: () => {}, onStart: () => {},
+      onAprender: on('aprender'), onPracticar: on('practicar'),
+      onConversar: on('conversar'), onLigas: on('ligas'), onPerfil: on('perfil'),
+      cAprender: c('aprender'), cPracticar: c('practicar'), cConversar: c('conversar'),
+      cLigas: c('ligas'), cPerfil: c('perfil'),
+      navAprender: nav('aprender'), navPracticar: nav('practicar'), navConversar: nav('conversar'),
+      navLigas: nav('ligas'), navPerfil: nav('perfil'),
+    };
+  }
+}
+</script>
+</body>
+</html>

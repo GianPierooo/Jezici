@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body{ margin:0; font-family:'Nunito',system-ui,sans-serif; }
+  @keyframes jzCheer{ 0%,100%{ transform:translateY(0) rotate(-2deg) } 50%{ transform:translateY(-11px) rotate(2deg) } }
+  @keyframes jzWiggle{ 0%,100%{ transform:rotate(-3deg) } 50%{ transform:rotate(3deg) } }
+  @keyframes jzGlow{ 0%,100%{ opacity:.45; transform:translate(-50%,-50%) scale(1) } 50%{ opacity:.9; transform:translate(-50%,-50%) scale(1.14) } }
+  @keyframes jzSpin{ to{ transform:translate(-50%,-50%) rotate(360deg) } }
+  @keyframes jzFall{ 0%{ transform:translateY(-30px) rotate(0); opacity:0 } 12%{ opacity:1 } 100%{ transform:translateY(420px) rotate(460deg); opacity:.9 } }
+  @keyframes jzPop{ 0%{ transform:scale(.2); opacity:0 } 55%{ transform:scale(1.18) } 75%{ transform:scale(.94) } 100%{ transform:scale(1); opacity:1 } }
+  @keyframes jzFloat{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-9px) } }
+  @keyframes jzTwinkle{ 0%,100%{ opacity:.2; transform:scale(.7) } 50%{ opacity:1; transform:scale(1.1) } }
+  @keyframes jzLidPop{ 0%{ transform:scale(.6); opacity:0 } 60%{ transform:scale(1.1) } 100%{ transform:scale(1); opacity:1 } }
+</style>
+</helmet>
+
+<div style="min-height:100vh; width:100%; background:radial-gradient(120% 90% at 50% 0%, #E7E3FF 0%, #EEF0F8 60%, #E6E8F4 100%); display:flex; align-items:center; justify-content:center; padding:32px 16px; font-family:'Nunito',sans-serif;">
+
+  <div style="position:relative; width:390px; height:844px; background:#0B0B16; border-radius:52px; padding:11px; box-shadow:0 40px 80px -20px rgba(48,40,110,.5), 0 0 0 2px rgba(255,255,255,.06) inset;">
+    <div style="position:relative; width:368px; height:822px; border-radius:42px; overflow:hidden; background:linear-gradient(180deg,#5B4ECF 0%,#6C5CE7 55%,#8273E8 100%);">
+      <div style="position:absolute; top:11px; left:50%; transform:translateX(-50%); width:118px; height:34px; background:#0B0B16; border-radius:20px; z-index:60;"></div>
+
+      <!-- ambient sparkles -->
+      <div style="position:absolute; left:48px; top:140px; width:8px; height:8px; color:#FFD86B; animation:jzTwinkle 2.4s ease-in-out infinite;"><svg viewBox="0 0 24 24" fill="#FFD86B"><path d="M12 0l2 10 10 2-10 2-2 10-2-10L0 12l10-2 2-10Z"/></svg></div>
+      <div style="position:absolute; left:300px; top:170px; width:10px; height:10px; color:#fff; animation:jzTwinkle 3s ease-in-out infinite .5s;"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 0l2 10 10 2-10 2-2 10-2-10L0 12l10-2 2-10Z"/></svg></div>
+      <div style="position:absolute; left:60px; top:300px; width:7px; height:7px; color:#FFC93C; animation:jzTwinkle 2.7s ease-in-out infinite .9s;"><svg viewBox="0 0 24 24" fill="#FFC93C"><path d="M12 0l2 10 10 2-10 2-2 10-2-10L0 12l10-2 2-10Z"/></svg></div>
+      <div style="position:absolute; left:308px; top:330px; width:8px; height:8px; color:#fff; animation:jzTwinkle 3.3s ease-in-out infinite .3s;"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 0l2 10 10 2-10 2-2 10-2-10L0 12l10-2 2-10Z"/></svg></div>
+
+      <!-- close -->
+      <button style="position:absolute; top:46px; right:18px; z-index:40; width:36px; height:36px; border:none; border-radius:12px; background:rgba(255,255,255,.16); display:grid; place-items:center; cursor:pointer;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+
+      <!-- confetti (only when opened) -->
+      <sc-if value="{{ opened }}" hint-placeholder-val="{{ false }}">
+        <div style="position:absolute; inset:0; z-index:25; pointer-events:none; overflow:hidden;">
+          <div style="position:absolute; left:40px; top:120px; width:11px; height:11px; background:#FFC93C; border-radius:2px; transform:rotate(20deg); animation:jzFall 2.6s linear infinite;"></div>
+          <div style="position:absolute; left:120px; top:100px; width:9px; height:14px; background:#FF6B6B; border-radius:2px; animation:jzFall 3.1s linear infinite .3s;"></div>
+          <div style="position:absolute; left:200px; top:130px; width:10px; height:10px; background:#3FE08A; border-radius:50%; animation:jzFall 2.9s linear infinite .6s;"></div>
+          <div style="position:absolute; left:260px; top:104px; width:12px; height:12px; background:#FFD86B; border-radius:2px; transform:rotate(40deg); animation:jzFall 3.3s linear infinite .15s;"></div>
+          <div style="position:absolute; left:310px; top:140px; width:9px; height:13px; background:#FF8585; border-radius:2px; animation:jzFall 2.7s linear infinite .5s;"></div>
+          <div style="position:absolute; left:80px; top:160px; width:8px; height:8px; background:#fff; border-radius:50%; opacity:.85; animation:jzFall 3.4s linear infinite .2s;"></div>
+          <div style="position:absolute; left:170px; top:96px; width:10px; height:10px; background:#8C7DF2; border-radius:50%; animation:jzFall 3s linear infinite .8s;"></div>
+          <div style="position:absolute; left:240px; top:150px; width:9px; height:9px; background:#FFC93C; border-radius:50%; animation:jzFall 3.2s linear infinite .45s;"></div>
+          <div style="position:absolute; left:140px; top:130px; width:10px; height:14px; background:#2ECC71; border-radius:2px; transform:rotate(30deg); animation:jzFall 2.8s linear infinite .95s;"></div>
+        </div>
+      </sc-if>
+
+      <!-- parrot cheering -->
+      <div style="position:absolute; left:50%; top:74px; transform:translateX(-50%); width:120px; z-index:20; animation:jzCheer 2.4s ease-in-out infinite;">
+        <svg width="120" height="124" viewBox="0 0 120 124">
+          <ellipse cx="60" cy="118" rx="26" ry="6" fill="#000" opacity=".14"/>
+          <path d="M40 64 Q10 40 8 12 Q30 22 44 56 Z" fill="#FFC93C"/><path d="M38 60 Q16 40 13 18 Q28 28 42 54 Z" fill="#FFD86B"/>
+          <path d="M80 64 Q110 40 112 12 Q90 22 76 56 Z" fill="#FFC93C"/><path d="M82 60 Q104 40 107 18 Q92 28 78 54 Z" fill="#FFD86B"/>
+          <path d="M48 96 q-6 20 -2 26 7-5 11-18z" fill="#FF7A00"/><path d="M62 98 q1 20 6 26 6-7 5-20z" fill="#FFC93C"/>
+          <ellipse cx="60" cy="80" rx="30" ry="32" fill="#FF4D6D"/><ellipse cx="62" cy="84" rx="17" ry="22" fill="#FFE3E8"/>
+          <circle cx="58" cy="46" r="26" fill="#FF6B6B"/><ellipse cx="64" cy="49" rx="17" ry="16" fill="#FFF4E8"/>
+          <path d="M48 22 q-4-12 5-12 4 6 1 13z" fill="#FFC93C"/><path d="M58 18 q1-11 9-8 0 7-4 12z" fill="#FFD86B"/><path d="M68 20 q4-8 11-4-1 7-7 9z" fill="#FFC93C"/>
+          <path d="M50 44 q5-6 11 0" fill="none" stroke="#1A1A2E" stroke-width="3" stroke-linecap="round"/>
+          <path d="M67 44 q5-6 11 0" fill="none" stroke="#1A1A2E" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="48" cy="56" r="4.5" fill="#FFB3B3" opacity=".7"/><circle cx="80" cy="56" r="4.5" fill="#FFB3B3" opacity=".7"/>
+          <path d="M80 48 q16 0 16 9 -8 5 -16 0z" fill="#FFC93C"/><path d="M80 55 q8 5 15 3 -3 6 -15 4z" fill="#E0A020"/>
+        </svg>
+      </div>
+
+      <!-- title -->
+      <div style="position:absolute; left:0; right:0; top:206px; text-align:center; z-index:20; padding:0 30px;">
+        <div style="font-size:26px; font-weight:900; color:#fff; text-shadow:0 2px 10px rgba(0,0,0,.2);">{{ titleText }}</div>
+        <div style="font-size:13px; font-weight:800; color:rgba(255,255,255,.82); margin-top:6px;">{{ subText }}</div>
+      </div>
+
+      <!-- CHEST AREA -->
+      <div style="position:absolute; left:0; right:0; top:300px; height:320px; z-index:15;">
+        <!-- rotating rays + glow -->
+        <div style="position:absolute; left:50%; top:170px; width:380px; height:380px; transform:translate(-50%,-50%); background:conic-gradient(from 0deg, rgba(255,221,122,.0) 0deg, rgba(255,221,122,.28) 18deg, rgba(255,221,122,0) 36deg, rgba(255,221,122,.28) 54deg, rgba(255,221,122,0) 72deg, rgba(255,221,122,.28) 90deg, rgba(255,221,122,0) 108deg, rgba(255,221,122,.28) 126deg, rgba(255,221,122,0) 144deg, rgba(255,221,122,.28) 162deg, rgba(255,221,122,0) 180deg, rgba(255,221,122,.28) 198deg, rgba(255,221,122,0) 216deg, rgba(255,221,122,.28) 234deg, rgba(255,221,122,0) 252deg, rgba(255,221,122,.28) 270deg, rgba(255,221,122,0) 288deg, rgba(255,221,122,.28) 306deg, rgba(255,221,122,0) 324deg, rgba(255,221,122,.28) 342deg, rgba(255,221,122,0) 360deg); border-radius:50%; animation:jzSpin 14s linear infinite; -webkit-mask:radial-gradient(circle, transparent 38%, #000 39%); mask:radial-gradient(circle, transparent 38%, #000 39%);"></div>
+        <div style="position:absolute; left:50%; top:170px; width:240px; height:240px; border-radius:50%; background:radial-gradient(circle, rgba(255,201,60,.55), transparent 62%); animation:jzGlow 2.6s ease-in-out infinite;"></div>
+
+        <!-- CLOSED -->
+        <sc-if value="{{ isClosed }}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{ onOpen }}" style="position:absolute; left:50%; top:74px; transform:translateX(-50%); border:none; background:none; cursor:pointer; animation:jzWiggle 1.4s ease-in-out infinite; transform-origin:bottom center;">
+            <svg width="176" height="150" viewBox="0 0 176 150">
+              <ellipse cx="88" cy="142" rx="62" ry="9" fill="#000" opacity=".18"/>
+              <!-- body -->
+              <rect x="28" y="70" width="120" height="64" rx="12" fill="#6C5CE7"/>
+              <rect x="28" y="70" width="120" height="20" fill="#5E51C9"/>
+              <!-- lid (closed) -->
+              <path d="M28 72 Q28 34 88 34 Q148 34 148 72 L148 78 L28 78 Z" fill="#8273E8"/>
+              <path d="M28 72 Q28 34 88 34 Q148 34 148 72" fill="none" stroke="#FFC93C" stroke-width="6"/>
+              <!-- straps -->
+              <rect x="40" y="40" width="11" height="94" rx="3" fill="#FFC93C"/><rect x="125" y="40" width="11" height="94" rx="3" fill="#FFC93C"/>
+              <rect x="28" y="86" width="120" height="9" fill="#FFC93C"/>
+              <!-- lock -->
+              <rect x="76" y="82" width="24" height="26" rx="6" fill="#FFD86B" stroke="#E0980C" stroke-width="2"/>
+              <circle cx="88" cy="92" r="4" fill="#E0980C"/><rect x="86" y="93" width="4" height="9" rx="2" fill="#E0980C"/>
+              <!-- gem -->
+              <path d="M88 44 l6 6 -6 7 -6 -7 Z" fill="#FF6B6B"/>
+            </svg>
+          </button>
+        </sc-if>
+
+        <!-- OPENED -->
+        <sc-if value="{{ opened }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute; inset:0;">
+          <!-- light beam -->
+          <div style="position:absolute; left:50%; top:40px; transform:translateX(-50%); width:150px; height:150px;">
+            <div style="width:100%; height:100%; background:linear-gradient(180deg, rgba(255,243,200,.85), rgba(255,201,60,0)); clip-path:polygon(38% 100%, 62% 100%, 90% 0, 10% 0); animation:jzFloat 3s ease-in-out infinite;"></div>
+          </div>
+          <!-- prize -->
+          <div style="position:absolute; left:50%; top:30px; transform:translateX(-50%); text-align:center; z-index:5;">
+           <div style="animation:jzPop .5s ease both;">
+            <div style="position:relative; width:96px; height:96px; margin:0 auto;">
+              <svg width="96" height="96" viewBox="0 0 96 96"><circle cx="48" cy="48" r="40" fill="#E0980C"/><circle cx="48" cy="48" r="35" fill="url(#cg)"/><circle cx="48" cy="48" r="27" fill="#FFE08A"/><path d="M48 30l3.3 6.7 7.4.9-5.6 5 1.5 7.4L48 52.4 41 56l1.5-7.4-5.6-5 7.4-.9L48 30Z" fill="#E0980C"/><defs><linearGradient id="cg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFDD7A"/><stop offset="1" stop-color="#F4B400"/></linearGradient></defs></svg>
+            </div>
+            <div style="font-size:40px; font-weight:900; color:#fff; line-height:1; margin-top:8px; text-shadow:0 3px 10px rgba(0,0,0,.25);">+50</div>
+            <div style="font-size:13px; font-weight:900; letter-spacing:2px; color:#FFE08A; margin-top:2px;">ORO</div>
+           </div>
+          </div>
+          <!-- open chest -->
+          <div style="position:absolute; left:50%; top:96px; transform:translateX(-50%);">
+            <svg width="176" height="120" viewBox="0 0 176 120">
+              <ellipse cx="88" cy="112" rx="62" ry="9" fill="#000" opacity=".18"/>
+              <!-- open lid (tilted back) -->
+              <g style="transform-origin:88px 30px; animation:jzLidPop .45s ease both;">
+                <path d="M30 34 Q30 -2 88 -2 Q146 -2 146 34 L146 40 L30 40 Z" fill="#8273E8" transform="rotate(-12 88 34)"/>
+                <path d="M30 34 Q30 -2 88 -2 Q146 -2 146 34" fill="none" stroke="#FFC93C" stroke-width="6" transform="rotate(-12 88 34)"/>
+              </g>
+              <!-- body back rim -->
+              <rect x="28" y="40" width="120" height="20" rx="6" fill="#5E51C9"/>
+              <!-- interior glow -->
+              <rect x="34" y="44" width="108" height="16" rx="4" fill="#FFE08A"/>
+              <!-- body front -->
+              <rect x="28" y="56" width="120" height="58" rx="12" fill="#6C5CE7"/>
+              <rect x="40" y="56" width="11" height="58" rx="3" fill="#FFC93C"/><rect x="125" y="56" width="11" height="58" rx="3" fill="#FFC93C"/>
+              <rect x="28" y="78" width="120" height="9" fill="#FFC93C"/>
+              <rect x="76" y="74" width="24" height="22" rx="6" fill="#FFD86B" stroke="#E0980C" stroke-width="2"/>
+              <!-- coins spilling -->
+              <circle cx="66" cy="54" r="8" fill="#FFD86B" stroke="#E0980C" stroke-width="2"/>
+              <circle cx="88" cy="50" r="9" fill="#FFE08A" stroke="#E0980C" stroke-width="2"/>
+              <circle cx="110" cy="54" r="8" fill="#FFD86B" stroke="#E0980C" stroke-width="2"/>
+            </svg>
+          </div>
+          </div>
+        </sc-if>
+      </div>
+
+      <!-- bottom button -->
+      <div style="position:absolute; left:24px; right:24px; bottom:40px; z-index:30;">
+        <button onClick="{{ onAction }}" style="{{ ctaStyle }}" style-active="transform:translateY(4px)">{{ ctaText }}</button>
+        <sc-if value="{{ opened }}" hint-placeholder-val="{{ false }}">
+          <div style="text-align:center; font-size:12px; font-weight:800; color:rgba(255,255,255,.75); margin-top:12px;">Vuelve mañana por otro cofre 🎁</div>
+        </sc-if>
+      </div>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { opened: false };
+  renderVals() {
+    const o = this.state.opened;
+    return {
+      opened: o,
+      isClosed: !o,
+      titleText: o ? '¡+50 de oro!' : '¡Un cofre te espera!',
+      subText: o ? 'Tu recompensa del día' : 'Tócalo para descubrir tu premio',
+      onOpen: () => this.setState({ opened: true }),
+      onAction: () => { if (!this.state.opened) this.setState({ opened: true }); },
+      ctaText: o ? '¡Reclamar!' : 'Abrir cofre',
+      ctaStyle: {
+        width: '100%', height: '62px', border: 'none', borderRadius: '18px',
+        background: o ? 'linear-gradient(160deg,#3FD97E,#2ECC71)' : 'linear-gradient(160deg,#FFDD7A,#F4B400)',
+        color: o ? '#fff' : '#5B3A00', fontFamily: 'Nunito', fontSize: '18px', fontWeight: '900',
+        letterSpacing: '.5px', cursor: 'pointer',
+        boxShadow: o ? '0 6px 0 #1E9B52, 0 14px 26px rgba(46,204,113,.4)' : '0 6px 0 #D69400, 0 14px 26px rgba(244,180,0,.45)',
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>

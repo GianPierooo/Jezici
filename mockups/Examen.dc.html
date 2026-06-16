@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body{ margin:0; font-family:'Nunito',system-ui,sans-serif; }
+  .jz-scroll::-webkit-scrollbar{ display:none; }
+  @keyframes jzCheer{ 0%,100%{ transform:translateY(0) rotate(-2deg) } 50%{ transform:translateY(-11px) rotate(2deg) } }
+  @keyframes jzFall{ 0%{ transform:translateY(-20px) rotate(0); opacity:0 } 12%{ opacity:1 } 100%{ transform:translateY(300px) rotate(420deg); opacity:.9 } }
+  @keyframes jzGlow{ 0%,100%{ opacity:.4; transform:scale(1) } 50%{ opacity:.85; transform:scale(1.12) } }
+</style>
+</helmet>
+
+<div style="min-height:100vh; width:100%; background:#E9EBF2; padding:40px; font-family:'Nunito',sans-serif; display:flex; align-items:flex-start; gap:64px;">
+
+  <!-- ================= FRAME A — RESULTADOS ================= -->
+  <div style="display:flex; flex-direction:column; gap:18px;">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <span style="font-size:13px; font-weight:900; letter-spacing:2px; color:#8A90A8;">FRAME A</span>
+      <span style="font-size:15px; font-weight:900; color:#1A1A2E;">Resultados del examen · veredicto</span>
+    </div>
+
+    <div style="position:relative; width:390px; height:844px; background:#0B0B16; border-radius:52px; padding:11px; box-shadow:0 40px 80px -24px rgba(48,40,110,.45);">
+      <div style="position:relative; width:368px; height:822px; background:#F5F6FB; border-radius:42px; overflow:hidden;">
+        <div style="position:absolute; top:11px; left:50%; transform:translateX(-50%); width:118px; height:34px; background:#0B0B16; border-radius:20px; z-index:60;"></div>
+
+        <div class="jz-scroll" style="position:absolute; inset:0; overflow-y:auto; overflow-x:hidden;">
+
+          <!-- celebration header -->
+          <div style="position:relative; height:264px; background:linear-gradient(160deg,#7A6BF0,#6C5CE7 58%,#5B4ECF); overflow:hidden;">
+            <div style="position:absolute; left:40px; top:60px; width:10px; height:10px; background:#FFC93C; border-radius:2px; transform:rotate(20deg); animation:jzFall 2.6s linear infinite;"></div>
+            <div style="position:absolute; left:120px; top:46px; width:8px; height:13px; background:#FF6B6B; border-radius:2px; animation:jzFall 3.1s linear infinite .3s;"></div>
+            <div style="position:absolute; left:250px; top:54px; width:10px; height:10px; background:#3FE08A; border-radius:50%; animation:jzFall 2.9s linear infinite .6s;"></div>
+            <div style="position:absolute; left:305px; top:44px; width:11px; height:11px; background:#FFD86B; border-radius:2px; transform:rotate(40deg); animation:jzFall 3.3s linear infinite .15s;"></div>
+            <div style="position:absolute; left:70px; top:100px; width:8px; height:8px; background:#fff; border-radius:50%; opacity:.8; animation:jzFall 3.4s linear infinite .2s;"></div>
+            <div style="position:absolute; left:210px; top:40px; width:9px; height:9px; background:#FFC93C; border-radius:50%; animation:jzFall 3.2s linear infinite .45s;"></div>
+
+            <div style="position:absolute; left:50%; top:120px; transform:translate(-50%,-50%); width:190px; height:190px; border-radius:50%; background:radial-gradient(circle, rgba(255,201,60,.4), transparent 70%); animation:jzGlow 2.8s ease-in-out infinite;"></div>
+
+            <div style="position:absolute; left:50%; top:36px; transform:translateX(-50%); width:120px; animation:jzCheer 2.4s ease-in-out infinite;">
+              <svg width="120" height="124" viewBox="0 0 120 124">
+                <ellipse cx="60" cy="118" rx="28" ry="6" fill="#000" opacity=".12"/>
+                <path d="M40 64 Q10 40 8 12 Q30 22 44 56 Z" fill="#FFC93C"/><path d="M38 60 Q16 40 13 18 Q28 28 42 54 Z" fill="#FFD86B"/>
+                <path d="M80 64 Q110 40 112 12 Q90 22 76 56 Z" fill="#FFC93C"/><path d="M82 60 Q104 40 107 18 Q92 28 78 54 Z" fill="#FFD86B"/>
+                <path d="M48 96 q-6 20 -2 26 7-5 11-18z" fill="#FF7A00"/><path d="M62 98 q1 20 6 26 6-7 5-20z" fill="#FFC93C"/>
+                <ellipse cx="60" cy="80" rx="30" ry="32" fill="#6C5CE7"/><ellipse cx="62" cy="84" rx="17" ry="22" fill="#EDEBFF"/>
+                <circle cx="58" cy="46" r="26" fill="#7B6CF1"/><ellipse cx="64" cy="49" rx="17" ry="16" fill="#FFF4E8"/>
+                <path d="M48 22 q-4-12 5-12 4 6 1 13z" fill="#FF6B6B"/><path d="M58 18 q1-11 9-8 0 7-4 12z" fill="#FF8585"/><path d="M68 20 q4-8 11-4-1 7-7 9z" fill="#FF6B6B"/>
+                <path d="M50 44 q5-6 11 0" fill="none" stroke="#1A1A2E" stroke-width="3" stroke-linecap="round"/>
+                <path d="M67 44 q5-6 11 0" fill="none" stroke="#1A1A2E" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="48" cy="56" r="4.5" fill="#FF9D9D" opacity=".6"/><circle cx="80" cy="56" r="4.5" fill="#FF9D9D" opacity=".6"/>
+                <path d="M80 48 q16 0 16 9 -8 5 -16 0z" fill="#FF6B6B"/><path d="M80 55 q8 5 15 3 -3 6 -15 4z" fill="#E8553E"/>
+              </svg>
+            </div>
+
+            <div style="position:absolute; left:0; right:0; bottom:18px; text-align:center; padding:0 24px;">
+              <div style="display:inline-block; background:rgba(255,201,60,.95); color:#5B3A00; font-size:11px; font-weight:900; letter-spacing:1.5px; padding:5px 14px; border-radius:10px;">EXAMEN SUPERADO</div>
+            </div>
+          </div>
+
+          <div style="padding:18px 16px 30px; display:flex; flex-direction:column; gap:15px;">
+
+            <!-- verdict -->
+            <div style="text-align:center; margin-top:-2px;">
+              <div style="font-size:25px; font-weight:900; color:#1A1A2E; line-height:1.15;">¡Felicidades! Alcanzaste el <span style="color:#6C5CE7;">nivel B1</span> en inglés</div>
+              <div style="display:inline-flex; align-items:center; gap:6px; margin-top:9px; color:#3CA86A;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ECC71" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>
+                <span style="font-size:12.5px; font-weight:900;">Verificado por el examen Jezici</span>
+              </div>
+            </div>
+
+            <!-- 4 skills all B1 -->
+            <div style="background:#fff; border-radius:22px; padding:18px; box-shadow:0 6px 0 #ECEDF6, 0 14px 26px rgba(60,55,120,.08);">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:4px;">
+                <span style="font-size:15px; font-weight:900; color:#1A1A2E;">Las 4 habilidades en B1</span>
+                <span style="font-size:11px; font-weight:900; color:#1B8E4E; background:#E5F8EE; padding:4px 9px; border-radius:9px;">4 / 4 ✓</span>
+              </div>
+              <div style="font-size:11.5px; font-weight:800; color:#9A9FB8; margin-bottom:16px;">Todas alcanzan la meta — por eso se certifica</div>
+
+              <div style="position:relative;">
+                <!-- B1 goal line -->
+                <div style="position:absolute; left:78%; top:-2px; bottom:18px; width:0; border-left:2px dashed #6C5CE7; z-index:1;"></div>
+                <div style="position:absolute; left:78%; top:-14px; transform:translateX(-50%); font-size:9px; font-weight:900; color:#6C5CE7; z-index:2;">META B1</div>
+
+                <div style="display:flex; flex-direction:column; gap:11px; position:relative; z-index:0;">
+                  <div style="display:flex; align-items:center; gap:10px;">
+                    <span style="flex:none; width:66px; font-size:12.5px; font-weight:900; color:#1A1A2E;">Reading</span>
+                    <div style="flex:1; height:14px; background:#F0F1F8; border-radius:8px; overflow:hidden;"><div style="width:86%; height:100%; border-radius:8px; background:linear-gradient(90deg,#3FD97E,#2ECC71);"></div></div>
+                    <span style="flex:none; display:inline-flex; align-items:center; gap:3px; font-size:11px; font-weight:900; color:#2ECC71;">B1<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2ECC71" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:10px;">
+                    <span style="flex:none; width:66px; font-size:12.5px; font-weight:900; color:#1A1A2E;">Listening</span>
+                    <div style="flex:1; height:14px; background:#F0F1F8; border-radius:8px; overflow:hidden;"><div style="width:82%; height:100%; border-radius:8px; background:linear-gradient(90deg,#3FD97E,#2ECC71);"></div></div>
+                    <span style="flex:none; display:inline-flex; align-items:center; gap:3px; font-size:11px; font-weight:900; color:#2ECC71;">B1<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2ECC71" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:10px;">
+                    <span style="flex:none; width:66px; font-size:12.5px; font-weight:900; color:#1A1A2E;">Writing</span>
+                    <div style="flex:1; height:14px; background:#F0F1F8; border-radius:8px; overflow:hidden;"><div style="width:80%; height:100%; border-radius:8px; background:linear-gradient(90deg,#3FD97E,#2ECC71);"></div></div>
+                    <span style="flex:none; display:inline-flex; align-items:center; gap:3px; font-size:11px; font-weight:900; color:#2ECC71;">B1<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2ECC71" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
+                  </div>
+                  <div style="display:flex; align-items:center; gap:10px;">
+                    <span style="flex:none; width:66px; font-size:12.5px; font-weight:900; color:#1A1A2E;">Speaking</span>
+                    <div style="flex:1; height:14px; background:#F0F1F8; border-radius:8px; overflow:hidden;"><div style="width:79%; height:100%; border-radius:8px; background:linear-gradient(90deg,#3FD97E,#2ECC71);"></div></div>
+                    <span style="flex:none; display:inline-flex; align-items:center; gap:3px; font-size:11px; font-weight:900; color:#2ECC71;">B1<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#2ECC71" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
+                  </div>
+                </div>
+                <!-- scale -->
+                <div style="display:flex; justify-content:space-between; margin-top:8px; padding-left:76px; font-size:9px; font-weight:900; color:#C2C6D6;">
+                  <span>A1</span><span>A2</span><span style="color:#6C5CE7; margin-right:18%;">B1</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- global score + sections -->
+            <div style="background:#fff; border-radius:22px; padding:18px; box-shadow:0 6px 0 #ECEDF6, 0 14px 26px rgba(60,55,120,.08);">
+              <div style="display:flex; align-items:center; gap:15px;">
+                <div style="position:relative; flex:none; width:78px; height:78px;">
+                  <svg width="78" height="78" viewBox="0 0 78 78" style="transform:rotate(-90deg);">
+                    <circle cx="39" cy="39" r="33" fill="none" stroke="#F0F1F8" stroke-width="9"/>
+                    <circle cx="39" cy="39" r="33" fill="none" stroke="#6C5CE7" stroke-width="9" stroke-linecap="round" stroke-dasharray="207" stroke-dashoffset="27"/>
+                  </svg>
+                  <div style="position:absolute; inset:0; display:grid; place-items:center; flex-direction:column;"><div style="font-size:24px; font-weight:900; color:#1A1A2E; line-height:1;">87</div><div style="font-size:9px; font-weight:900; color:#9A9FB8;">/100</div></div>
+                </div>
+                <div style="flex:1;">
+                  <div style="font-size:15px; font-weight:900; color:#1A1A2E;">Puntaje global</div>
+                  <div style="font-size:12px; font-weight:800; color:#3CA86A; margin-top:1px;">Aprobado con holgura · top 12%</div>
+                  <div style="display:flex; gap:7px; margin-top:9px;">
+                    <span style="font-size:10px; font-weight:900; color:#1B8E4E; background:#E5F8EE; padding:4px 8px; border-radius:8px;">↑ Fortaleza: Reading</span>
+                    <span style="font-size:10px; font-weight:900; color:#C98A12; background:#FFF4D6; padding:4px 8px; border-radius:8px;">↗ Pulir: Listening</span>
+                  </div>
+                </div>
+              </div>
+              <div style="height:1.5px; background:#F0F1F8; margin:15px 0;"></div>
+              <div style="display:grid; grid-template-columns:1fr 1fr; gap:11px;">
+                <div>
+                  <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:900; color:#1A1A2E; margin-bottom:4px;"><span>Vocabulario</span><span style="color:#6C5CE7;">90</span></div>
+                  <div style="height:7px; background:#F0F1F8; border-radius:5px; overflow:hidden;"><div style="width:90%; height:100%; background:#6C5CE7; border-radius:5px;"></div></div>
+                </div>
+                <div>
+                  <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:900; color:#1A1A2E; margin-bottom:4px;"><span>Gramática</span><span style="color:#6C5CE7;">84</span></div>
+                  <div style="height:7px; background:#F0F1F8; border-radius:5px; overflow:hidden;"><div style="width:84%; height:100%; background:#6C5CE7; border-radius:5px;"></div></div>
+                </div>
+                <div>
+                  <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:900; color:#1A1A2E; margin-bottom:4px;"><span>Reading</span><span style="color:#6C5CE7;">88</span></div>
+                  <div style="height:7px; background:#F0F1F8; border-radius:5px; overflow:hidden;"><div style="width:88%; height:100%; background:#6C5CE7; border-radius:5px;"></div></div>
+                </div>
+                <div>
+                  <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:900; color:#1A1A2E; margin-bottom:4px;"><span>Listening</span><span style="color:#6C5CE7;">85</span></div>
+                  <div style="height:7px; background:#F0F1F8; border-radius:5px; overflow:hidden;"><div style="width:85%; height:100%; background:#6C5CE7; border-radius:5px;"></div></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- buttons -->
+            <div style="display:flex; gap:11px;">
+              <button style="flex:1; height:56px; border:none; border-radius:17px; background:linear-gradient(160deg,#FFDD7A,#F4B400); color:#1A1A2E; font-family:Nunito; font-size:15px; font-weight:900; cursor:pointer; box-shadow:0 6px 0 #D69400, 0 12px 22px rgba(244,180,0,.35); display:flex; align-items:center; justify-content:center; gap:8px;" style-active="transform:translateY(4px); box-shadow:0 2px 0 #D69400;">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="#1A1A2E"><path d="M5 3h14a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1h-5l-2 4-2-4H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1Z"/><circle cx="12" cy="9" r="3" fill="#fff"/></svg>
+                Ver certificado
+              </button>
+              <button style="flex:none; width:56px; height:56px; border:none; border-radius:17px; background:#EDEBFF; cursor:pointer; display:grid; place-items:center; box-shadow:0 5px 0 #DCD8FB;" style-active="transform:translateY(3px); box-shadow:0 2px 0 #DCD8FB;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6C5CE7" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+              </button>
+            </div>
+
+            <!-- secondary: casi lo logras -->
+            <div style="border:1.5px dashed #D7DAE6; border-radius:18px; padding:14px; background:#FBFBFE;">
+              <div style="display:flex; align-items:center; gap:7px; margin-bottom:9px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="#9097AE"><path d="M12 2 1 21h22L12 2Zm0 6 6.5 11h-13L12 8Zm-1 4v3h2v-3h-2Zm0 4v2h2v-2h-2Z"/></svg>
+                <span style="font-size:11px; font-weight:900; letter-spacing:.5px; color:#9097AE;">SI UNA HABILIDAD NO LLEGA…</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:10px; opacity:.95;">
+                <span style="flex:none; width:66px; font-size:11.5px; font-weight:900; color:#7A809B;">Speaking</span>
+                <div style="flex:1; height:11px; background:#EFF0F6; border-radius:6px; overflow:hidden; position:relative;"><div style="width:52%; height:100%; border-radius:6px; background:#FF6B6B;"></div><div style="position:absolute; left:78%; top:-3px; bottom:-3px; border-left:2px dashed #C7C2EC;"></div></div>
+                <span style="flex:none; font-size:11px; font-weight:900; color:#FF4D6D;">A2</span>
+              </div>
+              <div style="font-size:12px; font-weight:800; color:#1A1A2E; margin-top:10px;">Aún no certificas B1: <span style="color:#FF4D6D;">sube tu Speaking</span></div>
+              <button style="margin-top:10px; width:100%; height:44px; border:none; border-radius:13px; background:#fff; color:#6C5CE7; font-family:Nunito; font-size:13px; font-weight:900; cursor:pointer; box-shadow:0 0 0 1.5px #DCD8FB inset;">Reforzar Speaking →</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= FRAME B — CERTIFICADO ================= -->
+  <div style="display:flex; flex-direction:column; gap:18px;">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <span style="font-size:13px; font-weight:900; letter-spacing:2px; color:#8A90A8;">FRAME B</span>
+      <span style="font-size:15px; font-weight:900; color:#1A1A2E;">Certificado · formal y verificable</span>
+    </div>
+
+    <div style="position:relative; width:390px; height:844px; background:#0B0B16; border-radius:52px; padding:11px; box-shadow:0 40px 80px -24px rgba(48,40,110,.45);">
+      <div style="position:relative; width:368px; height:822px; background:#1C1B2E; border-radius:42px; overflow:hidden; display:flex; flex-direction:column;">
+        <div style="position:absolute; top:11px; left:50%; transform:translateX(-50%); width:118px; height:34px; background:#0B0B16; border-radius:20px; z-index:60;"></div>
+
+        <!-- top bar -->
+        <div style="flex:none; padding:52px 18px 14px; display:flex; align-items:center; justify-content:space-between;">
+          <button style="width:36px; height:36px; border:none; border-radius:12px; background:rgba(255,255,255,.1); display:grid; place-items:center; cursor:pointer;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <span style="font-size:14px; font-weight:900; color:#fff; letter-spacing:.4px;">Tu certificado</span>
+          <div style="width:36px;"></div>
+        </div>
+
+        <!-- certificate -->
+        <div style="flex:1; padding:4px 18px 0; overflow:hidden;">
+          <div style="position:relative; height:100%; border-radius:16px; background:linear-gradient(170deg,#FCFAF4,#F4EFE2); box-shadow:0 18px 40px rgba(0,0,0,.4); overflow:hidden; padding:22px 20px;">
+            <!-- ornate frame -->
+            <div style="position:absolute; inset:9px; border:1.5px solid #C9A85C; border-radius:9px; pointer-events:none;"></div>
+            <div style="position:absolute; inset:14px; border:0.8px solid #D9C492; border-radius:6px; pointer-events:none;"></div>
+            <!-- corner flourishes -->
+            <div style="position:absolute; left:9px; top:9px; width:22px; height:22px; border-left:3px solid #B8923F; border-top:3px solid #B8923F; border-top-left-radius:9px;"></div>
+            <div style="position:absolute; right:9px; top:9px; width:22px; height:22px; border-right:3px solid #B8923F; border-top:3px solid #B8923F; border-top-right-radius:9px;"></div>
+            <div style="position:absolute; left:9px; bottom:9px; width:22px; height:22px; border-left:3px solid #B8923F; border-bottom:3px solid #B8923F; border-bottom-left-radius:9px;"></div>
+            <div style="position:absolute; right:9px; bottom:9px; width:22px; height:22px; border-right:3px solid #B8923F; border-bottom:3px solid #B8923F; border-bottom-right-radius:9px;"></div>
+            <!-- watermark parrot -->
+            <svg width="200" height="200" viewBox="0 0 84 90" style="position:absolute; right:-30px; bottom:-20px; opacity:.05;"><ellipse cx="46" cy="52" rx="23" ry="25" fill="#6C5CE7"/><circle cx="40" cy="28" r="20" fill="#6C5CE7"/><path d="M57 30q11 1 10 8-6 4-11-1z" fill="#6C5CE7"/></svg>
+
+            <div style="position:relative; height:100%; display:flex; flex-direction:column; align-items:center; text-align:center;">
+              <!-- brand -->
+              <div style="display:flex; align-items:center; gap:7px;">
+                <svg width="20" height="20" viewBox="0 0 84 90"><circle cx="42" cy="40" r="30" fill="none" stroke="#B8923F" stroke-width="4"/><path d="M30 30 q12-8 24 0" fill="none" stroke="#B8923F" stroke-width="3" stroke-linecap="round"/><circle cx="42" cy="44" r="5" fill="#B8923F"/></svg>
+                <span style="font-size:15px; font-weight:900; letter-spacing:3px; color:#1A1A2E;">JEZICI</span>
+              </div>
+              <div style="font-size:8.5px; font-weight:900; letter-spacing:2px; color:#B8923F; margin-top:3px;">LANGUAGE CERTIFICATION</div>
+
+              <div style="width:42px; height:1.5px; background:#C9A85C; margin:15px 0 13px;"></div>
+
+              <div style="font-size:10px; font-weight:800; letter-spacing:3px; color:#9A8456;">CERTIFICADO DE NIVEL</div>
+              <div style="font-family:'Playfair Display',serif; font-size:33px; font-weight:700; color:#1A1A2E; line-height:1; margin-top:8px;">Inglés · B1</div>
+              <div style="font-family:'Playfair Display',serif; font-style:italic; font-size:13px; color:#7A6F58; margin-top:5px;">Nivel Intermedio — MCER</div>
+
+              <div style="font-size:11px; font-weight:700; color:#8A8068; margin-top:18px;">Se certifica que</div>
+              <div style="font-family:'Playfair Display',serif; font-size:25px; font-weight:600; color:#1A1A2E; margin-top:5px;">Lucía Marín Castro</div>
+              <div style="width:160px; height:1px; background:#D9C492; margin-top:9px;"></div>
+
+              <div style="font-size:10.5px; font-weight:700; color:#7A7058; line-height:1.5; margin-top:13px; max-width:250px;">ha demostrado competencia de nivel <b style="color:#1A1A2E;">B1</b> en las cuatro habilidades, verificada mediante el examen de certificación Jezici.</div>
+
+              <!-- seal -->
+              <div style="position:relative; margin-top:16px;">
+                <svg width="74" height="74" viewBox="0 0 74 74">
+                  <g fill="#C9A85C"><circle cx="37" cy="37" r="34" opacity=".18"/></g>
+                  <circle cx="37" cy="37" r="29" fill="none" stroke="#B8923F" stroke-width="2"/>
+                  <circle cx="37" cy="37" r="24" fill="url(#sealg)"/>
+                  <path d="M37 20 l4.7 9.5 10.5 1.5-7.6 7.4 1.8 10.4L37 43.4 27.6 48.3l1.8-10.4-7.6-7.4 10.5-1.5L37 20Z" fill="#fff"/>
+                  <defs><linearGradient id="sealg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E8C76A"/><stop offset="1" stop-color="#C9A040"/></linearGradient></defs>
+                </svg>
+                <div style="position:absolute; left:50%; bottom:-7px; transform:translateX(-50%); background:#1A1A2E; color:#FFD86B; font-size:7.5px; font-weight:900; letter-spacing:1px; padding:2px 8px; border-radius:6px; white-space:nowrap;">VERIFICADO</div>
+              </div>
+
+              <!-- footer meta -->
+              <div style="display:flex; justify-content:space-between; align-items:flex-end; width:100%; margin-top:auto; padding-top:14px;">
+                <div style="text-align:left;">
+                  <div style="font-size:8px; font-weight:900; letter-spacing:1px; color:#A89878;">EMITIDO</div>
+                  <div style="font-size:11px; font-weight:900; color:#1A1A2E;">16 jun 2026</div>
+                </div>
+                <div style="text-align:right;">
+                  <div style="font-size:8px; font-weight:900; letter-spacing:1px; color:#A89878;">FOLIO</div>
+                  <div style="font-size:11px; font-weight:900; color:#1A1A2E; font-family:'Playfair Display',serif;">JZ-EN-B1-04827</div>
+                </div>
+              </div>
+              <div style="font-size:8px; font-weight:700; color:#A89878; margin-top:8px;">Verifica en jezici.com/v/JZ-EN-B1-04827</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- actions -->
+        <div style="flex:none; padding:14px 18px 28px; display:flex; gap:11px;">
+          <button style="flex:1; height:54px; border:none; border-radius:16px; background:linear-gradient(160deg,#8A7BF6,#6C5CE7); color:#fff; font-family:Nunito; font-size:15px; font-weight:900; cursor:pointer; box-shadow:0 5px 0 #4B3FC9; display:flex; align-items:center; justify-content:center; gap:8px;" style-active="transform:translateY(3px); box-shadow:0 2px 0 #4B3FC9;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>
+            Descargar PDF
+          </button>
+          <button style="flex:none; width:130px; height:54px; border:none; border-radius:16px; background:#fff; color:#0A66C2; font-family:Nunito; font-size:14px; font-weight:900; cursor:pointer; box-shadow:0 5px 0 #D8DEE9; display:flex; align-items:center; justify-content:center; gap:7px;" style-active="transform:translateY(3px); box-shadow:0 2px 0 #D8DEE9;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#0A66C2"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm6 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.3 0-2.95-1.8-2.95s-2.07 1.4-2.07 2.85V21H9V9Z"/></svg>
+            Compartir
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

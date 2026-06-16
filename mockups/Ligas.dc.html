@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body{ margin:0; font-family:'Nunito',system-ui,sans-serif; }
+  .jz-scroll::-webkit-scrollbar{ display:none; }
+  @keyframes jzBob{ 0%,100%{ transform:translateY(0) rotate(-3deg) } 50%{ transform:translateY(-8px) rotate(3deg) } }
+  @keyframes jzGlow{ 0%,100%{ opacity:.4; transform:scale(1) } 50%{ opacity:.85; transform:scale(1.12) } }
+  @keyframes jzFloatY{ 0%,100%{ transform:translateY(0) } 50%{ transform:translateY(-5px) } }
+</style>
+</helmet>
+
+<div style="min-height:100vh; width:100%; background:radial-gradient(120% 90% at 50% 0%, #E7E3FF 0%, #EEF0F8 60%, #E6E8F4 100%); display:flex; align-items:center; justify-content:center; padding:32px 16px; font-family:'Nunito',sans-serif;">
+
+  <div style="position:relative; width:390px; height:844px; background:#0B0B16; border-radius:52px; padding:11px; box-shadow:0 40px 80px -20px rgba(48,40,110,.5), 0 0 0 2px rgba(255,255,255,.06) inset;">
+    <div style="position:relative; width:368px; height:822px; background:#F5F6FB; border-radius:42px; overflow:hidden;">
+      <div style="position:absolute; top:11px; left:50%; transform:translateX(-50%); width:118px; height:34px; background:#0B0B16; border-radius:20px; z-index:60;"></div>
+
+      <div class="jz-scroll" style="position:absolute; inset:0; overflow-y:auto; overflow-x:hidden;">
+
+        <!-- ===== HEADER ===== -->
+        <div style="position:relative; padding:52px 20px 26px; background:linear-gradient(160deg,#7A6BF0,#6C5CE7 58%,#5B4ECF); overflow:hidden; text-align:center;">
+          <svg width="368" height="290" viewBox="0 0 368 290" style="position:absolute; inset:0; opacity:.5;" fill="none" stroke="#fff" stroke-width="1.4">
+            <path d="M-20 60 Q90 34 180 70 T380 60" opacity=".14"/><path d="M-20 100 Q100 70 190 106 T380 96" opacity=".11"/>
+          </svg>
+
+          <div style="position:relative; font-size:12px; font-weight:900; letter-spacing:2.5px; color:rgba(255,255,255,.7);">DIVISIÓN ACTUAL</div>
+
+          <!-- emblem -->
+          <div style="position:relative; width:128px; height:128px; margin:8px auto 4px;">
+            <div style="position:absolute; inset:0; border-radius:50%; background:radial-gradient(circle, rgba(255,201,60,.6), transparent 68%); animation:jzGlow 3s ease-in-out infinite;"></div>
+            <svg width="128" height="128" viewBox="0 0 128 128" style="position:relative;">
+              <!-- ribbon tails -->
+              <path d="M44 92 L36 124 L54 112 L60 96 Z" fill="#FF6B6B"/><path d="M84 92 L92 124 L74 112 L68 96 Z" fill="#E0556E"/>
+              <!-- laurels -->
+              <g stroke="#E8B53A" stroke-width="3" fill="#F4C84E" stroke-linecap="round">
+                <path d="M30 92 Q14 70 22 44" fill="none"/><path d="M98 92 Q114 70 106 44" fill="none"/>
+                <ellipse cx="22" cy="82" rx="6" ry="3.4" transform="rotate(-40 22 82)"/><ellipse cx="17" cy="70" rx="6" ry="3.4" transform="rotate(-20 17 70)"/><ellipse cx="16" cy="57" rx="6" ry="3.4" transform="rotate(0 16 57)"/><ellipse cx="19" cy="47" rx="5.5" ry="3.2" transform="rotate(20 19 47)"/>
+                <ellipse cx="106" cy="82" rx="6" ry="3.4" transform="rotate(40 106 82)"/><ellipse cx="111" cy="70" rx="6" ry="3.4" transform="rotate(20 111 70)"/><ellipse cx="112" cy="57" rx="6" ry="3.4" transform="rotate(0 112 57)"/><ellipse cx="109" cy="47" rx="5.5" ry="3.2" transform="rotate(-20 109 47)"/>
+              </g>
+              <!-- medal -->
+              <circle cx="64" cy="56" r="40" fill="#E89A12"/>
+              <circle cx="64" cy="56" r="36" fill="url(#goldg)"/>
+              <circle cx="64" cy="56" r="29" fill="none" stroke="#FFE9A8" stroke-width="2.5" opacity=".8"/>
+              <path d="M64 32 l6.8 13.8 15.2 2.2-11 10.7 2.6 15.1L64 62.6 50.4 73.8 53 58.7 42 48l15.2-2.2L64 32Z" fill="#fff"/>
+              <path d="M50 44 q14 -8 28 0" fill="none" stroke="#fff" stroke-width="2" opacity=".5" stroke-linecap="round"/>
+              <defs><linearGradient id="goldg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFDD7A"/><stop offset="1" stop-color="#F4B400"/></linearGradient></defs>
+            </svg>
+          </div>
+
+          <div style="position:relative; font-size:26px; font-weight:900; color:#fff;">Liga Oro</div>
+
+          <!-- divisions row -->
+          <div style="position:relative; display:flex; align-items:flex-end; justify-content:space-between; gap:4px; margin-top:18px; padding:0 4px;">
+            <div style="flex:1; text-align:center; opacity:.92;">
+              <div style="width:34px; height:34px; margin:0 auto; border-radius:50%; background:#CD7F4E; display:grid; place-items:center; box-shadow:inset 0 -2px 3px rgba(0,0,0,.2);"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M12 2l2.9 6 6.6.6-5 4.3 1.6 6.5L12 17l-6.1 3.4 1.6-6.5-5-4.3 6.6-.6z"/></svg></div>
+              <div style="font-size:8.5px; font-weight:900; color:rgba(255,255,255,.7); margin-top:4px;">BRONCE</div>
+            </div>
+            <div style="flex:1; text-align:center; opacity:.92;">
+              <div style="width:34px; height:34px; margin:0 auto; border-radius:50%; background:#B8C0CC; display:grid; place-items:center; box-shadow:inset 0 -2px 3px rgba(0,0,0,.2);"><svg width="15" height="15" viewBox="0 0 24 24" fill="#fff"><path d="M12 2l2.9 6 6.6.6-5 4.3 1.6 6.5L12 17l-6.1 3.4 1.6-6.5-5-4.3 6.6-.6z"/></svg></div>
+              <div style="font-size:8.5px; font-weight:900; color:rgba(255,255,255,.7); margin-top:4px;">PLATA</div>
+            </div>
+            <div style="flex:1.3; text-align:center;">
+              <div style="position:relative; width:50px; height:50px; margin:0 auto;">
+                <div style="position:absolute; inset:-4px; border-radius:50%; border:2.5px solid #fff; box-shadow:0 0 12px rgba(255,255,255,.5);"></div>
+                <div style="width:50px; height:50px; border-radius:50%; background:linear-gradient(160deg,#FFDD7A,#F4B400); display:grid; place-items:center; box-shadow:0 4px 10px rgba(244,180,0,.5);"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M12 2l2.9 6 6.6.6-5 4.3 1.6 6.5L12 17l-6.1 3.4 1.6-6.5-5-4.3 6.6-.6z"/></svg></div>
+              </div>
+              <div style="font-size:9.5px; font-weight:900; color:#FFC93C; margin-top:4px;">ORO</div>
+            </div>
+            <div style="flex:1; text-align:center; opacity:.5;">
+              <div style="width:34px; height:34px; margin:0 auto; border-radius:50%; background:#4A8CFF; display:grid; place-items:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M7 3h10l4 6-9 12L3 9l4-6Z"/></svg></div>
+              <div style="font-size:8.5px; font-weight:900; color:rgba(255,255,255,.6); margin-top:4px;">ZAFIRO</div>
+            </div>
+            <div style="flex:1; text-align:center; opacity:.5;">
+              <div style="width:34px; height:34px; margin:0 auto; border-radius:50%; background:#FF4D6D; display:grid; place-items:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M7 3h10l4 6-9 12L3 9l4-6Z"/></svg></div>
+              <div style="font-size:8.5px; font-weight:900; color:rgba(255,255,255,.6); margin-top:4px;">RUBÍ</div>
+            </div>
+            <div style="flex:1; text-align:center; opacity:.5;">
+              <div style="width:34px; height:34px; margin:0 auto; border-radius:50%; background:#6FE3E0; display:grid; place-items:center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M7 3h10l4 6-9 12L3 9l4-6Z"/></svg></div>
+              <div style="font-size:8.5px; font-weight:900; color:rgba(255,255,255,.6); margin-top:4px;">DIAMANTE</div>
+            </div>
+          </div>
+
+          <!-- countdown -->
+          <div style="position:relative; display:inline-flex; align-items:center; gap:7px; margin-top:18px; background:rgba(0,0,0,.18); border-radius:13px; padding:8px 14px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFC93C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/></svg>
+            <span style="font-size:12.5px; font-weight:900; color:#fff;">Termina en <span style="color:#FFC93C;">2d 14h</span></span>
+          </div>
+        </div>
+
+        <!-- ===== RANKING ===== -->
+        <div style="padding:16px 16px 120px;">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+            <span style="font-size:17px; font-weight:900; color:#1A1A2E;">Clasificación semanal</span>
+            <span style="font-size:11.5px; font-weight:900; color:#9A9FB8;">XP esta semana</span>
+          </div>
+
+          <div style="background:#fff; border-radius:20px; padding:6px; box-shadow:0 5px 0 #ECEDF6, 0 14px 26px rgba(60,55,120,.07); overflow:hidden;">
+            <sc-for list="{{ items }}" as="it" hint-placeholder-count="16">
+              <sc-if value="{{ it.isRow }}" hint-placeholder-val="{{ true }}">
+                <div style="{{ it.rowStyle }}">
+                  <span style="{{ it.posStyle }}">{{ it.pos }}</span>
+                  <div style="{{ it.avatarStyle }}">{{ it.initial }}</div>
+                  <div style="flex:1; min-width:0;">
+                    <div style="font-size:14px; font-weight:900; color:#1A1A2E; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">{{ it.name }}</div>
+                    <span style="{{ it.tagStyle }}">{{ it.tag }}</span>
+                  </div>
+                  <div style="text-align:right; flex:none;">
+                    <span style="font-size:15px; font-weight:900; color:{{ it.xpColor }};">{{ it.xp }}</span>
+                    <span style="font-size:10px; font-weight:800; color:#B0B4C8;"> XP</span>
+                  </div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ it.isDivUp }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex; align-items:center; gap:8px; padding:7px 8px;">
+                  <div style="flex:1; height:2px; border-radius:2px; background:linear-gradient(90deg,transparent,#9BE3B8);"></div>
+                  <span style="display:inline-flex; align-items:center; gap:5px; font-size:10px; font-weight:900; letter-spacing:.4px; color:#1B8E4E; background:#E5F8EE; padding:4px 10px; border-radius:9px; white-space:nowrap;"><svg width="11" height="11" viewBox="0 0 24 24" fill="#2ECC71"><path d="M12 4l8 10h-5v6H9v-6H4l8-10Z"/></svg>SUBEN A ZAFIRO</span>
+                  <div style="flex:1; height:2px; border-radius:2px; background:linear-gradient(90deg,#9BE3B8,transparent);"></div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ it.isDivDown }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex; align-items:center; gap:8px; padding:7px 8px;">
+                  <div style="flex:1; height:2px; border-radius:2px; background:linear-gradient(90deg,transparent,#FFB3BF);"></div>
+                  <span style="display:inline-flex; align-items:center; gap:5px; font-size:10px; font-weight:900; letter-spacing:.4px; color:#D6294B; background:#FFE7EC; padding:4px 10px; border-radius:9px; white-space:nowrap;"><svg width="11" height="11" viewBox="0 0 24 24" fill="#FF4D6D"><path d="M12 20L4 10h5V4h6v6h5l-8 10Z"/></svg>BAJAN A PLATA</span>
+                  <div style="flex:1; height:2px; border-radius:2px; background:linear-gradient(90deg,#FFB3BF,transparent);"></div>
+                </div>
+              </sc-if>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+
+      <!-- parrot cheer (fixed) -->
+      <div style="position:absolute; right:14px; bottom:96px; z-index:45; animation:jzFloatY 2.6s ease-in-out infinite;">
+        <div style="position:relative; width:72px; animation:jzBob 3s ease-in-out infinite;">
+          <svg width="72" height="78" viewBox="0 0 84 90">
+            <path d="M28 58q-7 18-3 26 7-5 12-18z" fill="#FF7A00"/><path d="M40 60q-1 19 4 26 7-7 7-20z" fill="#FFC93C"/>
+            <ellipse cx="46" cy="52" rx="23" ry="25" fill="#6C5CE7"/><ellipse cx="50" cy="56" rx="13" ry="17" fill="#EDEBFF"/>
+            <path d="M30 46q-9 8-5 24 13 3 18-10-4-12-13-14z" fill="#FFC93C"/>
+            <circle cx="40" cy="28" r="20" fill="#7B6CF1"/><ellipse cx="45" cy="30" rx="13" ry="12" fill="#FFF4E8"/>
+            <path d="M33 11q-3-9 4-9 3 4 1 9z" fill="#FF6B6B"/><path d="M41 8q1-8 7-6 0 5-3 9z" fill="#FF8585"/>
+            <path d="M50 44 q5-5 10 0" fill="none" stroke="#1A1A2E" stroke-width="2.6" stroke-linecap="round"/>
+            <circle cx="44.5" cy="28" r="3" fill="#1A1A2E"/><circle cx="46" cy="26.8" r="1" fill="#fff"/>
+            <path d="M57 30q11 1 10 8-6 4-11-1z" fill="#FF6B6B"/>
+          </svg>
+          <div style="position:absolute; left:-104px; top:6px; background:#1A1A2E; color:#fff; font-size:10.5px; font-weight:800; padding:7px 11px; border-radius:13px; white-space:nowrap; box-shadow:0 6px 14px rgba(0,0,0,.25);">¡Sigue subiendo! 💪
+            <div style="position:absolute; right:-5px; top:14px; width:10px; height:10px; background:#1A1A2E; transform:rotate(45deg);"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== BOTTOM NAV ===== -->
+      <div style="position:absolute; left:14px; right:14px; bottom:18px; z-index:50; height:62px; background:rgba(255,255,255,.94); backdrop-filter:blur(14px); border-radius:24px; box-shadow:0 10px 28px rgba(40,50,110,.2), 0 0 0 1px rgba(255,255,255,.6) inset; display:flex; align-items:center; justify-content:space-around; padding:0 6px;">
+        <button onClick="{{ onAprender }}" style="{{ navAprender }}">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="{{ cAprender }}" stroke-width="2.1" stroke-linejoin="round" stroke-linecap="round"><path d="M9 4 3 6.5v13L9 17l6 2.5 6-2.5v-13L15 6.5 9 4Z"/><path d="M9 4v13M15 6.5v13"/></svg>
+        </button>
+        <button onClick="{{ onPracticar }}" style="{{ navPracticar }}">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="{{ cPracticar }}" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5l11 11M4 9l-1.5 1.5a2.1 2.1 0 0 0 0 3L9 20a2.1 2.1 0 0 0 3 0L13.5 18.5M10.5 5.5 12 4a2.1 2.1 0 0 1 3 0l6.5 6.5a2.1 2.1 0 0 1 0 3L20 14"/></svg>
+        </button>
+        <button onClick="{{ onConversar }}" style="{{ navConversar }}">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="{{ cConversar }}" stroke-width="2.1" stroke-linejoin="round"><path d="M3.5 6.5A2.5 2.5 0 0 1 6 4h7a2.5 2.5 0 0 1 2.5 2.5v4A2.5 2.5 0 0 1 13 13H8l-3.5 3v-3a2 2 0 0 1-1-1.8V6.5Z"/><path d="M15.5 9.5H18a2.5 2.5 0 0 1 2.5 2.5v3.5a2 2 0 0 1-1 1.8V20L16 17.5h-3" stroke-linecap="round"/></svg>
+        </button>
+        <button onClick="{{ onLigas }}" style="{{ navLigas }}">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="{{ cLigas }}" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4h10v3a5 5 0 0 1-10 0V4Z"/><path d="M7 5H4.5v1.5a3 3 0 0 0 3 3M17 5h2.5v1.5a3 3 0 0 1-3 3M12 12v4M8.5 20h7L15 16.5H9L8.5 20Z"/></svg>
+        </button>
+        <button onClick="{{ onPerfil }}" style="{{ navPerfil }}">
+          <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="{{ cPerfil }}" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { activeTab: 'ligas' };
+  DATA = [
+    ['Diego',2847],['Valentina',2710],['Mateo',2540],['Camila',2398],['Lucía',2256],
+    ['Sofía',2104],['Hugo',1998],['Martina',1876],['Bruno',1799],['Elena',1702],
+    ['Pablo',1655],['Noa',1590],['Iván',1521],['Carla',1468],['Leo',1402],
+    ['Aitana',1356],['Marco',1298],['Julia',1240],['Adrián',1187],['Daniela',1122],
+    ['Pau',1068],['Nora',1011],['Gael',977],['Emma',933],['Saúl',890],
+    ['Vega',845],['Ona',812],['Thiago',760],['Bianca',705],['Álex',661],
+  ];
+  COLORS = ['#6C5CE7','#FF6B6B','#2ECC71','#F4B400','#4A8CFF','#FF7A00','#8C7DF2','#1ABC9C','#E0556E','#3FB0E0'];
+  renderVals() {
+    const active = this.state.activeTab;
+    const userPos = 5;
+    const fmt = n => n.toLocaleString('es-ES');
+    const items = [];
+    this.DATA.forEach((d, i) => {
+      const pos = i + 1;
+      const isUser = pos === userPos;
+      const promo = pos <= 7;
+      const demo = pos >= 26;
+      const medal = pos === 1 ? '#FFC93C' : pos === 2 ? '#C2CAD6' : pos === 3 ? '#E0915A' : null;
+      const col = this.COLORS[i % this.COLORS.length];
+      items.push({
+        isRow: true,
+        pos,
+        name: isUser ? d[0] + ' (Tú)' : d[0],
+        xp: fmt(d[1]),
+        initial: d[0][0],
+        xpColor: isUser ? '#6C5CE7' : '#1A1A2E',
+        rowStyle: {
+          display: 'flex', alignItems: 'center', gap: '12px', padding: '9px 11px',
+          borderRadius: '14px', margin: '2px 0',
+          background: isUser ? '#EDEBFF' : promo ? '#F1FBF5' : demo ? '#FFF5F6' : '#fff',
+          boxShadow: isUser ? 'inset 0 0 0 2px #6C5CE7' : 'none',
+        },
+        posStyle: medal ? {
+          flex: 'none', width: '26px', height: '26px', borderRadius: '50%', background: medal,
+          color: '#fff', fontSize: '12px', fontWeight: '900', display: 'grid', placeItems: 'center',
+          boxShadow: '0 2px 0 rgba(0,0,0,.12)',
+        } : {
+          flex: 'none', width: '26px', textAlign: 'center', fontSize: '14px', fontWeight: '900',
+          color: isUser ? '#6C5CE7' : promo ? '#3CA86A' : demo ? '#E0556E' : '#9AA0BC',
+        },
+        avatarStyle: {
+          flex: 'none', width: '40px', height: '40px', borderRadius: '13px', background: col,
+          display: 'grid', placeItems: 'center', color: '#fff', fontSize: '17px', fontWeight: '900',
+          boxShadow: '0 3px 0 rgba(0,0,0,.12)',
+        },
+        tag: isUser ? '¡Mantente arriba!' : promo ? 'Sube' : demo ? 'En riesgo' : '',
+        tagStyle: {
+          display: (isUser || promo || demo) ? 'inline-block' : 'none',
+          fontSize: '10px', fontWeight: '900', marginTop: '1px',
+          color: isUser ? '#6C5CE7' : promo ? '#3CA86A' : '#E0556E',
+        },
+      });
+      if (pos === 7) items.push({ isDivUp: true });
+      if (pos === 25) items.push({ isDivDown: true });
+    });
+
+    const on = (t) => () => this.setState({ activeTab: t });
+    const c = (t) => active === t ? '#6C5CE7' : '#AEB3CC';
+    const nav = (t) => ({
+      width: '48px', height: '48px', border: 'none', borderRadius: '16px',
+      background: active === t ? '#EDEBFF' : 'transparent',
+      display: 'grid', placeItems: 'center', cursor: 'pointer', transition: 'background .2s'
+    });
+    return {
+      items,
+      onAprender: on('aprender'), onPracticar: on('practicar'),
+      onConversar: on('conversar'), onLigas: on('ligas'), onPerfil: on('perfil'),
+      cAprender: c('aprender'), cPracticar: c('practicar'), cConversar: c('conversar'),
+      cLigas: c('ligas'), cPerfil: c('perfil'),
+      navAprender: nav('aprender'), navPracticar: nav('practicar'), navConversar: nav('conversar'),
+      navLigas: nav('ligas'), navPerfil: nav('perfil'),
+    };
+  }
+}
+</script>
+</body>
+</html>

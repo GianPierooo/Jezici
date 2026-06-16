@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body{ margin:0; font-family:'Nunito',system-ui,sans-serif; }
+  .jz-scroll::-webkit-scrollbar{ display:none; }
+  @keyframes jzBob{ 0%,100%{ transform:translateY(0) rotate(-3deg) } 50%{ transform:translateY(-8px) rotate(3deg) } }
+  @keyframes jzTwinkle{ 0%,100%{ opacity:.25; transform:scale(.8) } 50%{ opacity:1; transform:scale(1.15) } }
+  @keyframes jzGlow{ 0%,100%{ opacity:.4; transform:translate(-50%,-50%) scale(1) } 50%{ opacity:.8; transform:translate(-50%,-50%) scale(1.12) } }
+</style>
+</helmet>
+
+<div style="min-height:100vh; width:100%; background:radial-gradient(120% 90% at 50% 0%, #E7E3FF 0%, #EEF0F8 60%, #E6E8F4 100%); display:flex; align-items:center; justify-content:center; padding:32px 16px; font-family:'Nunito',sans-serif;">
+
+  <div style="position:relative; width:390px; height:844px; background:#0B0B16; border-radius:52px; padding:11px; box-shadow:0 40px 80px -20px rgba(48,40,110,.5), 0 0 0 2px rgba(255,255,255,.06) inset;">
+    <div style="position:relative; width:368px; height:822px; background:#F5F6FB; border-radius:42px; overflow:hidden;">
+      <div style="position:absolute; top:11px; left:50%; transform:translateX(-50%); width:118px; height:34px; background:#0B0B16; border-radius:20px; z-index:60;"></div>
+
+      <div class="jz-scroll" style="position:absolute; inset:0; overflow-y:auto; overflow-x:hidden;">
+
+        <!-- ===== HEADER ===== -->
+        <div style="position:relative; height:296px; background:linear-gradient(165deg,#5B4ECF 0%,#6C5CE7 50%,#8273E8 100%); overflow:hidden;">
+          <!-- sparkles -->
+          <div style="position:absolute; left:44px; top:120px; width:7px; height:7px; color:#FFD86B; animation:jzTwinkle 2.4s ease-in-out infinite;"><svg viewBox="0 0 24 24" fill="#FFD86B"><path d="M12 0l2 10 10 2-10 2-2 10-2-10L0 12l10-2 2-10Z"/></svg></div>
+          <div style="position:absolute; left:300px; top:96px; width:9px; height:9px; color:#FFC93C; animation:jzTwinkle 3s ease-in-out infinite .5s;"><svg viewBox="0 0 24 24" fill="#FFC93C"><path d="M12 0l2 10 10 2-10 2-2 10-2-10L0 12l10-2 2-10Z"/></svg></div>
+          <div style="position:absolute; left:264px; top:158px; width:6px; height:6px; color:#fff; animation:jzTwinkle 2.7s ease-in-out infinite .8s;"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 0l2 10 10 2-10 2-2 10-2-10L0 12l10-2 2-10Z"/></svg></div>
+          <div style="position:absolute; left:70px; top:80px; width:5px; height:5px; color:#fff; animation:jzTwinkle 3.2s ease-in-out infinite .3s;"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 0l2 10 10 2-10 2-2 10-2-10L0 12l10-2 2-10Z"/></svg></div>
+
+          <!-- top controls -->
+          <div style="position:relative; padding:48px 18px 0; display:flex; align-items:center; justify-content:space-between; z-index:5;">
+            <button style="width:34px; height:34px; border:none; border-radius:11px; background:rgba(255,255,255,.16); display:grid; place-items:center; cursor:pointer;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+            <span style="font-size:11.5px; font-weight:900; color:rgba(255,255,255,.7);">Restaurar compra</span>
+          </div>
+
+          <!-- glow + parrot w/ crown -->
+          <div style="position:absolute; left:50%; top:165px; width:240px; height:240px; border-radius:50%; background:radial-gradient(circle, rgba(255,201,60,.45), transparent 60%); animation:jzGlow 3s ease-in-out infinite;"></div>
+          <div style="position:absolute; left:50%; top:62px; transform:translateX(-50%); width:108px; animation:jzBob 3s ease-in-out infinite; z-index:4;">
+            <svg width="108" height="120" viewBox="0 0 100 112">
+              <!-- crown -->
+              <path d="M30 24 L38 12 L50 22 L62 12 L70 24 L66 34 L34 34 Z" fill="#FFC93C" stroke="#E8A912" stroke-width="1.5" stroke-linejoin="round"/>
+              <circle cx="38" cy="12" r="3" fill="#FF6B6B"/><circle cx="62" cy="12" r="3" fill="#FF6B6B"/><circle cx="50" cy="22" r="3" fill="#6C5CE7"/>
+              <!-- parrot (scarlet) -->
+              <g transform="translate(8 22)">
+                <path d="M28 58q-7 18-3 26 7-5 12-18z" fill="#FF7A00"/><path d="M40 60q-1 19 4 26 7-7 7-20z" fill="#FFC93C"/>
+                <ellipse cx="46" cy="52" rx="23" ry="25" fill="#FF4D6D"/><ellipse cx="50" cy="56" rx="13" ry="17" fill="#FFE3E8"/>
+                <path d="M30 46q-9 8-5 24 13 3 18-10-4-12-13-14z" fill="#FFC93C"/>
+                <circle cx="40" cy="28" r="20" fill="#FF6B6B"/><ellipse cx="45" cy="30" rx="13" ry="12" fill="#FFF4E8"/>
+                <circle cx="43" cy="27" r="6.2" fill="#fff"/><circle cx="44.5" cy="28" r="3.3" fill="#1A1A2E"/><circle cx="46" cy="26.6" r="1.1" fill="#fff"/>
+                <path d="M57 30q11 1 10 8-6 4-11-1z" fill="#FFC93C"/>
+              </g>
+            </svg>
+          </div>
+
+          <!-- title -->
+          <div style="position:absolute; left:0; right:0; bottom:24px; text-align:center; padding:0 24px;">
+            <div style="display:inline-flex; align-items:center; gap:7px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#FFC93C"><path d="M3 8l4 4 5-7 5 7 4-4-2 11H5L3 8Z"/></svg>
+              <span style="font-size:26px; font-weight:900; color:#fff;">Jezici Premium</span>
+            </div>
+            <div style="font-size:13px; font-weight:800; color:rgba(255,255,255,.85); margin-top:5px;">Aprende sin límites y llega más lejos en el mapa</div>
+          </div>
+        </div>
+
+        <div style="padding:20px 16px 28px; display:flex; flex-direction:column; gap:18px;">
+
+          <!-- ===== BENEFITS ===== -->
+          <div style="background:#fff; border-radius:22px; padding:6px 16px; box-shadow:0 6px 0 #ECEDF6, 0 14px 26px rgba(60,55,120,.07);">
+            <!-- 1 -->
+            <div style="display:flex; align-items:center; gap:13px; padding:13px 0; border-bottom:1.5px solid #F4F5FA;">
+              <div style="flex:none; width:42px; height:42px; border-radius:13px; background:#FFEFEF; display:grid; place-items:center;"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#FF5C5C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11v2a1 1 0 0 0 1 1h2l4 3V7L6 10H4a1 1 0 0 0-1 1Z"/><path d="M15 8a4 4 0 0 1 0 8"/><path d="M3 3l18 18" stroke="#FF5C5C"/></svg></div>
+              <div style="flex:1;"><div style="font-size:14.5px; font-weight:900; color:#1A1A2E;">Sin anuncios</div><div style="font-size:11.5px; font-weight:800; color:#9A9FB8;">Aprende sin interrupciones</div></div>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ECC71" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <!-- 2 -->
+            <div style="display:flex; align-items:center; gap:13px; padding:13px 0; border-bottom:1.5px solid #F4F5FA;">
+              <div style="flex:none; width:42px; height:42px; border-radius:13px; background:#FFE7EC; display:grid; place-items:center;"><svg width="21" height="21" viewBox="0 0 24 24" fill="#FF4D6D"><path d="M12 21S3 14 3 8.2C3 5 5.4 3 8 3c1.7 0 3.2 1 4 2.3C12.8 4 14.3 3 16 3c2.6 0 5 2 5 5.2C21 14 12 21 12 21Z"/></svg></div>
+              <div style="flex:1;"><div style="font-size:14.5px; font-weight:900; color:#1A1A2E;">Vidas ilimitadas</div><div style="font-size:11.5px; font-weight:800; color:#9A9FB8;">Practica sin esperar a recargar</div></div>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ECC71" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <!-- 3 -->
+            <div style="display:flex; align-items:center; gap:13px; padding:13px 0; border-bottom:1.5px solid #F4F5FA;">
+              <div style="flex:none; width:42px; height:42px; border-radius:13px; background:#EDEBFF; display:grid; place-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6C5CE7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2.5"/><path d="M9 3.5h6V6H9zM8.5 11l2 2 4-4M8.5 16h5"/></svg></div>
+              <div style="flex:1;"><div style="font-size:14.5px; font-weight:900; color:#1A1A2E;">Simulacros IELTS / Cambridge</div><div style="font-size:11.5px; font-weight:800; color:#9A9FB8;">Prepárate para el examen real</div></div>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ECC71" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <!-- 4 -->
+            <div style="display:flex; align-items:center; gap:13px; padding:13px 0; border-bottom:1.5px solid #F4F5FA;">
+              <div style="flex:none; width:42px; height:42px; border-radius:13px; background:#FFF4D6; display:grid; place-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E09A00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 1 0-1.5 5"/><path d="M20 5v6h-6"/></svg></div>
+              <div style="flex:1;"><div style="font-size:14.5px; font-weight:900; color:#1A1A2E;">Reintentos extra de examen</div><div style="font-size:11.5px; font-weight:800; color:#9A9FB8;">Más oportunidades en cada checkpoint</div></div>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ECC71" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+            <!-- 5 -->
+            <div style="display:flex; align-items:center; gap:13px; padding:13px 0;">
+              <div style="flex:none; width:42px; height:42px; border-radius:13px; background:#E7F9EF; display:grid; place-items:center;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ECC71" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></div>
+              <div style="flex:1;"><div style="font-size:14.5px; font-weight:900; color:#1A1A2E;">Reportes detallados</div><div style="font-size:11.5px; font-weight:800; color:#9A9FB8;">Ve exactamente qué mejorar</div></div>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2ECC71" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>
+            </div>
+          </div>
+
+          <!-- ===== PLANS ===== -->
+          <div style="display:flex; flex-direction:column; gap:11px;">
+            <sc-for list="{{ planItems }}" as="p" hint-placeholder-count="3">
+              <button onClick="{{ p.onTap }}" style="{{ p.rowStyle }}">
+                <span style="{{ p.radioStyle }}"><span style="{{ p.dotStyle }}"></span></span>
+                <div style="flex:1; text-align:left; min-width:0;">
+                  <div style="display:flex; align-items:center; gap:7px;">
+                    <span style="font-size:16px; font-weight:900; color:#1A1A2E;">{{ p.name }}</span>
+                    <span style="{{ p.badgeStyle }}">{{ p.badge }}</span>
+                  </div>
+                  <div style="font-size:11px; font-weight:800; color:#9A9FB8; margin-top:2px;">{{ p.sub }}</div>
+                </div>
+                <div style="flex:none; text-align:right;">
+                  <span style="font-size:17px; font-weight:900; color:#1A1A2E;">{{ p.price }}</span>
+                  <span style="font-size:11px; font-weight:800; color:#9A9FB8;">{{ p.per }}</span>
+                </div>
+              </button>
+            </sc-for>
+          </div>
+
+          <!-- ===== CTA ===== -->
+          <div>
+            <button style="width:100%; height:64px; border:none; border-radius:18px; background:linear-gradient(160deg,#FFDD7A,#F4B400); color:#1A1A2E; font-family:Nunito; cursor:pointer; box-shadow:0 6px 0 #D69400, 0 14px 26px rgba(244,180,0,.4); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1px;" style-active="transform:translateY(4px); box-shadow:0 2px 0 #D69400;">
+              <span style="font-size:18px; font-weight:900; letter-spacing:.3px;">Hazte Premium</span>
+              <span style="font-size:11px; font-weight:800; color:#7A5A00;">7 días gratis, luego {{ ctaPrice }}</span>
+            </button>
+            <div style="text-align:center; font-size:11px; font-weight:800; color:#9A9FB8; margin-top:11px; line-height:1.5;">Sin compromiso · cancela cuando quieras.<br>Te avisamos 3 días antes de cobrar.</div>
+            <div style="text-align:center; margin-top:14px;">
+              <button style="border:none; background:none; font-family:Nunito; font-size:14px; font-weight:900; color:#9097AE; cursor:pointer; text-decoration:underline; text-underline-offset:3px;">Seguir gratis</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { plan: 'anual' };
+  PLANS = [
+    { id:'mensual',  name:'Mensual',  price:'9,99 €',  per:'/mes', sub:'Flexible, mes a mes',                badge:'' },
+    { id:'anual',    name:'Anual',    price:'49,99 €', per:'/año', sub:'≈ 4,16 €/mes · ahorras 58%',         badge:'MEJOR VALOR' },
+    { id:'familiar', name:'Familiar', price:'89,99 €', per:'/año', sub:'Hasta 6 cuentas · ≈ 1,25 €/mes c/u', badge:'' },
+  ];
+  renderVals() {
+    const sel = this.state.plan;
+    const planItems = this.PLANS.map(p => {
+      const on = p.id === sel;
+      return {
+        name: p.name, price: p.price, per: p.per, sub: p.sub, badge: p.badge,
+        onTap: () => this.setState({ plan: p.id }),
+        rowStyle: {
+          display:'flex', alignItems:'center', gap:'13px', width:'100%', textAlign:'left',
+          border:'2.5px solid ' + (on ? '#6C5CE7' : '#E8EAF2'),
+          background: on ? '#F4F2FF' : '#fff', borderRadius:'18px', padding:'15px 16px',
+          cursor:'pointer', boxShadow: on ? '0 5px 0 #D6D0F6' : '0 4px 0 #ECEDF6', transition:'all .15s',
+        },
+        radioStyle: {
+          flex:'none', width:'22px', height:'22px', borderRadius:'50%',
+          border:'2.5px solid ' + (on ? '#6C5CE7' : '#CDD2E2'),
+          display:'grid', placeItems:'center', background:'#fff',
+        },
+        dotStyle: {
+          width:'11px', height:'11px', borderRadius:'50%',
+          background: on ? '#6C5CE7' : 'transparent',
+        },
+        badgeStyle: {
+          display: p.badge ? 'inline-block' : 'none',
+          fontSize:'9.5px', fontWeight:'900', letterSpacing:'.5px',
+          color:'#5B3A00', background:'linear-gradient(120deg,#FFDD7A,#F4B400)',
+          padding:'2px 8px', borderRadius:'7px',
+        },
+      };
+    });
+    const cur = this.PLANS.find(p => p.id === sel);
+    return { planItems, ctaPrice: cur.price + cur.per };
+  }
+}
+</script>
+</body>
+</html>
