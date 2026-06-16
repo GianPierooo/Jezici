@@ -1,5 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../models/content_item_model.dart';
 import '../models/unit_model.dart';
 
 /// Lee el contenido del curso (estático/compartido) desde Supabase.
@@ -21,6 +22,24 @@ class ContentRepository {
 
     return (res as List)
         .map((e) => UnitModel.fromJson(e as Map<String, dynamic>))
+        .toList();
+  }
+
+  /// Trae los ejercicios de una lección (vía lesson_items, en orden).
+  Future<List<ContentItemModel>> fetchLessonItems(String lessonId) async {
+    final res = await _client
+        .from('lesson_items')
+        .select(
+          'order_index, '
+          'item:content_items ( id, type, skill, cefr_level, prompt, '
+          'payload, correct_answer, difficulty, tags )',
+        )
+        .eq('lesson_id', lessonId)
+        .order('order_index', ascending: true);
+
+    return (res as List)
+        .map((row) => (row as Map<String, dynamic>)['item'] as Map<String, dynamic>)
+        .map(ContentItemModel.fromJson)
         .toList();
   }
 }

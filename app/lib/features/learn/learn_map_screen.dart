@@ -7,6 +7,7 @@ import '../../core/theme/app_colors.dart';
 import '../../data/models/lesson_model.dart';
 import '../../data/models/unit_model.dart';
 import '../../data/providers.dart';
+import '../lesson/lesson_preview_screen.dart';
 import 'widgets/learn_top_bar.dart';
 import 'widgets/map_node.dart';
 import 'widgets/parrot_mascot.dart';
@@ -109,12 +110,18 @@ class _MapBodyState extends State<_MapBody> {
   }
 
   void _onTapNode(LessonModel lesson, NodeState state) {
-    final msg = state == NodeState.available
-        ? 'La lección "${lesson.title}" llega en el paso D 🛠️'
-        : 'Bloqueada · completa la lección anterior';
+    if (state == NodeState.available) {
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (_) => LessonPreviewScreen(lesson: lesson)),
+      );
+      return;
+    }
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
-      ..showSnackBar(SnackBar(content: Text(msg), behavior: SnackBarBehavior.floating));
+      ..showSnackBar(const SnackBar(
+        content: Text('Bloqueada · completa la lección anterior'),
+        behavior: SnackBarBehavior.floating,
+      ));
   }
 
   @override
