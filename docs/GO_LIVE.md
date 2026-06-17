@@ -42,7 +42,7 @@ content_items, 504 lesson_items, 184 vocabulary, 14 exams. 0 usuarios, 0 progres
 - **RLS:** reverificado — TODAS las tablas public tienen RLS habilitado + políticas. La lógica sensible (XP/oro/aprobado/cert) vive en RPC SECURITY DEFINER (server-side). Sin backdoors de test.
 - **Secretos:** ninguno en el repo; los scripts leen de `.env` (gitignored). Anon key pública por diseño (RLS).
 - **Push:** real (VAPID + Edge Function send-push).
-- **Monitoreo (Sentry):** integrado y **guardado por DSN** — no-op hasta que pegues `SENTRY_DSN` (no envía nada sin él). Ver "Necesito de ti".
+- **Monitoreo de errores:** captura de crashes (FlutterError + zona) → `analytics_events` (evento `client_error`), pure-Dart y **ya activo** en producción (queryable). Sentry/APM completo es **opcional**: se añade con un DSN (ver "Necesito de ti"). Se evitó `sentry_flutter` por ahora porque sus build-hooks nativos rompían el build web en Vercel; la captura básica cubre "saber qué falla".
 - **Borrado de cuenta + legal:** delete_account (RPC, cascada) + Privacidad/Términos enlazados.
 - **Email transaccional:** pendiente de proveedor (ver abajo).
 - **Backups:** Supabase hace backups diarios; PITR requiere plan Pro (acción tuya en el dashboard).
@@ -50,7 +50,7 @@ content_items, 504 lesson_items, 184 vocabulary, 14 exams. 0 usuarios, 0 progres
 ## 5. Checklist GO-LIVE — lo que necesito de ti
 | # | Qué | Por qué | Cómo |
 |---|---|---|---|
-| 1 | **Sentry**: crear proyecto Flutter/web y darme el **DSN** | Crash reporting en prod | Pega `SENTRY_DSN` en Vercel → Settings → Environment Variables (Production). Ya está cableado en `vercel.json`. |
+| 1 | **Sentry (opcional)**: proyecto Flutter/web + **DSN** | APM completo (los errores ya se capturan a analytics_events sin esto) | Si lo quieres, pásame el DSN y re-añado el SDK web-safe + lo cableo. |
 | 2 | **Cuenta Apple Developer** ($99/año) + Mac/Xcode | Build y publicación iOS / TestFlight | Necesaria para firmar y subir el `.ipa`. |
 | 3 | **Cuenta Google Play Developer** ($25 único) + **keystore** | Publicación Android / internal testing | Genera el keystore (o autorízame) para firmar el AAB. |
 | 4 | **Proveedor de email** (Resend/Postmark) + API key | Bienvenida, certificado, win-back | Pega la key; integro la Edge Function de envío. |

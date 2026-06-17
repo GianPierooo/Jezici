@@ -3,10 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'core/config/supabase_config.dart';
+import 'core/monitoring/crash_reporter.dart';
 import 'core/theme/app_colors.dart';
 import 'core/theme/app_theme.dart';
 import 'data/providers.dart';
@@ -43,22 +43,11 @@ Future<void> main() async {
     } catch (_) {}
   }
 
-  // Crash reporting / monitoreo (GA6). Se activa SOLO si hay DSN (Vercel env
-  // SENTRY_DSN → dart-define). Sin DSN es un no-op total: no envía nada.
-  const dsn = String.fromEnvironment('SENTRY_DSN');
-  if (dsn.isEmpty) {
-    runApp(const ProviderScope(child: JeziciApp()));
-  } else {
-    await SentryFlutter.init(
-      (o) {
-        o.dsn = dsn;
-        o.tracesSampleRate = 0.2;
-        o.environment = const String.fromEnvironment('APP_ENV', defaultValue: 'production');
-        o.sendDefaultPii = false; // sin datos personales
-      },
-      appRunner: () => runApp(const ProviderScope(child: JeziciApp())),
-    );
-  }
+  // Monitoreo de errores (GA6): captura crashes → analytics_events. Pure-Dart,
+  // web-safe. Para Sentry completo, ver docs/GO_LIVE.md (se añade con un DSN).
+  if (SupabaseConfig.isConfigured) installCrashReporting();
+
+  runApp(const ProviderScope(child: JeziciApp()));
 }
 
 class JeziciApp extends StatelessWidget {
