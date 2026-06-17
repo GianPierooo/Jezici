@@ -196,6 +196,21 @@ class ProgressRepository {
   /// Cierra la sesión (logout).
   Future<void> signOut() => _client.auth.signOut();
 
+  // ── Analítica (Especificacion §13) ────────────────────────────────────────
+
+  /// Registra un evento (fire-and-forget; nunca rompe el flujo del usuario).
+  Future<void> logEvent(String event, {Map<String, dynamic>? props}) async {
+    try {
+      await _client.rpc('log_event', params: {'p_event': event, 'p_props': props ?? {}});
+    } catch (_) {}
+  }
+
+  /// Métricas agregadas §13 (panel mínimo interno).
+  Future<Map<String, dynamic>> fetchMetrics() async {
+    final res = await _client.rpc('get_metrics');
+    return Map<String, dynamic>.from(res as Map);
+  }
+
   /// Ajustes de Matix del usuario (user_personality).
   Future<UserSettings> fetchSettings() async {
     final uid = _uid;

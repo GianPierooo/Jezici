@@ -121,6 +121,9 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
       final summary = await ref
           .read(progressRepositoryProvider)
           .completeLesson(widget.lesson.id, _answers);
+      // Analítica (fire-and-forget).
+      ref.read(progressRepositoryProvider).logEvent('lesson_complete',
+          props: {'lesson_id': widget.lesson.id, 'status': summary.status});
       // Refrescar mapa, top bar y skills con los datos nuevos.
       ref.invalidate(lessonProgressProvider);
       ref.invalidate(homeStatsProvider);

@@ -32,6 +32,13 @@ Future<void> main() async {
   // Notificaciones locales del sistema (no-op en web; real en móvil).
   await LocalNotifier.instance.init();
 
+  // Analítica: registra la apertura (fire-and-forget, nunca bloquea).
+  if (SupabaseConfig.isConfigured) {
+    try {
+      Supabase.instance.client.rpc('log_event', params: {'p_event': 'app_open'});
+    } catch (_) {}
+  }
+
   runApp(const ProviderScope(child: JeziciApp()));
 }
 

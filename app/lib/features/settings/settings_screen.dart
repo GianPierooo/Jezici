@@ -5,6 +5,7 @@ import '../../core/theme/app_colors.dart';
 import '../../data/models/progress_models.dart';
 import '../../data/providers.dart';
 import '../../ui/primary_button.dart';
+import '../metrics/metrics_screen.dart';
 import '../notifications/coach_styles.dart';
 import '../notifications/matix_test_buttons.dart';
 import '../premium/premium_screen.dart';
@@ -257,6 +258,16 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           _section('Probar a Matix', 'Simula un evento y mira el copy de tu estilo.'),
           const _Card(child: MatixTestButtons()),
           const SizedBox(height: 26),
+
+          // Métricas (interno).
+          TextButton.icon(
+            onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const MetricsScreen())),
+            icon: const Icon(Icons.bar_chart_rounded, size: 18),
+            label: const Text('Ver métricas (interno)', style: TextStyle(fontWeight: FontWeight.w800)),
+            style: TextButton.styleFrom(foregroundColor: AppColors.textMuted),
+          ),
+          const SizedBox(height: 8),
 
           // Sesión.
           OutlinedButton.icon(

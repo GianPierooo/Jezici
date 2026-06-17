@@ -99,3 +99,8 @@ final levelExamStatusProvider = FutureProvider<LevelExamStatus>(
 final shopStatusProvider = FutureProvider<ShopStatus>(
   (ref) => ref.watch(progressRepositoryProvider).fetchShopStatus(),
 );
+
+/// Métricas agregadas §13 (panel interno).
+final metricsProvider = FutureProvider<Map<String, dynamic>>(
+  (ref) => ref.watch(progressRepositoryProvider).fetchMetrics(),
+);
