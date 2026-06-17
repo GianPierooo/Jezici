@@ -61,3 +61,25 @@ content_items, 504 lesson_items, 184 vocabulary, 14 exams. 0 usuarios, 0 progres
 ## 6. Listo para invitar beta (con email + cuentas dev)
 - Web (PWA) en https://jezici.vercel.app — **ya usable por usuarios reales** (auth, onboarding, curso A1+A2, exámenes, certificados, práctica, ligas reales, perfil).
 - Móvil: requiere #2/#3 para empaquetar y subir a TestFlight / Play internal testing.
+
+## 7. Beta-readiness (GA7) — cada apartado usable y seguro
+| Apartado | ¿Usable en beta? | Seguridad |
+|---|---|---|
+| Aprender / Lección / Checkpoint | ✅ sí, real | scoring server-side |
+| Examen de nivel + certificado | ✅ sí, real | server-side, multinivel |
+| Practicar (SRS/debilidades/contrarreloj/skill) | ✅ sí, real | — |
+| Perfil (4 skills, plan, logros, certs) | ✅ sí, real | datos propios (RLS) |
+| Ligas | ✅ sí, real (sin bots) | sólo usuarios reales; "arrancando" con baja población |
+| Conversar | ✅ sí, taste solo/async + waitlist | **sin desconocidos, sin IA** — seguro para beta |
+| Feedback in-app | ✅ sí, en toda la app | inserta sólo lo propio (RLS) |
+| Premium | ⏸ "próximamente" (no simula compra) | — |
+| Borrar cuenta | ✅ sí | derecho de supresión |
+
+**Instrumentado para aprender:** `screen_view` por sección, embudo de onboarding
+(drop-off por paso), `conversar_interest` (señal de demanda de conversación en
+vivo), `conversar_attempt`, feedback cualitativo. Todo en el panel de Métricas
+(get_metrics + get_onboarding_funnel + get_engagement).
+
+**Para invitar a la beta web HOY:** nada más de tu lado — comparte el link
+https://jezici.vercel.app. Para beta MÓVIL e emails transaccionales, ver §5
+(#2 Apple, #3 Google, #4 email).
