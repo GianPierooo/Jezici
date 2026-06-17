@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/feedback/feedback_sheet.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/progress_models.dart';
 import '../../data/providers.dart';
@@ -132,6 +133,13 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
         foregroundColor: AppColors.text,
         title: const Text('Ajustes',
             style: TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
+        actions: [
+          IconButton(
+            tooltip: 'Enviar feedback',
+            icon: const Icon(Icons.feedback_outlined),
+            onPressed: () => showFeedbackSheet(context, ref, screen: 'Ajustes'),
+          ),
+        ],
       ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(20, 6, 20, 36),

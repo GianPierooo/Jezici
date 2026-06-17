@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/feedback/feedback_sheet.dart';
+import '../../data/providers.dart';
+import '../conversar/conversar_screen.dart';
 import '../leagues/leagues_screen.dart';
 import '../learn/learn_map_screen.dart';
 import '../practice/practice_screen.dart';
@@ -7,35 +11,60 @@ import '../profile/profile_screen.dart';
 import 'widgets/bottom_nav.dart';
 
 /// Scaffold raíz: contenido por pestaña (IndexedStack para preservar estado) +
-/// la barra inferior. GA6: "Conversar" (Fase 2: requiere IA + salas en vivo +
-/// moderación + verificación de edad) queda OCULTO hasta estar listo; nada de
-/// social/chat sin moderación frente a usuarios reales.
-class HomeShell extends StatefulWidget {
+/// barra inferior + botón de FEEDBACK presente en toda la app (GA7). Registra
+/// screen_view por sección para la analítica de uso.
+class HomeShell extends ConsumerStatefulWidget {
   const HomeShell({super.key});
 
   @override
-  State<HomeShell> createState() => _HomeShellState();
+  ConsumerState<HomeShell> createState() => _HomeShellState();
 }
 
-class _HomeShellState extends State<HomeShell> {
+class _HomeShellState extends ConsumerState<HomeShell> {
   int _index = 0;
+
+  static const _sections = ['Aprender', 'Practicar', 'Conversar', 'Ligas', 'Perfil'];
+
+  @override
+  void initState() {
+    super.initState();
+    _logView(0);
+  }
+
+  void _logView(int i) {
+    ref.read(progressRepositoryProvider).logEvent('screen_view', props: {'section': _sections[i]});
+  }
+
+  void _select(int i) {
+    if (i == _index) return;
+    setState(() => _index = i);
+    _logView(i);
+  }
 
   @override
   Widget build(BuildContext context) {
     const screens = <Widget>[
       LearnMapScreen(),
       PracticeScreen(),
+      ConversarScreen(),
       LeaguesScreen(),
       ProfileScreen(),
     ];
 
     return Scaffold(
       extendBody: true,
-      body: IndexedStack(index: _index, children: screens),
-      bottomNavigationBar: BottomNav(
-        currentIndex: _index,
-        onTap: (i) => setState(() => _index = i),
+      body: Stack(
+        children: [
+          IndexedStack(index: _index, children: screens),
+          // Botón de feedback (toda la app). Sobre el contenido, junto al borde.
+          Positioned(
+            right: 16,
+            bottom: 92,
+            child: SafeArea(child: FeedbackFab(section: _sections[_index])),
+          ),
+        ],
       ),
+      bottomNavigationBar: BottomNav(currentIndex: _index, onTap: _select),
     );
   }
 }

@@ -56,6 +56,7 @@ class MetricsScreen extends ConsumerWidget {
                 _row('Conversión premium', pct('conversion_premium')),
               ]),
               _OnboardingFunnel(),
+              _Engagement(),
               const SizedBox(height: 8),
               Text('Generado: ${m['generated_at'] ?? ''}',
                   style: const TextStyle(fontSize: 11, color: AppColors.textMuted, fontWeight: FontWeight.w600)),
@@ -143,4 +144,78 @@ class _OnboardingFunnel extends ConsumerWidget {
       },
     );
   }
+}
+
+/// Engagement (GA7): uso por sección (7d), feedback e interés en Conversar.
+class _Engagement extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final async = ref.watch(engagementProvider);
+    return async.maybeWhen(
+      orElse: () => const SizedBox.shrink(),
+      data: (e) {
+        final usage = (e['section_usage_7d'] as Map?) ?? const {};
+        final fb = (e['feedback_by_kind'] as Map?) ?? const {};
+        final interest = (e['conversar_interest'] as Map?) ?? const {};
+        Widget rows(Map m, String empty) => m.isEmpty
+            ? Padding(
+                padding: const EdgeInsets.symmetric(vertical: 9),
+                child: Text(empty,
+                    style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)))
+            : Column(children: [
+                for (final k in m.keys)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 7),
+                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                      Text('$k', style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                      Text('${m[k]}', style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.primary)),
+                    ]),
+                  ),
+              ]);
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const Text('Uso por sección (7 días)',
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+            const SizedBox(height: 8),
+            _card(rows(usage, 'Aún sin vistas registradas.')),
+            const SizedBox(height: 16),
+            const Text('Feedback e interés',
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+            const SizedBox(height: 8),
+            _card(Column(children: [
+              rows(fb, 'Aún sin feedback.'),
+              const Divider(height: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 7),
+                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                  const Text('Interés conversación en vivo (sí/total)',
+                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                  Text('${interest['would_use_yes'] ?? 0}/${interest['responses'] ?? 0}',
+                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.primary)),
+                ]),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 7),
+                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                  const Text('Prácticas de conversación',
+                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                  Text('${e['conversation_attempts'] ?? 0}',
+                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.primary)),
+                ]),
+              ),
+            ])),
+          ]),
+        );
+      },
+    );
+  }
+
+  Widget _card(Widget child) => Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(18),
+            boxShadow: const [BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 5), blurRadius: 0)]),
+        child: child,
+      );
 }

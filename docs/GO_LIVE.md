@@ -21,8 +21,9 @@ a usuarios reales. Lo que no está listo se OCULTA, no se simula.
 | Notificaciones / Matix (in-app + web push) | ✅ REAL | matix_fire, quiet_hours, techo; web push (VAPID). |
 | Ajustes (coach, intensidad, meta, push, legal, logout, **borrar cuenta**) | ✅ REAL | Borrado de cuenta real (delete_account, cascada). |
 | Legal (Privacidad + Términos) | ✅ REAL | Enlazados en auth (alta) y ajustes. |
-| Métricas (panel interno) | ✅ REAL | get_metrics + embudo de onboarding. Uso interno. |
-| **Conversar (chat)** | 🚫 OCULTO | Fase 2: requiere IA + salas en vivo + **moderación + verificación de edad**. Apagado hasta tenerlo. |
+| Métricas (panel interno) | ✅ REAL | get_metrics + embudo de onboarding + engagement (uso por sección, feedback, interés). |
+| **Feedback in-app (GA7)** | ✅ REAL | Botón en toda la app (FAB en tabs + acción en Ajustes) → tabla `feedback` con contexto (pantalla, versión, plataforma). |
+| **Conversar (GA7)** | ✅ PREVIEW SEGURO | Práctica en SOLITARIO/asíncrona (tema → escribe/habla → modelo + autoevaluación, guardada). Captura de interés + waitlist para la conversación EN VIVO. **Sin chat con desconocidos, sin IA.** Conversación en vivo + scoring IA = Fase 2 (con moderación + verificación de edad). |
 | **Simulacros IELTS/Cambridge** | 🚫 OCULTO | Motor real no construido (Fase 1 solo estructura). Quitado de Practicar. |
 | **Premium / pagos** | ⏸ PRÓXIMAMENTE | Sin pasarela (Stripe/RevenueCat pendientes). Pantalla "próximamente" honesta; no simula compra. |
 | Email transaccional | ⏸ PENDIENTE | Sin proveedor aún (ver §4). No se simula ningún envío al usuario. |

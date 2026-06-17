@@ -60,6 +60,14 @@ class FakeProgressRepository implements ProgressRepository {
   @override
   Future<Map<String, dynamic>> fetchOnboardingFunnel() async => const {'steps': [], 'started': 0, 'completed': 0, 'completion_rate': 0};
   @override
+  Future<Map<String, dynamic>> fetchEngagement() async => const {};
+  @override
+  Future<void> submitFeedback({required String screen, required String kind, required String message, String? appVersion, String? platform}) async {}
+  @override
+  Future<void> saveConversationAttempt({required String topic, required String mode, String? content, int? selfScore}) async {}
+  @override
+  Future<void> logConversarInterest(bool wouldUse, String? topics) async {}
+  @override
   Future<UserSettings> fetchSettings() async => UserSettings.fallback;
   @override
   Future<void> updateSettings({

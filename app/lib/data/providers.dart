@@ -121,3 +121,8 @@ final metricsProvider = FutureProvider<Map<String, dynamic>>(
 final onboardingFunnelProvider = FutureProvider<Map<String, dynamic>>(
   (ref) => ref.watch(progressRepositoryProvider).fetchOnboardingFunnel(),
 );
+
+/// Engagement (uso por sección, feedback, interés Conversar) — GA7.
+final engagementProvider = FutureProvider<Map<String, dynamic>>(
+  (ref) => ref.watch(progressRepositoryProvider).fetchEngagement(),
+);

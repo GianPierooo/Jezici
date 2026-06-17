@@ -255,6 +255,54 @@ class ProgressRepository {
     return Map<String, dynamic>.from(res as Map);
   }
 
+  /// Engagement (uso por sección, feedback, interés Conversar) — GA7.
+  Future<Map<String, dynamic>> fetchEngagement() async {
+    final res = await _client.rpc('get_engagement');
+    return Map<String, dynamic>.from(res as Map);
+  }
+
+  // ── Feedback in-app + Conversar (taste seguro) — GA7 ──────────────────────
+
+  /// Envía feedback/bug desde cualquier pantalla, con contexto.
+  Future<void> submitFeedback({
+    required String screen,
+    required String kind,
+    required String message,
+    String? appVersion,
+    String? platform,
+  }) async {
+    await _client.rpc('submit_feedback', params: {
+      'p_screen': screen,
+      'p_kind': kind,
+      'p_message': message,
+      'p_app_version': appVersion,
+      'p_platform': platform,
+    });
+  }
+
+  /// Guarda un intento de conversación en solitario (gancho Fase 2).
+  Future<void> saveConversationAttempt({
+    required String topic,
+    required String mode,
+    String? content,
+    int? selfScore,
+  }) async {
+    await _client.rpc('save_conversation_attempt', params: {
+      'p_topic': topic,
+      'p_mode': mode,
+      'p_content': content,
+      'p_self_score': selfScore,
+    });
+  }
+
+  /// Señal de interés en conversación EN VIVO (Fase 2). Fire-and-forget.
+  Future<void> logConversarInterest(bool wouldUse, String? topics) async {
+    try {
+      await _client.rpc('log_conversar_interest',
+          params: {'p_would_use': wouldUse, 'p_topics': topics});
+    } catch (_) {}
+  }
+
   /// Ajustes de Matix del usuario (user_personality).
   Future<UserSettings> fetchSettings() async {
     final uid = _uid;
