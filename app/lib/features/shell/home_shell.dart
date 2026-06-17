@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../leagues/leagues_screen.dart';
 import '../learn/learn_map_screen.dart';
 import '../practice/practice_screen.dart';
 import '../profile/profile_screen.dart';
@@ -24,7 +25,7 @@ class _HomeShellState extends State<HomeShell> {
       LearnMapScreen(),
       PracticeScreen(),
       PlaceholderScreen(title: 'Conversar', icon: Icons.forum_rounded),
-      PlaceholderScreen(title: 'Ligas', icon: Icons.emoji_events_rounded),
+      LeaguesScreen(),
       ProfileScreen(),
     ];
 

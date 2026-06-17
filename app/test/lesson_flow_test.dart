@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:jezici/data/models/checkpoint_models.dart';
 import 'package:jezici/data/models/content_item_model.dart';
 import 'package:jezici/data/models/achievement_models.dart';
+import 'package:jezici/data/models/league_models.dart';
 import 'package:jezici/data/models/lesson_model.dart';
 import 'package:jezici/data/models/practice_models.dart';
 import 'package:jezici/data/models/progress_models.dart';
@@ -59,6 +60,9 @@ class FakeProgressRepository implements ProgressRepository {
   Future<List<Achievement>> fetchAchievements() async => const [];
   @override
   Future<List<Certificate>> fetchCertificates() async => const [];
+  @override
+  Future<LeagueStanding> fetchLeague() async =>
+      const LeagueStanding(division: 'bronce', myRank: 1, promote: 5, demote: 5, members: []);
   @override
   Future<void> createPlan({
     required String coachStyle,

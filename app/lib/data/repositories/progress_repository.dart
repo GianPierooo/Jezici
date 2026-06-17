@@ -2,6 +2,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../models/achievement_models.dart';
 import '../models/checkpoint_models.dart';
+import '../models/league_models.dart';
 import '../models/practice_models.dart';
 import '../models/progress_models.dart';
 
@@ -241,6 +242,12 @@ class ProgressRepository {
     return (res as List)
         .map((e) => Achievement.fromJson(Map<String, dynamic>.from(e as Map)))
         .toList();
+  }
+
+  /// Liga semanal del usuario (standings; siembra bots si faltan rivales).
+  Future<LeagueStanding> fetchLeague() async {
+    final res = await _client.rpc('get_league');
+    return LeagueStanding.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
   /// Certificados de nivel emitidos del usuario.
