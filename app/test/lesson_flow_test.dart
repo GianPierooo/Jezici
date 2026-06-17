@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:jezici/data/models/checkpoint_models.dart';
 import 'package:jezici/data/models/content_item_model.dart';
 import 'package:jezici/data/models/lesson_model.dart';
 import 'package:jezici/data/models/progress_models.dart';
@@ -23,6 +24,25 @@ class FakeProgressRepository implements ProgressRepository {
   Future<HomeStats> fetchHomeStats() async => HomeStats.empty;
   @override
   Future<List<SkillLevel>> fetchSkills() async => const [];
+  @override
+  Future<CheckpointStartData> startCheckpoint(String lessonId) async =>
+      const CheckpointStartData(
+          examId: 'x', timeLimitSec: 300, passThreshold: 0.8, itemCount: 0, items: []);
+  @override
+  Future<CheckpointResult> submitCheckpoint(
+          String lessonId, List<Map<String, dynamic>> answers, int timeTakenSec) async =>
+      const CheckpointResult(
+          passed: true,
+          scoreGlobal: 1.0,
+          threshold: 0.8,
+          attemptNumber: 1,
+          graded: 6,
+          correct: 6,
+          xpEarned: 40,
+          goldEarned: 30,
+          perSkill: [],
+          weaknesses: [],
+          nextUnlocked: false);
 
   @override
   Future<LessonSummary> completeLesson(

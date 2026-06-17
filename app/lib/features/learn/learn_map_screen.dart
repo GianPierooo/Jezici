@@ -7,6 +7,7 @@ import '../../core/theme/app_colors.dart';
 import '../../data/models/lesson_model.dart';
 import '../../data/models/unit_model.dart';
 import '../../data/providers.dart';
+import '../checkpoint/checkpoint_intro_screen.dart';
 import '../lesson/lesson_preview_screen.dart';
 import 'widgets/learn_top_bar.dart';
 import 'widgets/map_node.dart';
@@ -85,12 +86,48 @@ class _MapBodyState extends State<_MapBody> {
   @override
   void initState() {
     super.initState();
-    // Arrancar abajo del todo: el nodo actual/disponible.
+    // Arrancar centrado en el nodo actual/disponible (sube al avanzar).
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (_controller.hasClients) {
-        _controller.jumpTo(_controller.position.maxScrollExtent);
-      }
+      if (_controller.hasClients) _controller.jumpTo(_targetScroll());
     });
+  }
+
+  /// Offset para dejar el nodo disponible en la zona inferior-media del viewport.
+  double _targetScroll() {
+    final lessons = widget.unit.lessons;
+    final n = lessons.length;
+    final contentHeight = _topPad + _bottomPad + (n - 1) * _gap;
+    final max = _controller.position.maxScrollExtent;
+    var availIndex = -1;
+    for (var i = 0; i < n; i++) {
+      if (_stateFor(lessons[i], i) == NodeState.available) {
+        availIndex = i;
+        break;
+      }
+    }
+    if (availIndex < 0) return max; // nada disponible (unidad completa)
+    final y = contentHeight - _bottomPad - availIndex * _gap;
+    final viewport = _controller.position.viewportDimension;
+    return (y - viewport * 0.58).clamp(0.0, max);
+  }
+
+  @override
+  void didUpdateWidget(covariant _MapBody old) {
+    super.didUpdateWidget(old);
+    // El progreso llega async; al cambiar el nodo disponible, recentrar.
+    if (!_mapEquals(old.progress, widget.progress)) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (_controller.hasClients) _controller.jumpTo(_targetScroll());
+      });
+    }
+  }
+
+  bool _mapEquals(Map<String, String> a, Map<String, String> b) {
+    if (a.length != b.length) return false;
+    for (final e in a.entries) {
+      if (b[e.key] != e.value) return false;
+    }
+    return true;
   }
 
   @override
@@ -135,11 +172,13 @@ class _MapBodyState extends State<_MapBody> {
   }
 
   void _onTapNode(LessonModel lesson, NodeState state) {
-    // Disponible o ya completada (repaso) → abrir la lección. Bloqueada → aviso.
+    // Bloqueada → aviso. Disponible/completada → checkpoint o lección.
     if (state != NodeState.locked) {
-      Navigator.of(context).push(
-        MaterialPageRoute(builder: (_) => LessonPreviewScreen(lesson: lesson)),
-      );
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (_) => lesson.type == LessonType.checkpoint
+            ? CheckpointIntroScreen(lesson: lesson, unitTitle: widget.unit.title)
+            : LessonPreviewScreen(lesson: lesson),
+      ));
       return;
     }
     ScaffoldMessenger.of(context)

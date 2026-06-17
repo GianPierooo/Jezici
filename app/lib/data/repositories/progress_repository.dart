@@ -1,5 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../models/checkpoint_models.dart';
 import '../models/progress_models.dart';
 
 /// Acceso a los datos de progreso del usuario y a las RPC server-side.
@@ -34,6 +35,26 @@ class ProgressRepository {
       'p_answers': answers,
     });
     return LessonSummary.fromJson(Map<String, dynamic>.from(res as Map));
+  }
+
+  /// Arma el examen del checkpoint (set aleatorizado, server-side).
+  Future<CheckpointStartData> startCheckpoint(String lessonId) async {
+    final res = await _client.rpc('start_checkpoint', params: {'p_lesson_id': lessonId});
+    return CheckpointStartData.fromJson(Map<String, dynamic>.from(res as Map));
+  }
+
+  /// Envía el checkpoint; el servidor califica, decide aprobado y aplica gating.
+  Future<CheckpointResult> submitCheckpoint(
+    String lessonId,
+    List<Map<String, dynamic>> answers,
+    int timeTakenSec,
+  ) async {
+    final res = await _client.rpc('submit_checkpoint', params: {
+      'p_lesson_id': lessonId,
+      'p_answers': answers,
+      'p_time_taken_sec': timeTakenSec,
+    });
+    return CheckpointResult.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
   /// Estado de cada nodo del mapa (lesson_id -> status).

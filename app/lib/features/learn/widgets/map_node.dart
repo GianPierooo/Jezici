@@ -150,6 +150,19 @@ class _MapNodeState extends State<MapNode> with SingleTickerProviderStateMixin {
         alignment: Alignment.center,
         clipBehavior: Clip.none,
         children: [
+          // Resplandor dorado de "boss" para el checkpoint (meta de región).
+          if (widget.type == LessonType.checkpoint && widget.state != NodeState.locked)
+            Container(
+              width: size * 1.45,
+              height: size * 1.45,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: RadialGradient(colors: [
+                  AppColors.gold.withValues(alpha: 0.6),
+                  AppColors.gold.withValues(alpha: 0.0),
+                ]),
+              ),
+            ),
           if (_isAvailable)
             AnimatedBuilder(
               animation: _pulse,
