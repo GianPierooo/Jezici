@@ -56,6 +56,41 @@ class SkillLevel {
       );
 }
 
+/// Plan del usuario (user_plans).
+class UserPlan {
+  const UserPlan({
+    required this.currentLevel,
+    required this.goalLevel,
+    this.dailyMinutes,
+    this.daysPerWeek,
+    this.motive,
+    this.deadline,
+    this.estimatedHours,
+    this.estimatedCompletion,
+  });
+
+  final String currentLevel;
+  final String goalLevel;
+  final int? dailyMinutes;
+  final int? daysPerWeek;
+  final String? motive;
+  final DateTime? deadline;
+  final int? estimatedHours;
+  final DateTime? estimatedCompletion;
+
+  factory UserPlan.fromJson(Map<String, dynamic> j) => UserPlan(
+        currentLevel: j['current_level'] as String? ?? 'A1',
+        goalLevel: j['goal_level'] as String? ?? 'B1',
+        dailyMinutes: (j['daily_minutes'] as num?)?.toInt(),
+        daysPerWeek: (j['days_per_week'] as num?)?.toInt(),
+        motive: j['motive'] as String?,
+        deadline: DateTime.tryParse(j['deadline']?.toString() ?? ''),
+        estimatedHours: (j['estimated_hours'] as num?)?.toInt(),
+        estimatedCompletion:
+            DateTime.tryParse(j['estimated_completion_date']?.toString() ?? ''),
+      );
+}
+
 /// Resumen devuelto por complete_lesson (server-side).
 class LessonSummary {
   const LessonSummary({

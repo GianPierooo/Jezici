@@ -25,6 +25,24 @@ class FakeProgressRepository implements ProgressRepository {
   @override
   Future<List<SkillLevel>> fetchSkills() async => const [];
   @override
+  Future<void> signUpEmail(String email, String password) async {}
+  @override
+  Future<UserPlan?> fetchPlan() async => null;
+  @override
+  Future<void> createPlan({
+    required String coachStyle,
+    required int intensity,
+    required String currentLevel,
+    required String goalLevel,
+    required int dailyMinutes,
+    required int daysPerWeek,
+    required String motive,
+    String? deadline,
+    required int estimatedHours,
+    required String estimatedCompletion,
+    required Map<String, String> skillLevels,
+  }) async {}
+  @override
   Future<CheckpointStartData> startCheckpoint(String lessonId) async =>
       const CheckpointStartData(
           examId: 'x', timeLimitSec: 300, passThreshold: 0.8, itemCount: 0, items: []);

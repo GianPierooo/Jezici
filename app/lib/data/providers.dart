@@ -49,3 +49,8 @@ final homeStatsProvider = FutureProvider<HomeStats>(
 final skillsProvider = FutureProvider<List<SkillLevel>>(
   (ref) => ref.watch(progressRepositoryProvider).fetchSkills(),
 );
+
+/// El plan del usuario (meta, ritmo, fecha estimada).
+final userPlanProvider = FutureProvider<UserPlan?>(
+  (ref) => ref.watch(progressRepositoryProvider).fetchPlan(),
+);

@@ -1,0 +1,297 @@
+import 'package:flutter/material.dart';
+
+import '../../core/plan/estimation.dart';
+import '../../core/theme/app_colors.dart';
+import '../../ui/primary_button.dart';
+import 'onboarding_data.dart';
+import 'widgets/onboarding_scaffold.dart';
+
+const _months = [
+  'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+  'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+];
+String _fmtDate(DateTime d) => '${d.day} de ${_months[d.month - 1]} de ${d.year}';
+const _tiers = [5, 10, 15, 20, 30, 45];
+
+/// "Tu plan" (momento mágico): nivel actual → meta, fecha estimada, horas y
+/// ritmo, con la palanca "Quiero llegar más rápido" que recalcula EN VIVO.
+class YourPlanView extends StatefulWidget {
+  const YourPlanView({
+    super.key,
+    required this.data,
+    required this.step,
+    required this.total,
+    required this.onBack,
+    required this.onCreateAccount,
+  });
+
+  final OnboardingData data;
+  final int step;
+  final int total;
+  final VoidCallback onBack;
+  final VoidCallback onCreateAccount;
+
+  @override
+  State<YourPlanView> createState() => _YourPlanViewState();
+}
+
+class _YourPlanViewState extends State<YourPlanView> {
+  late int _dailyMin;
+
+  @override
+  void initState() {
+    super.initState();
+    _dailyMin = widget.data.dailyMinutes;
+  }
+
+  PlanEstimate get _est => estimatePlan(
+        currentLevel: widget.data.currentLevel,
+        goalLevel: widget.data.goalLevel,
+        dailyMinutes: _dailyMin,
+        daysPerWeek: widget.data.daysPerWeek,
+      );
+
+  void _faster() {
+    final i = _tiers.indexOf(_dailyMin);
+    final next = i >= 0 && i < _tiers.length - 1 ? _tiers[i + 1] : _tiers.last;
+    setState(() => _dailyMin = next);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final est = _est;
+    final atMax = _dailyMin >= _tiers.last;
+    return OnboardingScaffold(
+      step: widget.step,
+      total: widget.total,
+      onBack: widget.onBack,
+      showMascot: false,
+      title: '🎉 Tu plan está listo',
+      subtitle: 'Si cumples tu plan, llegas. Esto es lo que te tomará.',
+      footer: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          PrimaryButton(
+            label: 'CREAR MI CUENTA',
+            expand: true,
+            onPressed: () {
+              widget.data.dailyMinutes = _dailyMin; // conserva la palanca
+              widget.onCreateAccount();
+            },
+          ),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          // Nivel actual -> meta.
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _LevelBadge(label: widget.data.currentLevel, muted: true),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 12),
+                child: Icon(Icons.arrow_forward_rounded, color: AppColors.textMuted),
+              ),
+              _LevelBadge(label: widget.data.goalLevel, muted: false),
+            ],
+          ),
+          const SizedBox(height: 20),
+          // Fecha estimada (hero).
+          Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [AppColors.primaryLight, AppColors.primary],
+              ),
+              borderRadius: BorderRadius.circular(22),
+              boxShadow: [
+                BoxShadow(
+                    color: AppColors.primary.withValues(alpha: 0.35),
+                    offset: const Offset(0, 8),
+                    blurRadius: 20),
+              ],
+            ),
+            child: Column(
+              children: [
+                const Text('LLEGARÁS APROX. EL',
+                    style: TextStyle(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 1.5,
+                        color: Colors.white70)),
+                const SizedBox(height: 6),
+                AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 250),
+                  child: Text(
+                    _fmtDate(est.completionDate),
+                    key: ValueKey(est.completionDate),
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontSize: 24, fontWeight: FontWeight.w900, color: Colors.white),
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text('≈ ${est.weeks} semanas',
+                    style: const TextStyle(
+                        fontSize: 13, fontWeight: FontWeight.w800, color: Colors.white70)),
+              ],
+            ),
+          ),
+          const SizedBox(height: 14),
+          // Stats.
+          Row(
+            children: [
+              _Stat(icon: Icons.schedule_rounded, value: '${est.hoursNeeded} h', label: 'totales'),
+              const SizedBox(width: 12),
+              _Stat(
+                  icon: Icons.bolt_rounded,
+                  value: '$_dailyMin min',
+                  label: '× ${widget.data.daysPerWeek} días/sem'),
+            ],
+          ),
+          const SizedBox(height: 14),
+          // Palanca.
+          GestureDetector(
+            onTap: atMax ? null : _faster,
+            child: Container(
+              padding: const EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                color: atMax ? const Color(0xFFF0F1F8) : const Color(0xFFFFF4D6),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(
+                    color: atMax ? const Color(0xFFE5E7F1) : AppColors.gold, width: 1.5),
+              ),
+              child: Row(
+                children: [
+                  Icon(Icons.rocket_launch_rounded,
+                      color: atMax ? AppColors.textMuted : AppColors.goldDark, size: 22),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      atMax
+                          ? '¡Vas al máximo ritmo! 🔥'
+                          : 'Quiero llegar más rápido (sube a ${_tiers[_tiers.indexOf(_dailyMin) + 1]} min/día)',
+                      style: TextStyle(
+                          fontSize: 13.5,
+                          fontWeight: FontWeight.w900,
+                          color: atMax ? AppColors.textMuted : const Color(0xFF9A7A1E)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 14),
+          // Primer tramo del árbol.
+          Container(
+            padding: const EdgeInsets.all(15),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: const [
+                BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 4), blurRadius: 0),
+              ],
+            ),
+            child: Row(
+              children: [
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                        colors: [AppColors.primaryLight, AppColors.primary]),
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: const Icon(Icons.waving_hand_rounded, color: Colors.white, size: 19),
+                ),
+                const SizedBox(width: 12),
+                const Expanded(
+                  child: Text(
+                    'Empiezas en la Unidad 1 — Saludos y presentarte (A1).',
+                    style: TextStyle(
+                        fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.text),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _LevelBadge extends StatelessWidget {
+  const _LevelBadge({required this.label, required this.muted});
+  final String label;
+  final bool muted;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+      decoration: BoxDecoration(
+        color: muted ? const Color(0xFFF0F1F8) : AppColors.primary,
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Column(
+        children: [
+          Text(muted ? 'AHORA' : 'META',
+              style: TextStyle(
+                  fontSize: 9,
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: 1,
+                  color: muted ? AppColors.textMuted : Colors.white70)),
+          Text(label,
+              style: TextStyle(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w900,
+                  color: muted ? AppColors.text : Colors.white)),
+        ],
+      ),
+    );
+  }
+}
+
+class _Stat extends StatelessWidget {
+  const _Stat({required this.icon, required this.value, required this.label});
+  final IconData icon;
+  final String value;
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: const [
+            BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 4), blurRadius: 0),
+          ],
+        ),
+        child: Row(
+          children: [
+            Icon(icon, color: AppColors.primary, size: 20),
+            const SizedBox(width: 8),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(value,
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.w900, color: AppColors.text)),
+                Text(label,
+                    style: const TextStyle(
+                        fontSize: 10, fontWeight: FontWeight.w800, color: AppColors.textMuted)),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

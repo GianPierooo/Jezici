@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/plan/estimation.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/progress_models.dart';
 import '../../data/providers.dart';
@@ -30,6 +31,7 @@ class ProfileScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final stats = ref.watch(homeStatsProvider).value ?? HomeStats.empty;
     final skillsList = ref.watch(skillsProvider).value ?? const <SkillLevel>[];
+    final plan = ref.watch(userPlanProvider).value;
     final bySkill = {for (final s in skillsList) s.skill: s};
     final skills = [
       for (final k in _order)
@@ -145,30 +147,31 @@ class ProfileScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 18),
 
-            // Plan (placeholder paso G).
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: AppColors.navActiveBg,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Row(
-                children: [
-                  Icon(Icons.flag_rounded, color: AppColors.primary, size: 24),
-                  SizedBox(width: 12),
-                  Expanded(
-                    child: Text(
-                      'Tu plan con fecha estimada llega en el onboarding (paso G).',
-                      style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w800,
-                          color: AppColors.primary),
+            // Mi plan (real, del onboarding — paso G).
+            if (plan != null)
+              _PlanCard(plan: plan)
+            else
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: AppColors.navActiveBg,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: const Row(
+                  children: [
+                    Icon(Icons.flag_rounded, color: AppColors.primary, size: 24),
+                    SizedBox(width: 12),
+                    Expanded(
+                      child: Text('Crea tu cuenta en el onboarding para ver tu plan.',
+                          style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w800,
+                              color: AppColors.primary)),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
           ],
         ),
       ),
@@ -242,6 +245,99 @@ class _SkillRow extends StatelessWidget {
               JzProgressBar(value: skill.levelProgress, height: 8),
             ],
           ),
+        ),
+      ],
+    );
+  }
+}
+
+class _PlanCard extends StatelessWidget {
+  const _PlanCard({required this.plan});
+  final UserPlan plan;
+
+  static const _months = [
+    'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
+    'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+  ];
+  String _fmt(DateTime d) => '${d.day} de ${_months[d.month - 1]} de ${d.year}';
+
+  @override
+  Widget build(BuildContext context) {
+    final pct =
+        (planProgress(currentLevel: plan.currentLevel, goalLevel: plan.goalLevel) * 100)
+            .round();
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: const [
+          BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 5), blurRadius: 0),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              const Icon(Icons.flag_rounded, color: AppColors.primary, size: 22),
+              const SizedBox(width: 8),
+              const Text('Mi plan',
+                  style: TextStyle(
+                      fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+              const Spacer(),
+              Text('${plan.currentLevel} → ${plan.goalLevel}',
+                  style: const TextStyle(
+                      fontSize: 13, fontWeight: FontWeight.w900, color: AppColors.primary)),
+            ],
+          ),
+          const SizedBox(height: 12),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('Avance a ${plan.goalLevel}',
+                  style: const TextStyle(
+                      fontSize: 12.5, fontWeight: FontWeight.w800, color: AppColors.textMuted)),
+              Text('$pct%',
+                  style: const TextStyle(
+                      fontSize: 12.5, fontWeight: FontWeight.w900, color: AppColors.primary)),
+            ],
+          ),
+          const SizedBox(height: 6),
+          JzProgressBar(value: pct / 100, height: 9),
+          const SizedBox(height: 12),
+          if (plan.estimatedCompletion != null)
+            _PlanRow(
+                icon: Icons.event_rounded,
+                text: 'Llegas aprox. el ${_fmt(plan.estimatedCompletion!)}'),
+          if (plan.dailyMinutes != null && plan.daysPerWeek != null) ...[
+            const SizedBox(height: 6),
+            _PlanRow(
+                icon: Icons.bolt_rounded,
+                text: '${plan.dailyMinutes} min/día · ${plan.daysPerWeek} días/semana'),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _PlanRow extends StatelessWidget {
+  const _PlanRow({required this.icon, required this.text});
+  final IconData icon;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(icon, size: 16, color: AppColors.textMuted),
+        const SizedBox(width: 8),
+        Expanded(
+          child: Text(text,
+              style: const TextStyle(
+                  fontSize: 12.5, fontWeight: FontWeight.w800, color: AppColors.text)),
         ),
       ],
     );

@@ -20,6 +20,55 @@ class ProgressRepository {
     }
   }
 
+  /// Crea la cuenta con email/contraseña (autoconfirm → sesión inmediata).
+  Future<void> signUpEmail(String email, String password) async {
+    await _client.auth.signUp(email: email, password: password);
+  }
+
+  /// Persiste el plan del onboarding (personalidad, plan, nivel, 4 skills).
+  Future<void> createPlan({
+    required String coachStyle,
+    required int intensity,
+    required String currentLevel,
+    required String goalLevel,
+    required int dailyMinutes,
+    required int daysPerWeek,
+    required String motive,
+    String? deadline,
+    required int estimatedHours,
+    required String estimatedCompletion,
+    required Map<String, String> skillLevels,
+  }) async {
+    await _client.rpc('create_plan', params: {
+      'p_coach_style': coachStyle,
+      'p_intensity': intensity,
+      'p_current_level': currentLevel,
+      'p_goal_level': goalLevel,
+      'p_daily_minutes': dailyMinutes,
+      'p_days_per_week': daysPerWeek,
+      'p_motive': motive,
+      'p_deadline': deadline,
+      'p_estimated_hours': estimatedHours,
+      'p_estimated_completion': estimatedCompletion,
+      'p_skill_levels': skillLevels,
+    });
+  }
+
+  /// El plan del usuario (para la tarjeta "Mi plan").
+  Future<UserPlan?> fetchPlan() async {
+    final uid = _uid;
+    if (uid == null) return null;
+    final res = await _client
+        .from('user_plans')
+        .select(
+          'current_level, goal_level, daily_minutes, days_per_week, motive, '
+          'deadline, estimated_hours, estimated_completion_date',
+        )
+        .eq('user_id', uid)
+        .maybeSingle();
+    return res == null ? null : UserPlan.fromJson(res);
+  }
+
   /// Arranca el curso: crea progreso + las 4 habilidades (idempotente).
   Future<void> startCourse() async {
     await _client.rpc('start_course');

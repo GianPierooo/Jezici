@@ -5,6 +5,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'core/config/supabase_config.dart';
 import 'core/theme/app_theme.dart';
+import 'features/onboarding/onboarding_screen.dart';
 import 'features/shell/home_shell.dart';
 
 Future<void> main() async {
@@ -13,27 +14,13 @@ Future<void> main() async {
   // Cargar .env (dev local). Si no existe, seguimos con --dart-define.
   try {
     await dotenv.load(fileName: '.env');
-  } catch (_) {
-    // .env opcional: la config puede venir por --dart-define.
-  }
+  } catch (_) {}
 
   if (SupabaseConfig.isConfigured) {
     await Supabase.initialize(
       url: SupabaseConfig.url,
       publishableKey: SupabaseConfig.clientKey,
     );
-
-    // Auth mínima TEMPORAL (el onboarding real es el paso G): sesión anónima
-    // para tener auth.users (trigger crea perfil + stats + racha) y arranque
-    // del curso (progreso + 4 habilidades). El contenido es público, así que
-    // si esto falla la app igual abre el mapa en modo lectura.
-    try {
-      final client = Supabase.instance.client;
-      if (client.auth.currentSession == null) {
-        await client.auth.signInAnonymously();
-      }
-      await client.rpc('start_course');
-    } catch (_) {}
   }
 
   runApp(const ProviderScope(child: JeziciApp()));
@@ -48,7 +35,37 @@ class JeziciApp extends StatelessWidget {
       title: 'Jezici',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
-      home: const HomeShell(),
+      home: const AppRoot(),
     );
+  }
+}
+
+/// Decide la pantalla inicial: si hay sesión → mapa; si no → onboarding.
+/// El paso G reemplazó el sign-in anónimo automático del paso E.
+class AppRoot extends StatefulWidget {
+  const AppRoot({super.key});
+
+  @override
+  State<AppRoot> createState() => _AppRootState();
+}
+
+class _AppRootState extends State<AppRoot> {
+  late bool _showHome;
+
+  @override
+  void initState() {
+    super.initState();
+    var hasSession = false;
+    try {
+      hasSession = Supabase.instance.client.auth.currentSession != null;
+    } catch (_) {}
+    _showHome = hasSession;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _showHome
+        ? const HomeShell()
+        : OnboardingScreen(onComplete: () => setState(() => _showHome = true));
   }
 }
