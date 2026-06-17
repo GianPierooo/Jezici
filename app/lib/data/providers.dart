@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'models/achievement_models.dart';
 import 'models/content_item_model.dart';
 import 'models/practice_models.dart';
 import 'models/progress_models.dart';
@@ -69,4 +70,14 @@ final notificationsProvider = FutureProvider<List<NotificationItem>>(
 /// Estado de Practicar: palabras por repasar (SRS) + habilidad más débil.
 final practiceStatusProvider = FutureProvider<PracticeStatus>(
   (ref) => ref.watch(progressRepositoryProvider).fetchPracticeStatus(),
+);
+
+/// Logros/badges (catálogo + estado del usuario).
+final achievementsProvider = FutureProvider<List<Achievement>>(
+  (ref) => ref.watch(progressRepositoryProvider).fetchAchievements(),
+);
+
+/// Certificados de nivel obtenidos.
+final certificatesProvider = FutureProvider<List<Certificate>>(
+  (ref) => ref.watch(progressRepositoryProvider).fetchCertificates(),
 );

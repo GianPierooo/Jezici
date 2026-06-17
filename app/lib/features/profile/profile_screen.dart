@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/plan/estimation.dart';
 import '../../core/theme/app_colors.dart';
+import '../../data/models/achievement_models.dart';
 import '../../data/models/progress_models.dart';
 import '../../data/providers.dart';
 import '../../ui/daily_goal_bar.dart';
@@ -36,6 +37,8 @@ class ProfileScreen extends ConsumerWidget {
     final stats = ref.watch(homeStatsProvider).value ?? HomeStats.empty;
     final skillsList = ref.watch(skillsProvider).value ?? const <SkillLevel>[];
     final plan = ref.watch(userPlanProvider).value;
+    final achievements = ref.watch(achievementsProvider).value ?? const <Achievement>[];
+    final certs = ref.watch(certificatesProvider).value ?? const <Certificate>[];
     final bySkill = {for (final s in skillsList) s.skill: s};
     final skills = [
       for (final k in _order)
@@ -195,9 +198,155 @@ class ProfileScreen extends ConsumerWidget {
                   ],
                 ),
               ),
+            const SizedBox(height: 22),
+
+            // Certificados de nivel (paso Examen de nivel).
+            if (certs.isNotEmpty) ...[
+              const Text('Certificados',
+                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900, color: AppColors.text)),
+              const SizedBox(height: 10),
+              for (final c in certs) _CertCard(cert: c),
+              const SizedBox(height: 22),
+            ],
+
+            // Logros / badges.
+            Row(
+              children: [
+                const Text('Logros',
+                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900, color: AppColors.text)),
+                const Spacer(),
+                Text('${achievements.where((a) => a.unlocked).length}/${achievements.length}',
+                    style: const TextStyle(
+                        fontSize: 13, fontWeight: FontWeight.w900, color: AppColors.primary)),
+              ],
+            ),
+            const SizedBox(height: 10),
+            if (achievements.isEmpty)
+              const _EmptyHint(text: 'Completa lecciones para ganar logros.')
+            else
+              GridView.count(
+                crossAxisCount: 4,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                childAspectRatio: 0.78,
+                children: [for (final a in achievements) _BadgeTile(a: a)],
+              ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _BadgeTile extends StatelessWidget {
+  const _BadgeTile({required this.a});
+  final Achievement a;
+
+  @override
+  Widget build(BuildContext context) {
+    final on = a.unlocked;
+    return GestureDetector(
+      onTap: () => showDialog<void>(
+        context: context,
+        builder: (_) => AlertDialog(
+          title: Row(children: [
+            Text(a.icon, style: const TextStyle(fontSize: 26)),
+            const SizedBox(width: 10),
+            Expanded(child: Text(a.name, style: const TextStyle(fontWeight: FontWeight.w900))),
+          ]),
+          content: Text(on ? a.description : '🔒 ${a.hint}'),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cerrar')),
+          ],
+        ),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 56,
+            height: 56,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: on ? AppColors.navActiveBg : const Color(0xFFF0F1F8),
+              borderRadius: BorderRadius.circular(16),
+              border: on ? Border.all(color: AppColors.primary, width: 2) : null,
+            ),
+            child: Opacity(
+              opacity: on ? 1 : 0.35,
+              child: Text(a.icon, style: const TextStyle(fontSize: 26)),
+            ),
+          ),
+          const SizedBox(height: 5),
+          Text(
+            a.name,
+            maxLines: 2,
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+                fontSize: 10,
+                fontWeight: FontWeight.w800,
+                height: 1.1,
+                color: on ? AppColors.text : AppColors.textMuted),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _CertCard extends StatelessWidget {
+  const _CertCard({required this.cert});
+  final Certificate cert;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(colors: [Color(0xFFFFF8E6), Colors.white]),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: AppColors.gold.withValues(alpha: 0.5), width: 1.5),
+      ),
+      child: Row(
+        children: [
+          const Icon(Icons.workspace_premium_rounded, color: AppColors.gold, size: 34),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Certificado ${cert.cefrLevel}',
+                    style: const TextStyle(
+                        fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+                Text('Folio ${cert.folio} · cód. ${cert.verificationCode}',
+                    style: const TextStyle(
+                        fontSize: 11, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _EmptyHint extends StatelessWidget {
+  const _EmptyHint({required this.text});
+  final String text;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
+      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(16)),
+      child: Text(text,
+          textAlign: TextAlign.center,
+          style: const TextStyle(
+              fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
     );
   }
 }

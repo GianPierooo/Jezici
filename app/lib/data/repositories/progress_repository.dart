@@ -1,5 +1,6 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../models/achievement_models.dart';
 import '../models/checkpoint_models.dart';
 import '../models/practice_models.dart';
 import '../models/progress_models.dart';
@@ -229,6 +230,26 @@ class ProgressRepository {
       'p_answers': answers,
     });
     return PracticeSummary.fromJson(Map<String, dynamic>.from(res as Map));
+  }
+
+  // ── Logros + certificados (paso Perfil) ───────────────────────────────────
+
+  /// Catálogo de logros con el estado del usuario (evalúa y desbloquea al vuelo).
+  Future<List<Achievement>> fetchAchievements() async {
+    if (_uid == null) return const [];
+    final res = await _client.rpc('get_achievements');
+    return (res as List)
+        .map((e) => Achievement.fromJson(Map<String, dynamic>.from(e as Map)))
+        .toList();
+  }
+
+  /// Certificados de nivel emitidos del usuario.
+  Future<List<Certificate>> fetchCertificates() async {
+    if (_uid == null) return const [];
+    final res = await _client.rpc('get_certificates');
+    return (res as List)
+        .map((e) => Certificate.fromJson(Map<String, dynamic>.from(e as Map)))
+        .toList();
   }
 
   /// Estado para las tarjetas de Practicar: palabras por repasar + skill débil.
