@@ -1,0 +1,62 @@
+# Jezici — Go-Live (GA6: de demo a producción real)
+
+Principio rector: **honestidad sobre apariencia**. Nada falso ni a medias frente
+a usuarios reales. Lo que no está listo se OCULTA, no se simula.
+
+## 1. Inventario REAL vs DUMMY vs NO-FUNCIONAL (estado actual)
+
+| Apartado / Pantalla | Estado | Notas |
+|---|---|---|
+| Auth (crear cuenta / iniciar sesión, email) | ✅ REAL | Supabase Auth, autoconfirm. Login social Google/Apple **quitado** (no implementado). |
+| Onboarding (9 pasos) + plan | ✅ REAL | Persiste plan/personalidad (create_plan), `onboarding_completed`. |
+| Aprender (mapa, unidades, lecciones, gating) | ✅ REAL | 18 unidades (A1+A2 con contenido; B1 esqueleto oculto sin lecciones). |
+| Lección (ejercicios, vidas, XP, 4 skills) | ✅ REAL | Calificación server-side (complete_lesson). |
+| Checkpoint + gating de unidad | ✅ REAL | submit_checkpoint, desbloqueo por order_index. |
+| Examen de nivel + certificado (A1→A2…) | ✅ REAL | Multinivel, certificado SVG con folio/código. |
+| Practicar (rescate/SRS, debilidades, contrarreloj, por habilidad) | ✅ REAL | start/submit_practice, SRS SM-2 lite. |
+| Perfil (4 skills + radar, plan, logros, certificados) | ✅ REAL | Datos reales del usuario. |
+| Mi Plan (dashboard: adelante/atrás, proyección, palanca) | ✅ REAL | get_plan_tracking server-side. |
+| Ligas | ✅ REAL (GA6) | **Bots eliminados.** Solo usuarios reales + estado "arrancando" con baja población. |
+| Tienda (oro, cofre diario, vidas) | ✅ REAL | shop_status/open_daily_chest/buy_hearts. |
+| Notificaciones / Matix (in-app + web push) | ✅ REAL | matix_fire, quiet_hours, techo; web push (VAPID). |
+| Ajustes (coach, intensidad, meta, push, legal, logout, **borrar cuenta**) | ✅ REAL | Borrado de cuenta real (delete_account, cascada). |
+| Legal (Privacidad + Términos) | ✅ REAL | Enlazados en auth (alta) y ajustes. |
+| Métricas (panel interno) | ✅ REAL | get_metrics + embudo de onboarding. Uso interno. |
+| **Conversar (chat)** | 🚫 OCULTO | Fase 2: requiere IA + salas en vivo + **moderación + verificación de edad**. Apagado hasta tenerlo. |
+| **Simulacros IELTS/Cambridge** | 🚫 OCULTO | Motor real no construido (Fase 1 solo estructura). Quitado de Practicar. |
+| **Premium / pagos** | ⏸ PRÓXIMAMENTE | Sin pasarela (Stripe/RevenueCat pendientes). Pantalla "próximamente" honesta; no simula compra. |
+| Email transaccional | ⏸ PENDIENTE | Sin proveedor aún (ver §4). No se simula ningún envío al usuario. |
+
+## 2. Qué se hizo REAL / qué se OCULTÓ (GA6)
+- **Oculto:** Conversar (fuera del bottom-nav, 5→4 pestañas), Simulacros (fuera de Practicar), login social.
+- **De dummy a real:** Ligas sin bots (get_league solo reales + warming_up); avatares reales.
+- **Nuevo real:** borrado de cuenta (obligación legal) con confirmación.
+
+## 3. BD sin datos demo
+Purgados los 33 usuarios de prueba/anónimos y TODA su data (cascada). La BD queda
+solo con **contenido real del curso**: 1 course, 18 units, 61 lessons, 400
+content_items, 504 lesson_items, 184 vocabulary, 14 exams. 0 usuarios, 0 progreso,
+0 bots. Lista para usuarios reales.
+
+## 4. Producción / monitoreo / legal
+- **RLS:** reverificado — TODAS las tablas public tienen RLS habilitado + políticas. La lógica sensible (XP/oro/aprobado/cert) vive en RPC SECURITY DEFINER (server-side). Sin backdoors de test.
+- **Secretos:** ninguno en el repo; los scripts leen de `.env` (gitignored). Anon key pública por diseño (RLS).
+- **Push:** real (VAPID + Edge Function send-push).
+- **Monitoreo (Sentry):** integrado y **guardado por DSN** — no-op hasta que pegues `SENTRY_DSN` (no envía nada sin él). Ver "Necesito de ti".
+- **Borrado de cuenta + legal:** delete_account (RPC, cascada) + Privacidad/Términos enlazados.
+- **Email transaccional:** pendiente de proveedor (ver abajo).
+- **Backups:** Supabase hace backups diarios; PITR requiere plan Pro (acción tuya en el dashboard).
+
+## 5. Checklist GO-LIVE — lo que necesito de ti
+| # | Qué | Por qué | Cómo |
+|---|---|---|---|
+| 1 | **Sentry**: crear proyecto Flutter/web y darme el **DSN** | Crash reporting en prod | Pega `SENTRY_DSN` en Vercel → Settings → Environment Variables (Production). Ya está cableado en `vercel.json`. |
+| 2 | **Cuenta Apple Developer** ($99/año) + Mac/Xcode | Build y publicación iOS / TestFlight | Necesaria para firmar y subir el `.ipa`. |
+| 3 | **Cuenta Google Play Developer** ($25 único) + **keystore** | Publicación Android / internal testing | Genera el keystore (o autorízame) para firmar el AAB. |
+| 4 | **Proveedor de email** (Resend/Postmark) + API key | Bienvenida, certificado, win-back | Pega la key; integro la Edge Function de envío. |
+| 5 | **Pagos** (Stripe + RevenueCat) cuando quieras monetizar | Premium real | Sin esto, Premium queda "próximamente" (honesto). |
+| 6 | **Supabase Pro** (opcional) | PITR / backups por punto en el tiempo | Activar en el dashboard. |
+
+## 6. Listo para invitar beta (con email + cuentas dev)
+- Web (PWA) en https://jezici.vercel.app — **ya usable por usuarios reales** (auth, onboarding, curso A1+A2, exámenes, certificados, práctica, ligas reales, perfil).
+- Móvil: requiere #2/#3 para empaquetar y subir a TestFlight / Play internal testing.

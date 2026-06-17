@@ -43,6 +43,7 @@ dependencies:
   audioplayers: ^6.1.0
   speech_to_text: ^7.0.0
   shared_preferences: ^2.3.2
+  sentry_flutter: ^8.9.0
 
 dev_dependencies:
   flutter_test:
