@@ -35,3 +35,6 @@ Thumbs.db
 # Python cache (tools)
 __pycache__/
 *.pyc
+
+# Content QA working artifacts (regenerables)
+tools/content/_*
