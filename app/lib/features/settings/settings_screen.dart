@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/audio/sound_controller.dart';
 import '../../core/feedback/feedback_sheet.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/progress_models.dart';
@@ -185,6 +186,20 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                     style: const TextStyle(
                         fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
               ],
+            ),
+          ),
+          const SizedBox(height: 18),
+
+          // Sonido (GA8).
+          _section('Sonido', 'Efectos de las microinteracciones.'),
+          _Card(
+            child: SwitchListTile(
+              contentPadding: EdgeInsets.zero,
+              activeThumbColor: AppColors.primary,
+              value: ref.watch(soundEnabledProvider),
+              onChanged: (v) => ref.read(soundEnabledProvider.notifier).set(v),
+              title: const Text('Efectos de sonido',
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.text)),
             ),
           ),
           const SizedBox(height: 18),

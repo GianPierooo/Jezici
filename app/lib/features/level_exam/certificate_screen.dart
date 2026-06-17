@@ -2,6 +2,7 @@ import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../core/feedback/feedback_fx.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/achievement_models.dart';
 
@@ -27,7 +28,10 @@ class _CertificateScreenState extends State<CertificateScreen> {
   void initState() {
     super.initState();
     _confetti = ConfettiController(duration: const Duration(seconds: 3));
-    if (widget.celebrate) _confetti.play();
+    if (widget.celebrate) {
+      _confetti.play();
+      FeedbackFx.celebrate();
+    }
   }
 
   @override

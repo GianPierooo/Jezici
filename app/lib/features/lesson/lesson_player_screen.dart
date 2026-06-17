@@ -34,6 +34,7 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
 
   int _index = 0;
   int _hearts = 5; // solo para el feedback/“sin vidas”; el XP lo decide el servidor
+  int _comboCorrect = 0; // aciertos seguidos (sonido de combo)
   _Phase _phase = _Phase.answering;
   GradeResult? _result;
 
@@ -58,8 +59,14 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
       _result = res;
       if (res.graded) {
         if (res.correct) {
-          FeedbackFx.correct();
+          _comboCorrect++;
+          if (_comboCorrect >= 3) {
+            FeedbackFx.combo();
+          } else {
+            FeedbackFx.correct();
+          }
         } else {
+          _comboCorrect = 0;
           _hearts = (_hearts - 1).clamp(0, 5); // resta vida; la economía es server-side
           FeedbackFx.wrong();
         }

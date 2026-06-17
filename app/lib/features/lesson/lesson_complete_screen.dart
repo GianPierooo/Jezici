@@ -1,7 +1,9 @@
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/feedback/feedback_fx.dart';
 import '../../core/theme/app_colors.dart';
+import '../learn/widgets/parrot_mascot.dart';
 import '../../data/models/progress_models.dart';
 import '../../ui/daily_goal_bar.dart';
 import '../../ui/primary_button.dart';
@@ -31,6 +33,7 @@ class _LessonCompleteScreenState extends State<LessonCompleteScreen> {
     super.initState();
     _confetti = ConfettiController(duration: const Duration(seconds: 2));
     _confetti.play();
+    FeedbackFx.lessonComplete(golden: widget.summary.status == 'golden');
   }
 
   @override
@@ -86,7 +89,7 @@ class _LessonCompleteScreenState extends State<LessonCompleteScreen> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Text('🦜', style: TextStyle(fontSize: 90)),
+                      const ParrotMascot(size: 80, mood: MascotMood.celebrate),
                       const SizedBox(height: 6),
                       Text(
                         golden ? 'LECCIÓN PERFECTA' : 'LECCIÓN COMPLETADA',

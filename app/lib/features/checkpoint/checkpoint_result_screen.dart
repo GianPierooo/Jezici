@@ -1,6 +1,7 @@
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/feedback/feedback_fx.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/checkpoint_models.dart';
 import '../../data/models/lesson_model.dart';
@@ -42,6 +43,9 @@ class _CheckpointResultScreenState extends State<CheckpointResultScreen> {
     super.initState();
     if (widget.result.passed) {
       _confetti = ConfettiController(duration: const Duration(seconds: 2))..play();
+      FeedbackFx.celebrate();
+    } else {
+      FeedbackFx.wrong();
     }
   }
 

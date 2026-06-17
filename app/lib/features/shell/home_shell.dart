@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/audio/sound_controller.dart';
 import '../../core/feedback/feedback_sheet.dart';
 import '../../data/providers.dart';
 import '../conversar/conversar_screen.dart';
@@ -43,6 +44,7 @@ class _HomeShellState extends ConsumerState<HomeShell> {
 
   @override
   Widget build(BuildContext context) {
+    ref.watch(soundEnabledProvider); // carga la preferencia de sonido al montar
     const screens = <Widget>[
       LearnMapScreen(),
       PracticeScreen(),
