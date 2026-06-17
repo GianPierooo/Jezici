@@ -5,6 +5,7 @@ import '../../core/theme/app_colors.dart';
 import '../../data/models/progress_models.dart';
 import '../../data/providers.dart';
 import '../../ui/primary_button.dart';
+import '../legal/legal_screen.dart';
 import '../metrics/metrics_screen.dart';
 import '../notifications/coach_styles.dart';
 import '../notifications/matix_test_buttons.dart';
@@ -258,6 +259,31 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           _section('Probar a Matix', 'Simula un evento y mira el copy de tu estilo.'),
           const _Card(child: MatixTestButtons()),
           const SizedBox(height: 26),
+
+          // Legal.
+          _section('Legal', 'Cómo cuidamos tus datos.'),
+          _Card(
+            child: Column(children: [
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: const Icon(Icons.privacy_tip_rounded, color: AppColors.primary),
+                title: const Text('Política de Privacidad',
+                    style: TextStyle(fontWeight: FontWeight.w900, color: AppColors.text, fontSize: 14)),
+                trailing: const Icon(Icons.chevron_right_rounded, color: AppColors.textMuted),
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => LegalScreen.privacy())),
+              ),
+              const Divider(height: 4),
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: const Icon(Icons.description_rounded, color: AppColors.primary),
+                title: const Text('Términos y Condiciones',
+                    style: TextStyle(fontWeight: FontWeight.w900, color: AppColors.text, fontSize: 14)),
+                trailing: const Icon(Icons.chevron_right_rounded, color: AppColors.textMuted),
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => LegalScreen.terms())),
+              ),
+            ]),
+          ),
+          const SizedBox(height: 22),
 
           // Métricas (interno).
           TextButton.icon(

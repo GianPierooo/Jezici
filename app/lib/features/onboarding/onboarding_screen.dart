@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_colors.dart';
+import '../legal/legal_screen.dart';
 import '../../ui/primary_button.dart';
 import 'create_account_view.dart';
 import 'onboarding_data.dart';
@@ -174,6 +175,29 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               const Text('Tu cuenta se crea al final, primero el valor.',
                   style: TextStyle(
                       fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+              const SizedBox(height: 6),
+              Wrap(
+                alignment: WrapAlignment.center,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  const Text('Al continuar aceptas los ',
+                      style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                  GestureDetector(
+                    onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => LegalScreen.terms())),
+                    child: const Text('Términos',
+                        style: TextStyle(fontSize: 11, fontWeight: FontWeight.w900, color: AppColors.primary)),
+                  ),
+                  const Text(' y la ',
+                      style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                  GestureDetector(
+                    onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => LegalScreen.privacy())),
+                    child: const Text('Privacidad',
+                        style: TextStyle(fontSize: 11, fontWeight: FontWeight.w900, color: AppColors.primary)),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
