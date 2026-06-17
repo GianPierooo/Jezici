@@ -22,6 +22,18 @@ Future<void> main() async {
       url: SupabaseConfig.url,
       publishableKey: SupabaseConfig.clientKey,
     );
+
+    // Auth mínima TEMPORAL (el onboarding real es el paso G): sesión anónima
+    // para tener auth.users (trigger crea perfil + stats + racha) y arranque
+    // del curso (progreso + 4 habilidades). El contenido es público, así que
+    // si esto falla la app igual abre el mapa en modo lectura.
+    try {
+      final client = Supabase.instance.client;
+      if (client.auth.currentSession == null) {
+        await client.auth.signInAnonymously();
+      }
+      await client.rpc('start_course');
+    } catch (_) {}
   }
 
   runApp(const ProviderScope(child: JeziciApp()));

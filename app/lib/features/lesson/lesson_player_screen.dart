@@ -1,39 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/feedback/feedback_fx.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/content_item_model.dart';
 import '../../data/models/lesson_model.dart';
+import '../../data/providers.dart';
 import 'exercises/exercise_registry.dart';
 import 'grading/grader.dart';
 import 'lesson_complete_screen.dart';
-import 'lesson_result.dart';
 import 'widgets/no_hearts_sheet.dart';
 
 enum _Phase { answering, feedback }
 
-/// El loop de la lección: recorre los ejercicios, califica localmente, da
-/// feedback, gestiona vidas y combo. NO escribe en la BD (eso es el paso E).
-class LessonPlayerScreen extends StatefulWidget {
+/// El loop de la lección: recorre los ejercicios, da feedback inmediato (con
+/// calificación local), gestiona vidas y combo, y al terminar llama a la RPC
+/// complete_lesson (el SERVIDOR decide XP/oro/skills — Arquitectura §4/§7).
+class LessonPlayerScreen extends ConsumerStatefulWidget {
   const LessonPlayerScreen({super.key, required this.lesson, required this.items});
 
   final LessonModel lesson;
   final List<ContentItemModel> items;
 
   @override
-  State<LessonPlayerScreen> createState() => _LessonPlayerScreenState();
+  ConsumerState<LessonPlayerScreen> createState() => _LessonPlayerScreenState();
 }
 
-class _LessonPlayerScreenState extends State<LessonPlayerScreen> {
+class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
   final ValueNotifier<Object?> _answer = ValueNotifier<Object?>(null);
 
+  /// Respuestas del usuario por ítem, para que el servidor re-califique.
+  final List<Map<String, dynamic>> _answers = [];
+
   int _index = 0;
-  int _hearts = 5;
-  int _correct = 0;
-  int _graded = 0;
-  int _combo = 0;
-  int _maxCombo = 0;
-  int _comboBonusXp = 0;
+  int _hearts = 5; // solo para el feedback/“sin vidas”; el XP lo decide el servidor
   _Phase _phase = _Phase.answering;
   GradeResult? _result;
 
@@ -57,16 +57,10 @@ class _LessonPlayerScreenState extends State<LessonPlayerScreen> {
       _phase = _Phase.feedback;
       _result = res;
       if (res.graded) {
-        _graded++;
         if (res.correct) {
-          _correct++;
-          _combo++;
-          if (_combo > _maxCombo) _maxCombo = _combo;
-          if (_combo >= 3) _comboBonusXp += 2;
           FeedbackFx.correct();
         } else {
-          _combo = 0;
-          _hearts = (_hearts - 1).clamp(0, 5);
+          _hearts = (_hearts - 1).clamp(0, 5); // resta vida; la economía es server-side
           FeedbackFx.wrong();
         }
       }
@@ -77,7 +71,7 @@ class _LessonPlayerScreenState extends State<LessonPlayerScreen> {
     // Si era el último ítem, la lección ya está completa: no forzar "sin vidas"
     // (evita perder un intento terminado o pedir recarga inútil).
     if (_index + 1 >= widget.items.length) {
-      _finish();
+      _advance();
       return;
     }
     if (_hearts <= 0) {
@@ -95,6 +89,8 @@ class _LessonPlayerScreenState extends State<LessonPlayerScreen> {
   }
 
   void _advance() {
+    // Registrar la respuesta del ítem actual (para la calificación server-side).
+    _answers.add({'item_id': _item.id, 'answer': _jsonAnswer(_answer.value)});
     if (_index + 1 >= widget.items.length) {
       _finish();
       return;
@@ -107,26 +103,60 @@ class _LessonPlayerScreenState extends State<LessonPlayerScreen> {
     });
   }
 
-  void _finish() {
-    final hasGraded = _graded > 0;
-    final acc = hasGraded ? _correct / _graded : 0.0;
-    final xp = hasGraded
-        ? (widget.lesson.xpReward * acc).round() + _comboBonusXp
-        : _comboBonusXp;
-    final result = LessonResult(
-      xpEarned: xp,
-      accuracy: acc,
-      comboBonusXp: _comboBonusXp,
-      maxCombo: _maxCombo,
-      correct: _correct,
-      graded: _graded,
-      gold: hasGraded && acc >= 0.8 ? 10 : 5,
-      streakDays: 13, // placeholder; la racha real se conecta en el paso E
-      lessonTitle: widget.lesson.title,
+  /// Convierte la respuesta a algo JSON-serializable (match: claves a String).
+  Object? _jsonAnswer(Object? v) {
+    if (v is Map) return v.map((k, val) => MapEntry(k.toString(), val));
+    return v; // String, List<String> o null
+  }
+
+  Future<void> _finish() async {
+    showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => const Center(
+        child: CircularProgressIndicator(color: AppColors.primary),
+      ),
     );
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => LessonCompleteScreen(result: result)),
-    );
+    try {
+      final summary = await ref
+          .read(progressRepositoryProvider)
+          .completeLesson(widget.lesson.id, _answers);
+      // Refrescar mapa, top bar y skills con los datos nuevos.
+      ref.invalidate(lessonProgressProvider);
+      ref.invalidate(homeStatsProvider);
+      ref.invalidate(skillsProvider);
+      if (!mounted) return;
+      Navigator.of(context).pop(); // cerrar loading
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => LessonCompleteScreen(summary: summary)),
+      );
+    } catch (_) {
+      if (!mounted) return;
+      Navigator.of(context).pop(); // cerrar loading
+      showDialog<void>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('No se pudo guardar tu progreso'),
+          content: const Text('Revisa tu conexión e inténtalo de nuevo.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(ctx);
+                Navigator.of(context).popUntil((r) => r.isFirst);
+              },
+              child: const Text('Salir'),
+            ),
+            FilledButton(
+              onPressed: () {
+                Navigator.pop(ctx);
+                _finish();
+              },
+              child: const Text('Reintentar'),
+            ),
+          ],
+        ),
+      );
+    }
   }
 
   void _exit() => Navigator.of(context).popUntil((r) => r.isFirst);

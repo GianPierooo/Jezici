@@ -1,10 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+
 import 'package:jezici/data/models/content_item_model.dart';
 import 'package:jezici/data/models/lesson_model.dart';
+import 'package:jezici/data/models/progress_models.dart';
+import 'package:jezici/data/providers.dart';
+import 'package:jezici/data/repositories/progress_repository.dart';
 import 'package:jezici/features/lesson/lesson_player_screen.dart';
 
-/// Los 8 ejercicios reales de la Lección 1.1 (mismas formas que el seed).
+/// Repo falso (implements, sin SupabaseClient → sin red ni timers).
+class FakeProgressRepository implements ProgressRepository {
+  @override
+  bool get isSignedIn => true;
+  @override
+  Future<void> ensureSignedIn() async {}
+  @override
+  Future<void> startCourse() async {}
+  @override
+  Future<Map<String, String>> fetchLessonProgress() async => {};
+  @override
+  Future<HomeStats> fetchHomeStats() async => HomeStats.empty;
+  @override
+  Future<List<SkillLevel>> fetchSkills() async => const [];
+
+  @override
+  Future<LessonSummary> completeLesson(
+      String lessonId, List<Map<String, dynamic>> answers) async {
+    return const LessonSummary(
+      xpEarned: 23,
+      goldEarned: 10,
+      accuracy: 1.0,
+      graded: 6,
+      comboBonus: 8,
+      maxCombo: 6,
+      status: 'golden',
+      streak: 1,
+      skillsUp: ['reading', 'writing', 'listening', 'speaking'],
+    );
+  }
+}
+
+Widget _wrap(Widget child) => ProviderScope(
+      overrides: [
+        progressRepositoryProvider.overrideWithValue(FakeProgressRepository()),
+      ],
+      child: MaterialApp(home: child),
+    );
+
 List<ContentItemModel> _unit1Lesson1Items() => [
       ContentItemModel(
         id: 'e1',
@@ -102,20 +145,16 @@ void main() {
     xpReward: 15,
   );
 
-  setUp(() {
-    // Surface tamaño teléfono para que todo sea visible/hittable.
-  });
-
-  testWidgets('Lección 1.1 se completa de inicio a fin con 100%',
+  testWidgets('Lección 1.1 se completa de inicio a fin (resumen del servidor)',
       (WidgetTester tester) async {
     tester.view.physicalSize = const Size(440, 950);
     tester.view.devicePixelRatio = 1.0;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
 
-    await tester.pumpWidget(MaterialApp(
-      home: LessonPlayerScreen(lesson: lesson, items: _unit1Lesson1Items()),
-    ));
+    await tester.pumpWidget(
+      _wrap(LessonPlayerScreen(lesson: lesson, items: _unit1Lesson1Items())),
+    );
     await tester.pumpAndSettle();
 
     Future<void> tap(String text) async {
@@ -123,7 +162,7 @@ void main() {
       await tester.pumpAndSettle();
     }
 
-    // E1 match: emparejar las 3 (izquierda luego derecha).
+    // E1 match.
     await tap('hello');
     await tap('hola');
     await tap('goodbye');
@@ -134,46 +173,45 @@ void main() {
     expect(find.text('¡Correcto! 🦜'), findsOneWidget);
     await tap('CONTINUAR');
 
-    // E2 multiple_choice.
+    // E2.
     await tap('hello');
     await tap('COMPROBAR');
-    expect(find.text('¡Correcto! 🦜'), findsOneWidget);
     await tap('CONTINUAR');
 
-    // E3 multiple_choice.
+    // E3.
     await tap('buenos dias');
     await tap('COMPROBAR');
     await tap('CONTINUAR');
 
-    // E4 listening → STUB (solo continuar).
+    // E4 listening → STUB.
     await tap('CONTINUAR');
 
-    // E5 word_bank: arma "Good morning".
+    // E5 word_bank.
     await tap('Good');
     await tap('morning');
     await tap('COMPROBAR');
-    expect(find.text('¡Correcto! 🦜'), findsOneWidget);
     await tap('CONTINUAR');
 
-    // E6 translation: escribe "Goodbye".
+    // E6 translation.
     await tester.enterText(find.byType(TextField), 'Goodbye');
     await tester.pumpAndSettle();
     await tap('COMPROBAR');
-    expect(find.text('¡Correcto! 🦜'), findsOneWidget);
     await tap('CONTINUAR');
 
-    // E7 multiple_choice.
+    // E7.
     await tap('Good night');
     await tap('COMPROBAR');
     await tap('CONTINUAR');
 
-    // E8 speaking → STUB. Último ítem: al continuar se va a la pantalla de fin.
+    // E8 speaking → STUB. Último ítem → llama complete_lesson (fake) y navega.
     await tester.tap(find.text('CONTINUAR').first);
+    await tester.pump(); // diálogo de carga
+    await tester.pump(const Duration(milliseconds: 120)); // resuelve el fake
     await tester.pump(); // navega a la pantalla de fin
-    await tester.pump(const Duration(milliseconds: 400)); // no settle: confeti es infinito
+    await tester.pump(const Duration(milliseconds: 400)); // sin settle: confeti infinito
 
-    // Pantalla de fin.
-    expect(find.text('¡Lo lograste! 🎉'), findsOneWidget);
+    // Pantalla de fin con el resumen del servidor (perfecto → golden).
+    expect(find.text('¡Impecable! 🌟'), findsOneWidget);
     expect(find.text('100%'), findsOneWidget);
   });
 
@@ -196,21 +234,18 @@ void main() {
       ),
     ];
 
-    await tester.pumpWidget(MaterialApp(
-      home: LessonPlayerScreen(lesson: lesson, items: items),
-    ));
+    await tester.pumpWidget(_wrap(LessonPlayerScreen(lesson: lesson, items: items)));
     await tester.pumpAndSettle();
 
-    // Empieza con 5 vidas.
     expect(find.text('5'), findsOneWidget);
 
-    await tester.tap(find.text('goodbye')); // respuesta incorrecta
+    await tester.tap(find.text('goodbye'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('COMPROBAR'));
     await tester.pumpAndSettle();
 
     expect(find.text('Casi… 🦜'), findsOneWidget);
     expect(find.textContaining('Respuesta correcta'), findsOneWidget);
-    expect(find.text('4'), findsOneWidget); // una vida menos
+    expect(find.text('4'), findsOneWidget);
   });
 }

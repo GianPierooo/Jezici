@@ -2,14 +2,14 @@ import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_colors.dart';
+import '../../data/models/progress_models.dart';
 import '../../ui/primary_button.dart';
-import 'lesson_result.dart';
 
-/// Pantalla de fin: XP, precisión, bonus de combo, racha y celebración (confeti).
-/// NO persiste nada en la BD (eso es el paso E); solo muestra el resumen local.
+/// Pantalla de fin: muestra el resumen DEVUELTO POR EL SERVIDOR (complete_lesson).
+/// XP, precisión, oro, bonus de combo, racha y las habilidades que subieron.
 class LessonCompleteScreen extends StatefulWidget {
-  const LessonCompleteScreen({super.key, required this.result});
-  final LessonResult result;
+  const LessonCompleteScreen({super.key, required this.summary});
+  final LessonSummary summary;
 
   @override
   State<LessonCompleteScreen> createState() => _LessonCompleteScreenState();
@@ -17,6 +17,13 @@ class LessonCompleteScreen extends StatefulWidget {
 
 class _LessonCompleteScreenState extends State<LessonCompleteScreen> {
   late final ConfettiController _confetti;
+
+  static const _skillLabels = {
+    'reading': 'Reading',
+    'listening': 'Listening',
+    'writing': 'Writing',
+    'speaking': 'Speaking',
+  };
 
   @override
   void initState() {
@@ -33,12 +40,12 @@ class _LessonCompleteScreenState extends State<LessonCompleteScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final r = widget.result;
+    final r = widget.summary;
+    final golden = r.status == 'golden';
     return Scaffold(
       backgroundColor: AppColors.background,
       body: Column(
         children: [
-          // Header de celebración.
           SizedBox(
             height: 300,
             width: double.infinity,
@@ -81,7 +88,7 @@ class _LessonCompleteScreenState extends State<LessonCompleteScreen> {
                       const Text('🦜', style: TextStyle(fontSize: 90)),
                       const SizedBox(height: 6),
                       Text(
-                        'LECCIÓN COMPLETADA',
+                        golden ? 'LECCIÓN PERFECTA' : 'LECCIÓN COMPLETADA',
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w900,
@@ -90,9 +97,9 @@ class _LessonCompleteScreenState extends State<LessonCompleteScreen> {
                         ),
                       ),
                       const SizedBox(height: 2),
-                      const Text(
-                        '¡Lo lograste! 🎉',
-                        style: TextStyle(
+                      Text(
+                        golden ? '¡Impecable! 🌟' : '¡Lo lograste! 🎉',
+                        style: const TextStyle(
                           fontSize: 27,
                           fontWeight: FontWeight.w900,
                           color: Colors.white,
@@ -104,7 +111,6 @@ class _LessonCompleteScreenState extends State<LessonCompleteScreen> {
               ],
             ),
           ),
-          // Recompensas.
           Expanded(
             child: SingleChildScrollView(
               padding: const EdgeInsets.fromLTRB(20, 22, 20, 24),
@@ -130,20 +136,20 @@ class _LessonCompleteScreenState extends State<LessonCompleteScreen> {
                       const SizedBox(width: 12),
                       _RewardTile(
                         icon: Icons.monetization_on_rounded,
-                        value: '+${r.gold}',
+                        value: '+${r.goldEarned}',
                         label: 'ORO',
                         bg: const Color(0xFFFFF4D6),
                         fg: AppColors.goldDark,
                       ),
                     ],
                   ),
-                  if (r.comboBonusXp > 0) ...[
+                  if (r.comboBonus > 0) ...[
                     const SizedBox(height: 13),
                     _InfoRow(
                       leading: const Text('⚡', style: TextStyle(fontSize: 18)),
                       leadingBg: AppColors.coral,
                       title: 'Bonus de combo',
-                      subtitle: '+${r.comboBonusXp} XP · x${r.maxCombo} seguidas',
+                      subtitle: '+${r.comboBonus} XP · x${r.maxCombo} seguidas',
                       subtitleColor: AppColors.coral,
                     ),
                   ],
@@ -163,7 +169,7 @@ class _LessonCompleteScreenState extends State<LessonCompleteScreen> {
                         const SizedBox(width: 10),
                         Expanded(
                           child: Text(
-                            '🔥 ${r.streakDays} días de racha',
+                            '🔥 ${r.streak} ${r.streak == 1 ? 'día' : 'días'} de racha',
                             style: const TextStyle(
                               fontSize: 17,
                               fontWeight: FontWeight.w900,
@@ -171,73 +177,76 @@ class _LessonCompleteScreenState extends State<LessonCompleteScreen> {
                             ),
                           ),
                         ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                          decoration: BoxDecoration(
-                            color: AppColors.streak,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: const Text('+1 hoy',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 11)),
-                        ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 13),
-                  // Vista previa de habilidades (la subida real se guarda en el paso E).
-                  Container(
-                    padding: const EdgeInsets.all(14),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(18),
-                      boxShadow: const [
-                        BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 4), blurRadius: 0),
-                      ],
-                    ),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              width: 40,
-                              height: 40,
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFE7F9EF),
-                                borderRadius: BorderRadius.circular(12),
+                  if (r.skillsUp.isNotEmpty) ...[
+                    const SizedBox(height: 13),
+                    Container(
+                      padding: const EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(18),
+                        boxShadow: const [
+                          BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 4), blurRadius: 0),
+                        ],
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                width: 40,
+                                height: 40,
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFE7F9EF),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: const Icon(Icons.insights_rounded,
+                                    color: AppColors.success, size: 20),
                               ),
-                              child: const Icon(Icons.insights_rounded,
-                                  color: AppColors.success, size: 20),
-                            ),
-                            const SizedBox(width: 11),
-                            const Expanded(
-                              child: Text(
-                                'Progreso de habilidades',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w900,
-                                  color: AppColors.text,
+                              const SizedBox(width: 11),
+                              const Expanded(
+                                child: Text(
+                                  'Habilidades que subieron',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w900,
+                                    color: AppColors.text,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const Icon(Icons.lock_clock_rounded,
-                                color: AppColors.textMuted, size: 18),
-                          ],
-                        ),
-                        const SizedBox(height: 8),
-                        const Text(
-                          'Tus 4 habilidades suben al guardar el progreso (paso E).',
-                          style: TextStyle(
-                            fontSize: 11.5,
-                            fontWeight: FontWeight.w800,
-                            color: AppColors.textMuted,
+                            ],
                           ),
-                        ),
-                      ],
+                          const SizedBox(height: 10),
+                          Wrap(
+                            spacing: 8,
+                            runSpacing: 8,
+                            children: [
+                              for (final s in r.skillsUp)
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 11, vertical: 6),
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFFE7F9EF),
+                                    borderRadius: BorderRadius.circular(11),
+                                  ),
+                                  child: Text(
+                                    '${_skillLabels[s] ?? s} ▲',
+                                    style: const TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w900,
+                                      color: AppColors.successDark,
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
+                  ],
                   const SizedBox(height: 22),
                   PrimaryButton(
                     label: 'CONTINUAR',

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../learn/learn_map_screen.dart';
+import '../profile/profile_screen.dart';
 import '../shared/placeholder_screen.dart';
 import 'widgets/bottom_nav.dart';
 
@@ -23,7 +24,7 @@ class _HomeShellState extends State<HomeShell> {
       PlaceholderScreen(title: 'Practicar', icon: Icons.fitness_center_rounded),
       PlaceholderScreen(title: 'Conversar', icon: Icons.forum_rounded),
       PlaceholderScreen(title: 'Ligas', icon: Icons.emoji_events_rounded),
-      PlaceholderScreen(title: 'Perfil', icon: Icons.person_rounded),
+      ProfileScreen(),
     ];
 
     return Scaffold(

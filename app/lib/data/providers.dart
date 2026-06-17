@@ -2,8 +2,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'models/content_item_model.dart';
+import 'models/progress_models.dart';
 import 'models/unit_model.dart';
 import 'repositories/content_repository.dart';
+import 'repositories/progress_repository.dart';
 
 /// Cliente Supabase global (inicializado en main()).
 final supabaseClientProvider = Provider<SupabaseClient>(
@@ -25,4 +27,25 @@ final lessonItemsProvider =
     FutureProvider.family<List<ContentItemModel>, String>(
   (ref, lessonId) =>
       ref.watch(contentRepositoryProvider).fetchLessonItems(lessonId),
+);
+
+// ── Progreso del usuario (paso E) ───────────────────────────────────────────
+
+final progressRepositoryProvider = Provider<ProgressRepository>(
+  (ref) => ProgressRepository(ref.watch(supabaseClientProvider)),
+);
+
+/// Estado real de cada nodo del mapa (lesson_id -> status).
+final lessonProgressProvider = FutureProvider<Map<String, String>>(
+  (ref) => ref.watch(progressRepositoryProvider).fetchLessonProgress(),
+);
+
+/// Stats reales (XP, oro, vidas, racha, meta diaria).
+final homeStatsProvider = FutureProvider<HomeStats>(
+  (ref) => ref.watch(progressRepositoryProvider).fetchHomeStats(),
+);
+
+/// Las 4 habilidades del usuario.
+final skillsProvider = FutureProvider<List<SkillLevel>>(
+  (ref) => ref.watch(progressRepositoryProvider).fetchSkills(),
 );

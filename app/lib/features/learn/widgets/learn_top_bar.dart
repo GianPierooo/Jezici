@@ -1,27 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_colors.dart';
+import '../../../data/models/progress_models.dart';
+import '../../../data/providers.dart';
 import '../../../ui/stat_chip.dart';
 
 /// Top bar minimal de "Aprender" (Estructura_App §1, §3): idioma activo · racha ·
-/// oro · vidas · mini anillo de meta diaria. Flotante y translúcida.
-/// Valores placeholder en el paso C (los stats reales del usuario llegan en E).
-class LearnTopBar extends StatelessWidget {
-  const LearnTopBar({
-    super.key,
-    this.streak = 12,
-    this.gold = 340,
-    this.hearts = 5,
-    this.dailyGoal = 0.66,
-  });
-
-  final int streak;
-  final int gold;
-  final int hearts;
-  final double dailyGoal;
+/// oro · vidas · mini anillo de meta diaria. Lee datos REALES (paso E).
+class LearnTopBar extends ConsumerWidget {
+  const LearnTopBar({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final stats = ref.watch(homeStatsProvider).value ?? HomeStats.empty;
+
     return Container(
       margin: const EdgeInsets.fromLTRB(12, 8, 12, 0),
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -39,7 +32,6 @@ class LearnTopBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Idioma activo (bandera).
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
             decoration: BoxDecoration(
@@ -58,13 +50,13 @@ class LearnTopBar extends StatelessWidget {
           ),
           Row(
             children: [
-              StreakIndicator(days: streak),
+              StreakIndicator(days: stats.currentStreak),
               const SizedBox(width: 13),
-              GoldCounter(amount: gold),
+              GoldCounter(amount: stats.gold),
               const SizedBox(width: 13),
-              HeartsIndicator(hearts: hearts),
+              HeartsIndicator(hearts: stats.hearts),
               const SizedBox(width: 13),
-              _DailyGoalRing(value: dailyGoal),
+              _DailyGoalRing(value: stats.dailyProgress),
             ],
           ),
         ],

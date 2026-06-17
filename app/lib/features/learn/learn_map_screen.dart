@@ -44,7 +44,9 @@ class LearnMapScreen extends ConsumerWidget {
                   message: 'Aún no hay contenido sembrado.',
                 );
               }
-              return _MapBody(unit: units.first);
+              // Estados de nodo REALES desde user_lesson_progress (paso E).
+              final progress = ref.watch(lessonProgressProvider).value ?? const {};
+              return _MapBody(unit: units.first, progress: progress);
             },
           ),
         ),
@@ -63,8 +65,9 @@ class LearnMapScreen extends ConsumerWidget {
 /// Cuerpo del mapa: posiciona los nodos a lo largo de un sendero serpenteante,
 /// de abajo (nodo disponible) hacia arriba (la cima / certificado).
 class _MapBody extends StatefulWidget {
-  const _MapBody({required this.unit});
+  const _MapBody({required this.unit, required this.progress});
   final UnitModel unit;
+  final Map<String, String> progress; // lesson_id -> status (real)
 
   @override
   State<_MapBody> createState() => _MapBodyState();
@@ -96,12 +99,34 @@ class _MapBodyState extends State<_MapBody> {
     super.dispose();
   }
 
-  /// Estado local (paso C): primera lección disponible, el resto bloqueadas.
-  /// El progreso real se conecta en el paso E.
-  int get _availableIndex {
+  /// Fallback local si aún no hay progreso (p. ej. auth no lista).
+  int get _fallbackAvailableIndex {
     final lessons = widget.unit.lessons;
     final i = lessons.indexWhere((l) => l.type == LessonType.lesson);
     return i >= 0 ? i : 0;
+  }
+
+  /// Estado del nodo: del progreso REAL (user_lesson_progress); si no hay
+  /// progreso cargado, heurística local (primera lección disponible).
+  NodeState _stateFor(LessonModel lesson, int index) {
+    final status = widget.progress[lesson.id];
+    if (status != null) {
+      switch (status) {
+        case 'completed':
+          return NodeState.completed;
+        case 'golden':
+          return NodeState.mastered;
+        case 'available':
+        case 'in_progress':
+          return NodeState.available;
+        default:
+          return NodeState.locked;
+      }
+    }
+    if (widget.progress.isEmpty) {
+      return index == _fallbackAvailableIndex ? NodeState.available : NodeState.locked;
+    }
+    return NodeState.locked;
   }
 
   double _laneX(double width, int i) {
@@ -110,7 +135,8 @@ class _MapBodyState extends State<_MapBody> {
   }
 
   void _onTapNode(LessonModel lesson, NodeState state) {
-    if (state == NodeState.available) {
+    // Disponible o ya completada (repaso) → abrir la lección. Bloqueada → aviso.
+    if (state != NodeState.locked) {
       Navigator.of(context).push(
         MaterialPageRoute(builder: (_) => LessonPreviewScreen(lesson: lesson)),
       );
@@ -128,7 +154,6 @@ class _MapBodyState extends State<_MapBody> {
   Widget build(BuildContext context) {
     final lessons = widget.unit.lessons;
     final n = lessons.length;
-    final availableIndex = _availableIndex;
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -182,7 +207,7 @@ class _MapBodyState extends State<_MapBody> {
         for (var i = 0; i < n; i++) {
           final lesson = lessons[i];
           final c = centers[i];
-          final state = i == availableIndex ? NodeState.available : NodeState.locked;
+          final state = _stateFor(lesson, i);
           final size = lesson.type == LessonType.checkpoint ? 88.0 : 72.0;
           final box = size * 1.5;
 
