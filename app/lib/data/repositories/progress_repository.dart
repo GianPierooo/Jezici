@@ -122,6 +122,11 @@ class ProgressRepository {
     return LessonSummary.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
+  /// "Empezar el viaje": completa el nodo misión y desbloquea el siguiente.
+  Future<void> completeMission(String lessonId) async {
+    await _client.rpc('complete_mission', params: {'p_lesson_id': lessonId});
+  }
+
   /// Arma el examen del checkpoint (set aleatorizado, server-side).
   Future<CheckpointStartData> startCheckpoint(String lessonId) async {
     final res = await _client.rpc('start_checkpoint', params: {'p_lesson_id': lessonId});

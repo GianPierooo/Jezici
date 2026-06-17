@@ -24,6 +24,8 @@ class FakeProgressRepository implements ProgressRepository {
   @override
   Future<void> startCourse() async {}
   @override
+  Future<void> completeMission(String lessonId) async {}
+  @override
   Future<Map<String, String>> fetchLessonProgress() async => {};
   @override
   Future<HomeStats> fetchHomeStats() async => HomeStats.empty;

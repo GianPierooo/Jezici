@@ -9,6 +9,7 @@ import '../../data/models/unit_model.dart';
 import '../../data/providers.dart';
 import '../checkpoint/checkpoint_intro_screen.dart';
 import '../lesson/lesson_preview_screen.dart';
+import 'mission_screen.dart';
 import 'widgets/learn_top_bar.dart';
 import 'widgets/map_node.dart';
 import 'widgets/parrot_mascot.dart';
@@ -199,9 +200,11 @@ class _MapBodyState extends State<_MapBody> {
     // Bloqueada → aviso. Disponible/completada → checkpoint o lección.
     if (state != NodeState.locked) {
       Navigator.of(context).push(MaterialPageRoute(
-        builder: (_) => lesson.type == LessonType.checkpoint
-            ? CheckpointIntroScreen(lesson: lesson, unitTitle: entry.unit.title)
-            : LessonPreviewScreen(lesson: lesson),
+        builder: (_) => switch (lesson.type) {
+          LessonType.checkpoint => CheckpointIntroScreen(lesson: lesson, unitTitle: entry.unit.title),
+          LessonType.mission => MissionScreen(lesson: lesson),
+          _ => LessonPreviewScreen(lesson: lesson),
+        },
       ));
       return;
     }
