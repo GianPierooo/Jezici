@@ -141,11 +141,11 @@ def main():
 
     print('\n' + ('=' * 50))
     if FAILS:
-        print(f'❌ {len(FAILS)} ASERCIONES FALLARON:')
+        print(f'[FAIL] {len(FAILS)} ASERCIONES FALLARON:')
         for f in FAILS:
             print('  - ' + f)
         sys.exit(1)
-    print('✅ E2E EN VIVO: todas las aserciones PASARON')
+    print('[OK] E2E EN VIVO: todas las aserciones PASARON')
 
 if __name__ == '__main__':
     main()

@@ -194,6 +194,8 @@ class _YourPlanViewState extends State<YourPlanView> {
                       atMax
                           ? '¡Vas al máximo ritmo! 🔥'
                           : 'Quiero llegar más rápido (sube a ${_tiers[_tiers.indexOf(_dailyMin) + 1]} min/día)',
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                           fontSize: 13.5,
                           fontWeight: FontWeight.w900,

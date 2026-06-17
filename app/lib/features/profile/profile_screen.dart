@@ -53,8 +53,6 @@ class ProfileScreen extends ConsumerWidget {
     'writing': Icons.edit_rounded,
     'speaking': Icons.mic_rounded,
   };
-  static const _cefrRank = {'A1': 0, 'A2': 1, 'B1': 2, 'B2': 3, 'C1': 4, 'C2': 5};
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final stats = ref.watch(homeStatsProvider).value ?? HomeStats.empty;
@@ -75,13 +73,13 @@ class ProfileScreen extends ConsumerWidget {
     SkillLevel? strongSkill;
     if (skills.isNotEmpty) {
       weakSkill = skills.reduce((a, b) {
-        final ra = (_cefrRank[a.cefrLevel] ?? 0) * 1000 + a.progressPoints;
-        final rb = (_cefrRank[b.cefrLevel] ?? 0) * 1000 + b.progressPoints;
+        final ra = (kCefrRank[a.cefrLevel] ?? 0) * 1000 + a.progressPoints;
+        final rb = (kCefrRank[b.cefrLevel] ?? 0) * 1000 + b.progressPoints;
         return ra <= rb ? a : b;
       });
       strongSkill = skills.reduce((a, b) {
-        final ra = (_cefrRank[a.cefrLevel] ?? 0) * 1000 + a.progressPoints;
-        final rb = (_cefrRank[b.cefrLevel] ?? 0) * 1000 + b.progressPoints;
+        final ra = (kCefrRank[a.cefrLevel] ?? 0) * 1000 + a.progressPoints;
+        final rb = (kCefrRank[b.cefrLevel] ?? 0) * 1000 + b.progressPoints;
         return ra >= rb ? a : b;
       });
       weakest = weakSkill.skill;
