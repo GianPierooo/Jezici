@@ -8,6 +8,7 @@ import 'package:jezici/data/models/achievement_models.dart';
 import 'package:jezici/data/models/league_models.dart';
 import 'package:jezici/data/models/lesson_model.dart';
 import 'package:jezici/data/models/level_exam_models.dart';
+import 'package:jezici/data/models/shop_models.dart';
 import 'package:jezici/data/models/practice_models.dart';
 import 'package:jezici/data/models/progress_models.dart';
 import 'package:jezici/data/providers.dart';
@@ -34,6 +35,14 @@ class FakeProgressRepository implements ProgressRepository {
   Future<UserPlan?> fetchPlan() async => null;
   @override
   Future<Map<String, dynamic>> useStreakFreeze() async => {'ok': true, 'gold': 0};
+  @override
+  Future<ShopStatus> fetchShopStatus() async => ShopStatus.empty;
+  @override
+  Future<Map<String, dynamic>> openDailyChest() async => {'ok': true, 'reward': 20};
+  @override
+  Future<Map<String, dynamic>> buyHearts() async => {'ok': true, 'hearts': 5};
+  @override
+  Future<void> signOut() async {}
   @override
   Future<UserSettings> fetchSettings() async => UserSettings.fallback;
   @override

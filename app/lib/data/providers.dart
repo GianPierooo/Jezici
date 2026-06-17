@@ -7,6 +7,7 @@ import 'models/league_models.dart';
 import 'models/level_exam_models.dart';
 import 'models/practice_models.dart';
 import 'models/progress_models.dart';
+import 'models/shop_models.dart';
 import 'models/unit_model.dart';
 import 'repositories/content_repository.dart';
 import 'repositories/progress_repository.dart';
@@ -92,4 +93,9 @@ final leagueProvider = FutureProvider<LeagueStanding>(
 /// Estado del examen de nivel (desbloqueo + requisitos).
 final levelExamStatusProvider = FutureProvider<LevelExamStatus>(
   (ref) => ref.watch(progressRepositoryProvider).fetchLevelExamStatus(),
+);
+
+/// Estado de la Tienda (oro, vidas, congeladores, cofre).
+final shopStatusProvider = FutureProvider<ShopStatus>(
+  (ref) => ref.watch(progressRepositoryProvider).fetchShopStatus(),
 );

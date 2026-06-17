@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -58,6 +60,7 @@ class AppRoot extends StatefulWidget {
 
 class _AppRootState extends State<AppRoot> {
   late bool _showHome;
+  StreamSubscription<dynamic>? _authSub;
 
   @override
   void initState() {
@@ -65,8 +68,20 @@ class _AppRootState extends State<AppRoot> {
     var hasSession = false;
     try {
       hasSession = Supabase.instance.client.auth.currentSession != null;
+      // Reaccionar a login/logout (p. ej. "cerrar sesión" vuelve al onboarding).
+      _authSub = Supabase.instance.client.auth.onAuthStateChange.listen((data) {
+        if (!mounted) return;
+        final has = data.session != null;
+        if (has != _showHome) setState(() => _showHome = has);
+      });
     } catch (_) {}
     _showHome = hasSession;
+  }
+
+  @override
+  void dispose() {
+    _authSub?.cancel();
+    super.dispose();
   }
 
   @override

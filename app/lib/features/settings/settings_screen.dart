@@ -7,6 +7,7 @@ import '../../data/providers.dart';
 import '../../ui/primary_button.dart';
 import '../notifications/coach_styles.dart';
 import '../notifications/matix_test_buttons.dart';
+import '../premium/premium_screen.dart';
 
 /// Ajustes (Estructura_App pantalla 24): recalibrar el estilo/intensidad de
 /// Matix, definir la ventana de silencio (quiet_hours) y la meta diaria.
@@ -224,12 +225,77 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           ),
           const SizedBox(height: 26),
 
+          // Premium (paywall, Fase 1: solo estructura).
+          GestureDetector(
+            onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(builder: (_) => const PremiumScreen())),
+            child: Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(colors: [Color(0xFFFFF3D6), Color(0xFFFFFDF5)]),
+                borderRadius: BorderRadius.circular(18),
+                border: Border.all(color: AppColors.gold.withValues(alpha: 0.5), width: 1.5),
+              ),
+              child: Row(children: const [
+                Text('👑', style: TextStyle(fontSize: 26)),
+                SizedBox(width: 12),
+                Expanded(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text('Jezici Premium',
+                        style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+                    Text('Simulacros IELTS, vidas infinitas y más',
+                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                  ]),
+                ),
+                Icon(Icons.chevron_right_rounded, color: AppColors.goldDark),
+              ]),
+            ),
+          ),
+          const SizedBox(height: 22),
+
           // Probar el motor.
           _section('Probar a Matix', 'Simula un evento y mira el copy de tu estilo.'),
           const _Card(child: MatixTestButtons()),
+          const SizedBox(height: 26),
+
+          // Sesión.
+          OutlinedButton.icon(
+            onPressed: _logout,
+            icon: const Icon(Icons.logout_rounded, size: 18),
+            label: const Text('Cerrar sesión', style: TextStyle(fontWeight: FontWeight.w900)),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: AppColors.coral,
+              side: const BorderSide(color: AppColors.coral),
+              minimumSize: const Size.fromHeight(50),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+            ),
+          ),
         ],
       ),
     );
+  }
+
+  Future<void> _logout() async {
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('¿Cerrar sesión?'),
+        content: const Text('Tu progreso queda guardado en tu cuenta.'),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancelar')),
+          FilledButton(onPressed: () => Navigator.pop(ctx, true), child: const Text('Cerrar sesión')),
+        ],
+      ),
+    );
+    if (ok != true) return;
+    await ref.read(progressRepositoryProvider).signOut();
+    // Refrescar datos para el próximo usuario.
+    ref.invalidate(homeStatsProvider);
+    ref.invalidate(lessonProgressProvider);
+    ref.invalidate(skillsProvider);
+    ref.invalidate(userPlanProvider);
+    if (!mounted) return;
+    Navigator.of(context).popUntil((r) => r.isFirst);
   }
 
   Widget _section(String title, String subtitle) => Padding(

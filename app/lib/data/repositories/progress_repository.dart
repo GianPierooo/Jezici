@@ -5,6 +5,7 @@ import '../models/checkpoint_models.dart';
 import '../models/league_models.dart';
 import '../models/level_exam_models.dart';
 import '../models/practice_models.dart';
+import '../models/shop_models.dart';
 import '../models/progress_models.dart';
 
 /// Acceso a los datos de progreso del usuario y a las RPC server-side.
@@ -172,6 +173,28 @@ class ProgressRepository {
     final res = await _client.rpc('use_streak_freeze');
     return Map<String, dynamic>.from(res as Map);
   }
+
+  /// Tienda: estado (oro, vidas, congeladores, cofre disponible).
+  Future<ShopStatus> fetchShopStatus() async {
+    if (_uid == null) return ShopStatus.empty;
+    final res = await _client.rpc('shop_status');
+    return ShopStatus.fromJson(Map<String, dynamic>.from(res as Map));
+  }
+
+  /// Abre el cofre diario (recompensa variable de oro, 1/día).
+  Future<Map<String, dynamic>> openDailyChest() async {
+    final res = await _client.rpc('open_daily_chest');
+    return Map<String, dynamic>.from(res as Map);
+  }
+
+  /// Recarga vidas a 5 (cuesta oro).
+  Future<Map<String, dynamic>> buyHearts() async {
+    final res = await _client.rpc('buy_hearts');
+    return Map<String, dynamic>.from(res as Map);
+  }
+
+  /// Cierra la sesión (logout).
+  Future<void> signOut() => _client.auth.signOut();
 
   /// Ajustes de Matix del usuario (user_personality).
   Future<UserSettings> fetchSettings() async {

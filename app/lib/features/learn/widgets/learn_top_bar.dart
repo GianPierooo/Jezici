@@ -6,6 +6,7 @@ import '../../../data/models/progress_models.dart';
 import '../../../data/providers.dart';
 import '../../../ui/stat_chip.dart';
 import '../../notifications/notification_center_screen.dart';
+import '../../shop/tienda_screen.dart';
 import '../../streak/streak_screen.dart';
 
 /// Top bar minimal de "Aprender" (Estructura_App §1, §3): idioma activo · racha ·
@@ -59,7 +60,12 @@ class LearnTopBar extends ConsumerWidget {
                 child: StreakIndicator(days: stats.currentStreak),
               ),
               const SizedBox(width: 13),
-              GoldCounter(amount: stats.gold),
+              GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const TiendaScreen())),
+                child: GoldCounter(amount: stats.gold),
+              ),
               const SizedBox(width: 13),
               HeartsIndicator(hearts: stats.hearts),
               const SizedBox(width: 13),
