@@ -65,16 +65,39 @@
       hasPasskeySupport: function () { return false; }
     };
   </script>
+  <style>
+    #jz-splash{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;gap:18px;background:linear-gradient(135deg,#8A7BF6,#5B4ECF);
+      transition:opacity .35s ease;font-family:-apple-system,Segoe UI,Roboto,sans-serif}
+    #jz-splash.hide{opacity:0;pointer-events:none}
+    #jz-splash img{width:110px;height:110px;border-radius:28px;box-shadow:0 12px 30px rgba(0,0,0,.25)}
+    #jz-splash .t{color:#fff;font-weight:800;font-size:24px;letter-spacing:.5px}
+    #jz-splash .s{width:34px;height:34px;border:4px solid rgba(255,255,255,.35);border-top-color:#fff;
+      border-radius:50%;animation:jzspin 1s linear infinite}
+    @keyframes jzspin{to{transform:rotate(360deg)}}
+  </style>
 </head>
 <body>
-  <!--
-    You can customize the "flutter_bootstrap.js" script.
-    This is useful to provide a custom configuration to the Flutter loader
-    or to give the user feedback during the initialization process.
-
-    For more details:
-    * https://docs.flutter.dev/platform-integration/web/initialization
-  -->
+  <!-- Splash de marca mientras Flutter arranca (evita el flash en blanco). -->
+  <div id="jz-splash">
+    <img src="icons/Icon-192.png" alt="Jezici"/>
+    <div class="t">Jezici</div>
+    <div class="s"></div>
+  </div>
+  <script>
+    // Quitar el splash cuando Flutter monta su vista.
+    (function () {
+      function done() {
+        var s = document.getElementById('jz-splash');
+        if (s) { s.classList.add('hide'); setTimeout(function(){ s.remove(); }, 400); }
+      }
+      var obs = new MutationObserver(function () {
+        if (document.querySelector('flutter-view, flt-glass-pane')) { obs.disconnect(); done(); }
+      });
+      obs.observe(document.body, { childList: true, subtree: true });
+      setTimeout(done, 12000); // failsafe
+    })();
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

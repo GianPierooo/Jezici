@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Jezici usa el micrófono para evaluar tu pronunciación en los ejercicios de speaking.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Jezici usa el reconocimiento de voz para comparar lo que dices con el texto esperado y darte feedback.</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>
