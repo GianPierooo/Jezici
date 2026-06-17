@@ -32,9 +32,10 @@ String normalize(String s) => s
 /// lista) no debe crashear el loop; se degrada a lista vacía.
 List _asList(dynamic v) => v is List ? v : const [];
 
-/// Tipos que NO se califican en Fase 1 (faltan audios / reconocimiento de voz).
+/// Tipos que NO se califican en Fase 1. Listening YA se califica (audio real +
+/// opción correcta). Speaking es participación: el ejercicio es real (Web Speech
+/// da feedback de pronunciación), pero no penaliza el puntaje.
 bool isStubType(ContentItemType type) =>
-    type == ContentItemType.listening ||
     type == ContentItemType.speakingReadAloud ||
     type == ContentItemType.dictation ||
     type == ContentItemType.guidedWriting ||
@@ -50,6 +51,7 @@ GradeResult gradeItem(ContentItemModel item, Object? answer) {
   switch (item.type) {
     case ContentItemType.multipleChoice:
     case ContentItemType.trueFalse:
+    case ContentItemType.listening:
       final expected = (ca['value'] ?? '').toString();
       final ok = answer is String && normalize(answer) == normalize(expected);
       return GradeResult(correct: ok, graded: true, correctDisplay: expected);

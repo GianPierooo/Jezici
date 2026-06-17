@@ -275,7 +275,9 @@ void main() {
     await tap('COMPROBAR');
     await tap('CONTINUAR');
 
-    // E4 listening → STUB.
+    // E4 listening → ahora jugable (audio real + opción correcta).
+    await tap('Goodbye');
+    await tap('COMPROBAR');
     await tap('CONTINUAR');
 
     // E5 word_bank.

@@ -4,8 +4,10 @@ import '../../../data/models/content_item_model.dart';
 import '../grading/grader.dart';
 import 'cloze_exercise.dart';
 import 'common.dart';
+import 'listening_exercise.dart';
 import 'match_exercise.dart';
 import 'multiple_choice_exercise.dart';
+import 'speaking_exercise.dart';
 import 'stub_exercise.dart';
 import 'tile_arrange_exercise.dart';
 import 'translation_exercise.dart';
@@ -25,6 +27,10 @@ final Map<ContentItemType, ExerciseBuilder> exerciseRegistry = {
   ContentItemType.reorder: (c, i, a, l) =>
       TileArrangeExercise(item: i, answer: a, locked: l),
   ContentItemType.match: (c, i, a, l) => MatchExercise(item: i, answer: a, locked: l),
+  // Audio real (paso Audio): listening jugable, speaking con Web Speech.
+  ContentItemType.listening: (c, i, a, l) =>
+      ListeningExercise(item: i, answer: a, locked: l),
+  ContentItemType.speakingReadAloud: (c, i, a, l) => SpeakingExercise(item: i),
 };
 
 /// ¿Hay un widget jugable para este tipo? (los stubs no se califican)
@@ -38,8 +44,10 @@ Widget buildExerciseWidget(
   ValueNotifier<Object?> answer,
   bool locked,
 ) {
+  // listening y speaking ahora tienen widget real (audio / Web Speech); solo
+  // los tipos sin widget (dictation, guided_writing, unknown) caen al stub.
   final builder = exerciseRegistry[item.type];
-  if (builder == null || isStubType(item.type)) {
+  if (builder == null) {
     return StubExercise(item: item);
   }
   return builder(context, item, answer, locked);

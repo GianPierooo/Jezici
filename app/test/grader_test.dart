@@ -91,9 +91,15 @@ void main() {
     });
   });
 
-  group('gradeItem · stubs (no se califican)', () {
-    test('listening y speaking son stub (graded=false)', () {
-      expect(gradeItem(_item(ContentItemType.listening), 'x').graded, isFalse);
+  group('gradeItem · listening y speaking', () {
+    test('listening AHORA se califica (audio real + opción)', () {
+      final it = _item(ContentItemType.listening,
+          payload: {'options': ['eight', 'six']}, correct: {'value': 'eight'});
+      expect(gradeItem(it, 'eight').graded, isTrue);
+      expect(gradeItem(it, 'eight').correct, isTrue);
+      expect(gradeItem(it, 'six').correct, isFalse);
+    });
+    test('speaking sigue siendo participación (graded=false)', () {
       expect(gradeItem(_item(ContentItemType.speakingReadAloud), 'x').graded, isFalse);
     });
   });
