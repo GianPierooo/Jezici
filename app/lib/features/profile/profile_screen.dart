@@ -4,10 +4,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/plan/estimation.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/achievement_models.dart';
+import '../../data/models/level_exam_models.dart';
 import '../../data/models/progress_models.dart';
 import '../../data/providers.dart';
 import '../../ui/daily_goal_bar.dart';
 import '../../ui/progress_bar.dart';
+import '../level_exam/certificate_screen.dart';
+import '../level_exam/level_exam_intro_screen.dart';
 import '../notifications/notification_center_screen.dart';
 import '../settings/settings_screen.dart';
 import '../streak/streak_screen.dart';
@@ -39,6 +42,7 @@ class ProfileScreen extends ConsumerWidget {
     final plan = ref.watch(userPlanProvider).value;
     final achievements = ref.watch(achievementsProvider).value ?? const <Achievement>[];
     final certs = ref.watch(certificatesProvider).value ?? const <Certificate>[];
+    final exam = ref.watch(levelExamStatusProvider).value ?? LevelExamStatus.empty;
     final bySkill = {for (final s in skillsList) s.skill: s};
     final skills = [
       for (final k in _order)
@@ -200,6 +204,10 @@ class ProfileScreen extends ConsumerWidget {
               ),
             const SizedBox(height: 22),
 
+            // Examen de nivel (gran diferenciador) — solo si aún no certificó.
+            if (!exam.hasCertificate) _LevelExamCard(exam: exam),
+            if (!exam.hasCertificate) const SizedBox(height: 22),
+
             // Certificados de nivel (paso Examen de nivel).
             if (certs.isNotEmpty) ...[
               const Text('Certificados',
@@ -297,13 +305,74 @@ class _BadgeTile extends StatelessWidget {
   }
 }
 
+class _LevelExamCard extends StatelessWidget {
+  const _LevelExamCard({required this.exam});
+  final LevelExamStatus exam;
+
+  @override
+  Widget build(BuildContext context) {
+    final unlocked = exam.unlocked;
+    return GestureDetector(
+      onTap: unlocked
+          ? () => Navigator.of(context).push(
+              MaterialPageRoute(builder: (_) => const LevelExamIntroScreen()))
+          : null,
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          gradient: unlocked
+              ? const LinearGradient(
+                  begin: Alignment.topLeft, end: Alignment.bottomRight,
+                  colors: [Color(0xFF7A6BF0), AppColors.primary])
+              : null,
+          color: unlocked ? null : Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: const [BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 5), blurRadius: 0)],
+        ),
+        child: Row(
+          children: [
+            Text(unlocked ? '🎓' : '🔒', style: const TextStyle(fontSize: 30)),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(unlocked ? 'Examen de nivel ${exam.level}' : 'Examen de nivel ${exam.level} (bloqueado)',
+                      style: TextStyle(
+                          fontSize: 15.5, fontWeight: FontWeight.w900,
+                          color: unlocked ? Colors.white : AppColors.text)),
+                  const SizedBox(height: 2),
+                  Text(
+                    unlocked
+                        ? '¡Listo para certificar! Toca para empezar.'
+                        : 'Completa las unidades: ${exam.unitsDone}/${exam.unitsTotal} checkpoints',
+                    style: TextStyle(
+                        fontSize: 12.5, fontWeight: FontWeight.w700,
+                        color: unlocked ? Colors.white.withValues(alpha: 0.92) : AppColors.textMuted),
+                  ),
+                ],
+              ),
+            ),
+            Icon(Icons.chevron_right_rounded,
+                color: unlocked ? Colors.white : AppColors.locked),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class _CertCard extends StatelessWidget {
   const _CertCard({required this.cert});
   final Certificate cert;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (_) => CertificateScreen(cert: cert, celebrate: false))),
+      child: Container(
       margin: const EdgeInsets.only(bottom: 10),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -328,8 +397,10 @@ class _CertCard extends StatelessWidget {
               ],
             ),
           ),
+          const Icon(Icons.chevron_right_rounded, color: AppColors.goldDark),
         ],
       ),
+    ),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../models/achievement_models.dart';
 import '../models/checkpoint_models.dart';
 import '../models/league_models.dart';
+import '../models/level_exam_models.dart';
 import '../models/practice_models.dart';
 import '../models/progress_models.dart';
 
@@ -242,6 +243,30 @@ class ProgressRepository {
     return (res as List)
         .map((e) => Achievement.fromJson(Map<String, dynamic>.from(e as Map)))
         .toList();
+  }
+
+  // ── Examen de nivel + certificación ───────────────────────────────────────
+
+  Future<LevelExamStatus> fetchLevelExamStatus() async {
+    if (_uid == null) return LevelExamStatus.empty;
+    final res = await _client.rpc('level_exam_status');
+    return LevelExamStatus.fromJson(Map<String, dynamic>.from(res as Map));
+  }
+
+  Future<CheckpointStartData> startLevelExam() async {
+    final res = await _client.rpc('start_level_exam');
+    return CheckpointStartData.fromJson(Map<String, dynamic>.from(res as Map));
+  }
+
+  Future<LevelExamResult> submitLevelExam(
+    List<Map<String, dynamic>> answers,
+    int timeTakenSec,
+  ) async {
+    final res = await _client.rpc('submit_level_exam', params: {
+      'p_answers': answers,
+      'p_time_taken_sec': timeTakenSec,
+    });
+    return LevelExamResult.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
   /// Liga semanal del usuario (standings; siembra bots si faltan rivales).

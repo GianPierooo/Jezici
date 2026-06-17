@@ -4,6 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'models/achievement_models.dart';
 import 'models/content_item_model.dart';
 import 'models/league_models.dart';
+import 'models/level_exam_models.dart';
 import 'models/practice_models.dart';
 import 'models/progress_models.dart';
 import 'models/unit_model.dart';
@@ -86,4 +87,9 @@ final certificatesProvider = FutureProvider<List<Certificate>>(
 /// Liga semanal del usuario (ranking por XP de la semana).
 final leagueProvider = FutureProvider<LeagueStanding>(
   (ref) => ref.watch(progressRepositoryProvider).fetchLeague(),
+);
+
+/// Estado del examen de nivel (desbloqueo + requisitos).
+final levelExamStatusProvider = FutureProvider<LevelExamStatus>(
+  (ref) => ref.watch(progressRepositoryProvider).fetchLevelExamStatus(),
 );

@@ -7,6 +7,7 @@ import 'package:jezici/data/models/content_item_model.dart';
 import 'package:jezici/data/models/achievement_models.dart';
 import 'package:jezici/data/models/league_models.dart';
 import 'package:jezici/data/models/lesson_model.dart';
+import 'package:jezici/data/models/level_exam_models.dart';
 import 'package:jezici/data/models/practice_models.dart';
 import 'package:jezici/data/models/progress_models.dart';
 import 'package:jezici/data/providers.dart';
@@ -63,6 +64,15 @@ class FakeProgressRepository implements ProgressRepository {
   @override
   Future<LeagueStanding> fetchLeague() async =>
       const LeagueStanding(division: 'bronce', myRank: 1, promote: 5, demote: 5, members: []);
+  @override
+  Future<LevelExamStatus> fetchLevelExamStatus() async => LevelExamStatus.empty;
+  @override
+  Future<CheckpointStartData> startLevelExam() async => const CheckpointStartData(
+      examId: 'x', timeLimitSec: 600, passThreshold: 0.8, itemCount: 0, items: []);
+  @override
+  Future<LevelExamResult> submitLevelExam(
+          List<Map<String, dynamic>> answers, int timeTakenSec) async =>
+      LevelExamResult.fromJson(const {});
   @override
   Future<void> createPlan({
     required String coachStyle,
