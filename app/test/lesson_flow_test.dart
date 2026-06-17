@@ -85,8 +85,10 @@ class FakeProgressRepository implements ProgressRepository {
   @override
   Future<List<NotificationItem>> fetchNotifications() async => const [];
   @override
-  Future<PracticeSession> startPractice(String mode, {String? skill}) async =>
+  Future<PracticeSession> startPractice(String mode, {String? skill, String? unit}) async =>
       const PracticeSession(mode: 'srs', items: []);
+  @override
+  Future<SkillMasteryStatus> fetchSkillMastery() async => SkillMasteryStatus.empty;
   @override
   Future<PracticeSummary> submitPractice(String mode, List<Map<String, dynamic>> answers) async =>
       PracticeSummary.fromJson(const {});

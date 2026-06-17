@@ -67,6 +67,7 @@ class _State extends ConsumerState<LevelExamPlayerScreen> {
       final result = await ref.read(progressRepositoryProvider).submitLevelExam(_answers, taken);
       ref.invalidate(homeStatsProvider);
       ref.invalidate(skillsProvider);
+      ref.invalidate(skillMasteryProvider);
       ref.invalidate(levelExamStatusProvider);
       ref.invalidate(certificatesProvider);
       ref.invalidate(achievementsProvider);

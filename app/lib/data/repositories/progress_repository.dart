@@ -352,11 +352,13 @@ class ProgressRepository {
 
   // ── Practicar (paso Fase 1) ───────────────────────────────────────────────
 
-  /// Arma una sesión de práctica (srs | weakness | skill | timed).
-  Future<PracticeSession> startPractice(String mode, {String? skill}) async {
+  /// Arma una sesión de práctica (srs | weakness | skill | timed | reinforce_unit).
+  /// [unit] sólo aplica a 'reinforce_unit' (re-evalúa ítems débiles de la unidad).
+  Future<PracticeSession> startPractice(String mode, {String? skill, String? unit}) async {
     final res = await _client.rpc('start_practice', params: {
       'p_mode': mode,
       'p_skill': skill,
+      'p_unit': unit,
     });
     return PracticeSession.fromJson(Map<String, dynamic>.from(res as Map));
   }
@@ -390,6 +392,13 @@ class ProgressRepository {
     if (_uid == null) return LevelExamStatus.empty;
     final res = await _client.rpc('level_exam_status');
     return LevelExamStatus.fromJson(Map<String, dynamic>.from(res as Map));
+  }
+
+  /// Dominio + refuerzo por habilidad (modelo D6/D8): barras de las 4 habilidades.
+  Future<SkillMasteryStatus> fetchSkillMastery() async {
+    if (_uid == null) return SkillMasteryStatus.empty;
+    final res = await _client.rpc('get_skill_mastery');
+    return SkillMasteryStatus.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
   Future<CheckpointStartData> startLevelExam() async {

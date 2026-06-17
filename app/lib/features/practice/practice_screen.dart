@@ -30,6 +30,13 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
       final session =
           await ref.read(progressRepositoryProvider).startPractice(mode, skill: skill);
       if (!mounted) return;
+      // Reforzar puede no tener ítems débiles → no abrir un reproductor vacío.
+      if (session.items.isEmpty) {
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(const SnackBar(content: Text('¡Nada que reforzar ahora! Vas al día. 🎉')));
+        return;
+      }
       await Navigator.of(context).push(MaterialPageRoute(
         builder: (_) => PracticePlayerScreen(
           mode: mode,
@@ -39,6 +46,8 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
         ),
       ));
       ref.invalidate(practiceStatusProvider);
+      ref.invalidate(skillsProvider);
+      ref.invalidate(skillMasteryProvider);
     } catch (_) {
       if (mounted) {
         ScaffoldMessenger.of(context)
@@ -124,6 +133,14 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
             loading: _loading == 'weakness',
             color: AppColors.coral,
             onTap: () => _start('weakness', title: 'Refuerzo de debilidades'),
+          ),
+          _Card(
+            emoji: '🔧',
+            title: 'Reforzar lo que fallé',
+            subtitle: 'Re-evalúa sólo los ejercicios que erraste',
+            loading: _loading == 'reinforce_unit',
+            color: AppColors.primaryDark,
+            onTap: () => _start('reinforce_unit', title: 'Reforzar lo que fallé'),
           ),
           _Card(
             emoji: '⏱️',

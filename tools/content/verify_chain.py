@@ -74,9 +74,23 @@ def main():
         sys.exit(f"no se pudo crear usuario [{code}]: {out}")
     print("uid:", uid)
     run(f"insert into public.users(id,email) values ('{uid}','verify_a2_chain@jezici.test') on conflict (id) do nothing;")
-    # estado limpio para reintentos
+    # estado limpio para reintentos (incluye el dominio del modelo nuevo, mig 040).
     run(f"delete from certificates where user_id='{uid}'; delete from exam_attempts where user_id='{uid}'; "
-        f"delete from user_lesson_progress where user_id='{uid}';")
+        f"delete from user_lesson_progress where user_id='{uid}'; "
+        f"delete from user_skill_mastery where user_id='{uid}'; "
+        f"update user_skill_levels set cefr_level='A1', progress_points=0 where user_id='{uid}';")
+
+    course = run("select id from courses where is_active order by created_at limit 1;")
+    course = json.loads(course[1])[0]["id"]
+
+    def seed_mastery(level, correct=16):
+        """Modelo nuevo (mig 040): el examen se desbloquea por DOMINIO, no por nivel.
+        Sembramos dominio >= gate (avg mastery_pct >= 0.5) para las 4 habilidades."""
+        for s in ("reading", "listening", "writing", "speaking"):
+            run(f"""insert into user_skill_mastery(user_id,course_id,skill,cefr_level,items_seen,items_correct,lessons_done)
+                    values ('{uid}','{course}','{s}','{level}',{correct},{correct},1)
+                    on conflict (user_id,course_id,skill,cefr_level)
+                    do update set items_seen={correct}, items_correct={correct};""")
 
     print("\n== start_course ==")
     print(rpc(uid, "select start_course();"))
@@ -87,11 +101,13 @@ def main():
             from lessons l join units u on u.id=l.unit_id
             where u.cefr_level='A1' and l.type='checkpoint'
             on conflict (user_id, lesson_id) do update set status='completed';""")
+    seed_mastery("A1")  # dominio A1 alto → desbloquea el examen A1 (no por nivel).
 
-    print("\n== A1: level_exam_status ==")
+    print("\n== A1: level_exam_status (gate por DOMINIO) ==")
     st = rpc(uid, "select level_exam_status();")
     print(st)
-    assert st["level"] == "A1" and st["unlocked"] is True, "A1 debería estar desbloqueado"
+    assert st["level"] == "A1" and st["unlocked"] is True, "A1 debería estar desbloqueado (dominio)"
+    assert st.get("mastery_avg", 0) >= 0.5, f"mastery_avg debería >= 0.5: {st.get('mastery_avg')}"
 
     print("\n== A1: start_level_exam ==")
     ex = rpc(uid, "select start_level_exam();")
@@ -101,29 +117,36 @@ def main():
     answers = build_answers(ids)
     print("\n== A1: submit_level_exam (respuestas correctas) ==")
     res = rpc(uid, f"select submit_level_exam({jq(answers)}, 120);")
-    print({k: res.get(k) for k in ("passed", "level", "score_global", "graded", "correct")})
+    print({k: res.get(k) for k in ("passed", "level", "score_global", "graded", "correct", "leveled_up")})
     print("certificado:", (res.get("certificate") or {}).get("folio"))
     assert res["passed"] is True and res["level"] == "A1", "A1 debió aprobar"
     assert (res.get("certificate") or {}).get("folio", "").startswith("JZC-A1-")
+    # El usuario ya estaba en A1 → certificar A1 NO sube el nivel (leveled_up=False).
+    lv_after_a1 = json.loads(run(f"select cefr_level from user_skill_levels where user_id='{uid}' and skill='reading';")[1])[0]["cefr_level"]
+    assert lv_after_a1 == "A1" and res.get("leveled_up") is False, f"A1 no debe subir el nivel (estaba en A1): {lv_after_a1}"
 
     print("\n== tras certificar A1: level_exam_status (debe apuntar a A2) ==")
     st2 = rpc(uid, "select level_exam_status();")
     print(st2)
     assert st2["level"] == "A2", "debería avanzar a A2"
-    assert st2["unlocked"] is False, "A2 aún no listo (faltan checkpoints/skills)"
+    assert st2["unlocked"] is False, "A2 aún no listo (faltan checkpoints/dominio)"
 
-    # Simular completar A2: 6 checkpoints + 4 skills a A2.
+    # Simular completar A2: 6 checkpoints + DOMINIO A2 (no fijamos el nivel a mano).
     run(f"""insert into user_lesson_progress(user_id, lesson_id, status, best_accuracy, times_completed, completed_at)
             select '{uid}', l.id, 'completed', 0.9, 1, now()
             from lessons l join units u on u.id=l.unit_id
             where u.cefr_level='A2' and l.type='checkpoint'
             on conflict (user_id, lesson_id) do update set status='completed';""")
-    run(f"update user_skill_levels set cefr_level='A2' where user_id='{uid}';")
+    seed_mastery("A2")  # dominio A2 → desbloquea el examen A2 (el nivel sigue en A1).
+
+    # Confirmar que el nivel SIGUE en A1 antes del examen A2 (no auto-subió).
+    lv_pre_a2 = json.loads(run(f"select cefr_level from user_skill_levels where user_id='{uid}' and skill='reading';")[1])[0]["cefr_level"]
+    assert lv_pre_a2 == "A1", f"el nivel no debe subir sin aprobar el examen A2: {lv_pre_a2}"
 
     print("\n== A2: level_exam_status ==")
     st3 = rpc(uid, "select level_exam_status();")
     print(st3)
-    assert st3["level"] == "A2" and st3["unlocked"] is True, "A2 debería estar desbloqueado"
+    assert st3["level"] == "A2" and st3["unlocked"] is True, "A2 debería estar desbloqueado (dominio)"
 
     print("\n== A2: start_level_exam ==")
     ex2 = rpc(uid, "select start_level_exam();")
@@ -137,10 +160,25 @@ def main():
     answers2 = build_answers(ids2)
     print("\n== A2: submit_level_exam (respuestas correctas) ==")
     res2 = rpc(uid, f"select submit_level_exam({jq(answers2)}, 120);")
-    print({k: res2.get(k) for k in ("passed", "level", "score_global", "graded", "correct")})
+    print({k: res2.get(k) for k in ("passed", "level", "score_global", "graded", "correct", "leveled_up", "new_level")})
     print("certificado:", (res2.get("certificate") or {}).get("folio"))
     assert res2["passed"] is True and res2["level"] == "A2"
     assert (res2.get("certificate") or {}).get("folio", "").startswith("JZC-A2-")
+    # CLAVE del modelo nuevo: aprobar el examen A2 SUBE el nivel de las 4 a A2.
+    assert res2.get("leveled_up") is True and res2.get("new_level") == "A2", \
+        f"el examen A2 debió subir el nivel: {res2.get('leveled_up')}/{res2.get('new_level')}"
+    rows = json.loads(run(f"select skill, cefr_level from user_skill_levels where user_id='{uid}' order by skill;")[1])
+    print("niveles tras examen A2:", rows)
+    assert all(r["cefr_level"] == "A2" for r in rows) and len(rows) == 4, \
+        f"las 4 habilidades deben estar en A2: {rows}"
+
+    print("\n== get_skill_mastery (estado de dominio para la app) ==")
+    gm = rpc(uid, "select get_skill_mastery();")
+    print({"working_level": gm.get("working_level"),
+           "exam_unlocked": (gm.get("exam") or {}).get("unlocked"),
+           "skills": [(s["skill"], s["certified_level"], s["mastery_pct"], s["reinforce_score"]) for s in gm.get("skills", [])]})
+    assert len(gm.get("skills", [])) == 4, "get_skill_mastery debe devolver las 4 habilidades"
+    assert all("reinforce_score" in s and "mastery_pct" in s for s in gm["skills"]), "faltan campos de dominio/refuerzo"
 
     print("\n== certificados del usuario ==")
     code, out = run(f"select cefr_level, folio from certificates where user_id='{uid}' order by cefr_level;")
@@ -148,7 +186,7 @@ def main():
 
     print("\n== limpieza (borra el usuario de prueba en cascada) ==")
     admin("DELETE", f"/auth/v1/admin/users/{uid}")
-    print("\n✅ CADENA A1 → examen A1 → cert → A2 → examen A2 VERIFICADA")
+    print("\n[OK] CADENA A1 -> examen A1 -> cert -> A2 -> examen A2 VERIFICADA (modelo de dominio)")
 
 if __name__ == "__main__":
     main()

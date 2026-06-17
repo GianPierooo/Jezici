@@ -95,6 +95,8 @@ class _CheckpointPlayerScreenState extends ConsumerState<CheckpointPlayerScreen>
       ref.invalidate(lessonProgressProvider);
       ref.invalidate(homeStatsProvider);
       ref.invalidate(skillsProvider);
+      ref.invalidate(skillMasteryProvider);
+      ref.invalidate(levelExamStatusProvider);
       if (!mounted) return;
       Navigator.pop(context);
       Navigator.pushReplacement(

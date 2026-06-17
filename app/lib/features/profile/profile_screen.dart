@@ -31,6 +31,7 @@ Future<void> _practiceWeakness(BuildContext context, WidgetRef ref) async {
     ));
     ref.invalidate(practiceStatusProvider);
     ref.invalidate(skillsProvider);
+    ref.invalidate(skillMasteryProvider);
   } catch (_) {
     if (context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -57,6 +58,10 @@ class ProfileScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final stats = ref.watch(homeStatsProvider).value ?? HomeStats.empty;
     final skillsList = ref.watch(skillsProvider).value ?? const <SkillLevel>[];
+    final mastery = ref.watch(skillMasteryProvider).value;
+    final masteryBySkill = {
+      for (final m in (mastery?.skills ?? const <SkillMastery>[])) m.skill: m
+    };
     final plan = ref.watch(userPlanProvider).value;
     final achievements = ref.watch(achievementsProvider).value ?? const <Achievement>[];
     final certs = ref.watch(certificatesProvider).value ?? const <Certificate>[];
@@ -160,10 +165,14 @@ class ProfileScreen extends ConsumerWidget {
                     fontSize: 17, fontWeight: FontWeight.w900, color: AppColors.text)),
             const SizedBox(height: 4),
             const Text(
-              'Certificas un nivel solo si lo tienes en las 4.',
+              'Las lecciones suben tu DOMINIO; el nivel sube al aprobar el examen.',
               style: TextStyle(
                   fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted),
             ),
+            if (mastery != null) ...[
+              const SizedBox(height: 10),
+              _MasteryGate(mastery: mastery),
+            ],
             const SizedBox(height: 12),
             Container(
               padding: const EdgeInsets.all(16),
@@ -182,11 +191,18 @@ class ProfileScreen extends ConsumerWidget {
                       skills: skills,
                       goalLevel: plan?.goalLevel ?? 'B1',
                       size: 230,
+                      masteryPct: mastery == null
+                          ? null
+                          : {for (final m in mastery.skills) m.skill: m.masteryPct},
                     ),
                   ),
                   const SizedBox(height: 8),
                   for (var i = 0; i < skills.length; i++) ...[
-                    _SkillRow(skill: skills[i], weakest: skills[i].skill == weakest),
+                    _SkillRow(
+                      skill: skills[i],
+                      weakest: skills[i].skill == weakest,
+                      mastery: masteryBySkill[skills[i].skill],
+                    ),
                     if (i < skills.length - 1) const SizedBox(height: 16),
                   ],
                   if (weakSkill != null && strongSkill != null &&
@@ -419,7 +435,9 @@ class _LevelExamCard extends StatelessWidget {
                   Text(
                     unlocked
                         ? '¡Listo para certificar! Toca para empezar.'
-                        : 'Completa las unidades: ${exam.unitsDone}/${exam.unitsTotal} checkpoints',
+                        : (exam.unitsDone < exam.unitsTotal
+                            ? 'Completa las unidades: ${exam.unitsDone}/${exam.unitsTotal} checkpoints'
+                            : 'Sube tu dominio: ${(exam.masteryAvg * 100).round()}% (necesitas 50%)'),
                     style: TextStyle(
                         fontSize: 12.5, fontWeight: FontWeight.w700,
                         color: unlocked ? Colors.white.withValues(alpha: 0.92) : AppColors.textMuted),
@@ -567,13 +585,17 @@ class _ForYouCard extends StatelessWidget {
 }
 
 class _SkillRow extends StatelessWidget {
-  const _SkillRow({required this.skill, required this.weakest});
+  const _SkillRow({required this.skill, required this.weakest, this.mastery});
   final SkillLevel skill;
   final bool weakest;
+  final SkillMastery? mastery;
 
   @override
   Widget build(BuildContext context) {
     final label = ProfileScreen._labels[skill.skill] ?? skill.skill;
+    // Barra = DOMINIO del nivel en curso (modelo D6); si aún no hay dato, 0.
+    final barValue = mastery?.masteryPct ?? 0.0;
+    final pct = (barValue * 100).round();
     final icon = ProfileScreen._icons[skill.skill] ?? Icons.star_rounded;
     return Row(
       children: [
@@ -629,11 +651,83 @@ class _SkillRow extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 6),
-              JzProgressBar(value: skill.levelProgress, height: 8),
+              Row(
+                children: [
+                  Expanded(child: JzProgressBar(value: barValue, height: 8)),
+                  const SizedBox(width: 8),
+                  Text('$pct%',
+                      style: const TextStyle(
+                          fontSize: 11, fontWeight: FontWeight.w900, color: AppColors.textMuted)),
+                ],
+              ),
             ],
           ),
         ),
       ],
+    );
+  }
+}
+
+/// Compuerta de dominio → examen (modelo D7): muestra cuánto falta para que el
+/// examen del nivel en curso se desbloquee (promedio de dominio >= 50%).
+class _MasteryGate extends StatelessWidget {
+  const _MasteryGate({required this.mastery});
+  final SkillMasteryStatus mastery;
+
+  @override
+  Widget build(BuildContext context) {
+    final unlocked = mastery.examUnlocked;
+    final certified = mastery.examHasCertificate;
+    final avg = mastery.masteryAvg.clamp(0.0, 1.0);
+    // El examen abre con dominio promedio >= 0.5; mostramos avance hacia esa meta.
+    final toGate = (avg / 0.5).clamp(0.0, 1.0);
+    final color = certified
+        ? AppColors.success
+        : (unlocked ? AppColors.success : AppColors.primary);
+    final label = certified
+        ? 'Ya certificaste ${mastery.workingLevel} 🎓'
+        : (unlocked
+            ? 'Examen ${mastery.workingLevel} desbloqueado 🔓'
+            : 'Dominio ${mastery.workingLevel}: ${(avg * 100).round()}% — al 50% abre el examen');
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 11),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.10),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: color.withValues(alpha: 0.4), width: 1.2),
+      ),
+      child: Row(
+        children: [
+          Icon(
+              certified
+                  ? Icons.workspace_premium_rounded
+                  : (unlocked ? Icons.lock_open_rounded : Icons.insights_rounded),
+              color: color, size: 20),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(label,
+                    style: TextStyle(
+                        fontSize: 12.5, fontWeight: FontWeight.w900, color: color)),
+                if (!unlocked && !certified) ...[
+                  const SizedBox(height: 6),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(6),
+                    child: LinearProgressIndicator(
+                      value: toGate,
+                      minHeight: 6,
+                      backgroundColor: const Color(0xFFE2DEF8),
+                      valueColor: AlwaysStoppedAnimation(color),
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

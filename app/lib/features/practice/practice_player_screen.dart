@@ -124,6 +124,7 @@ class _PracticePlayerScreenState extends ConsumerState<PracticePlayerScreen> {
           await ref.read(progressRepositoryProvider).submitPractice(widget.mode, _answers);
       ref.invalidate(homeStatsProvider);
       ref.invalidate(skillsProvider);
+      ref.invalidate(skillMasteryProvider);
       ref.invalidate(practiceStatusProvider);
       if (!mounted) return;
       Navigator.of(context).pop();

@@ -92,8 +92,18 @@ def main():
           f"db={stats[0]['xp_total'] if stats else None} rpc={res.get('xp_earned')}")
     streak = q(f"select current_streak from streaks where user_id='{uid}';")
     check('DB: racha = 1', bool(streak) and streak[0]['current_streak'] == 1, str(streak))
-    skpts = q(f"select skill, cefr_level, progress_points from user_skill_levels where user_id='{uid}' order by skill;")
-    check('DB: skills sumaron puntos', any(float(s['progress_points'] or 0) > 0 for s in skpts), str(skpts))
+    # Modelo nuevo (mig 040): la lección sube DOMINIO (user_skill_mastery), no puntos.
+    mast = q(f"select skill, cefr_level, items_seen, items_correct from user_skill_mastery where user_id='{uid}' order by skill;")
+    check('DB: la lección registró DOMINIO', bool(mast) and any(int(m['items_correct'] or 0) > 0 for m in mast), str(mast))
+    lv = q(f"select distinct cefr_level from user_skill_levels where user_id='{uid}';")
+    check('DB: la lección NO subió el nivel (sigue A1)', bool(lv) and all(r['cefr_level'] == 'A1' for r in lv), str(lv))
+
+    print('\n== rehacer la lección (D9: XP reducido) ==')
+    redo = v.rpc(uid, f"select complete_lesson('{first['id']}', {v.jq(ans)});")
+    check('rehacer marca is_redo', redo.get('is_redo') is True, str(redo.get('is_redo')))
+    check('rehacer da MENOS XP que la 1ª vez',
+          (redo.get('xp_earned') or 0) < (res.get('xp_earned') or 0),
+          f"redo={redo.get('xp_earned')} vs first={res.get('xp_earned')}")
 
     print('\n== completar resto de Unidad 1 + checkpoint (gating) ==')
     for l in lessons:
@@ -122,6 +132,15 @@ def main():
         u2st = q(f"select status from user_lesson_progress where user_id='{uid}' and lesson_id='{u2l}';")
         check('gating: Unidad 2 desbloqueada', bool(u2st) and u2st[0]['status'] == 'available',
               u2st[0]['status'] if u2st else 'sin fila')
+
+    print('\n== reforzar por unidad (D9: reinforce_unit) + dominio/refuerzo ==')
+    rp = v.rpc(uid, f"select start_practice('reinforce_unit', null, '{u1}');")
+    check('reinforce_unit devuelve sesión (>=0 ítems débiles)',
+          isinstance(rp, dict) and (rp.get('item_count') is not None), f"items={rp.get('item_count') if isinstance(rp, dict) else rp}")
+    gm = v.rpc(uid, 'select get_skill_mastery();')
+    check('get_skill_mastery: 4 habilidades con dominio+refuerzo',
+          isinstance(gm, dict) and len(gm.get('skills', [])) == 4
+          and all('mastery_pct' in s and 'reinforce_score' in s for s in gm['skills']), str(gm.get('working_level')))
 
     print('\n== practicar (srs/weakness/timed) ==')
     for mode in ['srs', 'weakness', 'timed']:

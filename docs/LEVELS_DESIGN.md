@@ -1,9 +1,17 @@
 # Jezici — Lógica de niveles, dominio y refuerzo (diseño · GA9·D)
 
-> Diseño listo para implementar como UNA migración + actualización del harness
-> `verify_chain.py`. Se documenta aparte (no se mete a la fuerza al final de una
-> sesión larga) porque toca el CORAZÓN de la economía server-side ya verificada
-> (la cadena A1→examen→cert→A2 de GA3). Implementar con re-verificación.
+> **✅ IMPLEMENTADO** en la migración `20260617130040_levels_mastery_exam_gated.sql`
+> (tablas `user_skill_mastery` + `user_item_attempts`; RPCs `jz_record_mastery`,
+> `jz_mastery_pct`, `jz_reinforce_score`, `get_skill_mastery`; `complete_lesson`/
+> `submit_checkpoint`/`submit_practice` ahora suben DOMINIO (sin `jz_next_cefr`);
+> `jz_level_status` con compuerta por dominio; `submit_level_exam` sube el nivel
+> al aprobar; `start_practice('reinforce_unit', …)` para rehacer débiles). Datos
+> migrados sin regresión (ver §Backfill al final). Verificado con `verify_chain.py`
+> + `e2e_audit.py` en vivo. App: barras de dominio + compuerta + celebración de
+> subida atada al examen + entrada "Reforzar".
+>
+> Diseño original (GA9·D), conservado como referencia: tocaba el CORAZÓN de la
+> economía server-side ya verificada (la cadena A1→examen→cert→A2 de GA3).
 
 ## Estado actual (no romper)
 - `complete_lesson`/`submit_checkpoint`: +12 por ítem correcto a `progress_points`;

@@ -55,6 +55,12 @@ final skillsProvider = FutureProvider<List<SkillLevel>>(
   (ref) => ref.watch(progressRepositoryProvider).fetchSkills(),
 );
 
+/// Dominio + refuerzo por habilidad (modelo D6/D8): barras de dominio del nivel
+/// en curso + estado del examen. Reemplaza la barra "por puntos".
+final skillMasteryProvider = FutureProvider<SkillMasteryStatus>(
+  (ref) => ref.watch(progressRepositoryProvider).fetchSkillMastery(),
+);
+
 /// El plan del usuario (meta, ritmo, fecha estimada).
 final userPlanProvider = FutureProvider<UserPlan?>(
   (ref) => ref.watch(progressRepositoryProvider).fetchPlan(),

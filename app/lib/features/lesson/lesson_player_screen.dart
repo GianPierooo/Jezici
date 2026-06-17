@@ -135,6 +135,8 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
       ref.invalidate(lessonProgressProvider);
       ref.invalidate(homeStatsProvider);
       ref.invalidate(skillsProvider);
+      ref.invalidate(skillMasteryProvider);
+      ref.invalidate(levelExamStatusProvider);
       if (!mounted) return;
       Navigator.of(context).pop(); // cerrar loading
       Navigator.of(context).pushReplacement(

@@ -10,18 +10,26 @@ import '../../../data/models/progress_models.dart';
 /// (reading arriba, listening derecha, writing abajo, speaking izquierda),
 /// anillos por nivel CEFR y el polígono del usuario. Hace VISIBLE el desbalance.
 class SkillRadar extends StatelessWidget {
-  const SkillRadar({super.key, required this.skills, this.goalLevel = 'B1', this.size = 240});
+  const SkillRadar(
+      {super.key, required this.skills, this.goalLevel = 'B1', this.size = 240, this.masteryPct});
 
   final List<SkillLevel> skills;
   final String goalLevel;
   final double size;
+
+  /// Dominio 0..1 por habilidad (modelo D6). Si se provee, el polígono usa
+  /// rango_CEFR + dominio (en vez de los puntos del modelo viejo).
+  final Map<String, double>? masteryPct;
 
   @override
   Widget build(BuildContext context) {
     final bySkill = {for (final s in skills) s.skill: s};
     final scores = [
       for (final k in kSkillOrder)
-        skillScore(bySkill[k]?.cefrLevel ?? 'A1', bySkill[k]?.progressPoints ?? 0),
+        if (masteryPct != null)
+          (kCefrRank[bySkill[k]?.cefrLevel ?? 'A1'] ?? 0) + (masteryPct![k] ?? 0).clamp(0.0, 1.0)
+        else
+          skillScore(bySkill[k]?.cefrLevel ?? 'A1', bySkill[k]?.progressPoints ?? 0),
     ];
     final levels = [for (final k in kSkillOrder) bySkill[k]?.cefrLevel ?? 'A1'];
     final maxScale = math.max(
