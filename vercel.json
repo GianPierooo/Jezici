@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "git clone https://github.com/flutter/flutter.git -b stable --depth 1 && cd app && touch .env && ../flutter/bin/flutter build web --release --pwa-strategy=none --no-tree-shake-icons --dart-define=SUPABASE_URL=$SUPABASE_URL --dart-define=SUPABASE_ANON_KEY=$SUPABASE_ANON_KEY",
+  "buildCommand": "git clone https://github.com/flutter/flutter.git -b stable --depth 1 && cd app && touch .env && ../flutter/bin/flutter build web --release --pwa-strategy=none --dart-define=SUPABASE_URL=$SUPABASE_URL --dart-define=SUPABASE_ANON_KEY=$SUPABASE_ANON_KEY",
   "outputDirectory": "app/build/web",
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
