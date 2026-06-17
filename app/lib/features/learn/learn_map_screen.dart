@@ -47,7 +47,7 @@ class LearnMapScreen extends ConsumerWidget {
               }
               // Estados de nodo REALES desde user_lesson_progress (paso E).
               final progress = ref.watch(lessonProgressProvider).value ?? const {};
-              return _MapBody(unit: units.first, progress: progress);
+              return _MapBody(units: units, progress: progress);
             },
           ),
         ),
@@ -63,11 +63,20 @@ class LearnMapScreen extends ConsumerWidget {
   }
 }
 
-/// Cuerpo del mapa: posiciona los nodos a lo largo de un sendero serpenteante,
-/// de abajo (nodo disponible) hacia arriba (la cima / certificado).
-class _MapBody extends StatefulWidget {
-  const _MapBody({required this.unit, required this.progress});
+/// Una entrada del mapa: una lección con la unidad a la que pertenece.
+class _Entry {
+  const _Entry({required this.lesson, required this.unit, required this.firstOfUnit});
+  final LessonModel lesson;
   final UnitModel unit;
+  final bool firstOfUnit; // primer nodo de su unidad → ancla del banner de región
+}
+
+/// Cuerpo del mapa: posiciona los nodos de TODAS las unidades a lo largo de un
+/// sendero serpenteante continuo, de abajo (Unidad 1) hacia arriba (la cima).
+/// Las unidades superiores quedan bloqueadas hasta aprobar el checkpoint previo.
+class _MapBody extends StatefulWidget {
+  const _MapBody({required this.units, required this.progress});
+  final List<UnitModel> units;
   final Map<String, String> progress; // lesson_id -> status (real)
 
   @override
@@ -83,29 +92,42 @@ class _MapBodyState extends State<_MapBody> {
   static const double _gap = 152; // separación vertical entre nodos
   static const double _maxWidth = 430;
 
+  late List<_Entry> _entries;
+
   @override
   void initState() {
     super.initState();
+    _entries = _flatten();
     // Arrancar centrado en el nodo actual/disponible (sube al avanzar).
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_controller.hasClients) _controller.jumpTo(_targetScroll());
     });
   }
 
+  /// Aplana las lecciones de todas las unidades en un solo sendero ascendente.
+  List<_Entry> _flatten() {
+    final list = <_Entry>[];
+    for (final u in widget.units) {
+      for (var j = 0; j < u.lessons.length; j++) {
+        list.add(_Entry(lesson: u.lessons[j], unit: u, firstOfUnit: j == 0));
+      }
+    }
+    return list;
+  }
+
   /// Offset para dejar el nodo disponible en la zona inferior-media del viewport.
   double _targetScroll() {
-    final lessons = widget.unit.lessons;
-    final n = lessons.length;
+    final n = _entries.length;
     final contentHeight = _topPad + _bottomPad + (n - 1) * _gap;
     final max = _controller.position.maxScrollExtent;
     var availIndex = -1;
     for (var i = 0; i < n; i++) {
-      if (_stateFor(lessons[i], i) == NodeState.available) {
+      if (_stateFor(_entries[i].lesson, i) == NodeState.available) {
         availIndex = i;
         break;
       }
     }
-    if (availIndex < 0) return max; // nada disponible (unidad completa)
+    if (availIndex < 0) return max; // nada disponible (curso completo)
     final y = contentHeight - _bottomPad - availIndex * _gap;
     final viewport = _controller.position.viewportDimension;
     return (y - viewport * 0.58).clamp(0.0, max);
@@ -114,6 +136,7 @@ class _MapBodyState extends State<_MapBody> {
   @override
   void didUpdateWidget(covariant _MapBody old) {
     super.didUpdateWidget(old);
+    _entries = _flatten();
     // El progreso llega async; al cambiar el nodo disponible, recentrar.
     if (!_mapEquals(old.progress, widget.progress)) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -136,10 +159,10 @@ class _MapBodyState extends State<_MapBody> {
     super.dispose();
   }
 
-  /// Fallback local si aún no hay progreso (p. ej. auth no lista).
+  /// Fallback local si aún no hay progreso (p. ej. auth no lista): primera
+  /// lección (no-misión) del curso.
   int get _fallbackAvailableIndex {
-    final lessons = widget.unit.lessons;
-    final i = lessons.indexWhere((l) => l.type == LessonType.lesson);
+    final i = _entries.indexWhere((e) => e.lesson.type == LessonType.lesson);
     return i >= 0 ? i : 0;
   }
 
@@ -171,28 +194,31 @@ class _MapBodyState extends State<_MapBody> {
     return i.isEven ? width * 0.30 : width * 0.70;
   }
 
-  void _onTapNode(LessonModel lesson, NodeState state) {
+  void _onTapNode(_Entry entry, NodeState state) {
+    final lesson = entry.lesson;
     // Bloqueada → aviso. Disponible/completada → checkpoint o lección.
     if (state != NodeState.locked) {
       Navigator.of(context).push(MaterialPageRoute(
         builder: (_) => lesson.type == LessonType.checkpoint
-            ? CheckpointIntroScreen(lesson: lesson, unitTitle: widget.unit.title)
+            ? CheckpointIntroScreen(lesson: lesson, unitTitle: entry.unit.title)
             : LessonPreviewScreen(lesson: lesson),
       ));
       return;
     }
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
-      ..showSnackBar(const SnackBar(
-        content: Text('Bloqueada · completa la lección anterior'),
+      ..showSnackBar(SnackBar(
+        content: Text(entry.firstOfUnit
+            ? 'Bloqueada · aprueba el checkpoint de la unidad anterior'
+            : 'Bloqueada · completa la lección anterior'),
         behavior: SnackBarBehavior.floating,
       ));
   }
 
   @override
   Widget build(BuildContext context) {
-    final lessons = widget.unit.lessons;
-    final n = lessons.length;
+    final entries = _entries;
+    final n = entries.length;
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -242,9 +268,28 @@ class _MapBodyState extends State<_MapBody> {
           ),
         ];
 
+        // Banner de región por unidad (debajo del primer nodo de cada unidad).
+        // Una unidad está "bloqueada" solo si TODOS sus nodos están bloqueados
+        // (la misión inicial de la U1 está locked, pero la U1 no lo está).
+        for (var i = 0; i < n; i++) {
+          if (!entries[i].firstOfUnit) continue;
+          final unit = entries[i].unit;
+          final unitLocked = [
+            for (var k = 0; k < n; k++)
+              if (entries[k].unit.id == unit.id) _stateFor(entries[k].lesson, k)
+          ].every((s) => s == NodeState.locked);
+          children.add(Positioned(
+            left: 0,
+            right: 0,
+            top: centers[i].dy + _gap * 0.46,
+            child: Center(child: _UnitBanner(unit: unit, locked: unitLocked)),
+          ));
+        }
+
         // Nodos + etiquetas.
         for (var i = 0; i < n; i++) {
-          final lesson = lessons[i];
+          final entry = entries[i];
+          final lesson = entry.lesson;
           final c = centers[i];
           final state = _stateFor(lesson, i);
           final size = lesson.type == LessonType.checkpoint ? 88.0 : 72.0;
@@ -258,7 +303,7 @@ class _MapBodyState extends State<_MapBody> {
               type: lesson.type,
               state: state,
               size: size,
-              onTap: () => _onTapNode(lesson, state),
+              onTap: () => _onTapNode(entry, state),
             ),
           ));
 
@@ -286,14 +331,6 @@ class _MapBodyState extends State<_MapBody> {
             ));
           }
         }
-
-        // Banner de la unidad actual (abajo).
-        children.add(Positioned(
-          left: 0,
-          right: 0,
-          bottom: 96,
-          child: Center(child: _UnitBanner(unit: widget.unit)),
-        ));
 
         return SingleChildScrollView(
           controller: _controller,
@@ -451,11 +488,13 @@ class _SummitCertificate extends StatelessWidget {
 }
 
 class _UnitBanner extends StatelessWidget {
-  const _UnitBanner({required this.unit});
+  const _UnitBanner({required this.unit, this.locked = false});
   final UnitModel unit;
+  final bool locked;
 
   @override
   Widget build(BuildContext context) {
+    final accent = locked ? AppColors.lockedDark : AppColors.primary;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       decoration: BoxDecoration(
@@ -463,7 +502,7 @@ class _UnitBanner extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: AppColors.primary.withValues(alpha: 0.22),
+            color: accent.withValues(alpha: 0.22),
             offset: const Offset(0, 8),
             blurRadius: 20,
           ),
@@ -476,12 +515,12 @@ class _UnitBanner extends StatelessWidget {
             width: 32,
             height: 32,
             decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [AppColors.primaryLight, AppColors.primary],
-              ),
+              gradient: locked
+                  ? const LinearGradient(colors: [AppColors.locked, AppColors.lockedDark])
+                  : const LinearGradient(colors: [AppColors.primaryLight, AppColors.primary]),
               borderRadius: BorderRadius.circular(9),
             ),
-            child: const Icon(Icons.waving_hand_rounded,
+            child: Icon(locked ? Icons.lock_rounded : Icons.waving_hand_rounded,
                 color: Colors.white, size: 17),
           ),
           const SizedBox(width: 10),
@@ -490,21 +529,23 @@ class _UnitBanner extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'UNIDAD ${unit.orderIndex} · ${unit.cefrLevel}',
-                style: const TextStyle(
+                locked
+                    ? 'UNIDAD ${unit.orderIndex} · ${unit.cefrLevel} · 🔒 BLOQUEADA'
+                    : 'UNIDAD ${unit.orderIndex} · ${unit.cefrLevel}',
+                style: TextStyle(
                   fontSize: 9,
                   fontWeight: FontWeight.w900,
                   letterSpacing: 1.2,
-                  color: AppColors.primaryLight,
+                  color: locked ? AppColors.lockedDark : AppColors.primaryLight,
                 ),
               ),
               const SizedBox(height: 1),
               Text(
                 unit.title,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 14,
                   fontWeight: FontWeight.w900,
-                  color: AppColors.text,
+                  color: locked ? AppColors.textMuted : AppColors.text,
                 ),
               ),
             ],
