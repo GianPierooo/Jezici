@@ -18,48 +18,34 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="Jezici — aprende idiomas con un plan, mapa y certificación por examen.">
+  <meta name="description" content="Jezici — aprende inglés con un plan, mapa, las 4 habilidades y certificación por examen.">
+  <meta name="theme-color" content="#6C5CE7">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Jezici">
-  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>Jezici</title>
+  <title>Jezici — aprende inglés</title>
   <link rel="manifest" href="manifest.json">
 
   <!--
-    Limpieza de service worker. Una versión anterior pudo quedar cacheada por el
-    service worker de Flutter (deprecado) y seguir sirviendo un bundle roto. Esto
-    desregistra cualquier SW y borra sus caches; si encontró alguno, recarga UNA
-    vez (guardado en sessionStorage) para que el usuario reciba la versión nueva.
-    El build usa --pwa-strategy=none, así que no se vuelve a registrar ninguno.
+    Service worker PWA (update-safe): instala el app shell para que sea
+    instalable y funcione offline, sirviendo la app NETWORK-FIRST para no
+    quedarse en versiones viejas, y maneja Web Push (Matix). Se registra tras
+    cargar para no competir con el arranque.
   -->
   <script>
-    (function () {
-      if (!('serviceWorker' in navigator)) return;
-      navigator.serviceWorker.getRegistrations().then(function (regs) {
-        if (!regs.length) return;
-        var done = Promise.all(regs.map(function (r) { return r.unregister(); }));
-        if (window.caches && caches.keys) {
-          done = done.then(function () {
-            return caches.keys().then(function (keys) {
-              return Promise.all(keys.map(function (k) { return caches.delete(k); }));
-            });
-          });
-        }
-        done.finally(function () {
-          if (!sessionStorage.getItem('jz_sw_cleared')) {
-            sessionStorage.setItem('jz_sw_cleared', '1');
-            location.reload();
-          }
-        });
-      }).catch(function () {});
-    })();
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('sw.js').catch(function () {});
+      });
+    }
   </script>
 
   <!--
