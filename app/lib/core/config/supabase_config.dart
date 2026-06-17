@@ -31,10 +31,12 @@ class SupabaseConfig {
       ? _definePub
       : (_fromEnv('SUPABASE_PUBLISHABLE_KEY') ?? '');
 
-  /// Clave pública para el cliente: preferimos la publishable (nueva gen.);
-  /// si no está, caemos a la anon (legacy). Ambas respetan RLS.
+  /// Clave PÚBLICA del cliente. Preferimos la ANON key: es la que inyecta Vercel
+  /// por --dart-define (SUPABASE_ANON_KEY) y la que pide el deploy. Si no está
+  /// (algún entorno local sin anon), caemos a la publishable. Ambas son públicas
+  /// y respetan RLS. La service_role / secret key NUNCA va en el cliente.
   static String get clientKey =>
-      _publishableKey.isNotEmpty ? _publishableKey : _anonKey;
+      _anonKey.isNotEmpty ? _anonKey : _publishableKey;
 
   static bool get isConfigured => url.isNotEmpty && clientKey.isNotEmpty;
 }

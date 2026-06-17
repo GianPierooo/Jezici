@@ -18,6 +18,9 @@ Future<void> main() async {
   } catch (_) {}
 
   if (SupabaseConfig.isConfigured) {
+    // El param se llama publishableKey en supabase_flutter 2.15 (anonKey quedó
+    // deprecado), pero el VALOR que pasamos es la ANON key (clientKey). Se usa
+    // como apikey y respeta RLS. La service_role / secret key nunca va aquí.
     await Supabase.initialize(
       url: SupabaseConfig.url,
       publishableKey: SupabaseConfig.clientKey,
