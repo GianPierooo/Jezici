@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:jezici/data/models/checkpoint_models.dart';
 import 'package:jezici/data/models/content_item_model.dart';
 import 'package:jezici/data/models/lesson_model.dart';
+import 'package:jezici/data/models/practice_models.dart';
 import 'package:jezici/data/models/progress_models.dart';
 import 'package:jezici/data/providers.dart';
 import 'package:jezici/data/repositories/progress_repository.dart';
@@ -45,6 +46,14 @@ class FakeProgressRepository implements ProgressRepository {
   Future<MatixResult> matixFire(String trigger) async => MatixResult.fromJson(const {});
   @override
   Future<List<NotificationItem>> fetchNotifications() async => const [];
+  @override
+  Future<PracticeSession> startPractice(String mode, {String? skill}) async =>
+      const PracticeSession(mode: 'srs', items: []);
+  @override
+  Future<PracticeSummary> submitPractice(String mode, List<Map<String, dynamic>> answers) async =>
+      PracticeSummary.fromJson(const {});
+  @override
+  Future<PracticeStatus> fetchPracticeStatus() async => PracticeStatus.empty;
   @override
   Future<void> createPlan({
     required String coachStyle,

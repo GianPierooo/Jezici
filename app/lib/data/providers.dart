@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'models/content_item_model.dart';
+import 'models/practice_models.dart';
 import 'models/progress_models.dart';
 import 'models/unit_model.dart';
 import 'repositories/content_repository.dart';
@@ -63,4 +64,9 @@ final settingsProvider = FutureProvider<UserSettings>(
 /// Centro de notificaciones in-app (notificaciones enviadas por Matix).
 final notificationsProvider = FutureProvider<List<NotificationItem>>(
   (ref) => ref.watch(progressRepositoryProvider).fetchNotifications(),
+);
+
+/// Estado de Practicar: palabras por repasar (SRS) + habilidad más débil.
+final practiceStatusProvider = FutureProvider<PracticeStatus>(
+  (ref) => ref.watch(progressRepositoryProvider).fetchPracticeStatus(),
 );

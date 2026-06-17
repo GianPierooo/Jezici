@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../learn/learn_map_screen.dart';
+import '../practice/practice_screen.dart';
 import '../profile/profile_screen.dart';
 import '../shared/placeholder_screen.dart';
 import 'widgets/bottom_nav.dart';
@@ -21,7 +22,7 @@ class _HomeShellState extends State<HomeShell> {
   Widget build(BuildContext context) {
     const screens = <Widget>[
       LearnMapScreen(),
-      PlaceholderScreen(title: 'Practicar', icon: Icons.fitness_center_rounded),
+      PracticeScreen(),
       PlaceholderScreen(title: 'Conversar', icon: Icons.forum_rounded),
       PlaceholderScreen(title: 'Ligas', icon: Icons.emoji_events_rounded),
       ProfileScreen(),

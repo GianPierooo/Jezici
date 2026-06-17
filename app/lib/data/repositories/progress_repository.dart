@@ -1,6 +1,7 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../models/checkpoint_models.dart';
+import '../models/practice_models.dart';
 import '../models/progress_models.dart';
 
 /// Acceso a los datos de progreso del usuario y a las RPC server-side.
@@ -205,6 +206,64 @@ class ProgressRepository {
   Future<MatixResult> matixFire(String trigger) async {
     final res = await _client.rpc('matix_fire', params: {'p_trigger': trigger});
     return MatixResult.fromJson(Map<String, dynamic>.from(res as Map));
+  }
+
+  // ── Practicar (paso Fase 1) ───────────────────────────────────────────────
+
+  /// Arma una sesión de práctica (srs | weakness | skill | timed).
+  Future<PracticeSession> startPractice(String mode, {String? skill}) async {
+    final res = await _client.rpc('start_practice', params: {
+      'p_mode': mode,
+      'p_skill': skill,
+    });
+    return PracticeSession.fromJson(Map<String, dynamic>.from(res as Map));
+  }
+
+  /// Envía la práctica; el servidor recalifica, da XP (tope 20) y agenda SRS.
+  Future<PracticeSummary> submitPractice(
+    String mode,
+    List<Map<String, dynamic>> answers,
+  ) async {
+    final res = await _client.rpc('submit_practice', params: {
+      'p_mode': mode,
+      'p_answers': answers,
+    });
+    return PracticeSummary.fromJson(Map<String, dynamic>.from(res as Map));
+  }
+
+  /// Estado para las tarjetas de Practicar: palabras por repasar + skill débil.
+  Future<PracticeStatus> fetchPracticeStatus() async {
+    final uid = _uid;
+    if (uid == null) return PracticeStatus.empty;
+    final vocab = await _client.from('vocabulary').select('id');
+    final srs = await _client
+        .from('user_vocab_srs')
+        .select('due_at')
+        .eq('user_id', uid);
+    final now = DateTime.now();
+    final scheduled = (srs as List).where((r) {
+      final d = DateTime.tryParse((r as Map)['due_at']?.toString() ?? '');
+      return d != null && d.isAfter(now);
+    }).length;
+    final due = ((vocab as List).length - scheduled).clamp(0, 9999);
+
+    final skills = await _client
+        .from('user_skill_levels')
+        .select('skill, cefr_level, progress_points')
+        .eq('user_id', uid);
+    String? weakest;
+    const rank = {'A1': 0, 'A2': 1, 'B1': 2, 'B2': 3, 'C1': 4, 'C2': 5};
+    num best = 1 << 30;
+    for (final s in (skills as List)) {
+      final m = s as Map;
+      final score = (rank[m['cefr_level']] ?? 0) * 1000 +
+          ((m['progress_points'] as num?) ?? 0);
+      if (score < best) {
+        best = score;
+        weakest = m['skill'] as String?;
+      }
+    }
+    return PracticeStatus(dueWords: due, weakestSkill: weakest);
   }
 
   /// Historial de notificaciones del usuario (centro in-app).
