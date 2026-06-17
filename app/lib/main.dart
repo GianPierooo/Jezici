@@ -5,6 +5,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'core/config/supabase_config.dart';
 import 'core/theme/app_theme.dart';
+import 'features/notifications/matix_service.dart';
 import 'features/onboarding/onboarding_screen.dart';
 import 'features/shell/home_shell.dart';
 
@@ -22,6 +23,9 @@ Future<void> main() async {
       publishableKey: SupabaseConfig.clientKey,
     );
   }
+
+  // Notificaciones locales del sistema (no-op en web; real en móvil).
+  await LocalNotifier.instance.init();
 
   runApp(const ProviderScope(child: JeziciApp()));
 }

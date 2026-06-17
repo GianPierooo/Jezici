@@ -5,6 +5,8 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/models/progress_models.dart';
 import '../../../data/providers.dart';
 import '../../../ui/stat_chip.dart';
+import '../../notifications/notification_center_screen.dart';
+import '../../streak/streak_screen.dart';
 
 /// Top bar minimal de "Aprender" (Estructura_App §1, §3): idioma activo · racha ·
 /// oro · vidas · mini anillo de meta diaria. Lee datos REALES (paso E).
@@ -50,16 +52,55 @@ class LearnTopBar extends ConsumerWidget {
           ),
           Row(
             children: [
-              StreakIndicator(days: stats.currentStreak),
+              GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const StreakScreen())),
+                child: StreakIndicator(days: stats.currentStreak),
+              ),
               const SizedBox(width: 13),
               GoldCounter(amount: stats.gold),
               const SizedBox(width: 13),
               HeartsIndicator(hearts: stats.hearts),
               const SizedBox(width: 13),
-              _DailyGoalRing(value: stats.dailyProgress),
+              GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const StreakScreen())),
+                child: _DailyGoalRing(value: stats.dailyProgress),
+              ),
+              const SizedBox(width: 6),
+              _BellButton(
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => const NotificationCenterScreen())),
+              ),
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _BellButton extends StatelessWidget {
+  const _BellButton({required this.onTap});
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: onTap,
+      child: Container(
+        width: 30,
+        height: 30,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: const Color(0xFFF4F5FB),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: const Icon(Icons.notifications_rounded,
+            size: 17, color: AppColors.primary),
       ),
     );
   }

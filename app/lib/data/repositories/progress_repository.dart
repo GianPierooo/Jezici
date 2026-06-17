@@ -134,10 +134,12 @@ class ProgressRepository {
 
     final streak = await _client
         .from('streaks')
-        .select('current_streak')
+        .select('current_streak, longest_streak, freezes_available')
         .eq('user_id', uid)
         .maybeSingle();
 
+    // Meta diaria más reciente. (El día lo decide el servidor en UTC; filtrar
+    // por la fecha local del navegador desincroniza, así que tomamos la última.)
     final daily = await _client
         .from('daily_goals')
         .select('goal_xp, xp_earned')
@@ -152,9 +154,73 @@ class ProgressRepository {
       hearts: (stats['hearts'] as num?)?.toInt() ?? 5,
       playerLevel: (stats['player_level'] as num?)?.toInt() ?? 1,
       currentStreak: (streak?['current_streak'] as num?)?.toInt() ?? 0,
+      longestStreak: (streak?['longest_streak'] as num?)?.toInt() ?? 0,
+      freezes: (streak?['freezes_available'] as num?)?.toInt() ?? 0,
       dailyGoalXp: (daily?['goal_xp'] as num?)?.toInt() ?? 30,
       dailyXpEarned: (daily?['xp_earned'] as num?)?.toInt() ?? 0,
     );
+  }
+
+  // ── Racha, ajustes y motor Matix (paso H) ─────────────────────────────────
+
+  /// Compra un congelador de racha (cuesta oro; el servidor decide).
+  Future<Map<String, dynamic>> useStreakFreeze() async {
+    final res = await _client.rpc('use_streak_freeze');
+    return Map<String, dynamic>.from(res as Map);
+  }
+
+  /// Ajustes de Matix del usuario (user_personality).
+  Future<UserSettings> fetchSettings() async {
+    final uid = _uid;
+    if (uid == null) return UserSettings.fallback;
+    final res = await _client
+        .from('user_personality')
+        .select('coach_style, intensity, quiet_hours_start, quiet_hours_end, push_enabled')
+        .eq('user_id', uid)
+        .maybeSingle();
+    return res == null ? UserSettings.fallback : UserSettings.fromJson(res);
+  }
+
+  /// Recalibra estilo/intensidad de Matix, ventana horaria y meta diaria.
+  Future<void> updateSettings({
+    required String coachStyle,
+    required int intensity,
+    String? quietStart, // "HH:MM" o null
+    String? quietEnd,
+    int? dailyMinutes,
+    required bool pushEnabled,
+  }) async {
+    await _client.rpc('update_settings', params: {
+      'p_coach_style': coachStyle,
+      'p_intensity': intensity,
+      'p_quiet_start': quietStart,
+      'p_quiet_end': quietEnd,
+      'p_daily_minutes': dailyMinutes,
+      'p_push_enabled': pushEnabled,
+    });
+  }
+
+  /// El MOTOR Matix: dado un trigger, elige el copy del estilo del usuario,
+  /// respeta techo + quiet_hours y lo registra. Devuelve el copy + estado.
+  Future<MatixResult> matixFire(String trigger) async {
+    final res = await _client.rpc('matix_fire', params: {'p_trigger': trigger});
+    return MatixResult.fromJson(Map<String, dynamic>.from(res as Map));
+  }
+
+  /// Historial de notificaciones del usuario (centro in-app).
+  Future<List<NotificationItem>> fetchNotifications() async {
+    final uid = _uid;
+    if (uid == null) return const [];
+    final res = await _client
+        .from('notifications')
+        .select('id, trigger_type, body, escalation_step, status, sent_at, created_at')
+        .eq('user_id', uid)
+        .eq('status', 'sent')
+        .order('created_at', ascending: false)
+        .limit(30);
+    return (res as List)
+        .map((e) => NotificationItem.fromJson(Map<String, dynamic>.from(e as Map)))
+        .toList();
   }
 
   /// Las 4 habilidades (reading/listening/writing/speaking).

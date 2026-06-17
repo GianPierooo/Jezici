@@ -54,3 +54,13 @@ final skillsProvider = FutureProvider<List<SkillLevel>>(
 final userPlanProvider = FutureProvider<UserPlan?>(
   (ref) => ref.watch(progressRepositoryProvider).fetchPlan(),
 );
+
+/// Ajustes de Matix (estilo de coach, intensidad, quiet_hours).
+final settingsProvider = FutureProvider<UserSettings>(
+  (ref) => ref.watch(progressRepositoryProvider).fetchSettings(),
+);
+
+/// Centro de notificaciones in-app (notificaciones enviadas por Matix).
+final notificationsProvider = FutureProvider<List<NotificationItem>>(
+  (ref) => ref.watch(progressRepositoryProvider).fetchNotifications(),
+);

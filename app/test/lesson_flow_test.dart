@@ -29,6 +29,23 @@ class FakeProgressRepository implements ProgressRepository {
   @override
   Future<UserPlan?> fetchPlan() async => null;
   @override
+  Future<Map<String, dynamic>> useStreakFreeze() async => {'ok': true, 'gold': 0};
+  @override
+  Future<UserSettings> fetchSettings() async => UserSettings.fallback;
+  @override
+  Future<void> updateSettings({
+    required String coachStyle,
+    required int intensity,
+    String? quietStart,
+    String? quietEnd,
+    int? dailyMinutes,
+    required bool pushEnabled,
+  }) async {}
+  @override
+  Future<MatixResult> matixFire(String trigger) async => MatixResult.fromJson(const {});
+  @override
+  Future<List<NotificationItem>> fetchNotifications() async => const [];
+  @override
   Future<void> createPlan({
     required String coachStyle,
     required int intensity,

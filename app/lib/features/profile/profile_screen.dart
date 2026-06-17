@@ -5,7 +5,11 @@ import '../../core/plan/estimation.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/progress_models.dart';
 import '../../data/providers.dart';
+import '../../ui/daily_goal_bar.dart';
 import '../../ui/progress_bar.dart';
+import '../notifications/notification_center_screen.dart';
+import '../settings/settings_screen.dart';
+import '../streak/streak_screen.dart';
 
 /// Perfil: cabecera + panel de las 4 habilidades (el diferenciador) leyendo
 /// user_skill_levels, y estadísticas reales (paso E).
@@ -72,24 +76,41 @@ class ProfileScreen extends ConsumerWidget {
                   child: const Text('🦜', style: TextStyle(fontSize: 30)),
                 ),
                 const SizedBox(width: 14),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text('Aprendiz',
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w900,
-                            color: AppColors.text)),
-                    const SizedBox(height: 2),
-                    Text('Nivel de jugador ${stats.playerLevel} · ${stats.xpTotal} XP',
-                        style: const TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w800,
-                            color: AppColors.textMuted)),
-                  ],
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text('Aprendiz',
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w900,
+                              color: AppColors.text)),
+                      const SizedBox(height: 2),
+                      Text('Nivel de jugador ${stats.playerLevel} · ${stats.xpTotal} XP',
+                          style: const TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w800,
+                              color: AppColors.textMuted)),
+                    ],
+                  ),
+                ),
+                _HeaderIcon(
+                  icon: Icons.notifications_rounded,
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (_) => const NotificationCenterScreen())),
+                ),
+                const SizedBox(width: 8),
+                _HeaderIcon(
+                  icon: Icons.settings_rounded,
+                  onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const SettingsScreen())),
                 ),
               ],
             ),
+            const SizedBox(height: 20),
+
+            // Meta de hoy (Estructura_App §8).
+            DailyGoalBar(earned: stats.dailyXpEarned, goal: stats.dailyGoalXp),
             const SizedBox(height: 22),
 
             // Panel de 4 habilidades.
@@ -130,7 +151,9 @@ class ProfileScreen extends ConsumerWidget {
                     icon: Icons.local_fire_department_rounded,
                     value: '${stats.currentStreak}',
                     label: 'RACHA',
-                    color: AppColors.streak),
+                    color: AppColors.streak,
+                    onTap: () => Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const StreakScreen()))),
                 const SizedBox(width: 12),
                 _StatCard(
                     icon: Icons.bolt_rounded,
@@ -350,38 +373,69 @@ class _StatCard extends StatelessWidget {
     required this.value,
     required this.label,
     required this.color,
+    this.onTap,
   });
   final IconData icon;
   final String value;
   final String label;
   final Color color;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
+      child: GestureDetector(
+        onTap: onTap,
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(18),
+            boxShadow: const [
+              BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 4), blurRadius: 0),
+            ],
+          ),
+          child: Column(
+            children: [
+              Icon(icon, color: color, size: 22),
+              const SizedBox(height: 6),
+              Text(value,
+                  style: TextStyle(fontSize: 19, fontWeight: FontWeight.w900, color: color)),
+              Text(label,
+                  style: const TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: 0.3,
+                      color: AppColors.textMuted)),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _HeaderIcon extends StatelessWidget {
+  const _HeaderIcon({required this.icon, required this.onTap});
+  final IconData icon;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 8),
+        width: 42,
+        height: 42,
+        alignment: Alignment.center,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(18),
+          borderRadius: BorderRadius.circular(13),
           boxShadow: const [
             BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 4), blurRadius: 0),
           ],
         ),
-        child: Column(
-          children: [
-            Icon(icon, color: color, size: 22),
-            const SizedBox(height: 6),
-            Text(value,
-                style: TextStyle(fontSize: 19, fontWeight: FontWeight.w900, color: color)),
-            Text(label,
-                style: const TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 0.3,
-                    color: AppColors.textMuted)),
-          ],
-        ),
+        child: Icon(icon, color: AppColors.primary, size: 21),
       ),
     );
   }

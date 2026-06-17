@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../data/models/progress_models.dart';
+import '../../ui/daily_goal_bar.dart';
 import '../../ui/primary_button.dart';
 
 /// Pantalla de fin: muestra el resumen DEVUELTO POR EL SERVIDOR (complete_lesson).
@@ -153,6 +154,35 @@ class _LessonCompleteScreenState extends State<LessonCompleteScreen> {
                       subtitleColor: AppColors.coral,
                     ),
                   ],
+                  // Hito de racha alcanzado (7/30/100/365) → celebración extra.
+                  if (r.milestone > 0) ...[
+                    const SizedBox(height: 13),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 14),
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                          colors: [AppColors.gold, Color(0xFFFFB02E)],
+                        ),
+                        borderRadius: BorderRadius.circular(18),
+                      ),
+                      child: Row(
+                        children: [
+                          const Text('🏆', style: TextStyle(fontSize: 26)),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              '¡Hito de ${r.milestone} días! Recompensa de oro desbloqueada',
+                              style: const TextStyle(
+                                fontSize: 14.5,
+                                fontWeight: FontWeight.w900,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                   const SizedBox(height: 13),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
@@ -168,18 +198,54 @@ class _LessonCompleteScreenState extends State<LessonCompleteScreen> {
                             color: AppColors.streak, size: 28),
                         const SizedBox(width: 10),
                         Expanded(
-                          child: Text(
-                            '🔥 ${r.streak} ${r.streak == 1 ? 'día' : 'días'} de racha',
-                            style: const TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w900,
-                              color: Color(0xFFE8650A),
-                            ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '🔥 ${r.streak} ${r.streak == 1 ? 'día' : 'días'} de racha',
+                                style: const TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w900,
+                                  color: Color(0xFFE8650A),
+                                ),
+                              ),
+                              Text(
+                                r.streakAdvanced
+                                    ? '¡+1 hoy! Cumpliste tu meta diaria'
+                                    : (r.goalMet
+                                        ? 'Meta diaria cumplida'
+                                        : 'Sigue para cumplir tu meta de hoy'),
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w800,
+                                  color: r.streakAdvanced || r.goalMet
+                                      ? AppColors.successDark
+                                      : AppColors.textMuted,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
+                        if (r.streakAdvanced)
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
+                            decoration: BoxDecoration(
+                              color: AppColors.success,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: const Text('+1',
+                                style: TextStyle(
+                                    fontSize: 13, fontWeight: FontWeight.w900, color: Colors.white)),
+                          ),
                       ],
                     ),
                   ),
+                  // Meta de hoy.
+                  if (r.dailyGoalXp > 0) ...[
+                    const SizedBox(height: 13),
+                    DailyGoalBar(
+                        earned: r.dailyXpEarned, goal: r.dailyGoalXp, compact: true),
+                  ],
                   if (r.skillsUp.isNotEmpty) ...[
                     const SizedBox(height: 13),
                     Container(
