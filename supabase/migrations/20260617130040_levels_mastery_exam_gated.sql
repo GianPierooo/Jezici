@@ -504,6 +504,17 @@ begin
   if uid is null then raise exception 'auth required'; end if;
   select id into v_course from courses where is_active order by created_at limit 1;
   v_level := coalesce(p_level, jz_resolve_exam_level(uid, v_course));
+
+  -- Compuerta server-side TAMBIÉN al enviar (no sólo en start_level_exam): como
+  -- submit es ahora el ÚNICO punto que sube el nivel, un atajo de cliente que
+  -- llame directo NO debe poder certificar saltándose el dominio. Si ya está
+  -- certificado, lo dejamos pasar (idempotente: devuelve el cert existente).
+  if not (jz_level_status(uid, v_course, v_level) ->> 'unlocked')::boolean
+     and not exists (select 1 from certificates where user_id = uid and cefr_level = v_level::cefr_level)
+  then
+    raise exception 'level exam locked';
+  end if;
+
   v_exam := ('50000000-0000-0000-0000-0000000000' || lower(v_level))::uuid;
 
   insert into exams (id, course_id, type, cefr_level, time_limit_sec, pass_threshold, sections)
@@ -665,6 +676,9 @@ begin
       from content_items ci
       join user_item_attempts ua on ua.item_id = ci.id and ua.user_id = uid and ua.last_correct = false
       where not jz_is_stub(ci.type)
+        and ci.course_id = v_course
+        -- Acota al curso activo (y a la unidad si se pidió): user_item_attempts no
+        -- guarda course_id, así evitamos mezclar cursos cuando haya más de uno.
         and (p_unit is null or exists (
               select 1 from lesson_items li join lessons l on l.id = li.lesson_id
               where li.item_id = ci.id and l.unit_id = p_unit))

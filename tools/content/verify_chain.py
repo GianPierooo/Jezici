@@ -95,6 +95,17 @@ def main():
     print("\n== start_course ==")
     print(rpc(uid, "select start_course();"))
 
+    # SEGURIDAD: sin dominio ni checkpoints, un atajo RPC a submit_level_exam NO
+    # debe poder certificar (la compuerta server-side se revalida al enviar).
+    print("\n== seguridad: submit_level_exam sin compuerta debe RECHAZAR ==")
+    code, out = run(
+        "set local role authenticated; "
+        f"set local \"request.jwt.claims\" = '{{\"sub\":\"{uid}\"}}'; "
+        "select submit_level_exam('[]'::jsonb, 10);")
+    assert code not in (200, 201) and "locked" in out.lower(), \
+        f"submit_level_exam debió rechazar (level exam locked); code={code} out={out[:200]}"
+    print("  PASS: rechazado ->", out[out.lower().find("level exam locked"):][:40] if "locked" in out.lower() else out[:80])
+
     # Marcar los 6 checkpoints A1 como completados (simula terminar A1).
     run(f"""insert into user_lesson_progress(user_id, lesson_id, status, best_accuracy, times_completed, completed_at)
             select '{uid}', l.id, 'completed', 0.9, 1, now()

@@ -448,22 +448,22 @@ class ProgressRepository {
     }).length;
     final due = ((vocab as List).length - scheduled).clamp(0, 9999);
 
-    final skills = await _client
-        .from('user_skill_levels')
-        .select('skill, cefr_level, progress_points')
-        .eq('user_id', uid);
+    // Habilidad más débil por reinforce_score (modelo D8), NO por puntos: en el
+    // modelo de dominio progress_points está congelado y daría siempre 'reading'.
     String? weakest;
-    const rank = {'A1': 0, 'A2': 1, 'B1': 2, 'B2': 3, 'C1': 4, 'C2': 5};
-    num best = 1 << 30;
-    for (final s in (skills as List)) {
-      final m = s as Map;
-      final score = (rank[m['cefr_level']] ?? 0) * 1000 +
-          ((m['progress_points'] as num?) ?? 0);
-      if (score < best) {
-        best = score;
-        weakest = m['skill'] as String?;
+    try {
+      final gm = await _client.rpc('get_skill_mastery');
+      final list = ((gm as Map)['skills'] as List?) ?? const [];
+      double best = -1;
+      for (final s in list) {
+        final m = s as Map;
+        final score = (m['reinforce_score'] as num?)?.toDouble() ?? 0;
+        if (score > best) {
+          best = score;
+          weakest = m['skill'] as String?;
+        }
       }
-    }
+    } catch (_) {/* sin dominio aún → sin débil destacada */}
     return PracticeStatus(dueWords: due, weakestSkill: weakest);
   }
 

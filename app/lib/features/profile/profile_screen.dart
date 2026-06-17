@@ -25,6 +25,12 @@ Future<void> _practiceWeakness(BuildContext context, WidgetRef ref) async {
     final session =
         await ref.read(progressRepositoryProvider).startPractice('weakness');
     if (!context.mounted) return;
+    if (session.items.isEmpty) {
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(const SnackBar(content: Text('¡Nada que reforzar ahora! Vas al día. 🎉')));
+      return;
+    }
     await Navigator.of(context).push(MaterialPageRoute(
       builder: (_) => PracticePlayerScreen(
           mode: 'weakness', title: 'Refuerzo de debilidades', items: session.items),
@@ -72,21 +78,18 @@ class ProfileScreen extends ConsumerWidget {
         bySkill[k] ?? SkillLevel(skill: k, cefrLevel: 'A1', progressPoints: 0),
     ];
 
-    // Habilidad más débil / más fuerte (menor/mayor nivel, luego puntos).
+    // Habilidad más débil / más fuerte. En el modelo de dominio las 4 comparten
+    // cefr_level (suben juntas por examen), así que el diferenciador REAL es el
+    // dominio / refuerzo: débil = mayor reinforce_score; fuerte = mayor dominio.
     String? weakest;
     SkillLevel? weakSkill;
-    SkillLevel? strongSkill;
-    if (skills.isNotEmpty) {
-      weakSkill = skills.reduce((a, b) {
-        final ra = (kCefrRank[a.cefrLevel] ?? 0) * 1000 + a.progressPoints;
-        final rb = (kCefrRank[b.cefrLevel] ?? 0) * 1000 + b.progressPoints;
-        return ra <= rb ? a : b;
-      });
-      strongSkill = skills.reduce((a, b) {
-        final ra = (kCefrRank[a.cefrLevel] ?? 0) * 1000 + a.progressPoints;
-        final rb = (kCefrRank[b.cefrLevel] ?? 0) * 1000 + b.progressPoints;
-        return ra >= rb ? a : b;
-      });
+    if (mastery != null && mastery.skills.isNotEmpty) {
+      final byScore = [...mastery.skills]
+        ..sort((a, b) => b.reinforceScore.compareTo(a.reinforceScore));
+      weakest = byScore.first.skill;
+      weakSkill = bySkill[byScore.first.skill];
+    } else if (skills.isNotEmpty) {
+      weakSkill = skills.first;
       weakest = weakSkill.skill;
     }
     final tracking = ref.watch(planTrackingProvider).value;
@@ -205,31 +208,42 @@ class ProfileScreen extends ConsumerWidget {
                     ),
                     if (i < skills.length - 1) const SizedBox(height: 16),
                   ],
-                  if (weakSkill != null && strongSkill != null &&
-                      weakSkill.skill != strongSkill.skill &&
-                      weakSkill.cefrLevel != strongSkill.cefrLevel) ...[
-                    const SizedBox(height: 14),
-                    Container(
-                      padding: const EdgeInsets.all(13),
-                      decoration: BoxDecoration(
-                        color: AppColors.coral.withValues(alpha: 0.10),
-                        borderRadius: BorderRadius.circular(14),
-                      ),
-                      child: Row(
-                        children: [
-                          const Icon(Icons.balance_rounded, color: AppColors.coral, size: 20),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: Text(
-                              'Eres ${strongSkill.cefrLevel} en ${kSkillEs[strongSkill.skill]} pero '
-                              '${weakSkill.cefrLevel} en ${kSkillEs[weakSkill.skill]} → practica ${kSkillEs[weakSkill.skill]}.',
-                              style: const TextStyle(
-                                  fontSize: 12.5, fontWeight: FontWeight.w800, color: AppColors.text),
-                            ),
+                  // Aviso de desbalance por DOMINIO (no por nivel: las 4 comparten nivel).
+                  if (mastery != null) ...[
+                    Builder(builder: (_) {
+                      final ms = mastery.skills;
+                      if (ms.length < 2) return const SizedBox.shrink();
+                      final strong = ms.reduce((a, b) => a.masteryPct >= b.masteryPct ? a : b);
+                      final weak = ms.reduce((a, b) => a.masteryPct <= b.masteryPct ? a : b);
+                      // Mostrar sólo si hay un hueco real de dominio.
+                      if (strong.skill == weak.skill || (strong.masteryPct - weak.masteryPct) < 0.25) {
+                        return const SizedBox.shrink();
+                      }
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 14),
+                        child: Container(
+                          padding: const EdgeInsets.all(13),
+                          decoration: BoxDecoration(
+                            color: AppColors.coral.withValues(alpha: 0.10),
+                            borderRadius: BorderRadius.circular(14),
                           ),
-                        ],
-                      ),
-                    ),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.balance_rounded, color: AppColors.coral, size: 20),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: Text(
+                                  'Tu ${kSkillEs[strong.skill]} va al ${(strong.masteryPct * 100).round()}% pero tu '
+                                  '${kSkillEs[weak.skill]} al ${(weak.masteryPct * 100).round()}% → refuerza ${kSkillEs[weak.skill]}.',
+                                  style: const TextStyle(
+                                      fontSize: 12.5, fontWeight: FontWeight.w800, color: AppColors.text),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    }),
                   ],
                 ],
               ),
