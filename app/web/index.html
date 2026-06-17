@@ -33,6 +33,36 @@
   <link rel="manifest" href="manifest.json">
 
   <!--
+    Limpieza de service worker. Una versión anterior pudo quedar cacheada por el
+    service worker de Flutter (deprecado) y seguir sirviendo un bundle roto. Esto
+    desregistra cualquier SW y borra sus caches; si encontró alguno, recarga UNA
+    vez (guardado en sessionStorage) para que el usuario reciba la versión nueva.
+    El build usa --pwa-strategy=none, así que no se vuelve a registrar ninguno.
+  -->
+  <script>
+    (function () {
+      if (!('serviceWorker' in navigator)) return;
+      navigator.serviceWorker.getRegistrations().then(function (regs) {
+        if (!regs.length) return;
+        var done = Promise.all(regs.map(function (r) { return r.unregister(); }));
+        if (window.caches && caches.keys) {
+          done = done.then(function () {
+            return caches.keys().then(function (keys) {
+              return Promise.all(keys.map(function (k) { return caches.delete(k); }));
+            });
+          });
+        }
+        done.finally(function () {
+          if (!sessionStorage.getItem('jz_sw_cleared')) {
+            sessionStorage.setItem('jz_sw_cleared', '1');
+            location.reload();
+          }
+        });
+      }).catch(function () {});
+    })();
+  </script>
+
+  <!--
     Stub de PasskeyAuthenticator. supabase_flutter incluye el plugin web
     `passkeys_web`, cuyo registro llama `PasskeyAuthenticator.init()` al arrancar.
     En Fase 1 no usamos passkeys; sin este stub el global es undefined y la app
