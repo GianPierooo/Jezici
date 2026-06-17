@@ -55,6 +55,7 @@ class MetricsScreen extends ConsumerWidget {
               _group('Negocio', [
                 _row('Conversión premium', pct('conversion_premium')),
               ]),
+              _OnboardingFunnel(),
               const SizedBox(height: 8),
               Text('Generado: ${m['generated_at'] ?? ''}',
                   style: const TextStyle(fontSize: 11, color: AppColors.textMuted, fontWeight: FontWeight.w600)),
@@ -87,4 +88,59 @@ class MetricsScreen extends ConsumerWidget {
           Text(value, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.primary)),
         ]),
       );
+}
+
+/// Embudo de onboarding (GA4 · B7): usuarios por paso + tasa de finalización.
+class _OnboardingFunnel extends ConsumerWidget {
+  static const _labels = [
+    'Bienvenida', 'Idioma', 'Motivo', 'Meta', 'Compromiso',
+    'Personalidad', 'Arranque', 'Ubicación', 'Tu plan',
+  ];
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final async = ref.watch(onboardingFunnelProvider);
+    return async.maybeWhen(
+      orElse: () => const SizedBox.shrink(),
+      data: (f) {
+        final steps = (f['steps'] as List?) ?? const [];
+        final started = (f['started'] as num?)?.toInt() ?? 0;
+        final completed = (f['completed'] as num?)?.toInt() ?? 0;
+        final rate = ((f['completion_rate'] as num?)?.toDouble() ?? 0) * 100;
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const Text('Embudo de onboarding',
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+            const SizedBox(height: 8),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              decoration: BoxDecoration(
+                  color: Colors.white, borderRadius: BorderRadius.circular(18),
+                  boxShadow: const [BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 5), blurRadius: 0)]),
+              child: Column(children: [
+                for (final s in steps)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 7),
+                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                      Text('${(s as Map)['step']}. ${_labels[((s['step'] as num?)?.toInt() ?? 0).clamp(0, 8)]}',
+                          style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                      Text('${(s['users'] as num?)?.toInt() ?? 0}',
+                          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.primary)),
+                    ]),
+                  ),
+                const Divider(height: 18),
+                Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                  Text('Completaron $completed / $started',
+                      style: const TextStyle(fontSize: 13.5, fontWeight: FontWeight.w800, color: AppColors.text)),
+                  Text('${rate.toStringAsFixed(1)}%',
+                      style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.success)),
+                ]),
+              ]),
+            ),
+          ]),
+        );
+      },
+    );
+  }
 }

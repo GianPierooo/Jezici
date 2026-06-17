@@ -116,3 +116,8 @@ final shopStatusProvider = FutureProvider<ShopStatus>(
 final metricsProvider = FutureProvider<Map<String, dynamic>>(
   (ref) => ref.watch(progressRepositoryProvider).fetchMetrics(),
 );
+
+/// Embudo de onboarding (completitud + drop-off por paso) — GA4 B7.
+final onboardingFunnelProvider = FutureProvider<Map<String, dynamic>>(
+  (ref) => ref.watch(progressRepositoryProvider).fetchOnboardingFunnel(),
+);

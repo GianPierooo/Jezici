@@ -56,6 +56,8 @@ class FakeProgressRepository implements ProgressRepository {
   @override
   Future<Map<String, dynamic>> fetchMetrics() async => const {};
   @override
+  Future<Map<String, dynamic>> fetchOnboardingFunnel() async => const {'steps': [], 'started': 0, 'completed': 0, 'completion_rate': 0};
+  @override
   Future<UserSettings> fetchSettings() async => UserSettings.fallback;
   @override
   Future<void> updateSettings({

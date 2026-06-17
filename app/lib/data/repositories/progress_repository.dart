@@ -242,6 +242,12 @@ class ProgressRepository {
     return Map<String, dynamic>.from(res as Map);
   }
 
+  /// Embudo de onboarding (completitud + drop-off por paso) — GA4 B7.
+  Future<Map<String, dynamic>> fetchOnboardingFunnel() async {
+    final res = await _client.rpc('get_onboarding_funnel');
+    return Map<String, dynamic>.from(res as Map);
+  }
+
   /// Ajustes de Matix del usuario (user_personality).
   Future<UserSettings> fetchSettings() async {
     final uid = _uid;
