@@ -66,6 +66,12 @@ final onboardingCompleteProvider = FutureProvider<bool>(
   (ref) => ref.watch(progressRepositoryProvider).isOnboardingComplete(),
 );
 
+/// Seguimiento del plan (dashboard diferenciador): progreso, adelante/atrás,
+/// proyección de fecha recalculada con el ritmo real.
+final planTrackingProvider = FutureProvider<PlanTracking>(
+  (ref) => ref.watch(progressRepositoryProvider).fetchPlanTracking(),
+);
+
 /// Ajustes de Matix (estilo de coach, intensidad, quiet_hours).
 final settingsProvider = FutureProvider<UserSettings>(
   (ref) => ref.watch(progressRepositoryProvider).fetchSettings(),

@@ -218,6 +218,66 @@ class UserPlan {
       );
 }
 
+/// Seguimiento del plan (get_plan_tracking) — dashboard del diferenciador.
+class PlanTracking {
+  const PlanTracking({
+    required this.ok,
+    required this.currentLevel,
+    required this.goalLevel,
+    required this.motive,
+    required this.dailyMinutes,
+    required this.daysPerWeek,
+    required this.daysElapsed,
+    required this.goalMetDays,
+    required this.expectedDays,
+    required this.aheadBehind,
+    required this.totalActiveDays,
+    required this.progress,
+    required this.onTrack,
+    this.estimatedCompletion,
+    this.projectedCompletion,
+  });
+
+  final bool ok;
+  final String currentLevel;
+  final String goalLevel;
+  final String? motive;
+  final int dailyMinutes;
+  final int daysPerWeek;
+  final int daysElapsed;
+  final int goalMetDays;
+  final int expectedDays;
+  final int aheadBehind; // >0 adelante, <0 atrás
+  final int totalActiveDays;
+  final double progress; // 0..1
+  final bool onTrack;
+  final DateTime? estimatedCompletion;
+  final DateTime? projectedCompletion;
+
+  static const empty = PlanTracking(
+      ok: false, currentLevel: 'A1', goalLevel: 'B1', motive: null,
+      dailyMinutes: 10, daysPerWeek: 5, daysElapsed: 0, goalMetDays: 0,
+      expectedDays: 0, aheadBehind: 0, totalActiveDays: 1, progress: 0, onTrack: true);
+
+  factory PlanTracking.fromJson(Map<String, dynamic> j) => PlanTracking(
+        ok: j['ok'] as bool? ?? false,
+        currentLevel: j['current_level'] as String? ?? 'A1',
+        goalLevel: j['goal_level'] as String? ?? 'B1',
+        motive: j['motive'] as String?,
+        dailyMinutes: (j['daily_minutes'] as num?)?.toInt() ?? 10,
+        daysPerWeek: (j['days_per_week'] as num?)?.toInt() ?? 5,
+        daysElapsed: (j['days_elapsed'] as num?)?.toInt() ?? 0,
+        goalMetDays: (j['goal_met_days'] as num?)?.toInt() ?? 0,
+        expectedDays: (j['expected_days'] as num?)?.toInt() ?? 0,
+        aheadBehind: (j['ahead_behind'] as num?)?.toInt() ?? 0,
+        totalActiveDays: (j['total_active_days'] as num?)?.toInt() ?? 1,
+        progress: (j['progress'] as num?)?.toDouble() ?? 0,
+        onTrack: j['on_track'] as bool? ?? true,
+        estimatedCompletion: DateTime.tryParse(j['estimated_completion']?.toString() ?? ''),
+        projectedCompletion: DateTime.tryParse(j['projected_completion']?.toString() ?? ''),
+      );
+}
+
 /// Resumen devuelto por complete_lesson (server-side).
 class LessonSummary {
   const LessonSummary({

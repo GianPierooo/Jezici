@@ -38,6 +38,10 @@ class FakeProgressRepository implements ProgressRepository {
   @override
   Future<UserPlan?> fetchPlan() async => null;
   @override
+  Future<PlanTracking> fetchPlanTracking() async => PlanTracking.empty;
+  @override
+  Future<Map<String, dynamic>> updatePlanPace(int dailyMinutes) async => {'ok': true};
+  @override
   Future<Map<String, dynamic>> useStreakFreeze() async => {'ok': true, 'gold': 0};
   @override
   Future<ShopStatus> fetchShopStatus() async => ShopStatus.empty;

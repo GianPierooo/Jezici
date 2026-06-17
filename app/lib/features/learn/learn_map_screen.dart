@@ -416,11 +416,12 @@ class _StartBubble extends StatelessWidget {
   }
 }
 
-class _SummitCertificate extends StatelessWidget {
+class _SummitCertificate extends ConsumerWidget {
   const _SummitCertificate();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final goal = ref.watch(userPlanProvider).value?.goalLevel ?? 'B2';
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -441,10 +442,10 @@ class _SummitCertificate extends StatelessWidget {
               ),
             ],
           ),
-          child: const Column(
+          child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
+              const Text(
                 'TU META · CERTIFICADO',
                 style: TextStyle(
                   fontSize: 9,
@@ -453,16 +454,16 @@ class _SummitCertificate extends StatelessWidget {
                   color: Color(0xFFC98A12),
                 ),
               ),
-              SizedBox(height: 3),
+              const SizedBox(height: 3),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.workspace_premium_rounded,
+                  const Icon(Icons.workspace_premium_rounded,
                       color: AppColors.gold, size: 22),
-                  SizedBox(width: 6),
+                  const SizedBox(width: 6),
                   Text(
-                    'B2',
-                    style: TextStyle(
+                    goal,
+                    style: const TextStyle(
                       fontSize: 26,
                       fontWeight: FontWeight.w900,
                       color: AppColors.text,

@@ -206,7 +206,7 @@ class _Header extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
-                    passed ? '✓ CHECKPOINT SUPERADO' : 'CHECKPOINT · NO SUPERADO',
+                    passed ? '✓ CHECKPOINT APROBADO' : 'CHECKPOINT NO APROBADO',
                     style: const TextStyle(
                         fontSize: 11,
                         fontWeight: FontWeight.w900,

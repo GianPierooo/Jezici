@@ -59,8 +59,8 @@ class _NoHeartsSheet extends StatelessWidget {
           ),
           const SizedBox(height: 6),
           const Text(
-            '¡Tranqui, le pasa a todos! En el paso E las vidas se regeneran solas; '
-            'por ahora puedes recargarlas para seguir.',
+            '¡Tranqui, le pasa a todos! Las vidas se regeneran con el tiempo; '
+            'si quieres seguir ahora, recárgalas con oro.',
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 13,

@@ -229,7 +229,7 @@ class CheckpointIntroScreen extends ConsumerWidget {
                         BoxShadow(color: Color(0xFFD69400), offset: Offset(0, 6), blurRadius: 0),
                       ],
                     ),
-                    child: const Text('Empezar checkpoint',
+                    child: const Text('EMPEZAR CHECKPOINT',
                         style: TextStyle(
                             fontSize: 17, fontWeight: FontWeight.w900, color: AppColors.text)),
                   ),

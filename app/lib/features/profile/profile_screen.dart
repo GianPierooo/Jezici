@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/constants/skills.dart';
 import '../../core/plan/estimation.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/achievement_models.dart';
@@ -12,8 +13,31 @@ import '../../ui/progress_bar.dart';
 import '../level_exam/certificate_screen.dart';
 import '../level_exam/level_exam_intro_screen.dart';
 import '../notifications/notification_center_screen.dart';
+import '../plan/mi_plan_screen.dart';
+import '../practice/practice_player_screen.dart';
 import '../settings/settings_screen.dart';
 import '../streak/streak_screen.dart';
+import 'widgets/skill_radar.dart';
+
+/// Inicia una práctica de refuerzo de debilidades y abre el reproductor.
+Future<void> _practiceWeakness(BuildContext context, WidgetRef ref) async {
+  try {
+    final session =
+        await ref.read(progressRepositoryProvider).startPractice('weakness');
+    if (!context.mounted) return;
+    await Navigator.of(context).push(MaterialPageRoute(
+      builder: (_) => PracticePlayerScreen(
+          mode: 'weakness', title: 'Refuerzo de debilidades', items: session.items),
+    ));
+    ref.invalidate(practiceStatusProvider);
+    ref.invalidate(skillsProvider);
+  } catch (_) {
+    if (context.mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('No se pudo iniciar la práctica.')));
+    }
+  }
+}
 
 /// Perfil: cabecera + panel de las 4 habilidades (el diferenciador) leyendo
 /// user_skill_levels, y estadísticas reales (paso E).
@@ -49,16 +73,24 @@ class ProfileScreen extends ConsumerWidget {
         bySkill[k] ?? SkillLevel(skill: k, cefrLevel: 'A1', progressPoints: 0),
     ];
 
-    // Habilidad más débil (menor nivel, luego menos puntos).
+    // Habilidad más débil / más fuerte (menor/mayor nivel, luego puntos).
     String? weakest;
+    SkillLevel? weakSkill;
+    SkillLevel? strongSkill;
     if (skills.isNotEmpty) {
-      final w = skills.reduce((a, b) {
+      weakSkill = skills.reduce((a, b) {
         final ra = (_cefrRank[a.cefrLevel] ?? 0) * 1000 + a.progressPoints;
         final rb = (_cefrRank[b.cefrLevel] ?? 0) * 1000 + b.progressPoints;
         return ra <= rb ? a : b;
       });
-      weakest = w.skill;
+      strongSkill = skills.reduce((a, b) {
+        final ra = (_cefrRank[a.cefrLevel] ?? 0) * 1000 + a.progressPoints;
+        final rb = (_cefrRank[b.cefrLevel] ?? 0) * 1000 + b.progressPoints;
+        return ra >= rb ? a : b;
+      });
+      weakest = weakSkill.skill;
     }
+    final tracking = ref.watch(planTrackingProvider).value;
 
     return SafeArea(
       bottom: false,
@@ -120,6 +152,14 @@ class ProfileScreen extends ConsumerWidget {
             DailyGoalBar(earned: stats.dailyXpEarned, goal: stats.dailyGoalXp),
             const SizedBox(height: 22),
 
+            // Para ti (GA4 · B1): recomendación por motivo + debilidad.
+            _ForYouCard(
+              motive: plan?.motive,
+              weak: weakSkill,
+              onPracticeWeak: () => _practiceWeakness(context, ref),
+            ),
+            const SizedBox(height: 22),
+
             // Panel de 4 habilidades.
             const Text('Tus 4 habilidades',
                 style: TextStyle(
@@ -142,9 +182,44 @@ class ProfileScreen extends ConsumerWidget {
               ),
               child: Column(
                 children: [
+                  // Radar visible: hace evidente el desbalance entre habilidades.
+                  Center(
+                    child: SkillRadar(
+                      skills: skills,
+                      goalLevel: plan?.goalLevel ?? 'B1',
+                      size: 230,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
                   for (var i = 0; i < skills.length; i++) ...[
                     _SkillRow(skill: skills[i], weakest: skills[i].skill == weakest),
                     if (i < skills.length - 1) const SizedBox(height: 16),
+                  ],
+                  if (weakSkill != null && strongSkill != null &&
+                      weakSkill.skill != strongSkill.skill &&
+                      weakSkill.cefrLevel != strongSkill.cefrLevel) ...[
+                    const SizedBox(height: 14),
+                    Container(
+                      padding: const EdgeInsets.all(13),
+                      decoration: BoxDecoration(
+                        color: AppColors.coral.withValues(alpha: 0.10),
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.balance_rounded, color: AppColors.coral, size: 20),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              'Eres ${strongSkill.cefrLevel} en ${kSkillEs[strongSkill.skill]} pero '
+                              '${weakSkill.cefrLevel} en ${kSkillEs[weakSkill.skill]} → practica ${kSkillEs[weakSkill.skill]}.',
+                              style: const TextStyle(
+                                  fontSize: 12.5, fontWeight: FontWeight.w800, color: AppColors.text),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ],
               ),
@@ -177,9 +252,13 @@ class ProfileScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 18),
 
-            // Mi plan (real, del onboarding — paso G).
+            // Mi plan (real) → abre el dashboard de seguimiento (GA4 · B2).
             if (plan != null)
-              _PlanCard(plan: plan)
+              GestureDetector(
+                onTap: () => Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => const MiPlanScreen())),
+                child: _PlanCard(plan: plan, tracking: tracking),
+              )
             else
               Container(
                 width: double.infinity,
@@ -422,6 +501,77 @@ class _EmptyHint extends StatelessWidget {
   }
 }
 
+/// "Para ti" (GA4 · B1): recomendación por motivo + práctica de la debilidad.
+class _ForYouCard extends StatelessWidget {
+  const _ForYouCard({required this.motive, required this.weak, required this.onPracticeWeak});
+  final String? motive;
+  final SkillLevel? weak;
+  final VoidCallback onPracticeWeak;
+
+  static const _focus = {
+    'Trabajo': '💼 Inglés para el trabajo: reuniones, correos y entrevistas.',
+    'Viajes': '✈️ Inglés para viajar: aeropuerto, hotel, direcciones y restaurantes.',
+    'Examen': '🎓 Rumbo a tu examen: simulacros y las 4 habilidades.',
+    'Estudios': '📚 Inglés para estudiar: comprensión, escritura y vocabulario.',
+    'Mudanza': '🏠 Inglés para tu mudanza: trámites, vivienda y vida diaria.',
+    'Placer': '🎬 Inglés para disfrutar: series, música y conversación.',
+  };
+
+  @override
+  Widget build(BuildContext context) {
+    final focus = _focus[motive];
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+            begin: Alignment.topLeft, end: Alignment.bottomRight,
+            colors: [Color(0xFFF3F0FF), Colors.white]),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: AppColors.primary.withValues(alpha: 0.18), width: 1.5),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Row(
+            children: [
+              Icon(Icons.auto_awesome_rounded, color: AppColors.primary, size: 20),
+              SizedBox(width: 8),
+              Text('Para ti',
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+            ],
+          ),
+          if (focus != null) ...[
+            const SizedBox(height: 10),
+            Text(focus,
+                style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.text)),
+          ],
+          if (weak != null) ...[
+            const SizedBox(height: 12),
+            Text('Tu punto débil ahora: ${kSkillEs[weak!.skill] ?? weak!.skill} (${weak!.cefrLevel}). '
+                'Unos minutos lo equilibran.',
+                style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+            const SizedBox(height: 12),
+            SizedBox(
+              width: double.infinity,
+              height: 46,
+              child: ElevatedButton(
+                onPressed: onPracticeWeak,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primary, foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
+                ),
+                child: Text('PRACTICAR ${(kSkillEs[weak!.skill] ?? weak!.skill).toUpperCase()}',
+                    style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 13.5, letterSpacing: 0.4)),
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
 class _SkillRow extends StatelessWidget {
   const _SkillRow({required this.skill, required this.weakest});
   final SkillLevel skill;
@@ -495,8 +645,9 @@ class _SkillRow extends StatelessWidget {
 }
 
 class _PlanCard extends StatelessWidget {
-  const _PlanCard({required this.plan});
+  const _PlanCard({required this.plan, this.tracking});
   final UserPlan plan;
+  final PlanTracking? tracking;
 
   static const _months = [
     'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
@@ -533,8 +684,28 @@ class _PlanCard extends StatelessWidget {
               Text('${plan.currentLevel} → ${plan.goalLevel}',
                   style: const TextStyle(
                       fontSize: 13, fontWeight: FontWeight.w900, color: AppColors.primary)),
+              const SizedBox(width: 6),
+              const Icon(Icons.chevron_right_rounded, color: AppColors.primary, size: 20),
             ],
           ),
+          if (tracking != null && tracking!.ok) ...[
+            const SizedBox(height: 10),
+            Builder(builder: (_) {
+              final a = tracking!.aheadBehind;
+              final c = a >= 0 ? AppColors.success : AppColors.coral;
+              final txt = a == 0
+                  ? 'Justo en tu plan'
+                  : (a > 0 ? 'Vas $a ${a == 1 ? 'día' : 'días'} adelante 🎉'
+                           : 'Vas ${-a} ${-a == 1 ? 'día' : 'días'} atrás');
+              return Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                decoration: BoxDecoration(
+                    color: c.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(9)),
+                child: Text(txt,
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.w900, color: c)),
+              );
+            }),
+          ],
           const SizedBox(height: 12),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

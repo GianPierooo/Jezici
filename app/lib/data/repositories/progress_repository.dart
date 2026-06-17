@@ -77,6 +77,19 @@ class ProgressRepository {
     });
   }
 
+  /// Seguimiento del plan (dashboard): adelante/atrás, proyección, progreso.
+  Future<PlanTracking> fetchPlanTracking() async {
+    if (_uid == null) return PlanTracking.empty;
+    final res = await _client.rpc('get_plan_tracking');
+    return PlanTracking.fromJson(Map<String, dynamic>.from(res as Map));
+  }
+
+  /// Palanca "llegar más rápido": sube min/día y recalcula la fecha (server-side).
+  Future<Map<String, dynamic>> updatePlanPace(int dailyMinutes) async {
+    final res = await _client.rpc('update_plan_pace', params: {'p_daily_minutes': dailyMinutes});
+    return Map<String, dynamic>.from(res as Map);
+  }
+
   /// El plan del usuario (para la tarjeta "Mi plan").
   Future<UserPlan?> fetchPlan() async {
     final uid = _uid;
