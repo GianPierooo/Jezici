@@ -33,11 +33,13 @@ class _State extends ConsumerState<LevelExamIntroScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // El nivel objetivo lo decide el servidor (A1, luego A2, …).
+    final level = ref.watch(levelExamStatusProvider).value?.level ?? 'A1';
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
         backgroundColor: AppColors.background, elevation: 0, foregroundColor: AppColors.text,
-        title: const Text('Examen de nivel A1', style: TextStyle(fontWeight: FontWeight.w900)),
+        title: Text('Examen de nivel $level', style: const TextStyle(fontWeight: FontWeight.w900)),
       ),
       body: SafeArea(
         child: Padding(
@@ -47,8 +49,8 @@ class _State extends ConsumerState<LevelExamIntroScreen> {
               const SizedBox(height: 10),
               const Text('🎓', style: TextStyle(fontSize: 72)),
               const SizedBox(height: 8),
-              const Text('Certifica tu nivel A1',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w900, color: AppColors.text)),
+              Text('Certifica tu nivel $level',
+                  style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w900, color: AppColors.text)),
               const SizedBox(height: 6),
               const Text(
                 'Un examen cronometrado que mezcla las 4 habilidades de todas las unidades. '
@@ -60,7 +62,7 @@ class _State extends ConsumerState<LevelExamIntroScreen> {
               const _Bullet(icon: Icons.timer_outlined, text: '10 minutos · 20 preguntas'),
               const _Bullet(icon: Icons.insights_rounded, text: 'Reading · Listening · Writing · Speaking'),
               const _Bullet(icon: Icons.verified_rounded, text: 'Necesitas 80% para aprobar'),
-              const _Bullet(icon: Icons.workspace_premium_rounded, text: 'Al aprobar: certificado A1 compartible'),
+              _Bullet(icon: Icons.workspace_premium_rounded, text: 'Al aprobar: certificado $level compartible'),
               const Spacer(),
               SizedBox(
                 width: double.infinity, height: 56,

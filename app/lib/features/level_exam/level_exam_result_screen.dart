@@ -28,7 +28,7 @@ class LevelExamResultScreen extends StatelessWidget {
             const SizedBox(height: 18),
             Text(pass ? '🎓' : '💪', style: const TextStyle(fontSize: 64)),
             const SizedBox(height: 6),
-            Text(pass ? '¡Aprobaste el examen A1!' : 'Aún no, ¡casi!',
+            Text(pass ? '¡Aprobaste el examen ${r.level}!' : 'Aún no, ¡casi!',
                 style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w900, color: AppColors.text)),
             const SizedBox(height: 4),
             Text('Puntaje ${r.scorePct}% · necesitas ${r.thresholdPct}%',

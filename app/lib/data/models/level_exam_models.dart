@@ -35,6 +35,7 @@ class LevelExamStatus {
 class LevelExamResult {
   const LevelExamResult({
     required this.passed,
+    required this.level,
     required this.scoreGlobal,
     required this.threshold,
     required this.graded,
@@ -47,6 +48,7 @@ class LevelExamResult {
     this.certificateSvg,
   });
   final bool passed;
+  final String level;
   final double scoreGlobal;
   final double threshold;
   final int graded;
@@ -65,6 +67,7 @@ class LevelExamResult {
     final cert = j['certificate'];
     return LevelExamResult(
       passed: j['passed'] as bool? ?? false,
+      level: j['level'] as String? ?? 'A1',
       scoreGlobal: (j['score_global'] as num?)?.toDouble() ?? 0,
       threshold: (j['threshold'] as num?)?.toDouble() ?? 0.8,
       graded: (j['graded'] as num?)?.toInt() ?? 0,
