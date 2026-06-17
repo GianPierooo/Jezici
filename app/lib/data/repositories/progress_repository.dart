@@ -300,12 +300,16 @@ class ProgressRepository {
     });
   }
 
-  /// Señal de interés en conversación EN VIVO (Fase 2). Fire-and-forget.
-  Future<void> logConversarInterest(bool wouldUse, String? topics) async {
+  /// Señal de interés en conversación EN VIVO (Fase 2). Devuelve true si se
+  /// registró bien; false si falló (la UI distingue éxito real de fallo).
+  Future<bool> logConversarInterest(bool wouldUse, String? topics) async {
     try {
       await _client.rpc('log_conversar_interest',
           params: {'p_would_use': wouldUse, 'p_topics': topics});
-    } catch (_) {}
+      return true;
+    } catch (_) {
+      return false;
+    }
   }
 
   /// Ajustes de Matix del usuario (user_personality).

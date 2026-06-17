@@ -144,9 +144,12 @@ class _Board extends StatelessWidget {
                 if (!lg.warmingUp && i == n - lg.demote)
                   const _ZoneDivider(label: 'ZONA DE DESCENSO ↓', color: AppColors.coral),
                 _Row(
+                  // Zonas por ÍNDICE (coherente con los divisores de arriba) —
+                  // así, si se filtrara un bot y los ranks quedaran no contiguos,
+                  // el coloreo no se desalinea del separador.
                   m: members[i],
-                  promote: !lg.warmingUp && members[i].rank <= lg.promote,
-                  demote: !lg.warmingUp && members[i].rank > n - lg.demote,
+                  promote: !lg.warmingUp && i < lg.promote,
+                  demote: !lg.warmingUp && i >= n - lg.demote,
                 ),
               ],
             ],

@@ -68,7 +68,7 @@ class FakeProgressRepository implements ProgressRepository {
   @override
   Future<void> saveConversationAttempt({required String topic, required String mode, String? content, int? selfScore}) async {}
   @override
-  Future<void> logConversarInterest(bool wouldUse, String? topics) async {}
+  Future<bool> logConversarInterest(bool wouldUse, String? topics) async => true;
   @override
   Future<UserSettings> fetchSettings() async => UserSettings.fallback;
   @override

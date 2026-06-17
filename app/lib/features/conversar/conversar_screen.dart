@@ -160,12 +160,15 @@ class _InterestCardState extends ConsumerState<_InterestCard> {
   Future<void> _send() async {
     if (_sending) return;
     setState(() => _sending = true);
-    try {
-      await ref.read(progressRepositoryProvider).logConversarInterest(_wouldUse ?? false, _topics.text.trim());
-      if (!mounted) return;
+    // logConversarInterest devuelve false si la RPC falló (no relanza): así no
+    // mostramos un falso "¡Gracias!" cuando en realidad no se registró.
+    final ok = await ref
+        .read(progressRepositoryProvider)
+        .logConversarInterest(_wouldUse ?? false, _topics.text.trim());
+    if (!mounted) return;
+    if (ok) {
       setState(() => _sent = true);
-    } catch (_) {
-      if (!mounted) return;
+    } else {
       setState(() => _sending = false);
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()

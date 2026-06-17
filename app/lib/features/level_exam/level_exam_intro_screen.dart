@@ -60,7 +60,7 @@ class _State extends ConsumerState<LevelExamIntroScreen> {
               ),
               const SizedBox(height: 22),
               const _Bullet(icon: Icons.timer_outlined, text: '10 minutos · 20 preguntas'),
-              const _Bullet(icon: Icons.insights_rounded, text: 'Reading · Listening · Writing · Speaking'),
+              const _Bullet(icon: Icons.insights_rounded, text: 'Lectura · Escucha · Escritura · Habla'),
               const _Bullet(icon: Icons.verified_rounded, text: 'Necesitas 80% para aprobar'),
               _Bullet(icon: Icons.workspace_premium_rounded, text: 'Al aprobar: certificado $level compartible'),
               const Spacer(),
