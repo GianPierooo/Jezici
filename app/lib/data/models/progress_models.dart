@@ -191,6 +191,7 @@ class UserPlan {
     this.deadline,
     this.estimatedHours,
     this.estimatedCompletion,
+    this.onboardingCompleted = true,
   });
 
   final String currentLevel;
@@ -201,6 +202,7 @@ class UserPlan {
   final DateTime? deadline;
   final int? estimatedHours;
   final DateTime? estimatedCompletion;
+  final bool onboardingCompleted;
 
   factory UserPlan.fromJson(Map<String, dynamic> j) => UserPlan(
         currentLevel: j['current_level'] as String? ?? 'A1',
@@ -212,6 +214,7 @@ class UserPlan {
         estimatedHours: (j['estimated_hours'] as num?)?.toInt(),
         estimatedCompletion:
             DateTime.tryParse(j['estimated_completion_date']?.toString() ?? ''),
+        onboardingCompleted: j['onboarding_completed'] as bool? ?? false,
       );
 }
 

@@ -1,33 +1,97 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/i18n/locale_controller.dart';
+import '../../core/plan/estimation.dart';
 import '../../core/theme/app_colors.dart';
-import '../legal/legal_screen.dart';
+import '../../data/providers.dart';
 import '../../ui/primary_button.dart';
-import 'create_account_view.dart';
 import 'onboarding_data.dart';
 import 'personality_test.dart';
 import 'placement_test.dart';
 import 'widgets/onboarding_scaffold.dart';
 import 'your_plan_view.dart';
 
-/// Flujo de onboarding (Estructura_App §2): 11 pasos hasta el mapa.
-class OnboardingScreen extends StatefulWidget {
+/// Onboarding (GA4 · auth-first). La cuenta ya existe (pantalla de auth); aquí
+/// SOLO se construye el plan y se personaliza. Cada paso cambia algo aguas abajo
+/// (plan, contenido o coaching); nada redundante. 9 pasos:
+///  0 bienvenida · 1 idioma de la app · 2 motivo · 3 meta+plazo ·
+///  4 compromiso (min/día + días/sem en UNO) · 5 personalidad (4+1) ·
+///  6 micro-arranque (siembra el placement) · 7 ubicación · 8 tu plan → mapa.
+class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key, required this.onComplete});
 
-  /// Se llama cuando la cuenta queda creada y el plan persistido.
+  /// Se llama cuando el plan queda persistido (onboarding_completed = true).
   final VoidCallback onComplete;
 
   @override
-  State<OnboardingScreen> createState() => _OnboardingScreenState();
+  ConsumerState<OnboardingScreen> createState() => _OnboardingScreenState();
 }
 
-class _OnboardingScreenState extends State<OnboardingScreen> {
-  static const _total = 11;
+class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
+  static const _total = 9;
   final OnboardingData _data = OnboardingData();
   int _step = 0;
 
-  void _next() => setState(() => _step++);
-  void _back() => setState(() => _step = (_step - 1).clamp(0, _total - 1));
+  @override
+  void initState() {
+    super.initState();
+    _logStep();
+  }
+
+  /// Analítica de drop-off por paso (GA4 · B7).
+  void _logStep() =>
+      ref.read(progressRepositoryProvider).logEvent('onboarding_step', props: {'step': _step});
+
+  void _next() {
+    setState(() => _step++);
+    _logStep();
+  }
+
+  void _back() {
+    setState(() => _step = (_step - 1).clamp(0, _total - 1));
+    _logStep();
+  }
+
+  /// Último paso: persiste el plan (la cuenta ya existe) y entra al mapa.
+  Future<void> _finish() async {
+    try {
+      final repo = ref.read(progressRepositoryProvider);
+      final est = estimatePlan(
+        currentLevel: _data.currentLevel,
+        goalLevel: _data.goalLevel,
+        dailyMinutes: _data.dailyMinutes,
+        daysPerWeek: _data.daysPerWeek,
+      );
+      await repo.createPlan(
+        coachStyle: _data.coachStyle,
+        intensity: _data.intensity,
+        currentLevel: _data.currentLevel,
+        goalLevel: _data.goalLevel,
+        dailyMinutes: _data.dailyMinutes,
+        daysPerWeek: _data.daysPerWeek,
+        motive: _data.motive,
+        deadline: _data.deadline?.toIso8601String().split('T').first,
+        estimatedHours: est.hoursNeeded,
+        estimatedCompletion: est.completionDate.toIso8601String().split('T').first,
+        skillLevels: _data.skillLevels,
+      );
+      await ref.read(localeProvider.notifier).set(_data.uiLang);
+      ref.invalidate(lessonProgressProvider);
+      ref.invalidate(homeStatsProvider);
+      ref.invalidate(skillsProvider);
+      ref.invalidate(userPlanProvider);
+      ref.read(progressRepositoryProvider).logEvent('onboarding_completed');
+      if (!mounted) return;
+      widget.onComplete();
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(const SnackBar(content: Text('No se pudo guardar tu plan. Reinténtalo.')));
+      rethrow; // YourPlanView resetea su estado de carga.
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +103,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       case 2:
         return _select(
           title: '¿Por qué aprendes inglés?',
-          subtitle: 'Personalizamos tu plan a tu objetivo.',
+          subtitle: 'Personaliza tu plan, los escenarios y el coaching.',
           options: const [
             ('Trabajo', 'Trabajo', Icons.work_outline_rounded),
             ('Viajes', 'Viajes', Icons.flight_takeoff_rounded),
@@ -52,62 +116,36 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           onSelect: (v) => _data.motive = v,
         );
       case 3:
-        return _select(
-          title: '¿Cómo está tu inglés hoy?',
-          subtitle: 'Lo confirmamos con un test rápido.',
-          options: const [
-            ('Soy principiante', 'A1', null),
-            ('Sé lo básico', 'A2', null),
-            ('Nivel intermedio', 'B1', null),
-            ('Nivel avanzado', 'B2', null),
-          ],
-          current: _data.selfLevel,
-          onSelect: (v) => _data.selfLevel = v,
-          allowDefault: true,
-        );
-      case 4:
-        return _select(
-          title: '¿Cuánto tiempo al día?',
-          subtitle: 'Tu meta diaria. Puedes cambiarla luego.',
-          options: const [
-            ('5 minutos', '5', null),
-            ('10 minutos', '10', null),
-            ('15 minutos', '15', null),
-            ('20 minutos', '20', null),
-            ('30 minutos', '30', null),
-            ('45+ minutos', '45', null),
-          ],
-          current: '${_data.dailyMinutes}',
-          onSelect: (v) => _data.dailyMinutes = int.parse(v),
-          allowDefault: true,
-        );
-      case 5:
-        return _select(
-          title: '¿Con qué intensidad?',
-          subtitle: 'Días por semana.',
-          options: const [
-            ('Relajado · 3 días', '3', Icons.spa_outlined),
-            ('Constante · 5 días', '5', Icons.trending_up_rounded),
-            ('Intenso · 7 días', '7', Icons.local_fire_department_outlined),
-          ],
-          current: '${_data.daysPerWeek}',
-          onSelect: (v) => _data.daysPerWeek = int.parse(v),
-          allowDefault: true,
-        );
-      case 6:
         return _goal();
-      case 7:
+      case 4:
+        return _commitment();
+      case 5:
         return PersonalityTest(
-            data: _data, step: 8, total: _total, onBack: _back, onDone: _next);
-      case 8:
+            data: _data, step: _step + 1, total: _total, onBack: _back, onDone: _next);
+      case 6:
+        return _select(
+          title: '¿Cómo arrancas en inglés?',
+          subtitle: 'Solo para empezar el test de ubicación en el punto justo.',
+          options: const [
+            ('Desde cero', '0', Icons.flag_outlined),
+            ('Sé lo básico', '1', Icons.trending_up_rounded),
+            ('Tengo buen nivel', '2', Icons.star_outline_rounded),
+          ],
+          current: '${_data.startLevelHint}',
+          onSelect: (v) => _data.startLevelHint = int.parse(v),
+          allowDefault: true,
+        );
+      case 7:
         return PlacementTest(
-            data: _data, step: 9, total: _total, onBack: _back, onDone: _next);
-      case 9:
-        return YourPlanView(
-            data: _data, step: 10, total: _total, onBack: _back, onCreateAccount: _next);
+            data: _data,
+            step: _step + 1,
+            total: _total,
+            startLevel: _data.startLevelHint,
+            onBack: _back,
+            onDone: _next);
       default:
-        return CreateAccountView(
-            data: _data, step: 11, total: _total, onBack: _back, onComplete: widget.onComplete);
+        return YourPlanView(
+            data: _data, step: _total, total: _total, onBack: _back, onFinish: _finish);
     }
   }
 
@@ -158,13 +196,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               const Spacer(),
               const Text('🦜', style: TextStyle(fontSize: 96)),
               const SizedBox(height: 20),
-              const Text('Aprende inglés de verdad',
+              const Text('Construyamos tu plan',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 28, fontWeight: FontWeight.w900, color: AppColors.text)),
               const SizedBox(height: 10),
               const Text(
-                'Un plan con fecha real, examen que evalúa las 4 habilidades, y un coach que te trae de vuelta.',
+                'Unas preguntas rápidas y un test de nivel para armar tu plan con fecha real. '
+                'Cada respuesta personaliza tu camino.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 15, fontWeight: FontWeight.w700, color: AppColors.textMuted, height: 1.4),
@@ -172,32 +211,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               const Spacer(),
               PrimaryButton(label: 'EMPEZAR', expand: true, onPressed: _next),
               const SizedBox(height: 12),
-              const Text('Tu cuenta se crea al final, primero el valor.',
+              const Text('Toma ~2 minutos.',
                   style: TextStyle(
                       fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
-              const SizedBox(height: 6),
-              Wrap(
-                alignment: WrapAlignment.center,
-                crossAxisAlignment: WrapCrossAlignment.center,
-                children: [
-                  const Text('Al continuar aceptas los ',
-                      style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
-                  GestureDetector(
-                    onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => LegalScreen.terms())),
-                    child: const Text('Términos',
-                        style: TextStyle(fontSize: 11, fontWeight: FontWeight.w900, color: AppColors.primary)),
-                  ),
-                  const Text(' y la ',
-                      style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
-                  GestureDetector(
-                    onTap: () => Navigator.of(context).push(
-                        MaterialPageRoute(builder: (_) => LegalScreen.privacy())),
-                    child: const Text('Privacidad',
-                        style: TextStyle(fontSize: 11, fontWeight: FontWeight.w900, color: AppColors.primary)),
-                  ),
-                ],
-              ),
             ],
           ),
         ),
@@ -207,24 +223,37 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   Widget _language() {
     return OnboardingScaffold(
-      step: 2,
+      step: _step + 1,
       total: _total,
       onBack: _back,
-      title: '¿Qué quieres aprender?',
-      subtitle: 'Por ahora: Inglés desde Español.',
+      title: '¿En qué idioma quieres la app?',
+      subtitle: 'Aprenderás inglés; este es el idioma de la interfaz.',
       footer: PrimaryButton(label: 'CONTINUAR', expand: true, onPressed: _next),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          OnboardingOption(
-              label: '🇬🇧  Inglés', selected: true, onTap: () {}, trailing: 'objetivo'),
-          OnboardingOption(
-              label: '🇵🇹  Portugués', selected: false, onTap: _soon, trailing: 'pronto'),
-          OnboardingOption(
-              label: '🇫🇷  Francés', selected: false, onTap: _soon, trailing: 'pronto'),
-          const SizedBox(height: 8),
-          OnboardingOption(
-              label: '🇪🇸  Español', selected: true, onTap: () {}, trailing: 'tu idioma'),
+          for (final (label, code) in const [
+            ('🇪🇸  Español', 'es'),
+            ('🇬🇧  English', 'en'),
+            ('🇧🇷  Português', 'pt'),
+          ])
+            OnboardingOption(
+              label: label,
+              selected: _data.uiLang == code,
+              onTap: () => setState(() => _data.uiLang = code),
+            ),
+          const SizedBox(height: 10),
+          const Row(
+            children: [
+              Icon(Icons.translate_rounded, color: AppColors.textMuted, size: 18),
+              SizedBox(width: 8),
+              Expanded(
+                child: Text('Idioma objetivo del curso: Inglés (Fase 1).',
+                    style: TextStyle(
+                        fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+              ),
+            ],
+          ),
         ],
       ),
     );
@@ -232,7 +261,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   Widget _goal() {
     return OnboardingScaffold(
-      step: 7,
+      step: _step + 1,
       total: _total,
       onBack: _back,
       title: '¿A dónde quieres llegar?',
@@ -292,6 +321,52 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
   }
 
+  // ── Compromiso UNIFICADO: minutos/día + días/semana en una sola pantalla ────
+  Widget _commitment() {
+    const minutes = [5, 10, 15, 20, 30, 45];
+    const days = [(3, 'Relajado'), (5, 'Constante'), (7, 'Intenso')];
+    return OnboardingScaffold(
+      step: _step + 1,
+      total: _total,
+      onBack: _back,
+      title: '¿Cuánto puedes dedicar?',
+      subtitle: 'Esto fija tu meta diaria y la fecha de llegada.',
+      footer: PrimaryButton(label: 'CONTINUAR', expand: true, onPressed: _next),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const _GroupLabel('Minutos al día'),
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            children: [
+              for (final m in minutes)
+                _Chip(
+                  label: '$m min',
+                  selected: _data.dailyMinutes == m,
+                  onTap: () => setState(() => _data.dailyMinutes = m),
+                ),
+            ],
+          ),
+          const SizedBox(height: 22),
+          const _GroupLabel('Días por semana'),
+          const SizedBox(height: 10),
+          Column(
+            children: [
+              for (final (d, tag) in days)
+                OnboardingOption(
+                  label: '$tag · $d días',
+                  selected: _data.daysPerWeek == d,
+                  onTap: () => setState(() => _data.daysPerWeek = d),
+                ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
   Future<void> _pickDeadline() async {
     final now = DateTime.now();
     final picked = await showDatePicker(
@@ -302,8 +377,44 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     );
     if (picked != null) setState(() => _data.deadline = picked);
   }
+}
 
-  void _soon() => ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Más idiomas llegan pronto. Arrancamos con Inglés.')),
-      );
+class _GroupLabel extends StatelessWidget {
+  const _GroupLabel(this.text);
+  final String text;
+  @override
+  Widget build(BuildContext context) {
+    return Text(text,
+        style: const TextStyle(
+            fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.text));
+  }
+}
+
+class _Chip extends StatelessWidget {
+  const _Chip({required this.label, required this.selected, required this.onTap});
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 140),
+        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+        decoration: BoxDecoration(
+          color: selected ? AppColors.primary : Colors.white,
+          borderRadius: BorderRadius.circular(13),
+          border: Border.all(
+              color: selected ? AppColors.primary : const Color(0xFFE5E7F1), width: 2),
+        ),
+        child: Text(label,
+            style: TextStyle(
+                fontSize: 14.5,
+                fontWeight: FontWeight.w900,
+                color: selected ? Colors.white : AppColors.text)),
+      ),
+    );
+  }
 }

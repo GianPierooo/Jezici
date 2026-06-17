@@ -13,6 +13,16 @@ const _months = [
 String _fmtDate(DateTime d) => '${d.day} de ${_months[d.month - 1]} de ${d.year}';
 const _tiers = [5, 10, 15, 20, 30, 45];
 
+/// Enfoque del plan según el MOTIVO (personalización real, GA4 A2/B1).
+const _motiveFocus = {
+  'Trabajo': ('💼', 'Enfoque laboral: reuniones, correos y entrevistas.'),
+  'Viajes': ('✈️', 'Enfoque viajes: aeropuerto, hotel, direcciones y restaurantes.'),
+  'Examen': ('🎓', 'Enfoque examen: simulacros IELTS/Cambridge y las 4 habilidades.'),
+  'Estudios': ('📚', 'Enfoque estudios: comprensión, escritura y vocabulario académico.'),
+  'Mudanza': ('🏠', 'Enfoque mudanza: trámites, vivienda y vida diaria.'),
+  'Placer': ('🎬', 'Enfoque cultura: series, música y conversación cotidiana.'),
+};
+
 /// "Tu plan" (momento mágico): nivel actual → meta, fecha estimada, horas y
 /// ritmo, con la palanca "Quiero llegar más rápido" que recalcula EN VIVO.
 class YourPlanView extends StatefulWidget {
@@ -22,14 +32,16 @@ class YourPlanView extends StatefulWidget {
     required this.step,
     required this.total,
     required this.onBack,
-    required this.onCreateAccount,
+    required this.onFinish,
   });
 
   final OnboardingData data;
   final int step;
   final int total;
   final VoidCallback onBack;
-  final VoidCallback onCreateAccount;
+
+  /// Persiste el plan (la cuenta ya existe en el flujo auth-first) y entra al mapa.
+  final Future<void> Function() onFinish;
 
   @override
   State<YourPlanView> createState() => _YourPlanViewState();
@@ -37,11 +49,22 @@ class YourPlanView extends StatefulWidget {
 
 class _YourPlanViewState extends State<YourPlanView> {
   late int _dailyMin;
+  bool _loading = false;
 
   @override
   void initState() {
     super.initState();
     _dailyMin = widget.data.dailyMinutes;
+  }
+
+  Future<void> _finish() async {
+    widget.data.dailyMinutes = _dailyMin; // conserva la palanca
+    setState(() => _loading = true);
+    try {
+      await widget.onFinish();
+    } finally {
+      if (mounted) setState(() => _loading = false);
+    }
   }
 
   PlanEstimate get _est => estimatePlan(
@@ -72,12 +95,9 @@ class _YourPlanViewState extends State<YourPlanView> {
         mainAxisSize: MainAxisSize.min,
         children: [
           PrimaryButton(
-            label: 'CREAR MI CUENTA',
+            label: _loading ? 'PREPARANDO TU MAPA…' : 'EMPEZAR MI PLAN',
             expand: true,
-            onPressed: () {
-              widget.data.dailyMinutes = _dailyMin; // conserva la palanca
-              widget.onCreateAccount();
-            },
+            onPressed: _loading ? null : _finish,
           ),
         ],
       ),
@@ -184,6 +204,31 @@ class _YourPlanViewState extends State<YourPlanView> {
               ),
             ),
           ),
+          if (_motiveFocus[widget.data.motive] != null) ...[
+            const SizedBox(height: 14),
+            // Personalización por motivo (GA4).
+            Container(
+              padding: const EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                color: AppColors.navActiveBg,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Row(
+                children: [
+                  Text(_motiveFocus[widget.data.motive]!.$1,
+                      style: const TextStyle(fontSize: 22)),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Text(
+                      _motiveFocus[widget.data.motive]!.$2,
+                      style: const TextStyle(
+                          fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.primary),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
           const SizedBox(height: 14),
           // Primer tramo del árbol.
           Container(

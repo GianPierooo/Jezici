@@ -6,7 +6,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'core/config/supabase_config.dart';
+import 'core/theme/app_colors.dart';
 import 'core/theme/app_theme.dart';
+import 'data/providers.dart';
+import 'features/auth/auth_screen.dart';
 import 'features/notifications/matix_service.dart';
 import 'features/onboarding/onboarding_screen.dart';
 import 'features/shell/home_shell.dart';
@@ -51,38 +54,52 @@ class JeziciApp extends StatelessWidget {
       title: 'Jezici',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
-      home: const AppRoot(),
+      home: const AppGate(),
     );
   }
 }
 
-/// Decide la pantalla inicial: si hay sesión → mapa; si no → onboarding.
-/// El paso G reemplazó el sign-in anónimo automático del paso E.
-class AppRoot extends StatefulWidget {
-  const AppRoot({super.key});
+/// Puerta de entrada (GA4 auth-first). Tres estados:
+///   1) sin sesión            → AuthScreen (crear cuenta / iniciar sesión)
+///   2) sesión sin onboarding → OnboardingScreen (obligatorio para todos)
+///   3) sesión + onboarding   → HomeShell (mapa)
+/// Reacciona a login/logout vía onAuthStateChange y refresca los datos del
+/// usuario al cambiar de cuenta.
+class AppGate extends ConsumerStatefulWidget {
+  const AppGate({super.key});
 
   @override
-  State<AppRoot> createState() => _AppRootState();
+  ConsumerState<AppGate> createState() => _AppGateState();
 }
 
-class _AppRootState extends State<AppRoot> {
-  late bool _showHome;
-  StreamSubscription<dynamic>? _authSub;
+class _AppGateState extends ConsumerState<AppGate> {
+  Session? _session;
+  String? _lastUid;
+  StreamSubscription<AuthState>? _authSub;
 
   @override
   void initState() {
     super.initState();
-    var hasSession = false;
     try {
-      hasSession = Supabase.instance.client.auth.currentSession != null;
-      // Reaccionar a login/logout (p. ej. "cerrar sesión" vuelve al onboarding).
+      _session = Supabase.instance.client.auth.currentSession;
+      _lastUid = _session?.user.id;
       _authSub = Supabase.instance.client.auth.onAuthStateChange.listen((data) {
         if (!mounted) return;
-        final has = data.session != null;
-        if (has != _showHome) setState(() => _showHome = has);
+        final s = data.session;
+        final uid = s?.user.id;
+        final userChanged = uid != _lastUid;
+        _lastUid = uid;
+        setState(() => _session = s);
+        if (userChanged) {
+          // Nuevo usuario o logout → refrescar datos derivados.
+          ref.invalidate(onboardingCompleteProvider);
+          ref.invalidate(userPlanProvider);
+          ref.invalidate(homeStatsProvider);
+          ref.invalidate(skillsProvider);
+          ref.invalidate(lessonProgressProvider);
+        }
       });
     } catch (_) {}
-    _showHome = hasSession;
   }
 
   @override
@@ -93,8 +110,44 @@ class _AppRootState extends State<AppRoot> {
 
   @override
   Widget build(BuildContext context) {
-    return _showHome
-        ? const HomeShell()
-        : OnboardingScreen(onComplete: () => setState(() => _showHome = true));
+    if (_session == null) return const AuthScreen();
+    final onb = ref.watch(onboardingCompleteProvider);
+    return onb.when(
+      loading: () => const _Splash(),
+      error: (_, _) => _Splash(onRetry: () => ref.invalidate(onboardingCompleteProvider)),
+      data: (done) => done
+          ? const HomeShell()
+          : OnboardingScreen(onComplete: () => ref.invalidate(onboardingCompleteProvider)),
+    );
+  }
+}
+
+/// Splash mínimo de marca mientras se resuelve el estado de onboarding.
+class _Splash extends StatelessWidget {
+  const _Splash({this.onRetry});
+  final VoidCallback? onRetry;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: AppColors.background,
+      body: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text('🦜', style: TextStyle(fontSize: 64)),
+            const SizedBox(height: 18),
+            if (onRetry == null)
+              const CircularProgressIndicator(color: AppColors.primary)
+            else ...[
+              const Text('No se pudo cargar tu sesión.',
+                  style: TextStyle(fontWeight: FontWeight.w800, color: AppColors.textMuted)),
+              const SizedBox(height: 12),
+              TextButton(onPressed: onRetry, child: const Text('Reintentar')),
+            ],
+          ],
+        ),
+      ),
+    );
   }
 }

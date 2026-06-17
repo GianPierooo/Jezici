@@ -16,6 +16,7 @@ class PlacementTest extends StatefulWidget {
     required this.total,
     required this.onBack,
     required this.onDone,
+    this.startLevel = 1,
   });
 
   final OnboardingData data;
@@ -23,6 +24,9 @@ class PlacementTest extends StatefulWidget {
   final int total;
   final VoidCallback onBack;
   final VoidCallback onDone;
+
+  /// Dificultad inicial (de la micro-pregunta de arranque): 0=A1 1=A2 2=B1.
+  final int startLevel;
 
   @override
   State<PlacementTest> createState() => _PlacementTestState();
@@ -63,7 +67,7 @@ const int _maxQuestions = 12;
 
 class _PlacementTestState extends State<PlacementTest> {
   final _rng = math.Random();
-  int _level = 1; // arranca en ~A2
+  late int _level; // arranca según la micro-pregunta (desde cero / sé algo / buen nivel)
   int _count = 0;
   final Set<int> _asked = {};
   final List<int> _askedLevels = [];
@@ -73,6 +77,7 @@ class _PlacementTestState extends State<PlacementTest> {
   @override
   void initState() {
     super.initState();
+    _level = widget.startLevel.clamp(0, 3);
     _pickNext();
   }
 

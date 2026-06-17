@@ -28,21 +28,27 @@
 
 ---
 
-## 2. Onboarding (flujo paso a paso)
+## 2. Entrada y onboarding (flujo paso a paso) — AUTH-FIRST (GA4)
 
-Objetivo: enganchar en segundos, capturar datos clave, cerrar con **"tu plan + en cuánto tiempo llegarás"**. La cuenta se crea al final (primero el valor).
+**Entrada AUTH-FIRST:** la app abre en **Crear cuenta / Iniciar sesión** (email/contraseña; Google/Apple "pronto"). Tras autenticarse, una *puerta* (`AppGate`) decide:
+- **Sin onboarding** (`user_plans.onboarding_completed = false`) → onboarding completo **obligatorio** (todo usuario lo pasa sí o sí; no entra a la app sin terminarlo).
+- **Con onboarding** → directo al **mapa**.
 
-1. **Bienvenida** (mascota + "Empezar").
-2. **Idioma** (qué aprendes / idioma nativo).
-3. **Motivo** (Trabajo / Viajes / Examen oficial / Estudios / Mudanza / Por placer).
-4. **Nivel actual** (autoevaluación rápida; se confirma con el test de ubicación).
-5. **Compromiso diario** (5/10/15/20/30/45+ min).
-6. **Intensidad / días por semana** (Relajado 3 / Constante 5 / Intenso 7).
-7. **Meta** (A2/B1/B2/C1 + fecha límite opcional).
-8. **Test de personalidad** (estilo motivacional, §9).
-9. **Test de ubicación adaptativo** (nivel CEFR de entrada).
-10. **"Tu plan" (momento mágico):** usa el **motivo de mapa** — nivel actual → camino ascendente → cima = meta; muestra fecha estimada y la palanca "Sube a 30 min/día y llegas en la mitad del tiempo".
-11. **Crear cuenta** (email/Google/Apple).
+Al terminar el onboarding, `create_plan` persiste plan + personalidad y marca `onboarding_completed = true`.
+
+**Onboarding (9 pasos, sin redundancia — cada paso cambia algo aguas abajo):**
+
+1. **Bienvenida** ("Construyamos tu plan", ~2 min).
+2. **Idioma de la app** (es/en/pt; UI — el idioma OBJETIVO del curso es inglés). Se persiste para la i18n.
+3. **Motivo** (Trabajo / Viajes / Examen / Estudios / Mudanza / Placer) → **personaliza** escenarios, recomendaciones y el enfoque del plan.
+4. **Meta** (A2/B1/B2/C1) + **fecha límite** opcional → arma el plan y la fecha.
+5. **Compromiso (UNIFICADO)** — minutos/día **y** días/semana en **una sola pantalla** → meta diaria + fecha.
+6. **Personalidad** (4 situaciones distintas + 1 de intensidad, §9) → estilo de coach (tono de Matix).
+7. **Micro-arranque** ("¿desde cero / sé algo / buen nivel?") → **solo** fija la dificultad inicial del test de ubicación.
+8. **Test de ubicación adaptativo** → nivel CEFR real + las 4 habilidades (reemplaza cualquier autoevaluación).
+9. **"Tu plan" (momento mágico):** nivel actual → meta, fecha estimada, horas/ritmo, enfoque por motivo y la palanca "Quiero llegar más rápido". Botón **EMPEZAR MI PLAN** → persiste y entra al mapa.
+
+> Cambios GA4 vs. v0.1: la cuenta ya **no** se crea al final (es lo primero); se eliminó la **autoevaluación de nivel** (redundante con la ubicación; queda una micro-pregunta solo para sembrar el placement); se **unificó** minutos/día + días/semana; la personalidad bajó de 6+1 a **4+1** preguntas distintas.
 
 **Motor de estimación de tiempo (determinista):** horas guía por nivel CEFR (referenciales, ajustables): A1 ~90-100, A2 ~180-200, B1 ~350-400, B2 ~500-600, C1 ~700-800. `horas_necesarias = horas_acum(meta) − horas_acum(actual)`; `semanas = horas_necesarias / ((min_día × días_semana)/60)`. La fecha se recalcula con el ritmo real.
 
@@ -118,7 +124,7 @@ El lugar para **conocer y hablar con gente dentro de la app** y subir tu Speakin
 
 ## 9. Test de personalidad → motor de motivación (Matix)
 
-**El test (onboarding):** 6–8 preguntas que clasifican al usuario en un estilo. Cada estilo cambia el **tono** de notificaciones, correos y mensajes.
+**El test (onboarding):** **5 preguntas** (4 situaciones de estilo distintas + 1 de intensidad, §Test_Personalidad) que clasifican al usuario en un estilo. Cada estilo cambia el **tono** de notificaciones, correos y mensajes.
 
 | Estilo | Tono | Ejemplo |
 |---|---|---|

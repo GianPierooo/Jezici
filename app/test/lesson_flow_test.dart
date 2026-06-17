@@ -32,6 +32,10 @@ class FakeProgressRepository implements ProgressRepository {
   @override
   Future<void> signUpEmail(String email, String password) async {}
   @override
+  Future<void> signInEmail(String email, String password) async {}
+  @override
+  Future<bool> isOnboardingComplete() async => true;
+  @override
   Future<UserPlan?> fetchPlan() async => null;
   @override
   Future<Map<String, dynamic>> useStreakFreeze() async => {'ok': true, 'gold': 0};

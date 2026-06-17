@@ -60,6 +60,12 @@ final userPlanProvider = FutureProvider<UserPlan?>(
   (ref) => ref.watch(progressRepositoryProvider).fetchPlan(),
 );
 
+/// ¿El usuario terminó el onboarding? Decide la ruta de entrada (GA4 auth-first):
+/// con sesión pero sin onboarding → onboarding obligatorio; si no → mapa.
+final onboardingCompleteProvider = FutureProvider<bool>(
+  (ref) => ref.watch(progressRepositoryProvider).isOnboardingComplete(),
+);
+
 /// Ajustes de Matix (estilo de coach, intensidad, quiet_hours).
 final settingsProvider = FutureProvider<UserSettings>(
   (ref) => ref.watch(progressRepositoryProvider).fetchSettings(),

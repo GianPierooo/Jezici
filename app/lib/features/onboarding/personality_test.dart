@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'onboarding_data.dart';
 import 'widgets/onboarding_scaffold.dart';
 
-/// Test de personalidad (Test_Personalidad.md): 6 preguntas de estilo + 1 de
-/// intensidad. Mapea a un estilo de coach (mano_dura/positivo/rezago/suave).
+/// Test de personalidad (Test_Personalidad.md): 4 preguntas de estilo (cada una
+/// es una situación DISTINTA, sin variantes repetidas) + 1 de intensidad. Mapea
+/// a un estilo de coach (mano_dura/positivo/rezago/suave) que gobierna el tono
+/// de Matix en toda la app.
 class PersonalityTest extends StatefulWidget {
   const PersonalityTest({
     super.key,
@@ -32,44 +34,34 @@ class _PQ {
   final bool isIntensity;
 }
 
+// 4 situaciones DISTINTAS (fallo · empujón · competencia · logro), cada opción
+// mapea a un estilo. + 1 pregunta de intensidad (frecuencia, dimensión aparte).
 const _questions = <_PQ>[
-  _PQ('Cuando no cumples una meta, ¿qué te funciona más?', [
-    ('Que me lo digan sin rodeos', 'mano_dura'),
-    ('Que me animen a retomar con energía', 'positivo'),
-    ('Que me recuerden lo que me estoy perdiendo', 'rezago'),
-    ('Que me lo tomen con calma', 'suave'),
+  _PQ('Si fallas tu meta del día, ¿qué prefieres oír?', [
+    ('“Sin excusas. Retómalo ya.”', 'mano_dura'),
+    ('“¡Mañana lo das todo, tú puedes! 💪”', 'positivo'),
+    ('“Vas quedando atrás de tu plan, recupéralo.”', 'rezago'),
+    ('“Tranqui, cuando puedas seguimos 🙂”', 'suave'),
   ]),
-  _PQ('Tu racha está en riesgo. ¿Qué mensaje prefieres?', [
-    ('“Eso no va. Vuelve ya.”', 'mano_dura'),
-    ('“¡No rompas la magia, tú puedes! 💪”', 'positivo'),
-    ('“Vas quedando atrás de tu plan.”', 'rezago'),
-    ('“Cuando puedas, una lección rápida 🙂”', 'suave'),
-  ]),
-  _PQ('Cuando alguien de tu liga te pasa, sientes…', [
-    ('Ganas de que me exijan más', 'mano_dura'),
-    ('Motivación para subir', 'positivo'),
-    ('Que tengo que recuperar terreno ya', 'rezago'),
-    ('Nada, voy a mi ritmo', 'suave'),
-  ]),
-  _PQ('¿Qué frase te mueve más?', [
-    ('“No hay excusas.”', 'mano_dura'),
-    ('“¡Vas increíble, sigue!”', 'positivo'),
-    ('“Estás quedando atrás.”', 'rezago'),
-    ('“Paso a paso se llega.”', 'suave'),
-  ]),
-  _PQ('¿Cómo prefieres que te empujemos a estudiar?', [
+  _PQ('¿Cómo te gusta que te motivemos a practicar?', [
     ('Firme y directo', 'mano_dura'),
     ('Con energía y celebración', 'positivo'),
     ('Recordándome mis metas y mi avance', 'rezago'),
     ('Suave, sin presión', 'suave'),
   ]),
-  _PQ('Si fallas varios días seguidos, ¿qué prefieres?', [
-    ('Un llamado de atención claro', 'mano_dura'),
-    ('Un mensaje que me reanime', 'positivo'),
-    ('Ver cuánto me alejé de mi meta', 'rezago'),
-    ('Una invitación amable a volver', 'suave'),
+  _PQ('En la liga alguien te supera. ¿Qué te activa?', [
+    ('Que me reten a recuperarme', 'mano_dura'),
+    ('Ánimo para subir posiciones', 'positivo'),
+    ('Ver cuánto me falta para alcanzarlo', 'rezago'),
+    ('Nada, voy a mi ritmo', 'suave'),
   ]),
-  _PQ('¿Qué tan seguido quieres que te insistamos?', [
+  _PQ('Cuando logras algo, ¿qué mensaje disfrutas más?', [
+    ('“Bien. Ahora el siguiente reto.”', 'mano_dura'),
+    ('“¡Increíble, eres imparable! 🎉”', 'positivo'),
+    ('“Vas adelantado a tu plan.”', 'rezago'),
+    ('“Qué bien, sigue a tu ritmo 🙂”', 'suave'),
+  ]),
+  _PQ('¿Qué tan seguido quieres que te recordemos?', [
     ('Mucho, no me dejes aflojar', '3'),
     ('Lo justo', '2'),
     ('Poco', '1'),

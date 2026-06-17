@@ -30,6 +30,24 @@ class ProgressRepository {
     await _client.auth.signUp(email: email, password: password);
   }
 
+  /// Inicia sesión con email/contraseña (flujo auth-first, GA4).
+  Future<void> signInEmail(String email, String password) async {
+    await _client.auth.signInWithPassword(email: email, password: password);
+  }
+
+  /// ¿El usuario ya terminó el onboarding? (user_plans.onboarding_completed).
+  /// Sin fila de plan → false (debe pasar el onboarding sí o sí).
+  Future<bool> isOnboardingComplete() async {
+    final uid = _uid;
+    if (uid == null) return false;
+    final res = await _client
+        .from('user_plans')
+        .select('onboarding_completed')
+        .eq('user_id', uid)
+        .maybeSingle();
+    return (res?['onboarding_completed'] as bool?) ?? false;
+  }
+
   /// Persiste el plan del onboarding (personalidad, plan, nivel, 4 skills).
   Future<void> createPlan({
     required String coachStyle,
@@ -67,7 +85,7 @@ class ProgressRepository {
         .from('user_plans')
         .select(
           'current_level, goal_level, daily_minutes, days_per_week, motive, '
-          'deadline, estimated_hours, estimated_completion_date',
+          'deadline, estimated_hours, estimated_completion_date, onboarding_completed',
         )
         .eq('user_id', uid)
         .maybeSingle();

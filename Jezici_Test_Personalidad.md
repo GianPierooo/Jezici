@@ -1,74 +1,64 @@
-# Jezici — Test de Personalidad (v0.1 borrador)
+# Jezici — Test de Personalidad (v0.2 · GA4)
 
-> Las preguntas del onboarding (paso 8) que clasifican al usuario en un **estilo de coach** para el motor Matix. Corto, rápido y divertido. Borrador para afinar. Se guarda en `user_personality` (y opcionalmente las respuestas en `personality_test_responses`).
+> Las preguntas del onboarding que clasifican al usuario en un **estilo de coach** para el motor Matix. Corto, rápido y SIN redundancia: cada pregunta es una **situación distinta** (no variantes de la misma). Se guarda en `user_personality` (`coach_style` + `intensity`).
 
 ---
 
 ## 1. Objetivo
 
-Clasificar al usuario en uno de **4 estilos** (mano dura · positivo · rezago · suave) y una **intensidad** inicial. Cada respuesta suma puntos a uno o más estilos; gana el dominante. La intensidad sale de una pregunta aparte. Todo **recalibrable** en Ajustes.
+Clasificar al usuario en uno de **4 estilos** (mano dura · positivo · rezago · suave) y una **intensidad** inicial. Cada pregunta de estilo presenta la MISMA situación bajo los 4 estilos; el usuario elige el que le resuena. Gana el estilo dominante. La intensidad sale de una pregunta aparte. Todo **recalibrable** en Ajustes.
 
 **Leyenda de mapeo:** MD = mano dura · PO = positivo · RE = rezago · SU = suave.
 
 ---
 
-## 2. Preguntas (6 de estilo + 1 de intensidad)
+## 2. Preguntas (4 de estilo, situaciones DISTINTAS + 1 de intensidad)
 
-**P1. Cuando no cumples una meta, ¿qué te funciona más?**
-- a) Que me lo digan sin rodeos → **MD**
-- b) Que me animen a retomar con energía → **PO**
-- c) Que me recuerden lo que me estoy perdiendo → **RE**
-- d) Que me lo tomen con calma → **SU**
+Antes había 6 preguntas de estilo con solapamientos (P1≈P5 sobre el tipo de empujón; P2≈P6 sobre el fallo). Se reducen a **4 situaciones distintas**, cada una cubriendo las 4 dimensiones:
 
-**P2. Tu racha está en riesgo. ¿Qué mensaje prefieres recibir?**
-- a) "Eso no va. Vuelve ya." → **MD**
-- b) "¡No rompas la magia, tú puedes! 💪" → **PO**
-- c) "Vas quedando atrás de tu plan." → **RE**
-- d) "Cuando puedas, una lección rápida 🙂" → **SU**
+**P1 (FALLO). Si fallas tu meta del día, ¿qué prefieres oír?**
+- a) "Sin excusas. Retómalo ya." → **MD**
+- b) "¡Mañana lo das todo, tú puedes! 💪" → **PO**
+- c) "Vas quedando atrás de tu plan, recupéralo." → **RE**
+- d) "Tranqui, cuando puedas seguimos 🙂" → **SU**
 
-**P3. Cuando alguien de tu liga te pasa, sientes…**
-- a) Ganas de que me exijan más → **MD**
-- b) Motivación para subir → **PO**
-- c) Que tengo que recuperar terreno ya → **RE**
-- d) Nada, voy a mi ritmo → **SU**
-
-**P4. ¿Qué frase te mueve más?**
-- a) "No hay excusas." → **MD**
-- b) "¡Vas increíble, sigue!" → **PO**
-- c) "Estás quedando atrás." → **RE**
-- d) "Paso a paso se llega." → **SU**
-
-**P5. ¿Cómo prefieres que te empujemos a estudiar?**
+**P2 (EMPUJÓN). ¿Cómo te gusta que te motivemos a practicar?**
 - a) Firme y directo → **MD**
 - b) Con energía y celebración → **PO**
 - c) Recordándome mis metas y mi avance → **RE**
 - d) Suave, sin presión → **SU**
 
-**P6. Si fallas varios días seguidos, ¿qué prefieres?**
-- a) Un llamado de atención claro → **MD**
-- b) Un mensaje que me reanime → **PO**
-- c) Ver cuánto me alejé de mi meta → **RE**
-- d) Una invitación amable a volver → **SU**
+**P3 (COMPETENCIA). En la liga alguien te supera. ¿Qué te activa?**
+- a) Que me reten a recuperarme → **MD**
+- b) Ánimo para subir posiciones → **PO**
+- c) Ver cuánto me falta para alcanzarlo → **RE**
+- d) Nada, voy a mi ritmo → **SU**
 
-**P7 (intensidad). ¿Qué tan seguido quieres que te insistamos?**
-- a) Mucho, no me dejes aflojar → **intensidad alta**
-- b) Lo justo → **intensidad media**
-- c) Poco → **intensidad baja**
+**P4 (LOGRO). Cuando logras algo, ¿qué mensaje disfrutas más?**
+- a) "Bien. Ahora el siguiente reto." → **MD**
+- b) "¡Increíble, eres imparable! 🎉" → **PO**
+- c) "Vas adelantado a tu plan." → **RE**
+- d) "Qué bien, sigue a tu ritmo 🙂" → **SU**
+
+**P5 (intensidad — dimensión aparte). ¿Qué tan seguido quieres que te recordemos?**
+- a) Mucho, no me dejes aflojar → **intensidad alta (3)**
+- b) Lo justo → **intensidad media (2)**
+- c) Poco → **intensidad baja (1)**
 
 ---
 
 ## 3. Scoring
 
-- P1–P6: cada respuesta suma **1 punto** a su estilo (MD/PO/RE/SU).
-- **Estilo asignado = el de mayor puntaje.** Empate → preferir el de la P1 (la más directa sobre motivación) o preguntar una de desempate.
-- P7 define la **intensidad** (alta/media/baja), independiente del estilo.
-- Guardar `coach_style` + `intensity` en `user_personality`. Mostrar al final: "Tu coach será [estilo]" con opción de cambiarlo.
+- P1–P4: cada respuesta suma **1 punto** a su estilo (MD/PO/RE/SU).
+- **Estilo asignado = el de mayor puntaje.** Empate → preferir **SU** (default seguro, menos agresivo).
+- P5 define la **intensidad** (alta/media/baja), independiente del estilo.
+- Guardar `coach_style` + `intensity` en `user_personality`. **Recalibrable** en Ajustes.
 
 ---
 
 ## 4. Notas
 
-- Mantenerlo **corto** (6–7 preguntas) y con copy ligero — es onboarding, no un test clínico.
-- El estilo solo cambia el **tono** de Matix; la intensidad, la **frecuencia/escalado** (respetando el techo y los horarios).
-- **Recalibrable** en Ajustes en cualquier momento.
-- (Fase 2) se puede ajustar el estilo según comportamiento real (ej. si el mano dura genera abandono en alguien, suavizar).
+- **5 preguntas en total** (4 estilo + 1 intensidad) — más corto y sin repetición que la v0.1 (7).
+- Cada pregunta proba una **situación distinta** (fallo, empujón, competencia, logro) → mejor discriminación con menos preguntas.
+- El estilo solo cambia el **tono** de Matix; la intensidad, la **frecuencia/escalado** (respetando techo y `quiet_hours`).
+- (Fase 2) se podrá ajustar el estilo según comportamiento real.
