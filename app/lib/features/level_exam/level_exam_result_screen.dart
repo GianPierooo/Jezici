@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../../core/constants/skills.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/checkpoint_models.dart';
 import '../../data/models/level_exam_models.dart';
 import 'certificate_screen.dart';
+import 'level_exam_intro_screen.dart';
 
 /// Resultados del examen de nivel: veredicto + desglose por habilidad. Si aprobó,
 /// lleva al certificado.
@@ -11,9 +13,7 @@ class LevelExamResultScreen extends StatelessWidget {
   const LevelExamResultScreen({super.key, required this.result});
   final LevelExamResult result;
 
-  static const _labels = {
-    'reading': 'Reading', 'listening': 'Listening', 'writing': 'Writing', 'speaking': 'Speaking'
-  };
+  static const _labels = kSkillEs;
 
   @override
   Widget build(BuildContext context) {
@@ -74,26 +74,48 @@ class LevelExamResultScreen extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-              child: SizedBox(
-                width: double.infinity,
-                height: 54,
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (pass && r.certificate != null) {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (_) => CertificateScreen(cert: r.certificate!)));
-                    } else {
-                      Navigator.of(context).popUntil((x) => x.isFirst);
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: pass ? AppColors.gold : AppColors.primary,
-                    foregroundColor: pass ? AppColors.text : Colors.white,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    height: 54,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if (pass && r.certificate != null) {
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (_) => CertificateScreen(cert: r.certificate!)));
+                        } else if (pass) {
+                          Navigator.of(context).popUntil((x) => x.isFirst);
+                        } else {
+                          // Reintentar: vuelve a la intro del examen para empezar de nuevo.
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (_) => const LevelExamIntroScreen()));
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: pass ? AppColors.gold : AppColors.primary,
+                        foregroundColor: pass ? AppColors.text : Colors.white,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                      ),
+                      child: Text(pass ? 'VER MI CERTIFICADO 🎓' : 'REINTENTAR EXAMEN',
+                          style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 16, letterSpacing: 0.5)),
+                    ),
                   ),
-                  child: Text(pass ? 'VER MI CERTIFICADO 🎓' : 'VOLVER',
-                      style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 16, letterSpacing: 0.5)),
-                ),
+                  if (!pass) ...[
+                    const SizedBox(height: 10),
+                    SizedBox(
+                      width: double.infinity,
+                      height: 48,
+                      child: TextButton(
+                        onPressed: () => Navigator.of(context).popUntil((x) => x.isFirst),
+                        child: const Text('Volver al mapa',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w800, fontSize: 14.5, color: AppColors.textMuted)),
+                      ),
+                    ),
+                  ],
+                ],
               ),
             ),
           ],

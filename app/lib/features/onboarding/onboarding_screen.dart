@@ -89,7 +89,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
         ..showSnackBar(const SnackBar(content: Text('No se pudo guardar tu plan. Reinténtalo.')));
-      rethrow; // YourPlanView resetea su estado de carga.
+      // No relanzamos: YourPlanView resetea su carga en su finally y relanzar
+      // generaría un error async sin capturar.
     }
   }
 

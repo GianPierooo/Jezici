@@ -23,6 +23,7 @@ class ParrotMascot extends StatefulWidget {
 
 class _ParrotMascotState extends State<ParrotMascot> with SingleTickerProviderStateMixin {
   late AnimationController _c;
+  bool _reduceMotion = false;
 
   Duration get _dur => switch (widget.mood) {
         MascotMood.celebrate => const Duration(milliseconds: 650),
@@ -33,7 +34,23 @@ class _ParrotMascotState extends State<ParrotMascot> with SingleTickerProviderSt
   @override
   void initState() {
     super.initState();
-    _c = AnimationController(vsync: this, duration: _dur)..repeat(reverse: true);
+    _c = AnimationController(vsync: this, duration: _dur);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Respeta "reducir movimiento" del sistema (a11y): sin bob ni brincos.
+    _reduceMotion = MediaQuery.of(context).disableAnimations;
+    _reconcile();
+  }
+
+  void _reconcile() {
+    if (_reduceMotion) {
+      if (_c.isAnimating) _c.stop();
+    } else if (!_c.isAnimating) {
+      _c.repeat(reverse: true);
+    }
   }
 
   @override
@@ -41,9 +58,8 @@ class _ParrotMascotState extends State<ParrotMascot> with SingleTickerProviderSt
     super.didUpdateWidget(old);
     if (old.mood != widget.mood) {
       _c.duration = _dur;
-      _c
-        ..reset()
-        ..repeat(reverse: true);
+      _c.reset();
+      _reconcile();
     }
   }
 
@@ -72,6 +88,9 @@ class _ParrotMascotState extends State<ParrotMascot> with SingleTickerProviderSt
             child: Text(widget.message!,
                 style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w800, fontSize: 11)),
           ),
+        if (_reduceMotion)
+          Text('🦜', style: TextStyle(fontSize: widget.size))
+        else
         AnimatedBuilder(
           animation: _c,
           builder: (context, child) {

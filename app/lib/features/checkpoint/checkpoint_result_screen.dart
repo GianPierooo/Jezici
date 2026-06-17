@@ -1,6 +1,7 @@
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/constants/skills.dart';
 import '../../core/feedback/feedback_fx.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/checkpoint_models.dart';
@@ -31,12 +32,7 @@ class _CheckpointResultScreenState extends State<CheckpointResultScreen> {
   ConfettiController? _confetti;
 
   static const _order = ['reading', 'listening', 'writing', 'speaking'];
-  static const _labels = {
-    'reading': 'Reading',
-    'listening': 'Listening',
-    'writing': 'Writing',
-    'speaking': 'Speaking',
-  };
+  static const _labels = kSkillEs;
 
   @override
   void initState() {

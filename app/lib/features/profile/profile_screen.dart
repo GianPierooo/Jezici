@@ -45,12 +45,8 @@ class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
 
   static const _order = ['reading', 'listening', 'writing', 'speaking'];
-  static const _labels = {
-    'reading': 'Reading',
-    'listening': 'Listening',
-    'writing': 'Writing',
-    'speaking': 'Speaking',
-  };
+  // Etiquetas en español, alineadas con el resto de la app (kSkillEs).
+  static const _labels = kSkillEs;
   static const _icons = {
     'reading': Icons.menu_book_rounded,
     'listening': Icons.headphones_rounded,

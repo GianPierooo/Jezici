@@ -64,9 +64,17 @@ def main():
     # primera unidad/lección A1
     u1 = q("select id from units where cefr_level='A1' order by order_index limit 1;")[0]['id']
     lessons = q(f"select id, order_index, type from lessons where unit_id='{u1}' order by order_index;")
+    # GA9: el PRIMER nodo (la misión, order 0) es el inicial disponible.
+    mission = lessons[0]
+    mst = q(f"select status from user_lesson_progress where user_id='{uid}' and lesson_id='{mission['id']}';")
+    check('misión (primer nodo) disponible', bool(mst) and mst[0]['status'] == 'available',
+          (mst[0]['status'] if mst else 'sin fila') + f" type={mission['type']}")
+    # Completar la misión desbloquea la primera lección.
+    v.rpc(uid, f"select complete_mission('{mission['id']}');")
     first = next(l for l in lessons if l['type'] == 'lesson')
     st = q(f"select status from user_lesson_progress where user_id='{uid}' and lesson_id='{first['id']}';")
-    check('primer nodo disponible', bool(st) and st[0]['status'] in ('available', 'in_progress', 'completed', 'golden'),
+    check('primera lección disponible tras la misión',
+          bool(st) and st[0]['status'] in ('available', 'in_progress', 'completed', 'golden'),
           st[0]['status'] if st else 'sin fila')
 
     print('\n== lección 1.1 (complete_lesson) ==')

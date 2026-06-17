@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/constants/skills.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/content_item_model.dart';
 import '../../data/models/lesson_model.dart';
@@ -205,12 +206,7 @@ class _SkillChip extends StatelessWidget {
   const _SkillChip({required this.skill});
   final String skill;
 
-  static const _labels = {
-    'reading': 'Reading',
-    'listening': 'Listening',
-    'writing': 'Writing',
-    'speaking': 'Speaking',
-  };
+  static const _labels = kSkillEs;
 
   @override
   Widget build(BuildContext context) {

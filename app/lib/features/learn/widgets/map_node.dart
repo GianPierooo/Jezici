@@ -29,6 +29,7 @@ class MapNode extends StatefulWidget {
 class _MapNodeState extends State<MapNode> with SingleTickerProviderStateMixin {
   late final AnimationController _pulse;
   bool _pressed = false;
+  bool _reduceMotion = false;
 
   bool get _isAvailable => widget.state == NodeState.available;
 
@@ -39,17 +40,28 @@ class _MapNodeState extends State<MapNode> with SingleTickerProviderStateMixin {
       vsync: this,
       duration: const Duration(milliseconds: 2000),
     );
-    if (_isAvailable) _pulse.repeat();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Respeta "reducir movimiento": sin pulso; mostramos un aro fijo en su lugar.
+    _reduceMotion = MediaQuery.of(context).disableAnimations;
+    _reconcile();
+  }
+
+  void _reconcile() {
+    if (_isAvailable && !_reduceMotion && !_pulse.isAnimating) {
+      _pulse.repeat();
+    } else if ((!_isAvailable || _reduceMotion) && _pulse.isAnimating) {
+      _pulse.stop();
+    }
   }
 
   @override
   void didUpdateWidget(covariant MapNode oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (_isAvailable && !_pulse.isAnimating) {
-      _pulse.repeat();
-    } else if (!_isAvailable && _pulse.isAnimating) {
-      _pulse.stop();
-    }
+    _reconcile();
   }
 
   @override
@@ -98,7 +110,8 @@ class _MapNodeState extends State<MapNode> with SingleTickerProviderStateMixin {
           top: Color(0xFFFF8C8C),
           bottom: AppColors.coral,
           depth: AppColors.coralDark,
-          icon: Icons.star_rounded,
+          // Distinto de "dominado" (estrella): la misión es el arranque del viaje.
+          icon: Icons.rocket_launch_rounded,
         );
       case LessonType.lesson:
       case LessonType.unknown:
@@ -163,7 +176,17 @@ class _MapNodeState extends State<MapNode> with SingleTickerProviderStateMixin {
                 ]),
               ),
             ),
-          if (_isAvailable)
+          if (_isAvailable && _reduceMotion)
+            // Aro fijo: marca el nodo disponible sin animación.
+            Container(
+              width: size * 1.22,
+              height: size * 1.22,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(color: AppColors.coral.withValues(alpha: 0.55), width: 3),
+              ),
+            )
+          else if (_isAvailable)
             AnimatedBuilder(
               animation: _pulse,
               builder: (context, _) {

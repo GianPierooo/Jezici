@@ -52,7 +52,10 @@ class _Board extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final n = lg.members.length;
+    // Defensa: aunque el backend (GA6) ya solo devuelve jugadores reales, nunca
+    // pintamos bots si alguno se colara — Ligas es sin rivales fabricados.
+    final members = lg.members.where((m) => !m.isBot).toList();
+    final n = members.length;
     return ListView(
       padding: const EdgeInsets.fromLTRB(20, 18, 20, 110),
       children: [
@@ -141,9 +144,9 @@ class _Board extends StatelessWidget {
                 if (!lg.warmingUp && i == n - lg.demote)
                   const _ZoneDivider(label: 'ZONA DE DESCENSO ↓', color: AppColors.coral),
                 _Row(
-                  m: lg.members[i],
-                  promote: !lg.warmingUp && lg.members[i].rank <= lg.promote,
-                  demote: !lg.warmingUp && lg.members[i].rank > n - lg.demote,
+                  m: members[i],
+                  promote: !lg.warmingUp && members[i].rank <= lg.promote,
+                  demote: !lg.warmingUp && members[i].rank > n - lg.demote,
                 ),
               ],
             ],

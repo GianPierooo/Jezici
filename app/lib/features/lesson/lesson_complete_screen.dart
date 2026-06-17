@@ -1,6 +1,7 @@
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/constants/skills.dart';
 import '../../core/feedback/feedback_fx.dart';
 import '../../core/theme/app_colors.dart';
 import '../learn/widgets/parrot_mascot.dart';
@@ -21,12 +22,7 @@ class LessonCompleteScreen extends StatefulWidget {
 class _LessonCompleteScreenState extends State<LessonCompleteScreen> {
   late final ConfettiController _confetti;
 
-  static const _skillLabels = {
-    'reading': 'Reading',
-    'listening': 'Listening',
-    'writing': 'Writing',
-    'speaking': 'Speaking',
-  };
+  static const _skillLabels = kSkillEs;
 
   @override
   void initState() {

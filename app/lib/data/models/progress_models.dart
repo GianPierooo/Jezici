@@ -332,7 +332,9 @@ class LessonSummary {
         milestone: (j['milestone'] as num?)?.toInt() ?? 0,
         nextLessonId: j['next_lesson_id'] as String?,
         skillsUp: ((j['skills'] as List?) ?? const [])
-            .map((e) => (e as Map)['skill'].toString())
+            .map((e) => e is Map ? e['skill']?.toString() : (e is String ? e : null))
+            .whereType<String>()
+            .where((s) => s.isNotEmpty)
             .toList(),
       );
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/constants/skills.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/practice_models.dart';
 import '../../data/providers.dart';
@@ -19,7 +20,8 @@ class PracticeScreen extends ConsumerStatefulWidget {
 class _PracticeScreenState extends ConsumerState<PracticeScreen> {
   String? _loading; // modo que se está cargando
 
-  static const _skillLabels = {'reading': 'Reading', 'writing': 'Writing'};
+  // Fase 1 califica Lectura y Escritura (Listening/Speaking aún sin calificar).
+  static const _gradableSkills = ['reading', 'writing'];
 
   Future<void> _start(String mode, {String? skill, int? timeLimit, required String title}) async {
     if (_loading != null) return;
@@ -64,19 +66,19 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
               const Text('¿Qué habilidad?',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: AppColors.text)),
               const SizedBox(height: 4),
-              const Text('En Fase 1 se califican Reading y Writing.',
+              const Text('En Fase 1 se califican Lectura y Escritura.',
                   style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
               const SizedBox(height: 14),
-              for (final e in _skillLabels.entries)
+              for (final s in _gradableSkills)
                 ListTile(
                   contentPadding: EdgeInsets.zero,
                   leading: Icon(
-                      e.key == 'reading' ? Icons.menu_book_rounded : Icons.edit_rounded,
+                      s == 'reading' ? Icons.menu_book_rounded : Icons.edit_rounded,
                       color: AppColors.primary),
-                  title: Text(e.value,
+                  title: Text(kSkillEs[s] ?? s,
                       style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
                   trailing: const Icon(Icons.chevron_right_rounded, color: AppColors.textMuted),
-                  onTap: () => Navigator.pop(ctx, e.key),
+                  onTap: () => Navigator.pop(ctx, s),
                 ),
             ],
           ),
@@ -84,7 +86,7 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
       ),
     );
     if (skill != null) {
-      await _start('skill', skill: skill, title: 'Práctica de ${_skillLabels[skill]}');
+      await _start('skill', skill: skill, title: 'Práctica de ${kSkillEs[skill] ?? skill}');
     }
   }
 
@@ -92,7 +94,6 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
   Widget build(BuildContext context) {
     final status = ref.watch(practiceStatusProvider).value ?? PracticeStatus.empty;
     final weak = status.weakestSkill;
-    const skillEs = {'reading': 'Reading', 'listening': 'Listening', 'writing': 'Writing', 'speaking': 'Speaking'};
 
     return SafeArea(
       bottom: false,
@@ -118,7 +119,7 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
             emoji: '🎯',
             title: 'Refuerzo de debilidades',
             subtitle: weak != null
-                ? 'Tu habilidad más débil: ${skillEs[weak] ?? weak}'
+                ? 'Tu habilidad más débil: ${kSkillEs[weak] ?? weak}'
                 : 'Trabaja tu punto flojo',
             loading: _loading == 'weakness',
             color: AppColors.coral,
@@ -135,7 +136,7 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
           _Card(
             emoji: '🛠️',
             title: 'Por habilidad',
-            subtitle: 'Elige Reading o Writing',
+            subtitle: 'Elige Lectura o Escritura',
             loading: _loading != null && _loading!.startsWith('skill'),
             color: AppColors.success,
             onTap: _pickSkill,

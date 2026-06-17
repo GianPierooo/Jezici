@@ -127,7 +127,8 @@ class MiPlanScreen extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 14),
-        // Fecha proyectada.
+        // Fecha proyectada. Si aún no hay proyección (sin ritmo suficiente),
+        // mostramos la fecha del plan original o un estado de cálculo.
         if (proj != null)
           _InfoCard(
             icon: Icons.event_available_rounded,
@@ -136,6 +137,20 @@ class MiPlanScreen extends ConsumerWidget {
             sub: t.estimatedCompletion != null && t.estimatedCompletion != proj
                 ? 'Plan original: ${fmtDate(t.estimatedCompletion!)}'
                 : 'Con tu ritmo actual',
+          )
+        else if (t.estimatedCompletion != null)
+          _InfoCard(
+            icon: Icons.event_available_rounded,
+            title: 'Llegada estimada',
+            value: fmtDate(t.estimatedCompletion!),
+            sub: 'Practica unos días y ajustaremos la fecha a tu ritmo real.',
+          )
+        else
+          _InfoCard(
+            icon: Icons.hourglass_empty_rounded,
+            title: 'Llegada proyectada',
+            value: 'Calculando…',
+            sub: 'Completa tus primeras sesiones para estimar tu fecha.',
           ),
         const SizedBox(height: 10),
         Row(

@@ -69,14 +69,21 @@ class LearnTopBar extends ConsumerWidget {
               ),
               const SizedBox(width: 13),
               HeartsIndicator(hearts: stats.hearts),
-              const SizedBox(width: 13),
-              GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => const StreakScreen())),
-                child: _DailyGoalRing(value: stats.dailyProgress),
+              const SizedBox(width: 10),
+              Semantics(
+                button: true,
+                label: 'Meta diaria',
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (_) => const StreakScreen())),
+                  child: SizedBox(
+                    width: 44,
+                    height: 44,
+                    child: Center(child: _DailyGoalRing(value: stats.dailyProgress)),
+                  ),
+                ),
               ),
-              const SizedBox(width: 6),
               _BellButton(
                 onTap: () => Navigator.of(context).push(MaterialPageRoute(
                     builder: (_) => const NotificationCenterScreen())),
@@ -96,8 +103,15 @@ class PlanProgressStrip extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final t = ref.watch(planTrackingProvider).value;
-    if (t == null || !t.ok) return const SizedBox.shrink();
+    final tAsync = ref.watch(planTrackingProvider);
+    final t = tAsync.value;
+    // Durante la carga inicial mostramos un placeholder de la MISMA altura para
+    // evitar el salto de layout cuando la barra aparece. Si ya cargó y no hay
+    // plan válido, la ocultamos del todo.
+    if (t == null) {
+      return tAsync.isLoading ? const _PlanStripPlaceholder() : const SizedBox.shrink();
+    }
+    if (!t.ok) return const SizedBox.shrink();
     final pct = (t.progress * 100).round();
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
@@ -151,20 +165,38 @@ class _BellButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onTap: onTap,
-      child: Container(
-        width: 30,
-        height: 30,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: const Color(0xFFF4F5FB),
-          borderRadius: BorderRadius.circular(10),
+    // Área táctil 44×44 (a11y) con la caja visible compacta centrada.
+    return Semantics(
+      button: true,
+      label: 'Notificaciones',
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: onTap,
+        child: const SizedBox(
+          width: 44,
+          height: 44,
+          child: Center(
+            child: _BellGlyph(),
+          ),
         ),
-        child: const Icon(Icons.notifications_rounded,
-            size: 17, color: AppColors.primary),
       ),
+    );
+  }
+}
+
+class _BellGlyph extends StatelessWidget {
+  const _BellGlyph();
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 32,
+      height: 32,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: const Color(0xFFF4F5FB),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: const Icon(Icons.notifications_rounded, size: 18, color: AppColors.primary),
     );
   }
 }
@@ -193,6 +225,41 @@ class _DailyGoalRing extends StatelessWidget {
             ),
           ),
           const Icon(Icons.bolt_rounded, size: 14, color: AppColors.primary),
+        ],
+      ),
+    );
+  }
+}
+
+/// Placeholder de la barra de plan mientras carga: misma altura/forma para que
+/// no haya salto de layout cuando aparezcan los datos reales.
+class _PlanStripPlaceholder extends StatelessWidget {
+  const _PlanStripPlaceholder();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.fromLTRB(12, 7, 12, 0),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.5),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Row(
+        children: [
+          const SizedBox(width: 16, height: 16),
+          const SizedBox(width: 7),
+          Expanded(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(6),
+              child: const LinearProgressIndicator(
+                minHeight: 7,
+                backgroundColor: Color(0xFFE9E7F6),
+                valueColor: AlwaysStoppedAnimation(Color(0xFFE2DEF8)),
+                value: 0,
+              ),
+            ),
+          ),
         ],
       ),
     );

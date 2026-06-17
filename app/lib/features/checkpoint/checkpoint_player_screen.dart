@@ -42,6 +42,8 @@ class _CheckpointPlayerScreenState extends ConsumerState<CheckpointPlayerScreen>
   void initState() {
     super.initState();
     _remaining = widget.data.timeLimitSec;
+    // Sin ítems no arrancamos el cronómetro: evitaría un auto-envío vacío.
+    if (_items.isEmpty) return;
     _timer = Timer.periodic(const Duration(seconds: 1), (_) {
       if (!mounted) return;
       setState(() => _remaining = (_remaining - 1).clamp(0, 99999));
@@ -144,8 +146,44 @@ class _CheckpointPlayerScreenState extends ConsumerState<CheckpointPlayerScreen>
   @override
   Widget build(BuildContext context) {
     if (_items.isEmpty) {
-      return const Scaffold(
-        body: Center(child: Text('Examen sin ítems.')),
+      return Scaffold(
+        backgroundColor: AppColors.background,
+        body: SafeArea(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(28),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.error_outline_rounded, size: 44, color: AppColors.textMuted),
+                  const SizedBox(height: 12),
+                  const Text('No pudimos cargar el examen',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900, color: AppColors.text)),
+                  const SizedBox(height: 6),
+                  const Text('Vuelve al mapa e inténtalo de nuevo en un momento.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 13.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                  const SizedBox(height: 18),
+                  SizedBox(
+                    width: double.infinity,
+                    height: 50,
+                    child: ElevatedButton(
+                      onPressed: () => Navigator.of(context).popUntil((r) => r.isFirst),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.primary,
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                      ),
+                      child: const Text('VOLVER AL MAPA',
+                          style: TextStyle(fontWeight: FontWeight.w900, letterSpacing: 0.4)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
       );
     }
     final item = _items[_index];

@@ -155,10 +155,22 @@ class _InterestCardState extends ConsumerState<_InterestCard> {
     super.dispose();
   }
 
+  bool _sending = false;
+
   Future<void> _send() async {
-    await ref.read(progressRepositoryProvider).logConversarInterest(_wouldUse ?? false, _topics.text.trim());
-    if (!mounted) return;
-    setState(() => _sent = true);
+    if (_sending) return;
+    setState(() => _sending = true);
+    try {
+      await ref.read(progressRepositoryProvider).logConversarInterest(_wouldUse ?? false, _topics.text.trim());
+      if (!mounted) return;
+      setState(() => _sent = true);
+    } catch (_) {
+      if (!mounted) return;
+      setState(() => _sending = false);
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(const SnackBar(content: Text('No se pudo enviar. Inténtalo de nuevo.')));
+    }
   }
 
   @override
@@ -202,11 +214,12 @@ class _InterestCardState extends ConsumerState<_InterestCard> {
               SizedBox(
                 width: double.infinity, height: 46,
                 child: ElevatedButton(
-                  onPressed: _wouldUse == null ? null : _send,
+                  onPressed: (_wouldUse == null || _sending) ? null : _send,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary, foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13))),
-                  child: const Text('ENVIAR', style: TextStyle(fontWeight: FontWeight.w900, letterSpacing: 0.4)),
+                  child: Text(_sending ? 'ENVIANDO…' : 'ENVIAR',
+                      style: const TextStyle(fontWeight: FontWeight.w900, letterSpacing: 0.4)),
                 ),
               ),
             ]),
@@ -276,8 +289,11 @@ class _ConversarPracticeScreenState extends ConsumerState<ConversarPracticeScree
     super.dispose();
   }
 
+  String _sttBase = ''; // texto ya confirmado antes de la sesión de escucha actual
+
   void _listen() {
     if (!_sttAvailable || _listening) return;
+    _sttBase = _text.text.trim(); // conserva lo escrito/confirmado previo
     setState(() => _listening = true);
     HapticFeedback.selectionClick();
     _rec.listen(
@@ -285,16 +301,20 @@ class _ConversarPracticeScreenState extends ConsumerState<ConversarPracticeScree
       listenFor: const Duration(seconds: 12),
       onResult: (transcript, isFinal) {
         if (!mounted) return;
-        if (isFinal) {
-          setState(() {
-            final clean = transcript.trim();
-            if (clean.isNotEmpty) {
-              final prev = _text.text.trim();
-              _text.text = prev.isEmpty ? clean : '$prev $clean';
-            }
+        final clean = transcript.trim();
+        final combined = _sttBase.isEmpty
+            ? clean
+            : (clean.isEmpty ? _sttBase : '$_sttBase $clean');
+        setState(() {
+          // Vista previa EN VIVO: tanto parciales como finales se muestran ya.
+          _text.text = combined;
+          _text.selection = TextSelection.collapsed(offset: _text.text.length);
+          if (isFinal) {
+            // El segmento se confirma y pasa a formar parte de la base.
+            _sttBase = combined.trim();
             _listening = false;
-          });
-        }
+          }
+        });
       },
       onError: (_) {
         if (mounted) setState(() => _listening = false);

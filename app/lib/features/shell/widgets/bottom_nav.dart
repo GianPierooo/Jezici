@@ -67,11 +67,12 @@ class _NavButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final reduceMotion = MediaQuery.of(context).disableAnimations;
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: onTap,
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 180),
+        duration: reduceMotion ? Duration.zero : const Duration(milliseconds: 180),
         width: 48,
         height: 48,
         decoration: BoxDecoration(

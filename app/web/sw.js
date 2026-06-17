@@ -4,7 +4,7 @@
 // roto); los assets estáticos van stale-while-revalidate; navegación offline
 // cae al index cacheado. skipWaiting + claim para que las actualizaciones
 // tomen efecto al instante. También maneja Web Push (Matix).
-const VERSION = 'jezici-v2'; // bump: invalida cachés viejas → refetch del font de íconos (GA9)
+const VERSION = 'jezici-v3'; // bump: refetch del font de íconos (GA10: nuevos glifos en mapa/estados)
 const SHELL = [
   './', 'index.html', 'flutter_bootstrap.js', 'manifest.json',
   'favicon.png', 'icons/Icon-192.png', 'icons/Icon-512.png',

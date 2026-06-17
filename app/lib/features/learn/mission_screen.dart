@@ -40,7 +40,8 @@ class _MissionScreenState extends ConsumerState<MissionScreen> {
       FeedbackFx.lessonComplete();
       if (!mounted) return;
       Navigator.pop(context);
-    } catch (_) {
+    } catch (e) {
+      debugPrint('completeMission falló: $e');
       if (!mounted) return;
       setState(() => _loading = false);
       ScaffoldMessenger.of(context).showSnackBar(

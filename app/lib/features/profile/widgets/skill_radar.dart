@@ -111,7 +111,7 @@ class _RadarPainter extends CustomPainter {
     for (var i = 0; i < 4; i++) {
       final dir = Offset(math.cos(_angles[i]), math.sin(_angles[i]));
       final base = c + dir * (r + 4);
-      final label = kSkillLabels[kSkillOrder[i]] ?? kSkillOrder[i];
+      final label = kSkillEs[kSkillOrder[i]] ?? kSkillOrder[i];
       _text(canvas, '$label\n${levels[i]}', base, dir);
     }
   }

@@ -30,10 +30,12 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
     super.dispose();
   }
 
+  static final _emailRe = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
+
   Future<void> _submit() async {
     final email = _email.text.trim();
-    final pw = _password.text;
-    if (!email.contains('@') || pw.length < 6) {
+    final pw = _password.text.trim();
+    if (!_emailRe.hasMatch(email) || pw.length < 6) {
       setState(() => _error = 'Pon un email válido y una contraseña de 6+ caracteres.');
       return;
     }

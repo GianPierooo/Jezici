@@ -35,6 +35,8 @@ class _PrimaryButtonState extends State<PrimaryButton> {
   @override
   Widget build(BuildContext context) {
     final double depth = _pressed ? 2 : 6;
+    // Respeta "reducir movimiento": el hundido al pulsar es instantáneo.
+    final reduceMotion = MediaQuery.of(context).disableAnimations;
     return Opacity(
       opacity: _enabled ? 1 : 0.5,
       child: GestureDetector(
@@ -43,7 +45,7 @@ class _PrimaryButtonState extends State<PrimaryButton> {
         onTapCancel: _enabled ? () => setState(() => _pressed = false) : null,
         onTap: widget.onPressed,
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 70),
+          duration: reduceMotion ? Duration.zero : const Duration(milliseconds: 70),
           transform: Matrix4.translationValues(0, _pressed ? 4 : 0, 0),
           width: widget.expand ? double.infinity : null,
           padding: const EdgeInsets.symmetric(

@@ -169,7 +169,10 @@ class _MapBodyState extends State<_MapBody> {
   /// Fallback local si aún no hay progreso (p. ej. auth no lista): primera
   /// lección (no-misión) del curso.
   int get _fallbackAvailableIndex {
-    final i = _entries.indexWhere((e) => e.lesson.type == LessonType.lesson);
+    // GA10: el primer nodo (la misión) debe verse disponible mientras carga el
+    // progreso — no saltar a la primera lección dejando la misión bloqueada.
+    final i = _entries.indexWhere((e) =>
+        e.lesson.type == LessonType.mission || e.lesson.type == LessonType.lesson);
     return i >= 0 ? i : 0;
   }
 
