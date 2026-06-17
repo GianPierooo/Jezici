@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:speech_to_text/speech_to_text.dart';
 
+import '../../core/speech/speech_recognizer.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/providers.dart';
 
@@ -242,7 +243,7 @@ class ConversarPracticeScreen extends ConsumerStatefulWidget {
 }
 
 class _ConversarPracticeScreenState extends ConsumerState<ConversarPracticeScreen> {
-  final _stt = SpeechToText();
+  final SpeechRecognizer _rec = createSpeechRecognizer();
   final _text = TextEditingController();
   bool _voice = false;
   bool _sttReady = false;
@@ -259,38 +260,48 @@ class _ConversarPracticeScreenState extends ConsumerState<ConversarPracticeScree
   }
 
   Future<void> _initStt() async {
-    try {
-      _sttAvailable = await _stt.initialize(onError: (_) {}, onStatus: (s) {
-        if ((s == 'done' || s == 'notListening') && mounted) setState(() => _listening = false);
+    final ok = await _rec.init();
+    if (mounted) {
+      setState(() {
+        _sttAvailable = ok;
+        _sttReady = true;
       });
-    } catch (_) {
-      _sttAvailable = false;
     }
-    if (mounted) setState(() => _sttReady = true);
   }
 
   @override
   void dispose() {
-    _stt.cancel();
+    _rec.dispose();
     _text.dispose();
     super.dispose();
   }
 
-  Future<void> _listen() async {
+  void _listen() {
     if (!_sttAvailable || _listening) return;
     setState(() => _listening = true);
-    await _stt.listen(
-      onResult: (r) {
+    HapticFeedback.selectionClick();
+    _rec.listen(
+      localeId: 'en_US',
+      listenFor: const Duration(seconds: 12),
+      onResult: (transcript, isFinal) {
         if (!mounted) return;
-        if (r.finalResult) {
+        if (isFinal) {
           setState(() {
-            final prev = _text.text.trim();
-            _text.text = prev.isEmpty ? r.recognizedWords : '$prev ${r.recognizedWords}';
+            final clean = transcript.trim();
+            if (clean.isNotEmpty) {
+              final prev = _text.text.trim();
+              _text.text = prev.isEmpty ? clean : '$prev $clean';
+            }
             _listening = false;
           });
         }
       },
-      listenOptions: SpeechListenOptions(localeId: 'en_US', listenFor: const Duration(seconds: 12)),
+      onError: (_) {
+        if (mounted) setState(() => _listening = false);
+      },
+      onDone: () {
+        if (mounted) setState(() => _listening = false);
+      },
     );
   }
 
