@@ -6,6 +6,7 @@ import '../../../data/models/progress_models.dart';
 import '../../../data/providers.dart';
 import '../../../ui/stat_chip.dart';
 import '../../notifications/notification_center_screen.dart';
+import '../../plan/mi_plan_screen.dart';
 import '../../shop/tienda_screen.dart';
 import '../../streak/streak_screen.dart';
 
@@ -83,6 +84,62 @@ class LearnTopBar extends ConsumerWidget {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// Barra de PROGRESO DEL PLAN persistente (GA9·C): "Plan A1→B2 · X% · llegas el…".
+/// Sensación de avance siempre visible. Toca para abrir el dashboard.
+class PlanProgressStrip extends ConsumerWidget {
+  const PlanProgressStrip({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = ref.watch(planTrackingProvider).value;
+    if (t == null || !t.ok) return const SizedBox.shrink();
+    final pct = (t.progress * 100).round();
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () => Navigator.of(context)
+          .push(MaterialPageRoute(builder: (_) => const MiPlanScreen())),
+      child: Container(
+        margin: const EdgeInsets.fromLTRB(12, 7, 12, 0),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: BoxDecoration(
+          color: Colors.white.withValues(alpha: 0.86),
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+                color: const Color(0xFF28326E).withValues(alpha: 0.12),
+                offset: const Offset(0, 5), blurRadius: 14),
+          ],
+        ),
+        child: Row(
+          children: [
+            Icon(t.aheadBehind >= 0 ? Icons.flag_rounded : Icons.flag_outlined,
+                size: 16, color: AppColors.primary),
+            const SizedBox(width: 7),
+            Text('${t.currentLevel}→${t.goalLevel}',
+                style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w900, color: AppColors.primary)),
+            const SizedBox(width: 9),
+            Expanded(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(6),
+                child: LinearProgressIndicator(
+                  value: t.progress.clamp(0.0, 1.0),
+                  minHeight: 7,
+                  backgroundColor: const Color(0xFFE2DEF8),
+                  valueColor: const AlwaysStoppedAnimation(AppColors.primary),
+                ),
+              ),
+            ),
+            const SizedBox(width: 9),
+            Text('$pct%',
+                style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w900, color: AppColors.text)),
+            const Icon(Icons.chevron_right_rounded, size: 16, color: AppColors.textMuted),
+          ],
+        ),
       ),
     );
   }

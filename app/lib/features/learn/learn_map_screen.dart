@@ -52,12 +52,18 @@ class LearnMapScreen extends ConsumerWidget {
             },
           ),
         ),
-        // Top bar flotante (siempre visible sobre el mapa).
+        // Top bar flotante + barra de progreso del plan persistente (GA9·C).
         const Positioned(
           top: 0,
           left: 0,
           right: 0,
-          child: SafeArea(bottom: false, child: LearnTopBar()),
+          child: SafeArea(
+            bottom: false,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [LearnTopBar(), PlanProgressStrip()],
+            ),
+          ),
         ),
       ],
     );
