@@ -227,6 +227,13 @@ class ProgressRepository {
   /// Cierra la sesión (logout).
   Future<void> signOut() => _client.auth.signOut();
 
+  /// Borra la cuenta del usuario y TODOS sus datos (derecho de supresión).
+  /// El servidor borra auth.users → cascada limpia todo. Luego cierra sesión.
+  Future<void> deleteAccount() async {
+    await _client.rpc('delete_account');
+    await _client.auth.signOut();
+  }
+
   // ── Analítica (Especificacion §13) ────────────────────────────────────────
 
   /// Registra un evento (fire-and-forget; nunca rompe el flujo del usuario).

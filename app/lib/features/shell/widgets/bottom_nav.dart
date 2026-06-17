@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
 
-/// Barra inferior de 5 pestañas SOLO ÍCONOS (Estructura_App §1):
-/// Aprender · Practicar · Conversar · Ligas · Perfil.
+/// Barra inferior SOLO ÍCONOS (Estructura_App §1):
+/// Aprender · Practicar · Ligas · Perfil. (Conversar es Fase 2 → oculto, GA6.)
 class BottomNav extends StatelessWidget {
   const BottomNav({
     super.key,
@@ -17,7 +17,6 @@ class BottomNav extends StatelessWidget {
   static const _items = <IconData>[
     Icons.explore_rounded, // Aprender (mapa/viaje)
     Icons.fitness_center_rounded, // Practicar
-    Icons.forum_rounded, // Conversar
     Icons.emoji_events_rounded, // Ligas
     Icons.person_rounded, // Perfil
   ];

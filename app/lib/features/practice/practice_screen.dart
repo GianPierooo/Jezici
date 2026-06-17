@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/practice_models.dart';
 import '../../data/providers.dart';
-import '../simulacros/simulacros_screen.dart';
 import 'practice_player_screen.dart';
 
 /// Pestaña PRACTICAR (Estructura_App): repaso espaciado, refuerzo de
@@ -141,16 +140,7 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
             color: AppColors.success,
             onTap: _pickSkill,
           ),
-          const SizedBox(height: 6),
-          _Card(
-            emoji: '🎓',
-            title: 'Simulacros de examen',
-            subtitle: 'IELTS y Cambridge · reporte de banda',
-            badge: 'Premium',
-            color: AppColors.goldDark,
-            onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(builder: (_) => const SimulacrosScreen())),
-          ),
+          // Simulacros IELTS/Cambridge: Fase 1 sin motor real → ocultos (GA6).
         ],
       ),
     );

@@ -30,12 +30,18 @@ class LeagueStanding {
     required this.promote,
     required this.demote,
     required this.members,
+    this.players = 0,
+    this.minPlayers = 5,
+    this.warmingUp = false,
   });
   final String division; // bronce | plata | ...
   final int myRank;
   final int promote; // top N asciende
   final int demote; // bottom N desciende
   final List<LeagueMember> members;
+  final int players; // jugadores REALES en la liga
+  final int minPlayers; // masa crítica para competir
+  final bool warmingUp; // aún sin masa crítica
 
   String get divisionLabel {
     switch (division) {
@@ -54,6 +60,9 @@ class LeagueStanding {
         myRank: (j['my_rank'] as num?)?.toInt() ?? 0,
         promote: (j['promote'] as num?)?.toInt() ?? 5,
         demote: (j['demote'] as num?)?.toInt() ?? 5,
+        players: (j['players'] as num?)?.toInt() ?? 0,
+        minPlayers: (j['min_players'] as num?)?.toInt() ?? 5,
+        warmingUp: j['warming_up'] as bool? ?? false,
         members: ((j['members'] as List?) ?? const [])
             .map((e) => LeagueMember.fromJson(Map<String, dynamic>.from(e as Map)))
             .toList(),

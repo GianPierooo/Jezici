@@ -6,9 +6,9 @@ import '../../data/models/league_models.dart';
 import '../../data/providers.dart';
 
 /// Pestaña LIGAS (Diseno_Gamificacion §ligas): liga semanal por XP, divisiones
-/// Bronce→Diamante, ~30 por grupo, con zona de ascenso (top 5) y descenso
-/// (bottom 5). El XP semanal lo acumula el servidor; los rivales que falten se
-/// siembran como bots para que el mecanismo funcione.
+/// Bronce→Diamante, con zona de ascenso (top 5) y descenso (bottom 5). El XP
+/// semanal lo acumula el servidor. GA6: SOLO jugadores reales — sin bots; con
+/// baja población muestra un estado "arrancando" en vez de fabricar rivales.
 class LeaguesScreen extends ConsumerWidget {
   const LeaguesScreen({super.key});
 
@@ -78,7 +78,10 @@ class _Board extends StatelessWidget {
                     Text('Liga ${lg.divisionLabel}',
                         style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w900, color: Colors.white)),
                     const SizedBox(height: 2),
-                    Text('Vas #${lg.myRank} esta semana · top ${lg.promote} ascienden',
+                    Text(
+                        lg.warmingUp
+                            ? '${lg.players} ${lg.players == 1 ? 'jugador' : 'jugadores'} · arrancando'
+                            : 'Vas #${lg.myRank} esta semana · top ${lg.promote} ascienden',
                         style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: Colors.white.withValues(alpha: 0.92))),
                   ],
                 ),
@@ -87,6 +90,37 @@ class _Board extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
+        if (lg.warmingUp) ...[
+          // Baja población: estado honesto "arrancando" (sin bots).
+          Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: AppColors.navActiveBg,
+              borderRadius: BorderRadius.circular(18),
+            ),
+            child: Row(
+              children: [
+                const Text('🌱', style: TextStyle(fontSize: 30)),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text('Tu liga está arrancando',
+                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+                      const SizedBox(height: 2),
+                      Text(
+                          'Cuando haya al menos ${lg.minPlayers} jugadores activos, competiréis por ascender. '
+                          'Mientras, suma XP: tu progreso ya cuenta.',
+                          style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+        ],
         const Text('Clasificación de la semana',
             style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
         const SizedBox(height: 4),
@@ -102,14 +136,14 @@ class _Board extends StatelessWidget {
           child: Column(
             children: [
               for (var i = 0; i < n; i++) ...[
-                if (i == lg.promote)
+                if (!lg.warmingUp && i == lg.promote)
                   const _ZoneDivider(label: 'ZONA DE ASCENSO ↑', color: AppColors.success),
-                if (i == n - lg.demote)
+                if (!lg.warmingUp && i == n - lg.demote)
                   const _ZoneDivider(label: 'ZONA DE DESCENSO ↓', color: AppColors.coral),
                 _Row(
                   m: lg.members[i],
-                  promote: lg.members[i].rank <= lg.promote,
-                  demote: lg.members[i].rank > n - lg.demote,
+                  promote: !lg.warmingUp && lg.members[i].rank <= lg.promote,
+                  demote: !lg.warmingUp && lg.members[i].rank > n - lg.demote,
                 ),
               ],
             ],
@@ -171,7 +205,12 @@ class _Row extends StatelessWidget {
               color: m.isMe ? AppColors.primary : const Color(0xFFEDEFF7),
               shape: BoxShape.circle,
             ),
-            child: Text(m.isMe ? '🦜' : '🤖', style: const TextStyle(fontSize: 16)),
+            child: m.isMe
+                ? const Text('🦜', style: TextStyle(fontSize: 16))
+                : Text(
+                    m.name.isNotEmpty ? m.name.substring(0, 1).toUpperCase() : '?',
+                    style: const TextStyle(
+                        fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.textMuted)),
           ),
           const SizedBox(width: 11),
           Expanded(

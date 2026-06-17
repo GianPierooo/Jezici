@@ -76,10 +76,6 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
     return 'No se pudo continuar. Revisa tus datos.';
   }
 
-  void _soon() => ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Google/Apple llegan pronto. Usa email por ahora.')),
-      );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -134,20 +130,6 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                 expand: true,
                 onPressed: _loading ? null : _submit,
               ),
-              const SizedBox(height: 16),
-              Row(children: [
-                const Expanded(child: Divider(color: Color(0xFFE5E7F1), thickness: 1.5)),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Text('o',
-                      style: TextStyle(color: AppColors.textMuted, fontWeight: FontWeight.w900)),
-                ),
-                const Expanded(child: Divider(color: Color(0xFFE5E7F1), thickness: 1.5)),
-              ]),
-              const SizedBox(height: 14),
-              _social('Continuar con Google', Icons.g_mobiledata_rounded),
-              const SizedBox(height: 10),
-              _social('Continuar con Apple', Icons.apple_rounded),
               const SizedBox(height: 18),
               if (_signUp)
                 Wrap(
@@ -199,30 +181,6 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
           borderSide: const BorderSide(color: AppColors.primary, width: 2),
-        ),
-      ),
-    );
-  }
-
-  Widget _social(String label, IconData icon) {
-    return GestureDetector(
-      onTap: _soon,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 14),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(14),
-          border: Border.all(color: const Color(0xFFE5E7F1), width: 2),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, color: AppColors.text, size: 24),
-            const SizedBox(width: 8),
-            Text(label,
-                style: const TextStyle(
-                    fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
-          ],
         ),
       ),
     );

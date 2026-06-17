@@ -4,11 +4,12 @@ import '../leagues/leagues_screen.dart';
 import '../learn/learn_map_screen.dart';
 import '../practice/practice_screen.dart';
 import '../profile/profile_screen.dart';
-import '../shared/placeholder_screen.dart';
 import 'widgets/bottom_nav.dart';
 
 /// Scaffold raíz: contenido por pestaña (IndexedStack para preservar estado) +
-/// la barra inferior de 5 íconos. Solo "Aprender" y los placeholders en el paso C.
+/// la barra inferior. GA6: "Conversar" (Fase 2: requiere IA + salas en vivo +
+/// moderación + verificación de edad) queda OCULTO hasta estar listo; nada de
+/// social/chat sin moderación frente a usuarios reales.
 class HomeShell extends StatefulWidget {
   const HomeShell({super.key});
 
@@ -24,7 +25,6 @@ class _HomeShellState extends State<HomeShell> {
     const screens = <Widget>[
       LearnMapScreen(),
       PracticeScreen(),
-      PlaceholderScreen(title: 'Conversar', icon: Icons.forum_rounded),
       LeaguesScreen(),
       ProfileScreen(),
     ];

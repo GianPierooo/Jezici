@@ -52,6 +52,8 @@ class FakeProgressRepository implements ProgressRepository {
   @override
   Future<void> signOut() async {}
   @override
+  Future<void> deleteAccount() async {}
+  @override
   Future<void> logEvent(String event, {Map<String, dynamic>? props}) async {}
   @override
   Future<Map<String, dynamic>> fetchMetrics() async => const {};

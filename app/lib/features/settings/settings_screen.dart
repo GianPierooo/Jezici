@@ -307,9 +307,51 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
             ),
           ),
+          const SizedBox(height: 8),
+          TextButton.icon(
+            onPressed: _deleteAccount,
+            icon: const Icon(Icons.delete_forever_rounded, size: 18),
+            label: const Text('Borrar mi cuenta', style: TextStyle(fontWeight: FontWeight.w800)),
+            style: TextButton.styleFrom(foregroundColor: AppColors.textMuted),
+          ),
         ],
       ),
     );
+  }
+
+  Future<void> _deleteAccount() async {
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('¿Borrar tu cuenta?'),
+        content: const Text(
+            'Esto elimina tu cuenta y TODO tu progreso (plan, niveles, certificados, racha) '
+            'de forma permanente. No se puede deshacer.'),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Cancelar')),
+          FilledButton(
+            onPressed: () => Navigator.pop(ctx, true),
+            style: FilledButton.styleFrom(backgroundColor: AppColors.coral),
+            child: const Text('Borrar definitivamente'),
+          ),
+        ],
+      ),
+    );
+    if (ok != true) return;
+    try {
+      await ref.read(progressRepositoryProvider).deleteAccount();
+      ref.invalidate(onboardingCompleteProvider);
+      ref.invalidate(homeStatsProvider);
+      ref.invalidate(lessonProgressProvider);
+      ref.invalidate(skillsProvider);
+      ref.invalidate(userPlanProvider);
+      if (!mounted) return;
+      Navigator.of(context).popUntil((r) => r.isFirst);
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('No se pudo borrar la cuenta. Inténtalo de nuevo.')));
+    }
   }
 
   Future<void> _logout() async {
