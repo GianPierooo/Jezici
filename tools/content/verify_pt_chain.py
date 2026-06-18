@@ -75,8 +75,9 @@ def main():
 
     print("\n== set_active_course(pt) ==")
     print(rpc(uid, f"select set_active_course('{PT_COURSE}');"))
-    # confirmar que el curso activo es pt
-    ac = rpc(uid, "select jz_active_course();")
+    # confirmar que el curso activo es pt (jz_active_course es helper interno, no
+    # invocable por el cliente tras mig 049; lo leemos de la tabla vía Management API).
+    ac = json.loads(run(f"select course_id from user_active_course where user_id='{uid}';")[1])[0]['course_id']
     assert ac == PT_COURSE, f"el curso activo debería ser pt: {ac}"
     print("  curso activo:", ac)
 
