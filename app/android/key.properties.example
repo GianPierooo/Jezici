@@ -1,0 +1,16 @@
+# Firma de release de Android (Google Play). COPIA este archivo a
+#   android/key.properties  (NO lo subas a git: ya está en .gitignore)
+# y rellena con los valores de TU keystore. Solo falta esto + la cuenta de Play.
+#
+# 1) Genera el keystore (una vez, guárdalo a salvo — si lo pierdes no puedes
+#    actualizar la app):
+#    keytool -genkey -v -keystore jezici-release.jks -keyalg RSA -keysize 2048 \
+#            -validity 10000 -alias jezici
+# 2) Copia jezici-release.jks a una ruta segura y apunta storeFile a ella.
+# 3) Rellena los 4 valores de abajo.
+# 4) Construye el AAB firmado:  flutter build appbundle --release
+#
+storePassword=CAMBIA_ESTO
+keyPassword=CAMBIA_ESTO
+keyAlias=jezici
+storeFile=/ruta/segura/jezici-release.jks
