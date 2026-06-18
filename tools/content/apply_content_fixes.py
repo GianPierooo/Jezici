@@ -11,7 +11,7 @@ Uso: python apply_content_fixes.py            # genera migración, la aplica
 import json, sys, os, re
 from apply_sql import run
 
-MIG = 'C:/Users/gianp/Desktop/Jezici/supabase/migrations/20260617140042_content_qa_fixes.sql'
+MIG = 'C:/Users/gianp/Desktop/Jezici/supabase/migrations/20260618140044_content_qa_fixes_b1.sql'
 
 def dq(s, tag):
     s = str(s)
@@ -63,7 +63,7 @@ def main():
     if c not in (200, 201):
         raise SystemExit("FALLÓ la aplicación")
     ver = ("insert into supabase_migrations.schema_migrations(version,name) "
-           "values ('20260617140042','content_qa_fixes') on conflict (version) do nothing;")
+           "values ('20260618140044','content_qa_fixes_b1') on conflict (version) do nothing;")
     run(ver)
     print("[OK] registrada en schema_migrations")
 

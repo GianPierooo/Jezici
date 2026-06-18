@@ -615,3 +615,375 @@
 - **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «You should exercise three times a week.»  esperado: `You should exercise three times a week.`  _(dif 0.32)_
 
 **Vocabulario (frecuencia):** head=cabeza, stomach=estómago, doctor=médico, medicine=medicina, sick=enfermo, healthy=saludable, rest=descansar, exercise=ejercicio / hacer ejercicio, ever=alguna vez, never=nunca, already=ya, been=estado / sido, advice=consejo, hurt=doler / lastimar
+
+## Unidad 13 (B1) — Rutinas, hábitos y experiencias
+
+
+### L1 · ¿Alguna vez lo has hecho?  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['experience', 'experiencia'], ['ever', 'alguna vez'], ['never', 'nunca']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "___ you ever traveled abroad?"  — opciones: ['Have', 'Did', 'Are'] · ✓ `Have`  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "She has ___ tried Thai food."  — opciones: ['never', 'ago', 'yesterday'] · ✓ `never`  _(dif 0.48)_
+- **[writing/cloze]** Completa con el participio de "eat": "I have ___ sushi a few times."  — texto: «I have ___ sushi a few times.»  ✓ `eaten` · acepta: ['eaten']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "¿Alguna vez has estado en el extranjero?".  — es: «¿Alguna vez has estado en el extranjero?»  ✓ en: `Have you ever been abroad?` · acepta: ['Have you ever been abroad', 'Have you ever been abroad?', 'Have you been abroad before?', 'Have you ever travelled abroad?', 'Have you ever traveled abroad?']  _(dif 0.48)_
+- **[writing/word_bank]** Arma la frase: "Nunca he viajado en avión".  — fichas: ['I', 'have', 'never', 'traveled', 'by', 'plane', 'went', 'to']  ✓ `I have never traveled by plane`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Have you ever met someone famous?', 'Did you meet someone famous?', 'Will you meet someone famous?'] · ✓ `Have you ever met someone famous?` · audio dice: «Have you ever met someone famous?»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «I have never been to Asia, but I would love to go.»  esperado: `I have never been to Asia, but I would love to go.`  _(dif 0.48)_
+
+### L2 · Just, already y yet  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['just', 'justo / recién'], ['already', 'ya'], ['yet', 'todavía / ya']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "I'm not hungry. I've ___ had lunch."  — opciones: ['just', 'yet', 'ago'] · ✓ `just`  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "Have you finished your homework ___?"  — opciones: ['yet', 'already', 'ever'] · ✓ `yet`  _(dif 0.48)_
+- **[writing/cloze]** Completa con "already": "We have ___ seen this film twice."  — texto: «We have ___ seen this film twice.»  ✓ `already` · acepta: ['already']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "Acabo de terminar el informe.".  — es: «Acabo de terminar el informe.»  ✓ en: `I have just finished the report.` · acepta: ["I've just finished the report", 'I have just finished the report', 'I just finished the report', "I've just finished the report."]  _(dif 0.48)_
+- **[writing/reorder]** Ordena: "Todavía no han llegado".  — fichas: ['yet', 'have', 'They', 'arrived', 'not']  ✓ `They have not arrived yet`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['The bus has already left the station.', 'The bus left the station an hour ago.', 'The bus will leave the station soon.'] · ✓ `The bus has already left the station.` · audio dice: «The bus has already left the station.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «I haven't decided yet, but I've just made some coffee.»  esperado: `I haven't decided yet, but I've just made some coffee.`  _(dif 0.48)_
+
+### L3 · Desde hace cuánto: for y since  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['for', 'durante'], ['since', 'desde'], ['lately', 'últimamente']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "I have lived here ___ 2019."  — opciones: ['since', 'for', 'ago'] · ✓ `since`  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "We have known each other ___ ten years."  — opciones: ['for', 'since', 'during'] · ✓ `for`  _(dif 0.48)_
+- **[writing/cloze]** Completa con "since": "She has worked here ___ last March."  — texto: «She has worked here ___ last March.»  ✓ `since` · acepta: ['since']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "He estudiado inglés durante tres años.".  — es: «He estudiado inglés durante tres años.»  ✓ en: `I have studied English for three years.` · acepta: ["I've studied English for three years", 'I have studied English for 3 years', 'I have been studying English for three years', "I've been studying English for three years"]  _(dif 0.48)_
+- **[writing/word_bank]** Arma la frase: "No los he visto desde el lunes".  — fichas: ['I', "haven't", 'seen', 'them', 'since', 'Monday', 'for', 'ago']  ✓ `I haven't seen them since Monday`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['We have lived in this city for five years.', 'We lived in this city five years ago.', 'We are going to live in this city for five years.'] · ✓ `We have lived in this city for five years.` · audio dice: «We have lived in this city for five years.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «I haven't slept well lately, and I've been very tired since Monday.»  esperado: `I haven't slept well lately, and I've been very tired since Monday.`  _(dif 0.48)_
+
+### L4 · Antes y ahora: used to y pasado simple  _(items: 8)_
+
+- **[reading/match]** Empareja cada expresión con su traducción.  — pares: [['used to', 'solía / antes'], ['habit', 'hábito'], ['routine', 'rutina']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "When I was a child, I ___ play in the park every day."  — opciones: ['used to', 'have', 'am'] · ✓ `used to`  _(dif 0.48)_
+- **[reading/multiple_choice]** Elige la frase correcta para un momento terminado: "___".  — opciones: ['I visited Rome last year.', 'I have visited Rome last year.', 'I visit Rome last year.'] · ✓ `I visited Rome last year.`  _(dif 0.48)_
+- **[writing/cloze]** Completa con la forma negativa de used to: "I ___ like coffee, but now I love it."  — texto: «I ___ like coffee, but now I love it.»  ✓ `didn't use to` · acepta: ["didn't use to", 'did not use to', 'never used to', 'used not to']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "Antes fumaba, pero lo dejé hace dos años.".  — es: «Antes fumaba, pero lo dejé hace dos años.»  ✓ en: `I used to smoke, but I quit two years ago.` · acepta: ['I used to smoke, but I quit two years ago', 'I used to smoke but I gave it up two years ago', 'I used to smoke, but I stopped two years ago', 'I used to smoke, but I gave up two years ago', 'I used to smoke, but I quit smoking two years ago', 'I used to smoke, but I stopped smoking two years ago', 'I used to smoke, but I gave up smoking two years ago']  _(dif 0.48)_
+- **[writing/reorder]** Ordena: "Antes vivíamos en el campo".  — fichas: ['used', 'We', 'live', 'the', 'to', 'in', 'countryside']  ✓ `We used to live in the countryside`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['She used to walk to school when she was young.', 'She has walked to school today.', 'She is walking to school right now.'] · ✓ `She used to walk to school when she was young.` · audio dice: «She used to walk to school when she was young.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «I used to play the guitar twice a week, but I haven't practiced since last summer.»  esperado: `I used to play the guitar twice a week, but I haven't practiced since last summer.`  _(dif 0.48)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidad 13  _(items: 10)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['experience', 'experiencia'], ['ever', 'alguna vez'], ['never', 'nunca']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "___ you ever traveled abroad?"  — opciones: ['Have', 'Did', 'Are'] · ✓ `Have`  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "She has ___ tried Thai food."  — opciones: ['never', 'ago', 'yesterday'] · ✓ `never`  _(dif 0.48)_
+- **[writing/cloze]** Completa con el participio de "eat": "I have ___ sushi a few times."  — texto: «I have ___ sushi a few times.»  ✓ `eaten` · acepta: ['eaten']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "¿Alguna vez has estado en el extranjero?".  — es: «¿Alguna vez has estado en el extranjero?»  ✓ en: `Have you ever been abroad?` · acepta: ['Have you ever been abroad', 'Have you ever been abroad?', 'Have you been abroad before?', 'Have you ever travelled abroad?', 'Have you ever traveled abroad?']  _(dif 0.48)_
+- **[writing/word_bank]** Arma la frase: "Nunca he viajado en avión".  — fichas: ['I', 'have', 'never', 'traveled', 'by', 'plane', 'went', 'to']  ✓ `I have never traveled by plane`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Have you ever met someone famous?', 'Did you meet someone famous?', 'Will you meet someone famous?'] · ✓ `Have you ever met someone famous?` · audio dice: «Have you ever met someone famous?»  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['The bus has already left the station.', 'The bus left the station an hour ago.', 'The bus will leave the station soon.'] · ✓ `The bus has already left the station.` · audio dice: «The bus has already left the station.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «I have never been to Asia, but I would love to go.»  esperado: `I have never been to Asia, but I would love to go.`  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «I haven't decided yet, but I've just made some coffee.»  esperado: `I haven't decided yet, but I've just made some coffee.`  _(dif 0.48)_
+
+**Vocabulario (frecuencia):** experience=experiencia, ever=alguna vez, never=nunca, already=ya, yet=todavía / ya, just=justo / recién, since=desde, for=durante, abroad=en el extranjero, to travel=viajar, to try=probar / intentar, habit=hábito, routine=rutina, used to=solía / antes, twice=dos veces, lately=últimamente
+
+## Unidad 14 (B1) — Trabajo, estudios y planes
+
+
+### L1 · Buscar y solicitar trabajo  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['job interview', 'entrevista de trabajo'], ['résumé', 'currículum'], ['apply for', 'postularse a']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "If I send my résumé today, they ___ call me next week."  — opciones: ['will', 'would', 'are', 'have'] · ✓ `will`  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "She wants to ___ for a job at the bank."  — opciones: ['apply', 'appear', 'answer', 'arrive'] · ✓ `apply`  _(dif 0.48)_
+- **[writing/cloze]** Completa con el verbo en presente (primer condicional): "If you ___ early, you will get the job."  — texto: «If you ___ early, you will get the job.»  ✓ `apply` · acepta: ['apply']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "Si preparo mi currículum, conseguiré una entrevista.".  — es: «Si preparo mi currículum, conseguiré una entrevista.»  ✓ en: `If I prepare my résumé, I will get an interview.` · acepta: ["If I prepare my résumé, I'll get an interview", 'If I prepare my resume, I will get an interview', "If I prepare my resume, I'll get an interview", 'If I prepare my résumé, I will get a job interview', 'If I prepare my resume, I will get a job interview']  _(dif 0.48)_
+- **[writing/word_bank]** Arma la frase: "Si me postulo hoy, ahorraré tiempo".  — fichas: ['If', 'I', 'apply', 'today', 'I', 'will', 'save', 'time', 'money']  ✓ `If I apply today I will save time`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['If I apply for this job, I will need a good résumé.', 'I applied for three jobs last month.', 'She is going to start her new job tomorrow.'] · ✓ `If I apply for this job, I will need a good résumé.` · audio dice: «If I apply for this job, I will need a good résumé.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «If I get this interview, I will be really happy.»  esperado: `If I get this interview, I will be really happy.`  _(dif 0.48)_
+
+### L2 · El primer día y las tareas  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['deadline', 'fecha límite'], ['colleague', 'compañero de trabajo'], ['manager', 'jefe']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "If we miss the ___, the manager will be angry."  — opciones: ['deadline', 'salary', 'degree', 'interview'] · ✓ `deadline`  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "If you finish the report, I ___ help you with the emails."  — opciones: ['will', 'did', 'am', 'would'] · ✓ `will`  _(dif 0.48)_
+- **[writing/cloze]** Completa con el verbo correcto: "You must ___ in the project before Friday."  — texto: «You must ___ in the project before Friday.»  ✓ `hand` · acepta: ['hand', 'turn']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "Si terminamos a tiempo, el jefe estará contento.".  — es: «Si terminamos a tiempo, el jefe estará contento.»  ✓ en: `If we finish on time, the manager will be happy.` · acepta: ['If we finish on time, the boss will be happy', 'If we finish in time, the manager will be happy', 'If we finish on time, the manager will be glad']  _(dif 0.48)_
+- **[writing/reorder]** Ordena: "Si ayudas a tu compañero, terminarás más rápido".  — fichas: ['finish', 'you', 'If', 'help', 'your', 'colleague', 'you', 'will', 'faster']  ✓ `If you help your colleague, you will finish faster`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['If I miss the deadline, my manager will not be happy.', 'My colleague works in a different office.', 'We will hand in the report next Monday.'] · ✓ `If I miss the deadline, my manager will not be happy.` · audio dice: «If I miss the deadline, my manager will not be happy.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «If you need help, just ask one of your colleagues.»  esperado: `If you need help, just ask one of your colleagues.`  _(dif 0.48)_
+
+### L3 · Estudios y formación  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['degree', 'título / carrera'], ['skill', 'habilidad'], ['training course', 'curso de formación']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "I have ___ studying English for three years."  — opciones: ['been', 'being', 'be', 'was'] · ✓ `been`  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "She has been ___ a new skill since January."  — opciones: ['learning', 'learn', 'learned', 'learns'] · ✓ `learning`  _(dif 0.48)_
+- **[writing/cloze]** Completa con la forma -ing del verbo 'study': "They have been ___ for the exam all week."  — texto: «They have been ___ for the exam all week.»  ✓ `studying` · acepta: ['studying']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "He estado tomando un curso de formación.".  — es: «He estado tomando un curso de formación.»  ✓ en: `I have been taking a training course.` · acepta: ["I've been taking a training course", 'I have been doing a training course', "I've been doing a training course"]  _(dif 0.48)_
+- **[writing/word_bank]** Arma la frase: "He estado estudiando para mi título".  — fichas: ['I', 'have', 'been', 'studying', 'for', 'my', 'degree', 'salary']  ✓ `I have been studying for my degree`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['I have been studying for my degree for two years.', 'I studied at university many years ago.', 'I am going to start a new course next month.'] · ✓ `I have been studying for my degree for two years.` · audio dice: «I have been studying for my degree for two years.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «I have been learning new skills at my training course.»  esperado: `I have been learning new skills at my training course.`  _(dif 0.48)_
+
+### L4 · Planes de futuro y decisiones  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['promotion', 'ascenso'], ['career', 'carrera profesional'], ['study abroad', 'estudiar en el extranjero']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Elige el plan ya decidido: "Next year I ___ study abroad. I already have my ticket."  — opciones: ['am going to', 'will', 'would', 'have'] · ✓ `am going to`  _(dif 0.48)_
+- **[reading/multiple_choice]** Decisión del momento: "The phone is ringing. I ___ answer it."  — opciones: ['will', 'am going to', 'was', 'would'] · ✓ `will`  _(dif 0.48)_
+- **[writing/cloze]** Completa con 'going to' (plan ya decidido): "She is ___ apply for a promotion next month."  — texto: «She is ___ apply for a promotion next month.»  ✓ `going to` · acepta: ['going to']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "Voy a buscar un trabajo mejor el año que viene.".  — es: «Voy a buscar un trabajo mejor el año que viene.»  ✓ en: `I am going to look for a better job next year.` · acepta: ["I'm going to look for a better job next year", 'I am going to find a better job next year', "I'm going to find a better job next year"]  _(dif 0.48)_
+- **[writing/reorder]** Ordena: "Voy a estudiar en el extranjero el próximo año".  — fichas: ['going', 'I', 'study', 'am', 'to', 'abroad', 'next', 'year']  ✓ `I am going to study abroad next year`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['I am going to ask my manager for a promotion.', 'I asked my manager for a day off yesterday.', 'If I work hard, I will get a better salary.'] · ✓ `I am going to ask my manager for a promotion.` · audio dice: «I am going to ask my manager for a promotion.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Next year I am going to study abroad and improve my career.»  esperado: `Next year I am going to study abroad and improve my career.`  _(dif 0.48)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidad 14  _(items: 10)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['job interview', 'entrevista de trabajo'], ['résumé', 'currículum'], ['apply for', 'postularse a']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "If I send my résumé today, they ___ call me next week."  — opciones: ['will', 'would', 'are', 'have'] · ✓ `will`  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "She wants to ___ for a job at the bank."  — opciones: ['apply', 'appear', 'answer', 'arrive'] · ✓ `apply`  _(dif 0.48)_
+- **[writing/cloze]** Completa con el verbo en presente (primer condicional): "If you ___ early, you will get the job."  — texto: «If you ___ early, you will get the job.»  ✓ `apply` · acepta: ['apply']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "Si preparo mi currículum, conseguiré una entrevista.".  — es: «Si preparo mi currículum, conseguiré una entrevista.»  ✓ en: `If I prepare my résumé, I will get an interview.` · acepta: ["If I prepare my résumé, I'll get an interview", 'If I prepare my resume, I will get an interview', "If I prepare my resume, I'll get an interview", 'If I prepare my résumé, I will get a job interview', 'If I prepare my resume, I will get a job interview']  _(dif 0.48)_
+- **[writing/word_bank]** Arma la frase: "Si me postulo hoy, ahorraré tiempo".  — fichas: ['If', 'I', 'apply', 'today', 'I', 'will', 'save', 'time', 'money']  ✓ `If I apply today I will save time`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['If I apply for this job, I will need a good résumé.', 'I applied for three jobs last month.', 'She is going to start her new job tomorrow.'] · ✓ `If I apply for this job, I will need a good résumé.` · audio dice: «If I apply for this job, I will need a good résumé.»  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['If I miss the deadline, my manager will not be happy.', 'My colleague works in a different office.', 'We will hand in the report next Monday.'] · ✓ `If I miss the deadline, my manager will not be happy.` · audio dice: «If I miss the deadline, my manager will not be happy.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «If I get this interview, I will be really happy.»  esperado: `If I get this interview, I will be really happy.`  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «If you need help, just ask one of your colleagues.»  esperado: `If you need help, just ask one of your colleagues.`  _(dif 0.48)_
+
+**Vocabulario (frecuencia):** job interview=entrevista de trabajo, résumé=currículum, apply for=postularse a / solicitar, deadline=fecha límite, salary=salario, skill=habilidad / destreza, degree=título / carrera, promotion=ascenso, colleague=compañero de trabajo, training course=curso de formación, overtime=horas extra, to hand in=entregar, manager=jefe / gerente, career=carrera profesional, to study abroad=estudiar en el extranjero
+
+## Unidad 15 (B1) — Opiniones y acuerdos
+
+
+### L1 · Dar tu opinión  _(items: 8)_
+
+- **[reading/match]** Empareja cada expresión con su traducción.  — pares: [['I think', 'Creo / Pienso'], ['in my opinion', 'en mi opinión'], ['point of view', 'punto de vista']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "I ___ that this film is boring."  — opciones: ['think', 'thought', 'thinking', 'am think'] · ✓ `think`  _(dif 0.48)_
+- **[reading/multiple_choice]** Elige la forma natural para dar una opinión.  — opciones: ['In my opinion, the plan is good.', 'On my opinion, the plan is good.', 'At my opinion, the plan is good.'] · ✓ `In my opinion, the plan is good.`  _(dif 0.48)_
+- **[writing/cloze]** Completa con el verbo de opinión: "I ___ that she is right."  — texto: «I ___ that she is right.»  ✓ `believe` · acepta: ['believe', 'think']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "Creo que tienes razón.".  — es: «Creo que tienes razón.»  ✓ en: `I think you are right.` · acepta: ["I think you're right", 'I think that you are right', "I think that you're right", 'I believe you are right', "I believe you're right"]  _(dif 0.48)_
+- **[writing/word_bank]** Arma la frase: "En mi opinión, este libro es excelente".  — fichas: ['In', 'my', 'opinion', ',', 'this', 'book', 'is', 'excellent', 'because']  ✓ `In my opinion , this book is excellent`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['In my opinion, this is a great idea.', 'In my opinion, this is a bad idea.', "I don't have an opinion about it."] · ✓ `In my opinion, this is a great idea.` · audio dice: «In my opinion, this is a great idea.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «I think that this is a really interesting topic.»  esperado: `I think that this is a really interesting topic.`  _(dif 0.48)_
+
+### L2 · Estoy de acuerdo, yo también  _(items: 8)_
+
+- **[reading/match]** Empareja cada respuesta con su significado.  — pares: [['So do I', 'Yo también (con verbos)'], ['So am I', 'Yo también (con to be)'], ['I agree', 'Estoy de acuerdo']]  _(dif 0.48)_
+- **[reading/multiple_choice]** "I love coffee." Responde que tú también.  — opciones: ['So do I.', 'So am I.', 'So I do.', 'Neither do I.'] · ✓ `So do I.`  _(dif 0.48)_
+- **[reading/multiple_choice]** "I am tired." Responde que tú también.  — opciones: ['So am I.', 'So do I.', 'So I am.', 'Neither am I.'] · ✓ `So am I.`  _(dif 0.48)_
+- **[writing/cloze]** Completa para mostrar acuerdo: "I like this song." "So ___ I."  — texto: «"I like this song." "So ___ I."»  ✓ `do` · acepta: ['do']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "Estoy completamente de acuerdo contigo.".  — es: «Estoy completamente de acuerdo contigo.»  ✓ en: `I completely agree with you.` · acepta: ['I totally agree with you', 'I completely agree with you.', 'I agree with you completely', 'I fully agree with you']  _(dif 0.48)_
+- **[writing/reorder]** Ordena la respuesta de acuerdo: "So do I".  — fichas: ['do', 'So', 'I']  ✓ `So do I`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ["So do I, it's my favourite.", "So am I, I'm really happy.", 'Neither do I, I hate it.'] · ✓ `So do I, it's my favourite.` · audio dice: «So do I, it's my favourite.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «I agree with you. The food here is really good.»  esperado: `I agree with you. The food here is really good.`  _(dif 0.48)_
+
+### L3 · Tampoco estoy de acuerdo  _(items: 8)_
+
+- **[reading/match]** Empareja cada expresión con su traducción.  — pares: [['Neither do I', 'Yo tampoco (con verbos)'], ['Neither am I', 'Yo tampoco (con to be)'], ['I disagree', 'No estoy de acuerdo']]  _(dif 0.48)_
+- **[reading/multiple_choice]** "I don't like horror films." Responde que tú tampoco.  — opciones: ['Neither do I.', 'So do I.', 'Neither am I.', 'Either do I.'] · ✓ `Neither do I.`  _(dif 0.48)_
+- **[reading/multiple_choice]** "I'm not hungry." Responde que tú tampoco.  — opciones: ['Neither am I.', 'Neither do I.', 'So am I.', 'Me too am I.'] · ✓ `Neither am I.`  _(dif 0.48)_
+- **[writing/cloze]** Completa para mostrar desacuerdo: "I'm sorry, but I ___ with you."  — texto: «I'm sorry, but I ___ with you.»  ✓ `disagree` · acepta: ['disagree', "don't agree", 'do not agree']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "No estoy de acuerdo con esa idea.".  — es: «No estoy de acuerdo con esa idea.»  ✓ en: `I disagree with that idea.` · acepta: ["I don't agree with that idea", 'I do not agree with that idea', 'I disagree with that idea.']  _(dif 0.48)_
+- **[writing/word_bank]** Arma la frase: "No creo eso tampoco".  — fichas: ['I', "don't", 'believe', 'that', 'either', 'neither', 'so']  ✓ `I don't believe that either`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ["Neither do I, I think he's wrong.", "So do I, I think he's right.", "I'm not sure about that."] · ✓ `Neither do I, I think he's wrong.` · audio dice: «Neither do I, I think he's wrong.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «I'm afraid I disagree. I don't think that is a good idea.»  esperado: `I'm afraid I disagree. I don't think that is a good idea.`  _(dif 0.48)_
+
+### L4 · Contar lo que otros dijeron  _(items: 8)_
+
+- **[reading/match]** Empareja cada conector con su traducción.  — pares: [['however', 'sin embargo'], ['although', 'aunque'], ['because', 'porque']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa el estilo indirecto: "He ___ that he agreed with me."  — opciones: ['said', 'told', 'says', 'say'] · ✓ `said`  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa con el conector correcto: "I like the plan, ___ it is expensive."  — opciones: ['although', 'because', 'so', 'however'] · ✓ `although`  _(dif 0.48)_
+- **[writing/cloze]** Completa el estilo indirecto: "She ___ me that the meeting was cancelled."  — texto: «She ___ me that the meeting was cancelled.»  ✓ `told` · acepta: ['told']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "Él dijo que estaba de acuerdo con el plan.".  — es: «Él dijo que estaba de acuerdo con el plan.»  ✓ en: `He said that he agreed with the plan.` · acepta: ['He said he agreed with the plan', 'He said that he agreed with the plan.', 'He said he agreed with the plan.']  _(dif 0.48)_
+- **[writing/reorder]** Ordena: "She said that she disagreed".  — fichas: ['that', 'She', 'disagreed', 'said', 'she']  ✓ `She said that she disagreed`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['He said that he agreed with our idea.', 'She told me that she was very tired.', 'They said that the shop was closed.'] · ✓ `He said that he agreed with our idea.` · audio dice: «He said that he agreed with our idea.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «She told me that she liked the idea, although she had a few questions.»  esperado: `She told me that she liked the idea, although she had a few questions.`  _(dif 0.48)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidad 15  _(items: 10)_
+
+- **[reading/match]** Empareja cada expresión con su traducción.  — pares: [['I think', 'Creo / Pienso'], ['in my opinion', 'en mi opinión'], ['point of view', 'punto de vista']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "I ___ that this film is boring."  — opciones: ['think', 'thought', 'thinking', 'am think'] · ✓ `think`  _(dif 0.48)_
+- **[reading/multiple_choice]** Elige la forma natural para dar una opinión.  — opciones: ['In my opinion, the plan is good.', 'On my opinion, the plan is good.', 'At my opinion, the plan is good.'] · ✓ `In my opinion, the plan is good.`  _(dif 0.48)_
+- **[writing/cloze]** Completa con el verbo de opinión: "I ___ that she is right."  — texto: «I ___ that she is right.»  ✓ `believe` · acepta: ['believe', 'think']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "Creo que tienes razón.".  — es: «Creo que tienes razón.»  ✓ en: `I think you are right.` · acepta: ["I think you're right", 'I think that you are right', "I think that you're right", 'I believe you are right', "I believe you're right"]  _(dif 0.48)_
+- **[writing/word_bank]** Arma la frase: "En mi opinión, este libro es excelente".  — fichas: ['In', 'my', 'opinion', ',', 'this', 'book', 'is', 'excellent', 'because']  ✓ `In my opinion , this book is excellent`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['In my opinion, this is a great idea.', 'In my opinion, this is a bad idea.', "I don't have an opinion about it."] · ✓ `In my opinion, this is a great idea.` · audio dice: «In my opinion, this is a great idea.»  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ["So do I, it's my favourite.", "So am I, I'm really happy.", 'Neither do I, I hate it.'] · ✓ `So do I, it's my favourite.` · audio dice: «So do I, it's my favourite.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «I think that this is a really interesting topic.»  esperado: `I think that this is a really interesting topic.`  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «I agree with you. The food here is really good.»  esperado: `I agree with you. The food here is really good.`  _(dif 0.48)_
+
+**Vocabulario (frecuencia):** opinion=opinión, to agree=estar de acuerdo, to disagree=no estar de acuerdo, to believe=creer, to think=pensar, point of view=punto de vista, however=sin embargo, although=aunque, because=porque, so=así que, neither=tampoco, to be right=tener razón, to be wrong=estar equivocado, to suggest=sugerir, reason=razón
+
+## Unidad 16 (B1) — Historias y viajes
+
+
+### L1 · El comienzo del viaje  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra de viaje con su traducción.  — pares: [['journey', 'viaje (trayecto)'], ['luggage', 'equipaje'], ['flight', 'vuelo']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa la narración: "Last summer we ___ to Portugal for two weeks."  — opciones: ['travelled', 'travel', 'were travelling', 'will travel'] · ✓ `travelled`  _(dif 0.48)_
+- **[reading/multiple_choice]** Elige la opción que cuenta una acción terminada en el pasado.  — opciones: ['We packed our luggage the night before.', 'We are packing our luggage now.', 'We will pack our luggage tomorrow.'] · ✓ `We packed our luggage the night before.`  _(dif 0.48)_
+- **[writing/cloze]** Completa con el pasado simple del verbo entre paréntesis: "Our flight ___ (leave) early in the morning."  — texto: «Our flight ___ early in the morning.»  ✓ `left` · acepta: ['left']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "El año pasado viajamos al extranjero por primera vez.".  — es: «El año pasado viajamos al extranjero por primera vez.»  ✓ en: `Last year we travelled abroad for the first time.` · acepta: ['Last year we traveled abroad for the first time.', 'Last year, we travelled abroad for the first time.', 'Last year, we traveled abroad for the first time.', 'We travelled abroad for the first time last year.', 'We traveled abroad for the first time last year.']  _(dif 0.48)_
+- **[writing/word_bank]** Arma la frase: "Llegamos al aeropuerto a tiempo".  — fichas: ['We', 'arrived', 'at', 'the', 'airport', 'on', 'time', 'station']  ✓ `We arrived at the airport on time`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Our flight to Rome was delayed by two hours.', 'Our flight to Rome arrived early in the morning.', 'The train to Rome was completely full.'] · ✓ `Our flight to Rome was delayed by two hours.` · audio dice: «Our flight to Rome was delayed by two hours.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Last summer we packed our luggage and started an amazing journey.»  esperado: `Last summer we packed our luggage and started an amazing journey.`  _(dif 0.48)_
+
+### L2 · Lo que pasaba mientras...  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['suddenly', 'de repente'], ['to get lost', 'perderse'], ['crowded', 'abarrotado']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "We ___ along the beach when it started to rain."  — opciones: ['were walking', 'walked', 'walk', 'have walked'] · ✓ `were walking`  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "While I ___ a map, a local woman offered to help us."  — opciones: ['was reading', 'read', 'am reading', 'reads'] · ✓ `was reading`  _(dif 0.48)_
+- **[writing/cloze]** Completa con el pasado simple (la acción que interrumpe): "While we were exploring the old town, it suddenly ___ (start) to rain."  — texto: «While we were exploring the old town, it suddenly ___ to rain.»  ✓ `started` · acepta: ['started']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "Estábamos esperando el tren cuando vimos a un viejo amigo.".  — es: «Estábamos esperando el tren cuando vimos a un viejo amigo.»  ✓ en: `We were waiting for the train when we saw an old friend.` · acepta: ['We were waiting for a train when we saw an old friend.', 'When we saw an old friend, we were waiting for the train.', 'When we saw an old friend, we were waiting for a train.']  _(dif 0.48)_
+- **[writing/reorder]** Ordena para formar la oración: "Estaba lloviendo cuando llegamos al hotel".  — fichas: ['It', 'was', 'raining', 'when', 'we', 'arrived', 'at', 'the', 'hotel']  ✓ `It was raining when we arrived at the hotel`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['While we were having lunch, the bus left without us.', 'After we had lunch, we took the next bus together.', 'We were having lunch when the rain finally stopped.'] · ✓ `While we were having lunch, the bus left without us.` · audio dice: «While we were having lunch, the bus left without us.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «While we were crossing the bridge, the sun suddenly came out.»  esperado: `While we were crossing the bridge, the sun suddenly came out.`  _(dif 0.48)_
+
+### L3 · La gente y los lugares del viaje  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['landscape', 'paisaje'], ['souvenir', 'recuerdo (objeto)'], ['local', 'local']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Elige el pronombre relativo correcto: "The guide ___ showed us the city was very friendly."  — opciones: ['who', 'which', 'where', 'what'] · ✓ `who`  _(dif 0.48)_
+- **[reading/multiple_choice]** Elige el pronombre relativo correcto: "We visited a village ___ had beautiful old houses."  — opciones: ['which', 'who', 'whose', 'when'] · ✓ `which`  _(dif 0.48)_
+- **[writing/cloze]** Completa con el relativo para personas: "She is the woman ___ helped us when we got lost."  — texto: «She is the woman ___ helped us when we got lost.»  ✓ `who` · acepta: ['who', 'that']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "Es un paisaje que nunca olvidaré.".  — es: «Es un paisaje que nunca olvidaré.»  ✓ en: `It is a landscape that I will never forget.` · acepta: ['It is a landscape which I will never forget.', "It's a landscape that I will never forget.", "It's a landscape which I will never forget.", "It is a landscape that I'll never forget.", "It's a landscape that I'll never forget.", "It is a landscape which I'll never forget.", "It's a landscape which I'll never forget."]  _(dif 0.48)_
+- **[writing/word_bank]** Arma la frase: "Compré un recuerdo que estaba hecho a mano".  — fichas: ['I', 'bought', 'a', 'souvenir', 'which', 'was', 'handmade', 'who']  ✓ `I bought a souvenir which was handmade`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['The man who sold us the tickets spoke perfect English.', 'The woman who sold us the tickets spoke perfect English.', 'The man who sold us the souvenirs spoke a little English.'] · ✓ `The man who sold us the tickets spoke perfect English.` · audio dice: «The man who sold us the tickets spoke perfect English.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «We stayed in a small hotel that had an amazing view of the mountains.»  esperado: `We stayed in a small hotel that had an amazing view of the mountains.`  _(dif 0.48)_
+
+### L4 · Una anécdota inolvidable  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['adventure', 'aventura'], ['to realize', 'darse cuenta'], ['unforgettable', 'inolvidable']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "We ___ that we had missed the last train."  — opciones: ['realized', 'were realizing', 'realize', 'will realize'] · ✓ `realized`  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa la anécdota: "It was the most ___ trip of my life."  — opciones: ['unforgettable', 'crowded', 'abroad', 'local'] · ✓ `unforgettable`  _(dif 0.48)_
+- **[writing/cloze]** Completa con la forma -ing del verbo entre paréntesis para el pasado continuo: "When the storm started, we were still ___ (explore) the forest."  — texto: «When the storm started, we were still ___ the forest.»  ✓ `exploring` · acepta: ['exploring']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "Perdimos el tren, pero conocimos a una pareja que nos llevó a la ciudad.".  — es: «Perdimos el tren, pero conocimos a una pareja que nos llevó a la ciudad.»  ✓ en: `We missed the train, but we met a couple who drove us to the city.` · acepta: ['We missed the train but we met a couple who drove us to the city.', 'We missed the train, but we met a couple that drove us to the city.', 'We missed the train but we met a couple that drove us to the city.']  _(dif 0.48)_
+- **[writing/reorder]** Ordena para formar la oración: "Fue una aventura que nunca olvidaremos".  — fichas: ['It', 'was', 'an', 'adventure', 'that', 'we', 'will', 'never', 'forget']  ✓ `It was an adventure that we will never forget`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['We were driving through the mountains when the car broke down.', 'We were walking through the city when we lost our map.', 'We were flying over the mountains when the storm began.'] · ✓ `We were driving through the mountains when the car broke down.` · audio dice: «We were driving through the mountains when the car broke down.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «It was an unforgettable adventure that I will tell my friends about for years.»  esperado: `It was an unforgettable adventure that I will tell my friends about for years.`  _(dif 0.48)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidad 16  _(items: 10)_
+
+- **[reading/match]** Empareja cada palabra de viaje con su traducción.  — pares: [['journey', 'viaje (trayecto)'], ['luggage', 'equipaje'], ['flight', 'vuelo']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa la narración: "Last summer we ___ to Portugal for two weeks."  — opciones: ['travelled', 'travel', 'were travelling', 'will travel'] · ✓ `travelled`  _(dif 0.48)_
+- **[reading/multiple_choice]** Elige la opción que cuenta una acción terminada en el pasado.  — opciones: ['We packed our luggage the night before.', 'We are packing our luggage now.', 'We will pack our luggage tomorrow.'] · ✓ `We packed our luggage the night before.`  _(dif 0.48)_
+- **[writing/cloze]** Completa con el pasado simple del verbo entre paréntesis: "Our flight ___ (leave) early in the morning."  — texto: «Our flight ___ early in the morning.»  ✓ `left` · acepta: ['left']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "El año pasado viajamos al extranjero por primera vez.".  — es: «El año pasado viajamos al extranjero por primera vez.»  ✓ en: `Last year we travelled abroad for the first time.` · acepta: ['Last year we traveled abroad for the first time.', 'Last year, we travelled abroad for the first time.', 'Last year, we traveled abroad for the first time.', 'We travelled abroad for the first time last year.', 'We traveled abroad for the first time last year.']  _(dif 0.48)_
+- **[writing/word_bank]** Arma la frase: "Llegamos al aeropuerto a tiempo".  — fichas: ['We', 'arrived', 'at', 'the', 'airport', 'on', 'time', 'station']  ✓ `We arrived at the airport on time`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Our flight to Rome was delayed by two hours.', 'Our flight to Rome arrived early in the morning.', 'The train to Rome was completely full.'] · ✓ `Our flight to Rome was delayed by two hours.` · audio dice: «Our flight to Rome was delayed by two hours.»  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['While we were having lunch, the bus left without us.', 'After we had lunch, we took the next bus together.', 'We were having lunch when the rain finally stopped.'] · ✓ `While we were having lunch, the bus left without us.` · audio dice: «While we were having lunch, the bus left without us.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Last summer we packed our luggage and started an amazing journey.»  esperado: `Last summer we packed our luggage and started an amazing journey.`  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «While we were crossing the bridge, the sun suddenly came out.»  esperado: `While we were crossing the bridge, the sun suddenly came out.`  _(dif 0.48)_
+
+**Vocabulario (frecuencia):** journey=viaje (trayecto), abroad=al extranjero, luggage=equipaje, flight=vuelo, landscape=paisaje, adventure=aventura, to get lost=perderse, on time=a tiempo, suddenly=de repente, to realize=darse cuenta, souvenir=recuerdo (objeto), local=local, to miss (a train)=perder (un tren), crowded=abarrotado, to explore=explorar, unforgettable=inolvidable
+
+## Unidad 17 (B1) — Problemas y soluciones
+
+
+### L1 · Cuando algo se rompe  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['broken', 'roto'], ['leak', 'gotera'], ['fix', 'arreglar']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa la norma general: "If the heater ___ too hot, it switches off automatically."  — opciones: ['gets', 'will get', 'got', 'is getting'] · ✓ `gets`  _(dif 0.48)_
+- **[reading/multiple_choice]** Elige la frase correcta para una verdad general (condicional cero).  — opciones: ['If you press this button, the screen turns off.', 'If you will press this button, the screen turns off.', 'If you press this button, the screen will turning off.', 'If you pressing this button, the screen turns off.'] · ✓ `If you press this button, the screen turns off.`  _(dif 0.48)_
+- **[writing/cloze]** Completa con el verbo en presente (condicional cero): "If the pipe is old, it usually ___ water."  — texto: «If the pipe is old, it usually ___ water.»  ✓ `leaks` · acepta: ['leaks']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "Si el ordenador se calienta, se apaga.".  — es: «Si el ordenador se calienta, se apaga.»  ✓ en: `If the computer gets hot, it turns off.` · acepta: ['If the computer gets hot, it turns off', 'If the computer gets hot it turns off.', 'If the computer gets hot, it switches off.', 'When the computer gets hot, it turns off.', 'If the computer becomes hot, it turns off.']  _(dif 0.48)_
+- **[writing/reorder]** Ordena la frase: "Si lo dejas caer, se rompe."  — fichas: ['it', 'If', 'drop', 'breaks', 'you', 'it']  ✓ `If you drop it, it breaks`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['If the light is red, the machine is broken.', 'If the light is green, the machine is ready.', 'When the light is blue, the machine is off.'] · ✓ `If the light is red, the machine is broken.` · audio dice: «If the light is red, the machine is broken.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «If the washing machine breaks down again, we call the technician.»  esperado: `If the washing machine breaks down again, we call the technician.`  _(dif 0.48)_
+
+### L2 · Si pasa esto, haré aquello  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['deadline', 'fecha límite'], ['delay', 'retraso'], ['solution', 'solución']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa con condicional primero: "If we miss the deadline, the client ___ angry."  — opciones: ['will be', 'is', 'was', 'be'] · ✓ `will be`  _(dif 0.48)_
+- **[reading/multiple_choice]** Elige la frase correcta (primer condicional para una consecuencia futura probable).  — opciones: ['If the bus is late, I will take a taxi.', 'If the bus will be late, I take a taxi.', 'If the bus is late, I take will a taxi.', 'If the bus late, I will take a taxi.'] · ✓ `If the bus is late, I will take a taxi.`  _(dif 0.48)_
+- **[writing/cloze]** Completa con "will" + verbo: "If you don't hurry, you ___ the train."  — texto: «If you don't hurry, you ___ the train.»  ✓ `will miss` · acepta: ['will miss', "'ll miss"]  _(dif 0.48)_
+- **[writing/translation]** Traduce: "Si hay un retraso, te llamaré.".  — es: «Si hay un retraso, te llamaré.»  ✓ en: `If there is a delay, I will call you.` · acepta: ['If there is a delay, I will call you', "If there is a delay, I'll call you.", "If there's a delay, I will call you.", "If there's a delay, I'll call you.", 'I will call you if there is a delay.']  _(dif 0.48)_
+- **[writing/word_bank]** Arma la frase: "Si terminamos pronto, te ayudaré."  — fichas: ['If', 'we', 'finish', 'early', 'I', 'will', 'help', 'you', 'would', 'miss']  ✓ `If we finish early I will help you`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['If the meeting starts late, we will change the plan.', 'If the meeting starts early, we will cancel it.', 'When the meeting ends, we will go home.'] · ✓ `If the meeting starts late, we will change the plan.` · audio dice: «If the meeting starts late, we will change the plan.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «If the project is delayed, we will tell the manager immediately.»  esperado: `If the project is delayed, we will tell the manager immediately.`  _(dif 0.48)_
+
+### L3 · Reglas, avisos y obligaciones  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['warning', 'advertencia'], ['mistake', 'error'], ['emergency', 'emergencia']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa con obligación: "You ___ wear a helmet on the building site."  — opciones: ['must', "mustn't", "shouldn't", "needn't"] · ✓ `must`  _(dif 0.48)_
+- **[reading/multiple_choice]** Elige la prohibición correcta para un cartel de seguridad.  — opciones: ["You mustn't use the lift during a fire.", 'You must use the lift during a fire.', "You don't must use the lift during a fire.", "You haven't to use the lift during a fire."] · ✓ `You mustn't use the lift during a fire.`  _(dif 0.48)_
+- **[writing/cloze]** Completa con obligación externa (norma de la empresa): "Everyone ___ to sign in at reception."  — texto: «Everyone ___ to sign in at reception.»  ✓ `has` · acepta: ['has', 'needs']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "No puedes aparcar aquí.".  — es: «No puedes aparcar aquí.»  ✓ en: `You can't park here.` · acepta: ["You can't park here", 'You cannot park here.', 'You cannot park here', 'You can not park here.']  _(dif 0.48)_
+- **[writing/reorder]** Ordena la frase: "Tienes que reportar cada error."  — fichas: ['have', 'You', 'every', 'report', 'to', 'mistake']  ✓ `You have to report every mistake`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['You must turn off your phone in the meeting.', 'You must turn on your phone in the meeting.', 'You can use your phone in the meeting.'] · ✓ `You must turn off your phone in the meeting.` · audio dice: «You must turn off your phone in the meeting.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «In an emergency, you must stay calm and call for help.»  esperado: `In an emergency, you must stay calm and call for help.`  _(dif 0.48)_
+
+### L4 · Pedir ayuda y dar consejo  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['complain', 'quejarse'], ['refund', 'reembolso'], ['advice', 'consejo']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa con consejo: "The phone is still broken. You ___ ask for a refund."  — opciones: ['should', 'must', "can't", "mustn't"] · ✓ `should`  _(dif 0.48)_
+- **[reading/multiple_choice]** Elige el consejo correcto para alguien que cometió un error.  — opciones: ["You shouldn't ignore the problem; you should fix it.", "You shouldn't to ignore the problem; you should fix it.", "You don't should ignore the problem; you should fix it.", "You shouldn't ignoring the problem; you should fix it."] · ✓ `You shouldn't ignore the problem; you should fix it.`  _(dif 0.48)_
+- **[writing/cloze]** Completa con consejo negativo: "The charger is faulty. You ___ use it." (no es buena idea)  — texto: «The charger is faulty. You ___ use it.»  ✓ `shouldn't` · acepta: ["shouldn't", 'should not']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "Deberías quejarte al gerente.".  — es: «Deberías quejarte al gerente.»  ✓ en: `You should complain to the manager.` · acepta: ['You should complain to the manager', 'You should complain to the manager.', 'You ought to complain to the manager.']  _(dif 0.48)_
+- **[writing/word_bank]** Arma la pregunta para pedir un consejo: "¿Qué debería hacer?"  — fichas: ['What', 'should', 'I', 'do', 'must', 'to']  ✓ `What should I do`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['You should keep the receipt if you want a refund.', 'You should throw away the receipt after you pay.', "You shouldn't ask for a refund today."] · ✓ `You should keep the receipt if you want a refund.` · audio dice: «You should keep the receipt if you want a refund.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «If you have a problem with the product, you should call customer service first.»  esperado: `If you have a problem with the product, you should call customer service first.`  _(dif 0.48)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidad 17  _(items: 10)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['broken', 'roto'], ['leak', 'gotera'], ['fix', 'arreglar']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa la norma general: "If the heater ___ too hot, it switches off automatically."  — opciones: ['gets', 'will get', 'got', 'is getting'] · ✓ `gets`  _(dif 0.48)_
+- **[reading/multiple_choice]** Elige la frase correcta para una verdad general (condicional cero).  — opciones: ['If you press this button, the screen turns off.', 'If you will press this button, the screen turns off.', 'If you press this button, the screen will turning off.', 'If you pressing this button, the screen turns off.'] · ✓ `If you press this button, the screen turns off.`  _(dif 0.48)_
+- **[writing/cloze]** Completa con el verbo en presente (condicional cero): "If the pipe is old, it usually ___ water."  — texto: «If the pipe is old, it usually ___ water.»  ✓ `leaks` · acepta: ['leaks']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "Si el ordenador se calienta, se apaga.".  — es: «Si el ordenador se calienta, se apaga.»  ✓ en: `If the computer gets hot, it turns off.` · acepta: ['If the computer gets hot, it turns off', 'If the computer gets hot it turns off.', 'If the computer gets hot, it switches off.', 'When the computer gets hot, it turns off.', 'If the computer becomes hot, it turns off.']  _(dif 0.48)_
+- **[writing/reorder]** Ordena la frase: "Si lo dejas caer, se rompe."  — fichas: ['it', 'If', 'drop', 'breaks', 'you', 'it']  ✓ `If you drop it, it breaks`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['If the light is red, the machine is broken.', 'If the light is green, the machine is ready.', 'When the light is blue, the machine is off.'] · ✓ `If the light is red, the machine is broken.` · audio dice: «If the light is red, the machine is broken.»  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['If the meeting starts late, we will change the plan.', 'If the meeting starts early, we will cancel it.', 'When the meeting ends, we will go home.'] · ✓ `If the meeting starts late, we will change the plan.` · audio dice: «If the meeting starts late, we will change the plan.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «If the washing machine breaks down again, we call the technician.»  esperado: `If the washing machine breaks down again, we call the technician.`  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «If the project is delayed, we will tell the manager immediately.»  esperado: `If the project is delayed, we will tell the manager immediately.`  _(dif 0.48)_
+
+**Vocabulario (frecuencia):** problem=problema, solution=solución, break down=averiarse, fix=arreglar, broken=roto / averiado, warning=advertencia, deadline=fecha límite, delay=retraso, mistake=error, advice=consejo, complain=quejarse, refund=reembolso, emergency=emergencia, leak=fuga / gotera, charger=cargador, deal with=lidiar con / gestionar
+
+## Unidad 18 (B1) — Cultura, medios y futuro
+
+
+### L1 · How things are made  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['culture', 'cultura'], ['the media', 'los medios de comunicación'], ['made of', 'hecho de']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa con voz pasiva en presente: "This bread ___ made every morning."  — opciones: ['is', 'does', 'has'] · ✓ `is`  _(dif 0.48)_
+- **[reading/multiple_choice]** Elige la frase pasiva correcta para "Estos coches se fabrican en Japón".  — opciones: ['These cars are made in Japan.', 'These cars make in Japan.', 'These cars is made in Japan.'] · ✓ `These cars are made in Japan.`  _(dif 0.48)_
+- **[writing/cloze]** Completa con la forma pasiva: "Coffee ___ grown in Colombia."  — texto: «Coffee ___ grown in Colombia.»  ✓ `is` · acepta: ['is']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "El queso está hecho de leche.".  — es: «El queso está hecho de leche.»  ✓ en: `Cheese is made of milk.` · acepta: ['Cheese is made of milk', 'The cheese is made of milk.', 'The cheese is made of milk', 'Cheese is made from milk.', 'Cheese is made from milk']  _(dif 0.48)_
+- **[writing/word_bank]** Arma la frase: "Estas botellas están hechas de plástico".  — fichas: ['These', 'bottles', 'are', 'made', 'of', 'plastic', 'is', 'from']  ✓ `These bottles are made of plastic`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Millions of newspapers are printed every day.', 'Millions of people read books at home.', 'Many newspapers were sold last week.'] · ✓ `Millions of newspapers are printed every day.` · audio dice: «Millions of newspapers are printed every day.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Chocolate is made from cocoa, and it is sold all around the world.»  esperado: `Chocolate is made from cocoa, and it is sold all around the world.`  _(dif 0.48)_
+
+### L2 · Famous places and the past  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['was built', 'fue construido'], ['famous', 'famoso'], ['abroad', 'en el extranjero']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa con voz pasiva en pasado: "The bridge ___ built in 1890."  — opciones: ['was', 'is', 'did'] · ✓ `was`  _(dif 0.48)_
+- **[reading/multiple_choice]** Elige la frase pasiva correcta para "Esas casas fueron construidas hace cien años".  — opciones: ['Those houses were built a hundred years ago.', 'Those houses was built a hundred years ago.', 'Those houses are built a hundred years ago.'] · ✓ `Those houses were built a hundred years ago.`  _(dif 0.48)_
+- **[writing/cloze]** Completa con la forma pasiva en pasado: "The castle ___ built by the king."  — texto: «The castle ___ built by the king.»  ✓ `was` · acepta: ['was']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "El museo fue construido en 1950.".  — es: «El museo fue construido en 1950.»  ✓ en: `The museum was built in 1950.` · acepta: ['The museum was built in 1950', 'The museum was built in nineteen fifty.', 'The museum was built in nineteen fifty']  _(dif 0.48)_
+- **[writing/reorder]** Ordena: "Esta iglesia fue construida hace muchos años".  — fichas: ['was', 'This', 'many', 'church', 'ago', 'built', 'years']  ✓ `This church was built many years ago`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['This famous tower was built more than a century ago.', 'This famous tower is the tallest in the city.', 'These famous towers are visited every year.'] · ✓ `This famous tower was built more than a century ago.` · audio dice: «This famous tower was built more than a century ago.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «The old theatre was built in 1925, and it is still famous today.»  esperado: `The old theatre was built in 1925, and it is still famous today.`  _(dif 0.48)_
+
+### L3 · Comparing films and media  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['documentary', 'documental'], ['channel', 'canal'], ['exciting', 'emocionante']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "The book is ___ interesting as the film."  — opciones: ['as', 'more', 'than'] · ✓ `as`  _(dif 0.48)_
+- **[reading/multiple_choice]** Elige la frase correcta para "El programa no es tan emocionante como la película".  — opciones: ['The show is not as exciting as the film.', 'The show is not so exciting than the film.', 'The show is not exciting as the film.'] · ✓ `The show is not as exciting as the film.`  _(dif 0.48)_
+- **[writing/cloze]** Completa con la estructura "not as … as": "This channel is not ___ popular as the news."  — texto: «This channel is not ___ popular as the news.»  ✓ `as` · acepta: ['as']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "Este documental es tan interesante como la película.".  — es: «Este documental es tan interesante como la película.»  ✓ en: `This documentary is as interesting as the film.` · acepta: ['This documentary is as interesting as the film', 'This documentary is as interesting as the movie.', 'This documentary is as interesting as the movie']  _(dif 0.48)_
+- **[writing/word_bank]** Arma la frase: "La radio no es tan popular como la televisión".  — fichas: ['Radio', 'is', 'not', 'as', 'popular', 'as', 'television', 'than', 'more']  ✓ `Radio is not as popular as television`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['This series is not as exciting as the first one.', 'This series is the most exciting on TV.', 'These films are as long as the books.'] · ✓ `This series is not as exciting as the first one.` · audio dice: «This series is not as exciting as the first one.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «I think the news is as important as the films we watch.»  esperado: `I think the news is as important as the films we watch.`  _(dif 0.48)_
+
+### L4 · Dreams and the future  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['to dream of', 'soñar con'], ['audience', 'público'], ['news', 'noticias']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa el segundo condicional: "If I had more time, I ___ travel abroad."  — opciones: ['would', 'will', 'am'] · ✓ `would`  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa: "If I ___ rich, I would help my family."  — opciones: ['were', 'am', 'will be'] · ✓ `were`  _(dif 0.48)_
+- **[writing/cloze]** Completa el segundo condicional: "If I had a camera, I ___ make a documentary."  — texto: «If I had a camera, I ___ make a documentary.»  ✓ `would` · acepta: ['would', "'d"]  _(dif 0.48)_
+- **[writing/translation]** Traduce: "Si tuviera más dinero, viajaría por el mundo.".  — es: «Si tuviera más dinero, viajaría por el mundo.»  ✓ en: `If I had more money, I would travel the world.` · acepta: ['If I had more money, I would travel the world', 'If I had more money, I would travel around the world.', 'If I had more money, I would travel around the world', "If I had more money, I'd travel the world.", "If I had more money, I'd travel the world"]  _(dif 0.48)_
+- **[writing/reorder]** Ordena: "Si viviera en el extranjero, aprendería otro idioma".  — fichas: ['lived', 'If', 'would', 'I', 'abroad', 'language', 'learn', 'another', 'I']  ✓ `If I lived abroad I would learn another language`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['If I had the chance, I would work in the media.', 'If I have the chance, I will work today.', 'I had a great chance to study abroad.'] · ✓ `If I had the chance, I would work in the media.` · audio dice: «If I had the chance, I would work in the media.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «If I had more free time, I would learn to make films and travel abroad.»  esperado: `If I had more free time, I would learn to make films and travel abroad.`  _(dif 0.48)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidad 18  _(items: 10)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['culture', 'cultura'], ['the media', 'los medios de comunicación'], ['made of', 'hecho de']]  _(dif 0.48)_
+- **[reading/multiple_choice]** Completa con voz pasiva en presente: "This bread ___ made every morning."  — opciones: ['is', 'does', 'has'] · ✓ `is`  _(dif 0.48)_
+- **[reading/multiple_choice]** Elige la frase pasiva correcta para "Estos coches se fabrican en Japón".  — opciones: ['These cars are made in Japan.', 'These cars make in Japan.', 'These cars is made in Japan.'] · ✓ `These cars are made in Japan.`  _(dif 0.48)_
+- **[writing/cloze]** Completa con la forma pasiva: "Coffee ___ grown in Colombia."  — texto: «Coffee ___ grown in Colombia.»  ✓ `is` · acepta: ['is']  _(dif 0.48)_
+- **[writing/translation]** Traduce: "El queso está hecho de leche.".  — es: «El queso está hecho de leche.»  ✓ en: `Cheese is made of milk.` · acepta: ['Cheese is made of milk', 'The cheese is made of milk.', 'The cheese is made of milk', 'Cheese is made from milk.', 'Cheese is made from milk']  _(dif 0.48)_
+- **[writing/word_bank]** Arma la frase: "Estas botellas están hechas de plástico".  — fichas: ['These', 'bottles', 'are', 'made', 'of', 'plastic', 'is', 'from']  ✓ `These bottles are made of plastic`  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Millions of newspapers are printed every day.', 'Millions of people read books at home.', 'Many newspapers were sold last week.'] · ✓ `Millions of newspapers are printed every day.` · audio dice: «Millions of newspapers are printed every day.»  _(dif 0.48)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['This famous tower was built more than a century ago.', 'This famous tower is the tallest in the city.', 'These famous towers are visited every year.'] · ✓ `This famous tower was built more than a century ago.` · audio dice: «This famous tower was built more than a century ago.»  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Chocolate is made from cocoa, and it is sold all around the world.»  esperado: `Chocolate is made from cocoa, and it is sold all around the world.`  _(dif 0.48)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «The old theatre was built in 1925, and it is still famous today.»  esperado: `The old theatre was built in 1925, and it is still famous today.`  _(dif 0.48)_
+
+**Vocabulario (frecuencia):** culture=cultura, the media=los medios de comunicación, newspaper=periódico, news=noticias, channel=canal, audience=público / audiencia, to be made of=estar hecho de, to be built=ser construido, broadcast=emitir / transmitir, documentary=documental, headline=titular, to dream of=soñar con, abroad=en el extranjero, exciting=emocionante, famous=famoso

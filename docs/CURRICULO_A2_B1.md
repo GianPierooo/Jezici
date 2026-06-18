@@ -29,11 +29,24 @@ A1 (6 checkpoints + 4 skills) → examen A1 (20 ítems) → certificado **JZC-A1
 el examen de nivel avanza solo a **A2** → A2 (6 checkpoints + 4 skills) →
 examen A2 (20 ítems A2) → certificado **JZC-A2-…**. (`tools/content/verify_chain.py`).
 
-## B1 — esqueleto (Unidades 13–18 · sólo unidad + objetivo, aún sin ítems)
+## B1 — SEMBRADO COMPLETO (Unidades 13–18 · 192 ítems)
 
-> Migración `032_b1_skeleton.sql`. Se añadió `units.description` para el objetivo.
-> Sin lecciones todavía → el mapa (data-driven) no las dibuja hasta sembrarlas.
-> No tienen checkpoint → no entran en el examen de nivel ni alteran el gating.
+> **✅ Sembrado** en `043_seed_b1.sql` (+ fixes de QA en `044`). Autorado + QA
+> adversarial multi-agente (`b1_units.json` → `gen_b1.mjs` → valida contra el
+> grader). 4 lecciones × 8 ítems + checkpoint por unidad; cefr 'B1', order 13–18.
+> Cadena verificada A1 → A2 → **B1** (examen + cert **JZC-B1-…**, modelo per-skill).
+> Export humano en `docs/CONTENT_EXPORT.md`.
+
+| #  | Unidad | Gramática B1 (en contexto) |
+|----|--------|----------------------------|
+| 13 | Rutinas, hábitos y experiencias | present perfect (ever/never, just/already/yet, for/since), pasado simple vs present perfect, used to |
+| 14 | Trabajo, estudios y planes | primer condicional, present perfect continuous, be going to vs will |
+| 15 | Opiniones y acuerdos | so/neither do I, estilo indirecto (intro), verbos de opinión |
+| 16 | Historias y viajes | pasado continuo vs pasado simple (while/when), cláusulas relativas (who/which/that) |
+| 17 | Problemas y soluciones | condicional 0 y 1, modales de obligación (must/have to/should/can't) |
+| 18 | Cultura, medios y futuro | voz pasiva (intro), segundo condicional (intro), comparativos avanzados (as…as) |
+
+### Historial: B1 antes era esqueleto (`032_b1_skeleton.sql`, sólo `units.description`).
 
 | #  | Unidad | Objetivo / alcance (B1) |
 |----|--------|--------------------------|
