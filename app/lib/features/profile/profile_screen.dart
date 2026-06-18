@@ -451,7 +451,7 @@ class _LevelExamCard extends StatelessWidget {
                         ? '¡Listo para certificar! Toca para empezar.'
                         : (exam.unitsDone < exam.unitsTotal
                             ? 'Completa las unidades: ${exam.unitsDone}/${exam.unitsTotal} checkpoints'
-                            : 'Sube tu dominio: ${(exam.masteryAvg * 100).round()}% (necesitas 50%)'),
+                            : 'Lleva una habilidad al 80% de dominio para abrir su examen'),
                     style: TextStyle(
                         fontSize: 12.5, fontWeight: FontWeight.w700,
                         color: unlocked ? Colors.white.withValues(alpha: 0.92) : AppColors.textMuted),
@@ -695,8 +695,9 @@ class _SkillRow extends StatelessWidget {
   }
 }
 
-/// Compuerta de dominio → examen (modelo D7): muestra cuánto falta para que el
-/// examen del nivel en curso se desbloquee (promedio de dominio >= 50%).
+/// Compuerta de dominio → examen (modelo v2 per-skill): la sección de una
+/// habilidad se abre cuando SU dominio llega al 80%. Mostramos la habilidad más
+/// cercana a abrir su examen.
 class _MasteryGate extends StatelessWidget {
   const _MasteryGate({required this.mastery});
   final SkillMasteryStatus mastery;
@@ -705,17 +706,21 @@ class _MasteryGate extends StatelessWidget {
   Widget build(BuildContext context) {
     final unlocked = mastery.examUnlocked;
     final certified = mastery.examHasCertificate;
-    final avg = mastery.masteryAvg.clamp(0.0, 1.0);
-    // El examen abre con dominio promedio >= 0.5; mostramos avance hacia esa meta.
-    final toGate = (avg / 0.5).clamp(0.0, 1.0);
+    // v2: el desbloqueo es por habilidad ≥80% (no promedio). Mostramos avance de
+    // la habilidad más cercana hacia ese 80%.
+    final maxPct = mastery.skills.isEmpty
+        ? 0.0
+        : mastery.skills.map((s) => s.masteryPct).reduce((a, b) => a > b ? a : b).clamp(0.0, 1.0);
+    final ready = mastery.skills.where((s) => s.examReady).length;
+    final toGate = (maxPct / 0.8).clamp(0.0, 1.0);
     final color = certified
         ? AppColors.success
         : (unlocked ? AppColors.success : AppColors.primary);
     final label = certified
         ? 'Ya certificaste ${mastery.workingLevel} 🎓'
         : (unlocked
-            ? 'Examen ${mastery.workingLevel} desbloqueado 🔓'
-            : 'Dominio ${mastery.workingLevel}: ${(avg * 100).round()}% — al 50% abre el examen');
+            ? 'Examen ${mastery.workingLevel} desbloqueado 🔓 ($ready ${ready == 1 ? 'habilidad lista' : 'habilidades listas'})'
+            : 'Dominio ${mastery.workingLevel}: lleva una habilidad al 80% para abrir su examen (vas ${(maxPct * 100).round()}%)');
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 11),
       decoration: BoxDecoration(

@@ -1,10 +1,13 @@
-import 'package:audioplayers/audioplayers.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
+import '../../../core/audio/audio_engine.dart';
 import '../../../core/theme/app_colors.dart';
 
 /// Botón grande para reproducir un audio (TTS) desde una URL. Reutilizado por
-/// listening y speaking (modelo de pronunciación).
+/// listening y speaking. Usa AudioEngine (Web Audio en web → sin reproductor en
+/// la pantalla de bloqueo).
 class AudioPlayButton extends StatefulWidget {
   const AudioPlayButton({super.key, required this.url, this.label = 'Escuchar', this.big = true});
   final String url;
@@ -16,30 +19,27 @@ class AudioPlayButton extends StatefulWidget {
 }
 
 class _AudioPlayButtonState extends State<AudioPlayButton> {
-  // Player perezoso: no se crea hasta el primer play (evita tocar el plugin en
-  // tests/headless y al primer render).
-  AudioPlayer? _player;
   bool _playing = false;
+  Timer? _failsafe;
 
   @override
   void dispose() {
-    _player?.dispose();
+    _failsafe?.cancel();
     super.dispose();
   }
 
   Future<void> _play() async {
     if (widget.url.isEmpty) return;
-    try {
-      _player ??= AudioPlayer()
-        ..onPlayerComplete.listen((_) {
-          if (mounted) setState(() => _playing = false);
-        });
-      setState(() => _playing = true);
-      await _player!.stop();
-      await _player!.play(UrlSource(widget.url));
-    } catch (_) {
+    setState(() => _playing = true);
+    // Failsafe: si el audio no llega/decodifica, no dejes el ícono colgado.
+    _failsafe?.cancel();
+    _failsafe = Timer(const Duration(seconds: 12), () {
       if (mounted) setState(() => _playing = false);
-    }
+    });
+    await AudioEngine.instance.playUrl(widget.url, onComplete: () {
+      _failsafe?.cancel();
+      if (mounted) setState(() => _playing = false);
+    });
   }
 
   @override

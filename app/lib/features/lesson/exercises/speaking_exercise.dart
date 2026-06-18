@@ -180,6 +180,15 @@ class _Feedback extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final color = passed ? AppColors.success : AppColors.coral;
+    final empty = heard.trim().isEmpty;
+    final title = passed
+        ? '¡Bien pronunciado! 🦜'
+        : (empty ? 'No te escuché — acércate e inténtalo' : 'Vas bien. Léelo otra vez si quieres');
+    final detail = passed
+        ? 'Escuché: “$heard”'
+        : (empty
+            ? 'Sube el volumen del micro, o toca “Ya lo leí ✓” para continuar.'
+            : 'Escuché: “$heard”. Puedes reintentar o tocar “Ya lo leí ✓”.');
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
@@ -190,15 +199,11 @@ class _Feedback extends StatelessWidget {
         Row(children: [
           Icon(passed ? Icons.verified_rounded : Icons.refresh_rounded, color: color, size: 20),
           const SizedBox(width: 8),
-          Expanded(
-            child: Text(passed ? '¡Bien pronunciado! 🦜' : 'Casi — inténtalo otra vez',
-                style: TextStyle(fontWeight: FontWeight.w900, color: color)),
-          ),
-          if (!passed)
-            TextButton(onPressed: onRetry, child: const Text('Reintentar')),
+          Expanded(child: Text(title, style: TextStyle(fontWeight: FontWeight.w900, color: color))),
+          if (!passed) TextButton(onPressed: onRetry, child: const Text('Reintentar')),
         ]),
         const SizedBox(height: 6),
-        Text(heard.isEmpty ? 'No te escuché bien. Acércate al micrófono.' : 'Escuché: “$heard”',
+        Text(detail,
             style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
       ]),
     );
