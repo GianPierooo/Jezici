@@ -117,7 +117,7 @@ def main():
 
     print("\n== limpieza ==")
     admin("DELETE", f"/auth/v1/admin/users/{uid}")
-    print("\n[OK] CADENA es→pt A1 (examen + cert + per-skill) VERIFICADA (multi-curso)")
+    print("\n[OK] CADENA es-pt A1 (examen + cert + per-skill) VERIFICADA (multi-curso)")
 
 if __name__ == "__main__":
     main()

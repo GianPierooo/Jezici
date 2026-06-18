@@ -10,7 +10,8 @@ Uso: python content_qa.py            # export + validate + dump
 import json, re, sys, os
 from apply_sql import run
 
-COURSE = '20000000-0000-0000-0000-000000000001'
+COURSE = '20000000-0000-0000-0000-000000000001'      # es→en
+COURSE_PT = '20000000-0000-0000-0000-000000000002'   # es→pt
 
 def q(sql):
     c, o = run(sql)
@@ -24,29 +25,33 @@ def norm(t):
     return re.sub(r'\s+', ' ', t).strip()
 
 # ── Carga del contenido vivo (unidades en alcance) ──────────────────────────
-def load():
+def load(course_id=COURSE, scope=None, lang='en'):
+    # scope: fragmento WHERE sobre las unidades en alcance (por defecto el de es→en).
+    scope = scope or "((u.cefr_level='A1' and u.order_index between 3 and 6) or u.cefr_level in ('A2','B1','B2'))"
     units = q(f"""select u.id, u.order_index as unum, u.cefr_level, u.title
                   from units u
-                  where u.course_id='{COURSE}'
-                    and ((u.cefr_level='A1' and u.order_index between 3 and 6) or u.cefr_level in ('A2','B1','B2'))
+                  where u.course_id='{course_id}' and {scope}
                   order by u.order_index;""")
     for u in units:
+        u['lang'] = lang
         u['lessons'] = q(f"""select l.id, l.order_index, l.title, l.type
                              from lessons l where l.unit_id='{u['id']}' order by l.order_index;""")
         for les in u['lessons']:
             les['items'] = q(f"""select ci.id, ci.skill, ci.type, ci.prompt, ci.payload, ci.correct_answer, ci.difficulty, ci.tags, li.order_index ord
                                  from lesson_items li join content_items ci on ci.id=li.item_id
                                  where li.lesson_id='{les['id']}' order by li.order_index;""")
-        base = {'A2': 300, 'B1': 500, 'B2': 900}.get(u['cefr_level'], 500)  # A2:300+U*20 · B1:500+U*20 · B2:900+U*20
+        # vocab por nivel: es→en A2:300 B1:500 B2:900 · es→pt A1:100 (todo +U*20)
+        base = {'A1': 100, 'A2': 300, 'B1': 500, 'B2': 900}.get(u['cefr_level'], 500)
+        want_vocab = (lang == 'pt') or (u['cefr_level'] in ('A2', 'B1', 'B2'))
         u['vocab'] = q(f"""select v.word, v.translation, v.frequency_rank, v.part_of_speech
-                           from vocabulary v where v.course_id='{COURSE}'
+                           from vocabulary v where v.course_id='{course_id}'
                            and v.frequency_rank between {base + u['unum']*20} and {base + u['unum']*20 + 19}
-                           order by v.frequency_rank;""") if u['cefr_level'] in ('A2', 'B1', 'B2') else []
+                           order by v.frequency_rank;""") if want_vocab else []
     return units
 
 # ── Export legible a Markdown ───────────────────────────────────────────────
-def export_md(units, path):
-    out = ['# Jezici — Export de contenido (A1 unidades 3–6 + A2)\n',
+def export_md(units, path, title='A1 unidades 3–6 + A2 + B1 + B2'):
+    out = [f'# Jezici — Export de contenido ({title})\n',
            '> Generado por `tools/content/content_qa.py` desde la BD viva, para revisión humana.',
            '> Cada ítem: skill · tipo · prompt (es) · contenido (en) · respuesta correcta.\n']
     for u in units:
@@ -142,7 +147,7 @@ def validate(units):
                 en_blob = ' '.join(str(x) for x in [c.get('value'), p.get('text'), p.get('say'),
                                                     p.get('expected'), ' '.join(p.get('options') or []),
                                                     ' '.join(p.get('tiles') or [])])
-                if lvl == 'A1' and u['unum'] != 0:
+                if lvl == 'A1' and u['unum'] != 0 and u.get('lang') == 'en':
                     m = PAST_MARKERS.search(en_blob or '')
                     if m and m.group(0).lower() not in ('red', 'bed', 'need', 'feed', 'seed', 'speed', 'used', 'bored'):
                         F.append(('FUNCIONAL', 'A1_PAST', at, f"posible pasado en A1: «{m.group(0)}» en «{en_blob.strip()[:80]}»"))
@@ -181,6 +186,24 @@ def validate(units):
 
 def main():
     mode = sys.argv[1] if len(sys.argv) > 1 else 'all'
+    if mode == 'pt':  # curso es→pt (A1, Unidades 1–6)
+        units = load(COURSE_PT, "u.cefr_level='A1' and u.order_index between 1 and 6", 'pt')
+        export_md(units, 'C:/Users/gianp/Desktop/Jezici/docs/CONTENT_EXPORT_PT.md', 'Portugués es→pt · A1 (Unidades 1–6)')
+        print('[OK] export pt -> docs/CONTENT_EXPORT_PT.md')
+        F = validate(units)
+        print(f"\n=== VALIDADOR DETERMINISTA (es-pt A1): {len(F)} hallazgos ===")
+        from collections import Counter
+        by_sev = {}
+        for sev, code, where, detail in F:
+            by_sev.setdefault(sev, []).append((code, where, detail))
+        for sev in ('CRITICO', 'FUNCIONAL', 'PULIDO'):
+            its = by_sev.get(sev, [])
+            print(f"[{sev}] {len(its)}")
+            for code, n in Counter(c for c, _, _ in its).most_common():
+                print(f"   {code}: {n}")
+        for sev, code, where, detail in F:
+            print(f"   - [{sev}] {code} {where}: {detail}")
+        return
     units = load()
     if mode in ('all', 'export'):
         path = export_md(units, 'C:/Users/gianp/Desktop/Jezici/docs/CONTENT_EXPORT.md')
