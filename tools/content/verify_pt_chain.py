@@ -81,44 +81,48 @@ def main():
     assert ac == PT_COURSE, f"el curso activo debería ser pt: {ac}"
     print("  curso activo:", ac)
 
-    # Completar A1 (pt): 6 checkpoints + dominio A1.
-    run(f"""insert into user_lesson_progress(user_id, lesson_id, status, best_accuracy, times_completed, completed_at)
-            select '{uid}', l.id, 'completed', 0.9, 1, now()
-            from lessons l join units u on u.id=l.unit_id
-            where u.course_id='{PT_COURSE}' and u.cefr_level='A1' and l.type='checkpoint'
-            on conflict (user_id, lesson_id) do update set status='completed';""")
-    for s in ("reading", "listening", "writing", "speaking"):
-        run(f"""insert into user_skill_mastery(user_id,course_id,skill,cefr_level,items_seen,items_correct,lessons_done)
-                values ('{uid}','{PT_COURSE}','{s}','A1',16,16,1)
-                on conflict (user_id,course_id,skill,cefr_level) do update set items_seen=16, items_correct=16;""")
+    # Recorre dinámicamente TODA la escalera pt sembrada (A1→A2→B1→B2…).
+    levels = [r["cefr_level"] for r in json.loads(
+        run(f"select distinct cefr_level from units where course_id='{PT_COURSE}' order by 1;")[1])]
+    print("niveles pt sembrados:", levels)
+    nxt = {"A1": "A2", "A2": "B1", "B1": "B2", "B2": "C1", "C1": "C2"}
+    SK = ("reading", "listening", "writing", "speaking")
+    for lvl in levels:
+        # Completar checkpoints del nivel + dominio (piso) para desbloquear el examen.
+        run(f"""insert into user_lesson_progress(user_id, lesson_id, status, best_accuracy, times_completed, completed_at)
+                select '{uid}', l.id, 'completed', 0.9, 1, now()
+                from lessons l join units u on u.id=l.unit_id
+                where u.course_id='{PT_COURSE}' and u.cefr_level='{lvl}' and l.type='checkpoint'
+                on conflict (user_id, lesson_id) do update set status='completed';""")
+        for s in SK:
+            run(f"""insert into user_skill_mastery(user_id,course_id,skill,cefr_level,items_seen,items_correct,lessons_done)
+                    values ('{uid}','{PT_COURSE}','{s}','{lvl}',16,16,1)
+                    on conflict (user_id,course_id,skill,cefr_level) do update set items_seen=16, items_correct=16;""")
+        st = rpc(uid, "select level_exam_status();")
+        assert st["level"] == lvl and st["unlocked"] is True, f"{lvl} (pt) debería estar desbloqueado: {st}"
+        ex = rpc(uid, "select start_level_exam();")
+        assert ex["level"] == lvl and ex["item_count"] >= 18, f"{lvl} examen mal: {ex.get('level')}/{ex.get('item_count')}"
+        ids = [it["id"] for it in ex["items"]]
+        # Los ítems del examen pt son del namespace pt (ids 'd…'); los checkpoints
+        # frescos (tag cp_unidadN) NO deben aparecer en el examen de nivel.
+        assert all(i.startswith("d") for i in ids), f"ítems del examen no son del curso pt: {ids[:3]}"
+        res = rpc(uid, f"select submit_level_exam({jq(build_answers(ids))}, 120);")
+        folio = (res.get("certificate") or {}).get("folio", "")
+        assert res["passed"] is True and res["level"] == lvl, f"{lvl} debió aprobar: {res.get('passed')}"
+        assert res.get("leveled_up") is True and set(res.get("raised_skills") or []) == set(SK), \
+            f"{lvl}: deben subir las 4 skills: {res.get('raised_skills')}"
+        assert folio.startswith(f"JZC-{lvl}-"), f"{lvl}: debió emitir cert: {folio}"
+        rows = json.loads(run(f"select skill, cefr_level from user_skill_levels where user_id='{uid}' and course_id='{PT_COURSE}' order by skill;")[1])
+        assert all(r["cefr_level"] == nxt[lvl] for r in rows) and len(rows) == 4, \
+            f"{lvl}: las 4 (pt) deben pasar a {nxt[lvl]}: {rows}"
+        print(f"  OK {lvl} (pt): cert {folio}, las 4 habilidades en {nxt[lvl]}")
 
-    print("\n== A1 (pt): level_exam_status ==")
-    st = rpc(uid, "select level_exam_status();")
-    print(st)
-    assert st["level"] == "A1" and st["unlocked"] is True, "A1 (pt) debería estar desbloqueado"
-
-    print("\n== A1 (pt): start_level_exam ==")
-    ex = rpc(uid, "select start_level_exam();")
-    print({k: ex[k] for k in ("exam_id", "level", "item_count")})
-    assert ex["level"] == "A1" and ex["item_count"] >= 18
-    ids = [it["id"] for it in ex["items"]]
-    # Los ítems del examen pt deben pertenecer al curso pt (ids del namespace d1…).
-    assert all(i.startswith("d1") for i in ids), f"los ítems del examen pt deben ser del curso pt: {ids[:3]}"
-
-    print("\n== A1 (pt): submit_level_exam (correctas) ==")
-    res = rpc(uid, f"select submit_level_exam({jq(build_answers(ids))}, 120);")
-    print({k: res.get(k) for k in ("passed", "level", "leveled_up", "raised_skills")})
-    print("certificado:", (res.get("certificate") or {}).get("folio"))
-    assert res["passed"] is True and res["level"] == "A1"
-    assert res.get("leveled_up") is True and set(res.get("raised_skills") or []) == {"reading", "listening", "writing", "speaking"}
-    assert (res.get("certificate") or {}).get("folio", "").startswith("JZC-A1-"), "debió emitir cert A1 (pt)"
-    rows = json.loads(run(f"select skill, cefr_level from user_skill_levels where user_id='{uid}' and course_id='{PT_COURSE}' order by skill;")[1])
-    assert all(r["cefr_level"] == "A2" for r in rows) and len(rows) == 4, f"las 4 (pt) deben pasar a A2: {rows}"
-    print("  OK: A1 (pt) certificado, las 4 habilidades en A2")
+    certs = json.loads(run(f"select cefr_level, folio from certificates where user_id='{uid}' order by cefr_level;")[1])
+    print("certificados pt:", certs)
 
     print("\n== limpieza ==")
     admin("DELETE", f"/auth/v1/admin/users/{uid}")
-    print("\n[OK] CADENA es-pt A1 (examen + cert + per-skill) VERIFICADA (multi-curso)")
+    print(f"\n[OK] CADENA es-pt {' -> '.join(levels)} (examenes + certs + per-skill) VERIFICADA (multi-curso)")
 
 if __name__ == "__main__":
     main()

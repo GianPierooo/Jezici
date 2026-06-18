@@ -1,4 +1,4 @@
-# Jezici — Export de contenido (Portugués es→pt · A1 (Unidades 1–6))
+# Jezici — Export de contenido (Portugués es→pt · A1–B2)
 
 > Generado por `tools/content/content_qa.py` desde la BD viva, para revisión humana.
 > Cada ítem: skill · tipo · prompt (es) · contenido (en) · respuesta correcta.
@@ -375,3 +375,375 @@
 - **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Eu acho esse jogo muito legal e divertido.»  esperado: `Eu acho esse jogo muito legal e divertido.`  _(dif 0.18)_
 
 **Vocabulario (frecuencia):** hobby=pasatiempo/hobby, tempo livre=tiempo libre, jogar=jugar, ler=leer, nadar=nadar, gostar de=gustar de, poder=poder, legal=genial/chévere, chato=aburrido, divertido=divertido, sempre=siempre, nunca=nunca, fim de semana=fin de semana, sábado=sábado, domingo=domingo, futebol=fútbol
+
+## Unidad 7 (A2) — El pasado: lo que hice
+
+
+### L1 · Ontem: pretérito perfeito regular  _(items: 8)_
+
+- **[reading/match]** Empareja cada verbo en pasado con su traducción.  — pares: [['trabalhei', 'trabajé'], ['estudei', 'estudié'], ['cheguei', 'llegué']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa: "Ontem eu ___ até tarde." (trabajar)  — opciones: ['trabalhei', 'trabalho', 'trabalhou'] · ✓ `trabalhei`  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa: "Ela ___ cedo de manhã." (despertarse)  — opciones: ['acordou', 'acordei', 'acorda'] · ✓ `acordou`  _(dif 0.35)_
+- **[writing/cloze]** Completa con el pretérito perfeito de "estudar" (eu): "Eu ___ português ontem."  — texto: «Eu ___ português ontem.»  ✓ `estudei` · acepta: ['estudei']  _(dif 0.35)_
+- **[writing/translation]** Traduce al portugués: "Ayer trabajé mucho."  — es: «Ayer trabajé mucho.»  ✓ en: `Ontem eu trabalhei muito.` · acepta: ['Ontem eu trabalhei muito.', 'Ontem trabalhei muito.', 'Ontem eu trabalhei muito', 'Ontem trabalhei muito', 'Eu trabalhei muito ontem.', 'Eu trabalhei muito ontem', 'Trabalhei muito ontem.', 'Trabalhei muito ontem']  _(dif 0.35)_
+- **[writing/word_bank]** Arma la frase: "Ella llegó temprano."  — fichas: ['Ela', 'chegou', 'cedo', 'cheguei', 'tarde']  ✓ `Ela chegou cedo`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Ontem eu estudei de manhã.', 'Hoje eu estudo de manhã.', 'Ela trabalhou à noite.'] · ✓ `Ontem eu estudei de manhã.` · audio dice: «Ontem eu estudei de manhã.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Ontem eu trabalhei e depois descansei em casa.»  esperado: `Ontem eu trabalhei e depois descansei em casa.`  _(dif 0.35)_
+
+### L2 · Verbos irregulares (fui, fiz, tive)  _(items: 8)_
+
+- **[reading/match]** Empareja cada verbo irregular con su traducción.  — pares: [['fui', 'fui'], ['fiz', 'hice'], ['tive', 'tuve']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa: "Eu ___ ao mercado ontem." (ir)  — opciones: ['fui', 'fiz', 'tive'] · ✓ `fui`  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa: "Ontem eu ___ um bolo de chocolate." (fazer)  — opciones: ['fiz', 'fui', 'vi'] · ✓ `fiz`  _(dif 0.35)_
+- **[writing/cloze]** Completa con el pretérito perfeito de "ter" (eu): "Ontem eu ___ uma reunião importante."  — texto: «Ontem eu ___ uma reunião importante.»  ✓ `tive` · acepta: ['tive']  _(dif 0.35)_
+- **[writing/translation]** Traduce al portugués: "Vi a mi amiga ayer."  — es: «Vi a mi amiga ayer.»  ✓ en: `Eu vi a minha amiga ontem.` · acepta: ['Eu vi a minha amiga ontem.', 'Eu vi a minha amiga ontem', 'Vi a minha amiga ontem.', 'Vi a minha amiga ontem', 'Eu vi minha amiga ontem.', 'Eu vi minha amiga ontem', 'Vi minha amiga ontem.', 'Vi minha amiga ontem']  _(dif 0.35)_
+- **[writing/reorder]** Ordena las palabras: "Fui al cine ayer."  — fichas: ['Eu', 'fui', 'ao', 'cinema', 'ontem']  ✓ `Eu fui ao cinema ontem`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Eu fiz o jantar ontem à noite.', 'Eu faço o jantar todo dia.', 'Eu tive um dia tranquilo.'] · ✓ `Eu fiz o jantar ontem à noite.` · audio dice: «Eu fiz o jantar ontem à noite.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Ontem eu fui ao trabalho e tive uma reunião longa.»  esperado: `Ontem eu fui ao trabalho e tive uma reunião longa.`  _(dif 0.35)_
+
+### L3 · Preguntas en pasado  _(items: 8)_
+
+- **[reading/match]** Empareja la pregunta con su traducción.  — pares: [['O que você fez?', '¿Qué hiciste?'], ['Você foi?', '¿Fuiste?'], ['Onde você esteve?', '¿Dónde estuviste?']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa la pregunta: "___ você fez ontem?"  — opciones: ['O que', 'Quem', 'Quando'] · ✓ `O que`  _(dif 0.35)_
+- **[reading/multiple_choice]** Forma la negativa: "Eu ___ trabalhei no domingo."  — opciones: ['não', 'sim', 'nada'] · ✓ `não`  _(dif 0.35)_
+- **[writing/cloze]** Completa la pregunta con "foi" (você): "Você ___ à festa ontem?"  — texto: «Você ___ à festa ontem?»  ✓ `foi` · acepta: ['foi']  _(dif 0.35)_
+- **[writing/translation]** Traduce al portugués (Brasil): "¿Qué hiciste ayer?"  — es: «¿Qué hiciste ayer?»  ✓ en: `O que você fez ontem?` · acepta: ['O que você fez ontem?', 'O que você fez ontem', 'O que voce fez ontem?', 'O que voce fez ontem', 'O que você fez ontem ?', 'Que você fez ontem?', 'Que você fez ontem']  _(dif 0.35)_
+- **[writing/word_bank]** Arma la frase: "No vi la película."  — fichas: ['Eu', 'não', 'vi', 'o', 'filme', 'vejo']  ✓ `Eu não vi o filme`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Você foi ao trabalho ontem?', 'Você vai ao trabalho hoje?', 'Onde você esteve à noite?'] · ✓ `Você foi ao trabalho ontem?` · audio dice: «Você foi ao trabalho ontem?»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «O que você fez no fim de semana? Eu não fiz nada.»  esperado: `O que você fez no fim de semana? Eu não fiz nada.`  _(dif 0.35)_
+
+### L4 · No fim de semana: contar lo que pasó  _(items: 8)_
+
+- **[reading/match]** Empareja cada expresión con su traducción.  — pares: [['no sábado', 'el sábado'], ['no domingo', 'el domingo'], ['a semana passada', 'la semana pasada']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa: "No sábado eu ___ à praia." (ir)  — opciones: ['fui', 'fiz', 'vou'] · ✓ `fui`  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa: "No domingo eu ___ os meus amigos." (encontrar)  — opciones: ['encontrei', 'encontro', 'encontrou'] · ✓ `encontrei`  _(dif 0.35)_
+- **[writing/cloze]** Completa con "comprou" (ela): "No fim de semana ela ___ um vestido novo."  — texto: «No fim de semana ela ___ um vestido novo.»  ✓ `comprou` · acepta: ['comprou']  _(dif 0.35)_
+- **[writing/translation]** Traduce al portugués: "El fin de semana fui a la playa."  — es: «El fin de semana fui a la playa.»  ✓ en: `No fim de semana eu fui à praia.` · acepta: ['No fim de semana eu fui à praia.', 'No fim de semana eu fui à praia', 'No fim de semana fui à praia.', 'No fim de semana fui à praia', 'No fim de semana eu fui a praia.', 'No fim de semana eu fui a praia', 'No fim de semana fui a praia.', 'No fim de semana fui a praia', 'Eu fui à praia no fim de semana.', 'Eu fui à praia no fim de semana', 'No fim de semana eu fui na praia.', 'No fim de semana eu fui na praia', 'No fim de semana fui na praia.', 'No fim de semana fui na praia', 'Eu fui na praia no fim de semana.', 'Eu fui na praia no fim de semana']  _(dif 0.35)_
+- **[writing/reorder]** Ordena las palabras: "El domingo descansé en casa."  — fichas: ['No', 'domingo', 'eu', 'descansei', 'em', 'casa']  ✓ `No domingo eu descansei em casa`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['No sábado eu vi um filme com a minha família.', 'No sábado eu vejo um filme com a minha família.', 'No domingo eu fui ao mercado.'] · ✓ `No sábado eu vi um filme com a minha família.` · audio dice: «No sábado eu vi um filme com a minha família.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «No fim de semana eu fui à praia, comi um açaí e descansei bastante.»  esperado: `No fim de semana eu fui à praia, comi um açaí e descansei bastante.`  _(dif 0.35)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidade 7  _(items: 10)_
+
+- **[reading/multiple_choice]** Completa: "Ontem eu ___ no restaurante novo." (cenar)  — opciones: ['jantei', 'jantou', 'janto'] · ✓ `jantei`  _(dif 0.35)_
+- **[reading/match]** Empareja cada verbo en pasado con su traducción.  — pares: [['vi', 'vi'], ['comprou', 'compró'], ['foi', 'fue']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Forma la pregunta: "___ você foi no domingo?"  — opciones: ['Onde', 'O que', 'Quem'] · ✓ `Onde`  _(dif 0.35)_
+- **[writing/cloze]** Completa con el pretérito perfeito de "comprar" (eu): "Sábado passado eu ___ um celular novo."  — texto: «Sábado passado eu ___ um celular novo.»  ✓ `comprei` · acepta: ['comprei']  _(dif 0.35)_
+- **[writing/translation]** Traduce al portugués: "No hice nada el domingo."  — es: «No hice nada el domingo.»  ✓ en: `Eu não fiz nada no domingo.` · acepta: ['Eu não fiz nada no domingo.', 'Eu não fiz nada no domingo', 'Não fiz nada no domingo.', 'Não fiz nada no domingo', 'Eu nao fiz nada no domingo.', 'Eu nao fiz nada no domingo', 'Nao fiz nada no domingo.', 'Nao fiz nada no domingo', 'No domingo eu não fiz nada.', 'No domingo eu não fiz nada', 'No domingo eu nao fiz nada.', 'No domingo eu nao fiz nada']  _(dif 0.35)_
+- **[writing/word_bank]** Arma la frase: "¿Qué hiciste ayer por la noche?"  — fichas: ['O', 'que', 'você', 'fez', 'ontem', 'à', 'noite', 'faz']  ✓ `O que você fez ontem à noite`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Anteontem eu tive um dia muito cheio.', 'Hoje eu tenho um dia muito cheio.', 'Ontem eu fiz o almoço.'] · ✓ `Anteontem eu tive um dia muito cheio.` · audio dice: «Anteontem eu tive um dia muito cheio.»  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Você comprou alguma coisa no shopping?', 'Você compra alguma coisa no shopping?', 'Ela vendeu o carro dela.'] · ✓ `Você comprou alguma coisa no shopping?` · audio dice: «Você comprou alguma coisa no shopping?»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «No sábado eu fui ao parque e à noite encontrei os meus amigos.»  esperado: `No sábado eu fui ao parque e à noite encontrei os meus amigos.`  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «A semana passada eu trabalhei muito, mas no domingo eu não fiz nada.»  esperado: `A semana passada eu trabalhei muito, mas no domingo eu não fiz nada.`  _(dif 0.35)_
+
+**Vocabulario (frecuencia):** ontem=ayer, anteontem=anteayer, o fim de semana=el fin de semana, a semana passada=la semana pasada, fui=fui, fiz=hice, tive=tuve, vi=vi, trabalhei=trabajé, cheguei=llegué, comprou=compró, acordou=se despertó, de manhã=por la mañana, à noite=por la noche, nada=nada, o que=qué
+
+## Unidad 8 (A2) — Planes y futuro
+
+
+### L1 · Vou fazer: ir + infinitivo  _(items: 8)_
+
+- **[reading/match]** Empareja cada forma de "ir" con su sujeto.  — pares: [['eu vou', 'yo voy'], ['você vai', 'tú vas / usted va'], ['nós vamos', 'nosotros vamos']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa: "Amanhã eu ___ viajar para o Rio."  — opciones: ['vou', 'vai', 'vamos'] · ✓ `vou`  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa: "Ela vai ___ um bolo no fim de semana."  — opciones: ['fazer', 'fez', 'fazendo'] · ✓ `fazer`  _(dif 0.35)_
+- **[writing/cloze]** Completa con la forma de "ir": "Nós ___ estudar hoje à noite."  — texto: «Nós ___ estudar hoje à noite.»  ✓ `vamos` · acepta: ['vamos']  _(dif 0.35)_
+- **[writing/translation]** Traduce al portugués: "Voy a viajar la próxima semana."  — es: «Voy a viajar la próxima semana.»  ✓ en: `Vou viajar semana que vem.` · acepta: ['Vou viajar semana que vem', 'Vou viajar semana que vem.', 'Vou viajar na semana que vem', 'Vou viajar na semana que vem.', 'Eu vou viajar semana que vem', 'Eu vou viajar semana que vem.', 'Eu vou viajar na semana que vem', 'Eu vou viajar na semana que vem.']  _(dif 0.35)_
+- **[writing/word_bank]** Arma la frase: "Ellos van a comprar las entradas."  — fichas: ['Eles', 'vão', 'comprar', 'os', 'ingressos', 'vai', 'compraram']  ✓ `Eles vão comprar os ingressos`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Eu vou trabalhar amanhã de manhã.', 'Eu trabalhei ontem de manhã.', 'Eu estou trabalhando agora.'] · ✓ `Eu vou trabalhar amanhã de manhã.` · audio dice: «Eu vou trabalhar amanhã de manhã.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Amanhã eu vou visitar a minha família.»  esperado: `Amanhã eu vou visitar a minha família.`  _(dif 0.35)_
+
+### L2 · Vamos…? proponer planes  _(items: 8)_
+
+- **[reading/match]** Empareja la propuesta con su sentido.  — pares: [['Vamos ao cinema?', '¿Vamos al cine?'], ['Que tal um café?', '¿Qué tal un café?'], ['Bora!', '¡Vamos! / ¡Dale!']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa una propuesta: "___ jantar fora hoje à noite?"  — opciones: ['Vamos', 'Fomos', 'Vou'] · ✓ `Vamos`  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa: "Que ___ ir à praia no domingo?"  — opciones: ['tal', 'tem', 'vez'] · ✓ `tal`  _(dif 0.35)_
+- **[writing/cloze]** Completa la propuesta: "___ assistir a um filme hoje?" (nosotros)  — texto: «___ assistir a um filme hoje?»  ✓ `Vamos` · acepta: ['Vamos']  _(dif 0.35)_
+- **[writing/translation]** Traduce al portugués: "¿Qué tal cenar juntos mañana?"  — es: «¿Qué tal cenar juntos mañana?»  ✓ en: `Que tal jantar juntos amanhã?` · acepta: ['Que tal jantar juntos amanhã?', 'Que tal jantar juntos amanhã', 'Que tal jantar junto amanhã?', 'Que tal jantar junto amanhã', 'Que tal a gente jantar junto amanhã?', 'Que tal a gente jantar junto amanhã', 'Que tal a gente jantar juntos amanhã?', 'Que tal a gente jantar juntos amanhã', 'Que tal jantarmos juntos amanhã?', 'Que tal jantarmos juntos amanhã']  _(dif 0.35)_
+- **[writing/reorder]** Ordena para proponer un plan: "Vamos tomar um café depois?"  — fichas: ['Vamos', 'tomar', 'um', 'café', 'depois?']  ✓ `Vamos tomar um café depois?`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Que tal a gente sair no sábado?', 'A gente saiu no sábado.', 'Eu não quero sair hoje.'] · ✓ `Que tal a gente sair no sábado?` · audio dice: «Que tal a gente sair no sábado?»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Vamos ao shopping mais tarde?»  esperado: `Vamos ao shopping mais tarde?`  _(dif 0.35)_
+
+### L3 · Cuándo: expresiones de tiempo futuro  _(items: 8)_
+
+- **[reading/match]** Empareja cada expresión de tiempo.  — pares: [['amanhã', 'mañana'], ['semana que vem', 'la próxima semana'], ['depois de amanhã', 'pasado mañana']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Elige el momento futuro: "Vou te ligar ___."  — opciones: ['mais tarde', 'ontem', 'na semana passada'] · ✓ `mais tarde`  _(dif 0.35)_
+- **[reading/multiple_choice]** "logo" significa…  — opciones: ['pronto', 'ayer', 'nunca'] · ✓ `pronto`  _(dif 0.35)_
+- **[writing/cloze]** Completa: "A festa é ___ sábado."  — texto: «A festa é ___ sábado.»  ✓ `no` · acepta: ['no']  _(dif 0.35)_
+- **[writing/translation]** Traduce al portugués: "El mes que viene voy a estudiar más."  — es: «El mes que viene voy a estudiar más.»  ✓ en: `Mês que vem vou estudar mais.` · acepta: ['Mês que vem vou estudar mais', 'Mês que vem vou estudar mais.', 'No mês que vem vou estudar mais', 'No mês que vem vou estudar mais.', 'Mês que vem eu vou estudar mais', 'Mês que vem eu vou estudar mais.', 'No mês que vem eu vou estudar mais', 'No mês que vem eu vou estudar mais.']  _(dif 0.35)_
+- **[writing/word_bank]** Arma la frase: "Pasado mañana tengo un feriado."  — fichas: ['Depois', 'de', 'amanhã', 'eu', 'tenho', 'um', 'feriado', 'tinha']  ✓ `Depois de amanhã eu tenho um feriado`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['A reunião vai ser semana que vem.', 'A reunião foi semana passada.', 'A reunião é todo dia.'] · ✓ `A reunião vai ser semana que vem.` · audio dice: «A reunião vai ser semana que vem.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «No fim de semana eu vou descansar.»  esperado: `No fim de semana eu vou descansar.`  _(dif 0.35)_
+
+### L4 · Quedar con alguien  _(items: 8)_
+
+- **[reading/match]** Empareja cada frase para quedar.  — pares: [['A que horas?', '¿A qué hora?'], ['Onde a gente se encontra?', '¿Dónde nos vemos?'], ['Combinado!', '¡Hecho! / ¡Quedamos!']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa: "A gente se ___ na frente do metrô."  — opciones: ['encontra', 'encontrou', 'encontrar'] · ✓ `encontra`  _(dif 0.35)_
+- **[reading/multiple_choice]** Para confirmar un plan respondes…  — opciones: ['Combinado!', 'Tchau, até nunca!', 'Não sei nada.'] · ✓ `Combinado!`  _(dif 0.35)_
+- **[writing/cloze]** Completa con la preposición de hora: "Vamos nos encontrar ___ sete horas."  — texto: «Vamos nos encontrar ___ sete horas.»  ✓ `às` · acepta: ['às', 'as']  _(dif 0.35)_
+- **[writing/translation]** Traduce al portugués: "¿Quedamos mañana a las tres?"  — es: «¿Quedamos mañana a las tres?»  ✓ en: `A gente combina amanhã às três?` · acepta: ['A gente combina amanhã às três?', 'A gente combina amanhã às três', 'A gente combina amanhã as três?', 'A gente combina amanhã as três', 'A gente combina amanhã às 3?', 'A gente combina amanhã às 3', 'A gente combina amanhã as 3?', 'A gente combina amanhã as 3', 'Vamos combinar amanhã às três?', 'Vamos combinar amanhã às três', 'Vamos combinar amanhã às 3?', 'Vamos combinar amanhã às 3', 'Vamos combinar amanhã as 3']  _(dif 0.35)_
+- **[writing/reorder]** Ordena: "Te encuentro en frente del cine."  — fichas: ['Te', 'encontro', 'na', 'frente', 'do', 'cinema']  ✓ `Te encontro na frente do cinema`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['A gente se encontra às oito na padaria.', 'A gente se encontrou ontem.', 'Eu não vou poder ir.'] · ✓ `A gente se encontra às oito na padaria.` · audio dice: «A gente se encontra às oito na padaria.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Combinado, a gente se encontra amanhã às duas.»  esperado: `Combinado, a gente se encontra amanhã às duas.`  _(dif 0.35)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidade 8  _(items: 10)_
+
+- **[reading/multiple_choice]** Completa: "Eles ___ chegar depois de amanhã."  — opciones: ['vão', 'vai', 'fomos'] · ✓ `vão`  _(dif 0.35)_
+- **[reading/match]** Empareja cada propuesta o expresión de tiempo.  — pares: [['Que tal sair?', '¿Qué tal salir?'], ['mês que vem', 'el próximo mes'], ['hoje à noite', 'esta noche']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Propuesta correcta para invitar: "___ tomar um sorvete?"  — opciones: ['Vamos', 'Fui', 'Tomei'] · ✓ `Vamos`  _(dif 0.35)_
+- **[writing/cloze]** Completa con la forma de "ir": "Eu ___ cozinhar no domingo."  — texto: «Eu ___ cozinhar no domingo.»  ✓ `vou` · acepta: ['vou']  _(dif 0.35)_
+- **[writing/translation]** Traduce al portugués: "Voy a llamarte más tarde."  — es: «Voy a llamarte más tarde.»  ✓ en: `Vou te ligar mais tarde.` · acepta: ['Vou te ligar mais tarde', 'Vou te ligar mais tarde.', 'Eu vou te ligar mais tarde', 'Eu vou te ligar mais tarde.', 'Vou ligar para você mais tarde', 'Vou ligar para você mais tarde.', 'Vou ligar pra você mais tarde', 'Eu vou ligar pra você mais tarde', 'Eu vou ligar pra você mais tarde.']  _(dif 0.35)_
+- **[writing/word_bank]** Arma la propuesta: "¿Vamos a vernos el fin de semana?"  — fichas: ['Vamos', 'nos', 'encontrar', 'no', 'fim', 'de', 'semana?', 'combinar']  ✓ `Vamos nos encontrar no fim de semana?`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Vou viajar para a praia semana que vem.', 'Viajei para a praia semana passada.', 'Não vou poder viajar.'] · ✓ `Vou viajar para a praia semana que vem.` · audio dice: «Vou viajar para a praia semana que vem.»  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['A gente combina o horário amanhã.', 'A gente combinou o horário ontem.', 'Eu esqueci o horário.'] · ✓ `A gente combina o horário amanhã.` · audio dice: «A gente combina o horário amanhã.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Que tal a gente se encontrar logo mais?»  esperado: `Que tal a gente se encontrar logo mais?`  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Mês que vem eu vou começar um curso novo.»  esperado: `Mês que vem eu vou começar um curso novo.`  _(dif 0.35)_
+
+**Vocabulario (frecuencia):** amanhã=mañana, depois de amanhã=pasado mañana, semana que vem=la próxima semana, mês que vem=el próximo mes, hoje à noite=esta noche, mais tarde=más tarde, logo=pronto, fim de semana=fin de semana, viajar=viajar, que tal=qué tal / qué te parece, combinar=quedar / acordar, encontrar=encontrar / verse con, plano=plan, feriado=feriado / día festivo, horário=horario, vontade=ganas
+
+## Unidad 9 (A2) — De viaje
+
+
+### L1 · Transporte y aeropuerto  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra de viaje con su traducción.  — pares: [['aeroporto', 'aeropuerto'], ['avião', 'avión'], ['bagagem', 'equipaje']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa: "Vou pegar o ___ para o centro."  — opciones: ['ônibus', 'almoço', 'quarto'] · ✓ `ônibus`  _(dif 0.35)_
+- **[reading/multiple_choice]** En el aeropuerto, ¿dónde esperas para subir al avión?  — opciones: ['no portão de embarque', 'na cozinha', 'na padaria'] · ✓ `no portão de embarque`  _(dif 0.35)_
+- **[writing/cloze]** Completa: "Quero comprar uma ___ de trem para o Rio." (boleto)  — texto: «Quero comprar uma ___ de trem para o Rio.»  ✓ `passagem` · acepta: ['passagem', 'Passagem', 'bilhete', 'Bilhete']  _(dif 0.35)_
+- **[writing/translation]** Traduce: "Mi vuelo sale a las nueve."  — es: «Mi vuelo sale a las nueve.»  ✓ en: `Meu voo sai às nove.` · acepta: ['Meu voo sai às nove.', 'Meu voo sai às nove', 'Meu voo sai as nove.', 'Meu voo sai as nove', 'Meu voo sai às 9.', 'Meu voo sai às 9', 'Meu voo sai as 9.', 'Meu voo sai as 9', 'O meu voo sai às nove.', 'O meu voo sai às nove']  _(dif 0.35)_
+- **[writing/word_bank]** Arma la pregunta: "¿Dónde está el punto del autobús?".  — fichas: ['Onde', 'fica', 'o', 'ponto', 'de', 'ônibus', 'metrô']  ✓ `Onde fica o ponto de ônibus`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige la frase que oíste.  — opciones: ['O próximo voo sai às dez.', 'O ônibus chega às oito.', 'O trem já saiu.'] · ✓ `O próximo voo sai às dez.` · audio dice: «O próximo voo sai às dez.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Eu vou viajar de avião amanhã de manhã.»  esperado: `Eu vou viajar de avião amanhã de manhã.`  _(dif 0.35)_
+
+### L2 · Direcciones en la ciudad  _(items: 8)_
+
+- **[reading/match]** Empareja cada dirección con su traducción.  — pares: [['à direita', 'a la derecha'], ['à esquerda', 'a la izquierda'], ['em frente', 'de frente/recto']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa: "Vire à ___ na próxima esquina." (derecha)  — opciones: ['direita', 'manhã', 'passagem'] · ✓ `direita`  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa: "O banco fica ao lado ___ farmácia."  — opciones: ['da', 'do', 'de'] · ✓ `da`  _(dif 0.35)_
+- **[writing/cloze]** Completa: "Siga em ___ por dois quarteirões." (recto)  — texto: «Siga em ___ por dois quarteirões.»  ✓ `frente` · acepta: ['frente', 'Frente']  _(dif 0.35)_
+- **[writing/translation]** Traduce: "Disculpe, ¿cómo llego a la estación?"  — es: «Disculpe, ¿cómo llego a la estación?»  ✓ en: `Com licença, como chego à estação?` · acepta: ['Com licença, como chego à estação?', 'Com licença, como chego à estação', 'Com licença, como eu chego à estação?', 'Com licença, como eu chego à estação', 'Com licença, como chego na estação?', 'Com licença, como chego na estação', 'Desculpe, como chego à estação?', 'Desculpe, como chego à estação']  _(dif 0.35)_
+- **[writing/reorder]** Ordena: "Gira a la izquierda y sigue de frente".  — fichas: ['Vire', 'à', 'esquerda', 'e', 'siga', 'em', 'frente']  ✓ `Vire à esquerda e siga em frente`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige la frase que oíste.  — opciones: ['Vire à direita no semáforo.', 'Vire à esquerda no semáforo.', 'Siga em frente até o final.'] · ✓ `Vire à direita no semáforo.` · audio dice: «Vire à direita no semáforo.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Com licença, o museu fica perto daqui?»  esperado: `Com licença, o museu fica perto daqui?`  _(dif 0.35)_
+
+### L3 · En el hotel  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra del hotel con su traducción.  — pares: [['quarto', 'habitación'], ['reserva', 'reserva'], ['chave', 'llave']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa: "Eu tenho uma ___ para duas noites."  — opciones: ['reserva', 'receita', 'revista'] · ✓ `reserva`  _(dif 0.35)_
+- **[reading/multiple_choice]** Al llegar al hotel, lo primero que haces es el…  — opciones: ['check-in', 'café', 'embarque'] · ✓ `check-in`  _(dif 0.35)_
+- **[writing/cloze]** Completa con cortesía: "___ um quarto de casal, por favor." (quisiera)  — texto: «___ um quarto de casal, por favor.»  ✓ `Queria` · acepta: ['Queria', 'queria', 'Gostaria de', 'gostaria de']  _(dif 0.35)_
+- **[writing/translation]** Traduce: "¿A qué hora es el desayuno?"  — es: «¿A qué hora es el desayuno?»  ✓ en: `A que horas é o café da manhã?` · acepta: ['A que horas é o café da manhã?', 'A que horas é o café da manhã', 'Que horas é o café da manhã?', 'Que horas é o café da manhã', 'A que horas é o café-da-manhã?', 'A que horas é o café-da-manhã']  _(dif 0.35)_
+- **[writing/word_bank]** Arma la frase: "La llave de la habitación, por favor".  — fichas: ['A', 'chave', 'do', 'quarto', 'por', 'favor', 'da']  ✓ `A chave do quarto por favor`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige la frase que oíste.  — opciones: ['Seu quarto fica no terceiro andar.', 'Seu quarto fica no primeiro andar.', 'O hotel está lotado hoje.'] · ✓ `Seu quarto fica no terceiro andar.` · audio dice: «Seu quarto fica no terceiro andar.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Queria um quarto com vista para o mar, por favor.»  esperado: `Queria um quarto com vista para o mar, por favor.`  _(dif 0.35)_
+
+### L4 · Pedir ayuda (pode/queria)  _(items: 8)_
+
+- **[reading/match]** Empareja cada pedido cortés con su traducción.  — pares: [['Você pode me ajudar?', '¿Puede ayudarme?'], ['Queria reservar', 'Quisiera reservar'], ['Com licença', 'Con permiso/Disculpe']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa de forma cortés: "Você ___ me ajudar, por favor?"  — opciones: ['pode', 'tem', 'vai'] · ✓ `pode`  _(dif 0.35)_
+- **[reading/multiple_choice]** Para pedir algo con educación dices…  — opciones: ['Queria um táxi, por favor.', 'Quero agora!', 'Me dá isso aí.'] · ✓ `Queria um táxi, por favor.`  _(dif 0.35)_
+- **[writing/cloze]** Completa: "Você ___ chamar um táxi para mim?" (puede)  — texto: «Você ___ chamar um táxi para mim?»  ✓ `pode` · acepta: ['pode', 'Pode', 'poderia', 'Poderia']  _(dif 0.35)_
+- **[writing/translation]** Traduce: "¿Podría hablar más despacio, por favor?"  — es: «¿Podría hablar más despacio, por favor?»  ✓ en: `Você pode falar mais devagar, por favor?` · acepta: ['Você pode falar mais devagar, por favor?', 'Você pode falar mais devagar, por favor', 'Você poderia falar mais devagar, por favor?', 'Você poderia falar mais devagar, por favor', 'Pode falar mais devagar, por favor?', 'Pode falar mais devagar, por favor', 'Poderia falar mais devagar, por favor?', 'Poderia falar mais devagar, por favor']  _(dif 0.35)_
+- **[writing/reorder]** Ordena: "Quisiera pagar con tarjeta".  — fichas: ['Queria', 'pagar', 'com', 'cartão']  ✓ `Queria pagar com cartão`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige la frase que oíste.  — opciones: ['Você pode me trazer a conta, por favor?', 'Você pode abrir a janela, por favor?', 'Eu não entendi nada.'] · ✓ `Você pode me trazer a conta, por favor?` · audio dice: «Você pode me trazer a conta, por favor?»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Com licença, você pode me ajudar, por favor?»  esperado: `Com licença, você pode me ajudar, por favor?`  _(dif 0.35)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidade 9  _(items: 10)_
+
+- **[reading/multiple_choice]** Completa: "O ___ está atrasado, vamos esperar no portão." (vuelo)  — opciones: ['voo', 'quarto', 'ponto'] · ✓ `voo`  _(dif 0.35)_
+- **[reading/match]** Empareja cada preposición de lugar con su traducción.  — pares: [['perto de', 'cerca de'], ['ao lado de', 'al lado de'], ['longe de', 'lejos de']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa de forma cortés: "___ um quarto para três noites." (quisiera)  — opciones: ['Queria', 'Quero já', 'Tenho'] · ✓ `Queria`  _(dif 0.35)_
+- **[writing/cloze]** Completa: "Vou despachar a minha ___ no aeroporto." (equipaje)  — texto: «Vou despachar a minha ___ no aeroporto.»  ✓ `bagagem` · acepta: ['bagagem', 'Bagagem']  _(dif 0.35)_
+- **[writing/translation]** Traduce: "¿Puede llamar un taxi para el aeropuerto?"  — es: «¿Puede llamar un taxi para el aeropuerto?»  ✓ en: `Você pode chamar um táxi para o aeroporto?` · acepta: ['Você pode chamar um táxi para o aeroporto?', 'Você pode chamar um táxi para o aeroporto', 'Você pode chamar um taxi para o aeroporto?', 'Você pode chamar um taxi para o aeroporto', 'Pode chamar um táxi para o aeroporto?', 'Pode chamar um táxi para o aeroporto', 'Pode chamar um taxi para o aeroporto?', 'Pode chamar um taxi para o aeroporto', 'Você poderia chamar um táxi para o aeroporto?', 'Você poderia chamar um táxi para o aeroporto', 'Você poderia chamar um taxi para o aeroporto?', 'Você poderia chamar um taxi para o aeroporto', 'Poderia chamar um táxi para o aeroporto?', 'Poderia chamar um táxi para o aeroporto', 'Poderia chamar um taxi para o aeroporto?', 'Poderia chamar um taxi para o aeroporto']  _(dif 0.35)_
+- **[writing/word_bank]** Arma la frase: "Quisiera hacer el check-in, por favor".  — fichas: ['Queria', 'fazer', 'o', 'check-in', 'por', 'favor', 'pode']  ✓ `Queria fazer o check-in por favor`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige la frase que oíste.  — opciones: ['O metrô é mais rápido que o ônibus.', 'O ônibus é mais barato que o táxi.', 'O trem chega às sete da noite.'] · ✓ `O metrô é mais rápido que o ônibus.` · audio dice: «O metrô é mais rápido que o ônibus.»  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige la frase que oíste.  — opciones: ['A farmácia fica em frente ao hotel.', 'A farmácia fica ao lado do banco.', 'A farmácia fica perto da estação.'] · ✓ `A farmácia fica em frente ao hotel.` · audio dice: «A farmácia fica em frente ao hotel.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Onde fica a estação de metrô mais perto?»  esperado: `Onde fica a estação de metrô mais perto?`  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Você pode me dizer onde fica o portão de embarque?»  esperado: `Você pode me dizer onde fica o portão de embarque?`  _(dif 0.35)_
+
+**Vocabulario (frecuencia):** aeroporto=aeropuerto, avião=avión, voo=vuelo, embarque=embarque, bagagem=equipaje, ônibus=autobús, metrô=metro, passagem=boleto/pasaje, vire=gire/dobla, direita=derecha, esquerda=izquierda, em frente=de frente/recto, perto de=cerca de, longe de=lejos de, ao lado de=al lado de, quarto=habitación/cuarto
+
+## Unidad 10 (A2) — Comer fuera y comprar
+
+
+### L1 · No restaurante  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra del restaurante con su traducción.  — pares: [['o cardápio', 'el menú'], ['o garçom', 'el camarero'], ['a conta', 'la cuenta']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa el pedido educado: "___ um café, por favor."  — opciones: ['Eu queria', 'Você quer', 'Eu sou'] · ✓ `Eu queria`  _(dif 0.35)_
+- **[reading/multiple_choice]** ¿Qué pides para ver los platos del restaurante?  — opciones: ['O cardápio, por favor.', 'A conta, por favor.', 'O troco, por favor.'] · ✓ `O cardápio, por favor.`  _(dif 0.35)_
+- **[writing/cloze]** Completa para pedir la cuenta: "A ___, por favor!"  — texto: «A ___, por favor!»  ✓ `conta` · acepta: ['conta', 'Conta']  _(dif 0.35)_
+- **[writing/translation]** Traduce: "Yo quisiera un plato de pasta."  — es: «Yo quisiera un plato de pasta.»  ✓ en: `Eu queria um prato de massa.` · acepta: ['Eu queria um prato de massa.', 'Eu queria um prato de massa', 'Eu queria um prato de macarrão.', 'Eu queria um prato de macarrão']  _(dif 0.35)_
+- **[writing/word_bank]** Arma la frase: "Yo quisiera una bebida."  — fichas: ['Eu', 'queria', 'uma', 'bebida', 'quero', 'conta']  ✓ `Eu queria uma bebida`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige la frase que oíste.  — opciones: ['Boa noite, eu queria o cardápio.', 'A conta, por favor, garçom.', 'Eu queria pagar com cartão.'] · ✓ `Boa noite, eu queria o cardápio.` · audio dice: «Boa noite, eu queria o cardápio.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Garçom, eu queria o cardápio e uma água, por favor.»  esperado: `Garçom, eu queria o cardápio e uma água, por favor.`  _(dif 0.35)_
+
+### L2 · Cantidades y precios  _(items: 8)_
+
+- **[reading/match]** Empareja cada expresión de cantidad o precio con su traducción.  — pares: [['um pouco', 'un poco'], ['muito', 'mucho'], ['quanto custa', 'cuánto cuesta']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa para preguntar el precio: "___ custa o suco?"  — opciones: ['Quanto', 'Quando', 'Quem'] · ✓ `Quanto`  _(dif 0.35)_
+- **[reading/multiple_choice]** Quieres solo una pequeña cantidad de azúcar. ¿Qué dices?  — opciones: ['Só um pouco de açúcar, por favor.', 'Muito açúcar, por favor.', 'Sem preço, por favor.'] · ✓ `Só um pouco de açúcar, por favor.`  _(dif 0.35)_
+- **[writing/cloze]** Completa: "O café custa cinco ___." (la moneda de Brasil)  — texto: «O café custa cinco ___.»  ✓ `reais` · acepta: ['reais', 'Reais']  _(dif 0.35)_
+- **[writing/translation]** Traduce: "¿Cuánto cuesta el plato?"  — es: «¿Cuánto cuesta el plato?»  ✓ en: `Quanto custa o prato?` · acepta: ['Quanto custa o prato?', 'Quanto custa o prato', 'Quanto é o prato?', 'Quanto é o prato']  _(dif 0.35)_
+- **[writing/reorder]** Ordena las palabras: "Hay mucha gente aquí."  — fichas: ['Tem', 'muita', 'gente', 'aqui']  ✓ `Tem muita gente aqui`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige la frase que oíste.  — opciones: ['Quanto custa essa camiseta?', 'Eu quero um pouco de arroz.', 'O preço está muito caro hoje.'] · ✓ `Quanto custa essa camiseta?` · audio dice: «Quanto custa essa camiseta?»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Quanto custa? Eu quero só um pouco, por favor.»  esperado: `Quanto custa? Eu quero só um pouco, por favor.`  _(dif 0.35)_
+
+### L3 · Fazer compras  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra de compras con su traducción.  — pares: [['a loja', 'la tienda'], ['o troco', 'el cambio (vuelto)'], ['o preço', 'el precio']]  _(dif 0.35)_
+- **[reading/multiple_choice]** En la tienda, ¿cómo pides probarte algo?  — opciones: ['Posso experimentar?', 'Posso pagar a conta?', 'Posso ver o cardápio?'] · ✓ `Posso experimentar?`  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa: "Vou pagar com ___." (forma de pago)  — opciones: ['cartão', 'cardápio', 'garçom'] · ✓ `cartão`  _(dif 0.35)_
+- **[writing/cloze]** Completa: "Esta camisa é muito ___; não tenho dinheiro." (contrario de barato)  — texto: «Esta camisa é muito ___; não tenho dinheiro.»  ✓ `cara` · acepta: ['cara', 'Cara']  _(dif 0.35)_
+- **[writing/translation]** Traduce: "Yo quisiera comprar estos zapatos."  — es: «Yo quisiera comprar estos zapatos.»  ✓ en: `Eu queria comprar estes sapatos.` · acepta: ['Eu queria comprar estes sapatos.', 'Eu queria comprar estes sapatos', 'Eu queria comprar esses sapatos.', 'Eu queria comprar esses sapatos']  _(dif 0.35)_
+- **[writing/word_bank]** Arma la frase: "¿Aceptan tarjeta?"  — fichas: ['Vocês', 'aceitam', 'cartão', 'troco', 'loja']  ✓ `Vocês aceitam cartão`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige la frase que oíste.  — opciones: ['Você aceita cartão ou dinheiro?', 'O troco está na mesa do garçom.', 'A loja abre só de manhã.'] · ✓ `Você aceita cartão ou dinheiro?` · audio dice: «Você aceita cartão ou dinheiro?»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Eu queria comprar esta camisa. Vocês aceitam cartão?»  esperado: `Eu queria comprar esta camisa. Vocês aceitam cartão?`  _(dif 0.35)_
+
+### L4 · Comparar: mais... que  _(items: 8)_
+
+- **[reading/match]** Empareja cada comparación con su traducción.  — pares: [['mais caro do que', 'más caro que'], ['mais barato do que', 'más barato que'], ['mais gostoso do que', 'más sabroso que']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa la comparación: "O suco é mais barato ___ o refrigerante."  — opciones: ['do que', 'muito', 'um pouco'] · ✓ `do que`  _(dif 0.35)_
+- **[reading/multiple_choice]** ¿Cómo dices "este plato es más rico que aquel"?  — opciones: ['Este prato é mais gostoso do que aquele.', 'Este prato é muito pouco gostoso.', 'Este prato custa quanto reais.'] · ✓ `Este prato é mais gostoso do que aquele.`  _(dif 0.35)_
+- **[writing/cloze]** Completa la comparación: "A pizza é ___ cara do que a salada."  — texto: «A pizza é ___ cara do que a salada.»  ✓ `mais` · acepta: ['mais', 'Mais']  _(dif 0.35)_
+- **[writing/translation]** Traduce: "El café es más barato que el jugo."  — es: «El café es más barato que el jugo.»  ✓ en: `O café é mais barato do que o suco.` · acepta: ['O café é mais barato do que o suco.', 'O café é mais barato do que o suco', 'O café é mais barato que o suco.', 'O café é mais barato que o suco']  _(dif 0.35)_
+- **[writing/reorder]** Ordena las palabras: "Esta tienda es más cara."  — fichas: ['Esta', 'loja', 'é', 'mais', 'cara']  ✓ `Esta loja é mais cara`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige la frase que oíste.  — opciones: ['O peixe é mais caro do que o frango.', 'O frango é um pouco barato hoje.', 'A conta é mais alta que o cardápio.'] · ✓ `O peixe é mais caro do que o frango.` · audio dice: «O peixe é mais caro do que o frango.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Este restaurante é mais barato do que aquele, mas a comida é mais gostosa.»  esperado: `Este restaurante é mais barato do que aquele, mas a comida é mais gostosa.`  _(dif 0.35)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidade 10  _(items: 10)_
+
+- **[reading/multiple_choice]** Completa el pedido educado en el restaurante: "___ um suco de laranja, por favor."  — opciones: ['Eu queria', 'Eu quanto', 'Eu troco'] · ✓ `Eu queria`  _(dif 0.35)_
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['a bebida', 'la bebida'], ['barato', 'barato'], ['o preço', 'el precio']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa la comparación: "O metrô é mais rápido ___ o ônibus."  — opciones: ['do que', 'muito', 'um pouco'] · ✓ `do que`  _(dif 0.35)_
+- **[writing/cloze]** Completa para preguntar el precio: "___ custa a sobremesa?"  — texto: «___ custa a sobremesa?»  ✓ `Quanto` · acepta: ['Quanto', 'quanto']  _(dif 0.35)_
+- **[writing/translation]** Traduce: "El vestido es más caro que la falda."  — es: «El vestido es más caro que la falda.»  ✓ en: `O vestido é mais caro do que a saia.` · acepta: ['O vestido é mais caro do que a saia.', 'O vestido é mais caro do que a saia', 'O vestido é mais caro que a saia.', 'O vestido é mais caro que a saia']  _(dif 0.35)_
+- **[writing/word_bank]** Arma la frase: "¿Aceptan tarjeta aquí?"  — fichas: ['Vocês', 'aceitam', 'cartão', 'aqui', 'conta', 'preço']  ✓ `Vocês aceitam cartão aqui`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige la frase que oíste.  — opciones: ['Coloca só um pouco de açúcar no meu chá.', 'Tem muita gente na loja hoje.', 'O troco é de dez reais.'] · ✓ `Coloca só um pouco de açúcar no meu chá.` · audio dice: «Coloca só um pouco de açúcar no meu chá.»  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige la frase que oíste.  — opciones: ['Esta loja é mais barata do que aquela.', 'O garçom trouxe o cardápio agora.', 'A sobremesa custa oito reais.'] · ✓ `Esta loja é mais barata do que aquela.` · audio dice: «Esta loja é mais barata do que aquela.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Quanto custa? Eu queria pagar com cartão, por favor.»  esperado: `Quanto custa? Eu queria pagar com cartão, por favor.`  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «A salada é mais barata do que a pizza, mas eu queria as duas.»  esperado: `A salada é mais barata do que a pizza, mas eu queria as duas.`  _(dif 0.35)_
+
+**Vocabulario (frecuencia):** o cardápio=el menú, o garçom=el camarero, a conta=la cuenta, eu queria=yo querría / quisiera, o prato=el plato, a bebida=la bebida, um pouco=un poco, muito=mucho, quanto custa=cuánto cuesta, o preço=el precio, caro=caro, barato=barato, a loja=la tienda, o troco=el cambio (vuelto), mais... do que=más... que, o real=el real (moneda)
+
+## Unidad 11 (A2) — Personas y descripciones
+
+
+### L1 · Apariencia y personalidad  _(items: 8)_
+
+- **[reading/match]** Relaciona los adjetivos en portugués con su traducción.  — pares: [['alto', 'alto'], ['simpático', 'simpático'], ['tímido', 'tímido']]  _(dif 0.35)_
+- **[reading/multiple_choice]** ¿Cómo se dice "Ella tiene el cabello largo"?  — opciones: ['Ela tem o cabelo comprido.', 'Ela tem os olhos verdes.', 'Ela tem o cabelo curto.'] · ✓ `Ela tem o cabelo comprido.`  _(dif 0.35)_
+- **[reading/multiple_choice]** Elige la frase que describe la personalidad: "Mi hermano es muy gracioso".  — opciones: ['Meu irmão é muito engraçado.', 'Meu irmão é muito alto.', 'Meu irmão é muito magro.'] · ✓ `Meu irmão é muito engraçado.`  _(dif 0.35)_
+- **[writing/cloze]** Completa: "Ana es muy simpática".  — texto: «Ana é muito ___.»  ✓ `simpática` · acepta: ['simpática']  _(dif 0.35)_
+- **[writing/translation]** Traduce al portugués: "Él es alto y delgado".  — es: «Él es alto y delgado.»  ✓ en: `Ele é alto e magro.` · acepta: ['Ele é alto e magro.', 'Ele é alto e magro', 'Ele e alto e magro.', 'Ele e alto e magro']  _(dif 0.35)_
+- **[writing/word_bank]** Ordena las palabras: "Ella tiene los ojos azules".  — fichas: ['Ela', 'tem', 'os', 'olhos', 'azuis', 'verdes']  ✓ `Ela tem os olhos azuis`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige lo que oyes.  — opciones: ['Ele é muito tímido.', 'Ele é muito alto.', 'Ele é muito simpático.'] · ✓ `Ele é muito tímido.` · audio dice: «Ele é muito tímido.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta describiendo a una persona.  — lee: «Minha amiga é inteligente e engraçada.»  esperado: `Minha amiga é inteligente e engraçada.`  _(dif 0.35)_
+
+### L2 · Está fazendo: presente contínuo  _(items: 8)_
+
+- **[reading/match]** Relaciona el gerundio en portugués con su traducción.  — pares: [['trabalhando', 'trabajando'], ['estudando', 'estudiando'], ['comendo', 'comiendo']]  _(dif 0.35)_
+- **[reading/multiple_choice]** ¿Cómo se dice "Estoy estudiando portugués ahora"?  — opciones: ['Estou estudando português agora.', 'Estudo português todos os dias.', 'Vou estudar português amanhã.'] · ✓ `Estou estudando português agora.`  _(dif 0.35)_
+- **[reading/multiple_choice]** Elige la forma correcta: "Ella está trabajando".  — opciones: ['Ela está trabalhando.', 'Ela está trabalhar.', 'Ela está trabalha.'] · ✓ `Ela está trabalhando.`  _(dif 0.35)_
+- **[writing/cloze]** Completa con el gerundio: "Nosotros estamos comiendo".  — texto: «Nós estamos ___.»  ✓ `comendo` · acepta: ['comendo']  _(dif 0.35)_
+- **[writing/translation]** Traduce al portugués: "Ellos están viendo televisión".  — es: «Ellos están viendo televisión.»  ✓ en: `Eles estão assistindo televisão.` · acepta: ['Eles estão assistindo televisão.', 'Eles estão assistindo televisão', 'Eles estão assistindo à televisão.', 'Eles estão assistindo à televisão', 'Eles estão assistindo TV.', 'Eles estão assistindo TV', 'Eles estão vendo televisão.', 'Eles estão vendo televisão']  _(dif 0.35)_
+- **[writing/reorder]** Ordena las palabras: "Yo estoy hablando al teléfono".  — fichas: ['Eu', 'estou', 'falando', 'ao', 'telefone']  ✓ `Eu estou falando ao telefone`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige lo que oyes.  — opciones: ['Ela está dormindo agora.', 'Ela está cozinhando agora.', 'Ela está cantando agora.'] · ✓ `Ela está dormindo agora.` · audio dice: «Ela está dormindo agora.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta lo que estás haciendo.  — lee: «Eu estou fazendo o meu trabalho agora.»  esperado: `Eu estou fazendo o meu trabalho agora.`  _(dif 0.35)_
+
+### L3 · Adjetivos para describir  _(items: 8)_
+
+- **[reading/match]** Relaciona el adjetivo en portugués con su traducción.  — pares: [['bonito', 'bonito'], ['velho', 'viejo'], ['novo', 'nuevo']]  _(dif 0.35)_
+- **[reading/multiple_choice]** ¿Cómo se dice "La casa es grande y bonita"?  — opciones: ['A casa é grande e bonita.', 'A casa é pequena e feia.', 'A casa é grande e velha.'] · ✓ `A casa é grande e bonita.`  _(dif 0.35)_
+- **[reading/multiple_choice]** Elige la concordancia correcta: "Las chicas son simpáticas".  — opciones: ['As meninas são simpáticas.', 'As meninas são simpático.', 'As meninas é simpáticas.'] · ✓ `As meninas são simpáticas.`  _(dif 0.35)_
+- **[writing/cloze]** Completa con el adjetivo: "El carro es nuevo".  — texto: «O carro é ___.»  ✓ `novo` · acepta: ['novo']  _(dif 0.35)_
+- **[writing/translation]** Traduce al portugués: "Esta ciudad es muy bonita".  — es: «Esta ciudad es muy bonita.»  ✓ en: `Esta cidade é muito bonita.` · acepta: ['Esta cidade é muito bonita.', 'Esta cidade é muito bonita', 'Essa cidade é muito bonita.', 'Essa cidade é muito bonita']  _(dif 0.35)_
+- **[writing/word_bank]** Ordena las palabras: "El restaurante es pequeño pero agradable".  — fichas: ['O', 'restaurante', 'é', 'pequeno', 'mas', 'agradável', 'grande']  ✓ `O restaurante é pequeno mas agradável`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige lo que oyes.  — opciones: ['O hotel é confortável e limpo.', 'O hotel é caro e sujo.', 'O hotel é pequeno e velho.'] · ✓ `O hotel é confortável e limpo.` · audio dice: «O hotel é confortável e limpo.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta describiendo un lugar.  — lee: «O parque é grande, bonito e muito tranquilo.»  esperado: `O parque é grande, bonito e muito tranquilo.`  _(dif 0.35)_
+
+### L4 · O mais…: superlativos  _(items: 8)_
+
+- **[reading/match]** Relaciona las expresiones comparativas en portugués con su traducción.  — pares: [['o mais alto', 'el más alto'], ['o melhor', 'el mejor'], ['o maior', 'el más grande']]  _(dif 0.35)_
+- **[reading/multiple_choice]** ¿Cómo se dice "Él es el más inteligente de la clase"?  — opciones: ['Ele é o mais inteligente da turma.', 'Ele é mais inteligente que eu.', 'Ele é muito inteligente hoje.'] · ✓ `Ele é o mais inteligente da turma.`  _(dif 0.35)_
+- **[reading/multiple_choice]** Elige el comparativo: "São Paulo es más grande que Curitiba".  — opciones: ['São Paulo é maior do que Curitiba.', 'São Paulo é menor do que Curitiba.', 'São Paulo é tão grande quanto Curitiba.'] · ✓ `São Paulo é maior do que Curitiba.`  _(dif 0.35)_
+- **[writing/cloze]** Completa el superlativo: "Es la playa más bonita".  — texto: «É a praia ___ bonita.»  ✓ `mais` · acepta: ['mais']  _(dif 0.35)_
+- **[writing/translation]** Traduce al portugués: "Ella es la más simpática del grupo".  — es: «Ella es la más simpática del grupo.»  ✓ en: `Ela é a mais simpática do grupo.` · acepta: ['Ela é a mais simpática do grupo.', 'Ela é a mais simpática do grupo']  _(dif 0.35)_
+- **[writing/reorder]** Ordena las palabras: "Este es el restaurante más caro de la ciudad".  — fichas: ['Este', 'é', 'o', 'restaurante', 'mais', 'caro', 'da', 'cidade']  ✓ `Este é o restaurante mais caro da cidade`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige lo que oyes.  — opciones: ['Ela é a pessoa mais engraçada do escritório.', 'Ela é a pessoa mais alta do escritório.', 'Ela é a pessoa mais tímida do escritório.'] · ✓ `Ela é a pessoa mais engraçada do escritório.` · audio dice: «Ela é a pessoa mais engraçada do escritório.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta esta comparación.  — lee: «O Rio de Janeiro é uma das cidades mais bonitas do Brasil.»  esperado: `O Rio de Janeiro é uma das cidades mais bonitas do Brasil.`  _(dif 0.35)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidade 11  _(items: 10)_
+
+- **[reading/match]** Relaciona el portugués con su traducción.  — pares: [['magro', 'delgado'], ['estudando', 'estudiando'], ['o melhor', 'el mejor']]  _(dif 0.35)_
+- **[reading/multiple_choice]** ¿Cómo se dice "Mi madre está cocinando ahora"?  — opciones: ['Minha mãe está cozinhando agora.', 'Minha mãe cozinha muito bem.', 'Minha mãe vai cozinhar hoje.'] · ✓ `Minha mãe está cozinhando agora.`  _(dif 0.35)_
+- **[reading/multiple_choice]** Elige el superlativo correcto: "Es el día más caluroso del año".  — opciones: ['É o dia mais quente do ano.', 'É um dia muito quente.', 'É o dia tão quente quanto ontem.'] · ✓ `É o dia mais quente do ano.`  _(dif 0.35)_
+- **[writing/cloze]** Completa con el gerundio: "Mi padre está trabajando en el jardín".  — texto: «Meu pai está ___ no jardim.»  ✓ `trabalhando` · acepta: ['trabalhando']  _(dif 0.35)_
+- **[writing/translation]** Traduce al portugués: "Mi hermana es tímida pero muy inteligente".  — es: «Mi hermana es tímida pero muy inteligente.»  ✓ en: `Minha irmã é tímida mas muito inteligente.` · acepta: ['Minha irmã é tímida mas muito inteligente.', 'Minha irmã é tímida mas muito inteligente', 'Minha irmã é tímida, mas muito inteligente.', 'Minha irmã é tímida, mas muito inteligente', 'Minha irmã é tímida porém muito inteligente.', 'Minha irmã é tímida porém muito inteligente']  _(dif 0.35)_
+- **[writing/word_bank]** Ordena las palabras: "Él es el más alto de la familia".  — fichas: ['Ele', 'é', 'o', 'mais', 'alto', 'da', 'família', 'menor']  ✓ `Ele é o mais alto da família`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige lo que oyes.  — opciones: ['Eles estão jogando futebol no parque.', 'Eles estão estudando na escola.', 'Eles estão correndo na praia.'] · ✓ `Eles estão jogando futebol no parque.` · audio dice: «Eles estão jogando futebol no parque.»  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige lo que oyes.  — opciones: ['Esta é a cidade mais bonita do país.', 'Esta é a cidade mais antiga do país.', 'Esta é a cidade mais cara do país.'] · ✓ `Esta é a cidade mais bonita do país.` · audio dice: «Esta é a cidade mais bonita do país.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta describiendo a un amigo.  — lee: «Meu melhor amigo é alto, simpático e muito engraçado.»  esperado: `Meu melhor amigo é alto, simpático e muito engraçado.`  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta esta frase.  — lee: «Agora estou estudando para a prova mais importante do ano.»  esperado: `Agora estou estudando para a prova mais importante do ano.`  _(dif 0.35)_
+
+**Vocabulario (frecuencia):** alto=alto, baixo=bajo, magro=delgado, gordo=gordo, simpático=simpático, tímido=tímido, inteligente=inteligente, engraçado=gracioso, o cabelo=el cabello, os olhos=los ojos, trabalhando=trabajando, estudando=estudiando, o mais=el más, do que=que (comparativo), a pessoa=la persona, bonito=bonito/guapo
+
+## Unidad 12 (A2) — Saúde, experiências e conselhos
+
+
+### L1 · El cuerpo y el médico  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra del cuerpo con su traducción.  — pares: [['a cabeça', 'la cabeza'], ['a garganta', 'la garganta'], ['o estômago', 'el estómago']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa en el médico: "Estou com dor de ___." (cabeza)  — opciones: ['cabeça', 'garganta', 'febre'] · ✓ `cabeça`  _(dif 0.35)_
+- **[reading/multiple_choice]** El médico pregunta. ¿Cómo dices "¿qué tienes?" / "¿qué te pasa?"?  — opciones: ['O que você tem?', 'Quem é você?', 'Onde você mora?'] · ✓ `O que você tem?`  _(dif 0.35)_
+- **[writing/cloze]** Completa: "Estou com ___ alta, acho que estou doente." (fiebre)  — texto: «Estou com ___ alta, acho que estou doente.»  ✓ `febre` · acepta: ['febre', 'Febre']  _(dif 0.35)_
+- **[writing/translation]** Traduce: "Me duele la garganta."  — es: «Me duele la garganta.»  ✓ en: `Estou com dor de garganta` · acepta: ['Estou com dor de garganta', 'Estou com dor de garganta.', 'Minha garganta dói', 'Minha garganta dói.', 'A minha garganta dói', 'A minha garganta dói.', 'Tô com dor de garganta', 'Tô com dor de garganta.', 'Estou com dor na garganta', 'Estou com dor na garganta.']  _(dif 0.35)_
+- **[writing/word_bank]** Arma la frase: "Necesito ir al médico".  — fichas: ['Preciso', 'ir', 'ao', 'médico', 'remédio', 'corpo']  ✓ `Preciso ir ao médico`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige la frase que oíste.  — opciones: ['Estou com dor de estômago hoje.', 'Estou com fome agora.', 'Vou ao mercado hoje.'] · ✓ `Estou com dor de estômago hoje.` · audio dice: «Estou com dor de estômago hoje.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Bom dia, doutor. Estou com febre e dor de cabeça.»  esperado: `Bom dia, doutor. Estou com febre e dor de cabeça.`  _(dif 0.35)_
+
+### L2 · Consejos: deveria / tem que  _(items: 8)_
+
+- **[reading/match]** Empareja cada expresión con su traducción.  — pares: [['você deveria', 'tú deberías'], ['você tem que', 'tú tienes que'], ['descansar', 'descansar']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa el consejo: "Você está doente, ___ descansar mais." (deberías)  — opciones: ['deveria', 'gosta', 'tem'] · ✓ `deveria`  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa la obligación: "Você ___ que tomar o remédio agora."  — opciones: ['tem', 'deve', 'é'] · ✓ `tem`  _(dif 0.35)_
+- **[writing/cloze]** Completa el consejo: "Você ___ beber mais água." (deberías)  — texto: «Você ___ beber mais água.»  ✓ `deveria` · acepta: ['deveria', 'Deveria']  _(dif 0.35)_
+- **[writing/translation]** Traduce: "Tienes que descansar hoy."  — es: «Tienes que descansar hoy.»  ✓ en: `Você tem que descansar hoje` · acepta: ['Você tem que descansar hoje', 'Você tem que descansar hoje.', 'Tem que descansar hoje', 'Tem que descansar hoje.', 'Você tem de descansar hoje', 'Você tem de descansar hoje.', 'Tem de descansar hoje', 'Tem de descansar hoje.']  _(dif 0.35)_
+- **[writing/reorder]** Ordena: "Deberías ir al médico".  — fichas: ['Você', 'deveria', 'ir', 'ao', 'médico']  ✓ `Você deveria ir ao médico`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige la frase que oíste.  — opciones: ['Você deveria tomar um chá quente.', 'Você deveria comprar um carro novo.', 'Você tem que estudar para a prova.'] · ✓ `Você deveria tomar um chá quente.` · audio dice: «Você deveria tomar um chá quente.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Você tem que descansar e deveria beber bastante água.»  esperado: `Você tem que descansar e deveria beber bastante água.`  _(dif 0.35)_
+
+### L3 · Já / nunca: experiencias  _(items: 8)_
+
+- **[reading/match]** Empareja cada frase con su traducción.  — pares: [['eu já fui', 'ya fui'], ['eu nunca tomei', 'nunca tomé'], ['você já comeu?', '¿ya comiste?']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa la pregunta sobre experiencia: "Você ___ foi ao hospital?" (ya)  — opciones: ['já', 'ainda', 'ontem'] · ✓ `já`  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa: "Eu ___ tomei esse remédio na vida." (nunca)  — opciones: ['nunca', 'já', 'sempre'] · ✓ `nunca`  _(dif 0.35)_
+- **[writing/cloze]** Completa: "Eu já ___ ao médico esta semana." (verbo ir, pretérito)  — texto: «Eu já ___ ao médico esta semana.»  ✓ `fui` · acepta: ['fui', 'Fui']  _(dif 0.35)_
+- **[writing/translation]** Traduce: "Nunca tuve fiebre alta."  — es: «Nunca tuve fiebre alta.»  ✓ en: `Eu nunca tive febre alta` · acepta: ['Eu nunca tive febre alta', 'Eu nunca tive febre alta.', 'Nunca tive febre alta', 'Nunca tive febre alta.', 'Eu nunca tive uma febre alta', 'Eu nunca tive uma febre alta.']  _(dif 0.35)_
+- **[writing/word_bank]** Arma la frase: "Yo ya tomé el remedio".  — fichas: ['Eu', 'já', 'tomei', 'o', 'remédio', 'nunca', 'vou']  ✓ `Eu já tomei o remédio`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige la frase que oíste.  — opciones: ['Eu nunca fui ao dentista.', 'Eu já fui ao dentista ontem.', 'Eu vou ao dentista amanhã.'] · ✓ `Eu nunca fui ao dentista.` · audio dice: «Eu nunca fui ao dentista.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Você já tomou esse remédio? Eu nunca tomei.»  esperado: `Você já tomou esse remédio? Eu nunca tomei.`  _(dif 0.35)_
+
+### L4 · Há / atrás: hace cuánto  _(items: 8)_
+
+- **[reading/match]** Empareja cada expresión de tiempo con su traducción.  — pares: [['há dois dias', 'hace dos días'], ['uma semana atrás', 'hace una semana'], ['há muito tempo', 'hace mucho tiempo']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa: "Fiquei doente ___ três dias." (hace)  — opciones: ['há', 'tem', 'em'] · ✓ `há`  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa con "atrás": "Fui ao médico uma semana ___."  — opciones: ['atrás', 'antes', 'depois'] · ✓ `atrás`  _(dif 0.35)_
+- **[writing/cloze]** Completa con "há": "Tomei o remédio ___ duas horas." (hace)  — texto: «Tomei o remédio ___ duas horas.»  ✓ `há` · acepta: ['há', 'Há']  _(dif 0.35)_
+- **[writing/translation]** Traduce: "Fui al hospital hace dos meses."  — es: «Fui al hospital hace dos meses.»  ✓ en: `Eu fui ao hospital há dois meses` · acepta: ['Eu fui ao hospital há dois meses', 'Eu fui ao hospital há dois meses.', 'Fui ao hospital há dois meses', 'Fui ao hospital há dois meses.', 'Eu fui ao hospital dois meses atrás', 'Fui ao hospital dois meses atrás', 'Eu fui ao hospital dois meses atrás.', 'Fui ao hospital dois meses atrás.']  _(dif 0.35)_
+- **[writing/reorder]** Ordena: "Tuve fiebre hace tres días".  — fichas: ['Tive', 'febre', 'há', 'três', 'dias']  ✓ `Tive febre há três dias`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige la frase que oíste.  — opciones: ['Fiquei doente há uma semana.', 'Vou ficar doente amanhã.', 'Estou doente faz um ano inteiro.'] · ✓ `Fiquei doente há uma semana.` · audio dice: «Fiquei doente há uma semana.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Eu fui ao médico há dois dias porque estava com muita dor.»  esperado: `Eu fui ao médico há dois dias porque estava com muita dor.`  _(dif 0.35)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidade 12  _(items: 10)_
+
+- **[reading/multiple_choice]** Completa en el médico: "Estou com dor de ___, não consigo comer." (estómago)  — opciones: ['estômago', 'cabeça', 'garganta'] · ✓ `estômago`  _(dif 0.35)_
+- **[reading/match]** Empareja cada frase con su traducción.  — pares: [['você deveria', 'tú deberías'], ['há dois dias', 'hace dos días'], ['eu nunca tive', 'nunca tuve']]  _(dif 0.35)_
+- **[reading/multiple_choice]** Completa la experiencia: "Você ___ tomou uma injeção?" (ya)  — opciones: ['já', 'atrás', 'tem'] · ✓ `já`  _(dif 0.35)_
+- **[writing/cloze]** Completa el consejo: "Você está com febre, ___ ficar em casa." (deberías)  — texto: «Você está com febre, ___ ficar em casa.»  ✓ `deveria` · acepta: ['deveria', 'Deveria']  _(dif 0.35)_
+- **[writing/translation]** Traduce: "Tienes que tomar el remedio dos veces al día."  — es: «Tienes que tomar el remedio dos veces al día.»  ✓ en: `Você tem que tomar o remédio duas vezes por dia` · acepta: ['Você tem que tomar o remédio duas vezes por dia', 'Você tem que tomar o remédio duas vezes por dia.', 'Tem que tomar o remédio duas vezes por dia', 'Tem que tomar o remédio duas vezes por dia.', 'Você tem que tomar o remédio duas vezes ao dia', 'Você tem que tomar o remédio duas vezes ao dia.', 'Tem que tomar o remédio duas vezes ao dia', 'Tem que tomar o remédio duas vezes ao dia.', 'Você tem de tomar o remédio duas vezes por dia', 'Você tem de tomar o remédio duas vezes por dia.']  _(dif 0.35)_
+- **[writing/reorder]** Ordena: "Nunca fui al dentista".  — fichas: ['Eu', 'nunca', 'fui', 'ao', 'dentista']  ✓ `Eu nunca fui ao dentista`  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige la frase que oíste.  — opciones: ['Eu fiquei resfriado há três dias.', 'Eu vou ao médico amanhã de manhã.', 'Eu nunca fiquei resfriado na vida.'] · ✓ `Eu fiquei resfriado há três dias.` · audio dice: «Eu fiquei resfriado há três dias.»  _(dif 0.35)_
+- **[listening/listening]** Escucha y elige la frase que oíste.  — opciones: ['Você deveria descansar e beber água.', 'Você precisa trabalhar mais hoje.', 'Você já comprou o remédio ontem.'] · ✓ `Você deveria descansar e beber água.` · audio dice: «Você deveria descansar e beber água.»  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Estou com dor de cabeça desde ontem e nunca tomei esse remédio.»  esperado: `Estou com dor de cabeça desde ontem e nunca tomei esse remédio.`  _(dif 0.35)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Fiquei doente há uma semana, então você tem que descansar bastante.»  esperado: `Fiquei doente há uma semana, então você tem que descansar bastante.`  _(dif 0.35)_
+
+**Vocabulario (frecuencia):** a saúde=la salud, o corpo=el cuerpo, a cabeça=la cabeza, a garganta=la garganta, o estômago=el estómago, a febre=la fiebre, a dor=el dolor, o médico=el médico, o remédio=el remedio/medicamento, doente=enfermo, deveria=debería, ter que=tener que, descansar=descansar, já=ya, nunca=nunca, atrás=atrás (hace)

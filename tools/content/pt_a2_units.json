@@ -1,0 +1,4201 @@
+{
+ "data": [
+  {
+   "U": 7,
+   "title": "El pasado: lo que hice",
+   "theme_color": "#E67E22",
+   "icon": "history",
+   "checkpoint_description": "Demuestra que sabes hablar del pasado en portugués de Brasil. Usa el pretérito perfeito regular (-ei, -ou) e irregular (fui, fiz, tive, vi), haz preguntas sobre ayer y cuenta lo que pasó el fin de semana. Necesitas 80% para aprobar.",
+   "vocab": [
+    {
+     "word": "ontem",
+     "translation": "ayer",
+     "pos": "adv"
+    },
+    {
+     "word": "anteontem",
+     "translation": "anteayer",
+     "pos": "adv"
+    },
+    {
+     "word": "o fim de semana",
+     "translation": "el fin de semana",
+     "pos": "n"
+    },
+    {
+     "word": "a semana passada",
+     "translation": "la semana pasada",
+     "pos": "n"
+    },
+    {
+     "word": "fui",
+     "translation": "fui",
+     "pos": "v"
+    },
+    {
+     "word": "fiz",
+     "translation": "hice",
+     "pos": "v"
+    },
+    {
+     "word": "tive",
+     "translation": "tuve",
+     "pos": "v"
+    },
+    {
+     "word": "vi",
+     "translation": "vi",
+     "pos": "v"
+    },
+    {
+     "word": "trabalhei",
+     "translation": "trabajé",
+     "pos": "v"
+    },
+    {
+     "word": "cheguei",
+     "translation": "llegué",
+     "pos": "v"
+    },
+    {
+     "word": "comprou",
+     "translation": "compró",
+     "pos": "v"
+    },
+    {
+     "word": "acordou",
+     "translation": "se despertó",
+     "pos": "v"
+    },
+    {
+     "word": "de manhã",
+     "translation": "por la mañana",
+     "pos": "adv"
+    },
+    {
+     "word": "à noite",
+     "translation": "por la noche",
+     "pos": "adv"
+    },
+    {
+     "word": "nada",
+     "translation": "nada",
+     "pos": "pron"
+    },
+    {
+     "word": "o que",
+     "translation": "qué",
+     "pos": "pron"
+    }
+   ],
+   "lessons": [
+    {
+     "title": "Ontem: pretérito perfeito regular",
+     "topic": "Pretérito perfeito de verbos regulares: -ei (eu) e -ou (ele/ela)",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada verbo en pasado con su traducción.",
+       "pairs": [
+        [
+         "trabalhei",
+         "trabajé"
+        ],
+        [
+         "estudei",
+         "estudié"
+        ],
+        [
+         "cheguei",
+         "llegué"
+        ]
+       ],
+       "difficulty": 0.2
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Ontem eu ___ até tarde.\" (trabajar)",
+       "options": [
+        "trabalhei",
+        "trabalho",
+        "trabalhou"
+       ],
+       "value": "trabalhei",
+       "difficulty": 0.2
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Ela ___ cedo de manhã.\" (despertarse)",
+       "options": [
+        "acordou",
+        "acordei",
+        "acorda"
+       ],
+       "value": "acordou",
+       "difficulty": 0.22
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con el pretérito perfeito de \"estudar\" (eu): \"Eu ___ português ontem.\"",
+       "text": "Eu ___ português ontem.",
+       "accepted": [
+        "estudei"
+       ],
+       "value": "estudei",
+       "difficulty": 0.24
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce al portugués: \"Ayer trabajé mucho.\"",
+       "source": "Ayer trabajé mucho.",
+       "value": "Ontem eu trabalhei muito.",
+       "accepted": [
+        "Ontem eu trabalhei muito.",
+        "Ontem trabalhei muito.",
+        "Ontem eu trabalhei muito",
+        "Ontem trabalhei muito",
+        "Eu trabalhei muito ontem.",
+        "Eu trabalhei muito ontem",
+        "Trabalhei muito ontem.",
+        "Trabalhei muito ontem"
+       ],
+       "difficulty": 0.26
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"Ella llegó temprano.\"",
+       "tiles": [
+        "Ela",
+        "chegou",
+        "cedo",
+        "cheguei",
+        "tarde"
+       ],
+       "sequence": [
+        "Ela",
+        "chegou",
+        "cedo"
+       ],
+       "value": "Ela chegou cedo",
+       "difficulty": 0.24
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "Ontem eu estudei de manhã.",
+        "Hoje eu estudo de manhã.",
+        "Ela trabalhou à noite."
+       ],
+       "value": "Ontem eu estudei de manhã.",
+       "text": "Ontem eu estudei de manhã.",
+       "difficulty": 0.26
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "Ontem eu trabalhei e depois descansei em casa.",
+       "difficulty": 0.28
+      }
+     ]
+    },
+    {
+     "title": "Verbos irregulares (fui, fiz, tive)",
+     "topic": "Irregulares del pretérito perfeito: fui (ir/ser), fiz (fazer), tive (ter), vi (ver)",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada verbo irregular con su traducción.",
+       "pairs": [
+        [
+         "fui",
+         "fui"
+        ],
+        [
+         "fiz",
+         "hice"
+        ],
+        [
+         "tive",
+         "tuve"
+        ]
+       ],
+       "difficulty": 0.24
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Eu ___ ao mercado ontem.\" (ir)",
+       "options": [
+        "fui",
+        "fiz",
+        "tive"
+       ],
+       "value": "fui",
+       "difficulty": 0.26
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Ontem eu ___ um bolo de chocolate.\" (fazer)",
+       "options": [
+        "fiz",
+        "fui",
+        "vi"
+       ],
+       "value": "fiz",
+       "difficulty": 0.28
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con el pretérito perfeito de \"ter\" (eu): \"Ontem eu ___ uma reunião importante.\"",
+       "text": "Ontem eu ___ uma reunião importante.",
+       "accepted": [
+        "tive"
+       ],
+       "value": "tive",
+       "difficulty": 0.3
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce al portugués: \"Vi a mi amiga ayer.\"",
+       "source": "Vi a mi amiga ayer.",
+       "value": "Eu vi a minha amiga ontem.",
+       "accepted": [
+        "Eu vi a minha amiga ontem.",
+        "Eu vi a minha amiga ontem",
+        "Vi a minha amiga ontem.",
+        "Vi a minha amiga ontem",
+        "Eu vi minha amiga ontem.",
+        "Eu vi minha amiga ontem",
+        "Vi minha amiga ontem.",
+        "Vi minha amiga ontem"
+       ],
+       "difficulty": 0.32
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena las palabras: \"Fui al cine ayer.\"",
+       "tiles": [
+        "Eu",
+        "fui",
+        "ao",
+        "cinema",
+        "ontem"
+       ],
+       "value": "Eu fui ao cinema ontem",
+       "difficulty": 0.3
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "Eu fiz o jantar ontem à noite.",
+        "Eu faço o jantar todo dia.",
+        "Eu tive um dia tranquilo."
+       ],
+       "value": "Eu fiz o jantar ontem à noite.",
+       "text": "Eu fiz o jantar ontem à noite.",
+       "difficulty": 0.3
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "Ontem eu fui ao trabalho e tive uma reunião longa.",
+       "difficulty": 0.32
+      }
+     ]
+    },
+    {
+     "title": "Preguntas en pasado",
+     "topic": "Preguntas y negativas en pretérito perfeito: O que você fez? Você foi? Não fui.",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja la pregunta con su traducción.",
+       "pairs": [
+        [
+         "O que você fez?",
+         "¿Qué hiciste?"
+        ],
+        [
+         "Você foi?",
+         "¿Fuiste?"
+        ],
+        [
+         "Onde você esteve?",
+         "¿Dónde estuviste?"
+        ]
+       ],
+       "difficulty": 0.26
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa la pregunta: \"___ você fez ontem?\"",
+       "options": [
+        "O que",
+        "Quem",
+        "Quando"
+       ],
+       "value": "O que",
+       "difficulty": 0.28
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Forma la negativa: \"Eu ___ trabalhei no domingo.\"",
+       "options": [
+        "não",
+        "sim",
+        "nada"
+       ],
+       "value": "não",
+       "difficulty": 0.3
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa la pregunta con \"foi\" (você): \"Você ___ à festa ontem?\"",
+       "text": "Você ___ à festa ontem?",
+       "accepted": [
+        "foi"
+       ],
+       "value": "foi",
+       "difficulty": 0.32
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce al portugués (Brasil): \"¿Qué hiciste ayer?\"",
+       "source": "¿Qué hiciste ayer?",
+       "value": "O que você fez ontem?",
+       "accepted": [
+        "O que você fez ontem?",
+        "O que você fez ontem",
+        "O que voce fez ontem?",
+        "O que voce fez ontem",
+        "O que você fez ontem ?",
+        "Que você fez ontem?",
+        "Que você fez ontem"
+       ],
+       "difficulty": 0.34
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"No vi la película.\"",
+       "tiles": [
+        "Eu",
+        "não",
+        "vi",
+        "o",
+        "filme",
+        "vejo"
+       ],
+       "sequence": [
+        "Eu",
+        "não",
+        "vi",
+        "o",
+        "filme"
+       ],
+       "value": "Eu não vi o filme",
+       "difficulty": 0.32
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "Você foi ao trabalho ontem?",
+        "Você vai ao trabalho hoje?",
+        "Onde você esteve à noite?"
+       ],
+       "value": "Você foi ao trabalho ontem?",
+       "text": "Você foi ao trabalho ontem?",
+       "difficulty": 0.34
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "O que você fez no fim de semana? Eu não fiz nada.",
+       "difficulty": 0.36
+      }
+     ]
+    },
+    {
+     "title": "No fim de semana: contar lo que pasó",
+     "topic": "Narrar el fin de semana en pretérito perfeito: ir, fazer, ver, comprar, encontrar",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada expresión con su traducción.",
+       "pairs": [
+        [
+         "no sábado",
+         "el sábado"
+        ],
+        [
+         "no domingo",
+         "el domingo"
+        ],
+        [
+         "a semana passada",
+         "la semana pasada"
+        ]
+       ],
+       "difficulty": 0.28
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"No sábado eu ___ à praia.\" (ir)",
+       "options": [
+        "fui",
+        "fiz",
+        "vou"
+       ],
+       "value": "fui",
+       "difficulty": 0.3
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"No domingo eu ___ os meus amigos.\" (encontrar)",
+       "options": [
+        "encontrei",
+        "encontro",
+        "encontrou"
+       ],
+       "value": "encontrei",
+       "difficulty": 0.32
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con \"comprou\" (ela): \"No fim de semana ela ___ um vestido novo.\"",
+       "text": "No fim de semana ela ___ um vestido novo.",
+       "accepted": [
+        "comprou"
+       ],
+       "value": "comprou",
+       "difficulty": 0.34
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce al portugués: \"El fin de semana fui a la playa.\"",
+       "source": "El fin de semana fui a la playa.",
+       "value": "No fim de semana eu fui à praia.",
+       "accepted": [
+        "No fim de semana eu fui à praia.",
+        "No fim de semana eu fui à praia",
+        "No fim de semana fui à praia.",
+        "No fim de semana fui à praia",
+        "No fim de semana eu fui a praia.",
+        "No fim de semana eu fui a praia",
+        "No fim de semana fui a praia.",
+        "No fim de semana fui a praia",
+        "Eu fui à praia no fim de semana.",
+        "Eu fui à praia no fim de semana",
+        "No fim de semana eu fui na praia.",
+        "No fim de semana eu fui na praia",
+        "No fim de semana fui na praia.",
+        "No fim de semana fui na praia",
+        "Eu fui na praia no fim de semana.",
+        "Eu fui na praia no fim de semana"
+       ],
+       "difficulty": 0.38
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena las palabras: \"El domingo descansé en casa.\"",
+       "tiles": [
+        "No",
+        "domingo",
+        "eu",
+        "descansei",
+        "em",
+        "casa"
+       ],
+       "value": "No domingo eu descansei em casa",
+       "difficulty": 0.36
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "No sábado eu vi um filme com a minha família.",
+        "No sábado eu vejo um filme com a minha família.",
+        "No domingo eu fui ao mercado."
+       ],
+       "value": "No sábado eu vi um filme com a minha família.",
+       "text": "No sábado eu vi um filme com a minha família.",
+       "difficulty": 0.4
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "No fim de semana eu fui à praia, comi um açaí e descansei bastante.",
+       "difficulty": 0.42
+      }
+     ]
+    }
+   ],
+   "checkpoint": [
+    {
+     "type": "multiple_choice",
+     "skill": "reading",
+     "prompt": "Completa: \"Ontem eu ___ no restaurante novo.\" (cenar)",
+     "options": [
+      "jantei",
+      "jantou",
+      "janto"
+     ],
+     "value": "jantei",
+     "difficulty": 0.3
+    },
+    {
+     "type": "match",
+     "skill": "reading",
+     "prompt": "Empareja cada verbo en pasado con su traducción.",
+     "pairs": [
+      [
+       "vi",
+       "vi"
+      ],
+      [
+       "comprou",
+       "compró"
+      ],
+      [
+       "foi",
+       "fue"
+      ]
+     ],
+     "difficulty": 0.28
+    },
+    {
+     "type": "multiple_choice",
+     "skill": "reading",
+     "prompt": "Forma la pregunta: \"___ você foi no domingo?\"",
+     "options": [
+      "Onde",
+      "O que",
+      "Quem"
+     ],
+     "value": "Onde",
+     "difficulty": 0.34
+    },
+    {
+     "type": "cloze",
+     "skill": "writing",
+     "prompt": "Completa con el pretérito perfeito de \"comprar\" (eu): \"Sábado passado eu ___ um celular novo.\"",
+     "text": "Sábado passado eu ___ um celular novo.",
+     "accepted": [
+      "comprei"
+     ],
+     "value": "comprei",
+     "difficulty": 0.34
+    },
+    {
+     "type": "translation",
+     "skill": "writing",
+     "prompt": "Traduce al portugués: \"No hice nada el domingo.\"",
+     "source": "No hice nada el domingo.",
+     "value": "Eu não fiz nada no domingo.",
+     "accepted": [
+      "Eu não fiz nada no domingo.",
+      "Eu não fiz nada no domingo",
+      "Não fiz nada no domingo.",
+      "Não fiz nada no domingo",
+      "Eu nao fiz nada no domingo.",
+      "Eu nao fiz nada no domingo",
+      "Nao fiz nada no domingo.",
+      "Nao fiz nada no domingo",
+      "No domingo eu não fiz nada.",
+      "No domingo eu não fiz nada",
+      "No domingo eu nao fiz nada.",
+      "No domingo eu nao fiz nada"
+     ],
+     "difficulty": 0.38
+    },
+    {
+     "type": "word_bank",
+     "skill": "writing",
+     "prompt": "Arma la frase: \"¿Qué hiciste ayer por la noche?\"",
+     "tiles": [
+      "O",
+      "que",
+      "você",
+      "fez",
+      "ontem",
+      "à",
+      "noite",
+      "faz"
+     ],
+     "sequence": [
+      "O",
+      "que",
+      "você",
+      "fez",
+      "ontem",
+      "à",
+      "noite"
+     ],
+     "value": "O que você fez ontem à noite",
+     "difficulty": 0.4
+    },
+    {
+     "type": "listening",
+     "skill": "listening",
+     "prompt": "Escucha y elige lo que oíste.",
+     "options": [
+      "Anteontem eu tive um dia muito cheio.",
+      "Hoje eu tenho um dia muito cheio.",
+      "Ontem eu fiz o almoço."
+     ],
+     "value": "Anteontem eu tive um dia muito cheio.",
+     "text": "Anteontem eu tive um dia muito cheio.",
+     "difficulty": 0.38
+    },
+    {
+     "type": "listening",
+     "skill": "listening",
+     "prompt": "Escucha y elige lo que oíste.",
+     "options": [
+      "Você comprou alguma coisa no shopping?",
+      "Você compra alguma coisa no shopping?",
+      "Ela vendeu o carro dela."
+     ],
+     "value": "Você comprou alguma coisa no shopping?",
+     "text": "Você comprou alguma coisa no shopping?",
+     "difficulty": 0.4
+    },
+    {
+     "type": "speaking_read_aloud",
+     "skill": "speaking",
+     "prompt": "Lee en voz alta:",
+     "text": "No sábado eu fui ao parque e à noite encontrei os meus amigos.",
+     "difficulty": 0.42
+    },
+    {
+     "type": "speaking_read_aloud",
+     "skill": "speaking",
+     "prompt": "Lee en voz alta:",
+     "text": "A semana passada eu trabalhei muito, mas no domingo eu não fiz nada.",
+     "difficulty": 0.44
+    }
+   ]
+  },
+  {
+   "U": 8,
+   "title": "Planes y futuro",
+   "theme_color": "#3FA7D6",
+   "icon": "event",
+   "checkpoint_description": "Demuestra que sabes hablar de tus planes en portugués de Brasil. Usa \"ir + infinitivo\" (vou viajar), propón planes con \"vamos…?\" y \"que tal…?\", y maneja las expresiones de tiempo futuro (amanhã, semana que vem). El checkpoint mezcla las cuatro habilidades con frases nuevas para medir si puedes transferir lo aprendido.",
+   "vocab": [
+    {
+     "word": "amanhã",
+     "translation": "mañana",
+     "pos": "adv"
+    },
+    {
+     "word": "depois de amanhã",
+     "translation": "pasado mañana",
+     "pos": "adv"
+    },
+    {
+     "word": "semana que vem",
+     "translation": "la próxima semana",
+     "pos": "loc"
+    },
+    {
+     "word": "mês que vem",
+     "translation": "el próximo mes",
+     "pos": "loc"
+    },
+    {
+     "word": "hoje à noite",
+     "translation": "esta noche",
+     "pos": "loc"
+    },
+    {
+     "word": "mais tarde",
+     "translation": "más tarde",
+     "pos": "adv"
+    },
+    {
+     "word": "logo",
+     "translation": "pronto",
+     "pos": "adv"
+    },
+    {
+     "word": "fim de semana",
+     "translation": "fin de semana",
+     "pos": "n"
+    },
+    {
+     "word": "viajar",
+     "translation": "viajar",
+     "pos": "v"
+    },
+    {
+     "word": "que tal",
+     "translation": "qué tal / qué te parece",
+     "pos": "loc"
+    },
+    {
+     "word": "combinar",
+     "translation": "quedar / acordar",
+     "pos": "v"
+    },
+    {
+     "word": "encontrar",
+     "translation": "encontrar / verse con",
+     "pos": "v"
+    },
+    {
+     "word": "plano",
+     "translation": "plan",
+     "pos": "n"
+    },
+    {
+     "word": "feriado",
+     "translation": "feriado / día festivo",
+     "pos": "n"
+    },
+    {
+     "word": "horário",
+     "translation": "horario",
+     "pos": "n"
+    },
+    {
+     "word": "vontade",
+     "translation": "ganas",
+     "pos": "n"
+    }
+   ],
+   "lessons": [
+    {
+     "title": "Vou fazer: ir + infinitivo",
+     "topic": "Hablar de planes con ir + infinitivo (vou viajar)",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada forma de \"ir\" con su sujeto.",
+       "pairs": [
+        [
+         "eu vou",
+         "yo voy"
+        ],
+        [
+         "você vai",
+         "tú vas / usted va"
+        ],
+        [
+         "nós vamos",
+         "nosotros vamos"
+        ]
+       ],
+       "difficulty": 0.2
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Amanhã eu ___ viajar para o Rio.\"",
+       "options": [
+        "vou",
+        "vai",
+        "vamos"
+       ],
+       "value": "vou",
+       "difficulty": 0.2
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Ela vai ___ um bolo no fim de semana.\"",
+       "options": [
+        "fazer",
+        "fez",
+        "fazendo"
+       ],
+       "value": "fazer",
+       "difficulty": 0.22
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con la forma de \"ir\": \"Nós ___ estudar hoje à noite.\"",
+       "text": "Nós ___ estudar hoje à noite.",
+       "accepted": [
+        "vamos"
+       ],
+       "difficulty": 0.24
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce al portugués: \"Voy a viajar la próxima semana.\"",
+       "source": "Voy a viajar la próxima semana.",
+       "value": "Vou viajar semana que vem.",
+       "accepted": [
+        "Vou viajar semana que vem",
+        "Vou viajar semana que vem.",
+        "Vou viajar na semana que vem",
+        "Vou viajar na semana que vem.",
+        "Eu vou viajar semana que vem",
+        "Eu vou viajar semana que vem.",
+        "Eu vou viajar na semana que vem",
+        "Eu vou viajar na semana que vem."
+       ],
+       "difficulty": 0.26
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"Ellos van a comprar las entradas.\"",
+       "tiles": [
+        "Eles",
+        "vão",
+        "comprar",
+        "os",
+        "ingressos",
+        "vai",
+        "compraram"
+       ],
+       "sequence": [
+        "Eles",
+        "vão",
+        "comprar",
+        "os",
+        "ingressos"
+       ],
+       "value": "Eles vão comprar os ingressos",
+       "difficulty": 0.27
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "text": "Eu vou trabalhar amanhã de manhã.",
+       "options": [
+        "Eu vou trabalhar amanhã de manhã.",
+        "Eu trabalhei ontem de manhã.",
+        "Eu estou trabalhando agora."
+       ],
+       "value": "Eu vou trabalhar amanhã de manhã.",
+       "difficulty": 0.26
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "Amanhã eu vou visitar a minha família.",
+       "difficulty": 0.25
+      }
+     ]
+    },
+    {
+     "title": "Vamos…? proponer planes",
+     "topic": "Proponer planes con vamos…? y que tal…?",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja la propuesta con su sentido.",
+       "pairs": [
+        [
+         "Vamos ao cinema?",
+         "¿Vamos al cine?"
+        ],
+        [
+         "Que tal um café?",
+         "¿Qué tal un café?"
+        ],
+        [
+         "Bora!",
+         "¡Vamos! / ¡Dale!"
+        ]
+       ],
+       "difficulty": 0.24
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa una propuesta: \"___ jantar fora hoje à noite?\"",
+       "options": [
+        "Vamos",
+        "Fomos",
+        "Vou"
+       ],
+       "value": "Vamos",
+       "difficulty": 0.24
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Que ___ ir à praia no domingo?\"",
+       "options": [
+        "tal",
+        "tem",
+        "vez"
+       ],
+       "value": "tal",
+       "difficulty": 0.26
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa la propuesta: \"___ assistir a um filme hoje?\" (nosotros)",
+       "text": "___ assistir a um filme hoje?",
+       "accepted": [
+        "Vamos"
+       ],
+       "difficulty": 0.28
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce al portugués: \"¿Qué tal cenar juntos mañana?\"",
+       "source": "¿Qué tal cenar juntos mañana?",
+       "value": "Que tal jantar juntos amanhã?",
+       "accepted": [
+        "Que tal jantar juntos amanhã?",
+        "Que tal jantar juntos amanhã",
+        "Que tal jantar junto amanhã?",
+        "Que tal jantar junto amanhã",
+        "Que tal a gente jantar junto amanhã?",
+        "Que tal a gente jantar junto amanhã",
+        "Que tal a gente jantar juntos amanhã?",
+        "Que tal a gente jantar juntos amanhã",
+        "Que tal jantarmos juntos amanhã?",
+        "Que tal jantarmos juntos amanhã"
+       ],
+       "difficulty": 0.3
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena para proponer un plan: \"Vamos tomar um café depois?\"",
+       "tiles": [
+        "Vamos",
+        "tomar",
+        "um",
+        "café",
+        "depois?"
+       ],
+       "value": "Vamos tomar um café depois?",
+       "difficulty": 0.3
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "text": "Que tal a gente sair no sábado?",
+       "options": [
+        "Que tal a gente sair no sábado?",
+        "A gente saiu no sábado.",
+        "Eu não quero sair hoje."
+       ],
+       "value": "Que tal a gente sair no sábado?",
+       "difficulty": 0.29
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "Vamos ao shopping mais tarde?",
+       "difficulty": 0.28
+      }
+     ]
+    },
+    {
+     "title": "Cuándo: expresiones de tiempo futuro",
+     "topic": "Expresiones de tiempo futuro: amanhã, semana que vem, logo",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada expresión de tiempo.",
+       "pairs": [
+        [
+         "amanhã",
+         "mañana"
+        ],
+        [
+         "semana que vem",
+         "la próxima semana"
+        ],
+        [
+         "depois de amanhã",
+         "pasado mañana"
+        ]
+       ],
+       "difficulty": 0.26
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Elige el momento futuro: \"Vou te ligar ___.\"",
+       "options": [
+        "mais tarde",
+        "ontem",
+        "na semana passada"
+       ],
+       "value": "mais tarde",
+       "difficulty": 0.26
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "\"logo\" significa…",
+       "options": [
+        "pronto",
+        "ayer",
+        "nunca"
+       ],
+       "value": "pronto",
+       "difficulty": 0.28
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"A festa é ___ sábado.\"",
+       "text": "A festa é ___ sábado.",
+       "accepted": [
+        "no"
+       ],
+       "difficulty": 0.3
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce al portugués: \"El mes que viene voy a estudiar más.\"",
+       "source": "El mes que viene voy a estudiar más.",
+       "value": "Mês que vem vou estudar mais.",
+       "accepted": [
+        "Mês que vem vou estudar mais",
+        "Mês que vem vou estudar mais.",
+        "No mês que vem vou estudar mais",
+        "No mês que vem vou estudar mais.",
+        "Mês que vem eu vou estudar mais",
+        "Mês que vem eu vou estudar mais.",
+        "No mês que vem eu vou estudar mais",
+        "No mês que vem eu vou estudar mais."
+       ],
+       "difficulty": 0.32
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"Pasado mañana tengo un feriado.\"",
+       "tiles": [
+        "Depois",
+        "de",
+        "amanhã",
+        "eu",
+        "tenho",
+        "um",
+        "feriado",
+        "tinha"
+       ],
+       "sequence": [
+        "Depois",
+        "de",
+        "amanhã",
+        "eu",
+        "tenho",
+        "um",
+        "feriado"
+       ],
+       "value": "Depois de amanhã eu tenho um feriado",
+       "difficulty": 0.33
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "text": "A reunião vai ser semana que vem.",
+       "options": [
+        "A reunião vai ser semana que vem.",
+        "A reunião foi semana passada.",
+        "A reunião é todo dia."
+       ],
+       "value": "A reunião vai ser semana que vem.",
+       "difficulty": 0.31
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "No fim de semana eu vou descansar.",
+       "difficulty": 0.3
+      }
+     ]
+    },
+    {
+     "title": "Quedar con alguien",
+     "topic": "Quedar con alguien: combinar, encontrar, horarios",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada frase para quedar.",
+       "pairs": [
+        [
+         "A que horas?",
+         "¿A qué hora?"
+        ],
+        [
+         "Onde a gente se encontra?",
+         "¿Dónde nos vemos?"
+        ],
+        [
+         "Combinado!",
+         "¡Hecho! / ¡Quedamos!"
+        ]
+       ],
+       "difficulty": 0.3
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"A gente se ___ na frente do metrô.\"",
+       "options": [
+        "encontra",
+        "encontrou",
+        "encontrar"
+       ],
+       "value": "encontra",
+       "difficulty": 0.3
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Para confirmar un plan respondes…",
+       "options": [
+        "Combinado!",
+        "Tchau, até nunca!",
+        "Não sei nada."
+       ],
+       "value": "Combinado!",
+       "difficulty": 0.31
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con la preposición de hora: \"Vamos nos encontrar ___ sete horas.\"",
+       "text": "Vamos nos encontrar ___ sete horas.",
+       "accepted": [
+        "às",
+        "as"
+       ],
+       "difficulty": 0.33
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce al portugués: \"¿Quedamos mañana a las tres?\"",
+       "source": "¿Quedamos mañana a las tres?",
+       "value": "A gente combina amanhã às três?",
+       "accepted": [
+        "A gente combina amanhã às três?",
+        "A gente combina amanhã às três",
+        "A gente combina amanhã as três?",
+        "A gente combina amanhã as três",
+        "A gente combina amanhã às 3?",
+        "A gente combina amanhã às 3",
+        "A gente combina amanhã as 3?",
+        "A gente combina amanhã as 3",
+        "Vamos combinar amanhã às três?",
+        "Vamos combinar amanhã às três",
+        "Vamos combinar amanhã às 3?",
+        "Vamos combinar amanhã às 3",
+        "Vamos combinar amanhã as 3"
+       ],
+       "difficulty": 0.36
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"Te encuentro en frente del cine.\"",
+       "tiles": [
+        "Te",
+        "encontro",
+        "na",
+        "frente",
+        "do",
+        "cinema"
+       ],
+       "value": "Te encontro na frente do cinema",
+       "difficulty": 0.37
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "text": "A gente se encontra às oito na padaria.",
+       "options": [
+        "A gente se encontra às oito na padaria.",
+        "A gente se encontrou ontem.",
+        "Eu não vou poder ir."
+       ],
+       "value": "A gente se encontra às oito na padaria.",
+       "difficulty": 0.34
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "Combinado, a gente se encontra amanhã às duas.",
+       "difficulty": 0.33
+      }
+     ]
+    }
+   ],
+   "checkpoint": [
+    {
+     "type": "multiple_choice",
+     "skill": "reading",
+     "prompt": "Completa: \"Eles ___ chegar depois de amanhã.\"",
+     "options": [
+      "vão",
+      "vai",
+      "fomos"
+     ],
+     "value": "vão",
+     "difficulty": 0.3
+    },
+    {
+     "type": "match",
+     "skill": "reading",
+     "prompt": "Empareja cada propuesta o expresión de tiempo.",
+     "pairs": [
+      [
+       "Que tal sair?",
+       "¿Qué tal salir?"
+      ],
+      [
+       "mês que vem",
+       "el próximo mes"
+      ],
+      [
+       "hoje à noite",
+       "esta noche"
+      ]
+     ],
+     "difficulty": 0.31
+    },
+    {
+     "type": "multiple_choice",
+     "skill": "reading",
+     "prompt": "Propuesta correcta para invitar: \"___ tomar um sorvete?\"",
+     "options": [
+      "Vamos",
+      "Fui",
+      "Tomei"
+     ],
+     "value": "Vamos",
+     "difficulty": 0.3
+    },
+    {
+     "type": "cloze",
+     "skill": "writing",
+     "prompt": "Completa con la forma de \"ir\": \"Eu ___ cozinhar no domingo.\"",
+     "text": "Eu ___ cozinhar no domingo.",
+     "accepted": [
+      "vou"
+     ],
+     "difficulty": 0.32
+    },
+    {
+     "type": "translation",
+     "skill": "writing",
+     "prompt": "Traduce al portugués: \"Voy a llamarte más tarde.\"",
+     "source": "Voy a llamarte más tarde.",
+     "value": "Vou te ligar mais tarde.",
+     "accepted": [
+      "Vou te ligar mais tarde",
+      "Vou te ligar mais tarde.",
+      "Eu vou te ligar mais tarde",
+      "Eu vou te ligar mais tarde.",
+      "Vou ligar para você mais tarde",
+      "Vou ligar para você mais tarde.",
+      "Vou ligar pra você mais tarde",
+      "Eu vou ligar pra você mais tarde",
+      "Eu vou ligar pra você mais tarde."
+     ],
+     "difficulty": 0.36
+    },
+    {
+     "type": "word_bank",
+     "skill": "writing",
+     "prompt": "Arma la propuesta: \"¿Vamos a vernos el fin de semana?\"",
+     "tiles": [
+      "Vamos",
+      "nos",
+      "encontrar",
+      "no",
+      "fim",
+      "de",
+      "semana?",
+      "combinar"
+     ],
+     "sequence": [
+      "Vamos",
+      "nos",
+      "encontrar",
+      "no",
+      "fim",
+      "de",
+      "semana?"
+     ],
+     "value": "Vamos nos encontrar no fim de semana?",
+     "difficulty": 0.38
+    },
+    {
+     "type": "listening",
+     "skill": "listening",
+     "prompt": "Escucha y elige lo que oíste.",
+     "text": "Vou viajar para a praia semana que vem.",
+     "options": [
+      "Vou viajar para a praia semana que vem.",
+      "Viajei para a praia semana passada.",
+      "Não vou poder viajar."
+     ],
+     "value": "Vou viajar para a praia semana que vem.",
+     "difficulty": 0.33
+    },
+    {
+     "type": "listening",
+     "skill": "listening",
+     "prompt": "Escucha y elige lo que oíste.",
+     "text": "A gente combina o horário amanhã.",
+     "options": [
+      "A gente combina o horário amanhã.",
+      "A gente combinou o horário ontem.",
+      "Eu esqueci o horário."
+     ],
+     "value": "A gente combina o horário amanhã.",
+     "difficulty": 0.34
+    },
+    {
+     "type": "speaking_read_aloud",
+     "skill": "speaking",
+     "prompt": "Lee en voz alta:",
+     "text": "Que tal a gente se encontrar logo mais?",
+     "difficulty": 0.32
+    },
+    {
+     "type": "speaking_read_aloud",
+     "skill": "speaking",
+     "prompt": "Lee en voz alta:",
+     "text": "Mês que vem eu vou começar um curso novo.",
+     "difficulty": 0.34
+    }
+   ]
+  },
+  {
+   "U": 9,
+   "title": "De viaje",
+   "theme_color": "#16A085",
+   "icon": "flight",
+   "checkpoint_description": "checkpoint",
+   "vocab": [
+    {
+     "word": "aeroporto",
+     "translation": "aeropuerto",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "avião",
+     "translation": "avión",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "voo",
+     "translation": "vuelo",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "embarque",
+     "translation": "embarque",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "bagagem",
+     "translation": "equipaje",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "ônibus",
+     "translation": "autobús",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "metrô",
+     "translation": "metro",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "passagem",
+     "translation": "boleto/pasaje",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "vire",
+     "translation": "gire/dobla",
+     "pos": "verbo"
+    },
+    {
+     "word": "direita",
+     "translation": "derecha",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "esquerda",
+     "translation": "izquierda",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "em frente",
+     "translation": "de frente/recto",
+     "pos": "expresión"
+    },
+    {
+     "word": "perto de",
+     "translation": "cerca de",
+     "pos": "preposición"
+    },
+    {
+     "word": "longe de",
+     "translation": "lejos de",
+     "pos": "preposición"
+    },
+    {
+     "word": "ao lado de",
+     "translation": "al lado de",
+     "pos": "preposición"
+    },
+    {
+     "word": "quarto",
+     "translation": "habitación/cuarto",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "queria",
+     "translation": "quisiera",
+     "pos": "verbo"
+    }
+   ],
+   "lessons": [
+    {
+     "title": "Transporte y aeropuerto",
+     "topic": "Hablar del aeropuerto, el vuelo y el transporte en portugués de Brasil",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra de viaje con su traducción.",
+       "difficulty": 0.18,
+       "pairs": [
+        [
+         "aeroporto",
+         "aeropuerto"
+        ],
+        [
+         "avião",
+         "avión"
+        ],
+        [
+         "bagagem",
+         "equipaje"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Vou pegar o ___ para o centro.\"",
+       "difficulty": 0.2,
+       "options": [
+        "ônibus",
+        "almoço",
+        "quarto"
+       ],
+       "value": "ônibus"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "En el aeropuerto, ¿dónde esperas para subir al avión?",
+       "difficulty": 0.22,
+       "options": [
+        "no portão de embarque",
+        "na cozinha",
+        "na padaria"
+       ],
+       "value": "no portão de embarque"
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"Quero comprar uma ___ de trem para o Rio.\" (boleto)",
+       "difficulty": 0.24,
+       "text": "Quero comprar uma ___ de trem para o Rio.",
+       "value": "passagem",
+       "accepted": [
+        "passagem",
+        "Passagem",
+        "bilhete",
+        "Bilhete"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Mi vuelo sale a las nueve.\"",
+       "difficulty": 0.26,
+       "source": "Mi vuelo sale a las nueve.",
+       "value": "Meu voo sai às nove.",
+       "accepted": [
+        "Meu voo sai às nove.",
+        "Meu voo sai às nove",
+        "Meu voo sai as nove.",
+        "Meu voo sai as nove",
+        "Meu voo sai às 9.",
+        "Meu voo sai às 9",
+        "Meu voo sai as 9.",
+        "Meu voo sai as 9",
+        "O meu voo sai às nove.",
+        "O meu voo sai às nove"
+       ]
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la pregunta: \"¿Dónde está el punto del autobús?\".",
+       "difficulty": 0.26,
+       "tiles": [
+        "Onde",
+        "fica",
+        "o",
+        "ponto",
+        "de",
+        "ônibus",
+        "metrô"
+       ],
+       "sequence": [
+        "Onde",
+        "fica",
+        "o",
+        "ponto",
+        "de",
+        "ônibus"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "difficulty": 0.24,
+       "options": [
+        "O próximo voo sai às dez.",
+        "O ônibus chega às oito.",
+        "O trem já saiu."
+       ],
+       "value": "O próximo voo sai às dez."
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.22,
+       "text": "Eu vou viajar de avião amanhã de manhã."
+      }
+     ]
+    },
+    {
+     "title": "Direcciones en la ciudad",
+     "topic": "Pedir y dar direcciones, preposiciones de lugar en portugués de Brasil",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada dirección con su traducción.",
+       "difficulty": 0.24,
+       "pairs": [
+        [
+         "à direita",
+         "a la derecha"
+        ],
+        [
+         "à esquerda",
+         "a la izquierda"
+        ],
+        [
+         "em frente",
+         "de frente/recto"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Vire à ___ na próxima esquina.\" (derecha)",
+       "difficulty": 0.26,
+       "options": [
+        "direita",
+        "manhã",
+        "passagem"
+       ],
+       "value": "direita"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"O banco fica ao lado ___ farmácia.\"",
+       "difficulty": 0.28,
+       "options": [
+        "da",
+        "do",
+        "de"
+       ],
+       "value": "da"
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"Siga em ___ por dois quarteirões.\" (recto)",
+       "difficulty": 0.3,
+       "text": "Siga em ___ por dois quarteirões.",
+       "value": "frente",
+       "accepted": [
+        "frente",
+        "Frente"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Disculpe, ¿cómo llego a la estación?\"",
+       "difficulty": 0.32,
+       "source": "Disculpe, ¿cómo llego a la estación?",
+       "value": "Com licença, como chego à estação?",
+       "accepted": [
+        "Com licença, como chego à estação?",
+        "Com licença, como chego à estação",
+        "Com licença, como eu chego à estação?",
+        "Com licença, como eu chego à estação",
+        "Com licença, como chego na estação?",
+        "Com licença, como chego na estação",
+        "Desculpe, como chego à estação?",
+        "Desculpe, como chego à estação"
+       ]
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"Gira a la izquierda y sigue de frente\".",
+       "difficulty": 0.32,
+       "tiles": [
+        "Vire",
+        "à",
+        "esquerda",
+        "e",
+        "siga",
+        "em",
+        "frente"
+       ],
+       "value": "Vire à esquerda e siga em frente"
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "difficulty": 0.3,
+       "options": [
+        "Vire à direita no semáforo.",
+        "Vire à esquerda no semáforo.",
+        "Siga em frente até o final."
+       ],
+       "value": "Vire à direita no semáforo."
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.28,
+       "text": "Com licença, o museu fica perto daqui?"
+      }
+     ]
+    },
+    {
+     "title": "En el hotel",
+     "topic": "Hacer check-in, reservar y resolver cosas en el hotel en portugués de Brasil",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra del hotel con su traducción.",
+       "difficulty": 0.28,
+       "pairs": [
+        [
+         "quarto",
+         "habitación"
+        ],
+        [
+         "reserva",
+         "reserva"
+        ],
+        [
+         "chave",
+         "llave"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Eu tenho uma ___ para duas noites.\"",
+       "difficulty": 0.3,
+       "options": [
+        "reserva",
+        "receita",
+        "revista"
+       ],
+       "value": "reserva"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Al llegar al hotel, lo primero que haces es el…",
+       "difficulty": 0.3,
+       "options": [
+        "check-in",
+        "café",
+        "embarque"
+       ],
+       "value": "check-in"
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con cortesía: \"___ um quarto de casal, por favor.\" (quisiera)",
+       "difficulty": 0.34,
+       "text": "___ um quarto de casal, por favor.",
+       "value": "Queria",
+       "accepted": [
+        "Queria",
+        "queria",
+        "Gostaria de",
+        "gostaria de"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"¿A qué hora es el desayuno?\"",
+       "difficulty": 0.36,
+       "source": "¿A qué hora es el desayuno?",
+       "value": "A que horas é o café da manhã?",
+       "accepted": [
+        "A que horas é o café da manhã?",
+        "A que horas é o café da manhã",
+        "Que horas é o café da manhã?",
+        "Que horas é o café da manhã",
+        "A que horas é o café-da-manhã?",
+        "A que horas é o café-da-manhã"
+       ]
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"La llave de la habitación, por favor\".",
+       "difficulty": 0.34,
+       "tiles": [
+        "A",
+        "chave",
+        "do",
+        "quarto",
+        "por",
+        "favor",
+        "da"
+       ],
+       "sequence": [
+        "A",
+        "chave",
+        "do",
+        "quarto",
+        "por",
+        "favor"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "difficulty": 0.34,
+       "options": [
+        "Seu quarto fica no terceiro andar.",
+        "Seu quarto fica no primeiro andar.",
+        "O hotel está lotado hoje."
+       ],
+       "value": "Seu quarto fica no terceiro andar."
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.32,
+       "text": "Queria um quarto com vista para o mar, por favor."
+      }
+     ]
+    },
+    {
+     "title": "Pedir ayuda (pode/queria)",
+     "topic": "Pedidos corteses con pode e queria en portugués de Brasil",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada pedido cortés con su traducción.",
+       "difficulty": 0.3,
+       "pairs": [
+        [
+         "Você pode me ajudar?",
+         "¿Puede ayudarme?"
+        ],
+        [
+         "Queria reservar",
+         "Quisiera reservar"
+        ],
+        [
+         "Com licença",
+         "Con permiso/Disculpe"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa de forma cortés: \"Você ___ me ajudar, por favor?\"",
+       "difficulty": 0.32,
+       "options": [
+        "pode",
+        "tem",
+        "vai"
+       ],
+       "value": "pode"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Para pedir algo con educación dices…",
+       "difficulty": 0.34,
+       "options": [
+        "Queria um táxi, por favor.",
+        "Quero agora!",
+        "Me dá isso aí."
+       ],
+       "value": "Queria um táxi, por favor."
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"Você ___ chamar um táxi para mim?\" (puede)",
+       "difficulty": 0.36,
+       "text": "Você ___ chamar um táxi para mim?",
+       "value": "pode",
+       "accepted": [
+        "pode",
+        "Pode",
+        "poderia",
+        "Poderia"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"¿Podría hablar más despacio, por favor?\"",
+       "difficulty": 0.4,
+       "source": "¿Podría hablar más despacio, por favor?",
+       "value": "Você pode falar mais devagar, por favor?",
+       "accepted": [
+        "Você pode falar mais devagar, por favor?",
+        "Você pode falar mais devagar, por favor",
+        "Você poderia falar mais devagar, por favor?",
+        "Você poderia falar mais devagar, por favor",
+        "Pode falar mais devagar, por favor?",
+        "Pode falar mais devagar, por favor",
+        "Poderia falar mais devagar, por favor?",
+        "Poderia falar mais devagar, por favor"
+       ]
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"Quisiera pagar con tarjeta\".",
+       "difficulty": 0.4,
+       "tiles": [
+        "Queria",
+        "pagar",
+        "com",
+        "cartão"
+       ],
+       "value": "Queria pagar com cartão"
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "difficulty": 0.38,
+       "options": [
+        "Você pode me trazer a conta, por favor?",
+        "Você pode abrir a janela, por favor?",
+        "Eu não entendi nada."
+       ],
+       "value": "Você pode me trazer a conta, por favor?"
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.36,
+       "text": "Com licença, você pode me ajudar, por favor?"
+      }
+     ]
+    }
+   ],
+   "checkpoint": [
+    {
+     "type": "multiple_choice",
+     "skill": "reading",
+     "prompt": "Completa: \"O ___ está atrasado, vamos esperar no portão.\" (vuelo)",
+     "difficulty": 0.32,
+     "options": [
+      "voo",
+      "quarto",
+      "ponto"
+     ],
+     "value": "voo"
+    },
+    {
+     "type": "match",
+     "skill": "reading",
+     "prompt": "Empareja cada preposición de lugar con su traducción.",
+     "difficulty": 0.3,
+     "pairs": [
+      [
+       "perto de",
+       "cerca de"
+      ],
+      [
+       "ao lado de",
+       "al lado de"
+      ],
+      [
+       "longe de",
+       "lejos de"
+      ]
+     ]
+    },
+    {
+     "type": "multiple_choice",
+     "skill": "reading",
+     "prompt": "Completa de forma cortés: \"___ um quarto para três noites.\" (quisiera)",
+     "difficulty": 0.34,
+     "options": [
+      "Queria",
+      "Quero já",
+      "Tenho"
+     ],
+     "value": "Queria"
+    },
+    {
+     "type": "cloze",
+     "skill": "writing",
+     "prompt": "Completa: \"Vou despachar a minha ___ no aeroporto.\" (equipaje)",
+     "difficulty": 0.36,
+     "text": "Vou despachar a minha ___ no aeroporto.",
+     "value": "bagagem",
+     "accepted": [
+      "bagagem",
+      "Bagagem"
+     ]
+    },
+    {
+     "type": "translation",
+     "skill": "writing",
+     "prompt": "Traduce: \"¿Puede llamar un taxi para el aeropuerto?\"",
+     "difficulty": 0.4,
+     "source": "¿Puede llamar un taxi para el aeropuerto?",
+     "value": "Você pode chamar um táxi para o aeroporto?",
+     "accepted": [
+      "Você pode chamar um táxi para o aeroporto?",
+      "Você pode chamar um táxi para o aeroporto",
+      "Você pode chamar um taxi para o aeroporto?",
+      "Você pode chamar um taxi para o aeroporto",
+      "Pode chamar um táxi para o aeroporto?",
+      "Pode chamar um táxi para o aeroporto",
+      "Pode chamar um taxi para o aeroporto?",
+      "Pode chamar um taxi para o aeroporto",
+      "Você poderia chamar um táxi para o aeroporto?",
+      "Você poderia chamar um táxi para o aeroporto",
+      "Você poderia chamar um taxi para o aeroporto?",
+      "Você poderia chamar um taxi para o aeroporto",
+      "Poderia chamar um táxi para o aeroporto?",
+      "Poderia chamar um táxi para o aeroporto",
+      "Poderia chamar um taxi para o aeroporto?",
+      "Poderia chamar um taxi para o aeroporto"
+     ]
+    },
+    {
+     "type": "word_bank",
+     "skill": "writing",
+     "prompt": "Arma la frase: \"Quisiera hacer el check-in, por favor\".",
+     "difficulty": 0.4,
+     "tiles": [
+      "Queria",
+      "fazer",
+      "o",
+      "check-in",
+      "por",
+      "favor",
+      "pode"
+     ],
+     "sequence": [
+      "Queria",
+      "fazer",
+      "o",
+      "check-in",
+      "por",
+      "favor"
+     ]
+    },
+    {
+     "type": "listening",
+     "skill": "listening",
+     "prompt": "Escucha y elige la frase que oíste.",
+     "difficulty": 0.36,
+     "options": [
+      "O metrô é mais rápido que o ônibus.",
+      "O ônibus é mais barato que o táxi.",
+      "O trem chega às sete da noite."
+     ],
+     "value": "O metrô é mais rápido que o ônibus."
+    },
+    {
+     "type": "listening",
+     "skill": "listening",
+     "prompt": "Escucha y elige la frase que oíste.",
+     "difficulty": 0.38,
+     "options": [
+      "A farmácia fica em frente ao hotel.",
+      "A farmácia fica ao lado do banco.",
+      "A farmácia fica perto da estação."
+     ],
+     "value": "A farmácia fica em frente ao hotel."
+    },
+    {
+     "type": "speaking_read_aloud",
+     "skill": "speaking",
+     "prompt": "Lee en voz alta:",
+     "difficulty": 0.34,
+     "text": "Onde fica a estação de metrô mais perto?"
+    },
+    {
+     "type": "speaking_read_aloud",
+     "skill": "speaking",
+     "prompt": "Lee en voz alta:",
+     "difficulty": 0.38,
+     "text": "Você pode me dizer onde fica o portão de embarque?"
+    }
+   ]
+  },
+  {
+   "U": 10,
+   "title": "Comer fuera y comprar",
+   "theme_color": "#C0392B",
+   "icon": "restaurant_menu",
+   "checkpoint_description": "Demuestra que sabes desenvolverte en un restaurante y de compras en portugués de Brasil. Pides educadamente con \"eu queria\", entiendes cantidades y precios (um pouco, muito, quanto custa, reais) y comparas opciones con \"mais... (do) que\". Las frases y distractores son nuevos para medir transferencia, no memoria.",
+   "vocab": [
+    {
+     "word": "o cardápio",
+     "translation": "el menú",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "o garçom",
+     "translation": "el camarero",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "a conta",
+     "translation": "la cuenta",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "eu queria",
+     "translation": "yo querría / quisiera",
+     "pos": "expresión"
+    },
+    {
+     "word": "o prato",
+     "translation": "el plato",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "a bebida",
+     "translation": "la bebida",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "um pouco",
+     "translation": "un poco",
+     "pos": "locución"
+    },
+    {
+     "word": "muito",
+     "translation": "mucho",
+     "pos": "adverbio"
+    },
+    {
+     "word": "quanto custa",
+     "translation": "cuánto cuesta",
+     "pos": "expresión"
+    },
+    {
+     "word": "o preço",
+     "translation": "el precio",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "caro",
+     "translation": "caro",
+     "pos": "adjetivo"
+    },
+    {
+     "word": "barato",
+     "translation": "barato",
+     "pos": "adjetivo"
+    },
+    {
+     "word": "a loja",
+     "translation": "la tienda",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "o troco",
+     "translation": "el cambio (vuelto)",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "mais... do que",
+     "translation": "más... que",
+     "pos": "estructura comparativa"
+    },
+    {
+     "word": "o real",
+     "translation": "el real (moneda)",
+     "pos": "sustantivo"
+    }
+   ],
+   "lessons": [
+    {
+     "title": "No restaurante",
+     "topic": "pedir_en_el_restaurante_con_eu_queria",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra del restaurante con su traducción.",
+       "pairs": [
+        [
+         "o cardápio",
+         "el menú"
+        ],
+        [
+         "o garçom",
+         "el camarero"
+        ],
+        [
+         "a conta",
+         "la cuenta"
+        ]
+       ],
+       "difficulty": 0.2
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa el pedido educado: \"___ um café, por favor.\"",
+       "options": [
+        "Eu queria",
+        "Você quer",
+        "Eu sou"
+       ],
+       "value": "Eu queria",
+       "difficulty": 0.2
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "¿Qué pides para ver los platos del restaurante?",
+       "options": [
+        "O cardápio, por favor.",
+        "A conta, por favor.",
+        "O troco, por favor."
+       ],
+       "value": "O cardápio, por favor.",
+       "difficulty": 0.22
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa para pedir la cuenta: \"A ___, por favor!\"",
+       "text": "A ___, por favor!",
+       "accepted": [
+        "conta",
+        "Conta"
+       ],
+       "difficulty": 0.22
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Yo quisiera un plato de pasta.\"",
+       "source": "Yo quisiera un plato de pasta.",
+       "value": "Eu queria um prato de massa.",
+       "accepted": [
+        "Eu queria um prato de massa.",
+        "Eu queria um prato de massa",
+        "Eu queria um prato de macarrão.",
+        "Eu queria um prato de macarrão"
+       ],
+       "difficulty": 0.24
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"Yo quisiera una bebida.\"",
+       "tiles": [
+        "Eu",
+        "queria",
+        "uma",
+        "bebida",
+        "quero",
+        "conta"
+       ],
+       "sequence": [
+        "Eu",
+        "queria",
+        "uma",
+        "bebida"
+       ],
+       "difficulty": 0.24
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "options": [
+        "Boa noite, eu queria o cardápio.",
+        "A conta, por favor, garçom.",
+        "Eu queria pagar com cartão."
+       ],
+       "value": "Boa noite, eu queria o cardápio.",
+       "source": "Boa noite, eu queria o cardápio.",
+       "difficulty": 0.24
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "Garçom, eu queria o cardápio e uma água, por favor.",
+       "difficulty": 0.24
+      }
+     ]
+    },
+    {
+     "title": "Cantidades y precios",
+     "topic": "cantidades_y_precios_um_pouco_muito_quanto_custa",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada expresión de cantidad o precio con su traducción.",
+       "pairs": [
+        [
+         "um pouco",
+         "un poco"
+        ],
+        [
+         "muito",
+         "mucho"
+        ],
+        [
+         "quanto custa",
+         "cuánto cuesta"
+        ]
+       ],
+       "difficulty": 0.24
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa para preguntar el precio: \"___ custa o suco?\"",
+       "options": [
+        "Quanto",
+        "Quando",
+        "Quem"
+       ],
+       "value": "Quanto",
+       "difficulty": 0.24
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Quieres solo una pequeña cantidad de azúcar. ¿Qué dices?",
+       "options": [
+        "Só um pouco de açúcar, por favor.",
+        "Muito açúcar, por favor.",
+        "Sem preço, por favor."
+       ],
+       "value": "Só um pouco de açúcar, por favor.",
+       "difficulty": 0.26
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"O café custa cinco ___.\" (la moneda de Brasil)",
+       "text": "O café custa cinco ___.",
+       "accepted": [
+        "reais",
+        "Reais"
+       ],
+       "difficulty": 0.28
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"¿Cuánto cuesta el plato?\"",
+       "source": "¿Cuánto cuesta el plato?",
+       "value": "Quanto custa o prato?",
+       "accepted": [
+        "Quanto custa o prato?",
+        "Quanto custa o prato",
+        "Quanto é o prato?",
+        "Quanto é o prato"
+       ],
+       "difficulty": 0.28
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena las palabras: \"Hay mucha gente aquí.\"",
+       "tiles": [
+        "Tem",
+        "muita",
+        "gente",
+        "aqui"
+       ],
+       "value": "Tem muita gente aqui",
+       "difficulty": 0.28
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "options": [
+        "Quanto custa essa camiseta?",
+        "Eu quero um pouco de arroz.",
+        "O preço está muito caro hoje."
+       ],
+       "value": "Quanto custa essa camiseta?",
+       "source": "Quanto custa essa camiseta?",
+       "difficulty": 0.28
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "Quanto custa? Eu quero só um pouco, por favor.",
+       "difficulty": 0.28
+      }
+     ]
+    },
+    {
+     "title": "Fazer compras",
+     "topic": "ir_de_compras_en_la_tienda",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra de compras con su traducción.",
+       "pairs": [
+        [
+         "a loja",
+         "la tienda"
+        ],
+        [
+         "o troco",
+         "el cambio (vuelto)"
+        ],
+        [
+         "o preço",
+         "el precio"
+        ]
+       ],
+       "difficulty": 0.28
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "En la tienda, ¿cómo pides probarte algo?",
+       "options": [
+        "Posso experimentar?",
+        "Posso pagar a conta?",
+        "Posso ver o cardápio?"
+       ],
+       "value": "Posso experimentar?",
+       "difficulty": 0.3
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Vou pagar com ___.\" (forma de pago)",
+       "options": [
+        "cartão",
+        "cardápio",
+        "garçom"
+       ],
+       "value": "cartão",
+       "difficulty": 0.3
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"Esta camisa é muito ___; não tenho dinheiro.\" (contrario de barato)",
+       "text": "Esta camisa é muito ___; não tenho dinheiro.",
+       "accepted": [
+        "cara",
+        "Cara"
+       ],
+       "difficulty": 0.32
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Yo quisiera comprar estos zapatos.\"",
+       "source": "Yo quisiera comprar estos zapatos.",
+       "value": "Eu queria comprar estes sapatos.",
+       "accepted": [
+        "Eu queria comprar estes sapatos.",
+        "Eu queria comprar estes sapatos",
+        "Eu queria comprar esses sapatos.",
+        "Eu queria comprar esses sapatos"
+       ],
+       "difficulty": 0.32
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"¿Aceptan tarjeta?\"",
+       "tiles": [
+        "Vocês",
+        "aceitam",
+        "cartão",
+        "troco",
+        "loja"
+       ],
+       "sequence": [
+        "Vocês",
+        "aceitam",
+        "cartão"
+       ],
+       "difficulty": 0.32
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "options": [
+        "Você aceita cartão ou dinheiro?",
+        "O troco está na mesa do garçom.",
+        "A loja abre só de manhã."
+       ],
+       "value": "Você aceita cartão ou dinheiro?",
+       "source": "Você aceita cartão ou dinheiro?",
+       "difficulty": 0.32
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "Eu queria comprar esta camisa. Vocês aceitam cartão?",
+       "difficulty": 0.32
+      }
+     ]
+    },
+    {
+     "title": "Comparar: mais... que",
+     "topic": "comparar_con_mais_do_que",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada comparación con su traducción.",
+       "pairs": [
+        [
+         "mais caro do que",
+         "más caro que"
+        ],
+        [
+         "mais barato do que",
+         "más barato que"
+        ],
+        [
+         "mais gostoso do que",
+         "más sabroso que"
+        ]
+       ],
+       "difficulty": 0.32
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa la comparación: \"O suco é mais barato ___ o refrigerante.\"",
+       "options": [
+        "do que",
+        "muito",
+        "um pouco"
+       ],
+       "value": "do que",
+       "difficulty": 0.34
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "¿Cómo dices \"este plato es más rico que aquel\"?",
+       "options": [
+        "Este prato é mais gostoso do que aquele.",
+        "Este prato é muito pouco gostoso.",
+        "Este prato custa quanto reais."
+       ],
+       "value": "Este prato é mais gostoso do que aquele.",
+       "difficulty": 0.36
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa la comparación: \"A pizza é ___ cara do que a salada.\"",
+       "text": "A pizza é ___ cara do que a salada.",
+       "accepted": [
+        "mais",
+        "Mais"
+       ],
+       "difficulty": 0.38
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"El café es más barato que el jugo.\"",
+       "source": "El café es más barato que el jugo.",
+       "value": "O café é mais barato do que o suco.",
+       "accepted": [
+        "O café é mais barato do que o suco.",
+        "O café é mais barato do que o suco",
+        "O café é mais barato que o suco.",
+        "O café é mais barato que o suco"
+       ],
+       "difficulty": 0.4
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena las palabras: \"Esta tienda es más cara.\"",
+       "tiles": [
+        "Esta",
+        "loja",
+        "é",
+        "mais",
+        "cara"
+       ],
+       "value": "Esta loja é mais cara",
+       "difficulty": 0.4
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "options": [
+        "O peixe é mais caro do que o frango.",
+        "O frango é um pouco barato hoje.",
+        "A conta é mais alta que o cardápio."
+       ],
+       "value": "O peixe é mais caro do que o frango.",
+       "source": "O peixe é mais caro do que o frango.",
+       "difficulty": 0.42
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "Este restaurante é mais barato do que aquele, mas a comida é mais gostosa.",
+       "difficulty": 0.42
+      }
+     ]
+    }
+   ],
+   "checkpoint": [
+    {
+     "type": "multiple_choice",
+     "skill": "reading",
+     "prompt": "Completa el pedido educado en el restaurante: \"___ um suco de laranja, por favor.\"",
+     "options": [
+      "Eu queria",
+      "Eu quanto",
+      "Eu troco"
+     ],
+     "value": "Eu queria",
+     "difficulty": 0.3
+    },
+    {
+     "type": "match",
+     "skill": "reading",
+     "prompt": "Empareja cada palabra con su traducción.",
+     "pairs": [
+      [
+       "a bebida",
+       "la bebida"
+      ],
+      [
+       "barato",
+       "barato"
+      ],
+      [
+       "o preço",
+       "el precio"
+      ]
+     ],
+     "difficulty": 0.3
+    },
+    {
+     "type": "multiple_choice",
+     "skill": "reading",
+     "prompt": "Completa la comparación: \"O metrô é mais rápido ___ o ônibus.\"",
+     "options": [
+      "do que",
+      "muito",
+      "um pouco"
+     ],
+     "value": "do que",
+     "difficulty": 0.36
+    },
+    {
+     "type": "cloze",
+     "skill": "writing",
+     "prompt": "Completa para preguntar el precio: \"___ custa a sobremesa?\"",
+     "text": "___ custa a sobremesa?",
+     "accepted": [
+      "Quanto",
+      "quanto"
+     ],
+     "difficulty": 0.34
+    },
+    {
+     "type": "translation",
+     "skill": "writing",
+     "prompt": "Traduce: \"El vestido es más caro que la falda.\"",
+     "source": "El vestido es más caro que la falda.",
+     "value": "O vestido é mais caro do que a saia.",
+     "accepted": [
+      "O vestido é mais caro do que a saia.",
+      "O vestido é mais caro do que a saia",
+      "O vestido é mais caro que a saia.",
+      "O vestido é mais caro que a saia"
+     ],
+     "difficulty": 0.4
+    },
+    {
+     "type": "word_bank",
+     "skill": "writing",
+     "prompt": "Arma la frase: \"¿Aceptan tarjeta aquí?\"",
+     "tiles": [
+      "Vocês",
+      "aceitam",
+      "cartão",
+      "aqui",
+      "conta",
+      "preço"
+     ],
+     "sequence": [
+      "Vocês",
+      "aceitam",
+      "cartão",
+      "aqui"
+     ],
+     "difficulty": 0.38
+    },
+    {
+     "type": "listening",
+     "skill": "listening",
+     "prompt": "Escucha y elige la frase que oíste.",
+     "options": [
+      "Coloca só um pouco de açúcar no meu chá.",
+      "Tem muita gente na loja hoje.",
+      "O troco é de dez reais."
+     ],
+     "value": "Coloca só um pouco de açúcar no meu chá.",
+     "source": "Coloca só um pouco de açúcar no meu chá.",
+     "difficulty": 0.36
+    },
+    {
+     "type": "listening",
+     "skill": "listening",
+     "prompt": "Escucha y elige la frase que oíste.",
+     "options": [
+      "Esta loja é mais barata do que aquela.",
+      "O garçom trouxe o cardápio agora.",
+      "A sobremesa custa oito reais."
+     ],
+     "value": "Esta loja é mais barata do que aquela.",
+     "source": "Esta loja é mais barata do que aquela.",
+     "difficulty": 0.42
+    },
+    {
+     "type": "speaking_read_aloud",
+     "skill": "speaking",
+     "prompt": "Lee en voz alta:",
+     "text": "Quanto custa? Eu queria pagar com cartão, por favor.",
+     "difficulty": 0.38
+    },
+    {
+     "type": "speaking_read_aloud",
+     "skill": "speaking",
+     "prompt": "Lee en voz alta:",
+     "text": "A salada é mais barata do que a pizza, mas eu queria as duas.",
+     "difficulty": 0.42
+    }
+   ]
+  },
+  {
+   "U": 11,
+   "title": "Personas y descripciones",
+   "theme_color": "#8E44AD",
+   "icon": "face",
+   "checkpoint_description": "Demuestra que sabes describir a las personas y los lugares en portugués de Brasil. Usa adjetivos de apariencia y personalidad, el presente continuo (estar + gerúndio) y los superlativos con \"o mais\". Las frases son nuevas para medir si transfieres lo aprendido.",
+   "checkpoint": [
+    {
+     "type": "match",
+     "skill": "reading",
+     "prompt": "Relaciona el portugués con su traducción.",
+     "pairs": [
+      [
+       "magro",
+       "delgado"
+      ],
+      [
+       "estudando",
+       "estudiando"
+      ],
+      [
+       "o melhor",
+       "el mejor"
+      ]
+     ],
+     "difficulty": 0.3
+    },
+    {
+     "type": "multiple_choice",
+     "skill": "reading",
+     "prompt": "¿Cómo se dice \"Mi madre está cocinando ahora\"?",
+     "options": [
+      "Minha mãe está cozinhando agora.",
+      "Minha mãe cozinha muito bem.",
+      "Minha mãe vai cozinhar hoje."
+     ],
+     "value": "Minha mãe está cozinhando agora.",
+     "difficulty": 0.32
+    },
+    {
+     "type": "multiple_choice",
+     "skill": "reading",
+     "prompt": "Elige el superlativo correcto: \"Es el día más caluroso del año\".",
+     "options": [
+      "É o dia mais quente do ano.",
+      "É um dia muito quente.",
+      "É o dia tão quente quanto ontem."
+     ],
+     "value": "É o dia mais quente do ano.",
+     "difficulty": 0.36
+    },
+    {
+     "type": "cloze",
+     "skill": "writing",
+     "prompt": "Completa con el gerundio: \"Mi padre está trabajando en el jardín\".",
+     "text": "Meu pai está ___ no jardim.",
+     "accepted": [
+      "trabalhando"
+     ],
+     "difficulty": 0.34
+    },
+    {
+     "type": "translation",
+     "skill": "writing",
+     "prompt": "Traduce al portugués: \"Mi hermana es tímida pero muy inteligente\".",
+     "source": "Mi hermana es tímida pero muy inteligente.",
+     "value": "Minha irmã é tímida mas muito inteligente.",
+     "accepted": [
+      "Minha irmã é tímida mas muito inteligente.",
+      "Minha irmã é tímida mas muito inteligente",
+      "Minha irmã é tímida, mas muito inteligente.",
+      "Minha irmã é tímida, mas muito inteligente",
+      "Minha irmã é tímida porém muito inteligente.",
+      "Minha irmã é tímida porém muito inteligente"
+     ],
+     "difficulty": 0.4
+    },
+    {
+     "type": "word_bank",
+     "skill": "writing",
+     "prompt": "Ordena las palabras: \"Él es el más alto de la familia\".",
+     "tiles": [
+      "Ele",
+      "é",
+      "o",
+      "mais",
+      "alto",
+      "da",
+      "família",
+      "menor"
+     ],
+     "sequence": [
+      "Ele",
+      "é",
+      "o",
+      "mais",
+      "alto",
+      "da",
+      "família"
+     ],
+     "difficulty": 0.4
+    },
+    {
+     "type": "listening",
+     "skill": "listening",
+     "prompt": "Escucha y elige lo que oyes.",
+     "text": "Eles estão jogando futebol no parque.",
+     "options": [
+      "Eles estão jogando futebol no parque.",
+      "Eles estão estudando na escola.",
+      "Eles estão correndo na praia."
+     ],
+     "value": "Eles estão jogando futebol no parque.",
+     "difficulty": 0.38
+    },
+    {
+     "type": "listening",
+     "skill": "listening",
+     "prompt": "Escucha y elige lo que oyes.",
+     "text": "Esta é a cidade mais bonita do país.",
+     "options": [
+      "Esta é a cidade mais bonita do país.",
+      "Esta é a cidade mais antiga do país.",
+      "Esta é a cidade mais cara do país."
+     ],
+     "value": "Esta é a cidade mais bonita do país.",
+     "difficulty": 0.4
+    },
+    {
+     "type": "speaking_read_aloud",
+     "skill": "speaking",
+     "prompt": "Lee en voz alta describiendo a un amigo.",
+     "text": "Meu melhor amigo é alto, simpático e muito engraçado.",
+     "difficulty": 0.4
+    },
+    {
+     "type": "speaking_read_aloud",
+     "skill": "speaking",
+     "prompt": "Lee en voz alta esta frase.",
+     "text": "Agora estou estudando para a prova mais importante do ano.",
+     "difficulty": 0.44
+    }
+   ],
+   "vocab": [
+    {
+     "word": "alto",
+     "translation": "alto",
+     "pos": "adj"
+    },
+    {
+     "word": "baixo",
+     "translation": "bajo",
+     "pos": "adj"
+    },
+    {
+     "word": "magro",
+     "translation": "delgado",
+     "pos": "adj"
+    },
+    {
+     "word": "gordo",
+     "translation": "gordo",
+     "pos": "adj"
+    },
+    {
+     "word": "simpático",
+     "translation": "simpático",
+     "pos": "adj"
+    },
+    {
+     "word": "tímido",
+     "translation": "tímido",
+     "pos": "adj"
+    },
+    {
+     "word": "inteligente",
+     "translation": "inteligente",
+     "pos": "adj"
+    },
+    {
+     "word": "engraçado",
+     "translation": "gracioso",
+     "pos": "adj"
+    },
+    {
+     "word": "o cabelo",
+     "translation": "el cabello",
+     "pos": "n"
+    },
+    {
+     "word": "os olhos",
+     "translation": "los ojos",
+     "pos": "n"
+    },
+    {
+     "word": "trabalhando",
+     "translation": "trabajando",
+     "pos": "ger"
+    },
+    {
+     "word": "estudando",
+     "translation": "estudiando",
+     "pos": "ger"
+    },
+    {
+     "word": "o mais",
+     "translation": "el más",
+     "pos": "phr"
+    },
+    {
+     "word": "do que",
+     "translation": "que (comparativo)",
+     "pos": "phr"
+    },
+    {
+     "word": "a pessoa",
+     "translation": "la persona",
+     "pos": "n"
+    },
+    {
+     "word": "bonito",
+     "translation": "bonito/guapo",
+     "pos": "adj"
+    },
+    {
+     "word": "velho",
+     "translation": "viejo",
+     "pos": "adj"
+    },
+    {
+     "word": "novo",
+     "translation": "nuevo",
+     "pos": "adj"
+    }
+   ],
+   "lessons": [
+    {
+     "title": "Apariencia y personalidad",
+     "topic": "L1",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Relaciona los adjetivos en portugués con su traducción.",
+       "pairs": [
+        [
+         "alto",
+         "alto"
+        ],
+        [
+         "simpático",
+         "simpático"
+        ],
+        [
+         "tímido",
+         "tímido"
+        ]
+       ],
+       "difficulty": 0.18
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "¿Cómo se dice \"Ella tiene el cabello largo\"?",
+       "options": [
+        "Ela tem o cabelo comprido.",
+        "Ela tem os olhos verdes.",
+        "Ela tem o cabelo curto."
+       ],
+       "value": "Ela tem o cabelo comprido.",
+       "difficulty": 0.2
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Elige la frase que describe la personalidad: \"Mi hermano es muy gracioso\".",
+       "options": [
+        "Meu irmão é muito engraçado.",
+        "Meu irmão é muito alto.",
+        "Meu irmão é muito magro."
+       ],
+       "value": "Meu irmão é muito engraçado.",
+       "difficulty": 0.22
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"Ana es muy simpática\".",
+       "text": "Ana é muito ___.",
+       "accepted": [
+        "simpática"
+       ],
+       "difficulty": 0.24
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce al portugués: \"Él es alto y delgado\".",
+       "source": "Él es alto y delgado.",
+       "value": "Ele é alto e magro.",
+       "accepted": [
+        "Ele é alto e magro.",
+        "Ele é alto e magro",
+        "Ele e alto e magro.",
+        "Ele e alto e magro"
+       ],
+       "difficulty": 0.26
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Ordena las palabras: \"Ella tiene los ojos azules\".",
+       "tiles": [
+        "Ela",
+        "tem",
+        "os",
+        "olhos",
+        "azuis",
+        "verdes"
+       ],
+       "sequence": [
+        "Ela",
+        "tem",
+        "os",
+        "olhos",
+        "azuis"
+       ],
+       "difficulty": 0.28
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oyes.",
+       "text": "Ele é muito tímido.",
+       "options": [
+        "Ele é muito tímido.",
+        "Ele é muito alto.",
+        "Ele é muito simpático."
+       ],
+       "value": "Ele é muito tímido.",
+       "difficulty": 0.24
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta describiendo a una persona.",
+       "text": "Minha amiga é inteligente e engraçada.",
+       "difficulty": 0.26
+      }
+     ]
+    },
+    {
+     "title": "Está fazendo: presente contínuo",
+     "topic": "L2",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Relaciona el gerundio en portugués con su traducción.",
+       "pairs": [
+        [
+         "trabalhando",
+         "trabajando"
+        ],
+        [
+         "estudando",
+         "estudiando"
+        ],
+        [
+         "comendo",
+         "comiendo"
+        ]
+       ],
+       "difficulty": 0.2
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "¿Cómo se dice \"Estoy estudiando portugués ahora\"?",
+       "options": [
+        "Estou estudando português agora.",
+        "Estudo português todos os dias.",
+        "Vou estudar português amanhã."
+       ],
+       "value": "Estou estudando português agora.",
+       "difficulty": 0.24
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Elige la forma correcta: \"Ella está trabajando\".",
+       "options": [
+        "Ela está trabalhando.",
+        "Ela está trabalhar.",
+        "Ela está trabalha."
+       ],
+       "value": "Ela está trabalhando.",
+       "difficulty": 0.26
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con el gerundio: \"Nosotros estamos comiendo\".",
+       "text": "Nós estamos ___.",
+       "accepted": [
+        "comendo"
+       ],
+       "difficulty": 0.28
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce al portugués: \"Ellos están viendo televisión\".",
+       "source": "Ellos están viendo televisión.",
+       "value": "Eles estão assistindo televisão.",
+       "accepted": [
+        "Eles estão assistindo televisão.",
+        "Eles estão assistindo televisão",
+        "Eles estão assistindo à televisão.",
+        "Eles estão assistindo à televisão",
+        "Eles estão assistindo TV.",
+        "Eles estão assistindo TV",
+        "Eles estão vendo televisão.",
+        "Eles estão vendo televisão"
+       ],
+       "difficulty": 0.3
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena las palabras: \"Yo estoy hablando al teléfono\".",
+       "tiles": [
+        "Eu",
+        "estou",
+        "falando",
+        "ao",
+        "telefone"
+       ],
+       "sequence": [
+        "Eu",
+        "estou",
+        "falando",
+        "ao",
+        "telefone"
+       ],
+       "difficulty": 0.32
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oyes.",
+       "text": "Ela está dormindo agora.",
+       "options": [
+        "Ela está dormindo agora.",
+        "Ela está cozinhando agora.",
+        "Ela está cantando agora."
+       ],
+       "value": "Ela está dormindo agora.",
+       "difficulty": 0.28
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta lo que estás haciendo.",
+       "text": "Eu estou fazendo o meu trabalho agora.",
+       "difficulty": 0.3
+      }
+     ]
+    },
+    {
+     "title": "Adjetivos para describir",
+     "topic": "L3",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Relaciona el adjetivo en portugués con su traducción.",
+       "pairs": [
+        [
+         "bonito",
+         "bonito"
+        ],
+        [
+         "velho",
+         "viejo"
+        ],
+        [
+         "novo",
+         "nuevo"
+        ]
+       ],
+       "difficulty": 0.22
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "¿Cómo se dice \"La casa es grande y bonita\"?",
+       "options": [
+        "A casa é grande e bonita.",
+        "A casa é pequena e feia.",
+        "A casa é grande e velha."
+       ],
+       "value": "A casa é grande e bonita.",
+       "difficulty": 0.26
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Elige la concordancia correcta: \"Las chicas son simpáticas\".",
+       "options": [
+        "As meninas são simpáticas.",
+        "As meninas são simpático.",
+        "As meninas é simpáticas."
+       ],
+       "value": "As meninas são simpáticas.",
+       "difficulty": 0.28
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con el adjetivo: \"El carro es nuevo\".",
+       "text": "O carro é ___.",
+       "accepted": [
+        "novo"
+       ],
+       "difficulty": 0.3
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce al portugués: \"Esta ciudad es muy bonita\".",
+       "source": "Esta ciudad es muy bonita.",
+       "value": "Esta cidade é muito bonita.",
+       "accepted": [
+        "Esta cidade é muito bonita.",
+        "Esta cidade é muito bonita",
+        "Essa cidade é muito bonita.",
+        "Essa cidade é muito bonita"
+       ],
+       "difficulty": 0.32
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Ordena las palabras: \"El restaurante es pequeño pero agradable\".",
+       "tiles": [
+        "O",
+        "restaurante",
+        "é",
+        "pequeno",
+        "mas",
+        "agradável",
+        "grande"
+       ],
+       "sequence": [
+        "O",
+        "restaurante",
+        "é",
+        "pequeno",
+        "mas",
+        "agradável"
+       ],
+       "difficulty": 0.34
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oyes.",
+       "text": "O hotel é confortável e limpo.",
+       "options": [
+        "O hotel é confortável e limpo.",
+        "O hotel é caro e sujo.",
+        "O hotel é pequeno e velho."
+       ],
+       "value": "O hotel é confortável e limpo.",
+       "difficulty": 0.32
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta describiendo un lugar.",
+       "text": "O parque é grande, bonito e muito tranquilo.",
+       "difficulty": 0.34
+      }
+     ]
+    },
+    {
+     "title": "O mais…: superlativos",
+     "topic": "L4",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Relaciona las expresiones comparativas en portugués con su traducción.",
+       "pairs": [
+        [
+         "o mais alto",
+         "el más alto"
+        ],
+        [
+         "o melhor",
+         "el mejor"
+        ],
+        [
+         "o maior",
+         "el más grande"
+        ]
+       ],
+       "difficulty": 0.26
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "¿Cómo se dice \"Él es el más inteligente de la clase\"?",
+       "options": [
+        "Ele é o mais inteligente da turma.",
+        "Ele é mais inteligente que eu.",
+        "Ele é muito inteligente hoje."
+       ],
+       "value": "Ele é o mais inteligente da turma.",
+       "difficulty": 0.3
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Elige el comparativo: \"São Paulo es más grande que Curitiba\".",
+       "options": [
+        "São Paulo é maior do que Curitiba.",
+        "São Paulo é menor do que Curitiba.",
+        "São Paulo é tão grande quanto Curitiba."
+       ],
+       "value": "São Paulo é maior do que Curitiba.",
+       "difficulty": 0.32
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa el superlativo: \"Es la playa más bonita\".",
+       "text": "É a praia ___ bonita.",
+       "accepted": [
+        "mais"
+       ],
+       "difficulty": 0.34
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce al portugués: \"Ella es la más simpática del grupo\".",
+       "source": "Ella es la más simpática del grupo.",
+       "value": "Ela é a mais simpática do grupo.",
+       "accepted": [
+        "Ela é a mais simpática do grupo.",
+        "Ela é a mais simpática do grupo"
+       ],
+       "difficulty": 0.38
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena las palabras: \"Este es el restaurante más caro de la ciudad\".",
+       "tiles": [
+        "Este",
+        "é",
+        "o",
+        "restaurante",
+        "mais",
+        "caro",
+        "da",
+        "cidade"
+       ],
+       "sequence": [
+        "Este",
+        "é",
+        "o",
+        "restaurante",
+        "mais",
+        "caro",
+        "da",
+        "cidade"
+       ],
+       "difficulty": 0.4
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oyes.",
+       "text": "Ela é a pessoa mais engraçada do escritório.",
+       "options": [
+        "Ela é a pessoa mais engraçada do escritório.",
+        "Ela é a pessoa mais alta do escritório.",
+        "Ela é a pessoa mais tímida do escritório."
+       ],
+       "value": "Ela é a pessoa mais engraçada do escritório.",
+       "difficulty": 0.4
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta esta comparación.",
+       "text": "O Rio de Janeiro é uma das cidades mais bonitas do Brasil.",
+       "difficulty": 0.42
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "U": 12,
+   "title": "Saúde, experiências e conselhos",
+   "theme_color": "#D4A017",
+   "icon": "healing",
+   "checkpoint_description": "En esta unidad hablas de salud: las partes del cuerpo y lo que pasa en el médico (estou com dor, o que você tem). Aprendes a dar consejos con deveria (debería) y tem que (tienes que). Cuentas experiencias con o pretérito perfeito y los marcadores já (ya) y nunca, y dices hace cuánto tiempo pasó algo usando há y atrás.",
+   "vocab": [
+    {
+     "word": "a saúde",
+     "translation": "la salud",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "o corpo",
+     "translation": "el cuerpo",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "a cabeça",
+     "translation": "la cabeza",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "a garganta",
+     "translation": "la garganta",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "o estômago",
+     "translation": "el estómago",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "a febre",
+     "translation": "la fiebre",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "a dor",
+     "translation": "el dolor",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "o médico",
+     "translation": "el médico",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "o remédio",
+     "translation": "el remedio/medicamento",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "doente",
+     "translation": "enfermo",
+     "pos": "adjetivo"
+    },
+    {
+     "word": "deveria",
+     "translation": "debería",
+     "pos": "verbo"
+    },
+    {
+     "word": "ter que",
+     "translation": "tener que",
+     "pos": "verbo"
+    },
+    {
+     "word": "descansar",
+     "translation": "descansar",
+     "pos": "verbo"
+    },
+    {
+     "word": "já",
+     "translation": "ya",
+     "pos": "adverbio"
+    },
+    {
+     "word": "nunca",
+     "translation": "nunca",
+     "pos": "adverbio"
+    },
+    {
+     "word": "atrás",
+     "translation": "atrás (hace)",
+     "pos": "adverbio"
+    }
+   ],
+   "lessons": [
+    {
+     "title": "El cuerpo y el médico",
+     "topic": "Partes del cuerpo y hablar de síntomas en el médico",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra del cuerpo con su traducción.",
+       "difficulty": 0.18,
+       "pairs": [
+        [
+         "a cabeça",
+         "la cabeza"
+        ],
+        [
+         "a garganta",
+         "la garganta"
+        ],
+        [
+         "o estômago",
+         "el estómago"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa en el médico: \"Estou com dor de ___.\" (cabeza)",
+       "difficulty": 0.2,
+       "options": [
+        "cabeça",
+        "garganta",
+        "febre"
+       ],
+       "value": "cabeça"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "El médico pregunta. ¿Cómo dices \"¿qué tienes?\" / \"¿qué te pasa?\"?",
+       "difficulty": 0.22,
+       "options": [
+        "O que você tem?",
+        "Quem é você?",
+        "Onde você mora?"
+       ],
+       "value": "O que você tem?"
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"Estou com ___ alta, acho que estou doente.\" (fiebre)",
+       "difficulty": 0.22,
+       "text": "Estou com ___ alta, acho que estou doente.",
+       "value": "febre",
+       "accepted": [
+        "febre",
+        "Febre"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Me duele la garganta.\"",
+       "difficulty": 0.24,
+       "source": "Me duele la garganta.",
+       "value": "Estou com dor de garganta",
+       "accepted": [
+        "Estou com dor de garganta",
+        "Estou com dor de garganta.",
+        "Minha garganta dói",
+        "Minha garganta dói.",
+        "A minha garganta dói",
+        "A minha garganta dói.",
+        "Tô com dor de garganta",
+        "Tô com dor de garganta.",
+        "Estou com dor na garganta",
+        "Estou com dor na garganta."
+       ]
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"Necesito ir al médico\".",
+       "difficulty": 0.24,
+       "tiles": [
+        "Preciso",
+        "ir",
+        "ao",
+        "médico",
+        "remédio",
+        "corpo"
+       ],
+       "sequence": [
+        "Preciso",
+        "ir",
+        "ao",
+        "médico"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "difficulty": 0.22,
+       "options": [
+        "Estou com dor de estômago hoje.",
+        "Estou com fome agora.",
+        "Vou ao mercado hoje."
+       ],
+       "value": "Estou com dor de estômago hoje."
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.2,
+       "text": "Bom dia, doutor. Estou com febre e dor de cabeça."
+      }
+     ]
+    },
+    {
+     "title": "Consejos: deveria / tem que",
+     "topic": "Dar consejos y recomendaciones con deveria y tem que",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada expresión con su traducción.",
+       "difficulty": 0.24,
+       "pairs": [
+        [
+         "você deveria",
+         "tú deberías"
+        ],
+        [
+         "você tem que",
+         "tú tienes que"
+        ],
+        [
+         "descansar",
+         "descansar"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa el consejo: \"Você está doente, ___ descansar mais.\" (deberías)",
+       "difficulty": 0.26,
+       "options": [
+        "deveria",
+        "gosta",
+        "tem"
+       ],
+       "value": "deveria"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa la obligación: \"Você ___ que tomar o remédio agora.\"",
+       "difficulty": 0.26,
+       "options": [
+        "tem",
+        "deve",
+        "é"
+       ],
+       "value": "tem"
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa el consejo: \"Você ___ beber mais água.\" (deberías)",
+       "difficulty": 0.28,
+       "text": "Você ___ beber mais água.",
+       "value": "deveria",
+       "accepted": [
+        "deveria",
+        "Deveria"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Tienes que descansar hoy.\"",
+       "difficulty": 0.3,
+       "source": "Tienes que descansar hoy.",
+       "value": "Você tem que descansar hoje",
+       "accepted": [
+        "Você tem que descansar hoje",
+        "Você tem que descansar hoje.",
+        "Tem que descansar hoje",
+        "Tem que descansar hoje.",
+        "Você tem de descansar hoje",
+        "Você tem de descansar hoje.",
+        "Tem de descansar hoje",
+        "Tem de descansar hoje."
+       ]
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"Deberías ir al médico\".",
+       "difficulty": 0.3,
+       "value": "Você deveria ir ao médico",
+       "tiles": [
+        "Você",
+        "deveria",
+        "ir",
+        "ao",
+        "médico"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "difficulty": 0.28,
+       "options": [
+        "Você deveria tomar um chá quente.",
+        "Você deveria comprar um carro novo.",
+        "Você tem que estudar para a prova."
+       ],
+       "value": "Você deveria tomar um chá quente."
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.28,
+       "text": "Você tem que descansar e deveria beber bastante água."
+      }
+     ]
+    },
+    {
+     "title": "Já / nunca: experiencias",
+     "topic": "Hablar de experiencias con pretérito perfeito y já / nunca",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada frase con su traducción.",
+       "difficulty": 0.3,
+       "pairs": [
+        [
+         "eu já fui",
+         "ya fui"
+        ],
+        [
+         "eu nunca tomei",
+         "nunca tomé"
+        ],
+        [
+         "você já comeu?",
+         "¿ya comiste?"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa la pregunta sobre experiencia: \"Você ___ foi ao hospital?\" (ya)",
+       "difficulty": 0.32,
+       "options": [
+        "já",
+        "ainda",
+        "ontem"
+       ],
+       "value": "já"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Eu ___ tomei esse remédio na vida.\" (nunca)",
+       "difficulty": 0.32,
+       "options": [
+        "nunca",
+        "já",
+        "sempre"
+       ],
+       "value": "nunca"
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"Eu já ___ ao médico esta semana.\" (verbo ir, pretérito)",
+       "difficulty": 0.34,
+       "text": "Eu já ___ ao médico esta semana.",
+       "value": "fui",
+       "accepted": [
+        "fui",
+        "Fui"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Nunca tuve fiebre alta.\"",
+       "difficulty": 0.36,
+       "source": "Nunca tuve fiebre alta.",
+       "value": "Eu nunca tive febre alta",
+       "accepted": [
+        "Eu nunca tive febre alta",
+        "Eu nunca tive febre alta.",
+        "Nunca tive febre alta",
+        "Nunca tive febre alta.",
+        "Eu nunca tive uma febre alta",
+        "Eu nunca tive uma febre alta."
+       ]
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"Yo ya tomé el remedio\".",
+       "difficulty": 0.36,
+       "tiles": [
+        "Eu",
+        "já",
+        "tomei",
+        "o",
+        "remédio",
+        "nunca",
+        "vou"
+       ],
+       "sequence": [
+        "Eu",
+        "já",
+        "tomei",
+        "o",
+        "remédio"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "difficulty": 0.34,
+       "options": [
+        "Eu nunca fui ao dentista.",
+        "Eu já fui ao dentista ontem.",
+        "Eu vou ao dentista amanhã."
+       ],
+       "value": "Eu nunca fui ao dentista."
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.34,
+       "text": "Você já tomou esse remédio? Eu nunca tomei."
+      }
+     ]
+    },
+    {
+     "title": "Há / atrás: hace cuánto",
+     "topic": "Decir hace cuánto tiempo pasó algo con há y atrás",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada expresión de tiempo con su traducción.",
+       "difficulty": 0.36,
+       "pairs": [
+        [
+         "há dois dias",
+         "hace dos días"
+        ],
+        [
+         "uma semana atrás",
+         "hace una semana"
+        ],
+        [
+         "há muito tempo",
+         "hace mucho tiempo"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Fiquei doente ___ três dias.\" (hace)",
+       "difficulty": 0.38,
+       "options": [
+        "há",
+        "tem",
+        "em"
+       ],
+       "value": "há"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa con \"atrás\": \"Fui ao médico uma semana ___.\"",
+       "difficulty": 0.38,
+       "options": [
+        "atrás",
+        "antes",
+        "depois"
+       ],
+       "value": "atrás"
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con \"há\": \"Tomei o remédio ___ duas horas.\" (hace)",
+       "difficulty": 0.4,
+       "text": "Tomei o remédio ___ duas horas.",
+       "value": "há",
+       "accepted": [
+        "há",
+        "Há"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Fui al hospital hace dos meses.\"",
+       "difficulty": 0.42,
+       "source": "Fui al hospital hace dos meses.",
+       "value": "Eu fui ao hospital há dois meses",
+       "accepted": [
+        "Eu fui ao hospital há dois meses",
+        "Eu fui ao hospital há dois meses.",
+        "Fui ao hospital há dois meses",
+        "Fui ao hospital há dois meses.",
+        "Eu fui ao hospital dois meses atrás",
+        "Fui ao hospital dois meses atrás",
+        "Eu fui ao hospital dois meses atrás.",
+        "Fui ao hospital dois meses atrás."
+       ]
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"Tuve fiebre hace tres días\".",
+       "difficulty": 0.42,
+       "value": "Tive febre há três dias",
+       "tiles": [
+        "Tive",
+        "febre",
+        "há",
+        "três",
+        "dias"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "difficulty": 0.4,
+       "options": [
+        "Fiquei doente há uma semana.",
+        "Vou ficar doente amanhã.",
+        "Estou doente faz um ano inteiro."
+       ],
+       "value": "Fiquei doente há uma semana."
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.4,
+       "text": "Eu fui ao médico há dois dias porque estava com muita dor."
+      }
+     ]
+    }
+   ],
+   "checkpoint": [
+    {
+     "type": "multiple_choice",
+     "skill": "reading",
+     "prompt": "Completa en el médico: \"Estou com dor de ___, não consigo comer.\" (estómago)",
+     "difficulty": 0.3,
+     "options": [
+      "estômago",
+      "cabeça",
+      "garganta"
+     ],
+     "value": "estômago"
+    },
+    {
+     "type": "match",
+     "skill": "reading",
+     "prompt": "Empareja cada frase con su traducción.",
+     "difficulty": 0.32,
+     "pairs": [
+      [
+       "você deveria",
+       "tú deberías"
+      ],
+      [
+       "há dois dias",
+       "hace dos días"
+      ],
+      [
+       "eu nunca tive",
+       "nunca tuve"
+      ]
+     ]
+    },
+    {
+     "type": "multiple_choice",
+     "skill": "reading",
+     "prompt": "Completa la experiencia: \"Você ___ tomou uma injeção?\" (ya)",
+     "difficulty": 0.34,
+     "options": [
+      "já",
+      "atrás",
+      "tem"
+     ],
+     "value": "já"
+    },
+    {
+     "type": "cloze",
+     "skill": "writing",
+     "prompt": "Completa el consejo: \"Você está com febre, ___ ficar em casa.\" (deberías)",
+     "difficulty": 0.36,
+     "text": "Você está com febre, ___ ficar em casa.",
+     "value": "deveria",
+     "accepted": [
+      "deveria",
+      "Deveria"
+     ]
+    },
+    {
+     "type": "translation",
+     "skill": "writing",
+     "prompt": "Traduce: \"Tienes que tomar el remedio dos veces al día.\"",
+     "difficulty": 0.4,
+     "source": "Tienes que tomar el remedio dos veces al día.",
+     "value": "Você tem que tomar o remédio duas vezes por dia",
+     "accepted": [
+      "Você tem que tomar o remédio duas vezes por dia",
+      "Você tem que tomar o remédio duas vezes por dia.",
+      "Tem que tomar o remédio duas vezes por dia",
+      "Tem que tomar o remédio duas vezes por dia.",
+      "Você tem que tomar o remédio duas vezes ao dia",
+      "Você tem que tomar o remédio duas vezes ao dia.",
+      "Tem que tomar o remédio duas vezes ao dia",
+      "Tem que tomar o remédio duas vezes ao dia.",
+      "Você tem de tomar o remédio duas vezes por dia",
+      "Você tem de tomar o remédio duas vezes por dia."
+     ]
+    },
+    {
+     "type": "reorder",
+     "skill": "writing",
+     "prompt": "Ordena: \"Nunca fui al dentista\".",
+     "difficulty": 0.4,
+     "value": "Eu nunca fui ao dentista",
+     "tiles": [
+      "Eu",
+      "nunca",
+      "fui",
+      "ao",
+      "dentista"
+     ]
+    },
+    {
+     "type": "listening",
+     "skill": "listening",
+     "prompt": "Escucha y elige la frase que oíste.",
+     "difficulty": 0.38,
+     "options": [
+      "Eu fiquei resfriado há três dias.",
+      "Eu vou ao médico amanhã de manhã.",
+      "Eu nunca fiquei resfriado na vida."
+     ],
+     "value": "Eu fiquei resfriado há três dias."
+    },
+    {
+     "type": "listening",
+     "skill": "listening",
+     "prompt": "Escucha y elige la frase que oíste.",
+     "difficulty": 0.4,
+     "options": [
+      "Você deveria descansar e beber água.",
+      "Você precisa trabalhar mais hoje.",
+      "Você já comprou o remédio ontem."
+     ],
+     "value": "Você deveria descansar e beber água."
+    },
+    {
+     "type": "speaking_read_aloud",
+     "skill": "speaking",
+     "prompt": "Lee en voz alta:",
+     "difficulty": 0.38,
+     "text": "Estou com dor de cabeça desde ontem e nunca tomei esse remédio."
+    },
+    {
+     "type": "speaking_read_aloud",
+     "skill": "speaking",
+     "prompt": "Lee en voz alta:",
+     "difficulty": 0.42,
+     "text": "Fiquei doente há uma semana, então você tem que descansar bastante."
+    }
+   ]
+  }
+ ]
+}

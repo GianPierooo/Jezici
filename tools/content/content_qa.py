@@ -186,9 +186,9 @@ def validate(units):
 
 def main():
     mode = sys.argv[1] if len(sys.argv) > 1 else 'all'
-    if mode == 'pt':  # curso es→pt (A1, Unidades 1–6)
-        units = load(COURSE_PT, "u.cefr_level='A1' and u.order_index between 1 and 6", 'pt')
-        export_md(units, 'C:/Users/gianp/Desktop/Jezici/docs/CONTENT_EXPORT_PT.md', 'Portugués es→pt · A1 (Unidades 1–6)')
+    if mode == 'pt':  # curso es→pt (escalera completa A1–B2)
+        units = load(COURSE_PT, "u.cefr_level in ('A1','A2','B1','B2')", 'pt')
+        export_md(units, 'C:/Users/gianp/Desktop/Jezici/docs/CONTENT_EXPORT_PT.md', 'Portugués es→pt · A1–B2')
         print('[OK] export pt -> docs/CONTENT_EXPORT_PT.md')
         F = validate(units)
         print(f"\n=== VALIDADOR DETERMINISTA (es-pt A1): {len(F)} hallazgos ===")
