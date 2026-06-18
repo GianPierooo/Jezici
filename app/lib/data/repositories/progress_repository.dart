@@ -2,6 +2,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../models/achievement_models.dart';
 import '../models/checkpoint_models.dart';
+import '../models/course_models.dart';
 import '../models/league_models.dart';
 import '../models/level_exam_models.dart';
 import '../models/practice_models.dart';
@@ -17,6 +18,21 @@ class ProgressRepository {
 
   String? get _uid => _client.auth.currentUser?.id;
   bool get isSignedIn => _client.auth.currentSession != null;
+
+  // ── Multi-curso (es→en / es→pt) ────────────────────────────────────────────
+
+  /// Cursos disponibles + cuál es el activo del usuario (RPC get_courses).
+  Future<List<CourseInfo>> fetchCourses() async {
+    final res = await _client.rpc('get_courses');
+    return (res as List)
+        .map((e) => CourseInfo.fromJson(e as Map<String, dynamic>))
+        .toList();
+  }
+
+  /// Cambia el curso activo del usuario (y asegura inscripción, server-side).
+  Future<void> setActiveCourse(String courseId) async {
+    await _client.rpc('set_active_course', params: {'p_course_id': courseId});
+  }
 
   /// Sesión anónima temporal (el onboarding real es el paso G).
   Future<void> ensureSignedIn() async {

@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'models/achievement_models.dart';
 import 'models/content_item_model.dart';
+import 'models/course_models.dart';
 import 'models/league_models.dart';
 import 'models/level_exam_models.dart';
 import 'models/practice_models.dart';
@@ -22,10 +23,24 @@ final contentRepositoryProvider = Provider<ContentRepository>(
   (ref) => ContentRepository(ref.watch(supabaseClientProvider)),
 );
 
-/// Unidades del curso (con lecciones). Alimenta el mapa de "Aprender".
-final mapUnitsProvider = FutureProvider<List<UnitModel>>(
-  (ref) => ref.watch(contentRepositoryProvider).fetchUnits(),
+/// Cursos disponibles (es→en, es→pt) + cuál es el activo del usuario.
+final coursesProvider = FutureProvider<List<CourseInfo>>(
+  (ref) => ref.watch(progressRepositoryProvider).fetchCourses(),
 );
+
+/// Id del curso activo del usuario (multi-curso). Fallback al primero / es→en.
+const _defaultCourseId = '20000000-0000-0000-0000-000000000001';
+final activeCourseIdProvider = FutureProvider<String>((ref) async {
+  final courses = await ref.watch(coursesProvider.future);
+  if (courses.isEmpty) return _defaultCourseId;
+  return courses.firstWhere((c) => c.active, orElse: () => courses.first).id;
+});
+
+/// Unidades del curso ACTIVO (con lecciones). Alimenta el mapa de "Aprender".
+final mapUnitsProvider = FutureProvider<List<UnitModel>>((ref) async {
+  final courseId = await ref.watch(activeCourseIdProvider.future);
+  return ref.watch(contentRepositoryProvider).fetchUnits(courseId);
+});
 
 /// Ejercicios de una lección (vía lesson_items, en orden). Alimenta el loop.
 final lessonItemsProvider =

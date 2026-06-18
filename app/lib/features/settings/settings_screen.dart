@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/audio/sound_controller.dart';
 import '../../core/feedback/feedback_sheet.dart';
 import '../../core/theme/app_colors.dart';
+import '../../data/models/course_models.dart';
 import '../../data/models/progress_models.dart';
 import '../../data/providers.dart';
 import '../../ui/primary_button.dart';
@@ -145,6 +146,11 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       body: ListView(
         padding: const EdgeInsets.fromLTRB(20, 6, 20, 36),
         children: [
+          // Idioma del curso (multi-curso: es→en / es→pt).
+          _section('Idioma del curso', '¿Qué idioma quieres aprender?'),
+          _buildCourseSwitcher(),
+          const SizedBox(height: 18),
+
           // Estilo de coach.
           _section('Estilo de Matix', 'El tono de tus notificaciones.'),
           ...CoachStyle.all.map((s) => _CoachOption(
@@ -398,6 +404,69 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     ref.invalidate(userPlanProvider);
     if (!mounted) return;
     Navigator.of(context).popUntil((r) => r.isFirst);
+  }
+
+  Widget _buildCourseSwitcher() {
+    final coursesAsync = ref.watch(coursesProvider);
+    return coursesAsync.when(
+      loading: () => const _Card(
+        child: Padding(
+          padding: EdgeInsets.all(8),
+          child: Center(
+            child: SizedBox(
+                height: 20, width: 20, child: CircularProgressIndicator(strokeWidth: 2)),
+          ),
+        ),
+      ),
+      error: (_, _) => const SizedBox.shrink(),
+      data: (courses) => _Card(
+        child: Column(
+          children: [
+            for (final c in courses)
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: Text(c.flag, style: const TextStyle(fontSize: 22)),
+                title: Text(c.label,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w800, color: AppColors.text)),
+                trailing: c.active
+                    ? const Icon(Icons.check_circle, color: AppColors.success)
+                    : const Icon(Icons.radio_button_unchecked,
+                        color: AppColors.textMuted),
+                onTap: c.active ? null : () => _switchCourse(c),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _switchCourse(CourseInfo c) async {
+    try {
+      await ref.read(progressRepositoryProvider).setActiveCourse(c.id);
+      // Recarga todo lo que depende del curso activo.
+      ref.invalidate(coursesProvider);
+      ref.invalidate(activeCourseIdProvider);
+      ref.invalidate(mapUnitsProvider);
+      ref.invalidate(lessonProgressProvider);
+      ref.invalidate(skillsProvider);
+      ref.invalidate(skillMasteryProvider);
+      ref.invalidate(homeStatsProvider);
+      ref.invalidate(levelExamStatusProvider);
+      ref.invalidate(planTrackingProvider);
+      ref.invalidate(userPlanProvider);
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Curso activo: ${c.label}')),
+        );
+      }
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('No se pudo cambiar el curso.')),
+        );
+      }
+    }
   }
 
   Widget _section(String title, String subtitle) => Padding(

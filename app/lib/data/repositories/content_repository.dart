@@ -10,14 +10,17 @@ class ContentRepository {
 
   final SupabaseClient _client;
 
-  /// Trae las unidades con sus lecciones embebidas (una sola consulta).
-  Future<List<UnitModel>> fetchUnits() async {
+  /// Trae las unidades con sus lecciones embebidas (una sola consulta),
+  /// SOLO del curso indicado (multi-curso: es→en / es→pt). Filtrar por
+  /// course_id evita que las unidades de un curso aparezcan en el mapa de otro.
+  Future<List<UnitModel>> fetchUnits(String courseId) async {
     final res = await _client
         .from('units')
         .select(
           'id, course_id, cefr_level, order_index, title, theme_color, icon, '
           'lessons ( id, unit_id, order_index, title, description, type, xp_reward )',
         )
+        .eq('course_id', courseId)
         .order('order_index', ascending: true);
 
     return (res as List)
