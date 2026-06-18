@@ -51,6 +51,7 @@ class LevelExamResult {
     this.certificateSvg,
     this.leveledUp = false,
     this.newLevel,
+    this.raisedSkills = const [],
   });
   final bool passed;
   final String level;
@@ -64,8 +65,9 @@ class LevelExamResult {
   final List<String> weaknesses;
   final Certificate? certificate;
   final String? certificateSvg;
-  final bool leveledUp;     // el examen SUBIÓ el nivel de las 4 habilidades (modelo D7)
-  final String? newLevel;   // nivel al que subió (si leveledUp)
+  final bool leveledUp;            // alguna skill subió de nivel al aprobar su sección (v2)
+  final String? newLevel;          // nivel del examen aprobado
+  final List<String> raisedSkills; // skills concretas que subieron (modelo per-skill v2)
 
   int get scorePct => (scoreGlobal * 100).round();
   int get thresholdPct => (threshold * 100).round();
@@ -89,6 +91,7 @@ class LevelExamResult {
       certificateSvg: cert == null ? null : (cert as Map)['svg'] as String?,
       leveledUp: j['leveled_up'] as bool? ?? false,
       newLevel: j['new_level'] as String?,
+      raisedSkills: ((j['raised_skills'] as List?) ?? const []).map((e) => e.toString()).toList(),
     );
   }
 }
@@ -101,12 +104,14 @@ class SkillMastery {
     required this.workingLevel,
     required this.masteryPct,
     required this.reinforceScore,
+    this.examReady = false,
   });
   final String skill;
-  final String certifiedLevel; // nivel certificado (sube sólo por examen)
-  final String workingLevel;   // nivel en curso (donde se acumula dominio)
+  final String certifiedLevel; // nivel en curso de la skill (per-skill; puede divergir)
+  final String workingLevel;   // nivel donde se acumula dominio
   final double masteryPct;     // 0..1 dominio del nivel en curso
   final double reinforceScore; // 0..1 necesidad de refuerzo (mayor = más urgente)
+  final bool examReady;        // dominio ≥ 0.80 → su sección de examen está disponible (v2)
 
   factory SkillMastery.fromJson(Map<String, dynamic> j) => SkillMastery(
         skill: j['skill'] as String? ?? '',
@@ -114,6 +119,7 @@ class SkillMastery {
         workingLevel: j['working_level'] as String? ?? 'A1',
         masteryPct: (j['mastery_pct'] as num?)?.toDouble() ?? 0,
         reinforceScore: (j['reinforce_score'] as num?)?.toDouble() ?? 0,
+        examReady: j['exam_ready'] as bool? ?? false,
       );
 }
 

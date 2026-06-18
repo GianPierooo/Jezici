@@ -38,32 +38,37 @@ class LevelExamResultScreen extends StatelessWidget {
               child: ListView(
                 padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
                 children: [
-                  // Celebración de SUBIDA DE NIVEL: sólo ocurre al aprobar el examen
-                  // (modelo D7), nunca por acumular práctica.
-                  if (r.leveledUp && r.newLevel != null) ...[
-                    Container(
-                      padding: const EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                        gradient: const LinearGradient(
-                            begin: Alignment.topLeft, end: Alignment.bottomRight,
-                            colors: [AppColors.primaryLight, AppColors.primary]),
-                        borderRadius: BorderRadius.circular(18),
-                      ),
-                      child: Row(children: [
-                        const Text('🚀', style: TextStyle(fontSize: 30)),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                            const Text('¡Subiste de nivel!',
-                                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: Colors.white)),
-                            const SizedBox(height: 2),
-                            Text('Tus 4 habilidades pasan a ${r.newLevel}.',
-                                style: const TextStyle(
-                                    fontSize: 12.5, fontWeight: FontWeight.w700, color: Colors.white)),
-                          ]),
+                  // Celebración de SUBIDA DE NIVEL PER-SKILL: sólo al aprobar la
+                  // sección que verifica cada habilidad (modelo v2), nunca por práctica.
+                  if (r.leveledUp && r.raisedSkills.isNotEmpty) ...[
+                    Builder(builder: (_) {
+                      final names = r.raisedSkills.map((s) => kSkillEs[s] ?? s).toList();
+                      final title = names.length >= 4
+                          ? '¡Subieron tus 4 habilidades!'
+                          : (names.length == 1 ? '¡Subió tu ${names.first}!' : '¡Subieron ${names.length} habilidades!');
+                      return Container(
+                        padding: const EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                              begin: Alignment.topLeft, end: Alignment.bottomRight,
+                              colors: [AppColors.primaryLight, AppColors.primary]),
+                          borderRadius: BorderRadius.circular(18),
                         ),
-                      ]),
-                    ),
+                        child: Row(children: [
+                          const Text('🚀', style: TextStyle(fontSize: 30)),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                              Text(title,
+                                  style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: Colors.white)),
+                              const SizedBox(height: 2),
+                              Text('Aprobaste tu examen ${r.level}: ${names.join(', ')}.',
+                                  style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: Colors.white)),
+                            ]),
+                          ),
+                        ]),
+                      );
+                    }),
                     const SizedBox(height: 14),
                   ],
                   Container(

@@ -92,9 +92,14 @@ def main():
           f"db={stats[0]['xp_total'] if stats else None} rpc={res.get('xp_earned')}")
     streak = q(f"select current_streak from streaks where user_id='{uid}';")
     check('DB: racha = 1', bool(streak) and streak[0]['current_streak'] == 1, str(streak))
-    # Modelo nuevo (mig 040): la lección sube DOMINIO (user_skill_mastery), no puntos.
-    mast = q(f"select skill, cefr_level, items_seen, items_correct from user_skill_mastery where user_id='{uid}' order by skill;")
-    check('DB: la lección registró DOMINIO', bool(mast) and any(int(m['items_correct'] or 0) > 0 for m in mast), str(mast))
+    # Modelo v2 (mig 041): la lección registra INTENTOS POR ÍTEM (user_item_attempts);
+    # el dominio se calcula on-demand desde ahí. NO escribe user_skill_mastery.
+    att = q(f"select count(*) n, count(*) filter (where attempts>0) played from user_item_attempts where user_id='{uid}';")
+    check('DB: la lección registró intentos por ítem', bool(att) and int(att[0]['n'] or 0) > 0, str(att))
+    gm = v.rpc(uid, 'select get_skill_mastery();')
+    check('DB: dominio > 0 en alguna skill (on-demand)',
+          isinstance(gm, dict) and any((s.get('mastery_pct') or 0) > 0 for s in gm.get('skills', [])),
+          str([(s['skill'], s['mastery_pct']) for s in gm.get('skills', [])]) if isinstance(gm, dict) else str(gm))
     lv = q(f"select distinct cefr_level from user_skill_levels where user_id='{uid}';")
     check('DB: la lección NO subió el nivel (sigue A1)', bool(lv) and all(r['cefr_level'] == 'A1' for r in lv), str(lv))
 

@@ -128,31 +128,31 @@ def main():
     answers = build_answers(ids)
     print("\n== A1: submit_level_exam (respuestas correctas) ==")
     res = rpc(uid, f"select submit_level_exam({jq(answers)}, 120);")
-    print({k: res.get(k) for k in ("passed", "level", "score_global", "graded", "correct", "leveled_up")})
+    print({k: res.get(k) for k in ("passed", "level", "leveled_up", "new_level", "raised_skills")})
     print("certificado:", (res.get("certificate") or {}).get("folio"))
     assert res["passed"] is True and res["level"] == "A1", "A1 debió aprobar"
-    assert (res.get("certificate") or {}).get("folio", "").startswith("JZC-A1-")
-    # El usuario ya estaba en A1 → certificar A1 NO sube el nivel (leveled_up=False).
-    lv_after_a1 = json.loads(run(f"select cefr_level from user_skill_levels where user_id='{uid}' and skill='reading';")[1])[0]["cefr_level"]
-    assert lv_after_a1 == "A1" and res.get("leveled_up") is False, f"A1 no debe subir el nivel (estaba en A1): {lv_after_a1}"
+    # v2 PER-SKILL: aprobar TODAS las secciones del examen A1 sube las 4 skills A1→A2.
+    assert res.get("leveled_up") is True, f"el examen A1 debió subir alguna skill: {res.get('leveled_up')}"
+    assert set(res.get("raised_skills") or []) == {"reading", "listening", "writing", "speaking"}, \
+        f"deben subir las 4 secciones: {res.get('raised_skills')}"
+    rows_a1 = json.loads(run(f"select skill, cefr_level from user_skill_levels where user_id='{uid}' order by skill;")[1])
+    assert all(r["cefr_level"] == "A2" for r in rows_a1), f"las 4 deben pasar a A2 tras examen A1: {rows_a1}"
+    # Certificado A1 cuando las 4 cruzan A1 (= todas en A2).
+    assert (res.get("certificate") or {}).get("folio", "").startswith("JZC-A1-"), "debió emitir cert A1"
 
-    print("\n== tras certificar A1: level_exam_status (debe apuntar a A2) ==")
+    print("\n== tras examen A1: level_exam_status (apunta a A2, aún bloqueado) ==")
     st2 = rpc(uid, "select level_exam_status();")
     print(st2)
-    assert st2["level"] == "A2", "debería avanzar a A2"
-    assert st2["unlocked"] is False, "A2 aún no listo (faltan checkpoints/dominio)"
+    assert st2["level"] == "A2", "el nivel del examen ahora es A2 (mínimo en curso)"
+    assert st2["unlocked"] is False, "A2 aún no listo (faltan checkpoints + dominio A2)"
 
-    # Simular completar A2: 6 checkpoints + DOMINIO A2 (no fijamos el nivel a mano).
+    # Completar A2: 6 checkpoints + DOMINIO A2 (piso) para desbloquear el examen A2.
     run(f"""insert into user_lesson_progress(user_id, lesson_id, status, best_accuracy, times_completed, completed_at)
             select '{uid}', l.id, 'completed', 0.9, 1, now()
             from lessons l join units u on u.id=l.unit_id
             where u.cefr_level='A2' and l.type='checkpoint'
             on conflict (user_id, lesson_id) do update set status='completed';""")
-    seed_mastery("A2")  # dominio A2 → desbloquea el examen A2 (el nivel sigue en A1).
-
-    # Confirmar que el nivel SIGUE en A1 antes del examen A2 (no auto-subió).
-    lv_pre_a2 = json.loads(run(f"select cefr_level from user_skill_levels where user_id='{uid}' and skill='reading';")[1])[0]["cefr_level"]
-    assert lv_pre_a2 == "A1", f"el nivel no debe subir sin aprobar el examen A2: {lv_pre_a2}"
+    seed_mastery("A2")  # dominio A2 ≥ 0.80 → desbloquea el examen A2.
 
     print("\n== A2: level_exam_status ==")
     st3 = rpc(uid, "select level_exam_status();")
@@ -163,7 +163,6 @@ def main():
     ex2 = rpc(uid, "select start_level_exam();")
     print({k: ex2[k] for k in ("exam_id", "level", "item_count")})
     assert ex2["level"] == "A2" and ex2["item_count"] >= 18
-    # confirmar que los ítems son A2
     lv = set(it["cefr_level"] for it in ex2["items"])
     print("niveles de ítems:", lv)
     assert lv == {"A2"}
@@ -171,17 +170,36 @@ def main():
     answers2 = build_answers(ids2)
     print("\n== A2: submit_level_exam (respuestas correctas) ==")
     res2 = rpc(uid, f"select submit_level_exam({jq(answers2)}, 120);")
-    print({k: res2.get(k) for k in ("passed", "level", "score_global", "graded", "correct", "leveled_up", "new_level")})
+    print({k: res2.get(k) for k in ("passed", "level", "leveled_up", "new_level", "raised_skills")})
     print("certificado:", (res2.get("certificate") or {}).get("folio"))
     assert res2["passed"] is True and res2["level"] == "A2"
     assert (res2.get("certificate") or {}).get("folio", "").startswith("JZC-A2-")
-    # CLAVE del modelo nuevo: aprobar el examen A2 SUBE el nivel de las 4 a A2.
+    # Aprobar el examen A2 sube las 4 secciones A2→B1.
     assert res2.get("leveled_up") is True and res2.get("new_level") == "A2", \
-        f"el examen A2 debió subir el nivel: {res2.get('leveled_up')}/{res2.get('new_level')}"
+        f"el examen A2 debió subir nivel: {res2.get('leveled_up')}/{res2.get('new_level')}"
     rows = json.loads(run(f"select skill, cefr_level from user_skill_levels where user_id='{uid}' order by skill;")[1])
     print("niveles tras examen A2:", rows)
-    assert all(r["cefr_level"] == "A2" for r in rows) and len(rows) == 4, \
-        f"las 4 habilidades deben estar en A2: {rows}"
+    assert all(r["cefr_level"] == "B1" for r in rows) and len(rows) == 4, \
+        f"las 4 habilidades deben estar en B1 tras examen A2: {rows}"
+
+    print("\n== DIVERGENCIA per-skill: solo la sección que aprueba sube ==")
+    # Reset a A2 (las 4); dominio A2 alto SOLO para reading; checkpoints A2 ya hechos.
+    run(f"update user_skill_levels set cefr_level='A2' where user_id='{uid}';")
+    run(f"delete from user_skill_mastery where user_id='{uid}';")
+    run(f"""insert into user_skill_mastery(user_id,course_id,skill,cefr_level,items_seen,items_correct,lessons_done)
+            values ('{uid}','{course}','reading','A2',16,16,1)
+            on conflict (user_id,course_id,skill,cefr_level) do update set items_correct=16;""")
+    exd = rpc(uid, "select start_level_exam('A2');")
+    rd_ids = [it["id"] for it in exd["items"] if it["skill"] == "reading"]
+    resd = rpc(uid, f"select submit_level_exam({jq(build_answers(rd_ids))}, 120, 'A2');")  # SOLO reading, correctas
+    print("  raised_skills:", resd.get("raised_skills"))
+    assert set(resd.get("raised_skills") or []) == {"reading"}, \
+        f"solo reading debe subir (su sección aprueba; las demás sin responder): {resd.get('raised_skills')}"
+    bysk = {r["skill"]: r["cefr_level"] for r in
+            json.loads(run(f"select skill,cefr_level from user_skill_levels where user_id='{uid}' order by skill;")[1])}
+    assert bysk["reading"] == "B1" and bysk["listening"] == "A2" and bysk["writing"] == "A2" and bysk["speaking"] == "A2", \
+        f"divergencia esperada (reading B1, resto A2): {bysk}"
+    print("  OK divergencia:", bysk)
 
     print("\n== get_skill_mastery (estado de dominio para la app) ==")
     gm = rpc(uid, "select get_skill_mastery();")

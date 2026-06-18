@@ -649,6 +649,19 @@ class _SkillRow extends StatelessWidget {
                               color: AppColors.coral)),
                     ),
                   ],
+                  if (mastery?.examReady ?? false) ...[
+                    const SizedBox(width: 7),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                      decoration: BoxDecoration(
+                        color: AppColors.success.withValues(alpha: 0.16),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: const Text('examen listo',
+                          style: TextStyle(
+                              fontSize: 10, fontWeight: FontWeight.w900, color: AppColors.successDark)),
+                    ),
+                  ],
                   const Spacer(),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
