@@ -1,0 +1,3281 @@
+{
+ "data": [
+  {
+   "U": 1,
+   "title": "Hola y mucho gusto",
+   "theme_color": "#27AE60",
+   "icon": "waving_hand",
+   "checkpoint_description": "Practicas saludar y despedirte en portugués de Brasil (olá, bom dia, tchau, até logo), presentarte con \"eu sou\", \"meu nome é\" y \"eu me chamo\", y decir \"muito prazer\". También usas los pronombres eu/você, el verbo ser para la identidad y dices tu nacionalidad básica (brasileiro/a, espanhol/a, mexicano/a).",
+   "vocab": [
+    {
+     "word": "olá",
+     "translation": "hola",
+     "pos": "interjección"
+    },
+    {
+     "word": "oi",
+     "translation": "hola (informal)",
+     "pos": "interjección"
+    },
+    {
+     "word": "bom dia",
+     "translation": "buenos días",
+     "pos": "expresión"
+    },
+    {
+     "word": "boa noite",
+     "translation": "buenas noches",
+     "pos": "expresión"
+    },
+    {
+     "word": "tchau",
+     "translation": "chau/adiós",
+     "pos": "interjección"
+    },
+    {
+     "word": "até logo",
+     "translation": "hasta luego",
+     "pos": "expresión"
+    },
+    {
+     "word": "prazer",
+     "translation": "gusto (mucho gusto)",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "obrigado",
+     "translation": "gracias",
+     "pos": "interjección"
+    },
+    {
+     "word": "eu",
+     "translation": "yo",
+     "pos": "pronombre"
+    },
+    {
+     "word": "você",
+     "translation": "tú/usted",
+     "pos": "pronombre"
+    },
+    {
+     "word": "ser",
+     "translation": "ser",
+     "pos": "verbo"
+    },
+    {
+     "word": "sou",
+     "translation": "soy",
+     "pos": "verbo"
+    },
+    {
+     "word": "nome",
+     "translation": "nombre",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "chamo",
+     "translation": "(me) llamo",
+     "pos": "verbo"
+    },
+    {
+     "word": "brasileiro",
+     "translation": "brasileño",
+     "pos": "adjetivo"
+    },
+    {
+     "word": "de onde",
+     "translation": "de dónde",
+     "pos": "expresión"
+    }
+   ],
+   "lessons": [
+    {
+     "title": "Saludos y despedidas",
+     "topic": "Saludar y despedirse en portugués de Brasil",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada saludo o despedida con su traducción.",
+       "difficulty": 0.1,
+       "pairs": [
+        [
+         "bom dia",
+         "buenos días"
+        ],
+        [
+         "tchau",
+         "chau/adiós"
+        ],
+        [
+         "boa noite",
+         "buenas noches"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa el saludo: \"___ dia! Tudo bem?\"",
+       "difficulty": 0.1,
+       "options": [
+        "Bom",
+        "Boa",
+        "Bem"
+       ],
+       "value": "Bom"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "¿Cómo te despides diciendo \"hasta luego\"?",
+       "difficulty": 0.12,
+       "options": [
+        "Até logo",
+        "Bom dia",
+        "Muito prazer"
+       ],
+       "value": "Até logo"
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa el saludo de la noche: \"___ noite!\"",
+       "difficulty": 0.12,
+       "text": "___ noite!",
+       "value": "Boa",
+       "accepted": [
+        "Boa",
+        "boa"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Hola, ¿todo bien?\"",
+       "difficulty": 0.12,
+       "source": "Hola, ¿todo bien?",
+       "value": "Oi, tudo bem?",
+       "accepted": [
+        "Oi, tudo bem?",
+        "Oi, tudo bem",
+        "Olá, tudo bem?",
+        "Olá, tudo bem",
+        "Oi tudo bem?",
+        "Olá tudo bem?"
+       ]
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la despedida: \"Adiós, hasta luego\".",
+       "difficulty": 0.14,
+       "tiles": [
+        "Tchau",
+        "até",
+        "logo",
+        "oi",
+        "bom"
+       ],
+       "sequence": [
+        "Tchau",
+        "até",
+        "logo"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "difficulty": 0.14,
+       "options": [
+        "Bom dia, tudo bem?",
+        "Boa noite, até logo.",
+        "Muito obrigado, tchau."
+       ],
+       "value": "Bom dia, tudo bem?"
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.1,
+       "text": "Oi! Bom dia! Tudo bem?"
+      }
+     ]
+    },
+    {
+     "title": "Presentarse: eu sou / meu nome é",
+     "topic": "Decir tu nombre y dar tu identidad con ser",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada expresión con su traducción.",
+       "difficulty": 0.12,
+       "pairs": [
+        [
+         "eu sou",
+         "yo soy"
+        ],
+        [
+         "meu nome é",
+         "mi nombre es"
+        ],
+        [
+         "muito prazer",
+         "mucho gusto"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa para presentarte: \"Eu ___ Ana.\"",
+       "difficulty": 0.12,
+       "options": [
+        "sou",
+        "é",
+        "nome"
+       ],
+       "value": "sou"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "¿Cómo dices \"mi nombre es Pedro\"?",
+       "difficulty": 0.14,
+       "options": [
+        "Meu nome é Pedro",
+        "Eu você Pedro",
+        "Bom dia Pedro"
+       ],
+       "value": "Meu nome é Pedro"
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"Eu me ___ João.\" (presentarse)",
+       "difficulty": 0.16,
+       "text": "Eu me ___ João.",
+       "value": "chamo",
+       "accepted": [
+        "chamo",
+        "Chamo"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Mucho gusto.\"",
+       "difficulty": 0.14,
+       "source": "Mucho gusto.",
+       "value": "Muito prazer",
+       "accepted": [
+        "Muito prazer",
+        "Muito prazer.",
+        "Prazer",
+        "Prazer.",
+        "Muito prazer!"
+       ]
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"Me llamo Maria\".",
+       "difficulty": 0.18,
+       "tiles": [
+        "Eu",
+        "me",
+        "chamo",
+        "Maria",
+        "sou",
+        "nome"
+       ],
+       "sequence": [
+        "Eu",
+        "me",
+        "chamo",
+        "Maria"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "difficulty": 0.16,
+       "options": [
+        "Oi, eu me chamo Lucas.",
+        "Boa noite, até amanhã.",
+        "Meu nome é Carla, prazer."
+       ],
+       "value": "Oi, eu me chamo Lucas."
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.14,
+       "text": "Olá! Eu me chamo Maria. Muito prazer!"
+      }
+     ]
+    },
+    {
+     "title": "Tú y yo: eu, você",
+     "topic": "Usar los pronombres eu y você con el verbo ser",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "difficulty": 0.14,
+       "pairs": [
+        [
+         "eu",
+         "yo"
+        ],
+        [
+         "você",
+         "tú"
+        ],
+        [
+         "é",
+         "es"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"___ é o Pedro?\" (preguntar a la otra persona)",
+       "difficulty": 0.16,
+       "options": [
+        "Você",
+        "Eu",
+        "Nome"
+       ],
+       "value": "Você"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "¿Cómo dices \"yo soy brasileño\"?",
+       "difficulty": 0.18,
+       "options": [
+        "Eu sou brasileiro",
+        "Você é brasileiro",
+        "Eu me chamo brasileiro"
+       ],
+       "value": "Eu sou brasileiro"
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"Você ___ a Ana?\" (verbo ser)",
+       "difficulty": 0.18,
+       "text": "Você ___ a Ana?",
+       "value": "é",
+       "accepted": [
+        "é",
+        "e"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"¿Tú eres el profesor?\"",
+       "difficulty": 0.18,
+       "source": "¿Tú eres el profesor?",
+       "value": "Você é o professor?",
+       "accepted": [
+        "Você é o professor?",
+        "Você é o professor",
+        "Voce é o professor?",
+        "Você e o professor?",
+        "Você é professor?"
+       ]
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena la pregunta: \"¿Cómo te llamas?\"",
+       "difficulty": 0.2,
+       "value": "Como você se chama",
+       "tiles": [
+        "se",
+        "Como",
+        "você",
+        "chama"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "difficulty": 0.18,
+       "options": [
+        "Eu sou a Júlia, e você?",
+        "Você é o Bruno, tchau.",
+        "Bom dia, meu nome é Rafa."
+       ],
+       "value": "Eu sou a Júlia, e você?"
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.16,
+       "text": "Eu sou o Lucas. E você, como se chama?"
+      }
+     ]
+    },
+    {
+     "title": "De dónde eres: nacionalidades",
+     "topic": "Decir tu nacionalidad y preguntar de dónde eres",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada nacionalidad con su traducción.",
+       "difficulty": 0.16,
+       "pairs": [
+        [
+         "brasileiro",
+         "brasileño"
+        ],
+        [
+         "espanhol",
+         "español"
+        ],
+        [
+         "mexicano",
+         "mexicano"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa la pregunta: \"___ você é?\" (de dónde)",
+       "difficulty": 0.18,
+       "options": [
+        "De onde",
+        "Como",
+        "Quem"
+       ],
+       "value": "De onde"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "¿Cómo respondes \"soy de España\"?",
+       "difficulty": 0.2,
+       "options": [
+        "Eu sou da Espanha",
+        "Eu me chamo Espanha",
+        "Você é da Espanha"
+       ],
+       "value": "Eu sou da Espanha"
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"Eu sou ___.\" (nacionalidad: brasileña, en femenino)",
+       "difficulty": 0.22,
+       "text": "Eu sou ___.",
+       "value": "brasileira",
+       "accepted": [
+        "brasileira",
+        "Brasileira"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"¿De dónde eres?\"",
+       "difficulty": 0.22,
+       "source": "¿De dónde eres?",
+       "value": "De onde você é?",
+       "accepted": [
+        "De onde você é?",
+        "De onde você é",
+        "De onde voce é?",
+        "De onde você e?",
+        "De onde voce é"
+       ]
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"Yo soy mexicana\".",
+       "difficulty": 0.24,
+       "tiles": [
+        "Eu",
+        "sou",
+        "mexicana",
+        "você",
+        "brasileira"
+       ],
+       "sequence": [
+        "Eu",
+        "sou",
+        "mexicana"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "difficulty": 0.22,
+       "options": [
+        "De onde você é?",
+        "Como você se chama?",
+        "Você é da Espanha?"
+       ],
+       "value": "De onde você é?"
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.2,
+       "text": "Oi! Eu sou brasileiro. E você, de onde é?"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "U": 2,
+   "title": "Mi familia y mis cosas",
+   "theme_color": "#2980B9",
+   "icon": "family_restroom",
+   "checkpoint_description": "En esta unidad aprendes a hablar de tu familia (pai, mãe, irmão, filho) y a presentarla con este/esta. Practicas los posesivos meu/minha y seu/sua, los pronombres ele/ela para referirte a otras personas, el plural básico (-s/-es) y el verbo ter (tener) en presente para decir lo que tienes y los miembros de tu familia.",
+   "vocab": [
+    {
+     "word": "família",
+     "translation": "familia",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "pai",
+     "translation": "padre",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "mãe",
+     "translation": "madre",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "irmão",
+     "translation": "hermano",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "irmã",
+     "translation": "hermana",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "filho",
+     "translation": "hijo",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "filha",
+     "translation": "hija",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "meu",
+     "translation": "mi (masculino)",
+     "pos": "posesivo"
+    },
+    {
+     "word": "minha",
+     "translation": "mi (femenino)",
+     "pos": "posesivo"
+    },
+    {
+     "word": "seu",
+     "translation": "tu / su (masculino)",
+     "pos": "posesivo"
+    },
+    {
+     "word": "sua",
+     "translation": "tu / su (femenino)",
+     "pos": "posesivo"
+    },
+    {
+     "word": "ele",
+     "translation": "él",
+     "pos": "pronombre"
+    },
+    {
+     "word": "ela",
+     "translation": "ella",
+     "pos": "pronombre"
+    },
+    {
+     "word": "ter",
+     "translation": "tener",
+     "pos": "verbo"
+    },
+    {
+     "word": "este",
+     "translation": "este",
+     "pos": "demostrativo"
+    },
+    {
+     "word": "esta",
+     "translation": "esta",
+     "pos": "demostrativo"
+    }
+   ],
+   "lessons": [
+    {
+     "title": "La familia",
+     "topic": "Vocabulario básico de la familia: pai, mãe, irmão, filho",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "difficulty": 0.1,
+       "pairs": [
+        [
+         "pai",
+         "padre"
+        ],
+        [
+         "mãe",
+         "madre"
+        ],
+        [
+         "irmão",
+         "hermano"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Elige la traducción de \"filha\".",
+       "difficulty": 0.11,
+       "options": [
+        "hija",
+        "hijo",
+        "hermana"
+       ],
+       "value": "hija"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Minha ___ é professora.\" (madre)",
+       "difficulty": 0.12,
+       "options": [
+        "mãe",
+        "pai",
+        "filho"
+       ],
+       "value": "mãe"
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"Meu ___ trabalha muito.\" (padre)",
+       "text": "Meu ___ trabalha muito.",
+       "value": "pai",
+       "accepted": [
+        "pai",
+        "Pai"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Esta es mi familia.\"",
+       "source": "Esta es mi familia.",
+       "value": "Esta é a minha família",
+       "accepted": [
+        "Esta é a minha família",
+        "Esta é a minha família.",
+        "Esta é minha família",
+        "Esta é minha família.",
+        "Essa é a minha família",
+        "Essa é minha família"
+       ]
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"Tengo un hermano.\"",
+       "difficulty": 0.13,
+       "tiles": [
+        "Tenho",
+        "um",
+        "irmão",
+        "uma",
+        "irmã"
+       ],
+       "sequence": [
+        "Tenho",
+        "um",
+        "irmão"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "difficulty": 0.13,
+       "options": [
+        "Esta é a minha mãe.",
+        "Ela tem dois filhos.",
+        "Este é o meu pai."
+       ],
+       "value": "Esta é a minha mãe."
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.13,
+       "text": "Eu tenho um irmão e uma irmã."
+      }
+     ]
+    },
+    {
+     "title": "Meu y minha: posesivos",
+     "topic": "Posesivos meu/minha y seu/sua según el género",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada posesivo con su traducción.",
+       "difficulty": 0.14,
+       "pairs": [
+        [
+         "meu",
+         "mi (masculino)"
+        ],
+        [
+         "minha",
+         "mi (femenino)"
+        ],
+        [
+         "sua",
+         "tu / su (femenino)"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"___ irmã mora aqui.\" (mi)",
+       "difficulty": 0.15,
+       "options": [
+        "Minha",
+        "Meu",
+        "Seu"
+       ],
+       "value": "Minha"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Qual é o ___ nome?\" (tu/su)",
+       "difficulty": 0.16,
+       "options": [
+        "seu",
+        "sua",
+        "minha"
+       ],
+       "value": "seu"
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"___ filho tem cinco anos.\" (mi, masculino)",
+       "text": "___ filho tem cinco anos.",
+       "value": "Meu",
+       "accepted": [
+        "Meu",
+        "meu",
+        "O meu",
+        "o meu"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Tu casa es bonita.\"",
+       "source": "Tu casa es bonita.",
+       "value": "A sua casa é bonita",
+       "accepted": [
+        "A sua casa é bonita",
+        "A sua casa é bonita.",
+        "Sua casa é bonita",
+        "Sua casa é bonita.",
+        "A tua casa é bonita",
+        "Tua casa é bonita"
+       ]
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"Esta es mi madre.\"",
+       "difficulty": 0.17,
+       "value": "Esta é a minha mãe",
+       "tiles": [
+        "minha",
+        "Esta",
+        "a",
+        "mãe",
+        "é"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "difficulty": 0.16,
+       "options": [
+        "Qual é o seu nome?",
+        "Onde está a sua casa?",
+        "Este é o meu filho."
+       ],
+       "value": "Qual é o seu nome?"
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.16,
+       "text": "O meu pai e a minha mãe moram aqui."
+      }
+     ]
+    },
+    {
+     "title": "Él y ella: ele, ela",
+     "topic": "Pronombres ele/ela para hablar de otras personas",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "difficulty": 0.17,
+       "pairs": [
+        [
+         "ele",
+         "él"
+        ],
+        [
+         "ela",
+         "ella"
+        ],
+        [
+         "eles",
+         "ellos"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa hablando de tu hermana: \"___ é muito legal.\" (ella)",
+       "difficulty": 0.18,
+       "options": [
+        "Ela",
+        "Ele",
+        "Eu"
+       ],
+       "value": "Ela"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa hablando de tu padre: \"___ trabalha no banco.\" (él)",
+       "difficulty": 0.19,
+       "options": [
+        "Ele",
+        "Ela",
+        "Você"
+       ],
+       "value": "Ele"
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa hablando de tu madre: \"___ é médica.\" (ella)",
+       "text": "___ é médica.",
+       "value": "Ela",
+       "accepted": [
+        "Ela",
+        "ela"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Él tiene dos hijos.\"",
+       "source": "Él tiene dos hijos.",
+       "value": "Ele tem dois filhos",
+       "accepted": [
+        "Ele tem dois filhos",
+        "Ele tem dois filhos.",
+        "Ele tem 2 filhos",
+        "Ele tem 2 filhos."
+       ]
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"Ella es mi hermana.\"",
+       "difficulty": 0.2,
+       "tiles": [
+        "Ela",
+        "é",
+        "a",
+        "minha",
+        "irmã",
+        "meu"
+       ],
+       "sequence": [
+        "Ela",
+        "é",
+        "a",
+        "minha",
+        "irmã"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "difficulty": 0.19,
+       "options": [
+        "Ele é o meu irmão.",
+        "Ela é a minha irmã.",
+        "Eles são meus pais."
+       ],
+       "value": "Ela é a minha irmã."
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.19,
+       "text": "Ela é a minha mãe e ele é o meu pai."
+      }
+     ]
+    },
+    {
+     "title": "Yo tengo: ter",
+     "topic": "El verbo ter (tener) en presente: tenho, tem, temos",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada forma del verbo ter con su traducción.",
+       "difficulty": 0.2,
+       "pairs": [
+        [
+         "tenho",
+         "yo tengo"
+        ],
+        [
+         "tem",
+         "él/ella tiene"
+        ],
+        [
+         "temos",
+         "nosotros tenemos"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Eu ___ uma família grande.\" (yo tengo)",
+       "difficulty": 0.22,
+       "options": [
+        "tenho",
+        "tem",
+        "temos"
+       ],
+       "value": "tenho"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Ela ___ dois filhos.\" (ella tiene)",
+       "difficulty": 0.24,
+       "options": [
+        "tem",
+        "tenho",
+        "têm"
+       ],
+       "value": "tem"
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"Nós ___ uma casa pequena.\" (nosotros tenemos)",
+       "text": "Nós ___ uma casa pequena.",
+       "value": "temos",
+       "accepted": [
+        "temos",
+        "Temos"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"¿Cuántos hermanos tienes?\"",
+       "source": "¿Cuántos hermanos tienes?",
+       "value": "Quantos irmãos você tem",
+       "accepted": [
+        "Quantos irmãos você tem",
+        "Quantos irmãos você tem?",
+        "Quantos irmãos voce tem",
+        "Quantos irmãos voce tem?",
+        "Quantos irmãos tem você?",
+        "Quantos irmãos tens?"
+       ]
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"Yo tengo una hermana.\"",
+       "difficulty": 0.26,
+       "value": "Eu tenho uma irmã",
+       "tiles": [
+        "tenho",
+        "uma",
+        "Eu",
+        "irmã"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "difficulty": 0.25,
+       "options": [
+        "Eu tenho dois irmãos.",
+        "Você tem uma irmã?",
+        "Nós temos uma casa."
+       ],
+       "value": "Eu tenho dois irmãos."
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.27,
+       "text": "Eu tenho uma família grande: pai, mãe e dois irmãos."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "U": 3,
+   "title": "Mi día a día",
+   "theme_color": "#E67E22",
+   "icon": "schedule",
+   "checkpoint_description": "En esta unidad practicas hablar de tu vida cotidiana en portugués de Brasil: dónde vives y trabajas, los verbos regulares en presente (-ar, -er, -ir) como morar, trabalhar, comer y abrir, expresar gustos con \"gostar de\" y decir la hora básica para describir tu rutina. Aprendes frases naturales del día a día con \"você\" y vocabulario de alta frecuencia.",
+   "vocab": [
+    {
+     "word": "morar",
+     "translation": "vivir/residir",
+     "pos": "verbo"
+    },
+    {
+     "word": "trabalhar",
+     "translation": "trabajar",
+     "pos": "verbo"
+    },
+    {
+     "word": "comer",
+     "translation": "comer",
+     "pos": "verbo"
+    },
+    {
+     "word": "gostar de",
+     "translation": "gustar de",
+     "pos": "verbo"
+    },
+    {
+     "word": "acordar",
+     "translation": "despertarse",
+     "pos": "verbo"
+    },
+    {
+     "word": "tomar",
+     "translation": "tomar/beber",
+     "pos": "verbo"
+    },
+    {
+     "word": "hora",
+     "translation": "hora",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "casa",
+     "translation": "casa",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "trabalho",
+     "translation": "trabajo",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "cidade",
+     "translation": "ciudad",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "manhã",
+     "translation": "mañana",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "café",
+     "translation": "café",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "todo dia",
+     "translation": "todos los días",
+     "pos": "adverbio"
+    },
+    {
+     "word": "meio-dia",
+     "translation": "mediodía",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "agora",
+     "translation": "ahora",
+     "pos": "adverbio"
+    },
+    {
+     "word": "cedo",
+     "translation": "temprano",
+     "pos": "adverbio"
+    }
+   ],
+   "lessons": [
+    {
+     "title": "Dónde vivo y trabajo",
+     "topic": "Presente de morar y trabalhar para decir dónde vives y trabajas",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "pairs": [
+        [
+         "morar",
+         "vivir/residir"
+        ],
+        [
+         "casa",
+         "casa"
+        ],
+        [
+         "cidade",
+         "ciudad"
+        ]
+       ],
+       "difficulty": 0.1
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Eu ___ em São Paulo.\" (vivir)",
+       "options": [
+        "moro",
+        "mora",
+        "moramos"
+       ],
+       "value": "moro",
+       "difficulty": 0.11
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Você ___ num escritório?\" (trabajar)",
+       "options": [
+        "trabalha",
+        "trabalho",
+        "trabalham"
+       ],
+       "value": "trabalha",
+       "difficulty": 0.12
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"Eu ___ numa loja.\" (trabajar)",
+       "text": "Eu ___ numa loja.",
+       "value": "trabalho",
+       "accepted": [
+        "trabalho"
+       ],
+       "difficulty": 0.13
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Vivo en una casa pequeña.\"",
+       "source": "Vivo en una casa pequeña.",
+       "value": "Moro numa casa pequena",
+       "accepted": [
+        "Moro numa casa pequena",
+        "Moro numa casa pequena.",
+        "Moro em uma casa pequena",
+        "Moro em uma casa pequena.",
+        "Eu moro numa casa pequena",
+        "Eu moro numa casa pequena.",
+        "Eu moro em uma casa pequena",
+        "Eu moro em uma casa pequena."
+       ],
+       "difficulty": 0.14
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"Trabajo en una tienda\".",
+       "tiles": [
+        "Trabalho",
+        "numa",
+        "loja",
+        "casa",
+        "moro"
+       ],
+       "sequence": [
+        "Trabalho",
+        "numa",
+        "loja"
+       ],
+       "difficulty": 0.13
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "options": [
+        "Eu trabalho numa loja em São Paulo.",
+        "Eu acordo cedo de manhã.",
+        "Eu gosto de café."
+       ],
+       "value": "Eu trabalho numa loja em São Paulo.",
+       "difficulty": 0.14
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "Eu moro no Rio e trabalho numa loja.",
+       "difficulty": 0.15
+      }
+     ]
+    },
+    {
+     "title": "Verbos del día (presente)",
+     "topic": "Verbos regulares -ar, -er, -ir en presente para la rutina diaria",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada verbo con su traducción.",
+       "pairs": [
+        [
+         "acordar",
+         "despertarse"
+        ],
+        [
+         "comer",
+         "comer"
+        ],
+        [
+         "trabalhar",
+         "trabajar"
+        ]
+       ],
+       "difficulty": 0.13
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Eu ___ pão no café da manhã.\" (comer)",
+       "options": [
+        "como",
+        "come",
+        "comemos"
+       ],
+       "value": "como",
+       "difficulty": 0.15
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Você ___ cedo?\" (despertarse)",
+       "options": [
+        "acorda",
+        "acordo",
+        "acordam"
+       ],
+       "value": "acorda",
+       "difficulty": 0.16
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"Eu ___ café todo dia.\" (tomar)",
+       "text": "Eu ___ café todo dia.",
+       "value": "tomo",
+       "accepted": [
+        "tomo",
+        "bebo"
+       ],
+       "difficulty": 0.17
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Como en casa todos los días.\"",
+       "source": "Como en casa todos los días.",
+       "value": "Como em casa todo dia",
+       "accepted": [
+        "Como em casa todo dia",
+        "Como em casa todo dia.",
+        "Eu como em casa todo dia",
+        "Eu como em casa todo dia.",
+        "Como em casa todos os dias",
+        "Como em casa todos os dias.",
+        "Eu como em casa todos os dias",
+        "Eu como em casa todos os dias."
+       ],
+       "difficulty": 0.18
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"Despierto temprano por la mañana.\"",
+       "value": "Acordo cedo de manhã",
+       "tiles": [
+        "cedo",
+        "Acordo",
+        "manhã",
+        "de"
+       ],
+       "difficulty": 0.18
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "options": [
+        "Eu acordo cedo todo dia.",
+        "Eu trabalho no centro.",
+        "Eu moro perto daqui."
+       ],
+       "value": "Eu acordo cedo todo dia.",
+       "difficulty": 0.18
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "Eu acordo cedo, tomo café e como pão.",
+       "difficulty": 0.19
+      }
+     ]
+    },
+    {
+     "title": "Me gusta: gostar de",
+     "topic": "Expresar gustos con gostar de + sustantivo o verbo",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada expresión con su traducción.",
+       "pairs": [
+        [
+         "gostar de",
+         "gustar de"
+        ],
+        [
+         "café",
+         "café"
+        ],
+        [
+         "muito",
+         "mucho"
+        ]
+       ],
+       "difficulty": 0.15
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Eu ___ de café.\" (gustar)",
+       "options": [
+        "gosto",
+        "gosta",
+        "gostam"
+       ],
+       "value": "gosto",
+       "difficulty": 0.17
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Eu gosto ___ trabalhar de manhã.\"",
+       "options": [
+        "de",
+        "com",
+        "em"
+       ],
+       "value": "de",
+       "difficulty": 0.18
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"Você ___ de café?\" (gustar)",
+       "text": "Você ___ de café?",
+       "value": "gosta",
+       "accepted": [
+        "gosta"
+       ],
+       "difficulty": 0.19
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Me gusta mucho el café.\"",
+       "source": "Me gusta mucho el café.",
+       "value": "Eu gosto muito de café",
+       "accepted": [
+        "Eu gosto muito de café",
+        "Eu gosto muito de café.",
+        "Gosto muito de café",
+        "Gosto muito de café.",
+        "Eu gosto muito do café",
+        "Eu gosto muito do café.",
+        "Gosto muito do café",
+        "Gosto muito do café."
+       ],
+       "difficulty": 0.2
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"No me gusta despertarme temprano\".",
+       "tiles": [
+        "Não",
+        "gosto",
+        "de",
+        "acordar",
+        "cedo",
+        "gosta"
+       ],
+       "sequence": [
+        "Não",
+        "gosto",
+        "de",
+        "acordar",
+        "cedo"
+       ],
+       "difficulty": 0.21
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "options": [
+        "Eu gosto muito de café.",
+        "Eu como pão de manhã.",
+        "Eu trabalho todo dia."
+       ],
+       "value": "Eu gosto muito de café.",
+       "difficulty": 0.2
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "Eu gosto de trabalhar, mas não gosto de acordar cedo.",
+       "difficulty": 0.22
+      }
+     ]
+    },
+    {
+     "title": "¿Qué hora es? la rutina",
+     "topic": "Decir la hora básica y describir la rutina diaria",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "pairs": [
+        [
+         "hora",
+         "hora"
+        ],
+        [
+         "meio-dia",
+         "mediodía"
+        ],
+        [
+         "agora",
+         "ahora"
+        ]
+       ],
+       "difficulty": 0.18
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa la pregunta: \"Que ___ são?\"",
+       "options": [
+        "horas",
+        "hora",
+        "dia"
+       ],
+       "value": "horas",
+       "difficulty": 0.2
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Responde: \"São ___ horas.\" (las dos)",
+       "options": [
+        "duas",
+        "dois",
+        "três"
+       ],
+       "value": "duas",
+       "difficulty": 0.22
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"É ___.\" (es mediodía)",
+       "text": "É ___.",
+       "value": "meio-dia",
+       "accepted": [
+        "meio-dia",
+        "meio dia"
+       ],
+       "difficulty": 0.23
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"¿Qué hora es ahora?\"",
+       "source": "¿Qué hora es ahora?",
+       "value": "Que horas são agora?",
+       "accepted": [
+        "Que horas são agora?",
+        "Que horas são agora",
+        "Quais horas são agora?"
+       ],
+       "difficulty": 0.25
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"Trabajo hasta el mediodía.\"",
+       "value": "Trabalho até o meio-dia",
+       "tiles": [
+        "até",
+        "Trabalho",
+        "meio-dia",
+        "o"
+       ],
+       "difficulty": 0.26
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "options": [
+        "Que horas são agora?",
+        "Onde você mora?",
+        "Você gosta de café?"
+       ],
+       "value": "Que horas são agora?",
+       "difficulty": 0.27
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "Eu acordo às sete e trabalho até o meio-dia.",
+       "difficulty": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "U": 4,
+   "title": "Comer y comprar",
+   "theme_color": "#C0392B",
+   "icon": "restaurant",
+   "checkpoint_description": "En esta unidad practicas el vocabulario de comida y bebida, pides cosas con el verbo querer (eu quero), usas los números y dices los precios. Aprendes a preguntar cuánto cuesta algo (quanto custa) y si la tienda tiene un producto (tem...?), usando um/uma. Todo en situaciones cotidianas de café, restaurante y tienda en Brasil.",
+   "vocab": [
+    {
+     "word": "água",
+     "translation": "agua",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "café",
+     "translation": "café",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "pão",
+     "translation": "pan",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "leite",
+     "translation": "leche",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "suco",
+     "translation": "jugo",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "comida",
+     "translation": "comida",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "querer",
+     "translation": "querer",
+     "pos": "verbo"
+    },
+    {
+     "word": "quero",
+     "translation": "quiero",
+     "pos": "verbo"
+    },
+    {
+     "word": "quanto custa",
+     "translation": "cuánto cuesta",
+     "pos": "expresión"
+    },
+    {
+     "word": "tem",
+     "translation": "hay / tiene",
+     "pos": "verbo"
+    },
+    {
+     "word": "um",
+     "translation": "un",
+     "pos": "artículo"
+    },
+    {
+     "word": "uma",
+     "translation": "una",
+     "pos": "artículo"
+    },
+    {
+     "word": "reais",
+     "translation": "reales (moneda)",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "por favor",
+     "translation": "por favor",
+     "pos": "expresión"
+    },
+    {
+     "word": "conta",
+     "translation": "cuenta",
+     "pos": "sustantivo"
+    }
+   ],
+   "lessons": [
+    {
+     "title": "Comida y bebida",
+     "topic": "Vocabulario básico de comida y bebida en Brasil",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "difficulty": 0.1,
+       "pairs": [
+        [
+         "água",
+         "agua"
+        ],
+        [
+         "pão",
+         "pan"
+        ],
+        [
+         "café",
+         "café"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "¿Cómo se dice \"leche\" en portugués?",
+       "difficulty": 0.11,
+       "options": [
+        "leite",
+        "água",
+        "suco"
+       ],
+       "value": "leite"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "¿Qué significa \"suco\" en español?",
+       "difficulty": 0.12,
+       "options": [
+        "jugo",
+        "pan",
+        "leche"
+       ],
+       "value": "jugo"
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"Eu como ___ no café da manhã.\" (pan)",
+       "text": "Eu como ___ no café da manhã.",
+       "value": "pão",
+       "accepted": [
+        "pão",
+        "pao"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"agua y café\".",
+       "source": "agua y café",
+       "value": "água e café",
+       "accepted": [
+        "água e café",
+        "agua e cafe",
+        "água e café.",
+        "agua e cafe.",
+        "água e cafe",
+        "agua e café",
+        "Água e café",
+        "Água e café.",
+        "Agua e cafe",
+        "Agua e cafe."
+       ]
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"Quiero un café\".",
+       "tiles": [
+        "Eu",
+        "quero",
+        "um",
+        "café",
+        "uma",
+        "água"
+       ],
+       "sequence": [
+        "Eu",
+        "quero",
+        "um",
+        "café"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "difficulty": 0.13,
+       "options": [
+        "Um café, por favor.",
+        "Uma água, por favor.",
+        "Um pão, por favor."
+       ],
+       "value": "Um café, por favor."
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.12,
+       "text": "Eu gosto de pão com café."
+      }
+     ]
+    },
+    {
+     "title": "Yo quiero: querer",
+     "topic": "Pedir cosas usando el verbo querer (eu quero)",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada frase con su traducción.",
+       "difficulty": 0.14,
+       "pairs": [
+        [
+         "eu quero",
+         "yo quiero"
+        ],
+        [
+         "você quer",
+         "tú quieres"
+        ],
+        [
+         "por favor",
+         "por favor"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Eu ___ um café.\" (querer)",
+       "difficulty": 0.15,
+       "options": [
+        "quero",
+        "quer",
+        "quere"
+       ],
+       "value": "quero"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "¿Qué significa \"O que você quer?\"?",
+       "difficulty": 0.16,
+       "options": [
+        "¿Qué quieres?",
+        "¿Cómo estás?",
+        "¿Dónde estás?"
+       ],
+       "value": "¿Qué quieres?"
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"Eu ___ uma água, por favor.\" (querer)",
+       "text": "Eu ___ uma água, por favor.",
+       "value": "quero",
+       "accepted": [
+        "quero",
+        "Quero"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Quiero un café, por favor.\"",
+       "source": "Quiero un café, por favor.",
+       "value": "Eu quero um café, por favor",
+       "accepted": [
+        "Eu quero um café, por favor",
+        "Eu quero um café, por favor.",
+        "Quero um café, por favor",
+        "Quero um café, por favor.",
+        "Eu quero um cafe, por favor",
+        "Eu quero um cafe por favor",
+        "Quero um cafe, por favor",
+        "Quero um cafe por favor"
+       ]
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"Yo quiero una agua\".",
+       "difficulty": 0.17,
+       "value": "Eu quero uma água",
+       "tiles": [
+        "uma",
+        "Eu",
+        "água",
+        "quero"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "difficulty": 0.16,
+       "options": [
+        "Eu quero um pão, por favor.",
+        "Eu quero um suco, por favor.",
+        "Eu quero um leite, por favor."
+       ],
+       "value": "Eu quero um pão, por favor."
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.16,
+       "text": "Eu quero uma água, por favor."
+      }
+     ]
+    },
+    {
+     "title": "Números y precios",
+     "topic": "Los números y cómo decir los precios en reales",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada número con su traducción.",
+       "difficulty": 0.18,
+       "pairs": [
+        [
+         "dois",
+         "dos"
+        ],
+        [
+         "três",
+         "tres"
+        ],
+        [
+         "dez",
+         "diez"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "¿Qué número es \"cinco\" en portugués?",
+       "difficulty": 0.19,
+       "options": [
+        "cinco",
+        "quatro",
+        "seis"
+       ],
+       "value": "cinco"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "\"Custa dez reais\" significa:",
+       "difficulty": 0.2,
+       "options": [
+        "Cuesta diez reales",
+        "Cuesta dos reales",
+        "Cuesta doce reales"
+       ],
+       "value": "Cuesta diez reales"
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa el número: \"um, dois, ___, quatro.\" (tres)",
+       "text": "um, dois, ___, quatro.",
+       "value": "três",
+       "accepted": [
+        "três",
+        "tres",
+        "Três",
+        "Tres"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Cuesta cinco reales.\"",
+       "source": "Cuesta cinco reales.",
+       "value": "Custa cinco reais",
+       "accepted": [
+        "Custa cinco reais",
+        "Custa cinco reais.",
+        "custa cinco reais",
+        "custa cinco reais.",
+        "Custa cinco reais ."
+       ]
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"El café cuesta tres reales\".",
+       "tiles": [
+        "O",
+        "café",
+        "custa",
+        "três",
+        "reais",
+        "dois"
+       ],
+       "sequence": [
+        "O",
+        "café",
+        "custa",
+        "três",
+        "reais"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "difficulty": 0.2,
+       "options": [
+        "Custa dez reais.",
+        "Custa dois reais.",
+        "Custa doze reais."
+       ],
+       "value": "Custa dez reais."
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.2,
+       "text": "O suco custa seis reais."
+      }
+     ]
+    },
+    {
+     "title": "En la tienda: quanto custa",
+     "topic": "Preguntar precios y disponibilidad en la tienda (quanto custa, tem?)",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada frase con su traducción.",
+       "difficulty": 0.22,
+       "pairs": [
+        [
+         "quanto custa?",
+         "¿cuánto cuesta?"
+        ],
+        [
+         "tem pão?",
+         "¿hay pan?"
+        ],
+        [
+         "a conta, por favor",
+         "la cuenta, por favor"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Para preguntar el precio dices:",
+       "difficulty": 0.24,
+       "options": [
+        "Quanto custa?",
+        "Como vai?",
+        "Onde fica?"
+       ],
+       "value": "Quanto custa?"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "\"Tem água?\" significa:",
+       "difficulty": 0.25,
+       "options": [
+        "¿Hay agua?",
+        "¿Quieres agua?",
+        "¿Cuánto cuesta el agua?"
+       ],
+       "value": "¿Hay agua?"
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"___ custa o café?\" (cuánto)",
+       "text": "___ custa o café?",
+       "value": "Quanto",
+       "accepted": [
+        "Quanto",
+        "quanto"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"¿Cuánto cuesta el pan?\"",
+       "source": "¿Cuánto cuesta el pan?",
+       "value": "Quanto custa o pão?",
+       "accepted": [
+        "Quanto custa o pão?",
+        "Quanto custa o pão",
+        "Quanto custa o pao?",
+        "Quanto custa o pao",
+        "Quanto custa o pão ?"
+       ]
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"¿Tienen pan?\"",
+       "difficulty": 0.27,
+       "value": "Tem pão?",
+       "tiles": [
+        "pão?",
+        "Tem"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "difficulty": 0.27,
+       "options": [
+        "Quanto custa o suco?",
+        "Quanto custa o café?",
+        "Quanto custa a água?"
+       ],
+       "value": "Quanto custa o suco?"
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.28,
+       "text": "Quanto custa o suco?"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "U": 5,
+   "title": "¿Dónde queda?",
+   "theme_color": "#8E44AD",
+   "icon": "place",
+   "checkpoint_description": "En esta unidad aprendes a hablar de lugares de la ciudad y a ubicarlos con los verbos ficar y estar. Practicas preposiciones de lugar (perto, longe, ao lado) y preguntas con onde. También pides y das direcciones sencillas con à direita y à esquerda.",
+   "vocab": [
+    {
+     "word": "onde",
+     "translation": "dónde",
+     "pos": "adv"
+    },
+    {
+     "word": "ficar",
+     "translation": "quedar/estar (ubicación)",
+     "pos": "verbo"
+    },
+    {
+     "word": "perto",
+     "translation": "cerca",
+     "pos": "adv"
+    },
+    {
+     "word": "longe",
+     "translation": "lejos",
+     "pos": "adv"
+    },
+    {
+     "word": "ao lado",
+     "translation": "al lado",
+     "pos": "loc"
+    },
+    {
+     "word": "direita",
+     "translation": "derecha",
+     "pos": "sust"
+    },
+    {
+     "word": "esquerda",
+     "translation": "izquierda",
+     "pos": "sust"
+    },
+    {
+     "word": "rua",
+     "translation": "calle",
+     "pos": "sust"
+    },
+    {
+     "word": "praça",
+     "translation": "plaza",
+     "pos": "sust"
+    },
+    {
+     "word": "banco",
+     "translation": "banco",
+     "pos": "sust"
+    },
+    {
+     "word": "mercado",
+     "translation": "mercado",
+     "pos": "sust"
+    },
+    {
+     "word": "farmácia",
+     "translation": "farmacia",
+     "pos": "sust"
+    },
+    {
+     "word": "hospital",
+     "translation": "hospital",
+     "pos": "sust"
+    },
+    {
+     "word": "estação",
+     "translation": "estación",
+     "pos": "sust"
+    },
+    {
+     "word": "aqui",
+     "translation": "aquí",
+     "pos": "adv"
+    },
+    {
+     "word": "reto",
+     "translation": "recto/derecho",
+     "pos": "adv"
+    }
+   ],
+   "lessons": [
+    {
+     "title": "Lugares de la ciudad",
+     "topic": "Vocabulario de lugares comunes en la ciudad",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada lugar con su traducción.",
+       "pairs": [
+        [
+         "mercado",
+         "mercado"
+        ],
+        [
+         "farmácia",
+         "farmacia"
+        ],
+        [
+         "banco",
+         "banco"
+        ]
+       ],
+       "difficulty": 0.1
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "¿Cómo se dice \"hospital\" en portugués?",
+       "options": [
+        "hospital",
+        "hotel",
+        "escola"
+       ],
+       "value": "hospital",
+       "difficulty": 0.1
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "¿Cómo se dice \"plaza\" en portugués?",
+       "options": [
+        "praça",
+        "praia",
+        "rua"
+       ],
+       "value": "praça",
+       "difficulty": 0.12
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"Eu moro perto da ___.\" (estación)",
+       "text": "Eu moro perto da ___.",
+       "value": "estação",
+       "accepted": [
+        "estação",
+        "estacao",
+        "Estação",
+        "Estacao"
+       ],
+       "difficulty": 0.13
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"La farmacia.\"",
+       "source": "La farmacia.",
+       "value": "A farmácia",
+       "accepted": [
+        "A farmácia",
+        "A farmácia.",
+        "A farmacia",
+        "A farmacia.",
+        "a farmácia",
+        "a farmacia"
+       ],
+       "difficulty": 0.14
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"El banco queda aquí.\"",
+       "tiles": [
+        "O",
+        "banco",
+        "é",
+        "aqui",
+        "fica",
+        "praça"
+       ],
+       "sequence": [
+        "O",
+        "banco",
+        "fica",
+        "aqui"
+       ],
+       "difficulty": 0.13
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "options": [
+        "Onde fica o mercado?",
+        "Onde fica a farmácia?",
+        "Onde fica o banco?"
+       ],
+       "value": "Onde fica o mercado?",
+       "difficulty": 0.14
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "Tem um mercado e uma farmácia na minha rua.",
+       "difficulty": 0.12
+      }
+     ]
+    },
+    {
+     "title": "Dónde queda: ficar/estar",
+     "topic": "Usar ficar y estar para ubicar lugares y personas",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "pairs": [
+        [
+         "onde",
+         "dónde"
+        ],
+        [
+         "fica",
+         "queda"
+        ],
+        [
+         "aqui",
+         "aquí"
+        ]
+       ],
+       "difficulty": 0.14
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Onde ___ o banco?\" (ubicación de un lugar)",
+       "options": [
+        "fica",
+        "vai",
+        "tem"
+       ],
+       "value": "fica",
+       "difficulty": 0.15
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Eu ___ no hospital agora.\" (estar ahora)",
+       "options": [
+        "estou",
+        "sou",
+        "fico"
+       ],
+       "value": "estou",
+       "difficulty": 0.18
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"O mercado ___ na praça.\" (queda)",
+       "text": "O mercado ___ na praça.",
+       "value": "fica",
+       "accepted": [
+        "fica",
+        "Fica"
+       ],
+       "difficulty": 0.16
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"¿Dónde queda el hospital?\"",
+       "source": "¿Dónde queda el hospital?",
+       "value": "Onde fica o hospital?",
+       "accepted": [
+        "Onde fica o hospital?",
+        "Onde fica o hospital",
+        "Onde é o hospital?",
+        "Onde é o hospital",
+        "onde fica o hospital?",
+        "onde fica o hospital"
+       ],
+       "difficulty": 0.18
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"¿Dónde queda la estación?\"",
+       "value": "Onde fica a estação",
+       "tiles": [
+        "fica",
+        "Onde",
+        "estação",
+        "a"
+       ],
+       "difficulty": 0.19
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "options": [
+        "A farmácia fica aqui perto.",
+        "O banco fica na praça.",
+        "O mercado fica longe daqui."
+       ],
+       "value": "O banco fica na praça.",
+       "difficulty": 0.18
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "Onde fica o banco? Ele fica na rua principal.",
+       "difficulty": 0.16
+      }
+     ]
+    },
+    {
+     "title": "Cerca y lejos: preposiciones",
+     "topic": "Preposiciones de lugar: perto, longe, ao lado",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "pairs": [
+        [
+         "perto",
+         "cerca"
+        ],
+        [
+         "longe",
+         "lejos"
+        ],
+        [
+         "ao lado",
+         "al lado"
+        ]
+       ],
+       "difficulty": 0.15
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"O hospital fica ___ daqui, dá para ir a pé.\" (cerca)",
+       "options": [
+        "perto",
+        "longe",
+        "reto"
+       ],
+       "value": "perto",
+       "difficulty": 0.17
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"A farmácia fica ___ do banco.\" (al lado)",
+       "options": [
+        "ao lado",
+        "perto",
+        "longe"
+       ],
+       "value": "ao lado",
+       "difficulty": 0.19
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"O mercado fica muito ___, é melhor ir de ônibus.\" (lejos)",
+       "text": "O mercado fica muito ___, é melhor ir de ônibus.",
+       "value": "longe",
+       "accepted": [
+        "longe",
+        "Longe"
+       ],
+       "difficulty": 0.2
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"La plaza queda cerca de aquí.\"",
+       "source": "La plaza queda cerca de aquí.",
+       "value": "A praça fica perto daqui",
+       "accepted": [
+        "A praça fica perto daqui",
+        "A praça fica perto daqui.",
+        "A praça é perto daqui",
+        "A praça fica pertinho daqui",
+        "a praça fica perto daqui"
+       ],
+       "difficulty": 0.21
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"El banco queda al lado del mercado.\"",
+       "tiles": [
+        "O",
+        "banco",
+        "fica",
+        "ao",
+        "lado",
+        "do",
+        "mercado",
+        "perto"
+       ],
+       "sequence": [
+        "O",
+        "banco",
+        "fica",
+        "ao",
+        "lado",
+        "do",
+        "mercado"
+       ],
+       "difficulty": 0.22
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "options": [
+        "O hospital fica perto da praça.",
+        "O hospital fica longe da praça.",
+        "O hospital fica ao lado da praça."
+       ],
+       "value": "O hospital fica longe da praça.",
+       "difficulty": 0.22
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "A farmácia fica ao lado do banco, bem pertinho.",
+       "difficulty": 0.2
+      }
+     ]
+    },
+    {
+     "title": "Cómo llego: direcciones",
+     "topic": "Pedir y dar direcciones: à direita, à esquerda, reto",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "pairs": [
+        [
+         "direita",
+         "derecha"
+        ],
+        [
+         "esquerda",
+         "izquierda"
+        ],
+        [
+         "reto",
+         "recto"
+        ]
+       ],
+       "difficulty": 0.18
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Vire à ___ na próxima rua.\" (derecha)",
+       "options": [
+        "direita",
+        "esquerda",
+        "frente"
+       ],
+       "value": "direita",
+       "difficulty": 0.2
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Siga ___ até a praça.\" (recto)",
+       "options": [
+        "reto",
+        "perto",
+        "longe"
+       ],
+       "value": "reto",
+       "difficulty": 0.22
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa: \"Vire à ___ e o banco fica ali.\" (izquierda)",
+       "text": "Vire à ___ e o banco fica ali.",
+       "value": "esquerda",
+       "accepted": [
+        "esquerda",
+        "Esquerda"
+       ],
+       "difficulty": 0.24
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"¿Cómo llego al mercado?\"",
+       "source": "¿Cómo llego al mercado?",
+       "value": "Como eu chego ao mercado?",
+       "accepted": [
+        "Como eu chego ao mercado?",
+        "Como eu chego ao mercado",
+        "Como chego ao mercado?",
+        "Como chego ao mercado",
+        "Como eu chego no mercado?",
+        "Como chego no mercado?"
+       ],
+       "difficulty": 0.26
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"Gire a la derecha en la plaza.\"",
+       "value": "Vire à direita na praça",
+       "tiles": [
+        "direita",
+        "Vire",
+        "praça",
+        "à",
+        "na"
+       ],
+       "difficulty": 0.28
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "options": [
+        "Siga reto e vire à esquerda.",
+        "Siga reto e vire à direita.",
+        "Vire à esquerda na praça."
+       ],
+       "value": "Siga reto e vire à direita.",
+       "difficulty": 0.28
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "Siga reto, vire à esquerda e o hospital fica à direita.",
+       "difficulty": 0.3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "U": 6,
+   "title": "Tiempo libre",
+   "theme_color": "#16A085",
+   "icon": "sports_esports",
+   "checkpoint_description": "Aprendes a hablar de tus pasatiempos y a describirlos con adjetivos básicos (legal, chato, divertido). Practicas el verbo \"poder\" (eu posso) y \"gostar de\" + verbo para decir lo que te gusta hacer. Cierras con los días de la semana y la frecuencia básica (sempre/nunca) para contar tu rutina de tiempo libre.",
+   "vocab": [
+    {
+     "word": "hobby",
+     "translation": "pasatiempo/hobby",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "tempo livre",
+     "translation": "tiempo libre",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "jogar",
+     "translation": "jugar",
+     "pos": "verbo"
+    },
+    {
+     "word": "ler",
+     "translation": "leer",
+     "pos": "verbo"
+    },
+    {
+     "word": "nadar",
+     "translation": "nadar",
+     "pos": "verbo"
+    },
+    {
+     "word": "gostar de",
+     "translation": "gustar de",
+     "pos": "verbo"
+    },
+    {
+     "word": "poder",
+     "translation": "poder",
+     "pos": "verbo"
+    },
+    {
+     "word": "legal",
+     "translation": "genial/chévere",
+     "pos": "adjetivo"
+    },
+    {
+     "word": "chato",
+     "translation": "aburrido",
+     "pos": "adjetivo"
+    },
+    {
+     "word": "divertido",
+     "translation": "divertido",
+     "pos": "adjetivo"
+    },
+    {
+     "word": "sempre",
+     "translation": "siempre",
+     "pos": "adverbio"
+    },
+    {
+     "word": "nunca",
+     "translation": "nunca",
+     "pos": "adverbio"
+    },
+    {
+     "word": "fim de semana",
+     "translation": "fin de semana",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "sábado",
+     "translation": "sábado",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "domingo",
+     "translation": "domingo",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "futebol",
+     "translation": "fútbol",
+     "pos": "sustantivo"
+    }
+   ],
+   "lessons": [
+    {
+     "title": "Pasatiempos",
+     "topic": "Vocabulario de pasatiempos y actividades de tiempo libre",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada pasatiempo con su traducción.",
+       "pairs": [
+        [
+         "jogar",
+         "jugar"
+        ],
+        [
+         "ler",
+         "leer"
+        ],
+        [
+         "nadar",
+         "nadar"
+        ]
+       ],
+       "difficulty": 0.1
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "¿Cómo se dice \"tiempo libre\" en portugués?",
+       "options": [
+        "tempo livre",
+        "fim de semana",
+        "dia livre"
+       ],
+       "value": "tempo livre",
+       "difficulty": 0.11
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"No meu ___ eu gosto de jogar.\" (pasatiempo)",
+       "options": [
+        "hobby",
+        "trabalho",
+        "almoço"
+       ],
+       "value": "hobby",
+       "difficulty": 0.12
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con el verbo \"leer\": \"Eu gosto de ___ um livro.\"",
+       "text": "Eu gosto de ___ um livro.",
+       "value": "ler",
+       "accepted": [
+        "ler",
+        "Ler",
+        "LER"
+       ],
+       "difficulty": 0.12
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Me gusta nadar.\"",
+       "source": "Me gusta nadar.",
+       "value": "Eu gosto de nadar",
+       "accepted": [
+        "Eu gosto de nadar",
+        "Eu gosto de nadar.",
+        "Gosto de nadar",
+        "Gosto de nadar.",
+        "eu gosto de nadar",
+        "gosto de nadar"
+       ],
+       "difficulty": 0.13
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"Me gusta jugar fútbol\".",
+       "tiles": [
+        "Eu",
+        "gosto",
+        "de",
+        "jogar",
+        "futebol",
+        "ler",
+        "nadar"
+       ],
+       "sequence": [
+        "Eu",
+        "gosto",
+        "de",
+        "jogar",
+        "futebol"
+       ],
+       "difficulty": 0.13
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "options": [
+        "Eu gosto de ler livros.",
+        "Eu gosto de nadar no mar.",
+        "Eu gosto de jogar futebol."
+       ],
+       "value": "Eu gosto de jogar futebol.",
+       "difficulty": 0.13
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "No meu tempo livre, eu gosto de ler e nadar.",
+       "difficulty": 0.14
+      }
+     ]
+    },
+    {
+     "title": "Describir: adjetivos",
+     "topic": "Adjetivos descriptivos para opinar sobre actividades",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada adjetivo con su traducción.",
+       "pairs": [
+        [
+         "legal",
+         "genial"
+        ],
+        [
+         "chato",
+         "aburrido"
+        ],
+        [
+         "divertido",
+         "divertido"
+        ]
+       ],
+       "difficulty": 0.14
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Tu amigo dice que el juego es genial. ¿Qué palabra usa?",
+       "options": [
+        "legal",
+        "chato",
+        "triste"
+       ],
+       "value": "legal",
+       "difficulty": 0.15
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Esse filme é muito ___.\" (aburrido)",
+       "options": [
+        "chato",
+        "legal",
+        "rápido"
+       ],
+       "value": "chato",
+       "difficulty": 0.16
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con el adjetivo \"divertido\": \"Jogar futebol é muito ___.\"",
+       "text": "Jogar futebol é muito ___.",
+       "value": "divertido",
+       "accepted": [
+        "divertido",
+        "Divertido",
+        "DIVERTIDO"
+       ],
+       "difficulty": 0.16
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Este libro es genial.\"",
+       "source": "Este libro es genial.",
+       "value": "Este livro é legal",
+       "accepted": [
+        "Este livro é legal",
+        "Este livro é legal.",
+        "Esse livro é legal",
+        "Esse livro é legal.",
+        "este livro é legal",
+        "esse livro é legal"
+       ],
+       "difficulty": 0.17
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"El filme es muy divertido\".",
+       "value": "O filme é muito divertido",
+       "tiles": [
+        "é",
+        "O",
+        "muito",
+        "filme",
+        "divertido"
+       ],
+       "difficulty": 0.17
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "options": [
+        "Esse jogo é muito legal!",
+        "Esse filme é muito chato.",
+        "Esse livro é divertido."
+       ],
+       "value": "Esse jogo é muito legal!",
+       "difficulty": 0.17
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "Eu acho esse jogo muito legal e divertido.",
+       "difficulty": 0.18
+      }
+     ]
+    },
+    {
+     "title": "Puedo: poder",
+     "topic": "El verbo poder (eu posso) para hablar de posibilidad",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada forma de \"poder\" con su traducción.",
+       "pairs": [
+        [
+         "eu posso",
+         "yo puedo"
+        ],
+        [
+         "você pode",
+         "tú puedes"
+        ],
+        [
+         "a gente pode",
+         "nosotros podemos"
+        ]
+       ],
+       "difficulty": 0.18
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Eu ___ jogar no sábado.\" (yo puedo)",
+       "options": [
+        "posso",
+        "pode",
+        "podemos"
+       ],
+       "value": "posso",
+       "difficulty": 0.19
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "¿Cómo le preguntas \"¿Puedes nadar?\" a un amigo?",
+       "options": [
+        "Você pode nadar?",
+        "Eu posso nadar?",
+        "A gente pode nadar?"
+       ],
+       "value": "Você pode nadar?",
+       "difficulty": 0.2
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con la forma de \"poder\" para \"eu\": \"Hoje eu não ___ jogar.\"",
+       "text": "Hoje eu não ___ jogar.",
+       "value": "posso",
+       "accepted": [
+        "posso",
+        "Posso",
+        "POSSO"
+       ],
+       "difficulty": 0.21
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Yo puedo leer hoy.\"",
+       "source": "Yo puedo leer hoy.",
+       "value": "Eu posso ler hoje",
+       "accepted": [
+        "Eu posso ler hoje",
+        "Eu posso ler hoje.",
+        "Posso ler hoje",
+        "Posso ler hoje.",
+        "eu posso ler hoje",
+        "posso ler hoje"
+       ],
+       "difficulty": 0.22
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"Yo puedo jugar el sábado\".",
+       "tiles": [
+        "Eu",
+        "posso",
+        "jogar",
+        "no",
+        "sábado",
+        "pode",
+        "domingo"
+       ],
+       "sequence": [
+        "Eu",
+        "posso",
+        "jogar",
+        "no",
+        "sábado"
+       ],
+       "difficulty": 0.22
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "options": [
+        "Eu posso jogar amanhã.",
+        "Você pode nadar hoje?",
+        "A gente pode ler depois."
+       ],
+       "value": "Eu posso jogar amanhã.",
+       "difficulty": 0.22
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "Eu posso nadar hoje, mas não posso jogar futebol.",
+       "difficulty": 0.23
+      }
+     ]
+    },
+    {
+     "title": "Mis días: la semana",
+     "topic": "Días de la semana y frecuencia básica (sempre/nunca)",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "pairs": [
+        [
+         "sábado",
+         "sábado"
+        ],
+        [
+         "domingo",
+         "domingo"
+        ],
+        [
+         "semana",
+         "semana"
+        ]
+       ],
+       "difficulty": 0.22
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "¿Cómo se dice \"fin de semana\" en portugués?",
+       "options": [
+        "fim de semana",
+        "dia da semana",
+        "meio da semana"
+       ],
+       "value": "fim de semana",
+       "difficulty": 0.23
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Eu ___ jogo futebol no domingo.\" (siempre)",
+       "options": [
+        "sempre",
+        "nunca",
+        "hoje"
+       ],
+       "value": "sempre",
+       "difficulty": 0.24
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con el adverbio \"nunca\": \"Eu ___ nado no inverno.\"",
+       "text": "Eu ___ nado no inverno.",
+       "value": "nunca",
+       "accepted": [
+        "nunca",
+        "Nunca",
+        "NUNCA"
+       ],
+       "difficulty": 0.25
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Yo siempre leo los domingos.\"",
+       "source": "Yo siempre leo los domingos.",
+       "value": "Eu sempre leio aos domingos",
+       "accepted": [
+        "Eu sempre leio aos domingos",
+        "Eu sempre leio aos domingos.",
+        "Eu sempre leio nos domingos",
+        "Eu sempre leio nos domingos.",
+        "Eu sempre leio todos os domingos",
+        "Eu sempre leio todos os domingos.",
+        "Eu sempre leio no domingo",
+        "Eu sempre leio no domingo.",
+        "Sempre leio aos domingos",
+        "Sempre leio aos domingos.",
+        "eu sempre leio aos domingos",
+        "eu sempre leio nos domingos",
+        "eu sempre leio todos os domingos",
+        "sempre leio aos domingos"
+       ],
+       "difficulty": 0.26
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"El sábado yo juego fútbol\".",
+       "value": "No sábado eu jogo futebol",
+       "tiles": [
+        "jogo",
+        "No",
+        "eu",
+        "sábado",
+        "futebol"
+       ],
+       "difficulty": 0.27
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige la frase que oíste.",
+       "options": [
+        "No fim de semana eu sempre nado.",
+        "Aos domingos eu nunca jogo.",
+        "Durante a semana eu leio muito."
+       ],
+       "value": "No fim de semana eu sempre nado.",
+       "difficulty": 0.28
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "No fim de semana eu sempre jogo futebol, mas nunca nado.",
+       "difficulty": 0.3
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
