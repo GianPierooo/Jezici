@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:audioplayers/audioplayers.dart';
 
 import 'audio_engine.dart';
@@ -11,6 +13,7 @@ class _IoAudioEngine implements AudioEngine {
   final List<AudioPlayer> _pool = List.generate(4, (_) => AudioPlayer());
   int _next = 0;
   AudioPlayer? _url;
+  StreamSubscription? _completeSub;
 
   @override
   void unlock() {}
@@ -29,8 +32,11 @@ class _IoAudioEngine implements AudioEngine {
   Future<void> playUrl(String url, {double volume = 1.0, void Function()? onComplete}) async {
     try {
       final p = _url ??= AudioPlayer();
+      // Cancela la suscripción previa antes de re-suscribir (evita fuga/disparos viejos).
+      await _completeSub?.cancel();
+      _completeSub = null;
       if (onComplete != null) {
-        p.onPlayerComplete.listen((_) => onComplete());
+        _completeSub = p.onPlayerComplete.listen((_) => onComplete());
       }
       await p.stop();
       await p.play(UrlSource(url), volume: volume);
@@ -40,6 +46,8 @@ class _IoAudioEngine implements AudioEngine {
   @override
   Future<void> stop() async {
     try {
+      await _completeSub?.cancel();
+      _completeSub = null;
       await _url?.stop();
     } catch (_) {}
   }
