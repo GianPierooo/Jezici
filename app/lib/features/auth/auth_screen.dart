@@ -17,6 +17,7 @@ class AuthScreen extends ConsumerStatefulWidget {
 }
 
 class _AuthScreenState extends ConsumerState<AuthScreen> {
+  final _name = TextEditingController();
   final _email = TextEditingController();
   final _password = TextEditingController();
   bool _signUp = true; // arranca en "crear cuenta"
@@ -25,6 +26,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
 
   @override
   void dispose() {
+    _name.dispose();
     _email.dispose();
     _password.dispose();
     super.dispose();
@@ -33,8 +35,13 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   static final _emailRe = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
 
   Future<void> _submit() async {
+    final name = _name.text.trim();
     final email = _email.text.trim();
     final pw = _password.text.trim();
+    if (_signUp && name.isEmpty) {
+      setState(() => _error = 'Dinos tu nombre para personalizar tu viaje.');
+      return;
+    }
     if (!_emailRe.hasMatch(email) || pw.length < 6) {
       setState(() => _error = 'Pon un email válido y una contraseña de 6+ caracteres.');
       return;
@@ -47,6 +54,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
       final repo = ref.read(progressRepositoryProvider);
       if (_signUp) {
         await repo.signUpEmail(email, pw);
+        await repo.setProfile(name: name); // guarda el nombre real de entrada
       } else {
         await repo.signInEmail(email, pw);
       }
@@ -114,6 +122,11 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                 }),
               ),
               const SizedBox(height: 18),
+              if (_signUp) ...[
+                _field(_name, 'Tu nombre', Icons.person_outline_rounded,
+                    keyboard: TextInputType.name),
+                const SizedBox(height: 12),
+              ],
               _field(_email, 'Email', Icons.mail_outline_rounded,
                   keyboard: TextInputType.emailAddress),
               const SizedBox(height: 12),

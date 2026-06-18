@@ -5,6 +5,7 @@ import '../models/checkpoint_models.dart';
 import '../models/course_models.dart';
 import '../models/league_models.dart';
 import '../models/level_exam_models.dart';
+import '../models/profile_models.dart';
 import '../models/practice_models.dart';
 import '../models/shop_models.dart';
 import '../models/progress_models.dart';
@@ -18,6 +19,30 @@ class ProgressRepository {
 
   String? get _uid => _client.auth.currentUser?.id;
   bool get isSignedIn => _client.auth.currentSession != null;
+
+  // ── Perfil (nombre real, país, avatar, bio) ───────────────────────────────
+
+  /// Perfil propio para el hero (RPC get_profile).
+  Future<ProfileInfo> fetchProfile() async {
+    final res = await _client.rpc('get_profile');
+    return ProfileInfo.fromJson(Map<String, dynamic>.from(res as Map));
+  }
+
+  /// Actualiza el perfil propio (RPC set_profile). Campos null = sin cambio.
+  Future<ProfileInfo> setProfile({
+    String? name,
+    String? country,
+    String? bio,
+    String? avatarColor,
+  }) async {
+    final res = await _client.rpc('set_profile', params: {
+      'p_name': name,
+      'p_country': country,
+      'p_bio': bio,
+      'p_avatar_color': avatarColor,
+    });
+    return ProfileInfo.fromJson(Map<String, dynamic>.from(res as Map));
+  }
 
   // ── Multi-curso (es→en / es→pt) ────────────────────────────────────────────
 

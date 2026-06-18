@@ -4,6 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'models/achievement_models.dart';
 import 'models/content_item_model.dart';
 import 'models/course_models.dart';
+import 'models/profile_models.dart';
 import 'models/league_models.dart';
 import 'models/level_exam_models.dart';
 import 'models/practice_models.dart';
@@ -21,6 +22,11 @@ final supabaseClientProvider = Provider<SupabaseClient>(
 /// Repositorio de contenido.
 final contentRepositoryProvider = Provider<ContentRepository>(
   (ref) => ContentRepository(ref.watch(supabaseClientProvider)),
+);
+
+/// Perfil del usuario (nombre real, país, avatar, bio, ingreso).
+final profileProvider = FutureProvider<ProfileInfo>(
+  (ref) => ref.watch(progressRepositoryProvider).fetchProfile(),
 );
 
 /// Cursos disponibles (es→en, es→pt) + cuál es el activo del usuario.

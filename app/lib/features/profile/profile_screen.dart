@@ -6,9 +6,12 @@ import '../../core/plan/estimation.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/achievement_models.dart';
 import '../../data/models/level_exam_models.dart';
+import '../../data/models/profile_models.dart';
 import '../../data/models/progress_models.dart';
 import '../../data/providers.dart';
+import '../../ui/app_avatar.dart';
 import '../../ui/daily_goal_bar.dart';
+import '../../ui/edit_profile_sheet.dart';
 import '../../ui/progress_bar.dart';
 import '../level_exam/certificate_screen.dart';
 import '../level_exam/level_exam_intro_screen.dart';
@@ -63,6 +66,7 @@ class ProfileScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final stats = ref.watch(homeStatsProvider).value ?? HomeStats.empty;
+    final profile = ref.watch(profileProvider).value ?? ProfileInfo.empty;
     final skillsList = ref.watch(skillsProvider).value ?? const <SkillLevel>[];
     final mastery = ref.watch(skillMasteryProvider).value;
     final masteryBySkill = {
@@ -101,40 +105,10 @@ class ProfileScreen extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Cabecera.
+            // Cabecera: acciones (notificaciones, ajustes).
             Row(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Container(
-                  width: 60,
-                  height: 60,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [AppColors.primaryLight, AppColors.primary],
-                    ),
-                    borderRadius: BorderRadius.circular(18),
-                  ),
-                  child: const Text('🦜', style: TextStyle(fontSize: 30)),
-                ),
-                const SizedBox(width: 14),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text('Aprendiz',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w900,
-                              color: AppColors.text)),
-                      const SizedBox(height: 2),
-                      Text('Nivel de jugador ${stats.playerLevel} · ${stats.xpTotal} XP',
-                          style: const TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w800,
-                              color: AppColors.textMuted)),
-                    ],
-                  ),
-                ),
                 _HeaderIcon(
                   icon: Icons.notifications_rounded,
                   onTap: () => Navigator.of(context).push(MaterialPageRoute(
@@ -147,6 +121,15 @@ class ProfileScreen extends ConsumerWidget {
                       MaterialPageRoute(builder: (_) => const SettingsScreen())),
                 ),
               ],
+            ),
+            const SizedBox(height: 10),
+
+            // Hero del perfil (elevado): avatar + nombre real + nivel + país.
+            _ProfileHero(
+              profile: profile,
+              cefr: skills.isNotEmpty ? skills.first.cefrLevel : 'A1',
+              xp: stats.xpTotal,
+              onEdit: () => showEditProfileSheet(context, ref, profile),
             ),
             const SizedBox(height: 20),
 
@@ -922,6 +905,126 @@ class _StatCard extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+/// Hero del perfil: avatar generado + nombre real + nivel + país + ingreso.
+/// Tappable → editar perfil. Si falta el nombre, invita a ponerlo.
+class _ProfileHero extends StatelessWidget {
+  const _ProfileHero({
+    required this.profile,
+    required this.cefr,
+    required this.xp,
+    required this.onEdit,
+  });
+
+  final ProfileInfo profile;
+  final String cefr;
+  final int xp;
+  final VoidCallback onEdit;
+
+  @override
+  Widget build(BuildContext context) {
+    final flag = countryFlag(profile.country);
+    final since = profile.memberSince;
+    final hasName = !profile.needsName && (profile.name?.isNotEmpty ?? false);
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0, end: 1),
+      duration: const Duration(milliseconds: 420),
+      curve: Curves.easeOutCubic,
+      builder: (context, t, child) => Opacity(
+        opacity: t,
+        child: Transform.translate(offset: Offset(0, (1 - t) * 12), child: child),
+      ),
+      child: GestureDetector(
+        onTap: onEdit,
+        child: Container(
+          padding: const EdgeInsets.all(18),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [AppColors.primary, AppColors.primaryDark],
+            ),
+            borderRadius: BorderRadius.circular(24),
+            boxShadow: const [
+              BoxShadow(color: Color(0x336C5CE7), offset: Offset(0, 10), blurRadius: 24),
+            ],
+          ),
+          child: Row(
+            children: [
+              AppAvatar(initial: profile.initial, colorHex: profile.avatarColor, size: 64),
+              const SizedBox(width: 16),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      hasName ? profile.name! : 'Pon tu nombre',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                          fontSize: 22, fontWeight: FontWeight.w900, color: Colors.white),
+                    ),
+                    const SizedBox(height: 4),
+                    Row(
+                      children: [
+                        _Pill(text: 'Nivel $cefr'),
+                        const SizedBox(width: 6),
+                        _Pill(text: '$xp XP'),
+                        if (flag != null) ...[
+                          const SizedBox(width: 6),
+                          Text(flag, style: const TextStyle(fontSize: 16)),
+                        ],
+                      ],
+                    ),
+                    if (since != null) ...[
+                      const SizedBox(height: 6),
+                      Text('Miembro desde ${_pretty(since)}',
+                          style: TextStyle(
+                              fontSize: 11.5,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white.withValues(alpha: 0.85))),
+                    ],
+                  ],
+                ),
+              ),
+              Icon(hasName ? Icons.edit_rounded : Icons.add_circle_rounded,
+                  color: Colors.white.withValues(alpha: 0.9), size: 22),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  static String _pretty(String ymd) {
+    const months = [
+      'ene', 'feb', 'mar', 'abr', 'may', 'jun',
+      'jul', 'ago', 'sep', 'oct', 'nov', 'dic'
+    ];
+    final p = ymd.split('-');
+    if (p.length != 3) return ymd;
+    final m = int.tryParse(p[1]) ?? 1;
+    return '${months[(m - 1).clamp(0, 11)]}. ${p[0]}';
+  }
+}
+
+class _Pill extends StatelessWidget {
+  const _Pill({required this.text});
+  final String text;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 3),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.18),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Text(text,
+          style: const TextStyle(
+              fontSize: 12, fontWeight: FontWeight.w900, color: Colors.white)),
     );
   }
 }
