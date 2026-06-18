@@ -61,8 +61,12 @@ def main():
 
     print('\n== start_course + nodo inicial ==')
     v.rpc(uid, 'select start_course();')
-    # primera unidad/lección A1
-    u1 = q("select id from units where cefr_level='A1' order by order_index limit 1;")[0]['id']
+    # Curso del usuario de prueba (sin user_active_course → fallback es→en, el
+    # primero por created_at). MULTI-CURSO: hay que filtrar por curso porque
+    # es→pt comparte order_index 1..6 con es→en.
+    course = q("select id from courses where is_active order by created_at limit 1;")[0]['id']
+    # primera unidad/lección A1 (del curso activo)
+    u1 = q(f"select id from units where course_id='{course}' and cefr_level='A1' order by order_index limit 1;")[0]['id']
     lessons = q(f"select id, order_index, type from lessons where unit_id='{u1}' order by order_index;")
     # GA9: el PRIMER nodo (la misión, order 0) es el inicial disponible.
     mission = lessons[0]
@@ -130,8 +134,8 @@ def main():
         ckans.append({'item_id': it['id'], 'answer': a})
     cres = v.rpc(uid, f"select submit_checkpoint('{ck['id']}', {v.jq(ckans)}, 120);")
     check('checkpoint aprobado', cres.get('passed') is True, f"score={cres.get('score_global')}")
-    # gating: unidad 2 primer nodo disponible
-    u2 = q("select id from units where cefr_level='A1' order by order_index offset 1 limit 1;")
+    # gating: unidad 2 primer nodo disponible (del MISMO curso)
+    u2 = q(f"select id from units where course_id='{course}' and cefr_level='A1' order by order_index offset 1 limit 1;")
     if u2:
         u2l = q(f"select id from lessons where unit_id='{u2[0]['id']}' and type='lesson' order by order_index limit 1;")[0]['id']
         u2st = q(f"select status from user_lesson_progress where user_id='{uid}' and lesson_id='{u2l}';")
