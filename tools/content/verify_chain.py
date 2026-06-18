@@ -208,6 +208,32 @@ def main():
     assert all(r["cefr_level"] == "B2" for r in rowsB1), f"las 4 deben pasar a B2 tras examen B1: {rowsB1}"
     print("  OK: B1 certificado, las 4 habilidades en B2")
 
+    # ── B2 (Unidades 19–24 sembradas): la cadena cierra certificando B2 ─────────
+    print("\n== B2: completar checkpoints + DOMINIO B2 ==")
+    run(f"""insert into user_lesson_progress(user_id, lesson_id, status, best_accuracy, times_completed, completed_at)
+            select '{uid}', l.id, 'completed', 0.9, 1, now()
+            from lessons l join units u on u.id=l.unit_id
+            where u.cefr_level='B2' and l.type='checkpoint'
+            on conflict (user_id, lesson_id) do update set status='completed';""")
+    seed_mastery("B2")
+    stB2 = rpc(uid, "select level_exam_status();")
+    print(stB2)
+    assert stB2["level"] == "B2" and stB2["unlocked"] is True, "B2 debería estar desbloqueado (dominio)"
+    exB2 = rpc(uid, "select start_level_exam();")
+    print({k: exB2[k] for k in ("exam_id", "level", "item_count")})
+    assert exB2["level"] == "B2" and exB2["item_count"] >= 18
+    lvB2 = set(it["cefr_level"] for it in exB2["items"])
+    assert lvB2 == {"B2"}, f"los ítems del examen B2 deben ser B2: {lvB2}"
+    resB2 = rpc(uid, f"select submit_level_exam({jq(build_answers([it['id'] for it in exB2['items']]))}, 120);")
+    print({k: resB2.get(k) for k in ("passed", "level", "leveled_up", "raised_skills")})
+    print("certificado:", (resB2.get("certificate") or {}).get("folio"))
+    assert resB2["passed"] is True and resB2["level"] == "B2"
+    assert resB2.get("leveled_up") is True and set(resB2.get("raised_skills") or []) == {"reading", "listening", "writing", "speaking"}
+    assert (resB2.get("certificate") or {}).get("folio", "").startswith("JZC-B2-"), "debió emitir cert B2"
+    rowsB2 = json.loads(run(f"select skill, cefr_level from user_skill_levels where user_id='{uid}' order by skill;")[1])
+    assert all(r["cefr_level"] == "C1" for r in rowsB2), f"las 4 deben pasar a C1 tras examen B2: {rowsB2}"
+    print("  OK: B2 certificado, las 4 habilidades en C1 (tope de la escalera sembrada)")
+
     print("\n== DIVERGENCIA per-skill: solo la sección que aprueba sube ==")
     # Reset a A2 (las 4); dominio A2 alto SOLO para reading; checkpoints A2 ya hechos.
     run(f"update user_skill_levels set cefr_level='A2' where user_id='{uid}';")
@@ -241,7 +267,7 @@ def main():
 
     print("\n== limpieza (borra el usuario de prueba en cascada) ==")
     admin("DELETE", f"/auth/v1/admin/users/{uid}")
-    print("\n[OK] CADENA A1 -> A2 -> B1 (examenes + certs + per-skill) VERIFICADA (modelo de dominio)")
+    print("\n[OK] CADENA A1 -> A2 -> B1 -> B2 (examenes + certs + per-skill) VERIFICADA (modelo de dominio)")
 
 if __name__ == "__main__":
     main()

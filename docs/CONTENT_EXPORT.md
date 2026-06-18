@@ -987,3 +987,375 @@
 - **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «The old theatre was built in 1925, and it is still famous today.»  esperado: `The old theatre was built in 1925, and it is still famous today.`  _(dif 0.48)_
 
 **Vocabulario (frecuencia):** culture=cultura, the media=los medios de comunicación, newspaper=periódico, news=noticias, channel=canal, audience=público / audiencia, to be made of=estar hecho de, to be built=ser construido, broadcast=emitir / transmitir, documentary=documental, headline=titular, to dream of=soñar con, abroad=en el extranjero, exciting=emocionante, famous=famoso
+
+## Unidad 19 (B2) — Logros y trayectoria
+
+
+### L1 · Llevo tiempo haciéndolo  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['lately', 'últimamente'], ['achievement', 'logro'], ['to apply', 'postularse']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa con present perfect continuous: "She ___ been working on the project all week."  — opciones: ['has', 'is', 'had'] · ✓ `has`  _(dif 0.60)_
+- **[reading/multiple_choice]** Elige la frase correcta para "Últimamente he estado trabajando hasta tarde".  — opciones: ["I've been working late lately.", "I'm working late lately.", 'I work late since lately.'] · ✓ `I've been working late lately.`  _(dif 0.60)_
+- **[writing/cloze]** Completa con present perfect continuous: "They ___ been training hard for the marathon."  — texto: «They ___ been training hard for the marathon.»  ✓ `have` · acepta: ['have', "'ve", 've']  _(dif 0.60)_
+- **[writing/translation]** Traduce: "He estado buscando un trabajo nuevo."  — es: «He estado buscando un trabajo nuevo.»  ✓ en: `I have been looking for a new job` · acepta: ['I have been looking for a new job', "I've been looking for a new job", 'I have been looking for a new job.', "I've been looking for a new job.", 'I have been searching for a new job', "I've been searching for a new job", 'I have been searching for a new job.', "I've been searching for a new job."]  _(dif 0.60)_
+- **[writing/word_bank]** Arma la frase: "Ella ha estado estudiando inglés este año".  — fichas: ['She', 'has', 'been', 'studying', 'English', 'this', 'year', 'is', 'was']  ✓ `She has been studying English this year`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ["I've been meaning to call you all week.", 'I meant to call you last week.', "I'll call you next week for sure."] · ✓ `I've been meaning to call you all week.` · audio dice: «I've been meaning to call you all week.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «I've been thinking about my career a lot lately, and I feel ready for a change.»  esperado: `I've been thinking about my career a lot lately, and I feel ready for a change.`  _(dif 0.60)_
+
+### L2 · ¿Cuánto tiempo? for y since  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['since', 'desde'], ['for', 'durante'], ['career', 'trayectoria']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa: "I've been living here ___ 2018."  — opciones: ['since', 'for', 'ago'] · ✓ `since`  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa: "How long ___ you been working here?"  — opciones: ['have', 'did', 'are'] · ✓ `have`  _(dif 0.60)_
+- **[writing/cloze]** Completa con for o since: "She has been studying medicine ___ three years."  — texto: «She has been studying medicine ___ three years.»  ✓ `for` · acepta: ['for']  _(dif 0.60)_
+- **[writing/translation]** Traduce: "¿Cuánto tiempo llevas esperando?"  — es: «¿Cuánto tiempo llevas esperando?»  ✓ en: `How long have you been waiting?` · acepta: ['How long have you been waiting?', 'How long have you been waiting', 'How long have you been waiting for?', 'How long have you been waiting for', 'How long have you been waiting for.', 'How long have you been waiting.', 'For how long have you been waiting?', 'For how long have you been waiting']  _(dif 0.60)_
+- **[writing/reorder]** Ordena: "Llevan colaborando juntos desde marzo".  — fichas: ['been', 'They', 'since', 'have', 'together', 'working', 'March']  ✓ `They have been working together since March`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ["I've been working here for almost ten years.", 'I worked there for almost ten years.', "I've been here since almost ten o'clock."] · ✓ `I've been working here for almost ten years.` · audio dice: «I've been working here for almost ten years.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «How long have you been working in this field, and what's your proudest achievement so far?»  esperado: `How long have you been working in this field, and what's your proudest achievement so far?`  _(dif 0.60)_
+
+### L3 · Antes de eso: past perfect  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['already', 'ya'], ['promotion', 'ascenso'], ['by the time', 'para cuando']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa con past perfect: "When I arrived, the meeting ___ already started."  — opciones: ['had', 'has', 'was'] · ✓ `had`  _(dif 0.60)_
+- **[reading/multiple_choice]** Elige la frase correcta para "Para cuando llegó el jefe, ya nos habíamos ido".  — opciones: ['By the time the boss arrived, we had already left.', 'By the time the boss arrived, we have already left.', 'By the time the boss had arrived, we already left.'] · ✓ `By the time the boss arrived, we had already left.`  _(dif 0.60)_
+- **[writing/cloze]** Completa con past perfect: "She told me she ___ already finished the report."  — texto: «She told me she ___ already finished the report.»  ✓ `had` · acepta: ['had', "'d", 'd']  _(dif 0.60)_
+- **[writing/translation]** Traduce: "Cuando llegué, el tren ya se había ido."  — es: «Cuando llegué, el tren ya se había ido.»  ✓ en: `When I arrived, the train had already left` · acepta: ['When I arrived, the train had already left', 'When I arrived, the train had already left.', 'When I arrived the train had already left', 'When I got there, the train had already left', 'When I got there, the train had already left.', 'When I arrived, the train had already gone', 'When I arrived, the train had already gone.', "When I'd arrived, the train had already left"]  _(dif 0.60)_
+- **[writing/word_bank]** Arma la frase: "No habían terminado todavía cuando llamé".  — fichas: ['They', 'had', 'not', 'finished', 'yet', 'when', 'I', 'called', 'have']  ✓ `They had not finished yet when I called`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['By the time we got there, the show had already ended.', 'By the time we get there, the show will end.', 'We got there before the show had ended.'] · ✓ `By the time we got there, the show had already ended.` · audio dice: «By the time we got there, the show had already ended.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «By the time she got the promotion, she had already been at the company for ten years.»  esperado: `By the time she got the promotion, she had already been at the company for ten years.`  _(dif 0.60)_
+
+### L4 · Contraste: lo anterior y lo posterior  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['to retire', 'jubilarse'], ['goal', 'meta'], ['ever since', 'desde entonces']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Elige la forma correcta: "After he ___ finished college, he found a job."  — opciones: ['had', 'has', 'was'] · ✓ `had`  _(dif 0.60)_
+- **[reading/multiple_choice]** Elige la frase correcta para "Ya había trabajado allí antes de mudarse a Londres".  — opciones: ['She had worked there before she moved to London.', 'She has worked there before she moved to London.', 'She worked there before she had moved to London.'] · ✓ `She had worked there before she moved to London.`  _(dif 0.60)_
+- **[writing/cloze]** Completa con el auxiliar correcto del past perfect: "The plane ___ taken off before we reached the gate."  — texto: «The plane ___ taken off before we reached the gate.»  ✓ `had` · acepta: ['had', "'d", 'd']  _(dif 0.60)_
+- **[writing/translation]** Traduce: "Cuando conseguí el ascenso, ya había trabajado allí cinco años."  — es: «Cuando conseguí el ascenso, ya había trabajado allí cinco años.»  ✓ en: `When I got the promotion, I had already worked there for five years` · acepta: ['When I got the promotion, I had already worked there for five years', 'When I got the promotion, I had already worked there for five years.', 'When I got the promotion, I had already worked there for 5 years', 'When I got the promotion, I had already worked there for 5 years.', "When I got the promotion, I'd already worked there for five years", "When I got the promotion, I'd already worked there for five years.", "When I got the promotion, I'd already worked there for 5 years", 'When I got the promotion, I had worked there for five years already', 'When I received the promotion, I had already worked there for five years', 'When I received the promotion, I had already worked there for five years.', "When I received the promotion, I'd already worked there for five years", "When I received the promotion, I'd already worked there for five years.", 'When I got my promotion, I had already worked there for five years', 'When I got my promotion, I had already worked there for five years.', "When I got my promotion, I'd already worked there for five years"]  _(dif 0.60)_
+- **[writing/reorder]** Ordena: "Ya había salido cuando llegaste".  — fichas: ['already', 'I', 'left', 'had', 'when', 'arrived', 'you']  ✓ `I had already left when you arrived`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['She had already retired by the time I joined the team.', 'She retired right after I joined the team.', 'She was retiring when I joined the team.'] · ✓ `She had already retired by the time I joined the team.` · audio dice: «She had already retired by the time I joined the team.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «By the time I finally reached my goal, I had learned far more from the failures than from the wins.»  esperado: `By the time I finally reached my goal, I had learned far more from the failures than from the wins.`  _(dif 0.60)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidad 19  _(items: 10)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['lately', 'últimamente'], ['achievement', 'logro'], ['to apply', 'postularse']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa con present perfect continuous: "She ___ been working on the project all week."  — opciones: ['has', 'is', 'had'] · ✓ `has`  _(dif 0.60)_
+- **[reading/multiple_choice]** Elige la frase correcta para "Últimamente he estado trabajando hasta tarde".  — opciones: ["I've been working late lately.", "I'm working late lately.", 'I work late since lately.'] · ✓ `I've been working late lately.`  _(dif 0.60)_
+- **[writing/cloze]** Completa con present perfect continuous: "They ___ been training hard for the marathon."  — texto: «They ___ been training hard for the marathon.»  ✓ `have` · acepta: ['have', "'ve", 've']  _(dif 0.60)_
+- **[writing/translation]** Traduce: "He estado buscando un trabajo nuevo."  — es: «He estado buscando un trabajo nuevo.»  ✓ en: `I have been looking for a new job` · acepta: ['I have been looking for a new job', "I've been looking for a new job", 'I have been looking for a new job.', "I've been looking for a new job.", 'I have been searching for a new job', "I've been searching for a new job", 'I have been searching for a new job.', "I've been searching for a new job."]  _(dif 0.60)_
+- **[writing/word_bank]** Arma la frase: "Ella ha estado estudiando inglés este año".  — fichas: ['She', 'has', 'been', 'studying', 'English', 'this', 'year', 'is', 'was']  ✓ `She has been studying English this year`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ["I've been meaning to call you all week.", 'I meant to call you last week.', "I'll call you next week for sure."] · ✓ `I've been meaning to call you all week.` · audio dice: «I've been meaning to call you all week.»  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ["I've been working here for almost ten years.", 'I worked there for almost ten years.', "I've been here since almost ten o'clock."] · ✓ `I've been working here for almost ten years.` · audio dice: «I've been working here for almost ten years.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «I've been thinking about my career a lot lately, and I feel ready for a change.»  esperado: `I've been thinking about my career a lot lately, and I feel ready for a change.`  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «How long have you been working in this field, and what's your proudest achievement so far?»  esperado: `How long have you been working in this field, and what's your proudest achievement so far?`  _(dif 0.60)_
+
+**Vocabulario (frecuencia):** achievement=logro, career=trayectoria/carrera, since=desde, for=durante (con período), lately=últimamente, already=ya, to apply=postularse/solicitar, to achieve=lograr/conseguir, promotion=ascenso, experience=experiencia, goal=meta/objetivo, to retire=jubilarse, by the time=para cuando, ever since=desde entonces, progress=progreso/avance, to struggle=tener dificultades/luchar
+
+## Unidad 20 (B2) — Lo que dijeron
+
+
+### L1 · Dijo que…: say vs tell y backshift  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['say', 'decir'], ['tell', 'contar a alguien'], ['reply', 'responder']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa: "She ___ me that she was tired."  — opciones: ['told', 'said', 'spoke'] · ✓ `told`  _(dif 0.60)_
+- **[reading/multiple_choice]** Elige el estilo indirecto correcto de "I am busy" (he said).  — opciones: ['He said he was busy.', 'He said he were busy.', 'He told he was busy.'] · ✓ `He said he was busy.`  _(dif 0.60)_
+- **[writing/cloze]** Completa con el backshift de "works": "He said he ___ in a bank."  — texto: «He said he ___ in a bank.»  ✓ `worked` · acepta: ['worked']  _(dif 0.60)_
+- **[writing/translation]** Traduce: "Me dijo que estaba cansada."  — es: «Me dijo que estaba cansada.»  ✓ en: `She told me she was tired.` · acepta: ['She told me she was tired.', 'She told me she was tired', 'She told me that she was tired.', 'She told me that she was tired', 'He told me he was tired.', 'He told me he was tired']  _(dif 0.60)_
+- **[writing/word_bank]** Arma la frase: "Ella dijo que llegaría tarde".  — fichas: ['She', 'said', 'she', 'would', 'be', 'late', 'told', 'is']  ✓ `She said she would be late`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['He told me he had already finished the report.', 'He said he would finish the report tomorrow.', 'He asked me to finish the report today.'] · ✓ `He told me he had already finished the report.` · audio dice: «He told me he had already finished the report.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «She said she didn't have time, but she told me she would call later.»  esperado: `She said she didn't have time, but she told me she would call later.`  _(dif 0.60)_
+
+### L2 · Me preguntó si…: preguntas indirectas  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['ask', 'preguntar'], ['whether', 'si (en preguntas)'], ['explain', 'explicar']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa: "She asked me ___ I lived near the office."  — opciones: ['if', 'that', 'do'] · ✓ `if`  _(dif 0.60)_
+- **[reading/multiple_choice]** Elige la pregunta indirecta correcta de "Where do you work?"  — opciones: ['He asked me where I worked.', 'He asked me where did I work.', 'He asked me where do I work.'] · ✓ `He asked me where I worked.`  _(dif 0.60)_
+- **[writing/cloze]** Completa la pregunta indirecta de "Are you ready?": "She asked me ___ I was ready."  — texto: «She asked me ___ I was ready.»  ✓ `if` · acepta: ['if', 'whether']  _(dif 0.60)_
+- **[writing/translation]** Traduce: "Me preguntó dónde vivía."  — es: «Me preguntó dónde vivía.»  ✓ en: `She asked me where I lived.` · acepta: ['She asked me where I lived.', 'She asked me where I lived', 'He asked me where I lived.', 'He asked me where I lived', 'She asked where I lived.', 'She asked where I lived']  _(dif 0.60)_
+- **[writing/reorder]** Ordena: "Me preguntó si hablaba inglés".  — fichas: ['asked', 'He', 'if', 'me', 'spoke', 'I', 'English']  ✓ `He asked me if I spoke English`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['The manager asked me whether I had finished the project.', 'The manager asked me to finish the project soon.', 'The manager told me the project was finished.'] · ✓ `The manager asked me whether I had finished the project.` · audio dice: «The manager asked me whether I had finished the project.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «The interviewer asked me why I wanted the job and whether I could start in May.»  esperado: `The interviewer asked me why I wanted the job and whether I could start in May.`  _(dif 0.60)_
+
+### L3 · Me pidió que…: órdenes y peticiones  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['warn', 'advertir'], ['admit', 'admitir'], ['advice', 'consejo']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa: "The teacher told us ___ open our books."  — opciones: ['to', 'that', 'for'] · ✓ `to`  _(dif 0.60)_
+- **[reading/multiple_choice]** Elige el estilo indirecto de "Please wait here" (she asked me).  — opciones: ['She asked me to wait there.', 'She asked me wait there.', 'She said me to wait there.'] · ✓ `She asked me to wait there.`  _(dif 0.60)_
+- **[writing/cloze]** Completa con la forma negativa: "He told me ___ to be late."  — texto: «He told me ___ to be late.»  ✓ `not` · acepta: ['not']  _(dif 0.60)_
+- **[writing/translation]** Traduce: "Me pidió que la ayudara."  — es: «Me pidió que la ayudara.»  ✓ en: `She asked me to help her.` · acepta: ['She asked me to help her.', 'She asked me to help her', 'He asked me to help her.', 'He asked me to help her', 'She asked me to help her out.', 'She asked me to help her out']  _(dif 0.60)_
+- **[writing/word_bank]** Arma la frase: "El médico me dijo que descansara".  — fichas: ['The', 'doctor', 'told', 'me', 'to', 'rest', 'asked', 'that']  ✓ `The doctor told me to rest`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['My boss asked me not to share the files with anyone.', 'My boss told me to share the files with everyone.', 'My boss said the files were not ready yet.'] · ✓ `My boss asked me not to share the files with anyone.` · audio dice: «My boss asked me not to share the files with anyone.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «The security guard told us to wait outside and asked us not to touch anything.»  esperado: `The security guard told us to wait outside and asked us not to touch anything.`  _(dif 0.60)_
+
+### L4 · Ayer→aquel día: cambios de tiempo y lugar  _(items: 8)_
+
+- **[reading/match]** Empareja cada expresión con su traducción.  — pares: [['the day before', 'el día anterior'], ['the following day', 'al día siguiente'], ['there', 'allí']]  _(dif 0.60)_
+- **[reading/multiple_choice]** En estilo indirecto, "yesterday" se convierte en:  — opciones: ['the day before', 'that day', 'the following day'] · ✓ `the day before`  _(dif 0.60)_
+- **[reading/multiple_choice]** Elige el estilo indirecto de "I'll see you here tomorrow" (she said).  — opciones: ['She said she would see me there the following day.', 'She said she will see me here tomorrow.', 'She said she would see me here the following day.'] · ✓ `She said she would see me there the following day.`  _(dif 0.60)_
+- **[writing/cloze]** Completa el cambio de "today": "He said he was leaving ___ day."  — texto: «He said he was leaving ___ day.»  ✓ `that` · acepta: ['that']  _(dif 0.60)_
+- **[writing/translation]** Traduce: "Dijo que había llegado el día anterior."  — es: «Dijo que había llegado el día anterior.»  ✓ en: `She said she had arrived the day before.` · acepta: ['She said she had arrived the day before.', 'She said she had arrived the day before', 'He said he had arrived the day before.', 'He said he had arrived the day before', 'She said that she had arrived the day before.', 'She said that she had arrived the day before']  _(dif 0.60)_
+- **[writing/reorder]** Ordena: "Dijo que vendría al día siguiente".  — fichas: ['said', 'He', 'would', 'he', 'come', 'the', 'day', 'following']  ✓ `He said he would come the following day`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['She told me she had met them there the week before.', 'She told me she would meet them here next week.', 'She told me she was meeting them there that day.'] · ✓ `She told me she had met them there the week before.` · audio dice: «She told me she had met them there the week before.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «He told me he had moved there the year before and that he loved it now.»  esperado: `He told me he had moved there the year before and that he loved it now.`  _(dif 0.60)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidad 20  _(items: 10)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['say', 'decir'], ['tell', 'contar a alguien'], ['reply', 'responder']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa: "She ___ me that she was tired."  — opciones: ['told', 'said', 'spoke'] · ✓ `told`  _(dif 0.60)_
+- **[reading/multiple_choice]** Elige el estilo indirecto correcto de "I am busy" (he said).  — opciones: ['He said he was busy.', 'He said he were busy.', 'He told he was busy.'] · ✓ `He said he was busy.`  _(dif 0.60)_
+- **[writing/cloze]** Completa con el backshift de "works": "He said he ___ in a bank."  — texto: «He said he ___ in a bank.»  ✓ `worked` · acepta: ['worked']  _(dif 0.60)_
+- **[writing/translation]** Traduce: "Me dijo que estaba cansada."  — es: «Me dijo que estaba cansada.»  ✓ en: `She told me she was tired.` · acepta: ['She told me she was tired.', 'She told me she was tired', 'She told me that she was tired.', 'She told me that she was tired', 'He told me he was tired.', 'He told me he was tired']  _(dif 0.60)_
+- **[writing/word_bank]** Arma la frase: "Ella dijo que llegaría tarde".  — fichas: ['She', 'said', 'she', 'would', 'be', 'late', 'told', 'is']  ✓ `She said she would be late`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['He told me he had already finished the report.', 'He said he would finish the report tomorrow.', 'He asked me to finish the report today.'] · ✓ `He told me he had already finished the report.` · audio dice: «He told me he had already finished the report.»  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['The manager asked me whether I had finished the project.', 'The manager asked me to finish the project soon.', 'The manager told me the project was finished.'] · ✓ `The manager asked me whether I had finished the project.` · audio dice: «The manager asked me whether I had finished the project.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «She said she didn't have time, but she told me she would call later.»  esperado: `She said she didn't have time, but she told me she would call later.`  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «The interviewer asked me why I wanted the job and whether I could start in May.»  esperado: `The interviewer asked me why I wanted the job and whether I could start in May.`  _(dif 0.60)_
+
+**Vocabulario (frecuencia):** say=decir (sin objeto), tell=decir/contar (a alguien), ask=preguntar/pedir, reply=responder, explain=explicar, admit=admitir, promise=prometer, warn=advertir, whether=si (en preguntas), the day before=el día anterior, the following day=al día siguiente, earlier=antes/más temprano, there=allí, that day=aquel día, advice=consejo, message=mensaje
+
+## Unidad 21 (B2) — Cómo se hace y las noticias
+
+
+### L1 · Se hace así: la pasiva en presente  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['be made', 'ser hecho'], ['process', 'proceso'], ['step', 'paso']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa con la pasiva en presente: "This cheese ___ in a small village."  — opciones: ['is made', 'makes', 'is making'] · ✓ `is made`  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa: "Millions of phones ___ in this factory every year."  — opciones: ['are produced', 'is produced', 'produce'] · ✓ `are produced`  _(dif 0.60)_
+- **[writing/cloze]** Completa con la pasiva en presente del verbo grow: "Coffee ___ in many tropical countries."  — texto: «Coffee ___ in many tropical countries.»  ✓ `is grown` · acepta: ['is grown', 'is grown.']  _(dif 0.60)_
+- **[writing/translation]** Traduce: "El pan se hace fresco cada mañana."  — es: «El pan se hace fresco cada mañana.»  ✓ en: `The bread is made fresh every morning` · acepta: ['The bread is made fresh every morning', 'The bread is made fresh every morning.', 'Bread is made fresh every morning', 'Bread is made fresh every morning.', 'The bread is made fresh each morning', 'The bread is made fresh each morning.']  _(dif 0.60)_
+- **[writing/word_bank]** Arma la frase: "Estos productos se venden en todo el mundo".  — fichas: ['These', 'products', 'are', 'sold', 'all', 'over', 'the', 'world', 'is', 'selling']  ✓ `These products are sold all over the world`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['The rooms are cleaned twice a day.', 'The rooms clean themselves twice a day.', 'They clean the rooms twice a week.'] · ✓ `The rooms are cleaned twice a day.` · audio dice: «The rooms are cleaned twice a day.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Most of our products are made by hand in Italy.»  esperado: `Most of our products are made by hand in Italy.`  _(dif 0.60)_
+
+### L2 · Fue hecho: la pasiva en pasado  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['build', 'construir'], ['discover', 'descubrir'], ['announce', 'anunciar']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa con la pasiva en pasado: "The bridge ___ in 1932."  — opciones: ['was built', 'was build', 'built'] · ✓ `was built`  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa: "Several houses ___ during the storm last night."  — opciones: ['were damaged', 'was damaged', 'damaged'] · ✓ `were damaged`  _(dif 0.60)_
+- **[writing/cloze]** Completa con la pasiva en pasado del verbo find: "The missing dog ___ near the river."  — texto: «The missing dog ___ near the river.»  ✓ `was found` · acepta: ['was found', 'was found.']  _(dif 0.60)_
+- **[writing/translation]** Traduce: "El museo fue abierto en 1998."  — es: «El museo fue abierto en 1998.»  ✓ en: `The museum was opened in 1998` · acepta: ['The museum was opened in 1998', 'The museum was opened in 1998.', 'The museum was opened in nineteen ninety-eight', 'The museum was opened in nineteen ninety-eight.', 'The museum was opened in 1998 .', 'This museum was opened in 1998']  _(dif 0.60)_
+- **[writing/reorder]** Ordena: "Los resultados fueron anunciados ayer".  — fichas: ['announced', 'The', 'were', 'yesterday', 'results']  ✓ `The results were announced yesterday`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['The factory was closed last year.', 'The factory closed itself last year.', 'They will close the factory next year.'] · ✓ `The factory was closed last year.` · audio dice: «The factory was closed last year.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «The new law was passed after weeks of heated debate.»  esperado: `The new law was passed after weeks of heated debate.`  _(dif 0.60)_
+
+### L3 · Por quién: el agente con by  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['agent', 'agente'], ['by', 'por'], ['report', 'informar']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa con el agente: "This painting was created ___ a young artist."  — opciones: ['by', 'from', 'with'] · ✓ `by`  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa: "The film ___ by a famous Spanish director."  — opciones: ['was directed', 'directed', 'was direct'] · ✓ `was directed`  _(dif 0.60)_
+- **[writing/cloze]** Completa con el agente correcto: "The decision was made ___ the whole team, not just the boss."  — texto: «The decision was made ___ the whole team, not just the boss.»  ✓ `by` · acepta: ['by', 'by.']  _(dif 0.60)_
+- **[writing/translation]** Traduce: "El correo fue enviado por mi jefe."  — es: «El correo fue enviado por mi jefe.»  ✓ en: `The email was sent by my boss` · acepta: ['The email was sent by my boss', 'The email was sent by my boss.', 'The e-mail was sent by my boss', 'The e-mail was sent by my boss.', 'The email was sent by my manager', 'The email was sent by my boss .']  _(dif 0.60)_
+- **[writing/word_bank]** Arma la frase: "El edificio fue diseñado por un arquitecto local".  — fichas: ['The', 'building', 'was', 'designed', 'by', 'a', 'local', 'architect', 'with', 'from']  ✓ `The building was designed by a local architect`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['The story was written by a teenager.', 'The story was written for a teenager.', 'A teenager is writing the story now.'] · ✓ `The story was written by a teenager.` · audio dice: «The story was written by a teenager.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «The report was reviewed by experts before it was published.»  esperado: `The report was reviewed by experts before it was published.`  _(dif 0.60)_
+
+### L4 · Lo mandé hacer: have something done  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['repair', 'reparar'], ['deliver', 'entregar'], ['have done', 'mandar hacer']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa con el causativo: "I need to ___ my hair cut before the wedding."  — opciones: ['have', 'do', 'make'] · ✓ `have`  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa: "We had the kitchen ___ last summer."  — opciones: ['painted', 'paint', 'painting'] · ✓ `painted`  _(dif 0.60)_
+- **[writing/cloze]** Completa con el participio del verbo (mandar reparar): "She had her phone ___ at the shop yesterday."  — texto: «She had her phone ___ at the shop yesterday.»  ✓ `fixed` · acepta: ['fixed', 'fixed.', 'repaired', 'repaired.']  _(dif 0.60)_
+- **[writing/translation]** Traduce: "Mandé reparar el coche la semana pasada."  — es: «Mandé reparar el coche la semana pasada.»  ✓ en: `I had the car repaired last week` · acepta: ['I had the car repaired last week', 'I had the car repaired last week.', 'I had my car repaired last week', 'I had my car repaired last week.', 'I had the car fixed last week', 'I had my car fixed last week', 'I had the car repaired last week .']  _(dif 0.60)_
+- **[writing/reorder]** Ordena: "Vamos a mandar pintar la casa".  — fichas: ['have', 'We', 'the', 'going', 'painted', 'to', 'house', 'are']  ✓ `We are going to have the house painted`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ["We're having a new bathroom installed next month.", "We're installing a new bathroom ourselves next month.", 'We installed a new bathroom last month.'] · ✓ `We're having a new bathroom installed next month.` · audio dice: «We're having a new bathroom installed next month.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «I really should have my eyes tested before I order new glasses.»  esperado: `I really should have my eyes tested before I order new glasses.`  _(dif 0.60)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidad 21  _(items: 10)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['be made', 'ser hecho'], ['process', 'proceso'], ['step', 'paso']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa con la pasiva en presente: "This cheese ___ in a small village."  — opciones: ['is made', 'makes', 'is making'] · ✓ `is made`  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa: "Millions of phones ___ in this factory every year."  — opciones: ['are produced', 'is produced', 'produce'] · ✓ `are produced`  _(dif 0.60)_
+- **[writing/cloze]** Completa con la pasiva en presente del verbo grow: "Coffee ___ in many tropical countries."  — texto: «Coffee ___ in many tropical countries.»  ✓ `is grown` · acepta: ['is grown', 'is grown.']  _(dif 0.60)_
+- **[writing/translation]** Traduce: "El pan se hace fresco cada mañana."  — es: «El pan se hace fresco cada mañana.»  ✓ en: `The bread is made fresh every morning` · acepta: ['The bread is made fresh every morning', 'The bread is made fresh every morning.', 'Bread is made fresh every morning', 'Bread is made fresh every morning.', 'The bread is made fresh each morning', 'The bread is made fresh each morning.']  _(dif 0.60)_
+- **[writing/word_bank]** Arma la frase: "Estos productos se venden en todo el mundo".  — fichas: ['These', 'products', 'are', 'sold', 'all', 'over', 'the', 'world', 'is', 'selling']  ✓ `These products are sold all over the world`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['The rooms are cleaned twice a day.', 'The rooms clean themselves twice a day.', 'They clean the rooms twice a week.'] · ✓ `The rooms are cleaned twice a day.` · audio dice: «The rooms are cleaned twice a day.»  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['The factory was closed last year.', 'The factory closed itself last year.', 'They will close the factory next year.'] · ✓ `The factory was closed last year.` · audio dice: «The factory was closed last year.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Most of our products are made by hand in Italy.»  esperado: `Most of our products are made by hand in Italy.`  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «The new law was passed after weeks of heated debate.»  esperado: `The new law was passed after weeks of heated debate.`  _(dif 0.60)_
+
+**Vocabulario (frecuencia):** be made=ser hecho/fabricarse, process=proceso, report=informar / reportaje, news=noticias, build=construir, produce=producir, discover=descubrir, deliver=entregar / repartir, agent=agente / autor de la acción, by=por (agente), have done=mandar hacer, repair=reparar, announce=anunciar, factory=fábrica, according to=según, step=paso / etapa
+
+## Unidad 22 (B2) — Hipótesis y arrepentimientos
+
+
+### L1 · Si lo hubiera sabido: tercer condicional  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['mistake', 'error'], ['chance', 'oportunidad'], ['warning', 'advertencia']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa: "If I had known you were sick, I ___ visited you."  — opciones: ['would have', 'would', 'had'] · ✓ `would have`  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa: "If they ___ left earlier, they wouldn't have missed the train."  — opciones: ['had', 'have', 'would have'] · ✓ `had`  _(dif 0.60)_
+- **[writing/cloze]** Completa con past perfect: "If she ___ saved more, she could have bought the car."  — texto: «If she ___ saved more, she could have bought the car.»  ✓ `had` · acepta: ['had', "'d"]  _(dif 0.60)_
+- **[writing/translation]** Traduce: "Si lo hubiera sabido, te habría ayudado."  — es: «Si lo hubiera sabido, te habría ayudado.»  ✓ en: `If I had known, I would have helped you` · acepta: ['If I had known, I would have helped you', 'If I had known, I would have helped you.', 'If I had known I would have helped you', "If I'd known, I would have helped you", "If I'd known, I'd have helped you", "If I had known, I'd have helped you", "If I had known, I would've helped you"]  _(dif 0.60)_
+- **[writing/reorder]** Ordena: "Si hubiera estudiado, habría aprobado."  — fichas: ['would', 'If', 'studied', 'I', 'had', 'passed', 'have', 'I']  ✓ `If I had studied I would have passed`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['If I had known, I would have called you.', 'If I know, I will call you.', 'If I knew, I would call you.'] · ✓ `If I had known, I would have called you.` · audio dice: «If I had known, I would have called you.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «If we had booked earlier, the tickets would have been cheaper.»  esperado: `If we had booked earlier, the tickets would have been cheaper.`  _(dif 0.60)_
+
+### L2 · Resultados de hoy por el ayer: condicionales mixtos  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['outcome', 'resultado'], ['afford', 'permitirse'], ['otherwise', 'de lo contrario']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa: "If I had taken that job, I ___ in London now."  — opciones: ['would be', 'would have been', 'had been'] · ✓ `would be`  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa: "If she had studied medicine, she ___ a doctor today."  — opciones: ['would be', 'will be', 'would have'] · ✓ `would be`  _(dif 0.60)_
+- **[writing/cloze]** Completa con la forma mixta (resultado presente): "If we hadn't missed the flight, we ___ on the beach right now."  — texto: «If we hadn't missed the flight, we ___ on the beach right now.»  ✓ `would be` · acepta: ['would be', "'d be"]  _(dif 0.60)_
+- **[writing/translation]** Traduce: "Si hubiera ahorrado más, ahora no estaría preocupado."  — es: «Si hubiera ahorrado más, ahora no estaría preocupado.»  ✓ en: `If I had saved more, I wouldn't be worried now` · acepta: ["If I had saved more, I wouldn't be worried now", "If I had saved more, I wouldn't be worried now.", 'If I had saved more, I would not be worried now', "If I'd saved more, I wouldn't be worried now", "If I had saved more I wouldn't be worried now", "If I'd saved more, I would not be worried now"]  _(dif 0.60)_
+- **[writing/word_bank]** Arma la frase: "Si hubiera aprendido a conducir, no dependería de ti ahora".  — fichas: ['If', 'I', 'had', 'learned', 'to', 'drive', 'I', "wouldn't", 'depend', 'on', 'you', 'now', 'would']  ✓ `If I had learned to drive I wouldn't depend on you now`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ["If I had slept better, I wouldn't be so tired now.", "If I sleep better, I won't be tired.", "If I slept better, I wouldn't be tired."] · ✓ `If I had slept better, I wouldn't be so tired now.` · audio dice: «If I had slept better, I wouldn't be so tired now.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «If they hadn't moved abroad, the kids would speak Spanish now.»  esperado: `If they hadn't moved abroad, the kids would speak Spanish now.`  _(dif 0.60)_
+
+### L3 · Ojalá lo hubiera hecho: wish / if only  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['regret', 'arrepentirse'], ['advice', 'consejo'], ['if only', 'ojalá']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa: "I wish I ___ listened to your advice."  — opciones: ['had', 'have', 'would'] · ✓ `had`  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa: "If only we ___ booked a hotel earlier!"  — opciones: ['had', 'would have', 'have'] · ✓ `had`  _(dif 0.60)_
+- **[writing/cloze]** Completa con past perfect: "I wish I ___ told her the truth."  — texto: «I wish I ___ told her the truth.»  ✓ `had` · acepta: ['had', "'d"]  _(dif 0.60)_
+- **[writing/translation]** Traduce: "Ojalá no hubiera dicho eso."  — es: «Ojalá no hubiera dicho eso.»  ✓ en: `I wish I hadn't said that` · acepta: ["I wish I hadn't said that", "I wish I hadn't said that.", 'I wish I had not said that', "If only I hadn't said that", "I wish I hadn't said that!", 'If only I had not said that']  _(dif 0.60)_
+- **[writing/reorder]** Ordena: "Ojalá hubiera estudiado más."  — fichas: ['studied', 'If', 'had', 'more', 'I', 'only']  ✓ `If only I had studied more`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['I wish I had applied for that job.', 'I wish I could apply for that job.', 'I hope I can apply for that job.'] · ✓ `I wish I had applied for that job.` · audio dice: «I wish I had applied for that job.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «If only I had taken that opportunity when I had the chance.»  esperado: `If only I had taken that opportunity when I had the chance.`  _(dif 0.60)_
+
+### L4 · Repaso: condicionales 1.º, 2.º y 3.º en contexto  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['deadline', 'fecha límite'], ['avoid', 'evitar'], ['realize', 'darse cuenta']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Primer condicional. Completa: "If you finish on time, we ___ to the cinema."  — opciones: ['will go', 'would go', 'would have gone'] · ✓ `will go`  _(dif 0.60)_
+- **[reading/multiple_choice]** Segundo condicional. Completa: "If I ___ rich, I would travel the world."  — opciones: ['were', 'had been', 'will be'] · ✓ `were`  _(dif 0.60)_
+- **[writing/cloze]** Tercer condicional. Completa: "If they had warned us, we ___ have avoided the mistake."  — texto: «If they had warned us, we ___ have avoided the mistake.»  ✓ `would` · acepta: ['would', "'d"]  _(dif 0.60)_
+- **[writing/translation]** Traduce (segundo condicional): "Si tuviera más tiempo, aprendería a cocinar."  — es: «Si tuviera más tiempo, aprendería a cocinar.»  ✓ en: `If I had more time, I would learn to cook` · acepta: ['If I had more time, I would learn to cook', 'If I had more time, I would learn to cook.', "If I had more time, I'd learn to cook", 'If I had more time I would learn to cook', 'If I had more time, I would learn how to cook', "If I had more time, I'd learn how to cook"]  _(dif 0.60)_
+- **[writing/word_bank]** Arma la frase (primer condicional): "Si llueve mañana, nos quedaremos en casa".  — fichas: ['If', 'it', 'rains', 'tomorrow', "we'll", 'stay', 'at', 'home', 'would', 'rained']  ✓ `If it rains tomorrow we'll stay at home`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['If I were you, I would talk to the manager.', 'If I had been you, I would have talked to the manager.', 'If I am you, I will talk to the manager.'] · ✓ `If I were you, I would talk to the manager.` · audio dice: «If I were you, I would talk to the manager.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «If you had set a deadline, you would have finished the report by now.»  esperado: `If you had set a deadline, you would have finished the report by now.`  _(dif 0.60)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidad 22  _(items: 10)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['mistake', 'error'], ['chance', 'oportunidad'], ['warning', 'advertencia']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa: "If I had known you were sick, I ___ visited you."  — opciones: ['would have', 'would', 'had'] · ✓ `would have`  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa: "If they ___ left earlier, they wouldn't have missed the train."  — opciones: ['had', 'have', 'would have'] · ✓ `had`  _(dif 0.60)_
+- **[writing/cloze]** Completa con past perfect: "If she ___ saved more, she could have bought the car."  — texto: «If she ___ saved more, she could have bought the car.»  ✓ `had` · acepta: ['had', "'d"]  _(dif 0.60)_
+- **[writing/translation]** Traduce: "Si lo hubiera sabido, te habría ayudado."  — es: «Si lo hubiera sabido, te habría ayudado.»  ✓ en: `If I had known, I would have helped you` · acepta: ['If I had known, I would have helped you', 'If I had known, I would have helped you.', 'If I had known I would have helped you', "If I'd known, I would have helped you", "If I'd known, I'd have helped you", "If I had known, I'd have helped you", "If I had known, I would've helped you"]  _(dif 0.60)_
+- **[writing/reorder]** Ordena: "Si hubiera estudiado, habría aprobado."  — fichas: ['would', 'If', 'studied', 'I', 'had', 'passed', 'have', 'I']  ✓ `If I had studied I would have passed`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['If I had known, I would have called you.', 'If I know, I will call you.', 'If I knew, I would call you.'] · ✓ `If I had known, I would have called you.` · audio dice: «If I had known, I would have called you.»  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ["If I had slept better, I wouldn't be so tired now.", "If I sleep better, I won't be tired.", "If I slept better, I wouldn't be tired."] · ✓ `If I had slept better, I wouldn't be so tired now.` · audio dice: «If I had slept better, I wouldn't be so tired now.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «If we had booked earlier, the tickets would have been cheaper.»  esperado: `If we had booked earlier, the tickets would have been cheaper.`  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «If they hadn't moved abroad, the kids would speak Spanish now.»  esperado: `If they hadn't moved abroad, the kids would speak Spanish now.`  _(dif 0.60)_
+
+**Vocabulario (frecuencia):** regret=arrepentirse / arrepentimiento, outcome=resultado, mistake=error, chance=oportunidad, warning=advertencia, otherwise=de lo contrario, realize=darse cuenta, advice=consejo, deadline=fecha límite, afford=permitirse (económicamente), apply=postularse / solicitar, avoid=evitar, if only=ojalá / si tan solo, would have=habría, on time=a tiempo
+
+## Unidad 23 (B2) — Personas, lugares y definiciones
+
+
+### L1 · El que y la que: definir personas y cosas  _(items: 8)_
+
+- **[reading/match]** Empareja cada expresión con su traducción.  — pares: [['the one who', 'el que / la que (persona)'], ['the one that', 'el que / la que (cosa)'], ['to recommend', 'recomendar']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa con el relativo de posesión: "She's the colleague ___ presentation impressed the whole team."  — opciones: ['whose', 'who', 'which'] · ✓ `whose`  _(dif 0.60)_
+- **[reading/multiple_choice]** Elige la frase correcta para "Esa es la cafetería que recomienda todo el mundo".  — opciones: ["That's the café that everyone recommends.", "That's the café who everyone recommends.", "That's the café everyone recommends it."] · ✓ `That's the café that everyone recommends.`  _(dif 0.60)_
+- **[writing/cloze]** Completa con el relativo para personas: "He's the one ___ called you yesterday."  — texto: «He's the one ___ called you yesterday.»  ✓ `who` · acepta: ['who', 'that']  _(dif 0.60)_
+- **[writing/translation]** Traduce: "Es la persona que tomó la decisión."  — es: «Es la persona que tomó la decisión.»  ✓ en: `She is the person who made the decision.` · acepta: ['She is the person who made the decision.', 'She is the person who made the decision', "She's the person who made the decision.", "She's the person who made the decision", 'She is the person that made the decision.', 'She is the person that made the decision', "She's the person that made the decision.", "She's the person that made the decision", 'He is the person who made the decision.', 'He is the person who made the decision', "He's the person who made the decision.", "He's the person who made the decision", 'He is the person that made the decision.', 'He is the person that made the decision', "He's the person that made the decision.", "He's the person that made the decision", 'She is the person who took the decision.', 'She is the person who took the decision', "She's the person who took the decision.", 'He is the person who took the decision.', 'She is the person that took the decision.', 'He is the person that took the decision.']  _(dif 0.60)_
+- **[writing/word_bank]** Arma la frase: "Esta es la app que uso todos los días".  — fichas: ['This', 'is', 'the', 'app', 'that', 'I', 'use', 'every', 'day', 'who', 'where']  ✓ `This is the app that I use every day`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ["He's the one who fixed my computer last week.", "He's the one who broke my computer last week.", "She's the one who sold me a new computer."] · ✓ `He's the one who fixed my computer last week.` · audio dice: «He's the one who fixed my computer last week.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «The teacher who helped me the most is the one I still remember.»  esperado: `The teacher who helped me the most is the one I still remember.`  _(dif 0.60)_
+
+### L2 · Who, which, that, whose, where  _(items: 8)_
+
+- **[reading/match]** Empareja cada relativo con su uso.  — pares: [['whose', 'cuyo / de quien'], ['where', 'donde / en el que'], ['which', 'que / el cual (cosas)']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa: "That's the woman ___ car was stolen last night."  — opciones: ['whose', 'who', 'which'] · ✓ `whose`  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa: "This is the hotel ___ we stayed two summers ago."  — opciones: ['where', 'which', 'who'] · ✓ `where`  _(dif 0.60)_
+- **[writing/cloze]** Completa con el relativo para cosas: "The report ___ arrived this morning is full of mistakes."  — texto: «The report ___ arrived this morning is full of mistakes.»  ✓ `which` · acepta: ['which', 'that']  _(dif 0.60)_
+- **[writing/translation]** Traduce: "Conozco a un hombre cuyo hermano trabaja en la empresa."  — es: «Conozco a un hombre cuyo hermano trabaja en la empresa.»  ✓ en: `I know a man whose brother works at the company.` · acepta: ['I know a man whose brother works at the company.', 'I know a man whose brother works at the company', 'I know a man whose brother works in the company.', 'I know a man whose brother works in the company', 'I know a man whose brother works for the company.', 'I know a man whose brother works for the company', 'I know a man whose brother works at that company.', 'I know a man whose brother works at that company', 'I know a man whose brother works in that company.', 'I know a man whose brother works in that company', 'I know a man whose brother works for that company.', 'I know a man whose brother works for that company', 'I know a man whose brother works at the firm.', 'I know a man whose brother works at the firm', 'I know a man whose brother works for the firm.', 'I know a man whose brother works for the firm', 'I know a man whose brother works in the firm.', 'I know a man whose brother works in the firm']  _(dif 0.60)_
+- **[writing/reorder]** Ordena: "Este es el pueblo donde nací".  — fichas: ['where', 'This', 'born', 'is', 'town', 'the', 'I', 'was']  ✓ `This is the town where I was born`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ["She's the neighbour whose dog barks all night.", "She's the neighbour who walks her dog all night.", "He's the neighbour whose dog ran away last night."] · ✓ `She's the neighbour whose dog barks all night.` · audio dice: «She's the neighbour whose dog barks all night.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «I'd love to visit the village where my grandparents grew up.»  esperado: `I'd love to visit the village where my grandparents grew up.`  _(dif 0.60)_
+
+### L3 · Entre comas: información extra  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['neighbour', 'vecino'], ['owner', 'dueño'], ['in charge of', 'a cargo de']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa la explicativa: "My boss, ___ has worked here for years, is retiring soon."  — opciones: ['who', 'that', 'where'] · ✓ `who`  _(dif 0.60)_
+- **[reading/multiple_choice]** Elige la frase explicativa correcta para "Berlín, que visité el año pasado, es preciosa".  — opciones: ['Berlin, which I visited last year, is beautiful.', 'Berlin, that I visited last year, is beautiful.', 'Berlin, who I visited last year, is beautiful.'] · ✓ `Berlin, which I visited last year, is beautiful.`  _(dif 0.60)_
+- **[writing/cloze]** Completa la explicativa con el relativo para cosas: "Our new office, ___ opened in May, is much bigger."  — texto: «Our new office, ___ opened in May, is much bigger.»  ✓ `which` · acepta: ['which']  _(dif 0.60)_
+- **[writing/translation]** Traduce: "Mi hermana, que vive en Madrid, viene este fin de semana."  — es: «Mi hermana, que vive en Madrid, viene este fin de semana.»  ✓ en: `My sister, who lives in Madrid, is coming this weekend.` · acepta: ['My sister, who lives in Madrid, is coming this weekend.', 'My sister, who lives in Madrid, is coming this weekend', 'My sister, who lives in Madrid, comes this weekend.', 'My sister, who lives in Madrid, comes this weekend', 'My sister, who lives in Madrid, is coming this weekend!', 'My sister, who lives in Madrid, is arriving this weekend.', 'My sister, who lives in Madrid, is arriving this weekend']  _(dif 0.60)_
+- **[writing/word_bank]** Arma la frase: "El Sr. Lee, que es nuestro jefe, está de vacaciones".  — fichas: ['Mr', 'Lee', ',', 'who', 'is', 'our', 'boss', ',', 'is', 'on', 'holiday', 'that']  ✓ `Mr Lee , who is our boss , is on holiday`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Anna, who I met at university, just opened her own restaurant.', 'Anna, who I met at university, just closed her old restaurant.', 'Emma, who I met at work, just opened a new restaurant.'] · ✓ `Anna, who I met at university, just opened her own restaurant.` · audio dice: «Anna, who I met at university, just opened her own restaurant.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Our manager, who started last month, has already changed almost everything.»  esperado: `Our manager, who started last month, has already changed almost everything.`  _(dif 0.60)_
+
+### L4 · Cuándo se puede omitir el relativo  _(items: 8)_
+
+- **[reading/match]** Empareja cada palabra con su traducción.  — pares: [['to belong to', 'pertenecer a'], ['to borrow', 'pedir prestado'], ['tool', 'herramienta']]  _(dif 0.60)_
+- **[reading/multiple_choice]** ¿En qué frase se puede OMITIR el relativo? Elige esa frase.  — opciones: ['The film we watched last night was amazing.', 'The man who called you left a message.', 'The bus that goes downtown is late.'] · ✓ `The film we watched last night was amazing.`  _(dif 0.60)_
+- **[reading/multiple_choice]** Elige la frase correcta sin pronombre relativo para "El libro que me prestaste es genial".  — opciones: ['The book you lent me is great.', 'The book who you lent me is great.', 'The book lent me you is great.'] · ✓ `The book you lent me is great.`  _(dif 0.60)_
+- **[writing/cloze]** Reescribe sin relativo. Completa el hueco con UNA palabra: "The tools that I borrowed → The tools ___ borrowed are in the garage."  — texto: «The tools ___ borrowed are in the garage.»  ✓ `I` · acepta: ['I']  _(dif 0.60)_
+- **[writing/translation]** Traduce: "La persona con la que hablé fue muy amable."  — es: «La persona con la que hablé fue muy amable.»  ✓ en: `The person I spoke to was very kind.` · acepta: ['The person I spoke to was very kind.', 'The person I spoke to was very kind', 'The person I talked to was very kind.', 'The person I talked to was very kind', 'The person I spoke with was very kind.', 'The person I spoke with was very kind', 'The person I talked with was very kind.', 'The person I talked with was very kind', 'The person who I spoke to was very kind.', 'The person who I spoke to was very kind', 'The person that I spoke to was very kind.', 'The person that I spoke to was very kind', 'The person who I spoke with was very kind.', 'The person who I spoke with was very kind', 'The person that I spoke with was very kind.', 'The person that I spoke with was very kind', 'The person I spoke to was very nice.', 'The person I spoke to was very nice']  _(dif 0.60)_
+- **[writing/reorder]** Ordena (sin relativo): "El correo que envié ayer".  — fichas: ['I', 'The', 'yesterday', 'email', 'sent']  ✓ `The email I sent yesterday`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['The restaurant we tried last weekend belongs to a friend.', 'The restaurant we booked last weekend belonged to a friend.', 'The restaurant they tried last weekend belongs to her friend.'] · ✓ `The restaurant we tried last weekend belongs to a friend.` · audio dice: «The restaurant we tried last weekend belongs to a friend.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «The advice you gave me last year is something I still follow today.»  esperado: `The advice you gave me last year is something I still follow today.`  _(dif 0.60)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidad 23  _(items: 10)_
+
+- **[reading/match]** Empareja cada expresión con su traducción.  — pares: [['the one who', 'el que / la que (persona)'], ['the one that', 'el que / la que (cosa)'], ['to recommend', 'recomendar']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa con el relativo de posesión: "She's the colleague ___ presentation impressed the whole team."  — opciones: ['whose', 'who', 'which'] · ✓ `whose`  _(dif 0.60)_
+- **[reading/multiple_choice]** Elige la frase correcta para "Esa es la cafetería que recomienda todo el mundo".  — opciones: ["That's the café that everyone recommends.", "That's the café who everyone recommends.", "That's the café everyone recommends it."] · ✓ `That's the café that everyone recommends.`  _(dif 0.60)_
+- **[writing/cloze]** Completa con el relativo para personas: "He's the one ___ called you yesterday."  — texto: «He's the one ___ called you yesterday.»  ✓ `who` · acepta: ['who', 'that']  _(dif 0.60)_
+- **[writing/translation]** Traduce: "Es la persona que tomó la decisión."  — es: «Es la persona que tomó la decisión.»  ✓ en: `She is the person who made the decision.` · acepta: ['She is the person who made the decision.', 'She is the person who made the decision', "She's the person who made the decision.", "She's the person who made the decision", 'She is the person that made the decision.', 'She is the person that made the decision', "She's the person that made the decision.", "She's the person that made the decision", 'He is the person who made the decision.', 'He is the person who made the decision', "He's the person who made the decision.", "He's the person who made the decision", 'He is the person that made the decision.', 'He is the person that made the decision', "He's the person that made the decision.", "He's the person that made the decision", 'She is the person who took the decision.', 'She is the person who took the decision', "She's the person who took the decision.", 'He is the person who took the decision.', 'She is the person that took the decision.', 'He is the person that took the decision.']  _(dif 0.60)_
+- **[writing/word_bank]** Arma la frase: "Esta es la app que uso todos los días".  — fichas: ['This', 'is', 'the', 'app', 'that', 'I', 'use', 'every', 'day', 'who', 'where']  ✓ `This is the app that I use every day`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ["He's the one who fixed my computer last week.", "He's the one who broke my computer last week.", "She's the one who sold me a new computer."] · ✓ `He's the one who fixed my computer last week.` · audio dice: «He's the one who fixed my computer last week.»  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ["She's the neighbour whose dog barks all night.", "She's the neighbour who walks her dog all night.", "He's the neighbour whose dog ran away last night."] · ✓ `She's the neighbour whose dog barks all night.` · audio dice: «She's the neighbour whose dog barks all night.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «The teacher who helped me the most is the one I still remember.»  esperado: `The teacher who helped me the most is the one I still remember.`  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «I'd love to visit the village where my grandparents grew up.»  esperado: `I'd love to visit the village where my grandparents grew up.`  _(dif 0.60)_
+
+**Vocabulario (frecuencia):** who=que / quien (personas), which=que / el cual (cosas), that=que, whose=cuyo / de quien, where=donde / en el que, the one=el que / la que, neighbour=vecino, to belong to=pertenecer a, colleague=compañero de trabajo, to recommend=recomendar, to define=definir, place=lugar, owner=dueño / propietario, tool=herramienta, to borrow=pedir prestado, in charge of=a cargo de
+
+## Unidad 24 (B2) — Deducciones y debate
+
+
+### L1 · Debe de haber…: deducción sobre el pasado  _(items: 8)_
+
+- **[reading/match]** Empareja cada expresión con su traducción.  — pares: [['must have', 'debe de haber'], ["can't have", 'no puede haber'], ['evidence', 'prueba']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa (deducción casi segura): "The ground is wet, so it ___ rained last night."  — opciones: ['must have', 'should have', "needn't have"] · ✓ `must have`  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa (algo imposible): "She ___ seen me; I wasn't even there."  — opciones: ["can't have", 'must have', 'might have'] · ✓ `can't have`  _(dif 0.60)_
+- **[writing/cloze]** Completa con deducción de posibilidad (might/may/could + participio): "He isn't answering. He ___ left already."  — texto: «He isn't answering. He ___ left already.»  ✓ `might have` · acepta: ['might have', 'may have', 'could have', "might've", "may've", "could've"]  _(dif 0.60)_
+- **[writing/translation]** Traduce: "Debe de haber olvidado la reunión."  — es: «Debe de haber olvidado la reunión.»  ✓ en: `He must have forgotten the meeting` · acepta: ['He must have forgotten the meeting', 'He must have forgotten the meeting.', 'She must have forgotten the meeting', 'She must have forgotten the meeting.', 'They must have forgotten the meeting', 'They must have forgotten the meeting.', "He must've forgotten the meeting", "She must've forgotten the meeting", "They must've forgotten the meeting"]  _(dif 0.60)_
+- **[writing/word_bank]** Arma la frase: "No pueden haber terminado tan rápido".  — fichas: ['They', "can't", 'have', 'finished', 'so', 'quickly', 'must', 'that']  ✓ `They can't have finished so quickly`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['She must have missed the train.', 'She might have missed the bus.', "She can't have caught the train."] · ✓ `She must have missed the train.` · audio dice: «She must have missed the train.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «They must have left early because the lights are off.»  esperado: `They must have left early because the lights are off.`  _(dif 0.60)_
+
+### L2 · should have / needn't have: crítica y arrepentimiento  _(items: 8)_
+
+- **[reading/match]** Empareja cada expresión con su traducción.  — pares: [['should have', 'debería haber'], ["needn't have", 'no hacía falta haber'], ['regret', 'arrepentimiento']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa (reproche por algo no hecho): "You ___ told me earlier; I would have helped."  — opciones: ['should have', "needn't have", "can't have"] · ✓ `should have`  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa (esfuerzo innecesario): "You ___ cooked so much; we hardly ate anything."  — opciones: ["needn't have", 'must have', 'should have'] · ✓ `needn't have`  _(dif 0.60)_
+- **[writing/cloze]** Completa con crítica negativa (shouldn't + participio): "I ___ said that; it was rude."  — texto: «I ___ said that; it was rude.»  ✓ `shouldn't have` · acepta: ["shouldn't have", 'should not have']  _(dif 0.60)_
+- **[writing/translation]** Traduce: "Deberías haber pedido ayuda."  — es: «Deberías haber pedido ayuda.»  ✓ en: `You should have asked for help` · acepta: ['You should have asked for help', 'You should have asked for help.', "You should've asked for help", "You should've asked for help.", 'You should have asked for help!', 'You should have asked for some help', 'You should have asked for some help.', "You should've asked for some help", "You should've asked for some help."]  _(dif 0.60)_
+- **[writing/reorder]** Ordena: "No deberíamos haber esperado tanto".  — fichas: ['have', 'We', 'so', "shouldn't", 'long', 'waited']  ✓ `We shouldn't have waited so long`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ["You needn't have worried about it.", "You shouldn't have worried about it.", 'You must have worried about it.'] · ✓ `You needn't have worried about it.` · audio dice: «You needn't have worried about it.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «I should have booked the tickets sooner, honestly.»  esperado: `I should have booked the tickets sooner, honestly.`  _(dif 0.60)_
+
+### L3 · Phrasal verbs y colocaciones frecuentes  _(items: 8)_
+
+- **[reading/match]** Empareja cada phrasal verb con su traducción.  — pares: [['point out', 'señalar'], ['bring up', 'sacar (un tema)'], ['figure out', 'averiguar']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa: "Can you ___ a better solution by tomorrow?"  — opciones: ['come up with', 'come across', 'come down with'] · ✓ `come up with`  _(dif 0.60)_
+- **[reading/multiple_choice]** Elige la colocación correcta: "She ___ a strong argument during the meeting."  — opciones: ['made', 'did', 'said'] · ✓ `made`  _(dif 0.60)_
+- **[writing/cloze]** Completa el phrasal verb (averiguar): "It took me a while to ___ out how this machine operates."  — texto: «It took me a while to ___ out how this machine operates.»  ✓ `figure` · acepta: ['figure', 'work']  _(dif 0.60)_
+- **[writing/translation]** Traduce: "Quiero sacar un tema importante."  — es: «Quiero sacar un tema importante.»  ✓ en: `I want to bring up an important point` · acepta: ['I want to bring up an important point', 'I want to bring up an important point.', 'I want to bring up an important topic', 'I want to bring up an important topic.', "I'd like to bring up an important point", "I'd like to bring up an important point.", 'I want to raise an important point', 'I want to raise an important point.']  _(dif 0.60)_
+- **[writing/word_bank]** Arma la frase: "Necesito señalar un par de problemas".  — fichas: ['I', 'need', 'to', 'point', 'out', 'a', 'couple', 'of', 'issues', 'take']  ✓ `I need to point out a couple of issues`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['We need to figure out what went wrong.', 'We need to point out what went wrong.', 'We need to bring up what went wrong.'] · ✓ `We need to figure out what went wrong.` · audio dice: «We need to figure out what went wrong.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Let me point out a few things before we move on.»  esperado: `Let me point out a few things before we move on.`  _(dif 0.60)_
+
+### L4 · En mi opinión / por otro lado: argumentar  _(items: 8)_
+
+- **[reading/match]** Empareja cada conector con su traducción.  — pares: [['however', 'sin embargo'], ['on the other hand', 'por otro lado'], ['point of view', 'punto de vista']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Elige el conector de contraste: "The plan is cheap; ___, it's quite risky."  — opciones: ['however', 'therefore', 'besides'] · ✓ `however`  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa la expresión de opinión: "___ my opinion, remote work is more productive."  — opciones: ['In', 'On', 'At'] · ✓ `In`  _(dif 0.60)_
+- **[writing/cloze]** Completa con la expresión de contraste (por otro lado): "It saves money. On the other ___, it takes longer."  — texto: «It saves money. On the other ___, it takes longer.»  ✓ `hand` · acepta: ['hand']  _(dif 0.60)_
+- **[writing/translation]** Traduce: "En mi opinión, deberíamos considerar ambos puntos de vista."  — es: «En mi opinión, deberíamos considerar ambos puntos de vista.»  ✓ en: `In my opinion, we should consider both points of view` · acepta: ['In my opinion, we should consider both points of view', 'In my opinion, we should consider both points of view.', 'In my opinion we should consider both points of view', 'In my opinion, we should consider both viewpoints', 'In my opinion, we should consider both viewpoints.', 'In my view, we should consider both points of view', 'In my view, we should consider both points of view.']  _(dif 0.60)_
+- **[writing/reorder]** Ordena (empieza por "Although"): "Aunque veo tu punto, no estoy de acuerdo".  — fichas: ['I', 'Although', 'point', 'disagree', 'see', 'your', 'I']  ✓ `Although I see your point I disagree`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['On the other hand, it could backfire.', 'On the one hand, it could work well.', 'In other words, it might backfire.'] · ✓ `On the other hand, it could backfire.` · audio dice: «On the other hand, it could backfire.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «I see your point, but I think there's a stronger argument for waiting.»  esperado: `I see your point, but I think there's a stronger argument for waiting.`  _(dif 0.60)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidad 24  _(items: 10)_
+
+- **[reading/match]** Empareja cada expresión con su traducción.  — pares: [['must have', 'debe de haber'], ["can't have", 'no puede haber'], ['evidence', 'prueba']]  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa (deducción casi segura): "The ground is wet, so it ___ rained last night."  — opciones: ['must have', 'should have', "needn't have"] · ✓ `must have`  _(dif 0.60)_
+- **[reading/multiple_choice]** Completa (algo imposible): "She ___ seen me; I wasn't even there."  — opciones: ["can't have", 'must have', 'might have'] · ✓ `can't have`  _(dif 0.60)_
+- **[writing/cloze]** Completa con deducción de posibilidad (might/may/could + participio): "He isn't answering. He ___ left already."  — texto: «He isn't answering. He ___ left already.»  ✓ `might have` · acepta: ['might have', 'may have', 'could have', "might've", "may've", "could've"]  _(dif 0.60)_
+- **[writing/translation]** Traduce: "Debe de haber olvidado la reunión."  — es: «Debe de haber olvidado la reunión.»  ✓ en: `He must have forgotten the meeting` · acepta: ['He must have forgotten the meeting', 'He must have forgotten the meeting.', 'She must have forgotten the meeting', 'She must have forgotten the meeting.', 'They must have forgotten the meeting', 'They must have forgotten the meeting.', "He must've forgotten the meeting", "She must've forgotten the meeting", "They must've forgotten the meeting"]  _(dif 0.60)_
+- **[writing/word_bank]** Arma la frase: "No pueden haber terminado tan rápido".  — fichas: ['They', "can't", 'have', 'finished', 'so', 'quickly', 'must', 'that']  ✓ `They can't have finished so quickly`  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['She must have missed the train.', 'She might have missed the bus.', "She can't have caught the train."] · ✓ `She must have missed the train.` · audio dice: «She must have missed the train.»  _(dif 0.60)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ["You needn't have worried about it.", "You shouldn't have worried about it.", 'You must have worried about it.'] · ✓ `You needn't have worried about it.` · audio dice: «You needn't have worried about it.»  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «They must have left early because the lights are off.»  esperado: `They must have left early because the lights are off.`  _(dif 0.60)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «I should have booked the tickets sooner, honestly.»  esperado: `I should have booked the tickets sooner, honestly.`  _(dif 0.60)_
+
+**Vocabulario (frecuencia):** must have=debe de haber, might have=podría haber, can't have=no puede haber, should have=debería haber, needn't have=no hacía falta haber, to point out=señalar, to bring up=sacar (un tema), to figure out=averiguar, to come up with=idear, ocurrírsele, evidence=prueba, evidencia, argument=argumento, point of view=punto de vista, however=sin embargo, on the other hand=por otro lado, regret=arrepentimiento, lamentar, to assume=suponer

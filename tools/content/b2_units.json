@@ -1,0 +1,3436 @@
+{
+ "data": [
+  {
+   "U": 19,
+   "title": "Logros y trayectoria",
+   "theme_color": "#8E7CC3",
+   "icon": "timeline",
+   "checkpoint_description": "En esta unidad practicas el present perfect continuous (have/has been + -ing) para hablar de acciones que empezaron en el pasado y siguen ahora, con How long…? y los marcadores for y since. También trabajas el past perfect (had + participio) para una acción anterior a otro momento pasado, y lo contrastas con el pasado simple para ordenar bien los hechos en el tiempo.",
+   "vocab": [
+    {
+     "word": "achievement",
+     "translation": "logro",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "career",
+     "translation": "trayectoria/carrera",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "since",
+     "translation": "desde",
+     "pos": "preposición"
+    },
+    {
+     "word": "for",
+     "translation": "durante (con período)",
+     "pos": "preposición"
+    },
+    {
+     "word": "lately",
+     "translation": "últimamente",
+     "pos": "adverbio"
+    },
+    {
+     "word": "already",
+     "translation": "ya",
+     "pos": "adverbio"
+    },
+    {
+     "word": "to apply",
+     "translation": "postularse/solicitar",
+     "pos": "verbo"
+    },
+    {
+     "word": "to achieve",
+     "translation": "lograr/conseguir",
+     "pos": "verbo"
+    },
+    {
+     "word": "promotion",
+     "translation": "ascenso",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "experience",
+     "translation": "experiencia",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "goal",
+     "translation": "meta/objetivo",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "to retire",
+     "translation": "jubilarse",
+     "pos": "verbo"
+    },
+    {
+     "word": "by the time",
+     "translation": "para cuando",
+     "pos": "expresión"
+    },
+    {
+     "word": "ever since",
+     "translation": "desde entonces",
+     "pos": "expresión"
+    },
+    {
+     "word": "progress",
+     "translation": "progreso/avance",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "to struggle",
+     "translation": "tener dificultades/luchar",
+     "pos": "verbo"
+    }
+   ],
+   "lessons": [
+    {
+     "title": "Llevo tiempo haciéndolo",
+     "topic": "Present perfect continuous (have/has been + -ing) para acciones que empezaron en el pasado y continúan",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "pairs": [
+        [
+         "lately",
+         "últimamente"
+        ],
+        [
+         "achievement",
+         "logro"
+        ],
+        [
+         "to apply",
+         "postularse"
+        ]
+       ],
+       "difficulty": 0.5
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa con present perfect continuous: \"She ___ been working on the project all week.\"",
+       "options": [
+        "has",
+        "is",
+        "had"
+       ],
+       "value": "has",
+       "difficulty": 0.5
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Elige la frase correcta para \"Últimamente he estado trabajando hasta tarde\".",
+       "options": [
+        "I've been working late lately.",
+        "I'm working late lately.",
+        "I work late since lately."
+       ],
+       "value": "I've been working late lately.",
+       "difficulty": 0.52
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con present perfect continuous: \"They ___ been training hard for the marathon.\"",
+       "text": "They ___ been training hard for the marathon.",
+       "value": "have",
+       "accepted": [
+        "have",
+        "'ve",
+        "ve"
+       ],
+       "difficulty": 0.52
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"He estado buscando un trabajo nuevo.\"",
+       "source": "He estado buscando un trabajo nuevo.",
+       "value": "I have been looking for a new job",
+       "accepted": [
+        "I have been looking for a new job",
+        "I've been looking for a new job",
+        "I have been looking for a new job.",
+        "I've been looking for a new job.",
+        "I have been searching for a new job",
+        "I've been searching for a new job",
+        "I have been searching for a new job.",
+        "I've been searching for a new job."
+       ],
+       "difficulty": 0.53
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"Ella ha estado estudiando inglés este año\".",
+       "tiles": [
+        "She",
+        "has",
+        "been",
+        "studying",
+        "English",
+        "this",
+        "year",
+        "is",
+        "was"
+       ],
+       "sequence": [
+        "She",
+        "has",
+        "been",
+        "studying",
+        "English",
+        "this",
+        "year"
+       ],
+       "difficulty": 0.53
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "I've been meaning to call you all week.",
+        "I meant to call you last week.",
+        "I'll call you next week for sure."
+       ],
+       "value": "I've been meaning to call you all week.",
+       "difficulty": 0.52
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "I've been thinking about my career a lot lately, and I feel ready for a change.",
+       "difficulty": 0.53
+      }
+     ]
+    },
+    {
+     "title": "¿Cuánto tiempo? for y since",
+     "topic": "How long…? con present perfect continuous y los marcadores for (período) y since (punto de inicio)",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "pairs": [
+        [
+         "since",
+         "desde"
+        ],
+        [
+         "for",
+         "durante"
+        ],
+        [
+         "career",
+         "trayectoria"
+        ]
+       ],
+       "difficulty": 0.55
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"I've been living here ___ 2018.\"",
+       "options": [
+        "since",
+        "for",
+        "ago"
+       ],
+       "value": "since",
+       "difficulty": 0.55
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"How long ___ you been working here?\"",
+       "options": [
+        "have",
+        "did",
+        "are"
+       ],
+       "value": "have",
+       "difficulty": 0.56
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con for o since: \"She has been studying medicine ___ three years.\"",
+       "text": "She has been studying medicine ___ three years.",
+       "value": "for",
+       "accepted": [
+        "for"
+       ],
+       "difficulty": 0.56
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"¿Cuánto tiempo llevas esperando?\"",
+       "source": "¿Cuánto tiempo llevas esperando?",
+       "value": "How long have you been waiting?",
+       "accepted": [
+        "How long have you been waiting?",
+        "How long have you been waiting",
+        "How long have you been waiting for?",
+        "How long have you been waiting for",
+        "How long have you been waiting for.",
+        "How long have you been waiting.",
+        "For how long have you been waiting?",
+        "For how long have you been waiting"
+       ],
+       "difficulty": 0.58
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"Llevan colaborando juntos desde marzo\".",
+       "value": "They have been working together since March",
+       "tiles": [
+        "been",
+        "They",
+        "since",
+        "have",
+        "together",
+        "working",
+        "March"
+       ],
+       "difficulty": 0.57
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "I've been working here for almost ten years.",
+        "I worked there for almost ten years.",
+        "I've been here since almost ten o'clock."
+       ],
+       "value": "I've been working here for almost ten years.",
+       "difficulty": 0.57
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "How long have you been working in this field, and what's your proudest achievement so far?",
+       "difficulty": 0.58
+      }
+     ]
+    },
+    {
+     "title": "Antes de eso: past perfect",
+     "topic": "Past perfect (had + participio) para una acción anterior a otro momento del pasado",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "pairs": [
+        [
+         "already",
+         "ya"
+        ],
+        [
+         "promotion",
+         "ascenso"
+        ],
+        [
+         "by the time",
+         "para cuando"
+        ]
+       ],
+       "difficulty": 0.6
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa con past perfect: \"When I arrived, the meeting ___ already started.\"",
+       "options": [
+        "had",
+        "has",
+        "was"
+       ],
+       "value": "had",
+       "difficulty": 0.6
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Elige la frase correcta para \"Para cuando llegó el jefe, ya nos habíamos ido\".",
+       "options": [
+        "By the time the boss arrived, we had already left.",
+        "By the time the boss arrived, we have already left.",
+        "By the time the boss had arrived, we already left."
+       ],
+       "value": "By the time the boss arrived, we had already left.",
+       "difficulty": 0.62
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con past perfect: \"She told me she ___ already finished the report.\"",
+       "text": "She told me she ___ already finished the report.",
+       "value": "had",
+       "accepted": [
+        "had",
+        "'d",
+        "d"
+       ],
+       "difficulty": 0.62
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Cuando llegué, el tren ya se había ido.\"",
+       "source": "Cuando llegué, el tren ya se había ido.",
+       "value": "When I arrived, the train had already left",
+       "accepted": [
+        "When I arrived, the train had already left",
+        "When I arrived, the train had already left.",
+        "When I arrived the train had already left",
+        "When I got there, the train had already left",
+        "When I got there, the train had already left.",
+        "When I arrived, the train had already gone",
+        "When I arrived, the train had already gone.",
+        "When I'd arrived, the train had already left"
+       ],
+       "difficulty": 0.64
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"No habían terminado todavía cuando llamé\".",
+       "tiles": [
+        "They",
+        "had",
+        "not",
+        "finished",
+        "yet",
+        "when",
+        "I",
+        "called",
+        "have"
+       ],
+       "sequence": [
+        "They",
+        "had",
+        "not",
+        "finished",
+        "yet",
+        "when",
+        "I",
+        "called"
+       ],
+       "difficulty": 0.63
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "By the time we got there, the show had already ended.",
+        "By the time we get there, the show will end.",
+        "We got there before the show had ended."
+       ],
+       "value": "By the time we got there, the show had already ended.",
+       "difficulty": 0.63
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "By the time she got the promotion, she had already been at the company for ten years.",
+       "difficulty": 0.64
+      }
+     ]
+    },
+    {
+     "title": "Contraste: lo anterior y lo posterior",
+     "topic": "Past perfect vs pasado simple para ordenar dos acciones pasadas (la primera en past perfect)",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "pairs": [
+        [
+         "to retire",
+         "jubilarse"
+        ],
+        [
+         "goal",
+         "meta"
+        ],
+        [
+         "ever since",
+         "desde entonces"
+        ]
+       ],
+       "difficulty": 0.65
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Elige la forma correcta: \"After he ___ finished college, he found a job.\"",
+       "options": [
+        "had",
+        "has",
+        "was"
+       ],
+       "value": "had",
+       "difficulty": 0.66
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Elige la frase correcta para \"Ya había trabajado allí antes de mudarse a Londres\".",
+       "options": [
+        "She had worked there before she moved to London.",
+        "She has worked there before she moved to London.",
+        "She worked there before she had moved to London."
+       ],
+       "value": "She had worked there before she moved to London.",
+       "difficulty": 0.68
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con el auxiliar correcto del past perfect: \"The plane ___ taken off before we reached the gate.\"",
+       "text": "The plane ___ taken off before we reached the gate.",
+       "value": "had",
+       "accepted": [
+        "had",
+        "'d",
+        "d"
+       ],
+       "difficulty": 0.68
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Cuando conseguí el ascenso, ya había trabajado allí cinco años.\"",
+       "source": "Cuando conseguí el ascenso, ya había trabajado allí cinco años.",
+       "value": "When I got the promotion, I had already worked there for five years",
+       "accepted": [
+        "When I got the promotion, I had already worked there for five years",
+        "When I got the promotion, I had already worked there for five years.",
+        "When I got the promotion, I had already worked there for 5 years",
+        "When I got the promotion, I had already worked there for 5 years.",
+        "When I got the promotion, I'd already worked there for five years",
+        "When I got the promotion, I'd already worked there for five years.",
+        "When I got the promotion, I'd already worked there for 5 years",
+        "When I got the promotion, I had worked there for five years already",
+        "When I received the promotion, I had already worked there for five years",
+        "When I received the promotion, I had already worked there for five years.",
+        "When I received the promotion, I'd already worked there for five years",
+        "When I received the promotion, I'd already worked there for five years.",
+        "When I got my promotion, I had already worked there for five years",
+        "When I got my promotion, I had already worked there for five years.",
+        "When I got my promotion, I'd already worked there for five years"
+       ],
+       "difficulty": 0.72
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"Ya había salido cuando llegaste\".",
+       "value": "I had already left when you arrived",
+       "tiles": [
+        "already",
+        "I",
+        "left",
+        "had",
+        "when",
+        "arrived",
+        "you"
+       ],
+       "difficulty": 0.7
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "She had already retired by the time I joined the team.",
+        "She retired right after I joined the team.",
+        "She was retiring when I joined the team."
+       ],
+       "value": "She had already retired by the time I joined the team.",
+       "difficulty": 0.7
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "By the time I finally reached my goal, I had learned far more from the failures than from the wins.",
+       "difficulty": 0.73
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "U": 20,
+   "title": "Lo que dijeron",
+   "theme_color": "#E07A5F",
+   "icon": "forum",
+   "checkpoint_description": "El estilo indirecto cuenta lo que alguien dijo sin repetirlo textualmente. Recuerda 'say' (sin objeto: she said that...) frente a 'tell' (con persona: she told me that...), el backshift de tiempos (is->was, will->would, can->could) y los cambios de pronombres. En preguntas indirectas se usa 'asked if/whether' o 'asked what/where' con orden de afirmación (sin do/did), y para órdenes y peticiones 'told/asked somebody to do'. Las expresiones de tiempo y lugar cambian: today->that day, yesterday->the day before, here->there.",
+   "vocab": [
+    {
+     "word": "say",
+     "translation": "decir (sin objeto)",
+     "pos": "verbo"
+    },
+    {
+     "word": "tell",
+     "translation": "decir/contar (a alguien)",
+     "pos": "verbo"
+    },
+    {
+     "word": "ask",
+     "translation": "preguntar/pedir",
+     "pos": "verbo"
+    },
+    {
+     "word": "reply",
+     "translation": "responder",
+     "pos": "verbo"
+    },
+    {
+     "word": "explain",
+     "translation": "explicar",
+     "pos": "verbo"
+    },
+    {
+     "word": "admit",
+     "translation": "admitir",
+     "pos": "verbo"
+    },
+    {
+     "word": "promise",
+     "translation": "prometer",
+     "pos": "verbo"
+    },
+    {
+     "word": "warn",
+     "translation": "advertir",
+     "pos": "verbo"
+    },
+    {
+     "word": "whether",
+     "translation": "si (en preguntas)",
+     "pos": "conjunción"
+    },
+    {
+     "word": "the day before",
+     "translation": "el día anterior",
+     "pos": "expresión"
+    },
+    {
+     "word": "the following day",
+     "translation": "al día siguiente",
+     "pos": "expresión"
+    },
+    {
+     "word": "earlier",
+     "translation": "antes/más temprano",
+     "pos": "adverbio"
+    },
+    {
+     "word": "there",
+     "translation": "allí",
+     "pos": "adverbio"
+    },
+    {
+     "word": "that day",
+     "translation": "aquel día",
+     "pos": "expresión"
+    },
+    {
+     "word": "advice",
+     "translation": "consejo",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "message",
+     "translation": "mensaje",
+     "pos": "sustantivo"
+    }
+   ],
+   "lessons": [
+    {
+     "title": "Dijo que…: say vs tell y backshift",
+     "topic": "Reported statements: say vs tell and tense backshift",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "pairs": [
+        [
+         "say",
+         "decir"
+        ],
+        [
+         "tell",
+         "contar a alguien"
+        ],
+        [
+         "reply",
+         "responder"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"She ___ me that she was tired.\"",
+       "options": [
+        "told",
+        "said",
+        "spoke"
+       ],
+       "value": "told"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Elige el estilo indirecto correcto de \"I am busy\" (he said).",
+       "options": [
+        "He said he was busy.",
+        "He said he were busy.",
+        "He told he was busy."
+       ],
+       "value": "He said he was busy."
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con el backshift de \"works\": \"He said he ___ in a bank.\"",
+       "text": "He said he ___ in a bank.",
+       "value": "worked",
+       "accepted": [
+        "worked"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Me dijo que estaba cansada.\"",
+       "source": "Me dijo que estaba cansada.",
+       "value": "She told me she was tired.",
+       "accepted": [
+        "She told me she was tired.",
+        "She told me she was tired",
+        "She told me that she was tired.",
+        "She told me that she was tired",
+        "He told me he was tired.",
+        "He told me he was tired"
+       ]
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"Ella dijo que llegaría tarde\".",
+       "tiles": [
+        "She",
+        "said",
+        "she",
+        "would",
+        "be",
+        "late",
+        "told",
+        "is"
+       ],
+       "sequence": [
+        "She",
+        "said",
+        "she",
+        "would",
+        "be",
+        "late"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "He told me he had already finished the report.",
+        "He said he would finish the report tomorrow.",
+        "He asked me to finish the report today."
+       ],
+       "value": "He told me he had already finished the report."
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "She said she didn't have time, but she told me she would call later."
+      }
+     ]
+    },
+    {
+     "title": "Me preguntó si…: preguntas indirectas",
+     "topic": "Reported questions with if/whether and wh-words",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "pairs": [
+        [
+         "ask",
+         "preguntar"
+        ],
+        [
+         "whether",
+         "si (en preguntas)"
+        ],
+        [
+         "explain",
+         "explicar"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"She asked me ___ I lived near the office.\"",
+       "options": [
+        "if",
+        "that",
+        "do"
+       ],
+       "value": "if"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Elige la pregunta indirecta correcta de \"Where do you work?\"",
+       "options": [
+        "He asked me where I worked.",
+        "He asked me where did I work.",
+        "He asked me where do I work."
+       ],
+       "value": "He asked me where I worked."
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa la pregunta indirecta de \"Are you ready?\": \"She asked me ___ I was ready.\"",
+       "text": "She asked me ___ I was ready.",
+       "value": "if",
+       "accepted": [
+        "if",
+        "whether"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Me preguntó dónde vivía.\"",
+       "source": "Me preguntó dónde vivía.",
+       "value": "She asked me where I lived.",
+       "accepted": [
+        "She asked me where I lived.",
+        "She asked me where I lived",
+        "He asked me where I lived.",
+        "He asked me where I lived",
+        "She asked where I lived.",
+        "She asked where I lived"
+       ]
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"Me preguntó si hablaba inglés\".",
+       "value": "He asked me if I spoke English",
+       "tiles": [
+        "asked",
+        "He",
+        "if",
+        "me",
+        "spoke",
+        "I",
+        "English"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "The manager asked me whether I had finished the project.",
+        "The manager asked me to finish the project soon.",
+        "The manager told me the project was finished."
+       ],
+       "value": "The manager asked me whether I had finished the project."
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "The interviewer asked me why I wanted the job and whether I could start in May."
+      }
+     ]
+    },
+    {
+     "title": "Me pidió que…: órdenes y peticiones",
+     "topic": "Reported orders and requests with tell/ask somebody to do",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "pairs": [
+        [
+         "warn",
+         "advertir"
+        ],
+        [
+         "admit",
+         "admitir"
+        ],
+        [
+         "advice",
+         "consejo"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"The teacher told us ___ open our books.\"",
+       "options": [
+        "to",
+        "that",
+        "for"
+       ],
+       "value": "to"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Elige el estilo indirecto de \"Please wait here\" (she asked me).",
+       "options": [
+        "She asked me to wait there.",
+        "She asked me wait there.",
+        "She said me to wait there."
+       ],
+       "value": "She asked me to wait there."
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con la forma negativa: \"He told me ___ to be late.\"",
+       "text": "He told me ___ to be late.",
+       "value": "not",
+       "accepted": [
+        "not"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Me pidió que la ayudara.\"",
+       "source": "Me pidió que la ayudara.",
+       "value": "She asked me to help her.",
+       "accepted": [
+        "She asked me to help her.",
+        "She asked me to help her",
+        "He asked me to help her.",
+        "He asked me to help her",
+        "She asked me to help her out.",
+        "She asked me to help her out"
+       ]
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"El médico me dijo que descansara\".",
+       "tiles": [
+        "The",
+        "doctor",
+        "told",
+        "me",
+        "to",
+        "rest",
+        "asked",
+        "that"
+       ],
+       "sequence": [
+        "The",
+        "doctor",
+        "told",
+        "me",
+        "to",
+        "rest"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "My boss asked me not to share the files with anyone.",
+        "My boss told me to share the files with everyone.",
+        "My boss said the files were not ready yet."
+       ],
+       "value": "My boss asked me not to share the files with anyone."
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "The security guard told us to wait outside and asked us not to touch anything."
+      }
+     ]
+    },
+    {
+     "title": "Ayer→aquel día: cambios de tiempo y lugar",
+     "topic": "Reported speech: shifts in time and place expressions",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada expresión con su traducción.",
+       "pairs": [
+        [
+         "the day before",
+         "el día anterior"
+        ],
+        [
+         "the following day",
+         "al día siguiente"
+        ],
+        [
+         "there",
+         "allí"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "En estilo indirecto, \"yesterday\" se convierte en:",
+       "options": [
+        "the day before",
+        "that day",
+        "the following day"
+       ],
+       "value": "the day before"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Elige el estilo indirecto de \"I'll see you here tomorrow\" (she said).",
+       "options": [
+        "She said she would see me there the following day.",
+        "She said she will see me here tomorrow.",
+        "She said she would see me here the following day."
+       ],
+       "value": "She said she would see me there the following day."
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa el cambio de \"today\": \"He said he was leaving ___ day.\"",
+       "text": "He said he was leaving ___ day.",
+       "value": "that",
+       "accepted": [
+        "that"
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Dijo que había llegado el día anterior.\"",
+       "source": "Dijo que había llegado el día anterior.",
+       "value": "She said she had arrived the day before.",
+       "accepted": [
+        "She said she had arrived the day before.",
+        "She said she had arrived the day before",
+        "He said he had arrived the day before.",
+        "He said he had arrived the day before",
+        "She said that she had arrived the day before.",
+        "She said that she had arrived the day before"
+       ]
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"Dijo que vendría al día siguiente\".",
+       "value": "He said he would come the following day",
+       "tiles": [
+        "said",
+        "He",
+        "would",
+        "he",
+        "come",
+        "the",
+        "day",
+        "following"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "She told me she had met them there the week before.",
+        "She told me she would meet them here next week.",
+        "She told me she was meeting them there that day."
+       ],
+       "value": "She told me she had met them there the week before."
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "He told me he had moved there the year before and that he loved it now."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "U": 21,
+   "title": "Cómo se hace y las noticias",
+   "theme_color": "#3D9970",
+   "icon": "campaign",
+   "checkpoint_description": "En esta unidad dominas la voz pasiva: \"be\" + participio para hablar de procesos y noticias sin nombrar quién actúa. La usas en presente (The coffee is grown in Brazil) y en pasado (The bridge was built in 1920), añades el agente con \"by\" cuando importa (The film was directed by a Spaniard) y aprendes el causativo \"have something done\" para decir que mandas hacer algo (I had my car repaired).",
+   "vocab": [
+    {
+     "word": "be made",
+     "translation": "ser hecho/fabricarse",
+     "pos": "expresión"
+    },
+    {
+     "word": "process",
+     "translation": "proceso",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "report",
+     "translation": "informar / reportaje",
+     "pos": "verbo/sustantivo"
+    },
+    {
+     "word": "news",
+     "translation": "noticias",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "build",
+     "translation": "construir",
+     "pos": "verbo"
+    },
+    {
+     "word": "produce",
+     "translation": "producir",
+     "pos": "verbo"
+    },
+    {
+     "word": "discover",
+     "translation": "descubrir",
+     "pos": "verbo"
+    },
+    {
+     "word": "deliver",
+     "translation": "entregar / repartir",
+     "pos": "verbo"
+    },
+    {
+     "word": "agent",
+     "translation": "agente / autor de la acción",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "by",
+     "translation": "por (agente)",
+     "pos": "preposición"
+    },
+    {
+     "word": "have done",
+     "translation": "mandar hacer",
+     "pos": "expresión"
+    },
+    {
+     "word": "repair",
+     "translation": "reparar",
+     "pos": "verbo"
+    },
+    {
+     "word": "announce",
+     "translation": "anunciar",
+     "pos": "verbo"
+    },
+    {
+     "word": "factory",
+     "translation": "fábrica",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "according to",
+     "translation": "según",
+     "pos": "expresión"
+    },
+    {
+     "word": "step",
+     "translation": "paso / etapa",
+     "pos": "sustantivo"
+    }
+   ],
+   "lessons": [
+    {
+     "title": "Se hace así: la pasiva en presente",
+     "topic": "Voz pasiva en presente simple (am/is/are + participio) para describir procesos y hechos",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "difficulty": 0.5,
+       "pairs": [
+        [
+         "be made",
+         "ser hecho"
+        ],
+        [
+         "process",
+         "proceso"
+        ],
+        [
+         "step",
+         "paso"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa con la pasiva en presente: \"This cheese ___ in a small village.\"",
+       "difficulty": 0.5,
+       "options": [
+        "is made",
+        "makes",
+        "is making"
+       ],
+       "value": "is made"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Millions of phones ___ in this factory every year.\"",
+       "difficulty": 0.52,
+       "options": [
+        "are produced",
+        "is produced",
+        "produce"
+       ],
+       "value": "are produced"
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con la pasiva en presente del verbo grow: \"Coffee ___ in many tropical countries.\"",
+       "difficulty": 0.53,
+       "text": "Coffee ___ in many tropical countries.",
+       "value": "is grown",
+       "accepted": [
+        "is grown",
+        "is grown."
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"El pan se hace fresco cada mañana.\"",
+       "difficulty": 0.54,
+       "source": "El pan se hace fresco cada mañana.",
+       "value": "The bread is made fresh every morning",
+       "accepted": [
+        "The bread is made fresh every morning",
+        "The bread is made fresh every morning.",
+        "Bread is made fresh every morning",
+        "Bread is made fresh every morning.",
+        "The bread is made fresh each morning",
+        "The bread is made fresh each morning."
+       ]
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"Estos productos se venden en todo el mundo\".",
+       "difficulty": 0.55,
+       "tiles": [
+        "These",
+        "products",
+        "are",
+        "sold",
+        "all",
+        "over",
+        "the",
+        "world",
+        "is",
+        "selling"
+       ],
+       "sequence": [
+        "These",
+        "products",
+        "are",
+        "sold",
+        "all",
+        "over",
+        "the",
+        "world"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "difficulty": 0.53,
+       "options": [
+        "The rooms are cleaned twice a day.",
+        "The rooms clean themselves twice a day.",
+        "They clean the rooms twice a week."
+       ],
+       "value": "The rooms are cleaned twice a day."
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.52,
+       "text": "Most of our products are made by hand in Italy."
+      }
+     ]
+    },
+    {
+     "title": "Fue hecho: la pasiva en pasado",
+     "topic": "Voz pasiva en pasado simple (was/were + participio) para hechos históricos y noticias",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "difficulty": 0.55,
+       "pairs": [
+        [
+         "build",
+         "construir"
+        ],
+        [
+         "discover",
+         "descubrir"
+        ],
+        [
+         "announce",
+         "anunciar"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa con la pasiva en pasado: \"The bridge ___ in 1932.\"",
+       "difficulty": 0.56,
+       "options": [
+        "was built",
+        "was build",
+        "built"
+       ],
+       "value": "was built"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Several houses ___ during the storm last night.\"",
+       "difficulty": 0.58,
+       "options": [
+        "were damaged",
+        "was damaged",
+        "damaged"
+       ],
+       "value": "were damaged"
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con la pasiva en pasado del verbo find: \"The missing dog ___ near the river.\"",
+       "difficulty": 0.59,
+       "text": "The missing dog ___ near the river.",
+       "value": "was found",
+       "accepted": [
+        "was found",
+        "was found."
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"El museo fue abierto en 1998.\"",
+       "difficulty": 0.6,
+       "source": "El museo fue abierto en 1998.",
+       "value": "The museum was opened in 1998",
+       "accepted": [
+        "The museum was opened in 1998",
+        "The museum was opened in 1998.",
+        "The museum was opened in nineteen ninety-eight",
+        "The museum was opened in nineteen ninety-eight.",
+        "The museum was opened in 1998 .",
+        "This museum was opened in 1998"
+       ]
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"Los resultados fueron anunciados ayer\".",
+       "difficulty": 0.61,
+       "value": "The results were announced yesterday",
+       "tiles": [
+        "announced",
+        "The",
+        "were",
+        "yesterday",
+        "results"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "difficulty": 0.58,
+       "options": [
+        "The factory was closed last year.",
+        "The factory closed itself last year.",
+        "They will close the factory next year."
+       ],
+       "value": "The factory was closed last year."
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.57,
+       "text": "The new law was passed after weeks of heated debate."
+      }
+     ]
+    },
+    {
+     "title": "Por quién: el agente con by",
+     "topic": "Voz pasiva con complemento agente (by) para señalar quién realiza la acción",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "difficulty": 0.6,
+       "pairs": [
+        [
+         "agent",
+         "agente"
+        ],
+        [
+         "by",
+         "por"
+        ],
+        [
+         "report",
+         "informar"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa con el agente: \"This painting was created ___ a young artist.\"",
+       "difficulty": 0.6,
+       "options": [
+        "by",
+        "from",
+        "with"
+       ],
+       "value": "by"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"The film ___ by a famous Spanish director.\"",
+       "difficulty": 0.62,
+       "options": [
+        "was directed",
+        "directed",
+        "was direct"
+       ],
+       "value": "was directed"
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con el agente correcto: \"The decision was made ___ the whole team, not just the boss.\"",
+       "difficulty": 0.63,
+       "text": "The decision was made ___ the whole team, not just the boss.",
+       "value": "by",
+       "accepted": [
+        "by",
+        "by."
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"El correo fue enviado por mi jefe.\"",
+       "difficulty": 0.65,
+       "source": "El correo fue enviado por mi jefe.",
+       "value": "The email was sent by my boss",
+       "accepted": [
+        "The email was sent by my boss",
+        "The email was sent by my boss.",
+        "The e-mail was sent by my boss",
+        "The e-mail was sent by my boss.",
+        "The email was sent by my manager",
+        "The email was sent by my boss ."
+       ]
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"El edificio fue diseñado por un arquitecto local\".",
+       "difficulty": 0.66,
+       "tiles": [
+        "The",
+        "building",
+        "was",
+        "designed",
+        "by",
+        "a",
+        "local",
+        "architect",
+        "with",
+        "from"
+       ],
+       "sequence": [
+        "The",
+        "building",
+        "was",
+        "designed",
+        "by",
+        "a",
+        "local",
+        "architect"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "difficulty": 0.63,
+       "options": [
+        "The story was written by a teenager.",
+        "The story was written for a teenager.",
+        "A teenager is writing the story now."
+       ],
+       "value": "The story was written by a teenager."
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.62,
+       "text": "The report was reviewed by experts before it was published."
+      }
+     ]
+    },
+    {
+     "title": "Lo mandé hacer: have something done",
+     "topic": "Causativo have something done para acciones que mandamos hacer a otros",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "difficulty": 0.65,
+       "pairs": [
+        [
+         "repair",
+         "reparar"
+        ],
+        [
+         "deliver",
+         "entregar"
+        ],
+        [
+         "have done",
+         "mandar hacer"
+        ]
+       ]
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa con el causativo: \"I need to ___ my hair cut before the wedding.\"",
+       "difficulty": 0.66,
+       "options": [
+        "have",
+        "do",
+        "make"
+       ],
+       "value": "have"
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"We had the kitchen ___ last summer.\"",
+       "difficulty": 0.68,
+       "options": [
+        "painted",
+        "paint",
+        "painting"
+       ],
+       "value": "painted"
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con el participio del verbo (mandar reparar): \"She had her phone ___ at the shop yesterday.\"",
+       "difficulty": 0.7,
+       "text": "She had her phone ___ at the shop yesterday.",
+       "value": "fixed",
+       "accepted": [
+        "fixed",
+        "fixed.",
+        "repaired",
+        "repaired."
+       ]
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Mandé reparar el coche la semana pasada.\"",
+       "difficulty": 0.72,
+       "source": "Mandé reparar el coche la semana pasada.",
+       "value": "I had the car repaired last week",
+       "accepted": [
+        "I had the car repaired last week",
+        "I had the car repaired last week.",
+        "I had my car repaired last week",
+        "I had my car repaired last week.",
+        "I had the car fixed last week",
+        "I had my car fixed last week",
+        "I had the car repaired last week ."
+       ]
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"Vamos a mandar pintar la casa\".",
+       "difficulty": 0.73,
+       "value": "We are going to have the house painted",
+       "tiles": [
+        "have",
+        "We",
+        "the",
+        "going",
+        "painted",
+        "to",
+        "house",
+        "are"
+       ]
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "difficulty": 0.7,
+       "options": [
+        "We're having a new bathroom installed next month.",
+        "We're installing a new bathroom ourselves next month.",
+        "We installed a new bathroom last month."
+       ],
+       "value": "We're having a new bathroom installed next month."
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "difficulty": 0.74,
+       "text": "I really should have my eyes tested before I order new glasses."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "U": 22,
+   "title": "Hipótesis y arrepentimientos",
+   "theme_color": "#C0392B",
+   "icon": "history_toggle_off",
+   "checkpoint_description": "En esta unidad dominas el tercer condicional (If + past perfect, would have + participio) para hablar de situaciones pasadas irreales y sus consecuencias hipotéticas. Practicas los condicionales mixtos, que conectan una causa pasada con un resultado presente, y usas I wish / if only + past perfect para expresar arrepentimientos sobre el pasado. Al final repasas los tres condicionales (1.º, 2.º y 3.º) en contexto para elegir el correcto según la situación.",
+   "vocab": [
+    {
+     "word": "regret",
+     "translation": "arrepentirse / arrepentimiento",
+     "pos": "verbo/sustantivo"
+    },
+    {
+     "word": "outcome",
+     "translation": "resultado",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "mistake",
+     "translation": "error",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "chance",
+     "translation": "oportunidad",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "warning",
+     "translation": "advertencia",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "otherwise",
+     "translation": "de lo contrario",
+     "pos": "adverbio"
+    },
+    {
+     "word": "realize",
+     "translation": "darse cuenta",
+     "pos": "verbo"
+    },
+    {
+     "word": "advice",
+     "translation": "consejo",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "deadline",
+     "translation": "fecha límite",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "afford",
+     "translation": "permitirse (económicamente)",
+     "pos": "verbo"
+    },
+    {
+     "word": "apply",
+     "translation": "postularse / solicitar",
+     "pos": "verbo"
+    },
+    {
+     "word": "avoid",
+     "translation": "evitar",
+     "pos": "verbo"
+    },
+    {
+     "word": "if only",
+     "translation": "ojalá / si tan solo",
+     "pos": "expresión"
+    },
+    {
+     "word": "would have",
+     "translation": "habría",
+     "pos": "expresión"
+    },
+    {
+     "word": "on time",
+     "translation": "a tiempo",
+     "pos": "expresión"
+    }
+   ],
+   "lessons": [
+    {
+     "title": "Si lo hubiera sabido: tercer condicional",
+     "topic": "Tercer condicional para situaciones pasadas irreales: If + past perfect, would have + participio",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "pairs": [
+        [
+         "mistake",
+         "error"
+        ],
+        [
+         "chance",
+         "oportunidad"
+        ],
+        [
+         "warning",
+         "advertencia"
+        ]
+       ],
+       "difficulty": 0.5
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"If I had known you were sick, I ___ visited you.\"",
+       "options": [
+        "would have",
+        "would",
+        "had"
+       ],
+       "value": "would have",
+       "difficulty": 0.5
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"If they ___ left earlier, they wouldn't have missed the train.\"",
+       "options": [
+        "had",
+        "have",
+        "would have"
+       ],
+       "value": "had",
+       "difficulty": 0.52
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con past perfect: \"If she ___ saved more, she could have bought the car.\"",
+       "text": "If she ___ saved more, she could have bought the car.",
+       "value": "had",
+       "accepted": [
+        "had",
+        "'d"
+       ],
+       "difficulty": 0.53
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Si lo hubiera sabido, te habría ayudado.\"",
+       "source": "Si lo hubiera sabido, te habría ayudado.",
+       "value": "If I had known, I would have helped you",
+       "accepted": [
+        "If I had known, I would have helped you",
+        "If I had known, I would have helped you.",
+        "If I had known I would have helped you",
+        "If I'd known, I would have helped you",
+        "If I'd known, I'd have helped you",
+        "If I had known, I'd have helped you",
+        "If I had known, I would've helped you"
+       ],
+       "difficulty": 0.55
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"Si hubiera estudiado, habría aprobado.\"",
+       "value": "If I had studied I would have passed",
+       "tiles": [
+        "would",
+        "If",
+        "studied",
+        "I",
+        "had",
+        "passed",
+        "have",
+        "I"
+       ],
+       "difficulty": 0.55
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "If I had known, I would have called you.",
+        "If I know, I will call you.",
+        "If I knew, I would call you."
+       ],
+       "value": "If I had known, I would have called you.",
+       "difficulty": 0.54
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "If we had booked earlier, the tickets would have been cheaper.",
+       "difficulty": 0.55
+      }
+     ]
+    },
+    {
+     "title": "Resultados de hoy por el ayer: condicionales mixtos",
+     "topic": "Condicionales mixtos: causa pasada (past perfect) con resultado presente (would + infinitivo)",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "pairs": [
+        [
+         "outcome",
+         "resultado"
+        ],
+        [
+         "afford",
+         "permitirse"
+        ],
+        [
+         "otherwise",
+         "de lo contrario"
+        ]
+       ],
+       "difficulty": 0.57
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"If I had taken that job, I ___ in London now.\"",
+       "options": [
+        "would be",
+        "would have been",
+        "had been"
+       ],
+       "value": "would be",
+       "difficulty": 0.58
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"If she had studied medicine, she ___ a doctor today.\"",
+       "options": [
+        "would be",
+        "will be",
+        "would have"
+       ],
+       "value": "would be",
+       "difficulty": 0.59
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con la forma mixta (resultado presente): \"If we hadn't missed the flight, we ___ on the beach right now.\"",
+       "text": "If we hadn't missed the flight, we ___ on the beach right now.",
+       "value": "would be",
+       "accepted": [
+        "would be",
+        "'d be"
+       ],
+       "difficulty": 0.6
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Si hubiera ahorrado más, ahora no estaría preocupado.\"",
+       "source": "Si hubiera ahorrado más, ahora no estaría preocupado.",
+       "value": "If I had saved more, I wouldn't be worried now",
+       "accepted": [
+        "If I had saved more, I wouldn't be worried now",
+        "If I had saved more, I wouldn't be worried now.",
+        "If I had saved more, I would not be worried now",
+        "If I'd saved more, I wouldn't be worried now",
+        "If I had saved more I wouldn't be worried now",
+        "If I'd saved more, I would not be worried now"
+       ],
+       "difficulty": 0.62
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"Si hubiera aprendido a conducir, no dependería de ti ahora\".",
+       "tiles": [
+        "If",
+        "I",
+        "had",
+        "learned",
+        "to",
+        "drive",
+        "I",
+        "wouldn't",
+        "depend",
+        "on",
+        "you",
+        "now",
+        "would"
+       ],
+       "sequence": [
+        "If",
+        "I",
+        "had",
+        "learned",
+        "to",
+        "drive",
+        "I",
+        "wouldn't",
+        "depend",
+        "on",
+        "you",
+        "now"
+       ],
+       "difficulty": 0.62
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "If I had slept better, I wouldn't be so tired now.",
+        "If I sleep better, I won't be tired.",
+        "If I slept better, I wouldn't be tired."
+       ],
+       "value": "If I had slept better, I wouldn't be so tired now.",
+       "difficulty": 0.6
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "If they hadn't moved abroad, the kids would speak Spanish now.",
+       "difficulty": 0.62
+      }
+     ]
+    },
+    {
+     "title": "Ojalá lo hubiera hecho: wish / if only",
+     "topic": "I wish / if only + past perfect para expresar arrepentimientos sobre el pasado",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "pairs": [
+        [
+         "regret",
+         "arrepentirse"
+        ],
+        [
+         "advice",
+         "consejo"
+        ],
+        [
+         "if only",
+         "ojalá"
+        ]
+       ],
+       "difficulty": 0.63
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"I wish I ___ listened to your advice.\"",
+       "options": [
+        "had",
+        "have",
+        "would"
+       ],
+       "value": "had",
+       "difficulty": 0.64
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"If only we ___ booked a hotel earlier!\"",
+       "options": [
+        "had",
+        "would have",
+        "have"
+       ],
+       "value": "had",
+       "difficulty": 0.65
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con past perfect: \"I wish I ___ told her the truth.\"",
+       "text": "I wish I ___ told her the truth.",
+       "value": "had",
+       "accepted": [
+        "had",
+        "'d"
+       ],
+       "difficulty": 0.65
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Ojalá no hubiera dicho eso.\"",
+       "source": "Ojalá no hubiera dicho eso.",
+       "value": "I wish I hadn't said that",
+       "accepted": [
+        "I wish I hadn't said that",
+        "I wish I hadn't said that.",
+        "I wish I had not said that",
+        "If only I hadn't said that",
+        "I wish I hadn't said that!",
+        "If only I had not said that"
+       ],
+       "difficulty": 0.67
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"Ojalá hubiera estudiado más.\"",
+       "value": "If only I had studied more",
+       "tiles": [
+        "studied",
+        "If",
+        "had",
+        "more",
+        "I",
+        "only"
+       ],
+       "difficulty": 0.66
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "I wish I had applied for that job.",
+        "I wish I could apply for that job.",
+        "I hope I can apply for that job."
+       ],
+       "value": "I wish I had applied for that job.",
+       "difficulty": 0.65
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "If only I had taken that opportunity when I had the chance.",
+       "difficulty": 0.67
+      }
+     ]
+    },
+    {
+     "title": "Repaso: condicionales 1.º, 2.º y 3.º en contexto",
+     "topic": "Distinguir y usar el primer, segundo y tercer condicional según la situación",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "pairs": [
+        [
+         "deadline",
+         "fecha límite"
+        ],
+        [
+         "avoid",
+         "evitar"
+        ],
+        [
+         "realize",
+         "darse cuenta"
+        ]
+       ],
+       "difficulty": 0.68
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Primer condicional. Completa: \"If you finish on time, we ___ to the cinema.\"",
+       "options": [
+        "will go",
+        "would go",
+        "would have gone"
+       ],
+       "value": "will go",
+       "difficulty": 0.68
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Segundo condicional. Completa: \"If I ___ rich, I would travel the world.\"",
+       "options": [
+        "were",
+        "had been",
+        "will be"
+       ],
+       "value": "were",
+       "difficulty": 0.7
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Tercer condicional. Completa: \"If they had warned us, we ___ have avoided the mistake.\"",
+       "text": "If they had warned us, we ___ have avoided the mistake.",
+       "value": "would",
+       "accepted": [
+        "would",
+        "'d"
+       ],
+       "difficulty": 0.71
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce (segundo condicional): \"Si tuviera más tiempo, aprendería a cocinar.\"",
+       "source": "Si tuviera más tiempo, aprendería a cocinar.",
+       "value": "If I had more time, I would learn to cook",
+       "accepted": [
+        "If I had more time, I would learn to cook",
+        "If I had more time, I would learn to cook.",
+        "If I had more time, I'd learn to cook",
+        "If I had more time I would learn to cook",
+        "If I had more time, I would learn how to cook",
+        "If I had more time, I'd learn how to cook"
+       ],
+       "difficulty": 0.72
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase (primer condicional): \"Si llueve mañana, nos quedaremos en casa\".",
+       "tiles": [
+        "If",
+        "it",
+        "rains",
+        "tomorrow",
+        "we'll",
+        "stay",
+        "at",
+        "home",
+        "would",
+        "rained"
+       ],
+       "sequence": [
+        "If",
+        "it",
+        "rains",
+        "tomorrow",
+        "we'll",
+        "stay",
+        "at",
+        "home"
+       ],
+       "difficulty": 0.72
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "If I were you, I would talk to the manager.",
+        "If I had been you, I would have talked to the manager.",
+        "If I am you, I will talk to the manager."
+       ],
+       "value": "If I were you, I would talk to the manager.",
+       "difficulty": 0.73
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "If you had set a deadline, you would have finished the report by now.",
+       "difficulty": 0.75
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "U": 23,
+   "title": "Personas, lugares y definiciones",
+   "theme_color": "#2980B9",
+   "icon": "account_tree",
+   "checkpoint_description": "En esta unidad dominas las oraciones de relativo. Usas las especificativas (defining), sin comas, para identificar a quién o a qué te refieres con who (personas), which/that (cosas), whose (posesión) y where (lugares), y construyes definiciones del tipo the person who… / the place where… Distingues las explicativas (non-defining), que van entre comas y solo añaden información extra (sin that). Por último, aprendes a omitir el relativo cuando funciona como objeto del verbo (the film I saw), algo imposible cuando es sujeto.",
+   "vocab": [
+    {
+     "word": "who",
+     "translation": "que / quien (personas)",
+     "pos": "pronombre"
+    },
+    {
+     "word": "which",
+     "translation": "que / el cual (cosas)",
+     "pos": "pronombre"
+    },
+    {
+     "word": "that",
+     "translation": "que",
+     "pos": "pronombre"
+    },
+    {
+     "word": "whose",
+     "translation": "cuyo / de quien",
+     "pos": "pronombre"
+    },
+    {
+     "word": "where",
+     "translation": "donde / en el que",
+     "pos": "adverbio"
+    },
+    {
+     "word": "the one",
+     "translation": "el que / la que",
+     "pos": "expresión"
+    },
+    {
+     "word": "neighbour",
+     "translation": "vecino",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "to belong to",
+     "translation": "pertenecer a",
+     "pos": "verbo"
+    },
+    {
+     "word": "colleague",
+     "translation": "compañero de trabajo",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "to recommend",
+     "translation": "recomendar",
+     "pos": "verbo"
+    },
+    {
+     "word": "to define",
+     "translation": "definir",
+     "pos": "verbo"
+    },
+    {
+     "word": "place",
+     "translation": "lugar",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "owner",
+     "translation": "dueño / propietario",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "tool",
+     "translation": "herramienta",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "to borrow",
+     "translation": "pedir prestado",
+     "pos": "verbo"
+    },
+    {
+     "word": "in charge of",
+     "translation": "a cargo de",
+     "pos": "expresión"
+    }
+   ],
+   "lessons": [
+    {
+     "title": "El que y la que: definir personas y cosas",
+     "topic": "Relativas especificativas con the one(s) who/that para señalar exactamente a quién o a qué te refieres.",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada expresión con su traducción.",
+       "pairs": [
+        [
+         "the one who",
+         "el que / la que (persona)"
+        ],
+        [
+         "the one that",
+         "el que / la que (cosa)"
+        ],
+        [
+         "to recommend",
+         "recomendar"
+        ]
+       ],
+       "difficulty": 0.5
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa con el relativo de posesión: \"She's the colleague ___ presentation impressed the whole team.\"",
+       "options": [
+        "whose",
+        "who",
+        "which"
+       ],
+       "value": "whose",
+       "difficulty": 0.54
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Elige la frase correcta para \"Esa es la cafetería que recomienda todo el mundo\".",
+       "options": [
+        "That's the café that everyone recommends.",
+        "That's the café who everyone recommends.",
+        "That's the café everyone recommends it."
+       ],
+       "value": "That's the café that everyone recommends.",
+       "difficulty": 0.55
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con el relativo para personas: \"He's the one ___ called you yesterday.\"",
+       "text": "He's the one ___ called you yesterday.",
+       "value": "who",
+       "accepted": [
+        "who",
+        "that"
+       ],
+       "difficulty": 0.53
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Es la persona que tomó la decisión.\"",
+       "source": "Es la persona que tomó la decisión.",
+       "value": "She is the person who made the decision.",
+       "accepted": [
+        "She is the person who made the decision.",
+        "She is the person who made the decision",
+        "She's the person who made the decision.",
+        "She's the person who made the decision",
+        "She is the person that made the decision.",
+        "She is the person that made the decision",
+        "She's the person that made the decision.",
+        "She's the person that made the decision",
+        "He is the person who made the decision.",
+        "He is the person who made the decision",
+        "He's the person who made the decision.",
+        "He's the person who made the decision",
+        "He is the person that made the decision.",
+        "He is the person that made the decision",
+        "He's the person that made the decision.",
+        "He's the person that made the decision",
+        "She is the person who took the decision.",
+        "She is the person who took the decision",
+        "She's the person who took the decision.",
+        "He is the person who took the decision.",
+        "She is the person that took the decision.",
+        "He is the person that took the decision."
+       ],
+       "difficulty": 0.55
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"Esta es la app que uso todos los días\".",
+       "tiles": [
+        "This",
+        "is",
+        "the",
+        "app",
+        "that",
+        "I",
+        "use",
+        "every",
+        "day",
+        "who",
+        "where"
+       ],
+       "sequence": [
+        "This",
+        "is",
+        "the",
+        "app",
+        "that",
+        "I",
+        "use",
+        "every",
+        "day"
+       ],
+       "difficulty": 0.54
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "He's the one who fixed my computer last week.",
+        "He's the one who broke my computer last week.",
+        "She's the one who sold me a new computer."
+       ],
+       "value": "He's the one who fixed my computer last week.",
+       "difficulty": 0.55
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "The teacher who helped me the most is the one I still remember.",
+       "difficulty": 0.56
+      }
+     ]
+    },
+    {
+     "title": "Who, which, that, whose, where",
+     "topic": "Elegir el relativo correcto según describas personas, cosas, posesión o lugares en cláusulas especificativas.",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada relativo con su uso.",
+       "pairs": [
+        [
+         "whose",
+         "cuyo / de quien"
+        ],
+        [
+         "where",
+         "donde / en el que"
+        ],
+        [
+         "which",
+         "que / el cual (cosas)"
+        ]
+       ],
+       "difficulty": 0.57
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"That's the woman ___ car was stolen last night.\"",
+       "options": [
+        "whose",
+        "who",
+        "which"
+       ],
+       "value": "whose",
+       "difficulty": 0.58
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"This is the hotel ___ we stayed two summers ago.\"",
+       "options": [
+        "where",
+        "which",
+        "who"
+       ],
+       "value": "where",
+       "difficulty": 0.6
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con el relativo para cosas: \"The report ___ arrived this morning is full of mistakes.\"",
+       "text": "The report ___ arrived this morning is full of mistakes.",
+       "value": "which",
+       "accepted": [
+        "which",
+        "that"
+       ],
+       "difficulty": 0.59
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Conozco a un hombre cuyo hermano trabaja en la empresa.\"",
+       "source": "Conozco a un hombre cuyo hermano trabaja en la empresa.",
+       "value": "I know a man whose brother works at the company.",
+       "accepted": [
+        "I know a man whose brother works at the company.",
+        "I know a man whose brother works at the company",
+        "I know a man whose brother works in the company.",
+        "I know a man whose brother works in the company",
+        "I know a man whose brother works for the company.",
+        "I know a man whose brother works for the company",
+        "I know a man whose brother works at that company.",
+        "I know a man whose brother works at that company",
+        "I know a man whose brother works in that company.",
+        "I know a man whose brother works in that company",
+        "I know a man whose brother works for that company.",
+        "I know a man whose brother works for that company",
+        "I know a man whose brother works at the firm.",
+        "I know a man whose brother works at the firm",
+        "I know a man whose brother works for the firm.",
+        "I know a man whose brother works for the firm",
+        "I know a man whose brother works in the firm.",
+        "I know a man whose brother works in the firm"
+       ],
+       "difficulty": 0.6
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"Este es el pueblo donde nací\".",
+       "value": "This is the town where I was born",
+       "tiles": [
+        "where",
+        "This",
+        "born",
+        "is",
+        "town",
+        "the",
+        "I",
+        "was"
+       ],
+       "difficulty": 0.61
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "She's the neighbour whose dog barks all night.",
+        "She's the neighbour who walks her dog all night.",
+        "He's the neighbour whose dog ran away last night."
+       ],
+       "value": "She's the neighbour whose dog barks all night.",
+       "difficulty": 0.6
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "I'd love to visit the village where my grandparents grew up.",
+       "difficulty": 0.61
+      }
+     ]
+    },
+    {
+     "title": "Entre comas: información extra",
+     "topic": "Relativas explicativas (non-defining), entre comas, que solo añaden datos adicionales y nunca usan that.",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "pairs": [
+        [
+         "neighbour",
+         "vecino"
+        ],
+        [
+         "owner",
+         "dueño"
+        ],
+        [
+         "in charge of",
+         "a cargo de"
+        ]
+       ],
+       "difficulty": 0.62
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa la explicativa: \"My boss, ___ has worked here for years, is retiring soon.\"",
+       "options": [
+        "who",
+        "that",
+        "where"
+       ],
+       "value": "who",
+       "difficulty": 0.63
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Elige la frase explicativa correcta para \"Berlín, que visité el año pasado, es preciosa\".",
+       "options": [
+        "Berlin, which I visited last year, is beautiful.",
+        "Berlin, that I visited last year, is beautiful.",
+        "Berlin, who I visited last year, is beautiful."
+       ],
+       "value": "Berlin, which I visited last year, is beautiful.",
+       "difficulty": 0.65
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa la explicativa con el relativo para cosas: \"Our new office, ___ opened in May, is much bigger.\"",
+       "text": "Our new office, ___ opened in May, is much bigger.",
+       "value": "which",
+       "accepted": [
+        "which"
+       ],
+       "difficulty": 0.64
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Mi hermana, que vive en Madrid, viene este fin de semana.\"",
+       "source": "Mi hermana, que vive en Madrid, viene este fin de semana.",
+       "value": "My sister, who lives in Madrid, is coming this weekend.",
+       "accepted": [
+        "My sister, who lives in Madrid, is coming this weekend.",
+        "My sister, who lives in Madrid, is coming this weekend",
+        "My sister, who lives in Madrid, comes this weekend.",
+        "My sister, who lives in Madrid, comes this weekend",
+        "My sister, who lives in Madrid, is coming this weekend!",
+        "My sister, who lives in Madrid, is arriving this weekend.",
+        "My sister, who lives in Madrid, is arriving this weekend"
+       ],
+       "difficulty": 0.65
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"El Sr. Lee, que es nuestro jefe, está de vacaciones\".",
+       "tiles": [
+        "Mr",
+        "Lee",
+        ",",
+        "who",
+        "is",
+        "our",
+        "boss",
+        ",",
+        "is",
+        "on",
+        "holiday",
+        "that"
+       ],
+       "sequence": [
+        "Mr",
+        "Lee",
+        ",",
+        "who",
+        "is",
+        "our",
+        "boss",
+        ",",
+        "is",
+        "on",
+        "holiday"
+       ],
+       "difficulty": 0.66
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "Anna, who I met at university, just opened her own restaurant.",
+        "Anna, who I met at university, just closed her old restaurant.",
+        "Emma, who I met at work, just opened a new restaurant."
+       ],
+       "value": "Anna, who I met at university, just opened her own restaurant.",
+       "difficulty": 0.66
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "Our manager, who started last month, has already changed almost everything.",
+       "difficulty": 0.67
+      }
+     ]
+    },
+    {
+     "title": "Cuándo se puede omitir el relativo",
+     "topic": "Omisión del pronombre relativo cuando es objeto del verbo, e imposibilidad de omitirlo cuando es sujeto.",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada palabra con su traducción.",
+       "pairs": [
+        [
+         "to belong to",
+         "pertenecer a"
+        ],
+        [
+         "to borrow",
+         "pedir prestado"
+        ],
+        [
+         "tool",
+         "herramienta"
+        ]
+       ],
+       "difficulty": 0.67
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "¿En qué frase se puede OMITIR el relativo? Elige esa frase.",
+       "options": [
+        "The film we watched last night was amazing.",
+        "The man who called you left a message.",
+        "The bus that goes downtown is late."
+       ],
+       "value": "The film we watched last night was amazing.",
+       "difficulty": 0.68
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Elige la frase correcta sin pronombre relativo para \"El libro que me prestaste es genial\".",
+       "options": [
+        "The book you lent me is great.",
+        "The book who you lent me is great.",
+        "The book lent me you is great."
+       ],
+       "value": "The book you lent me is great.",
+       "difficulty": 0.69
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Reescribe sin relativo. Completa el hueco con UNA palabra: \"The tools that I borrowed → The tools ___ borrowed are in the garage.\"",
+       "text": "The tools ___ borrowed are in the garage.",
+       "value": "I",
+       "accepted": [
+        "I"
+       ],
+       "difficulty": 0.7
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"La persona con la que hablé fue muy amable.\"",
+       "source": "La persona con la que hablé fue muy amable.",
+       "value": "The person I spoke to was very kind.",
+       "accepted": [
+        "The person I spoke to was very kind.",
+        "The person I spoke to was very kind",
+        "The person I talked to was very kind.",
+        "The person I talked to was very kind",
+        "The person I spoke with was very kind.",
+        "The person I spoke with was very kind",
+        "The person I talked with was very kind.",
+        "The person I talked with was very kind",
+        "The person who I spoke to was very kind.",
+        "The person who I spoke to was very kind",
+        "The person that I spoke to was very kind.",
+        "The person that I spoke to was very kind",
+        "The person who I spoke with was very kind.",
+        "The person who I spoke with was very kind",
+        "The person that I spoke with was very kind.",
+        "The person that I spoke with was very kind",
+        "The person I spoke to was very nice.",
+        "The person I spoke to was very nice"
+       ],
+       "difficulty": 0.72
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena (sin relativo): \"El correo que envié ayer\".",
+       "value": "The email I sent yesterday",
+       "tiles": [
+        "I",
+        "The",
+        "yesterday",
+        "email",
+        "sent"
+       ],
+       "difficulty": 0.73
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "The restaurant we tried last weekend belongs to a friend.",
+        "The restaurant we booked last weekend belonged to a friend.",
+        "The restaurant they tried last weekend belongs to her friend."
+       ],
+       "value": "The restaurant we tried last weekend belongs to a friend.",
+       "difficulty": 0.73
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "The advice you gave me last year is something I still follow today.",
+       "difficulty": 0.75
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "U": 24,
+   "title": "Deducciones y debate",
+   "theme_color": "#D4A017",
+   "icon": "gavel",
+   "checkpoint_description": "En esta unidad deduces sobre el pasado con modales perfectos: 'must have' (seguridad), 'might/could have' (posibilidad) y 'can't have' (imposibilidad), siempre seguidos de participio. También expresas crítica y arrepentimiento con 'should have' y 'shouldn't have', y la idea de un esfuerzo innecesario con 'needn't have'. Por último, practicas phrasal verbs y colocaciones de uso frecuente y el lenguaje para opinar y argumentar (in my opinion, on the other hand, however).",
+   "vocab": [
+    {
+     "word": "must have",
+     "translation": "debe de haber",
+     "pos": "expresión"
+    },
+    {
+     "word": "might have",
+     "translation": "podría haber",
+     "pos": "expresión"
+    },
+    {
+     "word": "can't have",
+     "translation": "no puede haber",
+     "pos": "expresión"
+    },
+    {
+     "word": "should have",
+     "translation": "debería haber",
+     "pos": "expresión"
+    },
+    {
+     "word": "needn't have",
+     "translation": "no hacía falta haber",
+     "pos": "expresión"
+    },
+    {
+     "word": "to point out",
+     "translation": "señalar",
+     "pos": "verbo"
+    },
+    {
+     "word": "to bring up",
+     "translation": "sacar (un tema)",
+     "pos": "verbo"
+    },
+    {
+     "word": "to figure out",
+     "translation": "averiguar",
+     "pos": "verbo"
+    },
+    {
+     "word": "to come up with",
+     "translation": "idear, ocurrírsele",
+     "pos": "verbo"
+    },
+    {
+     "word": "evidence",
+     "translation": "prueba, evidencia",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "argument",
+     "translation": "argumento",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "point of view",
+     "translation": "punto de vista",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "however",
+     "translation": "sin embargo",
+     "pos": "adverbio"
+    },
+    {
+     "word": "on the other hand",
+     "translation": "por otro lado",
+     "pos": "expresión"
+    },
+    {
+     "word": "regret",
+     "translation": "arrepentimiento, lamentar",
+     "pos": "sustantivo"
+    },
+    {
+     "word": "to assume",
+     "translation": "suponer",
+     "pos": "verbo"
+    }
+   ],
+   "lessons": [
+    {
+     "title": "Debe de haber…: deducción sobre el pasado",
+     "topic": "Deducir lo que pasó con must / might / could / can't have + participio",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada expresión con su traducción.",
+       "pairs": [
+        [
+         "must have",
+         "debe de haber"
+        ],
+        [
+         "can't have",
+         "no puede haber"
+        ],
+        [
+         "evidence",
+         "prueba"
+        ]
+       ],
+       "difficulty": 0.5
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa (deducción casi segura): \"The ground is wet, so it ___ rained last night.\"",
+       "options": [
+        "must have",
+        "should have",
+        "needn't have"
+       ],
+       "value": "must have",
+       "difficulty": 0.52
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa (algo imposible): \"She ___ seen me; I wasn't even there.\"",
+       "options": [
+        "can't have",
+        "must have",
+        "might have"
+       ],
+       "value": "can't have",
+       "difficulty": 0.54
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con deducción de posibilidad (might/may/could + participio): \"He isn't answering. He ___ left already.\"",
+       "text": "He isn't answering. He ___ left already.",
+       "value": "might have",
+       "accepted": [
+        "might have",
+        "may have",
+        "could have",
+        "might've",
+        "may've",
+        "could've"
+       ],
+       "difficulty": 0.55
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Debe de haber olvidado la reunión.\"",
+       "source": "Debe de haber olvidado la reunión.",
+       "value": "He must have forgotten the meeting",
+       "accepted": [
+        "He must have forgotten the meeting",
+        "He must have forgotten the meeting.",
+        "She must have forgotten the meeting",
+        "She must have forgotten the meeting.",
+        "They must have forgotten the meeting",
+        "They must have forgotten the meeting.",
+        "He must've forgotten the meeting",
+        "She must've forgotten the meeting",
+        "They must've forgotten the meeting"
+       ],
+       "difficulty": 0.56
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"No pueden haber terminado tan rápido\".",
+       "tiles": [
+        "They",
+        "can't",
+        "have",
+        "finished",
+        "so",
+        "quickly",
+        "must",
+        "that"
+       ],
+       "sequence": [
+        "They",
+        "can't",
+        "have",
+        "finished",
+        "so",
+        "quickly"
+       ],
+       "difficulty": 0.57
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "She must have missed the train.",
+        "She might have missed the bus.",
+        "She can't have caught the train."
+       ],
+       "value": "She must have missed the train.",
+       "difficulty": 0.55
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "They must have left early because the lights are off.",
+       "difficulty": 0.56
+      }
+     ]
+    },
+    {
+     "title": "should have / needn't have: crítica y arrepentimiento",
+     "topic": "Criticar el pasado y expresar arrepentimiento o esfuerzo innecesario",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada expresión con su traducción.",
+       "pairs": [
+        [
+         "should have",
+         "debería haber"
+        ],
+        [
+         "needn't have",
+         "no hacía falta haber"
+        ],
+        [
+         "regret",
+         "arrepentimiento"
+        ]
+       ],
+       "difficulty": 0.56
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa (reproche por algo no hecho): \"You ___ told me earlier; I would have helped.\"",
+       "options": [
+        "should have",
+        "needn't have",
+        "can't have"
+       ],
+       "value": "should have",
+       "difficulty": 0.58
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa (esfuerzo innecesario): \"You ___ cooked so much; we hardly ate anything.\"",
+       "options": [
+        "needn't have",
+        "must have",
+        "should have"
+       ],
+       "value": "needn't have",
+       "difficulty": 0.6
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con crítica negativa (shouldn't + participio): \"I ___ said that; it was rude.\"",
+       "text": "I ___ said that; it was rude.",
+       "value": "shouldn't have",
+       "accepted": [
+        "shouldn't have",
+        "should not have"
+       ],
+       "difficulty": 0.61
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Deberías haber pedido ayuda.\"",
+       "source": "Deberías haber pedido ayuda.",
+       "value": "You should have asked for help",
+       "accepted": [
+        "You should have asked for help",
+        "You should have asked for help.",
+        "You should've asked for help",
+        "You should've asked for help.",
+        "You should have asked for help!",
+        "You should have asked for some help",
+        "You should have asked for some help.",
+        "You should've asked for some help",
+        "You should've asked for some help."
+       ],
+       "difficulty": 0.62
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena: \"No deberíamos haber esperado tanto\".",
+       "value": "We shouldn't have waited so long",
+       "tiles": [
+        "have",
+        "We",
+        "so",
+        "shouldn't",
+        "long",
+        "waited"
+       ],
+       "difficulty": 0.63
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "You needn't have worried about it.",
+        "You shouldn't have worried about it.",
+        "You must have worried about it."
+       ],
+       "value": "You needn't have worried about it.",
+       "difficulty": 0.6
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "I should have booked the tickets sooner, honestly.",
+       "difficulty": 0.61
+      }
+     ]
+    },
+    {
+     "title": "Phrasal verbs y colocaciones frecuentes",
+     "topic": "Phrasal verbs comunes y colocaciones útiles para el debate",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada phrasal verb con su traducción.",
+       "pairs": [
+        [
+         "point out",
+         "señalar"
+        ],
+        [
+         "bring up",
+         "sacar (un tema)"
+        ],
+        [
+         "figure out",
+         "averiguar"
+        ]
+       ],
+       "difficulty": 0.58
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa: \"Can you ___ a better solution by tomorrow?\"",
+       "options": [
+        "come up with",
+        "come across",
+        "come down with"
+       ],
+       "value": "come up with",
+       "difficulty": 0.6
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Elige la colocación correcta: \"She ___ a strong argument during the meeting.\"",
+       "options": [
+        "made",
+        "did",
+        "said"
+       ],
+       "value": "made",
+       "difficulty": 0.62
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa el phrasal verb (averiguar): \"It took me a while to ___ out how this machine operates.\"",
+       "text": "It took me a while to ___ out how this machine operates.",
+       "value": "figure",
+       "accepted": [
+        "figure",
+        "work"
+       ],
+       "difficulty": 0.63
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"Quiero sacar un tema importante.\"",
+       "source": "Quiero sacar un tema importante.",
+       "value": "I want to bring up an important point",
+       "accepted": [
+        "I want to bring up an important point",
+        "I want to bring up an important point.",
+        "I want to bring up an important topic",
+        "I want to bring up an important topic.",
+        "I'd like to bring up an important point",
+        "I'd like to bring up an important point.",
+        "I want to raise an important point",
+        "I want to raise an important point."
+       ],
+       "difficulty": 0.64
+      },
+      {
+       "type": "word_bank",
+       "skill": "writing",
+       "prompt": "Arma la frase: \"Necesito señalar un par de problemas\".",
+       "tiles": [
+        "I",
+        "need",
+        "to",
+        "point",
+        "out",
+        "a",
+        "couple",
+        "of",
+        "issues",
+        "take"
+       ],
+       "sequence": [
+        "I",
+        "need",
+        "to",
+        "point",
+        "out",
+        "a",
+        "couple",
+        "of",
+        "issues"
+       ],
+       "difficulty": 0.65
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "We need to figure out what went wrong.",
+        "We need to point out what went wrong.",
+        "We need to bring up what went wrong."
+       ],
+       "value": "We need to figure out what went wrong.",
+       "difficulty": 0.63
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "Let me point out a few things before we move on.",
+       "difficulty": 0.64
+      }
+     ]
+    },
+    {
+     "title": "En mi opinión / por otro lado: argumentar",
+     "topic": "Expresar opiniones, contrastar ideas y estructurar un argumento",
+     "items": [
+      {
+       "type": "match",
+       "skill": "reading",
+       "prompt": "Empareja cada conector con su traducción.",
+       "pairs": [
+        [
+         "however",
+         "sin embargo"
+        ],
+        [
+         "on the other hand",
+         "por otro lado"
+        ],
+        [
+         "point of view",
+         "punto de vista"
+        ]
+       ],
+       "difficulty": 0.62
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Elige el conector de contraste: \"The plan is cheap; ___, it's quite risky.\"",
+       "options": [
+        "however",
+        "therefore",
+        "besides"
+       ],
+       "value": "however",
+       "difficulty": 0.64
+      },
+      {
+       "type": "multiple_choice",
+       "skill": "reading",
+       "prompt": "Completa la expresión de opinión: \"___ my opinion, remote work is more productive.\"",
+       "options": [
+        "In",
+        "On",
+        "At"
+       ],
+       "value": "In",
+       "difficulty": 0.66
+      },
+      {
+       "type": "cloze",
+       "skill": "writing",
+       "prompt": "Completa con la expresión de contraste (por otro lado): \"It saves money. On the other ___, it takes longer.\"",
+       "text": "It saves money. On the other ___, it takes longer.",
+       "value": "hand",
+       "accepted": [
+        "hand"
+       ],
+       "difficulty": 0.68
+      },
+      {
+       "type": "translation",
+       "skill": "writing",
+       "prompt": "Traduce: \"En mi opinión, deberíamos considerar ambos puntos de vista.\"",
+       "source": "En mi opinión, deberíamos considerar ambos puntos de vista.",
+       "value": "In my opinion, we should consider both points of view",
+       "accepted": [
+        "In my opinion, we should consider both points of view",
+        "In my opinion, we should consider both points of view.",
+        "In my opinion we should consider both points of view",
+        "In my opinion, we should consider both viewpoints",
+        "In my opinion, we should consider both viewpoints.",
+        "In my view, we should consider both points of view",
+        "In my view, we should consider both points of view."
+       ],
+       "difficulty": 0.7
+      },
+      {
+       "type": "reorder",
+       "skill": "writing",
+       "prompt": "Ordena (empieza por \"Although\"): \"Aunque veo tu punto, no estoy de acuerdo\".",
+       "value": "Although I see your point I disagree",
+       "tiles": [
+        "I",
+        "Although",
+        "point",
+        "disagree",
+        "see",
+        "your",
+        "I"
+       ],
+       "difficulty": 0.72
+      },
+      {
+       "type": "listening",
+       "skill": "listening",
+       "prompt": "Escucha y elige lo que oíste.",
+       "options": [
+        "On the other hand, it could backfire.",
+        "On the one hand, it could work well.",
+        "In other words, it might backfire."
+       ],
+       "value": "On the other hand, it could backfire.",
+       "difficulty": 0.7
+      },
+      {
+       "type": "speaking_read_aloud",
+       "skill": "speaking",
+       "prompt": "Lee en voz alta:",
+       "text": "I see your point, but I think there's a stronger argument for waiting.",
+       "difficulty": 0.73
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

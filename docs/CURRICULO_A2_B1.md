@@ -1,4 +1,4 @@
-# Jezici — Currículo A2 (sembrado) + esqueleto B1
+# Jezici — Currículo es→en (A2 · B1 · B2 sembrados)
 
 > Generado en GRAN AVANCE 3 · Item 1. Mismo formato exacto que A1 (Unidades 1–6).
 > Fuente de verdad: `tools/content/a2_units.mjs` → `tools/content/gen_a2.mjs`
@@ -57,10 +57,39 @@ examen A2 (20 ítems A2) → certificado **JZC-A2-…**. (`tools/content/verify_
 | 17 | Problemas y soluciones | condicional 0 y 1, modales de obligación (must/have to/should/can't) |
 | 18 | Cultura, medios y futuro | voz pasiva (intro), segundo condicional (intro), comparativos avanzados (as…as) |
 
-## Cómo desarrollar B1 (siguiente pasada de contenido)
-1. Escribir el contenido en `tools/content/b1_units.mjs` (formato idéntico a `a2_units.mjs`).
-2. `node tools/content/gen_b1.mjs` (clonar `gen_a2.mjs`: `cefr_level='B1'`,
-   `order_index = U` 13..18, dificultad ~0.35–0.65, ids con prefijo propio).
-3. Aplicar la migración (`tools/content/apply_sql.py`), subir audio
-   (`tools/content/gen_audio.py`, cambiar el filtro a `cefr_level='B1'`), y
-   verificar la cadena (extender `verify_chain.py`).
+## B2 — SEMBRADO COMPLETO (Unidades 19–24 · 192 ítems) · cierra la escalera es→en
+
+> **✅ Sembrado** en `045_seed_b2.sql`. Autorado + QA pedagógica + verificación
+> adversarial multi-agente (workflow `b2-author-content`: 6 autores + 6 revisores
+> pedagógicos + 6 escépticos adversariales → `b2_units.json` → `gen_b2.mjs` →
+> valida contra el grader). 4 lecciones × 8 ítems (12 reading / 12 writing /
+> 4 listening / 4 speaking) + checkpoint por unidad; cefr 'B2', order 19–24,
+> dificultad 0.50–0.75. **57 correcciones pedagógicas + 38 fixes adversariales**
+> aplicados antes de sembrar.
+> Cadena verificada A1 → A2 → B1 → **B2** (examen + cert **JZC-B2-…**, las 4
+> habilidades pasan a C1, tope de la escalera sembrada). Export en
+> `docs/CONTENT_EXPORT.md`.
+
+| #  | Unidad | Gramática B2 (en contexto) |
+|----|--------|----------------------------|
+| 19 | Logros y trayectoria | present perfect continuous (How long…?, for/since), past perfect, past perfect vs pasado simple |
+| 20 | Lo que dijeron | estilo indirecto: say/tell, backshift, preguntas indirectas, órdenes y peticiones, cambios de tiempo/lugar |
+| 21 | Cómo se hace y las noticias | voz pasiva (presente y pasado), agente con by, procesos/noticias, have something done |
+| 22 | Hipótesis y arrepentimientos | tercer condicional, condicionales mixtos, I wish / if only + past perfect |
+| 23 | Personas, lugares y definiciones | relativas especificativas y explicativas (who/which/that/whose/where), omisión del relativo objeto |
+| 24 | Deducciones y debate | modales de deducción sobre el pasado (must/might/can't have), should/needn't have, phrasal verbs/colocaciones, argumentación |
+
+**Cadena completa verificada end-to-end** (`tools/content/verify_chain.py`, RPC
+reales): A1 → cert **JZC-A1** → A2 → cert **JZC-A2** → B1 → cert **JZC-B1** →
+B2 → cert **JZC-B2** (las 4 habilidades a C1). Examen de nivel B2 dinámico
+(`start_level_exam`/`submit_level_exam` ya soportan B2 sin cambios de esquema:
+seleccionan ítems `cefr_level='B2'`, tope C2). Modelo per-skill intacto
+(test de divergencia PASS). Validador determinista: **0 hallazgos** (A1 u3-6 +
+A2 + B1 + B2).
+
+### Histórico: cómo se desarrollaron B1 y B2
+1. Contenido autorado en `tools/content/b{1,2}_units.json` (workflow multi-agente).
+2. `node tools/content/gen_b{1,2}.mjs` (`cefr_level`, `order_index`, ids con
+   prefijo propio, dificultad por nivel) → valida contra el grader y emite SQL.
+3. Aplicar (`tools/content/apply_sql.py`), extender `content_qa.py` y
+   `verify_chain.py`, y subir audio TTS (`gen_audio.py`, filtro por nivel).

@@ -28,7 +28,7 @@ def load():
     units = q(f"""select u.id, u.order_index as unum, u.cefr_level, u.title
                   from units u
                   where u.course_id='{COURSE}'
-                    and ((u.cefr_level='A1' and u.order_index between 3 and 6) or u.cefr_level in ('A2','B1'))
+                    and ((u.cefr_level='A1' and u.order_index between 3 and 6) or u.cefr_level in ('A2','B1','B2'))
                   order by u.order_index;""")
     for u in units:
         u['lessons'] = q(f"""select l.id, l.order_index, l.title, l.type
@@ -37,11 +37,11 @@ def load():
             les['items'] = q(f"""select ci.id, ci.skill, ci.type, ci.prompt, ci.payload, ci.correct_answer, ci.difficulty, ci.tags, li.order_index ord
                                  from lesson_items li join content_items ci on ci.id=li.item_id
                                  where li.lesson_id='{les['id']}' order by li.order_index;""")
-        base = 300 if u['cefr_level'] == 'A2' else 500  # A2: 300+U*20 · B1: 500+U*20
+        base = {'A2': 300, 'B1': 500, 'B2': 900}.get(u['cefr_level'], 500)  # A2:300+U*20 · B1:500+U*20 · B2:900+U*20
         u['vocab'] = q(f"""select v.word, v.translation, v.frequency_rank, v.part_of_speech
                            from vocabulary v where v.course_id='{COURSE}'
                            and v.frequency_rank between {base + u['unum']*20} and {base + u['unum']*20 + 19}
-                           order by v.frequency_rank;""") if u['cefr_level'] in ('A2', 'B1') else []
+                           order by v.frequency_rank;""") if u['cefr_level'] in ('A2', 'B1', 'B2') else []
     return units
 
 # ── Export legible a Markdown ───────────────────────────────────────────────
@@ -152,6 +152,8 @@ def validate(units):
                     F.append(('PULIDO', 'DIFF_RANGE', at, f"dificultad {d} fuera de A1 [0.05,0.35]"))
                 if lvl == 'A2' and not (0.18 <= d <= 0.60):
                     F.append(('PULIDO', 'DIFF_RANGE', at, f"dificultad {d} fuera de A2 [0.18,0.60]"))
+                if lvl == 'B2' and not (0.40 <= d <= 0.85):
+                    F.append(('PULIDO', 'DIFF_RANGE', at, f"dificultad {d} fuera de B2 [0.40,0.85]"))
                 # Ítem DUPLICADO de verdad = MISMO prompt Y MISMA respuesta (no solo
                 # la instrucción genérica, que SÍ debe repetirse). El reuso de una
                 # palabra de alta frecuencia en otra unidad NO es duplicado.
