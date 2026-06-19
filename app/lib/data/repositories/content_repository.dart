@@ -33,11 +33,12 @@ class ContentRepository {
     final res = await _client
         .from('lesson_items')
         .select(
-          // SEGURIDAD (mig 055): NO se trae correct_answer; la respuesta llega
-          // del servidor (grade_item) SOLO tras responder. La columna está
-          // revocada al cliente.
+          // SEGURIDAD (mig 055/056): lee de la VISTA content_items_public, que NO
+          // incluye correct_answer (defensa en profundidad: ni un select=* puede
+          // exponerla). La respuesta llega del servidor (grade_item) SOLO tras
+          // responder.
           'order_index, '
-          'item:content_items ( id, type, skill, cefr_level, prompt, '
+          'item:content_items_public ( id, type, skill, cefr_level, prompt, '
           'payload, difficulty, tags )',
         )
         .eq('lesson_id', lessonId)
