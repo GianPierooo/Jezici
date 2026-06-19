@@ -15,10 +15,14 @@ import 'package:jezici/data/models/practice_models.dart';
 import 'package:jezici/data/models/progress_models.dart';
 import 'package:jezici/data/providers.dart';
 import 'package:jezici/data/repositories/progress_repository.dart';
+import 'package:jezici/features/lesson/grading/grader.dart' as grd;
 import 'package:jezici/features/lesson/lesson_player_screen.dart';
 
 /// Repo falso (implements, sin SupabaseClient → sin red ni timers).
 class FakeProgressRepository implements ProgressRepository {
+  FakeProgressRepository({this.gradeItems = const []});
+  // Ítems para calificar localmente (simula grade_item del servidor, mig 055).
+  final List<ContentItemModel> gradeItems;
   @override
   bool get isSignedIn => true;
   @override
@@ -33,6 +37,27 @@ class FakeProgressRepository implements ProgressRepository {
   Future<HomeStats> fetchHomeStats() async => HomeStats.empty;
   @override
   Future<List<SkillLevel>> fetchSkills() async => const [];
+  @override
+  Future<({bool correct, bool graded, Map<String, dynamic> expected})> gradeItem(
+      String itemId, Object? answer) async {
+    ContentItemModel? item;
+    for (final i in gradeItems) {
+      if (i.id == itemId) {
+        item = i;
+        break;
+      }
+    }
+    if (item == null) return (correct: true, graded: true, expected: const <String, dynamic>{});
+    // El player envía el answer ya serializado (match: claves String, como al RPC).
+    // El grader local usa claves int → las reconvertimos (el servidor jz_grade usa
+    // claves String directamente).
+    Object? a = answer;
+    if (answer is Map) {
+      a = {for (final e in answer.entries) (int.tryParse('${e.key}') ?? e.key): e.value};
+    }
+    final r = grd.gradeItem(item, a); // matcher local (espejo de jz_grade)
+    return (correct: r.correct, graded: r.graded, expected: item.correctAnswer);
+  }
   @override
   Future<List<CourseInfo>> fetchCourses() async => const [];
   @override
@@ -173,9 +198,10 @@ class FakeProgressRepository implements ProgressRepository {
   }
 }
 
-Widget _wrap(Widget child) => ProviderScope(
+Widget _wrap(Widget child, {List<ContentItemModel> items = const []}) => ProviderScope(
       overrides: [
-        progressRepositoryProvider.overrideWithValue(FakeProgressRepository()),
+        progressRepositoryProvider
+            .overrideWithValue(FakeProgressRepository(gradeItems: items)),
       ],
       child: MaterialApp(home: child),
     );
@@ -284,8 +310,9 @@ void main() {
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
 
+    final items1 = _unit1Lesson1Items();
     await tester.pumpWidget(
-      _wrap(LessonPlayerScreen(lesson: lesson, items: _unit1Lesson1Items())),
+      _wrap(LessonPlayerScreen(lesson: lesson, items: items1), items: items1),
     );
     await tester.pumpAndSettle();
 
@@ -368,7 +395,7 @@ void main() {
       ),
     ];
 
-    await tester.pumpWidget(_wrap(LessonPlayerScreen(lesson: lesson, items: items)));
+    await tester.pumpWidget(_wrap(LessonPlayerScreen(lesson: lesson, items: items), items: items));
     await tester.pumpAndSettle();
 
     expect(find.text('5'), findsOneWidget);

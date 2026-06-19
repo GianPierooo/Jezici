@@ -82,6 +82,21 @@ class ContentItemModel {
     );
   }
 
+  /// Copia con `correctAnswer` reemplazado (para el feedback: la respuesta
+  /// canónica llega del servidor SOLO tras responder — grade_item).
+  ContentItemModel copyWith({Map<String, dynamic>? correctAnswer}) =>
+      ContentItemModel(
+        id: id,
+        type: type,
+        skill: skill,
+        cefrLevel: cefrLevel,
+        prompt: prompt,
+        payload: payload,
+        correctAnswer: correctAnswer ?? this.correctAnswer,
+        difficulty: difficulty,
+        tags: tags,
+      );
+
   static Map<String, dynamic> _asMap(dynamic v) =>
       v is Map ? Map<String, dynamic>.from(v) : <String, dynamic>{};
 }

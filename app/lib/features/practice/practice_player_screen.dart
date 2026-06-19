@@ -41,6 +41,8 @@ class _PracticePlayerScreenState extends ConsumerState<PracticePlayerScreen> {
   int _index = 0;
   _Phase _phase = _Phase.answering;
   GradeResult? _result;
+  Map<String, dynamic> _expected = const {}; // respuesta canónica del servidor (mig 055)
+  bool _checking = false;
   Timer? _timer;
   int _remaining = 0;
   bool _finishing = false;
@@ -71,16 +73,36 @@ class _PracticePlayerScreenState extends ConsumerState<PracticePlayerScreen> {
     super.dispose();
   }
 
-  void _onCheck() {
+  Future<void> _onCheck() async {
+    if (_checking) return;
+    if (_isStub) {
+      setState(() {
+        _phase = _Phase.feedback;
+        _result = GradeResult.stub;
+        _expected = const {};
+      });
+      return;
+    }
+    setState(() => _checking = true);
     GradeResult res;
+    Map<String, dynamic> expected = const {};
     try {
-      res = gradeItem(_item, _answer.value);
+      // Calificación SERVER-SIDE (mig 055): incluye ítems reales y SRS (vocab).
+      final g = await ref
+          .read(progressRepositoryProvider)
+          .gradeItem(_item.id, _jsonAnswer(_answer.value));
+      expected = g.expected;
+      res = gradeResultFromServer(
+          type: _item.type, correct: g.correct, graded: g.graded, expected: expected);
     } catch (_) {
       res = GradeResult.stub;
     }
+    if (!mounted) return;
     setState(() {
+      _checking = false;
       _phase = _Phase.feedback;
       _result = res;
+      _expected = expected;
       if (res.graded) {
         if (res.correct) {
           FeedbackFx.correct();
@@ -101,6 +123,7 @@ class _PracticePlayerScreenState extends ConsumerState<PracticePlayerScreen> {
       _index++;
       _answer.value = null;
       _result = null;
+      _expected = const {};
       _phase = _Phase.answering;
     });
   }
@@ -263,7 +286,11 @@ class _PracticePlayerScreenState extends ConsumerState<PracticePlayerScreen> {
                       ),
                     KeyedSubtree(
                       key: ValueKey(_item.id),
-                      child: buildExerciseWidget(context, _item, _answer, locked),
+                      child: buildExerciseWidget(
+                          context,
+                          locked ? _item.copyWith(correctAnswer: _expected) : _item,
+                          _answer,
+                          locked),
                     ),
                   ],
                 ),
@@ -273,7 +300,7 @@ class _PracticePlayerScreenState extends ConsumerState<PracticePlayerScreen> {
               isStub: _isStub,
               feedback: _phase == _Phase.feedback ? _result : null,
               answer: _answer,
-              onCheck: _onCheck,
+              onCheck: () => _onCheck(),
               onContinue: _advance,
             ),
           ],

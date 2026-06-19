@@ -17,7 +17,17 @@
 
 ## Hallazgos y estado
 
-### 🔴 CRÍTICO — Clave de respuestas legible por el cliente (POR RESOLVER)
+### 🟢 CRÍTICO — Clave de respuestas legible por el cliente (RESUELTO ✅, mig 055)
+**Cerrado.** Grading 100% server-side: `grade_item(item_id, answer)` (SECURITY DEFINER)
+califica con el matcher tolerante existente (`jz_grade`) y revela la respuesta canónica
+SOLO tras responder. `content_items.correct_answer` revocado a anon/authenticated
+(grant del resto de columnas). `start_practice` ya no devuelve la respuesta; el
+lesson/practice player califican vía RPC; checkpoint/examen ya eran submit-only.
+Verificado: SELECT de la columna da *permission denied*; grading tolerante intacto
+(value, accepted, SRS); e2e_audit + verify_chain (en B2) + verify_pt_chain PASS;
+widget tests del loop verdes. (Histórico del análisis original abajo.)
+
+<details><summary>Análisis original (pre-fix)</summary>
 `content_items.correct_answer` (jsonb) es legible vía PostgREST con la anon key
 (RLS `using(true)` en `content_read_content_items`, mig 005). Como el cliente conoce
 los `item_id`, puede leer **todas** las respuestas, responder perfecto y
@@ -43,6 +53,8 @@ devuelve `correct_answer` en su payload (`start_level_exam`), pero la fuga es el
      columna. `start_*`/`fetch*` dejan de exponerla.
   4. Verificar: el loop de lección/checkpoint/examen sigue jugable; un GET directo a
      `content_items?select=correct_answer` devuelve permiso denegado.
+
+</details>
 
 ### 🟠 MEDIO — Helpers `jz_*` invocables con `p_uid` ajeno (RESUELTO ✅, mig 049)
 Los helpers internos (`jz_register_activity`, `jz_record_item`, `jz_record_mastery`,

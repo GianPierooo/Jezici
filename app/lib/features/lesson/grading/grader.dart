@@ -41,8 +41,42 @@ bool isStubType(ContentItemType type) =>
     type == ContentItemType.guidedWriting ||
     type == ContentItemType.unknown;
 
+/// Construye el GradeResult a partir del resultado del SERVIDOR (grade_item,
+/// mig 055). `expected` es el correct_answer canónico, revelado tras responder.
+GradeResult gradeResultFromServer({
+  required ContentItemType type,
+  required bool correct,
+  required bool graded,
+  required Map<String, dynamic> expected,
+}) {
+  if (!graded) return GradeResult.stub;
+  return GradeResult(
+      correct: correct, graded: true, correctDisplay: correctDisplayFor(type, expected));
+}
+
+/// Texto de la respuesta correcta para el feedback, a partir de `expected`.
+String correctDisplayFor(ContentItemType type, Map<String, dynamic> ca) {
+  switch (type) {
+    case ContentItemType.wordBank:
+    case ContentItemType.reorder:
+      final seq = _asList(ca['sequence']);
+      return seq.isNotEmpty
+          ? seq.map((e) => e.toString()).join(' ')
+          : (ca['value'] ?? '').toString();
+    case ContentItemType.match:
+      return _asList(ca['pairs'])
+          .whereType<List>()
+          .where((p) => p.length >= 2)
+          .map((p) => '${p[0]} = ${p[1]}')
+          .join(' · ');
+    default:
+      return (ca['value'] ?? '').toString();
+  }
+}
+
 /// Califica la respuesta del usuario contra `correct_answer` del ítem.
 /// `answer` viene del widget del ejercicio (`String`, `List<String>` o `Map`).
+/// (Local; usado SOLO para stubs/speaking — el resto califica en el servidor.)
 GradeResult gradeItem(ContentItemModel item, Object? answer) {
   if (isStubType(item.type)) return GradeResult.stub;
 

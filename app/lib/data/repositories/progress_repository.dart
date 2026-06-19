@@ -20,6 +20,23 @@ class ProgressRepository {
   String? get _uid => _client.auth.currentUser?.id;
   bool get isSignedIn => _client.auth.currentSession != null;
 
+  /// Califica un ítem en el SERVIDOR (mig 055): el cliente nunca tuvo la
+  /// respuesta. Devuelve {correct, graded, expected} — `expected` (la respuesta
+  /// canónica) sólo se revela DESPUÉS de responder, para el feedback.
+  Future<({bool correct, bool graded, Map<String, dynamic> expected})> gradeItem(
+      String itemId, Object? answer) async {
+    final res = await _client
+        .rpc('grade_item', params: {'p_item_id': itemId, 'p_answer': answer});
+    final m = Map<String, dynamic>.from(res as Map);
+    return (
+      correct: m['correct'] as bool? ?? false,
+      graded: m['graded'] as bool? ?? false,
+      expected: m['expected'] is Map
+          ? Map<String, dynamic>.from(m['expected'] as Map)
+          : <String, dynamic>{},
+    );
+  }
+
   // ── Perfil (nombre real, país, avatar, bio) ───────────────────────────────
 
   /// Perfil propio para el hero (RPC get_profile).

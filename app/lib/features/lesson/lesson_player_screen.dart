@@ -37,6 +37,9 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
   int _comboCorrect = 0; // aciertos seguidos (sonido de combo)
   _Phase _phase = _Phase.answering;
   GradeResult? _result;
+  // Respuesta canónica revelada por el servidor SOLO tras responder (mig 055).
+  Map<String, dynamic> _expected = const {};
+  bool _checking = false;
 
   ContentItemModel get _item => widget.items[_index];
   bool get _isStub => isStubType(_item.type);
@@ -47,16 +50,37 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
     super.dispose();
   }
 
-  void _onCheck() {
-    GradeResult res;
-    try {
-      res = gradeItem(_item, _answer.value);
-    } catch (_) {
-      res = GradeResult.stub; // payload inesperado: no penalizar, solo avanzar
+  Future<void> _onCheck() async {
+    if (_checking) return;
+    // Stubs (speaking): no llaman al servidor; el ejercicio ya dio su feedback.
+    if (_isStub) {
+      setState(() {
+        _phase = _Phase.feedback;
+        _result = GradeResult.stub;
+        _expected = const {};
+      });
+      return;
     }
+    setState(() => _checking = true);
+    GradeResult res;
+    Map<String, dynamic> expected = const {};
+    try {
+      // Calificación SERVER-SIDE (mig 055): el cliente nunca tuvo la respuesta.
+      final g = await ref
+          .read(progressRepositoryProvider)
+          .gradeItem(_item.id, _jsonAnswer(_answer.value));
+      expected = g.expected;
+      res = gradeResultFromServer(
+          type: _item.type, correct: g.correct, graded: g.graded, expected: expected);
+    } catch (_) {
+      res = GradeResult.stub; // fallo de red: no penalizar, avanzar
+    }
+    if (!mounted) return;
     setState(() {
+      _checking = false;
       _phase = _Phase.feedback;
       _result = res;
+      _expected = expected;
       if (res.graded) {
         if (res.correct) {
           _comboCorrect++;
@@ -106,6 +130,7 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
       _index++;
       _answer.value = null;
       _result = null;
+      _expected = const {};
       _phase = _Phase.answering;
     });
   }
@@ -231,7 +256,13 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
                       ),
                     KeyedSubtree(
                       key: ValueKey(_item.id),
-                      child: buildExerciseWidget(context, _item, _answer, locked),
+                      // En feedback, inyecta la respuesta canónica del servidor
+                      // (mig 055) para resaltar lo correcto sin haberla tenido antes.
+                      child: buildExerciseWidget(
+                          context,
+                          locked ? _item.copyWith(correctAnswer: _expected) : _item,
+                          _answer,
+                          locked),
                     ),
                   ],
                 ),
@@ -242,7 +273,7 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
               phase: _phase,
               result: _result,
               answer: _answer,
-              onCheck: _onCheck,
+              onCheck: () => _onCheck(),
               onContinue: _onContinue,
               onStubContinue: _advance,
             ),
