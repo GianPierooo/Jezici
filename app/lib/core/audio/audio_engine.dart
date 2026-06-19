@@ -14,6 +14,11 @@ abstract class AudioEngine {
   /// TTS / listening desde una URL de red. Cachea el buffer decodificado por URL.
   Future<void> playUrl(String url, {double volume = 1.0, void Function()? onComplete});
 
+  /// Pre-descarga + decodifica el audio de una URL al caché SIN reproducir, para
+  /// que el siguiente `playUrl` sea instantáneo (time-to-first-audio mínimo).
+  /// Best-effort: silencioso si falla o no hay motor.
+  Future<void> prefetch(String url);
+
   /// Reanuda el AudioContext tras el primer gesto (desbloqueo en web/iOS).
   void unlock();
 

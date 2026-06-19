@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/audio/audio_engine.dart';
 import '../../core/feedback/feedback_fx.dart';
+import '../../core/speech/speech_recognizer.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/content_item_model.dart';
 import '../../data/models/lesson_model.dart';
@@ -44,8 +46,35 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
   ContentItemModel get _item => widget.items[_index];
   bool get _isStub => isStubType(_item.type);
 
+  SpeechRecognizer? _speechWarm;
+
+  @override
+  void initState() {
+    super.initState();
+    // Calienta el AudioContext tras el gesto de entrada y precarga el audio del
+    // ítem actual y el siguiente (minimiza el time-to-first-audio en listening).
+    AudioEngine.instance.unlock();
+    _prefetchAround();
+    // Pre-calienta el reconocimiento de voz (permiso de micrófono / motor) si la
+    // lección tiene speaking, para que ese ítem no espere al primer uso.
+    if (widget.items.any((it) => it.type == ContentItemType.speakingReadAloud)) {
+      _speechWarm = createSpeechRecognizer();
+      _speechWarm!.init(); // fire-and-forget; init() nunca lanza
+    }
+  }
+
+  /// Precarga el audio (listening/speaking) del ítem actual y del siguiente.
+  void _prefetchAround() {
+    for (final i in [_index, _index + 1]) {
+      if (i < 0 || i >= widget.items.length) continue;
+      final url = widget.items[i].payload['audio_url'];
+      if (url is String && url.isNotEmpty) AudioEngine.instance.prefetch(url);
+    }
+  }
+
   @override
   void dispose() {
+    _speechWarm?.dispose();
     _answer.dispose();
     super.dispose();
   }
@@ -133,6 +162,7 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
       _expected = const {};
       _phase = _Phase.answering;
     });
+    _prefetchAround(); // precarga el audio del nuevo ítem actual + el siguiente
   }
 
   /// Convierte la respuesta a algo JSON-serializable (match: claves a String).

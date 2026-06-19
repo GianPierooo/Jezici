@@ -19,6 +19,15 @@ class _IoAudioEngine implements AudioEngine {
   void unlock() {}
 
   @override
+  Future<void> prefetch(String url) async {
+    // Nativo: audioplayers carga desde el caché del SO; pre-cargamos best-effort
+    // fijando la fuente en el reproductor de URL para acelerar el primer play.
+    try {
+      await (_url ??= AudioPlayer()).setSourceUrl(url);
+    } catch (_) {}
+  }
+
+  @override
   Future<void> playAsset(String assetKey, {double volume = 0.7}) async {
     final p = _pool[_next];
     _next = (_next + 1) % _pool.length;

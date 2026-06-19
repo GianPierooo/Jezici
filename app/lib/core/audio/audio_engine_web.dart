@@ -177,6 +177,21 @@ class _WebAudioEngine implements AudioEngine {
   }
 
   @override
+  Future<void> prefetch(String url) async {
+    final c = _ensure();
+    if (c == null || _cache.containsKey('u:$url')) return;
+    // Descarga + decodifica al caché sin reproducir (no requiere gesto).
+    await _buffer(c, 'u:$url', () async {
+      try {
+        final resp = await _fetch(url).toDart;
+        return await resp.arrayBuffer().toDart;
+      } catch (_) {
+        return null;
+      }
+    });
+  }
+
+  @override
   Future<void> stop() async {
     try {
       _urlSrc?.stop();
