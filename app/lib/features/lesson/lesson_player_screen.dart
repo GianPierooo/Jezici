@@ -195,7 +195,9 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
       if (!mounted) return;
       Navigator.of(context).pop(); // cerrar loading
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => LessonCompleteScreen(summary: summary)),
+        MaterialPageRoute(
+            builder: (_) =>
+                LessonCompleteScreen(summary: summary, lessonId: widget.lesson.id)),
       );
     } catch (_) {
       if (!mounted) return;

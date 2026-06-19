@@ -41,10 +41,37 @@
     cargar para no competir con el arranque.
   -->
   <script>
+    // SW + manejo de ACTUALIZACIÓN (P0.5): si llega una versión nueva mientras la
+    // app está abierta, mostramos un aviso "Recargar" (no auto-recarga, para no
+    // perder el progreso de una lección). El SW va network-first + no-store en el
+    // shell, así que tras un deploy el bundle nuevo se sirve y las cachés viejas
+    // se borran en 'activate'.
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
-        navigator.serviceWorker.register('sw.js').catch(function () {});
+        navigator.serviceWorker.register('sw.js').then(function (reg) {
+          reg.addEventListener('updatefound', function () {
+            var nw = reg.installing;
+            if (!nw) return;
+            nw.addEventListener('statechange', function () {
+              // 'installed' + ya había un controlador = es una ACTUALIZACIÓN.
+              if (nw.state === 'installed' && navigator.serviceWorker.controller) {
+                showUpdateBanner();
+              }
+            });
+          });
+        }).catch(function () {});
       });
+    }
+    function showUpdateBanner() {
+      if (document.getElementById('jz-update')) return;
+      var b = document.createElement('div');
+      b.id = 'jz-update';
+      b.innerHTML = '<span>Hay una versión nueva de Jezici.</span>' +
+        '<button id="jz-reload">Recargar</button>' +
+        '<button id="jz-x" aria-label="Cerrar">✕</button>';
+      document.body.appendChild(b);
+      document.getElementById('jz-reload').onclick = function () { window.location.reload(); };
+      document.getElementById('jz-x').onclick = function () { b.remove(); };
     }
   </script>
 
@@ -75,6 +102,13 @@
     #jz-splash .s{width:34px;height:34px;border:4px solid rgba(255,255,255,.35);border-top-color:#fff;
       border-radius:50%;animation:jzspin 1s linear infinite}
     @keyframes jzspin{to{transform:rotate(360deg)}}
+    #jz-update{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:10000;
+      display:flex;align-items:center;gap:10px;background:#1A1A2E;color:#fff;
+      padding:10px 12px 10px 16px;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.3);
+      font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-size:14px;font-weight:700;max-width:92vw}
+    #jz-update button{border:0;border-radius:10px;font-weight:800;cursor:pointer;font-size:13px}
+    #jz-reload{background:#6C5CE7;color:#fff;padding:8px 14px}
+    #jz-x{background:transparent;color:#9aa;padding:6px 8px}
   </style>
 </head>
 <body>

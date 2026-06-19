@@ -6,6 +6,7 @@ import 'package:jezici/data/models/checkpoint_models.dart';
 import 'package:jezici/data/models/content_item_model.dart';
 import 'package:jezici/data/models/course_models.dart';
 import 'package:jezici/data/models/profile_models.dart';
+import 'package:jezici/data/models/tip_models.dart';
 import 'package:jezici/data/models/achievement_models.dart';
 import 'package:jezici/data/models/league_models.dart';
 import 'package:jezici/data/models/lesson_model.dart';
@@ -62,6 +63,10 @@ class FakeProgressRepository implements ProgressRepository {
   Future<List<CourseInfo>> fetchCourses() async => const [];
   @override
   Future<void> setActiveCourse(String courseId) async {}
+  @override
+  Future<TipModel?> getLessonTip(String lessonId) async => null;
+  @override
+  Future<List<TipModel>> getNotebook() async => const [];
   @override
   Future<ProfileInfo> fetchProfile() async => ProfileInfo.empty;
   @override

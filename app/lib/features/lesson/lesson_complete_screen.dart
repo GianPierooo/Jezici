@@ -1,26 +1,33 @@
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/constants/skills.dart';
 import '../../core/feedback/feedback_fx.dart';
 import '../../core/theme/app_colors.dart';
 import '../learn/widgets/parrot_mascot.dart';
 import '../../data/models/progress_models.dart';
+import '../../data/models/tip_models.dart';
+import '../../data/providers.dart';
+import '../notifications/coach_styles.dart';
 import '../../ui/daily_goal_bar.dart';
 import '../../ui/primary_button.dart';
 
 /// Pantalla de fin: muestra el resumen DEVUELTO POR EL SERVIDOR (complete_lesson).
-/// XP, precisión, oro, bonus de combo, racha y las habilidades que subieron.
-class LessonCompleteScreen extends StatefulWidget {
-  const LessonCompleteScreen({super.key, required this.summary});
+/// XP, precisión, oro, bonus de combo, racha y las habilidades que subieron, +
+/// una tarjeta de TIP (capa "enseña") personalizada a la skill más débil.
+class LessonCompleteScreen extends ConsumerStatefulWidget {
+  const LessonCompleteScreen({super.key, required this.summary, required this.lessonId});
   final LessonSummary summary;
+  final String lessonId;
 
   @override
-  State<LessonCompleteScreen> createState() => _LessonCompleteScreenState();
+  ConsumerState<LessonCompleteScreen> createState() => _LessonCompleteScreenState();
 }
 
-class _LessonCompleteScreenState extends State<LessonCompleteScreen> {
+class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
   late final ConfettiController _confetti;
+  TipModel? _tip;
 
   static const _skillLabels = kSkillEs;
 
@@ -30,6 +37,14 @@ class _LessonCompleteScreenState extends State<LessonCompleteScreen> {
     _confetti = ConfettiController(duration: const Duration(seconds: 2));
     _confetti.play();
     FeedbackFx.lessonComplete(golden: widget.summary.status == 'golden');
+    _loadTip();
+  }
+
+  Future<void> _loadTip() async {
+    try {
+      final t = await ref.read(progressRepositoryProvider).getLessonTip(widget.lessonId);
+      if (mounted) setState(() => _tip = t);
+    } catch (_) {}
   }
 
   @override
@@ -312,6 +327,16 @@ class _LessonCompleteScreenState extends State<LessonCompleteScreen> {
                       ),
                     ),
                   ],
+                  // Tarjeta de TIP (capa "enseña"): personalizada a la skill débil,
+                  // en la voz del coach (Matix) del usuario.
+                  if (_tip != null) ...[
+                    const SizedBox(height: 13),
+                    _TipCard(
+                      tip: _tip!,
+                      coachKey: ref.watch(settingsProvider).value?.coachStyle ??
+                          CoachStyle.all.first.key,
+                    ),
+                  ],
                   const SizedBox(height: 22),
                   PrimaryButton(
                     label: 'CONTINUAR',
@@ -322,6 +347,84 @@ class _LessonCompleteScreenState extends State<LessonCompleteScreen> {
               ),
             ),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Tarjeta de TIP en la voz del coach (Matix). Personalizada si el tip cubre la
+/// skill más débil del usuario.
+class _TipCard extends StatelessWidget {
+  const _TipCard({required this.tip, required this.coachKey});
+  final TipModel tip;
+  final String coachKey;
+
+  IconData get _icon => switch (tip.type) {
+        'pronunciacion' => Icons.record_voice_over_rounded,
+        'nota_cultural' => Icons.public_rounded,
+        'error_comun' => Icons.report_problem_rounded,
+        'mnemotecnia' => Icons.lightbulb_rounded,
+        _ => Icons.school_rounded,
+      };
+
+  @override
+  Widget build(BuildContext context) {
+    final coach = CoachStyle.of(coachKey);
+    final personalized = tip.weakSkill != null && tip.skill == tip.weakSkill;
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xFFF3F1FF), Color(0xFFEDE9FF)],
+        ),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: const Color(0xFFD9D2FF), width: 1.5),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(coach.emoji, style: const TextStyle(fontSize: 18)),
+              const SizedBox(width: 6),
+              Expanded(
+                child: Text('Matix te enseña · ${tip.typeLabel}',
+                    style: const TextStyle(
+                        fontSize: 12, fontWeight: FontWeight.w900, color: AppColors.primary)),
+              ),
+              Icon(_icon, size: 18, color: AppColors.primary),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Text(tip.title,
+              style: const TextStyle(
+                  fontSize: 16, fontWeight: FontWeight.w900, color: AppColors.text)),
+          const SizedBox(height: 5),
+          Text(tip.body,
+              style: const TextStyle(
+                  fontSize: 13.5, fontWeight: FontWeight.w600, color: AppColors.text, height: 1.4)),
+          if (tip.example != null && tip.example!.isNotEmpty) ...[
+            const SizedBox(height: 10),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+              decoration:
+                  BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12)),
+              child: Text(tip.example!,
+                  style: const TextStyle(
+                      fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.text, height: 1.35)),
+            ),
+          ],
+          if (personalized) ...[
+            const SizedBox(height: 9),
+            Text('Te lo doy porque tu ${kSkillEs[tip.skill] ?? tip.skill} necesita un empujón. 🦜',
+                style: const TextStyle(
+                    fontSize: 11.5, fontWeight: FontWeight.w800, color: AppColors.coral)),
+          ],
         ],
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/app_info.dart';
 import '../../core/audio/sound_controller.dart';
 import '../../core/feedback/feedback_sheet.dart';
 import '../../core/theme/app_colors.dart';
@@ -343,6 +344,16 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             label: const Text('Borrar mi cuenta', style: TextStyle(fontWeight: FontWeight.w800)),
             style: TextButton.styleFrom(foregroundColor: AppColors.textMuted),
           ),
+          const SizedBox(height: 18),
+          // Sello de build (P0.5): qué bundle está corriendo (diagnóstico discreto).
+          Center(
+            child: Text(
+              'Jezici ${buildLabel()}',
+              style: const TextStyle(
+                  fontSize: 11, fontWeight: FontWeight.w700, color: AppColors.textMuted),
+            ),
+          ),
+          const SizedBox(height: 6),
         ],
       ),
     );

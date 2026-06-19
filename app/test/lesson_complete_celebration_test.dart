@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:jezici/data/models/progress_models.dart';
@@ -11,7 +12,8 @@ void main() {
     tester.view.devicePixelRatio = 1.0;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
-    await tester.pumpWidget(MaterialApp(home: LessonCompleteScreen(summary: s)));
+    await tester.pumpWidget(ProviderScope(
+        child: MaterialApp(home: LessonCompleteScreen(summary: s, lessonId: 'x'))));
     await tester.pump(const Duration(milliseconds: 300));
   }
 

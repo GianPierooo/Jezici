@@ -15,6 +15,7 @@ import '../../ui/edit_profile_sheet.dart';
 import '../../ui/progress_bar.dart';
 import '../level_exam/certificate_screen.dart';
 import '../level_exam/level_exam_intro_screen.dart';
+import '../notebook/notebook_screen.dart';
 import '../notifications/notification_center_screen.dart';
 import '../plan/mi_plan_screen.dart';
 import '../practice/practice_player_screen.dart';
@@ -142,6 +143,12 @@ class ProfileScreen extends ConsumerWidget {
               motive: plan?.motive,
               weak: weakSkill,
               onPracticeWeak: () => _practiceWeakness(context, ref),
+            ),
+            const SizedBox(height: 12),
+            // Cuaderno de datos (capa "enseña"): tips aprendidos, navegables.
+            _NotebookEntry(
+              onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(builder: (_) => const NotebookScreen())),
             ),
             const SizedBox(height: 22),
 
@@ -1025,6 +1032,54 @@ class _Pill extends StatelessWidget {
       child: Text(text,
           style: const TextStyle(
               fontSize: 12, fontWeight: FontWeight.w900, color: Colors.white)),
+    );
+  }
+}
+
+class _NotebookEntry extends StatelessWidget {
+  const _NotebookEntry({required this.onTap});
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 14),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(18),
+          boxShadow: const [
+            BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 4), blurRadius: 0),
+          ],
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                  color: AppColors.navActiveBg, borderRadius: BorderRadius.circular(12)),
+              child: const Icon(Icons.auto_stories_rounded, color: AppColors.primary, size: 21),
+            ),
+            const SizedBox(width: 12),
+            const Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Cuaderno de datos',
+                      style: TextStyle(
+                          fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+                  Text('Tips y trucos que has aprendido',
+                      style: TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                ],
+              ),
+            ),
+            const Icon(Icons.chevron_right_rounded, color: AppColors.textMuted),
+          ],
+        ),
+      ),
     );
   }
 }

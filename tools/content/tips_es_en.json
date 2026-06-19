@@ -1,0 +1,580 @@
+{
+ "tips": [
+  {
+   "unit": 1,
+   "type": "tip_idioma",
+   "skill": "writing",
+   "title": "A / An según el sonido",
+   "body": "Usa 'a' antes de sonido de consonante y 'an' antes de sonido de vocal. Lo que manda es el SONIDO, no la letra escrita.",
+   "example": "a book (un libro) · an apple (una manzana) · an hour (una hora; la 'h' es muda, suena vocal)"
+  },
+  {
+   "unit": 1,
+   "type": "error_comun",
+   "skill": "speaking",
+   "title": "Tu edad: be, no have",
+   "body": "En español dices 'tengo 20 años', pero en inglés se usa el verbo 'to be'. Decir 'I have 20 years' es un error muy típico.",
+   "example": "I am 20 (years old). = Tengo 20 años. (NO: I have 20 years)"
+  },
+  {
+   "unit": 1,
+   "type": "mnemotecnia",
+   "skill": "writing",
+   "title": "El sujeto nunca falta",
+   "body": "En inglés siempre hay que poner el sujeto, aunque en español se omita. Recuerda: cada oración necesita su 'yo, tú, él...' delante.",
+   "example": "Es profesor. → He is a teacher. (NO: Is a teacher)"
+  },
+  {
+   "unit": 2,
+   "type": "tip_idioma",
+   "skill": "writing",
+   "title": "El posesivo con 's",
+   "body": "Para decir de quién es algo, añade 's al dueño y ponlo delante de la cosa, al revés que en español. Con personas no se usa 'of'.",
+   "example": "el coche de Ana → Ana's car · la madre de mi amigo → my friend's mother"
+  },
+  {
+   "unit": 2,
+   "type": "error_comun",
+   "skill": "writing",
+   "title": "His / Her no cambian con la cosa",
+   "body": "El posesivo concuerda con el dueño, no con el objeto. 'Her' siempre es 'de ella' y 'his' siempre es 'de él', sea singular o plural lo que poseen.",
+   "example": "her brothers = sus hermanos (de ella) · his sister = su hermana (de él)"
+  },
+  {
+   "unit": 2,
+   "type": "pronunciacion",
+   "skill": "listening",
+   "title": "El plural suena de 3 formas",
+   "body": "La -s del plural se pronuncia /s/, /z/ o /ɪz/ según el sonido anterior. Tras s, z, ch, sh, ge suena /ɪz/ y añade una sílaba.",
+   "example": "cats /s/ · dogs /z/ · houses /ˈhaʊzɪz/ (casas)"
+  },
+  {
+   "unit": 3,
+   "type": "error_comun",
+   "skill": "writing",
+   "title": "La -s de he/she/it",
+   "body": "En presente simple, con he, she e it el verbo lleva -s al final. Es el error más frecuente: olvidarla en la tercera persona.",
+   "example": "She works in a bank. = Ella trabaja en un banco. (NO: She work)"
+  },
+  {
+   "unit": 3,
+   "type": "tip_idioma",
+   "skill": "speaking",
+   "title": "Negar con don't / doesn't",
+   "body": "Para negar en presente usa 'don't' (I/you/we/they) o 'doesn't' (he/she/it). Ojo: con 'doesn't' el verbo principal pierde la -s.",
+   "example": "He doesn't like coffee. = No le gusta el café. (NO: doesn't likes)"
+  },
+  {
+   "unit": 3,
+   "type": "tip_idioma",
+   "skill": "writing",
+   "title": "Adverbios de frecuencia: dónde van",
+   "body": "Palabras como always, usually o never van antes del verbo principal, pero después de 'to be'. Indican cada cuánto haces algo.",
+   "example": "I always have breakfast. = Siempre desayuno. · She is never late. = Nunca llega tarde."
+  },
+  {
+   "unit": 4,
+   "type": "tip_idioma",
+   "skill": "writing",
+   "title": "Some en afirmativo, any en preguntas",
+   "body": "Usa 'some' en frases afirmativas y 'any' en negativas y preguntas. Indican una cantidad indefinida ('algo de' / 'algún').",
+   "example": "I have some bread. = Tengo (algo de) pan. · Do you have any milk? = ¿Tienes leche?"
+  },
+  {
+   "unit": 4,
+   "type": "error_comun",
+   "skill": "writing",
+   "title": "Contables vs incontables",
+   "body": "Algunas comidas no se cuentan en inglés y no llevan plural ni 'a': bread, water, rice. Para medirlas usa 'a piece of', 'a glass of'.",
+   "example": "a glass of water = un vaso de agua (NO: a water · waters)"
+  },
+  {
+   "unit": 4,
+   "type": "pronunciacion",
+   "skill": "listening",
+   "title": "El sonido 'th' de 'three'",
+   "body": "La 'th' de 'three' no existe en español. Pon la lengua entre los dientes y sopla suave; no la cambies por 't' ni por 's'.",
+   "example": "three /θriː/ = tres · thanks = gracias"
+  },
+  {
+   "unit": 5,
+   "type": "tip_idioma",
+   "skill": "writing",
+   "title": "In, on, at de lugar",
+   "body": "Usa 'in' para espacios cerrados o áreas, 'on' para superficies y 'at' para puntos concretos. Es clave para ubicar cosas.",
+   "example": "in the kitchen (en la cocina) · on the table (sobre la mesa) · at the door (en la puerta)"
+  },
+  {
+   "unit": 5,
+   "type": "tip_idioma",
+   "skill": "speaking",
+   "title": "Hay = There is / There are",
+   "body": "Para decir que algo existe usa 'there is' (singular) o 'there are' (plural). No lo traduzcas con 'have'.",
+   "example": "There is a park near my house. = Hay un parque cerca de mi casa. · There are two banks. = Hay dos bancos."
+  },
+  {
+   "unit": 5,
+   "type": "nota_cultural",
+   "skill": "reading",
+   "title": "Planta baja: ground floor",
+   "body": "En inglés británico la planta baja es 'ground floor' y el 'first floor' es el primer piso de arriba. En inglés americano 'first floor' es la planta baja.",
+   "example": "the ground floor (UK) = la planta baja"
+  },
+  {
+   "unit": 6,
+   "type": "tip_idioma",
+   "skill": "writing",
+   "title": "Can: misma forma para todos",
+   "body": "'Can' (poder/saber hacer) no cambia y va seguido del verbo en infinitivo sin 'to'. Nunca lleva -s, ni siquiera con he/she.",
+   "example": "She can swim. = Ella sabe nadar. (NO: She can to swim · She cans)"
+  },
+  {
+   "unit": 6,
+   "type": "error_comun",
+   "skill": "writing",
+   "title": "El adjetivo va delante",
+   "body": "En inglés el adjetivo se coloca antes del sustantivo y no cambia en plural, al revés que en español, donde suele ir detrás.",
+   "example": "a red car = un coche rojo · two big houses = dos casas grandes (NO: cars red · bigs)"
+  },
+  {
+   "unit": 6,
+   "type": "mnemotecnia",
+   "skill": "speaking",
+   "title": "Gusta + -ing para hobbies",
+   "body": "Para hablar de pasatiempos, tras 'like', 'love' o 'enjoy' el segundo verbo suele acabar en -ing. Piensa: 'me gusta EL nadar'.",
+   "example": "I like reading. = Me gusta leer. · She loves dancing. = A ella le encanta bailar."
+  },
+  {
+   "unit": 7,
+   "type": "pronunciacion",
+   "skill": "speaking",
+   "title": "La -ed tiene tres sonidos",
+   "body": "En el pasado regular, la terminación -ed se pronuncia de tres formas según el sonido anterior. Suena /t/ tras sonido sordo, /d/ tras sonido sonoro, y solo añade una sílaba (/id/) cuando el verbo termina en t o d.",
+   "example": "worked /workt/ · played /pleid/ · wanted /wantid/ (con sílaba extra)"
+  },
+  {
+   "unit": 7,
+   "type": "error_comun",
+   "skill": "writing",
+   "title": "En negativo, sin pasado doble",
+   "body": "Un error muy típico es decir 'I didn't went'. Con didn't el verbo vuelve a su forma base, porque el pasado ya lo marca 'did'.",
+   "example": "I didn't go yesterday (no 'didn't went') = No fui ayer"
+  },
+  {
+   "unit": 7,
+   "type": "mnemotecnia",
+   "skill": "reading",
+   "title": "Irregulares en grupos",
+   "body": "Memoriza los verbos irregulares por patrones de sonido parecido, no de uno en uno. Así se te quedan más fácil.",
+   "example": "sing-sang, ring-rang, swim-swam · think-thought, buy-bought, bring-brought"
+  },
+  {
+   "unit": 8,
+   "type": "tip_idioma",
+   "skill": "writing",
+   "title": "Will vs going to",
+   "body": "Usa 'going to' para planes que ya tenías decididos, y 'will' para decisiones del momento o predicciones espontáneas. No siempre son intercambiables.",
+   "example": "I'm going to study tonight (plan) · I'll help you! (decisión ahora) = Voy a estudiar / Te ayudaré"
+  },
+  {
+   "unit": 8,
+   "type": "error_comun",
+   "skill": "speaking",
+   "title": "No olvides el 'to'",
+   "body": "Muchos hispanohablantes dicen 'I going study'. El futuro con going to siempre lleva: be + going + to + verbo en base.",
+   "example": "I'm going to travel (no 'I going travel') = Voy a viajar"
+  },
+  {
+   "unit": 8,
+   "type": "pronunciacion",
+   "skill": "listening",
+   "title": "'Going to' suena 'gonna'",
+   "body": "En el inglés hablado informal, 'going to' se reduce a 'gonna' delante de un verbo. Reconocerlo te ayuda mucho a entender conversaciones reales.",
+   "example": "I'm gonna call you = I'm going to call you = Te voy a llamar"
+  },
+  {
+   "unit": 9,
+   "type": "tip_idioma",
+   "skill": "speaking",
+   "title": "Pedir direcciones con cortesía",
+   "body": "Para preguntar cómo llegar, empieza con 'Excuse me'. Suena mucho más natural y educado que un 'where is' directo.",
+   "example": "Excuse me, how do I get to the station? = Perdone, ¿cómo llego a la estación?"
+  },
+  {
+   "unit": 9,
+   "type": "nota_cultural",
+   "skill": "reading",
+   "title": "Las plantas: 'ground floor'",
+   "body": "En inglés británico la planta baja es 'ground floor' y nuestro primer piso es 'first floor'. En EE. UU. la planta baja suele ser 'first floor', así que coincide con nuestra numeración.",
+   "example": "Take the lift to the first floor (UK) = Sube a la primera planta (segunda altura)"
+  },
+  {
+   "unit": 9,
+   "type": "error_comun",
+   "skill": "writing",
+   "title": "'Go to' pero 'go home'",
+   "body": "Decimos 'go to the airport', pero con home no se usa 'to'. Home funciona aquí como adverbio, por eso no lleva preposición.",
+   "example": "I want to go home (no 'go to home') = Quiero ir a casa"
+  },
+  {
+   "unit": 10,
+   "type": "tip_idioma",
+   "skill": "writing",
+   "title": "Comparativos: cortos vs largos",
+   "body": "Los adjetivos cortos añaden -er (cheaper), pero los largos usan 'more' delante. Nunca combines los dos a la vez.",
+   "example": "cheaper, bigger · more expensive, more delicious (no 'more cheaper') = más barato / más caro"
+  },
+  {
+   "unit": 10,
+   "type": "error_comun",
+   "skill": "speaking",
+   "title": "'Than', no 'that'",
+   "body": "Para comparar usamos 'than', no 'that'. Suenan parecido, pero confundirlos despista a quien te escucha.",
+   "example": "This restaurant is better than that one = Este restaurante es mejor que aquel"
+  },
+  {
+   "unit": 10,
+   "type": "nota_cultural",
+   "skill": "listening",
+   "title": "La propina en EE. UU.",
+   "body": "En EE. UU. dejar entre un 15% y un 20% de propina se da por hecho, no es opcional. A veces la cuenta ya sugiere el porcentaje.",
+   "example": "Could we have the check, please? = ¿Nos trae la cuenta, por favor?"
+  },
+  {
+   "unit": 11,
+   "type": "tip_idioma",
+   "skill": "writing",
+   "title": "Ahora mismo: -ing",
+   "body": "El presente continuo (be + verbo-ing) describe lo que pasa en este momento. Úsalo para acciones en curso, no para rutinas.",
+   "example": "She is cooking right now = Ella está cocinando ahora mismo"
+  },
+  {
+   "unit": 11,
+   "type": "error_comun",
+   "skill": "writing",
+   "title": "Verbos de estado sin -ing",
+   "body": "Verbos como like, want, know o need normalmente no van en -ing, aunque hables del momento presente. Es un fallo muy frecuente.",
+   "example": "I want a coffee (no 'I am wanting') = Quiero un café"
+  },
+  {
+   "unit": 11,
+   "type": "pronunciacion",
+   "skill": "speaking",
+   "title": "El sonido -ing nasal",
+   "body": "La terminación -ing acaba en un sonido nasal /ŋ/; no pronuncies una 'g' fuerte al final. Sale por la nariz, suave.",
+   "example": "walking, talking, raining = suena /-iŋ/, sin 'g' dura"
+  },
+  {
+   "unit": 12,
+   "type": "tip_idioma",
+   "skill": "speaking",
+   "title": "'Should' para consejos",
+   "body": "Usa 'should' para dar consejos y 'shouldn't' para lo que no conviene. Detrás siempre va el verbo en forma base, sin 'to'.",
+   "example": "You should rest · You shouldn't drink coffee = Deberías descansar / No deberías tomar café"
+  },
+  {
+   "unit": 12,
+   "type": "tip_idioma",
+   "skill": "writing",
+   "title": "Ever / never con experiencias",
+   "body": "El present perfect (have + participio) sirve para experiencias de vida sin decir cuándo. 'Ever' va en preguntas y 'never' significa ninguna vez.",
+   "example": "Have you ever been to London? — No, I've never been = ¿Has estado alguna vez en Londres? — No, nunca"
+  },
+  {
+   "unit": 12,
+   "type": "error_comun",
+   "skill": "reading",
+   "title": "Tu edad: 'be', no 'have'",
+   "body": "En español tenemos años, pero en inglés se usa el verbo 'be' para la edad. Decir 'I have 30 years' es un calco del español que conviene evitar.",
+   "example": "I'm 30 (years old) (no 'I have 30 years') = Tengo 30 años"
+  },
+  {
+   "unit": 13,
+   "type": "tip_idioma",
+   "skill": "writing",
+   "title": "Just, already y yet",
+   "body": "Con el present perfect, 'just' y 'already' van entre el auxiliar (have/has) y el participio. 'Yet' va al final de la frase y aparece sobre todo en preguntas y negaciones. Pista: 'yet' = algo que se espera pero todavia no ha pasado.",
+   "example": "I've already eaten. / Have you finished yet? = Ya comi. / ¿Ya terminaste?"
+  },
+  {
+   "unit": 13,
+   "type": "error_comun",
+   "skill": "writing",
+   "title": "For y since no son lo mismo",
+   "body": "Es un error muy comun. Usa 'for' con la duracion (cuanto tiempo: for three years) y 'since' con el punto de inicio (desde cuando: since 2021). Truco: 'desde hace' en español casi siempre es 'for'.",
+   "example": "I've lived here for three years / since 2021 = Vivo aqui desde hace tres años / desde 2021"
+  },
+  {
+   "unit": 13,
+   "type": "mnemotecnia",
+   "skill": "speaking",
+   "title": "used to = antes solia",
+   "body": "'Used to' describe habitos o estados del pasado que ya no son ciertos. Traducelo como 'antes' o 'solia' y veras que encaja. Ojo: en negativa y pregunta se pierde la -d: 'didn't use to', 'did you use to...?'.",
+   "example": "I used to smoke = Antes fumaba / Solia fumar"
+  },
+  {
+   "unit": 14,
+   "type": "tip_idioma",
+   "skill": "writing",
+   "title": "If + presente, will + verbo",
+   "body": "En el primer condicional, despues de 'if' NO uses 'will': el presente va en la parte del 'if' y el futuro (will) en la otra mitad. Es una regla muy fiable del ingles.",
+   "example": "If it rains, I will stay home = Si llueve, me quedare en casa"
+  },
+  {
+   "unit": 14,
+   "type": "error_comun",
+   "skill": "speaking",
+   "title": "Will vs going to",
+   "body": "Usa 'be going to' para planes ya decididos antes de hablar o para algo que ves venir por las pruebas. Usa 'will' para decisiones del momento, predicciones sin pruebas y promesas.",
+   "example": "I'm going to study tonight (plan) / I'll help you! (decido ahora) = Voy a estudiar / ¡Te ayudo!"
+  },
+  {
+   "unit": 14,
+   "type": "tip_idioma",
+   "skill": "reading",
+   "title": "Llevo + tiempo = have been -ing",
+   "body": "El present perfect continuous expresa una accion que empezo en el pasado y sigue ahora. Cuando en español dirias 'llevo trabajando...', en ingles suele ser 'I've been working...'.",
+   "example": "I've been studying English for two years = Llevo dos años estudiando ingles"
+  },
+  {
+   "unit": 15,
+   "type": "tip_idioma",
+   "skill": "speaking",
+   "title": "So do I / Neither do I",
+   "body": "Para coincidir, usa 'So...' tras una frase afirmativa y 'Neither...' tras una negativa, repitiendo el auxiliar e invirtiendo el orden (auxiliar + sujeto). El auxiliar debe concordar con el verbo original: con 'I love' usas 'do'; con 'I can' usarias 'can'.",
+   "example": "I love coffee. — So do I. / I don't smoke. — Neither do I. = A mi tambien / A mi tampoco"
+  },
+  {
+   "unit": 15,
+   "type": "error_comun",
+   "skill": "writing",
+   "title": "Agree no lleva 'be'",
+   "body": "'Agree' es un verbo que ya significa 'estar de acuerdo', asi que NO digas 'I am agree'. Lo correcto es 'I agree' o 'I don't agree'.",
+   "example": "I agree with you (NO 'I am agree') = Estoy de acuerdo contigo"
+  },
+  {
+   "unit": 15,
+   "type": "tip_idioma",
+   "skill": "reading",
+   "title": "Verbos para dar opinion",
+   "body": "Mas alla de 'I think', enriquece tus opiniones con 'In my opinion', 'I believe' o 'It seems to me'. Suenan mas naturales y variadas en una conversacion de nivel B1.",
+   "example": "In my opinion, the film was too long = En mi opinion, la pelicula fue demasiado larga"
+  },
+  {
+   "unit": 16,
+   "type": "tip_idioma",
+   "skill": "writing",
+   "title": "While y when en el pasado",
+   "body": "Usa el pasado continuo (was/were + -ing) para la accion larga de fondo y el pasado simple para la accion corta que la interrumpe. 'While' suele acompañar a la accion larga; 'when' a la corta.",
+   "example": "I was cooking when the phone rang = Estaba cocinando cuando sono el telefono"
+  },
+  {
+   "unit": 16,
+   "type": "error_comun",
+   "skill": "writing",
+   "title": "Who para personas, which para cosas",
+   "body": "En las oraciones de relativo, 'who' es para personas y 'which' para cosas; 'that' sirve para ambas en las especificativas. No uses 'which' para personas.",
+   "example": "The man who called / The car which broke down = El hombre que llamo / El coche que se averio"
+  },
+  {
+   "unit": 16,
+   "type": "pronunciacion",
+   "skill": "listening",
+   "title": "La -ed tiene tres sonidos",
+   "body": "La terminacion -ed del pasado suena de tres formas: /t/ tras sonido sordo (worked), /d/ tras sonido sonoro o vocal (played) y /ɪd/ solo tras los sonidos /t/ y /d/ (wanted). Entrenar el oido te ayuda a no perderte verbos al escuchar.",
+   "example": "worked /t/, played /d/, wanted /ɪd/"
+  },
+  {
+   "unit": 17,
+   "type": "tip_idioma",
+   "skill": "reading",
+   "title": "Condicional 0 para verdades",
+   "body": "El condicional cero (if + presente, presente) describe hechos siempre ciertos, no situaciones futuras concretas. Aqui 'if' equivale casi a 'cuando' o 'siempre que'.",
+   "example": "If you heat ice, it melts = Si calientas el hielo, se derrite"
+  },
+  {
+   "unit": 17,
+   "type": "error_comun",
+   "skill": "speaking",
+   "title": "Must vs have to",
+   "body": "'Must' suele expresar una obligacion que sientes tu mismo; 'have to' una regla externa. Cuidado con la negativa: 'mustn't' significa prohibido y 'don't have to' significa que no es necesario; no son lo mismo.",
+   "example": "You mustn't park here (esta prohibido) / You don't have to come (no hace falta)"
+  },
+  {
+   "unit": 17,
+   "type": "tip_idioma",
+   "skill": "writing",
+   "title": "Should para consejos",
+   "body": "Para sugerir o aconsejar sin imponer, usa 'should' / 'shouldn't' seguido del verbo en infinitivo sin 'to'. Es mas suave que 'must' y muy util al proponer soluciones.",
+   "example": "You should see a doctor = Deberias ver a un medico"
+  },
+  {
+   "unit": 18,
+   "type": "tip_idioma",
+   "skill": "writing",
+   "title": "La pasiva: be + participio",
+   "body": "La voz pasiva se forma con 'be' conjugado + participio pasado, y se usa cuando importa mas la accion que quien la hizo. El agente, si aparece, se introduce con 'by'.",
+   "example": "The bridge was built in 1900 = El puente fue construido en 1900"
+  },
+  {
+   "unit": 18,
+   "type": "tip_idioma",
+   "skill": "speaking",
+   "title": "Segundo condicional: situaciones irreales",
+   "body": "Para hablar de algo imaginario o improbable usa 'if + pasado simple, would + verbo'. Aunque el verbo va en pasado, te refieres al presente o a un futuro hipotetico.",
+   "example": "If I won the lottery, I would travel = Si ganara la loteria, viajaria"
+  },
+  {
+   "unit": 18,
+   "type": "mnemotecnia",
+   "skill": "reading",
+   "title": "as ... as = tan ... como",
+   "body": "Para comparar igualdad, encierra el adjetivo entre dos 'as': 'as + adjetivo + as'. Piensa en el sandwich 'tan...como' y nunca te faltara un 'as'.",
+   "example": "She is as tall as her brother = Es tan alta como su hermano"
+  },
+  {
+   "unit": 19,
+   "type": "tip_idioma",
+   "skill": "writing",
+   "title": "Llevo + tiempo = present perfect continuous",
+   "body": "Para decir 'llevo X tiempo haciendo algo' no se usa el presente simple, sino have/has been + verbo-ing. El foco esta en una accion que empezo en el pasado y sigue ahora. Fijate que en ingles necesitas 'for' o 'since' donde el espanol usa 'llevo'.",
+   "example": "I have been working here for five years. (Llevo cinco anos trabajando aqui.)"
+  },
+  {
+   "unit": 19,
+   "type": "error_comun",
+   "skill": "writing",
+   "title": "For y since no son lo mismo",
+   "body": "Usa 'for' con la duracion (cuanto tiempo) y 'since' con el punto de inicio (desde cuando). Ojo: el espanol 'desde hace dos horas' se dice 'for two hours', no 'since two hours'.",
+   "example": "for two hours / since 2018 (durante dos horas / desde 2018)"
+  },
+  {
+   "unit": 19,
+   "type": "tip_idioma",
+   "skill": "reading",
+   "title": "Past perfect: lo anterior a lo pasado",
+   "body": "El past perfect (had + participio) marca una accion que ocurrio ANTES de otro momento pasado. Te ayuda a ordenar los hechos cuando narras y dos cosas pasaron en momentos distintos.",
+   "example": "When I arrived, the meeting had already started. (Cuando llegue, la reunion ya habia empezado.)"
+  },
+  {
+   "unit": 20,
+   "type": "tip_idioma",
+   "skill": "writing",
+   "title": "El tiempo retrocede un paso",
+   "body": "En estilo indirecto, cuando el verbo introductor (said, told) esta en pasado, el verbo de la frase suele 'retroceder' un tiempo: present pasa a past, y past pasa a past perfect. Es el llamado backshift.",
+   "example": "\"I'm tired\" -> She said she was tired. (Dijo que estaba cansada.)"
+  },
+  {
+   "unit": 20,
+   "type": "error_comun",
+   "skill": "speaking",
+   "title": "Say vs tell: ojo con el objeto",
+   "body": "'Tell' lleva directamente a la persona (tell me, tell her); 'say' no lleva persona directa, y si la mencionas necesitas 'to' (say to me). Decir 'he said me' es un calco de 'me dijo' y es incorrecto.",
+   "example": "He told me / He said to me (no: he said me)"
+  },
+  {
+   "unit": 20,
+   "type": "tip_idioma",
+   "skill": "reading",
+   "title": "Preguntas indirectas: orden de afirmacion",
+   "body": "Al pasar una pregunta a estilo indirecto, se usa el orden de afirmacion: sujeto + verbo, sin el auxiliar 'do' y sin signo de interrogacion. Para preguntas de si/no usa 'if' o 'whether'.",
+   "example": "\"Where do you live?\" -> She asked where I lived. (Me pregunto donde vivia.)"
+  },
+  {
+   "unit": 21,
+   "type": "tip_idioma",
+   "skill": "writing",
+   "title": "Pasiva: be + participio",
+   "body": "La voz pasiva se forma con el verbo 'be' (en el tiempo que toque) + participio pasado. Se usa cuando importa mas la accion o el resultado que quien la hizo; es muy comun en textos formales.",
+   "example": "The report was written last week. (El informe se escribio la semana pasada.)"
+  },
+  {
+   "unit": 21,
+   "type": "error_comun",
+   "skill": "speaking",
+   "title": "Have something done: que te lo hagan",
+   "body": "'Have/get something done' significa que otra persona hace algo por ti, no que lo haces tu mismo. Fijate en el orden: objeto + participio. Muchos dicen 'I cut my hair' cuando en realidad fueron a la peluqueria.",
+   "example": "I had my hair cut. (Me corte el pelo = me lo cortaron.)"
+  },
+  {
+   "unit": 21,
+   "type": "tip_idioma",
+   "skill": "reading",
+   "title": "El agente con 'by'",
+   "body": "En la pasiva, si quieres decir quien hizo la accion, lo introduces con 'by'. A menudo se omite porque no importa o no se sabe quien fue.",
+   "example": "The bridge was designed by a famous architect. (El puente fue disenado por un arquitecto famoso.)"
+  },
+  {
+   "unit": 22,
+   "type": "tip_idioma",
+   "skill": "writing",
+   "title": "Tercer condicional: el pasado imposible",
+   "body": "El tercer condicional habla de un pasado que no ocurrio y su consecuencia imaginaria: If + had + participio, would have + participio. Sirve para arrepentimientos e hipotesis sobre lo que ya paso.",
+   "example": "If I had studied, I would have passed. (Si hubiera estudiado, habria aprobado.)"
+  },
+  {
+   "unit": 22,
+   "type": "error_comun",
+   "skill": "writing",
+   "title": "Nunca 'would' en el if",
+   "body": "En los condicionales no se pone 'would' en la clausula con 'if'. 'If I would have' es un error muy comun: la condicion lleva 'had + participio' y 'would have' va en la otra parte.",
+   "example": "If I had known (no: if I would have known)"
+  },
+  {
+   "unit": 22,
+   "type": "tip_idioma",
+   "skill": "reading",
+   "title": "Condicionales mixtos: cruzar tiempos",
+   "body": "Un condicional mixto cruza dos tiempos: lo mas tipico es una condicion pasada (If + had + participio) con una consecuencia en el presente (would + infinitivo). Sirve para imaginar como seria tu presente si el pasado hubiera sido distinto.",
+   "example": "If I had saved money, I would be rich now. (Si hubiera ahorrado, ahora seria rico.)"
+  },
+  {
+   "unit": 23,
+   "type": "tip_idioma",
+   "skill": "reading",
+   "title": "Defining: sin comas, dan info clave",
+   "body": "Las relativas especificativas (defining) identifican de cual hablas y no llevan comas. Si las quitas, la frase pierde sentido o cambia. Aqui puedes usar 'that' en lugar de who/which.",
+   "example": "The man who called you is my boss. (El hombre que te llamo es mi jefe.)"
+  },
+  {
+   "unit": 23,
+   "type": "tip_idioma",
+   "skill": "writing",
+   "title": "Non-defining: van entre comas",
+   "body": "Las relativas explicativas (non-defining) anaden informacion extra y se separan con comas; la frase tendria sentido sin ellas. Aqui no se puede usar 'that', solo who o which.",
+   "example": "My boss, who is from Canada, called you. (Mi jefe, que es de Canada, te llamo.)"
+  },
+  {
+   "unit": 23,
+   "type": "error_comun",
+   "skill": "writing",
+   "title": "'What' no es pronombre relativo",
+   "body": "Los hispanohablantes usan 'what' por el 'que' relativo, pero es incorrecto. Para personas usa who/that y para cosas which/that. 'What' significa 'lo que', no el 'que' que une dos frases.",
+   "example": "The car that I bought (no: the car what I bought)"
+  },
+  {
+   "unit": 24,
+   "type": "tip_idioma",
+   "skill": "speaking",
+   "title": "Must / might / can't have para deducir",
+   "body": "Para deducir sobre el pasado usa modal + have + participio: 'must have' (seguro que si), 'might/may have' (quiza), 'can't have' (imposible que). Expresan tu grado de certeza sobre algo que ya paso.",
+   "example": "He must have left early. (Seguro que se fue temprano.)"
+  },
+  {
+   "unit": 24,
+   "type": "error_comun",
+   "skill": "listening",
+   "title": "En el habla suena 'must've'",
+   "body": "Al escuchar, 'must have' se contrae a 'must've', que suena casi como 'must of'. No te dejes enganar: nunca se escribe 'must of'; es siempre 'have' o el contraido 've.",
+   "example": "She might've forgotten. (Quiza se le olvido.)"
+  },
+  {
+   "unit": 24,
+   "type": "tip_idioma",
+   "skill": "reading",
+   "title": "Can't have vs mustn't have",
+   "body": "Para decir 'es imposible que pasara' usa 'can't have' o 'couldn't have', no 'mustn't have'. 'Mustn't' es prohibicion (no debes), no deduccion. La deduccion negativa sobre el pasado es siempre can't/couldn't have.",
+   "example": "She can't have seen us; she was asleep. (Es imposible que nos viera; estaba dormida.)"
+  }
+ ]
+}

@@ -4,7 +4,7 @@
 // roto); los assets estáticos van stale-while-revalidate; navegación offline
 // cae al index cacheado. skipWaiting + claim para que las actualizaciones
 // tomen efecto al instante. También maneja Web Push (Matix).
-const VERSION = 'jezici-v3'; // bump: refetch del font de íconos (GA10: nuevos glifos en mapa/estados)
+const VERSION = 'jezici-v4'; // bump: P0.5 — no-store en el shell (evita HTTP cache viejo) + aviso de update
 const SHELL = [
   './', 'index.html', 'flutter_bootstrap.js', 'manifest.json',
   'favicon.png', 'icons/Icon-192.png', 'icons/Icon-512.png',
@@ -33,8 +33,11 @@ self.addEventListener('fetch', (e) => {
   if (url.origin !== self.location.origin) return;
 
   if (req.mode === 'navigate' || NETWORK_FIRST.test(url.pathname)) {
+    // El shell de la app va a la RED con cache:'no-store' para que el HTTP cache
+    // del navegador NUNCA sirva un main.dart.js/bootstrap viejo (causa del bundle
+    // "pegado"). Si la red falla, cae al SW cache (offline).
     e.respondWith(
-      fetch(req).then((res) => {
+      fetch(req, { cache: 'no-store' }).then((res) => {
         const copy = res.clone();
         caches.open(VERSION).then((c) => c.put(req, copy)).catch(() => {});
         return res;

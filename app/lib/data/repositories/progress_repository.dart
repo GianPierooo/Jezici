@@ -6,6 +6,7 @@ import '../models/course_models.dart';
 import '../models/league_models.dart';
 import '../models/level_exam_models.dart';
 import '../models/profile_models.dart';
+import '../models/tip_models.dart';
 import '../models/practice_models.dart';
 import '../models/shop_models.dart';
 import '../models/progress_models.dart';
@@ -35,6 +36,23 @@ class ProgressRepository {
           ? Map<String, dynamic>.from(m['expected'] as Map)
           : <String, dynamic>{},
     );
+  }
+
+  // ── Capa "enseña": tips + cuaderno ─────────────────────────────────────────
+
+  /// Tip post-lección personalizado a la skill más débil (RPC get_lesson_tip).
+  Future<TipModel?> getLessonTip(String lessonId) async {
+    final res = await _client.rpc('get_lesson_tip', params: {'p_lesson_id': lessonId});
+    if (res == null) return null;
+    return TipModel.fromJson(Map<String, dynamic>.from(res as Map));
+  }
+
+  /// Cuaderno de datos: tips vistos por el usuario (RPC get_notebook).
+  Future<List<TipModel>> getNotebook() async {
+    final res = await _client.rpc('get_notebook');
+    return (res as List)
+        .map((e) => TipModel.fromJson(Map<String, dynamic>.from(e as Map)))
+        .toList();
   }
 
   // ── Perfil (nombre real, país, avatar, bio) ───────────────────────────────

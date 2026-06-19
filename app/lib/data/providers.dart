@@ -5,6 +5,7 @@ import 'models/achievement_models.dart';
 import 'models/content_item_model.dart';
 import 'models/course_models.dart';
 import 'models/profile_models.dart';
+import 'models/tip_models.dart';
 import 'models/league_models.dart';
 import 'models/level_exam_models.dart';
 import 'models/practice_models.dart';
@@ -27,6 +28,11 @@ final contentRepositoryProvider = Provider<ContentRepository>(
 /// Perfil del usuario (nombre real, país, avatar, bio, ingreso).
 final profileProvider = FutureProvider<ProfileInfo>(
   (ref) => ref.watch(progressRepositoryProvider).fetchProfile(),
+);
+
+/// Cuaderno de datos: tips pedagógicos vistos por el usuario (capa "enseña").
+final notebookProvider = FutureProvider<List<TipModel>>(
+  (ref) => ref.watch(progressRepositoryProvider).getNotebook(),
 );
 
 /// Cursos disponibles (es→en, es→pt) + cuál es el activo del usuario.
