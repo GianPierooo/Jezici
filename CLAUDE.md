@@ -25,27 +25,28 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
 - **Deploy**: push a `main` → Vercel reconstruye (clona Flutter, `flutter build web`).
   Config en `vercel.json` (dart-defines SUPABASE_URL/ANON_KEY + JZ_BUILD=commit sha).
 
-## ⚠️ Deploy de Vercel
+## Deploy de Vercel — RESUELTO ✅ (2026-06-23, fix `68266d3`)
 - **El "bloqueo" NO era billing: era una regresión de `vercel.json`.** El commit
   `25f49c9` (19-jun) añadió `--dart-define=JZ_BUILD=$VERCEL_GIT_COMMIT_SHA` al
-  `buildCommand`; desde ahí TODOS los deploys daban **ERROR instantáneo pre-build,
-  sin logs** (firma de buildCommand rechazado). **Reparado 2026-06-23**: el sello se
-  auto-computa con `JZ_SHA=$(git rev-parse --short HEAD || echo dev)` (sin la variable
-  de sistema problemática). Build local con el comando EXACTO de Vercel: OK; sello
-  `JZ_BUILD` presente en el bundle. **Pendiente:** confirmar que el primer deploy tras
-  el fix queda `READY` en Vercel.
-- Hasta confirmar READY, **producción seguía fijada en `7e26824` (19-jun)**. Por las
-  dudas al tocar DB: toda migración debe ser **compatible con el build live** (verificar
-  con `git show 7e26824:<archivo>`). Migraciones (Supabase) tienen efecto YA; el frontend
-  nuevo aterriza con el primer deploy exitoso.
+  `buildCommand`. Desde ahí TODOS los deploys daban **ERROR instantáneo pre-build, sin
+  logs** (`buildingAt==ready`). **Confirmado por aislamiento:** revertir el
+  `buildCommand` a la config **byte-idéntica a 7e26824** (sin ese `--dart-define`) →
+  deploy **READY en ~152 s**. Cualquier variante con el flag JZ_BUILD (incluida
+  `$(git rev-parse …)`) era rechazada pre-build → **no reintroducir el sello en el
+  buildCommand**. Producción de nuevo LIVE con TODO el código nuevo (audio + seguridad).
+- **Sello `JZ_BUILD` pendiente** (vuelve a `dev`). Si se quiere recuperar, NO por
+  `--dart-define` inline (lo rechaza este proyecto): usar un paso post-build (p.ej. `sed`
+  sobre el bundle) o habilitar la System Env Var en el dashboard y probar con cuidado.
+- Mecánica normal restaurada: push a `main` → Vercel reconstruye → deploy. Migraciones
+  (Supabase) siguen teniendo efecto YA, independientes del deploy.
 
 ## Estado por área
 | Área | Estado |
 |---|---|
 | Loop lección + grading server-side | ✅ verde y live |
 | Contenido es→en A1–B2, es→pt A1–A2 | ✅ sembrado y live |
-| **Audio** (listening/speaking TTS) | ✅ **312/312** en Storage (live). Código de degradación/unlock iOS **deploy-pending** (commits c4a17af). Ver FINDINGS.md §2 |
-| **Seguridad** (4 hallazgos) | ✅ **cerrados** en DB (mig 058, live). Botón export en Ajustes deploy-pending. Ver abajo |
+| **Audio** (listening/speaking TTS) | ✅ **312/312** en Storage + degradación/unlock iOS **LIVE** (deploy 68266d3). Ver FINDINGS.md §2 |
+| **Seguridad** (4 hallazgos) | ✅ **cerrados** en DB (mig 058) + botón export en Ajustes **LIVE** (deploy 68266d3). Ver abajo |
 | Ligas | ⚠️ acumulan XP + ranking semanal, pero **sin job de cierre ni ascensos/descensos** (UI los promete). Sin histórico mensual/anual. (prompt aparte) |
 | C1/C2 | ❌ documentados, no sembrados (BD llega a B2 en es→en) |
 | Conversar / Simulacros | ⏸️ pantallas existen, **ocultas** (decisión GA6) |
@@ -59,7 +60,7 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
    lesson_complete, mission_started, onboarding_completed, onboarding_step, screen_view`),
    props truncadas (>2KB → `{_truncated}`), rate-limit 120/usuario/min. Evento desconocido = descarte silencioso.
 4. ✅ `export_my_data()` (GDPR): RPC DEFINER acotada a `auth.uid()` (24 secciones). Botón
-   "Exportar mis datos" en Ajustes (frontend **deploy-pending**).
+   "Exportar mis datos" en Ajustes (**LIVE** desde deploy 68266d3).
 - Previo: `correct_answer` ya estaba cerrado (mig 055), `jz_*` helpers revocados (mig 049).
 - Admin allowlist NO se gestiona por SQL roles → es la tabla `admins` (agregar/quitar user_id).
 

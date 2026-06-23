@@ -112,18 +112,17 @@ bundleados en `assets/sfx/`.
 >   Navigator) desbloquea el AudioContext en el primer gesto real, en cualquier
 >   pantalla. analyze 0 · test 40/40 (+1 de skip) · build web OK.
 >
-> **DEPLOY DE VERCEL — causa REAL identificada y reparada ✅ (2026-06-23):** NO era
-> billing ni bloqueo de cuenta. Era una **regresión de `vercel.json`**: el commit
-> `25f49c9` (19-jun) añadió `--dart-define=JZ_BUILD=$VERCEL_GIT_COMMIT_SHA` al
-> `buildCommand`; desde ese commit TODOS los deploys daban **ERROR instantáneo
-> pre-build, sin logs** (`buildingAt==ready`) — firma de buildCommand rechazado. El
-> único delta de config entre `7e26824` (último READY) y `main` era ese flag. **Fix:**
-> el sello se auto-computa con `JZ_SHA=$(git rev-parse --short HEAD 2>/dev/null || echo dev)`
-> y se pasa como `--dart-define=JZ_BUILD=$JZ_SHA` (sin la variable de sistema). Validado:
-> `vercel.json` parsea OK; build local con el comando EXACTO de Vercel → OK; sello
-> `JZ_BUILD` presente en `main.dart.js`. Pendiente: confirmar el primer deploy `READY`
-> en Vercel tras el push. Nota: los 216 audios viven en Supabase Storage (independientes
-> de Vercel) → el listening B1/B2/pt ya sonaba aun con producción fijada en 7e26824.
+> **DEPLOY DE VERCEL — RESUELTO ✅ (2026-06-23, fix `68266d3`):** NO era billing ni
+> bloqueo de cuenta. Era una **regresión de `vercel.json`**: `25f49c9` (19-jun) añadió
+> `--dart-define=JZ_BUILD=$VERCEL_GIT_COMMIT_SHA` al `buildCommand` → desde ahí TODOS
+> los deploys daban **ERROR instantáneo pre-build, sin logs** (`buildingAt==ready`).
+> **Confirmado por aislamiento (vía Vercel API):** revertir el `buildCommand` a la
+> config **byte-idéntica a 7e26824** (sin ese flag) → deploy **READY en ~152 s** y
+> aliased a `jezici.vercel.app`. Toda variante con el flag JZ_BUILD (incl. mi intento
+> con `$(git rev-parse …)`, `1b5b818`) fue rechazada pre-build → **no reintroducir el
+> sello en el buildCommand**. **Producción de nuevo LIVE** con TODO el código acumulado
+> desde 7e26824 (audio P0/P1 + seguridad mig 058 frontend). Sello `JZ_BUILD` queda en
+> `dev` (pendiente; recuperarlo necesita otro método, no `--dart-define` inline).
 > El detalle original del hallazgo se conserva abajo.
 
 ### Hallazgos
