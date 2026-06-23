@@ -101,8 +101,18 @@ flutter build web --release  # esperado: Built build/web (wasm dry-run warning d
 - **Verificación de cliente desplegado**: `git show 7e26824:app/lib/...` para ver qué consulta
   el build que usan los usuarios HOY (no asumir que `main` == producción).
 
+## Reportes de diagnóstico (raíz)
+- **FINDINGS.md** — auditoría funcional/seguridad completa (audio, progresión, ligas, seguridad)
+  + smoke post-deploy + checklist manual para Gian.
+- **PERF_AUDIT.md** (2026-06-23, solo lectura) — rendimiento priorizado: renderer CanvasKit,
+  caché de contenido estático, invalidaciones en cascada, rebuilds/cómputo en `build()`, jank del
+  mapa, skeletons. Con método de perfilado en vivo (DevTools).
+- **UX_AUDIT.md** (2026-06-23, solo lectura) — UX/estética/**dinamismo** por pantalla: deriva del
+  sistema de diseño (212 colores hardcodeados, AppSpacing/Radius casi sin usar), motion faltante
+  (feedback ✅/❌, háptica, transiciones, contadores de recompensa), + top-10 cambios por impacto.
+
 ## Memoria del proyecto
 `~/.claude/projects/.../memory/` (cargada cada sesión vía MEMORY.md). Incluye: deploy mechanics,
 método de verificación, pipeline de contenido, estado de producción, multi-curso, y la
-auditoría 2026-06-22 (`jezici-audit-2026-06-22`). FINDINGS.md (raíz) = auditoría completa con estado.
+auditoría 2026-06-22 (`jezici-audit-2026-06-22`).
 ```
