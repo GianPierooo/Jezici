@@ -747,3 +747,375 @@
 - **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Fiquei doente há uma semana, então você tem que descansar bastante.»  esperado: `Fiquei doente há uma semana, então você tem que descansar bastante.`  _(dif 0.35)_
 
 **Vocabulario (frecuencia):** a saúde=la salud, o corpo=el cuerpo, a cabeça=la cabeza, a garganta=la garganta, o estômago=el estómago, a febre=la fiebre, a dor=el dolor, o médico=el médico, o remédio=el remedio/medicamento, doente=enfermo, deveria=debería, ter que=tener que, descansar=descansar, já=ya, nunca=nunca, atrás=atrás (hace)
+
+## Unidad 13 (B1) — Cuando era niño
+
+
+### L1 · El imperfeito  _(items: 8)_
+
+- **[reading/multiple_choice]** Elige la forma correcta del imperfeito: "Cuando era niño, yo ___ en Recife."  — opciones: ['morava', 'morei', 'moro'] · ✓ `morava`  _(dif 0.50)_
+- **[reading/multiple_choice]** Elige la forma correcta: "Ela ___ muitos amigos na escola." (tenía)  — opciones: ['tinha', 'teve', 'tem'] · ✓ `tinha`  _(dif 0.50)_
+- **[writing/cloze]** Completa con el imperfeito de 'ser':  — texto: «Quando eu ___ criança, gostava de desenhar.»  ✓ `era` · acepta: ['era']  _(dif 0.50)_
+- **[writing/cloze]** Completa con el imperfeito de 'morar':  — texto: «Antigamente nós ___ no campo.»  ✓ `morávamos` · acepta: ['morávamos']  _(dif 0.50)_
+- **[reading/match]** Empareja el verbo en imperfeito con su traducción:  — pares: [['morava', 'vivía'], ['tinha', 'tenía'], ['era', 'era']]  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "Yo vivía en São Paulo."  — es: «Yo vivía en São Paulo.»  ✓ en: `Eu morava em São Paulo.` · acepta: ['Eu morava em São Paulo.', 'Eu morava em São Paulo', 'Morava em São Paulo.', 'Morava em São Paulo']  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Eu era muito tímido.', 'Eu sou muito tímido.', 'Eu fui muito tímido.'] · ✓ `Eu era muito tímido.` · audio dice: «Eu era muito tímido.»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Quando eu era criança, eu morava perto da praia.»  esperado: `Quando eu era criança, eu morava perto da praia.`  _(dif 0.50)_
+
+### L2 · Rutinas de antes  _(items: 8)_
+
+- **[reading/multiple_choice]** Elige la forma correcta: "Todos os dias eu ___ à escola a pé." (iba)  — opciones: ['ia', 'fui', 'vou'] · ✓ `ia`  _(dif 0.50)_
+- **[writing/cloze]** Completa con el imperfeito de 'fazer':  — texto: «Nas férias, a gente ___ piquenique no parque.»  ✓ `fazia` · acepta: ['fazia']  _(dif 0.50)_
+- **[writing/cloze]** Completa con el imperfeito de 'brincar':  — texto: «Eu ___ na rua com os meus vizinhos.»  ✓ `brincava` · acepta: ['brincava']  _(dif 0.50)_
+- **[reading/multiple_choice]** Elige la opción que expresa hábito pasado: "Nós ___ assistir desenhos no sábado." (solíamos)  — opciones: ['costumávamos', 'costumamos', 'costumaremos'] · ✓ `costumávamos`  _(dif 0.50)_
+- **[writing/word_bank]** Arma la frase: "Todos los días yo iba al colegio."  — fichas: ['Todos', 'os', 'dias', 'eu', 'ia', 'à', 'escola', 'vou', 'fui']  ✓ `Todos os dias eu ia à escola`  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "Nosotros jugábamos en la calle."  — es: «Nosotros jugábamos en la calle.»  ✓ en: `Nós brincávamos na rua.` · acepta: ['Nós brincávamos na rua.', 'Nós brincávamos na rua', 'Brincávamos na rua.', 'Brincávamos na rua', 'A gente brincava na rua.', 'A gente brincava na rua']  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Eu ia à escola de bicicleta.', 'Eu vou à escola de bicicleta.', 'Eu fui à escola de bicicleta.'] · ✓ `Eu ia à escola de bicicleta.` · audio dice: «Eu ia à escola de bicicleta.»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Antigamente eu brincava na rua todos os dias.»  esperado: `Antigamente eu brincava na rua todos os dias.`  _(dif 0.50)_
+
+### L3 · Perfeito vs imperfeito  _(items: 8)_
+
+- **[reading/multiple_choice]** Elige el tiempo correcto (acción puntual): "Ontem eu ___ um filme ótimo." (vi)  — opciones: ['vi', 'via', 'vejo'] · ✓ `vi`  _(dif 0.50)_
+- **[reading/multiple_choice]** Elige el tiempo correcto (rutina pasada): "Quando eu era criança, ___ todos os domingos." (cocinaba)  — opciones: ['cozinhava', 'cozinhei', 'cozinho'] · ✓ `cozinhava`  _(dif 0.50)_
+- **[writing/cloze]** Completa con el imperfeito (descripción de fondo):  — texto: «___ sol quando saímos de casa.»  ✓ `Fazia` · acepta: ['Fazia']  _(dif 0.50)_
+- **[reading/multiple_choice]** Elige la forma correcta (acción que interrumpe): "Eu dormia quando o telefone ___." (sonó)  — opciones: ['tocou', 'tocava', 'toca'] · ✓ `tocou`  _(dif 0.50)_
+- **[writing/cloze]** Completa con el perfeito (acción puntual):  — texto: «Eu lia um livro quando ela ___ na porta.»  ✓ `bateu` · acepta: ['bateu']  _(dif 0.50)_
+- **[reading/match]** Empareja la frase con su tipo:  — pares: [['Eu morava lá', 'rutina/descripción'], ['Eu mudei de casa', 'acción puntual'], ['Fazia frio', 'descripción de fondo']]  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "Llovía cuando llegué."  — es: «Llovía cuando llegué.»  ✓ en: `Chovia quando eu cheguei.` · acepta: ['Chovia quando eu cheguei.', 'Chovia quando eu cheguei', 'Chovia quando cheguei.', 'Chovia quando cheguei', 'Estava chovendo quando eu cheguei.', 'Estava chovendo quando cheguei']  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Eu lia um livro quando a luz acabou de repente.»  esperado: `Eu lia um livro quando a luz acabou de repente.`  _(dif 0.50)_
+
+### L4 · Recuerdos de infancia  _(items: 8)_
+
+- **[writing/reorder]** Ordena las palabras: "En aquella época todo era más simple."  — fichas: ['Naquela', 'época', 'tudo', 'era', 'mais', 'simples']  ✓ `Naquela época tudo era mais simples`  _(dif 0.50)_
+- **[reading/multiple_choice]** Elige la opción correcta: "A minha avó sempre ___ bolo aos domingos." (hacía, rutina)  — opciones: ['fazia', 'fez', 'faz'] · ✓ `fazia`  _(dif 0.50)_
+- **[writing/cloze]** Completa con el imperfeito de 'ir':  — texto: «No verão, nós ___ à praia toda semana.»  ✓ `íamos` · acepta: ['íamos']  _(dif 0.50)_
+- **[writing/word_bank]** Arma la frase: "Cuando era niño, yo tenía un perro."  — fichas: ['Quando', 'era', 'criança', 'eu', 'tinha', 'um', 'cachorro', 'tenho', 'tive']  ✓ `Quando era criança eu tinha um cachorro`  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "Antiguamente la vecindad era más tranquila."  — es: «Antiguamente la vecindad era más tranquila.»  ✓ en: `Antigamente a vizinhança era mais tranquila.` · acepta: ['Antigamente a vizinhança era mais tranquila.', 'Antigamente a vizinhança era mais tranquila', 'A vizinhança era mais tranquila antigamente.', 'A vizinhança era mais tranquila antigamente']  _(dif 0.50)_
+- **[reading/match]** Empareja la expresión con su traducción:  — pares: [['antigamente', 'antiguamente'], ['naquela época', 'en aquella época'], ['saudade', 'nostalgia']]  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Nós íamos à praia todo verão.', 'Nós fomos à praia todo verão.', 'Nós vamos à praia todo verão.'] · ✓ `Nós íamos à praia todo verão.` · audio dice: «Nós íamos à praia todo verão.»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Que saudade! Naquela época tudo era mais tranquilo.»  esperado: `Que saudade! Naquela época tudo era mais tranquilo.`  _(dif 0.50)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidade 13  _(items: 10)_
+
+- **[reading/multiple_choice]** Elige el imperfeito correcto: "Quando eu ___ jovem, viajava muito." (era)  — opciones: ['era', 'fui', 'sou'] · ✓ `era`  _(dif 0.50)_
+- **[reading/multiple_choice]** Elige el tiempo correcto (acción puntual): "De repente, a porta ___." (se abrió)  — opciones: ['abriu', 'abria', 'abre'] · ✓ `abriu`  _(dif 0.50)_
+- **[writing/cloze]** Completa con el imperfeito de 'ter':  — texto: «Antigamente eu ___ muito tempo livre.»  ✓ `tinha` · acepta: ['tinha']  _(dif 0.50)_
+- **[writing/cloze]** Completa con el imperfeito (acción habitual del pasado):  — texto: «Todos os dias minha mãe ___ café da manhã para nós.»  ✓ `fazia` · acepta: ['fazia']  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "Cuando era niña, yo iba a la escuela a pie."  — es: «Cuando era niña, yo iba a la escuela a pie.»  ✓ en: `Quando eu era criança, eu ia à escola a pé.` · acepta: ['Quando eu era criança, eu ia à escola a pé.', 'Quando eu era criança, eu ia à escola a pé', 'Quando era criança, ia à escola a pé.', 'Quando era criança eu ia à escola a pé', 'Quando eu era criança eu ia à escola a pé']  _(dif 0.50)_
+- **[writing/reorder]** Ordena las palabras: "Nosotros vivíamos cerca del centro."  — fichas: ['Nós', 'morávamos', 'perto', 'do', 'centro']  ✓ `Nós morávamos perto do centro`  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Eu tinha um cachorro quando era criança.', 'Eu tenho um cachorro agora.', 'Eu tive um cachorro ontem.'] · ✓ `Eu tinha um cachorro quando era criança.` · audio dice: «Eu tinha um cachorro quando era criança.»  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Fazia muito frio naquele inverno.', 'Faz muito frio neste inverno.', 'Fez muito frio ontem.'] · ✓ `Fazia muito frio naquele inverno.` · audio dice: «Fazia muito frio naquele inverno.»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Antigamente eu costumava brincar na rua com os meus amigos.»  esperado: `Antigamente eu costumava brincar na rua com os meus amigos.`  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Eu dormia quando o telefone tocou de repente.»  esperado: `Eu dormia quando o telefone tocou de repente.`  _(dif 0.50)_
+
+**Vocabulario (frecuencia):** morava=vivía, tinha=tenía, fazia=hacía, era=era, ia=iba, brincava=jugaba, costumava=solía, antigamente=antiguamente / antes, naquela época=en aquella época, quando era criança=cuando era niño, todos os dias=todos los días, infância=infancia, vizinhança=vecindario, de repente=de repente, costume=costumbre, saudade=añoranza / nostalgia
+
+## Unidad 14 (B1) — El futuro y la cortesía
+
+
+### L1 · El futuro do presente  _(items: 8)_
+
+- **[reading/multiple_choice]** Elige el futuro do presente de 'eu fazer':  — opciones: ['farei', 'fiz', 'fazia'] · ✓ `farei`  _(dif 0.50)_
+- **[reading/multiple_choice]** 'Mañana lloverá' en portugués:  — opciones: ['Amanhã choverá.', 'Amanhã choveu.', 'Amanhã chove agora.'] · ✓ `Amanhã choverá.`  _(dif 0.50)_
+- **[writing/cloze]** Completa con el futuro de 'ter' (eu):  — texto: «No próximo ano eu ___ um carro novo.»  ✓ `terei` · acepta: ['terei']  _(dif 0.50)_
+- **[writing/cloze]** Completa con el futuro de 'ir' (ele):  — texto: «Ele ___ ao Brasil em dezembro.»  ✓ `irá` · acepta: ['irá']  _(dif 0.50)_
+- **[reading/match]** Empareja el verbo en futuro con su traducción:  — pares: [['farei', 'haré'], ['será', 'será'], ['terei', 'tendré']]  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "Viajaremos en julio."  — es: «Viajaremos en julio.»  ✓ en: `Viajaremos em julho.` · acepta: ['Viajaremos em julho.', 'Viajaremos em julho', 'Nós viajaremos em julho.', 'Nós viajaremos em julho']  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Tudo será diferente amanhã.', 'Tudo era diferente ontem.', 'Tudo é diferente agora.'] · ✓ `Tudo será diferente amanhã.` · audio dice: «Tudo será diferente amanhã.»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Amanhã eu farei tudo com calma.»  esperado: `Amanhã eu farei tudo com calma.`  _(dif 0.50)_
+
+### L2 · Previsiones y probabilidad  _(items: 8)_
+
+- **[reading/multiple_choice]** 'Probablemente lo terminaré hoy' en portugués:  — opciones: ['Provavelmente eu o terminarei hoje.', 'Provavelmente eu terminei ontem.', 'Talvez eu terminava hoje.'] · ✓ `Provavelmente eu o terminarei hoje.`  _(dif 0.50)_
+- **[writing/cloze]** Completa con 'dentro de' (locución):  — texto: «O ônibus chegará ___ dez minutos.»  ✓ `daqui a` · acepta: ['daqui a']  _(dif 0.50)_
+- **[reading/multiple_choice]** Elige la previsión del tiempo correcta:  — opciones: ['A previsão diz que choverá amanhã.', 'A previsão diz que choveu amanhã.', 'A previsão dizia que chove amanhã.'] · ✓ `A previsão diz que choverá amanhã.`  _(dif 0.50)_
+- **[writing/word_bank]** Arma la frase: "Quizás viajaremos en agosto."  — fichas: ['Talvez', 'viajaremos', 'em', 'agosto', 'viajamos']  ✓ `Talvez viajaremos em agosto`  _(dif 0.50)_
+- **[writing/reorder]** Ordena: "Dentro de un año todo será diferente."  — fichas: ['Daqui', 'a', 'um', 'ano', 'tudo', 'será', 'diferente']  ✓ `Daqui a um ano tudo será diferente`  _(dif 0.50)_
+- **[reading/match]** Empareja la expresión con su traducción:  — pares: [['talvez', 'quizás'], ['provavelmente', 'probablemente'], ['previsão', 'previsión']]  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Provavelmente terei tempo amanhã.', 'Provavelmente tive tempo ontem.', 'Provavelmente tenho tempo agora.'] · ✓ `Provavelmente terei tempo amanhã.` · audio dice: «Provavelmente terei tempo amanhã.»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Talvez nós viajaremos daqui a duas semanas.»  esperado: `Talvez nós viajaremos daqui a duas semanas.`  _(dif 0.50)_
+
+### L3 · El condicional cortés  _(items: 8)_
+
+- **[reading/multiple_choice]** La forma MÁS cortés de pedir ayuda es:  — opciones: ['Você poderia me ajudar, por favor?', 'Me ajuda agora.', 'Você ajudou ontem?'] · ✓ `Você poderia me ajudar, por favor?`  _(dif 0.50)_
+- **[writing/cloze]** Completa con el condicional de 'gostar' (eu):  — texto: «Eu ___ de falar com você.»  ✓ `gostaria` · acepta: ['gostaria']  _(dif 0.50)_
+- **[writing/cloze]** Completa con el condicional de 'poder' (você):  — texto: «Você ___ repetir, por favor?»  ✓ `poderia` · acepta: ['poderia']  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "Me gustaría aprender portugués."  — es: «Me gustaría aprender portugués.»  ✓ en: `Eu gostaria de aprender português.` · acepta: ['Eu gostaria de aprender português.', 'Eu gostaria de aprender português', 'Gostaria de aprender português.', 'Gostaria de aprender português']  _(dif 0.50)_
+- **[reading/match]** Empareja el condicional con su traducción:  — pares: [['gostaria', 'me gustaría'], ['poderia', 'podría'], ['seria', 'sería']]  _(dif 0.50)_
+- **[writing/word_bank]** Arma la frase: "¿Podría usted abrir la ventana?"  — fichas: ['Você', 'poderia', 'abrir', 'a', 'janela', 'abriu']  ✓ `Você poderia abrir a janela`  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Você poderia falar mais devagar?', 'Você pode falar mais alto?', 'Você falou muito rápido?'] · ✓ `Você poderia falar mais devagar?` · audio dice: «Você poderia falar mais devagar?»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Eu gostaria de um café, por favor.»  esperado: `Eu gostaria de um café, por favor.`  _(dif 0.50)_
+
+### L4 · Futuro vs condicional  _(items: 8)_
+
+- **[reading/multiple_choice]** Elige la frase de CORTESÍA (hipótesis), no de certeza:  — opciones: ['Seria ótimo te ver no sábado.', 'Será ótimo te ver no sábado, com certeza.', 'Foi ótimo te ver ontem.'] · ✓ `Seria ótimo te ver no sábado.`  _(dif 0.50)_
+- **[writing/cloze]** Cortesía: completa con el condicional de 'fazer' (eu):  — texto: «Eu ___ isso com prazer, se pudesse.»  ✓ `faria` · acepta: ['faria']  _(dif 0.50)_
+- **[writing/cloze]** Certeza: completa con el futuro de 'ser' (isto):  — texto: «Isto ___ fácil para você no futuro.»  ✓ `será` · acepta: ['será']  _(dif 0.50)_
+- **[reading/multiple_choice]** '¿Te importaría esperar?' (cortés) es:  — opciones: ['Você se importaria de esperar?', 'Você se importa, espera aí.', 'Você esperou muito?'] · ✓ `Você se importaria de esperar?`  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "Sería un placer ayudarte."  — es: «Sería un placer ayudarte.»  ✓ en: `Seria um prazer te ajudar.` · acepta: ['Seria um prazer te ajudar.', 'Seria um prazer te ajudar', 'Seria um prazer ajudar você.', 'Seria um prazer ajudar você']  _(dif 0.50)_
+- **[writing/reorder]** Ordena: "Yo haría todo de otra manera."  — fichas: ['Eu', 'faria', 'tudo', 'de', 'outro', 'jeito']  ✓ `Eu faria tudo de outro jeito`  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Eu faria qualquer coisa por você.', 'Eu fiz qualquer coisa por você.', 'Eu farei tudo por você hoje.'] · ✓ `Eu faria qualquer coisa por você.` · audio dice: «Eu faria qualquer coisa por você.»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Seria um prazer trabalhar com vocês.»  esperado: `Seria um prazer trabalhar com vocês.`  _(dif 0.50)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidade 14  _(items: 10)_
+
+- **[reading/multiple_choice]** Elige el futuro do presente de 'nós viajar':  — opciones: ['viajaremos', 'viajamos', 'viajávamos'] · ✓ `viajaremos`  _(dif 0.50)_
+- **[reading/multiple_choice]** La petición MÁS cortés es:  — opciones: ['Você poderia me enviar o arquivo, por favor?', 'Manda o arquivo agora.', 'Você mandou o arquivo?'] · ✓ `Você poderia me enviar o arquivo, por favor?`  _(dif 0.50)_
+- **[writing/cloze]** Completa con el futuro do presente (planes, eu):  — texto: «Amanhã eu ___ uma reunião importante.»  ✓ `terei` · acepta: ['terei']  _(dif 0.50)_
+- **[writing/cloze]** Completa con el condicional de 'gostar' (nós):  — texto: «Nós ___ de visitar o Rio um dia.»  ✓ `gostaríamos` · acepta: ['gostaríamos']  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "¿Podría usted repetir, por favor?"  — es: «¿Podría usted repetir, por favor?»  ✓ en: `Você poderia repetir, por favor?` · acepta: ['Você poderia repetir, por favor?', 'Você poderia repetir por favor?', 'Você poderia repetir, por favor', 'Poderia repetir, por favor?']  _(dif 0.50)_
+- **[reading/match]** Empareja futuro y condicional con su traducción:  — pares: [['será', 'será'], ['seria', 'sería'], ['faria', 'haría']]  _(dif 0.50)_
+- **[writing/reorder]** Ordena: "Dentro de dos años viviré aquí."  — fichas: ['Daqui', 'a', 'dois', 'anos', 'eu', 'viverei', 'aqui']  ✓ `Daqui a dois anos eu viverei aqui`  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Provavelmente choverá no domingo.', 'Provavelmente choveu no domingo.', 'Provavelmente chove no domingo.'] · ✓ `Provavelmente choverá no domingo.` · audio dice: «Provavelmente choverá no domingo.»  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Eu gostaria de saber a previsão.', 'Eu gostei muito da previsão.', 'Eu sei a previsão de cor.'] · ✓ `Eu gostaria de saber a previsão.` · audio dice: «Eu gostaria de saber a previsão.»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Daqui a um mês eu farei uma viagem e gostaria de descansar.»  esperado: `Daqui a um mês eu farei uma viagem e gostaria de descansar.`  _(dif 0.50)_
+
+**Vocabulario (frecuencia):** farei=haré, será=será, terei=tendré, irá=irá, viajaremos=viajaremos, gostaria=me gustaría / querría, faria=haría, seria=sería, poderia=podría, gostaríamos=nos gustaría, previsão=previsión / pronóstico, futuro=futuro, talvez=quizás, provavelmente=probablemente, daqui a=dentro de (tiempo), por favor=por favor
+
+## Unidad 15 (B1) — Subjuntivo: deseos y esperanzas
+
+
+### L1 · Talvez + subjuntivo  _(items: 8)_
+
+- **[reading/multiple_choice]** Elige la forma correcta:  — opciones: ['Talvez eu vá ao médico amanhã.', 'Talvez eu vou ao médico amanhã.', 'Talvez eu indo ao médico amanhã.'] · ✓ `Talvez eu vá ao médico amanhã.`  _(dif 0.50)_
+- **[writing/cloze]** Completa con subjuntivo (estar):  — texto: «Talvez ela ___ atrasada hoje.»  ✓ `esteja` · acepta: ['esteja']  _(dif 0.50)_
+- **[reading/match]** Empareja el verbo en subjuntivo con su traducción:  — pares: [['seja', 'sea'], ['vá', 'vaya'], ['tenha', 'tenga']]  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "Quizás él haga la comida."  — es: «Quizás él haga la comida.»  ✓ en: `Talvez ele faça a comida.` · acepta: ['Talvez ele faça a comida.', 'Talvez ele faça a comida']  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Talvez eu tenha tempo.', 'Talvez eu tenho tempo.', 'Talvez eu tive tempo.'] · ✓ `Talvez eu tenha tempo.` · audio dice: «Talvez eu tenha tempo.»  _(dif 0.50)_
+- **[writing/reorder]** Ordena: "Quizás ellos vengan a la fiesta."  — fichas: ['Talvez', 'eles', 'venham', 'à', 'festa']  ✓ `Talvez eles venham à festa`  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Talvez eu vá viajar no próximo mês.»  esperado: `Talvez eu vá viajar no próximo mês.`  _(dif 0.50)_
+- **[writing/word_bank]** Arma la frase: "Quizás ella esté en casa."  — fichas: ['Talvez', 'ela', 'esteja', 'em', 'casa', 'está']  ✓ `Talvez ela esteja em casa`  _(dif 0.50)_
+
+### L2 · Espero que + subjuntivo  _(items: 8)_
+
+- **[reading/multiple_choice]** Elige la forma correcta:  — opciones: ['Espero que você venha à reunião.', 'Espero que você vem à reunião.', 'Espero que você vindo à reunião.'] · ✓ `Espero que você venha à reunião.`  _(dif 0.50)_
+- **[writing/cloze]** Completa con subjuntivo tras 'espero que' (estar):  — texto: «Espero que você ___ bem.»  ✓ `esteja` · acepta: ['esteja']  _(dif 0.50)_
+- **[writing/cloze]** Completa con subjuntivo (dar):  — texto: «Espero que tudo ___ certo amanhã.»  ✓ `dê` · acepta: ['dê']  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "Espero que tengas un buen día."  — es: «Espero que tengas un buen día.»  ✓ en: `Espero que você tenha um bom dia.` · acepta: ['Espero que você tenha um bom dia.', 'Espero que você tenha um bom dia', 'Espero que tenha um bom dia.']  _(dif 0.50)_
+- **[reading/match]** Empareja la expresión con su traducción:  — pares: [['Espero que venha', 'Espero que venga'], ['Espero que faça', 'Espero que haga'], ['Espero que seja', 'Espero que sea']]  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Espero que ela faça a prova.', 'Espero que ela faz a prova.', 'Espero que ela fez a prova.'] · ✓ `Espero que ela faça a prova.` · audio dice: «Espero que ela faça a prova.»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Espero que vocês tenham um ótimo fim de semana.»  esperado: `Espero que vocês tenham um ótimo fim de semana.`  _(dif 0.50)_
+- **[writing/reorder]** Ordena: "Espero que tú vengas pronto."  — fichas: ['Espero', 'que', 'você', 'venha', 'logo']  ✓ `Espero que você venha logo`  _(dif 0.50)_
+
+### L3 · É importante/melhor que  _(items: 8)_
+
+- **[reading/multiple_choice]** Elige la forma correcta:  — opciones: ['É importante que você estude todo dia.', 'É importante que você estuda todo dia.', 'É importante que você estudando todo dia.'] · ✓ `É importante que você estude todo dia.`  _(dif 0.50)_
+- **[writing/cloze]** Completa con subjuntivo (ir):  — texto: «É melhor que nós ___ agora.»  ✓ `vamos` · acepta: ['vamos']  _(dif 0.50)_
+- **[writing/cloze]** Completa con subjuntivo (falar):  — texto: «É importante que ele ___ a verdade.»  ✓ `fale` · acepta: ['fale']  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "Es mejor que descanses un poco."  — es: «Es mejor que descanses un poco.»  ✓ en: `É melhor que você descanse um pouco.` · acepta: ['É melhor que você descanse um pouco.', 'É melhor que você descanse um pouco', 'É melhor que descanse um pouco.']  _(dif 0.50)_
+- **[writing/word_bank]** Arma la frase: "Es importante que tengas paciencia."  — fichas: ['É', 'importante', 'que', 'você', 'tenha', 'paciência', 'tem']  ✓ `É importante que você tenha paciência`  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['É melhor que você vá embora.', 'É melhor que você vai embora.', 'É melhor que você foi embora.'] · ✓ `É melhor que você vá embora.` · audio dice: «É melhor que você vá embora.»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «É importante que você beba bastante água.»  esperado: `É importante que você beba bastante água.`  _(dif 0.50)_
+- **[reading/match]** Empareja la recomendación con su traducción:  — pares: [['É melhor que descanse', 'Es mejor que descanses'], ['É importante que estude', 'Es importante que estudies'], ['É melhor que espere', 'Es mejor que esperes']]  _(dif 0.50)_
+
+### L4 · Tomara que e desejos  _(items: 8)_
+
+- **[reading/multiple_choice]** Elige la forma correcta:  — opciones: ['Tomara que faça sol no domingo.', 'Tomara que faz sol no domingo.', 'Tomara que fez sol no domingo.'] · ✓ `Tomara que faça sol no domingo.`  _(dif 0.50)_
+- **[writing/cloze]** Completa con subjuntivo (chegar):  — texto: «Tomara que eles ___ a tempo.»  ✓ `cheguem` · acepta: ['cheguem']  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "Ojalá que él mejore pronto."  — es: «Ojalá que él mejore pronto.»  ✓ en: `Tomara que ele melhore logo.` · acepta: ['Tomara que ele melhore logo.', 'Tomara que melhore logo.', 'Tomara que ele melhore logo']  _(dif 0.50)_
+- **[writing/cloze]** Completa con subjuntivo (ser):  — texto: «Tomara que você ___ feliz aí.»  ✓ `seja` · acepta: ['seja']  _(dif 0.50)_
+- **[writing/reorder]** Ordena: "Ojalá que todo salga bien."  — fichas: ['Tomara', 'que', 'tudo', 'dê', 'certo']  ✓ `Tomara que tudo dê certo`  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Tomara que ela venha hoje.', 'Tomara que ela vem hoje.', 'Tomara que ela veio hoje.'] · ✓ `Tomara que ela venha hoje.` · audio dice: «Tomara que ela venha hoje.»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Tomara que dê tudo certo na sua viagem.»  esperado: `Tomara que dê tudo certo na sua viagem.`  _(dif 0.50)_
+- **[writing/word_bank]** Arma la frase: "Ojalá que tengan suerte."  — fichas: ['Tomara', 'que', 'eles', 'tenham', 'sorte', 'têm']  ✓ `Tomara que eles tenham sorte`  _(dif 0.50)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidade 15  _(items: 10)_
+
+- **[reading/multiple_choice]** Elige la forma correcta:  — opciones: ['Espero que você seja feliz.', 'Espero que você é feliz.', 'Espero que você sendo feliz.'] · ✓ `Espero que você seja feliz.`  _(dif 0.50)_
+- **[reading/multiple_choice]** Elige la forma correcta:  — opciones: ['Talvez nós tenhamos sorte.', 'Talvez nós temos sorte.', 'Talvez nós tivemos sorte.'] · ✓ `Talvez nós tenhamos sorte.`  _(dif 0.50)_
+- **[writing/cloze]** Completa con subjuntivo (melhorar):  — texto: «Tomara que você ___ logo.»  ✓ `melhore` · acepta: ['melhore']  _(dif 0.50)_
+- **[writing/cloze]** Completa con subjuntivo tras 'é importante que' (estar):  — texto: «É importante que ele ___ no trabalho.»  ✓ `esteja` · acepta: ['esteja']  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "Espero que ellos vengan mañana."  — es: «Espero que ellos vengan mañana.»  ✓ en: `Espero que eles venham amanhã.` · acepta: ['Espero que eles venham amanhã.', 'Espero que eles venham amanhã']  _(dif 0.50)_
+- **[reading/match]** Empareja el verbo en subjuntivo con su traducción:  — pares: [['faça', 'haga'], ['esteja', 'esté'], ['venha', 'venga']]  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['É melhor que você descanse.', 'É melhor que você descansa.', 'É melhor que você descansou.'] · ✓ `É melhor que você descanse.` · audio dice: «É melhor que você descanse.»  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Talvez ele faça isso.', 'Talvez ele faz isso.', 'Talvez ele fez isso.'] · ✓ `Talvez ele faça isso.` · audio dice: «Talvez ele faça isso.»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Tomara que você tenha um ótimo dia.»  esperado: `Tomara que você tenha um ótimo dia.`  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Espero que tudo dê certo na prova.»  esperado: `Espero que tudo dê certo na prova.`  _(dif 0.50)_
+
+**Vocabulario (frecuencia):** talvez=quizás, espero que=espero que, tomara que=ojalá, é importante que=es importante que, é melhor que=es mejor que, que tudo dê certo=que todo salga bien, seja=sea, vá=vaya, esteja=esté, faça=haga, tenha=tenga, venha=venga, o desejo=el deseo, a esperança=la esperanza, a recomendação=la recomendación, melhorar=mejorar
+
+## Unidad 16 (B1) — Pronombres relativos
+
+
+### L1 · que y quem  _(items: 8)_
+
+- **[reading/multiple_choice]** Elige el relativo correcto: "A pessoa ___ mora ao lado é simpática."  — opciones: ['que', 'onde', 'cujo'] · ✓ `que`  _(dif 0.50)_
+- **[reading/multiple_choice]** ¿Cuál es correcto para una persona tras preposición? "O amigo de ___ falei chegou."  — opciones: ['quem', 'que', 'onde'] · ✓ `quem`  _(dif 0.50)_
+- **[writing/cloze]** Completa con el relativo (que):  — texto: «O livro ___ eu comprei é ótimo.»  ✓ `que` · acepta: ['que']  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "La persona que vive al lado."  — es: «La persona que vive al lado.»  ✓ en: `A pessoa que mora ao lado.` · acepta: ['A pessoa que mora ao lado.', 'A pessoa que mora ao lado']  _(dif 0.50)_
+- **[reading/match]** Empareja los relativos con su uso.  — pares: [['que', 'cosas o personas'], ['quem', 'persona tras preposición'], ['onde', 'lugar']]  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['O homem que vi era alto.', 'O homem de quem falei era alto.', 'O homem onde morei era alto.'] · ✓ `O homem que vi era alto.` · audio dice: «O homem que vi era alto.»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Esse é o amigo de quem eu falei ontem.»  esperado: `Esse é o amigo de quem eu falei ontem.`  _(dif 0.50)_
+- **[writing/word_bank]** Arma la frase: "La chica que conocí es brasileña."  — fichas: ['A', 'menina', 'que', 'conheci', 'é', 'brasileira', 'onde']  ✓ `A menina que conheci é brasileira`  _(dif 0.50)_
+
+### L2 · onde (lugares)  _(items: 8)_
+
+- **[writing/cloze]** Completa con el relativo de lugar:  — texto: «A cidade ___ eu nasci é pequena.»  ✓ `onde` · acepta: ['onde']  _(dif 0.50)_
+- **[reading/multiple_choice]** Elige el relativo de lugar: "O bairro ___ moramos é tranquilo."  — opciones: ['onde', 'quem', 'cujo'] · ✓ `onde`  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "La ciudad donde nací es pequeña."  — es: «La ciudad donde nací es pequeña.»  ✓ en: `A cidade onde nasci é pequena.` · acepta: ['A cidade onde nasci é pequena.', 'A cidade onde eu nasci é pequena.', 'A cidade onde nasci é pequena']  _(dif 0.50)_
+- **[reading/multiple_choice]** ¿Cuál es correcto? "Esse é o restaurante ___ jantamos."  — opciones: ['onde', 'que', 'quem'] · ✓ `onde`  _(dif 0.50)_
+- **[writing/reorder]** Ordena: "Esta es la casa donde crecí."  — fichas: ['Esta', 'é', 'a', 'casa', 'onde', 'cresci']  ✓ `Esta é a casa onde cresci`  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['A praia onde fomos era linda.', 'A praia que vimos era linda.', 'A praia de quem falei era linda.'] · ✓ `A praia onde fomos era linda.` · audio dice: «A praia onde fomos era linda.»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Aquela é a cidade onde eu nasci e cresci.»  esperado: `Aquela é a cidade onde eu nasci e cresci.`  _(dif 0.50)_
+- **[reading/match]** Empareja cada frase con su sentido.  — pares: [['o lugar onde moro', 'el lugar donde vivo'], ['a escola onde estudei', 'la escuela donde estudié'], ['o país onde nasci', 'el país donde nací']]  _(dif 0.50)_
+
+### L3 · Combinar frases  _(items: 8)_
+
+- **[reading/multiple_choice]** Une las frases: "Tenho um amigo. Ele mora no Rio." → "Tenho um amigo ___ mora no Rio."  — opciones: ['que', 'onde', 'cujo'] · ✓ `que`  _(dif 0.50)_
+- **[writing/cloze]** Une con el relativo (persona tras preposición):  — texto: «Essa é a mulher com ___ eu falei.»  ✓ `quem` · acepta: ['quem']  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "El amigo de quien te hablé llegó."  — es: «El amigo de quien te hablé llegó.»  ✓ en: `O amigo de quem eu te falei chegou.` · acepta: ['O amigo de quem eu te falei chegou.', 'O amigo de quem te falei chegou.', 'O amigo de quem eu te falei chegou']  _(dif 0.50)_
+- **[writing/word_bank]** Arma la frase: "El profesor que me enseñó vive aquí."  — fichas: ['O', 'professor', 'que', 'me', 'ensinou', 'mora', 'aqui', 'quem']  ✓ `O professor que me ensinou mora aqui`  _(dif 0.50)_
+- **[writing/reorder]** Ordena: "Conocí a la persona que escribió el libro."  — fichas: ['Conheci', 'a', 'pessoa', 'que', 'escreveu', 'o', 'livro']  ✓ `Conheci a pessoa que escreveu o livro`  _(dif 0.50)_
+- **[reading/multiple_choice]** ¿Qué relativo introduce posesión (cuyo)? "O escritor ___ livro li é famoso."  — opciones: ['cujo', 'que', 'onde'] · ✓ `cujo`  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['A casa cujo telhado é vermelho é minha.', 'A casa onde o telhado é vermelho é minha.', 'A casa que telhado é vermelho é minha.'] · ✓ `A casa cujo telhado é vermelho é minha.` · audio dice: «A casa cujo telhado é vermelho é minha.»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Conheci a pessoa que escreveu aquele livro.»  esperado: `Conheci a pessoa que escreveu aquele livro.`  _(dif 0.50)_
+
+### L4 · Contar una historia  _(items: 8)_
+
+- **[writing/cloze]** Completa la historia (em que / que):  — texto: «Lembro do dia ___ tudo mudou.»  ✓ `em que` · acepta: ['em que', 'que']  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "Voy a contarte una historia que sucedió aquel día."  — es: «Voy a contarte una historia que sucedió aquel día.»  ✓ en: `Vou te contar uma história que aconteceu naquele dia.` · acepta: ['Vou te contar uma história que aconteceu naquele dia.', 'Vou te contar uma historia que aconteceu naquele dia.', 'Vou te contar uma história que aconteceu naquele dia']  _(dif 0.50)_
+- **[reading/multiple_choice]** Elige el relativo correcto en la historia: "Foi então que conheci o homem ___ me ajudou."  — opciones: ['que', 'onde', 'cujo'] · ✓ `que`  _(dif 0.50)_
+- **[writing/reorder]** Ordena: "Aquel fue el lugar donde todo empezó."  — fichas: ['Aquele', 'foi', 'o', 'lugar', 'onde', 'tudo', 'começou']  ✓ `Aquele foi o lugar onde tudo começou`  _(dif 0.50)_
+- **[writing/word_bank]** Arma la frase: "Recuerdo la noche en que nos conocimos."  — fichas: ['Lembro', 'da', 'noite', 'em', 'que', 'nos', 'conhecemos', 'onde']  ✓ `Lembro da noite em que nos conhecemos`  _(dif 0.50)_
+- **[reading/multiple_choice]** ¿Cuál encaja en el relato? "A história ___ ele me contou era triste."  — opciones: ['que', 'quem', 'onde'] · ✓ `que`  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Foi naquele dia que tudo aconteceu.', 'Foi naquele lugar que tudo aconteceu.', 'Foi naquela noite que tudo aconteceu.'] · ✓ `Foi naquele dia que tudo aconteceu.` · audio dice: «Foi naquele dia que tudo aconteceu.»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Vou contar a história de quem mudou a minha vida.»  esperado: `Vou contar a história de quem mudou a minha vida.`  _(dif 0.50)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidade 16  _(items: 10)_
+
+- **[reading/multiple_choice]** Elige el relativo correcto: "O vizinho ___ mora em cima é músico."  — opciones: ['que', 'onde', 'cujo'] · ✓ `que`  _(dif 0.50)_
+- **[reading/multiple_choice]** ¿Cuál es correcto tras preposición y referido a persona? "A garota com ___ saí ontem."  — opciones: ['quem', 'que', 'onde'] · ✓ `quem`  _(dif 0.50)_
+- **[writing/cloze]** Completa con el relativo de lugar (vacaciones):  — texto: «A vila ___ passei as férias é linda.»  ✓ `onde` · acepta: ['onde']  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "El amigo de quien hablé es médico."  — es: «El amigo de quien hablé es médico.»  ✓ en: `O amigo de quem eu falei é médico.` · acepta: ['O amigo de quem eu falei é médico.', 'O amigo de quem falei é médico.', 'O amigo de quem eu falei é médico']  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Essa é a rua onde eu morava.', 'Essa é a rua que eu conhecia.', 'Essa é a rua de quem eu falava.'] · ✓ `Essa é a rua onde eu morava.` · audio dice: «Essa é a rua onde eu morava.»  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['O autor cujo livro li é famoso.', 'O autor de quem livro li é famoso.', 'O autor que livro li é famoso.'] · ✓ `O autor cujo livro li é famoso.` · audio dice: «O autor cujo livro li é famoso.»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Essa é a cidade onde nasci e onde conheci a minha esposa.»  esperado: `Essa é a cidade onde nasci e onde conheci a minha esposa.`  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «O amigo de quem te falei chegou naquele dia.»  esperado: `O amigo de quem te falei chegou naquele dia.`  _(dif 0.50)_
+- **[writing/reorder]** Ordena: "Esa es la historia que cambió todo."  — fichas: ['Essa', 'é', 'a', 'história', 'que', 'mudou', 'tudo']  ✓ `Essa é a história que mudou tudo`  _(dif 0.50)_
+- **[reading/match]** Empareja cada relativo con un ejemplo correcto.  — pares: [['que', 'a casa que comprei'], ['quem', 'a pessoa de quem gosto'], ['onde', 'o lugar onde moro']]  _(dif 0.50)_
+
+**Vocabulario (frecuencia):** que=que (rel.), quem=quien, onde=donde, cujo=cuyo, o qual=el cual, vizinho=vecino, morar=vivir (residir), nascer=nacer, aconteceu=sucedió, história=historia, lembrar=recordar, conhecer=conocer, lugar=lugar, pessoa=persona, então=entonces, naquele dia=aquel día
+
+## Unidad 17 (B1) — Problemas y soluciones
+
+
+### L1 · Obligación: dever / ter que  _(items: 8)_
+
+- **[reading/multiple_choice]** ¿Cuál expresa una obligación fuerte ("tienes que")?  — opciones: ['Você tem que pagar a conta hoje.', 'Você quer pagar a conta hoje.', 'Você gosta de pagar a conta hoje.'] · ✓ `Você tem que pagar a conta hoje.`  _(dif 0.50)_
+- **[writing/cloze]** Completa con un modal de obligación ("debes"):  — texto: «Você ___ estudar mais para passar na prova.»  ✓ `deve` · acepta: ['deve', 'tem que', 'precisa']  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "Tengo que arreglar el carro."  — es: «Tengo que arreglar el carro.»  ✓ en: `Tenho que consertar o carro.` · acepta: ['Tenho que consertar o carro.', 'Tenho de consertar o carro.', 'Eu tenho que consertar o carro.', 'Devo consertar o carro.']  _(dif 0.50)_
+- **[reading/match]** Empareja portugués y español.  — pares: [['dever', 'deber'], ['ter que', 'tener que'], ['é proibido', 'está prohibido']]  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Você deve trocar a senha agora.', 'Você pode trocar a senha amanhã.', 'Você quer trocar a senha agora.'] · ✓ `Você deve trocar a senha agora.` · audio dice: «Você deve trocar a senha agora.»  _(dif 0.50)_
+- **[writing/word_bank]** Arma la frase: "Tienes que resolver el problema."  — fichas: ['Você', 'tem', 'que', 'resolver', 'o', 'problema', 'pode']  ✓ `Você tem que resolver o problema`  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Eu tenho que consertar isso antes de sair.»  esperado: `Eu tenho que consertar isso antes de sair.`  _(dif 0.50)_
+- **[reading/multiple_choice]** Elige la frase correcta para "debemos esperar":  — opciones: ['Nós devemos esperar.', 'Nós devem esperar.', 'Nós deve esperar.'] · ✓ `Nós devemos esperar.`  _(dif 0.50)_
+
+### L2 · Permiso y prohibición  _(items: 8)_
+
+- **[reading/multiple_choice]** ¿Cuál indica que algo está prohibido?  — opciones: ['Aqui é proibido fumar.', 'Aqui você pode fumar.', 'Aqui é bom fumar.'] · ✓ `Aqui é proibido fumar.`  _(dif 0.50)_
+- **[writing/cloze]** Completa con el modal de permiso ("puedes"):  — texto: «Você ___ usar o celular depois da reunião.»  ✓ `pode` · acepta: ['pode']  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "¿Puedo pagar con tarjeta?"  — es: «¿Puedo pagar con tarjeta?»  ✓ en: `Posso pagar com cartão?` · acepta: ['Posso pagar com cartão?', 'Eu posso pagar com cartão?', 'Posso pagar no cartão?']  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['É proibido estacionar aqui.', 'É possível estacionar aqui.', 'É preciso estacionar aqui.'] · ✓ `É proibido estacionar aqui.` · audio dice: «É proibido estacionar aqui.»  _(dif 0.50)_
+- **[writing/reorder]** Ordena: "Aquí no puedes entrar sin contraseña."  — fichas: ['Aqui', 'você', 'não', 'pode', 'entrar', 'sem', 'senha']  ✓ `Aqui você não pode entrar sem senha`  _(dif 0.50)_
+- **[reading/match]** Empareja portugués y español.  — pares: [['a regra', 'la regla'], ['a senha', 'la contraseña'], ['o conselho', 'el consejo']]  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Aqui é proibido usar o telefone durante a prova.»  esperado: `Aqui é proibido usar o telefone durante a prova.`  _(dif 0.50)_
+- **[reading/multiple_choice]** ¿Cuál NO es una regla/prohibición?  — opciones: ['Hoje eu posso descansar um pouco.', 'É proibido correr na piscina.', 'Você não pode chegar atrasado.'] · ✓ `Hoje eu posso descansar um pouco.`  _(dif 0.50)_
+
+### L3 · Condicional real: se + presente  _(items: 8)_
+
+- **[reading/multiple_choice]** Elige el condicional real correcto.  — opciones: ['Se você estudar, vai passar.', 'Se você estudaria, vai passar.', 'Se você estudou, vai passar amanhã.'] · ✓ `Se você estudar, vai passar.`  _(dif 0.50)_
+- **[writing/cloze]** Completa (chover):  — texto: «Se ___, ficamos em casa.»  ✓ `chover` · acepta: ['chover']  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "Si estudias, vas a aprobar."  — es: «Si estudias, vas a aprobar.»  ✓ en: `Se você estudar, vai passar.` · acepta: ['Se você estudar, vai passar.', 'Se você estudar, você vai passar.', 'Se estudar, vai passar.', 'Se você estudar, vai ser aprovado.']  _(dif 0.50)_
+- **[writing/word_bank]** Arma la frase: "Si pagas hoy, tienes garantía."  — fichas: ['Se', 'você', 'pagar', 'hoje', 'tem', 'garantia', 'teria']  ✓ `Se você pagar hoje tem garantia`  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Se chover, ficamos em casa.', 'Se chove, ficamos na rua.', 'Se chovia, ficávamos em casa.'] · ✓ `Se chover, ficamos em casa.` · audio dice: «Se chover, ficamos em casa.»  _(dif 0.50)_
+- **[writing/reorder]** Ordena: "Si llamas ahora, resuelven el problema."  — fichas: ['Se', 'você', 'ligar', 'agora', 'eles', 'resolvem', 'o', 'problema']  ✓ `Se você ligar agora eles resolvem o problema`  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Se você ligar para o suporte, eles resolvem o problema.»  esperado: `Se você ligar para o suporte, eles resolvem o problema.`  _(dif 0.50)_
+- **[reading/multiple_choice]** ¿Qué pasa "si no pagas"? Elige la frase coherente.  — opciones: ['Se você não pagar, perde a garantia.', 'Se você não pagar, ganha a garantia.', 'Se você pagar, perde a garantia.'] · ✓ `Se você não pagar, perde a garantia.`  _(dif 0.50)_
+
+### L4 · Resolver problemas  _(items: 8)_
+
+- **[reading/multiple_choice]** Elige el mejor consejo para "el celular no funciona".  — opciones: ['Você deve reiniciar o aparelho.', 'Você deve quebrar o aparelho.', 'Você deve esquecer o aparelho.'] · ✓ `Você deve reiniciar o aparelho.`  _(dif 0.50)_
+- **[writing/cloze]** Completa con "necesito" (precisar):  — texto: «Eu ___ de ajuda para resolver isto.»  ✓ `preciso` · acepta: ['preciso']  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "Necesito hablar con el gerente."  — es: «Necesito hablar con el gerente.»  ✓ en: `Preciso falar com o gerente.` · acepta: ['Preciso falar com o gerente.', 'Eu preciso falar com o gerente.', 'Preciso de falar com o gerente.', 'Tenho que falar com o gerente.']  _(dif 0.50)_
+- **[reading/match]** Empareja portugués y español.  — pares: [['consertar', 'arreglar'], ['reclamar', 'quejarse'], ['a solução', 'la solución']]  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Preciso trocar o produto, está com defeito.', 'Preciso pagar o produto, está barato.', 'Preciso vender o produto, está novo.'] · ✓ `Preciso trocar o produto, está com defeito.` · audio dice: «Preciso trocar o produto, está com defeito.»  _(dif 0.50)_
+- **[writing/word_bank]** Arma la frase: "Debes hablar con el soporte."  — fichas: ['Você', 'deve', 'falar', 'com', 'o', 'suporte', 'pode']  ✓ `Você deve falar com o suporte`  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Preciso de ajuda para consertar o computador.»  esperado: `Preciso de ajuda para consertar o computador.`  _(dif 0.50)_
+- **[reading/multiple_choice]** ¿Cuál es una queja (reclamação) correcta?  — opciones: ['Quero reclamar: o produto chegou quebrado.', 'Quero elogiar: o produto chegou quebrado.', 'Quero comprar: o produto chegou perfeito.'] · ✓ `Quero reclamar: o produto chegou quebrado.`  _(dif 0.50)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidade 17  _(items: 10)_
+
+- **[reading/multiple_choice]** Elige la obligación correcta: "Ella tiene que trabajar mañana."  — opciones: ['Ela tem que trabalhar amanhã.', 'Ela tem que trabalhou amanhã.', 'Ela tem trabalhar amanhã.'] · ✓ `Ela tem que trabalhar amanhã.`  _(dif 0.50)_
+- **[reading/multiple_choice]** Elige el condicional real correcto.  — opciones: ['Se fizer sol, vamos à praia.', 'Se faz sol amanhã, fomos à praia.', 'Se faria sol, vamos à praia.'] · ✓ `Se fizer sol, vamos à praia.`  _(dif 0.50)_
+- **[writing/cloze]** Completa (es proibido):  — texto: «Aqui ___ proibido tirar fotos.»  ✓ `é` · acepta: ['é']  _(dif 0.50)_
+- **[writing/cloze]** Completa el condicional (beber):  — texto: «Se você ___, não dirige.»  ✓ `beber` · acepta: ['beber']  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "Tienes que cambiar la contraseña."  — es: «Tienes que cambiar la contraseña.»  ✓ en: `Você tem que trocar a senha.` · acepta: ['Você tem que trocar a senha.', 'Você tem de trocar a senha.', 'Você deve trocar a senha.', 'Tem que trocar a senha.']  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "Si llamas ahora, resuelven tu problema."  — es: «Si llamas ahora, resuelven tu problema.»  ✓ en: `Se você ligar agora, resolvem o seu problema.` · acepta: ['Se você ligar agora, resolvem o seu problema.', 'Se você ligar agora, eles resolvem o seu problema.', 'Se ligar agora, resolvem seu problema.']  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Você não pode pagar com cheque aqui.', 'Você não pode pagar com cartão aqui.', 'Você pode pagar com cheque aqui.'] · ✓ `Você não pode pagar com cheque aqui.` · audio dice: «Você não pode pagar com cheque aqui.»  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Se você não estudar, vai reprovar.', 'Se você estudar, vai reprovar.', 'Se você não estudar, vai passar.'] · ✓ `Se você não estudar, vai reprovar.` · audio dice: «Se você não estudar, vai reprovar.»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Se chover amanhã, a gente fica em casa.»  esperado: `Se chover amanhã, a gente fica em casa.`  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Você deve reclamar se o produto chegar com defeito.»  esperado: `Você deve reclamar se o produto chegar com defeito.`  _(dif 0.50)_
+
+**Vocabulario (frecuencia):** dever=deber, ter que=tener que, precisar de=necesitar, poder=poder, é proibido=está prohibido, resolver=resolver, o problema=el problema, a solução=la solución, o conselho=el consejo, a regra=la regla, consertar=arreglar, a senha=la contraseña, reclamar=reclamar / quejarse, a garantia=la garantía, se=si (condicional), caso contrário=de lo contrario
+
+## Unidad 18 (B1) — Comparar y contar
+
+
+### L1 · Más que, menos que  _(items: 8)_
+
+- **[reading/multiple_choice]** Elige la comparación correcta:  — opciones: ['Este filme é mais longo do que o outro.', 'Este filme é mais longo que do o outro.', 'Este filme mais longo é do que o outro.'] · ✓ `Este filme é mais longo do que o outro.`  _(dif 0.50)_
+- **[writing/cloze]** Completa con el comparativo de superioridad:  — texto: «Este livro é ___ interessante do que o outro.»  ✓ `mais` · acepta: ['mais']  _(dif 0.50)_
+- **[writing/cloze]** Completa con el comparativo de inferioridad:  — texto: «Esta revista é ___ cara do que o jornal.»  ✓ `menos` · acepta: ['menos']  _(dif 0.50)_
+- **[reading/match]** Empareja portugués y español:  — pares: [['mais do que', 'más que'], ['menos do que', 'menos que'], ['tão quanto', 'tan como']]  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "Esta canción es más alegre que la otra."  — es: «Esta canción es más alegre que la otra.»  ✓ en: `Esta música é mais alegre do que a outra.` · acepta: ['Esta música é mais alegre do que a outra.', 'Esta música é mais alegre que a outra.', 'Esta canção é mais alegre do que a outra.']  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['O filme é menos longo do que o livro.', 'O filme é mais longo do que o livro.', 'O livro é menos longo do que o filme.'] · ✓ `O filme é mais longo do que o livro.` · audio dice: «O filme é mais longo do que o livro.»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Este filme é mais emocionante do que o anterior.»  esperado: `Este filme é mais emocionante do que o anterior.`  _(dif 0.50)_
+- **[writing/reorder]** Ordena: "La noticia es menos importante que la otra."  — fichas: ['A', 'notícia', 'é', 'menos', 'importante', 'do', 'que', 'a', 'outra']  ✓ `A notícia é menos importante do que a outra`  _(dif 0.50)_
+
+### L2 · Tan… como, el mejor  _(items: 8)_
+
+- **[writing/cloze]** Completa la comparación de igualdad:  — texto: «Este cantor é ___ famoso quanto o outro.»  ✓ `tão` · acepta: ['tão']  _(dif 0.50)_
+- **[reading/multiple_choice]** Elige el superlativo correcto:  — opciones: ['É o melhor filme do ano.', 'É o mais bom filme do ano.', 'É o filme melhor do ano mais.'] · ✓ `É o melhor filme do ano.`  _(dif 0.50)_
+- **[reading/multiple_choice]** Elige la frase correcta:  — opciones: ['Foi a pior notícia da semana.', 'Foi a mais má notícia da semana.', 'Foi a notícia mais pior da semana.'] · ✓ `Foi a pior notícia da semana.`  _(dif 0.50)_
+- **[writing/cloze]** Completa con el superlativo de tamaño:  — texto: «É ___ maior cinema da cidade.»  ✓ `o` · acepta: ['o']  _(dif 0.50)_
+- **[reading/match]** Empareja portugués y español:  — pares: [['o melhor', 'el mejor'], ['o pior', 'el peor'], ['o maior', 'el mayor']]  _(dif 0.50)_
+- **[writing/word_bank]** Arma la frase: "Ella es tan famosa como él."  — fichas: ['Ela', 'é', 'tão', 'famosa', 'quanto', 'ele', 'mais']  ✓ `Ela é tão famosa quanto ele`  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['É o melhor livro do autor.', 'É o pior livro do autor.', 'É o maior livro do autor.'] · ✓ `É o melhor livro do autor.` · audio dice: «É o melhor livro do autor.»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Esta é a melhor música do álbum.»  esperado: `Esta é a melhor música do álbum.`  _(dif 0.50)_
+
+### L3 · Voz pasiva  _(items: 8)_
+
+- **[reading/multiple_choice]** Elige la voz pasiva correcta:  — opciones: ['O livro foi escrito por um autor brasileiro.', 'O livro foi escreveu por um autor brasileiro.', 'O livro escrito foi por um autor brasileiro.'] · ✓ `O livro foi escrito por um autor brasileiro.`  _(dif 0.50)_
+- **[writing/cloze]** Completa la voz pasiva (pretérito):  — texto: «O museu ___ construído em 1950.»  ✓ `foi` · acepta: ['foi']  _(dif 0.50)_
+- **[writing/cloze]** Completa la voz pasiva (presente):  — texto: «Esta revista ___ vendida em todo o país.»  ✓ `é` · acepta: ['é']  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "El libro fue escrito por ella."  — es: «El libro fue escrito por ella.»  ✓ en: `O livro foi escrito por ela.` · acepta: ['O livro foi escrito por ela.', 'O livro foi escrito por ela']  _(dif 0.50)_
+- **[reading/match]** Empareja portugués y español:  — pares: [['foi construído', 'fue construido'], ['é vendido', 'se vende'], ['foi escrito', 'fue escrito']]  _(dif 0.50)_
+- **[writing/word_bank]** Arma la frase: "El periódico es vendido aquí."  — fichas: ['O', 'jornal', 'é', 'vendido', 'aqui', 'foi']  ✓ `O jornal é vendido aqui`  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['O filme foi gravado no Brasil.', 'O filme é gravado no Brasil.', 'O filme foi gravando no Brasil.'] · ✓ `O filme foi gravado no Brasil.` · audio dice: «O filme foi gravado no Brasil.»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Este estádio foi construído há muitos anos.»  esperado: `Este estádio foi construído há muitos anos.`  _(dif 0.50)_
+
+### L4 · Discurso indirecto  _(items: 8)_
+
+- **[reading/multiple_choice]** Elige el discurso indirecto correcto:  — opciones: ['Ele disse que ia ao cinema.', 'Ele disse que vai ao cinema ontem.', 'Ele disse ia que ao cinema.'] · ✓ `Ele disse que ia ao cinema.`  _(dif 0.50)_
+- **[writing/cloze]** Completa el discurso indirecto (que):  — texto: «Ela falou ___ ia assistir ao filme.»  ✓ `que` · acepta: ['que']  _(dif 0.50)_
+- **[writing/cloze]** Completa el verbo introductor (decir, pretérito):  — texto: «O jornalista ___ que a notícia era verdadeira.»  ✓ `disse` · acepta: ['disse']  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "Él dijo que el libro era muy bueno."  — es: «Él dijo que el libro era muy bueno.»  ✓ en: `Ele disse que o livro era muito bom.` · acepta: ['Ele disse que o livro era muito bom.', 'Ele falou que o livro era muito bom.']  _(dif 0.50)_
+- **[reading/match]** Empareja portugués y español:  — pares: [['Ele disse que', 'Él dijo que'], ['Ela falou que', 'Ella dijo que'], ['ia assistir', 'iba a ver']]  _(dif 0.50)_
+- **[writing/reorder]** Ordena: "Ella dijo que iba a leer la revista."  — fichas: ['Ela', 'disse', 'que', 'ia', 'ler', 'a', 'revista']  ✓ `Ela disse que ia ler a revista`  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Ele disse que a música era ótima.', 'Ele disse que a música era péssima.', 'Ela disse que a música era ótima.'] · ✓ `Ele disse que a música era ótima.` · audio dice: «Ele disse que a música era ótima.»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «Ela falou que ia ao show no sábado.»  esperado: `Ela falou que ia ao show no sábado.`  _(dif 0.50)_
+
+### 🏁 L5 · 🏁 Checkpoint Unidade 18  _(items: 10)_
+
+- **[reading/multiple_choice]** Elige la frase correcta:  — opciones: ['Este jornal é mais antigo do que a revista.', 'Este jornal é mais antigo que do a revista.', 'Este jornal mais antigo do que é a revista.'] · ✓ `Este jornal é mais antigo do que a revista.`  _(dif 0.50)_
+- **[writing/cloze]** Completa con la comparación de igualdad:  — texto: «Este filme é ___ bom quanto o livro.»  ✓ `tão` · acepta: ['tão']  _(dif 0.50)_
+- **[reading/multiple_choice]** Elige la voz pasiva correcta:  — opciones: ['A ponte foi construída em dois anos.', 'A ponte foi construir em dois anos.', 'A ponte construída foi em dois anos.'] · ✓ `A ponte foi construída em dois anos.`  _(dif 0.50)_
+- **[writing/cloze]** Completa el discurso indirecto tras 'disse':  — texto: «Ele disse ___ ia comprar o livro.»  ✓ `que` · acepta: ['que']  _(dif 0.50)_
+- **[writing/translation]** Traduce al portugués: "Esta es la peor noticia del día."  — es: «Esta es la peor noticia del día.»  ✓ en: `Esta é a pior notícia do dia.` · acepta: ['Esta é a pior notícia do dia.', 'Essa é a pior notícia do dia.']  _(dif 0.50)_
+- **[reading/match]** Empareja portugués y español:  — pares: [['o melhor', 'el mejor'], ['foi escrito por', 'fue escrito por'], ['disse que', 'dijo que']]  _(dif 0.50)_
+- **[writing/word_bank]** Arma la frase: "La canción es vendida en todo el mundo."  — fichas: ['A', 'música', 'é', 'vendida', 'no', 'mundo', 'todo', 'foi']  ✓ `A música é vendida no mundo todo`  _(dif 0.50)_
+- **[writing/reorder]** Ordena: "Ella dijo que iba al cine."  — fichas: ['Ela', 'disse', 'que', 'ia', 'ao', 'cinema']  ✓ `Ela disse que ia ao cinema`  _(dif 0.50)_
+- **[listening/listening]** Escucha y elige lo que oíste.  — opciones: ['Este é o maior cinema da cidade.', 'Este é o menor cinema da cidade.', 'Este é o melhor cinema da cidade.'] · ✓ `Este é o maior cinema da cidade.` · audio dice: «Este é o maior cinema da cidade.»  _(dif 0.50)_
+- **[speaking/speaking_read_aloud]** Lee en voz alta:  — lee: «O filme foi premiado e é o melhor do ano.»  esperado: `O filme foi premiado e é o melhor do ano.`  _(dif 0.50)_
+
+**Vocabulario (frecuencia):** o filme=la película, a música=la música / la canción, o livro=el libro, a notícia=la noticia, o jornal=el periódico, a revista=la revista, o cantor=el cantante, o autor=el autor, melhor=mejor, pior=peor, o maior=el mayor / el más grande, famoso=famoso, foi construído=fue construido, é vendido=se vende / es vendido, foi escrito=fue escrito, disse que=dijo que

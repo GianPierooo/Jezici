@@ -9,7 +9,7 @@
 App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supabase**
 (Postgres + RLS + RPCs SECURITY DEFINER) + **Vercel** (deploy del web). Repo
 `github.com/GianPierooo/Jezici`, deploy `jezici.vercel.app`.
-- 2 cursos: **es→en** (A1–B2) y **es→pt** (A1–A2). Curso activo por usuario.
+- 2 cursos: **es→en** (A1–B2) y **es→pt** (A1–B1). Curso activo por usuario.
 - Loop: lección → ejercicios (9 tipos) → grading **server-side** → XP/oro/vidas →
   checkpoints (≥80%) → exámenes de nivel + certificados. Práctica/SRS, logros, ligas
   semanales, racha, Matix (notificaciones), onboarding con placement.
@@ -53,8 +53,8 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
 | Loop lección + grading server-side | ✅ verde y live |
 | Dinamismo/UX (loop) | ✅ 1ª tanda LIVE (deploy-pending): recompensa con contadores+entrada escalonada, feedback ✅/❌ animado, transiciones `jzRoute`, skeletons en Ligas. Pendiente: tokens de espaciado, mascota en más pantallas, radar animado. Ver UX_AUDIT.md |
 | Capa "enseña" (tips/cuaderno/referencia) | ✅ tip post-lección (personalizado a skill floja, voz del coach) + cuaderno (alcanzable desde Perfil) + **Referencia/Repaso** (mig 060 `get_reference`: conceptos por skill + dominio + "practicar esto" + punto flojo). 72 tips **solo es→en** (18/nivel A1–B2). Pendiente: **historias/inmersión**, flag `srs` de tips, tips para **es→pt**. |
-| Contenido es→en A1–B2, es→pt A1–A2 | ✅ sembrado y live |
-| **Audio** (listening/speaking TTS) | ✅ **312/312** en Storage + degradación/unlock iOS **LIVE** (deploy 68266d3). Ver FINDINGS.md §2 |
+| Contenido es→en A1–B2, **es→pt A1–B1** | ✅ sembrado y live (pt B1 = mig 053, 192 ítems + 60 checkpoints frescos; cadena A1→B1 + certs verificada). Pendiente: es→pt B2 |
+| **Audio** (listening/speaking TTS) | ✅ es→en + es→pt A1/A2 (312) + **es→pt B1 (68)** en Storage = **380/380** + degradación/unlock iOS LIVE. Ver FINDINGS.md §2 |
 | **Seguridad** (4 hallazgos) | ✅ **cerrados** en DB (mig 058) + botón export en Ajustes **LIVE** (deploy 68266d3). Ver abajo |
 | Ligas + Leaderboards | ✅ rollover real (mig 059): cierre semanal idempotente/lazy + ascensos (top 7)/descensos (fondo 5) Bronce↔Diamante + snapshots. `get_leaderboard` (XP/Racha/Lecciones/Certificados × Semanal/Mensual/Anual/Histórico × Global/División, SIN user_id). UI con segmentos (Mi liga / Tablas) **LIVE** (deploy-pending hasta push). Falta: **cron** que dispare el cierre (hoy es lazy-on-read; ver abajo) |
 | C1/C2 | ❌ documentados, no sembrados (BD llega a B2 en es→en) |
