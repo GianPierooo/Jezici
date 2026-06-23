@@ -25,15 +25,19 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
 - **Deploy**: push a `main` → Vercel reconstruye (clona Flutter, `flutter build web`).
   Config en `vercel.json` (dart-defines SUPABASE_URL/ANON_KEY + JZ_BUILD=commit sha).
 
-## ⚠️ Blockers actuales (del dueño)
-- **DEPLOY VERCEL ROTO desde 19-jun.** Los últimos deploys de producción están en
-  **ERROR instantáneo sin logs de build** (no es código: analyze/test/build local verdes).
-  **Producción está fijada en el commit `7e26824` (19-jun)**. Es bloqueo de cuenta/plataforma
-  (uso del plan Hobby / billing / integración GitHub). → **Todo cambio de CÓDIGO de la app
-  no aterriza** hasta desbloquearlo (Vercel dashboard → Deployments → ver el error).
-  **Implicación al tocar DB:** toda migración debe ser **compatible con el build live 7e26824**,
-  no solo con `main` (verificar con `git show 7e26824:<archivo>`). Las migraciones (Supabase)
-  sí tienen efecto YA; el frontend nuevo queda commiteado y aterriza con el próximo deploy.
+## ⚠️ Deploy de Vercel
+- **El "bloqueo" NO era billing: era una regresión de `vercel.json`.** El commit
+  `25f49c9` (19-jun) añadió `--dart-define=JZ_BUILD=$VERCEL_GIT_COMMIT_SHA` al
+  `buildCommand`; desde ahí TODOS los deploys daban **ERROR instantáneo pre-build,
+  sin logs** (firma de buildCommand rechazado). **Reparado 2026-06-23**: el sello se
+  auto-computa con `JZ_SHA=$(git rev-parse --short HEAD || echo dev)` (sin la variable
+  de sistema problemática). Build local con el comando EXACTO de Vercel: OK; sello
+  `JZ_BUILD` presente en el bundle. **Pendiente:** confirmar que el primer deploy tras
+  el fix queda `READY` en Vercel.
+- Hasta confirmar READY, **producción seguía fijada en `7e26824` (19-jun)**. Por las
+  dudas al tocar DB: toda migración debe ser **compatible con el build live** (verificar
+  con `git show 7e26824:<archivo>`). Migraciones (Supabase) tienen efecto YA; el frontend
+  nuevo aterriza con el primer deploy exitoso.
 
 ## Estado por área
 | Área | Estado |

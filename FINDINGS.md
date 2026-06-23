@@ -112,18 +112,18 @@ bundleados en `assets/sfx/`.
 >   Navigator) desbloquea el AudioContext en el primer gesto real, en cualquier
 >   pantalla. analyze 0 · test 40/40 (+1 de skip) · build web OK.
 >
-> **⚠️ BLOQUEANTE DE DEPLOY (infra, fuera de audio) — `commit c4a17af`:** el push a
-> `main` se subió, pero el deploy de Vercel quedó en **ERROR instantáneo y sin logs
-> de build** (igual que los 2 deploys previos, `25f49c9` y `2925bd7`). **Producción
-> lleva fijada en el commit `7e26824` (19-jun)** — el último deploy `READY`. No es
-> un error de código (analyze 0, test 40/40, build web local OK): el build **nunca
-> arranca** → bloqueo a nivel de **cuenta/plataforma Vercel** (límite de uso del
-> plan / billing / integración GitHub). **Importante:** los 216 audios viven en
-> Supabase Storage, **independientes de Vercel**, así que el listening B1/B2/pt
-> **ya suena en el sitio actual** (el deploy 19-jun ya hacía fetch de `audio_url`).
-> Pendiente del dueño: desbloquear Vercel (dashboard → Deployments → ver el error;
-> revisar uso/billing del plan Hobby) y re-disparar. Las mejoras de código (skip +
-> unlock iOS) aterrizan con el primer deploy exitoso.
+> **DEPLOY DE VERCEL — causa REAL identificada y reparada ✅ (2026-06-23):** NO era
+> billing ni bloqueo de cuenta. Era una **regresión de `vercel.json`**: el commit
+> `25f49c9` (19-jun) añadió `--dart-define=JZ_BUILD=$VERCEL_GIT_COMMIT_SHA` al
+> `buildCommand`; desde ese commit TODOS los deploys daban **ERROR instantáneo
+> pre-build, sin logs** (`buildingAt==ready`) — firma de buildCommand rechazado. El
+> único delta de config entre `7e26824` (último READY) y `main` era ese flag. **Fix:**
+> el sello se auto-computa con `JZ_SHA=$(git rev-parse --short HEAD 2>/dev/null || echo dev)`
+> y se pasa como `--dart-define=JZ_BUILD=$JZ_SHA` (sin la variable de sistema). Validado:
+> `vercel.json` parsea OK; build local con el comando EXACTO de Vercel → OK; sello
+> `JZ_BUILD` presente en `main.dart.js`. Pendiente: confirmar el primer deploy `READY`
+> en Vercel tras el push. Nota: los 216 audios viven en Supabase Storage (independientes
+> de Vercel) → el listening B1/B2/pt ya sonaba aun con producción fijada en 7e26824.
 > El detalle original del hallazgo se conserva abajo.
 
 ### Hallazgos
