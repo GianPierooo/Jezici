@@ -9,6 +9,28 @@
 
 ---
 
+## SMOKE POST-DEPLOY — producción `b34b568` LIVE · 2026-06-23 ✅ TODO VERDE
+> Verificación de solo lectura del build vivo (cliente real anon + JWT; usuario de
+> prueba creado y borrado con `delete_account`; sin `service_role` en los chequeos
+> de cliente). Tras desbloquear el deploy aterrizó de golpe: audio P0/P1, seguridad
+> mig 058, PWA v4, tips mig 057, ligas/leaderboards mig 059.
+
+| Superficie | Estado | Evidencia (cliente real) |
+|---|---|---|
+| **Loop core** | 🟢 | `content_items.correct_answer` base → **403/42501**; vista pública → col inexistente (400/42703); lección real = 8 ítems sin `correct_answer`; `grade_item` → 200 `{correct,graded,expected}` |
+| **Seguridad (mig 058)** | 🟢 | `league_members`/`leagues` → **403**; `log_event` válido **204**, bogus descartado; `export_my_data` → **200 (24 secc.)**; `get_metrics` no-admin → **admin only**, admin (JWT real) → **200** (`total_users=10`) |
+| **Ligas / Leaderboards (mig 059)** | 🟢 | `get_league` sin `user_id`; **32 combinaciones** Métrica×Ventana×Alcance → **0 errores, 0 UUID_LEAK**; paginación ranks `[1,2]`/`[3,4]`; `jz_close_weeks()` idempotente (2× → 0, snapshots 6=6) |
+| **Audio** | 🟢 | HEAD a las **312 URLs → 312/312 = 200** (1 timeout transitorio confirmado 200 al reintentar); bundle vivo contiene "Audio no disponible" (degradación) |
+| **PWA cache-busting (P0.5)** | 🟢 | `sw.js` = `jezici-v4` + `no-store` en el shell; `index.html` con `updatefound`/"Recargar"; `Last-Modified` de hoy, `Age` bajo. Sello **`JZ_BUILD` sigue en `dev`** (regresión conocida del fix de deploy; NO se toca aquí) |
+| **Suites** | 🟢 | `flutter analyze` **0** · `flutter test` **42/42** · `verify_chain` es→en (certs A1→B2) · `verify_pt_chain` (A1→A2) · `e2e_audit` **todas PASS** |
+
+> Nota: `iOS unlock` por gesto (`_AudioUnlockGate`) es lógica (sin string greppable);
+> está en el commit desplegado `b34b568` y el bundle vivo trae las cadenas de
+> degradación/export/leaderboards. La conducta real en dispositivo va en el checklist
+> manual de abajo (§Checklist).
+
+---
+
 ## 0. Veredicto honesto del producto
 
 Jezici es un MVP **sorprendentemente completo y bien construido en su núcleo**:
@@ -372,3 +394,40 @@ por roles SQL; agregar/quitar = `insert/delete` en `admins`). Dueño ya sembrado
 autenticados y eliminado con `delete_account` (HTTP 204). Los eventos
 `AUDIT_PROBE_*` insertados en `analytics_events` (6) están ligados a ese usuario
 borrado.*
+
+---
+
+## Checklist de verificación MANUAL para Gian (en dispositivo real)
+> Lo de arriba se verificó con el cliente REST real. Esto requiere ojos+oídos en un
+> teléfono real (audio, gestos, PWA). Marca cada uno. Si algo falla, anota modelo +
+> navegador.
+
+### iPhone (Safari → "Añadir a pantalla de inicio" → abrir como PWA)
+- [ ] **1er tap desbloquea el audio:** abre la app, toca cualquier parte una vez;
+      a partir de ahí los sonidos funcionan (no hace falta tocar dos veces).
+- [ ] **SFX "correcto" suena tras calificar:** en una lección, responde bien y
+      comprueba que suena el efecto al marcar correcto (no mudo el primero).
+- [ ] **Listening con audio en B1/B2 y portugués:** entra a una lección de B1 o B2
+      (es→en) y a una de es→pt; en un ejercicio de escucha, el botón reproduce voz.
+- [ ] **Degradación con gracia:** (si algún audio faltara) el ejercicio muestra
+      "Audio no disponible" y deja continuar **sin** restar vidas — no pide adivinar.
+- [ ] **NO aparece reproductor en la pantalla de bloqueo** al sonar audio (Web Audio).
+- [ ] **Ligas → "Mi liga":** carga tu división y tu posición de la semana.
+- [ ] **Ligas → "Tablas":** cambia Métrica (XP/Lecciones/Racha/Certificados),
+      Ventana (Semanal/Mensual/Anual/Histórico) y Alcance (Global/Mi división);
+      la lista cambia y **"Tu posición: #N"** coincide contigo.
+- [ ] **Ajustes → "Exportar mis datos":** abre el JSON y "Copiar" funciona.
+- [ ] **Aviso de nueva versión:** tras un próximo deploy, con la PWA abierta aparece
+      "Hay una versión nueva — Recargar" (no auto-recarga).
+
+### Android (Chrome, e instalada como PWA)
+- [ ] **1er tap desbloquea el audio** (igual que iOS).
+- [ ] **SFX "correcto" suena tras calificar.**
+- [ ] **Listening B1/B2/pt suena**; micrófono del speaking pide permiso y "Ya lo leí ✓"
+      aparece si se deniega.
+- [ ] **Ligas "Mi liga" y "Tablas" cargan**; "Tu posición" correcta.
+- [ ] **Exportar mis datos** funciona.
+- [ ] **Aviso de nueva versión** tras un deploy.
+
+> Sello de build: en Ajustes se ve "Jezici 1.0.0 · **dev**" — es esperado (el sello
+> `JZ_BUILD` quedó pendiente tras el fix de deploy; no afecta funcionalidad).

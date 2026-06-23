@@ -39,6 +39,13 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
   sobre el bundle) o habilitar la System Env Var en el dashboard y probar con cuidado.
 - Mecánica normal restaurada: push a `main` → Vercel reconstruye → deploy. Migraciones
   (Supabase) siguen teniendo efecto YA, independientes del deploy.
+- **Smoke post-deploy 2026-06-23 (prod `b34b568`) ✅ TODO VERDE** (cliente real, sin
+  service_role): loop core (`correct_answer` 403/sin col, `grade_item` OK), seguridad
+  mig 058 (ligas 403, gate admin, export 24 secc.), ligas/leaderboards mig 059 (32
+  combinaciones sin UUID_LEAK, paginación, rollover idempotente), **audio 312/312**,
+  PWA `sw v4`+no-store+aviso de update (sello `JZ_BUILD`=`dev`, conocido). Suites:
+  analyze 0 · test 42/42 · verify_chain es→en · verify_pt_chain · e2e_audit PASS.
+  Detalle + **checklist manual para Gian (iPhone/Android)** en FINDINGS.md.
 
 ## Estado por área
 | Área | Estado |
