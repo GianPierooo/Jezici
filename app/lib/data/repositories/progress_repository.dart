@@ -315,6 +315,13 @@ class ProgressRepository {
     await _client.auth.signOut();
   }
 
+  /// Portabilidad GDPR: exporta TODOS los datos del usuario autenticado en JSON
+  /// (export_my_data, SECURITY DEFINER acotado a auth.uid()).
+  Future<Map<String, dynamic>> exportMyData() async {
+    final res = await _client.rpc('export_my_data');
+    return Map<String, dynamic>.from(res as Map);
+  }
+
   // ── Analítica (Especificacion §13) ────────────────────────────────────────
 
   /// Registra un evento (fire-and-forget; nunca rompe el flujo del usuario).

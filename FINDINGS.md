@@ -300,26 +300,32 @@ dominio como el alumno espera. Recomiendo instrumentar `log_event` con el
 - **Helpers `jz_*` (mig 049):** revocados a authenticated/anon/public (no
   reprobado en vivo por no tocar datos, pero la revocación está en el SQL).
 
-### Estado de los 4 hallazgos abiertos
+### Estado de los 4 hallazgos — TODOS CERRADOS ✅ (mig 058 · 2026-06-23)
 
-| # | Hallazgo | Estado verificado | Evidencia |
+Aplicada `20260623100058_security_hardening.sql` (efecto YA en DB). Verificado con
+**JWT autenticado real** (usuario creado y borrado con `delete_account`; sin `service_role`).
+
+| # | Hallazgo | Estado | Evidencia (JWT real) |
 |---|---|---|---|
-| 1 | **Gate de admin en `get_metrics`/`get_engagement`** | 🟠 **ABIERTO** | Como usuario autenticado **no-admin**, `get_metrics` devolvió `{total_users:8, retention_d1, pct_certified:0.375, …}` y `get_engagement` devolvió uso por sección y feedback. **Sin gate.** El código (mig 029) entra a `begin` sin chequear admin. |
-| 2 | **Rate limiting en RPCs abusables** | 🟠 **PARCIAL/ABIERTO** | `log_event`: 6 llamadas rápidas con **nombre de evento bogus** + 500 chars de basura → **6×HTTP 204**. Sin allowlist, sin truncado, sin límite (mig 029: `insert ... values(auth.uid(), p_event, p_props)` directo). **Matiz importante:** `submit_level_exam` **ya NO es buen vector de farm** — solo re-otorga 200 XP/100 oro `if v_any` (subida real); una skill ya promovida deja de matchear `cefr_level=v_level`, así que **no es re-farmeable por nivel**. SECURITY.md sobreestima este punto ahora que 055 cerró `correct_answer`. |
-| 3 | **`export_my_data()` (GDPR)** | 🟡 **ABIERTO (no existe)** | `POST /rpc/export_my_data` → **`PGRST202` function not found**. |
-| 4 | **`league_members` SELECT abierto** | 🟠 **ABIERTO (y peor de lo descrito)** | `GET league_members?select=user_id,weekly_xp` (autenticado) → devuelve filas de **otros** usuarios, incl. su **`user_id` (UUID de auth)** y `weekly_xp`. También `leagues` es legible. No solo expone el leaderboard: filtra los **UUIDs de auth** de todos los miembros. |
+| 1 | **`league_members`/`leagues` SELECT abierto** (filtraba UUIDs de auth) | ✅ **CERRADO** | SELECT directo → **HTTP 403** (revoke + drop policy). `get_league` (DEFINER) sigue **200** y sus `members` ya NO traen `user_id` (solo `name/rank/weekly_xp/is_me`). Build live 7e26824 usa solo `get_league` → intacto. |
+| 2 | **Gate de admin en `get_metrics`/`get_engagement`/`get_onboarding_funnel`** | ✅ **CERRADO** | No-admin → **`admin only`** (P0001) en los 3. Admin (test uid añadido a `admins`, JWT real) → **200** (`total_users=8`). Dueño Gian (`7b4a8e40-…`) sembrado en `admins` → su panel sigue OK en el build live. |
+| 3 | **`log_event` sin allowlist/truncado/rate-limit** | ✅ **CERRADO** | Evento válido `screen_view` → insertado; **`AUDIT_BOGUS_EVENT` → 0 filas** (descarte silencioso, 204); props de 5KB en evento válido → fila con `{"_truncated":true}`. Rate-limit 120/usuario/min. Los 8 eventos del cliente live siguen entrando. |
+| 4 | **`export_my_data()` (GDPR)** | ✅ **CERRADO** | RPC DEFINER acotada a `auth.uid()` → **200** con 24 secciones (stats, progreso, skills, certs, …). Botón "Exportar mis datos" en Ajustes (frontend **deploy-pending**). |
 
-### Priorización de seguridad (revisada)
-1. 🟠 **`league_members` SELECT** — cerrar el SELECT de tabla y servir solo por
-   `get_league` (filtra UUIDs de auth ajenos). *Lo más concreto.*
-2. 🟠 **Gate de admin** en `get_metrics`/`get_engagement` (hoy cualquier cuenta
-   lee agregados de negocio; ya hay **8 usuarios** reales, no 3).
-3. 🟠 **`log_event`** — allowlist de `p_event` + truncado de props + rate-limit.
-4. 🟡 **`export_my_data()`** — añadir RPC + botón en Ajustes.
+**Mecanismo de admin nuevo:** tabla `admins(user_id)` + `jz_is_admin()` (no se gestiona
+por roles SQL; agregar/quitar = `insert/delete` en `admins`). Dueño ya sembrado.
 
-> Nota: el riesgo agregado sigue siendo **medio**, no crítico, porque el vector
-> de integridad económica (`correct_answer`) está cerrado. Pero los 4 deben
-> resolverse antes de abrir el registro al público.
+> Nota: `submit_level_exam` **no** se tocó (no es vector de farm ahora que 055 cerró
+> `correct_answer`: solo re-otorga XP `if v_any`/subida real). Riesgo agregado de
+> seguridad: **bajo** tras esta migración.
+
+### Compatibilidad con el build LIVE (7e26824) — confirmado ✅
+- Ligas: el cliente live llama **solo** `get_league` (verificado con `git grep` en 7e26824;
+  0 lecturas directas a `leagues`/`league_members`) → cerrar el SELECT **no lo rompe**.
+- Analytics: los 8 eventos que emite el cliente live están en la allowlist → siguen entrando.
+- Métricas: el panel interno (live) llama `get_metrics`/`engagement`/`funnel` solo desde
+  `MetricsScreen` (nav manual). Gian (admin) sigue viéndolas; un no-admin verá `admin only`
+  en ese panel interno (aceptable; es interno).
 
 ---
 
@@ -334,10 +340,10 @@ dominio como el alumno espera. Recomiendo instrumentar `log_event` con el
 | P3 | Progresión | 🟡 P2 | Rama muerta `in_progress`; accuracy=0 en lección solo-stub | Sí |
 | L1 | Ligas | 🟠 P1 | UI promete ascensos/descensos inexistentes; sin job de cierre | Sí |
 | L2 | Ligas | 🟡 P2 | Sin snapshots/histórico → mensual/anual imposible sin nueva infra | Sí |
-| S1 | Seguridad | 🟠 P1 | `league_members` SELECT abierto filtra UUIDs de auth ajenos | Sí (JWT real) |
-| S2 | Seguridad | 🟠 P1 | `get_metrics`/`get_engagement` sin gate de admin | Sí (JWT real) |
-| S3 | Seguridad | 🟠 P2 | `log_event` sin allowlist/truncado/rate-limit | Sí (6×204) |
-| S4 | Seguridad | 🟡 P2 | `export_my_data()` no existe (GDPR) | Sí (PGRST202) |
+| S1 | Seguridad | 🟢 P1 ✅ | `league_members`/`leagues` SELECT cerrado (403); `get_league` sin UUIDs (mig 058) | Sí (JWT real) |
+| S2 | Seguridad | 🟢 P1 ✅ | Gate admin en get_metrics/engagement/funnel (`admins`+`jz_is_admin`); Gian sembrado | Sí (JWT real) |
+| S3 | Seguridad | 🟢 P2 ✅ | `log_event` allowlist(8)+truncado(>2KB)+rate-limit(120/min) | Sí (bogus→0 filas) |
+| S4 | Seguridad | 🟢 P2 ✅ | `export_my_data()` (24 secciones) + botón Ajustes (frontend deploy-pending) | Sí (200, 24 claves) |
 | G1 | General | 🟡 P2 | C1/C2 y monthly leagues documentados, no construidos; Conversar/Simulacros ocultos | Sí |
 
 ---

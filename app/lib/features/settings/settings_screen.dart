@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/app_info.dart';
@@ -339,6 +342,13 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           ),
           const SizedBox(height: 8),
           TextButton.icon(
+            onPressed: _exportData,
+            icon: const Icon(Icons.download_rounded, size: 18),
+            label: const Text('Exportar mis datos', style: TextStyle(fontWeight: FontWeight.w800)),
+            style: TextButton.styleFrom(foregroundColor: AppColors.textMuted),
+          ),
+          const SizedBox(height: 8),
+          TextButton.icon(
             onPressed: _deleteAccount,
             icon: const Icon(Icons.delete_forever_rounded, size: 18),
             label: const Text('Borrar mi cuenta', style: TextStyle(fontWeight: FontWeight.w800)),
@@ -354,6 +364,53 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             ),
           ),
           const SizedBox(height: 6),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _exportData() async {
+    showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
+    );
+    Map<String, dynamic>? data;
+    try {
+      data = await ref.read(progressRepositoryProvider).exportMyData();
+    } catch (_) {}
+    if (!mounted) return;
+    Navigator.of(context).pop(); // cierra el loading
+    if (data == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('No se pudieron exportar tus datos. Inténtalo de nuevo.')));
+      return;
+    }
+    final json = const JsonEncoder.withIndent('  ').convert(data);
+    if (!mounted) return;
+    await showDialog<void>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Tus datos (JSON)'),
+        content: SizedBox(
+          width: double.maxFinite,
+          child: SingleChildScrollView(
+            child: SelectableText(json,
+                style: const TextStyle(fontSize: 11, fontFamily: 'monospace', height: 1.4)),
+          ),
+        ),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Cerrar')),
+          FilledButton.icon(
+            onPressed: () async {
+              await Clipboard.setData(ClipboardData(text: json));
+              if (!ctx.mounted) return;
+              ScaffoldMessenger.of(ctx).showSnackBar(
+                  const SnackBar(content: Text('Copiado al portapapeles')));
+            },
+            icon: const Icon(Icons.copy_rounded, size: 18),
+            label: const Text('Copiar'),
+          ),
         ],
       ),
     );
