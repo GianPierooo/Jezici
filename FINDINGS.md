@@ -111,6 +111,19 @@ bundleados en `assets/sfx/`.
 > - **Desbloqueo iOS:** `Listener(onPointerDown)` global en `main.dart` (sobre el
 >   Navigator) desbloquea el AudioContext en el primer gesto real, en cualquier
 >   pantalla. analyze 0 · test 40/40 (+1 de skip) · build web OK.
+>
+> **⚠️ BLOQUEANTE DE DEPLOY (infra, fuera de audio) — `commit c4a17af`:** el push a
+> `main` se subió, pero el deploy de Vercel quedó en **ERROR instantáneo y sin logs
+> de build** (igual que los 2 deploys previos, `25f49c9` y `2925bd7`). **Producción
+> lleva fijada en el commit `7e26824` (19-jun)** — el último deploy `READY`. No es
+> un error de código (analyze 0, test 40/40, build web local OK): el build **nunca
+> arranca** → bloqueo a nivel de **cuenta/plataforma Vercel** (límite de uso del
+> plan / billing / integración GitHub). **Importante:** los 216 audios viven en
+> Supabase Storage, **independientes de Vercel**, así que el listening B1/B2/pt
+> **ya suena en el sitio actual** (el deploy 19-jun ya hacía fetch de `audio_url`).
+> Pendiente del dueño: desbloquear Vercel (dashboard → Deployments → ver el error;
+> revisar uso/billing del plan Hobby) y re-disparar. Las mejoras de código (skip +
+> unlock iOS) aterrizan con el primer deploy exitoso.
 > El detalle original del hallazgo se conserva abajo.
 
 ### Hallazgos
