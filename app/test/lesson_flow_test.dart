@@ -203,11 +203,28 @@ class FakeProgressRepository implements ProgressRepository {
   }
 }
 
+/// Captura los answers enviados a complete_lesson para verificar omisiones.
+class CapturingFakeRepository extends FakeProgressRepository {
+  CapturingFakeRepository({super.gradeItems});
+  List<Map<String, dynamic>>? lastAnswers;
+  @override
+  Future<LessonSummary> completeLesson(
+      String lessonId, List<Map<String, dynamic>> answers) async {
+    lastAnswers = answers;
+    return super.completeLesson(lessonId, answers);
+  }
+}
+
 Widget _wrap(Widget child, {List<ContentItemModel> items = const []}) => ProviderScope(
       overrides: [
         progressRepositoryProvider
             .overrideWithValue(FakeProgressRepository(gradeItems: items)),
       ],
+      child: MaterialApp(home: child),
+    );
+
+Widget _wrapRepo(Widget child, ProgressRepository repo) => ProviderScope(
+      overrides: [progressRepositoryProvider.overrideWithValue(repo)],
       child: MaterialApp(home: child),
     );
 
@@ -413,5 +430,76 @@ void main() {
     expect(find.text('Casi… 🦜'), findsOneWidget);
     expect(find.textContaining('Respuesta correcta'), findsOneWidget);
     expect(find.text('4'), findsOneWidget);
+  });
+
+  testWidgets('Listening sin audio se salta sin perder vidas y se omite del envío',
+      (WidgetTester tester) async {
+    tester.view.physicalSize = const Size(440, 950);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    final items = [
+      ContentItemModel(
+        id: 'm1',
+        type: ContentItemType.multipleChoice,
+        skill: 'reading',
+        cefrLevel: 'B1',
+        prompt: 'Elige',
+        payload: {'options': ['hello', 'goodbye']},
+        correctAnswer: {'value': 'hello'},
+      ),
+      ContentItemModel(
+        id: 'lis-missing',
+        type: ContentItemType.listening,
+        skill: 'listening',
+        cefrLevel: 'B1',
+        prompt: 'Escucha y elige lo que oíste.',
+        payload: {
+          'audio_url': 'https://example.test/audio/items/lis-missing.mp3',
+          'options': ['Have you ever met someone famous?', 'Did you meet someone famous?'],
+        },
+        correctAnswer: {'value': 'Have you ever met someone famous?'},
+      ),
+    ];
+
+    final repo = CapturingFakeRepository(gradeItems: items);
+    await tester.pumpWidget(
+      _wrapRepo(
+        LessonPlayerScreen(
+          lesson: lesson,
+          items: items,
+          // Sonda inyectada: el audio del listening NO existe.
+          audioProbe: (url) async => !url.contains('lis-missing'),
+        ),
+        repo,
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    // E1 MC correcto.
+    await tester.tap(find.text('hello'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('COMPROBAR'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('CONTINUAR'));
+    await tester.pumpAndSettle();
+
+    // E2 listening: audio inexistente → aviso y NO se piden opciones a ciegas.
+    expect(find.text('Audio no disponible'), findsOneWidget);
+    expect(find.text('Have you ever met someone famous?'), findsNothing);
+    expect(find.text('5'), findsOneWidget); // vidas intactas
+
+    // Continuar (último ítem) → complete_lesson.
+    await tester.tap(find.text('CONTINUAR').first);
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 120));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
+
+    // El listening sin audio se OMITE del envío (solo va el MC).
+    expect(repo.lastAnswers, isNotNull);
+    expect(repo.lastAnswers!.length, 1);
+    expect(repo.lastAnswers!.single['item_id'], 'm1');
   });
 }

@@ -41,8 +41,13 @@ extension type _Param._(JSObject o) implements JSObject {
 @JS('fetch')
 external JSPromise<_Resp> _fetch(String url);
 
+@JS('fetch')
+external JSPromise<_Resp> _fetchOpt(String url, JSObject init);
+
 extension type _Resp._(JSObject o) implements JSObject {
   external JSPromise<JSArrayBuffer> arrayBuffer();
+  external bool get ok;
+  external int get status;
 }
 
 /// Reproductor de audio vía Web Audio API. NO crea elementos <audio>, así que
@@ -189,6 +194,21 @@ class _WebAudioEngine implements AudioEngine {
         return null;
       }
     });
+  }
+
+  @override
+  Future<bool> isUrlAvailable(String url) async {
+    // Si ya está decodificado en caché, existe.
+    if (_cache.containsKey('u:$url')) return true;
+    try {
+      final init = JSObject();
+      init.setProperty('method'.toJS, 'HEAD'.toJS);
+      final resp = await _fetchOpt(url, init).toDart;
+      return resp.ok; // 200 → true; 400 (objeto inexistente en Storage) → false
+    } catch (_) {
+      // Red ambigua / CORS: no marcar como faltante para no saltar de más.
+      return true;
+    }
   }
 
   @override

@@ -19,10 +19,19 @@ enum _Phase { answering, feedback }
 /// calificación local), gestiona vidas y combo, y al terminar llama a la RPC
 /// complete_lesson (el SERVIDOR decide XP/oro/skills — Arquitectura §4/§7).
 class LessonPlayerScreen extends ConsumerStatefulWidget {
-  const LessonPlayerScreen({super.key, required this.lesson, required this.items});
+  const LessonPlayerScreen({
+    super.key,
+    required this.lesson,
+    required this.items,
+    this.audioProbe,
+  });
 
   final LessonModel lesson;
   final List<ContentItemModel> items;
+
+  /// Comprueba si el audio de una URL existe. Inyectable para tests; por defecto
+  /// usa el motor de audio (HEAD en web). Ver Task 2 (degradación con gracia).
+  final Future<bool> Function(String url)? audioProbe;
 
   @override
   ConsumerState<LessonPlayerScreen> createState() => _LessonPlayerScreenState();
@@ -43,8 +52,17 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
   Map<String, dynamic> _expected = const {};
   bool _checking = false;
 
+  /// El audio del ítem de listening actual no resuelve (archivo inexistente) →
+  /// se trata como salto SIN penalización: no se pide respuesta a ciegas, no
+  /// resta vidas y se OMITE del envío a complete_lesson (no cuenta como fallo).
+  bool _audioUnavailable = false;
+
   ContentItemModel get _item => widget.items[_index];
   bool get _isStub => isStubType(_item.type);
+
+  /// Tratamiento "saltar/continuar" sin calificación: stubs (speaking) o un
+  /// listening cuyo audio no existe.
+  bool get _skippable => _isStub || _audioUnavailable;
 
   SpeechRecognizer? _speechWarm;
 
@@ -55,12 +73,29 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
     // ítem actual y el siguiente (minimiza el time-to-first-audio en listening).
     AudioEngine.instance.unlock();
     _prefetchAround();
+    _checkCurrentAudio();
     // Pre-calienta el reconocimiento de voz (permiso de micrófono / motor) si la
     // lección tiene speaking, para que ese ítem no espere al primer uso.
     if (widget.items.any((it) => it.type == ContentItemType.speakingReadAloud)) {
       _speechWarm = createSpeechRecognizer();
       _speechWarm!.init(); // fire-and-forget; init() nunca lanza
     }
+  }
+
+  /// Para un ítem de listening, verifica (best-effort) que su audio exista. Si no
+  /// resuelve, marca el ítem como saltable sin penalización. Solo aplica al
+  /// listening (donde el audio ES la pregunta); el resto no depende del audio.
+  void _checkCurrentAudio() {
+    if (_item.type != ContentItemType.listening) return;
+    final url = (_item.payload['audio_url'] ?? '').toString();
+    if (url.isEmpty) return;
+    final probe = widget.audioProbe ?? AudioEngine.instance.isUrlAvailable;
+    final itemId = _item.id;
+    probe(url).then((ok) {
+      if (!mounted || ok) return;
+      // Solo afectar si seguimos en el mismo ítem (la sonda es asíncrona).
+      if (_item.id == itemId) setState(() => _audioUnavailable = true);
+    });
   }
 
   /// Precarga el audio (listening/speaking) del ítem actual y del siguiente.
@@ -149,8 +184,12 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
   }
 
   void _advance() {
-    // Registrar la respuesta del ítem actual (para la calificación server-side).
-    _answers.add({'item_id': _item.id, 'answer': _jsonAnswer(_answer.value)});
+    // Registrar la respuesta del ítem actual (para la calificación server-side),
+    // EXCEPTO si el listening se saltó por audio inexistente: omitirlo evita que
+    // el servidor lo califique como fallo (no penaliza la precisión ni vidas).
+    if (!_audioUnavailable) {
+      _answers.add({'item_id': _item.id, 'answer': _jsonAnswer(_answer.value)});
+    }
     if (_index + 1 >= widget.items.length) {
       _finish();
       return;
@@ -161,8 +200,10 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
       _result = null;
       _expected = const {};
       _phase = _Phase.answering;
+      _audioUnavailable = false;
     });
     _prefetchAround(); // precarga el audio del nuevo ítem actual + el siguiente
+    _checkCurrentAudio();
   }
 
   /// Convierte la respuesta a algo JSON-serializable (match: claves a String).
@@ -290,18 +331,20 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
                       key: ValueKey(_item.id),
                       // En feedback, inyecta la respuesta canónica del servidor
                       // (mig 055) para resaltar lo correcto sin haberla tenido antes.
-                      child: buildExerciseWidget(
-                          context,
-                          locked ? _item.copyWith(correctAnswer: _expected) : _item,
-                          _answer,
-                          locked),
+                      child: _audioUnavailable
+                          ? const _AudioUnavailableNotice()
+                          : buildExerciseWidget(
+                              context,
+                              locked ? _item.copyWith(correctAnswer: _expected) : _item,
+                              _answer,
+                              locked),
                     ),
                   ],
                 ),
               ),
             ),
             _BottomArea(
-              isStub: _isStub,
+              isStub: _skippable,
               phase: _phase,
               result: _result,
               answer: _answer,
@@ -541,6 +584,43 @@ class _FeedbackBar extends StatelessWidget {
           ),
           const SizedBox(height: 14),
           _BigButton(label: 'CONTINUAR', color: accent, onTap: onContinue),
+        ],
+      ),
+    );
+  }
+}
+
+/// Aviso cuando el audio de un listening no existe: en vez de pedir una
+/// respuesta a ciegas, se informa y se permite continuar sin perder vidas.
+class _AudioUnavailableNotice extends StatelessWidget {
+  const _AudioUnavailableNotice();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF3F1FB),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: AppColors.primary.withValues(alpha: 0.18)),
+      ),
+      child: Column(
+        children: [
+          const Icon(Icons.volume_off_rounded, color: AppColors.primary, size: 40),
+          const SizedBox(height: 12),
+          const Text(
+            'Audio no disponible',
+            style: TextStyle(
+                fontSize: 17, fontWeight: FontWeight.w900, color: AppColors.text),
+          ),
+          const SizedBox(height: 6),
+          const Text(
+            'Este ejercicio aún no tiene su audio. Lo saltamos: no afecta tus vidas ni tu puntaje.',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 13.5, fontWeight: FontWeight.w700, color: AppColors.textMuted),
+          ),
         ],
       ),
     );

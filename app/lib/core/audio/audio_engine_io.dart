@@ -19,6 +19,9 @@ class _IoAudioEngine implements AudioEngine {
   void unlock() {}
 
   @override
+  Future<bool> isUrlAvailable(String url) async => true; // nativo: optimista
+
+  @override
   Future<void> prefetch(String url) async {
     // Nativo: audioplayers carga desde el caché del SO; pre-cargamos best-effort
     // fijando la fuente en el reproductor de URL para acelerar el primer play.

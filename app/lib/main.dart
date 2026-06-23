@@ -5,6 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import 'core/audio/audio_engine.dart';
 import 'core/config/supabase_config.dart';
 import 'core/monitoring/crash_reporter.dart';
 import 'core/theme/app_colors.dart';
@@ -59,7 +60,47 @@ class JeziciApp extends StatelessWidget {
       title: 'Jezici',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
+      // Desbloqueo de audio en el PRIMER gesto real, en CUALQUIER pantalla
+      // (incluidas las rutas pusheadas como el lesson player). iOS Safari exige
+      // que AudioContext.resume() se dispare síncronamente desde un gesto;
+      // hacerlo aquí, sobre el Navigator, evita el "hay que tocar dos veces" y
+      // los SFX mudos. El unlock de lesson_player_screen.dart (initState) se
+      // mantiene como refuerzo.
+      builder: (context, child) =>
+          _AudioUnlockGate(child: child ?? const SizedBox.shrink()),
       home: const AppGate(),
+    );
+  }
+}
+
+/// Envuelve toda la app y desbloquea el AudioContext en el primer toque (un solo
+/// disparo). Un `Listener` por encima del Navigator recibe el `onPointerDown`
+/// aunque un widget hijo también lo maneje (los pointer events se propagan a
+/// todos los listeners del hit-test).
+class _AudioUnlockGate extends StatefulWidget {
+  const _AudioUnlockGate({required this.child});
+  final Widget child;
+
+  @override
+  State<_AudioUnlockGate> createState() => _AudioUnlockGateState();
+}
+
+class _AudioUnlockGateState extends State<_AudioUnlockGate> {
+  bool _unlocked = false;
+
+  void _onDown(PointerDownEvent _) {
+    if (_unlocked) return;
+    _unlocked = true;
+    // Síncrono dentro del gesto: clave para iOS.
+    AudioEngine.instance.unlock();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Listener(
+      behavior: HitTestBehavior.translucent,
+      onPointerDown: _onDown, // no-op tras el primer toque (guard `_unlocked`)
+      child: widget.child,
     );
   }
 }

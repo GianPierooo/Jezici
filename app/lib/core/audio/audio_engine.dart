@@ -22,6 +22,13 @@ abstract class AudioEngine {
   /// Reanuda el AudioContext tras el primer gesto (desbloqueo en web/iOS).
   void unlock();
 
+  /// ¿La URL de audio resuelve a un archivo real? Best-effort (HEAD en web): si
+  /// el objeto no existe (p. ej. 400 en Storage) devuelve `false`; ante un error
+  /// de red ambiguo devuelve `true` (no penalizar de más). Lo usa el loop para
+  /// degradar con gracia un listening sin audio en vez de pedir una respuesta a
+  /// ciegas. En nativo es optimista (`true`).
+  Future<bool> isUrlAvailable(String url);
+
   /// Detiene cualquier reproducción de URL en curso (para no solapar TTS).
   Future<void> stop();
 }

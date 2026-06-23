@@ -20,7 +20,22 @@ class AudioPlayButton extends StatefulWidget {
 
 class _AudioPlayButtonState extends State<AudioPlayButton> {
   bool _playing = false;
+  bool _unavailable = false;
   Timer? _failsafe;
+
+  @override
+  void initState() {
+    super.initState();
+    _probe();
+  }
+
+  /// Comprueba (best-effort) si el audio existe; si no, muestra "no disponible"
+  /// en vez de un botón que cuelga 12 s al tocarlo.
+  Future<void> _probe() async {
+    if (widget.url.isEmpty) return;
+    final ok = await AudioEngine.instance.isUrlAvailable(widget.url);
+    if (mounted && !ok) setState(() => _unavailable = true);
+  }
 
   @override
   void dispose() {
@@ -29,7 +44,7 @@ class _AudioPlayButtonState extends State<AudioPlayButton> {
   }
 
   Future<void> _play() async {
-    if (widget.url.isEmpty) return;
+    if (widget.url.isEmpty || _unavailable) return;
     setState(() => _playing = true);
     // Failsafe: si el audio no llega/decodifica, no dejes el ícono colgado.
     _failsafe?.cancel();
@@ -44,6 +59,28 @@ class _AudioPlayButtonState extends State<AudioPlayButton> {
 
   @override
   Widget build(BuildContext context) {
+    if (_unavailable) {
+      if (widget.big) {
+        return Center(
+          child: Container(
+            width: 120,
+            height: 120,
+            decoration: const BoxDecoration(color: Color(0xFFE9EAF2), shape: BoxShape.circle),
+            child: const Icon(Icons.volume_off_rounded, color: AppColors.textMuted, size: 48),
+          ),
+        );
+      }
+      return OutlinedButton.icon(
+        onPressed: null,
+        icon: const Icon(Icons.volume_off_rounded, size: 20),
+        label: const Text('Audio no disponible', style: TextStyle(fontWeight: FontWeight.w900)),
+        style: OutlinedButton.styleFrom(
+          foregroundColor: AppColors.textMuted,
+          side: const BorderSide(color: Color(0xFFC9CDDD)),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
+        ),
+      );
+    }
     if (widget.big) {
       return Center(
         child: GestureDetector(
