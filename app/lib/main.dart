@@ -8,6 +8,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'core/audio/audio_engine.dart';
 import 'core/config/supabase_config.dart';
 import 'core/monitoring/crash_reporter.dart';
+import 'core/monitoring/sentry_config.dart';
 import 'core/theme/app_colors.dart';
 import 'core/theme/app_theme.dart';
 import 'data/providers.dart';
@@ -45,10 +46,12 @@ Future<void> main() async {
   }
 
   // Monitoreo de errores (GA6): captura crashes → analytics_events. Pure-Dart,
-  // web-safe. Para Sentry completo, ver docs/GO_LIVE.md (se añade con un DSN).
+  // web-safe. Convive con Sentry (sinks distintos; sin doble-manejo).
   if (SupabaseConfig.isConfigured) installCrashReporting();
 
-  runApp(const ProviderScope(child: JeziciApp()));
+  // APM client-side: si hay SENTRY_DSN, corre la app dentro de Sentry (captura
+  // Flutter + nativo + zona). Sin DSN → NO-OP: arranca igual.
+  await runWithSentry(() => runApp(const ProviderScope(child: JeziciApp())));
 }
 
 class JeziciApp extends StatelessWidget {
@@ -129,12 +132,15 @@ class _AppGateState extends ConsumerState<AppGate> {
     try {
       _session = Supabase.instance.client.auth.currentSession;
       _lastUid = _session?.user.id;
+      sentrySetUser(_lastUid);
       _authSub = Supabase.instance.client.auth.onAuthStateChange.listen((data) {
         if (!mounted) return;
         final s = data.session;
         final uid = s?.user.id;
         final userChanged = uid != _lastUid;
         _lastUid = uid;
+        // Id OPACO en Sentry (sin email/PII) para correlacionar errores.
+        sentrySetUser(uid);
         setState(() => _session = s);
         if (userChanged) {
           // Nuevo usuario o logout → refrescar datos derivados.

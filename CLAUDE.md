@@ -83,6 +83,24 @@ se mueve, por diseño.
 - Previo: `correct_answer` ya estaba cerrado (mig 055), `jz_*` helpers revocados (mig 049).
 - Admin allowlist NO se gestiona por SQL roles → es la tabla `admins` (agregar/quitar user_id).
 
+## Monitoreo de errores (Sentry) — cableado, falta el DSN
+- **Client-side LIVE-ready** (`core/monitoring/sentry_config.dart`): `runWithSentry`
+  envuelve `runApp` (captura Flutter + nativo iOS/Android + zona; en web errores JS de la
+  app). Sin DSN → **NO-OP** (la app arranca igual, sin coste). Config beta: env `beta`,
+  release `jezici@<JZ_BUILD>` (fallback `dev`), `tracesSampleRate 0.1`, `sendDefaultPii=false`
+  (GDPR), `beforeSend` filtra ruido (timeouts/cancelaciones), uid OPACO sin PII. Convive con
+  `installCrashReporting` (analytics_events), sinks distintos.
+- **Cómo lo activa Gian (el DSN NO es secreto):** pega el DSN como `--dart-define` con
+  **VALOR LITERAL** (NO `$VAR` ni `$(...)` → eso rompe el deploy pre-build).
+  - **Prod (Vercel):** en `vercel.json`, al final del `buildCommand`, añade literal:
+    `... --dart-define=SENTRY_DSN=https://<key>@<org>.ingest.sentry.io/<project>` (y opcional
+    `--dart-define=SENTRY_ENV=production`). Push → deploy. **Tras el push, confirmar deploy READY** (no instant-ERROR).
+  - **Local:** `flutter run --dart-define=SENTRY_DSN=https://…`
+- **Prueba de captura (con DSN):** temporal `Sentry.captureMessage('jezici test')` o un throw,
+  ver que llega al dashboard, y quitarlo.
+- **Diferido:** source maps/símbolos (stack traces legibles en web/nativo) y Sentry server-side
+  (Edge Functions) — fuera de alcance de esta tanda.
+
 ## Comandos de verificación
 ```bash
 # Toolchain (desde app/)

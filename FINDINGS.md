@@ -31,6 +31,14 @@
 
 ---
 
+## MONITOREO (Sentry) — cableado 2026-06-23, pendiente DSN
+Sentry client-side integrado (`runWithSentry` envuelve `runApp`: Flutter + nativo + zona;
+web errores JS). Sin DSN = NO-OP (app intacta, deploy intacto — buildCommand NO tocado para
+evitar el gotcha de `$VAR`). Para activarlo, Gian pega el DSN como `--dart-define` **literal**
+en `vercel.json` (ver CLAUDE.md §Monitoreo). Diferido: source maps + Sentry server-side.
+
+---
+
 ## 0. Veredicto honesto del producto
 
 Jezici es un MVP **sorprendentemente completo y bien construido en su núcleo**:
