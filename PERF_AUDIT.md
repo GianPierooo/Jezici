@@ -17,6 +17,13 @@
 
 ---
 
+> **IMPLEMENTADO (2026-06-23) ✅:** P0-2 parcial — `switchCourse` pasó de **10 → 8
+> `invalidate`** (quitadas `activeCourseIdProvider`/`mapUnitsProvider`, que cascan desde
+> `coursesProvider`). P1-6 — **skeletons (shimmer)** en Ligas en vez de spinner. El
+> motion añadido subió `main.dart.js` solo **+6.6 KB (+0.19%)** (3,447,276→3,453,932).
+> Diferido (mayor esfuerzo/riesgo): P0-1 caché en disco del contenido, P1-4/P1-5
+> (cómputo en build de Perfil/Mapa), P2 varios — ver abajo.
+
 ## TOP OFFENDERS (rankeados)
 
 ### 🔴 P0-1 — Contenido estático del curso se re-pide en cada arranque (sin caché en disco)

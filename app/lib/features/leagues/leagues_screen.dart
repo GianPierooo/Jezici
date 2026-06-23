@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/theme/app_colors.dart';
+import '../../core/ui/jz_skeleton.dart';
 import '../../data/models/league_models.dart';
 import '../../data/providers.dart';
 
@@ -52,7 +53,7 @@ class _MyLeagueView extends ConsumerWidget {
     return RefreshIndicator(
       onRefresh: () async => ref.invalidate(leagueProvider),
       child: async.when(
-        loading: () => const _Center(child: CircularProgressIndicator(color: AppColors.primary)),
+        loading: () => ListView(children: const [JzListSkeleton()]),
         error: (e, _) => _ErrorBox(onRetry: () => ref.invalidate(leagueProvider), label: 'No se pudo cargar la liga.'),
         data: (lg) => _Board(lg: lg),
       ),
@@ -282,7 +283,7 @@ class _LeaderboardViewState extends ConsumerState<_LeaderboardView> {
           ),
           const SizedBox(height: 14),
           async.when(
-            loading: () => const SizedBox(height: 220, child: Center(child: CircularProgressIndicator(color: AppColors.primary))),
+            loading: () => const JzListSkeleton(rows: 6, padding: EdgeInsets.symmetric(vertical: 4)),
             error: (e, _) => SizedBox(
               height: 220,
               child: Center(

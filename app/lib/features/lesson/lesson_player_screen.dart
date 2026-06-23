@@ -5,6 +5,7 @@ import '../../core/audio/audio_engine.dart';
 import '../../core/feedback/feedback_fx.dart';
 import '../../core/speech/speech_recognizer.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/ui/jz_transitions.dart';
 import '../../data/models/content_item_model.dart';
 import '../../data/models/lesson_model.dart';
 import '../../data/providers.dart';
@@ -236,9 +237,7 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
       if (!mounted) return;
       Navigator.of(context).pop(); // cerrar loading
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-            builder: (_) =>
-                LessonCompleteScreen(summary: summary, lessonId: widget.lesson.id)),
+        jzRoute(LessonCompleteScreen(summary: summary, lessonId: widget.lesson.id)),
       );
     } catch (_) {
       if (!mounted) return;
@@ -529,7 +528,14 @@ class _FeedbackBar extends StatelessWidget {
     final accent = ok ? AppColors.success : AppColors.hearts;
     final accentDark = ok ? AppColors.successDark : const Color(0xFFD6294B);
 
-    return Container(
+    return TweenAnimationBuilder<double>(
+      // Entrada de la barra de feedback: sube + aparece (no bloqueante).
+      duration: const Duration(milliseconds: 260),
+      curve: Curves.easeOutCubic,
+      tween: Tween(begin: 0, end: 1),
+      builder: (_, t, child) =>
+          Transform.translate(offset: Offset(0, (1 - t) * 26), child: Opacity(opacity: t.clamp(0, 1), child: child)),
+      child: Container(
       width: double.infinity,
       decoration: BoxDecoration(
         color: bg,
@@ -542,16 +548,22 @@ class _FeedbackBar extends StatelessWidget {
         children: [
           Row(
             children: [
-              Container(
-                width: 42,
-                height: 42,
-                decoration: BoxDecoration(
-                  color: accent,
-                  shape: BoxShape.circle,
-                  boxShadow: [BoxShadow(color: accentDark, offset: const Offset(0, 4), blurRadius: 0)],
+              TweenAnimationBuilder<double>(
+                duration: const Duration(milliseconds: 420),
+                curve: Curves.elasticOut,
+                tween: Tween(begin: 0.4, end: 1),
+                builder: (_, s, child) => Transform.scale(scale: s, child: child),
+                child: Container(
+                  width: 42,
+                  height: 42,
+                  decoration: BoxDecoration(
+                    color: accent,
+                    shape: BoxShape.circle,
+                    boxShadow: [BoxShadow(color: accentDark, offset: const Offset(0, 4), blurRadius: 0)],
+                  ),
+                  child: Icon(ok ? Icons.check_rounded : Icons.close_rounded,
+                      color: Colors.white, size: 22),
                 ),
-                child: Icon(ok ? Icons.check_rounded : Icons.close_rounded,
-                    color: Colors.white, size: 22),
               ),
               const SizedBox(width: 11),
               Expanded(
@@ -585,6 +597,7 @@ class _FeedbackBar extends StatelessWidget {
           const SizedBox(height: 14),
           _BigButton(label: 'CONTINUAR', color: accent, onTap: onContinue),
         ],
+      ),
       ),
     );
   }

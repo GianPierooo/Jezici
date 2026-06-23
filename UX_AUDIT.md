@@ -4,6 +4,18 @@
 > Inventario objetivo (conteos, tokens fuera de sistema, estados y motion faltantes).
 > Lo subjetivo va marcado **[DECISIÓN DEL DUEÑO]**.
 
+> **IMPLEMENTADO (2026-06-23, misión dinamismo) ✅** — primera tanda en el loop:
+> - **Pantalla de recompensa:** contadores animados (0→XP/oro/precisión) + entrada
+>   escalonada con rebote de los tiles (`_RewardTile`/`_Reveal`, sin timers).
+> - **Feedback ✅/❌:** la barra entra deslizada + el ícono hace "pop" elástico (`_FeedbackBar`).
+> - **Transiciones de pantalla:** `jzRoute` (fade + leve escala) en el loop (nodo→preview→lección→fin).
+> - **Skeletons** (shimmer) en Ligas (Mi liga + Tablas) en vez de spinner pelado.
+> - **CORRECCIÓN al inventario:** la háptica **NO** estaba ausente — `FeedbackFx` ya llama
+>   `HapticFeedback.light/medium/heavy` en correct/wrong/combo (`core/feedback/feedback_fx.dart`).
+>   El gap real era el **feedback visual**, ya abordado. (El agente confundió "sin háptica".)
+> - Diferido (siguiente tanda): tokenizar espaciado/radios (212 `Color(0x)`), mascota en más
+>   pantallas, radar animado, skeletons en perfil. analyze 0 · test 42/42 · build web OK.
+
 ## Veredicto en una línea
 Base estética **sólida** (paleta semántica, Nunito, jerarquía clara, mascota y confeti
 bien hechos), pero **el dinamismo está a medias**: el *feedback del loop* (acierto/error,

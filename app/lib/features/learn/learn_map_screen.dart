@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/theme/app_colors.dart';
+import '../../core/ui/jz_transitions.dart';
 import '../../data/models/lesson_model.dart';
 import '../../data/models/unit_model.dart';
 import '../../data/providers.dart';
@@ -208,13 +209,11 @@ class _MapBodyState extends State<_MapBody> {
     final lesson = entry.lesson;
     // Bloqueada → aviso. Disponible/completada → checkpoint o lección.
     if (state != NodeState.locked) {
-      Navigator.of(context).push(MaterialPageRoute(
-        builder: (_) => switch (lesson.type) {
-          LessonType.checkpoint => CheckpointIntroScreen(lesson: lesson, unitTitle: entry.unit.title),
-          LessonType.mission => MissionScreen(lesson: lesson),
-          _ => LessonPreviewScreen(lesson: lesson),
-        },
-      ));
+      Navigator.of(context).push(jzRoute(switch (lesson.type) {
+        LessonType.checkpoint => CheckpointIntroScreen(lesson: lesson, unitTitle: entry.unit.title),
+        LessonType.mission => MissionScreen(lesson: lesson),
+        _ => LessonPreviewScreen(lesson: lesson),
+      }));
       return;
     }
     ScaffoldMessenger.of(context)

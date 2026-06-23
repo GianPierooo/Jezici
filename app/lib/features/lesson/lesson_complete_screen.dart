@@ -135,26 +135,33 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
                     children: [
                       _RewardTile(
                         icon: Icons.bolt_rounded,
-                        value: '+${r.xpEarned}',
+                        target: r.xpEarned.toDouble(),
+                        prefix: '+',
                         label: 'XP GANADO',
                         bg: AppColors.navActiveBg,
                         fg: AppColors.primary,
+                        delayMs: 120,
                       ),
                       const SizedBox(width: 12),
                       _RewardTile(
                         icon: Icons.check_circle_outline_rounded,
-                        value: r.graded == 0 ? '—' : '${r.accuracyPct}%',
+                        target: r.graded == 0 ? null : r.accuracyPct.toDouble(),
+                        suffix: '%',
+                        placeholder: '—',
                         label: 'PRECISIÓN',
                         bg: const Color(0xFFE7F9EF),
                         fg: AppColors.success,
+                        delayMs: 240,
                       ),
                       const SizedBox(width: 12),
                       _RewardTile(
                         icon: Icons.monetization_on_rounded,
-                        value: '+${r.goldEarned}',
+                        target: r.goldEarned.toDouble(),
+                        prefix: '+',
                         label: 'ORO',
                         bg: const Color(0xFFFFF4D6),
                         fg: AppColors.goldDark,
+                        delayMs: 360,
                       ),
                     ],
                   ),
@@ -431,53 +438,109 @@ class _TipCard extends StatelessWidget {
   }
 }
 
+/// Tile de recompensa con ENTRADA con rebote + CONTADOR animado (cuenta hasta el
+/// valor). El "jugo" de la pantalla de fin (Sistema_Diseno §6 · dinamismo).
 class _RewardTile extends StatelessWidget {
   const _RewardTile({
     required this.icon,
-    required this.value,
     required this.label,
     required this.bg,
     required this.fg,
+    this.target,
+    this.prefix = '',
+    this.suffix = '',
+    this.placeholder,
+    this.delayMs = 0,
   });
   final IconData icon;
-  final String value;
   final String label;
   final Color bg;
   final Color fg;
+  final double? target; // null → muestra placeholder, sin contador
+  final String prefix;
+  final String suffix;
+  final String? placeholder;
+  final int delayMs;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20),
-          boxShadow: const [
-            BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 5), blurRadius: 0),
-          ],
-        ),
-        child: Column(
-          children: [
-            Container(
-              width: 42,
-              height: 42,
-              decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(13)),
-              child: Icon(icon, color: fg, size: 22),
-            ),
-            const SizedBox(height: 7),
-            Text(value,
-                style: TextStyle(fontSize: 21, fontWeight: FontWeight.w900, color: fg)),
-            const SizedBox(height: 2),
-            Text(label,
-                style: const TextStyle(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 0.4,
-                    color: AppColors.textMuted)),
-          ],
+      child: _Reveal(
+        delayMs: delayMs,
+        scaleFrom: 0.7,
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 8),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: const [
+              BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 5), blurRadius: 0),
+            ],
+          ),
+          child: Column(
+            children: [
+              Container(
+                width: 42,
+                height: 42,
+                decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(13)),
+                child: Icon(icon, color: fg, size: 22),
+              ),
+              const SizedBox(height: 7),
+              target == null
+                  ? Text(placeholder ?? '—',
+                      style: TextStyle(fontSize: 21, fontWeight: FontWeight.w900, color: fg))
+                  : TweenAnimationBuilder<double>(
+                      // El contador arranca tras la entrada del tile.
+                      duration: Duration(milliseconds: 900 + delayMs),
+                      curve: Interval(delayMs / (900 + delayMs), 1, curve: Curves.easeOutCubic),
+                      tween: Tween(begin: 0, end: target),
+                      builder: (_, v, _) => Text('$prefix${v.round()}$suffix',
+                          style: TextStyle(fontSize: 21, fontWeight: FontWeight.w900, color: fg)),
+                    ),
+              const SizedBox(height: 2),
+              Text(label,
+                  style: const TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: 0.4,
+                      color: AppColors.textMuted)),
+            ],
+          ),
         ),
       ),
+    );
+  }
+}
+
+/// Entrada con fade + slide-up + rebote, escalonada por [delayMs]. SIN timers
+/// (un único TweenAnimationBuilder con curva `Interval` → determinista en tests).
+/// Respeta reduce-motion (aparece directo).
+class _Reveal extends StatelessWidget {
+  const _Reveal({required this.child, this.delayMs = 0, this.scaleFrom = 1.0});
+  final Widget child;
+  final int delayMs;
+  final double scaleFrom;
+
+  @override
+  Widget build(BuildContext context) {
+    final reduce = MediaQuery.maybeOf(context)?.disableAnimations ?? false;
+    if (reduce) return child;
+    final total = delayMs + 420;
+    return TweenAnimationBuilder<double>(
+      duration: Duration(milliseconds: total),
+      curve: Interval(delayMs / total, 1, curve: Curves.easeOutBack),
+      tween: Tween(begin: 0, end: 1),
+      builder: (_, t, child) {
+        final o = t.clamp(0.0, 1.0);
+        return Opacity(
+          opacity: o,
+          child: Transform.translate(
+            offset: Offset(0, (1 - t) * 16),
+            child: Transform.scale(scale: scaleFrom + (1 - scaleFrom) * t, child: child),
+          ),
+        );
+      },
+      child: child,
     );
   }
 }

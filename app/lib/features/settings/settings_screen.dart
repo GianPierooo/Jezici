@@ -512,10 +512,10 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   Future<void> _switchCourse(CourseInfo c) async {
     try {
       await ref.read(progressRepositoryProvider).setActiveCourse(c.id);
-      // Recarga todo lo que depende del curso activo.
+      // Recarga lo que depende del curso activo. `coursesProvider` cascada a
+      // `activeCourseIdProvider` → `mapUnitsProvider` (no hace falta invalidarlos
+      // a mano). El resto son RPC por-usuario que no se recomputan solas.
       ref.invalidate(coursesProvider);
-      ref.invalidate(activeCourseIdProvider);
-      ref.invalidate(mapUnitsProvider);
       ref.invalidate(lessonProgressProvider);
       ref.invalidate(skillsProvider);
       ref.invalidate(skillMasteryProvider);

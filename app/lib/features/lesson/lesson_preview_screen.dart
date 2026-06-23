@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/constants/skills.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/ui/jz_transitions.dart';
 import '../../data/models/content_item_model.dart';
 import '../../data/models/lesson_model.dart';
 import '../../data/providers.dart';
@@ -157,9 +158,7 @@ class _Preview extends StatelessWidget {
             onPressed: items.isEmpty
                 ? null
                 : () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => LessonPlayerScreen(lesson: lesson, items: items),
-                      ),
+                      jzRoute(LessonPlayerScreen(lesson: lesson, items: items)),
                     ),
           ),
           const Spacer(),

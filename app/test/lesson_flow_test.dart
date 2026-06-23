@@ -429,7 +429,9 @@ void main() {
     await tester.pump(); // diálogo de carga
     await tester.pump(const Duration(milliseconds: 120)); // resuelve el fake
     await tester.pump(); // navega a la pantalla de fin
-    await tester.pump(const Duration(milliseconds: 400)); // sin settle: confeti infinito
+    // Margen para la transición (jzRoute) + contadores animados de recompensa
+    // (0→valor) y la entrada escalonada de los tiles. Sin settle: confeti infinito.
+    await tester.pump(const Duration(milliseconds: 1600));
 
     // Pantalla de fin con el resumen del servidor (perfecto → golden).
     expect(find.text('¡Impecable! 🌟'), findsOneWidget);
