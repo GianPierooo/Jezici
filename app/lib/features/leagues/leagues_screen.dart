@@ -5,33 +5,56 @@ import '../../core/theme/app_colors.dart';
 import '../../data/models/league_models.dart';
 import '../../data/providers.dart';
 
-/// Pestaña LIGAS (Diseno_Gamificacion §ligas): liga semanal por XP, divisiones
-/// Bronce→Diamante, con zona de ascenso (top 5) y descenso (bottom 5). El XP
-/// semanal lo acumula el servidor. GA6: SOLO jugadores reales — sin bots; con
-/// baja población muestra un estado "arrancando" en vez de fabricar rivales.
-class LeaguesScreen extends ConsumerWidget {
+/// Pestaña LIGAS. Dos vistas vía segmento superior:
+///  • "Mi liga": ranking semanal por XP en TU división, con zonas de ascenso
+///    (top 7) y descenso (fondo 5) — el cierre/rollover ya es real (mig 059).
+///  • "Tablas": leaderboards por Métrica × Ventana × Alcance (get_leaderboard,
+///    SIN UUIDs). Estética medida: limpia, dinámica, legible.
+/// GA6: solo jugadores reales; con baja población, estado "arrancando".
+class LeaguesScreen extends StatefulWidget {
   const LeaguesScreen({super.key});
+
+  @override
+  State<LeaguesScreen> createState() => _LeaguesScreenState();
+}
+
+class _LeaguesScreenState extends State<LeaguesScreen> {
+  int _tab = 0; // 0 = Mi liga · 1 = Tablas
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      bottom: false,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 14, 20, 6),
+            child: _Segmented(
+              options: const ['Mi liga', 'Tablas'],
+              selected: _tab,
+              onChanged: (i) => setState(() => _tab = i),
+            ),
+          ),
+          Expanded(child: _tab == 0 ? const _MyLeagueView() : const _LeaderboardView()),
+        ],
+      ),
+    );
+  }
+}
+
+// ─── Mi liga (ranking semanal por división, get_league) ──────────────────────
+class _MyLeagueView extends ConsumerWidget {
+  const _MyLeagueView();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final async = ref.watch(leagueProvider);
-    return SafeArea(
-      bottom: false,
-      child: RefreshIndicator(
-        onRefresh: () async => ref.invalidate(leagueProvider),
-        child: async.when(
-          loading: () => const _Center(child: CircularProgressIndicator(color: AppColors.primary)),
-          error: (e, _) => _Center(
-            child: Column(mainAxisSize: MainAxisSize.min, children: [
-              const Icon(Icons.cloud_off_rounded, color: AppColors.textMuted, size: 40),
-              const SizedBox(height: 10),
-              const Text('No se pudo cargar la liga.',
-                  style: TextStyle(fontWeight: FontWeight.w800, color: AppColors.textMuted)),
-              TextButton(onPressed: () => ref.invalidate(leagueProvider), child: const Text('Reintentar')),
-            ]),
-          ),
-          data: (lg) => _Board(lg: lg),
-        ),
+    return RefreshIndicator(
+      onRefresh: () async => ref.invalidate(leagueProvider),
+      child: async.when(
+        loading: () => const _Center(child: CircularProgressIndicator(color: AppColors.primary)),
+        error: (e, _) => _ErrorBox(onRetry: () => ref.invalidate(leagueProvider), label: 'No se pudo cargar la liga.'),
+        data: (lg) => _Board(lg: lg),
       ),
     );
   }
@@ -46,20 +69,32 @@ class _Center extends StatelessWidget {
       );
 }
 
+class _ErrorBox extends StatelessWidget {
+  const _ErrorBox({required this.onRetry, required this.label});
+  final VoidCallback onRetry;
+  final String label;
+  @override
+  Widget build(BuildContext context) => _Center(
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          const Icon(Icons.cloud_off_rounded, color: AppColors.textMuted, size: 40),
+          const SizedBox(height: 10),
+          Text(label, style: const TextStyle(fontWeight: FontWeight.w800, color: AppColors.textMuted)),
+          TextButton(onPressed: onRetry, child: const Text('Reintentar')),
+        ]),
+      );
+}
+
 class _Board extends StatelessWidget {
   const _Board({required this.lg});
   final LeagueStanding lg;
 
   @override
   Widget build(BuildContext context) {
-    // Defensa: aunque el backend (GA6) ya solo devuelve jugadores reales, nunca
-    // pintamos bots si alguno se colara — Ligas es sin rivales fabricados.
     final members = lg.members.where((m) => !m.isBot).toList();
     final n = members.length;
     return ListView(
-      padding: const EdgeInsets.fromLTRB(20, 18, 20, 110),
+      padding: const EdgeInsets.fromLTRB(20, 12, 20, 110),
       children: [
-        // Cabecera de división.
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
           decoration: BoxDecoration(
@@ -72,7 +107,7 @@ class _Board extends StatelessWidget {
           ),
           child: Row(
             children: [
-              const Text('🏆', style: TextStyle(fontSize: 40)),
+              const Icon(Icons.emoji_events_rounded, color: Colors.white, size: 38),
               const SizedBox(width: 14),
               Expanded(
                 child: Column(
@@ -94,16 +129,12 @@ class _Board extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         if (lg.warmingUp) ...[
-          // Baja población: estado honesto "arrancando" (sin bots).
           Container(
             padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: AppColors.navActiveBg,
-              borderRadius: BorderRadius.circular(18),
-            ),
+            decoration: BoxDecoration(color: AppColors.navActiveBg, borderRadius: BorderRadius.circular(18)),
             child: Row(
               children: [
-                const Text('🌱', style: TextStyle(fontSize: 30)),
+                const Icon(Icons.eco_rounded, color: AppColors.success, size: 26),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
@@ -127,7 +158,7 @@ class _Board extends StatelessWidget {
         const Text('Clasificación de la semana',
             style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
         const SizedBox(height: 4),
-        const Text('Suma XP (lecciones y práctica) para subir. Reset cada lunes.',
+        const Text('Suma XP (lecciones y práctica) para subir. Cierre cada lunes.',
             style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
         const SizedBox(height: 10),
         Container(
@@ -140,14 +171,14 @@ class _Board extends StatelessWidget {
             children: [
               for (var i = 0; i < n; i++) ...[
                 if (!lg.warmingUp && i == lg.promote)
-                  const _ZoneDivider(label: 'ZONA DE ASCENSO ↑', color: AppColors.success),
+                  const _ZoneDivider(label: 'ZONA DE ASCENSO', icon: Icons.arrow_upward_rounded, color: AppColors.success),
                 if (!lg.warmingUp && i == n - lg.demote)
-                  const _ZoneDivider(label: 'ZONA DE DESCENSO ↓', color: AppColors.coral),
+                  const _ZoneDivider(label: 'ZONA DE DESCENSO', icon: Icons.arrow_downward_rounded, color: AppColors.coral),
                 _Row(
-                  // Zonas por ÍNDICE (coherente con los divisores de arriba) —
-                  // así, si se filtrara un bot y los ranks quedaran no contiguos,
-                  // el coloreo no se desalinea del separador.
-                  m: members[i],
+                  rank: members[i].rank,
+                  name: members[i].name,
+                  valueLabel: '${members[i].weeklyXp} XP',
+                  isMe: members[i].isMe,
                   promote: !lg.warmingUp && i < lg.promote,
                   demote: !lg.warmingUp && i >= n - lg.demote,
                 ),
@@ -161,8 +192,9 @@ class _Board extends StatelessWidget {
 }
 
 class _ZoneDivider extends StatelessWidget {
-  const _ZoneDivider({required this.label, required this.color});
+  const _ZoneDivider({required this.label, required this.icon, required this.color});
   final String label;
+  final IconData icon;
   final Color color;
   @override
   Widget build(BuildContext context) {
@@ -170,25 +202,256 @@ class _ZoneDivider extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
       color: color.withValues(alpha: 0.10),
-      child: Text(label,
-          style: TextStyle(fontSize: 10, fontWeight: FontWeight.w900, letterSpacing: 0.6, color: color)),
+      child: Row(children: [
+        Icon(icon, size: 13, color: color),
+        const SizedBox(width: 6),
+        Text(label, style: TextStyle(fontSize: 10, fontWeight: FontWeight.w900, letterSpacing: 0.6, color: color)),
+      ]),
     );
   }
 }
 
+// ─── Tablas (leaderboards: get_leaderboard) ──────────────────────────────────
+class _LeaderboardView extends ConsumerStatefulWidget {
+  const _LeaderboardView();
+  @override
+  ConsumerState<_LeaderboardView> createState() => _LeaderboardViewState();
+}
+
+class _Metric {
+  const _Metric(this.key, this.label, this.unit, this.windowed);
+  final String key;
+  final String label;
+  final String unit; // sufijo del valor ('' = sin sufijo)
+  final bool windowed; // si admite ventana (racha no)
+}
+
+const _metrics = [
+  _Metric('xp', 'XP', 'XP', true),
+  _Metric('lessons', 'Lecciones', 'lecc.', true),
+  _Metric('streak', 'Racha', 'd', false),
+  _Metric('certificates', 'Certificados', 'cert.', true),
+];
+const _windows = [
+  ['weekly', 'Semanal'],
+  ['monthly', 'Mensual'],
+  ['yearly', 'Anual'],
+  ['alltime', 'Histórico'],
+];
+
+class _LeaderboardViewState extends ConsumerState<_LeaderboardView> {
+  int _metric = 0;
+  int _window = 0;
+  int _scope = 0; // 0 global · 1 división
+
+  @override
+  Widget build(BuildContext context) {
+    final metric = _metrics[_metric];
+    // La racha más larga no es por ventana: se fija a histórico.
+    final windowKey = metric.windowed ? _windows[_window][0] : 'alltime';
+    final scopeKey = _scope == 0 ? 'global' : 'division';
+    final key = (metric: metric.key, window: windowKey, scope: scopeKey);
+    final async = ref.watch(leaderboardProvider(key));
+
+    return RefreshIndicator(
+      onRefresh: () async => ref.invalidate(leaderboardProvider(key)),
+      child: ListView(
+        padding: const EdgeInsets.fromLTRB(20, 6, 20, 110),
+        children: [
+          _Segmented(
+            options: [for (final m in _metrics) m.label],
+            selected: _metric,
+            onChanged: (i) => setState(() => _metric = i),
+          ),
+          const SizedBox(height: 8),
+          if (metric.windowed)
+            _Segmented(
+              options: [for (final w in _windows) w[1]],
+              selected: _window,
+              onChanged: (i) => setState(() => _window = i),
+              small: true,
+            )
+          else
+            const _Hint('Racha más larga de todos los tiempos.'),
+          const SizedBox(height: 8),
+          _Segmented(
+            options: const ['Global', 'Mi división'],
+            selected: _scope,
+            onChanged: (i) => setState(() => _scope = i),
+            small: true,
+          ),
+          const SizedBox(height: 14),
+          async.when(
+            loading: () => const SizedBox(height: 220, child: Center(child: CircularProgressIndicator(color: AppColors.primary))),
+            error: (e, _) => SizedBox(
+              height: 220,
+              child: Center(
+                child: Column(mainAxisSize: MainAxisSize.min, children: [
+                  const Icon(Icons.cloud_off_rounded, color: AppColors.textMuted, size: 36),
+                  const SizedBox(height: 8),
+                  const Text('No se pudo cargar la tabla.',
+                      style: TextStyle(fontWeight: FontWeight.w800, color: AppColors.textMuted)),
+                  TextButton(onPressed: () => ref.invalidate(leaderboardProvider(key)), child: const Text('Reintentar')),
+                ]),
+              ),
+            ),
+            data: (lb) => _LeaderboardBody(lb: lb, unit: metric.unit),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _LeaderboardBody extends StatelessWidget {
+  const _LeaderboardBody({required this.lb, required this.unit});
+  final LeaderboardResult lb;
+  final String unit;
+
+  String _val(int v) => unit.isEmpty ? '$v' : '$v $unit';
+
+  @override
+  Widget build(BuildContext context) {
+    if (lb.entries.isEmpty) {
+      return Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(color: AppColors.navActiveBg, borderRadius: BorderRadius.circular(18)),
+        child: const Text('Aún no hay datos para esta tabla. ¡Sé el primero en aparecer!',
+            style: TextStyle(fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+      );
+    }
+    return Column(
+      children: [
+        // Tu posición.
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(colors: [AppColors.primaryLight, AppColors.primary]),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          child: Row(
+            children: [
+              const Icon(Icons.person_rounded, color: Colors.white, size: 20),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                    lb.myRank != null ? 'Tu posición: #${lb.myRank} de ${lb.total}' : 'Aún no estás en esta tabla',
+                    style: const TextStyle(fontWeight: FontWeight.w900, color: Colors.white, fontSize: 14)),
+              ),
+              Text(_val(lb.myValue),
+                  style: const TextStyle(fontWeight: FontWeight.w900, color: Colors.white, fontSize: 14)),
+            ],
+          ),
+        ),
+        const SizedBox(height: 12),
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(18),
+            boxShadow: const [BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 5), blurRadius: 0)],
+          ),
+          child: Column(
+            children: [
+              for (final e in lb.entries)
+                _Row(rank: e.rank, name: e.name, valueLabel: _val(e.value), isMe: e.isMe),
+            ],
+          ),
+        ),
+        if (lb.total > lb.entries.length) ...[
+          const SizedBox(height: 10),
+          Text('Mostrando top ${lb.entries.length} de ${lb.total}',
+              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+        ],
+      ],
+    );
+  }
+}
+
+// ─── Widgets compartidos ─────────────────────────────────────────────────────
+class _Segmented extends StatelessWidget {
+  const _Segmented({
+    required this.options,
+    required this.selected,
+    required this.onChanged,
+    this.small = false,
+  });
+  final List<String> options;
+  final int selected;
+  final ValueChanged<int> onChanged;
+  final bool small;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(4),
+      decoration: BoxDecoration(color: const Color(0xFFEDEFF7), borderRadius: BorderRadius.circular(13)),
+      child: Row(
+        children: [
+          for (var i = 0; i < options.length; i++)
+            Expanded(
+              child: GestureDetector(
+                onTap: () => onChanged(i),
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 160),
+                  padding: EdgeInsets.symmetric(vertical: small ? 7 : 9),
+                  decoration: BoxDecoration(
+                    color: i == selected ? Colors.white : Colors.transparent,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: i == selected
+                        ? const [BoxShadow(color: Color(0x14000000), offset: Offset(0, 2), blurRadius: 5)]
+                        : null,
+                  ),
+                  alignment: Alignment.center,
+                  child: Text(
+                    options[i],
+                    style: TextStyle(
+                      fontSize: small ? 12 : 13.5,
+                      fontWeight: FontWeight.w900,
+                      color: i == selected ? AppColors.primary : AppColors.textMuted,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+class _Hint extends StatelessWidget {
+  const _Hint(this.text);
+  final String text;
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
+        child: Text(text, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+      );
+}
+
 class _Row extends StatelessWidget {
-  const _Row({required this.m, required this.promote, required this.demote});
-  final LeagueMember m;
+  const _Row({
+    required this.rank,
+    required this.name,
+    required this.valueLabel,
+    required this.isMe,
+    this.promote = false,
+    this.demote = false,
+  });
+  final int rank;
+  final String name;
+  final String valueLabel;
+  final bool isMe;
   final bool promote;
   final bool demote;
 
   @override
   Widget build(BuildContext context) {
-    final medal = m.rank == 1 ? '🥇' : m.rank == 2 ? '🥈' : m.rank == 3 ? '🥉' : null;
+    final medal = rank == 1 ? '🥇' : rank == 2 ? '🥈' : rank == 3 ? '🥉' : null;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
       decoration: BoxDecoration(
-        color: m.isMe ? AppColors.navActiveBg : Colors.transparent,
+        color: isMe ? AppColors.navActiveBg : Colors.transparent,
         border: const Border(bottom: BorderSide(color: Color(0xFFF0F1F8))),
       ),
       child: Row(
@@ -197,7 +460,7 @@ class _Row extends StatelessWidget {
             width: 28,
             child: medal != null
                 ? Text(medal, style: const TextStyle(fontSize: 18))
-                : Text('${m.rank}',
+                : Text('$rank',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         fontSize: 14,
@@ -208,26 +471,23 @@ class _Row extends StatelessWidget {
           Container(
             width: 34, height: 34, alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: m.isMe ? AppColors.primary : const Color(0xFFEDEFF7),
+              color: isMe ? AppColors.primary : const Color(0xFFEDEFF7),
               shape: BoxShape.circle,
             ),
-            child: m.isMe
-                ? const Text('🦜', style: TextStyle(fontSize: 16))
-                : Text(
-                    m.name.isNotEmpty ? m.name.substring(0, 1).toUpperCase() : '?',
-                    style: const TextStyle(
-                        fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.textMuted)),
+            child: isMe
+                ? const Icon(Icons.person_rounded, size: 18, color: Colors.white)
+                : Text(name.isNotEmpty ? name.substring(0, 1).toUpperCase() : '?',
+                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.textMuted)),
           ),
           const SizedBox(width: 11),
           Expanded(
-            child: Text(m.name,
+            child: Text(name,
                 style: TextStyle(
                     fontSize: 14.5,
-                    fontWeight: m.isMe ? FontWeight.w900 : FontWeight.w700,
-                    color: m.isMe ? AppColors.primary : AppColors.text)),
+                    fontWeight: isMe ? FontWeight.w900 : FontWeight.w700,
+                    color: isMe ? AppColors.primary : AppColors.text)),
           ),
-          Text('${m.weeklyXp} XP',
-              style: const TextStyle(fontSize: 13.5, fontWeight: FontWeight.w900, color: AppColors.text)),
+          Text(valueLabel, style: const TextStyle(fontSize: 13.5, fontWeight: FontWeight.w900, color: AppColors.text)),
         ],
       ),
     );

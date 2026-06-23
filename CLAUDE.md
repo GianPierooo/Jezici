@@ -47,9 +47,19 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
 | Contenido es→en A1–B2, es→pt A1–A2 | ✅ sembrado y live |
 | **Audio** (listening/speaking TTS) | ✅ **312/312** en Storage + degradación/unlock iOS **LIVE** (deploy 68266d3). Ver FINDINGS.md §2 |
 | **Seguridad** (4 hallazgos) | ✅ **cerrados** en DB (mig 058) + botón export en Ajustes **LIVE** (deploy 68266d3). Ver abajo |
-| Ligas | ⚠️ acumulan XP + ranking semanal, pero **sin job de cierre ni ascensos/descensos** (UI los promete). Sin histórico mensual/anual. (prompt aparte) |
+| Ligas + Leaderboards | ✅ rollover real (mig 059): cierre semanal idempotente/lazy + ascensos (top 7)/descensos (fondo 5) Bronce↔Diamante + snapshots. `get_leaderboard` (XP/Racha/Lecciones/Certificados × Semanal/Mensual/Anual/Histórico × Global/División, SIN user_id). UI con segmentos (Mi liga / Tablas) **LIVE** (deploy-pending hasta push). Falta: **cron** que dispare el cierre (hoy es lazy-on-read; ver abajo) |
 | C1/C2 | ❌ documentados, no sembrados (BD llega a B2 en es→en) |
 | Conversar / Simulacros | ⏸️ pantallas existen, **ocultas** (decisión GA6) |
+
+### Ligas — automatización del cierre (pendiente del dueño)
+El rollover (`jz_close_weeks()`) es **idempotente + lazy**: se ejecuta al leer
+(`get_league`/`get_leaderboard`), así que las semanas vencidas se cierran solas
+cuando alguien abre Ligas — no se pierde nada aunque no haya cron. Para garantizar
+el cierre puntual (lunes 00:00 UTC) aunque nadie entre, automatizar con UNA opción:
+**(a)** `pg_cron` (Supabase Pro): `select cron.schedule('jz-rollover','5 0 * * 1','select jz_close_weeks();')`;
+**(b)** Edge Function + cron externo (GitHub Actions/cron-job.org) que llame a un RPC.
+Movimiento real solo en ligas ≥13 (top 7 suben / fondo 5 bajan); en beta (<13) nadie
+se mueve, por diseño.
 
 ## Seguridad — 4 hallazgos (todos CERRADOS en DB, mig 058 · 2026-06-23)
 1. ✅ `league_members`/`leagues` SELECT directo **revocado** (daba UUIDs de auth ajenos).

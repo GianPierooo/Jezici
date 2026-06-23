@@ -252,7 +252,28 @@ dominio como el alumno espera. Recomiendo instrumentar `log_event` con el
 
 ## 4. LIGAS
 
-### Estado real por componente
+> **ACTUALIZACIÓN 2026-06-23 (misión ligas+leaderboards) — L1/L2 RESUELTOS ✅ (mig 059):**
+> - **Rollover real:** `jz_close_weeks()` cierra cada semana vencida — **idempotente**
+>   (marca `league_periods_closed`; 2ª pasada → 0) y **lazy** (se llama dentro de
+>   `get_league`/`get_leaderboard`, no depende de cron). Escribe **snapshots**
+>   (`league_snapshots`) y aplica **ascensos (top 7) / descensos (fondo 5)** entre
+>   Bronce↔Diamante vía `user_division` + `jz_ensure_league` divisional. Movimiento solo
+>   en ligas ≥13 (sin solape); en beta (<13) nadie se mueve, por diseño.
+>   Verificado en vivo: semana 2026-06-15 cerrada, 6 snapshots, idempotente; lógica
+>   probada en escenario sintético de 15 (1-7 suben, 8-10 quedan, 11-15 bajan; extremos capados).
+> - **Leaderboards:** `get_leaderboard(metric, window, scope, limit, offset)` SECURITY
+>   DEFINER, **SIN user_id** (rank/name/value/is_me). Métricas XP/Lecciones/Racha/Certificados ×
+>   ventanas Semanal/Mensual/Anual/Histórico × alcance Global/División, derivadas de las
+>   fuentes vivas (daily_goals, user_lesson_progress, streaks, certificates). Top-N + paginación.
+>   Verificado: league_members/leagues siguen **403**; ninguna combinación filtra UUIDs.
+> - **UI:** pestaña Ligas con segmento **Mi liga | Tablas**; Tablas con selectores
+>   Métrica × Ventana × Alcance. Conserva el board semanal por división (zonas reales).
+> - **Cron pendiente del dueño** (no bloqueante; el lazy-close cubre): `pg_cron` (Pro) o
+>   Edge Function + cron externo llamando a `jz_close_weeks()`. Detalle en CLAUDE.md.
+> - analyze 0 · test 42/42 (+ parse de LeaderboardResult + render de Tablas) · build web OK.
+> El detalle original (pre-fix) se conserva abajo.
+
+### Estado real por componente (pre-fix)
 
 | Componente | Estado | Ubicación |
 |---|---|---|
@@ -337,8 +358,8 @@ por roles SQL; agregar/quitar = `insert/delete` en `admins`). Dueño ya sembrado
 | P1 | Progresión | 🟢 P1 ✅ | Listening sin audio ya no penaliza (se salta) y además el audio existe | Sí (deriva de A1/A2) |
 | P2 | Progresión | 🟡 P2 | Guard faltante para checkpoint solo-stub (teórico; 0 casos en seed) | Sí (BD: 0 casos) |
 | P3 | Progresión | 🟡 P2 | Rama muerta `in_progress`; accuracy=0 en lección solo-stub | Sí |
-| L1 | Ligas | 🟠 P1 | UI promete ascensos/descensos inexistentes; sin job de cierre | Sí |
-| L2 | Ligas | 🟡 P2 | Sin snapshots/histórico → mensual/anual imposible sin nueva infra | Sí |
+| L1 | Ligas | 🟢 P1 ✅ | Rollover real (mig 059): cierre idempotente/lazy + ascensos/descensos; UI ya no miente | Sí (live + sintético) |
+| L2 | Ligas | 🟢 P2 ✅ | Snapshots + get_leaderboard (mensual/anual/histórico, global/división, sin UUIDs) | Sí (JWT real) |
 | S1 | Seguridad | 🟢 P1 ✅ | `league_members`/`leagues` SELECT cerrado (403); `get_league` sin UUIDs (mig 058) | Sí (JWT real) |
 | S2 | Seguridad | 🟢 P1 ✅ | Gate admin en get_metrics/engagement/funnel (`admins`+`jz_is_admin`); Gian sembrado | Sí (JWT real) |
 | S3 | Seguridad | 🟢 P2 ✅ | `log_event` allowlist(8)+truncado(>2KB)+rate-limit(120/min) | Sí (bogus→0 filas) |

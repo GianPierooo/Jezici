@@ -506,6 +506,26 @@ class ProgressRepository {
     return LeagueStanding.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
+  /// Leaderboards (get_leaderboard): ranking por métrica × ventana × alcance,
+  /// SECURITY DEFINER, SIN user_id. metric: xp|lessons|streak|certificates ·
+  /// window: weekly|monthly|yearly|alltime · scope: global|division.
+  Future<LeaderboardResult> fetchLeaderboard({
+    required String metric,
+    required String window,
+    required String scope,
+    int limit = 50,
+    int offset = 0,
+  }) async {
+    final res = await _client.rpc('get_leaderboard', params: {
+      'p_metric': metric,
+      'p_window': window,
+      'p_scope': scope,
+      'p_limit': limit,
+      'p_offset': offset,
+    });
+    return LeaderboardResult.fromJson(Map<String, dynamic>.from(res as Map));
+  }
+
   /// Certificados de nivel emitidos del usuario.
   Future<List<Certificate>> fetchCertificates() async {
     if (_uid == null) return const [];

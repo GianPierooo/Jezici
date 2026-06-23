@@ -18,6 +18,7 @@ import 'package:jezici/data/providers.dart';
 import 'package:jezici/data/repositories/progress_repository.dart';
 import 'package:jezici/features/lesson/grading/grader.dart' as grd;
 import 'package:jezici/features/lesson/lesson_player_screen.dart';
+import 'package:jezici/features/leagues/leagues_screen.dart';
 
 /// Repo falso (implements, sin SupabaseClient → sin red ni timers).
 class FakeProgressRepository implements ProgressRepository {
@@ -146,6 +147,16 @@ class FakeProgressRepository implements ProgressRepository {
   Future<LeagueStanding> fetchLeague() async =>
       const LeagueStanding(division: 'bronce', myRank: 1, promote: 5, demote: 5, members: []);
   @override
+  Future<LeaderboardResult> fetchLeaderboard({
+    required String metric,
+    required String window,
+    required String scope,
+    int limit = 50,
+    int offset = 0,
+  }) async =>
+      LeaderboardResult(
+          metric: metric, window: window, scope: scope, total: 0, myRank: null, myValue: 0, entries: const []);
+  @override
   Future<LevelExamStatus> fetchLevelExamStatus() async => LevelExamStatus.empty;
   @override
   Future<CheckpointStartData> startLevelExam() async => const CheckpointStartData(
@@ -215,6 +226,31 @@ class CapturingFakeRepository extends FakeProgressRepository {
     lastAnswers = answers;
     return super.completeLesson(lessonId, answers);
   }
+}
+
+/// Fake con un leaderboard de muestra para la vista "Tablas".
+class LeaderboardFakeRepository extends FakeProgressRepository {
+  @override
+  Future<LeaderboardResult> fetchLeaderboard({
+    required String metric,
+    required String window,
+    required String scope,
+    int limit = 50,
+    int offset = 0,
+  }) async =>
+      LeaderboardResult(
+        metric: metric,
+        window: window,
+        scope: scope,
+        total: 3,
+        myRank: 2,
+        myValue: 120,
+        entries: const [
+          LeaderboardEntry(rank: 1, name: 'Sofía', value: 300, isMe: false),
+          LeaderboardEntry(rank: 2, name: 'Tú', value: 120, isMe: true),
+          LeaderboardEntry(rank: 3, name: 'Marco', value: 90, isMe: false),
+        ],
+      );
 }
 
 Widget _wrap(Widget child, {List<ContentItemModel> items = const []}) => ProviderScope(
@@ -503,5 +539,43 @@ void main() {
     expect(repo.lastAnswers, isNotNull);
     expect(repo.lastAnswers!.length, 1);
     expect(repo.lastAnswers!.single['item_id'], 'm1');
+  });
+
+  test('LeaderboardResult.fromJson parsea entries sin user_id', () {
+    final r = LeaderboardResult.fromJson(const {
+      'metric': 'xp', 'window': 'monthly', 'scope': 'global',
+      'total': 2, 'my_rank': 1, 'my_value': 500,
+      'entries': [
+        {'rank': 1, 'name': 'Tú', 'value': 500, 'is_me': true},
+        {'rank': 2, 'name': 'Ana', 'value': 200, 'is_me': false},
+      ],
+    });
+    expect(r.metric, 'xp');
+    expect(r.window, 'monthly');
+    expect(r.myRank, 1);
+    expect(r.entries.length, 2);
+    expect(r.entries.first.isMe, true);
+    expect(r.entries[1].name, 'Ana');
+  });
+
+  testWidgets('Tablas (leaderboards) renderiza ranking y tu posición',
+      (WidgetTester tester) async {
+    tester.view.physicalSize = const Size(440, 950);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    await tester.pumpWidget(_wrapRepo(const LeaguesScreen(), LeaderboardFakeRepository()));
+    await tester.pumpAndSettle();
+
+    // Cambia al segmento "Tablas".
+    await tester.tap(find.text('Tablas'));
+    await tester.pumpAndSettle();
+
+    // Filas del leaderboard + "tu posición".
+    expect(find.text('Sofía'), findsOneWidget);
+    expect(find.text('Marco'), findsOneWidget);
+    expect(find.text('300 XP'), findsOneWidget);
+    expect(find.textContaining('Tu posición: #2'), findsOneWidget);
   });
 }

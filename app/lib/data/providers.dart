@@ -135,6 +135,18 @@ final leagueProvider = FutureProvider<LeagueStanding>(
   (ref) => ref.watch(progressRepositoryProvider).fetchLeague(),
 );
 
+/// Leaderboards: clave (metric, window, scope). Los records dan igualdad
+/// estructural → Riverpod cachea por combinación.
+typedef LeaderboardKey = ({String metric, String window, String scope});
+final leaderboardProvider =
+    FutureProvider.family<LeaderboardResult, LeaderboardKey>(
+  (ref, k) => ref.watch(progressRepositoryProvider).fetchLeaderboard(
+        metric: k.metric,
+        window: k.window,
+        scope: k.scope,
+      ),
+);
+
 /// Estado del examen de nivel (desbloqueo + requisitos).
 final levelExamStatusProvider = FutureProvider<LevelExamStatus>(
   (ref) => ref.watch(progressRepositoryProvider).fetchLevelExamStatus(),

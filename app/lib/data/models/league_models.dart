@@ -22,6 +22,59 @@ class LeagueMember {
       );
 }
 
+/// Una fila de un leaderboard (de get_leaderboard). SIN user_id por diseño.
+class LeaderboardEntry {
+  const LeaderboardEntry({
+    required this.rank,
+    required this.name,
+    required this.value,
+    required this.isMe,
+  });
+  final int rank;
+  final String name;
+  final int value;
+  final bool isMe;
+
+  factory LeaderboardEntry.fromJson(Map<String, dynamic> j) => LeaderboardEntry(
+        rank: (j['rank'] as num?)?.toInt() ?? 0,
+        name: j['name'] as String? ?? 'Aprendiz',
+        value: (j['value'] as num?)?.toInt() ?? 0,
+        isMe: j['is_me'] as bool? ?? false,
+      );
+}
+
+/// Resultado de get_leaderboard(metric, window, scope).
+class LeaderboardResult {
+  const LeaderboardResult({
+    required this.metric,
+    required this.window,
+    required this.scope,
+    required this.total,
+    required this.myRank,
+    required this.myValue,
+    required this.entries,
+  });
+  final String metric;
+  final String window;
+  final String scope;
+  final int total;
+  final int? myRank;
+  final int myValue;
+  final List<LeaderboardEntry> entries;
+
+  factory LeaderboardResult.fromJson(Map<String, dynamic> j) => LeaderboardResult(
+        metric: j['metric'] as String? ?? 'xp',
+        window: j['window'] as String? ?? 'weekly',
+        scope: j['scope'] as String? ?? 'global',
+        total: (j['total'] as num?)?.toInt() ?? 0,
+        myRank: (j['my_rank'] as num?)?.toInt(),
+        myValue: (j['my_value'] as num?)?.toInt() ?? 0,
+        entries: ((j['entries'] as List?) ?? const [])
+            .map((e) => LeaderboardEntry.fromJson(Map<String, dynamic>.from(e as Map)))
+            .toList(),
+      );
+}
+
 /// La liga semanal del usuario (de get_league).
 class LeagueStanding {
   const LeagueStanding({
