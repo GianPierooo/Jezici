@@ -11,6 +11,7 @@ class TipModel {
     this.weakSkill,
     this.unitOrder,
     this.seenAt,
+    this.seen = false,
   });
 
   final String id;
@@ -23,6 +24,7 @@ class TipModel {
   final String? weakSkill; // skill más débil del usuario (personalización)
   final int? unitOrder;
   final String? seenAt;
+  final bool seen; // en la Referencia: si ya lo viste (cuaderno)
 
   /// Etiqueta legible del tipo (para el chip).
   String get typeLabel => switch (type) {
@@ -45,5 +47,31 @@ class TipModel {
         weakSkill: j['weak_skill'] as String?,
         unitOrder: (j['unit_order'] as num?)?.toInt(),
         seenAt: j['seen_at'] as String?,
+        seen: j['seen'] as bool? ?? false,
+      );
+}
+
+/// Referencia navegable (get_reference): conceptos curados del curso activo +
+/// la habilidad más floja sugerida. Estilo Busuu "Grammar Review".
+class ReferenceData {
+  const ReferenceData({required this.weakest, required this.tips});
+  final String? weakest;
+  final List<TipModel> tips;
+
+  /// Tips agrupados por habilidad, en orden reading→listening→writing→speaking.
+  Map<String, List<TipModel>> get bySkill {
+    const order = ['reading', 'listening', 'writing', 'speaking'];
+    final m = <String, List<TipModel>>{for (final s in order) s: []};
+    for (final t in tips) {
+      (m[t.skill] ??= []).add(t);
+    }
+    return m;
+  }
+
+  factory ReferenceData.fromJson(Map<String, dynamic> j) => ReferenceData(
+        weakest: j['weakest'] as String?,
+        tips: ((j['tips'] as List?) ?? const [])
+            .map((e) => TipModel.fromJson(Map<String, dynamic>.from(e as Map)))
+            .toList(),
       );
 }

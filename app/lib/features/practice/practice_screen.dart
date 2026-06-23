@@ -3,8 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/constants/skills.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/ui/jz_transitions.dart';
 import '../../data/models/practice_models.dart';
 import '../../data/providers.dart';
+import '../reference/reference_screen.dart';
 import 'practice_player_screen.dart';
 
 /// Pestaña PRACTICAR (Estructura_App): repaso espaciado, refuerzo de
@@ -115,6 +117,13 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
           const Text('Refuerza lo aprendido. Suma XP (menos que una lección nueva).',
               style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
           const SizedBox(height: 18),
+          _Card(
+            emoji: '📚',
+            title: 'Repaso',
+            subtitle: 'Tus conceptos por habilidad + tu dominio',
+            color: AppColors.primaryDark,
+            onTap: () => Navigator.of(context).push(jzRoute(const ReferenceScreen())),
+          ),
           _Card(
             emoji: '🔁',
             title: 'Rescate de palabras',

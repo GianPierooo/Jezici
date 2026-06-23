@@ -30,6 +30,11 @@ final profileProvider = FutureProvider<ProfileInfo>(
   (ref) => ref.watch(progressRepositoryProvider).fetchProfile(),
 );
 
+/// Referencia navegable (capa "enseña"): conceptos del curso activo + skill floja.
+final referenceProvider = FutureProvider<ReferenceData>(
+  (ref) => ref.watch(progressRepositoryProvider).fetchReference(),
+);
+
 /// Cuaderno de datos: tips pedagógicos vistos por el usuario (capa "enseña").
 final notebookProvider = FutureProvider<List<TipModel>>(
   (ref) => ref.watch(progressRepositoryProvider).getNotebook(),

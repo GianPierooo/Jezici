@@ -19,6 +19,7 @@ import 'package:jezici/data/repositories/progress_repository.dart';
 import 'package:jezici/features/lesson/grading/grader.dart' as grd;
 import 'package:jezici/features/lesson/lesson_player_screen.dart';
 import 'package:jezici/features/leagues/leagues_screen.dart';
+import 'package:jezici/features/reference/reference_screen.dart';
 
 /// Repo falso (implements, sin SupabaseClient → sin red ni timers).
 class FakeProgressRepository implements ProgressRepository {
@@ -68,6 +69,8 @@ class FakeProgressRepository implements ProgressRepository {
   Future<TipModel?> getLessonTip(String lessonId) async => null;
   @override
   Future<List<TipModel>> getNotebook() async => const [];
+  @override
+  Future<ReferenceData> fetchReference() async => const ReferenceData(weakest: null, tips: []);
   @override
   Future<ProfileInfo> fetchProfile() async => ProfileInfo.empty;
   @override
@@ -265,6 +268,22 @@ Widget _wrapRepo(Widget child, ProgressRepository repo) => ProviderScope(
       overrides: [progressRepositoryProvider.overrideWithValue(repo)],
       child: MaterialApp(home: child),
     );
+
+/// Fake con datos de Referencia para la pantalla de Repaso.
+class ReferenceFakeRepository extends FakeProgressRepository {
+  @override
+  Future<ReferenceData> fetchReference() async => ReferenceData(
+        weakest: 'reading',
+        tips: [
+          TipModel(
+              id: 'r1', type: 'tip_idioma', skill: 'reading', cefrLevel: 'A1',
+              title: 'A / An según el sonido', body: 'Usa "an" antes de sonido vocálico.', seen: true),
+          TipModel(
+              id: 'w1', type: 'error_comun', skill: 'writing', cefrLevel: 'A1',
+              title: 'No olvides el sujeto', body: 'En inglés el sujeto es obligatorio.'),
+        ],
+      );
+}
 
 List<ContentItemModel> _unit1Lesson1Items() => [
       ContentItemModel(
@@ -579,5 +598,22 @@ void main() {
     expect(find.text('Marco'), findsOneWidget);
     expect(find.text('300 XP'), findsOneWidget);
     expect(find.textContaining('Tu posición: #2'), findsOneWidget);
+  });
+
+  testWidgets('Referencia (Repaso) lista conceptos por skill + punto flojo',
+      (WidgetTester tester) async {
+    tester.view.physicalSize = const Size(440, 1200);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    await tester.pumpWidget(_wrapRepo(const ReferenceScreen(), ReferenceFakeRepository()));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Repaso'), findsWidgets); // título
+    expect(find.textContaining('Tu punto flojo: Lectura'), findsOneWidget);
+    expect(find.text('A / An según el sonido'), findsOneWidget);
+    expect(find.text('No olvides el sujeto'), findsOneWidget);
+    expect(find.text('visto'), findsOneWidget); // el tip de reading está marcado visto
   });
 }

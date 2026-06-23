@@ -55,6 +55,13 @@ class ProgressRepository {
         .toList();
   }
 
+  /// Referencia navegable (RPC get_reference): conceptos del curso activo +
+  /// habilidad más floja. No marca como visto (es solo navegación).
+  Future<ReferenceData> fetchReference() async {
+    final res = await _client.rpc('get_reference');
+    return ReferenceData.fromJson(Map<String, dynamic>.from(res as Map));
+  }
+
   // ── Perfil (nombre real, país, avatar, bio) ───────────────────────────────
 
   /// Perfil propio para el hero (RPC get_profile).

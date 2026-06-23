@@ -52,6 +52,7 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
 |---|---|
 | Loop lección + grading server-side | ✅ verde y live |
 | Dinamismo/UX (loop) | ✅ 1ª tanda LIVE (deploy-pending): recompensa con contadores+entrada escalonada, feedback ✅/❌ animado, transiciones `jzRoute`, skeletons en Ligas. Pendiente: tokens de espaciado, mascota en más pantallas, radar animado. Ver UX_AUDIT.md |
+| Capa "enseña" (tips/cuaderno/referencia) | ✅ tip post-lección (personalizado a skill floja, voz del coach) + cuaderno (alcanzable desde Perfil) + **Referencia/Repaso** (mig 060 `get_reference`: conceptos por skill + dominio + "practicar esto" + punto flojo). 72 tips **solo es→en** (18/nivel A1–B2). Pendiente: **historias/inmersión**, flag `srs` de tips, tips para **es→pt**. |
 | Contenido es→en A1–B2, es→pt A1–A2 | ✅ sembrado y live |
 | **Audio** (listening/speaking TTS) | ✅ **312/312** en Storage + degradación/unlock iOS **LIVE** (deploy 68266d3). Ver FINDINGS.md §2 |
 | **Seguridad** (4 hallazgos) | ✅ **cerrados** en DB (mig 058) + botón export en Ajustes **LIVE** (deploy 68266d3). Ver abajo |
