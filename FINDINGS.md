@@ -90,6 +90,34 @@ ya NO es "deploy-pending".) El contenido, tope de examen y audio están LIVE ví
 
 ---
 
+## AUDITORÍA PEDAGÓGICA DEL CONTENIDO — 2026-06-24 (mig 070) · ✅ es→en A1/A2
+**Alcance:** 12 profesores-IA en paralelo (1/unidad) auditaron los **384 ítems es→en A1/A2** (lección
++ checkpoint) por correctitud, tolerancia, distractores, revelación, naturalidad, CEFR, claridad,
+redundancia y skill. Detalle completo en **CONTENT_QA.md**.
+
+**Resultado: 0 P0** (ninguna respuesta marcada es incorrecta — el banco A1/A2 está sano). 23 P1 + 5 P2.
+**Clase sistémica:** `tolerancia_insuficiente` (22) — translation/cloze sin alguna variante natural que
+un aprendiz LATAM produce y es correcta (sinónimos film/baggage/dad, have got, please, o'clock, get/grab,
+artículo/número, "It's Monday", dígito "2", "never", "must"…).
+
+**Arreglado (mig 070, additivo — no acepta lo erróneo):** 20 ítems con variantes añadidas a `accepted`
++ 2 pulidos (cloze `(cook)` ahora pide la forma -ing; match de partes del día evening/tarde-noche →
+morning/mañana, sin solape). El grader ya normaliza apóstrofes/contracciones/puntuación, así que las
+variantes nuevas son las de léxico/estructura.
+
+**Rechazado (con criterio):** no se quita train/bus de "I need a ___ to Madrid" (son inglés natural →
+quitarlos reduciría tolerancia válida); no se recategoriza un cloze writing→reading (cloze = producción
+escrita). **Diferido:** 1 MC metalingüístico sobre superlativos (impreciso, no incorrecto); formato de
+los 24 listening "elige el significado" no guarda el inglés oído en `payload.say` (audio funciona,
+HEAD 200; no regenerable desde DB) — nota de arquitectura, no error.
+
+**Blindaje (CI):** +3 tests de grader (sinónimos vía `accepted`, have got↔have, dígito en cloze).
+**Verificación:** validador determinista **0** en ambos cursos; cliente real acepta las variantes y
+rechaza lo erróneo; `correct_answer` 42501; analyze 0 · test 52/52 · build OK; loop/seguridad/ligas intactos.
+**Pendiente:** auditar es→en B1/B2/C1 y es→pt (siguiente pasada; prioricé A1/A2 = lo que los testers usan hoy).
+
+---
+
 ## GRADING + TIPS + WORD_BANK (feedback real) — 2026-06-24 (mig 067/068/069) · ✅ LIVE
 **P0 — grading marcaba CORRECTO como incorrecto** ("Soy de Perú." → "I'm from Peru" salía ROJO;
 el usuario veía "I''m"). **Causa raíz DOBLE:** (a) DATA: 15 ítems es→en A1 sembrados con apóstrofe

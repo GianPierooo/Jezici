@@ -129,6 +129,33 @@ void main() {
     });
   });
 
+  group('tolerancia auditada (mig 070): variantes naturales vía accepted', () {
+    test('sinónimos/variantes en accepted se aceptan; lo erróneo no', () {
+      // "¿Dónde está mi equipaje?" — luggage/baggage (sinónimo aeropuerto LATAM)
+      final it = _item(ContentItemType.translation, correct: {
+        'value': 'Where is my luggage?',
+        'accepted': ['where is my luggage', "where's my luggage", 'where is my baggage', "where's my baggage"],
+      });
+      expect(gradeItem(it, 'Where is my baggage?').correct, isTrue);
+      expect(gradeItem(it, "Where's my luggage").correct, isTrue);
+      expect(gradeItem(it, 'Where is my passport?').correct, isFalse);
+    });
+    test('have got se equipara con have (normalize) cuando accepted lo trae', () {
+      final it = _item(ContentItemType.translation,
+          correct: {'value': 'I have a sister', 'accepted': ['i have a sister', 'i have got a sister']});
+      // "I've got a sister" → normalize expande I've→i have → coincide con "i have got a sister"
+      expect(gradeItem(it, "I've got a sister").correct, isTrue);
+      expect(gradeItem(it, 'I have a sister').correct, isTrue);
+      expect(gradeItem(it, 'I have a brother').correct, isFalse);
+    });
+    test('cloze acepta el dígito cuando la pista es numérica', () {
+      final it = _item(ContentItemType.cloze, correct: {'value': 'two', 'accepted': ['two', '2']});
+      expect(gradeItem(it, '2').correct, isTrue);
+      expect(gradeItem(it, 'two').correct, isTrue);
+      expect(gradeItem(it, 'three').correct, isFalse);
+    });
+  });
+
   group('gradeItem · listening y speaking', () {
     test('listening AHORA se califica (audio real + opción)', () {
       final it = _item(ContentItemType.listening,
