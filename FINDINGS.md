@@ -90,6 +90,39 @@ ya NO es "deploy-pending".) El contenido, tope de examen y audio están LIVE ví
 
 ---
 
+## GRADING + TIPS + WORD_BANK (feedback real) — 2026-06-24 (mig 067/068/069) · ✅ LIVE
+**P0 — grading marcaba CORRECTO como incorrecto** ("Soy de Perú." → "I'm from Peru" salía ROJO;
+el usuario veía "I''m"). **Causa raíz DOBLE:** (a) DATA: 15 ítems es→en A1 sembrados con apóstrofe
+PRE-escapado dentro de un literal dollar-quoted `$j$` → quedó `I''m` (doble) en payload y
+correct_answer; (b) NORMALIZACIÓN: `jz_normalize` no tocaba apóstrofes ni equiparaba contracciones.
+**Fix (mig 067, raíz, sin aflojar):** `jz_normalize` ahora normaliza apóstrofes (tipográfico→recto,
+`''`→`'`), EXPANDE ~58 contracciones a forma completa bidireccional (I'm↔I am, don't↔do not, what's
+↔what is, it's↔it is, can't↔cannot…) y quita apóstrofes residuales; + limpió los 15 ítems (`''`→`'`)
+y regeneró 4 audios cuyo texto hablado estaba corrupto. Espejo client-side en `grader.dart` (mismos
+casos) + **5 tests nuevos** que el CI blinda. Verificado cliente real: `grade_item` acepta "I'm from
+Peru" Y "I am from Peru", rechaza "I am from Brazil"; `correct_answer` sigue 42501; feedback limpio.
+
+**P1 — word_bank/reorder REGALAN la respuesta** (enunciado mostraba el target en inglés → copiar,
+no aprender). **Fix (mig 068, 20 ítems):** el enunciado da el SIGNIFICADO en español; las tiles
+siguen en inglés (producción real). Grading sin cambios. Barrido: es→pt word_bank ya estaba limpio.
+
+**P1 — tip descontextualizado y repetido** (tip de EDAD en lección de PAÍSES; mismos tips repetidos).
+**Causa:** `get_lesson_tip` filtraba por `unit_order`, pero los tips estaban mal alineados con dónde
+vive el concepto en el contenido, y el desempate era random. **Fix (mig 069):** nueva columna
+`content_tips.topic` (66/72 tips mapeados al vocabulario de tags del contenido). `get_lesson_tip`
+ahora calcula los conceptos REALES de la lección (tags de sus content_items) y prioriza: relevancia
+exacta > tip general del nivel > misma unidad > skill flojo > **no visto > menos reciente** (anti-
+repetición). Un tip con topic SOLO aparece en lecciones que cubren ese concepto. Verificado cliente
+real: edad→"Tu edad", numeros→plural, posesivos→posesivo, rutina→adverbios; países ya NO da "Tu
+edad" (da un tip general); 6 lecciones seguidas rotan por 4 tips distintos sin repetir consecutivo.
+
+**Barrido de calidad (profesor):** 0 match ambiguos (parejas con misma respuesta) en ambos cursos;
+0 colisiones de opciones mc/listening bajo la nueva normalización; los 12 translations es→en con
+contracción en el value quedan auto-cubiertos por `jz_normalize`. analyze 0 · test 49/49 · build OK ·
+loop/seguridad mig 058/ligas intactos.
+
+---
+
 ## HISTORIAS / INMERSIÓN — construido 2026-06-24 (mig 065 + 066) · ✅ LIVE
 **Qué existía:** nada. La capa "enseña" previa era tips/cuaderno (mig 057) + Referencia (mig 060);
 no había historias. La "Sesión de inmersión" de Metodologia.md estaba sin construir.

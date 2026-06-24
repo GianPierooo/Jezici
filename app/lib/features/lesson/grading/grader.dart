@@ -20,13 +20,44 @@ class GradeResult {
   static const stub = GradeResult(correct: true, graded: false, correctDisplay: '');
 }
 
-/// Normaliza para comparar: minúsculas, espacios colapsados, sin puntuación final.
-String normalize(String s) => s
-    .toLowerCase()
-    .trim()
-    .replaceAll(RegExp(r'\s+'), ' ')
-    .replaceAll(RegExp(r'[.!?¿¡,;:]'), '')
-    .trim();
+/// Contracciones inglesas → forma completa canónica (espejo de jz_normalize, mig
+/// 067). Se expanden a AMBOS lados al comparar, así "I'm from Peru" == "I am from
+/// Peru" sin aceptar respuestas erróneas.
+const _contractions = <String, String>{
+  "i'm": 'i am', "i've": 'i have', "i'll": 'i will', "i'd": 'i would',
+  "you're": 'you are', "you've": 'you have', "you'll": 'you will', "you'd": 'you would',
+  "he's": 'he is', "he'll": 'he will', "he'd": 'he would',
+  "she's": 'she is', "she'll": 'she will', "she'd": 'she would',
+  "it's": 'it is', "it'll": 'it will', "it'd": 'it would',
+  "we're": 'we are', "we've": 'we have', "we'll": 'we will', "we'd": 'we would',
+  "they're": 'they are', "they've": 'they have', "they'll": 'they will', "they'd": 'they would',
+  "that's": 'that is', "that'll": 'that will',
+  "who's": 'who is', "what's": 'what is', "where's": 'where is', "when's": 'when is',
+  "why's": 'why is', "how's": 'how is', "there's": 'there is', "there'll": 'there will',
+  "here's": 'here is', "let's": 'let us',
+  "isn't": 'is not', "aren't": 'are not', "wasn't": 'was not', "weren't": 'were not',
+  "don't": 'do not', "doesn't": 'does not', "didn't": 'did not', "can't": 'can not',
+  "couldn't": 'could not', "won't": 'will not', "wouldn't": 'would not', "shouldn't": 'should not',
+  "mustn't": 'must not', "mightn't": 'might not', "needn't": 'need not',
+  "haven't": 'have not', "hasn't": 'has not', "hadn't": 'had not', "shan't": 'shall not',
+};
+
+/// Normaliza para comparar: minúsculas, apóstrofes (tipográficos→recto, ''→'),
+/// contracciones expandidas, sin puntuación ni apóstrofes residuales, espacios
+/// colapsados. Espejo de jz_normalize (servidor, mig 067) → cliente y servidor
+/// califican igual.
+String normalize(String s) {
+  var v = s.toLowerCase().trim();
+  v = v.replaceAll(RegExp('[’‘´`]'), "'"); // ’ ‘ ´ ` → '
+  v = v.replaceAll(RegExp('[“”"]'), ''); // “ ” " → fuera
+  v = v.replaceAll(RegExp("'+"), "'"); // colapsa '' → '
+  v = ' ${v.replaceAll(RegExp(r'\s+'), ' ')} ';
+  _contractions.forEach((k, val) => v = v.replaceAll(' $k ', ' $val '));
+  v = v.replaceAll(' cannot ', ' can not ');
+  v = v.replaceAll(RegExp(r'[.!?¿¡,;:]'), '');
+  v = v.replaceAll("'", ''); // apóstrofes residuales (posesivos)
+  return v.replaceAll(RegExp(r'\s+'), ' ').trim();
+}
 
 /// Coerción defensiva: un campo jsonb mal formado (escalar donde se espera
 /// lista) no debe crashear el loop; se degrada a lista vacía.

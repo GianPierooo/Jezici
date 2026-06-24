@@ -50,9 +50,9 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
 ## Estado por área
 | Área | Estado |
 |---|---|
-| Loop lección + grading server-side | ✅ verde y live |
+| Loop lección + grading server-side | ✅ verde y live. **Grading apóstrofes/contracciones (mig 067):** `jz_normalize` equipara I'm↔I am, don't↔do not, '↔'↔'' y limpió 15 ítems con `''` corrupto del seed. **word_bank/reorder no revelan la respuesta (mig 068, 20 ítems):** enunciado en español. `correct_answer` sigue revocado (42501). |
 | Dinamismo/UX (loop) | ✅ 1ª tanda LIVE (deploy-pending): recompensa con contadores+entrada escalonada, feedback ✅/❌ animado, transiciones `jzRoute`, skeletons en Ligas. Pendiente: tokens de espaciado, mascota en más pantallas, radar animado. Ver UX_AUDIT.md |
-| Capa "enseña" (tips/cuaderno/referencia/**inmersión**) | ✅ tip post-lección (personalizado a skill floja, voz del coach) + cuaderno (alcanzable desde Perfil) + **Referencia/Repaso** (mig 060 `get_reference`) + **Inmersión/Historias** (mig 065/066): input comprensible es→en A1/A2 (6 historias, audio 46/46, preguntas de comprensión calificadas server-side). 72 tips **solo es→en** (18/nivel A1–B2). Pendiente: historias B1/B2 y es→pt, flag `srs` de tips, tips para **es→pt**. |
+| Capa "enseña" (tips/cuaderno/referencia/**inmersión**) | ✅ tip post-lección **relevante al tema real de la lección** (mig 069: `content_tips.topic` + match contra los tags de la lección; ya no sale el tip de EDAD en una lección de PAÍSES) + anti-repetición (no visto > menos reciente) + personalización por skill flojo + cuaderno + **Referencia/Repaso** (mig 060) + **Inmersión/Historias** (mig 065/066: 6 historias es→en A1/A2, audio 46/46). 72 tips **solo es→en** (66 con topic, 6 generales). Pendiente: historias B1/B2 y es→pt, tips para **es→pt**, topics para B1/B2 (hoy caen a unidad/general). |
 | Contenido es→en A1–B2, **es→pt A1–B1** | ✅ sembrado y live (pt B1 = mig 053, 192 ítems + 60 checkpoints frescos; cadena A1→B1 + certs verificada). Pendiente: es→pt B2 |
 | **Audio** (listening/speaking TTS) | ✅ es→en + es→pt A1/A2 (312) + **es→pt B1 (68)** en Storage = **380/380** + degradación/unlock iOS LIVE. Ver FINDINGS.md §2 |
 | **Seguridad** (4 hallazgos) | ✅ **cerrados** en DB (mig 058) + botón export en Ajustes **LIVE** (deploy 68266d3). Ver abajo |

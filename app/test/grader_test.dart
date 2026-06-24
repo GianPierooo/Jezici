@@ -91,6 +91,44 @@ void main() {
     });
   });
 
+  group('normalize · apóstrofes y contracciones (bug P0, mig 067)', () {
+    test('contracción equivale a forma completa (ambos sentidos)', () {
+      expect(normalize("I'm from Peru"), normalize('I am from Peru'));
+      expect(normalize("don't"), normalize('do not'));
+      expect(normalize("what's your name?"), normalize('what is your name'));
+      expect(normalize("it's mine"), normalize('it is mine'));
+      expect(normalize("can't"), normalize('cannot'));
+    });
+    test('apóstrofe tipográfico, doble y espacios se normalizan', () {
+      expect(normalize('I’m from Peru'), normalize("I'm from Peru")); // curly
+      expect(normalize("I''m from Peru"), normalize("I'm from Peru")); // doble (data corrupta)
+      expect(normalize('  I AM   from  peru. '), normalize('i am from peru'));
+    });
+    test('NO acepta respuestas genuinamente distintas', () {
+      expect(normalize("I'm from Peru") == normalize('I am from Brazil'), isFalse);
+      expect(normalize("we're") == normalize('were'), isFalse); // we're ≠ were
+    });
+  });
+
+  group('gradeItem · contracciones (translation y MC)', () {
+    test('translation acepta contracción y forma completa; rechaza lo erróneo', () {
+      final it = _item(ContentItemType.translation,
+          correct: {'value': "I'm from Peru", 'accepted': ['i am from peru', 'im from peru']});
+      expect(gradeItem(it, "I'm from Peru").correct, isTrue);
+      expect(gradeItem(it, 'I am from Peru').correct, isTrue);
+      expect(gradeItem(it, 'im from peru').correct, isTrue);
+      expect(gradeItem(it, 'I am from Brazil').correct, isFalse);
+      expect(gradeItem(it, 'x').correctDisplay, "I'm from Peru"); // feedback sin '' doble
+    });
+    test('multiple_choice equipara "I am fine" con la opción "I\'m fine"', () {
+      final it = _item(ContentItemType.multipleChoice,
+          payload: {'options': ["I'm fine, thanks", 'Goodbye']},
+          correct: {'value': "I'm fine, thanks"});
+      expect(gradeItem(it, 'I am fine, thanks').correct, isTrue);
+      expect(gradeItem(it, 'Goodbye').correct, isFalse);
+    });
+  });
+
   group('gradeItem · listening y speaking', () {
     test('listening AHORA se califica (audio real + opción)', () {
       final it = _item(ContentItemType.listening,
