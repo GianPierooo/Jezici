@@ -34,9 +34,14 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
   deploy **READY en ~152 s**. Cualquier variante con el flag JZ_BUILD (incluida
   `$(git rev-parse …)`) era rechazada pre-build → **no reintroducir el sello en el
   buildCommand**. Producción de nuevo LIVE con TODO el código nuevo (audio + seguridad).
-- **Sello `JZ_BUILD` pendiente** (vuelve a `dev`). Si se quiere recuperar, NO por
-  `--dart-define` inline (lo rechaza este proyecto): usar un paso post-build (p.ej. `sed`
-  sobre el bundle) o habilitar la System Env Var en el dashboard y probar con cuidado.
+- **Sello `JZ_BUILD` RESUELTO ✅ (deploy-safe, P0.5 cerrado):** se inyecta por un PASO
+  POST-BUILD, NO por `--dart-define` inline. `vercel.json` añade `&& bash ../scripts/stamp_build.sh`
+  al final del buildCommand (sin `$` del SHA en la cadena). El script lee `$VERCEL_GIT_COMMIT_SHA`
+  **adentro** (no en el buildCommand) e inyecta `<script>window.JZ_BUILD="<sha7>"</script>` en
+  `index.html`. La app lo lee en RUNTIME (`core/app_info.dart` → `app_info_stamp_web.dart`, js_interop)
+  y lo muestra en el pie de Ajustes. index.html va no-store (sw v4) → el sello refleja el bundle
+  real. Local/CI sin la env var → no inyecta → cae a `dev`. **Regla intacta: NUNCA `$VAR`/`$()` del
+  SHA en el buildCommand** (eso seguía rompiendo el deploy; `$SUPABASE_URL` sí funciona ahí).
 - Mecánica normal restaurada: push a `main` → Vercel reconstruye → deploy. Migraciones
   (Supabase) siguen teniendo efecto YA, independientes del deploy.
 - **Smoke post-deploy 2026-06-23 (prod `b34b568`) ✅ TODO VERDE** (cliente real, sin

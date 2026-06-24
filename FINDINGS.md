@@ -90,6 +90,30 @@ ya NO es "deploy-pending".) El contenido, tope de examen y audio están LIVE ví
 
 ---
 
+## SELLO DE BUILD JZ_BUILD — 2026-06-24 · ✅ RESUELTO (cierra P0.5)
+**Problema:** el sello mostraba `dev` en prod. El intento original (`--dart-define=JZ_BUILD=
+$VERCEL_GIT_COMMIT_SHA` en el buildCommand) rompía el deploy: cualquier `$VAR`/`$()` del SHA en la
+**cadena del buildCommand** causa ERROR instantáneo pre-build. (Nota: `$SUPABASE_URL`/`$ANON_KEY` sí
+funcionan ahí — lo que rompe es el system-var `$VERCEL_GIT_COMMIT_SHA` / subshell `$(git…)`.)
+
+**Solución (deploy-safe, sin tocar el buildCommand con el `$` del SHA):** paso POST-build.
+- `vercel.json`: se añade `&& bash ../scripts/stamp_build.sh` al final del buildCommand (cadena sin
+  `$` del SHA; el `cd app` previo persiste, así que cwd=app/ y `../scripts/` = raíz).
+- `scripts/stamp_build.sh` (committed): lee `$VERCEL_GIT_COMMIT_SHA` **adentro del script** (env var
+  disponible en el build de Vercel) e inyecta `<script>window.JZ_BUILD="<sha7>"</script>` en
+  `build/web/index.html`. Idempotente; si no hay env var (local/CI) no inyecta → la app cae a `dev`.
+- App: `core/app_info.dart` (`appBuild()`) lee `window.JZ_BUILD` en RUNTIME vía `dart:js_interop`
+  (`app_info_stamp_web.dart`; stub `_io` para móvil/VM). Se muestra en el pie de Ajustes
+  ("Jezici 1.0.0 · <sha7>"). Sentry usa el mismo sello para `release`.
+- Por qué es fiable: index.html (y main.dart.js) se sirven **no-store** (sw v4, P0.5) → el sello
+  refleja el bundle realmente cargado, no una caché vieja.
+
+**Verificación:** script probado local (inyección + idempotencia + fallback sin SHA); analyze 0 ·
+test 52/52 · build OK. En prod: el index.html desplegado lleva el SHA real (no `dev`) y el deploy
+queda READY; `gh run list` SUCCESS. El aviso de "nueva versión" del sw se mantiene intacto.
+
+---
+
 ## AUDITORÍA PEDAGÓGICA DEL CONTENIDO — 2026-06-24 (mig 070) · ✅ es→en A1/A2
 **Alcance:** 12 profesores-IA en paralelo (1/unidad) auditaron los **384 ítems es→en A1/A2** (lección
 + checkpoint) por correctitud, tolerancia, distractores, revelación, naturalidad, CEFR, claridad,

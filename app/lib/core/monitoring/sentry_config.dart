@@ -26,9 +26,9 @@ Future<void> runWithSentry(FutureOr<void> Function() appRunner) async {
     (o) {
       o.dsn = _dsn;
       o.environment = _env;
-      // release atado al build SIN tocar el buildCommand: reusa kAppBuild
-      // (JZ_BUILD; 'dev' si no se inyecta). Fallback estable, no rompe el deploy.
-      o.release = 'jezici@$kAppBuild';
+      // release atado al SELLO EFECTIVO (appBuild: window.JZ_BUILD del deploy en
+      // runtime, o 'dev'). Sin tocar el buildCommand → no rompe el deploy.
+      o.release = 'jezici@${appBuild()}';
       o.tracesSampleRate = 0.1; // beta chica: muestreo bajo de performance
       o.sendDefaultPii = false; // postura GDPR: sin email/IP por defecto
       o.beforeSend = _beforeSend;
