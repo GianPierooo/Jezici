@@ -57,7 +57,7 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
 | **Audio** (listening/speaking TTS) | ✅ es→en + es→pt A1/A2 (312) + **es→pt B1 (68)** en Storage = **380/380** + degradación/unlock iOS LIVE. Ver FINDINGS.md §2 |
 | **Seguridad** (4 hallazgos) | ✅ **cerrados** en DB (mig 058) + botón export en Ajustes **LIVE** (deploy 68266d3). Ver abajo |
 | Ligas + Leaderboards | ✅ rollover real (mig 059): cierre semanal idempotente/lazy + ascensos (top 7)/descensos (fondo 5) Bronce↔Diamante + snapshots. `get_leaderboard` (XP/Racha/Lecciones/Certificados × Semanal/Mensual/Anual/Histórico × Global/División, SIN user_id). UI con segmentos (Mi liga / Tablas) **LIVE** (deploy-pending hasta push). Falta: **cron** que dispare el cierre (hoy es lazy-on-read; ver abajo) |
-| **C1 es→en** | ✅ **sembrado y live** (mig 063): 6 unidades (25–30), **252 ítems** (192 lección + 60 checkpoint fresco), 4 habilidades, audio **67/67**. **Sin examen/cert C1** por diseño (techo determinista — writing/speaking a C1 no son evaluables sin IA; mig 064 tope el examen en B2 + blinda C1). Progresión intra-C1 por checkpoints (≥80%). Placement C1 (4 ítems) **deploy-pending**. Ver `docs/LEVELS_C1_DESIGN.md` |
+| **C1 es→en** | ✅ **sembrado y live** (mig 063): 6 unidades (25–30), **252 ítems** (192 lección + 60 checkpoint fresco), 4 habilidades, audio **67/67**. **Sin examen/cert C1** por diseño (techo determinista — writing/speaking a C1 no son evaluables sin IA; mig 064 tope el examen en B2 + blinda C1). Progresión intra-C1 por checkpoints (≥80%). Placement C1 (4 ítems) **LIVE** (deploy 151062f READY). Ver `docs/LEVELS_C1_DESIGN.md` |
 | C2 | ❌ documentado, no sembrado (otra pasada) |
 | Conversar / Simulacros | ⏸️ pantallas existen, **ocultas** (decisión GA6) |
 
@@ -130,6 +130,12 @@ se mueve, por diseño.
   ver que llega al dashboard, y quitarlo.
 - **Diferido:** source maps/símbolos (stack traces legibles en web/nativo) y Sentry server-side
   (Edge Functions) — fuera de alcance de esta tanda.
+
+## CI (GitHub Actions) — VERDE ✅ desde 2026-06-24 (run #57, commit 151062f)
+- Pipeline completo en verde por primera vez: `Prepare .env` → analyze → **test 43/43** →
+  **build web** (antes test/build quedaban *skipped* porque analyze abortaba). Deploy de Vercel
+  de ese commit = **READY** (prod). Las rojas históricas #47–#56 son inmutables (corrieron con el
+  workflow roto; re-correrlas reusaría ese workflow). Detalle del fix abajo.
 
 ## CI (GitHub Actions) = FUENTE DE VERDAD — no el local
 - **El verde del CI manda, no `flutter analyze` local.** Workflow `.github/workflows/ci.yml`

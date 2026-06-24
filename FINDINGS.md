@@ -83,9 +83,10 @@ certificado C1** hasta Fase 2. Cierre en DB (defensa en profundidad, todo live):
 `verify_c1_cap.py` PASS · `grade_item` califica C1 server-side · B2 (u.19–24)→C1 (u.25–30) ·
 analyze 0 · test 43/43 · build web OK.
 
-**Deploy-pending (Vercel bloqueado).** Placement C1: 4 ítems C1 (inversión/cleft/concesión)
-añadidos a `placement_test.dart` con clamp 0..4 → ubica usuarios avanzados en C1. Lo demás (contenido,
-tope de examen, audio) ya está LIVE vía migraciones/Storage, independiente del deploy.
+**Placement C1 — LIVE.** 4 ítems C1 (inversión/cleft/concesión) añadidos a `placement_test.dart`
+con clamp 0..4 → ubica usuarios avanzados en C1. (Nota 2026-06-24: los deploys de Vercel vienen
+READY desde el fix 68266d3 — el commit 151062f que incluye esta placement desplegó READY, así que
+ya NO es "deploy-pending".) El contenido, tope de examen y audio están LIVE vía migraciones/Storage.
 
 ---
 
