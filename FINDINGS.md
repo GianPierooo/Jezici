@@ -31,6 +31,14 @@
 
 ---
 
+## LEGAL IN-APP — publicado 2026-06-23 (mig 062) · ⚠️ BORRADOR
+Privacidad + Términos (ya redactados en `legal_screen.dart`) ahora **visibles** (Ajustes +
+registro, con banner de beta + versión `2026-06-draft`) y **aceptados**: checkbox requerido
+en el alta → `accept_legal` persiste `legal_consents` (versión + timestamp; RLS self, escritura
+solo por RPC; cascada en delete_account). `my_legal_version` permite re-consentir al cambiar el
+texto. Verificado con JWT real. **Es BORRADOR** (revisión de abogado pendiente; sin acreditación
+oficial). Diferido: gate de re-consentimiento para usuarios existentes (infra lista).
+
 ## ANALÍTICA DE LA BETA — completa 2026-06-23 (mig 061)
 KPIs medibles sin SQL desde la pantalla interna (Ajustes → Ver métricas, admin-only):
 retención D1/D7/D30, **stickiness DAU/MAU (CURR)**, embudo de onboarding, lecciones/día,

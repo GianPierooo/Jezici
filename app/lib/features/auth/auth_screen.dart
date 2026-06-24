@@ -22,6 +22,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   final _password = TextEditingController();
   bool _signUp = true; // arranca en "crear cuenta"
   bool _loading = false;
+  bool _accepted = false; // aceptación legal (requerida para crear cuenta)
   String? _error;
 
   @override
@@ -46,6 +47,10 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
       setState(() => _error = 'Pon un email válido y una contraseña de 6+ caracteres.');
       return;
     }
+    if (_signUp && !_accepted) {
+      setState(() => _error = 'Para crear tu cuenta, acepta los Términos y la Privacidad.');
+      return;
+    }
     setState(() {
       _loading = true;
       _error = null;
@@ -55,6 +60,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
       if (_signUp) {
         await repo.signUpEmail(email, pw);
         await repo.setProfile(name: name); // guarda el nombre real de entrada
+        await repo.acceptLegal(kLegalVersion); // registra el consentimiento (versión + fecha)
       } else {
         await repo.signInEmail(email, pw);
       }
@@ -137,38 +143,28 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                     style: const TextStyle(
                         color: AppColors.hearts, fontWeight: FontWeight.w800, fontSize: 12.5)),
               ],
+              if (_signUp) ...[
+                const SizedBox(height: 16),
+                _LegalCheckbox(
+                  value: _accepted,
+                  onChanged: (v) => setState(() {
+                    _accepted = v;
+                    if (v) _error = null;
+                  }),
+                  onTapTerms: () => Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => LegalScreen.terms())),
+                  onTapPrivacy: () => Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => LegalScreen.privacy())),
+                ),
+              ],
               const SizedBox(height: 18),
               PrimaryButton(
                 label: _loading
                     ? (_signUp ? 'CREANDO…' : 'ENTRANDO…')
                     : (_signUp ? 'CREAR CUENTA' : 'INICIAR SESIÓN'),
                 expand: true,
-                onPressed: _loading ? null : _submit,
+                onPressed: (_loading || (_signUp && !_accepted)) ? null : _submit,
               ),
-              const SizedBox(height: 18),
-              if (_signUp)
-                Wrap(
-                  alignment: WrapAlignment.center,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  children: [
-                    const Text('Al crear tu cuenta aceptas los ',
-                        style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
-                    GestureDetector(
-                      onTap: () => Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (_) => LegalScreen.terms())),
-                      child: const Text('Términos',
-                          style: TextStyle(fontSize: 11, fontWeight: FontWeight.w900, color: AppColors.primary)),
-                    ),
-                    const Text(' y la ',
-                        style: TextStyle(fontSize: 11, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
-                    GestureDetector(
-                      onTap: () => Navigator.of(context)
-                          .push(MaterialPageRoute(builder: (_) => LegalScreen.privacy())),
-                      child: const Text('Privacidad',
-                          style: TextStyle(fontSize: 11, fontWeight: FontWeight.w900, color: AppColors.primary)),
-                    ),
-                  ],
-                ),
             ],
           ),
         ),
@@ -198,6 +194,64 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
           borderSide: const BorderSide(color: AppColors.primary, width: 2),
         ),
       ),
+    );
+  }
+}
+
+/// Casilla de aceptación legal (requerida para crear cuenta). Texto + enlaces a
+/// Términos y Privacidad. La aceptación se persiste con versión (mig 062).
+class _LegalCheckbox extends StatelessWidget {
+  const _LegalCheckbox({
+    required this.value,
+    required this.onChanged,
+    required this.onTapTerms,
+    required this.onTapPrivacy,
+  });
+  final bool value;
+  final ValueChanged<bool> onChanged;
+  final VoidCallback onTapTerms;
+  final VoidCallback onTapPrivacy;
+
+  @override
+  Widget build(BuildContext context) {
+    const link = TextStyle(fontSize: 12, fontWeight: FontWeight.w900, color: AppColors.primary);
+    const base = TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted, height: 1.4);
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        SizedBox(
+          width: 26,
+          height: 26,
+          child: Checkbox(
+            value: value,
+            onChanged: (v) => onChanged(v ?? false),
+            activeColor: AppColors.primary,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
+            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          ),
+        ),
+        const SizedBox(width: 10),
+        Expanded(
+          child: GestureDetector(
+            onTap: () => onChanged(!value),
+            child: Text.rich(
+              TextSpan(style: base, children: [
+                const TextSpan(text: 'He leído y acepto los '),
+                WidgetSpan(
+                  alignment: PlaceholderAlignment.middle,
+                  child: GestureDetector(onTap: onTapTerms, child: const Text('Términos', style: link)),
+                ),
+                const TextSpan(text: ' y la '),
+                WidgetSpan(
+                  alignment: PlaceholderAlignment.middle,
+                  child: GestureDetector(onTap: onTapPrivacy, child: const Text('Política de Privacidad', style: link)),
+                ),
+                const TextSpan(text: '.'),
+              ]),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

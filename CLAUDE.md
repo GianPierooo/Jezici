@@ -83,6 +83,20 @@ se mueve, por diseño.
 - Previo: `correct_answer` ya estaba cerrado (mig 055), `jz_*` helpers revocados (mig 049).
 - Admin allowlist NO se gestiona por SQL roles → es la tabla `admins` (agregar/quitar user_id).
 
+## Legal in-app (Privacidad + Términos) — mig 062 · ⚠️ BORRADOR (falta abogado)
+- **Contenido:** `features/legal/legal_screen.dart` (Privacidad + Términos en español, ya
+  redactados) con **banner de beta** (borrador + certificado interno no oficial + pagos
+  inactivos) y la **versión** `kLegalVersion = '2026-06-draft'`. Alcanzable desde **Ajustes**
+  (ambos links) **y el registro** (links + checkbox).
+- **Aceptación (mig 062):** en "Crear cuenta", checkbox **requerido** "He leído y acepto
+  Términos + Privacidad" (botón deshabilitado sin marcar). Tras el alta → `accept_legal(version)`
+  persiste `legal_consents(user_id, doc_version, accepted_at)` (RLS self; escritura solo por RPC).
+  `my_legal_version()` devuelve la última versión aceptada (base para re-consentir).
+- **Versionar/re-consentir:** subir `kLegalVersion` cuando el texto cambie (revisión de abogado).
+  La detección está lista (comparar `my_legal_version()` vs `kLegalVersion`); el **gate de
+  re-consentimiento para usuarios existentes está DIFERIDO** (se añade al llegar la versión revisada).
+- ⚠️ **Es un BORRADOR**: NO está revisado por abogado. No afirmar acreditación oficial.
+
 ## Analítica de la beta (KPIs sin SQL) — mig 061
 - **Cómo lo ve Gian:** Ajustes → "Ver métricas (interno)" (admin-only; Gian ya en `admins`).
   Pantalla `MetricsScreen` lee `get_metrics`/`get_engagement`/`get_onboarding_funnel` (todas

@@ -322,6 +322,25 @@ class ProgressRepository {
     await _client.auth.signOut();
   }
 
+  /// Registra el consentimiento legal (Privacidad+Términos) con la versión del
+  /// documento (mig 062). Fire-and-forget tolerante: nunca bloquea el alta.
+  Future<void> acceptLegal(String version) async {
+    try {
+      await _client.rpc('accept_legal', params: {'p_version': version});
+    } catch (_) {}
+  }
+
+  /// Última versión legal aceptada por el usuario (null si ninguna). Base para
+  /// re-consentir cuando el texto cambie.
+  Future<String?> myLegalVersion() async {
+    try {
+      final res = await _client.rpc('my_legal_version');
+      return res as String?;
+    } catch (_) {
+      return null;
+    }
+  }
+
   /// Portabilidad GDPR: exporta TODOS los datos del usuario autenticado en JSON
   /// (export_my_data, SECURITY DEFINER acotado a auth.uid()).
   Future<Map<String, dynamic>> exportMyData() async {

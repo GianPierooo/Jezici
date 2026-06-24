@@ -102,6 +102,10 @@ class FakeProgressRepository implements ProgressRepository {
   @override
   Future<void> deleteAccount() async {}
   @override
+  Future<void> acceptLegal(String version) async {}
+  @override
+  Future<String?> myLegalVersion() async => null;
+  @override
   Future<Map<String, dynamic>> exportMyData() async => const {};
   @override
   Future<void> logEvent(String event, {Map<String, dynamic>? props}) async {}

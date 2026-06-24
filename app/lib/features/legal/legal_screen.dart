@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../../core/theme/app_colors.dart';
 
-/// Páginas legales (Privacidad / Términos). Plantillas serias para una app de
-/// idiomas que guarda datos de usuario, envía notificaciones y usa el micrófono
-/// para evaluar pronunciación. No son asesoría legal: revisar con un abogado
-/// antes de publicar en tiendas.
+/// Versión del contenido legal (Privacidad+Términos). Súbela cuando el texto
+/// cambie (p. ej. tras la revisión de abogado) → permite detectar y disparar
+/// re-consentimiento (ver `accept_legal`/`my_legal_version`, mig 062).
+const kLegalVersion = '2026-06-draft';
+
+/// Páginas legales (Privacidad / Términos). **BORRADOR** para la beta: revisar
+/// con un abogado antes de publicar en tiendas (no es asesoría legal acreditada).
 class LegalScreen extends StatelessWidget {
   const LegalScreen({super.key, required this.kind});
   final LegalKind kind;
@@ -25,7 +28,28 @@ class LegalScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.fromLTRB(20, 10, 20, 32),
         children: [
-          Text('Última actualización: junio de 2026',
+          // Aviso honesto de beta (marca): borrador + datos + certificado interno.
+          Container(
+            padding: const EdgeInsets.all(13),
+            decoration: BoxDecoration(
+              color: const Color(0xFFFFF4E0),
+              borderRadius: BorderRadius.circular(14),
+              border: Border.all(color: const Color(0xFFF0D49B)),
+            ),
+            child: const Row(children: [
+              Icon(Icons.info_outline_rounded, size: 18, color: Color(0xFFB07B16)),
+              SizedBox(width: 9),
+              Expanded(
+                child: Text(
+                  'Versión beta. Este texto es un BORRADOR pendiente de revisión legal. '
+                  'Los certificados son internos de Jezici (no oficiales) y los pagos no están activos.',
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: Color(0xFF8A6314), height: 1.35),
+                ),
+              ),
+            ]),
+          ),
+          const SizedBox(height: 14),
+          Text('Última actualización: junio de 2026 · versión $kLegalVersion',
               style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
           const SizedBox(height: 14),
           for (final s in doc.sections) ...[
