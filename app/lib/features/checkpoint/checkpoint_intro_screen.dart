@@ -195,7 +195,9 @@ class CheckpointIntroScreen extends ConsumerWidget {
               borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
             ),
             transform: Matrix4.translationValues(0, -22, 0),
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 28),
+            // + inset inferior: en Android (PWA) la barra de navegación del sistema
+            // tapaba el botón/última línea ("se corta levemente"). 0 en pantallas sin inset.
+            padding: EdgeInsets.fromLTRB(20, 20, 20, 28 + MediaQuery.paddingOf(context).bottom),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [

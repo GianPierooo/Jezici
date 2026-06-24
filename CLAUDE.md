@@ -51,6 +51,11 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
     dashboard también lo rechaza, el sello queda diferido (limitación de plataforma de este proyecto).
 - Mecánica normal restaurada: push a `main` → Vercel reconstruye → deploy. Migraciones
   (Supabase) siguen teniendo efecto YA, independientes del deploy.
+- **2 bugs de Android PWA arreglados (2026-06-24):** (1) **pantalla negra al volver de
+  background** — no había manejo de resume; fix en `app/web/index.html` (visibilitychange/
+  pageshow → `resize` sintético + webglcontextlost/restored), deploy-safe, NO toca buildCommand.
+  (2) **checkpoint "se corta"** — safe-area inferior faltante; `MediaQuery.paddingOf().bottom` en
+  checkpoint_intro/result + certificate. Verificación manual del dueño en FINDINGS.md.
 - **Smoke post-deploy 2026-06-23 (prod `b34b568`) ✅ TODO VERDE** (cliente real, sin
   service_role): loop core (`correct_answer` 403/sin col, `grade_item` OK), seguridad
   mig 058 (ligas 403, gate admin, export 24 secc.), ligas/leaderboards mig 059 (32

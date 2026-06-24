@@ -132,6 +132,38 @@
       setTimeout(done, 12000); // failsafe
     })();
   </script>
+
+  <!--
+    Recuperación de PANTALLA NEGRA al volver de segundo plano (Android PWA, CanvasKit).
+    Al backgroundear, el proceso GPU puede reciclar el contexto WebGL / pausar el
+    repintado; al volver, Flutter no repinta solo → pantalla negra. No había NINGÚN
+    manejo de visibility/resume. Fix deploy-safe (solo index.html; no toca el
+    buildCommand de vercel.json): al recuperar visibilidad forzamos a Flutter a re-medir
+    y repintar con un 'resize' sintético; y si el contexto WebGL se perdió, permitimos su
+    restauración y repintamos. Inofensivo donde no aplica (un frame extra, sin parpadeo).
+  -->
+  <script>
+    (function () {
+      function jzForceRepaint() {
+        // dos rAF: asegura que el compositor esté activo antes del resize sintético.
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            window.dispatchEvent(new Event('resize'));
+          });
+        });
+      }
+      document.addEventListener('visibilitychange', function () {
+        if (document.visibilityState === 'visible') jzForceRepaint();
+      });
+      // Restauración desde bfcache (volver atrás / reanudar la pestaña).
+      window.addEventListener('pageshow', function (e) { if (e.persisted) jzForceRepaint(); });
+      // Si el GPU recicló el contexto WebGL en segundo plano: preventDefault permite que
+      // el navegador lo restaure; al restaurarse, forzamos el repintado (captura, porque
+      // estos eventos del <canvas> no burbujean).
+      window.addEventListener('webglcontextlost', function (e) { e.preventDefault(); }, true);
+      window.addEventListener('webglcontextrestored', jzForceRepaint, true);
+    })();
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

@@ -120,6 +120,44 @@ buildCommand restaurado. El aviso de "nueva versión" del sw intacto.
 
 ---
 
+## 2 BUGS DE DISPOSITIVO (Android PWA) — 2026-06-24 · ✅ arreglados (verificación manual pendiente del dueño)
+
+### BUG 1 (ALTA) — pantalla NEGRA al volver de segundo plano
+**Causa raíz (diagnóstico, no adivinación):** **no existía NINGÚN** manejo de visibility/resume/
+lifecycle en toda la app (`grep` de visibilitychange/AppLifecycleState/webglcontextlost = 0). Renderer
+= **CanvasKit** (default Flutter 3.44; el renderer HTML ya NO existe en 3.44, así que cambiarlo no es
+opción). Al backgroundear en Android, el proceso GPU recicla/pausa el contexto WebGL; al volver, Flutter
+no repinta solo → negro.
+**Fix (deploy-safe, solo `app/web/index.html`, NO toca el buildCommand):** al recuperar visibilidad
+(`visibilitychange`→visible, y `pageshow` persisted de bfcache) se fuerza a Flutter a re-medir y repintar
+con un `resize` sintético (doble rAF); y se manejan `webglcontextlost` (preventDefault → permite
+restaurar) / `webglcontextrestored` (repaint). Inofensivo donde no aplica (un frame extra, sin parpadeo).
+Es la mitigación estándar para este patrón; **confirmación final = prueba del dueño en el dispositivo real**
+(no reproducible aquí). Si persistiera tras minutos en background, el siguiente paso sería evaluar skwasm
+(--wasm) midiendo arranque/bundle.
+
+### BUG 2 — el checkpoint "se corta levemente"
+**Causa raíz:** varias pantallas de examen no respetaban el **safe-area inferior** → la barra de
+navegación de Android tapaba el último tramo (botón/línea). Confirmado: `checkpoint_intro` (hoja de info
+inferior sin SafeArea), `checkpoint_result` (`body: Column` sin SafeArea, botón al final del scroll),
+`certificate` (ListView sin inset). `level_exam_intro/result` ya usan `body: SafeArea` → OK.
+**Fix:** añadido `MediaQuery.paddingOf(context).bottom` al padding inferior de esas 3 pantallas (0 en
+pantallas sin inset → no rompe desktop/pantallas grandes). El checkpoint_player ya scrolleaba bien.
+
+### Verificación MANUAL para Gian (Android, PWA instalada)
+1. **Negro al volver:** abre Jezici → cambia a otra app (o bloquea/desbloquea) → vuelve: **no** debe
+   quedar negro (repinta). Repite **tras varios minutos** en segundo plano (para que Android recicle el
+   GPU) → debe repintar igual. Si quedara negro, repórtalo (evaluaríamos skwasm).
+2. **Checkpoint completo:** abre un checkpoint ("El portal de la unidad") → el botón **EMPEZAR
+   CHECKPOINT** y el texto inferior se ven completos, sin que la barra del sistema los tape. Tras
+   terminar, en el resultado el botón **CONTINUAR EL VIAJE/REINTENTAR** se alcanza sin quedar tapado.
+   Repite en examen de nivel y certificado.
+
+**Estado:** analyze 0 · test 55/55 · loop/seguridad mig 058/ligas intactos (solo UI + index.html, sin
+DB/RPC). gh run list SUCCESS · deploy READY (sin tocar vercel.json).
+
+---
+
 ## AUDITORÍA DE EFICACIA DEL CONTENIDO — 2026-06-24 (mig 071/072) · es→en A1/A2 + regresión pt
 **Pregunta:** ¿el contenido de cada nivel *construye la competencia CEFR* de ese nivel? (no solo "sin
 errores"). Auditoría por nivel: cobertura, progresión, retención, balance de 4 habilidades, evaluación.

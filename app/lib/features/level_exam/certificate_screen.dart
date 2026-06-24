@@ -70,7 +70,8 @@ class _CertificateScreenState extends State<CertificateScreen> {
       body: Stack(
         children: [
           ListView(
-            padding: const EdgeInsets.fromLTRB(20, 8, 20, 28),
+            // + inset inferior (barra de navegación Android); 0 donde no aplica.
+            padding: EdgeInsets.fromLTRB(20, 8, 20, 28 + MediaQuery.paddingOf(context).bottom),
             children: [
               // El certificado.
               AspectRatio(

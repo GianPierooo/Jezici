@@ -67,7 +67,9 @@ class _CheckpointResultScreenState extends State<CheckpointResultScreen> {
           _Header(passed: r.passed, scorePct: r.scorePct, confetti: _confetti),
           Expanded(
             child: SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(20, 18, 20, 24),
+              // + inset inferior para que el botón al final del scroll despeje la barra
+              // de navegación de Android (sweep del mismo patrón de corte).
+              padding: EdgeInsets.fromLTRB(20, 18, 20, 24 + MediaQuery.paddingOf(context).bottom),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
