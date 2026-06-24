@@ -6,6 +6,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/ui/jz_transitions.dart';
 import '../../data/models/practice_models.dart';
 import '../../data/providers.dart';
+import '../immersion/immersion_screen.dart';
 import '../reference/reference_screen.dart';
 import 'practice_player_screen.dart';
 
@@ -123,6 +124,13 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
             subtitle: 'Tus conceptos por habilidad + tu dominio',
             color: AppColors.primaryDark,
             onTap: () => Navigator.of(context).push(jzRoute(const ReferenceScreen())),
+          ),
+          _Card(
+            emoji: '📖',
+            title: 'Inmersión',
+            subtitle: 'Historias cortas con audio y comprensión',
+            color: AppColors.primaryLight,
+            onTap: () => Navigator.of(context).push(jzRoute(const ImmersionScreen())),
           ),
           _Card(
             emoji: '🔁',

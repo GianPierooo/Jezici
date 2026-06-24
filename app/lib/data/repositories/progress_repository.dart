@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../models/achievement_models.dart';
 import '../models/checkpoint_models.dart';
 import '../models/course_models.dart';
+import '../models/immersion_models.dart';
 import '../models/league_models.dart';
 import '../models/level_exam_models.dart';
 import '../models/profile_models.dart';
@@ -60,6 +61,27 @@ class ProgressRepository {
   Future<ReferenceData> fetchReference() async {
     final res = await _client.rpc('get_reference');
     return ReferenceData.fromJson(Map<String, dynamic>.from(res as Map));
+  }
+
+  // ── Historias / Inmersión (input comprensible, mig 065) ───────────────────
+  /// Lista de historias del curso activo (sin respuestas).
+  Future<List<StorySummary>> fetchStories() async {
+    final res = await _client.rpc('get_stories');
+    return (res as List)
+        .map((e) => StorySummary.fromJson(Map<String, dynamic>.from(e as Map)))
+        .toList();
+  }
+
+  /// Historia completa: segmentos + glosario + preguntas SIN respuesta.
+  Future<StoryDetail> fetchStory(String storyId) async {
+    final res = await _client.rpc('get_story', params: {'p_story_id': storyId});
+    return StoryDetail.fromJson(Map<String, dynamic>.from(res as Map));
+  }
+
+  /// Califica las respuestas server-side (submit_story). answers = [{i, answer}].
+  Future<StoryResult> submitStory(String storyId, List<Map<String, dynamic>> answers) async {
+    final res = await _client.rpc('submit_story', params: {'p_story_id': storyId, 'p_answers': answers});
+    return StoryResult.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
   // ── Perfil (nombre real, país, avatar, bio) ───────────────────────────────

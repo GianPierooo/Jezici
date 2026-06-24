@@ -90,6 +90,34 @@ ya NO es "deploy-pending".) El contenido, tope de examen y audio están LIVE ví
 
 ---
 
+## HISTORIAS / INMERSIÓN — construido 2026-06-24 (mig 065 + 066) · ✅ LIVE
+**Qué existía:** nada. La capa "enseña" previa era tips/cuaderno (mig 057) + Referencia (mig 060);
+no había historias. La "Sesión de inmersión" de Metodologia.md estaba sin construir.
+
+**Qué construí:** input comprensible real en **Practicar → Inmersión**. **6 historias es→en** (3 A1 +
+3 A2), narrativas/diálogos cortos curados con relevancia LATAM (mañana en casa, mercado, amigo
+nuevo; fin de semana, viaje en micro, cumpleaños), calibradas i+1, con **audio por segmento**
+(TTS, **46/46** en Storage) y **30 preguntas de comprensión** (mc/cloze) auto-calificables.
+
+**Diseño (aísla del loop y respeta el grading seguro):** las preguntas NO son `content_items`
+(si lo fueran, los pools de `start_practice` las servirían sin contexto) → viven embebidas en
+`stories.questions`, columna **REVOCADA al cliente** (como `correct_answer` en mig 055). Calificación
+100% server-side (`submit_story` → `jz_grade`). RPCs: `get_stories`/`get_story` (sin respuestas) +
+`submit_story` (XP modesto +12 solo en 1er completado, alimenta racha). Audio en `audio/stories/`
+(Storage, no toca assets de Flutter → sin riesgo del gotcha de CI).
+
+**Verificación (cliente real, `verify_stories.py`):** get_stories=6 · get_story sin respuestas ·
+lectura directa de `stories.questions` → **denegada** · submit correctas → score 1.0 + XP 12 (1ra vez),
+2do sin XP · submit incorrectas → score 0 + `expected` para review · **audio HEAD 46/46**. UI: widget
+test "Inmersión lista historias" + analyze 0 · test 44/44 · build web OK. Loop/seguridad mig 058/
+ligas intactos (`verify_chain` A1→B2 PASS; migraciones aditivas).
+
+**Diferido:** historias B1/B2 y es→pt (empezar por los niveles que tocan los primeros usuarios);
+preguntas de listening dedicadas (hoy la comprensión es lectura, el audio es el input); analítica
+de inmersión (eventos no añadidos al allowlist de `log_event` → se difiere para no tocar mig 058).
+
+---
+
 ## CI (GitHub Actions) — RESUELTO ✅ 2026-06-24 · regla: CI = fuente de verdad, no el local
 **Síntoma:** todas las corridas del workflow "CI" (#47–#56) en ROJO, incluso commits triviales —
 mientras el **deploy de Vercel de esos mismos commits estaba READY** (prod live). → el fallo NO era

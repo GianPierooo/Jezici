@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:jezici/data/models/checkpoint_models.dart';
 import 'package:jezici/data/models/content_item_model.dart';
 import 'package:jezici/data/models/course_models.dart';
+import 'package:jezici/data/models/immersion_models.dart';
 import 'package:jezici/data/models/profile_models.dart';
 import 'package:jezici/data/models/tip_models.dart';
 import 'package:jezici/data/models/achievement_models.dart';
@@ -18,6 +19,7 @@ import 'package:jezici/data/providers.dart';
 import 'package:jezici/data/repositories/progress_repository.dart';
 import 'package:jezici/features/lesson/grading/grader.dart' as grd;
 import 'package:jezici/features/lesson/lesson_player_screen.dart';
+import 'package:jezici/features/immersion/immersion_screen.dart';
 import 'package:jezici/features/leagues/leagues_screen.dart';
 import 'package:jezici/features/reference/reference_screen.dart';
 
@@ -38,6 +40,13 @@ class FakeProgressRepository implements ProgressRepository {
   Future<Map<String, String>> fetchLessonProgress() async => {};
   @override
   Future<HomeStats> fetchHomeStats() async => HomeStats.empty;
+  @override
+  Future<List<StorySummary>> fetchStories() async => const [];
+  @override
+  Future<StoryDetail> fetchStory(String storyId) async => throw UnimplementedError();
+  @override
+  Future<StoryResult> submitStory(String storyId, List<Map<String, dynamic>> answers) async =>
+      throw UnimplementedError();
   @override
   Future<List<SkillLevel>> fetchSkills() async => const [];
   @override
@@ -272,6 +281,21 @@ Widget _wrapRepo(Widget child, ProgressRepository repo) => ProviderScope(
       overrides: [progressRepositoryProvider.overrideWithValue(repo)],
       child: MaterialApp(home: child),
     );
+
+/// Fake con datos de Historias para la pantalla de Inmersión.
+class ImmersionFakeRepository extends FakeProgressRepository {
+  @override
+  Future<List<StorySummary>> fetchStories() async => [
+        StorySummary(
+            id: 's1', level: 'A1', order: 1, title: 'A Morning at Home',
+            subtitle: 'Una mañana en casa', emoji: '🌅', estSeconds: 60,
+            segmentCount: 7, questionCount: 5, completed: true, bestScore: 1.0),
+        StorySummary(
+            id: 's2', level: 'A1', order: 2, title: 'At the Market',
+            subtitle: 'En el mercado', emoji: '🍎', estSeconds: 60,
+            segmentCount: 7, questionCount: 5, completed: false, bestScore: 0),
+      ];
+}
 
 /// Fake con datos de Referencia para la pantalla de Repaso.
 class ReferenceFakeRepository extends FakeProgressRepository {
@@ -619,5 +643,20 @@ void main() {
     expect(find.text('A / An según el sonido'), findsOneWidget);
     expect(find.text('No olvides el sujeto'), findsOneWidget);
     expect(find.text('visto'), findsOneWidget); // el tip de reading está marcado visto
+  });
+
+  testWidgets('Inmersión lista historias agrupadas por nivel', (WidgetTester tester) async {
+    tester.view.physicalSize = const Size(440, 1200);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
+    await tester.pumpWidget(_wrapRepo(const ImmersionScreen(), ImmersionFakeRepository()));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Nivel A1'), findsOneWidget);
+    expect(find.text('A Morning at Home'), findsOneWidget);
+    expect(find.text('At the Market'), findsOneWidget);
+    expect(find.byIcon(Icons.check_circle_rounded), findsOneWidget); // 1 completada
   });
 }

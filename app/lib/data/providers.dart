@@ -4,6 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'models/achievement_models.dart';
 import 'models/content_item_model.dart';
 import 'models/course_models.dart';
+import 'models/immersion_models.dart';
 import 'models/profile_models.dart';
 import 'models/tip_models.dart';
 import 'models/league_models.dart';
@@ -38,6 +39,11 @@ final referenceProvider = FutureProvider<ReferenceData>(
 /// Cuaderno de datos: tips pedagógicos vistos por el usuario (capa "enseña").
 final notebookProvider = FutureProvider<List<TipModel>>(
   (ref) => ref.watch(progressRepositoryProvider).getNotebook(),
+);
+
+/// Historias / Inmersión del curso activo (input comprensible).
+final storiesProvider = FutureProvider<List<StorySummary>>(
+  (ref) => ref.watch(progressRepositoryProvider).fetchStories(),
 );
 
 /// Cursos disponibles (es→en, es→pt) + cuál es el activo del usuario.
