@@ -131,11 +131,25 @@ se mueve, por diseño.
 - **Diferido:** source maps/símbolos (stack traces legibles en web/nativo) y Sentry server-side
   (Edge Functions) — fuera de alcance de esta tanda.
 
+## CI (GitHub Actions) = FUENTE DE VERDAD — no el local
+- **El verde del CI manda, no `flutter analyze` local.** Workflow `.github/workflows/ci.yml`
+  (job `flutter`: analyze → test → build web, Flutter **pinneado 3.44.3**). Verde real =
+  `gh run list`/API muestran SUCCESS. Un verde local que el CI no refleje **no cuenta**.
+- **Por qué el local daba falso verde (lección 2026-06-24, runs #47–#56 todas rojas):** `.env`
+  es un asset DECLARADO en `pubspec.yaml` pero **gitignored**. En local existe → analyze pasa.
+  En CI no existe → `flutter analyze` falla con `asset_does_not_exist` y aborta el job (test/build
+  quedan *skipped*). El step de build creaba `.env` con `touch`, pero **corre DESPUÉS de analyze**.
+  Fix de raíz: step **`Prepare .env`** (touch) **antes** de analyze + versión pinneada. El `.env`
+  vacío basta (Supabase usa fallback público embebido en `supabase_config.dart`).
+- **Reproducir el CI en local:** `mv app/.env app/.env.bak && cd app && flutter analyze` → debe dar
+  el mismo `asset_does_not_exist`. Restaurar después. (Antes de declarar "verde", correr el comando
+  EXACTO del workflow, no asumir.)
+
 ## Comandos de verificación
 ```bash
-# Toolchain (desde app/)
+# Toolchain (desde app/) — el CI corre estos MISMOS con .env presente (touch) y Flutter 3.44.3
 flutter analyze              # esperado: No issues found
-flutter test                 # esperado: All tests passed (40/40)
+flutter test                 # esperado: All tests passed (43/43)
 flutter build web --release  # esperado: Built build/web (wasm dry-run warning de ua_client_hints es OK)
 
 # Audio: cobertura real en Storage (HEAD a payload.audio_url) — esperado 312/312

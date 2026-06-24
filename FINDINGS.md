@@ -89,6 +89,32 @@ tope de examen, audio) ya está LIVE vía migraciones/Storage, independiente del
 
 ---
 
+## CI (GitHub Actions) — RESUELTO ✅ 2026-06-24 · regla: CI = fuente de verdad, no el local
+**Síntoma:** todas las corridas del workflow "CI" (#47–#56) en ROJO, incluso commits triviales —
+mientras el **deploy de Vercel de esos mismos commits estaba READY** (prod live). → el fallo NO era
+build/deploy sino un step de Actions común a todos.
+
+**Causa raíz (1 línea):** el step **Analyze** falla con
+`warning • The asset file '.env' doesn't exist • pubspec.yaml:80:7 • asset_does_not_exist` →
+`flutter analyze` sale con código ≠0 y **aborta el job** (Tests y Build quedan *skipped*). `.env`
+es un asset DECLARADO en `pubspec.yaml` pero **gitignored** (sin secretos en repo). El step de Build
+sí creaba `.env` con `touch`, pero **corre DESPUÉS de Analyze**.
+
+**Por qué el local daba FALSO VERDE:** en la máquina de Gian `.env` existe (lo usan las tools, 353 B)
+→ analyze local pasa. En CI el checkout no lo tiene → analyze rojo. Reproducido en local:
+`mv app/.env app/.env.bak && flutter analyze` → mismo `asset_does_not_exist`.
+
+**Fix de raíz (sin trampa — no se tocó ningún test/check):** en `ci.yml`, step **`Prepare .env`**
+(`touch .env`) **antes** de Analyze (no solo en Build) + Flutter **pinneado a 3.44.3** (CI usaba
+`stable` flotante = 3.44.3; local 3.44.1 → deriva). El `.env` vacío basta: `supabase_config.dart`
+usa fallback público embebido y lee `.env` de forma segura (`dotenv.isInitialized`).
+
+**Regla operativa (nueva):** el verde del **CI de GitHub Actions es la fuente de verdad, no el
+`flutter analyze` local**. Antes de declarar verde, correr el comando EXACTO del workflow en las
+mismas condiciones (sin `.env`, versión pinneada). Detalle en CLAUDE.md §CI.
+
+---
+
 ## 0. Veredicto honesto del producto
 
 Jezici es un MVP **sorprendentemente completo y bien construido en su núcleo**:
