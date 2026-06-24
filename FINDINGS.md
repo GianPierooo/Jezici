@@ -120,6 +120,39 @@ buildCommand restaurado. El aviso de "nueva versión" del sw intacto.
 
 ---
 
+## AUDITORÍA DE EFICACIA DEL CONTENIDO — 2026-06-24 (mig 071/072) · es→en A1/A2 + regresión pt
+**Pregunta:** ¿el contenido de cada nivel *construye la competencia CEFR* de ese nivel? (no solo "sin
+errores"). Auditoría por nivel: cobertura, progresión, retención, balance de 4 habilidades, evaluación.
+Detalle en **EFICACIA_CONTENIDO.md**.
+
+**Hallazgo sistémico (todos los niveles, ambos cursos):** balance de habilidades **~3:1** — R~74/W~74 vs
+**L24/S24** por nivel (4/unidad). Listening/Speaking **subservidos**. Además **techo determinista de
+producción**: speaking es proxy read-aloud (no califica producción oral) y writing se evalúa con
+translation/cloze tolerantes (no redacción libre) → la competencia productiva real de cada nivel depende
+de **Fase 2** (IA/humano). Honesto: el contenido entrena reconocimiento + producción guiada, no certifica
+producción libre.
+
+**es→en A1 y A2 — veredicto "SÍ con reservas".** Cubren el núcleo CEFR con progresión sólida, pero faltaban
+puntos. **Arreglado (mig 071, 29 ítems nuevos SIN audio, cableados a la lección de su tema → loop + examen):**
+A1 presente continuo básico (am/is/are+-ing), 3ª persona -s como sistema (he works), plurales y a/an,
+these/those, números altos; A2 conectores because/so/but, present perfect 'yet', a lot of / much-many,
+adverbios -ly. 29/29 válidos contra el grader; grade_item acepta lo correcto y rechaza lo erróneo.
+
+**Regresión P0 destapada y ARREGLADA (mig 072):** los exámenes de nivel de **pt** daban 'level exam locked'
+— mig 064 (misión C1) había restaurado start/submit_level_exam a la versión **mono-curso** (`courses where
+is_active`), perdiendo el multicurso de mig 047. mig 072 restaura `jz_active_course()` en ambas (desde la
+def viva, solo esa línea), preservando per-skill + el tope C1 (jz_level_status/jz_resolve intactas).
+**verify_pt_chain vuelve a PASS** (y verify_chain es→en sigue PASS).
+
+**Diferido (con punto de retome):** equilibrar L/S en todos los niveles (requiere autorar L/S + **audio
+TTS** → tanda dedicada); auditoría de eficacia es→en B1/B2/C1 y es→pt A1/A2/B1; más reciclaje de léxico;
+checkpoints menos sesgados a reconocimiento.
+
+**Verificación:** validador determinista **0** (es→en) · verify_chain es→en + verify_pt_chain **PASS** ·
+analyze 0 · test 55/55 (+3 del grader) · correct_answer 42501 · loop/seguridad/ligas intactos.
+
+---
+
 ## AUDITORÍA PEDAGÓGICA DEL CONTENIDO — 2026-06-24 (mig 070) · ✅ es→en A1/A2
 **Alcance:** 12 profesores-IA en paralelo (1/unidad) auditaron los **384 ítems es→en A1/A2** (lección
 + checkpoint) por correctitud, tolerancia, distractores, revelación, naturalidad, CEFR, claridad,

@@ -91,6 +91,27 @@ void main() {
     });
   });
 
+  group('eficacia: ítems de huecos de cobertura (mig 071)', () {
+    test('cloze presente continuo (am/is/are + -ing) califica', () {
+      final it = _item(ContentItemType.cloze, correct: {'value': 'is', 'accepted': ['is']});
+      expect(gradeItem(it, 'is').correct, isTrue); // "She ___ reading" → is
+      expect(gradeItem(it, 'are').correct, isFalse);
+    });
+    test('translation con conector (because/so) acepta variantes', () {
+      final it = _item(ContentItemType.translation, correct: {
+        'value': 'I was tired, so I went home.',
+        'accepted': ['i was tired so i went home', 'i was tired, so i went home'],
+      });
+      expect(gradeItem(it, 'I was tired so I went home').correct, isTrue);
+      expect(gradeItem(it, 'I went home because I was tired').correct, isFalse); // distinto orden/sentido no listado
+    });
+    test("present perfect 'yet' (cloze) califica", () {
+      final it = _item(ContentItemType.cloze, correct: {'value': 'yet', 'accepted': ['yet']});
+      expect(gradeItem(it, 'yet').correct, isTrue);
+      expect(gradeItem(it, 'already').correct, isFalse);
+    });
+  });
+
   group('normalize · apóstrofes y contracciones (bug P0, mig 067)', () {
     test('contracción equivale a forma completa (ambos sentidos)', () {
       expect(normalize("I'm from Peru"), normalize('I am from Peru'));
