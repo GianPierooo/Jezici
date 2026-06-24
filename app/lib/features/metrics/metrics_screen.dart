@@ -39,6 +39,9 @@ class MetricsScreen extends ConsumerWidget {
                 _row('DAU', '${i('dau')}'),
                 _row('WAU', '${i('wau')}'),
                 _row('MAU', '${i('mau')}'),
+                // CURR / stickiness: qué fracción de los activos del mes vuelve hoy.
+                _row('Stickiness (DAU/MAU)',
+                    i('mau') > 0 ? '${(i('dau') / i('mau') * 100).toStringAsFixed(1)}%' : '—'),
                 _row('Racha media', num2('avg_streak')),
                 _row('Lecciones / día activo', num2('lessons_per_active_day')),
               ]),
@@ -157,6 +160,9 @@ class _Engagement extends ConsumerWidget {
         final usage = (e['section_usage_7d'] as Map?) ?? const {};
         final fb = (e['feedback_by_kind'] as Map?) ?? const {};
         final interest = (e['conversar_interest'] as Map?) ?? const {};
+        final lf = (e['lesson_funnel'] as Map?) ?? const {};
+        int lfi(String k) => (lf[k] as num?)?.toInt() ?? 0;
+        final lfRate = ((lf['completion_rate'] as num?)?.toDouble() ?? 0) * 100;
         Widget rows(Map m, String empty) => m.isEmpty
             ? Padding(
                 padding: const EdgeInsets.symmetric(vertical: 9),
@@ -179,6 +185,56 @@ class _Engagement extends ConsumerWidget {
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
             const SizedBox(height: 8),
             _card(rows(usage, 'Aún sin vistas registradas.')),
+            const SizedBox(height: 16),
+            // Embudo DENTRO de la lección (30 días): dónde abandonan.
+            const Text('Embudo de lección (30 días)',
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+            const SizedBox(height: 8),
+            _card(Column(children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 7),
+                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                  const Text('Lecciones iniciadas',
+                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                  Text('${lfi('started')}',
+                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.primary)),
+                ]),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 7),
+                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                  const Text('Completadas',
+                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                  Text('${lfi('completed')}',
+                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.primary)),
+                ]),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 7),
+                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                  const Text('Abandonadas (salida)',
+                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                  Text('${lfi('quit')}',
+                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.coral)),
+                ]),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 7),
+                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                  const Text('Se quedaron sin vidas',
+                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                  Text('${lfi('no_hearts')}',
+                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.coral)),
+                ]),
+              ),
+              const Divider(height: 16),
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                const Text('Tasa de finalización',
+                    style: TextStyle(fontSize: 13.5, fontWeight: FontWeight.w800, color: AppColors.text)),
+                Text('${lfRate.toStringAsFixed(1)}%',
+                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.success)),
+              ]),
+            ])),
             const SizedBox(height: 16),
             const Text('Feedback e interés',
                 style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),

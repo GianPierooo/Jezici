@@ -31,6 +31,15 @@
 
 ---
 
+## ANALÍTICA DE LA BETA — completa 2026-06-23 (mig 061)
+KPIs medibles sin SQL desde la pantalla interna (Ajustes → Ver métricas, admin-only):
+retención D1/D7/D30, **stickiness DAU/MAU (CURR)**, embudo de onboarding, lecciones/día,
+% aprueba checkpoint/examen, % certifica, y **embudo dentro de la lección** (iniciadas/
+completadas/abandonadas/sin-vidas + tasa de finalización). Tapado el único hueco (abandono
+intra-lección) con 3 eventos nuevos (`lesson_start`/`lesson_quit`/`no_hearts`, añadidos al
+allowlist). Sin PII. Verificado con JWT real (eventos entran/bogus descartado, gate admin,
+league_members 403). Diferido: cohorte semanal visual, abandono por ítem, analítica de práctica.
+
 ## MONITOREO (Sentry) — cableado 2026-06-23, pendiente DSN
 Sentry client-side integrado (`runWithSentry` envuelve `runApp`: Flutter + nativo + zona;
 web errores JS). Sin DSN = NO-OP (app intacta, deploy intacto — buildCommand NO tocado para

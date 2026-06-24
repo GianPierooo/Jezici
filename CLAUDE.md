@@ -83,6 +83,21 @@ se mueve, por diseño.
 - Previo: `correct_answer` ya estaba cerrado (mig 055), `jz_*` helpers revocados (mig 049).
 - Admin allowlist NO se gestiona por SQL roles → es la tabla `admins` (agregar/quitar user_id).
 
+## Analítica de la beta (KPIs sin SQL) — mig 061
+- **Cómo lo ve Gian:** Ajustes → "Ver métricas (interno)" (admin-only; Gian ya en `admins`).
+  Pantalla `MetricsScreen` lee `get_metrics`/`get_engagement`/`get_onboarding_funnel` (todas
+  admin-gated). KPIs: usuarios, DAU/WAU/MAU + **stickiness DAU/MAU (CURR)**, retención
+  D1/D7/D30, lecciones/día, % aprueba checkpoint/examen, % certifica, **embudo de onboarding**
+  (paso a paso + dónde abandonan) y **embudo de lección 30d** (iniciadas/completadas/
+  abandonadas/sin-vidas + tasa de finalización).
+- **Eventos (allowlist `log_event`, mig 058+061):** `app_open, client_error, conversar_attempt,
+  lesson_complete, mission_started, onboarding_completed, onboarding_step, screen_view` +
+  **`lesson_start, lesson_quit, no_hearts`** (mig 061). ⚠️ Evento fuera del allowlist = descarte
+  silencioso → si agregas uno, AGRÉGALO al allowlist o nunca entra. Sin PII (solo conteos + ids opacos).
+- Nota: `lesson_funnel.completion_rate` solo es fiable para sesiones DESPUÉS de este deploy
+  (antes había `lesson_complete` sin `lesson_start`). Diferido: retención por cohorte semanal
+  visual, abandono por ítem específico, analítica de práctica.
+
 ## Monitoreo de errores (Sentry) — cableado, falta el DSN
 - **Client-side LIVE-ready** (`core/monitoring/sentry_config.dart`): `runWithSentry`
   envuelve `runApp` (captura Flutter + nativo iOS/Android + zona; en web errores JS de la

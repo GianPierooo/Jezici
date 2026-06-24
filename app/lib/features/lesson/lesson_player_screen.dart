@@ -57,6 +57,7 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
   /// se trata como salto SIN penalización: no se pide respuesta a ciegas, no
   /// resta vidas y se OMITE del envío a complete_lesson (no cuenta como fallo).
   bool _audioUnavailable = false;
+  bool _finished = false; // llegó al final (para distinguir salida de abandono)
 
   ContentItemModel get _item => widget.items[_index];
   bool get _isStub => isStubType(_item.type);
@@ -75,6 +76,9 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
     AudioEngine.instance.unlock();
     _prefetchAround();
     _checkCurrentAudio();
+    // Analítica (beta): inicio de lección → embudo dentro de la lección.
+    ref.read(progressRepositoryProvider).logEvent('lesson_start',
+        props: {'lesson_id': widget.lesson.id, 'items': widget.items.length});
     // Pre-calienta el reconocimiento de voz (permiso de micrófono / motor) si la
     // lección tiene speaking, para que ese ítem no espere al primer uso.
     if (widget.items.any((it) => it.type == ContentItemType.speakingReadAloud)) {
@@ -171,12 +175,18 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
       return;
     }
     if (_hearts <= 0) {
+      // Punto de fricción: se quedó sin vidas (analítica beta).
+      ref.read(progressRepositoryProvider).logEvent('no_hearts',
+          props: {'lesson_id': widget.lesson.id, 'at_index': _index});
       final choice = await showNoHeartsSheet(context);
       if (!mounted) return;
       if (choice == NoHeartsChoice.refill) {
         setState(() => _hearts = 5);
         _advance();
       } else {
+        _finished = true; // ya logueamos no_hearts; evita doble conteo en _exit
+        ref.read(progressRepositoryProvider).logEvent('lesson_quit',
+            props: {'lesson_id': widget.lesson.id, 'at_index': _index, 'reason': 'no_hearts'});
         Navigator.of(context).popUntil((r) => r.isFirst);
       }
       return;
@@ -214,6 +224,7 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
   }
 
   Future<void> _finish() async {
+    _finished = true; // terminó todos los ítems → no contar como abandono
     showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -268,7 +279,14 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
     }
   }
 
-  void _exit() => Navigator.of(context).popUntil((r) => r.isFirst);
+  void _exit() {
+    // Salida ANTES de terminar = abandono dentro de la lección (analítica beta).
+    if (!_finished) {
+      ref.read(progressRepositoryProvider).logEvent('lesson_quit',
+          props: {'lesson_id': widget.lesson.id, 'at_index': _index, 'total': widget.items.length});
+    }
+    Navigator.of(context).popUntil((r) => r.isFirst);
+  }
 
   @override
   Widget build(BuildContext context) {
