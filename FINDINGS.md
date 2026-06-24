@@ -56,6 +56,39 @@ en `vercel.json` (ver CLAUDE.md §Monitoreo). Diferido: source maps + Sentry ser
 
 ---
 
+## CONTENIDO C1 (es→en) — sembrado 2026-06-23 (mig 063 + 064) · ✅ LIVE, sin cert por diseño
+**Qué se construyó.** 6 unidades C1 (25–30) con foco real de C1 (no "más gramática"):
+matiz/colocación/hedging (U25), argumentación/concesión (U26), inversión enfática + cleft +
+inferencia (U27), idiom/phrasal/registro/eufemismo (U28), condicionales con inversión + modalidad
+avanzada (U29), lenguaje académico: nominalización/pasiva formal/reporting verbs (U30). **252 ítems**
+(192 de lección + **60 de checkpoint FRESCO**), 4 habilidades, dificultad 0.62–0.92. Autorado por
+profesor-IA (1 agente/unidad) → validado contra el grader (gen_c1.mjs, 0 problemas) → validador
+determinista (`content_qa.py c1`) **0 hallazgos**. Audio TTS **67/67** en Storage (HEAD 200).
+
+**Techo determinista (la tensión, resuelta honestamente).** reading/listening/vocab/gramática a C1
+se autocalifican bien; **writing/speaking a C1 NO** sin IA (solo proxies: traducción tolerante +
+leer en voz alta). Decisión: C1 se siembra como **contenido aprendible** pero **sin examen ni
+certificado C1** hasta Fase 2. Cierre en DB (defensa en profundidad, todo live):
+- Ítems de lección tag `c1_unidadN` / checkpoint `cp_unidadN` → **fuera del pool** del examen de nivel.
+- **mig 064**: `jz_resolve_exam_level` topa en B2 (nunca apunta a C1/C2); `jz_level_status` →
+  `unlocked=false` para C1/C2 → `start_level_exam` y `submit_level_exam` rechazan C1 con
+  `level exam locked`. Verificado con cliente real (`verify_c1_cap.py`): un usuario **plenamente
+  elegible** (6/6 checkpoints C1, 4 skills al tope) NO puede acuñar JZC-C1; ni flujo normal ni
+  atajo RPC crafteado con respuestas correctas. La progresión intra-C1 la gatean los checkpoints (≥80%).
+- ⚠️ **Para Gian (decisión Fase 2):** C1 hoy es **"en progreso sin certificado"**. Cuando exista
+  evaluación real de writing/speaking (IA/humano), habilitar examen+cert C1 (retaguear a `unidad%`,
+  ampliar el rango de las 2 RPC a C1, crear exam id `…0000c1`). Detalle: `docs/LEVELS_C1_DESIGN.md`.
+
+**Verificación.** `content_qa.py c1` = 0 · `verify_chain.py` A1→B2 PASS (certs topan en B2) ·
+`verify_c1_cap.py` PASS · `grade_item` califica C1 server-side · B2 (u.19–24)→C1 (u.25–30) ·
+analyze 0 · test 43/43 · build web OK.
+
+**Deploy-pending (Vercel bloqueado).** Placement C1: 4 ítems C1 (inversión/cleft/concesión)
+añadidos a `placement_test.dart` con clamp 0..4 → ubica usuarios avanzados en C1. Lo demás (contenido,
+tope de examen, audio) ya está LIVE vía migraciones/Storage, independiente del deploy.
+
+---
+
 ## 0. Veredicto honesto del producto
 
 Jezici es un MVP **sorprendentemente completo y bien construido en su núcleo**:

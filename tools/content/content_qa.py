@@ -204,6 +204,24 @@ def main():
         for sev, code, where, detail in F:
             print(f"   - [{sev}] {code} {where}: {detail}")
         return
+    if mode == 'c1':  # curso es→en, nivel C1 (Unidades 25–30)
+        units = load(COURSE, "u.cefr_level='C1'", 'en')
+        export_md(units, 'C:/Users/gianp/Desktop/Jezici/docs/CONTENT_EXPORT_C1.md', 'Inglés es→en · C1')
+        print('[OK] export c1 -> docs/CONTENT_EXPORT_C1.md')
+        F = validate(units)
+        from collections import Counter
+        by_sev = {}
+        for sev, code, where, detail in F:
+            by_sev.setdefault(sev, []).append((code, where, detail))
+        print(f"\n=== VALIDADOR DETERMINISTA (es-en C1): {len(F)} hallazgos ===")
+        for sev in ('CRITICO', 'FUNCIONAL', 'PULIDO'):
+            its = by_sev.get(sev, [])
+            print(f"[{sev}] {len(its)}")
+            for code, n in Counter(c for c, _, _ in its).most_common():
+                print(f"   {code}: {n}")
+        for sev, code, where, detail in F:
+            print(f"   - [{sev}] {code} {where}: {detail}")
+        return
     units = load()
     if mode in ('all', 'export'):
         path = export_md(units, 'C:/Users/gianp/Desktop/Jezici/docs/CONTENT_EXPORT.md')

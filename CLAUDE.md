@@ -57,7 +57,8 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
 | **Audio** (listening/speaking TTS) | ✅ es→en + es→pt A1/A2 (312) + **es→pt B1 (68)** en Storage = **380/380** + degradación/unlock iOS LIVE. Ver FINDINGS.md §2 |
 | **Seguridad** (4 hallazgos) | ✅ **cerrados** en DB (mig 058) + botón export en Ajustes **LIVE** (deploy 68266d3). Ver abajo |
 | Ligas + Leaderboards | ✅ rollover real (mig 059): cierre semanal idempotente/lazy + ascensos (top 7)/descensos (fondo 5) Bronce↔Diamante + snapshots. `get_leaderboard` (XP/Racha/Lecciones/Certificados × Semanal/Mensual/Anual/Histórico × Global/División, SIN user_id). UI con segmentos (Mi liga / Tablas) **LIVE** (deploy-pending hasta push). Falta: **cron** que dispare el cierre (hoy es lazy-on-read; ver abajo) |
-| C1/C2 | ❌ documentados, no sembrados (BD llega a B2 en es→en) |
+| **C1 es→en** | ✅ **sembrado y live** (mig 063): 6 unidades (25–30), **252 ítems** (192 lección + 60 checkpoint fresco), 4 habilidades, audio **67/67**. **Sin examen/cert C1** por diseño (techo determinista — writing/speaking a C1 no son evaluables sin IA; mig 064 tope el examen en B2 + blinda C1). Progresión intra-C1 por checkpoints (≥80%). Placement C1 (4 ítems) **deploy-pending**. Ver `docs/LEVELS_C1_DESIGN.md` |
+| C2 | ❌ documentado, no sembrado (otra pasada) |
 | Conversar / Simulacros | ⏸️ pantallas existen, **ocultas** (decisión GA6) |
 
 ### Ligas — automatización del cierre (pendiente del dueño)

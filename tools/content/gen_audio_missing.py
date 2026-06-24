@@ -21,6 +21,7 @@ COURSE_PT = "20000000-0000-0000-0000-000000000002"
 GROUPS = {
     "en-b1": (COURSE_EN, "B1", "en"),
     "en-b2": (COURSE_EN, "B2", "en"),
+    "en-c1": (COURSE_EN, "C1", "en"),
     "pt-a1": (COURSE_PT, "A1", "pt"),
     "pt-a2": (COURSE_PT, "A2", "pt"),
     "pt-b1": (COURSE_PT, "B1", "pt"),

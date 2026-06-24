@@ -34,7 +34,7 @@ class PlacementTest extends StatefulWidget {
 
 class _PItem {
   const _PItem(this.level, this.prompt, this.options, this.correct);
-  final int level; // 0=A1 1=A2 2=B1 3=B2
+  final int level; // 0=A1 1=A2 2=B1 3=B2 4=C1
   final String prompt;
   final List<String> options;
   final int correct;
@@ -61,6 +61,11 @@ const _items = <_PItem>[
   _PItem(3, 'He was ___ to finish on time.', ['able', 'can', 'capable of'], 0),
   _PItem(3, 'If I ___ known, I would have told you.', ['have', 'had', 'did'], 1),
   _PItem(3, 'She said she ___ tired.', ['is', 'was', 'be'], 1),
+  // C1 (discrimina usuarios avanzados: inversión, cleft, concesión, registro)
+  _PItem(4, '___ had I sat down when the phone rang.', ['Hardly', 'Rarely', 'Seldom'], 0),
+  _PItem(4, 'Not only ___ he apologize, but he also paid.', ['did', 'does', 'has'], 0),
+  _PItem(4, 'The plan is costly; ___, it may be necessary.', ['nevertheless', 'therefore', 'moreover'], 0),
+  _PItem(4, '___ I known earlier, I would have helped.', ['Had', 'If', 'Have'], 0),
 ];
 
 const int _maxQuestions = 12;
@@ -77,12 +82,12 @@ class _PlacementTestState extends State<PlacementTest> {
   @override
   void initState() {
     super.initState();
-    _level = widget.startLevel.clamp(0, 3);
+    _level = widget.startLevel.clamp(0, 4);
     _pickNext();
   }
 
   void _pickNext() {
-    final lvl = _level.clamp(0, 3);
+    final lvl = _level.clamp(0, 4);
     var pool = <int>[];
     for (var i = 0; i < _items.length; i++) {
       if (!_asked.contains(i) && _items[i].level == lvl) pool.add(i);
@@ -102,9 +107,9 @@ class _PlacementTestState extends State<PlacementTest> {
     final correct = optionIdx == _current.correct;
     _count++;
     if (correct) {
-      _level = (_level + 1).clamp(0, 3);
+      _level = (_level + 1).clamp(0, 4);
     } else {
-      _level = (_level - 1).clamp(0, 3);
+      _level = (_level - 1).clamp(0, 4);
     }
 
     if (_count >= _maxQuestions || _asked.length >= _items.length) {
@@ -116,8 +121,8 @@ class _PlacementTestState extends State<PlacementTest> {
 
   void _finish() {
     final mean = _askedLevels.reduce((a, b) => a + b) / _askedLevels.length;
-    final idx = mean.round().clamp(0, 3);
-    final level = CefrTable.order[idx]; // A1..B2
+    final idx = mean.round().clamp(0, 4);
+    final level = CefrTable.order[idx]; // A1..C1
     widget.data.placementLevel = level;
     widget.data.skillLevels = {
       'reading': level,
