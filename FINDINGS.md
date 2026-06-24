@@ -90,27 +90,33 @@ ya NO es "deploy-pending".) El contenido, tope de examen y audio están LIVE ví
 
 ---
 
-## SELLO DE BUILD JZ_BUILD — 2026-06-24 · ✅ RESUELTO (cierra P0.5)
-**Problema:** el sello mostraba `dev` en prod. El intento original (`--dart-define=JZ_BUILD=
-$VERCEL_GIT_COMMIT_SHA` en el buildCommand) rompía el deploy: cualquier `$VAR`/`$()` del SHA en la
-**cadena del buildCommand** causa ERROR instantáneo pre-build. (Nota: `$SUPABASE_URL`/`$ANON_KEY` sí
-funcionan ahí — lo que rompe es el system-var `$VERCEL_GIT_COMMIT_SHA` / subshell `$(git…)`.)
+## SELLO DE BUILD JZ_BUILD — 2026-06-24 · ⚠️ lado-app LISTO, inyección BLOQUEADA (sigue `dev`)
+**Objetivo:** mostrar el SHA real del build en el pie de Ajustes (diagnóstico de la beta).
 
-**Solución (deploy-safe, sin tocar el buildCommand con el `$` del SHA):** paso POST-build.
-- `vercel.json`: se añade `&& bash ../scripts/stamp_build.sh` al final del buildCommand (cadena sin
-  `$` del SHA; el `cd app` previo persiste, así que cwd=app/ y `../scripts/` = raíz).
-- `scripts/stamp_build.sh` (committed): lee `$VERCEL_GIT_COMMIT_SHA` **adentro del script** (env var
-  disponible en el build de Vercel) e inyecta `<script>window.JZ_BUILD="<sha7>"</script>` en
-  `build/web/index.html`. Idempotente; si no hay env var (local/CI) no inyecta → la app cae a `dev`.
-- App: `core/app_info.dart` (`appBuild()`) lee `window.JZ_BUILD` en RUNTIME vía `dart:js_interop`
-  (`app_info_stamp_web.dart`; stub `_io` para móvil/VM). Se muestra en el pie de Ajustes
-  ("Jezici 1.0.0 · <sha7>"). Sentry usa el mismo sello para `release`.
-- Por qué es fiable: index.html (y main.dart.js) se sirven **no-store** (sw v4, P0.5) → el sello
-  refleja el bundle realmente cargado, no una caché vieja.
+**Hallazgo duro (re-confirmado empíricamente):** **CUALQUIER edición del `buildCommand` de
+vercel.json rompe el deploy** — no solo `$VAR`/`$()` del SHA. Probé añadir un paso post-build
+deploy-safe: `&& bash ../scripts/stamp_build.sh` (sin `$` del SHA en la cadena; el SHA se lee dentro
+del script desde `$VERCEL_GIT_COMMIT_SHA`). Resultado: deploy **ERROR instantáneo, 0 logs de build**
+(commit 0389b1a, dpl_318NmLN…). Producción NO se cayó (el alias se quedó en el deploy READY previo
+bcb844a). **Revertí vercel.json a su string byte-idéntico vivo** → deploy se recupera.
+→ La única superficie de inyección build-time es el buildCommand, y es intocable. Sin inyección
+build-time, el runtime (hosting estático) no puede conocer el SHA. Conclusión: **no hay vía
+deploy-safe vía vercel.json**; el sello queda **diferido**.
 
-**Verificación:** script probado local (inyección + idempotencia + fallback sin SHA); analyze 0 ·
-test 52/52 · build OK. En prod: el index.html desplegado lleva el SHA real (no `dev`) y el deploy
-queda READY; `gh run list` SUCCESS. El aviso de "nueva versión" del sw se mantiene intacto.
+**Lo construido y CI-verde (se mantiene, inofensivo — cae a `dev`, sin regresión; commit 0389b1a):**
+- `core/app_info.dart` `appBuild()`: lee `window.JZ_BUILD` en runtime (`dart:js_interop`,
+  `app_info_stamp_web.dart`; stub `_io` para móvil/VM/tests). Pie de Ajustes y Sentry `release` lo usan.
+- `scripts/stamp_build.sh`: inyecta `<script>window.JZ_BUILD="<sha7>"</script>` en
+  `build/web/index.html` (idempotente; sin `$VERCEL_GIT_COMMIT_SHA` no inyecta → `dev`). Probado local:
+  inyección + idempotencia + fallback OK. index.html va no-store (sw v4) → reflejaría el bundle real.
+
+**Activación (requiere a Gian, dashboard):** añadir `… && bash ../scripts/stamp_build.sh` al **Build
+Command del DASHBOARD de Vercel** (Project Settings → Build & Development), NO en vercel.json. Es la
+única vía no probada que podría aceptarse (el rechazo parece específico de editar el buildCommand de
+vercel.json). Si el dashboard también lo rechaza → limitación de plataforma; el sello queda en `dev`.
+
+**Estado:** analyze 0 · test 52/52 · CI SUCCESS (0389b1a) · prod READY (alias en build previo);
+buildCommand restaurado. El aviso de "nueva versión" del sw intacto.
 
 ---
 

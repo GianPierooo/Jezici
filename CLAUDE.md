@@ -34,14 +34,21 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
   deploy **READY en ~152 s**. Cualquier variante con el flag JZ_BUILD (incluida
   `$(git rev-parse …)`) era rechazada pre-build → **no reintroducir el sello en el
   buildCommand**. Producción de nuevo LIVE con TODO el código nuevo (audio + seguridad).
-- **Sello `JZ_BUILD` RESUELTO ✅ (deploy-safe, P0.5 cerrado):** se inyecta por un PASO
-  POST-BUILD, NO por `--dart-define` inline. `vercel.json` añade `&& bash ../scripts/stamp_build.sh`
-  al final del buildCommand (sin `$` del SHA en la cadena). El script lee `$VERCEL_GIT_COMMIT_SHA`
-  **adentro** (no en el buildCommand) e inyecta `<script>window.JZ_BUILD="<sha7>"</script>` en
-  `index.html`. La app lo lee en RUNTIME (`core/app_info.dart` → `app_info_stamp_web.dart`, js_interop)
-  y lo muestra en el pie de Ajustes. index.html va no-store (sw v4) → el sello refleja el bundle
-  real. Local/CI sin la env var → no inyecta → cae a `dev`. **Regla intacta: NUNCA `$VAR`/`$()` del
-  SHA en el buildCommand** (eso seguía rompiendo el deploy; `$SUPABASE_URL` sí funciona ahí).
+- **Sello `JZ_BUILD` — lado-app LISTO, inyección BLOQUEADA en vercel.json (sigue `dev`).**
+  ⚠️ **Re-confirmado 2026-06-24:** **CUALQUIER** edición del `buildCommand` de vercel.json (incluso
+  añadir `&& bash ../scripts/stamp_build.sh`, SIN `$`) → deploy **ERROR instantáneo pre-build, 0 logs**
+  (commit 0389b1a). El buildCommand debe quedar **byte-idéntico** al string vivo. No basta con evitar
+  `$VAR`/`$()`: NO TOCAR el buildCommand, punto.
+  - **Lo que SÍ está hecho y es CI-verde (commit 0389b1a):** `core/app_info.dart` `appBuild()` lee
+    `window.JZ_BUILD` en runtime (`app_info_stamp_web.dart`, js_interop; stub `_io`), lo muestra en
+    el pie de Ajustes y Sentry lo usa de `release`. `scripts/stamp_build.sh` inyecta
+    `<script>window.JZ_BUILD="<sha7>"</script>` en `build/web/index.html` (idempotente; sin SHA cae a
+    `dev`). index.html va no-store (sw v4) → reflejaría el bundle real. Falla con gracia: sin inyector,
+    `appBuild()`='dev' (sin regresión).
+  - **Para ACTIVARLO (única vía deploy-safe, requiere a Gian):** añadir el paso post-build en el
+    **Build Command del DASHBOARD de Vercel** (Project Settings → Build & Development), NO en vercel.json:
+    `… --dart-define=SUPABASE_ANON_KEY=$SUPABASE_ANON_KEY && bash ../scripts/stamp_build.sh`. Si el
+    dashboard también lo rechaza, el sello queda diferido (limitación de plataforma de este proyecto).
 - Mecánica normal restaurada: push a `main` → Vercel reconstruye → deploy. Migraciones
   (Supabase) siguen teniendo efecto YA, independientes del deploy.
 - **Smoke post-deploy 2026-06-23 (prod `b34b568`) ✅ TODO VERDE** (cliente real, sin
