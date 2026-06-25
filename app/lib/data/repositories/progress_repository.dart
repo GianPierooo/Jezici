@@ -25,18 +25,28 @@ class ProgressRepository {
   /// Califica un ítem en el SERVIDOR (mig 055): el cliente nunca tuvo la
   /// respuesta. Devuelve {correct, graded, expected} — `expected` (la respuesta
   /// canónica) sólo se revela DESPUÉS de responder, para el feedback.
-  Future<({bool correct, bool graded, Map<String, dynamic> expected})> gradeItem(
+  Future<({bool correct, bool near, bool graded, Map<String, dynamic> expected})> gradeItem(
       String itemId, Object? answer) async {
     final res = await _client
         .rpc('grade_item', params: {'p_item_id': itemId, 'p_answer': answer});
     final m = Map<String, dynamic>.from(res as Map);
     return (
       correct: m['correct'] as bool? ?? false,
+      near: m['near'] as bool? ?? false, // "casi correcto" (typo-tolerance, mig 073)
       graded: m['graded'] as bool? ?? false,
       expected: m['expected'] is Map
           ? Map<String, dynamic>.from(m['expected'] as Map)
           : <String, dynamic>{},
     );
+  }
+
+  /// Refuerzo en SRS de los ítems fallados de una lección (mig 074): su vocabulario
+  /// entra con prioridad (due=now). Fire-and-forget; si falla, no estorba el loop.
+  Future<void> prioritizeFailedSrs(List<String> itemIds) async {
+    if (itemIds.isEmpty) return;
+    try {
+      await _client.rpc('srs_prioritize_failed', params: {'p_item_ids': itemIds});
+    } catch (_) {/* no bloquear el fin de lección por el SRS */}
   }
 
   // ── Capa "enseña": tips + cuaderno ─────────────────────────────────────────

@@ -50,7 +50,7 @@ class FakeProgressRepository implements ProgressRepository {
   @override
   Future<List<SkillLevel>> fetchSkills() async => const [];
   @override
-  Future<({bool correct, bool graded, Map<String, dynamic> expected})> gradeItem(
+  Future<({bool correct, bool near, bool graded, Map<String, dynamic> expected})> gradeItem(
       String itemId, Object? answer) async {
     ContentItemModel? item;
     for (final i in gradeItems) {
@@ -59,7 +59,9 @@ class FakeProgressRepository implements ProgressRepository {
         break;
       }
     }
-    if (item == null) return (correct: true, graded: true, expected: const <String, dynamic>{});
+    if (item == null) {
+      return (correct: true, near: false, graded: true, expected: const <String, dynamic>{});
+    }
     // El player envía el answer ya serializado (match: claves String, como al RPC).
     // El grader local usa claves int → las reconvertimos (el servidor jz_grade usa
     // claves String directamente).
@@ -67,9 +69,12 @@ class FakeProgressRepository implements ProgressRepository {
     if (answer is Map) {
       a = {for (final e in answer.entries) (int.tryParse('${e.key}') ?? e.key): e.value};
     }
-    final r = grd.gradeItem(item, a); // matcher local (espejo de jz_grade)
-    return (correct: r.correct, graded: r.graded, expected: item.correctAnswer);
+    final r = grd.gradeItem(item, a); // matcher local (espejo de jz_grade + near)
+    return (correct: r.correct, near: r.near, graded: r.graded, expected: item.correctAnswer);
   }
+
+  @override
+  Future<void> prioritizeFailedSrs(List<String> itemIds) async {}
   @override
   Future<List<CourseInfo>> fetchCourses() async => const [];
   @override
@@ -514,7 +519,7 @@ void main() {
     await tester.tap(find.text('COMPROBAR'));
     await tester.pumpAndSettle();
 
-    expect(find.text('Casi… 🦜'), findsOneWidget);
+    expect(find.text('No del todo 🦜'), findsOneWidget);
     expect(find.textContaining('Respuesta correcta'), findsOneWidget);
     expect(find.text('4'), findsOneWidget);
   });

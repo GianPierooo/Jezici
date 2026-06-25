@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/feedback/feedback_fx.dart';
+import '../../../core/speech/word_tts.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/content_item_model.dart';
 import 'common.dart';
@@ -56,6 +57,7 @@ class _TileArrangeExerciseState extends State<TileArrangeExercise> {
   void _place(_Tok t) {
     if (widget.locked) return;
     FeedbackFx.tap();
+    WordTts.speak(t.label); // TASK 3: pronuncia la palabra tocada (Web Speech, best-effort)
     setState(() {
       _bank.remove(t);
       _placed.add(t);
@@ -66,6 +68,7 @@ class _TileArrangeExerciseState extends State<TileArrangeExercise> {
   void _remove(_Tok t) {
     if (widget.locked) return;
     FeedbackFx.tap();
+    WordTts.speak(t.label); // TASK 3: re-pronuncia al tocar una ficha ya colocada
     setState(() {
       _placed.remove(t);
       _bank.add(t);

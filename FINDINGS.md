@@ -1,5 +1,56 @@
 # Jezici — Auditoría exhaustiva (solo lectura)
 
+---
+
+## MEJORAS AL LOOP DE LECCIÓN — 2026-06-24 ✅ LIVE (server) + en deploy (cliente)
+> Tres mejoras pedagógicas al loop. Server-side aplicado y verificado con **cliente real
+> autenticado** (`verify_loop_improvements.py`, TODO PASA). Cliente (Flutter) en el push;
+> efecto visible tras deploy READY. Grading sigue 100% server-side (`correct_answer` 42501).
+
+**TASK 1 — Repaso de errores + conexión SRS** (mig 074 `srs_prioritize_failed` + `ErrorReviewScreen`)
+- Al terminar, si hubo ≥1 fallo → pantalla **"Repasa lo que fallaste"** ANTES de la recompensa:
+  cada ejercicio errado + **respuesta correcta** + un porqué corto (voz del coach). Si no falló
+  nada, se salta. Corrección SIEMPRE visible; **"Practicar los fallados"** es OPCIONAL (re-juega
+  solo esos ítems en `reviewMode`, sin recompensa ni doble conteo).
+- Los ítems fallados se persisten en el cliente (`_failed`) y al completar se llama
+  `srs_prioritize_failed(item_ids)`: mapea cada ítem → vocabulario del curso (whole-word sobre
+  `correct_answer.value`) y hace upsert en `user_vocab_srs` con `strength=0, interval=1, due_at=now`
+  → **el error se repasa en días**. Aditivo: NO toca `complete_lesson` (loop intacto).
+- Verificado real: `srs_prioritize_failed([item])` → 200; fila en `user_vocab_srs` del usuario con
+  `due_at<=now`.
+
+**TASK 2 — Tolerancia "casi correcto" (typo-tolerance)** (mig 073)
+- En cloze/translation, si la respuesta está MUY cerca → `correct=true` **+ `near=true`**: no resta
+  vida y muestra **"La forma correcta es: …"** (feedback dorado "¡Casi! 🦜").
+- Reglas (en `jz_near_match`, server): **A)** artículo a/an/the faltante/sobrante (`jz_strip_articles`);
+  **B)** distancia Levenshtein **1**, pero la sustitución de 1 char SOLO en frases multi-palabra
+  (inserción/borrado siempre). **Guard de homógrafos:** live/life, house/horse, cat/cut, this/these
+  NUNCA pasan (verificado). `jz_grade = jz_grade_exact OR jz_near_match` → loop, summary y examen
+  coherentes; `grade_item` expone `near` para el feedback. Espejo cliente `nearMatch` en `grader.dart`.
+- Verificado real: typo menor multi-palabra → `correct=true, near=true`; frase distinta →
+  `correct=false, near=false`; exacto → `near=false`. Tests `grader_typo_tolerance_test.dart` (17).
+
+**TASK 3 — Botón que pronuncia la palabra** (`core/speech/word_tts.dart`, Web Speech API)
+- Tocar una ficha en word_bank/reorder pronuncia esa palabra (en-US, ritmo 0.9, interrumpible).
+  Cero archivos, cero peso. Disparado por el TAP (gesto real) → sin el desbloqueo de audio de iOS.
+  Conditional import (web real / no-op fuera de web) + try/catch → degradación con gracia.
+
+### Verificación MANUAL para Gian (Android — PWA instalada, tras deploy READY)
+1. **Casi correcto:** lección con traducción; escribe la respuesta con UN typo (p.ej. "Helllo" por
+   "Hello") o sin el artículo ("I have sister") → debe contar **CORRECTO** con banda dorada
+   "¡Casi! 🦜" y "La forma correcta es: …", **sin perder vida**. Luego prueba un homógrafo real
+   (escribe "life" donde va "live") → debe contar **INCORRECTO** y restar vida.
+2. **Repaso de errores:** falla ≥1 ejercicio a propósito y termina la lección → antes de la
+   recompensa aparece **"Repasa lo que fallaste"** con la corrección de cada uno. Pulsa
+   **CONTINUAR** → recompensa normal. (Opcional: "Practicar los fallados" repite solo esos.)
+3. **SRS:** tras eso, entra a **Práctica → Repaso (SRS)**: los ítems fallados deben aparecer pronto
+   (su vocabulario quedó con prioridad inmediata).
+4. **TTS de tile:** en un ejercicio de **ordenar/banco de palabras**, toca cada ficha → debe
+   pronunciar la palabra en inglés. Si el dispositivo no soporta síntesis, simplemente no suena
+   (no rompe el armado). Verifica también en **iPhone/Safari** que el primer toque ya pronuncia.
+
+---
+
 > **Fecha:** 2026-06-22 · **Alcance:** diagnóstico, CERO cambios de código.
 > **Método:** lectura de repo + 56 migraciones, ejecución real de toolchain,
 > y verificación contra la BD de producción con cliente REST (anon + JWT

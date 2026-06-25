@@ -9,6 +9,7 @@ import '../../core/ui/jz_transitions.dart';
 import '../../data/models/content_item_model.dart';
 import '../../data/models/lesson_model.dart';
 import '../../data/providers.dart';
+import 'error_review_screen.dart';
 import 'exercises/exercise_registry.dart';
 import 'grading/grader.dart';
 import 'lesson_complete_screen.dart';
@@ -25,10 +26,15 @@ class LessonPlayerScreen extends ConsumerStatefulWidget {
     required this.lesson,
     required this.items,
     this.audioProbe,
+    this.reviewMode = false,
   });
 
   final LessonModel lesson;
   final List<ContentItemModel> items;
+
+  /// Modo "practicar los fallados" (TASK 1): re-juega un subconjunto SIN llamar a
+  /// complete_lesson (no re-otorga XP ni re-cuenta); al terminar vuelve atrás.
+  final bool reviewMode;
 
   /// Comprueba si el audio de una URL existe. Inyectable para tests; por defecto
   /// usa el motor de audio (HEAD en web). Ver Task 2 (degradación con gracia).
@@ -43,6 +49,9 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
 
   /// Respuestas del usuario por ítem, para que el servidor re-califique.
   final List<Map<String, dynamic>> _answers = [];
+
+  /// Ítems FALLADOS en la lección (graded && !correct) → repaso final + SRS (TASK 1).
+  final List<({ContentItemModel item, String correct})> _failed = [];
 
   int _index = 0;
   int _hearts = 5; // solo para el feedback/“sin vidas”; el XP lo decide el servidor
@@ -140,7 +149,7 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
           .gradeItem(_item.id, _jsonAnswer(_answer.value));
       expected = g.expected;
       res = gradeResultFromServer(
-          type: _item.type, correct: g.correct, graded: g.graded, expected: expected);
+          type: _item.type, correct: g.correct, graded: g.graded, expected: expected, near: g.near);
     } catch (_) {
       res = GradeResult.stub; // fallo de red: no penalizar, avanzar
     }
@@ -162,6 +171,8 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
           _comboCorrect = 0;
           _hearts = (_hearts - 1).clamp(0, 5); // resta vida; la economía es server-side
           FeedbackFx.wrong();
+          // Rastrea el fallo para el repaso final + refuerzo en SRS (TASK 1).
+          _failed.add((item: _item, correct: res.correctDisplay));
         }
       }
     });
@@ -225,6 +236,11 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
 
   Future<void> _finish() async {
     _finished = true; // terminó todos los ítems → no contar como abandono
+    // Modo "practicar los fallados": no recompensa ni complete_lesson; vuelve atrás.
+    if (widget.reviewMode) {
+      if (mounted) Navigator.of(context).pop();
+      return;
+    }
     showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -239,6 +255,12 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
       // Analítica (fire-and-forget).
       ref.read(progressRepositoryProvider).logEvent('lesson_complete',
           props: {'lesson_id': widget.lesson.id, 'status': summary.status});
+      // Refuerzo en SRS de los ítems fallados (TASK 1): su vocabulario entra con
+      // prioridad (due=now) → el error se repasa en días, no solo se corrige hoy.
+      if (_failed.isNotEmpty) {
+        ref.read(progressRepositoryProvider)
+            .prioritizeFailedSrs(_failed.map((f) => f.item.id).toList());
+      }
       // Refrescar mapa, top bar y skills con los datos nuevos.
       ref.invalidate(lessonProgressProvider);
       ref.invalidate(homeStatsProvider);
@@ -247,9 +269,19 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
       ref.invalidate(levelExamStatusProvider);
       if (!mounted) return;
       Navigator.of(context).pop(); // cerrar loading
-      Navigator.of(context).pushReplacement(
-        jzRoute(LessonCompleteScreen(summary: summary, lessonId: widget.lesson.id)),
-      );
+      // Si hubo fallos: pantalla "Repasa lo que fallaste" ANTES de la recompensa.
+      if (_failed.isNotEmpty) {
+        Navigator.of(context).pushReplacement(jzRoute(ErrorReviewScreen(
+          failed: List.of(_failed),
+          lesson: widget.lesson,
+          onContinue: (ctx) => Navigator.of(ctx).pushReplacement(
+              jzRoute(LessonCompleteScreen(summary: summary, lessonId: widget.lesson.id))),
+        )));
+      } else {
+        Navigator.of(context).pushReplacement(
+          jzRoute(LessonCompleteScreen(summary: summary, lessonId: widget.lesson.id)),
+        );
+      }
     } catch (_) {
       if (!mounted) return;
       Navigator.of(context).pop(); // cerrar loading
@@ -542,9 +574,12 @@ class _FeedbackBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ok = result.correct;
-    final bg = ok ? const Color(0xFFE5F8EE) : const Color(0xFFFFE9ED);
-    final accent = ok ? AppColors.success : AppColors.hearts;
-    final accentDark = ok ? AppColors.successDark : const Color(0xFFD6294B);
+    final near = result.near; // "casi" (typo-tolerance, mig 073): aceptado pero no exacto
+    final bg = near
+        ? const Color(0xFFFFF6E0)
+        : (ok ? const Color(0xFFE5F8EE) : const Color(0xFFFFE9ED));
+    final accent = near ? AppColors.gold : (ok ? AppColors.success : AppColors.hearts);
+    final accentDark = near ? AppColors.goldDark : (ok ? AppColors.successDark : const Color(0xFFD6294B));
 
     return TweenAnimationBuilder<double>(
       // Entrada de la barra de feedback: sube + aparece (no bloqueante).
@@ -579,7 +614,7 @@ class _FeedbackBar extends StatelessWidget {
                     shape: BoxShape.circle,
                     boxShadow: [BoxShadow(color: accentDark, offset: const Offset(0, 4), blurRadius: 0)],
                   ),
-                  child: Icon(ok ? Icons.check_rounded : Icons.close_rounded,
+                  child: Icon(near ? Icons.spellcheck_rounded : (ok ? Icons.check_rounded : Icons.close_rounded),
                       color: Colors.white, size: 22),
                 ),
               ),
@@ -589,7 +624,7 @@ class _FeedbackBar extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      ok ? '¡Correcto! 🦜' : 'Casi… 🦜',
+                      near ? '¡Casi! 🦜' : (ok ? '¡Correcto! 🦜' : 'No del todo 🦜'),
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w900,
@@ -598,13 +633,13 @@ class _FeedbackBar extends StatelessWidget {
                     ),
                     const SizedBox(height: 2),
                     Text(
-                      ok
-                          ? '¡Bien hecho, sigue así!'
-                          : 'Respuesta correcta: ${result.correctDisplay}',
+                      near
+                          ? 'La forma correcta es: ${result.correctDisplay}'
+                          : (ok ? '¡Bien hecho, sigue así!' : 'Respuesta correcta: ${result.correctDisplay}'),
                       style: TextStyle(
                         fontSize: 12.5,
                         fontWeight: FontWeight.w800,
-                        color: ok ? const Color(0xFF3CA86A) : const Color(0xFFE0556E),
+                        color: near ? AppColors.goldDark : (ok ? const Color(0xFF3CA86A) : const Color(0xFFE0556E)),
                       ),
                     ),
                   ],

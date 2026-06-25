@@ -6,18 +6,69 @@ class GradeResult {
     required this.correct,
     required this.graded,
     required this.correctDisplay,
+    this.near = false,
   });
 
-  /// ¿La respuesta del usuario coincide con la esperada?
+  /// ¿La respuesta del usuario coincide con la esperada? (exacta O "casi", mig 073)
   final bool correct;
 
   /// ¿El ítem se califica? Los stubs (listening/speaking sin audio/STT) no.
   final bool graded;
 
+  /// "Casi correcto" (typo-tolerance, mig 073): fue aceptado por un typo menor o
+  /// artículo, no exacto → el loop muestra "Casi: la forma es …" (sin restar vida).
+  final bool near;
+
   /// Texto de la respuesta correcta para el feedback.
   final String correctDisplay;
 
   static const stub = GradeResult(correct: true, graded: false, correctDisplay: '');
+}
+
+/// Quita artículos a/an/the (palabras sueltas) y colapsa espacios. Espejo de
+/// jz_strip_articles (servidor, mig 073).
+String _stripArticles(String s) => s
+    .replaceAll(RegExp(r'\b(a|an|the)\b'), ' ')
+    .replaceAll(RegExp(r'\s+'), ' ')
+    .trim();
+
+/// Distancia de Levenshtein (acotada barata). Espejo de levenshtein() del servidor.
+int _levenshtein(String a, String b) {
+  if (a == b) return 0;
+  if (a.isEmpty) return b.length;
+  if (b.isEmpty) return a.length;
+  var prev = List<int>.generate(b.length + 1, (i) => i);
+  var cur = List<int>.filled(b.length + 1, 0);
+  for (var i = 0; i < a.length; i++) {
+    cur[0] = i + 1;
+    for (var j = 0; j < b.length; j++) {
+      final cost = a.codeUnitAt(i) == b.codeUnitAt(j) ? 0 : 1;
+      cur[j + 1] = [cur[j] + 1, prev[j + 1] + 1, prev[j] + cost].reduce((x, y) => x < y ? x : y);
+    }
+    final tmp = prev;
+    prev = cur;
+    cur = tmp;
+  }
+  return prev[b.length];
+}
+
+/// "Casi correcto" (typo-tolerance) — espejo EXACTO de jz_near_match (mig 073).
+/// Solo cloze/translation. Reglas: A) artículos a/an/the; B) distancia 1, pero
+/// sustitución de 1 char SOLO en multi-palabra (homógrafos single-word bloqueados).
+bool nearMatch(List<String> accepted, String user) {
+  final nu = normalize(user);
+  if (nu.isEmpty) return false;
+  for (final cand in accepted) {
+    final na = normalize(cand);
+    if (na.isEmpty || na == nu) continue; // exacto ya lo cubre la comparación normal
+    final saNa = _stripArticles(na);
+    if (saNa.isNotEmpty && _stripArticles(nu) == saNa) return true; // A) artículos
+    if (_levenshtein(nu, na) == 1) {
+      if (nu.length != na.length) return true; // inserción/borrado de 1 char
+      if (na.contains(' ')) return true; // sustitución solo en multi-palabra
+    }
+  }
+  return false;
 }
 
 /// Contracciones inglesas → forma completa canónica (espejo de jz_normalize, mig
@@ -79,10 +130,11 @@ GradeResult gradeResultFromServer({
   required bool correct,
   required bool graded,
   required Map<String, dynamic> expected,
+  bool near = false,
 }) {
   if (!graded) return GradeResult.stub;
   return GradeResult(
-      correct: correct, graded: true, correctDisplay: correctDisplayFor(type, expected));
+      correct: correct, near: near, graded: true, correctDisplay: correctDisplayFor(type, expected));
 }
 
 /// Texto de la respuesta correcta para el feedback, a partir de `expected`.
@@ -129,9 +181,10 @@ GradeResult gradeItem(ContentItemModel item, Object? answer) {
         ..._asList(ca['accepted']).map((e) => e.toString()),
       ];
       final user = answer is String ? answer : '';
-      final ok = user.trim().isNotEmpty &&
+      final exact = user.trim().isNotEmpty &&
           accepted.any((a) => normalize(a) == normalize(user));
-      return GradeResult(correct: ok, graded: true, correctDisplay: value);
+      final near = !exact && user.trim().isNotEmpty && nearMatch(accepted, user);
+      return GradeResult(correct: exact || near, near: near, graded: true, correctDisplay: value);
 
     case ContentItemType.wordBank:
     case ContentItemType.reorder:
