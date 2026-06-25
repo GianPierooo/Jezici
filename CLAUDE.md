@@ -73,7 +73,7 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
 | Capa "enseña" (tips/cuaderno/referencia/**inmersión**) | ✅ tip post-lección **relevante al tema real de la lección** (mig 069: `content_tips.topic` + match contra los tags de la lección; ya no sale el tip de EDAD en una lección de PAÍSES) + anti-repetición (no visto > menos reciente) + personalización por skill flojo + cuaderno + **Referencia/Repaso** (mig 060) + **Inmersión/Historias** (mig 065/066: 6 historias es→en A1/A2, audio 46/46). 72 tips **solo es→en** (66 con topic, 6 generales). Pendiente: historias B1/B2 y es→pt, tips para **es→pt**, topics para B1/B2 (hoy caen a unidad/general). |
 | Contenido es→en A1–B2, **es→pt A1–B1** | ✅ sembrado y live (pt B1 = mig 053, 192 ítems + 60 checkpoints frescos; cadena A1→B1 + certs verificada). Pendiente: es→pt B2 |
 | **Audio** (listening/speaking TTS) | ✅ es→en + es→pt A1/A2 (312) + **es→pt B1 (68)** = 380 + **rebalanceo L/S es→en A1/A2 (96, mig 078/079)** en Storage = **476/476** + degradación/unlock iOS LIVE. Ver FINDINGS.md §2 |
-| **Balance de 4 habilidades (L/S)** | ✅ **es→en A1/A2 rebalanceado (mig 078/079, live).** Audit EFICACIA halló sesgo **~3:1** (R/W ~95–105/nivel vs L/S ~34–36). Subido con criterio (NO 1:1): **listening +5/unidad** (5–6→10–11; ~64/nivel ≈ **65% de R/W** — es la receptiva genuinamente calificada) y **speaking +3/unidad** (→8–9; ~52/nivel ≈ **50%** — proxy read-aloud, participación, no evalúa fluidez). **96 ítems** nuevos (60 listening + 36 speaking), autorados por panel IA + validación adversarial por unidad, cableados a lecciones 1–4 + tag `unidadN` (entran al pool del examen → menos sesgo R/W). `payload.say`/`text` guardado → audio **regenerable y text-matched** (96/96 TTS). **Verificado cliente real:** listening resuelto sube dominio listening (precisión), speaking sube dominio speaking (participación). Pendiente: B1/B2/C1 y es→pt. |
+| **Balance de 4 habilidades (L/S)** | ✅ **es→en A1–C1 rebalanceado (mig 078–082, live).** Audit EFICACIA halló sesgo **~3:1** (R/W vs L/S). Subido con criterio (NO 1:1): **listening ~65% de R/W**, **speaking ~50%** (proxy read-aloud, participación, no evalúa fluidez). **A1/A2** (mig 078/079): +5L/+3S por unidad (96 ítems). **B1/B2/C1** (mig 080/081/082): +4L/+2S por unidad → resultante B1 L/R=62% S/R=50%, B2 61%/49%, C1 69%/51% + **34 huecos** de cobertura de alto impacto rellenados (auditoría confirmó cobertura gramatical SÓLIDA en los 3; sin huecos estructurales). **+204 ítems** L/S totales (todos con audio TTS regenerable, `payload.say`/`text` guardado), autorados por panel IA + validación adversarial por unidad, cableados a lecciones 1–4 + tag `unidadN` (pool del examen → menos sesgo R/W). **Verificado cliente real** por nivel: L/S resueltos suben su dominio (listening por precisión, speaking por participación); verify_chain A1→B2 PASS. **Techo C1 honesto:** receptivas (R/L/vocab/gram) sí a C1; producción libre (W/S) requiere Fase 2 → sin cert C1 por diseño. Pendiente: es→pt. |
 | **Seguridad** (4 hallazgos) | ✅ **cerrados** en DB (mig 058) + botón export en Ajustes **LIVE** (deploy 68266d3). Ver abajo |
 | Ligas + Leaderboards | ✅ rollover real (mig 059): cierre semanal idempotente/lazy + ascensos (top 7)/descensos (fondo 5) Bronce↔Diamante + snapshots. `get_leaderboard` (XP/Racha/Lecciones/Certificados × Semanal/Mensual/Anual/Histórico × Global/División, SIN user_id). UI con segmentos (Mi liga / Tablas) **LIVE** (deploy-pending hasta push). Falta: **cron** que dispare el cierre (hoy es lazy-on-read; ver abajo) |
 | **C1 es→en** | ✅ **sembrado y live** (mig 063): 6 unidades (25–30), **252 ítems** (192 lección + 60 checkpoint fresco), 4 habilidades, audio **67/67**. **Sin examen/cert C1** por diseño (techo determinista — writing/speaking a C1 no son evaluables sin IA; mig 064 tope el examen en B2 + blinda C1). Progresión intra-C1 por checkpoints (≥80%). Placement C1 ahora con banco real (8 ítems) + arranque en U25 (mig 075/076/077). Ver `docs/LEVELS_C1_DESIGN.md` y fila **Test de ubicación** |
@@ -177,7 +177,7 @@ flutter analyze              # esperado: No issues found
 flutter test                 # esperado: All tests passed (43/43)
 flutter build web --release  # esperado: Built build/web (wasm dry-run warning de ua_client_hints es OK)
 
-# Audio: cobertura real en Storage (HEAD a payload.audio_url) — es→en/pt = 476/476 (incl. 96 L/S mig 078/079)
+# Audio: cobertura real en Storage (HEAD a payload.audio_url) — es→en/pt = 584/584 (incl. 204 L/S mig 078–082)
 #   query content_items_public?type=eq.listening|speaking_read_aloud, HEAD cada audio_url
 
 # Cliente REAL (NUNCA service_role para chequeos de seguridad):
@@ -196,8 +196,9 @@ flutter build web --release  # esperado: Built build/web (wasm dry-run warning d
   presente continuo, 3ª persona -s, plurales, these/those, conectores, present perfect 'yet', adverbios -ly).
   **Hallazgo sistémico:** L/S subservidos ~3:1 vs R/W en TODOS los niveles + techo determinista de producción
   (speaking proxy). Destapó y arregló una **regresión P0** (mig 072): exámenes de pt rotos por mig 064 (mono-curso).
-  **L/S es→en A1/A2 YA equilibrado** (mig 078/079: +96 ítems +audio; ver fila "Balance de 4 habilidades").
-  Pendiente: eficacia de es→en B1/B2/C1 y es→pt; equilibrar L/S de B1/B2/C1 y es→pt.
+  **L/S es→en A1–C1 YA equilibrado** (mig 078–082: +204 ítems L/S + 34 huecos + audio; ver fila "Balance de 4
+  habilidades"). **Auditoría de eficacia es→en B1/B2/C1 HECHA** (cobertura sólida; C1 con techo honesto de
+  producción). Pendiente: eficacia + L/S de **es→pt**.
 - **CONTENT_QA.md** (2026-06-24) — auditoría pedagógica profesor-IA de **es→en A1/A2 (384 ítems)**:
   **0 P0**, clase sistémica = tolerancia insuficiente (corregida en mig 070, +20 ítems con variantes
   naturales en `accepted` + 2 pulidos). Rechazos/diferidos documentados. Pendiente: B1/B2/C1 + es→pt.

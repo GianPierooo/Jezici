@@ -2,6 +2,54 @@
 
 ---
 
+## EFICACIA + BALANCE L/S — NIVELES ALTOS es→en (B1·B2·C1) — 2026-06-25 ✅ LIVE
+> Extiende la auditoría de eficacia y el rebalanceo L/S a B1/B2/C1 (antes solo perfil estructural).
+> Mismo criterio de balance que A1/A2 (NO 1:1). Verificado con **cliente real** por nivel. Grading
+> server-side (`correct_answer` 42501).
+
+### Balance aplicado (consistente con A1/A2)
+**+4 listening +2 speaking por unidad** (6 unidades/nivel). Resultado real cableado:
+| Nivel | R | W | L | S | L/R | S/R |
+|---|---|---|---|---|---|---|
+| B1 | 96 | 95 | **60** | **48** | 62% | 50% |
+| B2 | 98 | 94 | **60** | **48** | 61% | 49% |
+| C1 | 86 | 110 | **59** | **44** | 69% | 51% |
+
+Objetivo (listening ~65% de R/W, speaking ~50%) alcanzado. **+108 ítems L/S** (3×24L+3×12S) con audio TTS
+(`payload.say`/`text` guardado → regenerable y text-matched). Listening gradable (precisión), speaking
+read-aloud (participación). Cableado a lecciones 1–4 + tag `unidadN` (pool del examen).
+
+### Auditoría de eficacia — veredictos honestos (panel CEFR por unidad)
+- **B1 — SÍ con reservas** (como A1/A2). Cobertura gramatical/funcional B1 SÓLIDA y bien secuenciada (present
+  perfect/for-since/used to, going to/will, opinión+reported, relativos+past continuous, condicionales+modales,
+  pasiva+2º condicional). Sin huecos estructurales; **11 huecos de alto impacto** rellenados (p.ej. present
+  perfect negativo+yet en producción, preguntas indirectas de registro).
+- **B2 — SÍ con reservas** (receptiva + producción guiada). Sílabo B2 íntegro (PPC/past perfect, reported speech
+  a fondo, causativo+pasivas, condicionales mixtos/3º+wish, relativas defining/non-defining, deducción
+  must/might have+phrasal). **12 huecos** rellenados (p.ej. perfect simple-resultado vs continuous-proceso,
+  patrones de reporting verbs promise/warn + to-infinitive).
+- **C1 — NO lleva a C1 PLENO (y no debe fingirlo); sí es andamiaje C1 sólido para lo RECEPTIVO.** Temario C1
+  genuino (near-synonyms/connotación, hedging, cleft/inversión, modismos/registro, modalidad avanzada,
+  lenguaje académico). **11 huecos** rellenados. **Techo determinista REAL:** reading/listening/vocab/gramática
+  a C1 SÍ se autocalifican (opción única, cloze con accepted, inferencia); la **producción libre** (writing
+  redacción/argumentación, speaking fluidez) **NO** se evalúa sin IA → **Fase 2**. Por eso **no hay cert C1 de
+  4 skills** (por diseño, mig 064 tope B2). Honesto: el read-aloud entrena pronunciación, no certifica fluidez.
+
+### Evidencia (cliente real — `verify_ls_balance.py <nivel>`, TODO PASA por nivel)
+- **Mecánica:** placing al usuario en el nivel (create_plan) → tras resolver L/S nuevos, `get_skill_mastery`
+  sube dominio **listening** (precisión) y **speaking** (participación): B1 0→0.28/0.27 · B2 0→0.28/0.27 ·
+  C1 0→0.22/0.22.
+- **Audio:** HEAD **204/204 = 200** (todos los `lsbal` A1–C1). **`correct_answer` 42501** (anon).
+- **`verify_chain es→en` PASS** (cadena A1→B2 con los nuevos L/S/huecos B1/B2 en el pool del examen → exámenes
+  pasan, certs emitidos, per-skill). `analyze` 0 · `flutter test` 74/74 · smoke P0 intacto. Validador
+  determinista: 0 listening inválidos (answer∈options, transcription answer==say) en los 108.
+
+### Punto de retome
+Eficacia + L/S de **es→pt** (A1/A2/B1) — misma maquinaria (`gen_high_levels.py` + `gen_audio_ls.py`;
+`gen_audio_missing.py` ya tiene grupos pt-*). No iniciado (alcance: es→en niveles altos primero).
+
+---
+
 ## EQUILIBRAR LISTENING/SPEAKING (es→en A1/A2) — 2026-06-25 ✅ LIVE (server/DB + audio)
 > La auditoría EFICACIA halló sesgo **~3:1** (R/W vs L/S). Esta tanda sube L/S de A1/A2 para que
 > las 4 habilidades nivelen proporcionalmente. Server/DB + audio aplicados y verificados con

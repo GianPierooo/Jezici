@@ -65,8 +65,9 @@ def main():
     check('select correct_answer (anon) bloqueado', c != 200 or 'correct_answer' not in o or '42501' in o, f'{c} {o[:100]}')
 
     # ── 3) MECÁNICA: L/S resueltos suben su skill (cliente real) ──────────────
-    print('\n== Mecánica: listening/speaking nuevos MUEVEN user_skill_levels (dominio) ==')
-    em = 'ls_mech@jezici.test'
+    LVL = next((a for a in sys.argv[1:] if a in ('A1', 'A2', 'B1', 'B2', 'C1')), 'A1')
+    print(f'\n== Mecánica ({LVL}): listening/speaking nuevos MUEVEN user_skill_levels (dominio) ==')
+    em = f'ls_mech_{LVL.lower()}@jezici.test'
     admin('POST', '/auth/v1/admin/users', {'email': em, 'password': 'Test12345!', 'email_confirm': True})
     r = urllib.request.Request(SUPABASE_URL + '/auth/v1/token?grant_type=password',
                                data=json.dumps({'email': em, 'password': 'Test12345!'}).encode(), method='POST')
@@ -74,19 +75,25 @@ def main():
     tok = json.loads(urllib.request.urlopen(r).read())['access_token']
     uid = json.loads(run(f"select id from auth.users where email='{em}';")[1])[0]['id']
     run(f"insert into public.users(id,email) values ('{uid}','{em}') on conflict do nothing;")
+    # Coloca al usuario en el nivel (skill levels = LVL) → working_level = LVL → el dominio se mide AHÍ.
+    sk = {s: LVL for s in ['reading', 'listening', 'writing', 'speaking']}
+    req('/rest/v1/rpc/create_plan', tok, 'POST', {
+        'p_coach_style': 'suave', 'p_intensity': 2, 'p_current_level': LVL, 'p_goal_level': 'C1',
+        'p_daily_minutes': 10, 'p_days_per_week': 5, 'p_motive': 'x', 'p_deadline': None,
+        'p_estimated_hours': 100, 'p_estimated_completion': None, 'p_skill_levels': sk})
 
     base_l = mastery(tok, 'listening'); base_s = mastery(tok, 'speaking')
     check('baseline mastery legible', base_l is not None and base_s is not None, f'l={base_l} s={base_s}')
 
-    # ítems nuevos A1: 8 listening (con su value correcto) + 6 speaking
+    # ítems nuevos del nivel: 8 listening (con su value) + 6 speaking
     lis = json.loads(run("select id, correct_answer->>'value' v from content_items "
-                         "where 'lsbal'=any(tags) and skill='listening' and cefr_level='A1' order by id limit 8;")[1])
+                         f"where 'lsbal'=any(tags) and skill='listening' and cefr_level='{LVL}' order by id limit 8;")[1])
     spk = json.loads(run("select id, correct_answer->>'expected' v from content_items "
-                         "where 'lsbal'=any(tags) and skill='speaking' and cefr_level='A1' order by id limit 6;")[1])
+                         f"where 'lsbal'=any(tags) and skill='speaking' and cefr_level='{LVL}' order by id limit 6;")[1])
     answers = [{'item_id': x['id'], 'answer': x['v']} for x in lis] + \
               [{'item_id': x['id'], 'answer': x['v']} for x in spk]
     a1_lesson = json.loads(run("select le.id from lessons le join units u on u.id=le.unit_id "
-                               f"where u.course_id='{EN}' and u.cefr_level='A1' and le.type='lesson' "
+                               f"where u.course_id='{EN}' and u.cefr_level='{LVL}' and le.type='lesson' "
                                "order by u.order_index, le.order_index limit 1;")[1])[0]['id']
     c, o = req('/rest/v1/rpc/complete_lesson', tok, 'POST', {'p_lesson_id': a1_lesson, 'p_answers': answers})
     j = json.loads(o) if c == 200 else {}

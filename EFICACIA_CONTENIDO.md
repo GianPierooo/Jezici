@@ -50,10 +50,21 @@ sí con reservas
 **Arreglado (mig 071, sin audio):** 15 ítems nuevos — conectores because/so/but, present perfect
 'yet', a lot of / much-many, adverbios -ly (slowly) — cableados a su lección. Entran al loop y al examen.
 
-## es→en B1 / B2 / C1 — perfil estructural (auditoría holística DIFERIDA)
-Estructura sana (6u · 24lec · 6cp por nivel; cadena A1→B2 + certs verificada; C1 sin cert por diseño,
-techo determinista). Mismo sesgo L/S 3:1. **Pendiente:** auditoría de cobertura/huecos por nivel (no
-hecha a fondo esta sesión por límite de tiempo).
+## es→en B1 / B2 / C1 — auditoría HECHA (2026-06-25, panel CEFR por unidad) ✅
+Mig 080/081/082. Detalle + evidencia en FINDINGS.md.
+- **B1 — SÍ con reservas.** Cobertura gramatical/funcional B1 sólida y bien secuenciada (present perfect +
+  for/since + used to, going to/will, opinión + reported speech, relativos + past continuous, condicionales +
+  modales, pasiva + 2º condicional). Sin huecos estructurales; **11 huecos** de alto impacto rellenados.
+- **B2 — SÍ con reservas** (receptiva + producción guiada). Sílabo B2 íntegro (PPC/past perfect, reported
+  speech a fondo, causativo/pasivas, condicionales mixtos/3º/wish, relativas defining/non-defining, deducción
+  must/might have + phrasal verbs). **12 huecos** rellenados.
+- **C1 — andamiaje C1 sólido para lo RECEPTIVO; NO C1 productivo pleno (honesto).** Temario C1 genuino
+  (near-synonyms/connotación, hedging, cleft/inversión, modismos/registro, modalidad avanzada, académico).
+  **11 huecos** rellenados. **Techo:** R/L/vocab/gramática se autocalifican a C1; writing/speaking LIBRES
+  requieren Fase 2 (IA/humano) → sin cert C1 de 4 skills (por diseño). El read-aloud entrena pronunciación,
+  no certifica fluidez.
+- **Balance L/S** subido a objetivo (listening ~62–69% de R/W, speaking ~50%): +4L/+2S por unidad, +108 ítems
+  con audio TTS, verificados (mueven dominio L/S; cliente real). Mismo sesgo 3:1 → **resuelto** en A1–C1.
 
 ## es→pt A1 / A2 / B1 — DIFERIDO (+ regresión de examen ARREGLADA)
 Auditoría de eficacia **pendiente**. **Pero** la verificación destapó una **regresión P0**: los exámenes
@@ -62,11 +73,11 @@ a la versión mono-curso (`courses where is_active`), perdiendo el multicurso de
 restaura (`jz_active_course()`), preservando el modelo per-skill y el tope C1. verify_pt_chain vuelve a PASS.
 
 ## Qué difiero y por qué (punto de retome exacto)
-1. **Equilibrar L/S** — ✅ **HECHO para es→en A1/A2** (2026-06-25, mig 078/079): +96 ítems (listening
-   +5/unidad → ~65% de R/W; speaking +3/unidad → ~50%, proxy) + 96/96 audio TTS, validados
-   adversarialmente, verificados con cliente real (mueven dominio L/S). Ver FINDINGS.md. **Pendiente:**
-   mismo rebalanceo para **es→en B1/B2/C1** y **es→pt A1/A2/B1** (autorar + audio) → siguiente tanda.
-2. **Auditoría de eficacia es→en B1/B2/C1** (cobertura/huecos por nivel) → siguiente pasada.
+1. **Equilibrar L/S** — ✅ **HECHO para es→en A1–C1** (2026-06-25, mig 078–082): +204 ítems L/S
+   (listening ~65% de R/W; speaking ~50%, proxy) + 204/204 audio TTS, validados adversarialmente,
+   verificados con cliente real (mueven dominio L/S). Ver FINDINGS.md. **Pendiente:** **es→pt** (autorar + audio).
+2. **Auditoría de eficacia es→en B1/B2/C1** — ✅ **HECHA** (2026-06-25, mig 080–082; ver arriba + FINDINGS.md):
+   cobertura sólida en los 3; 34 huecos de alto impacto rellenados; C1 con techo honesto de producción.
 3. **Auditoría de eficacia es→pt A1/A2/B1** → siguiente pasada.
 4. **Retención:** más reaparición explícita de léxico entre unidades.
 5. **Evaluación:** checkpoints menos sesgados a reconocimiento (más producción guiada).
