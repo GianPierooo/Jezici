@@ -2,6 +2,51 @@
 
 ---
 
+## "DESCRIBE LA IMAGEN" determinista (es→en A1/A2) — 2026-06-25 ✅ LIVE
+> A partir de una imagen, el usuario PRODUCE lenguaje de forma VERIFICABLE y autocalificable.
+> Reusa las imágenes licenciadas (Twemoji CC-BY, `vocab_images`). Cliente real verificado.
+
+### Mecánica elegida + por qué
+**word_bank sobre la imagen** (skill=**writing**, producción guiada): el usuario ARMA con fichas la frase
+que describe la imagen ("This is a house") → **secuencia verificable** (`jz_grade` word_bank), 100%
+server-side. Es la mecánica que mejor cumple "PRODUCE lenguaje verificable" (vs el image→word **MC**
+anterior, que era reconocimiento/reading). Considerados y descartados como primarios: MC "¿qué pasa?"
+(comprensión, no producción) y cloze-con-imagen (1 palabra; el image→word MC ya cubre ese ángulo).
+- **Reusa tipo existente** (word_bank) → **cero type nuevo, cero UI nueva**: `ConceptImage` ya renderiza
+  cualquier ítem con `payload.image_url` en las 4 superficies (mig 087), y `TileArrangeExercise` arma las
+  fichas. Solo se autoró contenido.
+- **Frases ancladas al emoji** (objeto único): A1 "This is a/an/the X"; A2 "There is a X" / "I can see a X".
+  El **distractor de ficha enseña el artículo** (a/an/the/incontable: "This is coffee" sin artículo).
+
+### Techo (honesto, no violado)
+NO es texto libre. La **descripción ABIERTA evaluada** (fluidez/coherencia/creatividad) **es Fase 2** —
+sin IA no se autocalifica, igual que writing/speaking libres. Esto es producción **guiada** y determinista.
+
+### Set sembrado (mig 088): 16 ítems word_bank/writing
+A1 (10, units 3–6): house, dog, cat, apple, coffee, bread, car, school, sun, family. A2 (6, units 9–10):
+bus, train, plane, hotel, money, shirt. Cableados a la lección de su unidad + tag `unidadN` (pool examen).
+`correct_answer` (value+sequence) OCULTO (42501). Instrucción en español ("Describe la imagen: arma la
+frase en inglés.") → NO revela la respuesta (la imagen + las fichas son el estímulo).
+
+### Degradación + perf
+- **Degradación fuerte:** cada frase tiene **un solo sustantivo** → las fichas hacen el ejercicio
+  **resoluble aunque la imagen no cargue** (la imagen refuerza, no es imprescindible). `ConceptImage` ya
+  colapsa con gracia si falla.
+- **Perf:** **cero código Dart nuevo** → bundle sin cambios; imágenes reusadas (ya en CDN, lazy).
+
+### Evidencia (cliente real — `verify_describe_image.py`, TODO PASA)
+- **Validador determinista 0:** cada uno de los 16 ítems califica su **propia secuencia como correcta** y
+  la **invertida como incorrecta** (server-side). **Grading 100% server-side**, `correct_answer` 42501.
+- **Mueve la skill correcta:** tras `complete_lesson` con los describe-items A1, `get_skill_mastery` →
+  **writing 0 → 0.157**. Imágenes HEAD **16/16 = 200**. `analyze` 0 · `flutter test` **76/76** ·
+  `verify_chain es→en` PASS (los nuevos word_bank/imagen entran a exámenes) · smoke P0 intacto.
+
+### Qué difiero
+- **Descripción abierta evaluada por IA** (Fase 2). **match imagen↔palabra**; describe-image en **es→pt**
+  y **B1+**; escenas con acciones (requeriría imágenes de escena, no emoji de objeto único).
+
+---
+
 ## IMÁGENES REFERENCIALES EN LECCIONES (es→en A1/A2) — 2026-06-25 ✅ LIVE
 > Doble codificación (imagen + palabra) para reforzar vocab CONCRETO → mejor retención + variedad.
 > Solo donde la imagen AYUDA (vocab concreto, no gramática abstracta). Cliente real verificado.
