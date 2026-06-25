@@ -1,14 +1,17 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../core/plan/estimation.dart';
+import '../../core/theme/app_colors.dart';
+import '../../data/providers.dart';
 import 'onboarding_data.dart';
 import 'widgets/onboarding_scaffold.dart';
 
-/// Test de ubicación adaptativo (Test_Ubicacion_Items.md): arranca en dificultad
-/// media (~A2); acierto → sube un escalón, error → baja; converge al nivel CEFR.
-class PlacementTest extends StatefulWidget {
+/// Test de ubicación adaptativo, calificado en el SERVIDOR (placement_next, mig 076).
+/// El cliente es un RELAY: pide el siguiente ítem, muestra las opciones, envía la
+/// elegida y repite hasta que el servidor devuelve el nivel final. NO califica ni ve
+/// la respuesta correcta (correct_answer sigue 42501). El motor adaptativo (escalera
+/// + estimador "techo") vive en el servidor → ubica al usuario en su nivel REAL.
+class PlacementTest extends ConsumerStatefulWidget {
   const PlacementTest({
     super.key,
     required this.data,
@@ -25,146 +28,133 @@ class PlacementTest extends StatefulWidget {
   final VoidCallback onBack;
   final VoidCallback onDone;
 
-  /// Dificultad inicial (de la micro-pregunta de arranque): 0=A1 1=A2 2=B1.
+  /// Dificultad inicial (de la micro-pregunta): 0=A1 1=A2 2=B1 → hint CEFR.
   final int startLevel;
 
   @override
-  State<PlacementTest> createState() => _PlacementTestState();
+  ConsumerState<PlacementTest> createState() => _PlacementTestState();
 }
 
-class _PItem {
-  const _PItem(this.level, this.prompt, this.options, this.correct);
-  final int level; // 0=A1 1=A2 2=B1 3=B2 4=C1
-  final String prompt;
-  final List<String> options;
-  final int correct;
-}
+class _PlacementTestState extends ConsumerState<PlacementTest> {
+  static const _hintCefr = ['A1', 'A2', 'B1'];
 
-const _items = <_PItem>[
-  // A1
-  _PItem(0, '“Hello” significa…', ['hola', 'gracias', 'adiós'], 0),
-  _PItem(0, 'I ___ a student.', ['am', 'is', 'are'], 0),
-  _PItem(0, 'Lo contrario de “yes” es…', ['no', 'please', 'hi'], 0),
-  _PItem(0, '“Thank you” significa…', ['perdón', 'gracias', 'hola'], 1),
-  // A2
-  _PItem(1, 'She ___ to school every day.', ['go', 'goes', 'going'], 1),
-  _PItem(1, "I'm from Peru. I ___ in Lima.", ['live', 'lives', 'living'], 0),
-  _PItem(1, 'Yesterday I ___ pizza.', ['eat', 'ate', 'eaten'], 1),
-  _PItem(1, 'There ___ two books on the table.', ['is', 'are', 'be'], 1),
-  // B1
-  _PItem(2, 'If it rains, I ___ at home.', ['stay', 'will stay', 'stayed'], 1),
-  _PItem(2, 'She has worked here ___ 2020.', ['since', 'for', 'from'], 0),
-  _PItem(2, 'I have ___ been to Japan.', ['never', 'ever', 'already'], 0),
-  _PItem(2, "I'm used to ___ up early.", ['get', 'getting', 'got'], 1),
-  // B2
-  _PItem(3, 'I wish I ___ more time.', ['have', 'had', 'will have'], 1),
-  _PItem(3, 'He was ___ to finish on time.', ['able', 'can', 'capable of'], 0),
-  _PItem(3, 'If I ___ known, I would have told you.', ['have', 'had', 'did'], 1),
-  _PItem(3, 'She said she ___ tired.', ['is', 'was', 'be'], 1),
-  // C1 (discrimina usuarios avanzados: inversión, cleft, concesión, registro)
-  _PItem(4, '___ had I sat down when the phone rang.', ['Hardly', 'Rarely', 'Seldom'], 0),
-  _PItem(4, 'Not only ___ he apologize, but he also paid.', ['did', 'does', 'has'], 0),
-  _PItem(4, 'The plan is costly; ___, it may be necessary.', ['nevertheless', 'therefore', 'moreover'], 0),
-  _PItem(4, '___ I known earlier, I would have helped.', ['Had', 'If', 'Have'], 0),
-];
+  final List<Map<String, dynamic>> _history = [];
+  Map<String, dynamic>? _item; // ítem actual (id, type, skill, cefr_level, prompt, payload)
+  int _asked = 0;
+  int _max = 12;
+  bool _loading = true;
+  int _retries = 0;
 
-const int _maxQuestions = 12;
-
-class _PlacementTestState extends State<PlacementTest> {
-  final _rng = math.Random();
-  late int _level; // arranca según la micro-pregunta (desde cero / sé algo / buen nivel)
-  int _count = 0;
-  final Set<int> _asked = {};
-  final List<int> _askedLevels = [];
-  late _PItem _current;
-  late int _currentIdx;
+  String get _hint => _hintCefr[widget.startLevel.clamp(0, _hintCefr.length - 1)];
 
   @override
   void initState() {
     super.initState();
-    _level = widget.startLevel.clamp(0, 4);
-    _pickNext();
+    _load();
   }
 
-  void _pickNext() {
-    final lvl = _level.clamp(0, 4);
-    var pool = <int>[];
-    for (var i = 0; i < _items.length; i++) {
-      if (!_asked.contains(i) && _items[i].level == lvl) pool.add(i);
-    }
-    if (pool.isEmpty) {
-      for (var i = 0; i < _items.length; i++) {
-        if (!_asked.contains(i)) pool.add(i);
+  Future<void> _load() async {
+    setState(() => _loading = true);
+    try {
+      final res = await ref
+          .read(progressRepositoryProvider)
+          .placementNext(startLevel: _hint, history: _history);
+      if (!mounted) return;
+      if (res['done'] == true) {
+        _finish(res);
+        return;
       }
+      setState(() {
+        _item = Map<String, dynamic>.from(res['item'] as Map);
+        _asked = (res['asked'] as int? ?? _history.length) + 1;
+        _max = res['max'] as int? ?? _max;
+        _loading = false;
+      });
+    } catch (_) {
+      if (!mounted) return;
+      // Reintento suave; si persiste, no dejamos el onboarding sin salida: ubicamos
+      // por el hint del usuario (su autoevaluación) y seguimos.
+      if (_retries < 1) {
+        _retries++;
+        _load();
+        return;
+      }
+      _finishFallback();
     }
-    _currentIdx = pool[_rng.nextInt(pool.length)];
-    _current = _items[_currentIdx];
-    _asked.add(_currentIdx);
-    _askedLevels.add(_current.level);
   }
 
-  void _answer(int optionIdx) {
-    final correct = optionIdx == _current.correct;
-    _count++;
-    if (correct) {
-      _level = (_level + 1).clamp(0, 4);
-    } else {
-      _level = (_level - 1).clamp(0, 4);
-    }
-
-    if (_count >= _maxQuestions || _asked.length >= _items.length) {
-      _finish();
-      return;
-    }
-    setState(_pickNext);
+  void _answer(String value) {
+    final it = _item;
+    if (it == null) return;
+    _history.add({'item_id': it['id'], 'answer': value});
+    _load();
   }
 
-  void _finish() {
-    final mean = _askedLevels.reduce((a, b) => a + b) / _askedLevels.length;
-    final idx = mean.round().clamp(0, 4);
-    final level = CefrTable.order[idx]; // A1..C1
+  void _finish(Map<String, dynamic> res) {
+    final level = (res['level'] as String?) ?? _hint;
+    final sk = res['skill_levels'] as Map?;
     widget.data.placementLevel = level;
     widget.data.skillLevels = {
-      'reading': level,
-      'listening': level,
-      'writing': level,
-      'speaking': level,
+      'reading': (sk?['reading'] as String?) ?? level,
+      'listening': (sk?['listening'] as String?) ?? level,
+      'writing': (sk?['writing'] as String?) ?? level,
+      'speaking': (sk?['speaking'] as String?) ?? level,
+    };
+    widget.onDone();
+  }
+
+  void _finishFallback() {
+    widget.data.placementLevel = _hint;
+    widget.data.skillLevels = {
+      'reading': _hint,
+      'listening': _hint,
+      'writing': _hint,
+      'speaking': _hint,
     };
     widget.onDone();
   }
 
   @override
   Widget build(BuildContext context) {
+    final it = _item;
+    final options =
+        ((it?['payload'] as Map?)?['options'] as List?)?.map((e) => e.toString()).toList() ??
+            const <String>[];
     return OnboardingScaffold(
       step: widget.step,
       total: widget.total,
       onBack: widget.onBack,
       title: 'Test de ubicación',
-      subtitle: 'Sin pistas · pregunta ${_count + 1} de $_maxQuestions',
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(16),
-            margin: const EdgeInsets.only(bottom: 16),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(16),
-              boxShadow: const [
-                BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 4), blurRadius: 0),
+      subtitle: 'Sin pistas · pregunta $_asked de $_max',
+      child: _loading || it == null
+          ? const Padding(
+              padding: EdgeInsets.symmetric(vertical: 48),
+              child: Center(child: CircularProgressIndicator(color: AppColors.primary)),
+            )
+          : Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  margin: const EdgeInsets.only(bottom: 16),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(16),
+                    boxShadow: const [
+                      BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 4), blurRadius: 0),
+                    ],
+                  ),
+                  child: Text((it['prompt'] ?? '').toString(),
+                      style: const TextStyle(fontSize: 19, fontWeight: FontWeight.w800, height: 1.3)),
+                ),
+                for (final opt in options)
+                  OnboardingOption(
+                    label: opt,
+                    selected: false,
+                    onTap: () => _answer(opt),
+                  ),
               ],
             ),
-            child: Text(_current.prompt,
-                style: const TextStyle(fontSize: 19, fontWeight: FontWeight.w800, height: 1.3)),
-          ),
-          for (var i = 0; i < _current.options.length; i++)
-            OnboardingOption(
-              label: _current.options[i],
-              selected: false,
-              onTap: () => _answer(i),
-            ),
-        ],
-      ),
     );
   }
 }

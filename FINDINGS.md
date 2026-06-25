@@ -2,6 +2,80 @@
 
 ---
 
+## TEST DE UBICACIÓN PRECISO + ARRANQUE EN EL NIVEL — 2026-06-25 ✅ server LIVE + en deploy (cliente)
+> Reporte: "respondí bien preguntas de nivel alto y la app me arrancó en la Unidad 1 (A1)".
+> Eran DOS fallas independientes. Ambas resueltas y verificadas con **cliente real autenticado**
+> (`verify_placement.py`: TODO PASA). Grading 100% server-side (`correct_answer` 42501).
+
+### ANÁLISIS — causa raíz (reproducida leyendo el código vivo)
+**Falla A — el placement no clasificaba con precisión.** Tres causas combinadas:
+- **A1 (banco muerto/insuficiente).** El test era **100% cliente**: `placement_test.dart` usaba **20
+  ítems HARDCODED en Dart** (4/nivel) y **calificaba en el cliente**. El banco de la BD (16 ítems,
+  solo A1–B2, solo reading/writing, desbalanceado) **ni se consultaba**. Con 4 ítems/nivel y ±1 por
+  respuesta, no había de dónde converger.
+- **A2 (estimador sesgado a la baja) — la causa directa del síntoma.** El nivel final se calculaba
+  como la **MEDIA de los niveles de las preguntas presentadas** (`placement_test.dart:123`). Un B2 que
+  acierta arriba arrastra el promedio hacia el centro → sale B1/A2. **Subestima por diseño.**
+- **A3 (sin las 4 habilidades).** Solo reading/writing; las 4 skills se fijaban al mismo nivel. Real,
+  pero secundario al síntoma.
+
+**Falla B — el árbol no arrancaba en el nivel obtenido (la causa de "terminé en A1").**
+`create_plan` (mig 039) **guardaba** `current_level`/`skill_levels` pero elegía el nodo inicial como
+`select id from lessons … order by order_index limit 1` → **SIEMPRE la Unidad 1, nodo 1**, ignorando
+`p_current_level`. El mapa muestra el primer nodo `available` → A1. Aunque el placement diera B2, el
+puente nivel→arranque **no existía**.
+
+### ENFOQUE ELEGIDO (y alternativas descartadas)
+**Server-driven, data-driven, adaptativo + puente en `create_plan`.** Razón: es la única forma de que
+el placement sea (a) **verificable con cliente real** (la misión exige "B2→~B2" con JWT real), (b)
+**server-graded** (principio de la plataforma; `correct_answer` oculto) y (c) data-driven (banco en
+la BD, autorable). Descartado:
+- *Solo arreglar el estimador en el cliente (media→techo) + ampliar banco Dart.* Deja el grading en el
+  bundle y **no verificable** con cliente real; mantiene banco duplicado/muerto.
+- *IRT completo (2PL/3PL, EAP/MLE).* Sobredimensionado para 5 bandas y un banco modesto; exige
+  parámetros calibrados que no tenemos. Mi **escalera + techo** es un "paso hacia IRT" determinista,
+  explicable y testeable (usa `cefr_level`/`difficulty` + estimación de habilidad con convergencia).
+- *Mapa con ramas por skill.* El mapa es un camino lineal; el nivel de entrada lo fija el nivel global,
+  y per-skill alimenta dominio/examen. No aporta al arranque.
+
+### LO CONSTRUIDO
+- **mig 075 — banco de placement** (48 ítems es→en A1→C1, 5+5/nivel; C1 5R+3W). Autorados por panel de
+  examinadores IA + **validación adversarial por nivel** (descartó los dudosos). `correct_answer` oculto.
+- **mig 076 — `placement_next(course, start_level, history)`**: RPC stateless. Califica TODO el historial
+  con `jz_grade` (servidor), selección **escalera 1-up/1-down** (acierto→+1, error→−1: concentra las
+  preguntas en el nivel real), **estimador TECHO** (nivel más alto superado consistentemente, contiguo
+  desde abajo; corrige el sesgo de la media), per-skill reading/writing (listening/speaking=global).
+  Devuelve el siguiente ítem **sin respuesta** o `{done, level, skill_levels}`.
+- **mig 077 — puente en `create_plan`**: `current_level`→primera unidad de ese nivel; lo inferior queda
+  `completed` (accesible, sin XP falso); entrada `available`; punteros al nodo de entrada. **Seguro**: el
+  avance del mapa es por cadena (`complete_lesson`); el examen/cert siguen gateados por **dominio**
+  (`jz_skill_mastery≥0.80` sobre intentos reales) → marcar lo inferior no regala nivel ni certificado.
+  Idempotente y **backward-compatible** (A1 ⇒ entrada=U1 ⇒ idéntico al actual).
+- **Cliente** (`placement_test.dart`): ahora **relay** de `placement_next` (sin banco hardcoded ni
+  estimador de media); el hint del onboarding va como `p_start_level`. `repo.placementNext`.
+
+### EVIDENCIA (cliente real autenticado, `verify_placement.py` — TODO PASA)
+- **Precisión:** persona A1→**A1** (6 preg.), A2→**A2**, B1→**B1**, **B2→B2** (incluso con hint
+  equivocado A2), C1→**C1** (12 preg.). El estimador techo **clava el nivel** (antes la media lo bajaba).
+- **`placement_next` no filtra `correct_answer`** (el ítem servido no trae la respuesta).
+- **Puente:** `create_plan(B2)` → unidad actual **nivel B2**, 1er nodo disponible **B2** (U19), contenido
+  inferior marcado completado. `create_plan(A1)` → U1, nada por debajo (sin regresión).
+- **`correct_answer` de placement oculto** (anon → 42501/sin columna).
+- Suites: `analyze` 0 · `flutter test` 74/74 (incl. 2 nuevos del relay) · `build web` OK · smoke P0 intacto.
+
+### Verificación MANUAL para Gian (Android — tras deploy READY)
+1. **Crea una cuenta nueva** y en "¿Cómo arrancas?" elige **"Tengo buen nivel"**. En el test, **acierta**
+   las preguntas (gramática alta). Al terminar, tu plan debe decir un nivel **alto (B1/B2/C1)**, no A1.
+2. **Entra al mapa:** debes aparecer en una unidad **de tu nivel** (p.ej. B2 = zona avanzada), con el
+   contenido anterior marcado como **hecho** (accesible si quieres repasar), **sin** "buenos días" como
+   nodo activo.
+3. **Contraprueba:** otra cuenta nueva, "Desde cero" y **falla** a propósito → debe ubicarte en **A1** y
+   arrancar en la **Unidad 1**.
+4. (Opcional) Un nivel intermedio: acierta lo básico y falla lo difícil → debe ubicarte en medio
+   (A2/B1) y arrancar ahí.
+
+---
+
 ## MEJORAS AL LOOP DE LECCIÓN — 2026-06-24 ✅ LIVE (server) + en deploy (cliente)
 > Tres mejoras pedagógicas al loop. Server-side aplicado y verificado con **cliente real
 > autenticado** (`verify_loop_improvements.py`, TODO PASA). Cliente (Flutter) en el push;

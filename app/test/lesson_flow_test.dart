@@ -75,6 +75,13 @@ class FakeProgressRepository implements ProgressRepository {
 
   @override
   Future<void> prioritizeFailedSrs(List<String> itemIds) async {}
+
+  @override
+  Future<Map<String, dynamic>> placementNext({
+    required String startLevel,
+    required List<Map<String, dynamic>> history,
+  }) async =>
+      {'done': true, 'level': 'A1', 'skill_levels': const {}};
   @override
   Future<List<CourseInfo>> fetchCourses() async => const [];
   @override

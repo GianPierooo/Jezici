@@ -163,6 +163,23 @@ class ProgressRepository {
     return (res?['onboarding_completed'] as bool?) ?? false;
   }
 
+  /// Test de ubicación adaptativo, calificado en el SERVIDOR (placement_next, mig
+  /// 076). Envía el historial de respuestas `[{item_id, answer}]` y recibe o bien el
+  /// SIGUIENTE ítem (sin la respuesta correcta) o el RESULTADO final
+  /// `{done:true, level, skill_levels}`. El cliente solo relaya; no califica ni ve
+  /// la respuesta (correct_answer sigue 42501).
+  Future<Map<String, dynamic>> placementNext({
+    required String startLevel,
+    required List<Map<String, dynamic>> history,
+  }) async {
+    final res = await _client.rpc('placement_next', params: {
+      'p_course': null,
+      'p_start_level': startLevel,
+      'p_history': history,
+    });
+    return Map<String, dynamic>.from(res as Map);
+  }
+
   /// Persiste el plan del onboarding (personalidad, plan, nivel, 4 skills).
   Future<void> createPlan({
     required String coachStyle,
