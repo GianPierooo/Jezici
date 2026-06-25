@@ -8,18 +8,19 @@ import 'package:jezici/features/lesson/exercises/exercise_registry.dart';
 /// payload.image_url, y el ejercicio sigue siendo funcional (opciones presentes). Sin
 /// image_url no se añade nada. Degradación: si la imagen no carga (en test no hay red),
 /// ConceptImage colapsa pero las opciones del MC siguen ahí.
-ContentItemModel _mc({String? imageUrl}) => ContentItemModel(
-      id: 'i1',
-      type: ContentItemType.multipleChoice,
-      skill: 'reading',
-      cefrLevel: 'A1',
-      prompt: '¿Qué es esto?',
-      payload: {
-        'options': const ['coffee', 'tea', 'water'],
-        if (imageUrl != null) 'image_url': imageUrl,
-      },
-      correctAnswer: const {'value': 'coffee'},
-    );
+ContentItemModel _mc({String? imageUrl}) {
+  final payload = <String, dynamic>{'options': const ['coffee', 'tea', 'water']};
+  if (imageUrl != null) payload['image_url'] = imageUrl;
+  return ContentItemModel(
+    id: 'i1',
+    type: ContentItemType.multipleChoice,
+    skill: 'reading',
+    cefrLevel: 'A1',
+    prompt: '¿Qué es esto?',
+    payload: payload,
+    correctAnswer: const {'value': 'coffee'},
+  );
+}
 
 void main() {
   testWidgets('con image_url: ConceptImage presente + ejercicio funcional', (t) async {
