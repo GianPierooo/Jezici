@@ -4,6 +4,7 @@ import '../../../data/models/content_item_model.dart';
 import '../grading/grader.dart';
 import 'cloze_exercise.dart';
 import 'common.dart';
+import 'concept_image.dart';
 import 'listening_exercise.dart';
 import 'match_exercise.dart';
 import 'multiple_choice_exercise.dart';
@@ -47,8 +48,15 @@ Widget buildExerciseWidget(
   // listening y speaking ahora tienen widget real (audio / Web Speech); solo
   // los tipos sin widget (dictation, guided_writing, unknown) caen al stub.
   final builder = exerciseRegistry[item.type];
-  if (builder == null) {
-    return StubExercise(item: item);
-  }
-  return builder(context, item, answer, locked);
+  final exercise = builder == null ? StubExercise(item: item) : builder(context, item, answer, locked);
+  // Imagen referencial (doble codificación) si el ítem la trae; se muestra ARRIBA del
+  // ejercicio en TODAS las superficies (lección/checkpoint/examen/práctica). Carga
+  // diferida + degradación con gracia (ConceptImage colapsa si no carga → el ejercicio
+  // sigue con texto). Para image-MC la imagen es el estímulo, así que debe ir siempre.
+  final imageUrl = (item.payload['image_url'] ?? '').toString();
+  if (imageUrl.isEmpty) return exercise;
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+    children: [ConceptImage(url: imageUrl), exercise],
+  );
 }

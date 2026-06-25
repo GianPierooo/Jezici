@@ -2,6 +2,58 @@
 
 ---
 
+## IMÁGENES REFERENCIALES EN LECCIONES (es→en A1/A2) — 2026-06-25 ✅ LIVE
+> Doble codificación (imagen + palabra) para reforzar vocab CONCRETO → mejor retención + variedad.
+> Solo donde la imagen AYUDA (vocab concreto, no gramática abstracta). Cliente real verificado.
+
+### Fuente elegida + LICENCIA (PASO 0)
+**Twemoji (CC-BY 4.0)**, alojado en Supabase Storage, carga diferida. **Justificación** (criterios:
+licencia / consistencia / peso / curación):
+- **Licencia limpia y permisiva:** CC-BY 4.0 — solo atribución, **sin** share-alike (más limpio que
+  CC-BY-SA de OpenMoji para uso comercial). Cero scraping, cero copyright. Proveniencia registrada por
+  imagen en `vocab_images` (source=`Twemoji 15.1 (jdecked)`, license=`CC-BY 4.0`, attribution completa).
+- **Consistencia:** un único estilo plano coherente (cohesivo con la mascota emoji 🦜 y el sistema de diseño).
+- **Peso/perf:** PNG 72px (~1KB c/u) en **Storage/CDN**, `Image.network` con `cacheWidth` → **cero impacto
+  de bundle** (sin deps ni assets nuevos; `main.dart.js` 3.60MB, igual) y carga **on-demand** (sin lag de arranque).
+- **Curación:** mapeo determinista concepto→codepoint→asset; descargo + re-alojo solo los que uso.
+- *Descartado:* stock-photos (inconsistentes, pesadas, términos de hotlink/atribución por foto) e
+  ilustración generada (consistencia difícil a escala A1/A2).
+- Fetch: `cdn.jsdelivr.net/gh/jdecked/twemoji@latest/assets/72x72/<cp>.png` (fork mantenido del set original).
+
+### Esquema (aditivo)
+- **`vocab_images`** (mig 086): registro reutilizable + proveniencia/licencia (concept, category, codepoint,
+  image_url, source, license, attribution). **RLS habilitado sin policy** → el cliente NO lee la tabla.
+- **`content_items.payload.image_url`** (denormalizado, render): el cliente lo recibe vía
+  `content_items_public` (payload sí pasa; `correct_answer` no). 39 conceptos alojados; 21 usados en ítems.
+
+### Contenido (mig 087): 21 ítems "imagen→palabra"
+`multiple_choice` con `payload.image_url`: la **imagen es el estímulo** y el enunciado es genérico
+("¿Qué es esto?") → **no revela la respuesta por texto** (respeta la regla de no-revelar + `correct_answer`
+42501). Opciones = palabra inglesa correcta + 2 distractores de la **misma categoría** (elección real).
+Cableados a la lección de su unidad por tema + tag `unidadN` (food→U4, family→U3, time→U5, place→U6,
+travel→U9, shop→U10). Pedagógicamente limpio: reconocimiento imagen→palabra = doble codificación.
+
+### UI + perf + degradación
+- `ConceptImage` (nuevo widget) insertado en **`buildExerciseWidget`** → aparece en las **4 superficies**
+  (lección/checkpoint/examen/práctica) automáticamente (DRY). Crucial: el image-MC necesita la imagen en
+  TODA superficie (sin ella sería irresoluble) → por eso va en el host común, no solo en la lección.
+- **Carga diferida** (`Image.network`, `cacheWidth: 176`), tarjeta de **altura fija** (132px) → **sin jank**
+  de scroll ni reflow durante la carga. **Cero deps nuevas** → bundle sin cambios; arranque sin regresión.
+- **Degradación con gracia:** si la imagen no carga, `ConceptImage` **colapsa** (post-frame) y el ejercicio
+  sigue con texto (no se rompe). Test `image_vocab_test.dart` cubre wiring + degradación.
+
+### Evidencia (cliente real — `verify_image_vocab.py`, TODO PASA)
+- **Imágenes cargan:** HEAD **21/21 = 200** (anon). `image_url` presente en `content_items_public.payload`.
+- **`correct_answer` del image-MC 42501** (anon). **Grading server-side:** palabra correcta→true, otra→false.
+- **`vocab_images` NO expuesta** al cliente (RLS). **Perf:** `main.dart.js` 3.60MB (sin deps/assets nuevos;
+  imágenes network desde CDN → fuera del bundle). `analyze` 0 · `flutter test` **76/76** · smoke P0 intacto.
+
+### Qué difiero
+- **match imagen↔palabra** (columna izq. de imágenes): mayor cambio al widget de match → diferido.
+- Imágenes en **es→pt** y niveles **B1+**; augmentar ítems existentes con imagen (riesgo de revelar → se evitó).
+
+---
+
 ## EFICACIA + BALANCE L/S — es→pt (A1·A2·B1) + MULTICURSO — 2026-06-25 ✅ LIVE
 > Lleva el segundo curso (es→pt, português do Brasil) a la par de es→en. Mismo criterio de balance.
 > **Multicurso verificado:** el contenido pt va al curso pt (0 fuga al curso en). Grading server-side
