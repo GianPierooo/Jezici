@@ -103,9 +103,13 @@ def main():
         ex = rpc(uid, "select start_level_exam();")
         assert ex["level"] == lvl and ex["item_count"] >= 18, f"{lvl} examen mal: {ex.get('level')}/{ex.get('item_count')}"
         ids = [it["id"] for it in ex["items"]]
-        # Los ítems del examen pt son del namespace pt (ids 'd…'); los checkpoints
-        # frescos (tag cp_unidadN) NO deben aparecer en el examen de nivel.
-        assert all(i.startswith("d") for i in ids), f"ítems del examen no son del curso pt: {ids[:3]}"
+        # Los ítems del examen pt deben ser TODOS del curso pt (no leak al curso en).
+        # (Antes se asumía namespace 'd…', pero el rebalanceo L/S mig 083-085 añadió
+        # ítems pt con uuid5 'c…' al pool vía tag unidadN — legítimos y deseados.)
+        inlist = ",".join("'" + i + "'" for i in ids)
+        ex_courses = set(r["course_id"] for r in json.loads(
+            run(f"select distinct course_id from content_items where id in ({inlist});")[1]))
+        assert ex_courses == {PT_COURSE}, f"ítems del examen no son todos del curso pt: {ex_courses}"
         res = rpc(uid, f"select submit_level_exam({jq(build_answers(ids))}, 120);")
         folio = (res.get("certificate") or {}).get("folio", "")
         assert res["passed"] is True and res["level"] == lvl, f"{lvl} debió aprobar: {res.get('passed')}"

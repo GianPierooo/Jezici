@@ -2,6 +2,52 @@
 
 ---
 
+## EFICACIA + BALANCE L/S — es→pt (A1·A2·B1) + MULTICURSO — 2026-06-25 ✅ LIVE
+> Lleva el segundo curso (es→pt, português do Brasil) a la par de es→en. Mismo criterio de balance.
+> **Multicurso verificado:** el contenido pt va al curso pt (0 fuga al curso en). Grading server-side
+> (`correct_answer` 42501).
+
+### Balance aplicado (+4 listening +2 speaking por unidad) — resultado real
+| Nivel pt | R | W | **L** | **S** | L/R | S/R |
+|---|---|---|---|---|---|---|
+| A1 | 98 | 94 | **60** | **48** | 61% | 49% |
+| A2 | 96 | 95 | **60** | **48** | 62% | 50% |
+| B1 | 81 | 114 | **58** | **46** | 72% | 57% |
+
+**+108 ítems L/S** (3×24L+3×12S) en portugués de Brasil con audio **tl=pt** (108/108) + **34 huecos**
+(mc/cloze). `payload.say`/`text` guardado → audio regenerable y text-matched. Tags propios `lsbalpt`/
+`eficgappt` (aíslan del curso en) + `unidadN` (pool del examen pt, scope por course_id).
+
+### Auditoría de eficacia pt — veredictos honestos
+- **pt A1 — SÍ con reservas.** Temario y gramática A1 suficientes y bien secuenciados para llevar a un
+  hispanohablante a A1 funcional en PB (saludos/ser, ter/posesivos, rutina/gostar/regulares, comida/querer/
+  precios, direcciones/ficar, tiempo libre/poder). 12 huecos (contraste momento del día, concordancia
+  posesivos no-familiares, ele/ela por género).
+- **pt A2 — sí con reservas.** Sílabo A2 sólido (pretérito perfeito regular/irregular, ir+infinitivo,
+  viaje/hotel, restaurante/comparativos, descripciones, salud/present perfect/conselhos). 11 huecos
+  (irregulares tive/vimos en producción, futuro perifrástico, reproponer planes).
+- **pt B1 — sí con reservas** (receptiva + producción guiada; no B1 productivo pleno autónomo). Espinazo
+  B1 correcto (imperfeito vs perfeito, futuro/cortesía gostaria-poderia, **presente do subjuntivo**
+  tomara que/espero que, relativos, se-passive/obligación, comparativos/discurso indirecto/voz pasiva).
+  11 huecos (futuro perifrástico ir+inf, contraste antes/agora).
+- Aprovechamiento del portugués: contracciones (no/na/do/da), próclise (me chamo), artículo ante nombre
+  (o Pedro) — el validador adversarial corrigió tildes (são) y ambigüedades de sentido.
+
+### Evidencia (cliente real — `verify_pt_ls.py <nivel>`, TODO PASA por nivel)
+- **Multicurso:** `set_active_course(pt)` por JWT real → curso activo pt; tras resolver L/S pt vía
+  `complete_lesson`, `get_skill_mastery` (jz_active_course=pt) sube dominio **listening/speaking EN EL
+  CURSO PT**: A1 0→0.28/0.27 · A2 0→0.22/0.21 · B1 0→0.23/0.21. **Ruteo: 0 intentos fuera del curso pt.**
+- **Audio pt:** HEAD **108/108 = 200** (tl=pt). **`correct_answer` pt 42501** (anon).
+- **`verify_pt_chain` PASS** (cadena pt A1→A2→B1, exámenes con los nuevos L/S pt, certs JZC-*, per-skill;
+  ítems del examen TODOS del curso pt — corregida una aserción obsoleta que asumía namespace 'd…').
+- **`verify_chain es→en` PASS** (curso en intacto). `analyze` 0 · `flutter test` 74/74 · smoke P0 intacto.
+
+### Punto de retome
+es→pt **B2/C1 no existen** (el curso pt llega a B1). Si se siembran esos niveles, aplicar la misma
+maquinaria (`gen_high_levels.py pt B2 ...`, `gen_audio_ls.py pt B2`, workflow `efic-ls-pt`).
+
+---
+
 ## EFICACIA + BALANCE L/S — NIVELES ALTOS es→en (B1·B2·C1) — 2026-06-25 ✅ LIVE
 > Extiende la auditoría de eficacia y el rebalanceo L/S a B1/B2/C1 (antes solo perfil estructural).
 > Mismo criterio de balance que A1/A2 (NO 1:1). Verificado con **cliente real** por nivel. Grading

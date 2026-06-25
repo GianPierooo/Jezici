@@ -66,19 +66,27 @@ Mig 080/081/082. Detalle + evidencia en FINDINGS.md.
 - **Balance L/S** subido a objetivo (listening ~62–69% de R/W, speaking ~50%): +4L/+2S por unidad, +108 ítems
   con audio TTS, verificados (mueven dominio L/S; cliente real). Mismo sesgo 3:1 → **resuelto** en A1–C1.
 
-## es→pt A1 / A2 / B1 — DIFERIDO (+ regresión de examen ARREGLADA)
-Auditoría de eficacia **pendiente**. **Pero** la verificación destapó una **regresión P0**: los exámenes
-de nivel de pt daban 'level exam locked' — mig 064 (misión C1) había restaurado start/submit_level_exam
-a la versión mono-curso (`courses where is_active`), perdiendo el multicurso de mig 047. **mig 072** lo
-restaura (`jz_active_course()`), preservando el modelo per-skill y el tope C1. verify_pt_chain vuelve a PASS.
+## es→pt A1 / A2 / B1 — auditoría HECHA (2026-06-25, panel CEFR-pt por unidad) ✅
+Mig 083/084/085. Detalle + evidencia en FINDINGS.md. (Antes: la verificación había destapado y arreglado
+una regresión P0 de examen multicurso — mig 064→**072** restauró `jz_active_course()`.)
+- **pt A1 — SÍ con reservas.** Temario/gramática A1 suficientes y bien secuenciados para A1 funcional en
+  portugués de Brasil (ser/ter/posesivos/regulares/querer/poder/ficar). 12 huecos rellenados.
+- **pt A2 — sí con reservas.** Sílabo A2 sólido (pretérito perfeito reg./irreg., ir+infinitivo, viaje,
+  restaurante/comparativos, salud/present perfect). 11 huecos.
+- **pt B1 — sí con reservas** (receptiva + producción guiada). Espinazo B1 correcto (imperfeito vs
+  perfeito, cortesía gostaria/poderia, **presente do subjuntivo**, relativos, se-passive, voz pasiva,
+  discurso indirecto). 11 huecos.
+- **Balance L/S** subido a objetivo (listening 61–72% de R/W, speaking 49–57%): +4L/+2S por unidad,
+  +108 ítems con audio **tl=pt**, verificados con cliente real **multicurso** (mueven dominio L/S en el
+  curso pt; 0 fuga al curso en). **Sesgo 3:1 resuelto en es→pt.** Pendiente: es→pt B2/C1 (no sembrados).
 
 ## Qué difiero y por qué (punto de retome exacto)
-1. **Equilibrar L/S** — ✅ **HECHO para es→en A1–C1** (2026-06-25, mig 078–082): +204 ítems L/S
-   (listening ~65% de R/W; speaking ~50%, proxy) + 204/204 audio TTS, validados adversarialmente,
-   verificados con cliente real (mueven dominio L/S). Ver FINDINGS.md. **Pendiente:** **es→pt** (autorar + audio).
-2. **Auditoría de eficacia es→en B1/B2/C1** — ✅ **HECHA** (2026-06-25, mig 080–082; ver arriba + FINDINGS.md):
-   cobertura sólida en los 3; 34 huecos de alto impacto rellenados; C1 con techo honesto de producción.
-3. **Auditoría de eficacia es→pt A1/A2/B1** → siguiente pasada.
+1. **Equilibrar L/S** — ✅ **HECHO en AMBOS cursos** (2026-06-25): es→en A1–C1 (mig 078–082) + es→pt A1–B1
+   (mig 083–085) = +312 ítems L/S + 312/312 audio TTS, validados adversarialmente, verificados con cliente
+   real (mueven dominio L/S; pt multicurso). Pendiente: es→pt B2/C1 (no sembrados).
+2. **Auditoría de eficacia es→en B1/B2/C1** — ✅ **HECHA** (mig 080–082): cobertura sólida; 34 huecos; C1 techo honesto.
+3. **Auditoría de eficacia es→pt A1/A2/B1** — ✅ **HECHA** (2026-06-25, mig 083–085; ver arriba + FINDINGS.md):
+   cobertura sólida en los 3; 34 huecos; multicurso verificado (contenido pt→curso pt).
 4. **Retención:** más reaparición explícita de léxico entre unidades.
 5. **Evaluación:** checkpoints menos sesgados a reconocimiento (más producción guiada).
 
