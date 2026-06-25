@@ -2,6 +2,57 @@
 
 ---
 
+## EQUILIBRAR LISTENING/SPEAKING (es→en A1/A2) — 2026-06-25 ✅ LIVE (server/DB + audio)
+> La auditoría EFICACIA halló sesgo **~3:1** (R/W vs L/S). Esta tanda sube L/S de A1/A2 para que
+> las 4 habilidades nivelen proporcionalmente. Server/DB + audio aplicados y verificados con
+> **cliente real**. Grading server-side (`correct_answer` 42501).
+
+### Balance objetivo elegido (con criterio, NO 1:1) y por qué
+Conteo real previo (cableado a lecciones): R/W **~95–105/nivel** por skill vs **L ~34–36 · S ~34–36**.
+- **Listening → ~65% de R/W** (+5/unidad: 5–6 → 10–11; ~64/nivel). Es la receptiva **genuinamente
+  calificada** (jz_grade como MC) y la más subservida → prioridad máxima.
+- **Speaking → ~50% de R/W** (+3/unidad: 5–6 → 8–9; ~52/nivel). Es un **proxy** read-aloud
+  (participación, NO evalúa fluidez — eso es Fase 2). Subida moderada: suficiente para que la skill
+  nivele proporcional (su dominio sube por cobertura/participación) sin sobre-invertir en una
+  dimensión no evaluada. **No 1:1** porque R/W están inflados por autoría/evaluación baratas y reading
+  sostiene todas las skills.
+
+### Lo hecho (mig 078 A1 · mig 079 A2)
+- **96 ítems nuevos** (60 listening + 36 speaking; 30L+18S por nivel), autorados por **panel de
+  profesores IA + validación adversarial por unidad** (descartó/corrigió dudosos — p.ej. un homófono
+  *tea/tee* en transcripción). Cableados a las **4 lecciones** de cada unidad + tag `unidadN` (entran
+  al **pool del examen** → corrige el sesgo R/W de los exámenes que notó la auditoría).
+- **Listening:** `type='listening'` (gradable), `payload.say` = audio EN, 3 opciones, `correct_answer.
+  value`. Estilos: "elige lo que oíste" (transcripción, distractores minimal-pair) y "elige la
+  respuesta" (comprensión funcional). **`say` guardado** → audio **regenerable y text-matched** (los
+  A1 viejos NO lo tenían).
+- **Speaking:** `type='speaking_read_aloud'` (stub/participación), `payload.text`, `correct_answer.
+  expected`. Frases naturales de la unidad, relevancia LATAM.
+- **Audio:** **96/96** TTS (Google translate_tts `tl=en`) generados y subidos a Storage
+  (`audio/items/<id>.mp3`, `gen_audio_ls.py`). Pipeline idéntico a los 216 previos.
+
+### Honestidad sobre el techo del speaking (proxy)
+El read-aloud entrena **pronunciación y producción guiada** y da señal de dominio por participación,
+pero **NO certifica producción oral libre** (fluidez/coherencia). Eso requiere evaluación por IA/humano
+(**Fase 2**). Por eso speaking se sube a ~50%, no a paridad: invertir más en una skill no evaluada da
+rendimiento decreciente.
+
+### Evidencia (cliente real — `verify_ls_balance.py` TODO PASA)
+- **Audio:** HEAD **96/96 = 200**.
+- **Mecánica (lo crítico):** tras resolver listening+speaking nuevos vía `complete_lesson`,
+  `get_skill_mastery` → **dominio listening 0 → 0.24** (por precisión) y **speaking 0 → 0.23** (por
+  participación). Los ítems L/S nuevos **mueven de verdad** su habilidad.
+- **`correct_answer` de listening nuevo OCULTO** (anon → 42501).
+- **`verify_chain es→en` PASS** (cadena A1→B2, certs, per-skill; los nuevos L/S entran a exámenes y
+  `raised_skills` incluye listening/speaking). `analyze` 0 · `flutter test` 74/74 · smoke P0 intacto.
+
+### Punto de retome (siguiente tanda)
+- **B1/B2/C1 es→en** y **es→pt A1/A2/B1**: mismo rebalanceo L/S (autorar + audio). Misma mecánica
+  (`gen_ls_bank.py` + `gen_audio_ls.py`, tag `lsbal`; `gen_audio_missing.py` ya tiene grupos
+  en-b1/b2/c1 y pt-*). No iniciado en esta sesión por alcance (A1/A2 primero, como pidió la misión).
+
+---
+
 ## TEST DE UBICACIÓN PRECISO + ARRANQUE EN EL NIVEL — 2026-06-25 ✅ server LIVE + en deploy (cliente)
 > Reporte: "respondí bien preguntas de nivel alto y la app me arrancó en la Unidad 1 (A1)".
 > Eran DOS fallas independientes. Ambas resueltas y verificadas con **cliente real autenticado**

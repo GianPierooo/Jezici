@@ -62,8 +62,10 @@ a la versión mono-curso (`courses where is_active`), perdiendo el multicurso de
 restaura (`jz_active_course()`), preservando el modelo per-skill y el tope C1. verify_pt_chain vuelve a PASS.
 
 ## Qué difiero y por qué (punto de retome exacto)
-1. **Equilibrar L/S** en todos los niveles (subir de 4/unidad): requiere autorar listening/speaking +
-   **generar audio TTS** (no trivial, riesgo de sesión) → tanda dedicada.
+1. **Equilibrar L/S** — ✅ **HECHO para es→en A1/A2** (2026-06-25, mig 078/079): +96 ítems (listening
+   +5/unidad → ~65% de R/W; speaking +3/unidad → ~50%, proxy) + 96/96 audio TTS, validados
+   adversarialmente, verificados con cliente real (mueven dominio L/S). Ver FINDINGS.md. **Pendiente:**
+   mismo rebalanceo para **es→en B1/B2/C1** y **es→pt A1/A2/B1** (autorar + audio) → siguiente tanda.
 2. **Auditoría de eficacia es→en B1/B2/C1** (cobertura/huecos por nivel) → siguiente pasada.
 3. **Auditoría de eficacia es→pt A1/A2/B1** → siguiente pasada.
 4. **Retención:** más reaparición explícita de léxico entre unidades.
