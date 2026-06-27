@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/audio/audio_engine.dart';
+import '../../core/audio/music_service.dart';
 import '../../core/feedback/feedback_fx.dart';
 import '../../core/speech/speech_recognizer.dart';
 import '../../core/theme/app_colors.dart';
@@ -80,6 +81,7 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
   @override
   void initState() {
     super.initState();
+    MusicService.instance.setSuppressed(true); // sin música del mapa durante el ejercicio
     // Calienta el AudioContext tras el gesto de entrada y precarga el audio del
     // ítem actual y el siguiente (minimiza el time-to-first-audio en listening).
     AudioEngine.instance.unlock();
@@ -123,6 +125,7 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
 
   @override
   void dispose() {
+    MusicService.instance.setSuppressed(false); // restaura la música al volver al mapa
     _speechWarm?.dispose();
     _answer.dispose();
     super.dispose();

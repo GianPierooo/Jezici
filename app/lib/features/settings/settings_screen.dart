@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/app_info.dart';
+import '../../core/audio/music_controller.dart';
 import '../../core/audio/sound_controller.dart';
 import '../../core/feedback/feedback_sheet.dart';
 import '../../core/theme/app_colors.dart';
@@ -203,13 +204,27 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           // Sonido (GA8).
           _section('Sonido', 'Efectos de las microinteracciones.'),
           _Card(
-            child: SwitchListTile(
-              contentPadding: EdgeInsets.zero,
-              activeThumbColor: AppColors.primary,
-              value: ref.watch(soundEnabledProvider),
-              onChanged: (v) => ref.read(soundEnabledProvider.notifier).set(v),
-              title: const Text('Efectos de sonido',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.text)),
+            child: Column(
+              children: [
+                SwitchListTile(
+                  contentPadding: EdgeInsets.zero,
+                  activeThumbColor: AppColors.primary,
+                  value: ref.watch(soundEnabledProvider),
+                  onChanged: (v) => ref.read(soundEnabledProvider.notifier).set(v),
+                  title: const Text('Efectos de sonido',
+                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.text)),
+                ),
+                SwitchListTile(
+                  contentPadding: EdgeInsets.zero,
+                  activeThumbColor: AppColors.primary,
+                  value: ref.watch(musicEnabledProvider),
+                  onChanged: (v) => ref.read(musicEnabledProvider.notifier).set(v),
+                  title: const Text('Música del mapa',
+                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.text)),
+                  subtitle: const Text('Loop ambiente suave en Aprender. Baja sola con los sonidos.',
+                      style: TextStyle(fontSize: 12, color: AppColors.textMuted)),
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 18),

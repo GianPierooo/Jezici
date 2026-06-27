@@ -31,4 +31,14 @@ abstract class AudioEngine {
 
   /// Detiene cualquier reproducción de URL en curso (para no solapar TTS).
   Future<void> stop();
+
+  /// Música de fondo en LOOP (solo el mapa). Reproduce en el MISMO AudioContext
+  /// (web) → hereda el NO-MediaSession (sin reproductor en la pantalla de bloqueo).
+  /// Tiene su propio GainNode (separado de SFX/TTS) para el DUCKING automático: la
+  /// música baja sola cuando suena cualquier audio funcional (playAsset/playUrl) y
+  /// se recupera después. Idempotente: si ya suena esa URL, no reinicia.
+  Future<void> startLoop(String url, {double volume = 0.16});
+
+  /// Detiene la música de fondo (fade-out corto). No afecta SFX/TTS.
+  Future<void> stopLoop();
 }

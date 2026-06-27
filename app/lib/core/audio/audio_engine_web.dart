@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:js_interop';
 import 'dart:js_interop_unsafe';
 
@@ -14,6 +15,7 @@ extension type _Ctx._(JSObject o) implements JSObject {
   external _Gain createGain();
   external JSObject get destination;
   external String get state;
+  external double get currentTime;
   external JSPromise<JSAny?> resume();
 }
 
@@ -26,6 +28,7 @@ extension type _Src._(JSObject o) implements JSObject {
   external void connect(JSObject node);
   external void start();
   external void stop();
+  external set loop(bool b);
   external set onended(JSFunction f);
 }
 
@@ -36,6 +39,8 @@ extension type _Gain._(JSObject o) implements JSObject {
 
 extension type _Param._(JSObject o) implements JSObject {
   external set value(double v);
+  external void setTargetAtTime(double target, double startTime, double timeConstant);
+  external void cancelScheduledValues(double t);
 }
 
 @JS('fetch')
@@ -57,6 +62,14 @@ class _WebAudioEngine implements AudioEngine {
   final Map<String, _Buf> _cache = {};
   _Src? _urlSrc;
   bool _clearedSession = false;
+
+  // ── Música de fondo (loop) con GainNode propio → permite DUCKING sin tocar
+  //    SFX/TTS, y vive en el MISMO AudioContext → no crea MediaSession. ──
+  _Gain? _musicGain;
+  _Src? _musicSrc;
+  String? _musicUrl;
+  double _musicVolume = 0.16;
+  Timer? _unduckTimer;
 
   _Ctx? _ensure() {
     if (_ctx != null) return _ctx;
@@ -127,6 +140,7 @@ class _WebAudioEngine implements AudioEngine {
 
   void _play(_Ctx c, _Buf buf, double volume, {void Function()? onEnded}) {
     try {
+      _duckMusic(650); // SFX: baja la música y la recupera tras ~0.65 s
       final src = c.createBufferSource();
       src.buffer = buf;
       final gain = c.createGain();
@@ -175,8 +189,13 @@ class _WebAudioEngine implements AudioEngine {
       gain.gain.value = volume;
       src.connect(gain as JSObject);
       gain.connect(c.destination);
-      src.onended = (() => onComplete?.call()).toJS;
+      // TTS/listening: ducking durante la reproducción; recupera al terminar.
+      src.onended = (() {
+        _unduckMusic();
+        onComplete?.call();
+      }).toJS;
       _urlSrc = src;
+      _duckMusic(15000); // fallback largo por si onended no dispara
       src.start();
     } catch (_) {}
   }
@@ -217,5 +236,95 @@ class _WebAudioEngine implements AudioEngine {
       _urlSrc?.stop();
     } catch (_) {}
     _urlSrc = null;
+  }
+
+  @override
+  Future<void> startLoop(String url, {double volume = 0.16}) async {
+    final c = _ensure();
+    if (c == null) return;
+    _musicVolume = volume;
+    if (_musicUrl == url && _musicSrc != null) {
+      await _resumeIfNeeded(c); // ya suena esa URL: solo reasegura el contexto
+      return;
+    }
+    await _resumeIfNeeded(c);
+    final buf = await _buffer(c, 'm:$url', () async {
+      try {
+        final resp = await _fetch(url).toDart;
+        return await resp.arrayBuffer().toDart;
+      } catch (_) {
+        return null;
+      }
+    });
+    if (buf == null) return;
+    try {
+      _musicSrc?.stop();
+    } catch (_) {}
+    try {
+      final g = _musicGain ??= c.createGain();
+      final now = c.currentTime;
+      g.gain.cancelScheduledValues(now);
+      g.gain.value = 0.0001; // arranca casi en silencio → fade-in (sin pop)
+      g.gain.setTargetAtTime(_musicVolume, now, 0.3);
+      g.connect(c.destination);
+      final src = c.createBufferSource();
+      src.buffer = buf;
+      src.loop = true; // loop sample-exacto (WAV sin padding → sin clic)
+      src.connect(g as JSObject);
+      _musicSrc = src;
+      _musicUrl = url;
+      src.start();
+    } catch (_) {}
+  }
+
+  @override
+  Future<void> stopLoop() async {
+    _unduckTimer?.cancel();
+    _unduckTimer = null;
+    final c = _ctx;
+    final g = _musicGain;
+    final src = _musicSrc;
+    _musicSrc = null;
+    _musicUrl = null;
+    if (c != null && g != null) {
+      try {
+        final now = c.currentTime;
+        g.gain.cancelScheduledValues(now);
+        g.gain.setTargetAtTime(0.0001, now, 0.08); // fade-out corto
+      } catch (_) {}
+    }
+    Timer(const Duration(milliseconds: 360), () {
+      try {
+        src?.stop();
+      } catch (_) {}
+    });
+  }
+
+  /// Baja la música (DUCKING) y programa su recuperación tras [ms]. No-op si no
+  /// hay música sonando. Cada llamada reprograma el unduck (audios solapados).
+  void _duckMusic(int ms) {
+    final c = _ctx;
+    final g = _musicGain;
+    if (c == null || g == null || _musicSrc == null) return;
+    try {
+      final now = c.currentTime;
+      g.gain.cancelScheduledValues(now);
+      g.gain.setTargetAtTime(_musicVolume * 0.16, now, 0.05); // baja rápido (~0.15 s)
+    } catch (_) {}
+    _unduckTimer?.cancel();
+    _unduckTimer = Timer(Duration(milliseconds: ms), _unduckMusic);
+  }
+
+  void _unduckMusic() {
+    _unduckTimer?.cancel();
+    _unduckTimer = null;
+    final c = _ctx;
+    final g = _musicGain;
+    if (c == null || g == null || _musicSrc == null) return;
+    try {
+      final now = c.currentTime;
+      g.gain.cancelScheduledValues(now);
+      g.gain.setTargetAtTime(_musicVolume, now, 0.25); // recupera suave (~0.75 s)
+    } catch (_) {}
   }
 }

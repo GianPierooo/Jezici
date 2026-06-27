@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/audio/music_service.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/checkpoint_models.dart';
 import '../../data/models/lesson_model.dart';
@@ -41,6 +42,7 @@ class _CheckpointPlayerScreenState extends ConsumerState<CheckpointPlayerScreen>
   @override
   void initState() {
     super.initState();
+    MusicService.instance.setSuppressed(true); // sin música del mapa durante el checkpoint
     _remaining = widget.data.timeLimitSec;
     // Sin ítems no arrancamos el cronómetro: evitaría un auto-envío vacío.
     if (_items.isEmpty) return;
@@ -56,6 +58,7 @@ class _CheckpointPlayerScreenState extends ConsumerState<CheckpointPlayerScreen>
 
   @override
   void dispose() {
+    MusicService.instance.setSuppressed(false);
     _timer?.cancel();
     _answer.dispose();
     super.dispose();

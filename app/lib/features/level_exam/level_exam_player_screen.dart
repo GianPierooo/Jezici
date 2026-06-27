@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/audio/music_service.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/checkpoint_models.dart';
 import '../../data/providers.dart';
@@ -32,6 +33,7 @@ class _State extends ConsumerState<LevelExamPlayerScreen> {
   @override
   void initState() {
     super.initState();
+    MusicService.instance.setSuppressed(true); // sin música del mapa durante el examen
     _remaining = widget.data.timeLimitSec;
     _timer = Timer.periodic(const Duration(seconds: 1), (_) {
       if (!mounted) return;
@@ -42,6 +44,7 @@ class _State extends ConsumerState<LevelExamPlayerScreen> {
 
   @override
   void dispose() {
+    MusicService.instance.setSuppressed(false);
     _timer?.cancel();
     _answer.dispose();
     super.dispose();

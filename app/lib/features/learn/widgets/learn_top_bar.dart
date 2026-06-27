@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/audio/music_controller.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/progress_models.dart';
 import '../../../data/providers.dart';
@@ -36,21 +37,33 @@ class LearnTopBar extends ConsumerWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-            decoration: BoxDecoration(
-              color: const Color(0xFFF4F5FB),
-              borderRadius: BorderRadius.circular(13),
-            ),
-            child: const Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text('🇬🇧', style: TextStyle(fontSize: 16)),
-                SizedBox(width: 4),
-                Icon(Icons.keyboard_arrow_down_rounded,
-                    size: 16, color: AppColors.navInactive),
-              ],
-            ),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF4F5FB),
+                  borderRadius: BorderRadius.circular(13),
+                ),
+                child: const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text('🇬🇧', style: TextStyle(fontSize: 16)),
+                    SizedBox(width: 4),
+                    Icon(Icons.keyboard_arrow_down_rounded,
+                        size: 16, color: AppColors.navInactive),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 6),
+              _MusicToggle(
+                on: ref.watch(musicEnabledProvider),
+                onTap: () => ref
+                    .read(musicEnabledProvider.notifier)
+                    .set(!ref.read(musicEnabledProvider)),
+              ),
+            ],
           ),
           Row(
             children: [
@@ -153,6 +166,39 @@ class PlanProgressStrip extends ConsumerWidget {
                 style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w900, color: AppColors.text)),
             const Icon(Icons.chevron_right_rounded, size: 16, color: AppColors.textMuted),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+/// Toggle rápido de la música del mapa (sutil, en la top bar). Refleja la pref y
+/// la conmuta con un toque. Off por defecto (opt-in).
+class _MusicToggle extends StatelessWidget {
+  const _MusicToggle({required this.on, required this.onTap});
+  final bool on;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: true,
+      label: on ? 'Apagar música del mapa' : 'Encender música del mapa',
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: onTap,
+        child: Container(
+          width: 30,
+          height: 30,
+          decoration: BoxDecoration(
+            color: on ? AppColors.navActiveBg : const Color(0xFFF4F5FB),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Icon(
+            on ? Icons.music_note_rounded : Icons.music_off_rounded,
+            size: 17,
+            color: on ? AppColors.primary : AppColors.navInactive,
+          ),
         ),
       ),
     );

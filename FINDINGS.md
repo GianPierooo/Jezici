@@ -2,6 +2,67 @@
 
 ---
 
+## MÚSICA AMBIENTE DEL MAPA (sutil, opt-in, con ducking) — 2026-06-25 ✅ LIVE
+> Loop musical sutil que da alma al "viaje hacia la fluidez" en el mapa (Aprender), sin estorbar
+> ni pisar el audio funcional ni el del usuario. El listón: "se siente bien y nunca estorba".
+
+### Fuente + LICENCIA (innegociable)
+**Loop ORIGINAL generado por mí** (síntesis procedural, `tools/content/gen_music_loop.py`) → **obra
+propia dedicada CC0** (dominio público). **Cero terceros, cero copyright.** Justificación de elegir
+generarlo vs cazar un archivo: (1) **licencia 100% limpia** garantizada (no dependo de los términos de
+un tercero); (2) **loop perfectamente SIN CLIC** — todas las parciales y los LFO tienen un número
+**entero de ciclos** sobre la duración T=12s → la onda es periódica en T → el `loop=true` empalma
+sample-exacto; (3) control total de la **sutileza** (pad suave, sin percusión, pico 0.16). WAV mono
+16 kHz, **384 KB**, en Storage `audio/ambient/map_loop.wav` (CDN, carga diferida).
+
+### Default elegido + por qué
+**APAGADA (opt-in).** Muchos aprenden con su propia música/podcast; auto-reproducir encima = riesgo de
+desinstalación. El opt-in respeta al usuario por completo; al activarla, el volumen es **sutil (0.16)**.
+
+### Cómo resolví ducking y MediaSession
+- **Ducking automático en el `AudioEngine`** (no duplica lógica): el loop vive en su **propio GainNode**;
+  `playAsset` (SFX) y `playUrl` (TTS/listening) bajan ese gain con `setTargetAtTime` (~0.15s) y lo
+  recuperan tras una ventana (SFX ~0.65s; TTS al `onended`). Nunca compite con el audio funcional.
+- **MediaSession NO reactivada:** el loop reproduce en el **MISMO AudioContext** (Web Audio API,
+  `BufferSource` con `loop=true`) que el resto — **sin elementos `<audio>`** → no crea MediaSession →
+  **sin reproductor en la pantalla de bloqueo** (iOS). Se mantiene la defensa `_clearMediaSession`. No
+  añadí metadata ni handlers de `navigator.mediaSession`. (Riesgo conocido del proyecto: respetado.)
+
+### Reglas de producto implementadas
+- **SOLO en el mapa:** `HomeShell` (coordinador) enciende/apaga por tab (`_index==0`), por lifecycle
+  (`didChangeAppLifecycleState` → pausa al backgroundear) y `MusicService.setSuppressed(true)` en
+  **lección/checkpoint/examen** (se montan sobre el mapa vía push) → **nunca durante el ejercicio**.
+- **Pausa al salir/background** y respeto al autoplay: arranca solo tras gesto (`unlock`); si el
+  AudioContext está suspendido (sin gesto), no fuerza nada.
+- **Toggle fácil:** `SwitchListTile` en **Ajustes** ("Música del mapa") + **toggle rápido** (nota
+  musical) en la top bar del mapa. Persistido (`MusicController`, `music_enabled`, default false).
+
+### Perf (medido)
+`main.dart.js` **3.604 MB** vs 3.598 MB previo = **+5.6 KB** (solo el código Dart de música). El WAV
+(384 KB) va en **Storage/CDN, NO en el bundle**, y se descarga **diferido** solo al activar la música
+en el mapa → **sin regresión de arranque** (default OFF → cero fetch al inicio). `analyze` 0 ·
+`flutter test` 76/76 · build web OK · HEAD loop 200. **Cero cambios de servidor** → loop/seguridad/ligas
+intactos por construcción.
+
+### Verificación MANUAL para Gian (Android + iPhone, tras deploy READY)
+1. **Default + activar:** cuenta/usuario normal → en el mapa NO suena nada (default OFF). Activa "Música
+   del mapa" (Ajustes o el icono de nota en la top bar) → debe sonar un loop **suave** y agradable.
+2. **Solo mapa:** entra a una lección/checkpoint/examen → la música **se calla**; al volver al mapa →
+   vuelve. Cambia a otra pestaña (Practicar/Perfil) → se calla; vuelve a Aprender → vuelve.
+3. **Ducking:** con la música on, provoca un sonido de la app (acierto/error en una lección no aplica
+   porque ahí está callada; en el mapa, cualquier SFX) → la música **baja y se recupera**.
+4. **No pisar tu audio:** pon tu propia música/Spotify, abre Jezici con la música del mapa ON → decide
+   si te molesta; lo correcto es que el default OFF ya te respetó. Apágala fácil si no la quieres.
+5. **iPhone (crítico):** con la música on, bloquea el teléfono → **NO** debe aparecer un reproductor
+   "now playing" en la pantalla de bloqueo / centro de control. Backgroundea la app → la música para.
+6. **Loop limpio:** escucha ~30-60s → el empalme del loop (cada 12s) no debe tener clic/salto audible.
+
+### Qué difiero
+- Variar/alargar el loop (varias pistas, transición entre regiones del mapa), presets de volumen, y
+  fundido cruzado entre loops. El loop nativo (io/audioplayers) es best-effort; el foco es la PWA web.
+
+---
+
 ## "DESCRIBE LA IMAGEN" determinista (es→en A1/A2) — 2026-06-25 ✅ LIVE
 > A partir de una imagen, el usuario PRODUCE lenguaje de forma VERIFICABLE y autocalificable.
 > Reusa las imágenes licenciadas (Twemoji CC-BY, `vocab_images`). Cliente real verificado.
