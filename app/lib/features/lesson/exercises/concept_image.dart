@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
@@ -18,6 +20,27 @@ class ConceptImage extends StatefulWidget {
 
 class _ConceptImageState extends State<ConceptImage> {
   bool _failed = false;
+  bool _loaded = false;
+  Timer? _failsafe;
+
+  @override
+  void initState() {
+    super.initState();
+    // Si la red se cuelga, no dejamos un spinner eterno: a los 10 s sin cargar,
+    // colapsa con gracia (el ejercicio sigue con texto). La precarga del lesson
+    // player normalmente hace que ni se vea el spinner.
+    if (widget.url.isNotEmpty) {
+      _failsafe = Timer(const Duration(seconds: 10), () {
+        if (mounted && !_loaded && !_failed) setState(() => _failed = true);
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _failsafe?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,19 +63,26 @@ class _ConceptImageState extends State<ConceptImage> {
           fit: BoxFit.contain,
           cacheWidth: 176, // decodifica downscale (retina) → menos memoria/CPU
           gaplessPlayback: true,
-          loadingBuilder: (ctx, child, progress) => progress == null
-              ? child
-              : const SizedBox(
-                  width: 88,
-                  height: 88,
-                  child: Center(
-                    child: SizedBox(
-                      width: 22,
-                      height: 22,
-                      child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.primary),
-                    ),
-                  ),
+          loadingBuilder: (ctx, child, progress) {
+            if (progress == null) {
+              if (!_loaded) {
+                _loaded = true;
+                _failsafe?.cancel();
+              }
+              return child;
+            }
+            return const SizedBox(
+              width: 88,
+              height: 88,
+              child: Center(
+                child: SizedBox(
+                  width: 22,
+                  height: 22,
+                  child: CircularProgressIndicator(strokeWidth: 2, color: AppColors.primary),
                 ),
+              ),
+            );
+          },
           errorBuilder: (ctx, err, stack) {
             // Colapsa tras el frame actual (no se puede setState durante build).
             WidgetsBinding.instance.addPostFrameCallback((_) {

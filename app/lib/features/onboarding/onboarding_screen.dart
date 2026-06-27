@@ -105,7 +105,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       case 2:
         return _select(
           title: '¿Por qué aprendes inglés?',
-          subtitle: 'Personaliza tu plan, los escenarios y el coaching.',
+          subtitle: 'Personaliza tu plan, los escenarios y los mensajes de tu coach.',
           options: const [
             ('Trabajo', 'Trabajo', Icons.work_outline_rounded),
             ('Viajes', 'Viajes', Icons.flight_takeoff_rounded),
@@ -126,8 +126,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             data: _data, step: _step + 1, total: _total, onBack: _back, onDone: _next);
       case 6:
         return _select(
-          title: '¿Cómo arrancas en inglés?',
-          subtitle: 'Solo para empezar el test de ubicación en el punto justo.',
+          title: '¿Cuánto inglés sabes ya?',
+          subtitle: 'Para empezar el test de nivel en el punto justo.',
           options: const [
             ('Desde cero', '0', Icons.flag_outlined),
             ('Sé lo básico', '1', Icons.trending_up_rounded),
@@ -233,8 +233,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       step: _step + 1,
       total: _total,
       onBack: _back,
-      title: '¿En qué idioma quieres la app?',
-      subtitle: 'Aprenderás inglés; este es el idioma de la interfaz.',
+      title: '¿En qué idioma prefieres la app?',
+      subtitle: 'El idioma de los menús y textos. No es lo que vas a aprender.',
       footer: PrimaryButton(label: 'CONTINUAR', expand: true, onPressed: _next),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -255,7 +255,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               Icon(Icons.translate_rounded, color: AppColors.textMuted, size: 18),
               SizedBox(width: 8),
               Expanded(
-                child: Text('Idioma objetivo del curso: Inglés (Fase 1).',
+                child: Text('Vas a aprender inglés 🇬🇧. Esto solo cambia el idioma de la app.',
                     style: TextStyle(
                         fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
               ),
@@ -278,7 +278,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           for (final (label, value) in const [
-            ('A2 · Superviviente', 'A2'),
+            ('A2 · Me defiendo', 'A2'),
             ('B1 · Independiente', 'B1'),
             ('B2 · Conversador fluido', 'B2'),
             ('C1 · Avanzado', 'C1'),

@@ -2,6 +2,49 @@
 
 ---
 
+## COPY DE ONBOARDING + BARRIDO "NO CARGAN BIEN" — 2026-06-27 ✅ LIVE
+> Feedback real: (1) la pregunta de idioma "está medio rara"; (2) "algunas no cargan bien".
+
+### Tarea 1 — Copy del onboarding (solo i18n, sin tocar lógica)
+La confusión raíz del paso de idioma: mezclaba "idioma de la app" con "aprenderás inglés". Reescrito
+para separar claramente **interfaz** vs **lo que se aprende**. Antes → después:
+- **Idioma** · título `¿En qué idioma quieres la app?` → `¿En qué idioma prefieres la app?` · subtítulo
+  `Aprenderás inglés; este es el idioma de la interfaz.` → `El idioma de los menús y textos. No es lo
+  que vas a aprender.` · nota `Idioma objetivo del curso: Inglés (Fase 1).` → `Vas a aprender inglés 🇬🇧.
+  Esto solo cambia el idioma de la app.`
+- **Motivo** · `…los escenarios y el coaching.` → `…los escenarios y los mensajes de tu coach.` (sin anglicismo)
+- **Micro-arranque** · `¿Cómo arrancas en inglés?` → `¿Cuánto inglés sabes ya?` (más claro; `test de
+  ubicación` → `test de nivel`)
+- **Meta** · `A2 · Superviviente` → `A2 · Me defiendo` (español más natural)
+Resto del flujo (bienvenida, compromiso, personalidad, resultado, plan) revisado: se lee natural, sin cambios.
+
+### Tarea 2 — "Algunas no cargan bien" (diagnóstico + fix)
+**Diagnóstico:** barrido HEAD de TODOS los recursos (`sweep_resources.py`) → **0 recursos 404**:
+- AUDIO listening/speaking: **759/759 = 200** · IMÁGENES en ítems: **37/37** · vocab_images: **39/39**
+  · AUDIO historias: **46/46** · música map_loop.wav: **200**. **No hay recursos faltantes.**
+- Conclusión honesta: el síntoma era **lentitud percibida** — las imágenes (Twemoji) se descargaban por
+  red **en el momento** en que aparecía el ítem → spinner breve en redes lentas. El audio ya tenía probe
+  + failsafe (12 s) decentes; `ConceptImage` ya degradaba (colapsa en error).
+**Fix a nivel de clase:**
+- **Precarga de imágenes** en el `lesson_player` (igual que ya se precargaba el audio): `precacheImage`
+  del ítem actual + el siguiente (post-frame, best-effort) → la imagen aparece **instantánea**, sin spinner.
+- **Failsafe en `ConceptImage`:** si a los 10 s no cargó (red colgada), colapsa con gracia (el ejercicio
+  sigue con texto) en vez de spinner eterno. La precarga normalmente hace que ni se vea el spinner.
+
+### Verificación
+- **0 recursos 404** en lo barrido (lista exacta para regenerar: ninguna). `analyze` 0 · `flutter test`
+  82/82 · `build web` OK (`main.dart.js` +1.5 KB) · smoke P0 intacto · cliente real intacto.
+- **Manual para Gian:** (1) registra una cuenta y lee el paso de idioma → debe quedar claro que elige el
+  idioma de la APP y que igual aprende inglés. (2) En una lección con imagen (¿Qué es esto? / Describe la
+  imagen) la imagen debe verse **al instante** (sin spinner) gracias a la precarga; si tu red está MUY
+  lenta, tras 10 s el ejercicio sigue con las palabras. (3) Un listening sin audio (no debería haber)
+  muestra "Audio no disponible", no un botón colgado.
+
+### Qué difiero
+No hay 404s que regenerar. Si en el futuro un recurso falta, `sweep_resources.py` lo lista exacto.
+
+---
+
 ## PLACEMENT ROBUSTO + ESTIMACIÓN REAL + RESULTADO VISIBLE — 2026-06-27 ✅ LIVE
 > Tres fallas CONECTADAS del feedback real: (A) el placement sobreestima; (B) la fecha es irreal
 > ("C1 en 2 semanas"); (C) no hay resultado visible del test. Las tres resueltas. Cliente real

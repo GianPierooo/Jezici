@@ -118,8 +118,18 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
   void _prefetchAround() {
     for (final i in [_index, _index + 1]) {
       if (i < 0 || i >= widget.items.length) continue;
-      final url = widget.items[i].payload['audio_url'];
-      if (url is String && url.isNotEmpty) AudioEngine.instance.prefetch(url);
+      final p = widget.items[i].payload;
+      final audio = p['audio_url'];
+      if (audio is String && audio.isNotEmpty) AudioEngine.instance.prefetch(audio);
+      // Precarga la imagen del ítem (Twemoji) para que aparezca instantánea (sin
+      // spinner) cuando llegue su turno. Post-frame (context listo) + best-effort.
+      final img = p['image_url'];
+      if (img is String && img.isNotEmpty) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (!mounted) return;
+          precacheImage(ResizeImage(NetworkImage(img), width: 176), context).catchError((_) {});
+        });
+      }
     }
   }
 
