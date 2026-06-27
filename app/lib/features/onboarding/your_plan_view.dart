@@ -113,7 +113,7 @@ class _YourPlanViewState extends State<YourPlanView> {
                 padding: EdgeInsets.symmetric(horizontal: 12),
                 child: Icon(Icons.arrow_forward_rounded, color: AppColors.textMuted),
               ),
-              _LevelBadge(label: widget.data.goalLevel, muted: false),
+              _LevelBadge(label: est.goalLevel, muted: false),
             ],
           ),
           const SizedBox(height: 20),
@@ -154,7 +154,7 @@ class _YourPlanViewState extends State<YourPlanView> {
                   ),
                 ),
                 const SizedBox(height: 4),
-                Text('≈ ${est.weeks} semanas',
+                Text(est.humanDuration,
                     style: const TextStyle(
                         fontSize: 13, fontWeight: FontWeight.w800, color: Colors.white70)),
               ],
@@ -255,10 +255,11 @@ class _YourPlanViewState extends State<YourPlanView> {
                   child: const Icon(Icons.waving_hand_rounded, color: Colors.white, size: 19),
                 ),
                 const SizedBox(width: 12),
-                const Expanded(
+                Expanded(
                   child: Text(
-                    'Empiezas en la Unidad 1 — Saludos y presentarte (A1).',
-                    style: TextStyle(
+                    'Empiezas en la Unidad ${entryUnitFor(widget.data.currentLevel).$1} — '
+                    '${entryUnitFor(widget.data.currentLevel).$2} (${widget.data.currentLevel}).',
+                    style: const TextStyle(
                         fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.text),
                   ),
                 ),

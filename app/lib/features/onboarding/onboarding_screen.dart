@@ -8,6 +8,7 @@ import '../../data/providers.dart';
 import '../../ui/primary_button.dart';
 import 'onboarding_data.dart';
 import 'personality_test.dart';
+import 'placement_result_view.dart';
 import 'placement_test.dart';
 import 'widgets/onboarding_scaffold.dart';
 import 'your_plan_view.dart';
@@ -29,7 +30,7 @@ class OnboardingScreen extends ConsumerStatefulWidget {
 }
 
 class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
-  static const _total = 9;
+  static const _total = 10;
   final OnboardingData _data = OnboardingData();
   int _step = 0;
 
@@ -144,6 +145,11 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             startLevel: _data.startLevelHint,
             onBack: _back,
             onDone: _next);
+      case 8:
+        // RESULTADO del placement (momento "¡saliste en B1!"): nivel + skills + a
+        // qué unidad entra + fecha realista. No es aprobar/reprobar: es ubicación.
+        return PlacementResultView(
+            data: _data, step: _step + 1, total: _total, onBack: _back, onContinue: _next);
       default:
         return YourPlanView(
             data: _data, step: _total, total: _total, onBack: _back, onFinish: _finish);

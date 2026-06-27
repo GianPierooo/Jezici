@@ -2,6 +2,58 @@
 
 ---
 
+## PLACEMENT ROBUSTO + ESTIMACIÓN REAL + RESULTADO VISIBLE — 2026-06-27 ✅ LIVE
+> Tres fallas CONECTADAS del feedback real: (A) el placement sobreestima; (B) la fecha es irreal
+> ("C1 en 2 semanas"); (C) no hay resultado visible del test. Las tres resueltas. Cliente real
+> verificado; `correct_answer` 42501; loop/seguridad/ligas intactos.
+
+### A — Sobreestimación (causa raíz + fix)
+**Causa:** `jz_placement_level` (mig 076) "superaba" un nivel con `acc≥0.5` (cerca del azar con 3
+opciones) **Y `corr≥1`** → **un solo acierto suelto en un nivel alto lo promovía**, sin evidencia
+mínima ni umbral de consistencia. (Reproducido con arrays: `[B1,B2,C1]` todos ✓ una vez → v1 daba
+**C1**.)
+**Criterio elegido — "techo con evidencia + consistencia"** (mig 089): un nivel cuenta como DOMINADO
+solo si `asked≥2 AND correct≥2 AND acc≥2/3`; se ubica en el nivel **MÁS ALTO dominado** (la escalera
+1-up/1-down garantiza haber pasado por los inferiores). Exigir **≥2 aciertos** mata la promoción por
+azar/suelto. Fallback laxo (`acc≥0.5` con evidencia) solo si nada domina; si no, A1 (conservador,
+nunca sobreestima). *Descarté:* media (subestima), techo ingenuo (sobreestima), IRT pleno (sin
+parámetros calibrados con 3-opciones/~12 ítems es más ruidoso que esto). Determinista y testeable.
+- `placement_next` junta **más evidencia** antes de cerrar: min 8 / max 14 ítems, `reversals≥4`.
+- **Banco:** +5 ítems C1 (era 5R+3W; ahora **7R+6W**) — inversión, subjuntivo, léxico avanzado.
+- **Evidencia:** `verify_estimator.py` 7/7 — incl. *"B1 + aciertos sueltos en B2/C1 → B1"* (v1 daba C1)
+  y *"3 aciertos sueltos sin evidencia → A1"*. Personas A1–C1 → su nivel EXACTO (cliente real).
+
+### B — Estimación de tiempo irreal (causa raíz + fix)
+**Causa:** las horas-guía YA eran reales (C1≈750h). El "2 semanas a C1" venía de **A**: con el nivel
+sobreestimado a ~C1 y meta ≤ C1, `needed = horas(meta) − horas(actual)` salía **negativo → `clamp(1)`
+= 1 h → días**.
+**Fix (estimation.dart):** (1) A fija el nivel real; (2) la **meta efectiva nunca queda ≤ el nivel
+actual** — si el placement alcanza/supera la meta elegida, se apunta al **siguiente nivel** (siempre
+hay objetivo hacia adelante, sin fecha fantasma); (3) **duración humana**: semanas → meses → **años**
+(no "≈ 789 semanas"). **Antes/después:** C1-placed con meta B1 → antes "≈ días"; ahora bumped a C2,
+`needed=350h`, p.ej. 30min×5 → ~años. A1→C1 a 10min×5 → "≈ X años" (honesto, no "2 semanas"). +6 tests.
+
+### C — Resultado visible del test (nuevo)
+**`PlacementResultView`** (paso nuevo del onboarding, tras el test): hero **"Tu nivel: X"** + **desglose
+por las 4 habilidades** (lista con nivel + barra) + **a qué unidad entra** (`entryUnitFor`: A1=U1…C1=U25)
++ **fecha realista**. Redactado como **ubicación, no aprobar/reprobar** ("este no es un examen que se
+aprueba… es tu punto de partida"). Cohesivo con el sistema de diseño. Además se corrigió `YourPlanView`:
+ya no hardcodea "Unidad 1 (A1)" (usa la unidad de entrada real) y muestra la duración humana + la meta
+efectiva.
+
+### Evidencia (cliente real + tests)
+- **Personas** (`verify_placement.py`): A1→A1, A2→A2, B1→B1, B2→B2 (incluso con hint malo), C1→C1; el
+  puente coloca B2 en U19 / A1 en U1; `correct_answer` 42501.
+- **Estimador determinista** (`verify_estimator.py`): 7/7 (acierto suelto NO salta).
+- `analyze` 0 · `flutter test` **82/82** (incl. 6 del estimador de tiempo + la pantalla) · `build web` OK
+  (`main.dart.js` +3.6 KB) · smoke P0 intacto.
+
+### Qué difiero
+Listening/speaking en el placement (requiere audio en onboarding → fricción de desbloqueo iOS) y banco
+de placement es→pt. El estimador per-skill cubre reading/writing; L/S heredan el global.
+
+---
+
 ## MÚSICA AMBIENTE DEL MAPA (sutil, opt-in, con ducking) — 2026-06-25 ✅ LIVE
 > Loop musical sutil que da alma al "viaje hacia la fluidez" en el mapa (Aprender), sin estorbar
 > ni pisar el audio funcional ni el del usuario. El listón: "se siente bien y nunca estorba".
