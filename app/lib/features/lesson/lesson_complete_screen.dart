@@ -261,6 +261,36 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
                       ],
                     ),
                   ),
+                  // Congelador de racha: aviso cuando salvó la racha tras un hueco.
+                  if (r.streakFreezeUsed > 0) ...[
+                    const SizedBox(height: 9),
+                    Container(
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFE8F4FE),
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                      child: Row(
+                        children: [
+                          const Text('🧊', style: TextStyle(fontSize: 20)),
+                          const SizedBox(width: 9),
+                          Expanded(
+                            child: Text(
+                              r.streakFreezeUsed == 1
+                                  ? 'Tu congelador salvó tu racha'
+                                  : 'Tus congeladores salvaron tu racha',
+                              style: const TextStyle(
+                                fontSize: 12.5,
+                                fontWeight: FontWeight.w800,
+                                color: Color(0xFF1E6FA8),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                   // Meta de hoy.
                   if (r.dailyGoalXp > 0) ...[
                     const SizedBox(height: 13),

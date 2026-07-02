@@ -295,6 +295,7 @@ class LessonSummary {
     this.dailyGoalXp = 0,
     this.dailyXpEarned = 0,
     this.milestone = 0,
+    this.streakFreezeUsed = 0,
     this.nextLessonId,
   });
 
@@ -311,6 +312,7 @@ class LessonSummary {
   final int dailyGoalXp;
   final int dailyXpEarned;
   final int milestone; // 7/30/100/365 si se alcanzó un hito
+  final int streakFreezeUsed; // nº de congeladores consumidos para salvar la racha
   final List<String> skillsUp; // skills que ganaron puntos
   final String? nextLessonId;
 
@@ -330,6 +332,7 @@ class LessonSummary {
         dailyGoalXp: (j['daily_goal_xp'] as num?)?.toInt() ?? 0,
         dailyXpEarned: (j['daily_xp_earned'] as num?)?.toInt() ?? 0,
         milestone: (j['milestone'] as num?)?.toInt() ?? 0,
+        streakFreezeUsed: (j['streak_freeze_used'] as num?)?.toInt() ?? 0,
         nextLessonId: j['next_lesson_id'] as String?,
         skillsUp: ((j['skills'] as List?) ?? const [])
             .map((e) => e is Map ? e['skill']?.toString() : (e is String ? e : null))

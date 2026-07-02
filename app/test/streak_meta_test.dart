@@ -42,6 +42,28 @@ void main() {
     expect(s.milestone, 7);
     expect(s.dailyGoalXp, 15);
     expect(s.skillsUp, ['reading']);
+    expect(s.streakFreezeUsed, 0); // ausente → 0 (sin regresión)
+  });
+
+  test('LessonSummary refleja el congelador que salvó la racha (mig 090)', () {
+    // Sin freeze consumido (día normal).
+    final normal = LessonSummary.fromJson(const {
+      'streak': 5, 'streak_advanced': true, 'streak_freeze_used': 0,
+    });
+    expect(normal.streakFreezeUsed, 0);
+
+    // El congelador cubrió un hueco: la racha continúa y el cliente lo sabe.
+    final saved = LessonSummary.fromJson(const {
+      'streak': 11, 'streak_advanced': true, 'streak_freeze_used': 1,
+    });
+    expect(saved.streakFreezeUsed, 1);
+    expect(saved.streak, 11);
+
+    // Varios días cubiertos por varios congeladores.
+    final saved2 = LessonSummary.fromJson(const {
+      'streak': 11, 'streak_advanced': true, 'streak_freeze_used': 2,
+    });
+    expect(saved2.streakFreezeUsed, 2);
   });
 
   test('MatixResult.sent refleja el estado del motor', () {
