@@ -198,10 +198,14 @@ flutter build web --release  # esperado: Built build/web (wasm dry-run warning d
   **P0 ✅ ARREGLADO (mig 090, 2026-07-02):** el congelador de racha ahora SÍ protege — `jz_register_activity`
   consume `freezes_available` al haber un hueco y preserva la racha (verify_streak_freeze.py 7/7, cliente real);
   antes solo se incrementaba. **P1 (idioma) ✅ ARREGLADO:** i18n real es/en/pt (ver fila **i18n**); el selector ya
-  cambia la UI. **P1 pendientes:** misión inicial sin recompensa/aclaración + a11y escasa. P2: feedback de
-  oro/hito/combo, zonas de liga mal escaladas en beta, deuda técnica leaderboards. **Verificado en vivo TODO lo core**
-  (grading 42501, leaderboards sin fuga de user_id, placement/fecha coherentes, loop, 0 recursos 404,
-  analyze 0/test 82/test/build OK). Los fixes salen en misiones posteriores.
+  cambia la UI. **P1-3 misión ✅ ARREGLADO (mig 091):** bono de bienvenida one-time (25 XP+25 oro) + diálogo de
+  confirmación. **P2 retención/sensación ✅ (2026-07-02):** meta diaria "X/Y XP" visible en el mapa (pastilla con
+  número), combo "🔥 x{n}" en vivo en la lección, feedback de oro enriquecido (ganaste/gastaste, te quedan Y),
+  race del cofre (guard), zonas de liga en beta (mig 092: promote/demote=0 hasta 13 jugadores == gate del
+  rollover; UI con `movementActive` + nota beta). **Ver §0.1 de QA_AUDIT.md** para el estado ítem por ítem.
+  **Diferido:** a11y amplia (device), precios hardcodeados, colores, infra bots, deuda leaderboards. **Verificado
+  en vivo TODO lo core** (grading 42501, leaderboards sin fuga de user_id, placement/fecha, loop, 0 recursos 404,
+  analyze 0/test 88/build OK).
 - **EFICACIA_CONTENIDO.md** (2026-06-24) — auditoría de EFICACIA de currículo por nivel (¿lleva a CEFR-X?).
   Veredicto es→en A1/A2: "sí con reservas"; huecos de cobertura rellenados (mig 071, 29 ítems sin audio:
   presente continuo, 3ª persona -s, plurales, these/those, conectores, present perfect 'yet', adverbios -ly).

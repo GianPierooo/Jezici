@@ -5,6 +5,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/ui/jz_skeleton.dart';
 import '../../data/models/league_models.dart';
 import '../../data/providers.dart';
+import '../../l10n/app_localizations.dart';
 
 /// Pestaña LIGAS. Dos vistas vía segmento superior:
 ///  • "Mi liga": ranking semanal por XP en TU división, con zonas de ascenso
@@ -120,7 +121,9 @@ class _Board extends StatelessWidget {
                     Text(
                         lg.warmingUp
                             ? '${lg.players} ${lg.players == 1 ? 'jugador' : 'jugadores'} · arrancando'
-                            : 'Vas #${lg.myRank} esta semana · top ${lg.promote} ascienden',
+                            : lg.movementActive
+                                ? 'Vas #${lg.myRank} esta semana · top ${lg.promote} ascienden'
+                                : 'Vas #${lg.myRank} esta semana',
                         style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: Colors.white.withValues(alpha: 0.92))),
                   ],
                 ),
@@ -156,6 +159,24 @@ class _Board extends StatelessWidget {
           ),
           const SizedBox(height: 16),
         ],
+        // Beta: hay jugadores pero aún no la masa (13) para ascensos/descensos.
+        if (!lg.warmingUp && !lg.movementActive) ...[
+          Container(
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(color: AppColors.navActiveBg, borderRadius: BorderRadius.circular(16)),
+            child: Row(
+              children: [
+                const Icon(Icons.trending_up_rounded, color: AppColors.primary, size: 22),
+                const SizedBox(width: 11),
+                Expanded(
+                  child: Text(AppLocalizations.of(context).leagueNoMovementNote,
+                      style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.text)),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 16),
+        ],
         const Text('Clasificación de la semana',
             style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
         const SizedBox(height: 4),
@@ -171,17 +192,17 @@ class _Board extends StatelessWidget {
           child: Column(
             children: [
               for (var i = 0; i < n; i++) ...[
-                if (!lg.warmingUp && i == lg.promote)
+                if (lg.movementActive && i == lg.promote)
                   const _ZoneDivider(label: 'ZONA DE ASCENSO', icon: Icons.arrow_upward_rounded, color: AppColors.success),
-                if (!lg.warmingUp && i == n - lg.demote)
+                if (lg.movementActive && i == n - lg.demote)
                   const _ZoneDivider(label: 'ZONA DE DESCENSO', icon: Icons.arrow_downward_rounded, color: AppColors.coral),
                 _Row(
                   rank: members[i].rank,
                   name: members[i].name,
                   valueLabel: '${members[i].weeklyXp} XP',
                   isMe: members[i].isMe,
-                  promote: !lg.warmingUp && i < lg.promote,
-                  demote: !lg.warmingUp && i >= n - lg.demote,
+                  promote: lg.movementActive && i < lg.promote,
+                  demote: lg.movementActive && i >= n - lg.demote,
                 ),
               ],
             ],

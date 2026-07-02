@@ -5,6 +5,7 @@ import '../../../core/audio/music_controller.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/progress_models.dart';
 import '../../../data/providers.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../ui/stat_chip.dart';
 import '../../notifications/notification_center_screen.dart';
 import '../../plan/mi_plan_screen.dart';
@@ -85,15 +86,16 @@ class LearnTopBar extends ConsumerWidget {
               const SizedBox(width: 10),
               Semantics(
                 button: true,
-                label: 'Meta diaria',
+                label: AppLocalizations.of(context)
+                    .dailyGoalSemantics(stats.dailyXpEarned, stats.dailyGoalXp),
                 child: GestureDetector(
                   behavior: HitTestBehavior.opaque,
                   onTap: () => Navigator.of(context).push(
                       MaterialPageRoute(builder: (_) => const StreakScreen())),
-                  child: SizedBox(
-                    width: 44,
-                    height: 44,
-                    child: Center(child: _DailyGoalRing(value: stats.dailyProgress)),
+                  child: _DailyGoalPill(
+                    earned: stats.dailyXpEarned,
+                    goal: stats.dailyGoalXp,
+                    value: stats.dailyProgress,
                   ),
                 ),
               ),
@@ -247,30 +249,50 @@ class _BellGlyph extends StatelessWidget {
   }
 }
 
-class _DailyGoalRing extends StatelessWidget {
-  const _DailyGoalRing({required this.value});
+/// Pastilla de META DIARIA: mini-anillo de progreso + el número "X/Y" visible
+/// (antes solo el anillo, que no comunicaba el progreso → QA "meta no se comunica").
+class _DailyGoalPill extends StatelessWidget {
+  const _DailyGoalPill({required this.earned, required this.goal, required this.value});
+  final int earned;
+  final int goal;
   final double value;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 32,
-      height: 32,
-      child: Stack(
-        alignment: Alignment.center,
+    final met = goal > 0 && earned >= goal;
+    final color = met ? AppColors.success : AppColors.primary;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF4F5FB),
+        borderRadius: BorderRadius.circular(13),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
-            width: 32,
-            height: 32,
-            child: CircularProgressIndicator(
-              value: value.clamp(0.0, 1.0),
-              strokeWidth: 4,
-              backgroundColor: const Color(0xFFE2DEF8),
-              valueColor:
-                  const AlwaysStoppedAnimation<Color>(AppColors.primary),
+            width: 18,
+            height: 18,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                SizedBox(
+                  width: 18,
+                  height: 18,
+                  child: CircularProgressIndicator(
+                    value: value.clamp(0.0, 1.0),
+                    strokeWidth: 3,
+                    backgroundColor: const Color(0xFFE2DEF8),
+                    valueColor: AlwaysStoppedAnimation<Color>(color),
+                  ),
+                ),
+                Icon(met ? Icons.check_rounded : Icons.bolt_rounded, size: 10, color: color),
+              ],
             ),
           ),
-          const Icon(Icons.bolt_rounded, size: 14, color: AppColors.primary),
+          const SizedBox(width: 5),
+          Text('$earned/$goal',
+              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w900, color: color)),
         ],
       ),
     );

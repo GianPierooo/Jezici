@@ -279,5 +279,26 @@
   "checkpointNext": "NEXT",
 
   "lessonPreviewLoadError": "We couldn't load the lesson.\n{error}",
-  "lessonPreviewExerciseCount": "{count, plural, =1{1 exercise} other{{count} exercises}}"
+  "lessonPreviewExerciseCount": "{count, plural, =1{1 exercise} other{{count} exercises}}",
+
+  "dailyGoalTitle": "Today's goal",
+  "dailyGoalXpOf": "{earned}/{goal} XP",
+  "dailyGoalMet": "Goal met! Your streak advances today 🔥",
+  "dailyGoalRemaining": "{n} XP to go today",
+  "dailyGoalSemantics": "Daily goal: {earned} of {goal} XP",
+
+  "missionWelcomeTitle": "Your journey has begun!",
+  "missionWelcomeBody": "Collect the 100 essential words as you go. Let's do it!",
+  "missionRewardBanner": "+{xp} XP · +{gold} gold welcome bonus",
+  "missionStartError": "We couldn't start. Try again.",
+
+  "comboLabel": "x{combo}",
+
+  "shopChestWon": "🎁 You won {reward} gold! You now have {total}.",
+  "shopChestAlready": "You already opened today's chest. Come back tomorrow 🙂",
+  "shopHeartsRefilled": "❤️ Hearts refilled. You spent 50 gold, {gold} left.",
+  "shopFreezeBought": "🧊 Streak freeze bought. You spent 50 gold, {gold} left.",
+  "shopNotEnoughGold": "You don't have enough gold (costs {cost}).",
+
+  "leagueNoMovementNote": "In beta there are no promotions or demotions yet: play to earn XP and climb the table."
 }

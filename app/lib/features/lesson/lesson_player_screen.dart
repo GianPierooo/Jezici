@@ -370,6 +370,7 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
               // Avanza al dar feedback para que el último ítem llegue a 100%.
               progress: (_index + (locked ? 1 : 0)) / total,
               hearts: _hearts,
+              combo: _comboCorrect,
               onClose: _exit,
             ),
             _ExerciseHeader(skill: _item.skill, index: _index, total: total),
@@ -425,9 +426,14 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
 }
 
 class _TopBar extends StatelessWidget {
-  const _TopBar({required this.progress, required this.hearts, required this.onClose});
+  const _TopBar(
+      {required this.progress,
+      required this.hearts,
+      required this.combo,
+      required this.onClose});
   final double progress;
   final int hearts;
+  final int combo; // aciertos seguidos; se muestra el chip desde 3
   final VoidCallback onClose;
 
   @override
@@ -472,6 +478,34 @@ class _TopBar extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 13),
+          // Combo en vivo: aparece con "pop" desde 3 aciertos seguidos.
+          if (combo >= 3) ...[
+            TweenAnimationBuilder<double>(
+              key: ValueKey(combo),
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.elasticOut,
+              tween: Tween(begin: 0.6, end: 1),
+              builder: (_, s, child) => Transform.scale(scale: s, child: child),
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFFFF0DB),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Text('🔥', style: TextStyle(fontSize: 13)),
+                    const SizedBox(width: 3),
+                    Text(AppLocalizations.of(context).comboLabel(combo),
+                        style: const TextStyle(
+                            color: Color(0xFFE8650A), fontWeight: FontWeight.w900, fontSize: 13)),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(width: 10),
+          ],
           Icon(Icons.favorite_rounded, color: AppColors.hearts, size: 20),
           const SizedBox(width: 4),
           Text(

@@ -25,6 +25,29 @@ selector de idioma no traduce nada; misiones sin recompensa poco claras). El res
 
 ---
 
+## 0.1 Estado de resolución (actualizado 2026-07-02)
+
+Fixes aplicados en misiones posteriores (todos live, cliente real, CI verde):
+
+| Ítem | Estado | Cómo |
+|---|---|---|
+| **P0-1** Congelador de racha | ✅ **CERRADO** | `mig 090`: `jz_register_activity` consume freeze y preserva la racha (verify_streak_freeze.py 7/7). |
+| **P1-1/P1-2** Idioma cosmético + strings ES | ✅ **CERRADO** | i18n real es/en/pt (flutter_localizations+gen-l10n); onboarding+auth+loop 100% traducidos; selector en Ajustes cambia la UI al instante. |
+| **P1-3** Misión sin recompensa/aclaración | ✅ **CERRADO** | `mig 091`: bono de bienvenida one-time (25 XP + 25 oro) + diálogo de confirmación "¡Tu viaje ha comenzado!" (no toca racha/meta). verify_mission_reward.py 4/4. |
+| **P1-4** Accesibilidad (Semantics) | ⏸️ **DIFERIDO** | Requiere pruebas con lector de pantalla en device (Gian). Añadido Semantics a la meta diaria; barrido amplio pendiente. |
+| **P2-1** Feedback de oro | ✅ **CERRADO** | Toasts enriquecidos "ganaste/gastaste X, te quedan Y" (cofre/vidas/freeze), localizados; las RPC ya devuelven `gold`. |
+| **P2-2** Celebración de hito | ✅ **YA PRESENTE** | `lesson_complete_screen` ya muestra un cartel de hito (gradiente dorado + 🏆) con confeti; verificado. |
+| **P2-3** Combo en vivo | ✅ **CERRADO** | Chip "🔥 x{n}" animado en la top bar de la lección desde 3 aciertos seguidos (el contador ya existía server+cliente). |
+| **P2-4** Race del cofre | ✅ **CERRADO** | Guard `if (_busy != null) return;` + el botón ya se deshabilitaba con `busy`. |
+| **P2-9** Zonas de liga en beta | ✅ **CERRADO** | `mig 092`: `get_league` devuelve promote/demote=0 hasta el umbral de movimiento (13, == gate del rollover); la UI solo pinta zonas con `movementActive` y muestra nota de beta. Sin fuga de user_id (verificado). |
+| **P2-5** Precios hardcodeados | ⏸️ **DIFERIDO** | Fuera de alcance (mantenibilidad; sin impacto de usuario). |
+| **P2-6** `weak_skill` sin resaltar | ✅ **HECHO (i18n)** | El tip personalizado ya usa la skill floja localizada ("tu {skill} necesita un empujón"). |
+| **P2-7** Infra de bots | ⏸️ **DIFERIDO** | Solo verificación de dato en prod; en vivo `is_bot:false`. |
+| **P2-8** Colores hardcodeados | ⏸️ **DIFERIDO** | Cosmético (sombras/bordes, no marca). Ver UX_AUDIT.md. |
+| **P2-10** Deuda técnica leaderboards | ⏸️ **DIFERIDO** | Impacto actual nulo (paginación futura). |
+
+---
+
 ## 1. P0 — CORRECTITUD (rompe)
 
 ### P0-1 · Congelador de racha (streak freeze) no protege la racha — **VERIFICADO EN CÓDIGO + VIVO**

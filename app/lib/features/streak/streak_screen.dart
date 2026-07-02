@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/progress_models.dart';
 import '../../data/providers.dart';
+import '../../l10n/app_localizations.dart';
 
 /// Pantalla de la RACHA (Estructura_App §8 + Diseno_Gamificacion §5):
 /// contador grande, récord, hitos con recompensa y congelador de racha.
@@ -258,7 +259,9 @@ class _FreezeButtonState extends ConsumerState<_FreezeButton> {
   bool _busy = false;
 
   Future<void> _buy() async {
+    if (_busy) return;
     setState(() => _busy = true);
+    final l10n = AppLocalizations.of(context);
     final messenger = ScaffoldMessenger.of(context);
     try {
       final res = await ref.read(progressRepositoryProvider).useStreakFreeze();
@@ -270,15 +273,15 @@ class _FreezeButtonState extends ConsumerState<_FreezeButton> {
           behavior: SnackBarBehavior.floating,
           backgroundColor: ok ? AppColors.success : AppColors.coral,
           content: Text(ok
-              ? '🧊 Congelador comprado. Te quedan ${res['gold']} oro.'
-              : 'No tienes suficiente oro (necesitas 50).'),
+              ? l10n.shopFreezeBought((res['gold'] as num?)?.toInt() ?? 0)
+              : l10n.shopNotEnoughGold(50)),
         ));
     } catch (_) {
       messenger
         ..hideCurrentSnackBar()
-        ..showSnackBar(const SnackBar(
+        ..showSnackBar(SnackBar(
           behavior: SnackBarBehavior.floating,
-          content: Text('No se pudo comprar el congelador.'),
+          content: Text(l10n.authErrorGeneral),
         ));
     } finally {
       if (mounted) setState(() => _busy = false);

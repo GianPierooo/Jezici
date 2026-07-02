@@ -96,6 +96,11 @@ class LeagueStanding {
   final int minPlayers; // masa crítica para competir
   final bool warmingUp; // aún sin masa crítica
 
+  /// Hay ascensos/descensos reales esta semana. El servidor devuelve promote/
+  /// demote = 0 mientras la liga no alcance el umbral de movimiento (13, == gate
+  /// del rollover) → evita pintar zonas engañosas en ligas pequeñas de beta.
+  bool get movementActive => promote > 0 && demote > 0;
+
   String get divisionLabel {
     switch (division) {
       case 'bronce': return 'Bronce';

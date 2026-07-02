@@ -315,5 +315,35 @@
   "lessonPreviewLoadError": "No se pudo cargar la lección.\n{error}",
   "@lessonPreviewLoadError": { "placeholders": { "error": {"type":"String"} } },
   "lessonPreviewExerciseCount": "{count, plural, =1{1 ejercicio} other{{count} ejercicios}}",
-  "@lessonPreviewExerciseCount": { "placeholders": { "count": {"type":"int"} } }
+  "@lessonPreviewExerciseCount": { "placeholders": { "count": {"type":"int"} } },
+
+  "dailyGoalTitle": "Meta de hoy",
+  "dailyGoalXpOf": "{earned}/{goal} XP",
+  "@dailyGoalXpOf": { "placeholders": { "earned": {"type":"int"}, "goal": {"type":"int"} } },
+  "dailyGoalMet": "¡Meta cumplida! Tu racha avanza hoy 🔥",
+  "dailyGoalRemaining": "Te faltan {n} XP para cumplir hoy",
+  "@dailyGoalRemaining": { "placeholders": { "n": {"type":"int"} } },
+  "dailyGoalSemantics": "Meta diaria: {earned} de {goal} XP",
+  "@dailyGoalSemantics": { "placeholders": { "earned": {"type":"int"}, "goal": {"type":"int"} } },
+
+  "missionWelcomeTitle": "¡Tu viaje ha comenzado!",
+  "missionWelcomeBody": "Colecciona las 100 palabras esenciales al avanzar. ¡Vamos!",
+  "missionRewardBanner": "+{xp} XP · +{gold} oro de bienvenida",
+  "@missionRewardBanner": { "placeholders": { "xp": {"type":"int"}, "gold": {"type":"int"} } },
+  "missionStartError": "No se pudo empezar. Inténtalo de nuevo.",
+
+  "comboLabel": "x{combo}",
+  "@comboLabel": { "placeholders": { "combo": {"type":"int"} } },
+
+  "shopChestWon": "🎁 ¡Ganaste {reward} de oro! Ahora tienes {total}.",
+  "@shopChestWon": { "placeholders": { "reward": {"type":"int"}, "total": {"type":"int"} } },
+  "shopChestAlready": "Ya abriste el cofre hoy. Vuelve mañana 🙂",
+  "shopHeartsRefilled": "❤️ Vidas recargadas. Gastaste 50 oro, te quedan {gold}.",
+  "@shopHeartsRefilled": { "placeholders": { "gold": {"type":"int"} } },
+  "shopFreezeBought": "🧊 Congelador comprado. Gastaste 50 oro, te quedan {gold}.",
+  "@shopFreezeBought": { "placeholders": { "gold": {"type":"int"} } },
+  "shopNotEnoughGold": "No tienes suficiente oro (cuesta {cost}).",
+  "@shopNotEnoughGold": { "placeholders": { "cost": {"type":"int"} } },
+
+  "leagueNoMovementNote": "En beta aún no hay ascensos ni descensos: juega para ganar XP y subir en la tabla."
 }

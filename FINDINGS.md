@@ -2,6 +2,43 @@
 
 ---
 
+## P1/P2 DE RETENCIÓN Y SENSACIÓN — 2026-07-02 ✅ LIVE
+> Cierra P1-3 y varios P2 de QA_AUDIT.md (ver §0.1 ahí). Todo verificado con cliente real.
+
+- **Meta diaria visible (P1/top-5):** la top bar del mapa ahora muestra una **pastilla "X/Y"**
+  (mini-anillo + número), antes era un anillo mudo. Distinta del progreso del PLAN. i18n es/en/pt.
+- **Combo en vivo (P2-3):** chip **"🔥 x{n}"** animado (elasticOut) en la top bar de la lección
+  desde 3 aciertos seguidos; el contador (`_comboCorrect`) ya existía, faltaba mostrarlo.
+- **Feedback de oro (P2-1):** cofre/vidas/congelador ahora dicen **"ganaste/gastaste X, te quedan Y"**
+  (las RPC ya devolvían `gold`). Localizado. `streak_screen` alineado.
+- **Misión inicial (P1-3, `mig 091`):** bono de **bienvenida one-time (25 XP + 25 oro)** — NO alimenta
+  racha/meta (esas empiezan con la 1ª lección) — + **diálogo de confirmación** "¡Tu viaje ha comenzado!".
+  Idempotente (relee estado; 2ª vez otorga 0). verify_mission_reward.py 4/4.
+- **Race del cofre (P2-4):** guard `if (_busy != null) return;` en tienda + freeze (el botón ya se
+  deshabilitaba con `busy`; esto blinda el doble-tap en el mismo frame).
+- **Zonas de liga en beta (P2-9, `mig 092`):** `get_league` devuelve **promote/demote=0 hasta 13
+  jugadores** (== gate real de `jz_close_weeks`); la UI solo pinta zonas de ascenso/descenso con
+  `movementActive` y muestra una **nota de beta** cuando aún no hay movimiento. Copia verbatim de
+  get_league salvo esa condición → **sin fuga de user_id** (verificado en vivo).
+- **Hito de racha (P2-2):** ya estaba presente (cartel dorado + 🏆 + confeti en lesson_complete); verificado.
+
+**Verificación:** analyze 0 · test 88/88 (incl. `retention_test`, `i18n_test`) · build web OK ·
+verify_streak_freeze 7/7 · verify_mission_reward 4/4 · get_league promote/demote=0 sin leak.
+
+**Prueba manual (Gian, Android):**
+1. **Meta diaria:** en el mapa, arriba a la derecha, ves "X/Y" (p.ej. 0/10). Completa una lección → sube.
+2. **Combo:** en una lección, acierta 3+ seguidas → aparece "🔥 x3, x4…"; falla → desaparece.
+3. **Oro:** abre el cofre / recarga vidas / compra congelador → el toast dice cuánto ganaste/gastaste y el saldo.
+4. **Misión:** toca el primer nodo (misión) → "¡EMPEZAR MI VIAJE!" → sale el diálogo con +25 XP/+25 oro (solo la 1ª vez).
+5. **Ligas:** con pocos jugadores (beta) NO debe haber "zona de descenso" cubriendo casi toda la tabla;
+   en su lugar, una nota de que aún no hay ascensos/descensos.
+
+**Diferido (reportado):** a11y amplia (device), precios hardcodeados, colores sueltos, infra de bots,
+deuda técnica de leaderboards, i18n de superficies fuera de onboarding/loop (ligas/tienda/mapa siguen
+en español salvo los strings nuevos añadidos aquí).
+
+---
+
 ## FIX P0 CONGELADOR DE RACHA + i18n REAL (es/en/pt) — 2026-07-02 ✅ LIVE
 > Cierra el P0 y el P1-idioma de QA_AUDIT.md. Dos commits separados.
 

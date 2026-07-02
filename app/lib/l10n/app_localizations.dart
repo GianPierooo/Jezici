@@ -1637,6 +1637,102 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'{count, plural, =1{1 ejercicio} other{{count} ejercicios}}'**
   String lessonPreviewExerciseCount(int count);
+
+  /// No description provided for @dailyGoalTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Meta de hoy'**
+  String get dailyGoalTitle;
+
+  /// No description provided for @dailyGoalXpOf.
+  ///
+  /// In es, this message translates to:
+  /// **'{earned}/{goal} XP'**
+  String dailyGoalXpOf(int earned, int goal);
+
+  /// No description provided for @dailyGoalMet.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Meta cumplida! Tu racha avanza hoy 🔥'**
+  String get dailyGoalMet;
+
+  /// No description provided for @dailyGoalRemaining.
+  ///
+  /// In es, this message translates to:
+  /// **'Te faltan {n} XP para cumplir hoy'**
+  String dailyGoalRemaining(int n);
+
+  /// No description provided for @dailyGoalSemantics.
+  ///
+  /// In es, this message translates to:
+  /// **'Meta diaria: {earned} de {goal} XP'**
+  String dailyGoalSemantics(int earned, int goal);
+
+  /// No description provided for @missionWelcomeTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Tu viaje ha comenzado!'**
+  String get missionWelcomeTitle;
+
+  /// No description provided for @missionWelcomeBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Colecciona las 100 palabras esenciales al avanzar. ¡Vamos!'**
+  String get missionWelcomeBody;
+
+  /// No description provided for @missionRewardBanner.
+  ///
+  /// In es, this message translates to:
+  /// **'+{xp} XP · +{gold} oro de bienvenida'**
+  String missionRewardBanner(int xp, int gold);
+
+  /// No description provided for @missionStartError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo empezar. Inténtalo de nuevo.'**
+  String get missionStartError;
+
+  /// No description provided for @comboLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'x{combo}'**
+  String comboLabel(int combo);
+
+  /// No description provided for @shopChestWon.
+  ///
+  /// In es, this message translates to:
+  /// **'🎁 ¡Ganaste {reward} de oro! Ahora tienes {total}.'**
+  String shopChestWon(int reward, int total);
+
+  /// No description provided for @shopChestAlready.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya abriste el cofre hoy. Vuelve mañana 🙂'**
+  String get shopChestAlready;
+
+  /// No description provided for @shopHeartsRefilled.
+  ///
+  /// In es, this message translates to:
+  /// **'❤️ Vidas recargadas. Gastaste 50 oro, te quedan {gold}.'**
+  String shopHeartsRefilled(int gold);
+
+  /// No description provided for @shopFreezeBought.
+  ///
+  /// In es, this message translates to:
+  /// **'🧊 Congelador comprado. Gastaste 50 oro, te quedan {gold}.'**
+  String shopFreezeBought(int gold);
+
+  /// No description provided for @shopNotEnoughGold.
+  ///
+  /// In es, this message translates to:
+  /// **'No tienes suficiente oro (cuesta {cost}).'**
+  String shopNotEnoughGold(int cost);
+
+  /// No description provided for @leagueNoMovementNote.
+  ///
+  /// In es, this message translates to:
+  /// **'En beta aún no hay ascensos ni descensos: juega para ganar XP y subir en la tabla.'**
+  String get leagueNoMovementNote;
 }
 
 class _AppLocalizationsDelegate

@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/shop_models.dart';
 import '../../data/providers.dart';
+import '../../l10n/app_localizations.dart';
 
 /// Tienda: gasto de oro (recargar vidas, congelar racha) + cofre diario de
 /// recompensa variable. Todo el saldo lo mueve el servidor.
@@ -40,44 +41,60 @@ class _TiendaScreenState extends ConsumerState<TiendaScreen> {
   }
 
   Future<void> _chest() async {
+    if (_busy != null) return; // guard anti doble-tap (race del cofre)
     setState(() => _busy = 'chest');
+    final l10n = AppLocalizations.of(context);
     try {
       final r = await ref.read(progressRepositoryProvider).openDailyChest();
       if (r['ok'] == true) {
         _confetti.play();
-        _toast('🎁 ¡Ganaste ${r['reward']} de oro!');
+        final reward = (r['reward'] as num?)?.toInt() ?? 0;
+        final total = (r['gold'] as num?)?.toInt() ?? 0;
+        _toast(l10n.shopChestWon(reward, total));
       } else {
-        _toast('Ya abriste el cofre hoy. Vuelve mañana 🙂', ok: false);
+        _toast(l10n.shopChestAlready, ok: false);
       }
       _refresh();
     } catch (_) {
-      _toast('No se pudo abrir el cofre.', ok: false);
+      _toast(l10n.authErrorGeneral, ok: false);
     } finally {
       if (mounted) setState(() => _busy = null);
     }
   }
 
   Future<void> _hearts() async {
+    if (_busy != null) return;
     setState(() => _busy = 'hearts');
+    final l10n = AppLocalizations.of(context);
     try {
       final r = await ref.read(progressRepositoryProvider).buyHearts();
-      _toast(r['ok'] == true ? '❤️ Vidas recargadas' : 'No tienes suficiente oro (50).', ok: r['ok'] == true);
+      if (r['ok'] == true) {
+        _toast(l10n.shopHeartsRefilled((r['gold'] as num?)?.toInt() ?? 0));
+      } else {
+        _toast(l10n.shopNotEnoughGold(50), ok: false);
+      }
       _refresh();
     } catch (_) {
-      _toast('No se pudo recargar.', ok: false);
+      _toast(l10n.authErrorGeneral, ok: false);
     } finally {
       if (mounted) setState(() => _busy = null);
     }
   }
 
   Future<void> _freeze() async {
+    if (_busy != null) return;
     setState(() => _busy = 'freeze');
+    final l10n = AppLocalizations.of(context);
     try {
       final r = await ref.read(progressRepositoryProvider).useStreakFreeze();
-      _toast(r['ok'] == true ? '🧊 Congelador comprado' : 'No tienes suficiente oro (50).', ok: r['ok'] == true);
+      if (r['ok'] == true) {
+        _toast(l10n.shopFreezeBought((r['gold'] as num?)?.toInt() ?? 0));
+      } else {
+        _toast(l10n.shopNotEnoughGold(50), ok: false);
+      }
       _refresh();
     } catch (_) {
-      _toast('No se pudo comprar.', ok: false);
+      _toast(l10n.authErrorGeneral, ok: false);
     } finally {
       if (mounted) setState(() => _busy = null);
     }

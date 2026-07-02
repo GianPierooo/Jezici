@@ -255,8 +255,10 @@ class ProgressRepository {
   }
 
   /// "Empezar el viaje": completa el nodo misión y desbloquea el siguiente.
-  Future<void> completeMission(String lessonId) async {
-    await _client.rpc('complete_mission', params: {'p_lesson_id': lessonId});
+  /// Devuelve el bono de bienvenida one-time ({first_time, xp_earned, gold_earned}).
+  Future<Map<String, dynamic>> completeMission(String lessonId) async {
+    final res = await _client.rpc('complete_mission', params: {'p_lesson_id': lessonId});
+    return Map<String, dynamic>.from(res as Map);
   }
 
   /// Arma el examen del checkpoint (set aleatorizado, server-side).

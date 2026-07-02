@@ -5,6 +5,7 @@ import '../../core/feedback/feedback_fx.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/lesson_model.dart';
 import '../../data/providers.dart';
+import '../../l10n/app_localizations.dart';
 import 'widgets/parrot_mascot.dart';
 
 /// Nodo MISIÓN "100 esenciales" (GA9): primer nodo del mapa. Explica la misión
@@ -33,20 +34,90 @@ class _MissionScreenState extends ConsumerState<MissionScreen> {
 
   Future<void> _start() async {
     setState(() => _loading = true);
+    final l10n = AppLocalizations.of(context);
     try {
-      await ref.read(progressRepositoryProvider).completeMission(widget.lesson.id);
+      final res =
+          await ref.read(progressRepositoryProvider).completeMission(widget.lesson.id);
       ref.invalidate(lessonProgressProvider);
+      ref.invalidate(homeStatsProvider); // el bono cambió oro/XP
       ref.read(progressRepositoryProvider).logEvent('mission_started');
-      FeedbackFx.lessonComplete();
+      FeedbackFx.celebrate();
+      if (!mounted) return;
+      // Confirmación clara del arranque + bono de bienvenida (one-time).
+      await _showStarted(
+        l10n,
+        xp: (res['xp_earned'] as num?)?.toInt() ?? 0,
+        gold: (res['gold_earned'] as num?)?.toInt() ?? 0,
+      );
       if (!mounted) return;
       Navigator.pop(context);
     } catch (e) {
       debugPrint('completeMission falló: $e');
       if (!mounted) return;
       setState(() => _loading = false);
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('No se pudo empezar. Inténtalo de nuevo.')));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(l10n.missionStartError)));
     }
+  }
+
+  /// Momento "empezaste tu viaje": confirma el arranque y muestra el bono de
+  /// bienvenida (si lo hubo). No bloquea: un solo botón para entrar al mapa.
+  Future<void> _showStarted(AppLocalizations l10n, {required int xp, required int gold}) {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (ctx) => Dialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(24, 24, 24, 18),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const ParrotMascot(size: 64, mood: MascotMood.celebrate),
+              const SizedBox(height: 12),
+              Text(l10n.missionWelcomeTitle,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.w900, color: AppColors.text)),
+              const SizedBox(height: 8),
+              Text(l10n.missionWelcomeBody,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontSize: 14, fontWeight: FontWeight.w700, color: AppColors.textMuted, height: 1.35)),
+              if (xp > 0 || gold > 0) ...[
+                const SizedBox(height: 14),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFFFF4D6),
+                    borderRadius: BorderRadius.circular(14),
+                  ),
+                  child: Text('🎁 ${l10n.missionRewardBanner(xp, gold)}',
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontSize: 13.5, fontWeight: FontWeight.w900, color: Color(0xFF9A7A1E))),
+                ),
+              ],
+              const SizedBox(height: 18),
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+                child: ElevatedButton(
+                  onPressed: () => Navigator.pop(ctx),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primary,
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                  ),
+                  child: Text(l10n.commonContinue,
+                      style: const TextStyle(fontWeight: FontWeight.w900, letterSpacing: 0.4)),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   @override

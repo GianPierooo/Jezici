@@ -928,4 +928,72 @@ class AppLocalizationsEs extends AppLocalizations {
     );
     return '$_temp0';
   }
+
+  @override
+  String get dailyGoalTitle => 'Meta de hoy';
+
+  @override
+  String dailyGoalXpOf(int earned, int goal) {
+    return '$earned/$goal XP';
+  }
+
+  @override
+  String get dailyGoalMet => '¡Meta cumplida! Tu racha avanza hoy 🔥';
+
+  @override
+  String dailyGoalRemaining(int n) {
+    return 'Te faltan $n XP para cumplir hoy';
+  }
+
+  @override
+  String dailyGoalSemantics(int earned, int goal) {
+    return 'Meta diaria: $earned de $goal XP';
+  }
+
+  @override
+  String get missionWelcomeTitle => '¡Tu viaje ha comenzado!';
+
+  @override
+  String get missionWelcomeBody =>
+      'Colecciona las 100 palabras esenciales al avanzar. ¡Vamos!';
+
+  @override
+  String missionRewardBanner(int xp, int gold) {
+    return '+$xp XP · +$gold oro de bienvenida';
+  }
+
+  @override
+  String get missionStartError => 'No se pudo empezar. Inténtalo de nuevo.';
+
+  @override
+  String comboLabel(int combo) {
+    return 'x$combo';
+  }
+
+  @override
+  String shopChestWon(int reward, int total) {
+    return '🎁 ¡Ganaste $reward de oro! Ahora tienes $total.';
+  }
+
+  @override
+  String get shopChestAlready => 'Ya abriste el cofre hoy. Vuelve mañana 🙂';
+
+  @override
+  String shopHeartsRefilled(int gold) {
+    return '❤️ Vidas recargadas. Gastaste 50 oro, te quedan $gold.';
+  }
+
+  @override
+  String shopFreezeBought(int gold) {
+    return '🧊 Congelador comprado. Gastaste 50 oro, te quedan $gold.';
+  }
+
+  @override
+  String shopNotEnoughGold(int cost) {
+    return 'No tienes suficiente oro (cuesta $cost).';
+  }
+
+  @override
+  String get leagueNoMovementNote =>
+      'En beta aún no hay ascensos ni descensos: juega para ganar XP y subir en la tabla.';
 }

@@ -279,5 +279,26 @@
   "checkpointNext": "PRÓXIMO",
 
   "lessonPreviewLoadError": "Não foi possível carregar a lição.\n{error}",
-  "lessonPreviewExerciseCount": "{count, plural, =1{1 exercício} other{{count} exercícios}}"
+  "lessonPreviewExerciseCount": "{count, plural, =1{1 exercício} other{{count} exercícios}}",
+
+  "dailyGoalTitle": "Meta de hoje",
+  "dailyGoalXpOf": "{earned}/{goal} XP",
+  "dailyGoalMet": "Meta cumprida! Sua ofensiva avança hoje 🔥",
+  "dailyGoalRemaining": "Faltam {n} XP para cumprir hoje",
+  "dailyGoalSemantics": "Meta diária: {earned} de {goal} XP",
+
+  "missionWelcomeTitle": "Sua jornada começou!",
+  "missionWelcomeBody": "Colecione as 100 palavras essenciais ao avançar. Vamos!",
+  "missionRewardBanner": "+{xp} XP · +{gold} de ouro de boas-vindas",
+  "missionStartError": "Não foi possível começar. Tente de novo.",
+
+  "comboLabel": "x{combo}",
+
+  "shopChestWon": "🎁 Você ganhou {reward} de ouro! Agora você tem {total}.",
+  "shopChestAlready": "Você já abriu o baú de hoje. Volte amanhã 🙂",
+  "shopHeartsRefilled": "❤️ Vidas recarregadas. Você gastou 50 de ouro, restam {gold}.",
+  "shopFreezeBought": "🧊 Congelador comprado. Você gastou 50 de ouro, restam {gold}.",
+  "shopNotEnoughGold": "Você não tem ouro suficiente (custa {cost}).",
+
+  "leagueNoMovementNote": "No beta ainda não há promoções nem rebaixamentos: jogue para ganhar XP e subir na tabela."
 }

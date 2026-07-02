@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../core/theme/app_colors.dart';
+import '../l10n/app_localizations.dart';
 import 'progress_bar.dart';
 
 /// Barra "Meta de hoy: Y/X XP" (Estructura_App §8). El objetivo X sale de la
@@ -22,6 +23,7 @@ class DailyGoalBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final color = _met ? AppColors.success : AppColors.primary;
     return Container(
       width: double.infinity,
@@ -41,11 +43,11 @@ class DailyGoalBar extends StatelessWidget {
               Icon(_met ? Icons.check_circle_rounded : Icons.bolt_rounded,
                   color: color, size: 20),
               const SizedBox(width: 8),
-              const Text('Meta de hoy',
-                  style: TextStyle(
+              Text(l10n.dailyGoalTitle,
+                  style: const TextStyle(
                       fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.text)),
               const Spacer(),
-              Text('$earned/$goal XP',
+              Text(l10n.dailyGoalXpOf(earned, goal),
                   style: TextStyle(
                       fontSize: 13.5, fontWeight: FontWeight.w900, color: color)),
             ],
@@ -54,12 +56,12 @@ class DailyGoalBar extends StatelessWidget {
           JzProgressBar(value: _value, height: 10, color: color),
           if (_met) ...[
             const SizedBox(height: 8),
-            const Text('¡Meta cumplida! Tu racha avanza hoy 🔥',
-                style: TextStyle(
+            Text(l10n.dailyGoalMet,
+                style: const TextStyle(
                     fontSize: 12, fontWeight: FontWeight.w800, color: AppColors.successDark)),
           ] else ...[
             const SizedBox(height: 8),
-            Text('Te faltan ${(goal - earned).clamp(0, goal)} XP para cumplir hoy',
+            Text(l10n.dailyGoalRemaining((goal - earned).clamp(0, goal)),
                 style: const TextStyle(
                     fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
           ],
