@@ -1733,6 +1733,528 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'En beta aún no hay ascensos ni descensos: juega para ganar XP y subir en la tabla.'**
   String get leagueNoMovementNote;
+
+  /// No description provided for @mapLoading.
+  ///
+  /// In es, this message translates to:
+  /// **'Cargando tu mapa…'**
+  String get mapLoading;
+
+  /// No description provided for @mapLoadError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo cargar el mapa.\n{error}'**
+  String mapLoadError(String error);
+
+  /// No description provided for @mapEmptyState.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no hay contenido sembrado.'**
+  String get mapEmptyState;
+
+  /// No description provided for @mapNodeLockedNextUnit.
+  ///
+  /// In es, this message translates to:
+  /// **'Bloqueada · aprueba el checkpoint de la unidad anterior'**
+  String get mapNodeLockedNextUnit;
+
+  /// No description provided for @mapNodeLockedNextLesson.
+  ///
+  /// In es, this message translates to:
+  /// **'Bloqueada · completa la lección anterior'**
+  String get mapNodeLockedNextLesson;
+
+  /// No description provided for @mapMascotPeak.
+  ///
+  /// In es, this message translates to:
+  /// **'¡A la cima! 💪'**
+  String get mapMascotPeak;
+
+  /// No description provided for @mapStartBubble.
+  ///
+  /// In es, this message translates to:
+  /// **'EMPIEZA'**
+  String get mapStartBubble;
+
+  /// No description provided for @mapSummitCertLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'TU META · CERTIFICADO'**
+  String get mapSummitCertLabel;
+
+  /// No description provided for @mapSummitPeak.
+  ///
+  /// In es, this message translates to:
+  /// **'⛰ LA CIMA'**
+  String get mapSummitPeak;
+
+  /// No description provided for @mapUnitBanner.
+  ///
+  /// In es, this message translates to:
+  /// **'UNIDAD {num} · {level}'**
+  String mapUnitBanner(int num, String level);
+
+  /// No description provided for @mapUnitBannerLocked.
+  ///
+  /// In es, this message translates to:
+  /// **'UNIDAD {num} · {level} · 🔒 BLOQUEADA'**
+  String mapUnitBannerLocked(int num, String level);
+
+  /// No description provided for @topBarMusicOff.
+  ///
+  /// In es, this message translates to:
+  /// **'Apagar música del mapa'**
+  String get topBarMusicOff;
+
+  /// No description provided for @topBarMusicOn.
+  ///
+  /// In es, this message translates to:
+  /// **'Encender música del mapa'**
+  String get topBarMusicOn;
+
+  /// No description provided for @topBarNotifications.
+  ///
+  /// In es, this message translates to:
+  /// **'Notificaciones'**
+  String get topBarNotifications;
+
+  /// No description provided for @missionAppBarTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Misión'**
+  String get missionAppBarTitle;
+
+  /// No description provided for @missionMainTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Las 100 palabras esenciales'**
+  String get missionMainTitle;
+
+  /// No description provided for @missionMainDescription.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu primer gran objetivo: dominar las 100 palabras y frases de más alta frecuencia del inglés. Las irás coleccionando al completar tus lecciones. Al juntarlas, ganas el badge \"100 esenciales\".'**
+  String get missionMainDescription;
+
+  /// No description provided for @missionWordsCount.
+  ///
+  /// In es, this message translates to:
+  /// **'{n} palabras'**
+  String missionWordsCount(int n);
+
+  /// No description provided for @missionStartLoading.
+  ///
+  /// In es, this message translates to:
+  /// **'PREPARANDO…'**
+  String get missionStartLoading;
+
+  /// No description provided for @missionStartCta.
+  ///
+  /// In es, this message translates to:
+  /// **'¡EMPEZAR MI VIAJE! 🚀'**
+  String get missionStartCta;
+
+  /// No description provided for @missionCatGreetings.
+  ///
+  /// In es, this message translates to:
+  /// **'Saludos y cortesía'**
+  String get missionCatGreetings;
+
+  /// No description provided for @missionCatPronouns.
+  ///
+  /// In es, this message translates to:
+  /// **'Pronombres y \"to be\"'**
+  String get missionCatPronouns;
+
+  /// No description provided for @missionCatVerbs.
+  ///
+  /// In es, this message translates to:
+  /// **'Verbos frecuentes'**
+  String get missionCatVerbs;
+
+  /// No description provided for @missionCatNumbers.
+  ///
+  /// In es, this message translates to:
+  /// **'Números 1–20'**
+  String get missionCatNumbers;
+
+  /// No description provided for @missionCatFamily.
+  ///
+  /// In es, this message translates to:
+  /// **'Personas y familia'**
+  String get missionCatFamily;
+
+  /// No description provided for @missionCatDaily.
+  ///
+  /// In es, this message translates to:
+  /// **'Cotidiano'**
+  String get missionCatDaily;
+
+  /// No description provided for @missionCatQuestions.
+  ///
+  /// In es, this message translates to:
+  /// **'Preguntas y útiles'**
+  String get missionCatQuestions;
+
+  /// No description provided for @shopTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Tienda'**
+  String get shopTitle;
+
+  /// No description provided for @shopChestCardTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Cofre diario'**
+  String get shopChestCardTitle;
+
+  /// No description provided for @shopChestCardSubtitleAvailable.
+  ///
+  /// In es, this message translates to:
+  /// **'Ábrelo para una recompensa sorpresa'**
+  String get shopChestCardSubtitleAvailable;
+
+  /// No description provided for @shopChestCardSubtitleUnavailable.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya lo abriste hoy · vuelve mañana'**
+  String get shopChestCardSubtitleUnavailable;
+
+  /// No description provided for @shopChestCardActionOpen.
+  ///
+  /// In es, this message translates to:
+  /// **'ABRIR'**
+  String get shopChestCardActionOpen;
+
+  /// No description provided for @shopChestCardActionTomorrow.
+  ///
+  /// In es, this message translates to:
+  /// **'MAÑANA'**
+  String get shopChestCardActionTomorrow;
+
+  /// No description provided for @shopHeartsCardTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Recargar vidas'**
+  String get shopHeartsCardTitle;
+
+  /// No description provided for @shopHeartsCardSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Vuelve a 5 corazones · tienes {hearts}'**
+  String shopHeartsCardSubtitle(int hearts);
+
+  /// No description provided for @shopFreezeCardTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Congelador de racha'**
+  String get shopFreezeCardTitle;
+
+  /// No description provided for @shopFreezeCardSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Protege tu racha un día · tienes {freezes}'**
+  String shopFreezeCardSubtitle(int freezes);
+
+  /// No description provided for @streakTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu racha'**
+  String get streakTitle;
+
+  /// No description provided for @streakDaysCount.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{{count} día de racha} other{{count} días de racha}}'**
+  String streakDaysCount(int count);
+
+  /// No description provided for @streakRecord.
+  ///
+  /// In es, this message translates to:
+  /// **'Récord: {longest} · Cumple tu meta diaria para sumar'**
+  String streakRecord(int longest);
+
+  /// No description provided for @streakMilestonesTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Hitos'**
+  String get streakMilestonesTitle;
+
+  /// No description provided for @streakMilestonesSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Cada hito desbloquea oro de recompensa.'**
+  String get streakMilestonesSubtitle;
+
+  /// No description provided for @streakMilestoneReached.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Conseguido!'**
+  String get streakMilestoneReached;
+
+  /// No description provided for @streakMilestoneNext.
+  ///
+  /// In es, this message translates to:
+  /// **'Próximo · vas {current}/{days}'**
+  String streakMilestoneNext(int current, int days);
+
+  /// No description provided for @streakMilestoneLocked.
+  ///
+  /// In es, this message translates to:
+  /// **'Bloqueado'**
+  String get streakMilestoneLocked;
+
+  /// No description provided for @streakFreezeSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Protege tu racha un día que no puedas practicar.'**
+  String get streakFreezeSubtitle;
+
+  /// No description provided for @streakFreezeCount.
+  ///
+  /// In es, this message translates to:
+  /// **'Tienes {freezes}'**
+  String streakFreezeCount(int freezes);
+
+  /// No description provided for @streakFreezePrice.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuesta {cost} oro'**
+  String streakFreezePrice(int cost);
+
+  /// No description provided for @streakFreezeBuy.
+  ///
+  /// In es, this message translates to:
+  /// **'Comprar'**
+  String get streakFreezeBuy;
+
+  /// No description provided for @leagueTabMyLeague.
+  ///
+  /// In es, this message translates to:
+  /// **'Mi liga'**
+  String get leagueTabMyLeague;
+
+  /// No description provided for @leagueTabTables.
+  ///
+  /// In es, this message translates to:
+  /// **'Tablas'**
+  String get leagueTabTables;
+
+  /// No description provided for @leagueTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Liga {division}'**
+  String leagueTitle(String division);
+
+  /// No description provided for @leagueWarmingUpSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{{count} jugador · arrancando} other{{count} jugadores · arrancando}}'**
+  String leagueWarmingUpSubtitle(int count);
+
+  /// No description provided for @leagueRankActive.
+  ///
+  /// In es, this message translates to:
+  /// **'Vas #{rank} esta semana · top {promote} ascienden'**
+  String leagueRankActive(int rank, int promote);
+
+  /// No description provided for @leagueRankInactive.
+  ///
+  /// In es, this message translates to:
+  /// **'Vas #{rank} esta semana'**
+  String leagueRankInactive(int rank);
+
+  /// No description provided for @leagueWarmingUpTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu liga está arrancando'**
+  String get leagueWarmingUpTitle;
+
+  /// No description provided for @leagueWarmingUpMessage.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuando haya al menos {min} jugadores activos, competiréis por ascender. Mientras, suma XP: tu progreso ya cuenta.'**
+  String leagueWarmingUpMessage(int min);
+
+  /// No description provided for @leagueWeeklyRankingTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Clasificación de la semana'**
+  String get leagueWeeklyRankingTitle;
+
+  /// No description provided for @leagueWeeklyRankingHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Suma XP (lecciones y práctica) para subir. Cierre cada lunes.'**
+  String get leagueWeeklyRankingHint;
+
+  /// No description provided for @leaguePromotionZone.
+  ///
+  /// In es, this message translates to:
+  /// **'ZONA DE ASCENSO'**
+  String get leaguePromotionZone;
+
+  /// No description provided for @leagueDemotionZone.
+  ///
+  /// In es, this message translates to:
+  /// **'ZONA DE DESCENSO'**
+  String get leagueDemotionZone;
+
+  /// No description provided for @leagueDivisionBronce.
+  ///
+  /// In es, this message translates to:
+  /// **'Bronce'**
+  String get leagueDivisionBronce;
+
+  /// No description provided for @leagueDivisionPlata.
+  ///
+  /// In es, this message translates to:
+  /// **'Plata'**
+  String get leagueDivisionPlata;
+
+  /// No description provided for @leagueDivisionOro.
+  ///
+  /// In es, this message translates to:
+  /// **'Oro'**
+  String get leagueDivisionOro;
+
+  /// No description provided for @leagueDivisionZafiro.
+  ///
+  /// In es, this message translates to:
+  /// **'Zafiro'**
+  String get leagueDivisionZafiro;
+
+  /// No description provided for @leagueDivisionRubi.
+  ///
+  /// In es, this message translates to:
+  /// **'Rubí'**
+  String get leagueDivisionRubi;
+
+  /// No description provided for @leagueDivisionDiamante.
+  ///
+  /// In es, this message translates to:
+  /// **'Diamante'**
+  String get leagueDivisionDiamante;
+
+  /// No description provided for @leaderboardMetricXp.
+  ///
+  /// In es, this message translates to:
+  /// **'XP'**
+  String get leaderboardMetricXp;
+
+  /// No description provided for @leaderboardMetricLessons.
+  ///
+  /// In es, this message translates to:
+  /// **'Lecciones'**
+  String get leaderboardMetricLessons;
+
+  /// No description provided for @leaderboardMetricStreak.
+  ///
+  /// In es, this message translates to:
+  /// **'Racha'**
+  String get leaderboardMetricStreak;
+
+  /// No description provided for @leaderboardMetricCertificates.
+  ///
+  /// In es, this message translates to:
+  /// **'Certificados'**
+  String get leaderboardMetricCertificates;
+
+  /// No description provided for @leaderboardUnitLessons.
+  ///
+  /// In es, this message translates to:
+  /// **'lecc.'**
+  String get leaderboardUnitLessons;
+
+  /// No description provided for @leaderboardUnitDays.
+  ///
+  /// In es, this message translates to:
+  /// **'d'**
+  String get leaderboardUnitDays;
+
+  /// No description provided for @leaderboardUnitCertificates.
+  ///
+  /// In es, this message translates to:
+  /// **'cert.'**
+  String get leaderboardUnitCertificates;
+
+  /// No description provided for @leaderboardWindowWeekly.
+  ///
+  /// In es, this message translates to:
+  /// **'Semanal'**
+  String get leaderboardWindowWeekly;
+
+  /// No description provided for @leaderboardWindowMonthly.
+  ///
+  /// In es, this message translates to:
+  /// **'Mensual'**
+  String get leaderboardWindowMonthly;
+
+  /// No description provided for @leaderboardWindowYearly.
+  ///
+  /// In es, this message translates to:
+  /// **'Anual'**
+  String get leaderboardWindowYearly;
+
+  /// No description provided for @leaderboardWindowAlltime.
+  ///
+  /// In es, this message translates to:
+  /// **'Histórico'**
+  String get leaderboardWindowAlltime;
+
+  /// No description provided for @leaderboardStreakHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Racha más larga de todos los tiempos.'**
+  String get leaderboardStreakHint;
+
+  /// No description provided for @leaderboardScopeGlobal.
+  ///
+  /// In es, this message translates to:
+  /// **'Global'**
+  String get leaderboardScopeGlobal;
+
+  /// No description provided for @leaderboardScopeDivision.
+  ///
+  /// In es, this message translates to:
+  /// **'Mi división'**
+  String get leaderboardScopeDivision;
+
+  /// No description provided for @leaderboardLoadError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo cargar la tabla.'**
+  String get leaderboardLoadError;
+
+  /// No description provided for @leaderboardEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no hay datos para esta tabla. ¡Sé el primero en aparecer!'**
+  String get leaderboardEmpty;
+
+  /// No description provided for @leaderboardMyPosition.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu posición: #{rank} de {total}'**
+  String leaderboardMyPosition(int rank, int total);
+
+  /// No description provided for @leaderboardNotRanked.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no estás en esta tabla'**
+  String get leaderboardNotRanked;
+
+  /// No description provided for @leaderboardShowingTop.
+  ///
+  /// In es, this message translates to:
+  /// **'Mostrando top {shown} de {total}'**
+  String leaderboardShowingTop(int shown, int total);
+
+  /// No description provided for @leagueLoadError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo cargar la liga.'**
+  String get leagueLoadError;
 }
 
 class _AppLocalizationsDelegate

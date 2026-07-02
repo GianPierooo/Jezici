@@ -102,6 +102,7 @@ class _TiendaScreenState extends ConsumerState<TiendaScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final s = ref.watch(shopStatusProvider).value ?? ShopStatus.empty;
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -109,7 +110,7 @@ class _TiendaScreenState extends ConsumerState<TiendaScreen> {
         backgroundColor: AppColors.background,
         elevation: 0,
         foregroundColor: AppColors.text,
-        title: const Text('Tienda', style: TextStyle(fontWeight: FontWeight.w900)),
+        title: Text(l10n.shopTitle, style: const TextStyle(fontWeight: FontWeight.w900)),
         actions: [
           Center(
             child: Container(
@@ -132,9 +133,9 @@ class _TiendaScreenState extends ConsumerState<TiendaScreen> {
             children: [
               _ShopCard(
                 emoji: '🎁',
-                title: 'Cofre diario',
-                subtitle: s.chestAvailable ? 'Ábrelo para una recompensa sorpresa' : 'Ya lo abriste hoy · vuelve mañana',
-                actionLabel: s.chestAvailable ? 'ABRIR' : 'MAÑANA',
+                title: l10n.shopChestCardTitle,
+                subtitle: s.chestAvailable ? l10n.shopChestCardSubtitleAvailable : l10n.shopChestCardSubtitleUnavailable,
+                actionLabel: s.chestAvailable ? l10n.shopChestCardActionOpen : l10n.shopChestCardActionTomorrow,
                 enabled: s.chestAvailable,
                 busy: _busy == 'chest',
                 color: AppColors.gold,
@@ -142,8 +143,8 @@ class _TiendaScreenState extends ConsumerState<TiendaScreen> {
               ),
               _ShopCard(
                 emoji: '❤️',
-                title: 'Recargar vidas',
-                subtitle: 'Vuelve a 5 corazones · tienes ${s.hearts}',
+                title: l10n.shopHeartsCardTitle,
+                subtitle: l10n.shopHeartsCardSubtitle(s.hearts),
                 actionLabel: '50',
                 enabled: s.hearts < 5 && s.gold >= 50,
                 busy: _busy == 'hearts',
@@ -152,8 +153,8 @@ class _TiendaScreenState extends ConsumerState<TiendaScreen> {
               ),
               _ShopCard(
                 emoji: '🧊',
-                title: 'Congelador de racha',
-                subtitle: 'Protege tu racha un día · tienes ${s.freezes}',
+                title: l10n.shopFreezeCardTitle,
+                subtitle: l10n.shopFreezeCardSubtitle(s.freezes),
                 actionLabel: '50',
                 enabled: s.gold >= 50,
                 busy: _busy == 'freeze',

@@ -183,9 +183,10 @@ class _MusicToggle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Semantics(
       button: true,
-      label: on ? 'Apagar música del mapa' : 'Encender música del mapa',
+      label: on ? l10n.topBarMusicOff : l10n.topBarMusicOn,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: onTap,
@@ -216,7 +217,7 @@ class _BellButton extends StatelessWidget {
     // Área táctil 44×44 (a11y) con la caja visible compacta centrada.
     return Semantics(
       button: true,
-      label: 'Notificaciones',
+      label: AppLocalizations.of(context).topBarNotifications,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: onTap,

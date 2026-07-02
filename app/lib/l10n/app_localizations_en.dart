@@ -996,4 +996,320 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get leagueNoMovementNote =>
       'In beta there are no promotions or demotions yet: play to earn XP and climb the table.';
+
+  @override
+  String get mapLoading => 'Loading your map…';
+
+  @override
+  String mapLoadError(String error) {
+    return 'We couldn\'t load the map.\n$error';
+  }
+
+  @override
+  String get mapEmptyState => 'No content seeded yet.';
+
+  @override
+  String get mapNodeLockedNextUnit =>
+      'Locked · pass the previous unit\'s checkpoint';
+
+  @override
+  String get mapNodeLockedNextLesson => 'Locked · complete the previous lesson';
+
+  @override
+  String get mapMascotPeak => 'To the summit! 💪';
+
+  @override
+  String get mapStartBubble => 'START';
+
+  @override
+  String get mapSummitCertLabel => 'YOUR GOAL · CERTIFICATE';
+
+  @override
+  String get mapSummitPeak => '⛰ THE SUMMIT';
+
+  @override
+  String mapUnitBanner(int num, String level) {
+    return 'UNIT $num · $level';
+  }
+
+  @override
+  String mapUnitBannerLocked(int num, String level) {
+    return 'UNIT $num · $level · 🔒 LOCKED';
+  }
+
+  @override
+  String get topBarMusicOff => 'Turn off map music';
+
+  @override
+  String get topBarMusicOn => 'Turn on map music';
+
+  @override
+  String get topBarNotifications => 'Notifications';
+
+  @override
+  String get missionAppBarTitle => 'Mission';
+
+  @override
+  String get missionMainTitle => 'The 100 essential words';
+
+  @override
+  String get missionMainDescription =>
+      'Your first big goal: master the 100 most frequent words and phrases in English. You\'ll collect them as you complete your lessons. Gather them all to earn the \"100 essentials\" badge.';
+
+  @override
+  String missionWordsCount(int n) {
+    return '$n words';
+  }
+
+  @override
+  String get missionStartLoading => 'PREPARING…';
+
+  @override
+  String get missionStartCta => 'START MY JOURNEY! 🚀';
+
+  @override
+  String get missionCatGreetings => 'Greetings and courtesy';
+
+  @override
+  String get missionCatPronouns => 'Pronouns and \"to be\"';
+
+  @override
+  String get missionCatVerbs => 'Frequent verbs';
+
+  @override
+  String get missionCatNumbers => 'Numbers 1–20';
+
+  @override
+  String get missionCatFamily => 'People and family';
+
+  @override
+  String get missionCatDaily => 'Everyday';
+
+  @override
+  String get missionCatQuestions => 'Questions and essentials';
+
+  @override
+  String get shopTitle => 'Shop';
+
+  @override
+  String get shopChestCardTitle => 'Daily chest';
+
+  @override
+  String get shopChestCardSubtitleAvailable => 'Open it for a surprise reward';
+
+  @override
+  String get shopChestCardSubtitleUnavailable =>
+      'Already opened today · come back tomorrow';
+
+  @override
+  String get shopChestCardActionOpen => 'OPEN';
+
+  @override
+  String get shopChestCardActionTomorrow => 'TOMORROW';
+
+  @override
+  String get shopHeartsCardTitle => 'Refill hearts';
+
+  @override
+  String shopHeartsCardSubtitle(int hearts) {
+    return 'Back to 5 hearts · you have $hearts';
+  }
+
+  @override
+  String get shopFreezeCardTitle => 'Streak freeze';
+
+  @override
+  String shopFreezeCardSubtitle(int freezes) {
+    return 'Protect your streak for a day · you have $freezes';
+  }
+
+  @override
+  String get streakTitle => 'Your streak';
+
+  @override
+  String streakDaysCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count-day streak',
+      one: '$count-day streak',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String streakRecord(int longest) {
+    return 'Record: $longest · Meet your daily goal to add to it';
+  }
+
+  @override
+  String get streakMilestonesTitle => 'Milestones';
+
+  @override
+  String get streakMilestonesSubtitle =>
+      'Each milestone unlocks a gold reward.';
+
+  @override
+  String get streakMilestoneReached => 'Reached!';
+
+  @override
+  String streakMilestoneNext(int current, int days) {
+    return 'Next · you\'re at $current/$days';
+  }
+
+  @override
+  String get streakMilestoneLocked => 'Locked';
+
+  @override
+  String get streakFreezeSubtitle =>
+      'Protects your streak on a day you can\'t practice.';
+
+  @override
+  String streakFreezeCount(int freezes) {
+    return 'You have $freezes';
+  }
+
+  @override
+  String streakFreezePrice(int cost) {
+    return 'Costs $cost gold';
+  }
+
+  @override
+  String get streakFreezeBuy => 'Buy';
+
+  @override
+  String get leagueTabMyLeague => 'My league';
+
+  @override
+  String get leagueTabTables => 'Tables';
+
+  @override
+  String leagueTitle(String division) {
+    return '$division League';
+  }
+
+  @override
+  String leagueWarmingUpSubtitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count players · warming up',
+      one: '$count player · warming up',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String leagueRankActive(int rank, int promote) {
+    return 'You\'re #$rank this week · top $promote promote';
+  }
+
+  @override
+  String leagueRankInactive(int rank) {
+    return 'You\'re #$rank this week';
+  }
+
+  @override
+  String get leagueWarmingUpTitle => 'Your league is warming up';
+
+  @override
+  String leagueWarmingUpMessage(int min) {
+    return 'Once there are at least $min active players, you\'ll compete to move up. Meanwhile, earn XP: your progress already counts.';
+  }
+
+  @override
+  String get leagueWeeklyRankingTitle => 'This week\'s ranking';
+
+  @override
+  String get leagueWeeklyRankingHint =>
+      'Earn XP (lessons and practice) to climb. Closes every Monday.';
+
+  @override
+  String get leaguePromotionZone => 'PROMOTION ZONE';
+
+  @override
+  String get leagueDemotionZone => 'DEMOTION ZONE';
+
+  @override
+  String get leagueDivisionBronce => 'Bronze';
+
+  @override
+  String get leagueDivisionPlata => 'Silver';
+
+  @override
+  String get leagueDivisionOro => 'Gold';
+
+  @override
+  String get leagueDivisionZafiro => 'Sapphire';
+
+  @override
+  String get leagueDivisionRubi => 'Ruby';
+
+  @override
+  String get leagueDivisionDiamante => 'Diamond';
+
+  @override
+  String get leaderboardMetricXp => 'XP';
+
+  @override
+  String get leaderboardMetricLessons => 'Lessons';
+
+  @override
+  String get leaderboardMetricStreak => 'Streak';
+
+  @override
+  String get leaderboardMetricCertificates => 'Certificates';
+
+  @override
+  String get leaderboardUnitLessons => 'less.';
+
+  @override
+  String get leaderboardUnitDays => 'd';
+
+  @override
+  String get leaderboardUnitCertificates => 'cert.';
+
+  @override
+  String get leaderboardWindowWeekly => 'Weekly';
+
+  @override
+  String get leaderboardWindowMonthly => 'Monthly';
+
+  @override
+  String get leaderboardWindowYearly => 'Yearly';
+
+  @override
+  String get leaderboardWindowAlltime => 'All-time';
+
+  @override
+  String get leaderboardStreakHint => 'Longest streak of all time.';
+
+  @override
+  String get leaderboardScopeGlobal => 'Global';
+
+  @override
+  String get leaderboardScopeDivision => 'My division';
+
+  @override
+  String get leaderboardLoadError => 'We couldn\'t load the table.';
+
+  @override
+  String get leaderboardEmpty =>
+      'No data for this table yet. Be the first to show up!';
+
+  @override
+  String leaderboardMyPosition(int rank, int total) {
+    return 'Your position: #$rank of $total';
+  }
+
+  @override
+  String get leaderboardNotRanked => 'You\'re not on this table yet';
+
+  @override
+  String leaderboardShowingTop(int shown, int total) {
+    return 'Showing top $shown of $total';
+  }
+
+  @override
+  String get leagueLoadError => 'We couldn\'t load the league.';
 }

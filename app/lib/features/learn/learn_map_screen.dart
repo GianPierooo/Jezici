@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../core/ui/jz_transitions.dart';
+import '../../l10n/app_localizations.dart';
 import '../../data/models/lesson_model.dart';
 import '../../data/models/unit_model.dart';
 import '../../data/providers.dart';
@@ -25,26 +26,27 @@ class LearnMapScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final unitsAsync = ref.watch(mapUnitsProvider);
+    final l10n = AppLocalizations.of(context);
 
     return Stack(
       children: [
         Positioned.fill(
           child: unitsAsync.when(
-            loading: () => const _MapState(
+            loading: () => _MapState(
               icon: Icons.terrain_rounded,
-              message: 'Cargando tu mapa…',
+              message: l10n.mapLoading,
               showSpinner: true,
             ),
             error: (e, _) => _MapState(
               icon: Icons.cloud_off_rounded,
-              message: 'No se pudo cargar el mapa.\n$e',
+              message: l10n.mapLoadError(e.toString()),
               onRetry: () => ref.invalidate(mapUnitsProvider),
             ),
             data: (units) {
               if (units.isEmpty) {
-                return const _MapState(
+                return _MapState(
                   icon: Icons.map_outlined,
-                  message: 'Aún no hay contenido sembrado.',
+                  message: l10n.mapEmptyState,
                 );
               }
               // Estados de nodo REALES desde user_lesson_progress (paso E).
@@ -216,12 +218,13 @@ class _MapBodyState extends State<_MapBody> {
       }));
       return;
     }
+    final l10n = AppLocalizations.of(context);
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(SnackBar(
         content: Text(entry.firstOfUnit
-            ? 'Bloqueada · aprueba el checkpoint de la unidad anterior'
-            : 'Bloqueada · completa la lección anterior'),
+            ? l10n.mapNodeLockedNextUnit
+            : l10n.mapNodeLockedNextLesson),
         behavior: SnackBarBehavior.floating,
       ));
   }
@@ -230,6 +233,7 @@ class _MapBodyState extends State<_MapBody> {
   Widget build(BuildContext context) {
     final entries = _entries;
     final n = entries.length;
+    final l10n = AppLocalizations.of(context);
 
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -338,7 +342,7 @@ class _MapBodyState extends State<_MapBody> {
             children.add(Positioned(
               left: c.dx + size * 0.5,
               top: c.dy - size * 0.95,
-              child: const ParrotMascot(message: '¡A la cima! 💪'),
+              child: ParrotMascot(message: l10n.mapMascotPeak),
             ));
           }
         }
@@ -414,9 +418,9 @@ class _StartBubble extends StatelessWidget {
           ),
         ],
       ),
-      child: const Text(
-        'EMPIEZA',
-        style: TextStyle(
+      child: Text(
+        AppLocalizations.of(context).mapStartBubble,
+        style: const TextStyle(
           color: AppColors.primary,
           fontWeight: FontWeight.w900,
           fontSize: 12,
@@ -433,6 +437,7 @@ class _SummitCertificate extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final goal = ref.watch(userPlanProvider).value?.goalLevel ?? 'B2';
+    final l10n = AppLocalizations.of(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -456,9 +461,9 @@ class _SummitCertificate extends ConsumerWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text(
-                'TU META · CERTIFICADO',
-                style: TextStyle(
+              Text(
+                l10n.mapSummitCertLabel,
+                style: const TextStyle(
                   fontSize: 9,
                   fontWeight: FontWeight.w900,
                   letterSpacing: 1.4,
@@ -486,9 +491,9 @@ class _SummitCertificate extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 6),
-        const Text(
-          '⛰ LA CIMA',
-          style: TextStyle(
+        Text(
+          l10n.mapSummitPeak,
+          style: const TextStyle(
             fontSize: 11,
             fontWeight: FontWeight.w900,
             color: AppColors.primary,
@@ -507,6 +512,7 @@ class _UnitBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final accent = locked ? AppColors.lockedDark : AppColors.primary;
+    final l10n = AppLocalizations.of(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
       decoration: BoxDecoration(
@@ -542,8 +548,8 @@ class _UnitBanner extends StatelessWidget {
             children: [
               Text(
                 locked
-                    ? 'UNIDAD ${unit.orderIndex} · ${unit.cefrLevel} · 🔒 BLOQUEADA'
-                    : 'UNIDAD ${unit.orderIndex} · ${unit.cefrLevel}',
+                    ? l10n.mapUnitBannerLocked(unit.orderIndex, unit.cefrLevel)
+                    : l10n.mapUnitBanner(unit.orderIndex, unit.cefrLevel),
                 style: TextStyle(
                   fontSize: 9,
                   fontWeight: FontWeight.w900,
@@ -607,7 +613,10 @@ class _MapState extends StatelessWidget {
             ),
             if (onRetry != null) ...[
               const SizedBox(height: 16),
-              TextButton(onPressed: onRetry, child: const Text('Reintentar')),
+              TextButton(
+                onPressed: onRetry,
+                child: Text(AppLocalizations.of(context).commonRetry),
+              ),
             ],
           ],
         ),

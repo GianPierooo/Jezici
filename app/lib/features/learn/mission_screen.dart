@@ -22,15 +22,16 @@ class MissionScreen extends ConsumerStatefulWidget {
 class _MissionScreenState extends ConsumerState<MissionScreen> {
   bool _loading = false;
 
-  static const _cats = [
-    ('👋', 'Saludos y cortesía', '12'),
-    ('🧍', 'Pronombres y "to be"', '14'),
-    ('⚡', 'Verbos frecuentes', '15'),
-    ('🔢', 'Números 1–20', '20'),
-    ('👨‍👩‍👧', 'Personas y familia', '10'),
-    ('☕', 'Cotidiano', '15'),
-    ('❓', 'Preguntas y útiles', '14'),
-  ];
+  // Categorías de la misión (emoji, nombre localizado, nº de palabras).
+  List<(String, String, int)> _cats(AppLocalizations l10n) => [
+        ('👋', l10n.missionCatGreetings, 12),
+        ('🧍', l10n.missionCatPronouns, 14),
+        ('⚡', l10n.missionCatVerbs, 15),
+        ('🔢', l10n.missionCatNumbers, 20),
+        ('👨‍👩‍👧', l10n.missionCatFamily, 10),
+        ('☕', l10n.missionCatDaily, 15),
+        ('❓', l10n.missionCatQuestions, 14),
+      ];
 
   Future<void> _start() async {
     setState(() => _loading = true);
@@ -122,11 +123,12 @@ class _MissionScreenState extends ConsumerState<MissionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
         backgroundColor: AppColors.background, elevation: 0, foregroundColor: AppColors.text,
-        title: const Text('Misión', style: TextStyle(fontWeight: FontWeight.w900)),
+        title: Text(l10n.missionAppBarTitle, style: const TextStyle(fontWeight: FontWeight.w900)),
       ),
       body: SafeArea(
         child: Column(
@@ -137,16 +139,14 @@ class _MissionScreenState extends ConsumerState<MissionScreen> {
                 children: [
                   const Center(child: ParrotMascot(size: 72, mood: MascotMood.celebrate)),
                   const SizedBox(height: 12),
-                  const Text('Las 100 palabras esenciales',
+                  Text(l10n.missionMainTitle,
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 23, fontWeight: FontWeight.w900, color: AppColors.text)),
+                      style: const TextStyle(fontSize: 23, fontWeight: FontWeight.w900, color: AppColors.text)),
                   const SizedBox(height: 8),
-                  const Text(
-                    'Tu primer gran objetivo: dominar las 100 palabras y frases de más alta '
-                    'frecuencia del inglés. Las irás coleccionando al completar tus lecciones. '
-                    'Al juntarlas, ganas el badge "100 esenciales".',
+                  Text(
+                    l10n.missionMainDescription,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: AppColors.textMuted, height: 1.4),
+                    style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w700, color: AppColors.textMuted, height: 1.4),
                   ),
                   const SizedBox(height: 18),
                   Container(
@@ -156,12 +156,12 @@ class _MissionScreenState extends ConsumerState<MissionScreen> {
                       boxShadow: const [BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 5), blurRadius: 0)]),
                     child: Column(
                       children: [
-                        for (final (emoji, name, n) in _cats)
+                        for (final (emoji, name, n) in _cats(l10n))
                           ListTile(
                             dense: true,
                             leading: Text(emoji, style: const TextStyle(fontSize: 22)),
                             title: Text(name, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800, color: AppColors.text)),
-                            trailing: Text('$n palabras', style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w900, color: AppColors.primary)),
+                            trailing: Text(l10n.missionWordsCount(n), style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w900, color: AppColors.primary)),
                           ),
                       ],
                     ),
@@ -178,7 +178,7 @@ class _MissionScreenState extends ConsumerState<MissionScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.primary, foregroundColor: Colors.white,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))),
-                  child: Text(_loading ? 'PREPARANDO…' : '¡EMPEZAR MI VIAJE! 🚀',
+                  child: Text(_loading ? l10n.missionStartLoading : l10n.missionStartCta,
                       style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 16, letterSpacing: 0.4)),
                 ),
               ),

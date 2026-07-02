@@ -6,6 +6,7 @@ import '../../core/ui/jz_skeleton.dart';
 import '../../data/models/league_models.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
+import '../../l10n/division_names.dart';
 
 /// Pestaña LIGAS. Dos vistas vía segmento superior:
 ///  • "Mi liga": ranking semanal por XP en TU división, con zonas de ascenso
@@ -25,6 +26,7 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return SafeArea(
       bottom: false,
       child: Column(
@@ -32,7 +34,7 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
           Padding(
             padding: const EdgeInsets.fromLTRB(20, 14, 20, 6),
             child: _Segmented(
-              options: const ['Mi liga', 'Tablas'],
+              options: [l10n.leagueTabMyLeague, l10n.leagueTabTables],
               selected: _tab,
               onChanged: (i) => setState(() => _tab = i),
             ),
@@ -55,7 +57,9 @@ class _MyLeagueView extends ConsumerWidget {
       onRefresh: () async => ref.invalidate(leagueProvider),
       child: async.when(
         loading: () => ListView(children: const [JzListSkeleton()]),
-        error: (e, _) => _ErrorBox(onRetry: () => ref.invalidate(leagueProvider), label: 'No se pudo cargar la liga.'),
+        error: (e, _) => _ErrorBox(
+            onRetry: () => ref.invalidate(leagueProvider),
+            label: AppLocalizations.of(context).leagueLoadError),
         data: (lg) => _Board(lg: lg),
       ),
     );
@@ -81,7 +85,7 @@ class _ErrorBox extends StatelessWidget {
           const Icon(Icons.cloud_off_rounded, color: AppColors.textMuted, size: 40),
           const SizedBox(height: 10),
           Text(label, style: const TextStyle(fontWeight: FontWeight.w800, color: AppColors.textMuted)),
-          TextButton(onPressed: onRetry, child: const Text('Reintentar')),
+          TextButton(onPressed: onRetry, child: Text(AppLocalizations.of(context).commonRetry)),
         ]),
       );
 }
@@ -92,6 +96,7 @@ class _Board extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final members = lg.members.where((m) => !m.isBot).toList();
     final n = members.length;
     return ListView(
@@ -115,15 +120,15 @@ class _Board extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Liga ${lg.divisionLabel}',
+                    Text(l10n.leagueTitle(divisionLabel(l10n, lg.division)),
                         style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w900, color: Colors.white)),
                     const SizedBox(height: 2),
                     Text(
                         lg.warmingUp
-                            ? '${lg.players} ${lg.players == 1 ? 'jugador' : 'jugadores'} · arrancando'
+                            ? l10n.leagueWarmingUpSubtitle(lg.players)
                             : lg.movementActive
-                                ? 'Vas #${lg.myRank} esta semana · top ${lg.promote} ascienden'
-                                : 'Vas #${lg.myRank} esta semana',
+                                ? l10n.leagueRankActive(lg.myRank, lg.promote)
+                                : l10n.leagueRankInactive(lg.myRank),
                         style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: Colors.white.withValues(alpha: 0.92))),
                   ],
                 ),
@@ -144,12 +149,11 @@ class _Board extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Tu liga está arrancando',
-                          style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+                      Text(l10n.leagueWarmingUpTitle,
+                          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
                       const SizedBox(height: 2),
                       Text(
-                          'Cuando haya al menos ${lg.minPlayers} jugadores activos, competiréis por ascender. '
-                          'Mientras, suma XP: tu progreso ya cuenta.',
+                          l10n.leagueWarmingUpMessage(lg.minPlayers),
                           style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
                     ],
                   ),
@@ -177,11 +181,11 @@ class _Board extends StatelessWidget {
           ),
           const SizedBox(height: 16),
         ],
-        const Text('Clasificación de la semana',
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+        Text(l10n.leagueWeeklyRankingTitle,
+            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
         const SizedBox(height: 4),
-        const Text('Suma XP (lecciones y práctica) para subir. Cierre cada lunes.',
-            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+        Text(l10n.leagueWeeklyRankingHint,
+            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
         const SizedBox(height: 10),
         Container(
           decoration: BoxDecoration(
@@ -193,9 +197,9 @@ class _Board extends StatelessWidget {
             children: [
               for (var i = 0; i < n; i++) ...[
                 if (lg.movementActive && i == lg.promote)
-                  const _ZoneDivider(label: 'ZONA DE ASCENSO', icon: Icons.arrow_upward_rounded, color: AppColors.success),
+                  _ZoneDivider(label: l10n.leaguePromotionZone, icon: Icons.arrow_upward_rounded, color: AppColors.success),
                 if (lg.movementActive && i == n - lg.demote)
-                  const _ZoneDivider(label: 'ZONA DE DESCENSO', icon: Icons.arrow_downward_rounded, color: AppColors.coral),
+                  _ZoneDivider(label: l10n.leagueDemotionZone, icon: Icons.arrow_downward_rounded, color: AppColors.coral),
                 _Row(
                   rank: members[i].rank,
                   name: members[i].name,
@@ -240,26 +244,37 @@ class _LeaderboardView extends ConsumerStatefulWidget {
   ConsumerState<_LeaderboardView> createState() => _LeaderboardViewState();
 }
 
-class _Metric {
-  const _Metric(this.key, this.label, this.unit, this.windowed);
-  final String key;
-  final String label;
-  final String unit; // sufijo del valor ('' = sin sufijo)
-  final bool windowed; // si admite ventana (racha no)
-}
+// Métrica de leaderboard: clave técnica + si admite ventana (racha no). El label
+// y el sufijo (unit) se resuelven por i18n en tiempo de build.
+const _metricKeys = <(String, bool)>[
+  ('xp', true),
+  ('lessons', true),
+  ('streak', false),
+  ('certificates', true),
+];
+const _windowKeys = ['weekly', 'monthly', 'yearly', 'alltime'];
 
-const _metrics = [
-  _Metric('xp', 'XP', 'XP', true),
-  _Metric('lessons', 'Lecciones', 'lecc.', true),
-  _Metric('streak', 'Racha', 'd', false),
-  _Metric('certificates', 'Certificados', 'cert.', true),
-];
-const _windows = [
-  ['weekly', 'Semanal'],
-  ['monthly', 'Mensual'],
-  ['yearly', 'Anual'],
-  ['alltime', 'Histórico'],
-];
+String _metricLabel(AppLocalizations l10n, String k) => switch (k) {
+      'xp' => l10n.leaderboardMetricXp,
+      'lessons' => l10n.leaderboardMetricLessons,
+      'streak' => l10n.leaderboardMetricStreak,
+      'certificates' => l10n.leaderboardMetricCertificates,
+      _ => k,
+    };
+String _metricUnit(AppLocalizations l10n, String k) => switch (k) {
+      'xp' => l10n.leaderboardMetricXp,
+      'lessons' => l10n.leaderboardUnitLessons,
+      'streak' => l10n.leaderboardUnitDays,
+      'certificates' => l10n.leaderboardUnitCertificates,
+      _ => '',
+    };
+String _windowLabel(AppLocalizations l10n, String k) => switch (k) {
+      'weekly' => l10n.leaderboardWindowWeekly,
+      'monthly' => l10n.leaderboardWindowMonthly,
+      'yearly' => l10n.leaderboardWindowYearly,
+      'alltime' => l10n.leaderboardWindowAlltime,
+      _ => k,
+    };
 
 class _LeaderboardViewState extends ConsumerState<_LeaderboardView> {
   int _metric = 0;
@@ -268,11 +283,13 @@ class _LeaderboardViewState extends ConsumerState<_LeaderboardView> {
 
   @override
   Widget build(BuildContext context) {
-    final metric = _metrics[_metric];
+    final l10n = AppLocalizations.of(context);
+    final metricKey = _metricKeys[_metric].$1;
+    final windowed = _metricKeys[_metric].$2;
     // La racha más larga no es por ventana: se fija a histórico.
-    final windowKey = metric.windowed ? _windows[_window][0] : 'alltime';
+    final windowKey = windowed ? _windowKeys[_window] : 'alltime';
     final scopeKey = _scope == 0 ? 'global' : 'division';
-    final key = (metric: metric.key, window: windowKey, scope: scopeKey);
+    final key = (metric: metricKey, window: windowKey, scope: scopeKey);
     final async = ref.watch(leaderboardProvider(key));
 
     return RefreshIndicator(
@@ -281,23 +298,23 @@ class _LeaderboardViewState extends ConsumerState<_LeaderboardView> {
         padding: const EdgeInsets.fromLTRB(20, 6, 20, 110),
         children: [
           _Segmented(
-            options: [for (final m in _metrics) m.label],
+            options: [for (final m in _metricKeys) _metricLabel(l10n, m.$1)],
             selected: _metric,
             onChanged: (i) => setState(() => _metric = i),
           ),
           const SizedBox(height: 8),
-          if (metric.windowed)
+          if (windowed)
             _Segmented(
-              options: [for (final w in _windows) w[1]],
+              options: [for (final w in _windowKeys) _windowLabel(l10n, w)],
               selected: _window,
               onChanged: (i) => setState(() => _window = i),
               small: true,
             )
           else
-            const _Hint('Racha más larga de todos los tiempos.'),
+            _Hint(l10n.leaderboardStreakHint),
           const SizedBox(height: 8),
           _Segmented(
-            options: const ['Global', 'Mi división'],
+            options: [l10n.leaderboardScopeGlobal, l10n.leaderboardScopeDivision],
             selected: _scope,
             onChanged: (i) => setState(() => _scope = i),
             small: true,
@@ -311,13 +328,13 @@ class _LeaderboardViewState extends ConsumerState<_LeaderboardView> {
                 child: Column(mainAxisSize: MainAxisSize.min, children: [
                   const Icon(Icons.cloud_off_rounded, color: AppColors.textMuted, size: 36),
                   const SizedBox(height: 8),
-                  const Text('No se pudo cargar la tabla.',
-                      style: TextStyle(fontWeight: FontWeight.w800, color: AppColors.textMuted)),
-                  TextButton(onPressed: () => ref.invalidate(leaderboardProvider(key)), child: const Text('Reintentar')),
+                  Text(l10n.leaderboardLoadError,
+                      style: const TextStyle(fontWeight: FontWeight.w800, color: AppColors.textMuted)),
+                  TextButton(onPressed: () => ref.invalidate(leaderboardProvider(key)), child: Text(l10n.commonRetry)),
                 ]),
               ),
             ),
-            data: (lb) => _LeaderboardBody(lb: lb, unit: metric.unit),
+            data: (lb) => _LeaderboardBody(lb: lb, unit: _metricUnit(l10n, metricKey)),
           ),
         ],
       ),
@@ -334,12 +351,13 @@ class _LeaderboardBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     if (lb.entries.isEmpty) {
       return Container(
         padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(color: AppColors.navActiveBg, borderRadius: BorderRadius.circular(18)),
-        child: const Text('Aún no hay datos para esta tabla. ¡Sé el primero en aparecer!',
-            style: TextStyle(fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+        child: Text(l10n.leaderboardEmpty,
+            style: const TextStyle(fontWeight: FontWeight.w700, color: AppColors.textMuted)),
       );
     }
     return Column(
@@ -357,7 +375,7 @@ class _LeaderboardBody extends StatelessWidget {
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
-                    lb.myRank != null ? 'Tu posición: #${lb.myRank} de ${lb.total}' : 'Aún no estás en esta tabla',
+                    lb.myRank != null ? l10n.leaderboardMyPosition(lb.myRank!, lb.total) : l10n.leaderboardNotRanked,
                     style: const TextStyle(fontWeight: FontWeight.w900, color: Colors.white, fontSize: 14)),
               ),
               Text(_val(lb.myValue),
@@ -381,7 +399,7 @@ class _LeaderboardBody extends StatelessWidget {
         ),
         if (lb.total > lb.entries.length) ...[
           const SizedBox(height: 10),
-          Text('Mostrando top ${lb.entries.length} de ${lb.total}',
+          Text(l10n.leaderboardShowingTop(lb.entries.length, lb.total),
               style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
         ],
       ],

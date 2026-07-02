@@ -17,6 +17,7 @@ class StreakScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final stats = ref.watch(homeStatsProvider).value ?? HomeStats.empty;
 
     // Próximo hito no alcanzado (según el récord).
@@ -31,8 +32,8 @@ class StreakScreen extends ConsumerWidget {
         backgroundColor: AppColors.background,
         elevation: 0,
         foregroundColor: AppColors.text,
-        title: const Text('Tu racha',
-            style: TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
+        title: Text(l10n.streakTitle,
+            style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(20, 6, 20, 32),
@@ -64,13 +65,13 @@ class StreakScreen extends ConsumerWidget {
                   Text('${stats.currentStreak}',
                       style: const TextStyle(
                           fontSize: 60, fontWeight: FontWeight.w900, color: Colors.white, height: 1)),
-                  Text(stats.currentStreak == 1 ? 'día de racha' : 'días de racha',
+                  Text(l10n.streakDaysCount(stats.currentStreak),
                       style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w800,
                           color: Colors.white.withValues(alpha: 0.92))),
                   const SizedBox(height: 6),
-                  Text('Récord: ${stats.longestStreak}  ·  Cumple tu meta diaria para sumar',
+                  Text(l10n.streakRecord(stats.longestStreak),
                       style: TextStyle(
                           fontSize: 11.5,
                           fontWeight: FontWeight.w700,
@@ -80,11 +81,11 @@ class StreakScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 22),
 
-            const Text('Hitos',
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900, color: AppColors.text)),
+            Text(l10n.streakMilestonesTitle,
+                style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w900, color: AppColors.text)),
             const SizedBox(height: 4),
-            const Text('Cada hito desbloquea oro de recompensa.',
-                style: TextStyle(
+            Text(l10n.streakMilestonesSubtitle,
+                style: const TextStyle(
                     fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
             const SizedBox(height: 12),
             Container(
@@ -112,11 +113,11 @@ class StreakScreen extends ConsumerWidget {
             const SizedBox(height: 22),
 
             // Congelador de racha.
-            const Text('Congelador de racha',
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900, color: AppColors.text)),
+            Text(l10n.shopFreezeCardTitle,
+                style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w900, color: AppColors.text)),
             const SizedBox(height: 4),
-            const Text('Protege tu racha un día que no puedas practicar.',
-                style: TextStyle(
+            Text(l10n.streakFreezeSubtitle,
+                style: const TextStyle(
                     fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
             const SizedBox(height: 12),
             Container(
@@ -145,11 +146,11 @@ class StreakScreen extends ConsumerWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Tienes ${stats.freezes}',
+                        Text(l10n.streakFreezeCount(stats.freezes),
                             style: const TextStyle(
                                 fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
-                        const Text('Cuesta $_freezeCost oro',
-                            style: TextStyle(
+                        Text(l10n.streakFreezePrice(_freezeCost),
+                            style: const TextStyle(
                                 fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
                       ],
                     ),
@@ -181,6 +182,7 @@ class _MilestoneRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final color = reached ? AppColors.streak : (isNext ? AppColors.primary : AppColors.locked);
     return Container(
       margin: const EdgeInsets.all(4),
@@ -209,13 +211,13 @@ class _MilestoneRow extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('$days días',
+                Text(l10n.onbDaysShort(days),
                     style: const TextStyle(
                         fontSize: 14.5, fontWeight: FontWeight.w900, color: AppColors.text)),
                 Text(
                   reached
-                      ? '¡Conseguido!'
-                      : (isNext ? 'Próximo · vas $current/$days' : 'Bloqueado'),
+                      ? l10n.streakMilestoneReached
+                      : (isNext ? l10n.streakMilestoneNext(current, days) : l10n.streakMilestoneLocked),
                   style: TextStyle(
                       fontSize: 11.5,
                       fontWeight: FontWeight.w700,
@@ -290,6 +292,7 @@ class _FreezeButtonState extends ConsumerState<_FreezeButton> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return ElevatedButton(
       onPressed: (_busy || !widget.canAfford) ? null : _buy,
       style: ElevatedButton.styleFrom(
@@ -303,7 +306,7 @@ class _FreezeButtonState extends ConsumerState<_FreezeButton> {
       child: _busy
           ? const SizedBox(
               width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
-          : const Text('Comprar', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 13)),
+          : Text(l10n.streakFreezeBuy, style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 13)),
     );
   }
 }
