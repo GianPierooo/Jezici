@@ -2,6 +2,42 @@
 
 ---
 
+## i18n — COBERTURA EXTENDIDA (home/mapa · ligas · tienda/racha · perfil) — 2026-07-02 ✅ LIVE
+> La infra i18n ya existía (onboarding+auth+loop). Esta tanda EXTIENDE la cobertura a las
+> superficies más visibles que quedaban en español. ~200 claves nuevas es/en/pt.
+
+**Superficies traducidas al 100% (es/en/pt):**
+- **Home/mapa:** `learn_map_screen` (carga/error/vacío, nodos bloqueados, banners de unidad,
+  cima/certificado, mascota), `learn_top_bar` (a11y de música + notificaciones; la barra de plan
+  es solo niveles/%, técnica → no se traduce), `mission_screen` (appbar, título, descripción,
+  categorías, botón). La barra de navegación inferior es **solo íconos** (nada que traducir);
+  `_sections` queda como clave de analítica (no visible).
+- **Ligas + leaderboards:** `leagues_screen` completo — segmentos (Mi liga/Tablas), cabecera de
+  liga, "arrancando", zonas de ascenso/descenso, "clasificación de la semana"; leaderboards
+  (métricas XP/Lecciones/Racha/Certificados + unidades, ventanas Semanal/Mensual/Anual/Histórico,
+  alcance Global/División, tu posición, estados vacíos/error). **División localizada** con helper
+  `division_names.dart` (como `skill_names.dart`); `_metrics`/`_windows` pasan a claves técnicas +
+  resolución i18n en build.
+- **Tienda + racha:** `tienda_screen` (appbar + tarjetas cofre/vidas/congelador con contadores),
+  `streak_screen` (título, contador con plural, récord, hitos estado/próximo/bloqueado, sección
+  congelador, "Comprar"). Los toasts ya estaban migrados.
+- **Perfil:** `profile_screen` (4 habilidades, alerta de desbalance, stats, plan con fecha/estado,
+  certificados, examen + gate de dominio, "Para ti", cuaderno) y `edit_profile_sheet` (formulario).
+  **Fechas** con `MaterialLocalizations.formatMediumDate/formatMonthYear` (adiós arrays de meses
+  hardcodeados); **plurales** (racha, jugadores, días, habilidades); reutiliza `skillName()` y
+  `planFocus*` (sin duplicar claves).
+
+**Verificación:** `i18n_test.dart` extendido (las superficies nuevas cambian por idioma; plurales/
+placeholders/división por idioma). analyze 0 · test verde · build web OK.
+
+**Diferido (sigue en español, punto de retome — mismo patrón: inventariar → claves ARB es/en/pt →
+migrar → analyze):** Ajustes (cuerpo, salvo el selector de idioma ya migrado), práctica (SRS/débil/
+timed), notificaciones/Matix, inmersión/historias, level_exam, premium, legal (texto sustantivo —
+además requiere abogado), reference, notebook. Distinción intacta: i18n = chrome de la app; el
+CONTENIDO del curso (lecciones/ejercicios en la DB) NO se toca.
+
+---
+
 ## BANCO DE PLACEMENT es→pt (a la par de es→en) — 2026-07-02 ✅ LIVE
 > El placement PRECISO era solo inglés; portugués quedaba sin banco de ubicación. Cerrado.
 > (L/S balance + auditoría de eficacia + audio de es→pt A1–B1 YA estaban hechos, mig 083–085;

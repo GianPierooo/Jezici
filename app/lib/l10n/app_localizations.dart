@@ -2255,6 +2255,305 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'No se pudo cargar la liga.'**
   String get leagueLoadError;
+
+  /// No description provided for @profilePracticeNoWeaknessToday.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Nada que reforzar ahora! Vas al día. 🎉'**
+  String get profilePracticeNoWeaknessToday;
+
+  /// No description provided for @profilePracticeWeaknessTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Refuerzo de debilidades'**
+  String get profilePracticeWeaknessTitle;
+
+  /// No description provided for @profilePracticeStartError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo iniciar la práctica.'**
+  String get profilePracticeStartError;
+
+  /// No description provided for @profileSkillsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Tus 4 habilidades'**
+  String get profileSkillsTitle;
+
+  /// No description provided for @profileSkillsDescription.
+  ///
+  /// In es, this message translates to:
+  /// **'Las lecciones suben tu DOMINIO; el nivel sube al aprobar el examen.'**
+  String get profileSkillsDescription;
+
+  /// No description provided for @profileSkillImbalanceWarning.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu {skillA} va al {pct1}% pero tu {skillB} al {pct2}% → refuerza {skillB}.'**
+  String profileSkillImbalanceWarning(
+    String skillA,
+    int pct1,
+    String skillB,
+    int pct2,
+  );
+
+  /// No description provided for @profileStatStreak.
+  ///
+  /// In es, this message translates to:
+  /// **'RACHA'**
+  String get profileStatStreak;
+
+  /// No description provided for @profileStatXp.
+  ///
+  /// In es, this message translates to:
+  /// **'XP TOTAL'**
+  String get profileStatXp;
+
+  /// No description provided for @profileStatGold.
+  ///
+  /// In es, this message translates to:
+  /// **'ORO'**
+  String get profileStatGold;
+
+  /// No description provided for @profileNoPlan.
+  ///
+  /// In es, this message translates to:
+  /// **'Crea tu cuenta en el onboarding para ver tu plan.'**
+  String get profileNoPlan;
+
+  /// No description provided for @profileCertificatesTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Certificados'**
+  String get profileCertificatesTitle;
+
+  /// No description provided for @profileAchievementsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Logros'**
+  String get profileAchievementsTitle;
+
+  /// No description provided for @profileNoAchievements.
+  ///
+  /// In es, this message translates to:
+  /// **'Completa lecciones para ganar logros.'**
+  String get profileNoAchievements;
+
+  /// No description provided for @profileExamCardTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Examen de nivel {level}'**
+  String profileExamCardTitle(String level);
+
+  /// No description provided for @profileExamCardTitleLocked.
+  ///
+  /// In es, this message translates to:
+  /// **'Examen de nivel {level} (bloqueado)'**
+  String profileExamCardTitleLocked(String level);
+
+  /// No description provided for @profileExamReady.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Listo para certificar! Toca para empezar.'**
+  String get profileExamReady;
+
+  /// No description provided for @profileExamUnitsRequired.
+  ///
+  /// In es, this message translates to:
+  /// **'Completa las unidades: {done}/{total} checkpoints'**
+  String profileExamUnitsRequired(int done, int total);
+
+  /// No description provided for @profileExamMasteryRequired.
+  ///
+  /// In es, this message translates to:
+  /// **'Lleva una habilidad al 80% de dominio para abrir su examen'**
+  String get profileExamMasteryRequired;
+
+  /// No description provided for @profileCertificateCardTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Certificado {level}'**
+  String profileCertificateCardTitle(String level);
+
+  /// No description provided for @profileCertificateInfo.
+  ///
+  /// In es, this message translates to:
+  /// **'Folio {folio} · cód. {code}'**
+  String profileCertificateInfo(String folio, String code);
+
+  /// No description provided for @profileForYouTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Para ti'**
+  String get profileForYouTitle;
+
+  /// No description provided for @profileWeakestSkill.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu punto débil ahora: {skill} ({level}). Unos minutos lo equilibran.'**
+  String profileWeakestSkill(String skill, String level);
+
+  /// No description provided for @profilePracticeWeaknessButton.
+  ///
+  /// In es, this message translates to:
+  /// **'PRACTICAR {skill}'**
+  String profilePracticeWeaknessButton(String skill);
+
+  /// No description provided for @profileSkillWeakestBadge.
+  ///
+  /// In es, this message translates to:
+  /// **'más débil'**
+  String get profileSkillWeakestBadge;
+
+  /// No description provided for @profileSkillExamReadyBadge.
+  ///
+  /// In es, this message translates to:
+  /// **'examen listo'**
+  String get profileSkillExamReadyBadge;
+
+  /// No description provided for @profileMasteryGateCertified.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya certificaste {level} 🎓'**
+  String profileMasteryGateCertified(String level);
+
+  /// No description provided for @profileMasteryGateUnlocked.
+  ///
+  /// In es, this message translates to:
+  /// **'Examen {level} desbloqueado 🔓 ({count, plural, =1{1 habilidad} other{{count} habilidades}})'**
+  String profileMasteryGateUnlocked(String level, int count);
+
+  /// No description provided for @profileMasteryGateLocked.
+  ///
+  /// In es, this message translates to:
+  /// **'Dominio {level}: lleva una habilidad al 80% para abrir su examen (vas {pct}%)'**
+  String profileMasteryGateLocked(String level, int pct);
+
+  /// No description provided for @profilePlanTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Mi plan'**
+  String get profilePlanTitle;
+
+  /// No description provided for @profilePlanOnTrack.
+  ///
+  /// In es, this message translates to:
+  /// **'Justo en tu plan'**
+  String get profilePlanOnTrack;
+
+  /// No description provided for @profilePlanAhead.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =1{Vas 1 día adelante 🎉} other{Vas {n} días adelante 🎉}}'**
+  String profilePlanAhead(int n);
+
+  /// No description provided for @profilePlanBehind.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, =1{Vas 1 día atrás} other{Vas {n} días atrás}}'**
+  String profilePlanBehind(int n);
+
+  /// No description provided for @profilePlanProgress.
+  ///
+  /// In es, this message translates to:
+  /// **'Avance a {level}'**
+  String profilePlanProgress(String level);
+
+  /// No description provided for @profilePlanEstimatedCompletion.
+  ///
+  /// In es, this message translates to:
+  /// **'Llegas aprox. el {date}'**
+  String profilePlanEstimatedCompletion(String date);
+
+  /// No description provided for @profilePlanIntensity.
+  ///
+  /// In es, this message translates to:
+  /// **'{mins} min/día · {days} días/semana'**
+  String profilePlanIntensity(int mins, int days);
+
+  /// No description provided for @profileNamePlaceholder.
+  ///
+  /// In es, this message translates to:
+  /// **'Pon tu nombre'**
+  String get profileNamePlaceholder;
+
+  /// No description provided for @profileMemberSince.
+  ///
+  /// In es, this message translates to:
+  /// **'Miembro desde {date}'**
+  String profileMemberSince(String date);
+
+  /// No description provided for @profileNotebookTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuaderno de datos'**
+  String get profileNotebookTitle;
+
+  /// No description provided for @profileNotebookSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Tips y trucos que has aprendido'**
+  String get profileNotebookSubtitle;
+
+  /// No description provided for @profileEditNameError.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe tu nombre.'**
+  String get profileEditNameError;
+
+  /// No description provided for @profileEditSaveError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo guardar. Inténtalo de nuevo.'**
+  String get profileEditSaveError;
+
+  /// No description provided for @profileEditNameHint.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Cómo te llamas?'**
+  String get profileEditNameHint;
+
+  /// No description provided for @profileEditAvatarColor.
+  ///
+  /// In es, this message translates to:
+  /// **'Color de tu avatar'**
+  String get profileEditAvatarColor;
+
+  /// No description provided for @profileEditCountry.
+  ///
+  /// In es, this message translates to:
+  /// **'País'**
+  String get profileEditCountry;
+
+  /// No description provided for @profileEditBio.
+  ///
+  /// In es, this message translates to:
+  /// **'Una meta o algo sobre ti (opcional)'**
+  String get profileEditBio;
+
+  /// No description provided for @profileEditBioHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Ej.: Quiero viajar por Brasil este año'**
+  String get profileEditBioHint;
+
+  /// No description provided for @profileEditSave.
+  ///
+  /// In es, this message translates to:
+  /// **'GUARDAR'**
+  String get profileEditSave;
+
+  /// No description provided for @profileEditSaving.
+  ///
+  /// In es, this message translates to:
+  /// **'GUARDANDO…'**
+  String get profileEditSaving;
+
+  /// No description provided for @profileLevelPill.
+  ///
+  /// In es, this message translates to:
+  /// **'Nivel {level}'**
+  String profileLevelPill(String level);
 }
 
 class _AppLocalizationsDelegate

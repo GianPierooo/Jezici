@@ -1318,4 +1318,214 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get leagueLoadError => 'Não foi possível carregar a liga.';
+
+  @override
+  String get profilePracticeNoWeaknessToday =>
+      'Nada para reforçar agora! Você está em dia. 🎉';
+
+  @override
+  String get profilePracticeWeaknessTitle => 'Reforço de pontos fracos';
+
+  @override
+  String get profilePracticeStartError => 'Não foi possível iniciar a prática.';
+
+  @override
+  String get profileSkillsTitle => 'Suas 4 habilidades';
+
+  @override
+  String get profileSkillsDescription =>
+      'As lições aumentam seu DOMÍNIO; o nível sobe ao passar no exame.';
+
+  @override
+  String profileSkillImbalanceWarning(
+    String skillA,
+    int pct1,
+    String skillB,
+    int pct2,
+  ) {
+    return 'Sua $skillA está em $pct1% mas sua $skillB em $pct2% → reforce $skillB.';
+  }
+
+  @override
+  String get profileStatStreak => 'OFENSIVA';
+
+  @override
+  String get profileStatXp => 'XP TOTAL';
+
+  @override
+  String get profileStatGold => 'OURO';
+
+  @override
+  String get profileNoPlan =>
+      'Crie sua conta no onboarding para ver seu plano.';
+
+  @override
+  String get profileCertificatesTitle => 'Certificados';
+
+  @override
+  String get profileAchievementsTitle => 'Conquistas';
+
+  @override
+  String get profileNoAchievements => 'Complete lições para ganhar conquistas.';
+
+  @override
+  String profileExamCardTitle(String level) {
+    return 'Exame de nível $level';
+  }
+
+  @override
+  String profileExamCardTitleLocked(String level) {
+    return 'Exame de nível $level (bloqueado)';
+  }
+
+  @override
+  String get profileExamReady => 'Pronto para certificar! Toque para começar.';
+
+  @override
+  String profileExamUnitsRequired(int done, int total) {
+    return 'Complete as unidades: $done/$total checkpoints';
+  }
+
+  @override
+  String get profileExamMasteryRequired =>
+      'Leve uma habilidade a 80% de domínio para abrir o exame';
+
+  @override
+  String profileCertificateCardTitle(String level) {
+    return 'Certificado $level';
+  }
+
+  @override
+  String profileCertificateInfo(String folio, String code) {
+    return 'Folha $folio · cód. $code';
+  }
+
+  @override
+  String get profileForYouTitle => 'Para você';
+
+  @override
+  String profileWeakestSkill(String skill, String level) {
+    return 'Seu ponto fraco agora: $skill ($level). Uns minutos equilibram.';
+  }
+
+  @override
+  String profilePracticeWeaknessButton(String skill) {
+    return 'PRATICAR $skill';
+  }
+
+  @override
+  String get profileSkillWeakestBadge => 'mais fraca';
+
+  @override
+  String get profileSkillExamReadyBadge => 'exame pronto';
+
+  @override
+  String profileMasteryGateCertified(String level) {
+    return 'Você já certificou $level 🎓';
+  }
+
+  @override
+  String profileMasteryGateUnlocked(String level, int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count habilidades',
+      one: '1 habilidade',
+    );
+    return 'Exame $level desbloqueado 🔓 ($_temp0)';
+  }
+
+  @override
+  String profileMasteryGateLocked(String level, int pct) {
+    return 'Domínio $level: leve uma habilidade a 80% para abrir o exame (você está em $pct%)';
+  }
+
+  @override
+  String get profilePlanTitle => 'Meu plano';
+
+  @override
+  String get profilePlanOnTrack => 'Exatamente no seu plano';
+
+  @override
+  String profilePlanAhead(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'Você está $n dias adiantado 🎉',
+      one: 'Você está 1 dia adiantado 🎉',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String profilePlanBehind(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'Você está $n dias atrasado',
+      one: 'Você está 1 dia atrasado',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String profilePlanProgress(String level) {
+    return 'Progresso até $level';
+  }
+
+  @override
+  String profilePlanEstimatedCompletion(String date) {
+    return 'Você chega por volta de $date';
+  }
+
+  @override
+  String profilePlanIntensity(int mins, int days) {
+    return '$mins min/dia · $days dias/semana';
+  }
+
+  @override
+  String get profileNamePlaceholder => 'Coloque seu nome';
+
+  @override
+  String profileMemberSince(String date) {
+    return 'Membro desde $date';
+  }
+
+  @override
+  String get profileNotebookTitle => 'Caderno de dados';
+
+  @override
+  String get profileNotebookSubtitle => 'Dicas e truques que você aprendeu';
+
+  @override
+  String get profileEditNameError => 'Escreva seu nome.';
+
+  @override
+  String get profileEditSaveError => 'Não foi possível salvar. Tente de novo.';
+
+  @override
+  String get profileEditNameHint => 'Como você se chama?';
+
+  @override
+  String get profileEditAvatarColor => 'Cor do seu avatar';
+
+  @override
+  String get profileEditCountry => 'País';
+
+  @override
+  String get profileEditBio => 'Uma meta ou algo sobre você (opcional)';
+
+  @override
+  String get profileEditBioHint => 'Ex.: Quero viajar pelo Brasil este ano';
+
+  @override
+  String get profileEditSave => 'SALVAR';
+
+  @override
+  String get profileEditSaving => 'SALVANDO…';
+
+  @override
+  String profileLevelPill(String level) {
+    return 'Nível $level';
+  }
 }

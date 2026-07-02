@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../core/constants/skills.dart';
 import '../../core/plan/estimation.dart';
 import '../../core/theme/app_colors.dart';
+import '../../l10n/app_localizations.dart';
+import '../../l10n/skill_names.dart';
 import '../../data/models/achievement_models.dart';
 import '../../data/models/level_exam_models.dart';
 import '../../data/models/profile_models.dart';
@@ -25,6 +26,7 @@ import 'widgets/skill_radar.dart';
 
 /// Inicia una práctica de refuerzo de debilidades y abre el reproductor.
 Future<void> _practiceWeakness(BuildContext context, WidgetRef ref) async {
+  final l10n = AppLocalizations.of(context);
   try {
     final session =
         await ref.read(progressRepositoryProvider).startPractice('weakness');
@@ -32,12 +34,12 @@ Future<void> _practiceWeakness(BuildContext context, WidgetRef ref) async {
     if (session.items.isEmpty) {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
-        ..showSnackBar(const SnackBar(content: Text('¡Nada que reforzar ahora! Vas al día. 🎉')));
+        ..showSnackBar(SnackBar(content: Text(l10n.profilePracticeNoWeaknessToday)));
       return;
     }
     await Navigator.of(context).push(MaterialPageRoute(
       builder: (_) => PracticePlayerScreen(
-          mode: 'weakness', title: 'Refuerzo de debilidades', items: session.items),
+          mode: 'weakness', title: l10n.profilePracticeWeaknessTitle, items: session.items),
     ));
     ref.invalidate(practiceStatusProvider);
     ref.invalidate(skillsProvider);
@@ -45,7 +47,7 @@ Future<void> _practiceWeakness(BuildContext context, WidgetRef ref) async {
   } catch (_) {
     if (context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('No se pudo iniciar la práctica.')));
+          SnackBar(content: Text(l10n.profilePracticeStartError)));
     }
   }
 }
@@ -56,8 +58,6 @@ class ProfileScreen extends ConsumerWidget {
   const ProfileScreen({super.key});
 
   static const _order = ['reading', 'listening', 'writing', 'speaking'];
-  // Etiquetas en español, alineadas con el resto de la app (kSkillEs).
-  static const _labels = kSkillEs;
   static const _icons = {
     'reading': Icons.menu_book_rounded,
     'listening': Icons.headphones_rounded,
@@ -66,6 +66,7 @@ class ProfileScreen extends ConsumerWidget {
   };
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final stats = ref.watch(homeStatsProvider).value ?? HomeStats.empty;
     final profile = ref.watch(profileProvider).value ?? ProfileInfo.empty;
     final skillsList = ref.watch(skillsProvider).value ?? const <SkillLevel>[];
@@ -153,13 +154,13 @@ class ProfileScreen extends ConsumerWidget {
             const SizedBox(height: 22),
 
             // Panel de 4 habilidades.
-            const Text('Tus 4 habilidades',
-                style: TextStyle(
+            Text(l10n.profileSkillsTitle,
+                style: const TextStyle(
                     fontSize: 17, fontWeight: FontWeight.w900, color: AppColors.text)),
             const SizedBox(height: 4),
-            const Text(
-              'Las lecciones suben tu DOMINIO; el nivel sube al aprobar el examen.',
-              style: TextStyle(
+            Text(
+              l10n.profileSkillsDescription,
+              style: const TextStyle(
                   fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted),
             ),
             if (mastery != null) ...[
@@ -223,8 +224,12 @@ class ProfileScreen extends ConsumerWidget {
                               const SizedBox(width: 10),
                               Expanded(
                                 child: Text(
-                                  'Tu ${kSkillEs[strong.skill]} va al ${(strong.masteryPct * 100).round()}% pero tu '
-                                  '${kSkillEs[weak.skill]} al ${(weak.masteryPct * 100).round()}% → refuerza ${kSkillEs[weak.skill]}.',
+                                  l10n.profileSkillImbalanceWarning(
+                                    skillName(l10n, strong.skill),
+                                    (strong.masteryPct * 100).round(),
+                                    skillName(l10n, weak.skill),
+                                    (weak.masteryPct * 100).round(),
+                                  ),
                                   style: const TextStyle(
                                       fontSize: 12.5, fontWeight: FontWeight.w800, color: AppColors.text),
                                 ),
@@ -246,7 +251,7 @@ class ProfileScreen extends ConsumerWidget {
                 _StatCard(
                     icon: Icons.local_fire_department_rounded,
                     value: '${stats.currentStreak}',
-                    label: 'RACHA',
+                    label: l10n.profileStatStreak,
                     color: AppColors.streak,
                     onTap: () => Navigator.of(context).push(
                         MaterialPageRoute(builder: (_) => const StreakScreen()))),
@@ -254,13 +259,13 @@ class ProfileScreen extends ConsumerWidget {
                 _StatCard(
                     icon: Icons.bolt_rounded,
                     value: '${stats.xpTotal}',
-                    label: 'XP TOTAL',
+                    label: l10n.profileStatXp,
                     color: AppColors.primary),
                 const SizedBox(width: 12),
                 _StatCard(
                     icon: Icons.monetization_on_rounded,
                     value: '${stats.gold}',
-                    label: 'ORO',
+                    label: l10n.profileStatGold,
                     color: AppColors.goldDark),
               ],
             ),
@@ -281,13 +286,13 @@ class ProfileScreen extends ConsumerWidget {
                   color: AppColors.navActiveBg,
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: const Row(
+                child: Row(
                   children: [
-                    Icon(Icons.flag_rounded, color: AppColors.primary, size: 24),
-                    SizedBox(width: 12),
+                    const Icon(Icons.flag_rounded, color: AppColors.primary, size: 24),
+                    const SizedBox(width: 12),
                     Expanded(
-                      child: Text('Crea tu cuenta en el onboarding para ver tu plan.',
-                          style: TextStyle(
+                      child: Text(l10n.profileNoPlan,
+                          style: const TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w800,
                               color: AppColors.primary)),
@@ -303,8 +308,8 @@ class ProfileScreen extends ConsumerWidget {
 
             // Certificados de nivel (paso Examen de nivel).
             if (certs.isNotEmpty) ...[
-              const Text('Certificados',
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900, color: AppColors.text)),
+              Text(l10n.profileCertificatesTitle,
+                  style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w900, color: AppColors.text)),
               const SizedBox(height: 10),
               for (final c in certs) _CertCard(cert: c),
               const SizedBox(height: 22),
@@ -313,8 +318,8 @@ class ProfileScreen extends ConsumerWidget {
             // Logros / badges.
             Row(
               children: [
-                const Text('Logros',
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900, color: AppColors.text)),
+                Text(l10n.profileAchievementsTitle,
+                    style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w900, color: AppColors.text)),
                 const Spacer(),
                 Text('${achievements.where((a) => a.unlocked).length}/${achievements.length}',
                     style: const TextStyle(
@@ -323,7 +328,7 @@ class ProfileScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 10),
             if (achievements.isEmpty)
-              const _EmptyHint(text: 'Completa lecciones para ganar logros.')
+              _EmptyHint(text: l10n.profileNoAchievements)
             else
               GridView.count(
                 crossAxisCount: 4,
@@ -347,6 +352,7 @@ class _BadgeTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final on = a.unlocked;
     return GestureDetector(
       onTap: () => showDialog<void>(
@@ -359,7 +365,7 @@ class _BadgeTile extends StatelessWidget {
           ]),
           content: Text(on ? a.description : '🔒 ${a.hint}'),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cerrar')),
+            TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.commonClose)),
           ],
         ),
       ),
@@ -404,6 +410,7 @@ class _LevelExamCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final unlocked = exam.unlocked;
     return GestureDetector(
       onTap: unlocked
@@ -431,17 +438,17 @@ class _LevelExamCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(unlocked ? 'Examen de nivel ${exam.level}' : 'Examen de nivel ${exam.level} (bloqueado)',
+                  Text(unlocked ? l10n.profileExamCardTitle(exam.level) : l10n.profileExamCardTitleLocked(exam.level),
                       style: TextStyle(
                           fontSize: 15.5, fontWeight: FontWeight.w900,
                           color: unlocked ? Colors.white : AppColors.text)),
                   const SizedBox(height: 2),
                   Text(
                     unlocked
-                        ? '¡Listo para certificar! Toca para empezar.'
+                        ? l10n.profileExamReady
                         : (exam.unitsDone < exam.unitsTotal
-                            ? 'Completa las unidades: ${exam.unitsDone}/${exam.unitsTotal} checkpoints'
-                            : 'Lleva una habilidad al 80% de dominio para abrir su examen'),
+                            ? l10n.profileExamUnitsRequired(exam.unitsDone, exam.unitsTotal)
+                            : l10n.profileExamMasteryRequired),
                     style: TextStyle(
                         fontSize: 12.5, fontWeight: FontWeight.w700,
                         color: unlocked ? Colors.white.withValues(alpha: 0.92) : AppColors.textMuted),
@@ -464,6 +471,7 @@ class _CertCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return GestureDetector(
       onTap: () => Navigator.of(context).push(MaterialPageRoute(
           builder: (_) => CertificateScreen(cert: cert, celebrate: false))),
@@ -483,10 +491,10 @@ class _CertCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Certificado ${cert.cefrLevel}',
+                Text(l10n.profileCertificateCardTitle(cert.cefrLevel),
                     style: const TextStyle(
                         fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
-                Text('Folio ${cert.folio} · cód. ${cert.verificationCode}',
+                Text(l10n.profileCertificateInfo(cert.folio, cert.verificationCode),
                     style: const TextStyle(
                         fontSize: 11, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
               ],
@@ -524,18 +532,20 @@ class _ForYouCard extends StatelessWidget {
   final SkillLevel? weak;
   final VoidCallback onPracticeWeak;
 
-  static const _focus = {
-    'Trabajo': '💼 Inglés para el trabajo: reuniones, correos y entrevistas.',
-    'Viajes': '✈️ Inglés para viajar: aeropuerto, hotel, direcciones y restaurantes.',
-    'Examen': '🎓 Rumbo a tu examen: simulacros y las 4 habilidades.',
-    'Estudios': '📚 Inglés para estudiar: comprensión, escritura y vocabulario.',
-    'Mudanza': '🏠 Inglés para tu mudanza: trámites, vivienda y vida diaria.',
-    'Placer': '🎬 Inglés para disfrutar: series, música y conversación.',
-  };
+  String? _focusText(AppLocalizations l10n, String? motive) => switch (motive) {
+        'Trabajo' => l10n.planFocusWork,
+        'Viajes' => l10n.planFocusTravel,
+        'Examen' => l10n.planFocusExam,
+        'Estudios' => l10n.planFocusStudies,
+        'Mudanza' => l10n.planFocusRelocation,
+        'Placer' => l10n.planFocusCulture,
+        _ => null,
+      };
 
   @override
   Widget build(BuildContext context) {
-    final focus = _focus[motive];
+    final l10n = AppLocalizations.of(context);
+    final focus = _focusText(l10n, motive);
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
@@ -549,12 +559,12 @@ class _ForYouCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Row(
+          Row(
             children: [
-              Icon(Icons.auto_awesome_rounded, color: AppColors.primary, size: 20),
-              SizedBox(width: 8),
-              Text('Para ti',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+              const Icon(Icons.auto_awesome_rounded, color: AppColors.primary, size: 20),
+              const SizedBox(width: 8),
+              Text(l10n.profileForYouTitle,
+                  style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
             ],
           ),
           if (focus != null) ...[
@@ -564,8 +574,7 @@ class _ForYouCard extends StatelessWidget {
           ],
           if (weak != null) ...[
             const SizedBox(height: 12),
-            Text('Tu punto débil ahora: ${kSkillEs[weak!.skill] ?? weak!.skill} (${weak!.cefrLevel}). '
-                'Unos minutos lo equilibran.',
+            Text(l10n.profileWeakestSkill(skillName(l10n, weak!.skill), weak!.cefrLevel),
                 style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
             const SizedBox(height: 12),
             SizedBox(
@@ -577,7 +586,7 @@ class _ForYouCard extends StatelessWidget {
                   backgroundColor: AppColors.primary, foregroundColor: Colors.white,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13)),
                 ),
-                child: Text('PRACTICAR ${(kSkillEs[weak!.skill] ?? weak!.skill).toUpperCase()}',
+                child: Text(l10n.profilePracticeWeaknessButton(skillName(l10n, weak!.skill).toUpperCase()),
                     style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 13.5, letterSpacing: 0.4)),
               ),
             ),
@@ -596,7 +605,8 @@ class _SkillRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final label = ProfileScreen._labels[skill.skill] ?? skill.skill;
+    final l10n = AppLocalizations.of(context);
+    final label = skillName(l10n, skill.skill);
     // Barra = DOMINIO del nivel en curso (modelo D6); si aún no hay dato, 0.
     final barValue = mastery?.masteryPct ?? 0.0;
     final pct = (barValue * 100).round();
@@ -632,8 +642,8 @@ class _SkillRow extends StatelessWidget {
                         color: AppColors.coral.withValues(alpha: 0.16),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: const Text('más débil',
-                          style: TextStyle(
+                      child: Text(l10n.profileSkillWeakestBadge,
+                          style: const TextStyle(
                               fontSize: 10,
                               fontWeight: FontWeight.w900,
                               color: AppColors.coral)),
@@ -647,8 +657,8 @@ class _SkillRow extends StatelessWidget {
                         color: AppColors.success.withValues(alpha: 0.16),
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: const Text('examen listo',
-                          style: TextStyle(
+                      child: Text(l10n.profileSkillExamReadyBadge,
+                          style: const TextStyle(
                               fontSize: 10, fontWeight: FontWeight.w900, color: AppColors.successDark)),
                     ),
                   ],
@@ -694,6 +704,7 @@ class _MasteryGate extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final unlocked = mastery.examUnlocked;
     final certified = mastery.examHasCertificate;
     // v2: el desbloqueo es por habilidad ≥80% (no promedio). Mostramos avance de
@@ -707,10 +718,10 @@ class _MasteryGate extends StatelessWidget {
         ? AppColors.success
         : (unlocked ? AppColors.success : AppColors.primary);
     final label = certified
-        ? 'Ya certificaste ${mastery.workingLevel} 🎓'
+        ? l10n.profileMasteryGateCertified(mastery.workingLevel)
         : (unlocked
-            ? 'Examen ${mastery.workingLevel} desbloqueado 🔓 ($ready ${ready == 1 ? 'habilidad lista' : 'habilidades listas'})'
-            : 'Dominio ${mastery.workingLevel}: lleva una habilidad al 80% para abrir su examen (vas ${(maxPct * 100).round()}%)');
+            ? l10n.profileMasteryGateUnlocked(mastery.workingLevel, ready)
+            : l10n.profileMasteryGateLocked(mastery.workingLevel, (maxPct * 100).round()));
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 11),
       decoration: BoxDecoration(
@@ -759,14 +770,9 @@ class _PlanCard extends StatelessWidget {
   final UserPlan plan;
   final PlanTracking? tracking;
 
-  static const _months = [
-    'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-    'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
-  ];
-  String _fmt(DateTime d) => '${d.day} de ${_months[d.month - 1]} de ${d.year}';
-
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final pct =
         (planProgress(currentLevel: plan.currentLevel, goalLevel: plan.goalLevel) * 100)
             .round();
@@ -787,8 +793,8 @@ class _PlanCard extends StatelessWidget {
             children: [
               const Icon(Icons.flag_rounded, color: AppColors.primary, size: 22),
               const SizedBox(width: 8),
-              const Text('Mi plan',
-                  style: TextStyle(
+              Text(l10n.profilePlanTitle,
+                  style: const TextStyle(
                       fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
               const Spacer(),
               Text('${plan.currentLevel} → ${plan.goalLevel}',
@@ -804,9 +810,9 @@ class _PlanCard extends StatelessWidget {
               final a = tracking!.aheadBehind;
               final c = a >= 0 ? AppColors.success : AppColors.coral;
               final txt = a == 0
-                  ? 'Justo en tu plan'
-                  : (a > 0 ? 'Vas $a ${a == 1 ? 'día' : 'días'} adelante 🎉'
-                           : 'Vas ${-a} ${-a == 1 ? 'día' : 'días'} atrás');
+                  ? l10n.profilePlanOnTrack
+                  : (a > 0 ? l10n.profilePlanAhead(a)
+                           : l10n.profilePlanBehind(-a));
               return Container(
                 padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                 decoration: BoxDecoration(
@@ -820,7 +826,7 @@ class _PlanCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Avance a ${plan.goalLevel}',
+              Text(l10n.profilePlanProgress(plan.goalLevel),
                   style: const TextStyle(
                       fontSize: 12.5, fontWeight: FontWeight.w800, color: AppColors.textMuted)),
               Text('$pct%',
@@ -834,12 +840,13 @@ class _PlanCard extends StatelessWidget {
           if (plan.estimatedCompletion != null)
             _PlanRow(
                 icon: Icons.event_rounded,
-                text: 'Llegas aprox. el ${_fmt(plan.estimatedCompletion!)}'),
+                text: l10n.profilePlanEstimatedCompletion(
+                    MaterialLocalizations.of(context).formatMediumDate(plan.estimatedCompletion!))),
           if (plan.dailyMinutes != null && plan.daysPerWeek != null) ...[
             const SizedBox(height: 6),
             _PlanRow(
                 icon: Icons.bolt_rounded,
-                text: '${plan.dailyMinutes} min/día · ${plan.daysPerWeek} días/semana'),
+                text: l10n.profilePlanIntensity(plan.dailyMinutes!, plan.daysPerWeek!)),
           ],
         ],
       ),
@@ -933,8 +940,10 @@ class _ProfileHero extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final flag = countryFlag(profile.country);
     final since = profile.memberSince;
+    final sinceDate = since == null ? null : DateTime.tryParse(since);
     final hasName = !profile.needsName && (profile.name?.isNotEmpty ?? false);
     return TweenAnimationBuilder<double>(
       tween: Tween(begin: 0, end: 1),
@@ -968,7 +977,7 @@ class _ProfileHero extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      hasName ? profile.name! : 'Pon tu nombre',
+                      hasName ? profile.name! : l10n.profileNamePlaceholder,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
@@ -977,7 +986,7 @@ class _ProfileHero extends StatelessWidget {
                     const SizedBox(height: 4),
                     Row(
                       children: [
-                        _Pill(text: 'Nivel $cefr'),
+                        _Pill(text: l10n.profileLevelPill(cefr)),
                         const SizedBox(width: 6),
                         _Pill(text: '$xp XP'),
                         if (flag != null) ...[
@@ -986,9 +995,11 @@ class _ProfileHero extends StatelessWidget {
                         ],
                       ],
                     ),
-                    if (since != null) ...[
+                    if (sinceDate != null) ...[
                       const SizedBox(height: 6),
-                      Text('Miembro desde ${_pretty(since)}',
+                      Text(
+                          l10n.profileMemberSince(
+                              MaterialLocalizations.of(context).formatMonthYear(sinceDate)),
                           style: TextStyle(
                               fontSize: 11.5,
                               fontWeight: FontWeight.w700,
@@ -1004,17 +1015,6 @@ class _ProfileHero extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  static String _pretty(String ymd) {
-    const months = [
-      'ene', 'feb', 'mar', 'abr', 'may', 'jun',
-      'jul', 'ago', 'sep', 'oct', 'nov', 'dic'
-    ];
-    final p = ymd.split('-');
-    if (p.length != 3) return ymd;
-    final m = int.tryParse(p[1]) ?? 1;
-    return '${months[(m - 1).clamp(0, 11)]}. ${p[0]}';
   }
 }
 
@@ -1042,6 +1042,7 @@ class _NotebookEntry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -1063,15 +1064,15 @@ class _NotebookEntry extends StatelessWidget {
               child: const Icon(Icons.auto_stories_rounded, color: AppColors.primary, size: 21),
             ),
             const SizedBox(width: 12),
-            const Expanded(
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Cuaderno de datos',
-                      style: TextStyle(
+                  Text(l10n.profileNotebookTitle,
+                      style: const TextStyle(
                           fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
-                  Text('Tips y trucos que has aprendido',
-                      style: TextStyle(
+                  Text(l10n.profileNotebookSubtitle,
+                      style: const TextStyle(
                           fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
                 ],
               ),

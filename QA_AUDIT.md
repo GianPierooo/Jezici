@@ -32,7 +32,7 @@ Fixes aplicados en misiones posteriores (todos live, cliente real, CI verde):
 | Ítem | Estado | Cómo |
 |---|---|---|
 | **P0-1** Congelador de racha | ✅ **CERRADO** | `mig 090`: `jz_register_activity` consume freeze y preserva la racha (verify_streak_freeze.py 7/7). |
-| **P1-1/P1-2** Idioma cosmético + strings ES | ✅ **CERRADO** | i18n real es/en/pt (flutter_localizations+gen-l10n); onboarding+auth+loop 100% traducidos; selector en Ajustes cambia la UI al instante. |
+| **P1-1/P1-2** Idioma cosmético + strings ES | ✅ **CERRADO + cobertura extendida** | i18n real es/en/pt (flutter_localizations+gen-l10n); selector en Ajustes cambia la UI al instante. Traducidos: onboarding+auth+loop **+ home/mapa + ligas/leaderboards + tienda/racha + perfil** (2026-07-02). Diferido: Ajustes(cuerpo)/práctica/notificaciones/inmersión/level_exam/premium/legal/reference/notebook. |
 | **P1-3** Misión sin recompensa/aclaración | ✅ **CERRADO** | `mig 091`: bono de bienvenida one-time (25 XP + 25 oro) + diálogo de confirmación "¡Tu viaje ha comenzado!" (no toca racha/meta). verify_mission_reward.py 4/4. |
 | **P1-4** Accesibilidad (Semantics) | ⏸️ **DIFERIDO** | Requiere pruebas con lector de pantalla en device (Gian). Añadido Semantics a la meta diaria; barrido amplio pendiente. |
 | **P2-1** Feedback de oro | ✅ **CERRADO** | Toasts enriquecidos "ganaste/gastaste X, te quedan Y" (cofre/vidas/freeze), localizados; las RPC ya devuelven `gold`. |

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../core/theme/app_colors.dart';
+import '../l10n/app_localizations.dart';
 import '../data/models/profile_models.dart';
 import '../data/providers.dart';
 import 'app_avatar.dart';
@@ -44,9 +45,10 @@ class _EditProfileSheetState extends ConsumerState<_EditProfileSheet> {
   }
 
   Future<void> _save() async {
+    final l10n = AppLocalizations.of(context);
     final name = _name.text.trim();
     if (name.isEmpty) {
-      setState(() => _error = 'Escribe tu nombre.');
+      setState(() => _error = l10n.profileEditNameError);
       return;
     }
     setState(() {
@@ -67,7 +69,7 @@ class _EditProfileSheetState extends ConsumerState<_EditProfileSheet> {
       if (mounted) {
         setState(() {
           _saving = false;
-          _error = 'No se pudo guardar. Inténtalo de nuevo.';
+          _error = l10n.profileEditSaveError;
         });
       }
     }
@@ -75,6 +77,7 @@ class _EditProfileSheetState extends ConsumerState<_EditProfileSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final initial = _name.text.trim().isEmpty
         ? '🦜'
         : _name.text.trim().characters.first.toUpperCase();
@@ -105,19 +108,19 @@ class _EditProfileSheetState extends ConsumerState<_EditProfileSheet> {
               const SizedBox(height: 18),
               Center(child: AppAvatar(initial: initial, colorHex: _color, size: 84)),
               const SizedBox(height: 18),
-              const Text('Tu nombre',
-                  style: TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
+              Text(l10n.authFieldName,
+                  style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
               const SizedBox(height: 8),
               TextField(
                 controller: _name,
                 textCapitalization: TextCapitalization.words,
                 onChanged: (_) => setState(() {}),
                 style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-                decoration: _dec('¿Cómo te llamas?'),
+                decoration: _dec(l10n.profileEditNameHint),
               ),
               const SizedBox(height: 16),
-              const Text('Color de tu avatar',
-                  style: TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
+              Text(l10n.profileEditAvatarColor,
+                  style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
               const SizedBox(height: 10),
               Wrap(
                 spacing: 12,
@@ -132,8 +135,8 @@ class _EditProfileSheetState extends ConsumerState<_EditProfileSheet> {
                 ],
               ),
               const SizedBox(height: 16),
-              const Text('País',
-                  style: TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
+              Text(l10n.profileEditCountry,
+                  style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
               const SizedBox(height: 10),
               Wrap(
                 spacing: 8,
@@ -151,15 +154,15 @@ class _EditProfileSheetState extends ConsumerState<_EditProfileSheet> {
                 ],
               ),
               const SizedBox(height: 16),
-              const Text('Una meta o algo sobre ti (opcional)',
-                  style: TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
+              Text(l10n.profileEditBio,
+                  style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
               const SizedBox(height: 8),
               TextField(
                 controller: _bio,
                 maxLength: 160,
                 maxLines: 2,
                 style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
-                decoration: _dec('Ej.: Quiero viajar por Brasil este año'),
+                decoration: _dec(l10n.profileEditBioHint),
               ),
               if (_error != null)
                 Text(_error!,
@@ -167,7 +170,7 @@ class _EditProfileSheetState extends ConsumerState<_EditProfileSheet> {
                         color: AppColors.hearts, fontWeight: FontWeight.w800, fontSize: 12.5)),
               const SizedBox(height: 8),
               PrimaryButton(
-                label: _saving ? 'GUARDANDO…' : 'GUARDAR',
+                label: _saving ? l10n.profileEditSaving : l10n.profileEditSave,
                 expand: true,
                 onPressed: _saving ? null : _save,
               ),

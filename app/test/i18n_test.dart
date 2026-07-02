@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:jezici/l10n/app_localizations.dart';
+import 'package:jezici/l10n/division_names.dart';
 import 'package:jezici/l10n/duration_format.dart';
 import 'package:jezici/l10n/skill_names.dart';
 
@@ -66,5 +67,40 @@ void main() {
   test('los 3 idiomas están soportados', () {
     final codes = AppLocalizations.supportedLocales.map((l) => l.languageCode).toSet();
     expect(codes.containsAll({'es', 'en', 'pt'}), isTrue);
+  });
+
+  testWidgets('superficies nuevas (mapa/misión/tienda/racha/ligas/perfil) cambian por idioma', (t) async {
+    final es = await l10nFor(t, 'es');
+    final en = await l10nFor(t, 'en');
+    final pt = await l10nFor(t, 'pt');
+
+    // Home/mapa + misión.
+    expect(es.mapEmptyState, isNot(en.mapEmptyState));
+    expect(en.missionAppBarTitle, 'Mission');
+    expect(pt.missionMainTitle, 'As 100 palavras essenciais');
+
+    // Tienda + racha (plural del contador de racha).
+    expect(es.shopTitle, 'Tienda');
+    expect(en.shopTitle, 'Shop');
+    expect(es.streakDaysCount(1), contains('1 día'));
+    expect(es.streakDaysCount(5), contains('5 días'));
+
+    // Ligas + leaderboards (plural de jugadores + división localizada).
+    expect(es.leagueWarmingUpSubtitle(1), contains('1 jugador'));
+    expect(es.leagueWarmingUpSubtitle(3), contains('3 jugadores'));
+    expect(divisionLabel(es, 'oro'), 'Oro');
+    expect(divisionLabel(en, 'oro'), 'Gold');
+    expect(divisionLabel(pt, 'oro'), 'Ouro');
+    expect(en.leaderboardWindowWeekly, 'Weekly');
+
+    // Perfil (placeholders + plurales + reutilización de skill/planFocus).
+    expect(es.profileExamCardTitle('B1'), 'Examen de nivel B1');
+    expect(en.profileExamCardTitle('B1'), 'B1 level exam');
+    expect(es.profilePlanAhead(1), contains('1 día'));
+    expect(es.profilePlanAhead(3), contains('3 días'));
+    expect(es.profileMasteryGateUnlocked('B2', 1), contains('1 habilidad'));
+    expect(es.profileMasteryGateUnlocked('B2', 2), contains('2 habilidades'));
+    // planFocus se reutiliza en "Para ti" (no se duplicó clave).
+    expect(es.planFocusWork, isNot(en.planFocusWork));
   });
 }
