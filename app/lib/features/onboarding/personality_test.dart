@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../l10n/app_localizations.dart';
 import 'onboarding_data.dart';
 import 'widgets/onboarding_scaffold.dart';
 
@@ -36,37 +37,37 @@ class _PQ {
 
 // 4 situaciones DISTINTAS (fallo · empujón · competencia · logro), cada opción
 // mapea a un estilo. + 1 pregunta de intensidad (frecuencia, dimensión aparte).
-const _questions = <_PQ>[
-  _PQ('Si fallas tu meta del día, ¿qué prefieres oír?', [
-    ('“Sin excusas. Retómalo ya.”', 'mano_dura'),
-    ('“¡Mañana lo das todo, tú puedes! 💪”', 'positivo'),
-    ('“Vas quedando atrás de tu plan, recupéralo.”', 'rezago'),
-    ('“Tranqui, cuando puedas seguimos 🙂”', 'suave'),
-  ]),
-  _PQ('¿Cómo te gusta que te motivemos a practicar?', [
-    ('Firme y directo', 'mano_dura'),
-    ('Con energía y celebración', 'positivo'),
-    ('Recordándome mis metas y mi avance', 'rezago'),
-    ('Suave, sin presión', 'suave'),
-  ]),
-  _PQ('En la liga alguien te supera. ¿Qué te activa?', [
-    ('Que me reten a recuperarme', 'mano_dura'),
-    ('Ánimo para subir posiciones', 'positivo'),
-    ('Ver cuánto me falta para alcanzarlo', 'rezago'),
-    ('Nada, voy a mi ritmo', 'suave'),
-  ]),
-  _PQ('Cuando logras algo, ¿qué mensaje disfrutas más?', [
-    ('“Bien. Ahora el siguiente reto.”', 'mano_dura'),
-    ('“¡Increíble, eres imparable! 🎉”', 'positivo'),
-    ('“Vas adelantado a tu plan.”', 'rezago'),
-    ('“Qué bien, sigue a tu ritmo 🙂”', 'suave'),
-  ]),
-  _PQ('¿Qué tan seguido quieres que te recordemos?', [
-    ('Mucho, no me dejes aflojar', '3'),
-    ('Lo justo', '2'),
-    ('Poco', '1'),
-  ], isIntensity: true),
-];
+List<_PQ> _buildQuestions(AppLocalizations l10n) => <_PQ>[
+      _PQ(l10n.onbPersonalityQ1, [
+        (l10n.onbPersonalityQ1Opt1, 'mano_dura'),
+        (l10n.onbPersonalityQ1Opt2, 'positivo'),
+        (l10n.onbPersonalityQ1Opt3, 'rezago'),
+        (l10n.onbPersonalityQ1Opt4, 'suave'),
+      ]),
+      _PQ(l10n.onbPersonalityQ2, [
+        (l10n.onbPersonalityQ2Opt1, 'mano_dura'),
+        (l10n.onbPersonalityQ2Opt2, 'positivo'),
+        (l10n.onbPersonalityQ2Opt3, 'rezago'),
+        (l10n.onbPersonalityQ2Opt4, 'suave'),
+      ]),
+      _PQ(l10n.onbPersonalityQ3, [
+        (l10n.onbPersonalityQ3Opt1, 'mano_dura'),
+        (l10n.onbPersonalityQ3Opt2, 'positivo'),
+        (l10n.onbPersonalityQ3Opt3, 'rezago'),
+        (l10n.onbPersonalityQ3Opt4, 'suave'),
+      ]),
+      _PQ(l10n.onbPersonalityQ4, [
+        (l10n.onbPersonalityQ4Opt1, 'mano_dura'),
+        (l10n.onbPersonalityQ4Opt2, 'positivo'),
+        (l10n.onbPersonalityQ4Opt3, 'rezago'),
+        (l10n.onbPersonalityQ4Opt4, 'suave'),
+      ]),
+      _PQ(l10n.onbIntensityQ, [
+        (l10n.onbIntensityOpt1, '3'),
+        (l10n.onbIntensityOpt2, '2'),
+        (l10n.onbIntensityOpt3, '1'),
+      ], isIntensity: true),
+    ];
 
 class _PersonalityTestState extends State<PersonalityTest> {
   int _q = 0;
@@ -78,13 +79,14 @@ class _PersonalityTestState extends State<PersonalityTest> {
   };
 
   void _answer(String key) {
-    final q = _questions[_q];
+    final questions = _buildQuestions(AppLocalizations.of(context));
+    final q = questions[_q];
     if (q.isIntensity) {
       widget.data.intensity = int.tryParse(key) ?? 2;
     } else {
       _scores[key] = (_scores[key] ?? 0) + 1;
     }
-    if (_q + 1 >= _questions.length) {
+    if (_q + 1 >= questions.length) {
       // Estilo dominante; empate → preferir la P1.
       var best = 'suave';
       var bestN = -1;
@@ -111,13 +113,15 @@ class _PersonalityTestState extends State<PersonalityTest> {
 
   @override
   Widget build(BuildContext context) {
-    final q = _questions[_q];
+    final l10n = AppLocalizations.of(context);
+    final questions = _buildQuestions(l10n);
+    final q = questions[_q];
     return OnboardingScaffold(
       step: widget.step,
       total: widget.total,
       onBack: _back,
-      title: 'Tu coach ideal',
-      subtitle: 'Pregunta ${_q + 1} de ${_questions.length}',
+      title: l10n.onbPersonalityTitle,
+      subtitle: l10n.onbPersonalityStep(_q + 1, questions.length),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [

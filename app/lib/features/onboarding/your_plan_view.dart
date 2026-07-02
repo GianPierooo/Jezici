@@ -2,26 +2,34 @@ import 'package:flutter/material.dart';
 
 import '../../core/plan/estimation.dart';
 import '../../core/theme/app_colors.dart';
+import '../../l10n/app_localizations.dart';
+import '../../l10n/duration_format.dart';
 import '../../ui/primary_button.dart';
 import 'onboarding_data.dart';
 import 'widgets/onboarding_scaffold.dart';
 
-const _months = [
-  'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-  'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
-];
-String _fmtDate(DateTime d) => '${d.day} de ${_months[d.month - 1]} de ${d.year}';
 const _tiers = [5, 10, 15, 20, 30, 45];
 
-/// Enfoque del plan según el MOTIVO (personalización real, GA4 A2/B1).
-const _motiveFocus = {
-  'Trabajo': ('💼', 'Enfoque laboral: reuniones, correos y entrevistas.'),
-  'Viajes': ('✈️', 'Enfoque viajes: aeropuerto, hotel, direcciones y restaurantes.'),
-  'Examen': ('🎓', 'Enfoque examen: simulacros IELTS/Cambridge y las 4 habilidades.'),
-  'Estudios': ('📚', 'Enfoque estudios: comprensión, escritura y vocabulario académico.'),
-  'Mudanza': ('🏠', 'Enfoque mudanza: trámites, vivienda y vida diaria.'),
-  'Placer': ('🎬', 'Enfoque cultura: series, música y conversación cotidiana.'),
+/// Emoji del enfoque del plan según el MOTIVO (server value → emoji). El texto
+/// del enfoque lo pone i18n (ver _focusText). Personalización real (GA4 A2/B1).
+const _motiveEmoji = {
+  'Trabajo': '💼',
+  'Viajes': '✈️',
+  'Examen': '🎓',
+  'Estudios': '📚',
+  'Mudanza': '🏠',
+  'Placer': '🎬',
 };
+
+String? _focusText(AppLocalizations l10n, String motive) => switch (motive) {
+      'Trabajo' => l10n.planFocusWork,
+      'Viajes' => l10n.planFocusTravel,
+      'Examen' => l10n.planFocusExam,
+      'Estudios' => l10n.planFocusStudies,
+      'Mudanza' => l10n.planFocusRelocation,
+      'Placer' => l10n.planFocusCulture,
+      _ => null,
+    };
 
 /// "Tu plan" (momento mágico): nivel actual → meta, fecha estimada, horas y
 /// ritmo, con la palanca "Quiero llegar más rápido" que recalcula EN VIVO.
@@ -82,20 +90,24 @@ class _YourPlanViewState extends State<YourPlanView> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final est = _est;
     final atMax = _dailyMin >= _tiers.last;
+    final dateStr = MaterialLocalizations.of(context).formatMediumDate(est.completionDate);
+    final entry = entryUnitFor(widget.data.currentLevel);
+    final focus = _focusText(l10n, widget.data.motive);
     return OnboardingScaffold(
       step: widget.step,
       total: widget.total,
       onBack: widget.onBack,
       showMascot: false,
-      title: '🎉 Tu plan está listo',
-      subtitle: 'Si cumples tu plan, llegas. Esto es lo que te tomará.',
+      title: l10n.planReadyTitle,
+      subtitle: l10n.planReadySubtitle,
       footer: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           PrimaryButton(
-            label: _loading ? 'PREPARANDO TU MAPA…' : 'EMPEZAR MI PLAN',
+            label: _loading ? l10n.planPreparing : l10n.planStartMyPlan,
             expand: true,
             onPressed: _loading ? null : _finish,
           ),
@@ -136,8 +148,8 @@ class _YourPlanViewState extends State<YourPlanView> {
             ),
             child: Column(
               children: [
-                const Text('LLEGARÁS APROX. EL',
-                    style: TextStyle(
+                Text(l10n.planCompletionLabel,
+                    style: const TextStyle(
                         fontSize: 11,
                         fontWeight: FontWeight.w900,
                         letterSpacing: 1.5,
@@ -146,7 +158,7 @@ class _YourPlanViewState extends State<YourPlanView> {
                 AnimatedSwitcher(
                   duration: const Duration(milliseconds: 250),
                   child: Text(
-                    _fmtDate(est.completionDate),
+                    dateStr,
                     key: ValueKey(est.completionDate),
                     textAlign: TextAlign.center,
                     style: const TextStyle(
@@ -154,7 +166,7 @@ class _YourPlanViewState extends State<YourPlanView> {
                   ),
                 ),
                 const SizedBox(height: 4),
-                Text(est.humanDuration,
+                Text(formatPlanDuration(l10n, est.weeks),
                     style: const TextStyle(
                         fontSize: 13, fontWeight: FontWeight.w800, color: Colors.white70)),
               ],
@@ -164,12 +176,15 @@ class _YourPlanViewState extends State<YourPlanView> {
           // Stats.
           Row(
             children: [
-              _Stat(icon: Icons.schedule_rounded, value: '${est.hoursNeeded} h', label: 'totales'),
+              _Stat(
+                  icon: Icons.schedule_rounded,
+                  value: l10n.planStatsHours(est.hoursNeeded),
+                  label: l10n.planStatsTotalLabel),
               const SizedBox(width: 12),
               _Stat(
                   icon: Icons.bolt_rounded,
-                  value: '$_dailyMin min',
-                  label: '× ${widget.data.daysPerWeek} días/sem'),
+                  value: l10n.onbMinutesShort(_dailyMin),
+                  label: l10n.planStatsFrequency(widget.data.daysPerWeek)),
             ],
           ),
           const SizedBox(height: 14),
@@ -192,8 +207,8 @@ class _YourPlanViewState extends State<YourPlanView> {
                   Expanded(
                     child: Text(
                       atMax
-                          ? '¡Vas al máximo ritmo! 🔥'
-                          : 'Quiero llegar más rápido (sube a ${_tiers[_tiers.indexOf(_dailyMin) + 1]} min/día)',
+                          ? l10n.planMaxPace
+                          : l10n.planFasterCta(_tiers[_tiers.indexOf(_dailyMin) + 1]),
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -206,7 +221,7 @@ class _YourPlanViewState extends State<YourPlanView> {
               ),
             ),
           ),
-          if (_motiveFocus[widget.data.motive] != null) ...[
+          if (focus != null) ...[
             const SizedBox(height: 14),
             // Personalización por motivo (GA4).
             Container(
@@ -217,12 +232,12 @@ class _YourPlanViewState extends State<YourPlanView> {
               ),
               child: Row(
                 children: [
-                  Text(_motiveFocus[widget.data.motive]!.$1,
+                  Text(_motiveEmoji[widget.data.motive] ?? '🎯',
                       style: const TextStyle(fontSize: 22)),
                   const SizedBox(width: 12),
                   Expanded(
                     child: Text(
-                      _motiveFocus[widget.data.motive]!.$2,
+                      focus,
                       style: const TextStyle(
                           fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.primary),
                     ),
@@ -257,8 +272,7 @@ class _YourPlanViewState extends State<YourPlanView> {
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    'Empiezas en la Unidad ${entryUnitFor(widget.data.currentLevel).$1} — '
-                    '${entryUnitFor(widget.data.currentLevel).$2} (${widget.data.currentLevel}).',
+                    l10n.planStartUnit(entry.$1, entry.$2, widget.data.currentLevel),
                     style: const TextStyle(
                         fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.text),
                   ),
@@ -279,6 +293,7 @@ class _LevelBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
       decoration: BoxDecoration(
@@ -287,7 +302,7 @@ class _LevelBadge extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Text(muted ? 'AHORA' : 'META',
+          Text(muted ? l10n.planBadgeNow : l10n.planBadgeGoal,
               style: TextStyle(
                   fontSize: 9,
                   fontWeight: FontWeight.w900,

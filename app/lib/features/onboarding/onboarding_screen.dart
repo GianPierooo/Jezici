@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/i18n/locale_controller.dart';
 import '../../core/plan/estimation.dart';
 import '../../core/theme/app_colors.dart';
+import '../../l10n/app_localizations.dart';
 import '../../data/providers.dart';
 import '../../ui/primary_button.dart';
 import 'onboarding_data.dart';
@@ -87,9 +88,10 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       widget.onComplete();
     } catch (_) {
       if (!mounted) return;
+      final l10n = AppLocalizations.of(context);
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
-        ..showSnackBar(const SnackBar(content: Text('No se pudo guardar tu plan. Reinténtalo.')));
+        ..showSnackBar(SnackBar(content: Text(l10n.onbSaveError)));
       // No relanzamos: YourPlanView resetea su carga en su finally y relanzar
       // generaría un error async sin capturar.
     }
@@ -97,6 +99,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     switch (_step) {
       case 0:
         return _welcome();
@@ -104,15 +107,15 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         return _language();
       case 2:
         return _select(
-          title: '¿Por qué aprendes inglés?',
-          subtitle: 'Personaliza tu plan, los escenarios y los mensajes de tu coach.',
-          options: const [
-            ('Trabajo', 'Trabajo', Icons.work_outline_rounded),
-            ('Viajes', 'Viajes', Icons.flight_takeoff_rounded),
-            ('Examen oficial', 'Examen', Icons.school_outlined),
-            ('Estudios', 'Estudios', Icons.menu_book_rounded),
-            ('Mudanza', 'Mudanza', Icons.home_outlined),
-            ('Por placer', 'Placer', Icons.favorite_outline_rounded),
+          title: l10n.onbMotiveTitle,
+          subtitle: l10n.onbMotiveSubtitle,
+          options: [
+            (l10n.onbMotiveWork, 'Trabajo', Icons.work_outline_rounded),
+            (l10n.onbMotiveTravel, 'Viajes', Icons.flight_takeoff_rounded),
+            (l10n.onbMotiveExam, 'Examen', Icons.school_outlined),
+            (l10n.onbMotiveStudies, 'Estudios', Icons.menu_book_rounded),
+            (l10n.onbMotiveRelocation, 'Mudanza', Icons.home_outlined),
+            (l10n.onbMotivePleasure, 'Placer', Icons.favorite_outline_rounded),
           ],
           current: _data.motive,
           onSelect: (v) => _data.motive = v,
@@ -126,12 +129,12 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             data: _data, step: _step + 1, total: _total, onBack: _back, onDone: _next);
       case 6:
         return _select(
-          title: '¿Cuánto inglés sabes ya?',
-          subtitle: 'Para empezar el test de nivel en el punto justo.',
-          options: const [
-            ('Desde cero', '0', Icons.flag_outlined),
-            ('Sé lo básico', '1', Icons.trending_up_rounded),
-            ('Tengo buen nivel', '2', Icons.star_outline_rounded),
+          title: l10n.onbStartLevelTitle,
+          subtitle: l10n.onbStartLevelSubtitle,
+          options: [
+            (l10n.onbStartLevelZero, '0', Icons.flag_outlined),
+            (l10n.onbStartLevelBasic, '1', Icons.trending_up_rounded),
+            (l10n.onbStartLevelGood, '2', Icons.star_outline_rounded),
           ],
           current: '${_data.startLevelHint}',
           onSelect: (v) => _data.startLevelHint = int.parse(v),
@@ -165,6 +168,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     required void Function(String) onSelect,
     bool allowDefault = false,
   }) {
+    final l10n = AppLocalizations.of(context);
     final hasSelection = current.isNotEmpty;
     return OnboardingScaffold(
       step: _step + 1,
@@ -173,7 +177,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       title: title,
       subtitle: subtitle,
       footer: PrimaryButton(
-        label: 'CONTINUAR',
+        label: l10n.commonContinue,
         expand: true,
         onPressed: (hasSelection || allowDefault) ? _next : null,
       ),
@@ -193,6 +197,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   }
 
   Widget _welcome() {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
@@ -203,23 +208,22 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               const Spacer(),
               const Text('🦜', style: TextStyle(fontSize: 96)),
               const SizedBox(height: 20),
-              const Text('Construyamos tu plan',
+              Text(l10n.onbWelcomeTitle,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 28, fontWeight: FontWeight.w900, color: AppColors.text)),
               const SizedBox(height: 10),
-              const Text(
-                'Unas preguntas rápidas y un test de nivel para armar tu plan con fecha real. '
-                'Cada respuesta personaliza tu camino.',
+              Text(
+                l10n.onbWelcomeSubtitle,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                     fontSize: 15, fontWeight: FontWeight.w700, color: AppColors.textMuted, height: 1.4),
               ),
               const Spacer(),
-              PrimaryButton(label: 'EMPEZAR', expand: true, onPressed: _next),
+              PrimaryButton(label: l10n.commonStart, expand: true, onPressed: _next),
               const SizedBox(height: 12),
-              const Text('Toma ~2 minutos.',
-                  style: TextStyle(
+              Text(l10n.onbWelcomeNote,
+                  style: const TextStyle(
                       fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
             ],
           ),
@@ -229,13 +233,14 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   }
 
   Widget _language() {
+    final l10n = AppLocalizations.of(context);
     return OnboardingScaffold(
       step: _step + 1,
       total: _total,
       onBack: _back,
-      title: '¿En qué idioma prefieres la app?',
-      subtitle: 'El idioma de los menús y textos. No es lo que vas a aprender.',
-      footer: PrimaryButton(label: 'CONTINUAR', expand: true, onPressed: _next),
+      title: l10n.onbLanguageTitle,
+      subtitle: l10n.onbLanguageSubtitle,
+      footer: PrimaryButton(label: l10n.commonContinue, expand: true, onPressed: _next),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -247,16 +252,19 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             OnboardingOption(
               label: label,
               selected: _data.uiLang == code,
-              onTap: () => setState(() => _data.uiLang = code),
+              onTap: () {
+                setState(() => _data.uiLang = code);
+                ref.read(localeProvider.notifier).set(code);
+              },
             ),
           const SizedBox(height: 10),
-          const Row(
+          Row(
             children: [
-              Icon(Icons.translate_rounded, color: AppColors.textMuted, size: 18),
-              SizedBox(width: 8),
+              const Icon(Icons.translate_rounded, color: AppColors.textMuted, size: 18),
+              const SizedBox(width: 8),
               Expanded(
-                child: Text('Vas a aprender inglés 🇬🇧. Esto solo cambia el idioma de la app.',
-                    style: TextStyle(
+                child: Text(l10n.onbLanguageInfoEn,
+                    style: const TextStyle(
                         fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
               ),
             ],
@@ -267,21 +275,22 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   }
 
   Widget _goal() {
+    final l10n = AppLocalizations.of(context);
     return OnboardingScaffold(
       step: _step + 1,
       total: _total,
       onBack: _back,
-      title: '¿A dónde quieres llegar?',
-      subtitle: 'Tu meta. La cima del mapa.',
-      footer: PrimaryButton(label: 'CONTINUAR', expand: true, onPressed: _next),
+      title: l10n.onbGoalTitle,
+      subtitle: l10n.onbGoalSubtitle,
+      footer: PrimaryButton(label: l10n.commonContinue, expand: true, onPressed: _next),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          for (final (label, value) in const [
-            ('A2 · Me defiendo', 'A2'),
-            ('B1 · Independiente', 'B1'),
-            ('B2 · Conversador fluido', 'B2'),
-            ('C1 · Avanzado', 'C1'),
+          for (final (label, value) in [
+            (l10n.onbGoalA2, 'A2'),
+            (l10n.onbGoalB1, 'B1'),
+            (l10n.onbGoalB2, 'B2'),
+            (l10n.onbGoalC1, 'C1'),
           ])
             OnboardingOption(
               label: label,
@@ -305,8 +314,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
                   Expanded(
                     child: Text(
                       _data.deadline == null
-                          ? 'Fecha límite (opcional)'
-                          : 'Meta: ${_data.deadline!.day}/${_data.deadline!.month}/${_data.deadline!.year}',
+                          ? l10n.onbDeadlineEmpty
+                          : l10n.onbDeadlineFilled(_data.deadline!.day, _data.deadline!.month,
+                              _data.deadline!.year),
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w800,
@@ -330,19 +340,24 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   // ── Compromiso UNIFICADO: minutos/día + días/semana en una sola pantalla ────
   Widget _commitment() {
+    final l10n = AppLocalizations.of(context);
     const minutes = [5, 10, 15, 20, 30, 45];
-    const days = [(3, 'Relajado'), (5, 'Constante'), (7, 'Intenso')];
+    final days = [
+      (3, l10n.onbFrequencyRelaxed),
+      (5, l10n.onbFrequencyConstant),
+      (7, l10n.onbFrequencyIntense),
+    ];
     return OnboardingScaffold(
       step: _step + 1,
       total: _total,
       onBack: _back,
-      title: '¿Cuánto puedes dedicar?',
-      subtitle: 'Esto fija tu meta diaria y la fecha de llegada.',
-      footer: PrimaryButton(label: 'CONTINUAR', expand: true, onPressed: _next),
+      title: l10n.onbCommitmentTitle,
+      subtitle: l10n.onbCommitmentSubtitle,
+      footer: PrimaryButton(label: l10n.commonContinue, expand: true, onPressed: _next),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const _GroupLabel('Minutos al día'),
+          _GroupLabel(l10n.onbCommitmentMinutesLabel),
           const SizedBox(height: 10),
           Wrap(
             spacing: 10,
@@ -350,20 +365,20 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             children: [
               for (final m in minutes)
                 _Chip(
-                  label: '$m min',
+                  label: l10n.onbMinutesShort(m),
                   selected: _data.dailyMinutes == m,
                   onTap: () => setState(() => _data.dailyMinutes = m),
                 ),
             ],
           ),
           const SizedBox(height: 22),
-          const _GroupLabel('Días por semana'),
+          _GroupLabel(l10n.onbCommitmentDaysLabel),
           const SizedBox(height: 10),
           Column(
             children: [
               for (final (d, tag) in days)
                 OnboardingOption(
-                  label: '$tag · $d días',
+                  label: '$tag · ${l10n.onbDaysShort(d)}',
                   selected: _data.daysPerWeek == d,
                   onTap: () => setState(() => _data.daysPerWeek = d),
                 ),

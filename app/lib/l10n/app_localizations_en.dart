@@ -1,0 +1,527 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for English (`en`).
+class AppLocalizationsEn extends AppLocalizations {
+  AppLocalizationsEn([String locale = 'en']) : super(locale);
+
+  @override
+  String get appTitle => 'Jezici';
+
+  @override
+  String get commonContinue => 'CONTINUE';
+
+  @override
+  String get commonStart => 'START';
+
+  @override
+  String get commonCheck => 'CHECK';
+
+  @override
+  String get commonSkip => 'Skip';
+
+  @override
+  String get commonBack => 'Back';
+
+  @override
+  String get commonExit => 'Exit';
+
+  @override
+  String get commonClose => 'Close';
+
+  @override
+  String get commonCancel => 'Cancel';
+
+  @override
+  String get commonRetry => 'Retry';
+
+  @override
+  String get commonNext => 'Next';
+
+  @override
+  String get commonDone => 'Done';
+
+  @override
+  String get splashLoadError => 'We couldn\'t load your session.';
+
+  @override
+  String get settingsLanguageTitle => 'App language';
+
+  @override
+  String get settingsLanguageSubtitle =>
+      'The language of the menus and instructions. It doesn\'t change the language you\'re learning.';
+
+  @override
+  String get langEs => 'Español';
+
+  @override
+  String get langEn => 'English';
+
+  @override
+  String get langPt => 'Português';
+
+  @override
+  String get skillReading => 'Reading';
+
+  @override
+  String get skillWriting => 'Writing';
+
+  @override
+  String get skillListening => 'Listening';
+
+  @override
+  String get skillSpeaking => 'Speaking';
+
+  @override
+  String get onbWelcomeTitle => 'Let\'s build your plan';
+
+  @override
+  String get onbWelcomeSubtitle =>
+      'A few quick questions and a placement test to build your plan with a real target date. Every answer personalizes your path.';
+
+  @override
+  String get onbWelcomeNote => 'Takes ~2 minutes.';
+
+  @override
+  String get onbLanguageTitle => 'Which language do you prefer for the app?';
+
+  @override
+  String get onbLanguageSubtitle =>
+      'Choose the language for menus and messages. It\'s not the language you\'ll be learning.';
+
+  @override
+  String get onbLanguageInfoEn =>
+      'You\'ll be learning English 🇬🇧. This only changes the app\'s language.';
+
+  @override
+  String get onbLanguageInfoPt =>
+      'You\'ll be learning Portuguese 🇧🇷. This only changes the app\'s language.';
+
+  @override
+  String get onbMotiveTitle => 'Why are you learning English?';
+
+  @override
+  String get onbMotiveSubtitle =>
+      'Personalizes your plan, the scenarios and your coach\'s messages.';
+
+  @override
+  String get onbMotiveWork => 'Work';
+
+  @override
+  String get onbMotiveTravel => 'Travel';
+
+  @override
+  String get onbMotiveExam => 'Official exam';
+
+  @override
+  String get onbMotiveStudies => 'Studies';
+
+  @override
+  String get onbMotiveRelocation => 'Relocation';
+
+  @override
+  String get onbMotivePleasure => 'For fun';
+
+  @override
+  String get onbGoalTitle => 'Where do you want to get to?';
+
+  @override
+  String get onbGoalSubtitle => 'Your goal. The top of the map.';
+
+  @override
+  String get onbGoalA2 => 'A2 · I get by';
+
+  @override
+  String get onbGoalB1 => 'B1 · Independent';
+
+  @override
+  String get onbGoalB2 => 'B2 · Fluent conversation';
+
+  @override
+  String get onbGoalC1 => 'C1 · Advanced';
+
+  @override
+  String get onbDeadlineEmpty => 'Deadline (optional)';
+
+  @override
+  String onbDeadlineFilled(int day, int month, int year) {
+    return 'Goal: $month/$day/$year';
+  }
+
+  @override
+  String get onbCommitmentTitle => 'How much time can you give?';
+
+  @override
+  String get onbCommitmentSubtitle =>
+      'This sets your daily goal and your arrival date.';
+
+  @override
+  String get onbCommitmentMinutesLabel => 'Minutes a day';
+
+  @override
+  String get onbCommitmentDaysLabel => 'Days a week';
+
+  @override
+  String get onbFrequencyRelaxed => 'Relaxed';
+
+  @override
+  String get onbFrequencyConstant => 'Steady';
+
+  @override
+  String get onbFrequencyIntense => 'Intense';
+
+  @override
+  String get onbStartLevelTitle => 'How much English do you already know?';
+
+  @override
+  String get onbStartLevelSubtitle =>
+      'So we start the placement test at the right point.';
+
+  @override
+  String get onbStartLevelZero => 'From scratch';
+
+  @override
+  String get onbStartLevelBasic => 'I know the basics';
+
+  @override
+  String get onbStartLevelGood => 'I have a good level';
+
+  @override
+  String onbMinutesShort(int m) {
+    return '$m min';
+  }
+
+  @override
+  String onbDaysShort(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days days',
+      one: '$days day',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get planDurationLessThanWeek => 'less than a week';
+
+  @override
+  String planDurationWeeks(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '≈ $count weeks',
+      one: '≈ 1 week',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planDurationMonths(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '≈ $count months',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String planDurationYears(String years) {
+    return '≈ $years years';
+  }
+
+  @override
+  String get onbSaveError => 'We couldn\'t save your plan. Try again.';
+
+  @override
+  String get onbPersonalityTitle => 'Your ideal coach';
+
+  @override
+  String onbPersonalityStep(int q, int total) {
+    return 'Question $q of $total';
+  }
+
+  @override
+  String get onbPersonalityQ1 =>
+      'If you miss your daily goal, what would you rather hear?';
+
+  @override
+  String get onbPersonalityQ1Opt1 => '\"No excuses. Get back to it now.\"';
+
+  @override
+  String get onbPersonalityQ1Opt2 =>
+      '\"Tomorrow you\'ll crush it, you\'ve got this! 💪\"';
+
+  @override
+  String get onbPersonalityQ1Opt3 =>
+      '\"You\'re falling behind your plan, catch up.\"';
+
+  @override
+  String get onbPersonalityQ1Opt4 =>
+      '\"No worries, we\'ll continue when you can 🙂\"';
+
+  @override
+  String get onbPersonalityQ2 => 'How do you like to be motivated to practice?';
+
+  @override
+  String get onbPersonalityQ2Opt1 => 'Firm and direct';
+
+  @override
+  String get onbPersonalityQ2Opt2 => 'With energy and celebration';
+
+  @override
+  String get onbPersonalityQ2Opt3 => 'By reminding me of my goals and progress';
+
+  @override
+  String get onbPersonalityQ2Opt4 => 'Gentle, no pressure';
+
+  @override
+  String get onbPersonalityQ3 =>
+      'Someone passes you in the league. What fires you up?';
+
+  @override
+  String get onbPersonalityQ3Opt1 => 'Challenge me to bounce back';
+
+  @override
+  String get onbPersonalityQ3Opt2 => 'Encouragement to climb the ranks';
+
+  @override
+  String get onbPersonalityQ3Opt3 => 'Seeing how far I am from catching up';
+
+  @override
+  String get onbPersonalityQ3Opt4 => 'Nothing, I go at my own pace';
+
+  @override
+  String get onbPersonalityQ4 =>
+      'When you achieve something, which message do you enjoy most?';
+
+  @override
+  String get onbPersonalityQ4Opt1 => '\"Good. Now the next challenge.\"';
+
+  @override
+  String get onbPersonalityQ4Opt2 => '\"Amazing, you\'re unstoppable! 🎉\"';
+
+  @override
+  String get onbPersonalityQ4Opt3 => '\"You\'re ahead of your plan.\"';
+
+  @override
+  String get onbPersonalityQ4Opt4 => '\"Nice, keep going at your pace 🙂\"';
+
+  @override
+  String get onbIntensityQ => 'How often do you want us to remind you?';
+
+  @override
+  String get onbIntensityOpt1 => 'A lot, don\'t let me slack';
+
+  @override
+  String get onbIntensityOpt2 => 'Just right';
+
+  @override
+  String get onbIntensityOpt3 => 'A little';
+
+  @override
+  String get placementTitle => 'Placement test';
+
+  @override
+  String placementSubtitle(int asked, int max) {
+    return 'No hints · question $asked of $max';
+  }
+
+  @override
+  String placementResultTitle(String level) {
+    return 'Your level: $level';
+  }
+
+  @override
+  String get placementResultSubtitle =>
+      'This isn\'t a pass-or-fail exam: it\'s your starting point.';
+
+  @override
+  String get placementResultViewPlan => 'SEE MY PLAN';
+
+  @override
+  String get placementResultHero => 'WE PLACED YOU AT';
+
+  @override
+  String get placementResultSkillsTitle => 'By skill';
+
+  @override
+  String placementResultEntryUnit(int unitNum, String unitName, String level) {
+    return 'You\'ll start at Unit $unitNum — $unitName ($level). Everything before stays available to review.';
+  }
+
+  @override
+  String placementResultEstimateReached(
+    String goalLevel,
+    String humanDuration,
+    String formattedDate,
+  ) {
+    return 'You\'ve already reached your goal. If you keep going to $goalLevel: $humanDuration (approx. $formattedDate).';
+  }
+
+  @override
+  String placementResultEstimateGoal(
+    String goalLevel,
+    String humanDuration,
+    String formattedDate,
+  ) {
+    return 'If you stick to your plan, you\'ll reach $goalLevel in $humanDuration (approx. $formattedDate).';
+  }
+
+  @override
+  String get planFocusWork => 'Work focus: meetings, emails and interviews.';
+
+  @override
+  String get planFocusTravel =>
+      'Travel focus: airport, hotel, directions and restaurants.';
+
+  @override
+  String get planFocusExam =>
+      'Exam focus: IELTS/Cambridge mock tests and the 4 skills.';
+
+  @override
+  String get planFocusStudies =>
+      'Study focus: comprehension, writing and academic vocabulary.';
+
+  @override
+  String get planFocusRelocation =>
+      'Relocation focus: paperwork, housing and daily life.';
+
+  @override
+  String get planFocusCulture =>
+      'Culture focus: series, music and everyday conversation.';
+
+  @override
+  String get planReadyTitle => '🎉 Your plan is ready';
+
+  @override
+  String get planReadySubtitle =>
+      'Stick to your plan and you\'ll get there. Here\'s what it will take.';
+
+  @override
+  String get planPreparing => 'PREPARING YOUR MAP…';
+
+  @override
+  String get planStartMyPlan => 'START MY PLAN';
+
+  @override
+  String get planCompletionLabel => 'YOU\'LL ARRIVE AROUND';
+
+  @override
+  String planStatsHours(int hours) {
+    return '$hours h';
+  }
+
+  @override
+  String get planStatsTotalLabel => 'total';
+
+  @override
+  String planStatsFrequency(int days) {
+    return '× $days days/wk';
+  }
+
+  @override
+  String get planMaxPace => 'You\'re at top pace! 🔥';
+
+  @override
+  String planFasterCta(int minutes) {
+    return 'I want to get there faster (up to $minutes min/day)';
+  }
+
+  @override
+  String planStartUnit(int unitNum, String unitName, String level) {
+    return 'You start at Unit $unitNum — $unitName ($level).';
+  }
+
+  @override
+  String get planBadgeNow => 'NOW';
+
+  @override
+  String get planBadgeGoal => 'GOAL';
+
+  @override
+  String get authTitleSignUp => 'Create your account';
+
+  @override
+  String get authTitleSignIn => 'Welcome back';
+
+  @override
+  String get authSubtitleSignUp =>
+      'A plan with a real date, an exam across the 4 skills, and a coach that brings you back.';
+
+  @override
+  String get authSubtitleSignIn => 'Pick up where you left off.';
+
+  @override
+  String get authFieldName => 'Your name';
+
+  @override
+  String get authFieldEmail => 'Email';
+
+  @override
+  String get authFieldPassword => 'Password';
+
+  @override
+  String get authSegCreateAccount => 'Sign up';
+
+  @override
+  String get authSegSignIn => 'Log in';
+
+  @override
+  String get authCtaCreating => 'CREATING…';
+
+  @override
+  String get authCtaLoggingIn => 'LOGGING IN…';
+
+  @override
+  String get authCtaSignUp => 'SIGN UP';
+
+  @override
+  String get authCtaSignIn => 'LOG IN';
+
+  @override
+  String get authLegalPrefix => 'I have read and accept the ';
+
+  @override
+  String get authLegalTerms => 'Terms';
+
+  @override
+  String get authLegalAnd => ' and the ';
+
+  @override
+  String get authLegalPrivacy => 'Privacy Policy';
+
+  @override
+  String get authLegalSuffix => '.';
+
+  @override
+  String get authErrorNameRequired =>
+      'Tell us your name to personalize your journey.';
+
+  @override
+  String get authErrorEmailPassword =>
+      'Enter a valid email and a password of 6+ characters.';
+
+  @override
+  String get authErrorTermsRequired =>
+      'To create your account, accept the Terms and Privacy Policy.';
+
+  @override
+  String get authErrorGeneral => 'Something went wrong. Try again.';
+
+  @override
+  String get authErrorDuplicate => 'That email already has an account. Log in.';
+
+  @override
+  String get authErrorInvalid => 'Wrong email or password.';
+
+  @override
+  String get authErrorPasswordLength => 'The password must be 6+ characters.';
+
+  @override
+  String get authErrorFallback => 'We couldn\'t continue. Check your details.';
+}

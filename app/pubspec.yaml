@@ -30,6 +30,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  # i18n del "chrome" de la app (idioma de la UI: es/en/pt). NO es el idioma
+  # OBJETIVO del curso (es→en / es→pt = lo que se aprende, viene de la DB).
+  intl: any
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -73,6 +79,10 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  # Genera las clases de localización (gen-l10n) a partir de lib/l10n/*.arb.
+  # Config en app/l10n.yaml. Se ejecuta con `flutter pub get` y en el build.
+  generate: true
 
   # Variables de entorno (SUPABASE_URL / SUPABASE_ANON_KEY) cargadas por
   # flutter_dotenv. .env está gitignored; copiar de .env.example en cada entorno.

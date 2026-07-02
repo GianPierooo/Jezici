@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../data/providers.dart';
+import '../../l10n/app_localizations.dart';
 import 'onboarding_data.dart';
 import 'widgets/onboarding_scaffold.dart';
 
@@ -116,6 +117,7 @@ class _PlacementTestState extends ConsumerState<PlacementTest> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final it = _item;
     final options =
         ((it?['payload'] as Map?)?['options'] as List?)?.map((e) => e.toString()).toList() ??
@@ -124,8 +126,8 @@ class _PlacementTestState extends ConsumerState<PlacementTest> {
       step: widget.step,
       total: widget.total,
       onBack: widget.onBack,
-      title: 'Test de ubicación',
-      subtitle: 'Sin pistas · pregunta $_asked de $_max',
+      title: l10n.placementTitle,
+      subtitle: l10n.placementSubtitle(_asked, _max),
       child: _loading || it == null
           ? const Padding(
               padding: EdgeInsets.symmetric(vertical: 48),

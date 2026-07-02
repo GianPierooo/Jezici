@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:jezici/core/plan/estimation.dart';
 import 'package:jezici/features/onboarding/onboarding_data.dart';
 import 'package:jezici/features/onboarding/placement_result_view.dart';
+import 'package:jezici/l10n/app_localizations.dart';
 
 void main() {
   group('estimación de tiempo REALISTA (no "2 semanas a C1")', () {
@@ -63,6 +64,9 @@ void main() {
         'speaking': 'B1',
       };
     await t.pumpWidget(MaterialApp(
+      locale: const Locale('es'),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       home: PlacementResultView(
         data: data, step: 9, total: 10, onBack: () {}, onContinue: () {}),
     ));

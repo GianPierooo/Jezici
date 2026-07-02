@@ -7,11 +7,13 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import 'core/audio/audio_engine.dart';
 import 'core/config/supabase_config.dart';
+import 'core/i18n/locale_controller.dart';
 import 'core/monitoring/crash_reporter.dart';
 import 'core/monitoring/sentry_config.dart';
 import 'core/theme/app_colors.dart';
 import 'core/theme/app_theme.dart';
 import 'data/providers.dart';
+import 'l10n/app_localizations.dart';
 import 'features/auth/auth_screen.dart';
 import 'features/notifications/matix_service.dart';
 import 'features/onboarding/onboarding_screen.dart';
@@ -54,15 +56,21 @@ Future<void> main() async {
   await runWithSentry(() => runApp(const ProviderScope(child: JeziciApp())));
 }
 
-class JeziciApp extends StatelessWidget {
+class JeziciApp extends ConsumerWidget {
   const JeziciApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    // Idioma de la UI (chrome de la app): es/en/pt, persistido en el dispositivo.
+    // NO es el idioma OBJETIVO del curso (es→en / es→pt viene de la DB).
+    final lang = ref.watch(localeProvider);
     return MaterialApp(
       title: 'Jezici',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
+      locale: Locale(lang),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       // Desbloqueo de audio en el PRIMER gesto real, en CUALQUIER pantalla
       // (incluidas las rutas pusheadas como el lesson player). iOS Safari exige
       // que AudioContext.resume() se dispare síncronamente desde un gesto;

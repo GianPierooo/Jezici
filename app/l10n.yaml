@@ -1,0 +1,10 @@
+# Configuración de gen-l10n (i18n del chrome de la app: es/en/pt).
+# El idioma OBJETIVO del curso (inglés/portugués) es contenido de la DB, NO esto.
+arb-dir: lib/l10n
+template-arb-file: app_es.arb           # el español es el idioma base de la UI
+output-localization-file: app_localizations.dart
+output-class: AppLocalizations
+# Genera dentro del árbol de fuentes (lib/l10n) e importable como
+# package:jezici/l10n/app_localizations.dart. (El "synthetic package"
+# package:flutter_gen quedó deprecado; esta versión ya genera a fuente.)
+nullable-getter: false                  # AppLocalizations.of(context) no-null

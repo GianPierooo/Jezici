@@ -2,23 +2,27 @@ import 'package:flutter/material.dart';
 
 import '../../core/plan/estimation.dart';
 import '../../core/theme/app_colors.dart';
+import '../../l10n/app_localizations.dart';
+import '../../l10n/duration_format.dart';
 import '../../ui/primary_button.dart';
 import 'onboarding_data.dart';
 import 'widgets/onboarding_scaffold.dart';
 
-const _months = [
-  'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-  'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+// Clave + icono por habilidad (orden de presentación). El nombre lo pone i18n.
+const _skills = <(String, IconData)>[
+  ('reading', Icons.menu_book_rounded),
+  ('writing', Icons.edit_rounded),
+  ('listening', Icons.headphones_rounded),
+  ('speaking', Icons.record_voice_over_rounded),
 ];
-String _fmtDate(DateTime d) => '${d.day} de ${_months[d.month - 1]} de ${d.year}';
 
-// Nombre + icono por habilidad (orden de presentación).
-const _skills = <(String, String, IconData)>[
-  ('reading', 'Lectura', Icons.menu_book_rounded),
-  ('writing', 'Escritura', Icons.edit_rounded),
-  ('listening', 'Comprensión auditiva', Icons.headphones_rounded),
-  ('speaking', 'Expresión oral', Icons.record_voice_over_rounded),
-];
+String _skillName(AppLocalizations l10n, String key) => switch (key) {
+      'reading' => l10n.skillReading,
+      'writing' => l10n.skillWriting,
+      'listening' => l10n.skillListening,
+      'speaking' => l10n.skillSpeaking,
+      _ => key,
+    };
 
 /// RESULTADO del test de ubicación (momento motivacional "¡saliste en B1!"). NO es
 /// aprobar/reprobar: es UBICACIÓN → "tu nivel es X". Muestra el nivel, el desglose por
@@ -41,6 +45,7 @@ class PlacementResultView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final level = data.placementLevel;
     final entry = entryUnitFor(level);
     final est = estimatePlan(
@@ -49,15 +54,19 @@ class PlacementResultView extends StatelessWidget {
       dailyMinutes: data.dailyMinutes,
       daysPerWeek: data.daysPerWeek,
     );
+    // Fecha localizada (compacta) sin depender de intl date-init: la aporta
+    // flutter_localizations vía MaterialLocalizations.
+    final dateStr = MaterialLocalizations.of(context).formatMediumDate(est.completionDate);
+    final durationStr = formatPlanDuration(l10n, est.weeks);
 
     return OnboardingScaffold(
       step: step,
       total: total,
       onBack: onBack,
       showMascot: false,
-      title: 'Tu nivel: $level',
-      subtitle: 'Esto no es un examen que se aprueba o se reprueba: es tu punto de partida.',
-      footer: PrimaryButton(label: 'VER MI PLAN', expand: true, onPressed: onContinue),
+      title: l10n.placementResultTitle(level),
+      subtitle: l10n.placementResultSubtitle,
+      footer: PrimaryButton(label: l10n.placementResultViewPlan, expand: true, onPressed: onContinue),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -80,8 +89,8 @@ class PlacementResultView extends StatelessWidget {
             ),
             child: Column(
               children: [
-                const Text('TE UBICAMOS EN',
-                    style: TextStyle(
+                Text(l10n.placementResultHero,
+                    style: const TextStyle(
                         fontSize: 11,
                         fontWeight: FontWeight.w900,
                         letterSpacing: 1.6,
@@ -95,8 +104,8 @@ class PlacementResultView extends StatelessWidget {
           ),
           const SizedBox(height: 18),
           // Desglose por habilidad.
-          const Text('Por habilidad',
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w900, color: AppColors.text)),
+          Text(l10n.placementResultSkillsTitle,
+              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w900, color: AppColors.text)),
           const SizedBox(height: 8),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
@@ -109,8 +118,8 @@ class PlacementResultView extends StatelessWidget {
               children: [
                 for (final s in _skills)
                   _SkillRow(
-                    icon: s.$3,
-                    name: s.$2,
+                    icon: s.$2,
+                    name: _skillName(l10n, s.$1),
                     level: data.skillLevels[s.$1] ?? level,
                   ),
               ],
@@ -120,18 +129,15 @@ class PlacementResultView extends StatelessWidget {
           // A qué unidad entra.
           _InfoCard(
             icon: Icons.flag_rounded,
-            text: 'Empezarás en la Unidad ${entry.$1} — ${entry.$2} ($level). '
-                'Lo anterior queda accesible para repasar.',
+            text: l10n.placementResultEntryUnit(entry.$1, entry.$2, level),
           ),
           const SizedBox(height: 10),
           // Fecha realista (honesta).
           _InfoCard(
             icon: Icons.event_available_rounded,
             text: est.bumpedGoal
-                ? 'Ya alcanzas tu meta. Si sigues hasta ${est.goalLevel}: ${est.humanDuration} '
-                    '(aprox. ${_fmtDate(est.completionDate)}).'
-                : 'Si cumples tu plan, llegas a ${est.goalLevel} ${est.humanDuration} '
-                    '(aprox. ${_fmtDate(est.completionDate)}).',
+                ? l10n.placementResultEstimateReached(est.goalLevel, durationStr, dateStr)
+                : l10n.placementResultEstimateGoal(est.goalLevel, durationStr, dateStr),
           ),
         ],
       ),

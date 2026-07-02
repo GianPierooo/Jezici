@@ -5,6 +5,7 @@ import 'package:jezici/data/providers.dart';
 import 'package:jezici/data/repositories/progress_repository.dart';
 import 'package:jezici/features/onboarding/onboarding_data.dart';
 import 'package:jezici/features/onboarding/placement_test.dart';
+import 'package:jezici/l10n/app_localizations.dart';
 
 /// Fake del repo que GUIONA las respuestas de placement_next (servidor) para probar
 /// el relay del cliente: muestra ítems, envía la opción elegida y aplica el nivel
@@ -72,6 +73,9 @@ void main() {
     await tester.pumpWidget(ProviderScope(
       overrides: [progressRepositoryProvider.overrideWithValue(fake)],
       child: MaterialApp(
+        locale: const Locale('es'),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         home: PlacementTest(
           data: data,
           step: 8,
@@ -120,6 +124,9 @@ void main() {
     await tester.pumpWidget(ProviderScope(
       overrides: [progressRepositoryProvider.overrideWithValue(fake)],
       child: MaterialApp(
+        locale: const Locale('es'),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         home: PlacementTest(
           data: data, step: 8, total: 9, startLevel: 0, onBack: () {}, onDone: () => done = true),
       ),

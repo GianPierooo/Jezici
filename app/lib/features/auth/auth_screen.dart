@@ -4,6 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../data/providers.dart';
+import '../../l10n/app_localizations.dart';
 import '../../ui/primary_button.dart';
 import '../legal/legal_screen.dart';
 
@@ -36,19 +37,20 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   static final _emailRe = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
 
   Future<void> _submit() async {
+    final l10n = AppLocalizations.of(context);
     final name = _name.text.trim();
     final email = _email.text.trim();
     final pw = _password.text.trim();
     if (_signUp && name.isEmpty) {
-      setState(() => _error = 'Dinos tu nombre para personalizar tu viaje.');
+      setState(() => _error = l10n.authErrorNameRequired);
       return;
     }
     if (!_emailRe.hasMatch(email) || pw.length < 6) {
-      setState(() => _error = 'Pon un email válido y una contraseña de 6+ caracteres.');
+      setState(() => _error = l10n.authErrorEmailPassword);
       return;
     }
     if (_signUp && !_accepted) {
-      setState(() => _error = 'Para crear tu cuenta, acepta los Términos y la Privacidad.');
+      setState(() => _error = l10n.authErrorTermsRequired);
       return;
     }
     setState(() {
@@ -75,25 +77,27 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
       if (!mounted) return;
       setState(() {
         _loading = false;
-        _error = 'Algo salió mal. Inténtalo de nuevo.';
+        _error = l10n.authErrorGeneral;
       });
     }
   }
 
   String _friendly(String raw) {
+    final l10n = AppLocalizations.of(context);
     final m = raw.toLowerCase();
     if (m.contains('already registered') || m.contains('already been registered')) {
-      return 'Ese email ya tiene cuenta. Inicia sesión.';
+      return l10n.authErrorDuplicate;
     }
     if (m.contains('invalid login') || m.contains('credentials')) {
-      return 'Email o contraseña incorrectos.';
+      return l10n.authErrorInvalid;
     }
-    if (m.contains('password')) return 'La contraseña debe tener 6+ caracteres.';
-    return 'No se pudo continuar. Revisa tus datos.';
+    if (m.contains('password')) return l10n.authErrorPasswordLength;
+    return l10n.authErrorFallback;
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
@@ -105,15 +109,13 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
               const SizedBox(height: 8),
               const Center(child: Text('🦜', style: TextStyle(fontSize: 72))),
               const SizedBox(height: 14),
-              Text(_signUp ? 'Crea tu cuenta' : 'Bienvenido de vuelta',
+              Text(_signUp ? l10n.authTitleSignUp : l10n.authTitleSignIn,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       fontSize: 26, fontWeight: FontWeight.w900, color: AppColors.text)),
               const SizedBox(height: 6),
               Text(
-                _signUp
-                    ? 'Un plan con fecha real, examen de las 4 habilidades y un coach que te trae de vuelta.'
-                    : 'Sigue donde lo dejaste.',
+                _signUp ? l10n.authSubtitleSignUp : l10n.authSubtitleSignIn,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                     fontSize: 14, fontWeight: FontWeight.w700, color: AppColors.textMuted, height: 1.4),
@@ -129,14 +131,14 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
               ),
               const SizedBox(height: 18),
               if (_signUp) ...[
-                _field(_name, 'Tu nombre', Icons.person_outline_rounded,
+                _field(_name, l10n.authFieldName, Icons.person_outline_rounded,
                     keyboard: TextInputType.name),
                 const SizedBox(height: 12),
               ],
-              _field(_email, 'Email', Icons.mail_outline_rounded,
+              _field(_email, l10n.authFieldEmail, Icons.mail_outline_rounded,
                   keyboard: TextInputType.emailAddress),
               const SizedBox(height: 12),
-              _field(_password, 'Contraseña', Icons.lock_outline_rounded, obscure: true),
+              _field(_password, l10n.authFieldPassword, Icons.lock_outline_rounded, obscure: true),
               if (_error != null) ...[
                 const SizedBox(height: 10),
                 Text(_error!,
@@ -146,6 +148,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
               if (_signUp) ...[
                 const SizedBox(height: 16),
                 _LegalCheckbox(
+                  l10n: l10n,
                   value: _accepted,
                   onChanged: (v) => setState(() {
                     _accepted = v;
@@ -160,8 +163,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
               const SizedBox(height: 18),
               PrimaryButton(
                 label: _loading
-                    ? (_signUp ? 'CREANDO…' : 'ENTRANDO…')
-                    : (_signUp ? 'CREAR CUENTA' : 'INICIAR SESIÓN'),
+                    ? (_signUp ? l10n.authCtaCreating : l10n.authCtaLoggingIn)
+                    : (_signUp ? l10n.authCtaSignUp : l10n.authCtaSignIn),
                 expand: true,
                 onPressed: (_loading || (_signUp && !_accepted)) ? null : _submit,
               ),
@@ -202,11 +205,13 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
 /// Términos y Privacidad. La aceptación se persiste con versión (mig 062).
 class _LegalCheckbox extends StatelessWidget {
   const _LegalCheckbox({
+    required this.l10n,
     required this.value,
     required this.onChanged,
     required this.onTapTerms,
     required this.onTapPrivacy,
   });
+  final AppLocalizations l10n;
   final bool value;
   final ValueChanged<bool> onChanged;
   final VoidCallback onTapTerms;
@@ -236,17 +241,17 @@ class _LegalCheckbox extends StatelessWidget {
             onTap: () => onChanged(!value),
             child: Text.rich(
               TextSpan(style: base, children: [
-                const TextSpan(text: 'He leído y acepto los '),
+                TextSpan(text: l10n.authLegalPrefix),
                 WidgetSpan(
                   alignment: PlaceholderAlignment.middle,
-                  child: GestureDetector(onTap: onTapTerms, child: const Text('Términos', style: link)),
+                  child: GestureDetector(onTap: onTapTerms, child: Text(l10n.authLegalTerms, style: link)),
                 ),
-                const TextSpan(text: ' y la '),
+                TextSpan(text: l10n.authLegalAnd),
                 WidgetSpan(
                   alignment: PlaceholderAlignment.middle,
-                  child: GestureDetector(onTap: onTapPrivacy, child: const Text('Política de Privacidad', style: link)),
+                  child: GestureDetector(onTap: onTapPrivacy, child: Text(l10n.authLegalPrivacy, style: link)),
                 ),
-                const TextSpan(text: '.'),
+                TextSpan(text: l10n.authLegalSuffix),
               ]),
             ),
           ),
@@ -263,6 +268,7 @@ class _SegToggle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Container(
       padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
@@ -271,8 +277,8 @@ class _SegToggle extends StatelessWidget {
       ),
       child: Row(
         children: [
-          _seg('Crear cuenta', signUp, () => onChanged(true)),
-          _seg('Iniciar sesión', !signUp, () => onChanged(false)),
+          _seg(l10n.authSegCreateAccount, signUp, () => onChanged(true)),
+          _seg(l10n.authSegSignIn, !signUp, () => onChanged(false)),
         ],
       ),
     );
