@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/content_item_model.dart';
+import '../../../l10n/app_localizations.dart';
 
 /// Stub elegante para tipos que aún no son jugables en Fase 1:
 /// listening (faltan audios), speaking_read_aloud (falta reconocimiento de voz),
@@ -12,44 +13,45 @@ class StubExercise extends StatelessWidget {
 
   final ContentItemModel item;
 
-  ({IconData icon, String tag, String note}) get _style {
+  ({IconData icon, String tag, String note}) _styleFor(AppLocalizations l10n) {
     switch (item.type) {
       case ContentItemType.speakingReadAloud:
         return (
           icon: Icons.mic_rounded,
-          tag: 'PRONUNCIACIÓN',
-          note: 'El reconocimiento de voz llega pronto. Por ahora, practícalo en voz alta y continúa.'
+          tag: l10n.stubTagPronunciation,
+          note: l10n.stubNotePronunciation
         );
       case ContentItemType.listening:
         return (
           icon: Icons.volume_up_rounded,
-          tag: 'COMPRENSIÓN AUDITIVA',
-          note: 'El audio de este ejercicio se graba pronto. Por ahora, continúa.'
+          tag: l10n.stubTagListening,
+          note: l10n.stubNoteListening
         );
       case ContentItemType.dictation:
         return (
           icon: Icons.hearing_rounded,
-          tag: 'DICTADO',
-          note: 'El dictado necesita audio (se graba pronto). Por ahora, continúa.'
+          tag: l10n.stubTagDictation,
+          note: l10n.stubNoteDictation
         );
       case ContentItemType.guidedWriting:
         return (
           icon: Icons.edit_note_rounded,
-          tag: 'ESCRITURA GUIADA',
-          note: 'La escritura guiada con corrección llega pronto. Por ahora, continúa.'
+          tag: l10n.stubTagGuidedWriting,
+          note: l10n.stubNoteGuidedWriting
         );
       default:
         return (
           icon: Icons.hourglass_top_rounded,
-          tag: 'PRÓXIMAMENTE',
-          note: 'Este tipo de ejercicio llega pronto. Por ahora, continúa.'
+          tag: l10n.stubTagComingSoon,
+          note: l10n.stubNoteComingSoon
         );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final s = _style;
+    final l10n = AppLocalizations.of(context);
+    final s = _styleFor(l10n);
     final text = (item.payload['text'] ?? '').toString();
 
     return Column(

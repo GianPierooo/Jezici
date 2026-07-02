@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:jezici/data/models/progress_models.dart';
 import 'package:jezici/features/lesson/lesson_complete_screen.dart';
+import 'package:jezici/l10n/app_localizations.dart';
 
 void main() {
   // La pantalla usa confeti (animación infinita) → pump con duración, sin settle.
@@ -13,7 +14,12 @@ void main() {
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
     await tester.pumpWidget(ProviderScope(
-        child: MaterialApp(home: LessonCompleteScreen(summary: s, lessonId: 'x'))));
+        child: MaterialApp(
+      locale: const Locale('es'),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      home: LessonCompleteScreen(summary: s, lessonId: 'x'),
+    )));
     await tester.pump(const Duration(milliseconds: 300));
   }
 

@@ -8,6 +8,7 @@ import '../../core/theme/app_colors.dart';
 import '../../data/models/checkpoint_models.dart';
 import '../../data/models/lesson_model.dart';
 import '../../data/providers.dart';
+import '../../l10n/app_localizations.dart';
 import '../lesson/exercises/exercise_registry.dart';
 import 'checkpoint_result_screen.dart';
 
@@ -117,25 +118,26 @@ class _CheckpointPlayerScreenState extends ConsumerState<CheckpointPlayerScreen>
       Navigator.pop(context);
       _submitting = false;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('No se pudo enviar el examen. Intenta de nuevo.')),
+        SnackBar(content: Text(AppLocalizations.of(context).checkpointSubmitError)),
       );
     }
   }
 
   void _confirmExit() {
+    final l10n = AppLocalizations.of(context);
     showDialog<void>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('¿Salir del examen?'),
-        content: const Text('Perderás el progreso de este intento.'),
+        title: Text(l10n.checkpointExitTitle),
+        content: Text(l10n.checkpointExitMsg),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Seguir')),
+          TextButton(onPressed: () => Navigator.pop(ctx), child: Text(l10n.checkpointExitStay)),
           FilledButton(
             onPressed: () {
               Navigator.pop(ctx);
               Navigator.of(context).popUntil((r) => r.isFirst);
             },
-            child: const Text('Salir'),
+            child: Text(l10n.commonExit),
           ),
         ],
       ),
@@ -150,6 +152,7 @@ class _CheckpointPlayerScreenState extends ConsumerState<CheckpointPlayerScreen>
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     if (_items.isEmpty) {
       return Scaffold(
         backgroundColor: AppColors.background,
@@ -162,13 +165,13 @@ class _CheckpointPlayerScreenState extends ConsumerState<CheckpointPlayerScreen>
                 children: [
                   const Icon(Icons.error_outline_rounded, size: 44, color: AppColors.textMuted),
                   const SizedBox(height: 12),
-                  const Text('No pudimos cargar el examen',
+                  Text(l10n.checkpointLoadErrorTitle,
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900, color: AppColors.text)),
+                      style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w900, color: AppColors.text)),
                   const SizedBox(height: 6),
-                  const Text('Vuelve al mapa e inténtalo de nuevo en un momento.',
+                  Text(l10n.checkpointLoadErrorMsg,
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 13.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                      style: const TextStyle(fontSize: 13.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
                   const SizedBox(height: 18),
                   SizedBox(
                     width: double.infinity,
@@ -180,8 +183,8 @@ class _CheckpointPlayerScreenState extends ConsumerState<CheckpointPlayerScreen>
                         foregroundColor: Colors.white,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
                       ),
-                      child: const Text('VOLVER AL MAPA',
-                          style: TextStyle(fontWeight: FontWeight.w900, letterSpacing: 0.4)),
+                      child: Text(l10n.checkpointBackToMapCta,
+                          style: const TextStyle(fontWeight: FontWeight.w900, letterSpacing: 0.4)),
                     ),
                   ),
                 ],
@@ -302,7 +305,7 @@ class _CheckpointPlayerScreenState extends ConsumerState<CheckpointPlayerScreen>
                     borderRadius: BorderRadius.circular(16),
                   ),
                   child: Text(
-                    isLast ? 'TERMINAR' : 'SIGUIENTE',
+                    isLast ? l10n.checkpointFinish : l10n.checkpointNext,
                     style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w900,

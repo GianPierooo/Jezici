@@ -524,4 +524,407 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get authErrorFallback => 'We couldn\'t continue. Check your details.';
+
+  @override
+  String get lessonSaveErrorTitle => 'We couldn\'t save your progress';
+
+  @override
+  String get lessonSaveErrorMsg => 'Check your connection and try again.';
+
+  @override
+  String get lessonNoExercises => 'This lesson doesn\'t have exercises yet.';
+
+  @override
+  String get lessonFeedbackNear => 'Close! 🦜';
+
+  @override
+  String get lessonFeedbackCorrect => 'Correct! 🦜';
+
+  @override
+  String get lessonFeedbackWrong => 'Not quite 🦜';
+
+  @override
+  String lessonFeedbackCorrectForm(String form) {
+    return 'The correct form is: $form';
+  }
+
+  @override
+  String get lessonFeedbackWellDone => 'Well done, keep it up!';
+
+  @override
+  String lessonFeedbackRightAnswer(String answer) {
+    return 'Correct answer: $answer';
+  }
+
+  @override
+  String get lessonAudioUnavailableTitle => 'Audio unavailable';
+
+  @override
+  String get lessonAudioUnavailableMsg =>
+      'This exercise doesn\'t have its audio yet. We\'ll skip it: it won\'t affect your hearts or your score.';
+
+  @override
+  String get lessonCompletePerfectTitle => 'PERFECT LESSON';
+
+  @override
+  String get lessonCompleteTitle => 'LESSON COMPLETE';
+
+  @override
+  String get lessonCompletePerfectMsg => 'Flawless! 🌟';
+
+  @override
+  String get lessonCompleteMsg => 'You did it! 🎉';
+
+  @override
+  String get lessonCompleteXpLabel => 'XP EARNED';
+
+  @override
+  String get lessonCompleteAccuracyLabel => 'ACCURACY';
+
+  @override
+  String get lessonCompleteGoldLabel => 'GOLD';
+
+  @override
+  String get lessonCompleteComboBonusLabel => 'Combo bonus';
+
+  @override
+  String lessonCompleteComboDetail(int bonus, int combo) {
+    return '+$bonus XP · x$combo in a row';
+  }
+
+  @override
+  String lessonCompleteMilestone(int days) {
+    return '$days-day milestone! Gold reward unlocked';
+  }
+
+  @override
+  String lessonCompleteStreakDays(int streak) {
+    String _temp0 = intl.Intl.pluralLogic(
+      streak,
+      locale: localeName,
+      other: '🔥 $streak-day streak',
+      one: '🔥 $streak-day streak',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get lessonCompleteStreakAdvanced =>
+      '+1 today! You met your daily goal';
+
+  @override
+  String get lessonCompleteGoalMet => 'Daily goal met';
+
+  @override
+  String get lessonCompleteGoalPending => 'Keep going to meet today\'s goal';
+
+  @override
+  String get lessonCompleteFreezeSingle =>
+      'Your streak freeze saved your streak';
+
+  @override
+  String get lessonCompleteFreezeMulti =>
+      'Your streak freezes saved your streak';
+
+  @override
+  String get lessonCompleteSkillsUp => 'Skills that leveled up';
+
+  @override
+  String tipCardHeader(String type) {
+    return 'Matix teaches you · $type';
+  }
+
+  @override
+  String tipCardPersonalized(String skill) {
+    return 'I\'m giving you this because your $skill needs a boost. 🦜';
+  }
+
+  @override
+  String get errorReviewWhyTranslation =>
+      'Watch the exact English form — the full meaning matters.';
+
+  @override
+  String get errorReviewWhyCloze =>
+      'Review the word that was missing in the sentence.';
+
+  @override
+  String get errorReviewWhyWordOrder =>
+      'Mind the word ORDER: English is more fixed than Spanish.';
+
+  @override
+  String get errorReviewWhyMatch => 'Match each word with its correct pair.';
+
+  @override
+  String get errorReviewWhyListening =>
+      'Listen again calmly; the sound gives you the clue.';
+
+  @override
+  String get errorReviewWhyDefault =>
+      'Review it: you\'ll see it again soon in your practice.';
+
+  @override
+  String get errorReviewTitle => 'Review what you missed';
+
+  @override
+  String errorReviewSubtitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count exercises to reinforce. You\'re almost there!',
+      one: '1 exercise to reinforce. You\'re almost there!',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get errorReviewPracticeCta => 'Practice the ones you missed';
+
+  @override
+  String get tileArrangePlaceholder => 'Tap the words to build the sentence…';
+
+  @override
+  String get tileArrangeAllPlaced => 'All placed — tap CHECK';
+
+  @override
+  String get translationHint => 'Write the translation…';
+
+  @override
+  String get clozeHint => 'Type your answer…';
+
+  @override
+  String get listeningTapToListen => 'Tap to listen';
+
+  @override
+  String get speakingPreparingMic => 'Preparing microphone…';
+
+  @override
+  String get speakingNoMic =>
+      'Your browser or device doesn\'t allow the microphone.';
+
+  @override
+  String get speakingIReadIt => 'I read it ✓';
+
+  @override
+  String get speakingManualDone => 'Nice! Keep practicing out loud. 🦜';
+
+  @override
+  String get speakingListening => 'Listening…';
+
+  @override
+  String get speakingTalk => 'Speak';
+
+  @override
+  String get speakingGood => 'Well pronounced! 🦜';
+
+  @override
+  String get speakingNoSound => 'I didn\'t hear you — get closer and try again';
+
+  @override
+  String get speakingOk => 'You\'re doing well. Read it again if you want';
+
+  @override
+  String speakingHeard(String heard) {
+    return 'I heard: \"$heard\"';
+  }
+
+  @override
+  String get speakingVolumeHint =>
+      'Turn up the mic volume, or tap \"I read it ✓\" to continue.';
+
+  @override
+  String speakingRetryHint(String heard) {
+    return 'I heard: \"$heard\". You can try again or tap \"I read it ✓\".';
+  }
+
+  @override
+  String get speakingHearModel => 'Hear the model';
+
+  @override
+  String get audioPlayDefault => 'Listen';
+
+  @override
+  String get stubTagPronunciation => 'PRONUNCIATION';
+
+  @override
+  String get stubNotePronunciation =>
+      'Voice recognition is coming soon. For now, practice it out loud and continue.';
+
+  @override
+  String get stubTagListening => 'LISTENING';
+
+  @override
+  String get stubNoteListening =>
+      'The audio for this exercise is being recorded soon. For now, continue.';
+
+  @override
+  String get stubTagDictation => 'DICTATION';
+
+  @override
+  String get stubNoteDictation =>
+      'Dictation needs audio (recorded soon). For now, continue.';
+
+  @override
+  String get stubTagGuidedWriting => 'GUIDED WRITING';
+
+  @override
+  String get stubNoteGuidedWriting =>
+      'Guided writing with feedback is coming soon. For now, continue.';
+
+  @override
+  String get stubTagComingSoon => 'COMING SOON';
+
+  @override
+  String get stubNoteComingSoon =>
+      'This exercise type is coming soon. For now, continue.';
+
+  @override
+  String get noHeartsTitle => 'You\'re out of hearts ❤️';
+
+  @override
+  String get noHeartsMsg =>
+      'No worries, it happens to everyone! Hearts regenerate over time; if you want to keep going now, refill them with gold.';
+
+  @override
+  String get noHeartsRefill => 'Refill hearts and continue';
+
+  @override
+  String get noHeartsQuit => 'Leave the lesson';
+
+  @override
+  String get checkpointStartError => 'We couldn\'t start the exam. Try again.';
+
+  @override
+  String get checkpointPortalTitle => 'The unit portal';
+
+  @override
+  String get checkpointCoachMsg => '🦜  Show what you know!';
+
+  @override
+  String get checkpointIntroMsg =>
+      'Beat the portal to open the next region of the map.';
+
+  @override
+  String get checkpointStatTimed => 'timed';
+
+  @override
+  String get checkpointStatPass => 'to pass';
+
+  @override
+  String get checkpointStatQuestions => 'questions';
+
+  @override
+  String get checkpointStartCta => 'START CHECKPOINT';
+
+  @override
+  String get checkpointNoCost =>
+      'No hearts cost · you can retry whenever you want';
+
+  @override
+  String get checkpointSkillsBreakdown => 'Breakdown by skill';
+
+  @override
+  String get checkpointPassedLabel => '✓ CHECKPOINT PASSED';
+
+  @override
+  String get checkpointFailedLabel => 'CHECKPOINT NOT PASSED';
+
+  @override
+  String get checkpointPassedMsg => 'Unit cleared!';
+
+  @override
+  String get checkpointFailedMsg => 'You haven\'t beaten the portal yet';
+
+  @override
+  String checkpointPassedScore(int pct) {
+    return '$pct% correct';
+  }
+
+  @override
+  String checkpointFailedScore(int pct) {
+    return '$pct% · you need 80%';
+  }
+
+  @override
+  String get checkpointSkillSoon => 'soon';
+
+  @override
+  String get checkpointRegionUnlockedLabel => '✦ NEW REGION UNLOCKED';
+
+  @override
+  String get checkpointCompleteLabel => '✓ UNIT COMPLETE';
+
+  @override
+  String checkpointRegionUnlockedMsg(String unit) {
+    return '$unit complete! The next region is unlocked.';
+  }
+
+  @override
+  String checkpointCompleteSoonMsg(String unit) {
+    return '$unit complete! The next region is coming soon.';
+  }
+
+  @override
+  String get checkpointContinueJourney => 'CONTINUE THE JOURNEY';
+
+  @override
+  String get checkpointRetry => 'RETRY';
+
+  @override
+  String get checkpointBackToMap => 'Back to the map';
+
+  @override
+  String checkpointMissingPoints(int missing, int pct) {
+    return 'You were $missing points short of $pct%. So close!';
+  }
+
+  @override
+  String get checkpointReinforceTitle => 'REINFORCE THESE SKILLS';
+
+  @override
+  String get checkpointReinforceEmpty => 'Review the unit and try again.';
+
+  @override
+  String get checkpointSubmitError =>
+      'We couldn\'t submit the exam. Try again.';
+
+  @override
+  String get checkpointExitTitle => 'Leave the exam?';
+
+  @override
+  String get checkpointExitMsg => 'You\'ll lose this attempt\'s progress.';
+
+  @override
+  String get checkpointExitStay => 'Keep going';
+
+  @override
+  String get checkpointLoadErrorTitle => 'We couldn\'t load the exam';
+
+  @override
+  String get checkpointLoadErrorMsg =>
+      'Go back to the map and try again in a moment.';
+
+  @override
+  String get checkpointBackToMapCta => 'BACK TO THE MAP';
+
+  @override
+  String get checkpointFinish => 'FINISH';
+
+  @override
+  String get checkpointNext => 'NEXT';
+
+  @override
+  String lessonPreviewLoadError(String error) {
+    return 'We couldn\'t load the lesson.\n$error';
+  }
+
+  @override
+  String lessonPreviewExerciseCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count exercises',
+      one: '1 exercise',
+    );
+    return '$_temp0';
+  }
 }

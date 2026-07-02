@@ -2,13 +2,14 @@ import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../core/constants/skills.dart';
 import '../../core/feedback/feedback_fx.dart';
 import '../../core/theme/app_colors.dart';
 import '../learn/widgets/parrot_mascot.dart';
 import '../../data/models/progress_models.dart';
 import '../../data/models/tip_models.dart';
 import '../../data/providers.dart';
+import '../../l10n/app_localizations.dart';
+import '../../l10n/skill_names.dart';
 import '../notifications/coach_styles.dart';
 import '../../ui/daily_goal_bar.dart';
 import '../../ui/primary_button.dart';
@@ -28,8 +29,6 @@ class LessonCompleteScreen extends ConsumerStatefulWidget {
 class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
   late final ConfettiController _confetti;
   TipModel? _tip;
-
-  static const _skillLabels = kSkillEs;
 
   @override
   void initState() {
@@ -55,6 +54,7 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final r = widget.summary;
     final golden = r.status == 'golden';
     return Scaffold(
@@ -103,7 +103,7 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
                       const ParrotMascot(size: 80, mood: MascotMood.celebrate),
                       const SizedBox(height: 6),
                       Text(
-                        golden ? 'LECCIÓN PERFECTA' : 'LECCIÓN COMPLETADA',
+                        golden ? l10n.lessonCompletePerfectTitle : l10n.lessonCompleteTitle,
                         style: TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.w900,
@@ -113,7 +113,7 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        golden ? '¡Impecable! 🌟' : '¡Lo lograste! 🎉',
+                        golden ? l10n.lessonCompletePerfectMsg : l10n.lessonCompleteMsg,
                         style: const TextStyle(
                           fontSize: 27,
                           fontWeight: FontWeight.w900,
@@ -137,7 +137,7 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
                         icon: Icons.bolt_rounded,
                         target: r.xpEarned.toDouble(),
                         prefix: '+',
-                        label: 'XP GANADO',
+                        label: l10n.lessonCompleteXpLabel,
                         bg: AppColors.navActiveBg,
                         fg: AppColors.primary,
                         delayMs: 120,
@@ -148,7 +148,7 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
                         target: r.graded == 0 ? null : r.accuracyPct.toDouble(),
                         suffix: '%',
                         placeholder: '—',
-                        label: 'PRECISIÓN',
+                        label: l10n.lessonCompleteAccuracyLabel,
                         bg: const Color(0xFFE7F9EF),
                         fg: AppColors.success,
                         delayMs: 240,
@@ -158,7 +158,7 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
                         icon: Icons.monetization_on_rounded,
                         target: r.goldEarned.toDouble(),
                         prefix: '+',
-                        label: 'ORO',
+                        label: l10n.lessonCompleteGoldLabel,
                         bg: const Color(0xFFFFF4D6),
                         fg: AppColors.goldDark,
                         delayMs: 360,
@@ -170,8 +170,8 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
                     _InfoRow(
                       leading: const Text('⚡', style: TextStyle(fontSize: 18)),
                       leadingBg: AppColors.coral,
-                      title: 'Bonus de combo',
-                      subtitle: '+${r.comboBonus} XP · x${r.maxCombo} seguidas',
+                      title: l10n.lessonCompleteComboBonusLabel,
+                      subtitle: l10n.lessonCompleteComboDetail(r.comboBonus, r.maxCombo),
                       subtitleColor: AppColors.coral,
                     ),
                   ],
@@ -192,7 +192,7 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
                           const SizedBox(width: 10),
                           Expanded(
                             child: Text(
-                              '¡Hito de ${r.milestone} días! Recompensa de oro desbloqueada',
+                              l10n.lessonCompleteMilestone(r.milestone),
                               style: const TextStyle(
                                 fontSize: 14.5,
                                 fontWeight: FontWeight.w900,
@@ -223,7 +223,7 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                '🔥 ${r.streak} ${r.streak == 1 ? 'día' : 'días'} de racha',
+                                l10n.lessonCompleteStreakDays(r.streak),
                                 style: const TextStyle(
                                   fontSize: 17,
                                   fontWeight: FontWeight.w900,
@@ -232,10 +232,10 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
                               ),
                               Text(
                                 r.streakAdvanced
-                                    ? '¡+1 hoy! Cumpliste tu meta diaria'
+                                    ? l10n.lessonCompleteStreakAdvanced
                                     : (r.goalMet
-                                        ? 'Meta diaria cumplida'
-                                        : 'Sigue para cumplir tu meta de hoy'),
+                                        ? l10n.lessonCompleteGoalMet
+                                        : l10n.lessonCompleteGoalPending),
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.w800,
@@ -278,8 +278,8 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
                           Expanded(
                             child: Text(
                               r.streakFreezeUsed == 1
-                                  ? 'Tu congelador salvó tu racha'
-                                  : 'Tus congeladores salvaron tu racha',
+                                  ? l10n.lessonCompleteFreezeSingle
+                                  : l10n.lessonCompleteFreezeMulti,
                               style: const TextStyle(
                                 fontSize: 12.5,
                                 fontWeight: FontWeight.w800,
@@ -324,10 +324,10 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
                                     color: AppColors.success, size: 20),
                               ),
                               const SizedBox(width: 11),
-                              const Expanded(
+                              Expanded(
                                 child: Text(
-                                  'Habilidades que subieron',
-                                  style: TextStyle(
+                                  l10n.lessonCompleteSkillsUp,
+                                  style: const TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w900,
                                     color: AppColors.text,
@@ -350,7 +350,7 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
                                     borderRadius: BorderRadius.circular(11),
                                   ),
                                   child: Text(
-                                    '${_skillLabels[s] ?? s} ▲',
+                                    '${skillName(l10n, s)} ▲',
                                     style: const TextStyle(
                                       fontSize: 12,
                                       fontWeight: FontWeight.w900,
@@ -376,7 +376,7 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
                   ],
                   const SizedBox(height: 22),
                   PrimaryButton(
-                    label: 'CONTINUAR',
+                    label: l10n.commonContinue,
                     expand: true,
                     onPressed: () => Navigator.of(context).popUntil((route) => route.isFirst),
                   ),
@@ -407,6 +407,7 @@ class _TipCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final coach = CoachStyle.of(coachKey);
     final personalized = tip.weakSkill != null && tip.skill == tip.weakSkill;
     return Container(
@@ -429,7 +430,7 @@ class _TipCard extends StatelessWidget {
               Text(coach.emoji, style: const TextStyle(fontSize: 18)),
               const SizedBox(width: 6),
               Expanded(
-                child: Text('Matix te enseña · ${tip.typeLabel}',
+                child: Text(l10n.tipCardHeader(tip.typeLabel),
                     style: const TextStyle(
                         fontSize: 12, fontWeight: FontWeight.w900, color: AppColors.primary)),
               ),
@@ -458,7 +459,7 @@ class _TipCard extends StatelessWidget {
           ],
           if (personalized) ...[
             const SizedBox(height: 9),
-            Text('Te lo doy porque tu ${kSkillEs[tip.skill] ?? tip.skill} necesita un empujón. 🦜',
+            Text(l10n.tipCardPersonalized(skillName(l10n, tip.skill)),
                 style: const TextStyle(
                     fontSize: 11.5, fontWeight: FontWeight.w800, color: AppColors.coral)),
           ],

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import '../../../core/speech/speech_recognizer.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/content_item_model.dart';
+import '../../../l10n/app_localizations.dart';
 import 'audio_play_button.dart';
 
 /// Speaking REAL (Fase 1): el usuario escucha el modelo y lee en voz alta.
@@ -86,6 +87,7 @@ class _SpeakingExerciseState extends State<SpeakingExercise> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final passed = _score != null && speechPasses(_heard ?? '', _expected);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -97,16 +99,16 @@ class _SpeakingExerciseState extends State<SpeakingExercise> {
               style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w900, color: AppColors.primary, height: 1.3)),
         ),
         const SizedBox(height: 14),
-        if (_audioUrl.isNotEmpty) Center(child: AudioPlayButton(url: _audioUrl, label: 'Oír el modelo', big: false)),
+        if (_audioUrl.isNotEmpty) Center(child: AudioPlayButton(url: _audioUrl, label: l10n.speakingHearModel, big: false)),
         const SizedBox(height: 18),
         if (!_ready)
-          const Center(
-              child: Text('Preparando micrófono…',
-                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)))
+          Center(
+              child: Text(l10n.speakingPreparingMic,
+                  style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)))
         else if (!_available) ...[
-          const Text('Tu navegador o dispositivo no permite el micrófono.',
+          Text(l10n.speakingNoMic,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
           const SizedBox(height: 12),
           Center(child: _readItButton()),
         ] else ...[
@@ -115,8 +117,8 @@ class _SpeakingExerciseState extends State<SpeakingExercise> {
           Center(
             child: TextButton(
               onPressed: () => setState(() => _doneManually = true),
-              child: const Text('Ya lo leí ✓',
-                  style: TextStyle(fontWeight: FontWeight.w800, color: AppColors.textMuted)),
+              child: Text(l10n.speakingIReadIt,
+                  style: const TextStyle(fontWeight: FontWeight.w800, color: AppColors.textMuted)),
             ),
           ),
         ],
@@ -129,11 +131,11 @@ class _SpeakingExerciseState extends State<SpeakingExercise> {
           Container(
             padding: const EdgeInsets.all(14),
             decoration: BoxDecoration(color: const Color(0xFFE5F8EE), borderRadius: BorderRadius.circular(14)),
-            child: const Row(children: [
-              Icon(Icons.check_circle_rounded, color: AppColors.success, size: 20),
-              SizedBox(width: 8),
-              Expanded(child: Text('¡Bien! Sigue practicando en voz alta. 🦜',
-                  style: TextStyle(fontWeight: FontWeight.w900, color: AppColors.success))),
+            child: Row(children: [
+              const Icon(Icons.check_circle_rounded, color: AppColors.success, size: 20),
+              const SizedBox(width: 8),
+              Expanded(child: Text(l10n.speakingManualDone,
+                  style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.success))),
             ]),
           ),
         ],
@@ -142,6 +144,7 @@ class _SpeakingExerciseState extends State<SpeakingExercise> {
   }
 
   Widget _micButton() {
+    final l10n = AppLocalizations.of(context);
     return GestureDetector(
       onTap: _listen,
       child: Container(
@@ -151,7 +154,7 @@ class _SpeakingExerciseState extends State<SpeakingExercise> {
         child: Row(mainAxisSize: MainAxisSize.min, children: [
           Icon(_listening ? Icons.mic_rounded : Icons.mic_none_rounded, color: Colors.white),
           const SizedBox(width: 8),
-          Text(_listening ? 'Escuchando…' : 'Hablar',
+          Text(_listening ? l10n.speakingListening : l10n.speakingTalk,
               style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 16)),
         ]),
       ),
@@ -159,13 +162,14 @@ class _SpeakingExerciseState extends State<SpeakingExercise> {
   }
 
   Widget _readItButton() {
+    final l10n = AppLocalizations.of(context);
     return GestureDetector(
       onTap: () => setState(() => _doneManually = true),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 14),
         decoration: BoxDecoration(color: AppColors.primary, borderRadius: BorderRadius.circular(16)),
-        child: const Text('Ya lo leí ✓',
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 16)),
+        child: Text(l10n.speakingIReadIt,
+            style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 16)),
       ),
     );
   }
@@ -179,16 +183,17 @@ class _Feedback extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final color = passed ? AppColors.success : AppColors.coral;
     final empty = heard.trim().isEmpty;
     final title = passed
-        ? '¡Bien pronunciado! 🦜'
-        : (empty ? 'No te escuché — acércate e inténtalo' : 'Vas bien. Léelo otra vez si quieres');
+        ? l10n.speakingGood
+        : (empty ? l10n.speakingNoSound : l10n.speakingOk);
     final detail = passed
-        ? 'Escuché: “$heard”'
+        ? l10n.speakingHeard(heard)
         : (empty
-            ? 'Sube el volumen del micro, o toca “Ya lo leí ✓” para continuar.'
-            : 'Escuché: “$heard”. Puedes reintentar o tocar “Ya lo leí ✓”.');
+            ? l10n.speakingVolumeHint
+            : l10n.speakingRetryHint(heard));
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
@@ -200,7 +205,7 @@ class _Feedback extends StatelessWidget {
           Icon(passed ? Icons.verified_rounded : Icons.refresh_rounded, color: color, size: 20),
           const SizedBox(width: 8),
           Expanded(child: Text(title, style: TextStyle(fontWeight: FontWeight.w900, color: color))),
-          if (!passed) TextButton(onPressed: onRetry, child: const Text('Reintentar')),
+          if (!passed) TextButton(onPressed: onRetry, child: Text(l10n.commonRetry)),
         ]),
         const SizedBox(height: 6),
         Text(detail,

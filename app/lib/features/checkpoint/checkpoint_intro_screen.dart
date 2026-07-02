@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/lesson_model.dart';
 import '../../data/providers.dart';
+import '../../l10n/app_localizations.dart';
 import 'checkpoint_player_screen.dart';
 
 /// Intro del checkpoint (mockup Checkpoint, Frame A): portal + condiciones de
@@ -34,13 +35,14 @@ class CheckpointIntroScreen extends ConsumerWidget {
       if (!context.mounted) return;
       Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('No se pudo iniciar el examen. Intenta de nuevo.')),
+        SnackBar(content: Text(AppLocalizations.of(context).checkpointStartError)),
       );
     }
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: AppColors.background,
       body: Column(
@@ -157,10 +159,10 @@ class CheckpointIntroScreen extends ConsumerWidget {
                               color: Color(0xFF5B3A00))),
                     ),
                     const SizedBox(height: 10),
-                    const Text(
-                      'El portal de la unidad',
+                    Text(
+                      l10n.checkpointPortalTitle,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 24, fontWeight: FontWeight.w900, color: Colors.white),
                     ),
                     const SizedBox(height: 2),
@@ -173,12 +175,12 @@ class CheckpointIntroScreen extends ConsumerWidget {
                           color: Colors.white.withValues(alpha: 0.8)),
                     ),
                     const Spacer(),
-                    const Padding(
-                      padding: EdgeInsets.only(bottom: 14, right: 20),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 14, right: 20),
                       child: Align(
                         alignment: Alignment.centerRight,
-                        child: Text('🦜  ¡Demuestra lo que sabes!',
-                            style: TextStyle(
+                        child: Text(l10n.checkpointCoachMsg,
+                            style: const TextStyle(
                                 color: Colors.white, fontWeight: FontWeight.w800, fontSize: 13)),
                       ),
                     ),
@@ -201,20 +203,20 @@ class CheckpointIntroScreen extends ConsumerWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text(
-                  'Supera el portal para abrir la siguiente región del mapa.',
+                Text(
+                  l10n.checkpointIntroMsg,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.textMuted),
                 ),
                 const SizedBox(height: 16),
-                const Row(
+                Row(
                   children: [
-                    _StatCard(icon: Icons.timer_outlined, value: '5 min', label: 'cronometrado'),
-                    SizedBox(width: 10),
-                    _StatCard(icon: Icons.adjust_rounded, value: '80%', label: 'para pasar'),
-                    SizedBox(width: 10),
-                    _StatCard(icon: Icons.help_outline_rounded, value: '10', label: 'preguntas'),
+                    _StatCard(icon: Icons.timer_outlined, value: '5 min', label: l10n.checkpointStatTimed),
+                    const SizedBox(width: 10),
+                    _StatCard(icon: Icons.adjust_rounded, value: '80%', label: l10n.checkpointStatPass),
+                    const SizedBox(width: 10),
+                    _StatCard(icon: Icons.help_outline_rounded, value: '10', label: l10n.checkpointStatQuestions),
                   ],
                 ),
                 const SizedBox(height: 18),
@@ -231,14 +233,14 @@ class CheckpointIntroScreen extends ConsumerWidget {
                         BoxShadow(color: Color(0xFFD69400), offset: Offset(0, 6), blurRadius: 0),
                       ],
                     ),
-                    child: const Text('EMPEZAR CHECKPOINT',
-                        style: TextStyle(
+                    child: Text(l10n.checkpointStartCta,
+                        style: const TextStyle(
                             fontSize: 17, fontWeight: FontWeight.w900, color: AppColors.text)),
                   ),
                 ),
                 const SizedBox(height: 11),
-                const Text('No cuesta vidas · puedes reintentarlo cuando quieras',
-                    style: TextStyle(
+                Text(l10n.checkpointNoCost,
+                    style: const TextStyle(
                         fontSize: 11, fontWeight: FontWeight.w800, color: AppColors.textMuted)),
               ],
             ),

@@ -4,14 +4,16 @@ import 'package:flutter/material.dart';
 
 import '../../../core/audio/audio_engine.dart';
 import '../../../core/theme/app_colors.dart';
+import '../../../l10n/app_localizations.dart';
 
 /// Botón grande para reproducir un audio (TTS) desde una URL. Reutilizado por
 /// listening y speaking. Usa AudioEngine (Web Audio en web → sin reproductor en
 /// la pantalla de bloqueo).
 class AudioPlayButton extends StatefulWidget {
-  const AudioPlayButton({super.key, required this.url, this.label = 'Escuchar', this.big = true});
+  const AudioPlayButton({super.key, required this.url, this.label, this.big = true});
   final String url;
-  final String label;
+  /// Etiqueta del botón pequeño; si es null usa el default localizado ("Escuchar").
+  final String? label;
   final bool big;
 
   @override
@@ -73,7 +75,8 @@ class _AudioPlayButtonState extends State<AudioPlayButton> {
       return OutlinedButton.icon(
         onPressed: null,
         icon: const Icon(Icons.volume_off_rounded, size: 20),
-        label: const Text('Audio no disponible', style: TextStyle(fontWeight: FontWeight.w900)),
+        label: Text(AppLocalizations.of(context).lessonAudioUnavailableTitle,
+            style: const TextStyle(fontWeight: FontWeight.w900)),
         style: OutlinedButton.styleFrom(
           foregroundColor: AppColors.textMuted,
           side: const BorderSide(color: Color(0xFFC9CDDD)),
@@ -104,7 +107,8 @@ class _AudioPlayButtonState extends State<AudioPlayButton> {
     return OutlinedButton.icon(
       onPressed: _play,
       icon: Icon(_playing ? Icons.volume_up_rounded : Icons.volume_up_outlined, size: 20),
-      label: Text(widget.label, style: const TextStyle(fontWeight: FontWeight.w900)),
+      label: Text(widget.label ?? AppLocalizations.of(context).audioPlayDefault,
+          style: const TextStyle(fontWeight: FontWeight.w900)),
       style: OutlinedButton.styleFrom(
         foregroundColor: AppColors.primary,
         side: const BorderSide(color: AppColors.primary),

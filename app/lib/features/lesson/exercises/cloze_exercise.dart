@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/content_item_model.dart';
+import '../../../l10n/app_localizations.dart';
 import '../grading/grader.dart';
 
 /// Rellenar el espacio. Si el payload trae `options`, se muestran como fichas
@@ -59,6 +60,7 @@ class _ClozeExerciseState extends State<ClozeExercise> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -114,7 +116,7 @@ class _ClozeExerciseState extends State<ClozeExercise> {
             textCapitalization: TextCapitalization.sentences,
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
             decoration: InputDecoration(
-              hintText: 'Escribe tu respuesta…',
+              hintText: l10n.clozeHint,
               filled: true,
               fillColor: Colors.white,
               enabledBorder: OutlineInputBorder(

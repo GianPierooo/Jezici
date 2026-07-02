@@ -10,6 +10,7 @@ import '../../core/ui/jz_transitions.dart';
 import '../../data/models/content_item_model.dart';
 import '../../data/models/lesson_model.dart';
 import '../../data/providers.dart';
+import '../../l10n/app_localizations.dart';
 import 'error_review_screen.dart';
 import 'exercises/exercise_registry.dart';
 import 'grading/grader.dart';
@@ -298,25 +299,26 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
     } catch (_) {
       if (!mounted) return;
       Navigator.of(context).pop(); // cerrar loading
+      final l10n = AppLocalizations.of(context);
       showDialog<void>(
         context: context,
         builder: (ctx) => AlertDialog(
-          title: const Text('No se pudo guardar tu progreso'),
-          content: const Text('Revisa tu conexión e inténtalo de nuevo.'),
+          title: Text(l10n.lessonSaveErrorTitle),
+          content: Text(l10n.lessonSaveErrorMsg),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(ctx);
                 Navigator.of(context).popUntil((r) => r.isFirst);
               },
-              child: const Text('Salir'),
+              child: Text(l10n.commonExit),
             ),
             FilledButton(
               onPressed: () {
                 Navigator.pop(ctx);
                 _finish();
               },
-              child: const Text('Reintentar'),
+              child: Text(l10n.commonRetry),
             ),
           ],
         ),
@@ -335,6 +337,7 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final total = widget.items.length;
     final locked = _phase == _Phase.feedback;
 
@@ -346,11 +349,11 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text('Esta lección aún no tiene ejercicios.',
-                    style: TextStyle(
+                Text(l10n.lessonNoExercises,
+                    style: const TextStyle(
                         color: AppColors.textMuted, fontWeight: FontWeight.w700)),
                 const SizedBox(height: 12),
-                TextButton(onPressed: _exit, child: const Text('Volver')),
+                TextButton(onPressed: _exit, child: Text(l10n.commonBack)),
               ],
             ),
           ),
@@ -549,6 +552,7 @@ class _BottomArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     if (phase == _Phase.feedback && result != null) {
       return _FeedbackBar(result: result!, onContinue: onContinue);
     }
@@ -556,7 +560,7 @@ class _BottomArea extends StatelessWidget {
       return Padding(
         padding: const EdgeInsets.fromLTRB(20, 8, 20, 22),
         child: _BigButton(
-          label: 'CONTINUAR',
+          label: l10n.commonContinue,
           color: AppColors.primary,
           onTap: onStubContinue,
         ),
@@ -569,7 +573,7 @@ class _BottomArea extends StatelessWidget {
         builder: (context, value, _) {
           final enabled = value != null;
           return _BigButton(
-            label: 'COMPROBAR',
+            label: l10n.commonCheck,
             color: enabled ? AppColors.primary : const Color(0xFFC9CDDD),
             onTap: enabled ? onCheck : null,
           );
@@ -586,6 +590,7 @@ class _FeedbackBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final ok = result.correct;
     final near = result.near; // "casi" (typo-tolerance, mig 073): aceptado pero no exacto
     final bg = near
@@ -637,7 +642,7 @@ class _FeedbackBar extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      near ? '¡Casi! 🦜' : (ok ? '¡Correcto! 🦜' : 'No del todo 🦜'),
+                      near ? l10n.lessonFeedbackNear : (ok ? l10n.lessonFeedbackCorrect : l10n.lessonFeedbackWrong),
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w900,
@@ -647,8 +652,8 @@ class _FeedbackBar extends StatelessWidget {
                     const SizedBox(height: 2),
                     Text(
                       near
-                          ? 'La forma correcta es: ${result.correctDisplay}'
-                          : (ok ? '¡Bien hecho, sigue así!' : 'Respuesta correcta: ${result.correctDisplay}'),
+                          ? l10n.lessonFeedbackCorrectForm(result.correctDisplay)
+                          : (ok ? l10n.lessonFeedbackWellDone : l10n.lessonFeedbackRightAnswer(result.correctDisplay)),
                       style: TextStyle(
                         fontSize: 12.5,
                         fontWeight: FontWeight.w800,
@@ -661,7 +666,7 @@ class _FeedbackBar extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 14),
-          _BigButton(label: 'CONTINUAR', color: accent, onTap: onContinue),
+          _BigButton(label: l10n.commonContinue, color: accent, onTap: onContinue),
         ],
       ),
       ),
@@ -676,6 +681,7 @@ class _AudioUnavailableNotice extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(20),
@@ -688,16 +694,16 @@ class _AudioUnavailableNotice extends StatelessWidget {
         children: [
           const Icon(Icons.volume_off_rounded, color: AppColors.primary, size: 40),
           const SizedBox(height: 12),
-          const Text(
-            'Audio no disponible',
-            style: TextStyle(
+          Text(
+            l10n.lessonAudioUnavailableTitle,
+            style: const TextStyle(
                 fontSize: 17, fontWeight: FontWeight.w900, color: AppColors.text),
           ),
           const SizedBox(height: 6),
-          const Text(
-            'Este ejercicio aún no tiene su audio. Lo saltamos: no afecta tus vidas ni tu puntaje.',
+          Text(
+            l10n.lessonAudioUnavailableMsg,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 13.5, fontWeight: FontWeight.w700, color: AppColors.textMuted),
           ),
         ],

@@ -977,6 +977,666 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'No se pudo continuar. Revisa tus datos.'**
   String get authErrorFallback;
+
+  /// No description provided for @lessonSaveErrorTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo guardar tu progreso'**
+  String get lessonSaveErrorTitle;
+
+  /// No description provided for @lessonSaveErrorMsg.
+  ///
+  /// In es, this message translates to:
+  /// **'Revisa tu conexión e inténtalo de nuevo.'**
+  String get lessonSaveErrorMsg;
+
+  /// No description provided for @lessonNoExercises.
+  ///
+  /// In es, this message translates to:
+  /// **'Esta lección aún no tiene ejercicios.'**
+  String get lessonNoExercises;
+
+  /// No description provided for @lessonFeedbackNear.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Casi! 🦜'**
+  String get lessonFeedbackNear;
+
+  /// No description provided for @lessonFeedbackCorrect.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Correcto! 🦜'**
+  String get lessonFeedbackCorrect;
+
+  /// No description provided for @lessonFeedbackWrong.
+  ///
+  /// In es, this message translates to:
+  /// **'No del todo 🦜'**
+  String get lessonFeedbackWrong;
+
+  /// No description provided for @lessonFeedbackCorrectForm.
+  ///
+  /// In es, this message translates to:
+  /// **'La forma correcta es: {form}'**
+  String lessonFeedbackCorrectForm(String form);
+
+  /// No description provided for @lessonFeedbackWellDone.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Bien hecho, sigue así!'**
+  String get lessonFeedbackWellDone;
+
+  /// No description provided for @lessonFeedbackRightAnswer.
+  ///
+  /// In es, this message translates to:
+  /// **'Respuesta correcta: {answer}'**
+  String lessonFeedbackRightAnswer(String answer);
+
+  /// No description provided for @lessonAudioUnavailableTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Audio no disponible'**
+  String get lessonAudioUnavailableTitle;
+
+  /// No description provided for @lessonAudioUnavailableMsg.
+  ///
+  /// In es, this message translates to:
+  /// **'Este ejercicio aún no tiene su audio. Lo saltamos: no afecta tus vidas ni tu puntaje.'**
+  String get lessonAudioUnavailableMsg;
+
+  /// No description provided for @lessonCompletePerfectTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'LECCIÓN PERFECTA'**
+  String get lessonCompletePerfectTitle;
+
+  /// No description provided for @lessonCompleteTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'LECCIÓN COMPLETADA'**
+  String get lessonCompleteTitle;
+
+  /// No description provided for @lessonCompletePerfectMsg.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Impecable! 🌟'**
+  String get lessonCompletePerfectMsg;
+
+  /// No description provided for @lessonCompleteMsg.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Lo lograste! 🎉'**
+  String get lessonCompleteMsg;
+
+  /// No description provided for @lessonCompleteXpLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'XP GANADO'**
+  String get lessonCompleteXpLabel;
+
+  /// No description provided for @lessonCompleteAccuracyLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'PRECISIÓN'**
+  String get lessonCompleteAccuracyLabel;
+
+  /// No description provided for @lessonCompleteGoldLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'ORO'**
+  String get lessonCompleteGoldLabel;
+
+  /// No description provided for @lessonCompleteComboBonusLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Bonus de combo'**
+  String get lessonCompleteComboBonusLabel;
+
+  /// No description provided for @lessonCompleteComboDetail.
+  ///
+  /// In es, this message translates to:
+  /// **'+{bonus} XP · x{combo} seguidas'**
+  String lessonCompleteComboDetail(int bonus, int combo);
+
+  /// No description provided for @lessonCompleteMilestone.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Hito de {days} días! Recompensa de oro desbloqueada'**
+  String lessonCompleteMilestone(int days);
+
+  /// No description provided for @lessonCompleteStreakDays.
+  ///
+  /// In es, this message translates to:
+  /// **'{streak, plural, =1{🔥 {streak} día de racha} other{🔥 {streak} días de racha}}'**
+  String lessonCompleteStreakDays(int streak);
+
+  /// No description provided for @lessonCompleteStreakAdvanced.
+  ///
+  /// In es, this message translates to:
+  /// **'¡+1 hoy! Cumpliste tu meta diaria'**
+  String get lessonCompleteStreakAdvanced;
+
+  /// No description provided for @lessonCompleteGoalMet.
+  ///
+  /// In es, this message translates to:
+  /// **'Meta diaria cumplida'**
+  String get lessonCompleteGoalMet;
+
+  /// No description provided for @lessonCompleteGoalPending.
+  ///
+  /// In es, this message translates to:
+  /// **'Sigue para cumplir tu meta de hoy'**
+  String get lessonCompleteGoalPending;
+
+  /// No description provided for @lessonCompleteFreezeSingle.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu congelador salvó tu racha'**
+  String get lessonCompleteFreezeSingle;
+
+  /// No description provided for @lessonCompleteFreezeMulti.
+  ///
+  /// In es, this message translates to:
+  /// **'Tus congeladores salvaron tu racha'**
+  String get lessonCompleteFreezeMulti;
+
+  /// No description provided for @lessonCompleteSkillsUp.
+  ///
+  /// In es, this message translates to:
+  /// **'Habilidades que subieron'**
+  String get lessonCompleteSkillsUp;
+
+  /// No description provided for @tipCardHeader.
+  ///
+  /// In es, this message translates to:
+  /// **'Matix te enseña · {type}'**
+  String tipCardHeader(String type);
+
+  /// No description provided for @tipCardPersonalized.
+  ///
+  /// In es, this message translates to:
+  /// **'Te lo doy porque tu {skill} necesita un empujón. 🦜'**
+  String tipCardPersonalized(String skill);
+
+  /// No description provided for @errorReviewWhyTranslation.
+  ///
+  /// In es, this message translates to:
+  /// **'Fíjate en la forma exacta en inglés — el sentido completo importa.'**
+  String get errorReviewWhyTranslation;
+
+  /// No description provided for @errorReviewWhyCloze.
+  ///
+  /// In es, this message translates to:
+  /// **'Repasa la palabra que faltaba en la frase.'**
+  String get errorReviewWhyCloze;
+
+  /// No description provided for @errorReviewWhyWordOrder.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuida el ORDEN de las palabras: el inglés es más fijo que el español.'**
+  String get errorReviewWhyWordOrder;
+
+  /// No description provided for @errorReviewWhyMatch.
+  ///
+  /// In es, this message translates to:
+  /// **'Asocia cada palabra con su pareja correcta.'**
+  String get errorReviewWhyMatch;
+
+  /// No description provided for @errorReviewWhyListening.
+  ///
+  /// In es, this message translates to:
+  /// **'Vuelve a escuchar con calma; el sonido te da la pista.'**
+  String get errorReviewWhyListening;
+
+  /// No description provided for @errorReviewWhyDefault.
+  ///
+  /// In es, this message translates to:
+  /// **'Repásalo: lo verás de nuevo pronto en tu repaso.'**
+  String get errorReviewWhyDefault;
+
+  /// No description provided for @errorReviewTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Repasa lo que fallaste'**
+  String get errorReviewTitle;
+
+  /// No description provided for @errorReviewSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 ejercicio para reforzar. ¡Ya casi lo tienes!} other{{count} ejercicios para reforzar. ¡Ya casi los tienes!}}'**
+  String errorReviewSubtitle(int count);
+
+  /// No description provided for @errorReviewPracticeCta.
+  ///
+  /// In es, this message translates to:
+  /// **'Practicar los fallados'**
+  String get errorReviewPracticeCta;
+
+  /// No description provided for @tileArrangePlaceholder.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca las palabras para formar la frase…'**
+  String get tileArrangePlaceholder;
+
+  /// No description provided for @tileArrangeAllPlaced.
+  ///
+  /// In es, this message translates to:
+  /// **'Todas colocadas — pulsa COMPROBAR'**
+  String get tileArrangeAllPlaced;
+
+  /// No description provided for @translationHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe la traducción…'**
+  String get translationHint;
+
+  /// No description provided for @clozeHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe tu respuesta…'**
+  String get clozeHint;
+
+  /// No description provided for @listeningTapToListen.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca para escuchar'**
+  String get listeningTapToListen;
+
+  /// No description provided for @speakingPreparingMic.
+  ///
+  /// In es, this message translates to:
+  /// **'Preparando micrófono…'**
+  String get speakingPreparingMic;
+
+  /// No description provided for @speakingNoMic.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu navegador o dispositivo no permite el micrófono.'**
+  String get speakingNoMic;
+
+  /// No description provided for @speakingIReadIt.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya lo leí ✓'**
+  String get speakingIReadIt;
+
+  /// No description provided for @speakingManualDone.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Bien! Sigue practicando en voz alta. 🦜'**
+  String get speakingManualDone;
+
+  /// No description provided for @speakingListening.
+  ///
+  /// In es, this message translates to:
+  /// **'Escuchando…'**
+  String get speakingListening;
+
+  /// No description provided for @speakingTalk.
+  ///
+  /// In es, this message translates to:
+  /// **'Hablar'**
+  String get speakingTalk;
+
+  /// No description provided for @speakingGood.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Bien pronunciado! 🦜'**
+  String get speakingGood;
+
+  /// No description provided for @speakingNoSound.
+  ///
+  /// In es, this message translates to:
+  /// **'No te escuché — acércate e inténtalo'**
+  String get speakingNoSound;
+
+  /// No description provided for @speakingOk.
+  ///
+  /// In es, this message translates to:
+  /// **'Vas bien. Léelo otra vez si quieres'**
+  String get speakingOk;
+
+  /// No description provided for @speakingHeard.
+  ///
+  /// In es, this message translates to:
+  /// **'Escuché: \"{heard}\"'**
+  String speakingHeard(String heard);
+
+  /// No description provided for @speakingVolumeHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Sube el volumen del micro, o toca \"Ya lo leí ✓\" para continuar.'**
+  String get speakingVolumeHint;
+
+  /// No description provided for @speakingRetryHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Escuché: \"{heard}\". Puedes reintentar o tocar \"Ya lo leí ✓\".'**
+  String speakingRetryHint(String heard);
+
+  /// No description provided for @speakingHearModel.
+  ///
+  /// In es, this message translates to:
+  /// **'Oír el modelo'**
+  String get speakingHearModel;
+
+  /// No description provided for @audioPlayDefault.
+  ///
+  /// In es, this message translates to:
+  /// **'Escuchar'**
+  String get audioPlayDefault;
+
+  /// No description provided for @stubTagPronunciation.
+  ///
+  /// In es, this message translates to:
+  /// **'PRONUNCIACIÓN'**
+  String get stubTagPronunciation;
+
+  /// No description provided for @stubNotePronunciation.
+  ///
+  /// In es, this message translates to:
+  /// **'El reconocimiento de voz llega pronto. Por ahora, practícalo en voz alta y continúa.'**
+  String get stubNotePronunciation;
+
+  /// No description provided for @stubTagListening.
+  ///
+  /// In es, this message translates to:
+  /// **'COMPRENSIÓN AUDITIVA'**
+  String get stubTagListening;
+
+  /// No description provided for @stubNoteListening.
+  ///
+  /// In es, this message translates to:
+  /// **'El audio de este ejercicio se graba pronto. Por ahora, continúa.'**
+  String get stubNoteListening;
+
+  /// No description provided for @stubTagDictation.
+  ///
+  /// In es, this message translates to:
+  /// **'DICTADO'**
+  String get stubTagDictation;
+
+  /// No description provided for @stubNoteDictation.
+  ///
+  /// In es, this message translates to:
+  /// **'El dictado necesita audio (se graba pronto). Por ahora, continúa.'**
+  String get stubNoteDictation;
+
+  /// No description provided for @stubTagGuidedWriting.
+  ///
+  /// In es, this message translates to:
+  /// **'ESCRITURA GUIADA'**
+  String get stubTagGuidedWriting;
+
+  /// No description provided for @stubNoteGuidedWriting.
+  ///
+  /// In es, this message translates to:
+  /// **'La escritura guiada con corrección llega pronto. Por ahora, continúa.'**
+  String get stubNoteGuidedWriting;
+
+  /// No description provided for @stubTagComingSoon.
+  ///
+  /// In es, this message translates to:
+  /// **'PRÓXIMAMENTE'**
+  String get stubTagComingSoon;
+
+  /// No description provided for @stubNoteComingSoon.
+  ///
+  /// In es, this message translates to:
+  /// **'Este tipo de ejercicio llega pronto. Por ahora, continúa.'**
+  String get stubNoteComingSoon;
+
+  /// No description provided for @noHeartsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Te quedaste sin vidas ❤️'**
+  String get noHeartsTitle;
+
+  /// No description provided for @noHeartsMsg.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Tranqui, le pasa a todos! Las vidas se regeneran con el tiempo; si quieres seguir ahora, recárgalas con oro.'**
+  String get noHeartsMsg;
+
+  /// No description provided for @noHeartsRefill.
+  ///
+  /// In es, this message translates to:
+  /// **'Recargar vidas y seguir'**
+  String get noHeartsRefill;
+
+  /// No description provided for @noHeartsQuit.
+  ///
+  /// In es, this message translates to:
+  /// **'Salir de la lección'**
+  String get noHeartsQuit;
+
+  /// No description provided for @checkpointStartError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo iniciar el examen. Intenta de nuevo.'**
+  String get checkpointStartError;
+
+  /// No description provided for @checkpointPortalTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'El portal de la unidad'**
+  String get checkpointPortalTitle;
+
+  /// No description provided for @checkpointCoachMsg.
+  ///
+  /// In es, this message translates to:
+  /// **'🦜  ¡Demuestra lo que sabes!'**
+  String get checkpointCoachMsg;
+
+  /// No description provided for @checkpointIntroMsg.
+  ///
+  /// In es, this message translates to:
+  /// **'Supera el portal para abrir la siguiente región del mapa.'**
+  String get checkpointIntroMsg;
+
+  /// No description provided for @checkpointStatTimed.
+  ///
+  /// In es, this message translates to:
+  /// **'cronometrado'**
+  String get checkpointStatTimed;
+
+  /// No description provided for @checkpointStatPass.
+  ///
+  /// In es, this message translates to:
+  /// **'para pasar'**
+  String get checkpointStatPass;
+
+  /// No description provided for @checkpointStatQuestions.
+  ///
+  /// In es, this message translates to:
+  /// **'preguntas'**
+  String get checkpointStatQuestions;
+
+  /// No description provided for @checkpointStartCta.
+  ///
+  /// In es, this message translates to:
+  /// **'EMPEZAR CHECKPOINT'**
+  String get checkpointStartCta;
+
+  /// No description provided for @checkpointNoCost.
+  ///
+  /// In es, this message translates to:
+  /// **'No cuesta vidas · puedes reintentarlo cuando quieras'**
+  String get checkpointNoCost;
+
+  /// No description provided for @checkpointSkillsBreakdown.
+  ///
+  /// In es, this message translates to:
+  /// **'Desglose por habilidad'**
+  String get checkpointSkillsBreakdown;
+
+  /// No description provided for @checkpointPassedLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'✓ CHECKPOINT APROBADO'**
+  String get checkpointPassedLabel;
+
+  /// No description provided for @checkpointFailedLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'CHECKPOINT NO APROBADO'**
+  String get checkpointFailedLabel;
+
+  /// No description provided for @checkpointPassedMsg.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Unidad superada!'**
+  String get checkpointPassedMsg;
+
+  /// No description provided for @checkpointFailedMsg.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no superas el portal'**
+  String get checkpointFailedMsg;
+
+  /// No description provided for @checkpointPassedScore.
+  ///
+  /// In es, this message translates to:
+  /// **'{pct}% de aciertos'**
+  String checkpointPassedScore(int pct);
+
+  /// No description provided for @checkpointFailedScore.
+  ///
+  /// In es, this message translates to:
+  /// **'{pct}% · necesitas 80%'**
+  String checkpointFailedScore(int pct);
+
+  /// No description provided for @checkpointSkillSoon.
+  ///
+  /// In es, this message translates to:
+  /// **'pronto'**
+  String get checkpointSkillSoon;
+
+  /// No description provided for @checkpointRegionUnlockedLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'✦ NUEVA REGIÓN DESBLOQUEADA'**
+  String get checkpointRegionUnlockedLabel;
+
+  /// No description provided for @checkpointCompleteLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'✓ UNIDAD COMPLETA'**
+  String get checkpointCompleteLabel;
+
+  /// No description provided for @checkpointRegionUnlockedMsg.
+  ///
+  /// In es, this message translates to:
+  /// **'¡{unit} completa! Se desbloqueó la siguiente región.'**
+  String checkpointRegionUnlockedMsg(String unit);
+
+  /// No description provided for @checkpointCompleteSoonMsg.
+  ///
+  /// In es, this message translates to:
+  /// **'¡{unit} completa! La siguiente región llega pronto.'**
+  String checkpointCompleteSoonMsg(String unit);
+
+  /// No description provided for @checkpointContinueJourney.
+  ///
+  /// In es, this message translates to:
+  /// **'CONTINUAR EL VIAJE'**
+  String get checkpointContinueJourney;
+
+  /// No description provided for @checkpointRetry.
+  ///
+  /// In es, this message translates to:
+  /// **'REINTENTAR'**
+  String get checkpointRetry;
+
+  /// No description provided for @checkpointBackToMap.
+  ///
+  /// In es, this message translates to:
+  /// **'Volver al mapa'**
+  String get checkpointBackToMap;
+
+  /// No description provided for @checkpointMissingPoints.
+  ///
+  /// In es, this message translates to:
+  /// **'Te faltaron {missing} puntos para el {pct}%. ¡Casi!'**
+  String checkpointMissingPoints(int missing, int pct);
+
+  /// No description provided for @checkpointReinforceTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'REFUERZA ESTAS HABILIDADES'**
+  String get checkpointReinforceTitle;
+
+  /// No description provided for @checkpointReinforceEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Repasa la unidad y reintenta.'**
+  String get checkpointReinforceEmpty;
+
+  /// No description provided for @checkpointSubmitError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo enviar el examen. Intenta de nuevo.'**
+  String get checkpointSubmitError;
+
+  /// No description provided for @checkpointExitTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Salir del examen?'**
+  String get checkpointExitTitle;
+
+  /// No description provided for @checkpointExitMsg.
+  ///
+  /// In es, this message translates to:
+  /// **'Perderás el progreso de este intento.'**
+  String get checkpointExitMsg;
+
+  /// No description provided for @checkpointExitStay.
+  ///
+  /// In es, this message translates to:
+  /// **'Seguir'**
+  String get checkpointExitStay;
+
+  /// No description provided for @checkpointLoadErrorTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'No pudimos cargar el examen'**
+  String get checkpointLoadErrorTitle;
+
+  /// No description provided for @checkpointLoadErrorMsg.
+  ///
+  /// In es, this message translates to:
+  /// **'Vuelve al mapa e inténtalo de nuevo en un momento.'**
+  String get checkpointLoadErrorMsg;
+
+  /// No description provided for @checkpointBackToMapCta.
+  ///
+  /// In es, this message translates to:
+  /// **'VOLVER AL MAPA'**
+  String get checkpointBackToMapCta;
+
+  /// No description provided for @checkpointFinish.
+  ///
+  /// In es, this message translates to:
+  /// **'TERMINAR'**
+  String get checkpointFinish;
+
+  /// No description provided for @checkpointNext.
+  ///
+  /// In es, this message translates to:
+  /// **'SIGUIENTE'**
+  String get checkpointNext;
+
+  /// No description provided for @lessonPreviewLoadError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo cargar la lección.\n{error}'**
+  String lessonPreviewLoadError(String error);
+
+  /// No description provided for @lessonPreviewExerciseCount.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 ejercicio} other{{count} ejercicios}}'**
+  String lessonPreviewExerciseCount(int count);
 }
 
 class _AppLocalizationsDelegate

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
+import '../../../l10n/app_localizations.dart';
 
 /// Resultado de la hoja "sin vidas".
 enum NoHeartsChoice { refill, quit }
@@ -22,6 +23,7 @@ class _NoHeartsSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Container(
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -53,16 +55,15 @@ class _NoHeartsSheet extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 14),
-          const Text(
-            'Te quedaste sin vidas ❤️',
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900, color: AppColors.text),
+          Text(
+            l10n.noHeartsTitle,
+            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w900, color: AppColors.text),
           ),
           const SizedBox(height: 6),
-          const Text(
-            '¡Tranqui, le pasa a todos! Las vidas se regeneran con el tiempo; '
-            'si quieres seguir ahora, recárgalas con oro.',
+          Text(
+            l10n.noHeartsMsg,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 13,
               fontWeight: FontWeight.w700,
               color: AppColors.textMuted,
@@ -74,7 +75,7 @@ class _NoHeartsSheet extends StatelessWidget {
             width: double.infinity,
             child: _SheetButton(
               icon: Icons.favorite_rounded,
-              label: 'Recargar vidas y seguir',
+              label: l10n.noHeartsRefill,
               color: AppColors.primary,
               onTap: () => Navigator.of(context).pop(NoHeartsChoice.refill),
             ),
@@ -82,9 +83,9 @@ class _NoHeartsSheet extends StatelessWidget {
           const SizedBox(height: 11),
           TextButton(
             onPressed: () => Navigator.of(context).pop(NoHeartsChoice.quit),
-            child: const Text(
-              'Salir de la lección',
-              style: TextStyle(
+            child: Text(
+              l10n.noHeartsQuit,
+              style: const TextStyle(
                 fontWeight: FontWeight.w900,
                 color: AppColors.textMuted,
                 fontSize: 14,

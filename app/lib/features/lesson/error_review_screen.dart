@@ -4,6 +4,7 @@ import '../../core/theme/app_colors.dart';
 import '../../core/ui/jz_transitions.dart';
 import '../../data/models/content_item_model.dart';
 import '../../data/models/lesson_model.dart';
+import '../../l10n/app_localizations.dart';
 import '../../ui/primary_button.dart';
 import 'lesson_player_screen.dart';
 
@@ -24,26 +25,27 @@ class ErrorReviewScreen extends StatelessWidget {
   final void Function(BuildContext ctx) onContinue;
 
   /// Porqué corto, por tipo de ejercicio (voz del coach, breve).
-  String _why(ContentItemType t) {
+  String _why(AppLocalizations l10n, ContentItemType t) {
     switch (t) {
       case ContentItemType.translation:
-        return 'Fíjate en la forma exacta en inglés — el sentido completo importa.';
+        return l10n.errorReviewWhyTranslation;
       case ContentItemType.cloze:
-        return 'Repasa la palabra que faltaba en la frase.';
+        return l10n.errorReviewWhyCloze;
       case ContentItemType.wordBank:
       case ContentItemType.reorder:
-        return 'Cuida el ORDEN de las palabras: el inglés es más fijo que el español.';
+        return l10n.errorReviewWhyWordOrder;
       case ContentItemType.match:
-        return 'Asocia cada palabra con su pareja correcta.';
+        return l10n.errorReviewWhyMatch;
       case ContentItemType.listening:
-        return 'Vuelve a escuchar con calma; el sonido te da la pista.';
+        return l10n.errorReviewWhyListening;
       default:
-        return 'Repásalo: lo verás de nuevo pronto en tu repaso.';
+        return l10n.errorReviewWhyDefault;
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
@@ -55,19 +57,17 @@ class ErrorReviewScreen extends StatelessWidget {
                 children: [
                   const Text('🦜', style: TextStyle(fontSize: 44)),
                   const SizedBox(height: 6),
-                  Text('Repasa lo que fallaste',
+                  Text(l10n.errorReviewTitle,
                       style: const TextStyle(
                           fontSize: 24, fontWeight: FontWeight.w900, color: AppColors.text)),
                   const SizedBox(height: 4),
                   Text(
-                    failed.length == 1
-                        ? '1 ejercicio para reforzar. ¡Ya casi lo tienes!'
-                        : '${failed.length} ejercicios para reforzar. ¡Ya casi los tienes!',
+                    l10n.errorReviewSubtitle(failed.length),
                     style: const TextStyle(
                         fontSize: 13.5, fontWeight: FontWeight.w700, color: AppColors.textMuted),
                   ),
                   const SizedBox(height: 18),
-                  for (final f in failed) _FailedCard(item: f.item, correct: f.correct, why: _why(f.item.type)),
+                  for (final f in failed) _FailedCard(item: f.item, correct: f.correct, why: _why(l10n, f.item.type)),
                 ],
               ),
             ),
@@ -82,7 +82,7 @@ class ErrorReviewScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   PrimaryButton(
-                    label: 'CONTINUAR',
+                    label: l10n.commonContinue,
                     expand: true,
                     onPressed: () => onContinue(context),
                   ),
@@ -93,8 +93,8 @@ class ErrorReviewScreen extends StatelessWidget {
                       items: failed.map((f) => f.item).toList(),
                       reviewMode: true,
                     ))),
-                    child: const Text('Practicar los fallados',
-                        style: TextStyle(
+                    child: Text(l10n.errorReviewPracticeCta,
+                        style: const TextStyle(
                             fontSize: 13.5, fontWeight: FontWeight.w900, color: AppColors.primary)),
                   ),
                 ],

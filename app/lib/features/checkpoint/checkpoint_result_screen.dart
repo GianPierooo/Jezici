@@ -1,11 +1,12 @@
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/constants/skills.dart';
 import '../../core/feedback/feedback_fx.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/checkpoint_models.dart';
 import '../../data/models/lesson_model.dart';
+import '../../l10n/app_localizations.dart';
+import '../../l10n/skill_names.dart';
 import '../../ui/primary_button.dart';
 import '../../ui/progress_bar.dart';
 import 'checkpoint_intro_screen.dart';
@@ -32,7 +33,6 @@ class _CheckpointResultScreenState extends State<CheckpointResultScreen> {
   ConfettiController? _confetti;
 
   static const _order = ['reading', 'listening', 'writing', 'speaking'];
-  static const _labels = kSkillEs;
 
   @override
   void initState() {
@@ -53,6 +53,7 @@ class _CheckpointResultScreenState extends State<CheckpointResultScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final r = widget.result;
     final bySkill = {for (final s in r.perSkill) s.skill: s};
     final skills = [
@@ -74,8 +75,8 @@ class _CheckpointResultScreenState extends State<CheckpointResultScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Desglose por las 4 habilidades.
-                  const Text('Desglose por habilidad',
-                      style: TextStyle(
+                  Text(l10n.checkpointSkillsBreakdown,
+                      style: const TextStyle(
                           fontSize: 16, fontWeight: FontWeight.w900, color: AppColors.text)),
                   const SizedBox(height: 10),
                   Container(
@@ -120,7 +121,7 @@ class _CheckpointResultScreenState extends State<CheckpointResultScreen> {
                     ),
                     const SizedBox(height: 22),
                     PrimaryButton(
-                      label: 'CONTINUAR EL VIAJE',
+                      label: l10n.checkpointContinueJourney,
                       expand: true,
                       onPressed: () => Navigator.of(context).popUntil((r) => r.isFirst),
                     ),
@@ -128,7 +129,7 @@ class _CheckpointResultScreenState extends State<CheckpointResultScreen> {
                     _Reinforce(weaknesses: r.weaknesses, scorePct: r.scorePct, thresholdPct: r.thresholdPct),
                     const SizedBox(height: 18),
                     PrimaryButton(
-                      label: 'REINTENTAR',
+                      label: l10n.checkpointRetry,
                       expand: true,
                       color: AppColors.coral,
                       depthColor: AppColors.coralDark,
@@ -143,8 +144,8 @@ class _CheckpointResultScreenState extends State<CheckpointResultScreen> {
                     Center(
                       child: TextButton(
                         onPressed: () => Navigator.of(context).popUntil((r) => r.isFirst),
-                        child: const Text('Volver al mapa',
-                            style: TextStyle(
+                        child: Text(l10n.checkpointBackToMap,
+                            style: const TextStyle(
                                 fontWeight: FontWeight.w900, color: AppColors.textMuted)),
                       ),
                     ),
@@ -167,6 +168,7 @@ class _Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final colors = passed
         ? const [Color(0xFF7A6BF0), AppColors.primary, Color(0xFF5B4ECF)]
         : const [Color(0xFF8C84B8), Color(0xFF6E6796)];
@@ -208,7 +210,7 @@ class _Header extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: Text(
-                    passed ? '✓ CHECKPOINT APROBADO' : 'CHECKPOINT NO APROBADO',
+                    passed ? l10n.checkpointPassedLabel : l10n.checkpointFailedLabel,
                     style: const TextStyle(
                         fontSize: 11,
                         fontWeight: FontWeight.w900,
@@ -218,13 +220,13 @@ class _Header extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  passed ? '¡Unidad superada!' : 'Aún no superas el portal',
+                  passed ? l10n.checkpointPassedMsg : l10n.checkpointFailedMsg,
                   style: const TextStyle(
                       fontSize: 24, fontWeight: FontWeight.w900, color: Colors.white),
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  passed ? '$scorePct% de aciertos' : '$scorePct% · necesitas 80%',
+                  passed ? l10n.checkpointPassedScore(scorePct) : l10n.checkpointFailedScore(scorePct),
                   style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w800,
@@ -246,7 +248,8 @@ class _SkillRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final label = _CheckpointResultScreenState._labels[skill] ?? skill;
+    final l10n = AppLocalizations.of(context);
+    final label = skillName(l10n, skill);
     final graded = score.isGraded;
     final pct = score.accuracyPct;
     final ok = pct >= 80;
@@ -277,7 +280,7 @@ class _SkillRow extends StatelessWidget {
         SizedBox(
           width: 56,
           child: Text(
-            graded ? '$pct%' : 'pronto',
+            graded ? '$pct%' : l10n.checkpointSkillSoon,
             textAlign: TextAlign.right,
             style: TextStyle(
               fontSize: 12.5,
@@ -298,6 +301,7 @@ class _RegionUnlock extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
@@ -315,7 +319,7 @@ class _RegionUnlock extends StatelessWidget {
             decoration: BoxDecoration(
                 color: AppColors.success, borderRadius: BorderRadius.circular(9)),
             child: Text(
-              nextUnlocked ? '✦ NUEVA REGIÓN DESBLOQUEADA' : '✓ UNIDAD COMPLETA',
+              nextUnlocked ? l10n.checkpointRegionUnlockedLabel : l10n.checkpointCompleteLabel,
               style: const TextStyle(
                   fontSize: 10,
                   fontWeight: FontWeight.w900,
@@ -331,8 +335,8 @@ class _RegionUnlock extends StatelessWidget {
               Expanded(
                 child: Text(
                   nextUnlocked
-                      ? '¡$unitTitle completa! Se desbloqueó la siguiente región.'
-                      : '¡$unitTitle completa! La siguiente región llega pronto.',
+                      ? l10n.checkpointRegionUnlockedMsg(unitTitle)
+                      : l10n.checkpointCompleteSoonMsg(unitTitle),
                   style: const TextStyle(
                       fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.text),
                 ),
@@ -403,6 +407,7 @@ class _Reinforce extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final missing = (thresholdPct - scorePct).clamp(0, 100);
     return Container(
       padding: const EdgeInsets.all(15),
@@ -414,20 +419,20 @@ class _Reinforce extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Te faltaron $missing puntos para el $thresholdPct%. ¡Casi!',
+          Text(l10n.checkpointMissingPoints(missing, thresholdPct),
               style: const TextStyle(
                   fontSize: 13.5, fontWeight: FontWeight.w900, color: AppColors.text)),
           const SizedBox(height: 12),
-          const Text('REFUERZA ESTAS HABILIDADES',
-              style: TextStyle(
+          Text(l10n.checkpointReinforceTitle,
+              style: const TextStyle(
                   fontSize: 11,
                   fontWeight: FontWeight.w900,
                   letterSpacing: 0.4,
                   color: AppColors.textMuted)),
           const SizedBox(height: 8),
           if (weaknesses.isEmpty)
-            const Text('Repasa la unidad y reintenta.',
-                style: TextStyle(
+            Text(l10n.checkpointReinforceEmpty,
+                style: const TextStyle(
                     fontSize: 12.5, fontWeight: FontWeight.w800, color: AppColors.textMuted))
           else
             Wrap(
@@ -442,7 +447,7 @@ class _Reinforce extends StatelessWidget {
                       borderRadius: BorderRadius.circular(11),
                     ),
                     child: Text(
-                      _CheckpointResultScreenState._labels[w] ?? w,
+                      skillName(l10n, w),
                       style: const TextStyle(
                           fontSize: 12, fontWeight: FontWeight.w900, color: AppColors.coral),
                     ),

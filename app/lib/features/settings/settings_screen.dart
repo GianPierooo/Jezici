@@ -8,10 +8,12 @@ import '../../core/app_info.dart';
 import '../../core/audio/music_controller.dart';
 import '../../core/audio/sound_controller.dart';
 import '../../core/feedback/feedback_sheet.dart';
+import '../../core/i18n/locale_controller.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/course_models.dart';
 import '../../data/models/progress_models.dart';
 import '../../data/providers.dart';
+import '../../l10n/app_localizations.dart';
 import '../../ui/primary_button.dart';
 import '../legal/legal_screen.dart';
 import '../metrics/metrics_screen.dart';
@@ -109,6 +111,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final settingsAsync = ref.watch(settingsProvider);
     final planMinutes = ref.watch(userPlanProvider).value?.dailyMinutes;
 
@@ -151,6 +154,12 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       body: ListView(
         padding: const EdgeInsets.fromLTRB(20, 6, 20, 36),
         children: [
+          // Idioma de la APP (chrome de la UI: es/en/pt). Distinto del idioma
+          // del curso (lo que se aprende). Cambia la UI al instante.
+          _section(l10n.settingsLanguageTitle, l10n.settingsLanguageSubtitle),
+          _buildUiLangSwitcher(),
+          const SizedBox(height: 18),
+
           // Idioma del curso (multi-curso: es→en / es→pt).
           _section('Idioma del curso', '¿Qué idioma quieres aprender?'),
           _buildCourseSwitcher(),
@@ -487,6 +496,47 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     ref.invalidate(userPlanProvider);
     if (!mounted) return;
     Navigator.of(context).popUntil((r) => r.isFirst);
+  }
+
+  /// Selector del idioma de la APP (UI: es/en/pt). Cambia el locale al instante
+  /// (MaterialApp escucha localeProvider). NO cambia el idioma del curso.
+  Widget _buildUiLangSwitcher() {
+    final current = ref.watch(localeProvider);
+    return _Card(
+      child: Column(
+        children: [
+          for (final code in supportedUiLangs)
+            InkWell(
+              onTap: () => ref.read(localeProvider.notifier).set(code),
+              borderRadius: BorderRadius.circular(12),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        uiLangNames[code] ?? code,
+                        style: TextStyle(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w800,
+                          color: current == code ? AppColors.primary : AppColors.text,
+                        ),
+                      ),
+                    ),
+                    Icon(
+                      current == code
+                          ? Icons.radio_button_checked_rounded
+                          : Icons.radio_button_unchecked_rounded,
+                      color: current == code ? AppColors.primary : const Color(0xFFC9CDDD),
+                      size: 22,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
   }
 
   Widget _buildCourseSwitcher() {

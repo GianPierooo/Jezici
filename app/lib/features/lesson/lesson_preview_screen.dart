@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../core/constants/skills.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/ui/jz_transitions.dart';
 import '../../data/models/content_item_model.dart';
 import '../../data/models/lesson_model.dart';
 import '../../data/providers.dart';
+import '../../l10n/app_localizations.dart';
+import '../../l10n/skill_names.dart';
 import '../../ui/primary_button.dart';
 import 'lesson_player_screen.dart';
 
@@ -43,7 +44,7 @@ class LessonPreviewScreen extends ConsumerWidget {
                 error: (e, _) => Center(
                   child: Padding(
                     padding: const EdgeInsets.all(24),
-                    child: Text('No se pudo cargar la lección.\n$e',
+                    child: Text(AppLocalizations.of(context).lessonPreviewLoadError('$e'),
                         textAlign: TextAlign.center,
                         style: const TextStyle(color: AppColors.textMuted)),
                   ),
@@ -65,6 +66,7 @@ class _Preview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final skills = items.map((e) => e.skill).toSet();
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
@@ -130,7 +132,7 @@ class _Preview extends StatelessWidget {
                   children: [
                     _MetaChip(
                       icon: Icons.format_list_numbered_rounded,
-                      label: '${items.length} ejercicios',
+                      label: l10n.lessonPreviewExerciseCount(items.length),
                     ),
                     const SizedBox(width: 10),
                     _MetaChip(
@@ -153,7 +155,7 @@ class _Preview extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           PrimaryButton(
-            label: 'EMPEZAR',
+            label: l10n.commonStart,
             expand: true,
             onPressed: items.isEmpty
                 ? null
@@ -205,8 +207,6 @@ class _SkillChip extends StatelessWidget {
   const _SkillChip({required this.skill});
   final String skill;
 
-  static const _labels = kSkillEs;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -216,7 +216,7 @@ class _SkillChip extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Text(
-        _labels[skill] ?? skill,
+        skillName(AppLocalizations.of(context), skill),
         style: const TextStyle(
           fontWeight: FontWeight.w900,
           fontSize: 11,

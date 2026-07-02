@@ -4,6 +4,7 @@ import '../../../core/feedback/feedback_fx.dart';
 import '../../../core/speech/word_tts.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/content_item_model.dart';
+import '../../../l10n/app_localizations.dart';
 import 'common.dart';
 
 /// Banco de palabras / reordenar: toca las fichas para formar la frase.
@@ -79,6 +80,7 @@ class _TileArrangeExerciseState extends State<TileArrangeExercise> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -92,9 +94,9 @@ class _TileArrangeExerciseState extends State<TileArrangeExercise> {
             border: Border.all(color: const Color(0xFFE2E5F0), width: 1.5),
           ),
           child: _placed.isEmpty
-              ? const Text(
-                  'Toca las palabras para formar la frase…',
-                  style: TextStyle(
+              ? Text(
+                  l10n.tileArrangePlaceholder,
+                  style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w700,
                     color: Color(0xFFC2C6D6),
@@ -123,12 +125,12 @@ class _TileArrangeExerciseState extends State<TileArrangeExercise> {
                 onTap: () => _place(t),
               ),
             if (_bank.isEmpty)
-              const SizedBox(
+              SizedBox(
                 height: 42,
                 child: Center(
                   child: Text(
-                    'Todas colocadas — pulsa COMPROBAR',
-                    style: TextStyle(
+                    l10n.tileArrangeAllPlaced,
+                    style: const TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w800,
                       color: AppColors.textMuted,

@@ -19,6 +19,7 @@ import 'package:jezici/data/providers.dart';
 import 'package:jezici/data/repositories/progress_repository.dart';
 import 'package:jezici/features/lesson/grading/grader.dart' as grd;
 import 'package:jezici/features/lesson/lesson_player_screen.dart';
+import 'package:jezici/l10n/app_localizations.dart';
 import 'package:jezici/features/immersion/immersion_screen.dart';
 import 'package:jezici/features/leagues/leagues_screen.dart';
 import 'package:jezici/features/reference/reference_screen.dart';
@@ -286,12 +287,22 @@ Widget _wrap(Widget child, {List<ContentItemModel> items = const []}) => Provide
         progressRepositoryProvider
             .overrideWithValue(FakeProgressRepository(gradeItems: items)),
       ],
-      child: MaterialApp(home: child),
+      child: MaterialApp(
+        locale: const Locale('es'),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: child,
+      ),
     );
 
 Widget _wrapRepo(Widget child, ProgressRepository repo) => ProviderScope(
       overrides: [progressRepositoryProvider.overrideWithValue(repo)],
-      child: MaterialApp(home: child),
+      child: MaterialApp(
+        locale: const Locale('es'),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: child,
+      ),
     );
 
 /// Fake con datos de Historias para la pantalla de Inmersión.

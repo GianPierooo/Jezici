@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/content_item_model.dart';
+import '../../../l10n/app_localizations.dart';
 import '../grading/grader.dart';
 
 /// Traducción: muestra la frase origen y un campo para escribir la traducción.
@@ -41,6 +42,7 @@ class _TranslationExerciseState extends State<TranslationExercise> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -79,7 +81,7 @@ class _TranslationExerciseState extends State<TranslationExercise> {
           textCapitalization: TextCapitalization.sentences,
           style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
           decoration: InputDecoration(
-            hintText: 'Escribe la traducción en inglés…',
+            hintText: l10n.translationHint,
             filled: true,
             fillColor: Colors.white,
             enabledBorder: OutlineInputBorder(
