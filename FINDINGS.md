@@ -2,6 +2,41 @@
 
 ---
 
+## FIX P0 CONGELADOR DE RACHA + i18n REAL (es/en/pt) — 2026-07-02 ✅ LIVE
+> Cierra el P0 y el P1-idioma de QA_AUDIT.md. Dos commits separados.
+
+### Tarea 1 — Congelador de racha (P0, `mig 090`, server-side)
+- **Bug:** `use_streak_freeze()` cobraba 50 oro y sumaba `streaks.freezes_available`, pero
+  `jz_register_activity` **nunca lo consumía** → tras saltarse un día la racha se reseteaba igual.
+- **Fix:** al registrar actividad tras un HUECO, si hay freezes SUFICIENTES para cubrir todos los días
+  perdidos, se consumen y la racha CONTINÚA (hoy incrementa; los días perdidos no suman, pero no
+  resetean). Sin freezes suficientes → resetea como antes. Un freeze = un día. Idempotente el mismo día.
+  `complete_lesson`/`submit_checkpoint` propagan `streak_freeze_used`; la pantalla de fin muestra
+  "🧊 Tu congelador salvó tu racha".
+- **Verificado (cliente real, JWT):** `tools/content/verify_streak_freeze.py` 7/7 — hueco=1 con freeze
+  (racha 10→11, freeze consumido), hueco=1 sin freeze (reset a 1), hueco=2 con 1 freeze insuf. (reset sin
+  malgastar), hueco=2 con 2 freezes (continúa, consume 2), consecutivo con freeze (no consume),
+  idempotencia mismo día, compra (−50 oro/+1 freeze). Test Dart del contrato en `streak_meta_test`.
+- **Prueba manual (Gian, Android):** compra un congelador (Ajustes/tienda, −50 oro), salta un día,
+  completa una lección al día siguiente cumpliendo la meta → la racha se mantiene (+1) y aparece el aviso
+  🧊; el contador de congeladores baja en 1. Sin congelador, la racha vuelve a 1.
+
+### Tarea 2 — i18n real (P1-idioma, es/en/pt)
+- **Bug:** el selector de idioma era cosmético (sin infra l10n; nada consumía `localeProvider`).
+- **Fix:** `flutter_localizations`+`intl`+gen-l10n; `MaterialApp` consume el `Locale` (persistido) →
+  cambio instantáneo. Selector NUEVO en **Ajustes** ("Idioma de la app") + cambio en vivo en el onboarding.
+  Traducido 100% es/en/pt: **onboarding+auth** y **loop de lección completo** (ver fila i18n en CLAUDE.md).
+  Distinción respetada: i18n = chrome de la UI; el CURSO (es→en/es→pt) es contenido de la DB, intacto.
+- **Verificado:** `i18n_test.dart` (el locale cambia el texto; plurales/placeholders/duración/skills por
+  idioma). analyze 0 · test 86/86 · build web OK · 0 strings hardcodeados en lo migrado.
+- **Prueba manual (Gian, Android):** Ajustes → "Idioma de la app" → English/Português → toda la UI de
+  onboarding y del loop cambia al instante; volver a Español la restaura. El "Idioma del curso" (lo que se
+  aprende) es un ajuste SEPARADO y no cambia con esto.
+- **Diferido (sigue en español):** resto de Ajustes, home/mapa, ligas, perfil, tienda, práctica, Matix,
+  inmersión, textos legales sustantivos. Retome: extraer sus strings a nuevas claves l10n con el mismo patrón.
+
+---
+
 ## COPY DE ONBOARDING + BARRIDO "NO CARGAN BIEN" — 2026-06-27 ✅ LIVE
 > Feedback real: (1) la pregunta de idioma "está medio rara"; (2) "algunas no cargan bien".
 
