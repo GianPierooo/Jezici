@@ -2,6 +2,40 @@
 
 ---
 
+## BANCO DE PLACEMENT es→pt (a la par de es→en) — 2026-07-02 ✅ LIVE
+> El placement PRECISO era solo inglés; portugués quedaba sin banco de ubicación. Cerrado.
+> (L/S balance + auditoría de eficacia + audio de es→pt A1–B1 YA estaban hechos, mig 083–085;
+> verificados de nuevo esta sesión con verify_pt_chain. El hueco real era el banco de placement.)
+
+- **Banco (mig 093):** 42 ítems de ubicación es→pt, A1/A2/B1 × **7 reading (MC) + 7 writing (cloze)**,
+  curso `…0002`, tag `placement` (excluido de pools de lección/examen). Generados por
+  `tools/content/gen_placement_pt.py` (uuid5 estable, idempotente). Portugués de Brasil.
+- **Calidad:** revisión adversarial por profesor pt-BR nativo → **39/42 impecables**; 1 fix
+  obligatorio (regência "assistir **a** um filme"); 2 distractores endurecidos. **Guardas
+  anti-colisión** para `jz_near_match` (que perdona inserción/borrado a distancia-1 incluso en
+  palabra única, y NO quita acentos): los cloze no tienen ningún distractor a distancia-1 del
+  correcto (p.ej. se evitó `livro`/`livros`, `que`/`quem`, `esquece`/`esqueceu`, `dormi`/`dormia`);
+  reading = multiple_choice (selección exacta, `jz_near_match` no aplica).
+- **Verificado cliente real (`tools/content/verify_placement_pt.py`):**
+  - Determinista **42/42** en ambos sentidos: cada correcto → `correct=true`; cada distractor →
+    `correct=false` (sin near-match espurio). `correct_answer` 42501 (leído solo por admin de test).
+  - **Personas:** A1→A1, A2→A2, B1→B1, "avanzado"→**B1** (techo honesto: el curso pt tope es B1).
+  - **Multicurso:** todos los ítems que `placement_next(pt)` devuelve son del curso pt;
+    `placement_next(en)` **nunca** devuelve un ítem pt (0 fuga). El estimador v2 "techo con
+    evidencia" (jz_placement_level) es agnóstico y funciona para pt.
+- **verify_pt_chain PASS** (re-verificado): cadena es→pt A1→A2→B1 (exámenes + certificados +
+  per-skill) con `set_active_course(pt)`, sin cruce con inglés.
+- **Diferido (reportado):** (1) **cablear** el placement pt a un flujo de usuario — hoy el
+  onboarding es **en-only (Fase 1)** y `create_plan`/`placement_next` por defecto usan el curso
+  activo más antiguo (en); el banco pt queda **listo a nivel RPC** (`placement_next(p_course=pt)`),
+  pendiente de un onboarding/re-placement pt (requiere hacer `create_plan` consciente del curso —
+  riesgo multicurso, fuera de alcance de esta tanda). (2) **L/S en placement** (audio) en ambos
+  cursos. (3) es→pt B2/C1 no existen (el curso pt llega a B1).
+- **Verificación toolchain:** analyze 0 · test 88/88 (sin cambio Dart) · el placement es
+  reading+writing → **sin audio que generar**.
+
+---
+
 ## P1/P2 DE RETENCIÓN Y SENSACIÓN — 2026-07-02 ✅ LIVE
 > Cierra P1-3 y varios P2 de QA_AUDIT.md (ver §0.1 ahí). Todo verificado con cliente real.
 

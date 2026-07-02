@@ -89,6 +89,14 @@ una regresión P0 de examen multicurso — mig 064→**072** restauró `jz_activ
    cobertura sólida en los 3; 34 huecos; multicurso verificado (contenido pt→curso pt).
 4. **Retención:** más reaparición explícita de léxico entre unidades.
 5. **Evaluación:** checkpoints menos sesgados a reconocimiento (más producción guiada).
+6. **Placement es→pt** — ✅ **HECHO** (2026-07-02, mig 093): antes el placement PRECISO era solo
+   es→en (banco 48 ítems). Ahora es→pt tiene banco propio de ubicación (42 ítems A1/A2/B1 ×
+   7R+7W, pt-BR, curso `…0002`, tag `placement`), validado adversarialmente (profesor pt-BR:
+   39/42 impecables; fix de regência "assistir **a**"; distractores endurecidos) y con guardas
+   anti-colisión de `jz_near_match` (cloze sin distractor a distancia-1). `placement_next(p_course=pt)`
+   ubica A1/A2/B1 correctamente + techo honesto en B1 (el curso pt tope B1). Determinista 42/42,
+   multicurso sin fuga (`verify_placement_pt.py`, cliente real). **Diferido:** cablearlo a un
+   onboarding/re-placement pt (onboarding es en-only Fase 1) + L/S en placement (audio).
 
 ## Verificación
 - Ítems nuevos: 29/29 válidos contra el grader; grade_item acepta lo correcto y rechaza lo erróneo
