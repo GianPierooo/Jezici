@@ -1,0 +1,52 @@
+{
+  "unit": {"order": 3, "title_es": "La familia y las personas", "color": "#8E44AD", "icon": "family_restroom"},
+  "checkpoint_desc": "Demuestra que sabes hablar de tu familia, usar posesivos, presentar personas y describirlas.",
+  "lessons": [
+    {"order": 1, "title_es": "La familia (la famille)"},
+    {"order": 2, "title_es": "Los posesivos (mon, ma, mes)"},
+    {"order": 3, "title_es": "Presentar personas (c'est, il/elle est)"},
+    {"order": 4, "title_es": "Describir personas (adjetivos y avoir)"}
+  ],
+  "vocab": [
+    ["la mère", "la madre", "sustantivo"],
+    ["le père", "el padre", "sustantivo"],
+    ["le frère", "el hermano", "sustantivo"],
+    ["la sœur", "la hermana", "sustantivo"],
+    ["le fils", "el hijo", "sustantivo"],
+    ["la fille", "la hija", "sustantivo"],
+    ["les parents", "los padres", "sustantivo"],
+    ["la grand-mère", "la abuela", "sustantivo"],
+    ["le grand-père", "el abuelo", "sustantivo"],
+    ["l'enfant", "el niño / la niña", "sustantivo"],
+    ["grand", "grande / alto", "adjetivo"],
+    ["petit", "pequeño / bajo", "adjetivo"],
+    ["sympa", "simpático/a", "adjetivo"],
+    ["avoir", "tener", "verbo"],
+    ["mon", "mi (masculino)", "posesivo"],
+    ["ma", "mi (femenino)", "posesivo"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "familia", "skill": "reading", "type": "match", "prompt": "Empareja cada palabra francesa con su traducción.", "pairs": [["la mère", "la madre"], ["le père", "el padre"], ["la sœur", "la hermana"]]},
+    {"lesson": 1, "topic": "familia", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál es «el hijo» en francés?", "options": ["le fils", "la fille", "le père"], "value": "le fils"},
+    {"lesson": 1, "topic": "familia", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Voici ma famille.", "options": ["Voici ma famille.", "Voici mon frère.", "Voici ma mère."], "value": "Voici ma famille."},
+    {"lesson": 1, "topic": "familia", "skill": "writing", "type": "translation", "prompt": "Traduce: «El padre y la madre».", "source": "El padre y la madre", "value": "Le père et la mère", "accepted": ["Le père et la mère", "le père et la mère", "Le pere et la mere", "le pere et la mere"]},
+    {"lesson": 1, "topic": "familia", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "J'ai une grande famille."},
+
+    {"lesson": 2, "topic": "posesivos", "skill": "reading", "type": "match", "prompt": "Empareja cada palabra francesa con su traducción.", "pairs": [["le frère", "el hermano"], ["les parents", "los padres"], ["la grand-mère", "la abuela"]]},
+    {"lesson": 2, "topic": "posesivos", "skill": "reading", "type": "multiple_choice", "prompt": "Completa con el posesivo correcto: «___ sœur» (mi hermana).", "options": ["ma", "mon", "mes"], "value": "ma"},
+    {"lesson": 2, "topic": "posesivos", "skill": "writing", "type": "cloze", "prompt": "Completa con el posesivo correcto para «mis padres»: ___ parents.", "text": "___ parents", "value": "mes", "accepted": ["mes"]},
+    {"lesson": 2, "topic": "posesivos", "skill": "writing", "type": "word_bank", "prompt": "Arma: «Mi madre es simpática».", "tiles": ["Ma", "mère", "est", "sympa", "Mon", "sympas"], "sequence": ["Ma", "mère", "est", "sympa"]},
+    {"lesson": 2, "topic": "posesivos", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "C'est mon frère.", "options": ["C'est mon frère.", "C'est ma sœur.", "C'est mon père."], "value": "C'est mon frère."},
+    {"lesson": 2, "topic": "posesivos", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ma sœur est petite."},
+
+    {"lesson": 3, "topic": "presentar", "skill": "reading", "type": "multiple_choice", "prompt": "Para presentar a UNA persona («Es mi madre») usamos:", "options": ["C'est ma mère.", "Ce sont ma mère.", "Il est ma mère."], "value": "C'est ma mère."},
+    {"lesson": 3, "topic": "presentar", "skill": "writing", "type": "cloze", "prompt": "Completa para presentar a varias personas: «___ mes parents» (Son mis padres).", "text": "___ mes parents", "value": "Ce sont", "accepted": ["Ce sont", "ce sont"]},
+    {"lesson": 3, "topic": "presentar", "skill": "writing", "type": "reorder", "prompt": "Ordena: «Es mi padre».", "tiles": ["C'est", "mon", "père"], "sequence": ["C'est", "mon", "père"]},
+    {"lesson": 3, "topic": "presentar", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Elle est ma sœur.", "options": ["Elle est ma sœur.", "Il est mon frère.", "C'est ma mère."], "value": "Elle est ma sœur."},
+    {"lesson": 3, "topic": "presentar", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "C'est mon grand-père."},
+
+    {"lesson": 4, "topic": "describir", "skill": "reading", "type": "multiple_choice", "prompt": "«Ma mère est ___» (mi madre es alta). Elige la forma femenina correcta.", "options": ["grande", "grand", "grands"], "value": "grande"},
+    {"lesson": 4, "topic": "describir", "skill": "writing", "type": "translation", "prompt": "Traduce: «Mi hermano es simpático».", "source": "Mi hermano es simpático", "value": "Mon frère est sympa", "accepted": ["Mon frère est sympa", "mon frère est sympa", "Mon frere est sympa", "Mon frère est sympa.", "Mon frère est sympathique"]},
+    {"lesson": 4, "topic": "describir", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Il est grand et sympa.", "options": ["Il est grand et sympa.", "Elle est petite et sympa.", "Il a deux enfants."], "value": "Il est grand et sympa."}
+  ]
+}

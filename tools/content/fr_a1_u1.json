@@ -1,0 +1,53 @@
+{
+  "unit": {"order": 1, "title_es": "Bonjour y enchanté (saludos y presentarte)", "color": "#27AE60", "icon": "waving_hand"},
+  "checkpoint_desc": "Practica saludar, despedirte, presentarte con «je m'appelle» y usar el verbo être junto a la distinción tú/usted (tu/vous).",
+  "lessons": [
+    {"order": 1, "title_es": "Saludos y despedidas"},
+    {"order": 2, "title_es": "Presentarte: je m'appelle"},
+    {"order": 3, "title_es": "Tú o usted + el verbo être"},
+    {"order": 4, "title_es": "¿Qué tal? ça va ?"}
+  ],
+  "vocab": [
+    ["bonjour", "hola/buenos días", "interjeccion"],
+    ["salut", "hola/chao (informal)", "interjeccion"],
+    ["bonsoir", "buenas tardes/noches", "interjeccion"],
+    ["au revoir", "adiós", "interjeccion"],
+    ["à bientôt", "hasta pronto", "interjeccion"],
+    ["bonne nuit", "buenas noches (al dormir)", "interjeccion"],
+    ["je m'appelle", "me llamo", "expresion"],
+    ["enchanté", "encantado", "adjetivo"],
+    ["je suis", "yo soy/estoy", "verbo"],
+    ["tu es", "tú eres/estás", "verbo"],
+    ["vous êtes", "usted es/está", "verbo"],
+    ["il est", "él es/está", "verbo"],
+    ["ça va", "¿qué tal?/va bien", "expresion"],
+    ["très bien", "muy bien", "expresion"],
+    ["merci", "gracias", "interjeccion"],
+    ["et toi", "¿y tú?", "expresion"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "saludos_despedidas", "skill": "reading", "type": "match", "prompt": "Empareja cada saludo con su traducción.", "pairs": [["bonjour", "buenos días"], ["salut", "hola (informal)"], ["au revoir", "adiós"]]},
+    {"lesson": 1, "topic": "saludos_despedidas", "skill": "reading", "type": "multiple_choice", "prompt": "¿Qué dices al despedirte por la noche antes de dormir?", "options": ["bonne nuit", "bonjour", "salut"], "value": "bonne nuit"},
+    {"lesson": 1, "topic": "saludos_despedidas", "skill": "reading", "type": "multiple_choice", "prompt": "Es de tarde y saludas a un vecino. ¿Qué le dices?", "options": ["bonsoir", "bonne nuit", "à bientôt"], "value": "bonsoir"},
+    {"lesson": 1, "topic": "saludos_despedidas", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Au revoir, à bientôt !", "options": ["Au revoir, à bientôt !", "Bonjour, ça va ?", "Bonne nuit, merci."], "value": "Au revoir, à bientôt !"},
+    {"lesson": 1, "topic": "saludos_despedidas", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Bonjour ! Salut ! Au revoir !"},
+
+    {"lesson": 2, "topic": "presentarse", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo dices «me llamo Marie»?", "options": ["Je m'appelle Marie.", "Tu t'appelles Marie.", "Il s'appelle Marie."], "value": "Je m'appelle Marie."},
+    {"lesson": 2, "topic": "presentarse", "skill": "writing", "type": "cloze", "prompt": "Completa: «Me llamo Paul».", "text": "Je ___ Paul.", "value": "m'appelle", "accepted": ["m'appelle", "mappelle", "m appelle"]},
+    {"lesson": 2, "topic": "presentarse", "skill": "writing", "type": "word_bank", "prompt": "Arma la frase: «Me llamo Ana».", "tiles": ["Je", "m'appelle", "Ana", "suis", "tu"], "sequence": ["Je", "m'appelle", "Ana"]},
+    {"lesson": 2, "topic": "presentarse", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Bonjour ! Je m'appelle Marie. Enchantée !"},
+
+    {"lesson": 3, "topic": "tu_vous_etre", "skill": "reading", "type": "match", "prompt": "Empareja cada forma del verbo être con su pronombre.", "pairs": [["je suis", "yo soy"], ["tu es", "tú eres"], ["vous êtes", "usted es"]]},
+    {"lesson": 3, "topic": "tu_vous_etre", "skill": "reading", "type": "multiple_choice", "prompt": "Hablas con tu jefe (usted). ¿Cómo le preguntas su nombre?", "options": ["Comment vous appelez-vous ?", "Comment tu t'appelles ?", "Comment il s'appelle ?"], "value": "Comment vous appelez-vous ?"},
+    {"lesson": 3, "topic": "tu_vous_etre", "skill": "writing", "type": "cloze", "prompt": "Completa con el verbo être: «Tú eres español».", "text": "Tu ___ espagnol.", "value": "es", "accepted": ["es"]},
+    {"lesson": 3, "topic": "tu_vous_etre", "skill": "writing", "type": "reorder", "prompt": "Ordena: «¿Cómo te llamas?».", "tiles": ["appelles", "Comment", "tu", "t'"], "sequence": ["Comment", "tu", "t'", "appelles"]},
+    {"lesson": 3, "topic": "tu_vous_etre", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Je suis enchanté.", "options": ["Je suis enchanté.", "Tu es espagnol.", "Vous êtes Marie."], "value": "Je suis enchanté."},
+
+    {"lesson": 4, "topic": "que_tal", "skill": "reading", "type": "multiple_choice", "prompt": "Un amigo te pregunta «ça va ?». ¿Cómo respondes que estás muy bien?", "options": ["Très bien, merci !", "Au revoir !", "Bonne nuit !"], "value": "Très bien, merci !"},
+    {"lesson": 4, "topic": "que_tal", "skill": "writing", "type": "translation", "prompt": "Traduce: «¿Qué tal? Muy bien, gracias».", "source": "¿Qué tal? Muy bien, gracias.", "value": "Ça va ? Très bien, merci.", "accepted": ["Ça va ? Très bien, merci.", "Ça va ? Très bien, merci", "Ca va ? Tres bien, merci.", "Ca va ? Tres bien merci", "Ça va? Très bien, merci."]},
+    {"lesson": 4, "topic": "que_tal", "skill": "writing", "type": "translation", "prompt": "Traduce: «¿Y tú?».", "source": "¿Y tú?", "value": "Et toi ?", "accepted": ["Et toi ?", "Et toi?", "Et toi", "et toi ?"]},
+    {"lesson": 4, "topic": "que_tal", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Comment ça va ?", "options": ["Comment ça va ?", "Comment vous appelez-vous ?", "Bonsoir, à bientôt."], "value": "Comment ça va ?"},
+    {"lesson": 4, "topic": "que_tal", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Très bien, et toi ?", "options": ["Très bien, et toi ?", "Bonjour, enchanté.", "Merci, au revoir."], "value": "Très bien, et toi ?"},
+    {"lesson": 4, "topic": "que_tal", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Salut ! Ça va ? Très bien, merci. Et toi ?"}
+  ]
+}

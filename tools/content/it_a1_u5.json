@@ -1,0 +1,52 @@
+{
+  "unit": {"order": 5, "title_es": "El día y la hora", "color": "#2980B9", "icon": "schedule"},
+  "checkpoint_desc": "Aprende a decir la hora, los días de la semana y a hablar de tu rutina con verbos en -are.",
+  "lessons": [
+    {"order": 1, "title_es": "¿Qué hora es?"},
+    {"order": 2, "title_es": "Los días de la semana"},
+    {"order": 3, "title_es": "Verbos en -are"},
+    {"order": 4, "title_es": "Mi rutina diaria"}
+  ],
+  "vocab": [
+    ["l'ora", "la hora", "sustantivo"],
+    ["mezzogiorno", "mediodía", "sustantivo"],
+    ["mezzanotte", "medianoche", "sustantivo"],
+    ["il quarto", "el cuarto", "sustantivo"],
+    ["mezza", "media", "adjetivo"],
+    ["il giorno", "el día", "sustantivo"],
+    ["la settimana", "la semana", "sustantivo"],
+    ["lunedì", "lunes", "sustantivo"],
+    ["mercoledì", "miércoles", "sustantivo"],
+    ["sabato", "sábado", "sustantivo"],
+    ["domenica", "domingo", "sustantivo"],
+    ["la mattina", "la mañana", "sustantivo"],
+    ["parlare", "hablar", "verbo"],
+    ["lavorare", "trabajar", "verbo"],
+    ["mangiare", "comer", "verbo"],
+    ["abitare", "vivir (residir)", "verbo"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "la_hora", "skill": "reading", "type": "match", "prompt": "Une cada hora en italiano con su traducción.", "pairs": [["Sono le tre", "Son las tres"], ["È l'una", "Es la una"], ["È mezzogiorno", "Es mediodía"]]},
+    {"lesson": 1, "topic": "la_hora", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se dice 'Es la una' en italiano?", "options": ["È l'una", "Sono l'una", "Sono le una"], "value": "È l'una"},
+    {"lesson": 1, "topic": "la_hora", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se dice 'Son las tres y media'?", "options": ["Sono le tre e mezza", "È le tre e mezza", "Sono la tre e mezza"], "value": "Sono le tre e mezza"},
+    {"lesson": 1, "topic": "la_hora", "skill": "writing", "type": "cloze", "prompt": "Completa: 'Es la una' (fíjate en el singular).", "text": "___ l'una.", "value": "È", "accepted": ["È", "E'", "è"]},
+    {"lesson": 1, "topic": "la_hora", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Sono le tre e un quarto.", "options": ["Sono le tre e un quarto.", "Sono le due e un quarto.", "Sono le tre e mezza."], "value": "Sono le tre e un quarto."},
+    {"lesson": 1, "topic": "la_hora", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Che ore sono?"},
+
+    {"lesson": 2, "topic": "dias_semana", "skill": "reading", "type": "match", "prompt": "Une cada día en italiano con su traducción.", "pairs": [["lunedì", "lunes"], ["mercoledì", "miércoles"], ["domenica", "domingo"]]},
+    {"lesson": 2, "topic": "dias_semana", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se dice 'sábado' en italiano?", "options": ["sabato", "domenica", "venerdì"], "value": "sabato"},
+    {"lesson": 2, "topic": "dias_semana", "skill": "writing", "type": "translation", "prompt": "Traduce: 'Hoy es lunes.'", "source": "Hoy es lunes.", "value": "Oggi è lunedì.", "accepted": ["Oggi è lunedì.", "Oggi è lunedì", "Oggi e lunedi.", "Oggi e lunedi", "oggi è lunedì", "oggi e lunedi"]},
+    {"lesson": 2, "topic": "dias_semana", "skill": "writing", "type": "word_bank", "prompt": "Ordena las fichas: 'El domingo no trabajo.'", "tiles": ["La", "domenica", "non", "lavoro", "mangio"], "sequence": ["La", "domenica", "non", "lavoro"]},
+    {"lesson": 2, "topic": "dias_semana", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Oggi è venerdì.", "options": ["Oggi è venerdì.", "Oggi è giovedì.", "Oggi è martedì."], "value": "Oggi è venerdì."},
+    {"lesson": 2, "topic": "dias_semana", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Oggi è domenica."},
+
+    {"lesson": 3, "topic": "verbos_are", "skill": "reading", "type": "multiple_choice", "prompt": "Completa: 'Io ___ italiano.' (parlare)", "options": ["parlo", "parli", "parla"], "value": "parlo"},
+    {"lesson": 3, "topic": "verbos_are", "skill": "writing", "type": "cloze", "prompt": "Completa con 'mangiare' en la forma 'io': 'Io ___ una pizza.'", "text": "Io ___ una pizza.", "value": "mangio", "accepted": ["mangio"]},
+    {"lesson": 3, "topic": "verbos_are", "skill": "writing", "type": "translation", "prompt": "Traduce: 'Tú hablas italiano.'", "source": "Tú hablas italiano.", "value": "Tu parli italiano.", "accepted": ["Tu parli italiano.", "Tu parli italiano", "tu parli italiano", "Parli italiano.", "Parli italiano", "parli italiano"]},
+    {"lesson": 3, "topic": "verbos_are", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Lui lavora in ufficio.", "options": ["Lui lavora in ufficio.", "Lui parla in ufficio.", "Io lavoro in ufficio."], "value": "Lui lavora in ufficio."},
+
+    {"lesson": 4, "topic": "rutina", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras: 'Por la mañana trabajo.'", "tiles": ["lavoro", "La", "mattina"], "sequence": ["La", "mattina", "lavoro"]},
+    {"lesson": 4, "topic": "rutina", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "A che ora mangi?", "options": ["A che ora mangi?", "A che ora lavori?", "Che ore sono?"], "value": "A che ora mangi?"},
+    {"lesson": 4, "topic": "rutina", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Mi alzo alle sette."}
+  ]
+}

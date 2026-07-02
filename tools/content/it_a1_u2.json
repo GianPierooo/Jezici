@@ -1,0 +1,52 @@
+{
+  "unit": {"order": 2, "title_es": "I numeri, l'età e da dove vieni (números, edad y origen)", "color": "#2980B9", "icon": "public"},
+  "checkpoint_desc": "Practica los números 0-20, decir tu edad con «avere», de dónde vienes con «venire da» y tu nacionalidad con su género.",
+  "lessons": [
+    {"order": 1, "title_es": "Los números 0 a 20"},
+    {"order": 2, "title_es": "La edad con avere"},
+    {"order": 3, "title_es": "¿De dónde vienes?"},
+    {"order": 4, "title_es": "Nacionalidades"}
+  ],
+  "vocab": [
+    ["zero", "cero", "numero"],
+    ["cinque", "cinco", "numero"],
+    ["dieci", "diez", "numero"],
+    ["quindici", "quince", "numero"],
+    ["venti", "veinte", "numero"],
+    ["avere", "tener", "verbo"],
+    ["io ho", "yo tengo", "verbo"],
+    ["tu hai", "tú tienes", "verbo"],
+    ["quanti anni", "cuántos años", "expresion"],
+    ["anni", "años", "sustantivo"],
+    ["vengo da", "vengo de", "expresion"],
+    ["di dove", "de dónde", "expresion"],
+    ["paese", "país", "sustantivo"],
+    ["italiano", "italiano", "adjetivo"],
+    ["spagnola", "española", "adjetivo"],
+    ["messicano", "mexicano", "adjetivo"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "numeros_0_20", "skill": "reading", "type": "match", "prompt": "Empareja cada número en italiano con su cifra.", "pairs": [["cinque", "5"], ["dieci", "10"], ["venti", "20"]]},
+    {"lesson": 1, "topic": "numeros_0_20", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se escribe el número 15 en italiano?", "options": ["quindici", "cinque", "sedici"], "value": "quindici"},
+    {"lesson": 1, "topic": "numeros_0_20", "skill": "writing", "type": "cloze", "prompt": "Escribe en letras el número 12 en italiano.", "text": "12 = ___", "value": "dodici", "accepted": ["dodici"]},
+    {"lesson": 1, "topic": "numeros_0_20", "skill": "listening", "type": "listening", "prompt": "Escucha y elige el número que oíste.", "say": "diciassette", "options": ["diciassette", "sette", "dieci"], "value": "diciassette"},
+    {"lesson": 1, "topic": "numeros_0_20", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "zero, cinque, dieci, quindici, venti"},
+
+    {"lesson": 2, "topic": "edad_avere", "skill": "reading", "type": "multiple_choice", "prompt": "En italiano la edad se dice con el verbo «avere». ¿Cuál es correcto para «tengo veinte años»?", "options": ["Ho vent'anni.", "Sono vent'anni.", "Ho vent'anno."], "value": "Ho vent'anni."},
+    {"lesson": 2, "topic": "edad_avere", "skill": "writing", "type": "cloze", "prompt": "Completa con el verbo avere: «Yo tengo diez años».", "text": "Io ___ dieci anni.", "value": "ho", "accepted": ["ho"]},
+    {"lesson": 2, "topic": "edad_avere", "skill": "writing", "type": "word_bank", "prompt": "Arma la frase: «¿Cuántos años tienes?».", "tiles": ["Quanti", "anni", "hai", "sei", "anno"], "sequence": ["Quanti", "anni", "hai"]},
+    {"lesson": 2, "topic": "edad_avere", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ho quindici anni.", "options": ["Ho quindici anni.", "Ho cinque anni.", "Hai vent'anni."], "value": "Ho quindici anni."},
+    {"lesson": 2, "topic": "edad_avere", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Quanti anni hai? Ho vent'anni."},
+
+    {"lesson": 3, "topic": "origen_venire", "skill": "reading", "type": "multiple_choice", "prompt": "«la Spagna» es femenino: da + la = dalla. ¿Cuál es correcto para «vengo de España»?", "options": ["Vengo dalla Spagna.", "Vengo dal Spagna.", "Vengo da la Spagna."], "value": "Vengo dalla Spagna."},
+    {"lesson": 3, "topic": "origen_venire", "skill": "writing", "type": "translation", "prompt": "Traduce: «¿De dónde eres?» (informal).", "source": "¿De dónde eres?", "value": "Di dove sei?", "accepted": ["Di dove sei?", "Di dove sei", "di dove sei?", "di dove sei"]},
+    {"lesson": 3, "topic": "origen_venire", "skill": "writing", "type": "reorder", "prompt": "Ordena: «Vengo de Italia».", "tiles": ["Italia", "Vengo", "dall'"], "sequence": ["Vengo", "dall'", "Italia"]},
+    {"lesson": 3, "topic": "origen_venire", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Vengo dalla Spagna.", "options": ["Vengo dalla Spagna.", "Vengo dal Messico.", "Di dove sei?"], "value": "Vengo dalla Spagna."},
+
+    {"lesson": 4, "topic": "nacionalidades", "skill": "reading", "type": "match", "prompt": "Empareja cada nacionalidad en italiano (masculino) con su traducción.", "pairs": [["italiano", "italiano"], ["spagnolo", "español"], ["messicano", "mexicano"]]},
+    {"lesson": 4, "topic": "nacionalidades", "skill": "reading", "type": "multiple_choice", "prompt": "Anna es de España. En femenino, ¿cómo dice su nacionalidad?", "options": ["Sono spagnola.", "Sono spagnolo.", "Sono italiana."], "value": "Sono spagnola."},
+    {"lesson": 4, "topic": "nacionalidades", "skill": "writing", "type": "translation", "prompt": "Traduce (habla un hombre): «Soy italiano».", "source": "Soy italiano.", "value": "Sono italiano.", "accepted": ["Sono italiano.", "Sono italiano", "sono italiano.", "sono italiano", "Io sono italiano."]},
+    {"lesson": 4, "topic": "nacionalidades", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Vengo dal Messico.", "options": ["Vengo dal Messico.", "Vengo dalla Spagna.", "Vengo dall'Italia."], "value": "Vengo dal Messico."},
+    {"lesson": 4, "topic": "nacionalidades", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Vengo dal Messico. Sono messicano."}
+  ]
+}

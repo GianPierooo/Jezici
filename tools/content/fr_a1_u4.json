@@ -1,0 +1,52 @@
+{
+  "unit": {"order": 4, "title_es": "Comida y bebida / en el café", "color": "#E67E22", "icon": "restaurant"},
+  "checkpoint_desc": "Demuestra que sabes nombrar comida, pedir en el café con cortesía, usar el partitivo y hablar de precios.",
+  "lessons": [
+    {"order": 1, "title_es": "La comida (la nourriture)"},
+    {"order": 2, "title_es": "En el café (je voudrais...)"},
+    {"order": 3, "title_es": "El partitivo (du, de la, des)"},
+    {"order": 4, "title_es": "Precios y cantidad (combien ça coûte ?)"}
+  ],
+  "vocab": [
+    ["le pain", "el pan", "sustantivo"],
+    ["l'eau", "el agua", "sustantivo"],
+    ["le café", "el café", "sustantivo"],
+    ["le fromage", "el queso", "sustantivo"],
+    ["la pomme", "la manzana", "sustantivo"],
+    ["le poulet", "el pollo", "sustantivo"],
+    ["le lait", "la leche", "sustantivo"],
+    ["la bière", "la cerveza", "sustantivo"],
+    ["l'addition", "la cuenta", "sustantivo"],
+    ["je voudrais", "quisiera / querría", "expresión"],
+    ["s'il vous plaît", "por favor", "expresión"],
+    ["du", "algo de (partitivo masc.)", "partitivo"],
+    ["de la", "algo de (partitivo fem.)", "partitivo"],
+    ["des", "algunos/as (partitivo plural)", "partitivo"],
+    ["combien", "cuánto", "adverbio"],
+    ["prendre", "tomar", "verbo"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "comida", "skill": "reading", "type": "match", "prompt": "Empareja cada palabra francesa con su traducción.", "pairs": [["le pain", "el pan"], ["l'eau", "el agua"], ["le fromage", "el queso"]]},
+    {"lesson": 1, "topic": "comida", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál es «el café» (la bebida) en francés?", "options": ["le café", "le lait", "l'eau"], "value": "le café"},
+    {"lesson": 1, "topic": "comida", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "J'aime le fromage.", "options": ["J'aime le fromage.", "J'aime le poulet.", "J'aime le pain."], "value": "J'aime le fromage."},
+    {"lesson": 1, "topic": "comida", "skill": "writing", "type": "translation", "prompt": "Traduce: «El pan y el queso».", "source": "El pan y el queso", "value": "Le pain et le fromage", "accepted": ["Le pain et le fromage", "le pain et le fromage", "Le pain et le fromage."]},
+    {"lesson": 1, "topic": "comida", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "J'aime le café et le pain."},
+
+    {"lesson": 2, "topic": "cafe", "skill": "reading", "type": "match", "prompt": "Empareja cada expresión francesa con su traducción.", "pairs": [["l'addition", "la cuenta"], ["la bière", "la cerveza"], ["s'il vous plaît", "por favor"]]},
+    {"lesson": 2, "topic": "cafe", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo pides con cortesía «Quisiera un café»?", "options": ["Je voudrais un café.", "Je veux un café.", "Donne un café."], "value": "Je voudrais un café."},
+    {"lesson": 2, "topic": "cafe", "skill": "writing", "type": "cloze", "prompt": "Completa la fórmula de cortesía «por favor»: s'il vous ___.", "text": "s'il vous ___", "value": "plaît", "accepted": ["plaît", "plait"]},
+    {"lesson": 2, "topic": "cafe", "skill": "writing", "type": "word_bank", "prompt": "Arma: «Quisiera una cerveza, por favor».", "tiles": ["Je", "voudrais", "une", "bière", "s'il", "vous", "plaît", "un"], "sequence": ["Je", "voudrais", "une", "bière", "s'il", "vous", "plaît"]},
+    {"lesson": 2, "topic": "cafe", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Un café, s'il vous plaît.", "options": ["Un café, s'il vous plaît.", "Une bière, s'il vous plaît.", "L'addition, s'il vous plaît."], "value": "Un café, s'il vous plaît."},
+    {"lesson": 2, "topic": "cafe", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Je voudrais un café, s'il vous plaît."},
+
+    {"lesson": 3, "topic": "partitivo", "skill": "reading", "type": "multiple_choice", "prompt": "Elige el partitivo correcto: «Je voudrais ___ pain» (quisiera pan).", "options": ["du", "de la", "des"], "value": "du"},
+    {"lesson": 3, "topic": "partitivo", "skill": "writing", "type": "cloze", "prompt": "Completa con el partitivo ante vocal: «Je voudrais ___ eau» (quisiera agua).", "text": "Je voudrais ___ eau", "value": "de l'", "accepted": ["de l'", "de l’"]},
+    {"lesson": 3, "topic": "partitivo", "skill": "writing", "type": "reorder", "prompt": "Ordena: «Quisiera algo de queso».", "tiles": ["Je", "voudrais", "du", "fromage"], "sequence": ["Je", "voudrais", "du", "fromage"]},
+    {"lesson": 3, "topic": "partitivo", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Je voudrais de la soupe.", "options": ["Je voudrais de la soupe.", "Je voudrais du pain.", "Je voudrais des pommes."], "value": "Je voudrais de la soupe."},
+    {"lesson": 3, "topic": "partitivo", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Je voudrais du fromage et de l'eau."},
+
+    {"lesson": 4, "topic": "precios", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo preguntas «¿Cuánto cuesta?»?", "options": ["Combien ça coûte ?", "Où ça coûte ?", "Quand ça coûte ?"], "value": "Combien ça coûte ?"},
+    {"lesson": 4, "topic": "precios", "skill": "writing", "type": "translation", "prompt": "Traduce: «Son cinco euros».", "source": "Son cinco euros", "value": "Ça fait cinq euros", "accepted": ["Ça fait cinq euros", "ça fait cinq euros", "Ca fait cinq euros", "Ça fait cinq euros."]},
+    {"lesson": 4, "topic": "precios", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ça fait dix euros.", "options": ["Ça fait dix euros.", "Ça fait cinq euros.", "Combien ça coûte ?"], "value": "Ça fait dix euros."}
+  ]
+}

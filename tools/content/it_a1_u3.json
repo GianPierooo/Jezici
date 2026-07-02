@@ -1,0 +1,52 @@
+{
+  "unit": {"order": 3, "title_es": "La familia", "color": "#8E44AD", "icon": "family_restroom"},
+  "checkpoint_desc": "Demuestra que sabes nombrar a la familia, usar posesivos de parentesco, presentar personas con questo/questa y describirlas.",
+  "lessons": [
+    {"order": 1, "title_es": "La familia (la famiglia)"},
+    {"order": 2, "title_es": "Los posesivos (mio, mia, i miei)"},
+    {"order": 3, "title_es": "Presentar personas (questo è, chi è?)"},
+    {"order": 4, "title_es": "Describir personas (alto, simpatico...)"}
+  ],
+  "vocab": [
+    ["la madre", "la madre", "sustantivo"],
+    ["il padre", "el padre", "sustantivo"],
+    ["i genitori", "los padres", "sustantivo"],
+    ["il fratello", "el hermano", "sustantivo"],
+    ["la sorella", "la hermana", "sustantivo"],
+    ["il figlio", "el hijo", "sustantivo"],
+    ["la figlia", "la hija", "sustantivo"],
+    ["il nonno", "el abuelo", "sustantivo"],
+    ["la nonna", "la abuela", "sustantivo"],
+    ["la famiglia", "la familia", "sustantivo"],
+    ["mio", "mi (masculino)", "articulo"],
+    ["mia", "mi (femenino)", "articulo"],
+    ["alto", "alto", "adjetivo"],
+    ["simpatico", "simpático", "adjetivo"],
+    ["piccolo", "pequeño", "adjetivo"],
+    ["grande", "grande", "adjetivo"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "familia", "skill": "reading", "type": "match", "prompt": "Empareja cada palabra italiana con su traducción.", "pairs": [["la madre", "la madre"], ["il padre", "el padre"], ["la sorella", "la hermana"]]},
+    {"lesson": 1, "topic": "familia", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál es «el hijo» en italiano?", "options": ["il figlio", "la figlia", "il padre"], "value": "il figlio"},
+    {"lesson": 1, "topic": "familia", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Questa è la mia famiglia.", "options": ["Questa è la mia famiglia.", "Questo è mio fratello.", "Questa è mia madre."], "value": "Questa è la mia famiglia."},
+    {"lesson": 1, "topic": "familia", "skill": "writing", "type": "translation", "prompt": "Traduce: «El padre y la madre».", "source": "El padre y la madre", "value": "Il padre e la madre", "accepted": ["Il padre e la madre", "il padre e la madre", "Il padre e la madre."]},
+    {"lesson": 1, "topic": "familia", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ho una famiglia grande."},
+
+    {"lesson": 2, "topic": "posesivos", "skill": "reading", "type": "match", "prompt": "Empareja cada palabra italiana con su traducción.", "pairs": [["il fratello", "el hermano"], ["i genitori", "los padres"], ["la nonna", "la abuela"]]},
+    {"lesson": 2, "topic": "posesivos", "skill": "reading", "type": "multiple_choice", "prompt": "«Mi hermana» en italiano (parentesco singular, sin artículo) es:", "options": ["mia sorella", "la mia sorella", "mio sorella"], "value": "mia sorella"},
+    {"lesson": 2, "topic": "posesivos", "skill": "writing", "type": "cloze", "prompt": "Completa: «mis padres» lleva artículo en plural. ___ miei genitori.", "text": "___ miei genitori", "value": "i", "accepted": ["i", "I"]},
+    {"lesson": 2, "topic": "posesivos", "skill": "writing", "type": "word_bank", "prompt": "Arma: «Mi madre es simpática».", "tiles": ["Mia", "madre", "è", "simpatica", "Mio", "simpatico"], "sequence": ["Mia", "madre", "è", "simpatica"]},
+    {"lesson": 2, "topic": "posesivos", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Questo è mio fratello.", "options": ["Questo è mio fratello.", "Questa è mia sorella.", "Questo è mio padre."], "value": "Questo è mio fratello."},
+    {"lesson": 2, "topic": "posesivos", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Mia sorella è piccola."},
+
+    {"lesson": 3, "topic": "presentar", "skill": "reading", "type": "multiple_choice", "prompt": "Para presentar a una MUJER («Esta es mi madre») usamos:", "options": ["Questa è mia madre.", "Questo è mia madre.", "Questi è mia madre."], "value": "Questa è mia madre."},
+    {"lesson": 3, "topic": "presentar", "skill": "writing", "type": "cloze", "prompt": "Completa la pregunta «¿Quién es?»: ___ è?", "text": "___ è?", "value": "Chi", "accepted": ["Chi", "chi"]},
+    {"lesson": 3, "topic": "presentar", "skill": "writing", "type": "reorder", "prompt": "Ordena: «Este es mi padre».", "tiles": ["Questo", "è", "mio", "padre"], "sequence": ["Questo", "è", "mio", "padre"]},
+    {"lesson": 3, "topic": "presentar", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Questo è mio nonno.", "options": ["Questo è mio nonno.", "Questa è mia nonna.", "Questo è mio figlio."], "value": "Questo è mio nonno."},
+    {"lesson": 3, "topic": "presentar", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Chi è? È mia sorella."},
+
+    {"lesson": 4, "topic": "describir", "skill": "reading", "type": "multiple_choice", "prompt": "«Mia madre è ___» (mi madre es alta). Elige la forma femenina correcta.", "options": ["alta", "alto", "alti"], "value": "alta"},
+    {"lesson": 4, "topic": "describir", "skill": "writing", "type": "translation", "prompt": "Traduce: «Mi hermano es simpático».", "source": "Mi hermano es simpático", "value": "Mio fratello è simpatico", "accepted": ["Mio fratello è simpatico", "mio fratello è simpatico", "Mio fratello e simpatico", "Mio fratello è simpatico."]},
+    {"lesson": 4, "topic": "describir", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Mio padre è alto e simpatico.", "options": ["Mio padre è alto e simpatico.", "Mia madre è piccola e simpatica.", "Mio fratello è grande."], "value": "Mio padre è alto e simpatico."}
+  ]
+}

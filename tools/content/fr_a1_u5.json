@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 5, "title_es": "El día y la hora", "color": "#16A085", "icon": "schedule"},
+  "checkpoint_desc": "Demuestra que sabes decir la hora, los días de la semana y conjugar verbos regulares en -ER para hablar de tu rutina.",
+  "lessons": [
+    {"order": 1, "title_es": "¿Qué hora es?"},
+    {"order": 2, "title_es": "Los días de la semana"},
+    {"order": 3, "title_es": "Verbos en -ER (presente)"},
+    {"order": 4, "title_es": "Mi rutina diaria"}
+  ],
+  "vocab": [
+    ["l'heure", "la hora", "sustantivo"],
+    ["midi", "mediodía", "sustantivo"],
+    ["minuit", "medianoche", "sustantivo"],
+    ["et demie", "y media", "expresión"],
+    ["et quart", "y cuarto", "expresión"],
+    ["lundi", "lunes", "sustantivo"],
+    ["mardi", "martes", "sustantivo"],
+    ["mercredi", "miércoles", "sustantivo"],
+    ["samedi", "sábado", "sustantivo"],
+    ["dimanche", "domingo", "sustantivo"],
+    ["aujourd'hui", "hoy", "adverbio"],
+    ["demain", "mañana", "adverbio"],
+    ["parler", "hablar", "verbo"],
+    ["manger", "comer", "verbo"],
+    ["travailler", "trabajar", "verbo"],
+    ["le matin", "la mañana", "sustantivo"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "la_hora", "skill": "reading", "type": "match", "prompt": "Empareja cada hora en francés con su equivalente en español.", "pairs": [["une heure", "la una"], ["trois heures", "las tres"], ["midi", "el mediodía"]]},
+    {"lesson": 2, "topic": "dias_semana", "skill": "reading", "type": "match", "prompt": "Empareja cada día en francés con su equivalente en español.", "pairs": [["lundi", "lunes"], ["mercredi", "miércoles"], ["dimanche", "domingo"]]},
+    {"lesson": 1, "topic": "la_hora", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se pregunta '¿Qué hora es?' en francés?", "options": ["Quelle heure est-il ?", "Quel jour est-il ?", "Comment ça va ?"], "value": "Quelle heure est-il ?"},
+    {"lesson": 1, "topic": "la_hora", "skill": "reading", "type": "multiple_choice", "prompt": "Son las tres y media. ¿Cuál es la forma correcta?", "options": ["Il est trois heures et demie.", "Il est trois heures et quart.", "Il est trois heures et midi."], "value": "Il est trois heures et demie."},
+    {"lesson": 3, "topic": "verbos_er", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la conjugación correcta: 'Nous ___ français.' (parler)", "options": ["parlons", "parlez", "parlent"], "value": "parlons"},
+    {"lesson": 4, "topic": "mi_rutina", "skill": "reading", "type": "multiple_choice", "prompt": "¿Qué significa 'le soir'?", "options": ["la tarde/noche", "la mañana", "el mediodía"], "value": "la tarde/noche"},
+    {"lesson": 1, "topic": "la_hora", "skill": "writing", "type": "cloze", "prompt": "Completa con el verbo correcto: 'Il ___ deux heures.' (Son las dos.)", "text": "Il ___ deux heures.", "value": "est", "accepted": ["est"]},
+    {"lesson": 3, "topic": "verbos_er", "skill": "writing", "type": "cloze", "prompt": "Completa la conjugación de 'manger': 'Je ___ une pomme.'", "text": "Je ___ une pomme.", "value": "mange", "accepted": ["mange"]},
+    {"lesson": 2, "topic": "dias_semana", "skill": "writing", "type": "translation", "prompt": "Traduce al francés: 'Hoy es lunes.'", "source": "Hoy es lunes.", "value": "Aujourd'hui, c'est lundi.", "accepted": ["Aujourd'hui, c'est lundi.", "Aujourd'hui c'est lundi", "Aujourd'hui, c'est lundi", "C'est lundi aujourd'hui.", "Aujourd'hui c'est lundi."]},
+    {"lesson": 4, "topic": "mi_rutina", "skill": "writing", "type": "translation", "prompt": "Traduce al francés: 'Yo trabajo por la mañana.'", "source": "Yo trabajo por la mañana.", "value": "Je travaille le matin.", "accepted": ["Je travaille le matin.", "Je travaille le matin", "Le matin, je travaille."]},
+    {"lesson": 3, "topic": "verbos_er", "skill": "writing", "type": "word_bank", "prompt": "Ordena las fichas para formar: 'Ella habla francés.'", "tiles": ["Elle", "parle", "français", "mange", "français."], "sequence": ["Elle", "parle", "français."]},
+    {"lesson": 4, "topic": "mi_rutina", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras para formar una frase correcta.", "tiles": ["Je", "mange", "à", "midi."], "sequence": ["Je", "mange", "à", "midi."]},
+    {"lesson": 1, "topic": "la_hora", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Il est une heure et quart.", "options": ["Il est une heure et quart.", "Il est une heure et demie.", "Il est deux heures et quart."], "value": "Il est une heure et quart."},
+    {"lesson": 2, "topic": "dias_semana", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Demain, c'est samedi.", "options": ["Demain, c'est samedi.", "Demain, c'est mardi.", "Aujourd'hui, c'est samedi."], "value": "Demain, c'est samedi."},
+    {"lesson": 3, "topic": "verbos_er", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Vous travaillez beaucoup.", "options": ["Vous travaillez beaucoup.", "Nous travaillons beaucoup.", "Vous parlez beaucoup."], "value": "Vous travaillez beaucoup."},
+    {"lesson": 4, "topic": "mi_rutina", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Je me lève à sept heures.", "options": ["Je me lève à sept heures.", "Je me lève à six heures.", "Je mange à sept heures."], "value": "Je me lève à sept heures."},
+    {"lesson": 1, "topic": "la_hora", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Il est midi et demi."},
+    {"lesson": 3, "topic": "verbos_er", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Nous aimons parler français."},
+    {"lesson": 4, "topic": "mi_rutina", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Le matin, je mange et je travaille."}
+  ]
+}

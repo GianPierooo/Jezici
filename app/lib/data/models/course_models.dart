@@ -21,6 +21,8 @@ class CourseInfo {
   String get flag => switch (target) {
         'en' => '🇬🇧',
         'pt' => '🇧🇷',
+        'fr' => '🇫🇷',
+        'it' => '🇮🇹',
         _ => '🌐',
       };
 

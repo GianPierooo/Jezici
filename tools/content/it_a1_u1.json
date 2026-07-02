@@ -1,0 +1,53 @@
+{
+  "unit": {"order": 1, "title_es": "Ciao y piacere (saludos y presentarte)", "color": "#27AE60", "icon": "waving_hand"},
+  "checkpoint_desc": "Practica saludar, despedirte, presentarte con «mi chiamo» y usar el verbo essere junto a la distinción tú/usted (tu/Lei).",
+  "lessons": [
+    {"order": 1, "title_es": "Saludos y despedidas"},
+    {"order": 2, "title_es": "Presentarte: mi chiamo"},
+    {"order": 3, "title_es": "Tú o usted + el verbo essere"},
+    {"order": 4, "title_es": "¿Cómo estás? come stai?"}
+  ],
+  "vocab": [
+    ["ciao", "hola/chao (informal)", "interjeccion"],
+    ["buongiorno", "buenos días", "interjeccion"],
+    ["buonasera", "buenas tardes/noches", "interjeccion"],
+    ["buonanotte", "buenas noches (al dormir)", "interjeccion"],
+    ["arrivederci", "adiós/hasta la vista", "interjeccion"],
+    ["a presto", "hasta pronto", "expresion"],
+    ["salve", "hola (neutro/cortés)", "interjeccion"],
+    ["mi chiamo", "me llamo", "expresion"],
+    ["piacere", "encantado/mucho gusto", "expresion"],
+    ["io sono", "yo soy/estoy", "verbo"],
+    ["tu sei", "tú eres/estás", "verbo"],
+    ["lui è", "él es/está", "verbo"],
+    ["lei è", "ella es/está", "verbo"],
+    ["come stai", "¿cómo estás? (tú)", "expresion"],
+    ["bene", "bien", "adverbio"],
+    ["grazie", "gracias", "interjeccion"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "saludos_despedidas", "skill": "reading", "type": "match", "prompt": "Empareja cada saludo con su traducción.", "pairs": [["buongiorno", "buenos días"], ["ciao", "hola (informal)"], ["arrivederci", "adiós"]]},
+    {"lesson": 1, "topic": "saludos_despedidas", "skill": "reading", "type": "multiple_choice", "prompt": "¿Qué dices por la noche, antes de irte a dormir?", "options": ["buonanotte", "buongiorno", "ciao"], "value": "buonanotte"},
+    {"lesson": 1, "topic": "saludos_despedidas", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Buonasera, come sta?", "options": ["Buonasera, come sta?", "Buongiorno, come stai?", "Buonanotte, grazie."], "value": "Buonasera, come sta?"},
+    {"lesson": 1, "topic": "saludos_despedidas", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Arrivederci, a presto!", "options": ["Arrivederci, a presto!", "Buongiorno, come stai?", "Buonanotte, grazie."], "value": "Arrivederci, a presto!"},
+    {"lesson": 1, "topic": "saludos_despedidas", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ciao! Buongiorno! Arrivederci!"},
+
+    {"lesson": 2, "topic": "presentarse", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo dices «me llamo Maria»?", "options": ["Mi chiamo Maria.", "Ti chiami Maria.", "Si chiama Maria."], "value": "Mi chiamo Maria."},
+    {"lesson": 2, "topic": "presentarse", "skill": "writing", "type": "cloze", "prompt": "Completa: «Me llamo Paolo».", "text": "Mi ___ Paolo.", "value": "chiamo", "accepted": ["chiamo"]},
+    {"lesson": 2, "topic": "presentarse", "skill": "writing", "type": "word_bank", "prompt": "Arma la frase: «Me llamo Anna».", "tiles": ["Mi", "chiamo", "Anna", "sono", "ti"], "sequence": ["Mi", "chiamo", "Anna"]},
+    {"lesson": 2, "topic": "presentarse", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ciao! Mi chiamo Maria. Piacere!"},
+    {"lesson": 2, "topic": "presentarse", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Buongiorno! Mi chiamo Paolo. Piacere di conoscerti!"},
+
+    {"lesson": 3, "topic": "tu_lei_essere", "skill": "reading", "type": "match", "prompt": "Empareja cada forma del verbo essere con su pronombre.", "pairs": [["io sono", "yo soy"], ["tu sei", "tú eres"], ["lui è", "él es"]]},
+    {"lesson": 3, "topic": "tu_lei_essere", "skill": "reading", "type": "multiple_choice", "prompt": "Hablas con tu jefe (usted, forma de cortesía Lei). ¿Cómo le preguntas su nombre?", "options": ["Come si chiama?", "Come ti chiami?", "Come mi chiamo?"], "value": "Come si chiama?"},
+    {"lesson": 3, "topic": "tu_lei_essere", "skill": "writing", "type": "cloze", "prompt": "Completa con el verbo essere: «Tú eres spagnolo».", "text": "Tu ___ spagnolo.", "value": "sei", "accepted": ["sei"]},
+    {"lesson": 3, "topic": "tu_lei_essere", "skill": "writing", "type": "reorder", "prompt": "Ordena: «¿Cómo te llamas?» (tú).", "tiles": ["chiami", "Come", "ti"], "sequence": ["Come", "ti", "chiami"]},
+    {"lesson": 3, "topic": "tu_lei_essere", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Io sono Marco.", "options": ["Io sono Marco.", "Tu sei spagnolo.", "Lei è Maria."], "value": "Io sono Marco."},
+
+    {"lesson": 4, "topic": "come_stai", "skill": "reading", "type": "multiple_choice", "prompt": "Un amigo te pregunta «Come stai?». ¿Cómo respondes que estás muy bien y das las gracias?", "options": ["Molto bene, grazie!", "Arrivederci!", "Buonanotte!"], "value": "Molto bene, grazie!"},
+    {"lesson": 4, "topic": "come_stai", "skill": "writing", "type": "translation", "prompt": "Traduce: «¿Cómo estás? Muy bien, gracias».", "source": "¿Cómo estás? Muy bien, gracias.", "value": "Come stai? Molto bene, grazie.", "accepted": ["Come stai? Molto bene, grazie.", "Come stai? Molto bene, grazie", "Come stai Molto bene grazie", "come stai? molto bene, grazie.", "Come stai molto bene grazie"]},
+    {"lesson": 4, "topic": "come_stai", "skill": "writing", "type": "translation", "prompt": "Traduce: «¿Y tú?» (informal).", "source": "¿Y tú?", "value": "E tu?", "accepted": ["E tu?", "E tu", "e tu?", "e tu"]},
+    {"lesson": 4, "topic": "come_stai", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Come stai?", "options": ["Come stai?", "Come si chiama?", "Buonasera, a presto."], "value": "Come stai?"},
+    {"lesson": 4, "topic": "come_stai", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Molto bene, e tu?", "options": ["Molto bene, e tu?", "Ciao, piacere.", "Grazie, arrivederci."], "value": "Molto bene, e tu?"}
+  ]
+}

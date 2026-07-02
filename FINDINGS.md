@@ -2,6 +2,47 @@
 
 ---
 
+## Pilotos es→fr + es→it (A1) — 2026-07-02 ✅ LIVE + VERIFICADO (cliente real)
+> 2 cursos NUEVOS. Objetivo: A1 completo e impecable en francés e italiano, con **aislamiento
+> multicurso** blindado (el riesgo #1 — ya se rompió una vez con pt, mig 064→072).
+
+**Sembrado (mig 094 fr / 095 it):** cada curso = alta de idioma + curso `is_active` + **A1 completo**
+(6 unidades temáticas × [4 lecciones `lesson` + 1 `checkpoint` + examen de checkpoint], molde es→pt).
+**115 ítems/curso**, 4 habilidades balanceadas desde A1:
+- **fr** (`…0003`, Français): R38 · W36 · L23 · S18 → **L=62%, S=49%** de (R+W)/2. Audio tl=fr **41/41**.
+- **it** (`…0004`, Italiano): R36 · W36 · L25 · S18 → **L=69%, S=50%**. Audio tl=it **43/43**.
+Autorado por **profesores nativos IA** (fr/it, no traducción mecánica), generador reutilizable
+`tools/content/gen_course_a1.py <code>` (JSON por unidad → migración; ids uuid5 idempotentes).
+
+**Calidad (validación adversarial nativa):**
+- **fr:** 1 ❌ real → `midi et demie` corregido a **`midi et demi`** (demi es masc. con *midi/minuit*)
+  + 2 ⚠️ menores (match de nacionalidades a género consistente; `banca`→`banco` en enunciado ES). Todo aplicado.
+- **it:** **0 ❌**, 5 ⚠️ de tolerancia/distractores → 4 aplicados (distractor `Ho venti`→`Ho vent'anno`;
+  `accepted` de precios/`È`/`C'è` depurados). Gramática crítica impecable: **avere para la edad**, partitivo
+  concordado (del/della/dell'), preposizioni articolate (al/alla/dalla), posesivos de parentesco (mio fratello
+  / i miei genitori), hora singular/plural (È l'una vs Sono le…). Ningún MC/listening ambiguo.
+
+**Aislamiento multicurso — VERIFICADO con cliente real** (`verify_new_course.py fr|it`, JWT real, jamás
+service_role):
+- **0 `lesson_items` cruzan los 4 cursos** (en/pt/fr/it).
+- Determinista: fr 97/97 + it 97/97 correctos aceptados; 97/97 + 97/97 distractores rechazados
+  (grading server-side, `correct_answer` **42501**; el admin solo lee respuestas como andamiaje del test).
+- `set_active_course(nuevo)` → `create_plan`/`start_practice`/`user_course_progress` sirven **SOLO** ese curso;
+  usuario default(en) NO recibe ítems fr/it; cadena lección(100%)+checkpoint(≥80%) por curso; audio HEAD 200.
+- **Cursos existentes INTACTOS:** `verify_chain` (es→en A1→B2 + certs + per-skill) y `verify_pt_chain`
+  (es→pt A1→B1 multicurso + certs) **verdes tras el fix compartido**.
+
+**Fix de fondo `create_plan` (mig 096):** ignoraba el curso activo (hardcodeaba el más-antiguo-activo=en) →
+sembraba plan/progreso en el curso equivocado con >1 curso. Ahora `jz_active_course()`. **Cero regresión en
+es→en** (usuario nuevo sin `user_active_course` → mismo fallback=en). No afloraba en la app (el onboarding usa
+en por defecto; el cambio de curso va por `start_course` en Ajustes), pero el fix es correcto y future-proof.
+
+**CI/deploy:** `flutter analyze` 0 issues (añadidas banderas 🇫🇷/🇮🇹 al selector), `flutter test` 89/89.
+Contenido DB-driven → LIVE al aplicar migración (sin depender del deploy). **Retome del piloto:** A2+ fr/it,
+banco de placement fr/it (hoy default→A1), onboarding fr/it-específico, tips/historias/imágenes, cert de nivel A1.
+
+---
+
 ## i18n — COBERTURA EXTENDIDA (home/mapa · ligas · tienda/racha · perfil) — 2026-07-02 ✅ LIVE
 > La infra i18n ya existía (onboarding+auth+loop). Esta tanda EXTIENDE la cobertura a las
 > superficies más visibles que quedaban en español. ~200 claves nuevas es/en/pt.

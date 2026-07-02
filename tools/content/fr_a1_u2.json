@@ -1,0 +1,52 @@
+{
+  "unit": {"order": 2, "title_es": "Les nombres, l'âge et d'où tu viens (números, edad y origen)", "color": "#2980B9", "icon": "public"},
+  "checkpoint_desc": "Practica los números 0-20, decir tu edad con «avoir», de dónde vienes y tu nacionalidad con su género.",
+  "lessons": [
+    {"order": 1, "title_es": "Los números 0 a 20"},
+    {"order": 2, "title_es": "La edad con avoir"},
+    {"order": 3, "title_es": "¿De dónde vienes?"},
+    {"order": 4, "title_es": "Nacionalidades"}
+  ],
+  "vocab": [
+    ["zéro", "cero", "numeral"],
+    ["cinq", "cinco", "numeral"],
+    ["dix", "diez", "numeral"],
+    ["quinze", "quince", "numeral"],
+    ["vingt", "veinte", "numeral"],
+    ["avoir", "tener", "verbo"],
+    ["j'ai", "yo tengo", "verbo"],
+    ["tu as", "tú tienes", "verbo"],
+    ["quel âge", "qué edad", "expresion"],
+    ["ans", "años", "sustantivo"],
+    ["je viens de", "vengo de", "expresion"],
+    ["d'où", "de dónde", "expresion"],
+    ["pays", "país", "sustantivo"],
+    ["français", "francés", "adjetivo"],
+    ["espagnole", "española", "adjetivo"],
+    ["mexicain", "mexicano", "adjetivo"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "numeros_0_20", "skill": "reading", "type": "match", "prompt": "Empareja cada número en francés con su cifra.", "pairs": [["cinq", "5"], ["dix", "10"], ["vingt", "20"]]},
+    {"lesson": 1, "topic": "numeros_0_20", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se escribe el número 15 en francés?", "options": ["quinze", "cinq", "seize"], "value": "quinze"},
+    {"lesson": 1, "topic": "numeros_0_20", "skill": "writing", "type": "cloze", "prompt": "Escribe en letras el número 12 en francés.", "text": "12 = ___", "value": "douze", "accepted": ["douze"]},
+    {"lesson": 1, "topic": "numeros_0_20", "skill": "listening", "type": "listening", "prompt": "Escucha y elige el número que oíste.", "say": "dix-sept", "options": ["dix-sept", "sept", "dix"], "value": "dix-sept"},
+    {"lesson": 1, "topic": "numeros_0_20", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "zéro, cinq, dix, quinze, vingt"},
+
+    {"lesson": 2, "topic": "edad_avoir", "skill": "reading", "type": "multiple_choice", "prompt": "En francés la edad se dice con el verbo «avoir». ¿Cuál es correcto para «tengo veinte años»?", "options": ["J'ai vingt ans.", "Je suis vingt ans.", "J'ai vingt."], "value": "J'ai vingt ans."},
+    {"lesson": 2, "topic": "edad_avoir", "skill": "writing", "type": "cloze", "prompt": "Completa con el verbo avoir: «Yo tengo diez años».", "text": "J'___ dix ans.", "value": "ai", "accepted": ["ai"]},
+    {"lesson": 2, "topic": "edad_avoir", "skill": "writing", "type": "word_bank", "prompt": "Arma la frase: «¿Cuántos años tienes?».", "tiles": ["Quel", "âge", "as-tu", "es-tu", "ans"], "sequence": ["Quel", "âge", "as-tu"]},
+    {"lesson": 2, "topic": "edad_avoir", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "J'ai quinze ans.", "options": ["J'ai quinze ans.", "J'ai cinq ans.", "Tu as vingt ans."], "value": "J'ai quinze ans."},
+    {"lesson": 2, "topic": "edad_avoir", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Quel âge as-tu ? J'ai vingt ans."},
+
+    {"lesson": 3, "topic": "origen_venir", "skill": "reading", "type": "multiple_choice", "prompt": "Ante un país que empieza por vocal se usa «d'». ¿Cuál es correcto para «vengo de España»?", "options": ["Je viens d'Espagne.", "Je viens de Espagne.", "Je viens du Espagne."], "value": "Je viens d'Espagne."},
+    {"lesson": 3, "topic": "origen_venir", "skill": "reading", "type": "multiple_choice", "prompt": "«Le Mexique» es masculino: de + le = du. ¿Cuál es correcto para «vengo de México»?", "options": ["Je viens du Mexique.", "Je viens de Mexique.", "Je viens d'Mexique."], "value": "Je viens du Mexique."},
+    {"lesson": 3, "topic": "origen_venir", "skill": "writing", "type": "translation", "prompt": "Traduce: «Vengo de Francia».", "source": "Vengo de Francia.", "value": "Je viens de France.", "accepted": ["Je viens de France.", "Je viens de France", "Je viens de france.", "je viens de france"]},
+    {"lesson": 3, "topic": "origen_venir", "skill": "writing", "type": "reorder", "prompt": "Ordena: «¿De dónde vienes?».", "tiles": ["viens-tu", "D'", "où"], "sequence": ["D'", "où", "viens-tu"]},
+    {"lesson": 3, "topic": "origen_venir", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Je viens d'Espagne.", "options": ["Je viens d'Espagne.", "Je viens du Mexique.", "Je viens de France."], "value": "Je viens d'Espagne."},
+
+    {"lesson": 4, "topic": "nacionalidades", "skill": "reading", "type": "match", "prompt": "Empareja cada nacionalidad en francés con su traducción.", "pairs": [["français", "francés"], ["espagnol", "español"], ["mexicain", "mexicano"]]},
+    {"lesson": 4, "topic": "nacionalidades", "skill": "reading", "type": "multiple_choice", "prompt": "Marie es de España. En femenino, ¿cómo dice su nacionalidad?", "options": ["Je suis espagnole.", "Je suis espagnol.", "Je suis française."], "value": "Je suis espagnole."},
+    {"lesson": 4, "topic": "nacionalidades", "skill": "writing", "type": "translation", "prompt": "Traduce (habla un hombre): «Soy francés».", "source": "Soy francés.", "value": "Je suis français.", "accepted": ["Je suis français.", "Je suis français", "Je suis francais.", "je suis francais"]},
+    {"lesson": 4, "topic": "nacionalidades", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Je viens du Mexique. Je suis mexicaine."}
+  ]
+}

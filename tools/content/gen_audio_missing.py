@@ -16,6 +16,8 @@ UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like 
 
 COURSE_EN = "20000000-0000-0000-0000-000000000001"
 COURSE_PT = "20000000-0000-0000-0000-000000000002"
+COURSE_FR = "20000000-0000-0000-0000-000000000003"
+COURSE_IT = "20000000-0000-0000-0000-000000000004"
 
 # grupo -> (course_id, cefr_level, idioma TTS)
 GROUPS = {
@@ -25,6 +27,8 @@ GROUPS = {
     "pt-a1": (COURSE_PT, "A1", "pt"),
     "pt-a2": (COURSE_PT, "A2", "pt"),
     "pt-b1": (COURSE_PT, "B1", "pt"),
+    "fr-a1": (COURSE_FR, "A1", "fr"),
+    "it-a1": (COURSE_IT, "A1", "it"),
 }
 
 def tts(text, tl):

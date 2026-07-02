@@ -6,6 +6,18 @@
 > Prioridad: es→en A1/A2 a fondo (lo que los testers usan hoy). B1–C1 y es→pt: perfil
 > estructural + diferido (ver "Pendiente").
 
+## Pilotos es→fr + es→it A1 (2026-07-02) — 4 habilidades balanceadas DESDE el arranque
+- **fr A1:** R38 · W36 · **L23 · S18** → L=62%, S=49% de (R+W)/2. **it A1:** R36 · W36 · **L25 · S18** →
+  L=69%, S=50%. Es decir: **NO nacen con el sesgo 3:1** — el balance L/S de es→en/pt se aplicó desde el
+  diseño (criterio: listening ~65% de R/W, speaking ~50% como proxy). 115 ítems/curso, 6 unidades A1 con
+  progresión temática (saludos→ciudad), gramática real por idioma (fr: género/contracciones/être-avoir;
+  it: articoli/partitivo/preposizioni articolate/avere-per-l'età). Audio TTS completo (fr 41, it 43).
+- **Eficacia A1:** cobertura de funciones comunicativas A1 (presentarse, edad/origen, familia, pedir en
+  un café, hora/rutina, orientarse) + las 4 habilidades entrenadas. Validación adversarial nativa: fr 1
+  error corregido, it 0 errores. **Techo determinista de producción idéntico** al resto (speaking=proxy,
+  writing=translation/cloze tolerantes) → sin cert A1 fr/it aún (Fase 2). **Diferido:** A2+ fr/it,
+  reaparición de léxico entre unidades, banco de placement fr/it.
+
 ## Hallazgo estructural sistémico (TODOS los niveles, ambos cursos)
 - **Balance de habilidades sesgado ~3:1.** Por nivel: Reading ~74 · Writing ~74 · **Listening 24 ·
   Speaking 24** (4/unidad). Lectura/escritura reciben ~3× la práctica de escucha/habla. Para

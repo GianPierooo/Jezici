@@ -1,0 +1,52 @@
+{
+  "unit": {"order": 4, "title_es": "Comida y el bar", "color": "#E67E22", "icon": "restaurant"},
+  "checkpoint_desc": "Demuestra que sabes nombrar comida y bebida, pedir con cortesía en el bar, usar el partitivo y hablar de precios.",
+  "lessons": [
+    {"order": 1, "title_es": "La comida (il cibo)"},
+    {"order": 2, "title_es": "Al bar (vorrei un caffè)"},
+    {"order": 3, "title_es": "El partitivo (del, della, dell')"},
+    {"order": 4, "title_es": "Precios y la cuenta (quanto costa?)"}
+  ],
+  "vocab": [
+    ["il pane", "el pan", "sustantivo"],
+    ["l'acqua", "el agua", "sustantivo"],
+    ["il caffè", "el café", "sustantivo"],
+    ["il latte", "la leche", "sustantivo"],
+    ["la pizza", "la pizza", "sustantivo"],
+    ["la mela", "la manzana", "sustantivo"],
+    ["il vino", "el vino", "sustantivo"],
+    ["la birra", "la cerveza", "sustantivo"],
+    ["la pasta", "la pasta", "sustantivo"],
+    ["il conto", "la cuenta", "sustantivo"],
+    ["vorrei", "quisiera / querría", "verbo"],
+    ["per favore", "por favor", "expresion"],
+    ["del", "algo de (partitivo masc.)", "articulo"],
+    ["della", "algo de (partitivo fem.)", "articulo"],
+    ["dell'", "algo de (partitivo ante vocal)", "articulo"],
+    ["quanto", "cuánto", "adverbio"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "comida", "skill": "reading", "type": "match", "prompt": "Empareja cada palabra italiana con su traducción.", "pairs": [["il pane", "el pan"], ["l'acqua", "el agua"], ["la mela", "la manzana"]]},
+    {"lesson": 1, "topic": "comida", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál es «el café» (la bebida) en italiano?", "options": ["il caffè", "il latte", "il vino"], "value": "il caffè"},
+    {"lesson": 1, "topic": "comida", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Mi piace la pizza.", "options": ["Mi piace la pizza.", "Mi piace la pasta.", "Mi piace il pane."], "value": "Mi piace la pizza."},
+    {"lesson": 1, "topic": "comida", "skill": "writing", "type": "translation", "prompt": "Traduce: «El pan y el agua».", "source": "El pan y el agua", "value": "Il pane e l'acqua", "accepted": ["Il pane e l'acqua", "il pane e l'acqua", "Il pane e l'acqua.", "Il pane e l’acqua"]},
+    {"lesson": 1, "topic": "comida", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Mi piace il caffè."},
+
+    {"lesson": 2, "topic": "bar", "skill": "reading", "type": "match", "prompt": "Empareja cada expresión italiana con su traducción.", "pairs": [["il conto", "la cuenta"], ["la birra", "la cerveza"], ["per favore", "por favor"]]},
+    {"lesson": 2, "topic": "bar", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo pides con cortesía «Quisiera un café»?", "options": ["Vorrei un caffè.", "Voglio un caffè.", "Dammi un caffè."], "value": "Vorrei un caffè."},
+    {"lesson": 2, "topic": "bar", "skill": "writing", "type": "cloze", "prompt": "Completa para pedir con cortesía «un café, por favor»: Un caffè, ___ favore.", "text": "Un caffè, ___ favore", "value": "per", "accepted": ["per", "Per"]},
+    {"lesson": 2, "topic": "bar", "skill": "writing", "type": "word_bank", "prompt": "Arma: «Quisiera una cerveza, por favor».", "tiles": ["Vorrei", "una", "birra", "per", "favore", "un", "vino"], "sequence": ["Vorrei", "una", "birra", "per", "favore"]},
+    {"lesson": 2, "topic": "bar", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Un cappuccino, per favore.", "options": ["Un cappuccino, per favore.", "Una birra, per favore.", "Il conto, per favore."], "value": "Un cappuccino, per favore."},
+    {"lesson": 2, "topic": "bar", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Vorrei un caffè, per favore."},
+
+    {"lesson": 3, "topic": "partitivo", "skill": "reading", "type": "multiple_choice", "prompt": "Elige el partitivo correcto: «Vorrei ___ pane» (quisiera pan).", "options": ["del", "della", "dei"], "value": "del"},
+    {"lesson": 3, "topic": "partitivo", "skill": "writing", "type": "cloze", "prompt": "Completa con el partitivo femenino: «Vorrei ___ pizza» (quisiera pizza).", "text": "Vorrei ___ pizza", "value": "della", "accepted": ["della", "Della"]},
+    {"lesson": 3, "topic": "partitivo", "skill": "writing", "type": "reorder", "prompt": "Ordena: «Quisiera algo de agua» (partitivo ante vocal).", "tiles": ["Vorrei", "dell'acqua"], "sequence": ["Vorrei", "dell'acqua"]},
+    {"lesson": 3, "topic": "partitivo", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Vorrei del pane.", "options": ["Vorrei del pane.", "Vorrei della pizza.", "Vorrei dell'acqua."], "value": "Vorrei del pane."},
+    {"lesson": 3, "topic": "partitivo", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Vorrei del pane e dell'acqua."},
+
+    {"lesson": 4, "topic": "precios", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo preguntas «¿Cuánto cuesta?»?", "options": ["Quanto costa?", "Dove costa?", "Quando costa?"], "value": "Quanto costa?"},
+    {"lesson": 4, "topic": "precios", "skill": "writing", "type": "translation", "prompt": "Traduce: «Son cinco euros».", "source": "Son cinco euros", "value": "Fa cinque euro", "accepted": ["Fa cinque euro", "fa cinque euro", "Fa cinque euro.", "Sono cinque euro", "Sono cinque euro."]},
+    {"lesson": 4, "topic": "precios", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Il conto, per favore.", "options": ["Il conto, per favore.", "Quanto costa?", "Fa due euro."], "value": "Il conto, per favore."}
+  ]
+}

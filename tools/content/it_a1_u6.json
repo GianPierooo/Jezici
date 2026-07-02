@@ -1,0 +1,52 @@
+{
+  "unit": {"order": 6, "title_es": "La ciudad y direcciones", "color": "#16A085", "icon": "location_city"},
+  "checkpoint_desc": "Aprende los lugares de la ciudad, a preguntar dónde están y a dar direcciones con preposiciones articuladas.",
+  "lessons": [
+    {"order": 1, "title_es": "Lugares de la ciudad"},
+    {"order": 2, "title_es": "¿Dónde está?"},
+    {"order": 3, "title_es": "Dar direcciones"},
+    {"order": 4, "title_es": "Al, alla, nel"}
+  ],
+  "vocab": [
+    ["la stazione", "la estación", "sustantivo"],
+    ["la banca", "el banco", "sustantivo"],
+    ["il museo", "el museo", "sustantivo"],
+    ["il ristorante", "el restaurante", "sustantivo"],
+    ["l'ospedale", "el hospital", "sustantivo"],
+    ["l'albergo", "el hotel", "sustantivo"],
+    ["la piazza", "la plaza", "sustantivo"],
+    ["la strada", "la calle", "sustantivo"],
+    ["a destra", "a la derecha", "expresion"],
+    ["a sinistra", "a la izquierda", "expresion"],
+    ["sempre dritto", "todo recto", "expresion"],
+    ["vicino a", "cerca de", "expresion"],
+    ["accanto a", "al lado de", "expresion"],
+    ["di fronte a", "enfrente de", "expresion"],
+    ["dov'è", "dónde está", "expresion"],
+    ["c'è", "hay", "expresion"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "lugares", "skill": "reading", "type": "match", "prompt": "Une cada lugar en italiano con su traducción.", "pairs": [["la stazione", "la estación"], ["il museo", "el museo"], ["l'ospedale", "el hospital"]]},
+    {"lesson": 1, "topic": "lugares", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se dice 'el restaurante' en italiano?", "options": ["il ristorante", "l'albergo", "la banca"], "value": "il ristorante"},
+    {"lesson": 1, "topic": "lugares", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se dice 'la plaza' en italiano?", "options": ["la piazza", "la strada", "la stazione"], "value": "la piazza"},
+    {"lesson": 1, "topic": "lugares", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "La banca è in piazza.", "options": ["La banca è in piazza.", "Il museo è in piazza.", "La banca è in strada."], "value": "La banca è in piazza."},
+    {"lesson": 1, "topic": "lugares", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "C'è un museo qui?"},
+
+    {"lesson": 2, "topic": "dov_e", "skill": "reading", "type": "match", "prompt": "Une cada pregunta con su traducción.", "pairs": [["Dov'è la banca?", "¿Dónde está el banco?"], ["C'è un hotel?", "¿Hay un hotel?"], ["Ci sono ristoranti?", "¿Hay restaurantes?"]]},
+    {"lesson": 2, "topic": "dov_e", "skill": "writing", "type": "cloze", "prompt": "Completa: 'Hay un museo aquí.'", "text": "___ un museo qui.", "value": "C'è", "accepted": ["C'è", "c'è", "C'e"]},
+    {"lesson": 2, "topic": "dov_e", "skill": "writing", "type": "translation", "prompt": "Traduce: '¿Dónde está el hospital?'", "source": "¿Dónde está el hospital?", "value": "Dov'è l'ospedale?", "accepted": ["Dov'è l'ospedale?", "Dov'è l'ospedale", "Dove l'ospedale?", "Dov'e l'ospedale?", "dov'è l'ospedale", "dove l'ospedale"]},
+    {"lesson": 2, "topic": "dov_e", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Dov'è la stazione?", "options": ["Dov'è la stazione?", "Dov'è la banca?", "C'è una stazione?"], "value": "Dov'è la stazione?"},
+    {"lesson": 2, "topic": "dov_e", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Dov'è l'albergo?"},
+
+    {"lesson": 3, "topic": "direcciones", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se dice 'todo recto' en italiano?", "options": ["sempre dritto", "a destra", "a sinistra"], "value": "sempre dritto"},
+    {"lesson": 3, "topic": "direcciones", "skill": "writing", "type": "word_bank", "prompt": "Ordena las fichas: 'La banca está a la derecha.'", "tiles": ["La", "banca", "è", "a", "destra", "sinistra"], "sequence": ["La", "banca", "è", "a", "destra"]},
+    {"lesson": 3, "topic": "direcciones", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Vai sempre dritto.", "options": ["Vai sempre dritto.", "Vai a destra.", "Vai a sinistra."], "value": "Vai sempre dritto."},
+    {"lesson": 3, "topic": "direcciones", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Gira a destra.", "options": ["Gira a destra.", "Gira a sinistra.", "Vai sempre dritto."], "value": "Gira a destra."},
+    {"lesson": 3, "topic": "direcciones", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Gira a sinistra."},
+
+    {"lesson": 4, "topic": "prep_articuladas", "skill": "reading", "type": "multiple_choice", "prompt": "Completa: 'Sono ___ ristorante.' (a + il)", "options": ["al", "alla", "nel"], "value": "al"},
+    {"lesson": 4, "topic": "prep_articuladas", "skill": "writing", "type": "cloze", "prompt": "Completa: 'Vado ___ stazione.' (a + la)", "text": "Vado ___ stazione.", "value": "alla", "accepted": ["alla"]},
+    {"lesson": 4, "topic": "prep_articuladas", "skill": "writing", "type": "translation", "prompt": "Traduce: 'El museo está enfrente del banco.'", "source": "El museo está enfrente del banco.", "value": "Il museo è di fronte alla banca.", "accepted": ["Il museo è di fronte alla banca.", "Il museo è di fronte alla banca", "Il museo e di fronte alla banca.", "Il museo e di fronte alla banca", "il museo è di fronte alla banca", "il museo e di fronte alla banca"]},
+    {"lesson": 4, "topic": "prep_articuladas", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras: 'La casa está cerca del museo.'", "tiles": ["museo", "La", "casa", "è", "vicino", "al"], "sequence": ["La", "casa", "è", "vicino", "al", "museo"]}
+  ]
+}

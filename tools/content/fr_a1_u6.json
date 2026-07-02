@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 6, "title_es": "Lugares y direcciones", "color": "#2980B9", "icon": "place"},
+  "checkpoint_desc": "Demuestra que sabes nombrar lugares de la ciudad, preguntar dónde están, dar direcciones y usar las contracciones (au, du, des).",
+  "lessons": [
+    {"order": 1, "title_es": "Lugares de la ciudad"},
+    {"order": 2, "title_es": "¿Dónde está? / Hay..."},
+    {"order": 3, "title_es": "Dar direcciones"},
+    {"order": 4, "title_es": "Las contracciones (au, du, des)"}
+  ],
+  "vocab": [
+    ["la gare", "la estación", "sustantivo"],
+    ["l'hôtel", "el hotel", "sustantivo"],
+    ["la banque", "el banco", "sustantivo"],
+    ["la rue", "la calle", "sustantivo"],
+    ["le restaurant", "el restaurante", "sustantivo"],
+    ["le musée", "el museo", "sustantivo"],
+    ["la pharmacie", "la farmacia", "sustantivo"],
+    ["à gauche", "a la izquierda", "expresión"],
+    ["à droite", "a la derecha", "expresión"],
+    ["tout droit", "todo recto", "expresión"],
+    ["à côté de", "al lado de", "expresión"],
+    ["en face de", "enfrente de", "expresión"],
+    ["près de", "cerca de", "expresión"],
+    ["loin de", "lejos de", "expresión"],
+    ["il y a", "hay", "expresión"],
+    ["où", "dónde", "adverbio"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "lugares_ciudad", "skill": "reading", "type": "match", "prompt": "Empareja cada lugar en francés con su equivalente en español.", "pairs": [["la gare", "la estación"], ["la banque", "el banco"], ["le musée", "el museo"]]},
+    {"lesson": 3, "topic": "direcciones", "skill": "reading", "type": "match", "prompt": "Empareja cada indicación en francés con su equivalente en español.", "pairs": [["à gauche", "a la izquierda"], ["à droite", "a la derecha"], ["tout droit", "todo recto"]]},
+    {"lesson": 1, "topic": "lugares_ciudad", "skill": "reading", "type": "multiple_choice", "prompt": "¿Qué significa 'la pharmacie'?", "options": ["la farmacia", "la estación", "el restaurante"], "value": "la farmacia"},
+    {"lesson": 2, "topic": "donde_esta", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se dice 'Hay un banco aquí'?", "options": ["Il y a une banque ici.", "Où est la banque ?", "C'est une banque ici."], "value": "Il y a une banque ici."},
+    {"lesson": 3, "topic": "direcciones", "skill": "reading", "type": "multiple_choice", "prompt": "¿Qué significa 'en face de la gare'?", "options": ["enfrente de la estación", "al lado de la estación", "lejos de la estación"], "value": "enfrente de la estación"},
+    {"lesson": 4, "topic": "contracciones", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la contracción correcta: 'Je vais ___ restaurant.' (à + le)", "options": ["au", "à le", "du"], "value": "au"},
+    {"lesson": 2, "topic": "donde_esta", "skill": "writing", "type": "cloze", "prompt": "Completa para preguntar 'dónde': '___ est la pharmacie ?'", "text": "___ est la pharmacie ?", "value": "Où", "accepted": ["Où", "où"]},
+    {"lesson": 4, "topic": "contracciones", "skill": "writing", "type": "cloze", "prompt": "Completa con la contracción (à + le): 'Le café est à côté ___ musée.'", "text": "Le café est à côté ___ musée.", "value": "du", "accepted": ["du"]},
+    {"lesson": 1, "topic": "lugares_ciudad", "skill": "writing", "type": "translation", "prompt": "Traduce al francés: 'El hotel está cerca de la estación.'", "source": "El hotel está cerca de la estación.", "value": "L'hôtel est près de la gare.", "accepted": ["L'hôtel est près de la gare.", "L'hôtel est près de la gare", "L'hotel est près de la gare."]},
+    {"lesson": 3, "topic": "direcciones", "skill": "writing", "type": "translation", "prompt": "Traduce al francés: 'El banco está a la derecha.'", "source": "El banco está a la derecha.", "value": "La banque est à droite.", "accepted": ["La banque est à droite.", "La banque est à droite"]},
+    {"lesson": 4, "topic": "contracciones", "skill": "writing", "type": "word_bank", "prompt": "Ordena las fichas para formar: 'Voy al restaurante.'", "tiles": ["Je", "vais", "au", "restaurant.", "du", "à"], "sequence": ["Je", "vais", "au", "restaurant."]},
+    {"lesson": 3, "topic": "direcciones", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras para formar una frase correcta.", "tiles": ["La", "pharmacie", "est", "à", "gauche."], "sequence": ["La", "pharmacie", "est", "à", "gauche."]},
+    {"lesson": 1, "topic": "lugares_ciudad", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Le musée est dans la rue.", "options": ["Le musée est dans la rue.", "Le musée est dans la gare.", "La banque est dans la rue."], "value": "Le musée est dans la rue."},
+    {"lesson": 2, "topic": "donde_esta", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Où est l'hôtel ?", "options": ["Où est l'hôtel ?", "Où est la gare ?", "Où sont les hôtels ?"], "value": "Où est l'hôtel ?"},
+    {"lesson": 3, "topic": "direcciones", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Continuez tout droit.", "options": ["Continuez tout droit.", "Continuez à droite.", "Continuez à gauche."], "value": "Continuez tout droit."},
+    {"lesson": 4, "topic": "contracciones", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Le restaurant est en face du musée.", "options": ["Le restaurant est en face du musée.", "Le restaurant est à côté du musée.", "Le restaurant est en face de la gare."], "value": "Le restaurant est en face du musée."},
+    {"lesson": 1, "topic": "lugares_ciudad", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "La gare est loin de l'hôtel."},
+    {"lesson": 2, "topic": "donde_esta", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Il y a une pharmacie près d'ici."},
+    {"lesson": 4, "topic": "contracciones", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Je vais au restaurant à côté du musée."}
+  ]
+}
