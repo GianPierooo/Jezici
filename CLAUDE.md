@@ -193,6 +193,13 @@ flutter build web --release  # esperado: Built build/web (wasm dry-run warning d
   el build que usan los usuarios HOY (no asumir que `main` == producción).
 
 ## Reportes de diagnóstico (raíz)
+- **QA_AUDIT.md** (2026-06-27, solo lectura) — QA exhaustivo end-to-end + veredicto de flujo (cliente real).
+  **1 P0** (congelador de racha se compra pero NUNCA protege la racha — `use_streak_freeze` solo incrementa,
+  `jz_register_activity` nunca lo consume), **P1**: selector de idioma cosmético (NO hay i18n: nada consume
+  `localeProvider`) + misión inicial sin recompensa/aclaración + a11y escasa. P2: feedback de oro/hito/combo,
+  zonas de liga mal escaladas en beta, deuda técnica leaderboards. **Verificado en vivo TODO lo core**
+  (grading 42501, leaderboards sin fuga de user_id, placement/fecha coherentes, loop, 0 recursos 404,
+  analyze 0/test 82/test/build OK). Los fixes salen en misiones posteriores.
 - **EFICACIA_CONTENIDO.md** (2026-06-24) — auditoría de EFICACIA de currículo por nivel (¿lleva a CEFR-X?).
   Veredicto es→en A1/A2: "sí con reservas"; huecos de cobertura rellenados (mig 071, 29 ítems sin audio:
   presente continuo, 3ª persona -s, plurales, these/those, conectores, present perfect 'yet', adverbios -ly).
