@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 11, "title_es": "Personas y descripciones", "color": "#8E44AD", "icon": "people"},
+  "checkpoint_desc": "Describe a personas en el pasado con el imperfetto y usa los pronombres directos lo/la/li/le.",
+  "lessons": [
+    {"order": 1, "title_es": "El imperfetto: describir el pasado"},
+    {"order": 2, "title_es": "Cómo era: aspecto físico"},
+    {"order": 3, "title_es": "El carácter de las personas"},
+    {"order": 4, "title_es": "Pronombres directos: lo, la, li, le"}
+  ],
+  "vocab": [
+    ["alto", "alto", "adjetivo"],
+    ["basso", "bajo", "adjetivo"],
+    ["i capelli", "el cabello", "sustantivo"],
+    ["gli occhi", "los ojos", "sustantivo"],
+    ["biondo", "rubio", "adjetivo"],
+    ["castano", "castaño", "adjetivo"],
+    ["gentile", "amable", "adjetivo"],
+    ["timido", "tímido", "adjetivo"],
+    ["simpatico", "simpático", "adjetivo"],
+    ["divertente", "divertido", "adjetivo"],
+    ["serio", "serio", "adjetivo"],
+    ["da bambino", "de niño", "expresion"],
+    ["era", "era", "verbo"],
+    ["c'era", "había", "expresion"],
+    ["lo conosco", "lo conozco", "expresion"],
+    ["la vedo", "la veo", "expresion"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "imperfetto", "skill": "reading", "type": "match", "prompt": "Une cada forma del imperfetto con su traducción.", "pairs": [["ero", "yo era"], ["eri", "tú eras"], ["era", "él/ella era"]]},
+    {"lesson": 2, "topic": "aspetto_fisico", "skill": "reading", "type": "match", "prompt": "Une cada palabra italiana con su traducción.", "pairs": [["i capelli", "el cabello"], ["gli occhi", "los ojos"], ["alto", "alto"]]},
+    {"lesson": 1, "topic": "imperfetto", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la forma correcta: 'Da bambino ___ in campagna.' (yo vivía)", "options": ["abitavo", "abito", "abiterò"], "value": "abitavo"},
+    {"lesson": 2, "topic": "aspetto_fisico", "skill": "reading", "type": "multiple_choice", "prompt": "Completa: 'Mia nonna ___ i capelli lunghi.' (tenía)", "options": ["aveva", "ha avuto", "avrà"], "value": "aveva"},
+    {"lesson": 3, "topic": "carattere", "skill": "reading", "type": "multiple_choice", "prompt": "'Marco fa sempre ridere tutti.' ¿Cómo es Marco?", "options": ["divertente", "timido", "serio"], "value": "divertente"},
+    {"lesson": 4, "topic": "pronomi_diretti", "skill": "reading", "type": "multiple_choice", "prompt": "'Vedi Maria? — Sì, ___ vedo.' Elige el pronombre correcto.", "options": ["la", "le", "gli"], "value": "la"},
+    {"lesson": 1, "topic": "imperfetto", "skill": "writing", "type": "cloze", "prompt": "Imperfetto de 'essere' (él/ella). Completa: 'Ieri il cielo ___ grigio.'", "text": "Ieri il cielo ___ grigio.", "value": "era", "accepted": ["era"]},
+    {"lesson": 2, "topic": "aspetto_fisico", "skill": "writing", "type": "cloze", "prompt": "Imperfetto de 'avere' (él/ella). Completa: 'Mio nonno ___ gli occhi azzurri.'", "text": "Mio nonno ___ gli occhi azzurri.", "value": "aveva", "accepted": ["aveva"]},
+    {"lesson": 3, "topic": "carattere", "skill": "writing", "type": "translation", "prompt": "Traduce: 'Ella es muy amable.'", "source": "Ella es muy amable.", "value": "Lei è molto gentile.", "accepted": ["Lei è molto gentile.", "Lei è molto gentile", "Lei e molto gentile", "È molto gentile", "e molto gentile"]},
+    {"lesson": 4, "topic": "pronomi_diretti", "skill": "writing", "type": "translation", "prompt": "Traduce: 'Lo conozco bien.'", "source": "Lo conozco bien.", "value": "Lo conosco bene.", "accepted": ["Lo conosco bene.", "Lo conosco bene", "lo conosco bene"]},
+    {"lesson": 4, "topic": "pronomi_diretti", "skill": "writing", "type": "word_bank", "prompt": "Ordena las fichas: '¿Ves a los niños? — Sí, los veo.' (segunda parte)", "tiles": ["Sì", "li", "vedo", "le"], "sequence": ["Sì", "li", "vedo"]},
+    {"lesson": 1, "topic": "imperfetto", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras: 'De niño jugaba en el parque.'", "tiles": ["giocavo", "Da", "al", "bambino", "parco"], "sequence": ["Da", "bambino", "giocavo", "al", "parco"]},
+    {"lesson": 1, "topic": "imperfetto", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Da piccola ero molto timida.", "options": ["Da piccola ero molto timida.", "Da piccola sono molto timida.", "Da piccolo eri molto timido."], "value": "Da piccola ero molto timida."},
+    {"lesson": 2, "topic": "aspetto_fisico", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Aveva i capelli biondi e gli occhi verdi.", "options": ["Aveva i capelli biondi e gli occhi verdi.", "Aveva i capelli castani e gli occhi neri.", "Aveva i capelli lunghi e gli occhi azzurri."], "value": "Aveva i capelli biondi e gli occhi verdi."},
+    {"lesson": 3, "topic": "carattere", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Il mio professore era molto serio.", "options": ["Il mio professore era molto serio.", "Il mio professore era molto simpatico.", "Il mio professore è molto serio."], "value": "Il mio professore era molto serio."},
+    {"lesson": 4, "topic": "pronomi_diretti", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Conosci Luca? Sì, lo conosco bene.", "options": ["Conosci Luca? Sì, lo conosco bene.", "Conosci Luca? Sì, la conosco bene.", "Conosci Luca? No, non lo conosco."], "value": "Conosci Luca? Sì, lo conosco bene."},
+    {"lesson": 2, "topic": "aspetto_fisico", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Era alto e aveva i capelli neri."},
+    {"lesson": 3, "topic": "carattere", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Mia sorella è simpatica e divertente."},
+    {"lesson": 4, "topic": "pronomi_diretti", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Vedi le ragazze? Sì, le vedo."}
+  ]
+}

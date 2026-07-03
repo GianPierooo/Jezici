@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 8, "title_es": "Planes y futuro", "color": "#2C3E50", "icon": "event_available"},
+  "checkpoint_desc": "Practica el futur proche (je vais + infinitivo) y el futur simple para hablar de planes y predicciones.",
+  "lessons": [
+    {"order": 1, "title_es": "Voy a hacer (futur proche)"},
+    {"order": 2, "title_es": "Hablaré, terminaré (futur simple)"},
+    {"order": 3, "title_es": "Futuros irregulares"},
+    {"order": 4, "title_es": "Mañana y la próxima semana"}
+  ],
+  "vocab": [
+    ["demain", "mañana", "adverbio"],
+    ["après-demain", "pasado mañana", "adverbio"],
+    ["la semaine prochaine", "la semana que viene", "expresion"],
+    ["l'année prochaine", "el año que viene", "expresion"],
+    ["bientôt", "pronto", "adverbio"],
+    ["quand", "cuando", "adverbio"],
+    ["partir", "salir / marcharse", "verbo"],
+    ["voyager", "viajar", "verbo"],
+    ["visiter", "visitar", "verbo"],
+    ["être", "ser / estar", "verbo"],
+    ["avoir", "tener", "verbo"],
+    ["aller", "ir", "verbo"],
+    ["venir", "venir", "verbo"],
+    ["le temps", "el tiempo", "sustantivo"],
+    ["un projet", "un plan / proyecto", "sustantivo"],
+    ["ensemble", "juntos", "adverbio"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "futur_proche", "skill": "reading", "type": "match", "prompt": "Une la frase francesa con su traducción.", "pairs": [["je vais partir", "voy a salir"], ["on va manger", "vamos a comer"], ["ils vont voyager", "ellos van a viajar"]]},
+    {"lesson": 1, "topic": "futur_proche", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se dice 'Voy a viajar mañana' con futur proche?", "options": ["Je vais voyager demain.", "Je voyage demain.", "J'ai voyagé demain."], "value": "Je vais voyager demain."},
+    {"lesson": 1, "topic": "futur_proche", "skill": "writing", "type": "cloze", "prompt": "Completa con el auxiliar 'aller': 'Vamos a comer juntos.'", "text": "On ___ manger ensemble.", "value": "va", "accepted": ["va"]},
+    {"lesson": 1, "topic": "futur_proche", "skill": "writing", "type": "word_bank", "prompt": "Ordena las fichas para decir 'Voy a visitar París'.", "tiles": ["Je", "vais", "visiter", "Paris", "visite"], "sequence": ["Je", "vais", "visiter", "Paris"]},
+    {"lesson": 1, "topic": "futur_proche", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Je vais partir demain matin.", "options": ["Je vais partir demain matin.", "Je suis parti hier matin.", "Je pars demain matin."], "value": "Je vais partir demain matin."},
+    {"lesson": 1, "topic": "futur_proche", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "On va voyager ensemble."},
+    {"lesson": 2, "topic": "futur_simple_reguliers", "skill": "reading", "type": "match", "prompt": "Une el verbo en futur simple con su traducción.", "pairs": [["je parlerai", "yo hablaré"], ["tu finiras", "tú terminarás"], ["il visitera", "él visitará"]]},
+    {"lesson": 2, "topic": "futur_simple_reguliers", "skill": "writing", "type": "cloze", "prompt": "Completa con el futur simple de 'finir': 'Terminaré mañana.'", "text": "Je ___ demain.", "value": "finirai", "accepted": ["finirai"]},
+    {"lesson": 2, "topic": "futur_simple_reguliers", "skill": "writing", "type": "translation", "prompt": "Traduce: 'Visitaré el museo.'", "source": "Visitaré el museo.", "value": "Je visiterai le musée.", "accepted": ["Je visiterai le musée.", "Je visiterai le musée", "Je visiterai le musee.", "Je visiterai le musee", "Je visiterai le musee"]},
+    {"lesson": 2, "topic": "futur_simple_reguliers", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Tu finiras ton travail bientôt.", "options": ["Tu finiras ton travail bientôt.", "Tu as fini ton travail.", "Tu vas finir ton travail."], "value": "Tu finiras ton travail bientôt."},
+    {"lesson": 3, "topic": "futur_simple_irreguliers", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál es el futur simple de 'être' en primera persona ('yo seré')?", "options": ["je serai", "je suis", "j'étais"], "value": "je serai"},
+    {"lesson": 3, "topic": "futur_simple_irreguliers", "skill": "writing", "type": "cloze", "prompt": "Completa con el futur simple de 'aller': 'Iré a Francia el año que viene.'", "text": "J'___ en France l'année prochaine.", "value": "irai", "accepted": ["irai"]},
+    {"lesson": 3, "topic": "futur_simple_irreguliers", "skill": "writing", "type": "translation", "prompt": "Traduce: 'Tendré tiempo mañana.'", "source": "Tendré tiempo mañana.", "value": "J'aurai le temps demain.", "accepted": ["J'aurai le temps demain.", "J'aurai le temps demain", "Jaurai le temps demain", "J'aurai le temps demain"]},
+    {"lesson": 3, "topic": "futur_simple_irreguliers", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Je ferai un grand voyage l'année prochaine.", "options": ["Je ferai un grand voyage l'année prochaine.", "J'ai fait un grand voyage l'année dernière.", "Je vais faire un grand voyage."], "value": "Je ferai un grand voyage l'année prochaine."},
+    {"lesson": 3, "topic": "futur_simple_irreguliers", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Je viendrai chez toi ce soir.", "options": ["Je viendrai chez toi ce soir.", "Je suis venu chez toi.", "Je viens chez toi ce soir."], "value": "Je viendrai chez toi ce soir."},
+    {"lesson": 3, "topic": "futur_simple_irreguliers", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Je ferai un grand voyage."},
+    {"lesson": 4, "topic": "futur_quand_temps", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál es la forma correcta de 'Cuando tenga tiempo, viajaré'?", "options": ["Quand j'aurai le temps, je voyagerai.", "Quand j'ai le temps, je voyagerai.", "Quand j'aurai le temps, je voyage."], "value": "Quand j'aurai le temps, je voyagerai."},
+    {"lesson": 4, "topic": "futur_quand_temps", "skill": "reading", "type": "match", "prompt": "Une la expresión de tiempo con su traducción.", "pairs": [["demain", "mañana"], ["la semaine prochaine", "la semana que viene"], ["bientôt", "pronto"]]},
+    {"lesson": 4, "topic": "futur_quand_temps", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Quand j'aurai le temps, je viendrai."}
+  ]
+}

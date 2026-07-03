@@ -9,37 +9,41 @@
 App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supabase**
 (Postgres + RLS + RPCs SECURITY DEFINER) + **Vercel** (deploy del web). Repo
 `github.com/GianPierooo/Jezici`, deploy `jezici.vercel.app`.
-- 4 cursos: **es→en** (A1–C1), **es→pt** (A1–B1), **es→fr** (A1 piloto) y **es→it**
-  (A1 piloto). Curso activo por usuario (`jz_active_course`). Selector en Ajustes.
+- 4 cursos: **es→en** (A1–C1), **es→pt** (A1–B1), **es→fr** (A1–A2 piloto) y **es→it**
+  (A1–A2 piloto). Curso activo por usuario (`jz_active_course`). Selector en Ajustes.
 - Loop: lección → ejercicios (9 tipos) → grading **server-side** → XP/oro/vidas →
   checkpoints (≥80%) → exámenes de nivel + certificados. Práctica/SRS, logros, ligas
   semanales, racha, Matix (notificaciones), onboarding con placement.
 - **Grading 100% server-side** (`grade_item`, mig 055): el cliente nunca recibe la
   respuesta antes de responder. `correct_answer` revocado (lectura directa → `42501`).
 
-## Pilotos es→fr + es→it (A1) — ✅ LIVE (mig 094/095/096 · 2026-07-02)
-- **2 cursos NUEVOS sembrados y verdes:** **es→fr** (course `…0003`, lang `fr`/Français) y
-  **es→it** (course `…0004`, lang `it`/Italiano), ambos `is_active`. **A1 completo** con el
-  molde validado es→pt: 6 unidades temáticas (saludos/presentarte · números-edad-origen ·
-  familia · comida-café · día-hora · ciudad-direcciones), 4 lecciones + checkpoint fresco por
-  unidad, examen de checkpoint. **115 ítems cada uno**, 4 habilidades balanceadas desde A1
-  (fr R38/W36/L23/S18 → L=62% S=49% de R+W; it R36/W36/L25/S18 → L=69% S=50%). Autorado por
-  panel de profesores nativos IA (fr/it, NO traducción mecánica) + **validación adversarial
-  nativa**: fr 1 error real corregido (`midi et demie`→`midi et demi`, demi masc. con midi) +
-  2 menores; it **0 errores** + 5 pulidos de tolerancia. Gramática real por idioma (fr:
-  género, contracciones du/des/au, être/avoir para edad; it: articoli un/uno/una/un', partitivo
-  del/della/dell', preposizioni articolate al/alla/dalla, avere per l'età, posesivos de
-  parentesco, È l'una vs Sono le…). **Audio TTS** (`gen_audio_missing.py` tl=fr/it): fr 41/41 +
-  it 43/43 en Storage, texto-emparejado. Generador reutilizable `tools/content/gen_course_a1.py
-  <code>` (lee `<code>_a1_u1..u6.json` → migración; ids uuid5 idempotentes, sin colisión entre
-  cursos). Selector de Ajustes ya los muestra (banderas 🇫🇷/🇮🇹 añadidas; `label`/nombre desde DB).
+## Pilotos es→fr + es→it (A1 + A2) — ✅ LIVE (mig 094–098 · 2026-07-02)
+- **2 cursos NUEVOS, A1 Y A2 sembrados y verdes:** **es→fr** (course `…0003`, lang `fr`/Français) y
+  **es→it** (course `…0004`, lang `it`/Italiano), ambos `is_active`. **A1 (mig 094/095) + A2 (mig
+  097/098) completos** con el molde validado es→pt: 6 unidades por nivel (A1 order 1-6, A2 order
+  **7-12** → encadenan; `submit_checkpoint` desbloquea la unidad con order mayor del MISMO curso →
+  **gating A1→A2 automático y course-scoped**), 4 lecciones + checkpoint fresco + examen por unidad.
+  **115 ítems por nivel** (460 fr+it), 4 habilidades balanceadas (A1 fr R38/W36/L23/S18 L=62%/S=49%;
+  A2 fr/it R36/W36/L25/S18 L=69%/S=50%). Temas A2: passé composé/passato prossimo (avoir/avere→être/
+  essere+concordancia), futur/futuro, viaje, comer-fuera/comparativos, imparfait/imperfetto+pronombres
+  COD/diretti, salud/consejos («avoir mal à»/«avere mal di»). Autorado por profesores nativos IA
+  (fr/it, NO traducción mecánica) + **validación adversarial nativa por nivel**: A1 fr 1 error real
+  (`midi et demie`→`midi et demi`), it 0; **A2 fr 0 errores + 2 pulidos, it 0 errores + 2 pulidos**
+  (todos aplicados). **Audio TTS** (`gen_audio_missing.py` tl=fr/it): fr A1 41 + A2 43, it A1 43 +
+  A2 43 = **170/170** en Storage, texto-emparejado. Generador reutilizable **PARAMETRIZADO POR NIVEL**
+  `tools/content/gen_course.py <code> <a1|a2>` (lee `<code>_<level>_u*.json`, ordena por `unit.order`,
+  ids uuid5 sin colisión entre niveles/cursos; corrigió también el título it A1 «Unité»→«Unità»).
+  Selector de Ajustes los muestra (banderas 🇫🇷/🇮🇹; `label`/nombre desde DB).
 - **AISLAMIENTO multicurso (el riesgo #1, ya roto una vez con pt mig 064→072) — VERIFICADO con
   cliente real** (`verify_new_course.py fr|it`, JWT real, nunca service_role): **0 `lesson_items`
   cruzan los 4 cursos**; determinista fr 97/97 + it 97/97 correctos aceptados y 97/97 distractores
   rechazados (`correct_answer` 42501); `set_active_course`→`create_plan`/`start_practice` sirven
   SOLO el curso activo; usuario default(en) NO recibe fr/it; cadena lección(100%)+checkpoint(≥80%)
-  por curso; audio HEAD 200. **Cursos existentes INTACTOS:** `verify_chain` (es→en A1→B2 certs) y
-  `verify_pt_chain` (es→pt A1→B1 multicurso) siguen verdes tras el fix compartido.
+  por curso; audio HEAD 200. **A2 (`verify_a2_chain.py fr|it`): CAMINA las 12 unidades EN ORDEN con
+  cliente real** (complete_lesson×lección + submit_checkpoint×checkpoint) → prueba el gating A1→A2
+  end-to-end (U6 desbloquea U7), 30/30 lecciones A2 completadas, determinista A2 97/97, audio A2 43/43.
+  **Cursos existentes INTACTOS:** `verify_chain` (es→en A1→B2) y `verify_pt_chain` (es→pt A1→B1
+  multicurso) verdes tras cada tanda. analyze 0 · test 89/89.
 - **Fix de fondo `create_plan` (mig 096):** `create_plan` **hardcodeaba** el curso más-antiguo-activo
   (`courses where is_active order by created_at limit 1` = es→en) IGNORANDO el curso activo → con
   >1 curso sembraba el plan/progreso/unidad-de-entrada en el curso EQUIVOCADO. Ahora usa
@@ -48,10 +52,10 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
   curso en Ajustes vía `start_course`), así que no afloraba en la app, pero el fix es correcto y
   future-proof. `placement_next` ya era course-aware (recibe `p_course`); para fr/it sin banco de
   placement → `done` inmediato = nivel A1 (arranque de principiante, correcto para el piloto).
-- **Diferido (retome del piloto):** A2+ de fr/it (hoy solo A1); banco de **placement** fr/it
+- **Diferido (retome del piloto):** B1+ de fr/it (hoy **A1+A2**); banco de **placement** fr/it
   (hoy usa el default → A1); cablear onboarding fr/it-específico (el onboarding sigue en-first,
   el curso se cambia en Ajustes); tips/historias/imágenes para fr/it; examen de nivel + certificado
-  A1 fr/it (hoy la progresión intra-A1 es por checkpoints ≥80%, sin cert de nivel aún).
+  fr/it (hoy la progresión intra/inter-nivel A1→A2 es por checkpoints ≥80%, sin cert de nivel aún).
 
 ## Stack / mecánica clave
 - **Contenido es DB-driven**: los seeds/fixes son migraciones → quedan LIVE al aplicar,
@@ -218,9 +222,10 @@ flutter test                 # esperado: All tests passed (89/89)
 flutter build web --release  # esperado: Built build/web (wasm dry-run warning de ua_client_hints es OK)
 
 # Audio: cobertura real en Storage (HEAD a payload.audio_url) — es→en/pt = 692/692 (incl. 312 L/S mig 078–085)
-#   + es→fr 41/41 + es→it 43/43 (pilotos A1, mig 094/095, tl=fr/it) → HEAD verde por verify_new_course
+#   + es→fr A1 41 + A2 43 + es→it A1 43 + A2 43 = 170/170 (pilotos A1+A2, mig 094/095/097/098, tl=fr/it)
 #   query content_items_public?type=eq.listening|speaking_read_aloud, HEAD cada audio_url
-# Curso nuevo (fr/it): tools/content/verify_new_course.py <code> — determinista + aislamiento (4 cursos) + cadena + audio
+# Curso nuevo A1 (fr/it): tools/content/verify_new_course.py <code> — determinista + aislamiento (4 cursos) + cadena + audio
+# Nivel A2 (fr/it): tools/content/verify_a2_chain.py <code> — determinista A2 + aislamiento + CAMINATA 12 unidades (gating A1→A2) + audio
 
 # Cliente REAL (NUNCA service_role para chequeos de seguridad):
 #   anon key + JWT autenticado real (signup vía /auth/v1/signup, limpiar con delete_account).

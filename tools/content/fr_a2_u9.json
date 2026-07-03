@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 9, "title_es": "De viaje", "color": "#16A085", "icon": "flight_takeoff"},
+  "checkpoint_desc": "Cuenta un viaje en pasado con el auxiliar être y su concordancia, usando vocabulario de transporte.",
+  "lessons": [
+    {"order": 1, "title_es": "Verbos de movimiento con être"},
+    {"order": 2, "title_es": "La concordancia del participio"},
+    {"order": 3, "title_es": "En la estación y el aeropuerto"},
+    {"order": 4, "title_es": "Contar un viaje"}
+  ],
+  "vocab": [
+    ["le train", "el tren", "sustantivo"],
+    ["l'avion", "el avión", "sustantivo"],
+    ["la gare", "la estación", "sustantivo"],
+    ["l'aéroport", "el aeropuerto", "sustantivo"],
+    ["l'hôtel", "el hotel", "sustantivo"],
+    ["le billet", "el billete", "sustantivo"],
+    ["la valise", "la maleta", "sustantivo"],
+    ["aller", "ir", "verbo"],
+    ["partir", "salir/partir", "verbo"],
+    ["arriver", "llegar", "verbo"],
+    ["rester", "quedarse", "verbo"],
+    ["venir", "venir", "verbo"],
+    ["réserver", "reservar", "verbo"],
+    ["en train", "en tren", "expresion"],
+    ["à pied", "a pie", "expresion"],
+    ["Bon voyage !", "¡Buen viaje!", "expresion"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "verbes_etre", "skill": "reading", "type": "match", "prompt": "Une los verbos con su traducción.", "pairs": [["partir", "salir"], ["arriver", "llegar"], ["rester", "quedarse"]]},
+    {"lesson": 3, "topic": "voyage_lexique", "skill": "reading", "type": "match", "prompt": "Une la palabra francesa con su significado.", "pairs": [["la gare", "la estación"], ["le billet", "el billete"], ["la valise", "la maleta"]]},
+    {"lesson": 1, "topic": "verbes_etre", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál es el auxiliar correcto? 'Je ___ allé à Lyon.'", "options": ["suis", "ai", "vais"], "value": "suis"},
+    {"lesson": 1, "topic": "avoir_ou_etre", "skill": "reading", "type": "multiple_choice", "prompt": "¿Por qué decimos 'je suis allé' y no 'j'ai allé'?", "options": ["porque 'aller' usa el auxiliar être", "porque 'aller' usa el auxiliar avoir", "porque es un verbo reflexivo"], "value": "porque 'aller' usa el auxiliar être"},
+    {"lesson": 2, "topic": "accord_participe", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase correcta (concordancia con être).", "options": ["Elle est partie ce matin.", "Elle est parti ce matin.", "Elle a partie ce matin."], "value": "Elle est partie ce matin."},
+    {"lesson": 3, "topic": "voyage_lexique", "skill": "reading", "type": "multiple_choice", "prompt": "¿Dónde se toma el avión?", "options": ["à l'aéroport", "à la gare", "à l'hôtel"], "value": "à l'aéroport"},
+    {"lesson": 2, "topic": "accord_participe", "skill": "writing", "type": "cloze", "prompt": "Completa con el participio concordado (sujeto femenino singular).", "text": "Marie est ___ à la gare à huit heures.", "value": "arrivée", "accepted": ["arrivée", "arrivee"]},
+    {"lesson": 2, "topic": "accord_participe", "skill": "writing", "type": "cloze", "prompt": "Completa con el participio concordado (sujeto 'elles', plural femenino).", "text": "Elles sont ___ de Paris en train.", "value": "venues", "accepted": ["venues"]},
+    {"lesson": 1, "topic": "verbes_etre", "skill": "writing", "type": "translation", "prompt": "Traduce: 'Nosotros nos quedamos en el hotel.' (usa 'nous', masculino)", "source": "Nosotros nos quedamos en el hotel.", "value": "Nous sommes restés à l'hôtel.", "accepted": ["Nous sommes restés à l'hôtel.", "Nous sommes restés à l'hôtel", "Nous sommes restes a l'hotel"]},
+    {"lesson": 4, "topic": "raconter_voyage", "skill": "writing", "type": "translation", "prompt": "Traduce: 'Ellos llegaron ayer.' (usa 'ils')", "source": "Ellos llegaron ayer.", "value": "Ils sont arrivés hier.", "accepted": ["Ils sont arrivés hier.", "Ils sont arrivés hier", "Ils sont arrives hier"]},
+    {"lesson": 4, "topic": "raconter_voyage", "skill": "writing", "type": "word_bank", "prompt": "Ordena las fichas para formar: 'Ella se fue a las diez.'", "tiles": ["Elle", "est", "partie", "à", "dix", "heures", "avons", "allé"], "sequence": ["Elle", "est", "partie", "à", "dix", "heures"]},
+    {"lesson": 3, "topic": "voyage_lexique", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras: 'Reservé un billete de tren.'", "tiles": ["un", "J'ai", "de", "réservé", "train", "billet"], "sequence": ["J'ai", "réservé", "un", "billet", "de", "train"]},
+    {"lesson": 1, "topic": "verbes_etre", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Je suis allé à l'aéroport en taxi.", "options": ["Je suis allé à l'aéroport en taxi.", "Je suis allé à la gare en bus.", "Je suis resté à l'hôtel ce soir."], "value": "Je suis allé à l'aéroport en taxi."},
+    {"lesson": 2, "topic": "accord_participe", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Elles sont parties très tôt ce matin.", "options": ["Elles sont parties très tôt ce matin.", "Ils sont partis très tard ce soir.", "Elle est arrivée très tôt ce matin."], "value": "Elles sont parties très tôt ce matin."},
+    {"lesson": 3, "topic": "voyage_lexique", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Le train part de la gare à midi.", "options": ["Le train part de la gare à midi.", "L'avion part de l'aéroport à midi.", "Le bus part de la ville à minuit."], "value": "Le train part de la gare à midi."},
+    {"lesson": 4, "topic": "raconter_voyage", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Nous sommes arrivés à Nice avec nos valises.", "options": ["Nous sommes arrivés à Nice avec nos valises.", "Nous sommes restés à Nice sans nos valises.", "Vous êtes arrivés à Nice avec vos billets."], "value": "Nous sommes arrivés à Nice avec nos valises."},
+    {"lesson": 1, "topic": "verbes_etre", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Je suis allée à Paris en train."},
+    {"lesson": 3, "topic": "voyage_lexique", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Bon voyage ! N'oublie pas ton billet."},
+    {"lesson": 4, "topic": "raconter_voyage", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ils sont partis à l'aéroport ce matin."}
+  ]
+}

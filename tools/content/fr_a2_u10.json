@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 10, "title_es": "Comer fuera y comprar", "color": "#E67E22", "icon": "shopping_cart"},
+  "checkpoint_desc": "Compara productos, pide cantidades y pide en un restaurante usando comparativos y el pronombre en.",
+  "lessons": [
+    {"order": 1, "title_es": "Comparar: más, menos, tan"},
+    {"order": 2, "title_es": "Cantidades con de"},
+    {"order": 3, "title_es": "El pronombre en"},
+    {"order": 4, "title_es": "En el restaurante"}
+  ],
+  "vocab": [
+    ["le menu", "el menú", "sustantivo"],
+    ["la carte", "la carta", "sustantivo"],
+    ["l'addition", "la cuenta", "sustantivo"],
+    ["un kilo de", "un kilo de", "expresion"],
+    ["une bouteille de", "una botella de", "expresion"],
+    ["un paquet de", "un paquete de", "expresion"],
+    ["beaucoup de", "mucho/a", "expresion"],
+    ["un peu de", "un poco de", "expresion"],
+    ["trop de", "demasiado de", "expresion"],
+    ["commander", "pedir/encargar", "verbo"],
+    ["meilleur", "mejor", "adjetivo"],
+    ["cher", "caro", "adjetivo"],
+    ["Je voudrais", "quisiera", "expresion"],
+    ["Ça fait combien ?", "¿cuánto es?", "expresion"],
+    ["plus", "más", "adverbio"],
+    ["moins", "menos", "adverbio"]
+  ],
+  "items": [
+    {"lesson": 4, "topic": "restaurant", "skill": "reading", "type": "match", "prompt": "Une la expresión con su significado.", "pairs": [["l'addition", "la cuenta"], ["la carte", "la carta"], ["commander", "pedir"]]},
+    {"lesson": 2, "topic": "quantites", "skill": "reading", "type": "match", "prompt": "Une la cantidad con su traducción.", "pairs": [["un kilo de", "un kilo de"], ["une bouteille de", "una botella de"], ["un peu de", "un poco de"]]},
+    {"lesson": 1, "topic": "comparatif", "skill": "reading", "type": "multiple_choice", "prompt": "Elige el comparativo correcto: 'Le TGV est ___ rapide que le bus.'", "options": ["plus", "beaucoup", "trop"], "value": "plus"},
+    {"lesson": 1, "topic": "comparatif", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se dice 'mejor' (adjetivo) en francés? 'Ce restaurant est ___ que l'autre.'", "options": ["meilleur", "plus bon", "plus bien"], "value": "meilleur"},
+    {"lesson": 2, "topic": "quantites", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la forma correcta (cantidad + de).", "options": ["beaucoup de pain", "beaucoup du pain", "beaucoup le pain"], "value": "beaucoup de pain"},
+    {"lesson": 3, "topic": "pronom_en", "skill": "reading", "type": "multiple_choice", "prompt": "Responde con 'en': 'Tu veux du café ? — Oui, ___.'", "options": ["j'en veux", "je veux en", "je le veux"], "value": "j'en veux"},
+    {"lesson": 1, "topic": "comparatif", "skill": "writing", "type": "cloze", "prompt": "Completa con el comparativo de igualdad ('tan... como').", "text": "Ce gâteau est ___ bon que l'autre.", "value": "aussi", "accepted": ["aussi"]},
+    {"lesson": 2, "topic": "quantites", "skill": "writing", "type": "cloze", "prompt": "Completa con la preposición correcta de cantidad.", "text": "Je voudrais un kilo ___ pommes.", "value": "de", "accepted": ["de"]},
+    {"lesson": 4, "topic": "restaurant", "skill": "writing", "type": "translation", "prompt": "Traduce: 'Quisiera la carta, por favor.'", "source": "Quisiera la carta, por favor.", "value": "Je voudrais la carte, s'il vous plaît.", "accepted": ["Je voudrais la carte, s'il vous plaît.", "Je voudrais la carte s'il vous plaît", "Je voudrais la carte, s'il vous plait", "Je voudrais la carte s'il vous plait"]},
+    {"lesson": 1, "topic": "comparatif", "skill": "writing", "type": "translation", "prompt": "Traduce: 'Este vino es menos caro que el otro.'", "source": "Este vino es menos caro que el otro.", "value": "Ce vin est moins cher que l'autre.", "accepted": ["Ce vin est moins cher que l'autre.", "Ce vin est moins cher que l'autre", "Ce vin est moins cher que l'autre."]},
+    {"lesson": 3, "topic": "pronom_en", "skill": "writing", "type": "word_bank", "prompt": "Ordena las fichas para formar: 'Sí, quiero dos.' (con 'en')", "tiles": ["Oui,", "j'en", "veux", "deux", "le", "beaucoup"], "sequence": ["Oui,", "j'en", "veux", "deux"]},
+    {"lesson": 4, "topic": "restaurant", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras: 'La cuenta, por favor.'", "tiles": ["s'il", "L'addition,", "plaît", "vous"], "sequence": ["L'addition,", "s'il", "vous", "plaît"]},
+    {"lesson": 1, "topic": "comparatif", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ce restaurant est meilleur que l'autre.", "options": ["Ce restaurant est meilleur que l'autre.", "Ce restaurant est moins cher que l'autre.", "Ce restaurant est aussi grand que l'autre."], "value": "Ce restaurant est meilleur que l'autre."},
+    {"lesson": 2, "topic": "quantites", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Je voudrais une bouteille de vin rouge.", "options": ["Je voudrais une bouteille de vin rouge.", "Je voudrais un paquet de café noir.", "Je voudrais un peu de pain complet."], "value": "Je voudrais une bouteille de vin rouge."},
+    {"lesson": 3, "topic": "pronom_en", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Des pommes ? Oui, j'en ai deux.", "options": ["Des pommes ? Oui, j'en ai deux.", "Du pain ? Non, je n'en ai pas.", "Des œufs ? Oui, j'en veux trois."], "value": "Des pommes ? Oui, j'en ai deux."},
+    {"lesson": 4, "topic": "restaurant", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "L'addition, s'il vous plaît. Ça fait combien ?", "options": ["L'addition, s'il vous plaît. Ça fait combien ?", "Le menu, s'il vous plaît. Ça coûte combien ?", "La carte, s'il vous plaît. C'est fermé ?"], "value": "L'addition, s'il vous plaît. Ça fait combien ?"},
+    {"lesson": 2, "topic": "quantites", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Je voudrais un kilo de tomates, s'il vous plaît."},
+    {"lesson": 1, "topic": "comparatif", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ce plat est meilleur et moins cher."},
+    {"lesson": 4, "topic": "restaurant", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Bonjour, je voudrais commander, s'il vous plaît."}
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 8, "title_es": "Planes y futuro", "color": "#2C3E50", "icon": "event_available"},
+  "checkpoint_desc": "Demuestra que sabes hablar de planes y del futuro con el futuro semplice y 'stare per'.",
+  "lessons": [
+    {"order": 1, "title_es": "El futuro semplice regular"},
+    {"order": 2, "title_es": "Futuros irregulares: sarò, avrò, andrò"},
+    {"order": 3, "title_es": "Estar a punto de: stare per"},
+    {"order": 4, "title_es": "Mañana, la próxima semana: cuándo"}
+  ],
+  "vocab": [
+    ["domani", "mañana", "adverbio"],
+    ["dopodomani", "pasado mañana", "adverbio"],
+    ["presto", "pronto", "adverbio"],
+    ["la prossima settimana", "la próxima semana", "expresion"],
+    ["l'anno prossimo", "el año que viene", "expresion"],
+    ["parlerò", "hablaré", "verbo"],
+    ["finirò", "terminaré", "verbo"],
+    ["mangerò", "comeré", "verbo"],
+    ["comprerò", "compraré", "verbo"],
+    ["sarò", "seré / estaré", "verbo"],
+    ["avrò", "tendré", "verbo"],
+    ["andrò", "iré", "verbo"],
+    ["farò", "haré", "verbo"],
+    ["verrò", "vendré", "verbo"],
+    ["potrò", "podré", "verbo"],
+    ["stare per", "estar a punto de", "expresion"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "futuro_regolare", "skill": "reading", "type": "match", "prompt": "Une cada verbo en futuro con su traducción.", "pairs": [["parlerò", "hablaré"], ["finirò", "terminaré"], ["partirò", "partiré"]]},
+    {"lesson": 2, "topic": "futuro_irregolare", "skill": "reading", "type": "match", "prompt": "Une cada futuro irregular con su traducción.", "pairs": [["sarò", "seré"], ["avrò", "tendré"], ["andrò", "iré"]]},
+    {"lesson": 1, "topic": "futuro_regolare", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál es el futuro correcto de 'mangiare' (comer) en primera persona? Ojo con la ortografía.", "options": ["mangerò", "mangierò", "mangiarò"], "value": "mangerò"},
+    {"lesson": 2, "topic": "futuro_irregolare", "skill": "reading", "type": "multiple_choice", "prompt": "Completa: 'Domani ___ al mare con gli amici.' (io, andare)", "options": ["andrò", "anderò", "andarò"], "value": "andrò"},
+    {"lesson": 2, "topic": "futuro_irregolare", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál es el futuro correcto de 'venire' (venir) en primera persona?", "options": ["verrò", "venirò", "venerò"], "value": "verrò"},
+    {"lesson": 3, "topic": "stare_per", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase correcta para decir 'Estoy a punto de salir'.", "options": ["Sto per uscire.", "Sto per uscito.", "Sto uscire."], "value": "Sto per uscire."},
+    {"lesson": 1, "topic": "futuro_regolare", "skill": "writing", "type": "cloze", "prompt": "Completa con el futuro de 'comprare': 'Domani (io) ___ una macchina nuova.'", "text": "Domani ___ una macchina nuova.", "value": "comprerò", "accepted": ["comprerò", "comprero"]},
+    {"lesson": 2, "topic": "futuro_irregolare", "skill": "writing", "type": "cloze", "prompt": "Completa con el futuro de 'avere': 'Quando ___ tempo, ti chiamerò.' (io)", "text": "Quando ___ tempo, ti chiamerò.", "value": "avrò", "accepted": ["avrò", "avro"]},
+    {"lesson": 1, "topic": "futuro_regolare", "skill": "writing", "type": "translation", "prompt": "Traduce: 'Mañana hablaré con el profesor.'", "source": "Mañana hablaré con el profesor.", "value": "Domani parlerò con il professore.", "accepted": ["Domani parlerò con il professore.", "Domani parlerò con il professore", "domani parlerò con il professore", "domani parlero con il professore", "Domani parlero con il professore", "domani parlerò con il professore."]},
+    {"lesson": 4, "topic": "espressioni_futuro", "skill": "writing", "type": "translation", "prompt": "Traduce: 'La próxima semana iré a Roma.'", "source": "La próxima semana iré a Roma.", "value": "La prossima settimana andrò a Roma.", "accepted": ["La prossima settimana andrò a Roma.", "La prossima settimana andrò a Roma", "la prossima settimana andrò a Roma", "la prossima settimana andro a Roma", "La prossima settimana andro a Roma", "la prossima settimana andrò a Roma."]},
+    {"lesson": 3, "topic": "stare_per", "skill": "writing", "type": "word_bank", "prompt": "Ordena las fichas para formar: 'El tren está a punto de salir.'", "tiles": ["Il", "treno", "sta", "per", "partire", "parte", "partito"], "sequence": ["Il", "treno", "sta", "per", "partire"]},
+    {"lesson": 2, "topic": "futuro_irregolare", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras para formar una frase correcta.", "tiles": ["farò", "cosa", "Che", "domani", "?"], "sequence": ["Che", "cosa", "farò", "domani", "?"]},
+    {"lesson": 1, "topic": "futuro_regolare", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Domani finirò questo lavoro.", "options": ["Domani finirò questo lavoro.", "Domani finisco questo lavoro.", "Ieri ho finito questo lavoro."], "value": "Domani finirò questo lavoro."},
+    {"lesson": 2, "topic": "futuro_irregolare", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "L'anno prossimo sarò a Milano.", "options": ["L'anno prossimo sarò a Milano.", "L'anno prossimo sono a Milano.", "L'anno scorso ero a Milano."], "value": "L'anno prossimo sarò a Milano."},
+    {"lesson": 3, "topic": "stare_per", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Sto per uscire di casa.", "options": ["Sto per uscire di casa.", "Sono uscito di casa.", "Esco di casa adesso."], "value": "Sto per uscire di casa."},
+    {"lesson": 4, "topic": "espressioni_futuro", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Dopodomani verrò a trovarti.", "options": ["Dopodomani verrò a trovarti.", "Dopodomani vengo a trovarti.", "Domani verrò a trovarti."], "value": "Dopodomani verrò a trovarti."},
+    {"lesson": 1, "topic": "futuro_regolare", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Domani mangerò a casa dei miei."},
+    {"lesson": 2, "topic": "futuro_irregolare", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Quando avrò tempo, farò un viaggio."},
+    {"lesson": 3, "topic": "stare_per", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Sto per finire i compiti."}
+  ]
+}

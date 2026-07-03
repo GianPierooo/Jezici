@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 11, "title_es": "Personas y descripciones", "color": "#8E44AD", "icon": "people"},
+  "checkpoint_desc": "Describe a las personas en pasado con el imparfait y usa los pronombres COD (le, la, les).",
+  "lessons": [
+    {"order": 1, "title_es": "El imparfait: describir el pasado"},
+    {"order": 2, "title_es": "Descripción física"},
+    {"order": 3, "title_es": "El carácter y los adjetivos"},
+    {"order": 4, "title_es": "Los pronombres COD (le, la, les)"}
+  ],
+  "vocab": [
+    ["les cheveux", "el pelo", "sustantivo"],
+    ["les yeux", "los ojos", "sustantivo"],
+    ["grand", "alto / grande", "adjetivo"],
+    ["petit", "bajo / pequeño", "adjetivo"],
+    ["blond", "rubio", "adjetivo"],
+    ["brun", "moreno / castaño", "adjetivo"],
+    ["gentil", "amable", "adjetivo"],
+    ["timide", "tímido", "adjetivo"],
+    ["sympa", "simpático", "adjetivo"],
+    ["drôle", "gracioso", "adjetivo"],
+    ["sérieux", "serio", "adjetivo"],
+    ["beau", "guapo / bonito", "adjetivo"],
+    ["quand j'étais petit", "cuando era pequeño", "expresion"],
+    ["il y avait", "había", "expresion"],
+    ["connaître", "conocer", "verbo"],
+    ["le voisin", "el vecino", "sustantivo"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "imparfait_intro", "skill": "reading", "type": "match", "prompt": "Une les frases en imparfait con su traducción.", "pairs": [["Quand j'étais petit", "Cuando era pequeño"], ["Il y avait un jardin", "Había un jardín"], ["Il faisait beau", "Hacía buen tiempo"]]},
+    {"lesson": 2, "topic": "description_physique", "skill": "reading", "type": "match", "prompt": "Une la descripción física con su traducción.", "pairs": [["les cheveux longs", "el pelo largo"], ["les yeux bleus", "los ojos azules"], ["un grand homme", "un hombre alto"]]},
+    {"lesson": 1, "topic": "imparfait_intro", "skill": "reading", "type": "multiple_choice", "prompt": "Completa: 'Quand j'___ petit, j'habitais à la campagne.'", "options": ["étais", "suis", "ai été"], "value": "étais"},
+    {"lesson": 3, "topic": "caractere", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál describe a alguien que habla poco y se pone nervioso con gente nueva?", "options": ["timide", "drôle", "sérieux"], "value": "timide"},
+    {"lesson": 3, "topic": "adjectif_position", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase correcta ('bonita casa'):", "options": ["une belle maison", "une maison belle", "un beau maison"], "value": "une belle maison"},
+    {"lesson": 4, "topic": "pronom_cod", "skill": "reading", "type": "multiple_choice", "prompt": "'Tu vois Marie ?' — Responde con el pronombre COD correcto:", "options": ["Oui, je la vois.", "Oui, je lui vois.", "Oui, je le vois."], "value": "Oui, je la vois."},
+    {"lesson": 1, "topic": "imparfait_intro", "skill": "writing", "type": "cloze", "prompt": "Imparfait de 'habiter' (je). Completa el hueco.", "text": "Quand j'étais petit, j'___ à la campagne.", "value": "habitais", "accepted": ["habitais"]},
+    {"lesson": 1, "topic": "imparfait_avoir", "skill": "writing", "type": "cloze", "prompt": "Imparfait de 'avoir' (elle). Completa el hueco.", "text": "Elle ___ les cheveux longs.", "value": "avait", "accepted": ["avait"]},
+    {"lesson": 2, "topic": "description_physique", "skill": "writing", "type": "translation", "prompt": "Traduce: 'Ella es alta y tiene los ojos verdes.'", "source": "Ella es alta y tiene los ojos verdes.", "value": "Elle est grande et elle a les yeux verts.", "accepted": ["Elle est grande et elle a les yeux verts.", "Elle est grande et elle a les yeux verts", "Elle est grande et a les yeux verts.", "Elle est grande et a les yeux verts", "Elle est grande et elle a les yeux verts .", "elle est grande et elle a les yeux verts"]},
+    {"lesson": 4, "topic": "pronom_cod", "skill": "writing", "type": "translation", "prompt": "Traduce: 'Lo conozco bien.' (a él)", "source": "Lo conozco bien.", "value": "Je le connais bien.", "accepted": ["Je le connais bien.", "Je le connais bien", "je le connais bien", "Je le connais bien ."]},
+    {"lesson": 3, "topic": "caractere", "skill": "writing", "type": "word_bank", "prompt": "Ordena: 'Mi vecino era muy amable.'", "tiles": ["Mon", "voisin", "était", "très", "gentil", "sympa", "avait"], "sequence": ["Mon", "voisin", "était", "très", "gentil"]},
+    {"lesson": 4, "topic": "pronom_cod", "skill": "writing", "type": "reorder", "prompt": "Ordena la frase: 'Je les connais.'", "tiles": ["connais", "Je", "les"], "sequence": ["Je", "les", "connais"]},
+    {"lesson": 1, "topic": "imparfait_intro", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Quand j'étais petit, il y avait un grand jardin.", "options": ["Quand j'étais petit, il y avait un grand jardin.", "Quand je suis petit, il y a un grand jardin.", "Quand j'étais petit, il y avait un petit jardin."], "value": "Quand j'étais petit, il y avait un grand jardin."},
+    {"lesson": 2, "topic": "description_physique", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Elle avait les cheveux blonds et les yeux bleus.", "options": ["Elle avait les cheveux blonds et les yeux bleus.", "Elle avait les cheveux bruns et les yeux bleus.", "Il avait les cheveux blonds et les yeux verts."], "value": "Elle avait les cheveux blonds et les yeux bleus."},
+    {"lesson": 4, "topic": "pronom_cod", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Tu vois ce film ? Oui, je le regarde ce soir.", "options": ["Tu vois ce film ? Oui, je le regarde ce soir.", "Tu vois ce film ? Oui, je la regarde ce soir.", "Tu vois ce film ? Non, je le regarde demain."], "value": "Tu vois ce film ? Oui, je le regarde ce soir."},
+    {"lesson": 3, "topic": "caractere", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Mon frère est drôle et très sympa.", "options": ["Mon frère est drôle et très sympa.", "Mon frère est sérieux et très timide.", "Ma sœur est drôle et très sympa."], "value": "Mon frère est drôle et très sympa."},
+    {"lesson": 2, "topic": "description_physique", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Il est grand et il a les cheveux bruns."},
+    {"lesson": 1, "topic": "imparfait_intro", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Quand j'étais petit, il faisait beau."},
+    {"lesson": 4, "topic": "pronom_cod", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Tu connais Marie ? Oui, je la connais."}
+  ]
+}

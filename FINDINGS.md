@@ -2,6 +2,40 @@
 
 ---
 
+## Pilotos es→fr + es→it — NIVEL A2 — 2026-07-02 ✅ LIVE + VERIFICADO (cliente real)
+> Continuación del piloto: **A2 completo** para AMBOS idiomas (fr/it), encadenado sobre el A1.
+> Fuente de verdad = repo+BD (los docs estaban al día; A2 NO existía → construido desde cero).
+
+**Estado real al arrancar (Paso 0, verificado con BD):** último commit `1f10f3e`, última mig `096`;
+**A2 fr/it NO existía** (fr/it solo A1). `create_plan` en vivo YA usa `jz_active_course` (mig 096 efectivo);
+ninguna RPC hardcodea el curso. Desbloqueo de unidad = por `order_index > actual` del MISMO curso
+(course-scoped) → sembrar A2 en order 7-12 encadena tras A1.
+
+**Sembrado (mig 097 fr / 098 it):** 6 unidades A2 por idioma (order 7-12), 4 lecciones + checkpoint +
+examen por unidad. **115 ítems/idioma** (R36/W36/L25/S18 → L=69%, S=50%). Currículo A2 real por idioma:
+- **fr:** passé composé (avoir U7 → être+accord U9), futur proche/simple (U8), comparatifs + «en» (U10),
+  imparfait + pronoms COD (U11), «avoir mal à»+contraction + conseils (U12).
+- **it:** passato prossimo (avere U7 → essere+accordo U9), futuro semplice (U8), comparativi di/che +
+  «ne» (U10), imperfetto + pronomi diretti (U11), «avere mal di» (sin artículo) + consigli (U12).
+Autorado por profesores nativos IA + generador PARAMETRIZADO POR NIVEL `gen_course.py <code> <a1|a2>`.
+
+**Calidad (validación adversarial nativa A2):** **fr 0 ❌ + 2 ⚠️** (quitado `d'` indebido en «un kilo de
+pommes»; gloss) — aplicados. **it 0 ❌ + 2 ⚠️** (enunciado del cloze «non ancora» afinado) — aplicado.
+Gramática crítica impecable en ambos (participios, auxiliar+concordancia, raíces de futuro, comparativos,
+imperfecto, pronombres objeto, «mal di»/«mal à»). Además corregido el título it A1 «Unité»→«Unità».
+
+**Verificación A2 — cliente real** (`verify_a2_chain.py fr|it`, JWT real):
+- **0 `lesson_items` cruzan los 4 cursos**; determinista A2 fr 97/97 + it 97/97 correctos y 97/97 distractores.
+- **CAMINATA de las 12 unidades EN ORDEN con cliente real** (complete_lesson + submit_checkpoint): llega a
+  U12, **checkpoint U6 (última A1) DESBLOQUEA U7 (primera A2)** → gating A1→A2 end-to-end; **30/30 lecciones
+  A2 completadas**. Audio A2 HEAD **43/43** (fr y it). Usuario default(en) NO recibe A2 de fr/it.
+- **Cursos existentes INTACTOS:** `verify_chain` (en A1→B2 + certs) y `verify_pt_chain` (pt A1→B1) verdes.
+  `flutter analyze` 0 · `flutter test` 89/89.
+
+**Diferido:** B1+ fr/it; placement fr/it; cert de nivel; onboarding fr/it-específico.
+
+---
+
 ## Pilotos es→fr + es→it (A1) — 2026-07-02 ✅ LIVE + VERIFICADO (cliente real)
 > 2 cursos NUEVOS. Objetivo: A1 completo e impecable en francés e italiano, con **aislamiento
 > multicurso** blindado (el riesgo #1 — ya se rompió una vez con pt, mig 064→072).

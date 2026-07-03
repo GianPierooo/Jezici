@@ -1,0 +1,50 @@
+{
+  "unit": {"order": 7, "title_es": "El pasado: lo que hice", "color": "#C0392B", "icon": "history_edu"},
+  "checkpoint_desc": "Demuestra que sabes hablar del pasado con el passato prossimo y el auxiliar avere.",
+  "lessons": [
+    {"order": 1, "title_es": "Ayer comí: participios regulares"},
+    {"order": 2, "title_es": "Participios irregulares frecuentes"},
+    {"order": 3, "title_es": "Negar y preguntar sobre el pasado"},
+    {"order": 4, "title_es": "Cuándo pasó: ayer, la semana pasada"}
+  ],
+  "vocab": [
+    ["ieri", "ayer", "adverbio"],
+    ["mangiato", "comido", "verbo"],
+    ["parlato", "hablado", "verbo"],
+    ["finito", "terminado", "verbo"],
+    ["dormito", "dormido", "verbo"],
+    ["fatto", "hecho", "verbo"],
+    ["preso", "tomado / cogido", "verbo"],
+    ["visto", "visto", "verbo"],
+    ["letto", "leído", "verbo"],
+    ["scritto", "escrito", "verbo"],
+    ["bevuto", "bebido", "verbo"],
+    ["detto", "dicho", "verbo"],
+    ["la settimana scorsa", "la semana pasada", "expresion"],
+    ["il weekend scorso", "el fin de semana pasado", "expresion"],
+    ["due giorni fa", "hace dos días", "expresion"],
+    ["niente", "nada", "pronombre"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "participi_regolari", "skill": "reading", "type": "match", "prompt": "Une cada participio italiano con su traducción.", "pairs": [["mangiato", "comido"], ["parlato", "hablado"], ["dormito", "dormido"]]},
+    {"lesson": 2, "topic": "participi_irregolari", "skill": "reading", "type": "match", "prompt": "Une cada participio irregular con su traducción.", "pairs": [["fatto", "hecho"], ["preso", "tomado"], ["visto", "visto"]]},
+    {"lesson": 1, "topic": "participi_regolari", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál es el participio pasado correcto del verbo 'finire' (terminar)?", "options": ["finito", "finuto", "finato"], "value": "finito"},
+    {"lesson": 1, "topic": "passato_avere", "skill": "reading", "type": "multiple_choice", "prompt": "Completa: 'Ieri io ___ parlato con Marco.' ¿Qué auxiliar es correcto?", "options": ["ho", "sono", "hai"], "value": "ho"},
+    {"lesson": 2, "topic": "participi_irregolari", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál es el participio pasado correcto del verbo 'prendere' (tomar)?", "options": ["preso", "prenduto", "presato"], "value": "preso"},
+    {"lesson": 3, "topic": "negazione_passato", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase correcta para decir 'No he hecho nada'.", "options": ["Non ho fatto niente.", "Non ho fatto qualcosa.", "Ho fatto niente."], "value": "Non ho fatto niente."},
+    {"lesson": 1, "topic": "passato_avere", "skill": "writing", "type": "cloze", "prompt": "Completa con el auxiliar: 'Ieri (io) ___ mangiato la pizza.'", "text": "Ieri ___ mangiato la pizza.", "value": "ho", "accepted": ["ho"]},
+    {"lesson": 3, "topic": "domande_passato", "skill": "writing", "type": "cloze", "prompt": "Completa la pregunta: 'Che cosa ___ fatto ieri?' (tú).", "text": "Che cosa ___ fatto ieri?", "value": "hai", "accepted": ["hai"]},
+    {"lesson": 1, "topic": "passato_avere", "skill": "writing", "type": "translation", "prompt": "Traduce: 'He comido la pizza.'", "source": "He comido la pizza.", "value": "Ho mangiato la pizza.", "accepted": ["Ho mangiato la pizza.", "Ho mangiato la pizza", "ho mangiato la pizza", "ho mangiato la pizza."]},
+    {"lesson": 2, "topic": "participi_irregolari", "skill": "writing", "type": "translation", "prompt": "Traduce: 'Ayer he visto un film.'", "source": "Ayer he visto un film.", "value": "Ieri ho visto un film.", "accepted": ["Ieri ho visto un film.", "Ieri ho visto un film", "ieri ho visto un film", "ieri ho visto un film.", "Ieri ho visto un film.", "Ieri ho visto un film", "ieri ho visto un film"]},
+    {"lesson": 4, "topic": "espressioni_tempo", "skill": "writing", "type": "word_bank", "prompt": "Ordena las fichas para decir 'La semana pasada trabajé mucho'.", "tiles": ["La", "settimana", "scorsa", "ho", "lavorato", "molto", "lavoro"], "sequence": ["La", "settimana", "scorsa", "ho", "lavorato", "molto"]},
+    {"lesson": 2, "topic": "participi_irregolari", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras para formar una frase correcta.", "tiles": ["letto", "un", "Ho", "libro", "bello"], "sequence": ["Ho", "letto", "un", "libro", "bello"]},
+    {"lesson": 1, "topic": "passato_avere", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ieri ho mangiato al ristorante.", "options": ["Ieri ho mangiato al ristorante.", "Ieri mangio al ristorante.", "Domani mangio al ristorante."], "value": "Ieri ho mangiato al ristorante."},
+    {"lesson": 2, "topic": "participi_irregolari", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ho fatto i compiti stamattina.", "options": ["Ho fatto i compiti stamattina.", "Ho fatto i compiti stasera.", "Faccio i compiti stamattina."], "value": "Ho fatto i compiti stamattina."},
+    {"lesson": 2, "topic": "participi_irregolari", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Abbiamo bevuto un caffè insieme.", "options": ["Abbiamo bevuto un caffè insieme.", "Abbiamo bevuto un tè insieme.", "Beviamo un caffè insieme."], "value": "Abbiamo bevuto un caffè insieme."},
+    {"lesson": 3, "topic": "domande_passato", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Hai finito i compiti?", "options": ["Hai finito i compiti?", "Hai iniziato i compiti?", "Finisci i compiti?"], "value": "Hai finito i compiti?"},
+    {"lesson": 4, "topic": "espressioni_tempo", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Due giorni fa ho visto Maria.", "options": ["Due giorni fa ho visto Maria.", "Due giorni fa vedo Maria.", "Ieri ho visto Maria."], "value": "Due giorni fa ho visto Maria."},
+    {"lesson": 1, "topic": "passato_avere", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ieri ho parlato con mia madre."},
+    {"lesson": 2, "topic": "participi_irregolari", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ho scritto una lettera a Luca."},
+    {"lesson": 3, "topic": "negazione_passato", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Non ho ancora finito il lavoro."}
+  ]
+}

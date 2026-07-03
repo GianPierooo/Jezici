@@ -1,0 +1,50 @@
+{
+  "unit": {"order": 7, "title_es": "El pasado: lo que hice", "color": "#C0392B", "icon": "history_edu"},
+  "checkpoint_desc": "Practica el passé composé con el auxiliar avoir para contar lo que hiciste ayer y la semana pasada.",
+  "lessons": [
+    {"order": 1, "title_es": "Ayer comí y hablé"},
+    {"order": 2, "title_es": "Participios irregulares"},
+    {"order": 3, "title_es": "No hice nada"},
+    {"order": 4, "title_es": "¿Qué hiciste?"}
+  ],
+  "vocab": [
+    ["hier", "ayer", "adverbio"],
+    ["avant-hier", "anteayer", "adverbio"],
+    ["la semaine dernière", "la semana pasada", "expresion"],
+    ["le week-end dernier", "el fin de semana pasado", "expresion"],
+    ["manger", "comer", "verbo"],
+    ["parler", "hablar", "verbo"],
+    ["regarder", "mirar / ver", "verbo"],
+    ["finir", "terminar", "verbo"],
+    ["faire", "hacer", "verbo"],
+    ["prendre", "tomar / coger", "verbo"],
+    ["voir", "ver", "verbo"],
+    ["boire", "beber", "verbo"],
+    ["lire", "leer", "verbo"],
+    ["écrire", "escribir", "verbo"],
+    ["rien", "nada", "pronombre"],
+    ["déjà", "ya", "adverbio"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "passe_compose_reguliers", "skill": "reading", "type": "match", "prompt": "Une el verbo francés con su traducción.", "pairs": [["j'ai mangé", "yo comí"], ["tu as parlé", "tú hablaste"], ["il a regardé", "él miró"]]},
+    {"lesson": 1, "topic": "expressions_temps", "skill": "reading", "type": "match", "prompt": "Une la expresión de tiempo con su traducción.", "pairs": [["hier", "ayer"], ["avant-hier", "anteayer"], ["la semaine dernière", "la semana pasada"]]},
+    {"lesson": 1, "topic": "passe_compose_reguliers", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál es la forma correcta de 'yo comí' en passé composé?", "options": ["j'ai mangé", "je suis mangé", "je mange"], "value": "j'ai mangé"},
+    {"lesson": 1, "topic": "passe_compose_reguliers", "skill": "writing", "type": "cloze", "prompt": "Completa: 'Ayer hablé con mi amigo.'", "text": "Hier, j'___ parlé avec mon ami.", "value": "ai", "accepted": ["ai"]},
+    {"lesson": 1, "topic": "passe_compose_reguliers", "skill": "writing", "type": "word_bank", "prompt": "Ordena las fichas para decir 'Yo miré la televisión'.", "tiles": ["J'", "ai", "regardé", "la", "télévision", "regarde"], "sequence": ["J'", "ai", "regardé", "la", "télévision"]},
+    {"lesson": 1, "topic": "passe_compose_reguliers", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Hier, j'ai mangé une pomme.", "options": ["Hier, j'ai mangé une pomme.", "Hier, je mange une pomme.", "Demain, je vais manger une pomme."], "value": "Hier, j'ai mangé une pomme."},
+    {"lesson": 1, "topic": "passe_compose_reguliers", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "J'ai parlé français hier."},
+    {"lesson": 2, "topic": "participes_irreguliers", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál es el participio pasado del verbo 'faire' (hacer)?", "options": ["fait", "faisé", "fais"], "value": "fait"},
+    {"lesson": 2, "topic": "participes_irreguliers", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase correcta para 'Vi una película'.", "options": ["J'ai vu un film.", "J'ai voir un film.", "Je suis vu un film."], "value": "J'ai vu un film."},
+    {"lesson": 2, "topic": "participes_irreguliers", "skill": "writing", "type": "cloze", "prompt": "Completa con el participio de 'prendre': 'Tomé el autobús.'", "text": "J'ai ___ le bus.", "value": "pris", "accepted": ["pris"]},
+    {"lesson": 2, "topic": "participes_irreguliers", "skill": "writing", "type": "translation", "prompt": "Traduce: 'Bebí un café.'", "source": "Bebí un café.", "value": "J'ai bu un café.", "accepted": ["J'ai bu un café.", "J'ai bu un café", "J'ai bu un cafe.", "J'ai bu un cafe", "Jai bu un cafe"]},
+    {"lesson": 2, "topic": "participes_irreguliers", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "J'ai lu un livre intéressant.", "options": ["J'ai lu un livre intéressant.", "Je lis un livre intéressant.", "J'ai écrit un livre intéressant."], "value": "J'ai lu un livre intéressant."},
+    {"lesson": 2, "topic": "participes_irreguliers", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "J'ai fait mes devoirs."},
+    {"lesson": 3, "topic": "negation_passe", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se dice 'No comí nada'?", "options": ["Je n'ai rien mangé.", "Je n'ai pas rien mangé.", "Je ne mange rien."], "value": "Je n'ai rien mangé."},
+    {"lesson": 3, "topic": "negation_passe", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras para decir 'Él no hizo nada'.", "tiles": ["rien", "n'a", "Il", "fait"], "sequence": ["Il", "n'a", "rien", "fait"]},
+    {"lesson": 3, "topic": "negation_passe", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Je n'ai pas fini mon travail.", "options": ["Je n'ai pas fini mon travail.", "J'ai fini mon travail.", "Je ne finis pas mon travail."], "value": "Je n'ai pas fini mon travail."},
+    {"lesson": 4, "topic": "questions_passe", "skill": "writing", "type": "translation", "prompt": "Traduce: '¿Qué hiciste ayer?'", "source": "¿Qué hiciste ayer?", "value": "Qu'est-ce que tu as fait hier ?", "accepted": ["Qu'est-ce que tu as fait hier ?", "Qu'est-ce que tu as fait hier?", "Qu'est-ce que tu as fait hier", "Qu'est ce que tu as fait hier", "Quest-ce que tu as fait hier"]},
+    {"lesson": 4, "topic": "questions_passe", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Est-ce que vous avez mangé au restaurant ?", "options": ["Est-ce que vous avez mangé au restaurant ?", "Est-ce que vous mangez au restaurant ?", "Vous allez manger au restaurant ?"], "value": "Est-ce que vous avez mangé au restaurant ?"},
+    {"lesson": 4, "topic": "questions_passe", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Qu'est-ce que tu as fait le week-end dernier ?", "options": ["Qu'est-ce que tu as fait le week-end dernier ?", "Qu'est-ce que tu vas faire ce week-end ?", "Qu'est-ce que tu fais le week-end ?"], "value": "Qu'est-ce que tu as fait le week-end dernier ?"},
+    {"lesson": 4, "topic": "questions_passe", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "As-tu fini tes devoirs ?"}
+  ]
+}

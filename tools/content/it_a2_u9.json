@@ -1,0 +1,56 @@
+{
+  "unit": {"order": 9, "title_es": "De viaje", "color": "#16A085", "icon": "flight_takeoff"},
+  "checkpoint_desc": "Cuenta un viaje en pasado con essere y la concordancia del participio.",
+  "lessons": [
+    {"order": 1, "title_es": "Passato prossimo con essere"},
+    {"order": 2, "title_es": "La concordancia del participio"},
+    {"order": 3, "title_es": "En la estación y el aeropuerto"},
+    {"order": 4, "title_es": "¡Buen viaje!"}
+  ],
+  "vocab": [
+    ["il treno", "el tren", "sustantivo"],
+    ["l'aereo", "el avión", "sustantivo"],
+    ["la stazione", "la estación", "sustantivo"],
+    ["l'aeroporto", "el aeropuerto", "sustantivo"],
+    ["l'albergo", "el hotel", "sustantivo"],
+    ["il biglietto", "el billete", "sustantivo"],
+    ["la valigia", "la maleta", "sustantivo"],
+    ["partire", "salir/partir", "verbo"],
+    ["arrivare", "llegar", "verbo"],
+    ["tornare", "volver", "verbo"],
+    ["rimanere", "quedarse", "verbo"],
+    ["prenotare", "reservar", "verbo"],
+    ["salire", "subir", "verbo"],
+    ["scendere", "bajar", "verbo"],
+    ["in ritardo", "con retraso", "expresion"],
+    ["Buon viaggio!", "¡Buen viaje!", "expresion"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "vocab_viaggio", "skill": "reading", "type": "match", "prompt": "Une cada palabra italiana con su traducción.", "pairs": [["il treno", "el tren"], ["l'albergo", "el hotel"], ["la valigia", "la maleta"]]},
+    {"lesson": 3, "topic": "vocab_viaggio", "skill": "reading", "type": "match", "prompt": "Une cada palabra italiana con su traducción.", "pairs": [["la stazione", "la estación"], ["il biglietto", "el billete"], ["l'aereo", "el avión"]]},
+
+    {"lesson": 1, "topic": "essere_aux", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál es el auxiliar correcto? 'Ieri io ___ andato a Roma.'", "options": ["sono", "ho", "sto"], "value": "sono"},
+    {"lesson": 2, "topic": "concordanza", "skill": "reading", "type": "multiple_choice", "prompt": "Maria habla de sí misma. Elige la forma correcta:", "options": ["Sono partita alle otto.", "Sono partito alle otto.", "Ho partita alle otto."], "value": "Sono partita alle otto."},
+    {"lesson": 2, "topic": "concordanza", "skill": "reading", "type": "multiple_choice", "prompt": "Las chicas (le ragazze) hablan. Elige la forma correcta:", "options": ["Siamo arrivate ieri.", "Siamo arrivati ieri.", "Siamo arrivato ieri."], "value": "Siamo arrivate ieri."},
+    {"lesson": 4, "topic": "vocab_viaggio", "skill": "reading", "type": "multiple_choice", "prompt": "¿Qué se dice a alguien que se va de viaje?", "options": ["Buon viaggio!", "Buon appetito!", "Buona notte!"], "value": "Buon viaggio!"},
+
+    {"lesson": 1, "topic": "essere_aux", "skill": "writing", "type": "cloze", "prompt": "Completa con el auxiliar de 'andare' (io, masculino): 'Ieri ___ andato in centro.'", "text": "Ieri ___ andato in centro.", "value": "sono", "accepted": ["sono"]},
+    {"lesson": 2, "topic": "concordanza", "skill": "writing", "type": "cloze", "prompt": "Concuerda el participio. Lucia dice: 'Ieri sono andat___ a Firenze.'", "text": "Ieri sono andat___ a Firenze.", "value": "a", "accepted": ["a"]},
+
+    {"lesson": 2, "topic": "concordanza", "skill": "writing", "type": "translation", "prompt": "Traduce: 'Ella ha ido a Roma.'", "source": "Ella ha ido a Roma.", "value": "Lei è andata a Roma.", "accepted": ["Lei è andata a Roma.", "Lei è andata a Roma", "Lei e andata a Roma", "È andata a Roma.", "È andata a Roma", "E andata a Roma"]},
+    {"lesson": 3, "topic": "vocab_viaggio", "skill": "writing", "type": "translation", "prompt": "Traduce: 'El tren ha llegado con retraso.'", "source": "El tren ha llegado con retraso.", "value": "Il treno è arrivato in ritardo.", "accepted": ["Il treno è arrivato in ritardo.", "Il treno è arrivato in ritardo", "Il treno e arrivato in ritardo"]},
+
+    {"lesson": 3, "topic": "vocab_viaggio", "skill": "writing", "type": "word_bank", "prompt": "Ordena las fichas: 'Hemos reservado el hotel.'", "tiles": ["Abbiamo", "prenotato", "l'albergo", "prenotata", "partito"], "sequence": ["Abbiamo", "prenotato", "l'albergo"]},
+
+    {"lesson": 2, "topic": "concordanza", "skill": "writing", "type": "reorder", "prompt": "Ordena la frase: 'Ellos han salido temprano.'", "tiles": ["presto", "partiti", "Loro", "sono"], "sequence": ["Loro", "sono", "partiti", "presto"]},
+
+    {"lesson": 1, "topic": "essere_aux", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Sono tornato a casa tardi.", "options": ["Sono tornato a casa tardi.", "Sono tornato a scuola tardi.", "Sono andato a casa tardi."], "value": "Sono tornato a casa tardi."},
+    {"lesson": 2, "topic": "concordanza", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Le ragazze sono venute in treno.", "options": ["Le ragazze sono venute in treno.", "Le ragazze sono venute in aereo.", "I ragazzi sono venuti in treno."], "value": "Le ragazze sono venute in treno."},
+    {"lesson": 3, "topic": "vocab_viaggio", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "L'aereo è partito in orario.", "options": ["L'aereo è partito in orario.", "L'aereo è partito in ritardo.", "Il treno è partito in orario."], "value": "L'aereo è partito in orario."},
+    {"lesson": 4, "topic": "vocab_viaggio", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Siamo rimasti tre giorni a Venezia.", "options": ["Siamo rimasti tre giorni a Venezia.", "Siamo rimasti tre giorni a Roma.", "Siamo rimaste tre giorni a Venezia."], "value": "Siamo rimasti tre giorni a Venezia."},
+
+    {"lesson": 1, "topic": "essere_aux", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Sono andato in stazione."},
+    {"lesson": 2, "topic": "concordanza", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Lei è partita per Milano."},
+    {"lesson": 4, "topic": "vocab_viaggio", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Buon viaggio! A presto!"}
+  ]
+}

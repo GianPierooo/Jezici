@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 12, "title_es": "Salud, cuerpo y consejos", "color": "#D35400", "icon": "healing"},
+  "checkpoint_desc": "Habla del cuerpo, di qué te duele con 'avere mal di' y da consejos con 'bisogna' y 'dovresti'.",
+  "lessons": [
+    {"order": 1, "title_es": "Las partes del cuerpo"},
+    {"order": 2, "title_es": "Me duele: avere mal di"},
+    {"order": 3, "title_es": "Consejos: bisogna y dovresti"},
+    {"order": 4, "title_es": "En el médico"}
+  ],
+  "vocab": [
+    ["la testa", "la cabeza", "sustantivo"],
+    ["il braccio", "el brazo", "sustantivo"],
+    ["la gamba", "la pierna", "sustantivo"],
+    ["la schiena", "la espalda", "sustantivo"],
+    ["la pancia", "la barriga", "sustantivo"],
+    ["la gola", "la garganta", "sustantivo"],
+    ["i denti", "los dientes", "sustantivo"],
+    ["il piede", "el pie", "sustantivo"],
+    ["la mano", "la mano", "sustantivo"],
+    ["lo stomaco", "el estómago", "sustantivo"],
+    ["la febbre", "la fiebre", "sustantivo"],
+    ["malato", "enfermo", "adjetivo"],
+    ["ho mal di testa", "me duele la cabeza", "expresion"],
+    ["mi fa male", "me duele", "expresion"],
+    ["bisogna", "hay que", "verbo"],
+    ["dovresti", "deberías", "verbo"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "corpo", "skill": "reading", "type": "match", "prompt": "Une cada parte del cuerpo con su traducción.", "pairs": [["la testa", "la cabeza"], ["la gamba", "la pierna"], ["la mano", "la mano"]]},
+    {"lesson": 2, "topic": "mal_di", "skill": "reading", "type": "match", "prompt": "Une cada molestia con su traducción.", "pairs": [["ho mal di gola", "me duele la garganta"], ["ho mal di schiena", "me duele la espalda"], ["ho mal di denti", "me duelen los dientes"]]},
+    {"lesson": 2, "topic": "mal_di", "skill": "reading", "type": "multiple_choice", "prompt": "'Me duele la cabeza.' Elige la forma correcta en italiano.", "options": ["Ho mal di testa.", "Ho mal della testa.", "Ho male di testa."], "value": "Ho mal di testa."},
+    {"lesson": 3, "topic": "consigli", "skill": "reading", "type": "multiple_choice", "prompt": "Consejo impersonal: 'Para estar bien ___ riposare.' (hay que)", "options": ["bisogna", "devi", "dovresti"], "value": "bisogna"},
+    {"lesson": 3, "topic": "consigli", "skill": "reading", "type": "multiple_choice", "prompt": "'Sei stanco: ___ dormire di più.' (deberías)", "options": ["dovresti", "bisogna", "vuoi"], "value": "dovresti"},
+    {"lesson": 4, "topic": "dal_medico", "skill": "reading", "type": "multiple_choice", "prompt": "El médico pregunta cómo estás. ¿Qué dice?", "options": ["Cosa c'è che non va?", "Quanto costa?", "Dove abiti?"], "value": "Cosa c'è che non va?"},
+    {"lesson": 2, "topic": "mal_di", "skill": "writing", "type": "cloze", "prompt": "Otra manera de decir 'me duele la cabeza': 'Mi fa ___ la testa.'", "text": "Mi fa ___ la testa.", "value": "male", "accepted": ["male"]},
+    {"lesson": 4, "topic": "dal_medico", "skill": "writing", "type": "cloze", "prompt": "Completa la expresión '___ ancora' (todavía no).", "text": "No, ___ ancora.", "value": "non", "accepted": ["non"]},
+    {"lesson": 2, "topic": "mal_di", "skill": "writing", "type": "translation", "prompt": "Traduce: 'Me duele la garganta desde ayer.'", "source": "Me duele la garganta desde ayer.", "value": "Ho mal di gola da ieri.", "accepted": ["Ho mal di gola da ieri.", "Ho mal di gola da ieri", "ho mal di gola da ieri"]},
+    {"lesson": 3, "topic": "consigli", "skill": "writing", "type": "translation", "prompt": "Traduce: 'Tienes fiebre, deberías descansar.'", "source": "Tienes fiebre, deberías descansar.", "value": "Hai la febbre, dovresti riposare.", "accepted": ["Hai la febbre, dovresti riposare.", "Hai la febbre, dovresti riposare", "Hai la febbre dovresti riposare", "hai la febbre dovresti riposare"]},
+    {"lesson": 1, "topic": "corpo", "skill": "writing", "type": "word_bank", "prompt": "Ordena las fichas: 'Me duele el estómago.'", "tiles": ["Mi", "fa", "male", "lo", "stomaco", "la"], "sequence": ["Mi", "fa", "male", "lo", "stomaco"]},
+    {"lesson": 2, "topic": "mal_di", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras: 'Tengo dolor de barriga.'", "tiles": ["di", "Ho", "pancia", "mal"], "sequence": ["Ho", "mal", "di", "pancia"]},
+    {"lesson": 1, "topic": "corpo", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Mi fa male la schiena.", "options": ["Mi fa male la schiena.", "Mi fa male la gamba.", "Mi fanno male i denti."], "value": "Mi fa male la schiena."},
+    {"lesson": 2, "topic": "mal_di", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ho mal di gola e un po' di febbre.", "options": ["Ho mal di gola e un po' di febbre.", "Ho mal di testa e un po' di febbre.", "Ho mal di pancia e molta febbre."], "value": "Ho mal di gola e un po' di febbre."},
+    {"lesson": 3, "topic": "consigli", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Bisogna bere molta acqua.", "options": ["Bisogna bere molta acqua.", "Bisogna mangiare molta frutta.", "Dovresti bere molta acqua."], "value": "Bisogna bere molta acqua."},
+    {"lesson": 4, "topic": "dal_medico", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Sono malato da ieri.", "options": ["Sono malato da ieri.", "Sono malato da una settimana.", "Sono stanco da ieri."], "value": "Sono malato da ieri."},
+    {"lesson": 2, "topic": "mal_di", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ho mal di testa da stamattina."},
+    {"lesson": 3, "topic": "consigli", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Dovresti dormire e riposare."},
+    {"lesson": 4, "topic": "dal_medico", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ho la febbre e mi fa male la gola."}
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 12, "title_es": "Salud, cuerpo y consejos", "color": "#D35400", "icon": "healing"},
+  "checkpoint_desc": "Habla de tu salud con 'avoir mal à' y da consejos con 'il faut' y 'tu devrais'.",
+  "lessons": [
+    {"order": 1, "title_es": "El cuerpo"},
+    {"order": 2, "title_es": "Avoir mal à"},
+    {"order": 3, "title_es": "En el médico"},
+    {"order": 4, "title_es": "Dar consejos"}
+  ],
+  "vocab": [
+    ["la tête", "la cabeza", "sustantivo"],
+    ["le bras", "el brazo", "sustantivo"],
+    ["la jambe", "la pierna", "sustantivo"],
+    ["le dos", "la espalda", "sustantivo"],
+    ["le ventre", "la barriga / el vientre", "sustantivo"],
+    ["la gorge", "la garganta", "sustantivo"],
+    ["les dents", "los dientes", "sustantivo"],
+    ["le pied", "el pie", "sustantivo"],
+    ["la main", "la mano", "sustantivo"],
+    ["malade", "enfermo", "adjetivo"],
+    ["la fièvre", "la fiebre", "sustantivo"],
+    ["le médecin", "el médico", "sustantivo"],
+    ["se reposer", "descansar", "verbo"],
+    ["il faut", "hay que", "expresion"],
+    ["tu devrais", "deberías", "expresion"],
+    ["avoir mal à", "tener dolor de / doler", "expresion"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "le_corps", "skill": "reading", "type": "match", "prompt": "Une la parte del cuerpo con su traducción.", "pairs": [["la tête", "la cabeza"], ["le dos", "la espalda"], ["la gorge", "la garganta"]]},
+    {"lesson": 3, "topic": "chez_le_medecin", "skill": "reading", "type": "match", "prompt": "Une la frase del médico con su traducción.", "pairs": [["Je suis malade", "Estoy enfermo"], ["J'ai de la fièvre", "Tengo fiebre"], ["Qu'est-ce qui ne va pas ?", "¿Qué le pasa?"]]},
+    {"lesson": 2, "topic": "avoir_mal_a", "skill": "reading", "type": "multiple_choice", "prompt": "Completa: 'J'ai mal ___ tête.'", "options": ["à la", "au", "à l'"], "value": "à la"},
+    {"lesson": 2, "topic": "avoir_mal_a", "skill": "reading", "type": "multiple_choice", "prompt": "Completa: 'Il a mal ___ dos.' (le dos)", "options": ["au", "à la", "aux"], "value": "au"},
+    {"lesson": 2, "topic": "avoir_mal_a", "skill": "reading", "type": "multiple_choice", "prompt": "Completa: 'Elle a mal ___ dents.' (les dents)", "options": ["aux", "au", "à la"], "value": "aux"},
+    {"lesson": 4, "topic": "conseils", "skill": "reading", "type": "multiple_choice", "prompt": "Elige el consejo correcto: 'Deberías dormir.'", "options": ["Tu devrais dormir.", "Tu devrais dors.", "Tu dois dormir hier."], "value": "Tu devrais dormir."},
+    {"lesson": 2, "topic": "avoir_mal_a", "skill": "writing", "type": "cloze", "prompt": "Contracción à + le = au. Completa (le ventre).", "text": "J'ai mal ___ ventre depuis hier.", "value": "au", "accepted": ["au"]},
+    {"lesson": 4, "topic": "conseils", "skill": "writing", "type": "cloze", "prompt": "Consejo con 'il faut' + infinitivo. Completa el hueco.", "text": "Tu es fatigué ? Il faut te ___.", "value": "reposer", "accepted": ["reposer"]},
+    {"lesson": 2, "topic": "avoir_mal_a", "skill": "writing", "type": "translation", "prompt": "Traduce: 'Me duele la garganta.'", "source": "Me duele la garganta.", "value": "J'ai mal à la gorge.", "accepted": ["J'ai mal à la gorge.", "J'ai mal à la gorge", "j'ai mal à la gorge", "J'ai mal a la gorge.", "J'ai mal a la gorge", "J'ai mal à la gorge ."]},
+    {"lesson": 4, "topic": "conseils", "skill": "writing", "type": "translation", "prompt": "Traduce: 'Deberías descansar.'", "source": "Deberías descansar.", "value": "Tu devrais te reposer.", "accepted": ["Tu devrais te reposer.", "Tu devrais te reposer", "tu devrais te reposer", "Tu devrais te reposer ."]},
+    {"lesson": 3, "topic": "chez_le_medecin", "skill": "writing", "type": "word_bank", "prompt": "Ordena: 'Estoy enfermo y tengo fiebre.'", "tiles": ["Je", "suis", "malade", "et", "j'ai", "de la", "fièvre", "mal"], "sequence": ["Je", "suis", "malade", "et", "j'ai", "de la", "fièvre"]},
+    {"lesson": 3, "topic": "passe_compose_deja", "skill": "writing", "type": "reorder", "prompt": "Ordena la frase: 'Tu as déjà vu le médecin ?'", "tiles": ["vu", "Tu", "déjà", "le médecin", "as"], "sequence": ["Tu", "as", "déjà", "vu", "le médecin"]},
+    {"lesson": 2, "topic": "avoir_mal_a", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "J'ai mal au ventre depuis ce matin.", "options": ["J'ai mal au ventre depuis ce matin.", "J'ai mal à la tête depuis ce matin.", "J'ai mal au dos depuis hier."], "value": "J'ai mal au ventre depuis ce matin."},
+    {"lesson": 3, "topic": "chez_le_medecin", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Qu'est-ce qui ne va pas ? Je suis malade.", "options": ["Qu'est-ce qui ne va pas ? Je suis malade.", "Qu'est-ce qui ne va pas ? Je suis fatigué.", "Qu'est-ce que tu fais ? Je suis malade."], "value": "Qu'est-ce qui ne va pas ? Je suis malade."},
+    {"lesson": 4, "topic": "conseils", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Tu devrais dormir et boire de l'eau.", "options": ["Tu devrais dormir et boire de l'eau.", "Tu dois dormir et boire du café.", "Il faut dormir et boire de l'eau."], "value": "Tu devrais dormir et boire de l'eau."},
+    {"lesson": 3, "topic": "passe_compose_deja", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Tu as déjà vu le médecin ? Non, pas encore.", "options": ["Tu as déjà vu le médecin ? Non, pas encore.", "Tu as déjà vu le médecin ? Oui, hier.", "Tu as déjà vu le dentiste ? Non, pas encore."], "value": "Tu as déjà vu le médecin ? Non, pas encore."},
+    {"lesson": 2, "topic": "avoir_mal_a", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "J'ai mal à la tête et à la gorge."},
+    {"lesson": 4, "topic": "conseils", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Il faut te reposer et boire de l'eau."},
+    {"lesson": 3, "topic": "chez_le_medecin", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Je suis malade, j'ai de la fièvre depuis hier."}
+  ]
+}

@@ -1,7 +1,7 @@
 -- 20260703120095_seed_it_a1.sql
--- Alta del curso es→it + currículo A1 (6 unidades). Molde es→pt
--- (mig 047+048). Contenido scopeado a course_id=20000000-0000-0000-0000-000000000004 → aislamiento
--- multicurso por jz_active_course (RPCs ya course-aware). ids uuid5 idempotentes.
+-- Currículo A1 del curso es→it (6 unidades). Molde es→pt.
+-- Contenido scopeado a course_id=20000000-0000-0000-0000-000000000004 → aislamiento multicurso por
+-- jz_active_course. Unidades order_index continúan la cadena → gating al nivel previo.
 begin;
 insert into languages (id, code, name) values
   ('10000000-0000-0000-0000-000000000005','it',$p$Italiano$p$) on conflict (id) do nothing;
@@ -11,13 +11,13 @@ insert into courses (id, source_language_id, target_language_id, is_active) valu
 -- ── Unidad 1 (A1·it): Ciao y piacere (saludos y presentarte) ──
 insert into units (id, course_id, cefr_level, order_index, title, theme_color, icon) values
  ('a3897a7a-817c-540c-b91a-8a0000e44830','20000000-0000-0000-0000-000000000004','A1',1,$p$Ciao y piacere (saludos y presentarte)$p$,'#27AE60','waving_hand')
-on conflict (course_id, order_index) do update set title=excluded.title, theme_color=excluded.theme_color, icon=excluded.icon;
+on conflict (course_id, order_index) do update set title=excluded.title, cefr_level=excluded.cefr_level, theme_color=excluded.theme_color, icon=excluded.icon;
 insert into lessons (id, unit_id, order_index, title, description, type, xp_reward) values
  ('45dc9d2b-8802-5a8f-906b-3a427017329e','a3897a7a-817c-540c-b91a-8a0000e44830',1,$p$Saludos y despedidas$p$,$p$Saludos y despedidas$p$,'lesson',15),
  ('fe936dac-87a2-5872-b1b0-e34d7f8c62b4','a3897a7a-817c-540c-b91a-8a0000e44830',2,$p$Presentarte: mi chiamo$p$,$p$Presentarte: mi chiamo$p$,'lesson',15),
  ('b723dccb-e14c-57d9-89d8-ab7554827519','a3897a7a-817c-540c-b91a-8a0000e44830',3,$p$Tú o usted + el verbo essere$p$,$p$Tú o usted + el verbo essere$p$,'lesson',15),
  ('9f58bd64-32a9-5086-9757-db5d36d5f4f8','a3897a7a-817c-540c-b91a-8a0000e44830',4,$p$¿Cómo estás? come stai?$p$,$p$¿Cómo estás? come stai?$p$,'lesson',15),
- ('75bb5211-6c0f-5b6e-a8e3-e6d2bcaf0701','a3897a7a-817c-540c-b91a-8a0000e44830',5,$p$🏁 Checkpoint Unité 1$p$,$p$Practica saludar, despedirte, presentarte con «mi chiamo» y usar el verbo essere junto a la distinción tú/usted (tu/Lei).$p$,'checkpoint',40)
+ ('75bb5211-6c0f-5b6e-a8e3-e6d2bcaf0701','a3897a7a-817c-540c-b91a-8a0000e44830',5,$p$🏁 Checkpoint Unità 1$p$,$p$Practica saludar, despedirte, presentarte con «mi chiamo» y usar el verbo essere junto a la distinción tú/usted (tu/Lei).$p$,'checkpoint',40)
 on conflict (unit_id, order_index) do update set title=excluded.title, description=excluded.description;
 insert into exams (id, course_id, type, cefr_level, unit_id, time_limit_sec, pass_threshold, sections) values
  ('b6efdfba-a4ca-522b-bc55-6e11a956325d','20000000-0000-0000-0000-000000000004','checkpoint','A1','a3897a7a-817c-540c-b91a-8a0000e44830',300,0.80,$j${"skills": ["reading", "listening", "writing", "speaking"], "item_count": 10, "randomize": true}$j$::jsonb) on conflict (id) do nothing;
@@ -97,13 +97,13 @@ on conflict (id) do nothing;
 -- ── Unidad 2 (A1·it): I numeri, l'età e da dove vieni (números, edad y origen) ──
 insert into units (id, course_id, cefr_level, order_index, title, theme_color, icon) values
  ('db2d2ef3-7be4-5022-bc30-68b6c2252fc4','20000000-0000-0000-0000-000000000004','A1',2,$p$I numeri, l'età e da dove vieni (números, edad y origen)$p$,'#2980B9','public')
-on conflict (course_id, order_index) do update set title=excluded.title, theme_color=excluded.theme_color, icon=excluded.icon;
+on conflict (course_id, order_index) do update set title=excluded.title, cefr_level=excluded.cefr_level, theme_color=excluded.theme_color, icon=excluded.icon;
 insert into lessons (id, unit_id, order_index, title, description, type, xp_reward) values
  ('63d885b0-c68e-5a51-b929-efe327eb5f8a','db2d2ef3-7be4-5022-bc30-68b6c2252fc4',1,$p$Los números 0 a 20$p$,$p$Los números 0 a 20$p$,'lesson',15),
  ('d1ee3c14-ff37-5dfe-b9d6-2000adc2afe4','db2d2ef3-7be4-5022-bc30-68b6c2252fc4',2,$p$La edad con avere$p$,$p$La edad con avere$p$,'lesson',15),
  ('99af5055-d51f-5a0e-b7b2-f300b7874b0a','db2d2ef3-7be4-5022-bc30-68b6c2252fc4',3,$p$¿De dónde vienes?$p$,$p$¿De dónde vienes?$p$,'lesson',15),
  ('6b0e8be4-c579-5857-97e2-206ccf7971ac','db2d2ef3-7be4-5022-bc30-68b6c2252fc4',4,$p$Nacionalidades$p$,$p$Nacionalidades$p$,'lesson',15),
- ('c6962442-0fbb-5117-8879-9193959f8ef4','db2d2ef3-7be4-5022-bc30-68b6c2252fc4',5,$p$🏁 Checkpoint Unité 2$p$,$p$Practica los números 0-20, decir tu edad con «avere», de dónde vienes con «venire da» y tu nacionalidad con su género.$p$,'checkpoint',40)
+ ('c6962442-0fbb-5117-8879-9193959f8ef4','db2d2ef3-7be4-5022-bc30-68b6c2252fc4',5,$p$🏁 Checkpoint Unità 2$p$,$p$Practica los números 0-20, decir tu edad con «avere», de dónde vienes con «venire da» y tu nacionalidad con su género.$p$,'checkpoint',40)
 on conflict (unit_id, order_index) do update set title=excluded.title, description=excluded.description;
 insert into exams (id, course_id, type, cefr_level, unit_id, time_limit_sec, pass_threshold, sections) values
  ('7d5c3059-153d-560e-b91e-f764a4ffd2af','20000000-0000-0000-0000-000000000004','checkpoint','A1','db2d2ef3-7be4-5022-bc30-68b6c2252fc4',300,0.80,$j${"skills": ["reading", "listening", "writing", "speaking"], "item_count": 10, "randomize": true}$j$::jsonb) on conflict (id) do nothing;
@@ -181,13 +181,13 @@ on conflict (id) do nothing;
 -- ── Unidad 3 (A1·it): La familia ──
 insert into units (id, course_id, cefr_level, order_index, title, theme_color, icon) values
  ('da9a3bd5-7b48-5486-852e-9dc4413f1114','20000000-0000-0000-0000-000000000004','A1',3,$p$La familia$p$,'#8E44AD','family_restroom')
-on conflict (course_id, order_index) do update set title=excluded.title, theme_color=excluded.theme_color, icon=excluded.icon;
+on conflict (course_id, order_index) do update set title=excluded.title, cefr_level=excluded.cefr_level, theme_color=excluded.theme_color, icon=excluded.icon;
 insert into lessons (id, unit_id, order_index, title, description, type, xp_reward) values
  ('ffbe2828-7d3b-5c21-bfb6-41d7355d2b33','da9a3bd5-7b48-5486-852e-9dc4413f1114',1,$p$La familia (la famiglia)$p$,$p$La familia (la famiglia)$p$,'lesson',15),
  ('2a84b5a5-1a55-5d1b-a3d1-72c3bf1e125c','da9a3bd5-7b48-5486-852e-9dc4413f1114',2,$p$Los posesivos (mio, mia, i miei)$p$,$p$Los posesivos (mio, mia, i miei)$p$,'lesson',15),
  ('4010a3fa-4344-5caa-963c-3bcde945d5bd','da9a3bd5-7b48-5486-852e-9dc4413f1114',3,$p$Presentar personas (questo è, chi è?)$p$,$p$Presentar personas (questo è, chi è?)$p$,'lesson',15),
  ('80b8897c-b511-565b-b56b-39308ccaa8e5','da9a3bd5-7b48-5486-852e-9dc4413f1114',4,$p$Describir personas (alto, simpatico...)$p$,$p$Describir personas (alto, simpatico...)$p$,'lesson',15),
- ('4fcae98b-e9c5-5b6d-a1d8-88d9a00d2cf6','da9a3bd5-7b48-5486-852e-9dc4413f1114',5,$p$🏁 Checkpoint Unité 3$p$,$p$Demuestra que sabes nombrar a la familia, usar posesivos de parentesco, presentar personas con questo/questa y describirlas.$p$,'checkpoint',40)
+ ('4fcae98b-e9c5-5b6d-a1d8-88d9a00d2cf6','da9a3bd5-7b48-5486-852e-9dc4413f1114',5,$p$🏁 Checkpoint Unità 3$p$,$p$Demuestra que sabes nombrar a la familia, usar posesivos de parentesco, presentar personas con questo/questa y describirlas.$p$,'checkpoint',40)
 on conflict (unit_id, order_index) do update set title=excluded.title, description=excluded.description;
 insert into exams (id, course_id, type, cefr_level, unit_id, time_limit_sec, pass_threshold, sections) values
  ('5c6d3228-e05a-551a-8453-6dbcfd8ebd1a','20000000-0000-0000-0000-000000000004','checkpoint','A1','da9a3bd5-7b48-5486-852e-9dc4413f1114',300,0.80,$j${"skills": ["reading", "listening", "writing", "speaking"], "item_count": 10, "randomize": true}$j$::jsonb) on conflict (id) do nothing;
@@ -265,13 +265,13 @@ on conflict (id) do nothing;
 -- ── Unidad 4 (A1·it): Comida y el bar ──
 insert into units (id, course_id, cefr_level, order_index, title, theme_color, icon) values
  ('efcf97bb-28fc-56cb-8fb8-a9a8f1d79509','20000000-0000-0000-0000-000000000004','A1',4,$p$Comida y el bar$p$,'#E67E22','restaurant')
-on conflict (course_id, order_index) do update set title=excluded.title, theme_color=excluded.theme_color, icon=excluded.icon;
+on conflict (course_id, order_index) do update set title=excluded.title, cefr_level=excluded.cefr_level, theme_color=excluded.theme_color, icon=excluded.icon;
 insert into lessons (id, unit_id, order_index, title, description, type, xp_reward) values
  ('87747a7d-095d-5d65-929e-b4dea3e98535','efcf97bb-28fc-56cb-8fb8-a9a8f1d79509',1,$p$La comida (il cibo)$p$,$p$La comida (il cibo)$p$,'lesson',15),
  ('b555d1cf-3449-5e9e-808b-9e34d519afbe','efcf97bb-28fc-56cb-8fb8-a9a8f1d79509',2,$p$Al bar (vorrei un caffè)$p$,$p$Al bar (vorrei un caffè)$p$,'lesson',15),
  ('b454a0cb-dbaa-5827-bf9b-eaf83e927431','efcf97bb-28fc-56cb-8fb8-a9a8f1d79509',3,$p$El partitivo (del, della, dell')$p$,$p$El partitivo (del, della, dell')$p$,'lesson',15),
  ('7dda92f6-abc3-5081-9e5f-463d0a12e837','efcf97bb-28fc-56cb-8fb8-a9a8f1d79509',4,$p$Precios y la cuenta (quanto costa?)$p$,$p$Precios y la cuenta (quanto costa?)$p$,'lesson',15),
- ('a6691153-d423-5a45-883d-aba046f5d776','efcf97bb-28fc-56cb-8fb8-a9a8f1d79509',5,$p$🏁 Checkpoint Unité 4$p$,$p$Demuestra que sabes nombrar comida y bebida, pedir con cortesía en el bar, usar el partitivo y hablar de precios.$p$,'checkpoint',40)
+ ('a6691153-d423-5a45-883d-aba046f5d776','efcf97bb-28fc-56cb-8fb8-a9a8f1d79509',5,$p$🏁 Checkpoint Unità 4$p$,$p$Demuestra que sabes nombrar comida y bebida, pedir con cortesía en el bar, usar el partitivo y hablar de precios.$p$,'checkpoint',40)
 on conflict (unit_id, order_index) do update set title=excluded.title, description=excluded.description;
 insert into exams (id, course_id, type, cefr_level, unit_id, time_limit_sec, pass_threshold, sections) values
  ('afc7b6f7-7e7f-5398-8253-8cf50ccdb989','20000000-0000-0000-0000-000000000004','checkpoint','A1','efcf97bb-28fc-56cb-8fb8-a9a8f1d79509',300,0.80,$j${"skills": ["reading", "listening", "writing", "speaking"], "item_count": 10, "randomize": true}$j$::jsonb) on conflict (id) do nothing;
@@ -349,13 +349,13 @@ on conflict (id) do nothing;
 -- ── Unidad 5 (A1·it): El día y la hora ──
 insert into units (id, course_id, cefr_level, order_index, title, theme_color, icon) values
  ('ca7c984b-adce-5315-943e-e032d26b5e63','20000000-0000-0000-0000-000000000004','A1',5,$p$El día y la hora$p$,'#2980B9','schedule')
-on conflict (course_id, order_index) do update set title=excluded.title, theme_color=excluded.theme_color, icon=excluded.icon;
+on conflict (course_id, order_index) do update set title=excluded.title, cefr_level=excluded.cefr_level, theme_color=excluded.theme_color, icon=excluded.icon;
 insert into lessons (id, unit_id, order_index, title, description, type, xp_reward) values
  ('5084f5a0-2de2-5e9d-81c2-0cf0679c88a9','ca7c984b-adce-5315-943e-e032d26b5e63',1,$p$¿Qué hora es?$p$,$p$¿Qué hora es?$p$,'lesson',15),
  ('0743ddc6-e689-53a6-ac6a-52d53b62a37b','ca7c984b-adce-5315-943e-e032d26b5e63',2,$p$Los días de la semana$p$,$p$Los días de la semana$p$,'lesson',15),
  ('6c6e6d08-dbb4-5fc1-a5be-14894d6a8ab8','ca7c984b-adce-5315-943e-e032d26b5e63',3,$p$Verbos en -are$p$,$p$Verbos en -are$p$,'lesson',15),
  ('9e714314-51b5-5931-9d2a-64723467831f','ca7c984b-adce-5315-943e-e032d26b5e63',4,$p$Mi rutina diaria$p$,$p$Mi rutina diaria$p$,'lesson',15),
- ('620c6efb-dcca-582f-be01-158ee31e0a41','ca7c984b-adce-5315-943e-e032d26b5e63',5,$p$🏁 Checkpoint Unité 5$p$,$p$Aprende a decir la hora, los días de la semana y a hablar de tu rutina con verbos en -are.$p$,'checkpoint',40)
+ ('620c6efb-dcca-582f-be01-158ee31e0a41','ca7c984b-adce-5315-943e-e032d26b5e63',5,$p$🏁 Checkpoint Unità 5$p$,$p$Aprende a decir la hora, los días de la semana y a hablar de tu rutina con verbos en -are.$p$,'checkpoint',40)
 on conflict (unit_id, order_index) do update set title=excluded.title, description=excluded.description;
 insert into exams (id, course_id, type, cefr_level, unit_id, time_limit_sec, pass_threshold, sections) values
  ('17eda30b-6c2a-5188-a77c-caa3ed2ac622','20000000-0000-0000-0000-000000000004','checkpoint','A1','ca7c984b-adce-5315-943e-e032d26b5e63',300,0.80,$j${"skills": ["reading", "listening", "writing", "speaking"], "item_count": 10, "randomize": true}$j$::jsonb) on conflict (id) do nothing;
@@ -433,13 +433,13 @@ on conflict (id) do nothing;
 -- ── Unidad 6 (A1·it): La ciudad y direcciones ──
 insert into units (id, course_id, cefr_level, order_index, title, theme_color, icon) values
  ('9a48ae51-7880-56c6-9c17-b6a1cbb3e0f3','20000000-0000-0000-0000-000000000004','A1',6,$p$La ciudad y direcciones$p$,'#16A085','location_city')
-on conflict (course_id, order_index) do update set title=excluded.title, theme_color=excluded.theme_color, icon=excluded.icon;
+on conflict (course_id, order_index) do update set title=excluded.title, cefr_level=excluded.cefr_level, theme_color=excluded.theme_color, icon=excluded.icon;
 insert into lessons (id, unit_id, order_index, title, description, type, xp_reward) values
  ('6095a5de-e9f7-57dd-a2db-a61a59823282','9a48ae51-7880-56c6-9c17-b6a1cbb3e0f3',1,$p$Lugares de la ciudad$p$,$p$Lugares de la ciudad$p$,'lesson',15),
  ('f0f254e1-828d-50c1-9458-f819fb26bb62','9a48ae51-7880-56c6-9c17-b6a1cbb3e0f3',2,$p$¿Dónde está?$p$,$p$¿Dónde está?$p$,'lesson',15),
  ('4bb64ed6-8d98-532a-b4c5-a57fdfdc4f78','9a48ae51-7880-56c6-9c17-b6a1cbb3e0f3',3,$p$Dar direcciones$p$,$p$Dar direcciones$p$,'lesson',15),
  ('91ea4b1b-50c2-5ee3-a51d-c7dd4b9c2cf1','9a48ae51-7880-56c6-9c17-b6a1cbb3e0f3',4,$p$Al, alla, nel$p$,$p$Al, alla, nel$p$,'lesson',15),
- ('ed981da4-5da1-5be1-aa14-7d4ad6fa7c6f','9a48ae51-7880-56c6-9c17-b6a1cbb3e0f3',5,$p$🏁 Checkpoint Unité 6$p$,$p$Aprende los lugares de la ciudad, a preguntar dónde están y a dar direcciones con preposiciones articuladas.$p$,'checkpoint',40)
+ ('ed981da4-5da1-5be1-aa14-7d4ad6fa7c6f','9a48ae51-7880-56c6-9c17-b6a1cbb3e0f3',5,$p$🏁 Checkpoint Unità 6$p$,$p$Aprende los lugares de la ciudad, a preguntar dónde están y a dar direcciones con preposiciones articuladas.$p$,'checkpoint',40)
 on conflict (unit_id, order_index) do update set title=excluded.title, description=excluded.description;
 insert into exams (id, course_id, type, cefr_level, unit_id, time_limit_sec, pass_threshold, sections) values
  ('779132ba-5327-5ff1-b5f4-4832a6d83c4b','20000000-0000-0000-0000-000000000004','checkpoint','A1','9a48ae51-7880-56c6-9c17-b6a1cbb3e0f3',300,0.80,$j${"skills": ["reading", "listening", "writing", "speaking"], "item_count": 10, "randomize": true}$j$::jsonb) on conflict (id) do nothing;

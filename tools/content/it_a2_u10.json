@@ -1,0 +1,56 @@
+{
+  "unit": {"order": 10, "title_es": "Comer fuera y comprar", "color": "#E67E22", "icon": "shopping_cart"},
+  "checkpoint_desc": "Compara, pide cantidades y usa 'ne' en la tienda y el restaurante.",
+  "lessons": [
+    {"order": 1, "title_es": "Comparar: più, meno, come"},
+    {"order": 2, "title_es": "Cantidades: un chilo di..."},
+    {"order": 3, "title_es": "El pronombre ne"},
+    {"order": 4, "title_es": "En el restaurante"}
+  ],
+  "vocab": [
+    ["più", "más", "adverbio"],
+    ["meno", "menos", "adverbio"],
+    ["migliore", "mejor", "adjetivo"],
+    ["caro", "caro", "adjetivo"],
+    ["un chilo di", "un kilo de", "expresion"],
+    ["una bottiglia di", "una botella de", "expresion"],
+    ["un pacco di", "un paquete de", "expresion"],
+    ["un po' di", "un poco de", "expresion"],
+    ["ne", "de eso/de ello", "pronombre"],
+    ["il conto", "la cuenta", "sustantivo"],
+    ["il menù", "el menú", "sustantivo"],
+    ["ordinare", "pedir/ordenar", "verbo"],
+    ["Vorrei", "querría/quisiera", "expresion"],
+    ["Quanto costa?", "¿Cuánto cuesta?", "expresion"],
+    ["la mela", "la manzana", "sustantivo"],
+    ["il pane", "el pan", "sustantivo"]
+  ],
+  "items": [
+    {"lesson": 2, "topic": "vocab_spesa", "skill": "reading", "type": "match", "prompt": "Une cada palabra italiana con su traducción.", "pairs": [["il conto", "la cuenta"], ["il menù", "el menú"], ["il pane", "el pan"]]},
+    {"lesson": 1, "topic": "vocab_spesa", "skill": "reading", "type": "match", "prompt": "Une cada palabra italiana con su traducción.", "pairs": [["più", "más"], ["meno", "menos"], ["migliore", "mejor"]]},
+
+    {"lesson": 1, "topic": "comparativo", "skill": "reading", "type": "multiple_choice", "prompt": "Completa: 'Milano è più grande ___ Firenze.'", "options": ["di", "che", "come"], "value": "di"},
+    {"lesson": 1, "topic": "comparativo", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se dice 'mejor' (adjetivo) en italiano correcto?", "options": ["migliore", "più buono", "più bene"], "value": "migliore"},
+    {"lesson": 2, "topic": "quantita", "skill": "reading", "type": "multiple_choice", "prompt": "Completa la cantidad: 'Vorrei un chilo ___ mele.'", "options": ["di", "delle", "le"], "value": "di"},
+    {"lesson": 3, "topic": "ne", "skill": "reading", "type": "multiple_choice", "prompt": "'Vuoi del pane?' Responde con 'ne':", "options": ["Sì, ne voglio.", "Sì, lo voglio ne.", "Sì, voglio ne."], "value": "Sì, ne voglio."},
+
+    {"lesson": 1, "topic": "comparativo", "skill": "writing", "type": "cloze", "prompt": "Comparación con dos adjetivos: usa 'che'. 'È più simpatico ___ intelligente.'", "text": "È più simpatico ___ intelligente.", "value": "che", "accepted": ["che"]},
+    {"lesson": 3, "topic": "ne", "skill": "writing", "type": "cloze", "prompt": "Responde con el pronombre de cantidad: 'Quante mele hai? — ___ ho due.'", "text": "___ ho due.", "value": "Ne", "accepted": ["Ne", "ne"]},
+
+    {"lesson": 1, "topic": "comparativo", "skill": "writing", "type": "translation", "prompt": "Traduce: 'Este vino es menos caro que ese.'", "source": "Este vino es menos caro que ese.", "value": "Questo vino è meno caro di quello.", "accepted": ["Questo vino è meno caro di quello.", "Questo vino è meno caro di quello", "Questo vino e meno caro di quello"]},
+    {"lesson": 4, "topic": "ristorante", "skill": "writing", "type": "translation", "prompt": "Traduce: 'La cuenta, por favor.'", "source": "La cuenta, por favor.", "value": "Il conto, per favore.", "accepted": ["Il conto, per favore.", "Il conto, per favore", "Il conto per favore"]},
+
+    {"lesson": 2, "topic": "quantita", "skill": "writing", "type": "word_bank", "prompt": "Ordena las fichas: 'Querría una botella de agua.'", "tiles": ["Vorrei", "una bottiglia", "di", "acqua", "delle", "un chilo"], "sequence": ["Vorrei", "una bottiglia", "di", "acqua"]},
+
+    {"lesson": 4, "topic": "ristorante", "skill": "writing", "type": "reorder", "prompt": "Ordena la frase: '¿Cuánto cuesta el menú?'", "tiles": ["il", "costa", "Quanto", "menù"], "sequence": ["Quanto", "costa", "il", "menù"]},
+
+    {"lesson": 1, "topic": "comparativo", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Questa pizza è migliore di quella.", "options": ["Questa pizza è migliore di quella.", "Questa pizza è peggiore di quella.", "Questa pasta è migliore di quella."], "value": "Questa pizza è migliore di quella."},
+    {"lesson": 2, "topic": "quantita", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Prendo un pacco di pasta.", "options": ["Prendo un pacco di pasta.", "Prendo un chilo di pasta.", "Prendo un pacco di riso."], "value": "Prendo un pacco di pasta."},
+    {"lesson": 3, "topic": "ne", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Sì, ne voglio un po'.", "options": ["Sì, ne voglio un po'.", "Sì, ne voglio due.", "No, non ne voglio."], "value": "Sì, ne voglio un po'."},
+    {"lesson": 4, "topic": "ristorante", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Vorrei ordinare, per favore.", "options": ["Vorrei ordinare, per favore.", "Vorrei pagare, per favore.", "Vorrei il conto, per favore."], "value": "Vorrei ordinare, per favore."},
+
+    {"lesson": 1, "topic": "comparativo", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Roma è più grande di Firenze."},
+    {"lesson": 2, "topic": "quantita", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Vorrei un po' di pane."},
+    {"lesson": 4, "topic": "ristorante", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Quanto costa il conto?"}
+  ]
+}

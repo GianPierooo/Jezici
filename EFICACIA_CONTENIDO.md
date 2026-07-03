@@ -6,6 +6,15 @@
 > Prioridad: es→en A1/A2 a fondo (lo que los testers usan hoy). B1–C1 y es→pt: perfil
 > estructural + diferido (ver "Pendiente").
 
+## Pilotos es→fr + es→it A2 (2026-07-02) — continúa la escalera, mismo balance
+- **fr A2 y it A2:** R36 · W36 · **L25 · S18** → L=69%, S=50% de (R+W)/2 (idéntico al A1). 115 ítems/idioma,
+  6 unidades (order 7-12) que ENCADENAN con A1 (gating por checkpoints, verificado con caminata de 12
+  unidades cliente real). Currículo A2 CEFR real: passé composé/passato prossimo (avoir/avere→être/essere
+  con concordancia), futur/futuro, comparativos, imparfait/imperfetto, pronombres objeto (COD/diretti),
+  «avoir mal à»/«avere mal di», consejos (il faut/bisogna, devrais/dovresti). Validación nativa: 0 errores
+  reales en A2 (fr e it). **Techo determinista de producción idéntico** (speaking=proxy; writing tolerante)
+  → sin cert de nivel A2 aún (Fase 2). **Diferido:** B1+ fr/it.
+
 ## Pilotos es→fr + es→it A1 (2026-07-02) — 4 habilidades balanceadas DESDE el arranque
 - **fr A1:** R38 · W36 · **L23 · S18** → L=62%, S=49% de (R+W)/2. **it A1:** R36 · W36 · **L25 · S18** →
   L=69%, S=50%. Es decir: **NO nacen con el sesgo 3:1** — el balance L/S de es→en/pt se aplicó desde el
