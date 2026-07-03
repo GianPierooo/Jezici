@@ -5,6 +5,7 @@ import '../../core/audio/music_controller.dart';
 import '../../core/audio/music_service.dart';
 import '../../core/audio/sound_controller.dart';
 import '../../core/feedback/feedback_sheet.dart';
+import '../../core/speech/speech_lang.dart';
 import '../../data/providers.dart';
 import '../conversar/conversar_screen.dart';
 import '../leagues/leagues_screen.dart';
@@ -65,6 +66,10 @@ class _HomeShellState extends ConsumerState<HomeShell> with WidgetsBindingObserv
   Widget build(BuildContext context) {
     ref.watch(soundEnabledProvider); // carga la preferencia de sonido al montar
     ref.watch(musicEnabledProvider); // carga la preferencia de música ambiente
+    // Idioma de HABLA del curso activo (TTS de tile + reconocedor de speaking):
+    // pronuncia/reconoce en el idioma que se aprende (en/pt/fr/it), no en inglés fijo.
+    // Se reevalúa al cambiar de curso (coursesProvider se invalida en set_active_course).
+    ref.watch(activeCourseTargetProvider).whenData(SpeechLang.setFromCourseTarget);
     const screens = <Widget>[
       LearnMapScreen(),
       PracticeScreen(),

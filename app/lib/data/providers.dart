@@ -59,6 +59,15 @@ final activeCourseIdProvider = FutureProvider<String>((ref) async {
   return courses.firstWhere((c) => c.active, orElse: () => courses.first).id;
 });
 
+/// Código de idioma META del curso activo (en/pt/fr/it) → idioma de HABLA (TTS de tile
+/// + reconocedor de speaking). Antes el habla era inglés fijo (voz no correspondía al
+/// idioma en pt/fr/it). Fallback 'en'.
+final activeCourseTargetProvider = FutureProvider<String>((ref) async {
+  final courses = await ref.watch(coursesProvider.future);
+  if (courses.isEmpty) return 'en';
+  return courses.firstWhere((c) => c.active, orElse: () => courses.first).target;
+});
+
 /// Unidades del curso ACTIVO (con lecciones). Alimenta el mapa de "Aprender".
 final mapUnitsProvider = FutureProvider<List<UnitModel>>((ref) async {
   final courseId = await ref.watch(activeCourseIdProvider.future);

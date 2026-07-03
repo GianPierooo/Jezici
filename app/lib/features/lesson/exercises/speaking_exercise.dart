@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../core/speech/speech_lang.dart';
 import '../../../core/speech/speech_recognizer.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/content_item_model.dart';
@@ -63,7 +64,7 @@ class _SpeakingExerciseState extends State<SpeakingExercise> {
     });
     HapticFeedback.selectionClick();
     _rec.listen(
-      localeId: 'en_US',
+      localeId: SpeechLang.stt, // idioma del curso activo (en/pt/fr/it), no inglés fijo
       listenFor: const Duration(seconds: 8),
       onResult: (transcript, isFinal) {
         if (!mounted) return;
