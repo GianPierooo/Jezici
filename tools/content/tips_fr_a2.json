@@ -1,0 +1,56 @@
+[
+  {
+    "unit": 7,
+    "topic": "passe_compose_reguliers",
+    "skill": "writing",
+    "type": "gramatica",
+    "title": "El pasado en dos piezas",
+    "body": "El passé composé se arma con avoir en presente + participio: los verbos en -er hacen -é (manger → mangé). Memoriza los irregulares estrella: fait, pris, vu, eu, bu.",
+    "example": "Hier, j'ai mangé une pomme. · Tu as fait le ménage ? · Nous avons vu un film."
+  },
+  {
+    "unit": 8,
+    "topic": "futur_proche",
+    "skill": "listening",
+    "type": "gramatica",
+    "title": "Dos futuros, dos sabores",
+    "body": "Para un plan cercano usa el futur proche: «je vais + infinitivo», igual que el español «voy a…» — es el que más oirás en la calle. El futur simple (je parlerai) sirve para promesas y predicciones; sus irregulares clave son serai, aurai, irai, ferai.",
+    "example": "Demain, je vais visiter le Louvre. · Un jour, je parlerai couramment français."
+  },
+  {
+    "unit": 9,
+    "topic": "accord_participe",
+    "skill": "writing",
+    "type": "error_comun",
+    "title": "Con être, el participio se viste",
+    "body": "Los verbos de movimiento van con être y el participio concuerda con el sujeto: elle → allée, ils → partis. Con avoir el participio nunca cambia: «elle a mangé», sin -e extra.",
+    "example": "Elle est allée au marché. · Ils sont partis en train. · Elles sont arrivées hier."
+  },
+  {
+    "unit": 10,
+    "topic": "comparatif",
+    "skill": "reading",
+    "type": "error_comun",
+    "title": "«Plus bon» no existe",
+    "body": "Para comparar: plus/moins/aussi + adjetivo + que. El comparativo de bon es meilleur — nunca digas «plus bon». Con cantidades, «de» va sin artículo: beaucoup de pain, un peu de lait.",
+    "example": "Ce café est meilleur que l'autre. · Elle est aussi grande que moi. · J'achète beaucoup de pain."
+  },
+  {
+    "unit": 11,
+    "topic": "imparfait_intro",
+    "skill": "reading",
+    "type": "mnemotecnia",
+    "title": "El imparfait pinta el decorado",
+    "body": "Piensa en una escena de película: el imparfait es el decorado (cómo era, qué había, lo que hacías de costumbre) y el passé composé es la acción que irrumpe. Frases ancla: c'était, il y avait, quand j'étais petit.",
+    "example": "Quand j'étais petit, il y avait un jardin. C'était magnifique… et un jour, tout a changé."
+  },
+  {
+    "unit": 12,
+    "topic": "avoir_mal_a",
+    "skill": "speaking",
+    "type": "gramatica",
+    "title": "¿Dónde te duele? Dilo con à",
+    "body": "«Avoir mal à» se contrae con el artículo: à + le = au (au dos), à + les = aux (aux dents); con la no cambia (à la tête). Para dar consejos usa «il faut + infinitivo» o «tu devrais…».",
+    "example": "J'ai mal à la tête et au dos. · Tu devrais te reposer. · Il faut boire de l'eau."
+  }
+]

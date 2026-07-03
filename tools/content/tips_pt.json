@@ -1,0 +1,56 @@
+[
+  {
+    "unit": 1,
+    "topic": "ser_apresentacao",
+    "skill": "speaking",
+    "type": "error_comun",
+    "title": "«Você» habla en tercera persona",
+    "body": "Aunque «você» significa 'tú', el verbo va como con él/ella: «você é», nunca «você és». Así queda SER: eu sou, você é, nós somos — y al presentarte, un «Muito prazer!» abre todas las puertas.",
+    "example": "Eu sou o Pedro · Você é a Maria? · Nós somos amigos · Muito prazer!"
+  },
+  {
+    "unit": 2,
+    "topic": "posesivos_genero",
+    "skill": "writing",
+    "type": "gramatica",
+    "title": "¿Meu o minha? Manda la cosa, no el dueño",
+    "body": "El posesivo concuerda con el género de lo que posees: «pai» es masculino → «meu pai»; «mãe» es femenina → «minha mãe», lo diga un hombre o una mujer. Y para decir qué tienes, el verbo TER: eu tenho, você tem.",
+    "example": "meu pai · minha mãe · seu carro · sua casa · Eu tenho dois irmãos"
+  },
+  {
+    "unit": 3,
+    "topic": "rutina_presente",
+    "skill": "writing",
+    "type": "gramatica",
+    "title": "«Gostar» nunca camina solo: siempre con «de»",
+    "body": "El presente de los verbos en -AR te sonará familiar: eu moro, eu trabalho, você mora. Pero «gostar» siempre pide «de», incluso antes de otro verbo: «gosto de estudar», jamás «gosto estudar».",
+    "example": "Eu moro em São Paulo · Trabalho todos os dias · Gosto de café · Gosto de estudar português"
+  },
+  {
+    "unit": 4,
+    "topic": "pedir_precos",
+    "skill": "speaking",
+    "type": "cultura",
+    "title": "«Queria» te hace más amable",
+    "body": "Para pedir, «eu quero» funciona, pero «eu queria» suena más suave y cortés: es el favorito de los brasileños en cafés y tiendas. Para el precio, pregunta «Quanto custa?» y la respuesta llega en reales: «São cinco reais».",
+    "example": "Eu queria um café, por favor · Quanto custa? · São cinco reais"
+  },
+  {
+    "unit": 5,
+    "topic": "ficar_localizacao",
+    "skill": "listening",
+    "type": "error_comun",
+    "title": "En Brasil los lugares no están: «ficam»",
+    "body": "Para ubicar, el pt-BR prefiere FICAR: «Onde fica o banco?» suena mucho más natural que «onde está». Y para entender la respuesta, tus tres brújulas: perto de (cerca de), longe de (lejos de), ao lado de (al lado de).",
+    "example": "Onde fica o banco? · Fica perto da praça · Longe do hotel · Ao lado do mercado"
+  },
+  {
+    "unit": 6,
+    "topic": "gostar_frequencia",
+    "skill": "reading",
+    "type": "mnemotecnia",
+    "title": "Segunda-feira es lunes: ¡domingo cuenta primero!",
+    "body": "Los días laborales se numeran contando desde el domingo: segunda-feira (lunes), terça, quarta… y van siempre en minúscula. Para tus pasatiempos, «gostar de + infinitivo» con su dosis de frecuencia: sempre, às vezes, nunca.",
+    "example": "Gosto de jogar futebol aos sábados · Sempre estudo de manhã · Às vezes danço · segunda-feira · terça-feira"
+  }
+]

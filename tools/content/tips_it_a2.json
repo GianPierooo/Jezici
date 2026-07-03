@@ -1,0 +1,56 @@
+[
+  {
+    "unit": 7,
+    "topic": "passato_avere",
+    "skill": "writing",
+    "type": "gramatica",
+    "title": "Ho fatto, ho visto: el pasado con avere",
+    "body": "El passato prossimo con AVERE se forma con avere en presente + participio: los verbos en -are hacen -ato (mangiare → mangiato). Memoriza los irregulares clave: fatto, preso, visto, letto, bevuto. Con avere el participio NO concuerda con el sujeto: «Maria ha mangiato», nunca «ha mangiata».",
+    "example": "ho mangiato · hai fatto · abbiamo visto · hanno letto un libro"
+  },
+  {
+    "unit": 8,
+    "topic": "futuro_regolare",
+    "skill": "writing",
+    "type": "error_comun",
+    "title": "Mangerò, no mangiarò: la e del futuro",
+    "body": "El futuro semplice termina en -ò, -ai, -à: parlerò, finirò. Ojo con la ortografía: los verbos en -are cambian la a por e (mangiare → mangerò, comprare → comprerò), el error típico es escribir «mangiarò». Los irregulares más frecuentes acortan la raíz: sarò, avrò, andrò, farò, verrò.",
+    "example": "domani parlerò · mangerò una pizza · comprerò il biglietto · sarò a Roma"
+  },
+  {
+    "unit": 9,
+    "topic": "concordanza",
+    "skill": "speaking",
+    "type": "mnemotecnia",
+    "title": "Con essere, el participio se viste del sujeto",
+    "body": "Los verbos de movimiento y estado (andare, venire, partire, arrivare…) forman el passato prossimo con ESSERE, y el participio concuerda con el sujeto como si fuera un adjetivo: «lei è andata», «loro sono partiti». Truco: pregúntate quién lo hizo y viste el participio con su ropa (-o, -a, -i, -e). Por eso «sono andato» lo dice él y «sono andata» lo dice ella.",
+    "example": "lui è andato · lei è andata · loro sono partiti · le ragazze sono arrivate"
+  },
+  {
+    "unit": 10,
+    "topic": "comparativo",
+    "skill": "speaking",
+    "type": "gramatica",
+    "title": "¿Più grande DI o CHE? Depende de qué compares",
+    "body": "Para comparar dos nombres usa «più/meno + adjetivo + DI»: «Milano è più grande di Verona». Entre dos adjetivos (o dos verbos) usa CHE: «è più bello che comodo». Ojo: se dice «migliore», no «più buono»; y para las cantidades está el pronombre «ne»: «ne voglio due».",
+    "example": "più grande di Roma · più bello che comodo · questo caffè è migliore · ne voglio due"
+  },
+  {
+    "unit": 11,
+    "topic": "imperfetto",
+    "skill": "reading",
+    "type": "gramatica",
+    "title": "El imperfetto pinta, el passato prossimo dispara",
+    "body": "El imperfetto describe el escenario del pasado: cómo eras, qué había, qué tiempo hacía («ero stanco», «c'era il sole», «faceva freddo»). El passato prossimo cuenta la acción puntual que pasó: «mentre dormivo, ha squillato il telefono». Essere es irregular: ero, eri, era.",
+    "example": "ero stanco · avevo fame · c'era il sole · faceva freddo · ha squillato il telefono"
+  },
+  {
+    "unit": 12,
+    "topic": "mal_di",
+    "skill": "speaking",
+    "type": "error_comun",
+    "title": "Mal di testa: sin artículo, sin excepciones",
+    "body": "«Avere mal di» va SIN artículo: «ho mal di testa», «ho mal di gola» — nunca «mal della testa». La alternativa con artículo es otra estructura: «mi fa male la testa» (me duele la cabeza). Para dar consejos usa «bisogna + infinitivo» o el suave «dovresti…».",
+    "example": "ho mal di testa · mi fa male la gola · bisogna riposare · dovresti bere più acqua"
+  }
+]

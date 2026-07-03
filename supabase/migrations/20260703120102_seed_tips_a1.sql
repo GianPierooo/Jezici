@@ -1,7 +1,7 @@
 -- 20260703120102_seed_tips_a1.sql
--- Tips post-lección A1 es→fr/it/de/nl (6/curso, 1 por unidad). ADITIVA (no toca
--- los tips en de mig 057). content_tips es course-scoped → get_lesson_tip (mig 069,
--- WHERE course_id=jz_active_course()) devuelve sólo el del curso activo. Sin fuga.
+-- Tips post-lección multi-curso (lote a1). ADITIVA (no toca los tips en de mig
+-- 057). content_tips es course-scoped → get_lesson_tip (mig 069, WHERE course_id=
+-- jz_active_course()) devuelve sólo el del curso activo. Sin fuga multicurso.
 begin;
 insert into content_tips (id, course_id, unit_order, cefr_level, skill, type, topic, title, body, example) values
 ('774fc041-8c84-5eed-8b9e-18d2f6ec8a45'::uuid,'20000000-0000-0000-0000-000000000003'::uuid,1,'A1',$p$speaking$p$,$p$gramatica$p$,$p$tu_vous_etre$p$,$p$«tu» para amigos, «vous» para respeto$p$,$p$El francés distingue el trato como el español (tú/usted): «tu es» es informal (con amigos y familia) y «vous êtes» es formal (con desconocidos o mayores). Fíjate en el verbo être: cambia de «es» a «êtes» según a quién hablas. Al preguntar el nombre también cambia todo: «Comment tu t'appelles ?» vs «Comment vous appelez-vous ?».$p$,$p$Tu es espagnol. · Vous êtes espagnol. · Comment tu t'appelles ? · Comment vous appelez-vous ?$p$),
