@@ -122,7 +122,7 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
 | Ligas + Leaderboards | ✅ rollover real (mig 059): cierre semanal idempotente/lazy + ascensos (top 7)/descensos (fondo 5) Bronce↔Diamante + snapshots. `get_leaderboard` (XP/Racha/Lecciones/Certificados × Semanal/Mensual/Anual/Histórico × Global/División, SIN user_id). UI con segmentos (Mi liga / Tablas) **LIVE** (deploy-pending hasta push). Falta: **cron** que dispare el cierre (hoy es lazy-on-read; ver abajo) |
 | **C1 es→en** | ✅ **sembrado y live** (mig 063): 6 unidades (25–30), **252 ítems** (192 lección + 60 checkpoint fresco), 4 habilidades, audio **67/67**. **Sin examen/cert C1** por diseño (techo determinista — writing/speaking a C1 no son evaluables sin IA; mig 064 tope el examen en B2 + blinda C1). Progresión intra-C1 por checkpoints (≥80%). Placement C1 ahora con banco real (8 ítems) + arranque en U25 (mig 075/076/077). Ver `docs/LEVELS_C1_DESIGN.md` y fila **Test de ubicación** |
 | C2 | ❌ documentado, no sembrado (otra pasada) |
-| Conversar / Simulacros | ⏸️ pantallas existen, **ocultas** (decisión GA6) |
+| Conversar | ✅ **VISIBLE** (pestaña 2 del nav, GA7): práctica en solitario/asíncrona (tema → escribe/habla → respuesta modelo + autoevaluación) + captura de interés para la conversación EN VIVO (Fase 2). ⚠️ **Contenido hardcodeado en INGLÉS** (`conversar_screen.dart`, `topics`) → un usuario pt/fr/it ve respuestas modelo en inglés. Multicurso pendiente. (Los docs viejos decían "oculto GA6" — FALSO, se reactivó en GA7.) |
 
 ### Ligas — automatización del cierre (pendiente del dueño)
 El rollover (`jz_close_weeks()`) es **idempotente + lazy**: se ejecuta al leer
@@ -168,6 +168,14 @@ se mueve, por diseño.
   D1/D7/D30, lecciones/día, % aprueba checkpoint/examen, % certifica, **embudo de onboarding**
   (paso a paso + dónde abandonan) y **embudo de lección 30d** (iniciadas/completadas/
   abandonadas/sin-vidas + tasa de finalización).
+- **FEEDBACK DE USUARIOS — dónde lo ve Gian (mig 099, 2026-07-02):** el feedback in-app
+  (`FeedbackFab` app-wide → `submit_feedback` → tabla `feedback`) se capturaba pero era
+  **ILEGIBLE** (la tabla tiene RLS solo-INSERT y `get_engagement` daba solo el CONTEO por tipo,
+  no el texto). Nuevo **`get_feedback(limit)`** (admin-gated, SIN PII: user_id recortado a 8
+  chars) devuelve los MENSAJES reales; **MetricsScreen los muestra en la sección "Mensajes de
+  usuarios"** (texto + tipo + pantalla + fecha). Gian: Ajustes → Ver métricas → baja a "Mensajes
+  de usuarios". **Query directa (admin):** `select created_at, kind, screen, message from feedback
+  order by created_at desc;`. Verificado cliente real (no-admin → "admin only"; admin → mensajes).
 - **Eventos (allowlist `log_event`, mig 058+061):** `app_open, client_error, conversar_attempt,
   lesson_complete, mission_started, onboarding_completed, onboarding_step, screen_view` +
   **`lesson_start, lesson_quit, no_hearts`** (mig 061). ⚠️ Evento fuera del allowlist = descarte

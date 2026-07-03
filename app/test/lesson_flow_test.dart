@@ -42,6 +42,8 @@ class FakeProgressRepository implements ProgressRepository {
   @override
   Future<HomeStats> fetchHomeStats() async => HomeStats.empty;
   @override
+  Future<List<Map<String, dynamic>>> fetchFeedback() async => const [];
+  @override
   Future<List<StorySummary>> fetchStories() async => const [];
   @override
   Future<StoryDetail> fetchStory(String storyId) async => throw UnimplementedError();

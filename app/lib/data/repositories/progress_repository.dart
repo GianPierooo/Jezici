@@ -426,6 +426,15 @@ class ProgressRepository {
     return Map<String, dynamic>.from(res as Map);
   }
 
+  /// Mensajes de feedback REALES (texto) — admin only (get_feedback). Antes solo se
+  /// veía el conteo por tipo; esto devuelve lo que escribieron los usuarios (sin PII).
+  Future<List<Map<String, dynamic>>> fetchFeedback() async {
+    final res = await _client.rpc('get_feedback', params: {'p_limit': 100});
+    return ((res as List?) ?? const [])
+        .map((e) => Map<String, dynamic>.from(e as Map))
+        .toList();
+  }
+
   // ── Feedback in-app + Conversar (taste seguro) — GA7 ──────────────────────
 
   /// Envía feedback/bug desde cualquier pantalla, con contexto.

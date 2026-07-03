@@ -46,6 +46,21 @@ Fixes aplicados en misiones posteriores (todos live, cliente real, CI verde):
 | **P2-8** Colores hardcodeados | ⏸️ **DIFERIDO** | Cosmético (sombras/bordes, no marca). Ver UX_AUDIT.md. |
 | **P2-10** Deuda técnica leaderboards | ⏸️ **DIFERIDO** | Impacto actual nulo (paginación futura). |
 
+### Diagnóstico + reparación 2026-07-02 (QA senior, cliente real, fuente=repo+BD)
+Re-verificado TODO el núcleo en vivo (batería `verify_*`): **grading 42501, loop, progresión/
+gating/checkpoint/examen/certificado (en A1→B2, pt A1→B1, fr/it A1→A2 con caminata de 12
+unidades), aislamiento multicurso de los 4 cursos (0 cruces), gamificación completa (xp/oro/
+racha/freeze/ligas sin fuga user_id/leaderboards/cofre/logros/misión/tienda), práctica (4 modos),
+inmersión (en), tips (en), placement (en/pt)** — TODO VERDE.
+
+| Hallazgo | Sev | Estado | Evidencia / fix |
+|---|---|---|---|
+| **Feedback ILEGIBLE** (se capturaba pero nadie leía el texto) | **P1** | ✅ **REPARADO (mig 099)** | `submit_feedback`→tabla `feedback` (RLS solo-INSERT) funcionaba, pero `get_engagement` daba solo conteo por tipo. Nuevo `get_feedback` admin (SIN PII) + sección "Mensajes de usuarios" en MetricsScreen. Cliente real: no-admin→"admin only", admin→2 mensajes reales. |
+| **Docs decían "Conversar oculto (GA6)"** — FALSO | **P1 veracidad** | ✅ **CORREGIDO en docs** | `home_shell` lo tiene como pestaña VISIBLE (GA7, práctica solo + captura de interés). Docs/memoria actualizados. |
+| **Conversar hardcodeado en inglés** | **P1** | ⏸️ **DIFERIDO** (documentado) | `conversar_screen.dart` `topics` = respuestas modelo en inglés → pt/fr/it ven inglés. Multicurso pendiente (contenido por idioma). |
+| **Capa "enseña" solo es→en** (tips 72/0/0/0, historias 6/0/0/0, imágenes en, placement en+pt) | **P1** | ⏸️ **DIFERIDO** (degrada con gracia) | fr/it sin tips/historias/imágenes/placement; arrancan A1 por default. Ya en "Diferido" de CLAUDE.md. |
+| **Bugs reportados por usuarios reales** (ahora legibles) | — | 📋 para Gian | "El radar no carga" (perfil, 2026-06-17 — anterior al rework de perfil, probablemente superado) · "Voz correspondiente al idioma" (perfil, 2026-07-02 — vago, sobre audio/pronunciación). |
+
 ---
 
 ## 1. P0 — CORRECTITUD (rompe)

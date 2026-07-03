@@ -178,6 +178,11 @@ final onboardingFunnelProvider = FutureProvider<Map<String, dynamic>>(
   (ref) => ref.watch(progressRepositoryProvider).fetchOnboardingFunnel(),
 );
 
+/// Feedback de usuarios (mensajes reales, texto) — admin only (get_feedback).
+final feedbackProvider = FutureProvider<List<Map<String, dynamic>>>(
+  (ref) => ref.watch(progressRepositoryProvider).fetchFeedback(),
+);
+
 /// Engagement (uso por sección, feedback, interés Conversar) — GA7.
 final engagementProvider = FutureProvider<Map<String, dynamic>>(
   (ref) => ref.watch(progressRepositoryProvider).fetchEngagement(),

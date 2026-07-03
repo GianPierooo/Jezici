@@ -60,6 +60,7 @@ class MetricsScreen extends ConsumerWidget {
               ]),
               _OnboardingFunnel(),
               _Engagement(),
+              _FeedbackMessages(),
               const SizedBox(height: 8),
               Text('Generado: ${m['generated_at'] ?? ''}',
                   style: const TextStyle(fontSize: 11, color: AppColors.textMuted, fontWeight: FontWeight.w600)),
@@ -274,4 +275,79 @@ class _Engagement extends ConsumerWidget {
             boxShadow: const [BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 5), blurRadius: 0)]),
         child: child,
       );
+}
+
+/// Mensajes de feedback REALES de los usuarios (texto). Antes solo se veía el conteo
+/// por tipo; esto muestra lo que escribieron (admin only, get_feedback). Sin PII.
+class _FeedbackMessages extends ConsumerWidget {
+  static const _kindEmoji = {'idea': '💡', 'bug': '🐞', 'other': '💬'};
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final async = ref.watch(feedbackProvider);
+    return async.maybeWhen(
+      orElse: () => const SizedBox.shrink(),
+      data: (list) {
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Row(children: [
+              const Text('Mensajes de usuarios',
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+              const SizedBox(width: 8),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                decoration: BoxDecoration(
+                    color: AppColors.primary.withValues(alpha: 0.12),
+                    borderRadius: BorderRadius.circular(10)),
+                child: Text('${list.length}',
+                    style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w900, color: AppColors.primary)),
+              ),
+            ]),
+            const SizedBox(height: 8),
+            if (list.isEmpty)
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                decoration: BoxDecoration(
+                    color: Colors.white, borderRadius: BorderRadius.circular(18),
+                    boxShadow: const [BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 5), blurRadius: 0)]),
+                child: const Text('Aún sin mensajes.',
+                    style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+              )
+            else
+              for (final f in list) _feedbackCard(f),
+          ]),
+        );
+      },
+    );
+  }
+
+  Widget _feedbackCard(Map<String, dynamic> f) {
+    final kind = (f['kind'] as String?) ?? 'other';
+    final screen = (f['screen'] as String?) ?? '';
+    final date = (f['created_at'] as String?)?.split('T').first ?? '';
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
+      decoration: BoxDecoration(
+          color: Colors.white, borderRadius: BorderRadius.circular(18),
+          boxShadow: const [BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 5), blurRadius: 0)]),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(children: [
+          Text(_kindEmoji[kind] ?? '💬', style: const TextStyle(fontSize: 14)),
+          const SizedBox(width: 6),
+          Expanded(
+            child: Text('$kind · $screen',
+                style: const TextStyle(fontSize: 11.5, fontWeight: FontWeight.w800, color: AppColors.textMuted)),
+          ),
+          Text(date, style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w600, color: AppColors.textMuted)),
+        ]),
+        const SizedBox(height: 6),
+        Text((f['message'] as String?) ?? '',
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.text)),
+      ]),
+    );
+  }
 }
