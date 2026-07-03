@@ -1,0 +1,26 @@
+[
+  {
+    "model": "Bonjour, je voudrais un café et une part de gâteau, s'il vous plaît. Combien ça coûte ?",
+    "tips": ["Bonjour, je voudrais…", "…s'il vous plaît.", "Combien ça coûte ?"]
+  },
+  {
+    "model": "Bonjour, je m'appelle Ana, enchantée ! Je viens du Pérou et je suis professeure.",
+    "tips": ["Je m'appelle…", "Enchanté(e) !", "Je viens de… et je travaille comme…"]
+  },
+  {
+    "model": "Excusez-moi, où est la porte 12, s'il vous plaît ? À quelle heure part le vol pour Madrid ?",
+    "tips": ["Excusez-moi, où est… ?", "À quelle heure part le vol pour… ?", "la porte 12"]
+  },
+  {
+    "model": "Le week-end dernier, je suis allé au parc avec mes amis et nous avons déjeuné ensemble.",
+    "tips": ["Le week-end dernier, je suis allé(e)…", "avec mes amis", "nous avons déjeuné ensemble"]
+  },
+  {
+    "model": "Ce poste m'intéresse parce que j'aime travailler avec les gens et parce que je veux apprendre.",
+    "tips": ["Ce poste m'intéresse parce que…", "j'aime travailler avec…", "je veux apprendre"]
+  },
+  {
+    "model": "Excusez-moi, pour aller à la gare, s'il vous plaît ? Est-ce que c'est loin d'ici ?",
+    "tips": ["Excusez-moi, pour aller à… ?", "…s'il vous plaît ?", "C'est loin d'ici ?"]
+  }
+]

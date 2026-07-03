@@ -2,6 +2,25 @@
 
 ---
 
+## Multi-idioma del cliente (VOZ + Conversar) — 2026-07-02 ✅ REPARADO
+> Dos bugs de la misma clase: **el cliente asumía inglés** aunque el curso fuera pt/fr/it.
+- **VOZ (TTS de tile + reconocedor de speaking)** estaba hardcodeada a inglés (`word_tts_web`
+  `lang='en-US'`, `speaking_exercise` `localeId='en_US'`) → en pt/fr/it la voz no correspondía
+  al idioma (feedback real "voz correspondiente al idioma"). **Fix:** `SpeechLang` (estático,
+  fijado en `HomeShell` desde `activeCourseTargetProvider`) → en-US/pt-BR/fr-FR/it-IT.
+- **Conversar** tenía los 6 topics con model+tips **solo en inglés** → pt/fr/it veían inglés
+  (roto para 3 de 4 cursos, feature visible en la pestaña 2). **Fix:** `ConvTopic.models` = mapa
+  por idioma META (en/pt/fr/it); `ConversarScreen` resuelve con `activeCourseTargetProvider` +
+  `modelFor(lang)` (fallback en). Model+tips autorados por **profesores nativos** (pt-BR/fr/it,
+  `gen_conversar.py`); títulos/escenarios ES compartidos. Su reconocedor de voz → `SpeechLang.stt`.
+- **Verificación:** unit tests (`speech_lang_test`, `conversar_topics_test` = 6 topics × 4 idiomas ×
+  3 tips + fallback) + **cliente real** (`get_courses` da el `target` correcto por curso activo:
+  en/pt/fr/it) + analyze 0 + test 91/91. Multicurso intacto (client-side, no toca BD/contenido).
+- **Diferido:** capa "enseña" (tips/historias/imágenes/placement) sigue casi solo es→en (contenido
+  por idioma); conversación EN VIVO = Fase 2.
+
+---
+
 ## Pilotos es→fr + es→it — NIVEL A2 — 2026-07-02 ✅ LIVE + VERIFICADO (cliente real)
 > Continuación del piloto: **A2 completo** para AMBOS idiomas (fr/it), encadenado sobre el A1.
 > Fuente de verdad = repo+BD (los docs estaban al día; A2 NO existía → construido desde cero).

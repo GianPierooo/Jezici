@@ -1,0 +1,50 @@
+[
+  {
+    "model": "Oi, bom dia! Você pode me ver um café e um pedaço de bolo, por favor? Quanto fica?",
+    "tips": [
+      "Você pode me ver um…?",
+      "Um café e um pedaço de bolo, por favor.",
+      "Quanto fica?"
+    ]
+  },
+  {
+    "model": "Oi, muito prazer! Eu sou a Ana, sou do Peru e trabalho como professora.",
+    "tips": [
+      "Muito prazer!",
+      "Eu sou o/a…, sou do/da…",
+      "Trabalho como…"
+    ]
+  },
+  {
+    "model": "Com licença, onde fica o portão 12? E que horas sai o voo para Madri?",
+    "tips": [
+      "Com licença, onde fica o portão…?",
+      "Que horas sai o voo para…?",
+      "O voo está no horário?"
+    ]
+  },
+  {
+    "model": "No fim de semana passado eu fui ao parque com os meus amigos e a gente almoçou junto.",
+    "tips": [
+      "No fim de semana passado eu fui…",
+      "…com os meus amigos.",
+      "A gente almoçou junto."
+    ]
+  },
+  {
+    "model": "Eu tenho interesse nesta vaga porque gosto de trabalhar com pessoas e quero aprender muito mais.",
+    "tips": [
+      "Eu tenho interesse nesta vaga porque…",
+      "Gosto de trabalhar com pessoas.",
+      "Quero aprender…"
+    ]
+  },
+  {
+    "model": "Com licença, como eu chego na estação de trem? É longe daqui?",
+    "tips": [
+      "Com licença, como eu chego na…?",
+      "É longe daqui?",
+      "Dá para ir a pé?"
+    ]
+  }
+]

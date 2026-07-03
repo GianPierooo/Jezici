@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/speech/speech_lang.dart';
 import '../../core/speech/speech_recognizer.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/providers.dart';
@@ -13,29 +14,52 @@ import '../../data/providers.dart';
 class ConversarScreen extends ConsumerWidget {
   const ConversarScreen({super.key});
 
+  // Títulos/escenarios en español (compartidos); model+tips por idioma META del curso
+  // (en/pt/fr/it) → cada usuario ve la respuesta modelo en el idioma que aprende.
+  // Generado por tools/content/gen_conversar.py (autorado por profesores nativos).
   static const topics = <ConvTopic>[
-    ConvTopic('Pedir un café', '☕', 'Estás en una cafetería. Pide un café y algo de comer, y pregunta el precio.',
-        'Hi! Can I have a coffee and a piece of cake, please? How much is it?',
-        ['Can I have…?', 'How much is it?', 'please / thank you']),
-    ConvTopic('Presentarte', '👋', 'Conoces a alguien nuevo. Preséntate: nombre, de dónde eres y qué haces.',
-        "Hi, I'm Ana. Nice to meet you! I'm from Peru and I work as a teacher.",
-        ["I'm…", "Nice to meet you", "I'm from… / I work as…"]),
-    ConvTopic('En el aeropuerto', '✈️', 'Estás en el aeropuerto. Pregunta por tu puerta y la hora del vuelo.',
-        'Excuse me, where is gate 12? What time does the flight to Madrid leave?',
-        ['Excuse me…', 'Where is…?', 'What time does… leave?']),
-    ConvTopic('Tu fin de semana', '🌤️', 'Cuenta qué hiciste el fin de semana pasado (pasado simple).',
-        'Last weekend I went to the park with my friends and we had lunch together.',
-        ['Last weekend I…', 'went / had / saw', 'with my friends']),
-    ConvTopic('Una entrevista breve', '💼', 'Te preguntan por qué quieres el trabajo. Responde con 2 razones.',
-        "I'm interested in this job because I like working with people and I want to learn.",
-        ["I'm interested because…", 'I like…', 'I want to…']),
-    ConvTopic('Pedir indicaciones', '🧭', 'Pregunta cómo llegar a la estación de tren y si está lejos.',
-        'Excuse me, how do I get to the train station? Is it far from here?',
-        ['How do I get to…?', 'Is it far?', 'turn left / right']),
+    ConvTopic("Pedir un café", "☕", "Estás en una cafetería. Pide un café y algo de comer, y pregunta el precio.", {
+      'en': ConvModel("Hi! Can I have a coffee and a piece of cake, please? How much is it?", ["Can I have…?", "How much is it?", "please / thank you"]),
+      'pt': ConvModel("Oi, bom dia! Você pode me ver um café e um pedaço de bolo, por favor? Quanto fica?", ["Você pode me ver um…?", "Um café e um pedaço de bolo, por favor.", "Quanto fica?"]),
+      'fr': ConvModel("Bonjour, je voudrais un café et une part de gâteau, s'il vous plaît. Combien ça coûte ?", ["Bonjour, je voudrais…", "…s'il vous plaît.", "Combien ça coûte ?"]),
+      'it': ConvModel("Buongiorno! Vorrei un caffè e una fetta di torta, per favore. Quanto costa?", ["Vorrei un caffè…", "…e qualcosa da mangiare, per favore.", "Quanto costa?"]),
+    }),
+    ConvTopic("Presentarte", "👋", "Conoces a alguien nuevo. Preséntate: nombre, de dónde eres y qué haces.", {
+      'en': ConvModel("Hi, I'm Ana. Nice to meet you! I'm from Peru and I work as a teacher.", ["I'm…", "Nice to meet you", "I'm from… / I work as…"]),
+      'pt': ConvModel("Oi, muito prazer! Eu sou a Ana, sou do Peru e trabalho como professora.", ["Muito prazer!", "Eu sou o/a…, sou do/da…", "Trabalho como…"]),
+      'fr': ConvModel("Bonjour, je m'appelle Ana, enchantée ! Je viens du Pérou et je suis professeure.", ["Je m'appelle…", "Enchanté(e) !", "Je viens de… et je travaille comme…"]),
+      'it': ConvModel("Ciao, mi chiamo Ana, piacere! Vengo dal Perù e faccio l'insegnante.", ["Mi chiamo…, piacere!", "Vengo da…", "Faccio l'insegnante / Lavoro come…"]),
+    }),
+    ConvTopic("En el aeropuerto", "✈️", "Estás en el aeropuerto. Pregunta por tu puerta y la hora del vuelo.", {
+      'en': ConvModel("Excuse me, where is gate 12? What time does the flight to Madrid leave?", ["Excuse me…", "Where is…?", "What time does… leave?"]),
+      'pt': ConvModel("Com licença, onde fica o portão 12? E que horas sai o voo para Madri?", ["Com licença, onde fica o portão…?", "Que horas sai o voo para…?", "O voo está no horário?"]),
+      'fr': ConvModel("Excusez-moi, où est la porte 12, s'il vous plaît ? À quelle heure part le vol pour Madrid ?", ["Excusez-moi, où est… ?", "À quelle heure part le vol pour… ?", "la porte 12"]),
+      'it': ConvModel("Mi scusi, dov'è l'uscita 12? A che ora parte il volo per Madrid?", ["Mi scusi, dov'è l'uscita…?", "A che ora parte il volo per…?", "Da quale gate parte?"]),
+    }),
+    ConvTopic("Tu fin de semana", "🌤️", "Cuenta qué hiciste el fin de semana pasado (pasado simple).", {
+      'en': ConvModel("Last weekend I went to the park with my friends and we had lunch together.", ["Last weekend I…", "went / had / saw", "with my friends"]),
+      'pt': ConvModel("No fim de semana passado eu fui ao parque com os meus amigos e a gente almoçou junto.", ["No fim de semana passado eu fui…", "…com os meus amigos.", "A gente almoçou junto."]),
+      'fr': ConvModel("Le week-end dernier, je suis allé au parc avec mes amis et nous avons déjeuné ensemble.", ["Le week-end dernier, je suis allé(e)…", "avec mes amis", "nous avons déjeuné ensemble"]),
+      'it': ConvModel("Lo scorso fine settimana sono andata al parco con i miei amici e abbiamo pranzato insieme.", ["Lo scorso fine settimana sono andato/a…", "…con i miei amici.", "Abbiamo pranzato insieme."]),
+    }),
+    ConvTopic("Una entrevista breve", "💼", "Te preguntan por qué quieres el trabajo. Responde con 2 razones.", {
+      'en': ConvModel("I'm interested in this job because I like working with people and I want to learn.", ["I'm interested because…", "I like…", "I want to…"]),
+      'pt': ConvModel("Eu tenho interesse nesta vaga porque gosto de trabalhar com pessoas e quero aprender muito mais.", ["Eu tenho interesse nesta vaga porque…", "Gosto de trabalhar com pessoas.", "Quero aprender…"]),
+      'fr': ConvModel("Ce poste m'intéresse parce que j'aime travailler avec les gens et parce que je veux apprendre.", ["Ce poste m'intéresse parce que…", "j'aime travailler avec…", "je veux apprendre"]),
+      'it': ConvModel("Sono interessata a questo lavoro perché mi piace lavorare con le persone e ho voglia di imparare.", ["Sono interessato/a a questo lavoro perché…", "Mi piace lavorare con le persone.", "Ho voglia di imparare / Voglio crescere."]),
+    }),
+    ConvTopic("Pedir indicaciones", "🧭", "Pregunta cómo llegar a la estación de tren y si está lejos.", {
+      'en': ConvModel("Excuse me, how do I get to the train station? Is it far from here?", ["How do I get to…?", "Is it far?", "turn left / right"]),
+      'pt': ConvModel("Com licença, como eu chego na estação de trem? É longe daqui?", ["Com licença, como eu chego na…?", "É longe daqui?", "Dá para ir a pé?"]),
+      'fr': ConvModel("Excusez-moi, pour aller à la gare, s'il vous plaît ? Est-ce que c'est loin d'ici ?", ["Excusez-moi, pour aller à… ?", "…s'il vous plaît ?", "C'est loin d'ici ?"]),
+      'it': ConvModel("Mi scusi, come arrivo alla stazione dei treni? È lontano da qui?", ["Mi scusi, come arrivo a…?", "Per andare alla stazione, per favore?", "È lontano da qui?"]),
+    }),
   ];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Idioma META del curso activo → la respuesta modelo se muestra en ese idioma.
+    final lang = ref.watch(activeCourseTargetProvider).maybeWhen(data: (v) => v, orElse: () => 'en');
     return SafeArea(
       bottom: false,
       child: ListView(
@@ -79,7 +103,7 @@ class ConversarScreen extends ConsumerWidget {
             _TopicCard(
               topic: t,
               onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => ConversarPracticeScreen(topic: t))),
+                  MaterialPageRoute(builder: (_) => ConversarPracticeScreen(topic: t, lang: lang))),
             ),
           const SizedBox(height: 8),
           const _InterestCard(),
@@ -89,13 +113,24 @@ class ConversarScreen extends ConsumerWidget {
   }
 }
 
+/// Respuesta modelo + frases clave de un topic, en UN idioma meta.
+class ConvModel {
+  const ConvModel(this.model, this.tips);
+  final String model;
+  final List<String> tips;
+}
+
 class ConvTopic {
-  const ConvTopic(this.title, this.emoji, this.scenario, this.model, this.tips);
+  const ConvTopic(this.title, this.emoji, this.scenario, this.models);
   final String title;
   final String emoji;
   final String scenario;
-  final String model;
-  final List<String> tips;
+
+  /// model+tips por idioma META del curso ('en'|'pt'|'fr'|'it').
+  final Map<String, ConvModel> models;
+
+  /// El modelo en [lang]; si faltara ese idioma, cae a inglés (nunca rompe).
+  ConvModel modelFor(String lang) => models[lang] ?? models['en']!;
 }
 
 class _TopicCard extends StatelessWidget {
@@ -252,8 +287,9 @@ class _InterestCardState extends ConsumerState<_InterestCard> {
 
 /// Práctica en solitario: escribe o habla, revela el modelo, autoevalúate, guarda.
 class ConversarPracticeScreen extends ConsumerStatefulWidget {
-  const ConversarPracticeScreen({super.key, required this.topic});
+  const ConversarPracticeScreen({super.key, required this.topic, this.lang = 'en'});
   final ConvTopic topic;
+  final String lang; // idioma META del curso (en/pt/fr/it) para el modelo + reconocedor
   @override
   ConsumerState<ConversarPracticeScreen> createState() => _ConversarPracticeScreenState();
 }
@@ -300,7 +336,7 @@ class _ConversarPracticeScreenState extends ConsumerState<ConversarPracticeScree
     setState(() => _listening = true);
     HapticFeedback.selectionClick();
     _rec.listen(
-      localeId: 'en_US',
+      localeId: SpeechLang.stt, // idioma del curso activo (en/pt/fr/it), no inglés fijo
       listenFor: const Duration(seconds: 12),
       onResult: (transcript, isFinal) {
         if (!mounted) return;
@@ -354,6 +390,7 @@ class _ConversarPracticeScreenState extends ConsumerState<ConversarPracticeScree
   @override
   Widget build(BuildContext context) {
     final t = widget.topic;
+    final m = t.modelFor(widget.lang); // respuesta modelo + frases clave en el idioma del curso
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
@@ -392,7 +429,7 @@ class _ConversarPracticeScreenState extends ConsumerState<ConversarPracticeScree
               maxLines: 4,
               style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
               decoration: InputDecoration(
-                hintText: _voice ? 'Tu transcripción aparecerá aquí (o edítala)' : 'Escribe tu respuesta en inglés…',
+                hintText: _voice ? 'Tu transcripción aparecerá aquí (o edítala)' : 'Escribe tu respuesta…',
                 filled: true, fillColor: Colors.white,
                 enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(14),
@@ -426,14 +463,14 @@ class _ConversarPracticeScreenState extends ConsumerState<ConversarPracticeScree
                   const Text('Respuesta modelo',
                       style: TextStyle(fontSize: 12, fontWeight: FontWeight.w900, letterSpacing: 0.5, color: AppColors.textMuted)),
                   const SizedBox(height: 6),
-                  Text('“${t.model}”',
+                  Text('“${m.model}”',
                       style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w800, color: AppColors.primary, height: 1.35)),
                   const SizedBox(height: 12),
                   const Text('Frases clave',
                       style: TextStyle(fontSize: 12, fontWeight: FontWeight.w900, letterSpacing: 0.5, color: AppColors.textMuted)),
                   const SizedBox(height: 6),
                   Wrap(spacing: 8, runSpacing: 8, children: [
-                    for (final tip in t.tips)
+                    for (final tip in m.tips)
                       Container(
                         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                         decoration: BoxDecoration(color: AppColors.navActiveBg, borderRadius: BorderRadius.circular(10)),

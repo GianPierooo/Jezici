@@ -1,0 +1,26 @@
+[
+  {
+    "model": "Buongiorno! Vorrei un caffè e una fetta di torta, per favore. Quanto costa?",
+    "tips": ["Vorrei un caffè…", "…e qualcosa da mangiare, per favore.", "Quanto costa?"]
+  },
+  {
+    "model": "Ciao, mi chiamo Ana, piacere! Vengo dal Perù e faccio l'insegnante.",
+    "tips": ["Mi chiamo…, piacere!", "Vengo da…", "Faccio l'insegnante / Lavoro come…"]
+  },
+  {
+    "model": "Mi scusi, dov'è l'uscita 12? A che ora parte il volo per Madrid?",
+    "tips": ["Mi scusi, dov'è l'uscita…?", "A che ora parte il volo per…?", "Da quale gate parte?"]
+  },
+  {
+    "model": "Lo scorso fine settimana sono andata al parco con i miei amici e abbiamo pranzato insieme.",
+    "tips": ["Lo scorso fine settimana sono andato/a…", "…con i miei amici.", "Abbiamo pranzato insieme."]
+  },
+  {
+    "model": "Sono interessata a questo lavoro perché mi piace lavorare con le persone e ho voglia di imparare.",
+    "tips": ["Sono interessato/a a questo lavoro perché…", "Mi piace lavorare con le persone.", "Ho voglia di imparare / Voglio crescere."]
+  },
+  {
+    "model": "Mi scusi, come arrivo alla stazione dei treni? È lontano da qui?",
+    "tips": ["Mi scusi, come arrivo a…?", "Per andare alla stazione, per favore?", "È lontano da qui?"]
+  }
+]
