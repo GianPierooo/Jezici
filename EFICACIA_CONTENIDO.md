@@ -6,6 +6,13 @@
 > Prioridad: es→en A1/A2 a fondo (lo que los testers usan hoy). B1–C1 y es→pt: perfil
 > estructural + diferido (ver "Pendiente").
 
+## Capa "enseña" — tips A2 de/nl + historias fr/it (2026-07-03)
+- **Tips A2 de/nl (mig 106):** completan la capa de tips A1+A2 en los 4 pilotos. **Historias/inmersión
+  (mig 107):** 1ª historia por idioma para fr/it (input comprensible A1, 7 segmentos con audio del idioma
+  + preguntas de comprensión autocalificables). Sube la dimensión de **input comprensible / inmersión**
+  (clave en la Metodología) de fr/it — antes cero fuera de es→en. Course-scoped verificado. Diferido:
+  historias pt/de/nl.
+
 ## Capa "enseña" — tips A1 fr/it/de/nl (2026-07-03)
 - El tip post-lección (refuerza el "enseña, no solo evalúa") existía solo es→en. Sembrados **24 tips
   A1** (6/curso × fr/it/de/nl, mig 102): uno por unidad con el punto gramatical clave del idioma

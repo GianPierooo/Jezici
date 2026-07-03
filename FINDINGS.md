@@ -2,6 +2,27 @@
 
 ---
 
+## Capa "enseña" — tips A2 de/nl + historias fr/it — 2026-07-03 ✅ LIVE + VERIFICADO
+> Dos frentes de la capa "enseña", ambos course-scoped y verificados con cliente real.
+- **Tips A2 de/nl (mig 106):** +12 tips (6 de + 6 nl, units 7-12) → tips A1+A2 completos en los 4
+  pilotos (fr/it/de/nl). Perfekt/Perfectum, futuro, comparativo als/dan, Präteritum/imperfectum,
+  wehtun/hoofdpijn. Verificado cliente real: de U9(A2)→tip de, nl U9(A2)→tip nl, en control intacto.
+- **Historias / inmersión multi-idioma (mig 107):** 1ª historia por idioma para fr y it (antes solo
+  es→en tenía 6): **«Le café de Léa»** (fr, café parisino) y **«Un caffè al bar»** (it, bar romano),
+  A1, 7 segmentos (texto meta + traducción es + **audio TTS tl=fr/it, 14/14 HEAD 200**) + 6 glosario
+  + 5 preguntas MC. Autoradas por profesores nativos IA. Pipeline reutilizable `gen_stories.py` +
+  `gen_story_audio_multi.py` (audio por segmento, misma convención `-<i>.mp3` que es→en).
+  - **Verificado cliente real (multicurso + seguridad):** `get_stories` course-scoped (fr ve solo su
+    historia, it la suya, en solo las 6 en — **sin cruce entre los 6 cursos**); `get_story` **NO
+    expone `correct_answer`** (igual que el loop); `submit_story` califica **server-side** (respuestas
+    correctas → score 1.0, erróneas → 0.0; `correct_answer` 42501 vía jz_grade). Audio HEAD 200.
+  - **Nota de verificación:** el `answer` de submit_story es el valor BARE del MC (así lo manda el
+    cliente `story_reader_screen.dart:79`), no `{value:…}` — jz_grade lo confirma.
+- analyze 0 · test 91/91. Cursos/loop/seguridad previos INTACTOS (aditivo, solo tablas content_tips/stories).
+- **Diferido:** historias pt/de/nl + más historias por idioma; tips es→pt A2/B1.
+
+---
+
 ## A2 es→de + es→nl — 2026-07-03 ✅ LIVE + VERIFICADO (cliente real, 6 cursos aislados)
 > Continúa la escalera A1→A2 de los pilotos alemán/neerlandés. Autoría por workflow ultracode
 > (6 profesores nativos, 2 unidades c/u) + revisión adversarial nativa por idioma.

@@ -1,0 +1,32 @@
+{
+  "cefr_level": "A1",
+  "order_index": 1,
+  "title": "Un caffè al bar",
+  "subtitle": "Marco entra en un bar de Roma por la mañana y pide un café antes del trabajo.",
+  "emoji": "☕",
+  "intro": "Es de mañana en Roma y Marco tiene sueño. Entra en su bar de siempre para tomar un café; lee y escucha su breve rutina.",
+  "segments": [
+    {"en": "È mattina a Roma.", "es": "Es de mañana en Roma."},
+    {"en": "Marco entra nel bar.", "es": "Marco entra en el bar."},
+    {"en": "\"Buongiorno!\" dice il barista.", "es": "\"¡Buenos días!\" dice el barista."},
+    {"en": "\"Buongiorno! Un caffè, per favore.\"", "es": "\"¡Buenos días! Un café, por favor.\""},
+    {"en": "Marco beve il caffè al banco.", "es": "Marco bebe el café en la barra."},
+    {"en": "Il caffè è caldo e buono.", "es": "El café está caliente y bueno."},
+    {"en": "\"Grazie, arrivederci!\" e Marco va al lavoro.", "es": "\"¡Gracias, hasta luego!\" y Marco se va al trabajo."}
+  ],
+  "glossary": [
+    {"word": "buongiorno", "translation": "buenos días"},
+    {"word": "il bar", "translation": "el bar / la cafetería"},
+    {"word": "un caffè", "translation": "un café"},
+    {"word": "per favore", "translation": "por favor"},
+    {"word": "il banco", "translation": "la barra (del bar)"},
+    {"word": "il lavoro", "translation": "el trabajo"}
+  ],
+  "questions": [
+    {"type": "multiple_choice", "skill": "reading", "prompt": "¿En qué ciudad está Marco?", "payload": {"options": ["Roma", "Milano", "Napoli"]}, "difficulty": 0.2, "correct_answer": {"value": "Roma"}},
+    {"type": "multiple_choice", "skill": "reading", "prompt": "¿A qué lugar entra Marco?", "payload": {"options": ["en el bar", "en la escuela", "en la casa"]}, "difficulty": 0.2, "correct_answer": {"value": "en el bar"}},
+    {"type": "multiple_choice", "skill": "reading", "prompt": "¿Qué pide Marco?", "payload": {"options": ["un caffè", "un tè", "un'acqua"]}, "difficulty": 0.2, "correct_answer": {"value": "un caffè"}},
+    {"type": "multiple_choice", "skill": "reading", "prompt": "¿Cómo está el café según la historia?", "payload": {"options": ["caldo e buono", "freddo", "cattivo"]}, "difficulty": 0.2, "correct_answer": {"value": "caldo e buono"}},
+    {"type": "multiple_choice", "skill": "reading", "prompt": "¿A dónde va Marco al final?", "payload": {"options": ["al lavoro", "a casa", "al parco"]}, "difficulty": 0.2, "correct_answer": {"value": "al lavoro"}}
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "cefr_level": "A1",
+  "order_index": 1,
+  "title": "Le café de Léa",
+  "subtitle": "Léa va a un café en París por la mañana y saluda al camarero.",
+  "emoji": "☕",
+  "intro": "Es una mañana de sábado en París. Léa entra en su café favorito para desayunar. Lee y escucha su pequeña historia.",
+  "segments": [
+    {"en": "Bonjour ! Je m'appelle Léa.", "es": "¡Buenos días! Me llamo Léa."},
+    {"en": "J'habite à Paris avec ma famille.", "es": "Vivo en París con mi familia."},
+    {"en": "Le matin, je vais au café près de chez moi.", "es": "Por la mañana, voy al café cerca de mi casa."},
+    {"en": "Le serveur me dit : « Bonjour, ça va ? »", "es": "El camarero me dice: «Buenos días, ¿cómo estás?»"},
+    {"en": "Je commande un café et un croissant.", "es": "Pido un café y un cruasán."},
+    {"en": "Le croissant est très bon et le café est chaud.", "es": "El cruasán está muy bueno y el café está caliente."},
+    {"en": "Merci, monsieur ! À demain !", "es": "¡Gracias, señor! ¡Hasta mañana!"}
+  ],
+  "glossary": [
+    {"word": "bonjour", "translation": "buenos días / hola"},
+    {"word": "le café", "translation": "el café (bebida y local)"},
+    {"word": "le matin", "translation": "la mañana"},
+    {"word": "le serveur", "translation": "el camarero"},
+    {"word": "un croissant", "translation": "un cruasán"},
+    {"word": "chaud", "translation": "caliente"}
+  ],
+  "questions": [
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Cómo se llama la protagonista?","payload":{"options":["Léa","Marie","Sophie"]},"difficulty":0.2,"correct_answer":{"value":"Léa"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿En qué ciudad vive?","payload":{"options":["Lyon","Paris","Nice"]},"difficulty":0.2,"correct_answer":{"value":"Paris"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿A qué hora del día va al café?","payload":{"options":["le matin","le soir","la nuit"]},"difficulty":0.2,"correct_answer":{"value":"le matin"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Qué pide en el café?","payload":{"options":["un café y un croissant","un té y pan","un jugo y una tarta"]},"difficulty":0.2,"correct_answer":{"value":"un café y un croissant"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Cómo está el café que le sirven?","payload":{"options":["chaud","froid","mauvais"]},"difficulty":0.2,"correct_answer":{"value":"chaud"}}
+  ]
+}
