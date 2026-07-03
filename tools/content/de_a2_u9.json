@@ -1,0 +1,384 @@
+{
+  "unit": {
+    "order": 9,
+    "title_es": "De viaje",
+    "color": "#16A085",
+    "icon": "flight_takeoff"
+  },
+  "checkpoint_desc": "Demuestra que sabes contar un viaje usando el Perfekt con sein y el vocabulario de transporte.",
+  "lessons": [
+    {
+      "order": 1,
+      "title_es": "He viajado: el Perfekt con sein"
+    },
+    {
+      "order": 2,
+      "title_es": "En la estación y el aeropuerto"
+    },
+    {
+      "order": 3,
+      "title_es": "¿Haben o sein?"
+    },
+    {
+      "order": 4,
+      "title_es": "Contando el viaje"
+    }
+  ],
+  "vocab": [
+    [
+      "der Zug",
+      "el tren",
+      "sustantivo"
+    ],
+    [
+      "das Flugzeug",
+      "el avión",
+      "sustantivo"
+    ],
+    [
+      "der Bahnhof",
+      "la estación de tren",
+      "sustantivo"
+    ],
+    [
+      "der Flughafen",
+      "el aeropuerto",
+      "sustantivo"
+    ],
+    [
+      "das Hotel",
+      "el hotel",
+      "sustantivo"
+    ],
+    [
+      "das Ticket",
+      "el billete",
+      "sustantivo"
+    ],
+    [
+      "der Koffer",
+      "la maleta",
+      "sustantivo"
+    ],
+    [
+      "die Reise",
+      "el viaje",
+      "sustantivo"
+    ],
+    [
+      "fahren",
+      "ir (en vehículo)",
+      "verbo"
+    ],
+    [
+      "fliegen",
+      "volar",
+      "verbo"
+    ],
+    [
+      "bleiben",
+      "quedarse",
+      "verbo"
+    ],
+    [
+      "ankommen",
+      "llegar",
+      "verbo"
+    ],
+    [
+      "packen",
+      "hacer la maleta",
+      "verbo"
+    ],
+    [
+      "mit dem Zug",
+      "en tren",
+      "expresion"
+    ],
+    [
+      "zu Fuß",
+      "a pie",
+      "expresion"
+    ],
+    [
+      "Gute Reise!",
+      "¡Buen viaje!",
+      "expresion"
+    ]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "perfekt_sein",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la frase correcta.",
+      "options": [
+        "Ich bin nach Berlin gefahren.",
+        "Ich habe nach Berlin gefahren.",
+        "Ich bin nach Berlin fahren."
+      ],
+      "value": "Ich bin nach Berlin gefahren."
+    },
+    {
+      "lesson": 1,
+      "topic": "perfekt_sein",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el auxiliar correcto.",
+      "text": "Wir ___ gestern nach München gefahren.",
+      "value": "sind",
+      "accepted": [
+        "sind"
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "perfekt_sein",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Sie ist nach Hamburg geflogen.",
+      "options": [
+        "Sie ist nach Hamburg geflogen.",
+        "Sie ist nach Hamburg gefahren.",
+        "Sie hat in Hamburg gewohnt."
+      ],
+      "value": "Sie ist nach Hamburg geflogen."
+    },
+    {
+      "lesson": 1,
+      "topic": "perfekt_sein",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Ich bin mit dem Zug gefahren."
+    },
+    {
+      "lesson": 1,
+      "topic": "perfekt_sein",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "¿Qué frase está bien construida?",
+      "options": [
+        "Wir sind im Hotel geblieben.",
+        "Wir haben im Hotel geblieben.",
+        "Wir sind im Hotel bleiben."
+      ],
+      "value": "Wir sind im Hotel geblieben."
+    },
+    {
+      "lesson": 2,
+      "topic": "transporte",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada palabra con su significado.",
+      "pairs": [
+        [
+          "der Bahnhof",
+          "la estación de tren"
+        ],
+        [
+          "der Flughafen",
+          "el aeropuerto"
+        ],
+        [
+          "das Flugzeug",
+          "el avión"
+        ]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "transporte",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "¿Dónde esperas el tren?",
+      "options": [
+        "am Bahnhof",
+        "am Flughafen",
+        "im Hotel"
+      ],
+      "value": "am Bahnhof"
+    },
+    {
+      "lesson": 2,
+      "topic": "transporte",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Der Zug kommt um acht Uhr an.",
+      "options": [
+        "Der Zug kommt um acht Uhr an.",
+        "Das Flugzeug kommt um acht Uhr an.",
+        "Der Zug kommt um neun Uhr an."
+      ],
+      "value": "Der Zug kommt um acht Uhr an."
+    },
+    {
+      "lesson": 2,
+      "topic": "transporte",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Wo ist der Bahnhof, bitte?"
+    },
+    {
+      "lesson": 3,
+      "topic": "haben_vs_sein",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la frase correcta.",
+      "options": [
+        "Ich habe ein Ticket gekauft.",
+        "Ich bin ein Ticket gekauft.",
+        "Ich habe ein Ticket gekaufen."
+      ],
+      "value": "Ich habe ein Ticket gekauft."
+    },
+    {
+      "lesson": 3,
+      "topic": "haben_vs_sein",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el auxiliar correcto.",
+      "text": "Ich ___ am Wochenende zu Hause geblieben.",
+      "value": "bin",
+      "accepted": [
+        "bin"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "haben_vs_sein",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: Hemos ido a pie.",
+      "source": "Hemos ido a pie.",
+      "value": "Wir sind zu Fuß gegangen.",
+      "accepted": [
+        "Wir sind zu Fuß gegangen.",
+        "Wir sind zu Fuß gegangen",
+        "Wir sind zu Fuss gegangen.",
+        "Wir sind zu Fuss gegangen"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "haben_vs_sein",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Forma la frase: «Ella ha volado a Berlín.»",
+      "tiles": [
+        "nach",
+        "hat",
+        "Sie",
+        "geflogen",
+        "Berlin",
+        "ist"
+      ],
+      "sequence": [
+        "Sie",
+        "ist",
+        "nach",
+        "Berlin",
+        "geflogen"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "haben_vs_sein",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ich habe meinen Koffer gepackt.",
+      "options": [
+        "Ich habe meinen Koffer gepackt.",
+        "Ich habe mein Ticket vergessen.",
+        "Ich bin zu Fuß gegangen."
+      ],
+      "value": "Ich habe meinen Koffer gepackt."
+    },
+    {
+      "lesson": 4,
+      "topic": "relato_de_viaje",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada palabra con su significado.",
+      "pairs": [
+        [
+          "der Koffer",
+          "la maleta"
+        ],
+        [
+          "die Reise",
+          "el viaje"
+        ],
+        [
+          "das Ticket",
+          "el billete"
+        ]
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "relato_de_viaje",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: He ido a Berlín en tren.",
+      "source": "He ido a Berlín en tren.",
+      "value": "Ich bin mit dem Zug nach Berlin gefahren.",
+      "accepted": [
+        "Ich bin mit dem Zug nach Berlin gefahren.",
+        "Ich bin mit dem Zug nach Berlin gefahren"
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "relato_de_viaje",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena las palabras para formar una frase correcta.",
+      "tiles": [
+        "Tage",
+        "im",
+        "sind",
+        "geblieben",
+        "Wir",
+        "Hotel",
+        "drei"
+      ],
+      "sequence": [
+        "Wir",
+        "sind",
+        "drei",
+        "Tage",
+        "im",
+        "Hotel",
+        "geblieben"
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "relato_de_viaje",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Wir sind am Flughafen angekommen.",
+      "options": [
+        "Wir sind am Flughafen angekommen.",
+        "Wir sind am Bahnhof angekommen.",
+        "Wir haben den Zug genommen."
+      ],
+      "value": "Wir sind am Flughafen angekommen."
+    },
+    {
+      "lesson": 4,
+      "topic": "relato_de_viaje",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Gute Reise und bis bald!"
+    }
+  ]
+}

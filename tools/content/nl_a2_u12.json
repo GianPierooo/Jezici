@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 12, "title_es": "Salud, cuerpo y consejos", "color": "#D35400", "icon": "healing"},
+  "checkpoint_desc": "Nombra las partes del cuerpo, di qué te duele y da consejos con moeten y zou moeten.",
+  "lessons": [
+    {"order": 1, "title_es": "El cuerpo, de la cabeza a los pies"},
+    {"order": 2, "title_es": "Me duele: hoofdpijn y doet pijn"},
+    {"order": 3, "title_es": "Consejos: je moet, je zou moeten"},
+    {"order": 4, "title_es": "En la consulta del médico"}
+  ],
+  "vocab": [
+    ["het hoofd", "la cabeza", "sustantivo"],
+    ["de buik", "la barriga", "sustantivo"],
+    ["de rug", "la espalda", "sustantivo"],
+    ["de keel", "la garganta", "sustantivo"],
+    ["het been", "la pierna", "sustantivo"],
+    ["de arm", "el brazo", "sustantivo"],
+    ["de hand", "la mano", "sustantivo"],
+    ["de voet", "el pie", "sustantivo"],
+    ["de tanden", "los dientes", "sustantivo"],
+    ["de hoofdpijn", "el dolor de cabeza", "sustantivo"],
+    ["de koorts", "la fiebre", "sustantivo"],
+    ["ziek", "enfermo", "adjetivo"],
+    ["de dokter", "el médico", "sustantivo"],
+    ["rusten", "descansar", "verbo"],
+    ["pijn doen", "doler", "expresion"],
+    ["moeten", "deber, tener que", "verbo"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "lichaamsdelen", "skill": "reading", "type": "match", "prompt": "Une cada parte del cuerpo con su traducción.", "pairs": [["het hoofd", "la cabeza"], ["de rug", "la espalda"], ["de voet", "el pie"]]},
+    {"lesson": 1, "topic": "lichaamsdelen", "skill": "reading", "type": "multiple_choice", "prompt": "Elige el artículo definido correcto: «___ been».", "options": ["het", "de", "den"], "value": "het"},
+    {"lesson": 1, "topic": "lichaamsdelen", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ik heb twee armen en twee benen.", "options": ["Ik heb twee armen en twee benen.", "Ik heb twee handen en twee voeten.", "Ik heb een arm en een been."], "value": "Ik heb twee armen en twee benen."},
+    {"lesson": 1, "topic": "lichaamsdelen", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Mijn handen en mijn voeten zijn koud."},
+    {"lesson": 2, "topic": "pijn_klachten", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase correcta para decir que te duele la cabeza.", "options": ["Ik heb hoofdpijn.", "Ik heb pijn hoofd.", "Ik heb een hoofd pijn."], "value": "Ik heb hoofdpijn."},
+    {"lesson": 2, "topic": "pijn_klachten", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la forma correcta: «Mijn voeten ___ pijn.»", "options": ["doen", "doet", "is"], "value": "doen"},
+    {"lesson": 2, "topic": "pijn_klachten", "skill": "writing", "type": "cloze", "prompt": "Completa: te duele la garganta (una sola palabra).", "text": "Ik heb ___ en ik ga naar bed.", "value": "keelpijn", "accepted": ["keelpijn"]},
+    {"lesson": 2, "topic": "pijn_klachten", "skill": "writing", "type": "translation", "prompt": "Traduce: Me duele la espalda.", "source": "Me duele la espalda.", "value": "Mijn rug doet pijn.", "accepted": ["Mijn rug doet pijn.", "Mijn rug doet pijn", "Ik heb rugpijn.", "Ik heb rugpijn", "Ik heb pijn in mijn rug.", "Ik heb pijn in mijn rug"]},
+    {"lesson": 2, "topic": "pijn_klachten", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ik heb buikpijn en hoofdpijn.", "options": ["Ik heb buikpijn en hoofdpijn.", "Ik heb keelpijn en koorts.", "Ik heb rugpijn en hoofdpijn."], "value": "Ik heb buikpijn en hoofdpijn."},
+    {"lesson": 2, "topic": "pijn_klachten", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Mijn tanden doen pijn."},
+    {"lesson": 3, "topic": "advies_moeten", "skill": "reading", "type": "match", "prompt": "Une cada expresión con su significado.", "pairs": [["je moet", "debes"], ["je zou moeten", "deberías"], ["rusten", "descansar"]]},
+    {"lesson": 3, "topic": "advies_moeten", "skill": "writing", "type": "cloze", "prompt": "Completa el consejo en condicional (deberías…).", "text": "Je ___ naar de dokter moeten gaan.", "value": "zou", "accepted": ["zou"]},
+    {"lesson": 3, "topic": "advies_moeten", "skill": "writing", "type": "word_bank", "prompt": "Forma la frase: Debes descansar hoy.", "tiles": ["Je", "moet", "vandaag", "rusten", "rust", "pijn"], "sequence": ["Je", "moet", "vandaag", "rusten"]},
+    {"lesson": 3, "topic": "advies_moeten", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Je zou naar de dokter moeten gaan.", "options": ["Je zou naar de dokter moeten gaan.", "Je moet nu naar de dokter gaan.", "Ik ga morgen naar de dokter."], "value": "Je zou naar de dokter moeten gaan."},
+    {"lesson": 3, "topic": "advies_moeten", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Je moet veel water drinken."},
+    {"lesson": 4, "topic": "bij_de_dokter", "skill": "reading", "type": "multiple_choice", "prompt": "¿Qué te pregunta el médico para saber qué te pasa?", "options": ["Wat is er aan de hand?", "Hoe laat is het?", "Waar woon je?"], "value": "Wat is er aan de hand?"},
+    {"lesson": 4, "topic": "bij_de_dokter", "skill": "writing", "type": "translation", "prompt": "Traduce: Estoy enfermo y tengo fiebre.", "source": "Estoy enfermo y tengo fiebre.", "value": "Ik ben ziek en ik heb koorts.", "accepted": ["Ik ben ziek en ik heb koorts.", "Ik ben ziek en ik heb koorts", "Ik ben ziek en heb koorts.", "Ik ben ziek en heb koorts"]},
+    {"lesson": 4, "topic": "bij_de_dokter", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras: Hoy debo ir al médico.", "tiles": ["naar", "Ik", "dokter", "gaan", "moet", "de", "vandaag"], "sequence": ["Ik", "moet", "vandaag", "naar", "de", "dokter", "gaan"]},
+    {"lesson": 4, "topic": "bij_de_dokter", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ik heb koorts en ik ga naar de dokter.", "options": ["Ik heb koorts en ik ga naar de dokter.", "Ik heb keelpijn en ik ga naar bed.", "Ik heb koorts en ik blijf thuis."], "value": "Ik heb koorts en ik ga naar de dokter."}
+  ]
+}

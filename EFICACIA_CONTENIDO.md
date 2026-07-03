@@ -14,6 +14,14 @@
   dimensión "explícita/metacognitiva" de fr/it/de/nl a la par de en. Diferido: pt (topics del pipeline
   L/S), A2 fr/it, historias.
 
+## Pilotos es→de + es→nl A2 (2026-07-03) — continúa la escalera, mismo balance
+- **de A2 y nl A2:** R36 · W36 · **L25 · S18** → L=69%, S=50% (idéntico al A1). 115 ítems/idioma, 6
+  unidades (order 7-12) encadenadas con A1 (gating verificado con caminata de 12 unidades cliente real).
+  Currículo A2 CEFR real: Perfekt/Perfectum (haben/hebben→sein/zijn con concordancia), futuro, comparativo
+  (als/dan, Umlaut), Präteritum/imperfectum, cuerpo+salud (wehtun dativo / hoofdpijn compuesto, consejos).
+  Revisión adversarial nativa: de 0 errores (1 pulido), nl 0 errores. Techo determinista de producción
+  idéntico (speaking proxy; writing tolerante) → sin cert de nivel aún. **Diferido:** B1+ de/nl.
+
 ## Pilotos es→de + es→nl A1 (2026-07-03) — 4 habilidades balanceadas desde el arranque
 - **de A1 y nl A1:** R36 · W36 · **L25 · S18** → L=69%, S=50% de (R+W)/2 (idéntico al molde fr/it).
   115 ítems/curso, 6 unidades A1 con progresión temática (saludos→ciudad). Gramática CEFR-A1 real por

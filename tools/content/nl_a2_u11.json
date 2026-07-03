@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 11, "title_es": "Personas y descripciones", "color": "#8E44AD", "icon": "people"},
+  "checkpoint_desc": "Describe el aspecto y el carácter de las personas y habla del pasado con was/waren y had/hadden.",
+  "lessons": [
+    {"order": 1, "title_es": "Era y estaba: el pasado de zijn"},
+    {"order": 2, "title_es": "Tenía: el pasado de hebben"},
+    {"order": 3, "title_es": "¿Cómo es físicamente?"},
+    {"order": 4, "title_es": "Carácter y personalidad"}
+  ],
+  "vocab": [
+    ["was", "era / estaba (zijn)", "verbo"],
+    ["waren", "éramos / eran (zijn)", "verbo"],
+    ["had", "tenía (hebben)", "verbo"],
+    ["hadden", "teníamos / tenían (hebben)", "verbo"],
+    ["groot", "grande / alto", "adjetivo"],
+    ["klein", "pequeño / bajo", "adjetivo"],
+    ["aardig", "amable", "adjetivo"],
+    ["vriendelijk", "simpático", "adjetivo"],
+    ["grappig", "gracioso", "adjetivo"],
+    ["serieus", "serio", "adjetivo"],
+    ["het haar", "el pelo", "sustantivo"],
+    ["de ogen", "los ojos", "sustantivo"],
+    ["blond", "rubio", "adjetivo"],
+    ["bruin", "castaño", "adjetivo"],
+    ["kort", "corto", "adjetivo"],
+    ["eruitzien", "tener aspecto (de)", "verbo"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "imperfectum_zijn", "skill": "reading", "type": "match", "prompt": "Une cada forma del pasado con su traducción.", "pairs": [["ik was", "yo era"], ["wij waren", "nosotros éramos"], ["jij was", "tú eras"]]},
+    {"lesson": 1, "topic": "imperfectum_zijn", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la forma correcta: «Het ___ gisteren leuk.»", "options": ["was", "waren", "ben"], "value": "was"},
+    {"lesson": 1, "topic": "imperfectum_zijn", "skill": "writing", "type": "cloze", "prompt": "Completa con la forma correcta de «zijn» en pasado.", "text": "We ___ gisteren thuis.", "value": "waren", "accepted": ["waren"]},
+    {"lesson": 1, "topic": "imperfectum_zijn", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ik was gisteren erg moe.", "options": ["Ik was gisteren erg moe.", "Ik was gisteren erg boos.", "Ik ben vandaag erg moe."], "value": "Ik was gisteren erg moe."},
+    {"lesson": 1, "topic": "imperfectum_zijn", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Het was een leuke dag."},
+    {"lesson": 2, "topic": "imperfectum_hebben", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la forma correcta: «Mijn oma ___ vroeger lang haar.»", "options": ["had", "hadden", "heb"], "value": "had"},
+    {"lesson": 2, "topic": "imperfectum_hebben", "skill": "writing", "type": "cloze", "prompt": "Completa con la forma correcta de «hebben» en pasado.", "text": "De kinderen ___ geen tijd.", "value": "hadden", "accepted": ["hadden"]},
+    {"lesson": 2, "topic": "imperfectum_hebben", "skill": "writing", "type": "translation", "prompt": "Traduce: Yo tenía un perro.", "source": "Yo tenía un perro.", "value": "Ik had een hond.", "accepted": ["Ik had een hond.", "Ik had een hond"]},
+    {"lesson": 2, "topic": "imperfectum_hebben", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Wij hadden vroeger een kleine auto.", "options": ["Wij hadden vroeger een kleine auto.", "Wij hebben nu een kleine auto.", "Wij hadden vroeger een groot huis."], "value": "Wij hadden vroeger een kleine auto."},
+    {"lesson": 2, "topic": "imperfectum_hebben", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Zij had blauwe ogen en blond haar."},
+    {"lesson": 3, "topic": "uiterlijk_beschrijven", "skill": "reading", "type": "match", "prompt": "Une cada palabra con su traducción.", "pairs": [["het haar", "el pelo"], ["de ogen", "los ojos"], ["kort", "corto"]]},
+    {"lesson": 3, "topic": "uiterlijk_beschrijven", "skill": "reading", "type": "multiple_choice", "prompt": "¿Qué pregunta usas para el aspecto FÍSICO de una persona?", "options": ["Hoe ziet zij eruit?", "Hoe is zij?", "Hoe oud is zij?"], "value": "Hoe ziet zij eruit?"},
+    {"lesson": 3, "topic": "uiterlijk_beschrijven", "skill": "writing", "type": "word_bank", "prompt": "Forma la frase: Mi hermana tiene el pelo largo.", "tiles": ["Mijn", "zus", "heeft", "lang", "haar", "ogen", "de"], "sequence": ["Mijn", "zus", "heeft", "lang", "haar"]},
+    {"lesson": 3, "topic": "uiterlijk_beschrijven", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Hij heeft groene ogen en kort haar.", "options": ["Hij heeft groene ogen en kort haar.", "Hij heeft blauwe ogen en lang haar.", "Hij heeft bruine ogen en blond haar."], "value": "Hij heeft groene ogen en kort haar."},
+    {"lesson": 3, "topic": "uiterlijk_beschrijven", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Hoe ziet jouw broer eruit?"},
+    {"lesson": 4, "topic": "karakter_adjectief", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la forma correcta del adjetivo: «de ___ man».", "options": ["aardige", "aardig", "aardiger"], "value": "aardige"},
+    {"lesson": 4, "topic": "karakter_adjectief", "skill": "writing", "type": "translation", "prompt": "Traduce: Él era muy gracioso.", "source": "Él era muy gracioso.", "value": "Hij was erg grappig.", "accepted": ["Hij was erg grappig.", "Hij was erg grappig", "Hij was heel grappig.", "Hij was heel grappig", "Hij was zeer grappig.", "Hij was zeer grappig"]},
+    {"lesson": 4, "topic": "karakter_adjectief", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras: Ella es una mujer graciosa.", "tiles": ["grappige", "Zij", "vrouw", "is", "een"], "sequence": ["Zij", "is", "een", "grappige", "vrouw"]},
+    {"lesson": 4, "topic": "karakter_adjectief", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Mijn opa was een serieuze man.", "options": ["Mijn opa was een serieuze man.", "Mijn opa is een serieuze man.", "Mijn oma was een grappige vrouw."], "value": "Mijn opa was een serieuze man."}
+  ]
+}

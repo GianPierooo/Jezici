@@ -10,7 +10,7 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
 (Postgres + RLS + RPCs SECURITY DEFINER) + **Vercel** (deploy del web). Repo
 `github.com/GianPierooo/Jezici`, deploy `jezici.vercel.app`.
 - 6 cursos: **es→en** (A1–C1), **es→pt** (A1–B1), **es→fr** (A1–A2), **es→it** (A1–A2),
-  **es→de** (A1 piloto) y **es→nl** (A1 piloto). Curso activo por usuario
+  **es→de** (A1–A2) y **es→nl** (A1–A2). Curso activo por usuario
   (`jz_active_course`). Selector en Ajustes.
 - Loop: lección → ejercicios (9 tipos) → grading **server-side** → XP/oro/vidas →
   checkpoints (≥80%) → exámenes de nivel + certificados. Práctica/SRS, logros, ligas
@@ -58,13 +58,17 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
   el curso se cambia en Ajustes); tips/historias/imágenes para fr/it; examen de nivel + certificado
   fr/it (hoy la progresión intra/inter-nivel A1→A2 es por checkpoints ≥80%, sin cert de nivel aún).
 
-## Pilotos es→de + es→nl (A1) — ✅ LIVE (mig 100/101 · 2026-07-03)
-- **2 cursos NUEVOS (5º y 6º), A1 completo:** **es→de** (course `…0005`, lang `de`/Deutsch) y
+## Pilotos es→de + es→nl (A1 + A2) — ✅ LIVE (mig 100/101/104/105 · 2026-07-03)
+- **2 cursos NUEVOS (5º y 6º), A1 Y A2 completos:** **es→de** (course `…0005`, lang `de`/Deutsch) y
   **es→nl** (course `…0006`, lang `nl`/Nederlands), ambos `is_active`. Molde validado es→fr/it:
-  6 unidades A1 (saludos · números-edad-origen · familia · comida-café · día-hora · ciudad), 4
-  lecciones + checkpoint fresco + examen por unidad. **115 ítems cada uno** (R36/W36/L25/S18 →
-  L=69% S=50%). Autorados por **workflow ultracode** (6 profesores nativos IA + 2 revisores
-  adversariales nativos). **Audio TTS** tl=de/nl: **43/43 cada uno** en Storage.
+  6 unidades por nivel (A1 order 1-6, A2 order 7-12 → encadenan; gating A1→A2 automático), 4
+  lecciones + checkpoint fresco + examen por unidad. **115 ítems por nivel** (460 de+nl · R36/W36/L25/S18 →
+  L=69% S=50%). Autorados por **workflow ultracode** (profesores nativos IA + revisores adversariales
+  nativos por nivel). **Audio TTS** tl=de/nl: A1 43 + A2 43 = **86/86 cada idioma** en Storage.
+  Temas A2 (mig 104/105): Perfekt/Perfectum (haben/hebben→sein/zijn+concordancia), futuro (Präsens+werden /
+  gaan+zullen), viaje, comer fuera/comparativo (als/dan, größer/groter), Präteritum/imperfectum
+  (war-hatte / was-had)+descripción, cuerpo+salud (wehtun dativo / hoofdpijn compuesto, consejos sollen/moeten).
+  **Revisión adversarial A2: de 0 ❌ + 1 pulido (variante de orden TeKaMoLo en accepted); nl 0 ❌ + 0 ⚠️.**
 - **Gramática real por idioma:** de — género der/die/das, **edad con SEIN** («Ich bin 20 Jahre
   alt», NO haben), sustantivos con mayúscula, acusativo ein→einen, du/Sie, ß/ä/ö/ü (tolerancia
   ss/ae/oe/ue en `accepted`); nl — **de/het** (het water/brood/station…), **edad con ZIJN** («Ik
@@ -72,12 +76,13 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
   de word_bank), nl 3 reales (calco «Ik ben goed»→«Het gaat goed»; «Ik hou van…» no enseñado;
   distractor ambiguo) — **todos corregidos**.
 - **AISLAMIENTO de los 6 cursos (el riesgo #1) — VERIFICADO cliente real** (`verify_new_course.py
-  de|nl`, JWT): **0 `lesson_items` cruzan los 6 cursos** (en/pt/fr/it/de/nl); determinista de 97/97 +
-  nl 97/97 correctos + 97/97 distractores (42501); `set_active_course`→`create_plan`/`start_practice`
-  sirven SOLO el curso activo; usuario default(en) NO recibe de/nl; cadena lección(100%)+checkpoint(≥80%)
-  por curso; audio HEAD 200. **Cursos existentes INTACTOS** (verify_chain en · verify_pt_chain pt).
-  Banderas 🇩🇪/🇳🇱 + `SpeechLang` de-DE/nl-NL (TTS/reconocedor) añadidos. analyze 0 · test 91/91.
-- **Diferido:** A2+ de/nl; placement de/nl (default→A1); tips/historias/imágenes; onboarding específico.
+  de|nl` A1 + `verify_a2_chain.py de|nl` A2, JWT): **0 `lesson_items` cruzan los 6 cursos**
+  (en/pt/fr/it/de/nl); determinista A1 y A2 de/nl 97/97 correctos + 97/97 distractores (42501);
+  `set_active_course`→`create_plan`/`start_practice` sirven SOLO el curso activo; default(en) NO
+  recibe de/nl; **A2: CAMINA las 12 unidades en orden (U6 desbloquea U7, 30/30 lecciones A2), gating
+  A1→A2 end-to-end**; audio HEAD 200. **Cursos existentes INTACTOS** (verify_chain en · verify_pt_chain pt).
+  Banderas 🇩🇪/🇳🇱 + `SpeechLang` de-DE/nl-NL (TTS/reconocedor). analyze 0 · test 91/91.
+- **Diferido:** B1+ de/nl; placement de/nl (default→A1); tips A2 de/nl; historias/imágenes; onboarding específico.
 
 ## Stack / mecánica clave
 - **Contenido es DB-driven**: los seeds/fixes son migraciones → quedan LIVE al aplicar,
@@ -135,7 +140,7 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
 | Loop lección + grading server-side | ✅ verde y live. **Grading apóstrofes/contracciones (mig 067):** `jz_normalize` equipara I'm↔I am, don't↔do not, '↔'↔'' y limpió 15 ítems con `''` corrupto del seed. **word_bank/reorder no revelan la respuesta (mig 068, 20 ítems):** enunciado en español. **Typo-tolerance "casi correcto" (mig 073):** `grade_item` perdona typo menor (distancia 1: inserción/borrado, o sustitución SOLO en multi-palabra) y artículo a/an/the faltante/sobrante → `correct=true` + **`near=true`** (no resta vida, muestra "La forma correcta es…"). Guard de homógrafos: live/life, house/horse, cat/cut, this/these NUNCA se perdonan. `jz_grade = jz_grade_exact OR jz_near_match` (loop, summary y examen coherentes). Espejo cliente en `grader.dart` (`nearMatch`) + tests (`grader_typo_tolerance_test.dart`, 17). **Repaso de errores (mig 074 + `ErrorReviewScreen`):** al terminar, si hubo fallos → pantalla "Repasa lo que fallaste" (cada errado + respuesta correcta + porqué) ANTES de la recompensa; "Practicar los fallados" opcional. Los fallados entran al SRS con prioridad (`srs_prioritize_failed` → `user_vocab_srs` due=now). **TTS de tile (Web Speech):** tocar una ficha en word_bank/reorder pronuncia la palabra (cero archivos, interrumpible, degradación con gracia; disparado por TAP → sin desbloqueo iOS). **Idioma del HABLA = curso activo (fix 2026-07-02b):** antes el TTS de tile (`word_tts_web`) y el reconocedor de speaking (`speaking_exercise`) estaban **hardcodeados a inglés** → en pt/fr/it la VOZ no correspondía al idioma (bug real del feedback). Ahora `SpeechLang` (estático, fijado en `HomeShell` desde `activeCourseTargetProvider`) los pone en en-US/pt-BR/fr-FR/it-IT según el curso. El audio pre-generado (MP3) ya era correcto (tl por idioma). `correct_answer` sigue revocado (42501). |
 | **Música ambiente del mapa** | ✅ **es→en/pt (live).** Loop ambient **original (obra propia → CC0**, sin terceros, `gen_music_loop.py` síntesis procedural; ciclos enteros → sin clic; 12s/384KB en Storage `audio/ambient/map_loop.wav`, carga diferida → bundle +5.6KB solo código). **Default APAGADA (opt-in)** — pisar el audio del usuario = desinstalan. Toggle en **Ajustes** + **toggle rápido** en la top bar del mapa (persistido, `MusicController`/`music_enabled`). **Solo en el mapa**: `HomeShell` coordina por tab (==0) + lifecycle (pausa al backgroundear) + `setSuppressed` en lección/checkpoint/examen (nunca durante el ejercicio). **Ducking automático** en el `AudioEngine` (la música baja sola con cualquier SFX/TTS vía rampa de GainNode, se recupera después). **MediaSession NO reactivada**: el loop vive en el MISMO AudioContext (Web Audio API, sin `<audio>`) → sin reproductor en pantalla de bloqueo (riesgo conocido, mantenido a raya). Pendiente: variar/alargar el loop, presets de volumen. |
 | Dinamismo/UX (loop) | ✅ 1ª tanda LIVE (deploy-pending): recompensa con contadores+entrada escalonada, feedback ✅/❌ animado, transiciones `jzRoute`, skeletons en Ligas. Pendiente: tokens de espaciado, mascota en más pantallas, radar animado. Ver UX_AUDIT.md |
-| Capa "enseña" (tips/cuaderno/referencia/**inmersión**) | ✅ tip post-lección **relevante al tema real de la lección** (mig 069: `content_tips.topic` + match contra los tags de la lección; ya no sale el tip de EDAD en una lección de PAÍSES) + anti-repetición (no visto > menos reciente) + personalización por skill flojo + cuaderno + **Referencia/Repaso** (mig 060) + **Inmersión/Historias** (mig 065/066: 6 historias es→en A1/A2, audio 46/46). **Tips A1 multi-idioma (mig 102, 2026-07-03):** además de los 72 es→en, **24 tips A1 para es→fr/it/de/nl** (6/curso, 1 por unidad = punto gramatical clave: edad con avoir/avere/sein/zijn, partitivo/acusativo, hora/falsos-amigos «halb vier»/«midi et demi», contracciones/prep. articuladas, de-vs-het, mein/meine). Course-scoped por `get_lesson_tip` (WHERE course_id=jz_active_course) → **verificado cliente real: cada curso ve su tip, sin cruce** (en→inglés, fr→fr, it→it, de→de, nl→nl). Autorados por profesores nativos IA. Pendiente: tips **es→pt** (topics auto-generados del pipeline L/S, requieren su pasada) + A2 fr/it; **historias/inmersión solo es→en** (pt/fr/it/de/nl sin historias). |
+| Capa "enseña" (tips/cuaderno/referencia/**inmersión**) | ✅ tip post-lección **relevante al tema real de la lección** (mig 069: `content_tips.topic` + match contra los tags de la lección; ya no sale el tip de EDAD en una lección de PAÍSES) + anti-repetición (no visto > menos reciente) + personalización por skill flojo + cuaderno + **Referencia/Repaso** (mig 060) + **Inmersión/Historias** (mig 065/066: 6 historias es→en A1/A2, audio 46/46). **Tips A1 multi-idioma (mig 102, 2026-07-03):** además de los 72 es→en, **24 tips A1 para es→fr/it/de/nl** (6/curso, 1 por unidad = punto gramatical clave: edad con avoir/avere/sein/zijn, partitivo/acusativo, hora/falsos-amigos «halb vier»/«midi et demi», contracciones/prep. articuladas, de-vs-het, mein/meine). Course-scoped por `get_lesson_tip` (WHERE course_id=jz_active_course) → **verificado cliente real: cada curso ve su tip, sin cruce** (en→inglés, fr→fr, it→it, de→de, nl→nl). **Completado a 6/6 cursos (mig 103, 2026-07-03):** +6 tips **es→pt A1** (keyed por unit_order: você+3ª pers., meu/minha por género, gostar DE, queria/Quanto custa, ficar, segunda-feira) + **12 tips A2 fr/it** (units 7-12: passé composé/passato prossimo, futurs, accord/concordanza con être/essere, comparativos, imparfait/imperfetto, avoir mal à/mal di). Verificado cliente real (pt U2→tip pt, fr U9→A2 fr, it U12→A2 it, en control). Total **54 tips** en 6 cursos. `gen_tips_multi.py <batch>` (cefr por unit_order). Pendiente: tips A2 de/nl; **historias/inmersión solo es→en** (pt/fr/it/de/nl sin historias). |
 | Contenido es→en A1–B2, **es→pt A1–B1** | ✅ sembrado y live (pt B1 = mig 053, 192 ítems + 60 checkpoints frescos; cadena A1→B1 + certs verificada). Pendiente: es→pt B2 |
 | **Audio** (listening/speaking TTS) | ✅ es→en + es→pt A1/A2 (312) + **es→pt B1 (68)** = 380 + **rebalanceo L/S es→en A1/A2 (96, mig 078/079)** en Storage = **476/476** + degradación/unlock iOS LIVE. Ver FINDINGS.md §2 |
 | **Balance de 4 habilidades (L/S)** | ✅ **es→en A1–C1 rebalanceado (mig 078–082, live).** Audit EFICACIA halló sesgo **~3:1** (R/W vs L/S). Subido con criterio (NO 1:1): **listening ~65% de R/W**, **speaking ~50%** (proxy read-aloud, participación, no evalúa fluidez). **A1/A2** (mig 078/079): +5L/+3S por unidad (96 ítems). **B1/B2/C1** (mig 080/081/082): +4L/+2S por unidad → resultante B1 L/R=62% S/R=50%, B2 61%/49%, C1 69%/51% + **34 huecos** de cobertura de alto impacto rellenados (auditoría confirmó cobertura gramatical SÓLIDA en los 3; sin huecos estructurales). **+204 ítems** L/S totales (todos con audio TTS regenerable, `payload.say`/`text` guardado), autorados por panel IA + validación adversarial por unidad, cableados a lecciones 1–4 + tag `unidadN` (pool del examen → menos sesgo R/W). **es→pt A1/A2/B1** (mig 083/084/085): +4L/+2S por unidad → pt A1 L/R=61% S/R=49%, A2 62%/50%, B1 72%/57% + 34 huecos; audio **tl=pt** (108/108). **Verificado cliente real** por nivel (en+pt): L/S resueltos suben su dominio (listening precisión, speaking participación); verify_chain A1→B2 PASS; **verify_pt_chain A1→B1 PASS (multicurso: contenido pt→curso pt, 0 fuga)**. **Techo C1 honesto:** receptivas sí a C1; producción libre (W/S) requiere Fase 2 → sin cert C1 por diseño. **Sesgo L/S 3:1 resuelto en AMBOS cursos.** Pendiente: es→pt B2/C1 no existen aún (curso pt llega a B1). |
@@ -253,7 +258,7 @@ flutter build web --release  # esperado: Built build/web (wasm dry-run warning d
 
 # Audio: cobertura real en Storage (HEAD a payload.audio_url) — es→en/pt = 692/692 (incl. 312 L/S mig 078–085)
 #   + es→fr A1 41 + A2 43 + es→it A1 43 + A2 43 = 170/170 (pilotos A1+A2, mig 094/095/097/098, tl=fr/it)
-#   + es→de A1 43 + es→nl A1 43 = 86/86 (pilotos A1, mig 100/101, tl=de/nl)
+#   + es→de A1 43 + A2 43 + es→nl A1 43 + A2 43 = 172/172 (pilotos A1+A2, mig 100/101/104/105, tl=de/nl)
 #   query content_items_public?type=eq.listening|speaking_read_aloud, HEAD cada audio_url
 # Curso nuevo A1 (fr/it): tools/content/verify_new_course.py <code> — determinista + aislamiento (4 cursos) + cadena + audio
 # Nivel A2 (fr/it): tools/content/verify_a2_chain.py <code> — determinista A2 + aislamiento + CAMINATA 12 unidades (gating A1→A2) + audio

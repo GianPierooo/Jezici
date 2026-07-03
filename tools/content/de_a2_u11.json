@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 11, "title_es": "Personas y descripciones", "color": "#8E44AD", "icon": "people"},
+  "checkpoint_desc": "Demuestra que puedes describir el aspecto y el carácter de una persona y hablar del pasado con war y hatte.",
+  "lessons": [
+    {"order": 1, "title_es": "Ayer: war y hatte"},
+    {"order": 2, "title_es": "¿Cómo es? El carácter"},
+    {"order": 3, "title_es": "¿Cómo se ve? El aspecto"},
+    {"order": 4, "title_es": "Describir el pasado"}
+  ],
+  "vocab": [
+    ["war", "era / estaba", "verbo"],
+    ["waren", "éramos / estaban", "verbo"],
+    ["hatte", "tenía", "verbo"],
+    ["hatten", "teníamos / tenían", "verbo"],
+    ["groß", "alto / grande", "adjetivo"],
+    ["klein", "bajo / pequeño", "adjetivo"],
+    ["nett", "amable", "adjetivo"],
+    ["freundlich", "simpático", "adjetivo"],
+    ["lustig", "divertido", "adjetivo"],
+    ["ernst", "serio", "adjetivo"],
+    ["die Haare", "el pelo", "sustantivo"],
+    ["die Augen", "los ojos", "sustantivo"],
+    ["blond", "rubio", "adjetivo"],
+    ["braun", "castaño / marrón", "adjetivo"],
+    ["lang", "largo", "adjetivo"],
+    ["kurz", "corto", "adjetivo"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "praeteritum_sein_haben", "skill": "reading", "type": "match", "prompt": "Une cada forma del pasado con su significado.", "pairs": [["war", "era / estaba"], ["hatte", "tenía"], ["waren", "éramos / estaban"]]},
+    {"lesson": 1, "topic": "praeteritum_sein_haben", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la forma correcta: «Gestern ___ ich sehr müde.»", "options": ["war", "bin", "habe"], "value": "war"},
+    {"lesson": 1, "topic": "praeteritum_sein_haben", "skill": "writing", "type": "cloze", "prompt": "Completa con el pasado de «sein».", "text": "Wir ___ gestern zu Hause.", "value": "waren", "accepted": ["waren"]},
+    {"lesson": 1, "topic": "praeteritum_sein_haben", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ich war gestern sehr müde.", "options": ["Ich war gestern sehr müde.", "Ich hatte gestern viel Arbeit.", "Wir waren gestern zu Hause."], "value": "Ich war gestern sehr müde."},
+    {"lesson": 1, "topic": "praeteritum_sein_haben", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ich war gestern müde."},
+    {"lesson": 2, "topic": "caracter", "skill": "reading", "type": "match", "prompt": "Une cada adjetivo de carácter con su traducción.", "pairs": [["lustig", "divertido"], ["ernst", "serio"], ["freundlich", "simpático"]]},
+    {"lesson": 2, "topic": "caracter", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo preguntas por el CARÁCTER de una persona?", "options": ["Wie ist sie?", "Wie sieht sie aus?", "Woher kommt sie?"], "value": "Wie ist sie?"},
+    {"lesson": 2, "topic": "caracter", "skill": "writing", "type": "translation", "prompt": "Traduce: Mi hermano es muy divertido.", "source": "Mi hermano es muy divertido.", "value": "Mein Bruder ist sehr lustig.", "accepted": ["Mein Bruder ist sehr lustig.", "Mein Bruder ist sehr lustig", "Mein Bruder ist sehr witzig.", "Mein Bruder ist sehr witzig"]},
+    {"lesson": 2, "topic": "caracter", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Meine Lehrerin ist sehr nett.", "options": ["Meine Lehrerin ist sehr nett.", "Meine Lehrerin ist sehr ernst.", "Mein Lehrer war sehr nett."], "value": "Meine Lehrerin ist sehr nett."},
+    {"lesson": 2, "topic": "caracter", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Meine Freundin ist freundlich und lustig."},
+    {"lesson": 3, "topic": "aspecto_fisico", "skill": "reading", "type": "multiple_choice", "prompt": "«Wie sieht er aus?» — Elige la respuesta correcta.", "options": ["Er ist groß und hat kurze Haare.", "Er ist nett und freundlich.", "Er kommt aus Spanien."], "value": "Er ist groß und hat kurze Haare."},
+    {"lesson": 3, "topic": "aspecto_fisico", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase correcta.", "options": ["Er hat kurze blonde Haare.", "Er habt kurze blonde Haare.", "Er hat kurze blonde Haare ist."], "value": "Er hat kurze blonde Haare."},
+    {"lesson": 3, "topic": "aspecto_fisico", "skill": "writing", "type": "cloze", "prompt": "Completa con la palabra alemana para «pelo».", "text": "Meine Schwester hat lange ___.", "value": "Haare", "accepted": ["Haare"]},
+    {"lesson": 3, "topic": "aspecto_fisico", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Er hat kurze braune Haare.", "options": ["Er hat kurze braune Haare.", "Er hat lange blonde Haare.", "Sie hat grüne Augen."], "value": "Er hat kurze braune Haare."},
+    {"lesson": 3, "topic": "aspecto_fisico", "skill": "writing", "type": "word_bank", "prompt": "Forma la frase: «Ella tiene los ojos azules.»", "tiles": ["Sie", "hat", "blaue", "Augen", "ist"], "sequence": ["Sie", "hat", "blaue", "Augen"]},
+    {"lesson": 4, "topic": "descripcion_pasado", "skill": "writing", "type": "translation", "prompt": "Traduce: Ella tenía el pelo largo.", "source": "Ella tenía el pelo largo.", "value": "Sie hatte lange Haare.", "accepted": ["Sie hatte lange Haare.", "Sie hatte lange Haare", "Sie hatte langes Haar.", "Sie hatte langes Haar"]},
+    {"lesson": 4, "topic": "descripcion_pasado", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras: «Ayer estábamos en casa.»", "tiles": ["gestern", "waren", "Wir", "Hause", "zu"], "sequence": ["Wir", "waren", "gestern", "zu", "Hause"]},
+    {"lesson": 4, "topic": "descripcion_pasado", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Sie hatte lange blonde Haare.", "options": ["Sie hatte lange blonde Haare.", "Sie hat kurze blonde Haare.", "Sie hatte kurze braune Haare."], "value": "Sie hatte lange blonde Haare."},
+    {"lesson": 4, "topic": "descripcion_pasado", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Wir waren gestern zu Hause."}
+  ]
+}

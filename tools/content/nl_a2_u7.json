@@ -1,0 +1,50 @@
+{
+  "unit": {"order": 7, "title_es": "El pasado: lo que hice", "color": "#C0392B", "icon": "history_edu"},
+  "checkpoint_desc": "Demuestra que puedes contar lo que hiciste con el perfectum: hebben + participio al final.",
+  "lessons": [
+    {"order": 1, "title_es": "El perfectum: hebben + participio"},
+    {"order": 2, "title_es": "Participios regulares (ge-...-t/-d)"},
+    {"order": 3, "title_es": "Participios irregulares (ge-...-en)"},
+    {"order": 4, "title_es": "¿Qué hiciste? Preguntas y negación"}
+  ],
+  "vocab": [
+    ["gisteren", "ayer", "adverbio"],
+    ["eergisteren", "anteayer", "adverbio"],
+    ["vorige week", "la semana pasada", "expresion"],
+    ["in het weekend", "el fin de semana", "expresion"],
+    ["gewerkt", "trabajado", "verbo"],
+    ["gemaakt", "hecho (de maken)", "verbo"],
+    ["gekocht", "comprado", "verbo"],
+    ["gespeeld", "jugado", "verbo"],
+    ["gegeten", "comido", "verbo"],
+    ["gedronken", "bebido", "verbo"],
+    ["gezien", "visto", "verbo"],
+    ["gelezen", "leído", "verbo"],
+    ["geschreven", "escrito", "verbo"],
+    ["genomen", "tomado", "verbo"],
+    ["gedaan", "hecho (de doen)", "verbo"],
+    ["niets", "nada", "pronombre"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "expresiones_tiempo_pasado", "skill": "reading", "type": "match", "prompt": "Une cada expresión de tiempo con su traducción.", "pairs": [["gisteren", "ayer"], ["vorige week", "la semana pasada"], ["in het weekend", "el fin de semana"]]},
+    {"lesson": 1, "topic": "perfectum_hebben", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase con el orden de palabras correcto.", "options": ["Ik heb gisteren gewerkt.", "Ik heb gewerkt gisteren.", "Ik gewerkt heb gisteren."], "value": "Ik heb gisteren gewerkt."},
+    {"lesson": 1, "topic": "perfectum_hebben", "skill": "writing", "type": "cloze", "prompt": "Completa con la forma correcta de 'hebben'.", "text": "Hij ___ gisteren brood gekocht.", "value": "heeft", "accepted": ["heeft"]},
+    {"lesson": 1, "topic": "perfectum_hebben", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ik heb gisteren gewerkt.", "options": ["Ik heb gisteren gewerkt.", "Ik heb gisteren gespeeld.", "Ik heb vandaag gewerkt."], "value": "Ik heb gisteren gewerkt."},
+    {"lesson": 1, "topic": "perfectum_hebben", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ik heb gisteren thuis gewerkt."},
+    {"lesson": 2, "topic": "participios_regulares", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál es el participio de 'kopen' (comprar)?", "options": ["gekocht", "gekoopt", "koopte"], "value": "gekocht"},
+    {"lesson": 2, "topic": "participios_regulares", "skill": "writing", "type": "translation", "prompt": "Traduce: Ayer compré pan.", "source": "Ayer compré pan.", "value": "Ik heb gisteren brood gekocht.", "accepted": ["Ik heb gisteren brood gekocht.", "Ik heb gisteren brood gekocht", "Gisteren heb ik brood gekocht.", "Gisteren heb ik brood gekocht", "Ik kocht gisteren brood.", "Ik kocht gisteren brood", "Gisteren kocht ik brood.", "Gisteren kocht ik brood"]},
+    {"lesson": 2, "topic": "participios_regulares", "skill": "writing", "type": "cloze", "prompt": "Completa con el participio de 'maken'.", "text": "Zij heeft gisteren een foto ___.", "value": "gemaakt", "accepted": ["gemaakt"]},
+    {"lesson": 2, "topic": "participios_regulares", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Hij heeft een nieuwe fiets gekocht.", "options": ["Hij heeft een nieuwe fiets gekocht.", "Hij heeft een nieuw boek gekocht.", "Hij heeft een oude fiets gemaakt."], "value": "Hij heeft een nieuwe fiets gekocht."},
+    {"lesson": 2, "topic": "participios_regulares", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Zij heeft een mooie foto gemaakt."},
+    {"lesson": 3, "topic": "participios_irregulares", "skill": "reading", "type": "match", "prompt": "Une cada participio con su significado.", "pairs": [["gegeten", "comido"], ["gezien", "visto"], ["geschreven", "escrito"]]},
+    {"lesson": 3, "topic": "participios_irregulares", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál es el participio de 'drinken' (beber)?", "options": ["gedronken", "gedrinkt", "gedrinken"], "value": "gedronken"},
+    {"lesson": 3, "topic": "participios_irregulares", "skill": "writing", "type": "word_bank", "prompt": "Forma la frase en neerlandés: 'He leído un libro'.", "tiles": ["Ik", "heb", "een", "boek", "gelezen", "leest"], "sequence": ["Ik", "heb", "een", "boek", "gelezen"]},
+    {"lesson": 3, "topic": "participios_irregulares", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Wij hebben pizza gegeten en cola gedronken.", "options": ["Wij hebben pizza gegeten en cola gedronken.", "Wij hebben brood gegeten en melk gedronken.", "Wij hebben pizza gemaakt en koffie gedronken."], "value": "Wij hebben pizza gegeten en cola gedronken."},
+    {"lesson": 3, "topic": "participios_irregulares", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ik heb dat boek al gelezen.", "options": ["Ik heb dat boek al gelezen.", "Ik heb die brief al geschreven.", "Ik heb dat boek niet gelezen."], "value": "Ik heb dat boek al gelezen."},
+    {"lesson": 4, "topic": "pasado_preguntas_negacion", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase correcta.", "options": ["Ik heb niets gedaan.", "Ik ben niets gedaan.", "Ik heb niets doen."], "value": "Ik heb niets gedaan."},
+    {"lesson": 4, "topic": "pasado_preguntas_negacion", "skill": "writing", "type": "translation", "prompt": "Traduce: No hice nada ayer.", "source": "No hice nada ayer.", "value": "Ik heb gisteren niets gedaan.", "accepted": ["Ik heb gisteren niets gedaan.", "Ik heb gisteren niets gedaan", "Gisteren heb ik niets gedaan.", "Gisteren heb ik niets gedaan", "Ik heb gisteren niks gedaan.", "Ik heb gisteren niks gedaan", "Gisteren heb ik niks gedaan.", "Gisteren heb ik niks gedaan", "Ik deed gisteren niets.", "Ik deed gisteren niets", "Gisteren deed ik niets.", "Gisteren deed ik niets"]},
+    {"lesson": 4, "topic": "pasado_preguntas_negacion", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras para formar una pregunta.", "tiles": ["gisteren", "Wat", "gedaan?", "je", "heb"], "sequence": ["Wat", "heb", "je", "gisteren", "gedaan?"]},
+    {"lesson": 4, "topic": "pasado_preguntas_negacion", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Wat heb je eergisteren gedaan?", "options": ["Wat heb je eergisteren gedaan?", "Wat heb je gisteren gedaan?", "Wat heb je vorige week gedaan?"], "value": "Wat heb je eergisteren gedaan?"},
+    {"lesson": 4, "topic": "pasado_preguntas_negacion", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Wat heb je in het weekend gedaan?"}
+  ]
+}

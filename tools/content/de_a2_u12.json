@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 12, "title_es": "Salud, cuerpo y consejos", "color": "#D35400", "icon": "healing"},
+  "checkpoint_desc": "Demuestra que puedes nombrar las partes del cuerpo, decir qué te duele y dar consejos con solltest y muss.",
+  "lessons": [
+    {"order": 1, "title_es": "El cuerpo"},
+    {"order": 2, "title_es": "Me duele: wehtun"},
+    {"order": 3, "title_es": "En el médico"},
+    {"order": 4, "title_es": "Consejos: solltest y muss"}
+  ],
+  "vocab": [
+    ["der Kopf", "la cabeza", "sustantivo"],
+    ["der Bauch", "la barriga", "sustantivo"],
+    ["der Rücken", "la espalda", "sustantivo"],
+    ["der Hals", "la garganta / el cuello", "sustantivo"],
+    ["das Bein", "la pierna", "sustantivo"],
+    ["der Arm", "el brazo", "sustantivo"],
+    ["die Hand", "la mano", "sustantivo"],
+    ["der Fuß", "el pie", "sustantivo"],
+    ["die Zähne", "los dientes", "sustantivo"],
+    ["wehtun", "doler", "verbo"],
+    ["krank", "enfermo", "adjetivo"],
+    ["das Fieber", "la fiebre", "sustantivo"],
+    ["die Kopfschmerzen", "el dolor de cabeza", "sustantivo"],
+    ["der Arzt", "el médico", "sustantivo"],
+    ["du solltest", "deberías", "expresion"],
+    ["müssen", "tener que / deber", "verbo"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "el_cuerpo", "skill": "reading", "type": "match", "prompt": "Une cada parte del cuerpo con su traducción.", "pairs": [["der Kopf", "la cabeza"], ["der Bauch", "la barriga"], ["das Bein", "la pierna"]]},
+    {"lesson": 1, "topic": "el_cuerpo", "skill": "reading", "type": "match", "prompt": "Une cada parte del cuerpo con su traducción.", "pairs": [["die Hand", "la mano"], ["der Fuß", "el pie"], ["die Zähne", "los dientes"]]},
+    {"lesson": 1, "topic": "el_cuerpo", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la palabra correcta para «la espalda».", "options": ["der Rücken", "die Rücken", "das Rücken"], "value": "der Rücken"},
+    {"lesson": 1, "topic": "el_cuerpo", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Das sind meine Zähne.", "options": ["Das sind meine Zähne.", "Das ist meine Hand.", "Das sind meine Füße."], "value": "Das sind meine Zähne."},
+    {"lesson": 1, "topic": "el_cuerpo", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Meine Hände und meine Füße sind kalt."},
+    {"lesson": 2, "topic": "dolor_wehtun", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la forma correcta: «Mir ___ die Zähne weh.»", "options": ["tun", "tut", "tust"], "value": "tun"},
+    {"lesson": 2, "topic": "dolor_wehtun", "skill": "writing", "type": "cloze", "prompt": "Completa con la forma correcta de «wehtun».", "text": "Mir ___ der Kopf weh.", "value": "tut", "accepted": ["tut"]},
+    {"lesson": 2, "topic": "dolor_wehtun", "skill": "writing", "type": "translation", "prompt": "Traduce: Me duelen los pies.", "source": "Me duelen los pies.", "value": "Mir tun die Füße weh.", "accepted": ["Mir tun die Füße weh.", "Mir tun die Füße weh", "Mir tun die Füsse weh.", "Mir tun die Füsse weh", "Mir tun die Fuesse weh.", "Mir tun die Fuesse weh", "Die Füße tun mir weh.", "Die Füße tun mir weh", "Die Füsse tun mir weh.", "Die Füsse tun mir weh", "Die Fuesse tun mir weh.", "Die Fuesse tun mir weh"]},
+    {"lesson": 2, "topic": "dolor_wehtun", "skill": "writing", "type": "word_bank", "prompt": "Forma la frase (empieza con «Mir»): «Me duele la barriga.»", "tiles": ["Mir", "tut", "der", "Bauch", "weh", "tun"], "sequence": ["Mir", "tut", "der", "Bauch", "weh"]},
+    {"lesson": 2, "topic": "dolor_wehtun", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Mir tut der Hals weh.", "options": ["Mir tut der Hals weh.", "Mir tut der Kopf weh.", "Mir tun die Füße weh."], "value": "Mir tut der Hals weh."},
+    {"lesson": 3, "topic": "beim_arzt", "skill": "reading", "type": "multiple_choice", "prompt": "El médico pregunta: «Was fehlt Ihnen?» ¿Qué significa?", "options": ["¿Qué le pasa?", "¿Cómo se llama usted?", "¿Cuántos años tiene usted?"], "value": "¿Qué le pasa?"},
+    {"lesson": 3, "topic": "beim_arzt", "skill": "writing", "type": "cloze", "prompt": "Completa con la palabra alemana para «fiebre».", "text": "Ich bin krank und habe ___.", "value": "Fieber", "accepted": ["Fieber"]},
+    {"lesson": 3, "topic": "beim_arzt", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ich bin krank und habe Fieber.", "options": ["Ich bin krank und habe Fieber.", "Ich bin müde und habe Hunger.", "Ich war krank und hatte Fieber."], "value": "Ich bin krank und habe Fieber."},
+    {"lesson": 3, "topic": "beim_arzt", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ich bin krank und habe Fieber."},
+    {"lesson": 4, "topic": "consejos_sollen", "skill": "reading", "type": "multiple_choice", "prompt": "Tu amigo dice: «Ich bin sehr müde.» Elige el consejo correcto.", "options": ["Du solltest schlafen.", "Du solltest geschlafen.", "Du schlafen solltest."], "value": "Du solltest schlafen."},
+    {"lesson": 4, "topic": "consejos_sollen", "skill": "writing", "type": "translation", "prompt": "Traduce: Debo quedarme en casa.", "source": "Debo quedarme en casa.", "value": "Ich muss zu Hause bleiben.", "accepted": ["Ich muss zu Hause bleiben.", "Ich muss zu Hause bleiben", "Ich muss zuhause bleiben.", "Ich muss zuhause bleiben"]},
+    {"lesson": 4, "topic": "consejos_sollen", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras: «Deberías ir al médico.»", "tiles": ["zum", "solltest", "Du", "gehen", "Arzt"], "sequence": ["Du", "solltest", "zum", "Arzt", "gehen"]},
+    {"lesson": 4, "topic": "consejos_sollen", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Du solltest mehr Wasser trinken.", "options": ["Du solltest mehr Wasser trinken.", "Du solltest mehr Kaffee trinken.", "Du musst mehr Wasser trinken."], "value": "Du solltest mehr Wasser trinken."},
+    {"lesson": 4, "topic": "consejos_sollen", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ich muss heute zum Arzt gehen."}
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "unit": {"order": 7, "title_es": "El pasado: lo que hice", "color": "#C0392B", "icon": "history_edu"},
+  "checkpoint_desc": "Demuestra que dominas el pasado (Perfekt) con haben y los participios.",
+  "lessons": [
+    {"order": 1, "title_es": "Ayer hice… (Perfekt con haben)"},
+    {"order": 2, "title_es": "Participios irregulares"},
+    {"order": 3, "title_es": "Preguntas y negación en pasado"},
+    {"order": 4, "title_es": "La semana pasada"}
+  ],
+  "vocab": [
+    ["gestern", "ayer", "adverbio"],
+    ["vorgestern", "anteayer", "adverbio"],
+    ["letzte Woche", "la semana pasada", "expresion"],
+    ["am Wochenende", "el fin de semana", "expresion"],
+    ["gemacht", "hecho", "verbo"],
+    ["gekauft", "comprado", "verbo"],
+    ["gearbeitet", "trabajado", "verbo"],
+    ["gespielt", "jugado", "verbo"],
+    ["gegessen", "comido", "verbo"],
+    ["getrunken", "bebido", "verbo"],
+    ["gesehen", "visto", "verbo"],
+    ["gelesen", "leído", "verbo"],
+    ["geschrieben", "escrito", "verbo"],
+    ["genommen", "tomado", "verbo"],
+    ["nichts", "nada", "pronombre"],
+    ["die E-Mail", "el correo electrónico", "sustantivo"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "partizip_regular", "skill": "reading", "type": "match", "prompt": "Une cada participio con su significado.", "pairs": [["gemacht", "hecho"], ["gekauft", "comprado"], ["gespielt", "jugado"]]},
+    {"lesson": 1, "topic": "perfekt_haben", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase correcta en pasado (Perfekt).", "options": ["Ich habe gestern gearbeitet.", "Ich habe gestern arbeiten.", "Ich gearbeitet gestern habe."], "value": "Ich habe gestern gearbeitet."},
+    {"lesson": 1, "topic": "perfekt_haben", "skill": "writing", "type": "cloze", "prompt": "Completa la frase (ayer jugué al fútbol).", "text": "Ich ___ gestern Fußball gespielt.", "value": "habe", "accepted": ["habe"]},
+    {"lesson": 1, "topic": "perfekt_haben", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ich habe eine Pizza gekauft.", "options": ["Ich habe eine Pizza gekauft.", "Ich habe eine Pizza gekocht.", "Ich habe einen Kuchen gekauft."], "value": "Ich habe eine Pizza gekauft."},
+    {"lesson": 1, "topic": "perfekt_haben", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ich habe gestern viel gearbeitet."},
+    {"lesson": 2, "topic": "partizip_irregular", "skill": "reading", "type": "match", "prompt": "Une cada participio irregular con su significado.", "pairs": [["gegessen", "comido"], ["getrunken", "bebido"], ["gelesen", "leído"]]},
+    {"lesson": 2, "topic": "partizip_irregular", "skill": "reading", "type": "multiple_choice", "prompt": "Elige el participio correcto de 'essen' (comer).", "options": ["gegessen", "gegesst", "geesst"], "value": "gegessen"},
+    {"lesson": 2, "topic": "partizip_irregular", "skill": "writing", "type": "translation", "prompt": "Traduce: He bebido un café.", "source": "He bebido un café.", "value": "Ich habe einen Kaffee getrunken.", "accepted": ["Ich habe einen Kaffee getrunken.", "Ich habe einen Kaffee getrunken"]},
+    {"lesson": 2, "topic": "partizip_irregular", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ich habe ein Buch gelesen.", "options": ["Ich habe ein Buch gelesen.", "Ich habe ein Buch genommen.", "Ich habe einen Brief geschrieben."], "value": "Ich habe ein Buch gelesen."},
+    {"lesson": 2, "topic": "partizip_irregular", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Wir haben Pizza gegessen und Cola getrunken."},
+    {"lesson": 3, "topic": "fragen_negation_perfekt", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la pregunta correcta en pasado.", "options": ["Was hast du gestern gemacht?", "Was du hast gestern gemacht?", "Was hast du gestern machen?"], "value": "Was hast du gestern gemacht?"},
+    {"lesson": 3, "topic": "fragen_negation_perfekt", "skill": "writing", "type": "cloze", "prompt": "Completa la respuesta (no hice nada).", "text": "Ich habe ___ gemacht.", "value": "nichts", "accepted": ["nichts"]},
+    {"lesson": 3, "topic": "fragen_negation_perfekt", "skill": "writing", "type": "word_bank", "prompt": "Construye la frase: Ayer compré un libro.", "tiles": ["Buch", "habe", "gestern", "Ich", "kaufen", "ein", "gekauft", "hat"], "sequence": ["Ich", "habe", "gestern", "ein", "Buch", "gekauft"]},
+    {"lesson": 3, "topic": "fragen_negation_perfekt", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Was hast du am Wochenende gemacht?", "options": ["Was hast du am Wochenende gemacht?", "Was hast du am Wochenende gekauft?", "Wo hast du am Wochenende gespielt?"], "value": "Was hast du am Wochenende gemacht?"},
+    {"lesson": 3, "topic": "fragen_negation_perfekt", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ich habe nichts gegessen.", "options": ["Ich habe nichts gegessen.", "Ich habe nichts getrunken.", "Ich habe alles gegessen."], "value": "Ich habe nichts gegessen."},
+    {"lesson": 4, "topic": "zeitausdruecke_vergangenheit", "skill": "reading", "type": "multiple_choice", "prompt": "¿Qué significa 'vorgestern'?", "options": ["anteayer", "mañana", "la semana pasada"], "value": "anteayer"},
+    {"lesson": 4, "topic": "zeitausdruecke_vergangenheit", "skill": "writing", "type": "translation", "prompt": "Traduce: La semana pasada escribí un email.", "source": "La semana pasada escribí un email.", "value": "Letzte Woche habe ich eine E-Mail geschrieben.", "accepted": ["Letzte Woche habe ich eine E-Mail geschrieben.", "Letzte Woche habe ich eine E-Mail geschrieben", "Letzte Woche habe ich eine Email geschrieben.", "Letzte Woche habe ich eine Email geschrieben", "Ich habe letzte Woche eine E-Mail geschrieben.", "Ich habe letzte Woche eine E-Mail geschrieben", "Ich habe letzte Woche eine Email geschrieben.", "Ich habe letzte Woche eine Email geschrieben"]},
+    {"lesson": 4, "topic": "zeitausdruecke_vergangenheit", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras para formar la pregunta (¿qué hiciste anteayer?).", "tiles": ["gemacht?", "du", "Was", "vorgestern", "hast"], "sequence": ["Was", "hast", "du", "vorgestern", "gemacht?"]},
+    {"lesson": 4, "topic": "zeitausdruecke_vergangenheit", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Letzte Woche habe ich viel gearbeitet.", "options": ["Letzte Woche habe ich viel gearbeitet.", "Letzte Woche habe ich viel gespielt.", "Letztes Jahr habe ich viel gearbeitet."], "value": "Letzte Woche habe ich viel gearbeitet."},
+    {"lesson": 4, "topic": "zeitausdruecke_vergangenheit", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Was hast du gestern gemacht?"}
+  ]
+}

@@ -2,6 +2,31 @@
 
 ---
 
+## A2 es→de + es→nl — 2026-07-03 ✅ LIVE + VERIFICADO (cliente real, 6 cursos aislados)
+> Continúa la escalera A1→A2 de los pilotos alemán/neerlandés. Autoría por workflow ultracode
+> (6 profesores nativos, 2 unidades c/u) + revisión adversarial nativa por idioma.
+- **Sembrado (mig 104 de / 105 nl):** 6 unidades A2 (order 7-12) por idioma, encadenadas con A1.
+  **115 ítems/idioma** (R36/W36/L25/S18 → L=69%, S=50%). Audio TTS tl=de/nl **43/43 cada uno**.
+  Temas: Perfekt/Perfectum (haben/hebben U7 → sein/zijn+concordancia U9), futuro (Präsens+werden /
+  gaan+zullen U8), viaje, comer fuera/comparativo (als/dan, größer/groter, meilleur→besser/beter U10),
+  Präteritum war-hatte / imperfectum was-had + descripción U11, cuerpo+salud (wehtun con dativo /
+  hoofdpijn compuesto, consejos sollen/moeten U12).
+- **Calidad — revisión adversarial nativa:** de **0 ❌** + 1 pulido (podadas 2 variantes de orden
+  marcado TeKaMoLo en el `accepted` de U9); nl **0 ❌ + 0 ⚠️** (impecable). El revisor de estresó
+  auxiliar haben/sein, participios (gegessen no gegesst), orden V2/verbo-final, comparativo con als
+  (no wie) + Umlaut, wehtun con dativo — todo correcto. nl: hebben/zijn, participios, de/het, dan (no
+  als), compuestos de dolor en una palabra — todo correcto.
+- **Aislamiento 6 cursos — VERIFICADO cliente real** (`verify_a2_chain.py de|nl`, JWT): **0 cruces**;
+  determinista A2 de 97/97 + nl 97/97 correctos + 97/97 distractores (42501); **CAMINATA de las 12
+  unidades EN ORDEN** (U6 desbloquea U7, gating A1→A2 end-to-end, 30/30 lecciones A2 completadas);
+  default(en) sin fuga; audio HEAD 43/43. Cursos previos INTACTOS (verify_chain en · verify_pt_chain pt).
+  `analyze` 0 · `test` 91/91. **Nota:** el límite de sesión cortó la fase de revisión del workflow,
+  PERO los 12 JSON ya estaban escritos → se completó con revisores adversariales por separado + el gate
+  determinista/aislamiento (objetivo) que pasó en verde.
+- **Diferido:** B1+ de/nl; tips A2 de/nl; placement de/nl; historias.
+
+---
+
 ## Capa "enseña": tips A1 para fr/it/de/nl — 2026-07-03 ✅ LIVE + VERIFICADO (course-scoped)
 > Hueco: el tip post-lección (aparece tras CADA lección) existía **solo para es→en** (72 tips);
 > los otros 5 cursos caían a null (sin consejo). Frente de alta frecuencia/impacto.

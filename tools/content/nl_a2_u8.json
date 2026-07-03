@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 8, "title_es": "Planes y futuro", "color": "#2C3E50", "icon": "event_available"},
+  "checkpoint_desc": "Demuestra que puedes hablar de planes y futuro con gaan, zullen, inversión y 'ik wil graag'.",
+  "lessons": [
+    {"order": 1, "title_es": "Futuro con gaan + infinitivo"},
+    {"order": 2, "title_es": "Morgen werk ik: presente con inversión"},
+    {"order": 3, "title_es": "Zullen: promesas y ofertas"},
+    {"order": 4, "title_es": "Ik wil graag: deseos y planes"}
+  ],
+  "vocab": [
+    ["morgen", "mañana", "adverbio"],
+    ["overmorgen", "pasado mañana", "adverbio"],
+    ["volgende week", "la semana que viene", "expresion"],
+    ["volgend jaar", "el año que viene", "expresion"],
+    ["straks", "dentro de un rato", "adverbio"],
+    ["binnenkort", "pronto, dentro de poco", "adverbio"],
+    ["gaan", "ir (a hacer algo)", "verbo"],
+    ["zullen", "auxiliar de futuro (promesa)", "verbo"],
+    ["reizen", "viajar", "verbo"],
+    ["kijken", "mirar, ver", "verbo"],
+    ["komen", "venir", "verbo"],
+    ["willen", "querer", "verbo"],
+    ["graag", "con gusto", "adverbio"],
+    ["de film", "la película", "sustantivo"],
+    ["het plan", "el plan", "sustantivo"],
+    ["de vakantie", "las vacaciones", "sustantivo"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "expresiones_tiempo_futuro", "skill": "reading", "type": "match", "prompt": "Une cada expresión de tiempo con su traducción.", "pairs": [["morgen", "mañana"], ["overmorgen", "pasado mañana"], ["volgende week", "la semana que viene"]]},
+    {"lesson": 1, "topic": "futuro_gaan", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase con el orden de palabras correcto.", "options": ["Wij gaan een film kijken.", "Wij gaan kijken een film.", "Wij kijken gaan een film."], "value": "Wij gaan een film kijken."},
+    {"lesson": 1, "topic": "futuro_gaan", "skill": "writing", "type": "cloze", "prompt": "Completa con la forma correcta de 'gaan'.", "text": "Wij ___ morgen een film kijken.", "value": "gaan", "accepted": ["gaan"]},
+    {"lesson": 1, "topic": "futuro_gaan", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ik ga morgen een film kijken.", "options": ["Ik ga morgen een film kijken.", "Ik ga morgen een boek lezen.", "Ik ga straks een film kijken."], "value": "Ik ga morgen een film kijken."},
+    {"lesson": 1, "topic": "futuro_gaan", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ik ga overmorgen een boek lezen."},
+    {"lesson": 2, "topic": "presente_inversion", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase correcta.", "options": ["Morgen werk ik thuis.", "Morgen ik werk thuis.", "Morgen werken ik thuis."], "value": "Morgen werk ik thuis."},
+    {"lesson": 2, "topic": "presente_inversion", "skill": "writing", "type": "word_bank", "prompt": "Forma la frase en neerlandés: 'Pasado mañana no trabajo'.", "tiles": ["Overmorgen", "werk", "ik", "niet", "werkt"], "sequence": ["Overmorgen", "werk", "ik", "niet"]},
+    {"lesson": 2, "topic": "presente_inversion", "skill": "writing", "type": "translation", "prompt": "Traduce: Mañana no trabajo.", "source": "Mañana no trabajo.", "value": "Morgen werk ik niet.", "accepted": ["Morgen werk ik niet.", "Morgen werk ik niet", "Ik werk morgen niet.", "Ik werk morgen niet", "Ik ga morgen niet werken.", "Ik ga morgen niet werken", "Morgen ga ik niet werken.", "Morgen ga ik niet werken"]},
+    {"lesson": 2, "topic": "presente_inversion", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Morgen kijk ik een film.", "options": ["Morgen kijk ik een film.", "Straks kijk ik een film.", "Morgen lees ik een boek."], "value": "Morgen kijk ik een film."},
+    {"lesson": 2, "topic": "presente_inversion", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Volgende week werk ik niet."},
+    {"lesson": 3, "topic": "futuro_zullen", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase con el orden de palabras correcto.", "options": ["Ik zal morgen komen.", "Ik zal komen morgen.", "Ik morgen zal komen."], "value": "Ik zal morgen komen."},
+    {"lesson": 3, "topic": "futuro_zullen", "skill": "writing", "type": "cloze", "prompt": "Completa con la forma correcta de 'zullen'.", "text": "Hij ___ volgende week komen.", "value": "zal", "accepted": ["zal"]},
+    {"lesson": 3, "topic": "futuro_zullen", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras para formar una promesa.", "tiles": ["morgen", "Ik", "helpen.", "zal", "je"], "sequence": ["Ik", "zal", "je", "morgen", "helpen."]},
+    {"lesson": 3, "topic": "expresiones_tiempo_futuro", "skill": "reading", "type": "match", "prompt": "Une cada expresión de tiempo con su traducción.", "pairs": [["straks", "dentro de un rato"], ["binnenkort", "pronto"], ["volgend jaar", "el año que viene"]]},
+    {"lesson": 3, "topic": "futuro_zullen", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Wij zullen binnenkort komen.", "options": ["Wij zullen binnenkort komen.", "Wij zullen morgen komen.", "Wij gaan binnenkort reizen."], "value": "Wij zullen binnenkort komen."},
+    {"lesson": 4, "topic": "deseos_wil_graag", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase correcta para expresar un deseo.", "options": ["Ik wil graag naar Spanje reizen.", "Ik wil graag naar Spanje reist.", "Ik graag wil naar Spanje reizen."], "value": "Ik wil graag naar Spanje reizen."},
+    {"lesson": 4, "topic": "deseos_wil_graag", "skill": "writing", "type": "translation", "prompt": "Traduce: Me gustaría viajar el año que viene.", "source": "Me gustaría viajar el año que viene.", "value": "Ik wil graag volgend jaar reizen.", "accepted": ["Ik wil graag volgend jaar reizen.", "Ik wil graag volgend jaar reizen", "Ik wil volgend jaar graag reizen.", "Ik wil volgend jaar graag reizen", "Volgend jaar wil ik graag reizen.", "Volgend jaar wil ik graag reizen", "Ik zou graag volgend jaar reizen.", "Ik zou graag volgend jaar reizen", "Ik zou volgend jaar graag reizen.", "Ik zou volgend jaar graag reizen", "Volgend jaar zou ik graag reizen.", "Volgend jaar zou ik graag reizen", "Ik zou graag volgend jaar willen reizen.", "Ik zou graag volgend jaar willen reizen"]},
+    {"lesson": 4, "topic": "deseos_wil_graag", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ik wil graag volgend jaar naar Nederland reizen.", "options": ["Ik wil graag volgend jaar naar Nederland reizen.", "Ik wil graag volgende week naar Nederland reizen.", "Ik ga volgend jaar naar Nederland reizen."], "value": "Ik wil graag volgend jaar naar Nederland reizen."},
+    {"lesson": 4, "topic": "deseos_wil_graag", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ik wil graag binnenkort op vakantie gaan."}
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 8, "title_es": "Planes y futuro", "color": "#2C3E50", "icon": "event_available"},
+  "checkpoint_desc": "Demuestra que puedes hablar de tus planes con presente, werden y möchte/will.",
+  "lessons": [
+    {"order": 1, "title_es": "Mañana… (presente con valor de futuro)"},
+    {"order": 2, "title_es": "Futuro con werden"},
+    {"order": 3, "title_es": "Quiero: möchte y will"},
+    {"order": 4, "title_es": "Pronto: expresiones de tiempo"}
+  ],
+  "vocab": [
+    ["morgen", "mañana", "adverbio"],
+    ["übermorgen", "pasado mañana", "adverbio"],
+    ["nächste Woche", "la próxima semana", "expresion"],
+    ["nächstes Jahr", "el próximo año", "expresion"],
+    ["bald", "pronto", "adverbio"],
+    ["werden", "ir a (auxiliar de futuro)", "verbo"],
+    ["möchten", "querer (cortés)", "verbo"],
+    ["wollen", "querer", "verbo"],
+    ["reisen", "viajar", "verbo"],
+    ["besuchen", "visitar", "verbo"],
+    ["lernen", "aprender", "verbo"],
+    ["fahren", "ir (en vehículo)", "verbo"],
+    ["der Plan", "el plan", "sustantivo"],
+    ["die Reise", "el viaje", "sustantivo"],
+    ["der Urlaub", "las vacaciones", "sustantivo"],
+    ["vielleicht", "quizás", "adverbio"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "zeitausdruecke_zukunft", "skill": "reading", "type": "match", "prompt": "Une cada expresión de tiempo con su significado.", "pairs": [["morgen", "mañana"], ["übermorgen", "pasado mañana"], ["bald", "pronto"]]},
+    {"lesson": 1, "topic": "futur_praesens_inversion", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase correcta (mañana voy a Berlín).", "options": ["Morgen fahre ich nach Berlin.", "Morgen ich fahre nach Berlin.", "Morgen fahren ich nach Berlin."], "value": "Morgen fahre ich nach Berlin."},
+    {"lesson": 1, "topic": "futur_praesens_inversion", "skill": "writing", "type": "cloze", "prompt": "Completa la frase (pasado mañana visito a mi abuela).", "text": "Übermorgen ___ ich meine Oma.", "value": "besuche", "accepted": ["besuche"]},
+    {"lesson": 1, "topic": "futur_praesens_inversion", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Morgen arbeite ich nicht.", "options": ["Morgen arbeite ich nicht.", "Morgen arbeite ich viel.", "Heute arbeite ich nicht."], "value": "Morgen arbeite ich nicht."},
+    {"lesson": 1, "topic": "futur_praesens_inversion", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Morgen fahre ich nach Berlin."},
+    {"lesson": 2, "topic": "futur_werden", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase correcta con 'werden' (futuro).", "options": ["Ich werde nächstes Jahr Deutsch lernen.", "Ich werde nächstes Jahr lerne Deutsch.", "Ich lernen werde nächstes Jahr Deutsch."], "value": "Ich werde nächstes Jahr Deutsch lernen."},
+    {"lesson": 2, "topic": "futur_werden", "skill": "writing", "type": "translation", "prompt": "Traduce: Voy a viajar pronto.", "source": "Voy a viajar pronto.", "value": "Ich werde bald reisen.", "accepted": ["Ich werde bald reisen.", "Ich werde bald reisen", "Bald werde ich reisen.", "Bald werde ich reisen"]},
+    {"lesson": 2, "topic": "futur_werden", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras (pasado mañana visitaré a mis padres).", "tiles": ["besuchen", "werde", "Übermorgen", "meine", "ich", "Eltern"], "sequence": ["Übermorgen", "werde", "ich", "meine", "Eltern", "besuchen"]},
+    {"lesson": 2, "topic": "futur_werden", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ich werde nächstes Jahr nach Deutschland reisen.", "options": ["Ich werde nächstes Jahr nach Deutschland reisen.", "Ich werde nächste Woche nach Deutschland reisen.", "Ich werde nächstes Jahr in Deutschland arbeiten."], "value": "Ich werde nächstes Jahr nach Deutschland reisen."},
+    {"lesson": 2, "topic": "futur_werden", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ich werde bald Deutsch lernen."},
+    {"lesson": 3, "topic": "modalverben_plaene", "skill": "reading", "type": "match", "prompt": "Une cada palabra con su significado.", "pairs": [["reisen", "viajar"], ["besuchen", "visitar"], ["der Urlaub", "las vacaciones"]]},
+    {"lesson": 3, "topic": "modalverben_plaene", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase correcta (me gustaría beber un café).", "options": ["Ich möchte einen Kaffee trinken.", "Ich möchte trinken einen Kaffee.", "Ich möchte einen Kaffee trinke."], "value": "Ich möchte einen Kaffee trinken."},
+    {"lesson": 3, "topic": "modalverben_plaene", "skill": "writing", "type": "cloze", "prompt": "Completa la frase (queremos hacer un viaje el próximo año).", "text": "Wir ___ nächstes Jahr eine Reise machen.", "value": "wollen", "accepted": ["wollen", "möchten", "moechten"]},
+    {"lesson": 3, "topic": "modalverben_plaene", "skill": "writing", "type": "word_bank", "prompt": "Construye la frase: Quiero ver una película.", "tiles": ["Film", "will", "sehen", "Ich", "einen", "sieht", "wollen"], "sequence": ["Ich", "will", "einen", "Film", "sehen"]},
+    {"lesson": 3, "topic": "modalverben_plaene", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ich möchte nach Spanien fahren.", "options": ["Ich möchte nach Spanien fahren.", "Ich möchte in Spanien wohnen.", "Ich will nach Spanien fahren."], "value": "Ich möchte nach Spanien fahren."},
+    {"lesson": 4, "topic": "zeitausdruecke_zukunft", "skill": "reading", "type": "multiple_choice", "prompt": "¿Qué significa 'nächstes Jahr'?", "options": ["el próximo año", "el año pasado", "la próxima semana"], "value": "el próximo año"},
+    {"lesson": 4, "topic": "zeitausdruecke_zukunft", "skill": "writing", "type": "translation", "prompt": "Traduce: La próxima semana voy a trabajar mucho.", "source": "La próxima semana voy a trabajar mucho.", "value": "Nächste Woche werde ich viel arbeiten.", "accepted": ["Nächste Woche werde ich viel arbeiten.", "Nächste Woche werde ich viel arbeiten", "Naechste Woche werde ich viel arbeiten.", "Naechste Woche werde ich viel arbeiten", "Ich werde nächste Woche viel arbeiten.", "Ich werde nächste Woche viel arbeiten", "Ich werde naechste Woche viel arbeiten.", "Ich werde naechste Woche viel arbeiten", "Nächste Woche arbeite ich viel.", "Nächste Woche arbeite ich viel", "Naechste Woche arbeite ich viel.", "Naechste Woche arbeite ich viel"]},
+    {"lesson": 4, "topic": "zeitausdruecke_zukunft", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Bald beginnt mein Urlaub.", "options": ["Bald beginnt mein Urlaub.", "Bald endet mein Urlaub.", "Morgen beginnt mein Urlaub."], "value": "Bald beginnt mein Urlaub."},
+    {"lesson": 4, "topic": "zeitausdruecke_zukunft", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Nächste Woche werde ich meine Freunde besuchen."}
+  ]
+}

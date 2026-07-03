@@ -1,0 +1,50 @@
+{
+  "unit": {"order": 10, "title_es": "Comer fuera y comprar", "color": "#E67E22", "icon": "shopping_cart"},
+  "checkpoint_desc": "Demuestra que puedes comparar precios y cosas (billiger als, besser) y pedir en un restaurante con cortesía.",
+  "lessons": [
+    {"order": 1, "title_es": "En el restaurante"},
+    {"order": 2, "title_es": "Comparar precios"},
+    {"order": 3, "title_es": "Mejor y preferido"},
+    {"order": 4, "title_es": "En el mercado"}
+  ],
+  "vocab": [
+    ["die Speisekarte", "la carta (del restaurante)", "sustantivo"],
+    ["die Rechnung", "la cuenta", "sustantivo"],
+    ["bestellen", "pedir (comida)", "verbo"],
+    ["bezahlen", "pagar", "verbo"],
+    ["schmecken", "saber (tener sabor)", "verbo"],
+    ["kosten", "costar", "verbo"],
+    ["billig", "barato", "adjetivo"],
+    ["teuer", "caro", "adjetivo"],
+    ["besser", "mejor", "adjetivo"],
+    ["lieber", "con preferencia", "adverbio"],
+    ["mehr", "más", "adverbio"],
+    ["am besten", "lo mejor (superlativo)", "expresion"],
+    ["billiger als", "más barato que", "expresion"],
+    ["ein Kilo", "un kilo", "expresion"],
+    ["eine Flasche", "una botella", "expresion"],
+    ["ein bisschen", "un poco", "expresion"],
+    ["Ich hätte gern ...", "quisiera ...", "expresion"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "restaurante", "skill": "reading", "type": "match", "prompt": "Une cada palabra con su significado.", "pairs": [["die Speisekarte", "la carta"], ["die Rechnung", "la cuenta"], ["bestellen", "pedir (comida)"]]},
+    {"lesson": 1, "topic": "restaurante", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase correcta.", "options": ["Ich hätte gern die Speisekarte.", "Ich hätte gern die Speisekarte haben.", "Ich gern hätte die Speisekarte."], "value": "Ich hätte gern die Speisekarte."},
+    {"lesson": 1, "topic": "restaurante", "skill": "writing", "type": "translation", "prompt": "Traduce: La cuenta, por favor.", "source": "La cuenta, por favor.", "value": "Die Rechnung, bitte.", "accepted": ["Die Rechnung, bitte.", "Die Rechnung, bitte", "Die Rechnung bitte.", "Die Rechnung bitte"]},
+    {"lesson": 1, "topic": "restaurante", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Das schmeckt wirklich gut!", "options": ["Das schmeckt wirklich gut!", "Das kostet sehr viel.", "Das ist mir zu teuer."], "value": "Das schmeckt wirklich gut!"},
+    {"lesson": 1, "topic": "restaurante", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ich hätte gern einen Kaffee, bitte."},
+    {"lesson": 2, "topic": "comparativo", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase correcta.", "options": ["Der Apfel ist billiger als die Banane.", "Der Apfel ist billiger wie die Banane.", "Der Apfel ist mehr billig als die Banane."], "value": "Der Apfel ist billiger als die Banane."},
+    {"lesson": 2, "topic": "comparativo", "skill": "writing", "type": "cloze", "prompt": "Completa con el comparativo de «groß».", "text": "Berlin ist ___ als Bonn.", "value": "größer", "accepted": ["größer", "grösser", "groesser", "groeßer"]},
+    {"lesson": 2, "topic": "comparativo", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo preguntas el precio del pan?", "options": ["Was kostet das Brot?", "Was schmeckt das Brot?", "Wo ist das Brot?"], "value": "Was kostet das Brot?"},
+    {"lesson": 2, "topic": "comparativo", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Das Hemd ist teurer als die Hose.", "options": ["Das Hemd ist teurer als die Hose.", "Das Hemd ist billiger als die Hose.", "Die Hose ist mir zu groß."], "value": "Das Hemd ist teurer als die Hose."},
+    {"lesson": 2, "topic": "comparativo", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Was kostet ein Kilo Äpfel?"},
+    {"lesson": 3, "topic": "comparativo_irregular", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase correcta.", "options": ["Ich trinke lieber Tee als Kaffee.", "Ich trinke gerner Tee als Kaffee.", "Ich trinke mehr gern Tee als Kaffee."], "value": "Ich trinke lieber Tee als Kaffee."},
+    {"lesson": 3, "topic": "comparativo_irregular", "skill": "writing", "type": "cloze", "prompt": "Completa con el comparativo de «gut».", "text": "Die Pizza hier ist ___ als die Pasta.", "value": "besser", "accepted": ["besser"]},
+    {"lesson": 3, "topic": "comparativo_irregular", "skill": "writing", "type": "translation", "prompt": "Traduce: El té es más barato que el café.", "source": "El té es más barato que el café.", "value": "Der Tee ist billiger als der Kaffee.", "accepted": ["Der Tee ist billiger als der Kaffee.", "Der Tee ist billiger als der Kaffee", "Tee ist billiger als Kaffee.", "Tee ist billiger als Kaffee"]},
+    {"lesson": 3, "topic": "comparativo_irregular", "skill": "writing", "type": "word_bank", "prompt": "Forma la frase: «Este queso es el que mejor sabe.»", "tiles": ["schmeckt", "am", "Dieser", "als", "besten", "Käse"], "sequence": ["Dieser", "Käse", "schmeckt", "am", "besten"]},
+    {"lesson": 3, "topic": "comparativo_irregular", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ich esse lieber Fisch als Fleisch.", "options": ["Ich esse lieber Fisch als Fleisch.", "Ich esse mehr Fisch als Fleisch.", "Ich esse heute kein Fleisch."], "value": "Ich esse lieber Fisch als Fleisch."},
+    {"lesson": 4, "topic": "cantidades", "skill": "reading", "type": "match", "prompt": "Une cada expresión con su significado.", "pairs": [["ein Kilo", "un kilo"], ["eine Flasche", "una botella"], ["ein bisschen", "un poco"]]},
+    {"lesson": 4, "topic": "cantidades", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras para formar una frase correcta.", "tiles": ["Kilo", "gern", "Ich", "Tomaten", "hätte", "ein"], "sequence": ["Ich", "hätte", "gern", "ein", "Kilo", "Tomaten"]},
+    {"lesson": 4, "topic": "cantidades", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Eine Flasche Wasser, bitte.", "options": ["Eine Flasche Wasser, bitte.", "Eine Tasse Kaffee, bitte.", "Ein Kilo Äpfel, bitte."], "value": "Eine Flasche Wasser, bitte."},
+    {"lesson": 4, "topic": "cantidades", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ich möchte bitte bezahlen."}
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 10, "title_es": "Comer fuera y comprar", "color": "#E67E22", "icon": "shopping_cart"},
+  "checkpoint_desc": "Demuestra que dominas el comparativo con dan (goedkoper, beter, liever) y el lenguaje del restaurante y el mercado.",
+  "lessons": [
+    {"order": 1, "title_es": "En el restaurante"},
+    {"order": 2, "title_es": "Más barato que…"},
+    {"order": 3, "title_es": "Mejor y preferido"},
+    {"order": 4, "title_es": "En el mercado"}
+  ],
+  "vocab": [
+    ["de menukaart", "la carta (del restaurante)", "sustantivo"],
+    ["de rekening", "la cuenta", "sustantivo"],
+    ["bestellen", "pedir (comida)", "verbo"],
+    ["betalen", "pagar", "verbo"],
+    ["kosten", "costar", "verbo"],
+    ["de markt", "el mercado", "sustantivo"],
+    ["de fles", "la botella", "sustantivo"],
+    ["een kilo", "un kilo", "expresion"],
+    ["veel", "mucho", "adverbio"],
+    ["een beetje", "un poco", "expresion"],
+    ["goedkoop", "barato", "adjetivo"],
+    ["duur", "caro", "adjetivo"],
+    ["beter", "mejor", "adjetivo"],
+    ["liever", "preferiblemente (comparativo de graag)", "adverbio"],
+    ["meer", "más", "adverbio"],
+    ["Het smaakt goed.", "Está rico.", "expresion"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "restaurante_pedir", "skill": "reading", "type": "match", "prompt": "Une cada palabra con su traducción.", "pairs": [["de menukaart", "la carta"], ["de rekening", "la cuenta"], ["bestellen", "pedir"]]},
+    {"lesson": 1, "topic": "restaurante_pedir", "skill": "reading", "type": "multiple_choice", "prompt": "¿Qué dices para pedir la cuenta?", "options": ["De rekening, alstublieft.", "De menukaart is groot.", "Het smaakt goed."], "value": "De rekening, alstublieft."},
+    {"lesson": 1, "topic": "restaurante_pedir", "skill": "writing", "type": "translation", "prompt": "Traduce: Me gustaría pedir.", "source": "Me gustaría pedir.", "value": "Ik wil graag bestellen.", "accepted": ["Ik wil graag bestellen.", "Ik wil graag bestellen", "Ik zou graag willen bestellen.", "Ik zou graag willen bestellen"]},
+    {"lesson": 1, "topic": "restaurante_pedir", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Het eten smaakt heel goed.", "options": ["Het eten smaakt heel goed.", "Het eten smaakt niet goed.", "De rekening is heel hoog."], "value": "Het eten smaakt heel goed."},
+    {"lesson": 1, "topic": "restaurante_pedir", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "De rekening, alstublieft."},
+    {"lesson": 2, "topic": "comparativo_dan", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase correcta.", "options": ["De trein is goedkoper dan het vliegtuig.", "De trein is goedkoper als het vliegtuig.", "De trein is goedkoop dan het vliegtuig."], "value": "De trein is goedkoper dan het vliegtuig."},
+    {"lesson": 2, "topic": "comparativo_dan", "skill": "writing", "type": "cloze", "prompt": "Completa con el comparativo de «goedkoop».", "text": "Deze appels zijn ___ dan die peren.", "value": "goedkoper", "accepted": ["goedkoper"]},
+    {"lesson": 2, "topic": "comparativo_dan", "skill": "writing", "type": "translation", "prompt": "Traduce: Esta maleta es más grande que esa maleta.", "source": "Esta maleta es más grande que esa maleta.", "value": "Deze koffer is groter dan die koffer.", "accepted": ["Deze koffer is groter dan die koffer.", "Deze koffer is groter dan die koffer", "Deze koffer is groter dan die.", "Deze koffer is groter dan die"]},
+    {"lesson": 2, "topic": "comparativo_dan", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "De kaas is duurder dan het brood.", "options": ["De kaas is duurder dan het brood.", "De kaas is goedkoper dan het brood.", "Het brood is duurder dan de vis."], "value": "De kaas is duurder dan het brood."},
+    {"lesson": 2, "topic": "comparativo_dan", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Melk is goedkoper dan koffie."},
+    {"lesson": 3, "topic": "comparativo_irregular", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la palabra que completa la frase: «Deze koffie is ___ dan die thee.»", "options": ["beter", "goeder", "best"], "value": "beter"},
+    {"lesson": 3, "topic": "comparativo_irregular", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase correcta.", "options": ["Dit brood is het goedkoopste.", "Dit brood is de goedkoopst.", "Dit brood is meer goedkoop."], "value": "Dit brood is het goedkoopste."},
+    {"lesson": 3, "topic": "comparativo_irregular", "skill": "writing", "type": "cloze", "prompt": "Completa con el comparativo de «graag».", "text": "Ik drink ___ thee dan koffie.", "value": "liever", "accepted": ["liever"]},
+    {"lesson": 3, "topic": "comparativo_irregular", "skill": "writing", "type": "word_bank", "prompt": "Forma la frase: «Prefiero comer pescado que carne.»", "tiles": ["Ik", "eet", "liever", "vis", "dan", "vlees", "als", "graag"], "sequence": ["Ik", "eet", "liever", "vis", "dan", "vlees"]},
+    {"lesson": 3, "topic": "comparativo_irregular", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ik drink liever water.", "options": ["Ik drink liever water.", "Ik drink liever melk.", "Ik eet liever brood."], "value": "Ik drink liever water."},
+    {"lesson": 4, "topic": "mercado_cantidades", "skill": "reading", "type": "match", "prompt": "Une cada expresión con su traducción.", "pairs": [["de fles", "la botella"], ["een kilo", "un kilo"], ["een beetje", "un poco"]]},
+    {"lesson": 4, "topic": "mercado_cantidades", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras para formar una pregunta correcta.", "tiles": ["kilo", "Wat", "kaas?", "een", "kost"], "sequence": ["Wat", "kost", "een", "kilo", "kaas?"]},
+    {"lesson": 4, "topic": "mercado_cantidades", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Een kilo appels, alstublieft.", "options": ["Een kilo appels, alstublieft.", "Een fles water, alstublieft.", "Een beetje kaas, alstublieft."], "value": "Een kilo appels, alstublieft."},
+    {"lesson": 4, "topic": "mercado_cantidades", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Wat kost een fles melk?"}
+  ]
+}

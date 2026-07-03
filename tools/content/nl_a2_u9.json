@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 9, "title_es": "De viaje", "color": "#16A085", "icon": "flight_takeoff"},
+  "checkpoint_desc": "Demuestra que dominas el perfectum con zijn (gegaan, gekomen, gebleven) y el vocabulario del viaje.",
+  "lessons": [
+    {"order": 1, "title_es": "En la estación"},
+    {"order": 2, "title_es": "He ido: perfectum con zijn"},
+    {"order": 3, "title_es": "¿Hebben o zijn?"},
+    {"order": 4, "title_es": "Hotel y buen viaje"}
+  ],
+  "vocab": [
+    ["de trein", "el tren", "sustantivo"],
+    ["het vliegtuig", "el avión", "sustantivo"],
+    ["het station", "la estación", "sustantivo"],
+    ["de luchthaven", "el aeropuerto", "sustantivo"],
+    ["het hotel", "el hotel", "sustantivo"],
+    ["het kaartje", "el billete", "sustantivo"],
+    ["de koffer", "la maleta", "sustantivo"],
+    ["de reis", "el viaje", "sustantivo"],
+    ["reizen", "viajar", "verbo"],
+    ["gaan", "ir", "verbo"],
+    ["komen", "venir", "verbo"],
+    ["blijven", "quedarse", "verbo"],
+    ["vertrekken", "salir, partir", "verbo"],
+    ["met de trein", "en tren", "expresion"],
+    ["te voet", "a pie", "expresion"],
+    ["Goede reis!", "¡Buen viaje!", "expresion"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "transporte_tren", "skill": "reading", "type": "match", "prompt": "Une cada palabra con su traducción.", "pairs": [["de trein", "el tren"], ["het vliegtuig", "el avión"], ["de koffer", "la maleta"]]},
+    {"lesson": 1, "topic": "transporte_tren", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo viajas si vas caminando?", "options": ["te voet", "met de trein", "met het vliegtuig"], "value": "te voet"},
+    {"lesson": 1, "topic": "transporte_tren", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "De trein vertrekt om negen uur.", "options": ["De trein vertrekt om negen uur.", "De trein vertrekt om twee uur.", "Het vliegtuig vertrekt om negen uur."], "value": "De trein vertrekt om negen uur."},
+    {"lesson": 1, "topic": "transporte_tren", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ik reis met de trein."},
+    {"lesson": 2, "topic": "perfectum_zijn", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase correcta.", "options": ["Ik ben naar Amsterdam gegaan.", "Ik heb naar Amsterdam gegaan.", "Ik ben naar Amsterdam gaan."], "value": "Ik ben naar Amsterdam gegaan."},
+    {"lesson": 2, "topic": "perfectum_zijn", "skill": "writing", "type": "cloze", "prompt": "Completa con el auxiliar correcto.", "text": "Zij ___ gisteren naar Utrecht gegaan.", "value": "is", "accepted": ["is"]},
+    {"lesson": 2, "topic": "perfectum_zijn", "skill": "writing", "type": "translation", "prompt": "Traduce: He ido a Ámsterdam.", "source": "He ido a Ámsterdam.", "value": "Ik ben naar Amsterdam gegaan.", "accepted": ["Ik ben naar Amsterdam gegaan.", "Ik ben naar Amsterdam gegaan", "Ik ben naar Amsterdam geweest.", "Ik ben naar Amsterdam geweest"]},
+    {"lesson": 2, "topic": "perfectum_zijn", "skill": "writing", "type": "word_bank", "prompt": "Forma la frase: «Ella ha venido en tren.»", "tiles": ["Zij", "is", "met", "de", "trein", "gekomen", "heeft", "ben"], "sequence": ["Zij", "is", "met", "de", "trein", "gekomen"]},
+    {"lesson": 2, "topic": "perfectum_zijn", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ik ben naar Amsterdam gegaan.", "options": ["Ik ben naar Amsterdam gegaan.", "Ik ben naar Rotterdam gegaan.", "Ik heb een kaartje gekocht."], "value": "Ik ben naar Amsterdam gegaan."},
+    {"lesson": 2, "topic": "perfectum_zijn", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Zij is gisteren gekomen."},
+    {"lesson": 3, "topic": "hebben_vs_zijn", "skill": "reading", "type": "multiple_choice", "prompt": "Elige el auxiliar correcto: «Wij ___ in het hotel gebleven.»", "options": ["zijn", "hebben", "hebt"], "value": "zijn"},
+    {"lesson": 3, "topic": "hebben_vs_zijn", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase correcta.", "options": ["Ik heb een kaartje gekocht.", "Ik ben een kaartje gekocht.", "Ik heb een kaartje kopen."], "value": "Ik heb een kaartje gekocht."},
+    {"lesson": 3, "topic": "hebben_vs_zijn", "skill": "writing", "type": "cloze", "prompt": "Completa con el auxiliar correcto.", "text": "Wij ___ twee kaartjes gekocht.", "value": "hebben", "accepted": ["hebben"]},
+    {"lesson": 3, "topic": "hebben_vs_zijn", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras para formar una frase correcta.", "tiles": ["gereisd", "naar", "Hij", "Rotterdam", "is"], "sequence": ["Hij", "is", "naar", "Rotterdam", "gereisd"]},
+    {"lesson": 3, "topic": "hebben_vs_zijn", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "We zijn drie dagen gebleven.", "options": ["We zijn drie dagen gebleven.", "We zijn drie weken gebleven.", "We hebben drie koffers."], "value": "We zijn drie dagen gebleven."},
+    {"lesson": 4, "topic": "hotel_buen_viaje", "skill": "reading", "type": "match", "prompt": "Une cada palabra con su traducción.", "pairs": [["het hotel", "el hotel"], ["het kaartje", "el billete"], ["de luchthaven", "el aeropuerto"]]},
+    {"lesson": 4, "topic": "hotel_buen_viaje", "skill": "writing", "type": "translation", "prompt": "Traduce: Nos hemos quedado en el hotel.", "source": "Nos hemos quedado en el hotel.", "value": "We zijn in het hotel gebleven.", "accepted": ["We zijn in het hotel gebleven.", "We zijn in het hotel gebleven", "Wij zijn in het hotel gebleven.", "Wij zijn in het hotel gebleven"]},
+    {"lesson": 4, "topic": "hotel_buen_viaje", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Waar is het station?", "options": ["Waar is het station?", "Waar is het hotel?", "Waar is de koffer?"], "value": "Waar is het station?"},
+    {"lesson": 4, "topic": "hotel_buen_viaje", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Goede reis!"}
+  ]
+}
