@@ -1,0 +1,56 @@
+[
+  {
+    "unit": 1,
+    "topic": "verbo_zijn",
+    "skill": "speaking",
+    "type": "gramatica",
+    "title": "Zijn: el verbo que no sigue reglas",
+    "body": "El verbo «zijn» (ser/estar) es irregular y lo usarás en cada frase, así que memorízalo entero de una vez. Fíjate en que «u bent» (usted) lleva la misma forma que «jij bent», aunque «u» es formal.",
+    "example": "ik ben · jij bent · hij is · u bent"
+  },
+  {
+    "unit": 2,
+    "topic": "leeftijd",
+    "skill": "writing",
+    "type": "error_comun",
+    "title": "Tu edad va con «zijn», no con «hebben»",
+    "body": "En español «tienes» 20 años, pero en neerlandés se dice literalmente que «eres» 20 años: se usa «zijn», no «hebben». Decir «Ik heb 20 jaar» es un error muy típico del hispanohablante que un neerlandés notará enseguida.",
+    "example": "Ik ben twintig jaar oud."
+  },
+  {
+    "unit": 3,
+    "topic": "articulo_het",
+    "skill": "reading",
+    "type": "mnemotecnia",
+    "title": "De o het: memoriza los het",
+    "body": "Casi todas las palabras llevan «de», así que no intentes aprenderte esas: aprende de memoria las que llevan «het», que son menos y no siguen una regla infalible. Cada vez que veas una palabra nueva con «het», guárdala junto con su artículo.",
+    "example": "het water · het brood · het kind · het station · het museum"
+  },
+  {
+    "unit": 4,
+    "topic": "pedir",
+    "skill": "speaking",
+    "type": "cultura",
+    "title": "Pedir con «graag» suena amable",
+    "body": "En el café, «Ik wil graag…» equivale a «me gustaría…» y suena mucho más cortés que un «ik wil» a secas. Añade «alstublieft» (por favor, formal) al final y pregunta el precio con «Wat kost het?» o «Hoeveel kost het?».",
+    "example": "Ik wil graag een koffie, alstublieft. Wat kost het?"
+  },
+  {
+    "unit": 5,
+    "topic": "kwart",
+    "skill": "listening",
+    "type": "error_comun",
+    "title": "«Half vier» son las 3:30, no las 4:30",
+    "body": "Cuidado con este falso amigo: «half vier» no es «cuatro y media», sino la media hora ANTES de las cuatro, es decir, las 3:30. El neerlandés mira hacia la hora que viene, no hacia la que pasó. Para los cuartos usa «kwart over» (y cuarto) y «kwart voor» (menos cuarto).",
+    "example": "Het is half vier. · kwart over drie · kwart voor vier"
+  },
+  {
+    "unit": 6,
+    "topic": "waar",
+    "skill": "reading",
+    "type": "gramatica",
+    "title": "«Er is» y «er zijn» para ubicar",
+    "body": "Para preguntar dónde está algo usa «Waar is…?», y para decir que algo existe o hay algo usa «er is» (singular) o «er zijn» (plural), parecido al «hay» del español. Combínalo con las direcciones básicas para orientarte.",
+    "example": "Waar is het station? Er is een café links, en er zijn winkels rechtdoor."
+  }
+]

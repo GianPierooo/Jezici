@@ -6,6 +6,14 @@
 > Prioridad: es→en A1/A2 a fondo (lo que los testers usan hoy). B1–C1 y es→pt: perfil
 > estructural + diferido (ver "Pendiente").
 
+## Capa "enseña" — tips A1 fr/it/de/nl (2026-07-03)
+- El tip post-lección (refuerza el "enseña, no solo evalúa") existía solo es→en. Sembrados **24 tips
+  A1** (6/curso × fr/it/de/nl, mig 102): uno por unidad con el punto gramatical clave del idioma
+  (edad ser/tener, partitivo/acusativo, hora + falsos amigos, contracciones, de/het). Course-scoped
+  (get_lesson_tip por jz_active_course) → verificado cliente real que cada curso ve el suyo. Sube la
+  dimensión "explícita/metacognitiva" de fr/it/de/nl a la par de en. Diferido: pt (topics del pipeline
+  L/S), A2 fr/it, historias.
+
 ## Pilotos es→de + es→nl A1 (2026-07-03) — 4 habilidades balanceadas desde el arranque
 - **de A1 y nl A1:** R36 · W36 · **L25 · S18** → L=69%, S=50% de (R+W)/2 (idéntico al molde fr/it).
   115 ítems/curso, 6 unidades A1 con progresión temática (saludos→ciudad). Gramática CEFR-A1 real por

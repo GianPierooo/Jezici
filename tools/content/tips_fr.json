@@ -1,0 +1,56 @@
+[
+  {
+    "unit": 1,
+    "topic": "tu_vous_etre",
+    "skill": "speaking",
+    "type": "gramatica",
+    "title": "«tu» para amigos, «vous» para respeto",
+    "body": "El francés distingue el trato como el español (tú/usted): «tu es» es informal (con amigos y familia) y «vous êtes» es formal (con desconocidos o mayores). Fíjate en el verbo être: cambia de «es» a «êtes» según a quién hablas. Al preguntar el nombre también cambia todo: «Comment tu t'appelles ?» vs «Comment vous appelez-vous ?».",
+    "example": "Tu es espagnol. · Vous êtes espagnol. · Comment tu t'appelles ? · Comment vous appelez-vous ?"
+  },
+  {
+    "unit": 2,
+    "topic": "edad_avoir",
+    "skill": "grammar",
+    "type": "error_comun",
+    "title": "En francés NO «eres» 20 años: los «tienes»",
+    "body": "La edad se dice con el verbo avoir (tener), no con être (ser). Nunca digas «Je suis 20 ans» (calco del inglés/español): es «J'ai vingt ans», literalmente «tengo veinte años». Y no olvides la palabra «ans» al final: sin ella la frase queda incompleta.",
+    "example": "J'ai vingt ans. · Tu as quel âge ? · Elle a trente ans."
+  },
+  {
+    "unit": 3,
+    "topic": "posesivos",
+    "skill": "grammar",
+    "type": "gramatica",
+    "title": "«mon» o «ma»: manda el género de LA COSA",
+    "body": "El posesivo concuerda con el objeto poseído, no con quien posee: mon (masculino), ma (femenino) y mes (plural, ambos géneros). Por eso es «mon frère» (hermano, masc.) pero «ma sœur» (hermana, fem.), aunque el dueño sea la misma persona. Truco: ante palabra femenina que empieza por vocal se usa «mon» por sonido (mon amie).",
+    "example": "mon frère · ma sœur · mes parents · mon amie"
+  },
+  {
+    "unit": 4,
+    "topic": "partitivo",
+    "skill": "grammar",
+    "type": "gramatica",
+    "title": "«du pain»: un poco de, no todo el pan",
+    "body": "Ante comida y cantidades no contables, el francés usa el partitivo (una cantidad indeterminada) donde el español no pone nada: du (masc.), de la (fem.), de l' (ante vocal o h muda) y des (plural). «Je mange du pain» = «como (algo de) pan». No lo omitas: «Je mange pain» es incorrecto.",
+    "example": "du pain · de la viande · de l'eau · des pommes"
+  },
+  {
+    "unit": 5,
+    "topic": "la_hora",
+    "skill": "grammar",
+    "type": "error_comun",
+    "title": "«et demie», pero con mediodía «et demi»",
+    "body": "La hora se dice con «Il est…»: «Il est trois heures» (son las tres), y para los minutos «et quart» (y cuarto) y «et demie» (y media). Ojo con la trampa: «demie» lleva -e porque concuerda con «heure» (femenino), PERO con midi y minuit (masculinos) se escribe «demi» sin -e: «midi et demi».",
+    "example": "Il est trois heures et quart. · Il est cinq heures et demie. · Il est midi et demi."
+  },
+  {
+    "unit": 6,
+    "topic": "contracciones",
+    "skill": "grammar",
+    "type": "gramatica",
+    "title": "à + le = au, de + le = du (obligatorio)",
+    "body": "En francés à y de se fusionan con el artículo «le»: à + le = au, de + le = du. No es opcional, es obligatorio: se dice «au restaurant», nunca «à le restaurant». Con «la» y «l'» no hay fusión (à la gare, de l'école); solo se contraen «le» y «les» (à les = aux, de les = des).",
+    "example": "au restaurant · en face du musée · à la gare · aux États-Unis"
+  }
+]

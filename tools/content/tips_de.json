@@ -1,0 +1,56 @@
+[
+  {
+    "unit": 1,
+    "topic": "verbo_sein",
+    "skill": "writing",
+    "type": "gramatica",
+    "title": "«sein» es el verbo que lo abre todo",
+    "body": "Igual que «ser/estar», «sein» es irregular y no se parece a su infinitivo: memorízalo como una cancioncita. Con «Sie» formal (usted) usas la misma forma que el plural «sie/wir»: «sind».",
+    "example": "ich bin · du bist · er/sie/es ist · wir sind · ihr seid · sie/Sie sind"
+  },
+  {
+    "unit": 2,
+    "topic": "edad",
+    "skill": "speaking",
+    "type": "error_comun",
+    "title": "Tu edad la dice «sein», no «haben»",
+    "body": "En español «tienes» años, pero en alemán los años los ERES, no los tienes. Di «Ich bin … Jahre alt» y evita el clásico calco «Ich habe … Jahre», que suena a error de principiante.",
+    "example": "Ich bin zwanzig Jahre alt. · Wie alt bist du? — Ich bin dreißig. (nunca «Ich habe 20 Jahre»)"
+  },
+  {
+    "unit": 3,
+    "topic": "possessiv_mein_meine",
+    "skill": "reading",
+    "type": "gramatica",
+    "title": "«mein» o «meine»: manda el sustantivo",
+    "body": "El posesivo cambia según el GÉNERO de lo poseído, no de quien posee. «mein» acompaña a masculinos y neutros; «meine» a femeninos y a TODO el plural. Fíjate siempre en el sustantivo que sigue.",
+    "example": "mein Bruder · mein Kind · meine Schwester · meine Eltern"
+  },
+  {
+    "unit": 4,
+    "topic": "akkusativ_unbestimmt",
+    "skill": "writing",
+    "type": "gramatica",
+    "title": "En acusativo solo el masculino se disfraza",
+    "body": "Cuando algo es el objeto directo (lo que quieres, pides o ves), el artículo indefinido masculino «ein» se convierte en «einen». El femenino «eine» y el neutro «ein» no se mueven ni un pelo.",
+    "example": "Ich möchte einen Kaffee. · Ich möchte eine Milch. · Ich möchte ein Wasser."
+  },
+  {
+    "unit": 5,
+    "topic": "viertel_halb",
+    "skill": "listening",
+    "type": "error_comun",
+    "title": "«halb vier» son las 3:30, no las 4:30",
+    "body": "¡Ojo, falso amigo! Los alemanes cuentan la media hora mirando HACIA ADELANTE: «halb vier» significa media hora antes de las cuatro, o sea 3:30. «Viertel nach» es «y cuarto» y «Viertel vor» es «menos cuarto».",
+    "example": "Es ist drei Uhr. · Viertel nach drei (3:15) · halb vier (3:30) · Viertel vor vier (3:45)"
+  },
+  {
+    "unit": 6,
+    "topic": "wo_ist",
+    "skill": "speaking",
+    "type": "gramatica",
+    "title": "«Wo ist…?» pregunta, «Es gibt…» sitúa",
+    "body": "Para ubicar algo pregunta «Wo ist…?» (¿Dónde está…?) y para decir que algo existe usa «Es gibt…» (hay), que pide acusativo. Guarda tres flechas para las direcciones: links, rechts, geradeaus.",
+    "example": "Wo ist der Bahnhof? · Es gibt einen Supermarkt hier. · links · rechts · geradeaus"
+  }
+]

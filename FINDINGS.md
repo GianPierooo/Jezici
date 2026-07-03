@@ -2,6 +2,28 @@
 
 ---
 
+## Capa "enseña": tips A1 para fr/it/de/nl — 2026-07-03 ✅ LIVE + VERIFICADO (course-scoped)
+> Hueco: el tip post-lección (aparece tras CADA lección) existía **solo para es→en** (72 tips);
+> los otros 5 cursos caían a null (sin consejo). Frente de alta frecuencia/impacto.
+- **Sembrado (mig 102, aditiva):** **24 tips A1** (6/curso × fr/it/de/nl), uno por unidad = el
+  punto gramatical CLAVE: edad (avoir/avere/sein/zijn — con el contraste ser/tener explicado),
+  partitivo (du/del) / acusativo (einen), la hora + falsos amigos («halb vier»/«half vier»=3:30;
+  «midi et demi»), contracciones (au/du) / preposizioni articolate (al/alla/dalla), de-vs-het,
+  mein/meine por género. title+body en español (didáctico), example en el idioma meta. Autorados
+  por 4 profesores nativos IA; revisión propia halló y corrigió 1 error (título nl U2 contradictorio
+  «se TIENE con zijn» → «va con zijn»); el resto (de/fr/it) impecable.
+- **Aislamiento multicurso — VERIFICADO cliente real:** `get_lesson_tip` filtra por
+  `course_id=jz_active_course()`. Con un usuario JWT por curso y una lección de la unidad 2:
+  **en→tip inglés · fr→fr · it→it · de→de · nl→nl** (cada uno recibe SU tip, ninguno cruza).
+  El match usa topic (tag del ítem) O unit_order → toda lección de la unidad recibe su tip.
+  Cursos existentes intactos (en sigue devolviendo sus 72 tips). analyze 0 · test 91/91.
+- **Diferido (retome exacto):** (1) **tips es→pt** — los topics de pt son auto-generados/largos del
+  pipeline L/S (p.ej. `decir_tu_nombre_y_dar_tu_identidad_con_ser`) y su currículo A1 tiene otra
+  estructura temática → requiere su propia pasada (autorar 6 tips pt keyed por `unit_order`). (2)
+  **tips A2 fr/it** (units 7-12). (3) **historias/inmersión** para pt/fr/it/de/nl (hoy solo es→en, 6).
+
+---
+
 ## Pilotos es→de + es→nl (A1) — 2026-07-03 ✅ LIVE + VERIFICADO (cliente real, 6 cursos aislados)
 > 5º y 6º curso. Objetivo: A1 completo e impecable en alemán y neerlandés, con **aislamiento
 > multicurso** blindado (ahora **6 cursos** — el riesgo #1). Fuente de verdad = repo+BD (de/nl NO existían).

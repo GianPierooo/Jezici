@@ -1,0 +1,56 @@
+[
+  {
+    "unit": 1,
+    "topic": "tu_lei_essere",
+    "skill": "grammar",
+    "type": "gramatica",
+    "title": "Al usted italiano lo tratas de «ella»",
+    "body": "Con «tu» (informal) el verbo va en 2ª persona: «tu sei». Pero el «usted» italiano es «Lei» y SIEMPRE lleva el verbo en 3ª persona del singular, como si hablaras de «ella»: «Lei è». Por eso «¿Cómo te llamas?» es «Come ti chiami?» y su versión formal es «Come si chiama?».",
+    "example": "tu sei · Lei è · Come ti chiami? · Come si chiama?"
+  },
+  {
+    "unit": 2,
+    "topic": "edad_avere",
+    "skill": "grammar",
+    "type": "error_comun",
+    "title": "En italiano la edad se TIENE, no se es",
+    "body": "El error clásico del hispanohablante es calcar «Sono 20 anni» del inglés/español. En italiano la edad se dice con AVERE (tener), igual que en español: «tengo 20 años» → «Ho vent'anni». Fíjate en la elisión: venti + anni se apostrofa en «vent'anni».",
+    "example": "Ho vent'anni · Quanti anni hai? · Ho trent'anni"
+  },
+  {
+    "unit": 3,
+    "topic": "posesivos",
+    "skill": "grammar",
+    "type": "gramatica",
+    "title": "Con un familiar, quita el artículo",
+    "body": "En italiano los posesivos normalmente llevan artículo, PERO con parientes en singular se omite: «mio fratello», «mia madre» (no «il mio fratello»). En cuanto pasas al plural, el artículo vuelve: «i miei genitori», «le mie sorelle».",
+    "example": "mio fratello · mia madre · i miei genitori · le mie sorelle"
+  },
+  {
+    "unit": 4,
+    "topic": "partitivo",
+    "skill": "grammar",
+    "type": "gramatica",
+    "title": "«Un poco de» se fusiona en una palabra",
+    "body": "El partitivo expresa una cantidad indefinida («algo de pan, un poco de agua») y nace de fundir «di» con el artículo: di+il=del, di+la=della, y ante vocal se elide en dell'. En plural son dei / degli / delle.",
+    "example": "del pane · della carne · dell'acqua · delle mele"
+  },
+  {
+    "unit": 5,
+    "topic": "la_hora",
+    "skill": "grammar",
+    "type": "gramatica",
+    "title": "La una es singular, las demás plural",
+    "body": "Solo la una lleva verbo y artículo en singular: «È l'una». Todas las otras horas van en plural: «Sono le tre», «Sono le dieci». Los minutos se añaden con «e»: «e mezza» (y media), «e un quarto» (y cuarto).",
+    "example": "È l'una · Sono le tre · Sono le otto e mezza · Sono le due e un quarto"
+  },
+  {
+    "unit": 6,
+    "topic": "prep_articuladas",
+    "skill": "grammar",
+    "type": "gramatica",
+    "title": "Preposición + artículo = una sola palabra",
+    "body": "En italiano la preposición se pega al artículo y forma una palabra única: a+il=al, a+la=alla, da+la=dalla, di+il=del. No es opcional como en español: se dice «vado al ristorante», no «a il ristorante».",
+    "example": "al ristorante · vicino alla stazione · vengo dalla Spagna · la porta del bagno"
+  }
+]
