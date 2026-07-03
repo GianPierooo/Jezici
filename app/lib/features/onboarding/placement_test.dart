@@ -21,6 +21,7 @@ class PlacementTest extends ConsumerStatefulWidget {
     required this.onBack,
     required this.onDone,
     this.startLevel = 1,
+    this.courseId,
   });
 
   final OnboardingData data;
@@ -31,6 +32,10 @@ class PlacementTest extends ConsumerStatefulWidget {
 
   /// Dificultad inicial (de la micro-pregunta): 0=A1 1=A2 2=B1 → hint CEFR.
   final int startLevel;
+
+  /// Curso META a ubicar. null = curso activo más antiguo (es→en, onboarding).
+  /// Con valor → ubica en el banco de ESE curso (re-placement fr/it/de/nl).
+  final String? courseId;
 
   @override
   ConsumerState<PlacementTest> createState() => _PlacementTestState();
@@ -59,7 +64,7 @@ class _PlacementTestState extends ConsumerState<PlacementTest> {
     try {
       final res = await ref
           .read(progressRepositoryProvider)
-          .placementNext(startLevel: _hint, history: _history);
+          .placementNext(startLevel: _hint, history: _history, courseId: widget.courseId);
       if (!mounted) return;
       if (res['done'] == true) {
         _finish(res);

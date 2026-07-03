@@ -83,6 +83,7 @@ class FakeProgressRepository implements ProgressRepository {
   Future<Map<String, dynamic>> placementNext({
     required String startLevel,
     required List<Map<String, dynamic>> history,
+    String? courseId,
   }) async =>
       {'done': true, 'level': 'A1', 'skill_levels': const {}};
   @override
@@ -108,7 +109,9 @@ class FakeProgressRepository implements ProgressRepository {
   @override
   Future<bool> isOnboardingComplete() async => true;
   @override
-  Future<UserPlan?> fetchPlan() async => null;
+  Future<UserPlan?> fetchPlan({String? courseId}) async => null;
+  @override
+  Future<Map<String, dynamic>> fetchPlanPrefs() async => const {};
   @override
   Future<PlanTracking> fetchPlanTracking() async => PlanTracking.empty;
   @override

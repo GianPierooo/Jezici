@@ -375,6 +375,25 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
+  String get coursePlacementOfferTitle => 'Fazer o teste de nivelamento?';
+
+  @override
+  String coursePlacementOfferBody(String course) {
+    return 'Faça um teste curto e comece no seu nível real de $course, em vez de começar do início.';
+  }
+
+  @override
+  String get coursePlacementDoTest => 'Fazer o teste';
+
+  @override
+  String get coursePlacementFromScratch => 'Começar do início';
+
+  @override
+  String coursePlacementDone(String level) {
+    return 'Pronto! Colocamos você em $level.';
+  }
+
+  @override
   String get planFocusWork =>
       'Foco no trabalho: reuniões, e-mails e entrevistas.';
 

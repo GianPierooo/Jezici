@@ -2,6 +2,31 @@
 
 ---
 
+## Re-placement no-inglés cableado al flujo real — 2026-07-03 ✅ LIVE + VERIFICADO
+> Los bancos fr/it/de/nl (mig 110) existían pero NINGÚN flujo de UI los disparaba: onboarding en-only +
+> cambio de curso sin re-ubicar → un aprendiz de alemán SIEMPRE caía en A1. Cerrado el grifo.
+- **Flujo real (Paso 0):** onboarding en-first (su paso "idioma" es el de la APP, no el curso meta; placement
+  con `p_course:null`→en). Un no-inglés llega SOLO por el selector de Ajustes, que hacía `setActiveCourse`
+  sin placement → A1.
+- **Decisión de UX:** cablear el **cambio de curso en Ajustes** (donde se elige un curso no-en), no el
+  onboarding (en-first en todo su copy → rediseñarlo = amplitud/riesgo). Al tocar otro curso, diálogo
+  «¿Hacer el test de ubicación?» → [Hacer el test] corre el placement de ESE idioma; [Empezar desde el
+  principio] = comportamiento previo.
+- **Reuso, sin duplicar el motor:** `placementNext(courseId)` (null=en); `CoursePlacementScreen` orquesta
+  `PlacementTest(courseId)` + `PlacementResultView` (reutilizadas, localizadas es/en/pt) → aplica nivel con
+  `create_plan` (course-scoped a jz_active_course, ya activado). `fetchPlan`/`userPlanProvider` course-aware
+  (el re-placement crea 1 fila de plan por curso → sin course-scope, `single` fallaría: regresión evitada).
+- **Verificado END-TO-END cliente real** (`verify_placement_wiring.py`, JWT): cambiar a de/nl/fr/it +
+  responder A2 → ubica **A2** + entra en **U7** (primera A2, no A1); principiante → **A1/U1**; el placement
+  usa SOLO el banco de ese curso; **EN INTACTO** (progreso U13/B1 + plan) tras re-ubicar los otros; 42501
+  (grade_item correcto/​distractor). `placement_flow_test` verifica la propagación de courseId. analyze 0 ·
+  test 92/92.
+- **Diferido:** selector de curso meta en el onboarding (hoy en-first) + L/S en placement (audio) + nombre
+  real de la unidad de entrada por curso en la pantalla de resultado (la unidad real ya es correcta; solo el
+  rótulo mostrado usa el nombre es→en).
+
+---
+
 ## Bancos de placement fr/it/de/nl — 2026-07-03 ✅ LIVE + VERIFICADO
 > El test de ubicación ubicaba bien en en (A1-C1) y pt (A1-B1); fr/it/de/nl no tenían banco → todo
 > aprendiz caía a A1. Cerrado: ahora ubican en su nivel real DENTRO de los niveles sembrados (A1-A2).

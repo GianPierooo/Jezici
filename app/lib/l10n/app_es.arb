@@ -130,6 +130,14 @@
   "placementResultEstimateGoal": "Si cumples tu plan, llegas a {goalLevel} en {humanDuration} (aprox. {formattedDate}).",
   "@placementResultEstimateGoal": { "placeholders": { "goalLevel": {"type":"String"}, "humanDuration": {"type":"String"}, "formattedDate": {"type":"String"} } },
 
+  "coursePlacementOfferTitle": "¿Hacer el test de ubicación?",
+  "coursePlacementOfferBody": "Haz una prueba corta y empieza en tu nivel real de {course}, en lugar de desde el principio.",
+  "@coursePlacementOfferBody": { "placeholders": { "course": {"type":"String"} } },
+  "coursePlacementDoTest": "Hacer el test",
+  "coursePlacementFromScratch": "Empezar desde el principio",
+  "coursePlacementDone": "¡Listo! Te ubicamos en {level}.",
+  "@coursePlacementDone": { "placeholders": { "level": {"type":"String"} } },
+
   "planFocusWork": "Enfoque laboral: reuniones, correos y entrevistas.",
   "planFocusTravel": "Enfoque viajes: aeropuerto, hotel, direcciones y restaurantes.",
   "planFocusExam": "Enfoque examen: simulacros IELTS/Cambridge y las 4 habilidades.",

@@ -17,6 +17,7 @@ import '../../l10n/app_localizations.dart';
 import '../../ui/primary_button.dart';
 import '../legal/legal_screen.dart';
 import '../metrics/metrics_screen.dart';
+import '../onboarding/course_placement_screen.dart';
 import '../notifications/coach_styles.dart';
 import '../notifications/matix_test_buttons.dart';
 import '../premium/premium_screen.dart';
@@ -575,11 +576,33 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   }
 
   Future<void> _switchCourse(CourseInfo c) async {
+    final l10n = AppLocalizations.of(context);
+    // Ofrece el test de ubicación del idioma meta (para no caer siempre en A1) o
+    // empezar desde el principio. Cancelar no cambia nada.
+    final choice = await showDialog<String>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l10n.coursePlacementOfferTitle),
+        content: Text(l10n.coursePlacementOfferBody(c.label)),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, 'scratch'),
+            child: Text(l10n.coursePlacementFromScratch),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, 'test'),
+            child: Text(l10n.coursePlacementDoTest),
+          ),
+        ],
+      ),
+    );
+    if (choice == null || !mounted) return;
     try {
+      // Activa el curso (create_plan usa jz_active_course → hay que activarlo antes
+      // del re-placement).
       await ref.read(progressRepositoryProvider).setActiveCourse(c.id);
       // Recarga lo que depende del curso activo. `coursesProvider` cascada a
-      // `activeCourseIdProvider` → `mapUnitsProvider` (no hace falta invalidarlos
-      // a mano). El resto son RPC por-usuario que no se recomputan solas.
+      // `activeCourseIdProvider` → `mapUnitsProvider`.
       ref.invalidate(coursesProvider);
       ref.invalidate(lessonProgressProvider);
       ref.invalidate(skillsProvider);
@@ -588,9 +611,27 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       ref.invalidate(levelExamStatusProvider);
       ref.invalidate(planTrackingProvider);
       ref.invalidate(userPlanProvider);
+
+      if (choice == 'test' && mounted) {
+        // Corre el placement del idioma meta y aplica nivel → unidad de entrada.
+        final level = await Navigator.of(context).push<String>(
+          MaterialPageRoute(
+            builder: (_) => CoursePlacementScreen(courseId: c.id, courseLabel: c.label),
+          ),
+        );
+        if (!mounted) return;
+        ref.invalidate(coursesProvider);
+        ref.invalidate(mapUnitsProvider);
+        if (level != null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(l10n.coursePlacementDone(level))),
+          );
+          return;
+        }
+      }
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Curso activo: ${c.label}')),
+          SnackBar(content: Text('${c.flag}  ${c.label}')),
         );
       }
     } catch (_) {

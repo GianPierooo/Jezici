@@ -708,6 +708,36 @@ abstract class AppLocalizations {
     String formattedDate,
   );
 
+  /// No description provided for @coursePlacementOfferTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Hacer el test de ubicación?'**
+  String get coursePlacementOfferTitle;
+
+  /// No description provided for @coursePlacementOfferBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Haz una prueba corta y empieza en tu nivel real de {course}, en lugar de desde el principio.'**
+  String coursePlacementOfferBody(String course);
+
+  /// No description provided for @coursePlacementDoTest.
+  ///
+  /// In es, this message translates to:
+  /// **'Hacer el test'**
+  String get coursePlacementDoTest;
+
+  /// No description provided for @coursePlacementFromScratch.
+  ///
+  /// In es, this message translates to:
+  /// **'Empezar desde el principio'**
+  String get coursePlacementFromScratch;
+
+  /// No description provided for @coursePlacementDone.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Listo! Te ubicamos en {level}.'**
+  String coursePlacementDone(String level);
+
   /// No description provided for @planFocusWork.
   ///
   /// In es, this message translates to:

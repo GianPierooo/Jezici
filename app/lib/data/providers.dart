@@ -108,10 +108,13 @@ final skillMasteryProvider = FutureProvider<SkillMasteryStatus>(
   (ref) => ref.watch(progressRepositoryProvider).fetchSkillMastery(),
 );
 
-/// El plan del usuario (meta, ritmo, fecha estimada).
-final userPlanProvider = FutureProvider<UserPlan?>(
-  (ref) => ref.watch(progressRepositoryProvider).fetchPlan(),
-);
+/// El plan del usuario (meta, ritmo, fecha estimada) DEL CURSO ACTIVO (multi-curso:
+/// el re-placement crea una fila de plan por curso; sin course-scope, `fetchPlan`
+/// fallaría con >1 plan).
+final userPlanProvider = FutureProvider<UserPlan?>((ref) async {
+  final courseId = await ref.watch(activeCourseIdProvider.future);
+  return ref.watch(progressRepositoryProvider).fetchPlan(courseId: courseId);
+});
 
 /// ¿El usuario terminó el onboarding? Decide la ruta de entrada (GA4 auth-first):
 /// con sesión pero sin onboarding → onboarding obligatorio; si no → mapa.

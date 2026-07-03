@@ -171,13 +171,44 @@ class ProgressRepository {
   Future<Map<String, dynamic>> placementNext({
     required String startLevel,
     required List<Map<String, dynamic>> history,
+    String? courseId,
   }) async {
+    // p_course null → curso activo más antiguo (es→en) = onboarding en-first.
+    // Con courseId → ubica en el banco de ESE curso (fr/it/de/nl re-placement).
     final res = await _client.rpc('placement_next', params: {
-      'p_course': null,
+      'p_course': courseId,
       'p_start_level': startLevel,
       'p_history': history,
     });
     return Map<String, dynamic>.from(res as Map);
+  }
+
+  /// Preferencias del plan del usuario (para reusarlas al re-ubicarse en otro curso):
+  /// coach/intensidad (por-usuario) + meta/min/días/motivo (del plan más reciente).
+  /// Robusto ante planes multi-curso (no usa single sobre varias filas).
+  Future<Map<String, dynamic>> fetchPlanPrefs() async {
+    final uid = _uid;
+    if (uid == null) return const {};
+    final plan = await _client
+        .from('user_plans')
+        .select('goal_level, daily_minutes, days_per_week, motive')
+        .eq('user_id', uid)
+        .order('updated_at', ascending: false)
+        .limit(1)
+        .maybeSingle();
+    final pers = await _client
+        .from('user_personality')
+        .select('coach_style, intensity')
+        .eq('user_id', uid)
+        .maybeSingle();
+    return {
+      'goal_level': plan?['goal_level'] ?? 'B1',
+      'daily_minutes': plan?['daily_minutes'] ?? 15,
+      'days_per_week': plan?['days_per_week'] ?? 5,
+      'motive': plan?['motive'] ?? 'Placer',
+      'coach_style': pers?['coach_style'] ?? 'suave',
+      'intensity': pers?['intensity'] ?? 2,
+    };
   }
 
   /// Persiste el plan del onboarding (personalidad, plan, nivel, 4 skills).
@@ -223,17 +254,22 @@ class ProgressRepository {
   }
 
   /// El plan del usuario (para la tarjeta "Mi plan").
-  Future<UserPlan?> fetchPlan() async {
+  Future<UserPlan?> fetchPlan({String? courseId}) async {
     final uid = _uid;
     if (uid == null) return null;
-    final res = await _client
+    // Course-aware: con >1 plan (multi-curso) filtra por el curso activo; sin curso,
+    // el más reciente. Evita el fallo de `single` sobre varias filas (regresión que
+    // introduciría el re-placement, que crea una fila de plan por curso).
+    final base = _client
         .from('user_plans')
         .select(
           'current_level, goal_level, daily_minutes, days_per_week, motive, '
           'deadline, estimated_hours, estimated_completion_date, onboarding_completed',
         )
-        .eq('user_id', uid)
-        .maybeSingle();
+        .eq('user_id', uid);
+    final res = courseId != null
+        ? await base.eq('course_id', courseId).maybeSingle()
+        : await base.order('updated_at', ascending: false).limit(1).maybeSingle();
     return res == null ? null : UserPlan.fromJson(res);
   }
 

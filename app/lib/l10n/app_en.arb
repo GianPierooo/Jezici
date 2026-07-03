@@ -115,6 +115,12 @@
   "placementResultEstimateReached": "You've already reached your goal. If you keep going to {goalLevel}: {humanDuration} (approx. {formattedDate}).",
   "placementResultEstimateGoal": "If you stick to your plan, you'll reach {goalLevel} in {humanDuration} (approx. {formattedDate}).",
 
+  "coursePlacementOfferTitle": "Take the placement test?",
+  "coursePlacementOfferBody": "Take a short test and start at your real {course} level instead of from the beginning.",
+  "coursePlacementDoTest": "Take the test",
+  "coursePlacementFromScratch": "Start from the beginning",
+  "coursePlacementDone": "Done! We placed you at {level}.",
+
   "planFocusWork": "Work focus: meetings, emails and interviews.",
   "planFocusTravel": "Travel focus: airport, hotel, directions and restaurants.",
   "planFocusExam": "Exam focus: IELTS/Cambridge mock tests and the 4 skills.",

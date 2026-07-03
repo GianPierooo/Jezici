@@ -115,6 +115,12 @@
   "placementResultEstimateReached": "Você já alcançou sua meta. Se continuar até {goalLevel}: {humanDuration} (aprox. {formattedDate}).",
   "placementResultEstimateGoal": "Se você cumprir seu plano, chega a {goalLevel} em {humanDuration} (aprox. {formattedDate}).",
 
+  "coursePlacementOfferTitle": "Fazer o teste de nivelamento?",
+  "coursePlacementOfferBody": "Faça um teste curto e comece no seu nível real de {course}, em vez de começar do início.",
+  "coursePlacementDoTest": "Fazer o teste",
+  "coursePlacementFromScratch": "Começar do início",
+  "coursePlacementDone": "Pronto! Colocamos você em {level}.",
+
   "planFocusWork": "Foco no trabalho: reuniões, e-mails e entrevistas.",
   "planFocusTravel": "Foco em viagens: aeroporto, hotel, direções e restaurantes.",
   "planFocusExam": "Foco em exame: simulados IELTS/Cambridge e as 4 habilidades.",

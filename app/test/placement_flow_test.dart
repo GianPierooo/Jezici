@@ -15,12 +15,15 @@ class _PlacementFakeRepo implements ProgressRepository {
   final List<Map<String, dynamic>> script;
   int _i = 0;
   final List<List<Map<String, dynamic>>> calls = [];
+  final List<String?> courseIds = [];
 
   @override
   Future<Map<String, dynamic>> placementNext({
     required String startLevel,
     required List<Map<String, dynamic>> history,
+    String? courseId,
   }) async {
+    courseIds.add(courseId);
     calls.add(history.map((e) => Map<String, dynamic>.from(e)).toList());
     final r = script[_i < script.length ? _i : script.length - 1];
     _i++;
@@ -134,5 +137,27 @@ void main() {
     await _flush(tester);
     expect(done, isTrue);
     expect(data.placementLevel, 'A1');
+  });
+
+  testWidgets('El placement propaga el courseId al motor (re-ubicación no-inglés)', (tester) async {
+    const deCourse = '20000000-0000-0000-0000-000000000005';
+    final fake = _PlacementFakeRepo([
+      {'done': true, 'level': 'A2', 'skill_levels': const {}},
+    ]);
+    final data = OnboardingData();
+    await tester.pumpWidget(ProviderScope(
+      overrides: [progressRepositoryProvider.overrideWithValue(fake)],
+      child: MaterialApp(
+        locale: const Locale('es'),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: PlacementTest(
+          data: data, step: 1, total: 2, courseId: deCourse, onBack: () {}, onDone: () {}),
+      ),
+    ));
+    await _flush(tester);
+    // El curso META llega al motor (placement_next(p_course=de)) → ubica en SU banco.
+    expect(fake.courseIds.first, deCourse);
+    expect(data.placementLevel, 'A2');
   });
 }
