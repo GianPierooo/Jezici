@@ -81,7 +81,22 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
   recibe de/nl; **A2: CAMINA las 12 unidades en orden (U6 desbloquea U7, 30/30 lecciones A2), gating
   A1→A2 end-to-end**; audio HEAD 200. **Cursos existentes INTACTOS** (verify_chain en · verify_pt_chain pt).
   Banderas 🇩🇪/🇳🇱 + `SpeechLang` de-DE/nl-NL (TTS/reconocedor). analyze 0 · test 91/91.
-- **Diferido:** B1+ de/nl (hoy A1+A2, tips A1+A2 ✅, historia A1 ✅, placement A1/A2 ✅ mig 110); imágenes; onboarding específico.
+- **B1 es→de ✅ LIVE (mig 111, 2026-07-03):** 6 unidades (order 13-18, encadenan A2→B1; U12 desbloquea
+  U13), **114 ítems (R36/W36/L24/S18 → L=67% S=50%)**, audio TTS tl=de **42/42**. Currículo B1 REAL:
+  **Konjunktiv II** (würde/hätte/wäre, cortesía/deseos/consejos), **Nebensätze & Konnektoren**
+  (weil/dass/obwohl + deshalb/trotzdem, orden verbo-final), **Relativsätze** (der/die/das/den/dem),
+  **Passiv** (werden + Partizip II, wurde), **Verben mit Präposition + Genitiv** (warten auf, Angst vor,
+  des Buches), **Konjunktiv II der Vergangenheit** (hätte/wäre + Partizip, condicional irreal). Autorado
+  por 6 profesores nativos IA + **rebalanceo/revisión adversarial nativa** (distractores de par-mínimo,
+  tolerancia ss↔ß/ae-oe-ue↔umlaut, haben/sein en Konjunktiv II, Genitiv -s). `gen_course.py de b1`
+  (STAMPS/DIFF b1) + robustez `topic` faltante. **Verificado cliente real (`verify_b1_chain.py de`):**
+  determinista 96/96 correctos + 96/96 distractores (42501); **CAMINA A1→B1 las 18 unidades** (U12→U13,
+  30/30 lecciones B1); **0 lesson_items cruzan los 6 cursos**; default(en) sin fuga; audio HEAD 42/42.
+- **Diferido:** **B1 es→nl** (retome EXACTO: 6 agentes nativos nl mismos prompts s/de/nl + gramática nl
+  [conditionalis zou, bijzinnen/voegwoorden, relatieve bijzinnen die/dat, lijdende vorm worden, vaste
+  voorzetsels + om…te, voltooid verleden/conditionalis verleden] → validar R6/W6/L4/S3 → `gen_course.py
+  nl b1` [STAMP 20260703120112 ya reservado] → `gen_audio_missing.py nl-b1` → `verify_b1_chain.py nl`).
+  B2+ de/nl; imágenes; onboarding de/nl-específico.
 
 ## Stack / mecánica clave
 - **Contenido es DB-driven**: los seeds/fixes son migraciones → quedan LIVE al aplicar,

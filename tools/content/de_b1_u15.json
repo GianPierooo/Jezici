@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 15, "title_es": "Frases de relativo (der/die/das)", "color": "#117864", "icon": "link"},
+  "checkpoint_desc": "Une frases con pronombres relativos (der/die/das) concordando género, número y caso, con el verbo al final.",
+  "lessons": [
+    {"order": 1, "title_es": "Relativpronomen en Nominativ (der/die/das)"},
+    {"order": 2, "title_es": "Relativpronomen en Akkusativ (den/die/das)"},
+    {"order": 3, "title_es": "Relativpronomen en Dativ (dem/der/dem)"},
+    {"order": 4, "title_es": "Preposición + relativo y repaso"}
+  ],
+  "vocab": [
+    ["der Mann", "el hombre", "n"],
+    ["die Frau", "la mujer", "n"],
+    ["das Kind", "el niño", "n"],
+    ["das Buch", "el libro", "n"],
+    ["der Freund", "el amigo", "n"],
+    ["die Kollegin", "la colega", "n"],
+    ["das Auto", "el coche", "n"],
+    ["die Wohnung", "el piso", "n"],
+    ["der Film", "la película", "n"],
+    ["die Stadt", "la ciudad", "n"],
+    ["das Handy", "el móvil", "n"],
+    ["der Lehrer", "el profesor", "n"],
+    ["die Nachbarin", "la vecina", "n"],
+    ["das Restaurant", "el restaurante", "n"],
+    ["der Zug", "el tren", "n"],
+    ["die Geschichte", "la historia", "n"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "relativ_nominativ", "type": "match", "skill": "reading", "prompt": "Une cada frase de relativo con su traducción.", "pairs": [["Der Mann, der dort wohnt", "El hombre que vive allí"], ["Das Buch, das ich lese", "El libro que leo"], ["Die Frau, der ich helfe", "La mujer a la que ayudo"]]},
+    {"lesson": 1, "topic": "relativ_nominativ", "type": "multiple_choice", "skill": "reading", "prompt": "Elige el pronombre relativo correcto (sujeto masculino): «Das ist der Freund, ___ in Berlin arbeitet.»", "options": ["der", "die", "das"], "value": "der"},
+    {"lesson": 1, "topic": "relativ_nominativ", "type": "multiple_choice", "skill": "reading", "prompt": "Elige el pronombre relativo correcto (sujeto femenino): «Das ist die Frau, ___ neben uns wohnt.»", "options": ["die", "der", "das"], "value": "die"},
+    {"lesson": 1, "topic": "relativ_nominativ", "type": "cloze", "skill": "writing", "prompt": "Completa con el relativo en Nominativ (neutro sujeto): «Das ist das Kind, ___ dort spielt.»", "text": "Das ist das Kind, ___ dort spielt.", "value": "das", "accepted": ["das"]},
+    {"lesson": 1, "topic": "relativ_nominativ", "type": "listening", "skill": "listening", "prompt": "Escucha y elige la frase correcta.", "say": "Das ist die Wohnung, die mir gefällt.", "options": ["Das ist die Wohnung, die mir gefällt.", "Das ist die Wohnung, der mir gefällt.", "Das ist die Wohnung, das mir gefällt."], "value": "Das ist die Wohnung, die mir gefällt."},
+    {"lesson": 2, "topic": "relativ_akkusativ", "type": "multiple_choice", "skill": "reading", "prompt": "Elige el pronombre relativo correcto (objeto directo neutro): «Das ist das Auto, ___ ich kaufen möchte.»", "options": ["das", "den", "dem"], "value": "das"},
+    {"lesson": 2, "topic": "relativ_akkusativ", "type": "multiple_choice", "skill": "reading", "prompt": "Elige el pronombre relativo correcto (objeto directo masculino): «Der Film, ___ wir gestern gesehen haben, war gut.»", "options": ["den", "der", "das"], "value": "den"},
+    {"lesson": 2, "topic": "relativ_akkusativ", "type": "cloze", "skill": "writing", "prompt": "Completa con el relativo en Akkusativ (masculino objeto): «Der Zug, ___ ich nehme, kommt um acht.»", "text": "Der Zug, ___ ich nehme, kommt um acht.", "value": "den", "accepted": ["den"]},
+    {"lesson": 2, "topic": "relativ_akkusativ", "type": "word_bank", "skill": "writing", "prompt": "Ordena la frase de relativo (masculino, objeto directo): «El amigo al que veo.»", "tiles": ["Der", "Freund,", "den", "ich", "sehe", "die", "der"], "sequence": ["Der", "Freund,", "den", "ich", "sehe"]},
+    {"lesson": 2, "topic": "relativ_akkusativ", "type": "listening", "skill": "listening", "prompt": "Escucha y elige la frase correcta.", "say": "Das Handy, das ich gekauft habe, war teuer.", "options": ["Das Handy, das ich gekauft habe, war teuer.", "Das Handy, den ich gekauft habe, war teuer.", "Das Handy, dem ich gekauft habe, war teuer."], "value": "Das Handy, das ich gekauft habe, war teuer."},
+    {"lesson": 3, "topic": "relativ_dativ", "type": "multiple_choice", "skill": "reading", "prompt": "Elige el pronombre relativo correcto (dativo femenino): «Die Kollegin, ___ ich das Buch gebe, ist nett.»", "options": ["der", "die", "den"], "value": "der"},
+    {"lesson": 3, "topic": "relativ_dativ", "type": "cloze", "skill": "writing", "prompt": "Completa con el relativo en Dativ (masculino): «Der Lehrer, ___ ich danke, ist sehr geduldig.»", "text": "Der Lehrer, ___ ich danke, ist sehr geduldig.", "value": "dem", "accepted": ["dem"]},
+    {"lesson": 3, "topic": "relativ_dativ", "type": "listening", "skill": "listening", "prompt": "Escucha y elige la frase correcta.", "say": "Der Freund, dem ich helfe, ist krank.", "options": ["Der Freund, dem ich helfe, ist krank.", "Der Freund, den ich helfe, ist krank.", "Der Freund, der ich helfe, ist krank."], "value": "Der Freund, dem ich helfe, ist krank."},
+    {"lesson": 3, "topic": "relativ_dativ", "type": "speaking_read_aloud", "skill": "speaking", "prompt": "Lee en voz alta esta frase de relativo.", "read": "Das ist der Mann, der neben uns wohnt."},
+    {"lesson": 4, "topic": "relativ_praeposition", "type": "translation", "skill": "writing", "prompt": "Traduce: «La mujer con la que hablo es simpática.»", "source": "La mujer con la que hablo es simpática.", "value": "Die Frau, mit der ich spreche, ist sympathisch.", "accepted": ["Die Frau, mit der ich spreche, ist sympathisch", "Die Frau, mit der ich spreche, ist sympathisch.", "Die Frau mit der ich spreche ist sympathisch", "Die Frau, mit der ich rede, ist sympathisch"]},
+    {"lesson": 4, "topic": "relativ_praeposition", "type": "reorder", "skill": "writing", "prompt": "Ordena la frase con el verbo al final: «La ciudad en la que vivo es bonita.»", "tiles": ["Die", "Stadt,", "in", "der", "ich", "wohne,", "ist", "schön", "das"], "sequence": ["Die", "Stadt,", "in", "der", "ich", "wohne,", "ist", "schön"]},
+    {"lesson": 4, "topic": "relativ_praeposition", "type": "listening", "skill": "listening", "prompt": "Escucha y elige la frase correcta.", "say": "Die Nachbarin, mit der ich rede, ist nett.", "options": ["Die Nachbarin, mit der ich rede, ist nett.", "Die Nachbarin, mit dem ich rede, ist nett.", "Die Nachbarin, mit die ich rede, ist nett."], "value": "Die Nachbarin, mit der ich rede, ist nett."},
+    {"lesson": 4, "topic": "relativ_praeposition", "type": "speaking_read_aloud", "skill": "speaking", "prompt": "Lee en voz alta esta frase de relativo.", "read": "Das Restaurant, das wir empfehlen, ist italienisch."},
+    {"lesson": 4, "topic": "relativ_praeposition", "type": "speaking_read_aloud", "skill": "speaking", "prompt": "Lee en voz alta esta frase de relativo.", "read": "Die Geschichte, die du erzählst, ist sehr interessant."}
+  ]
+}

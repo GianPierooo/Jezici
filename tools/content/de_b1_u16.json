@@ -1,0 +1,191 @@
+{
+  "unit": {"order": 16, "title_es": "La voz pasiva (werden + Partizip)", "color": "#B9770E", "icon": "settings"},
+  "checkpoint_desc": "Forma la voz pasiva en presente y pasado con werden/wurde + Partizip II y el agente con von + dativo.",
+  "lessons": [
+    {"order": 1, "title_es": "Präsens Passiv: wird + Partizip II"},
+    {"order": 2, "title_es": "El agente con von + Dativ"},
+    {"order": 3, "title_es": "Präteritum Passiv: wurde + Partizip II"},
+    {"order": 4, "title_es": "Activa frente a pasiva"}
+  ],
+  "vocab": [
+    ["die Fabrik", "la fábrica", "sustantivo"],
+    ["die Brücke", "el puente", "sustantivo"],
+    ["der Brief", "la carta", "sustantivo"],
+    ["das Paket", "el paquete", "sustantivo"],
+    ["der Vertrag", "el contrato", "sustantivo"],
+    ["die Rechnung", "la factura", "sustantivo"],
+    ["der Arbeiter", "el obrero", "sustantivo"],
+    ["der Autor", "el autor", "sustantivo"],
+    ["die Maschine", "la máquina", "sustantivo"],
+    ["das Ergebnis", "el resultado", "sustantivo"],
+    ["bauen", "construir", "verbo"],
+    ["reparieren", "reparar", "verbo"],
+    ["liefern", "entregar", "verbo"],
+    ["unterschreiben", "firmar", "verbo"],
+    ["herstellen", "fabricar", "verbo"],
+    ["gegründet", "fundado", "participio"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "type": "match",
+      "skill": "reading",
+      "prompt": "Relaciona cada palabra alemana con su significado en español.",
+      "pairs": [
+        ["die Fabrik", "la fábrica"],
+        ["der Vertrag", "el contrato"],
+        ["reparieren", "reparar"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "type": "multiple_choice",
+      "skill": "reading",
+      "prompt": "¿Cuál es la forma correcta de la voz pasiva en presente? «La casa se construye.»",
+      "options": ["Das Haus wird gebaut.", "Das Haus wird bauen.", "Das Haus ist gebaut."],
+      "value": "Das Haus wird gebaut."
+    },
+    {
+      "lesson": 1,
+      "type": "multiple_choice",
+      "skill": "reading",
+      "prompt": "Elige la frase pasiva correcta. «Los coches se fabrican aquí.»",
+      "options": ["Die Autos werden hier hergestellt.", "Die Autos wird hier hergestellt.", "Die Autos werden hier herstellen."],
+      "value": "Die Autos werden hier hergestellt."
+    },
+    {
+      "lesson": 1,
+      "type": "cloze",
+      "skill": "writing",
+      "prompt": "Completa con la forma correcta de werden (presente). «El puente ___ reparado.»",
+      "text": "Die Brücke ___ repariert.",
+      "value": "wird",
+      "accepted": ["wird"]
+    },
+    {
+      "lesson": 1,
+      "type": "cloze",
+      "skill": "writing",
+      "prompt": "Completa con el participio II correcto de «schreiben». «La carta es escrita.»",
+      "text": "Der Brief wird ___.",
+      "value": "geschrieben",
+      "accepted": ["geschrieben"]
+    },
+    {
+      "lesson": 1,
+      "type": "word_bank",
+      "skill": "writing",
+      "prompt": "Ordena las fichas para formar: «El contrato es firmado.» (presente pasivo)",
+      "tiles": ["Der", "Vertrag", "wird", "unterschrieben", "wurde", "ist"],
+      "sequence": ["Der", "Vertrag", "wird", "unterschrieben"]
+    },
+    {
+      "lesson": 2,
+      "type": "multiple_choice",
+      "skill": "reading",
+      "prompt": "¿Qué caso rige «von» para introducir al agente en la pasiva?",
+      "options": ["Dativ (von + dativo)", "Akkusativ (von + acusativo)", "Genitiv (von + genitivo)"],
+      "value": "Dativ (von + dativo)"
+    },
+    {
+      "lesson": 2,
+      "type": "cloze",
+      "skill": "writing",
+      "prompt": "Completa con von + el artículo dativo correcto. «La factura es pagada por el cliente (der Kunde).»",
+      "text": "Die Rechnung wird ___ Kunden bezahlt.",
+      "value": "von dem",
+      "accepted": ["von dem", "vom"]
+    },
+    {
+      "lesson": 2,
+      "type": "translation",
+      "skill": "writing",
+      "prompt": "Traduce al alemán (presente pasivo con agente): «El libro es leído por el autor.»",
+      "source": "El libro es leído por el autor.",
+      "value": "Das Buch wird von dem Autor gelesen.",
+      "accepted": ["Das Buch wird von dem Autor gelesen.", "Das Buch wird von dem Autor gelesen", "Das Buch wird vom Autor gelesen.", "Das Buch wird vom Autor gelesen"]
+    },
+    {
+      "lesson": 3,
+      "type": "multiple_choice",
+      "skill": "reading",
+      "prompt": "¿Cuál es la voz pasiva en pasado (Präteritum)? «La casa fue construida.»",
+      "options": ["Das Haus wurde gebaut.", "Das Haus wird gebaut.", "Das Haus war gebaut."],
+      "value": "Das Haus wurde gebaut."
+    },
+    {
+      "lesson": 3,
+      "type": "cloze",
+      "skill": "writing",
+      "prompt": "Completa con la forma de werden en Präteritum. «La fábrica fue fundada en 1990.»",
+      "text": "Die Fabrik ___ 1990 gegründet.",
+      "value": "wurde",
+      "accepted": ["wurde"]
+    },
+    {
+      "lesson": 4,
+      "type": "multiple_choice",
+      "skill": "reading",
+      "prompt": "Una frase está en ACTIVA y la otra en PASIVA. ¿Cuál es la PASIVA?",
+      "options": ["Das Haus wird von dem Arbeiter gebaut.", "Der Arbeiter baut das Haus.", "Der Arbeiter hat das Haus gebaut."],
+      "value": "Das Haus wird von dem Arbeiter gebaut."
+    },
+    {
+      "lesson": 1,
+      "type": "listening",
+      "skill": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Das Haus wird gebaut.",
+      "options": ["Das Haus wird gebaut.", "Das Haus wurde gebaut.", "Das Haus ist gebaut."],
+      "value": "Das Haus wird gebaut."
+    },
+    {
+      "lesson": 3,
+      "type": "listening",
+      "skill": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Die Brücke wurde repariert.",
+      "options": ["Die Brücke wurde repariert.", "Die Brücke wird repariert.", "Die Brücke ist repariert."],
+      "value": "Die Brücke wurde repariert."
+    },
+    {
+      "lesson": 2,
+      "type": "listening",
+      "skill": "listening",
+      "prompt": "Escucha la frase pasiva con agente y elige la que oíste.",
+      "say": "Das Buch wird von dem Autor geschrieben.",
+      "options": ["Das Buch wird von dem Autor geschrieben.", "Das Buch wird von dem Autor gelesen.", "Das Buch wurde von dem Autor geschrieben."],
+      "value": "Das Buch wird von dem Autor geschrieben."
+    },
+    {
+      "lesson": 3,
+      "type": "listening",
+      "skill": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Die Fabrik wurde 1990 gegründet.",
+      "options": ["Die Fabrik wurde 1990 gegründet.", "Die Fabrik wird 1990 gegründet.", "Die Fabrik ist 1990 gegründet."],
+      "value": "Die Fabrik wurde 1990 gegründet."
+    },
+    {
+      "lesson": 2,
+      "type": "speaking_read_aloud",
+      "skill": "speaking",
+      "prompt": "Lee en voz alta:",
+      "read": "Das Haus wird von dem Arbeiter gebaut."
+    },
+    {
+      "lesson": 3,
+      "type": "speaking_read_aloud",
+      "skill": "speaking",
+      "prompt": "Lee en voz alta:",
+      "read": "Die Rechnung wurde gestern bezahlt."
+    },
+    {
+      "lesson": 4,
+      "type": "speaking_read_aloud",
+      "skill": "speaking",
+      "prompt": "Lee en voz alta:",
+      "read": "Der Vertrag wird von dem Chef unterschrieben."
+    }
+  ]
+}

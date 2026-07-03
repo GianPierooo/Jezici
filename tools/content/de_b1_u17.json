@@ -1,0 +1,197 @@
+{
+  "unit": {"order": 17, "title_es": "Verbos con preposición y el genitivo", "color": "#922B21", "icon": "alternate_email"},
+  "checkpoint_desc": "Demuestra que dominas los verbos con preposición fija (con su caso) y el genitivo de posesión.",
+  "lessons": [
+    {"order": 1, "title_es": "Esperar, pensar, alegrarse (auf/an)"},
+    {"order": 2, "title_es": "Interesarse, tener miedo, hablar (für/vor/über)"},
+    {"order": 3, "title_es": "El genitivo de posesión (-s)"},
+    {"order": 4, "title_es": "Todo junto: preposición, caso y genitivo"}
+  ],
+  "vocab": [
+    ["der Bus", "el autobús", "sustantivo"],
+    ["die Prüfung", "el examen", "sustantivo"],
+    ["die Reise", "el viaje", "sustantivo"],
+    ["die Zukunft", "el futuro", "sustantivo"],
+    ["die Musik", "la música", "sustantivo"],
+    ["die Angst", "el miedo", "sustantivo"],
+    ["das Gewitter", "la tormenta", "sustantivo"],
+    ["das Problem", "el problema", "sustantivo"],
+    ["der Titel", "el título", "sustantivo"],
+    ["das Buch", "el libro", "sustantivo"],
+    ["das Auto", "el coche", "sustantivo"],
+    ["die Schwester", "la hermana", "sustantivo"],
+    ["der Freund", "el amigo", "sustantivo"],
+    ["das Ende", "el final", "sustantivo"],
+    ["warten", "esperar", "verbo"],
+    ["sich freuen", "alegrarse", "verbo"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "type": "match",
+      "skill": "reading",
+      "prompt": "Une cada verbo con su preposición fija.",
+      "pairs": [
+        ["warten auf", "esperar (algo/a alguien)"],
+        ["denken an", "pensar en"],
+        ["sich freuen auf", "alegrarse (por algo futuro)"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "type": "multiple_choice",
+      "skill": "reading",
+      "prompt": "Elige la preposición correcta: «Ich warte ___ den Bus.» (Espero el autobús.)",
+      "options": ["auf", "an", "für"],
+      "value": "auf"
+    },
+    {
+      "lesson": 1,
+      "type": "cloze",
+      "skill": "writing",
+      "prompt": "Completa con la preposición correcta: esperar el autobús.",
+      "text": "Ich warte ___ den Bus.",
+      "value": "auf",
+      "accepted": ["auf"]
+    },
+    {
+      "lesson": 1,
+      "type": "cloze",
+      "skill": "writing",
+      "prompt": "Completa con la preposición correcta: pensar en el examen.",
+      "text": "Ich denke oft ___ die Prüfung.",
+      "value": "an",
+      "accepted": ["an"]
+    },
+    {
+      "lesson": 1,
+      "type": "translation",
+      "skill": "writing",
+      "prompt": "Traduce: Me alegro por el viaje.",
+      "source": "Me alegro por el viaje.",
+      "value": "Ich freue mich auf die Reise.",
+      "accepted": [
+        "Ich freue mich auf die Reise",
+        "Ich freue mich auf die Reise.",
+        "Ich freue mich auf die Reise!"
+      ]
+    },
+    {
+      "lesson": 1,
+      "type": "listening",
+      "skill": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Wir warten auf den Zug.",
+      "options": ["Wir warten auf den Zug.", "Wir warten an den Zug.", "Wir warten für den Zug."],
+      "value": "Wir warten auf den Zug."
+    },
+    {
+      "lesson": 1,
+      "type": "speaking_read_aloud",
+      "skill": "speaking",
+      "prompt": "Lee en voz alta:",
+      "read": "Ich denke an dich und freue mich auf das Wochenende."
+    },
+    {
+      "lesson": 2,
+      "type": "multiple_choice",
+      "skill": "reading",
+      "prompt": "Elige la preposición correcta: «Ich interessiere mich ___ Musik.» (Me intereso por la música.)",
+      "options": ["für", "auf", "an"],
+      "value": "für"
+    },
+    {
+      "lesson": 2,
+      "type": "multiple_choice",
+      "skill": "reading",
+      "prompt": "Elige la preposición correcta: «Ich habe Angst ___ dem Gewitter.» (Tengo miedo a la tormenta.)",
+      "options": ["vor", "für", "auf"],
+      "value": "vor"
+    },
+    {
+      "lesson": 2,
+      "type": "word_bank",
+      "skill": "writing",
+      "prompt": "Ordena para formar: «Me intereso por la política.»",
+      "tiles": ["Ich", "interessiere", "mich", "für", "Politik", "auf", "an"],
+      "sequence": ["Ich", "interessiere", "mich", "für", "Politik"]
+    },
+    {
+      "lesson": 2,
+      "type": "listening",
+      "skill": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Sie spricht über ihre Zukunft.",
+      "options": ["Sie spricht über ihre Zukunft.", "Sie spricht für ihre Zukunft.", "Sie spricht auf ihre Zukunft."],
+      "value": "Sie spricht über ihre Zukunft."
+    },
+    {
+      "lesson": 3,
+      "type": "match",
+      "skill": "reading",
+      "prompt": "Une cada genitivo con su traducción.",
+      "pairs": [
+        ["der Titel des Buches", "el título del libro"],
+        ["das Auto meiner Schwester", "el coche de mi hermana"],
+        ["das Ende des Films", "el final de la película"]
+      ]
+    },
+    {
+      "lesson": 3,
+      "type": "multiple_choice",
+      "skill": "reading",
+      "prompt": "Elige el genitivo correcto: «Das ist das Auto ___.» (Es el coche de mi hermana.)",
+      "options": ["meiner Schwester", "meine Schwester", "meinem Schwester"],
+      "value": "meiner Schwester"
+    },
+    {
+      "lesson": 3,
+      "type": "cloze",
+      "skill": "writing",
+      "prompt": "Completa el genitivo (masc./neutro lleva -s): el título del libro.",
+      "text": "Ich mag den Titel des Buch___.",
+      "value": "es",
+      "accepted": ["es"]
+    },
+    {
+      "lesson": 3,
+      "type": "reorder",
+      "skill": "writing",
+      "prompt": "Ordena para formar: «El coche de mi amigo es nuevo.»",
+      "tiles": ["Das", "Auto", "meines", "Freundes", "ist", "neu", "meiner"],
+      "sequence": ["Das", "Auto", "meines", "Freundes", "ist", "neu"]
+    },
+    {
+      "lesson": 3,
+      "type": "speaking_read_aloud",
+      "skill": "speaking",
+      "prompt": "Lee en voz alta:",
+      "read": "Der Titel des Buches gefällt mir, aber das Ende ist traurig."
+    },
+    {
+      "lesson": 4,
+      "type": "listening",
+      "skill": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Das ist das Haus meines Vaters.",
+      "options": ["Das ist das Haus meines Vaters.", "Das ist das Haus mein Vater.", "Das ist das Haus meinem Vater."],
+      "value": "Das ist das Haus meines Vaters."
+    },
+    {
+      "lesson": 4,
+      "type": "speaking_read_aloud",
+      "skill": "speaking",
+      "prompt": "Lee en voz alta:",
+      "read": "Ich interessiere mich für die Zukunft meiner Stadt."
+    },
+    {
+      "lesson": 4,
+      "type": "listening",
+      "skill": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ich freue mich auf das Ende der Prüfung.",
+      "options": ["Ich freue mich auf das Ende der Prüfung.", "Ich freue mich über das Ende der Prüfung.", "Ich freue mich an das Ende der Prüfung."],
+      "value": "Ich freue mich auf das Ende der Prüfung."
+    }
+  ]
+}

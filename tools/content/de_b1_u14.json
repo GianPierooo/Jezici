@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 14, "title_es": "Unir ideas: porque, aunque, así que", "color": "#1F618D", "icon": "hub"},
+  "checkpoint_desc": "Une frases con weil, dass, wenn, obwohl, damit y als (verbo al final) y con deshalb, trotzdem, deswegen (inversión).",
+  "lessons": [
+    {"order": 1, "title_es": "weil y dass: el verbo al final"},
+    {"order": 2, "title_es": "wenn, als, obwohl, damit"},
+    {"order": 3, "title_es": "deshalb, deswegen, trotzdem: la inversión"},
+    {"order": 4, "title_es": "Todo junto: contraste de orden"}
+  ],
+  "vocab": [
+    ["weil", "porque (verbo al final)", "conj"],
+    ["dass", "que (subordinante)", "conj"],
+    ["wenn", "cuando / si", "conj"],
+    ["als", "cuando (pasado único)", "conj"],
+    ["obwohl", "aunque", "conj"],
+    ["damit", "para que", "conj"],
+    ["deshalb", "por eso", "adv"],
+    ["deswegen", "por eso", "adv"],
+    ["trotzdem", "a pesar de eso", "adv"],
+    ["der Grund", "el motivo", "noun"],
+    ["die Idee", "la idea", "noun"],
+    ["die Erkältung", "el resfriado", "noun"],
+    ["das Wetter", "el tiempo (clima)", "noun"],
+    ["die Prüfung", "el examen", "noun"],
+    ["müde", "cansado", "adj"],
+    ["pünktlich", "puntual", "adj"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "weil", "skill": "reading", "type": "match", "prompt": "Une el conector con su significado:", "pairs": [["weil", "porque"], ["dass", "que"], ["der Grund", "el motivo"]]},
+    {"lesson": 1, "topic": "weil-orden", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase con el orden correcto (verbo al final tras «weil»):", "options": ["Ich bleibe zu Hause, weil ich krank bin.", "Ich bleibe zu Hause, weil ich bin krank.", "Ich bleibe zu Hause, weil bin ich krank."], "value": "Ich bleibe zu Hause, weil ich krank bin."},
+    {"lesson": 1, "topic": "weil", "skill": "writing", "type": "cloze", "prompt": "Completa con el conector «porque»: Ich lerne Deutsch, ___ ich in Berlin wohne.", "text": "Ich lerne Deutsch, ___ ich in Berlin wohne.", "value": "weil", "accepted": ["weil"]},
+    {"lesson": 1, "topic": "dass", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ich weiß, dass du recht hast.", "options": ["Ich weiß, dass du recht hast.", "Ich weiß, dass du recht hattest.", "Ich weiß, dass du Reis hast."], "value": "Ich weiß, dass du recht hast."},
+    {"lesson": 2, "topic": "obwohl", "skill": "reading", "type": "match", "prompt": "Une el conector con su significado:", "pairs": [["obwohl", "aunque"], ["wenn", "cuando/si"], ["damit", "para que"]]},
+    {"lesson": 2, "topic": "obwohl-orden", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase con el orden correcto (verbo al final tras «obwohl»):", "options": ["Ich gehe spazieren, obwohl es regnet.", "Ich gehe spazieren, obwohl regnet es.", "Ich gehe spazieren, obwohl es regnet nicht."], "value": "Ich gehe spazieren, obwohl es regnet."},
+    {"lesson": 2, "topic": "als-vs-wenn", "skill": "reading", "type": "multiple_choice", "prompt": "Elige el conector correcto para un hecho único en el pasado: «Ich war glücklich, ___ ich sie sah.»", "options": ["als", "wenn", "dass"], "value": "als"},
+    {"lesson": 2, "topic": "damit", "skill": "writing", "type": "cloze", "prompt": "Completa con «para que»: Ich spreche langsam, ___ du mich verstehst.", "text": "Ich spreche langsam, ___ du mich verstehst.", "value": "damit", "accepted": ["damit"]},
+    {"lesson": 2, "topic": "obwohl", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Obwohl es kalt ist, gehe ich schwimmen.", "options": ["Obwohl es kalt ist, gehe ich schwimmen.", "Obwohl es kalt ist, gehe ich schlafen.", "Obwohl es alt ist, gehe ich schwimmen."], "value": "Obwohl es kalt ist, gehe ich schwimmen."},
+    {"lesson": 2, "topic": "damit", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ich lerne viel, damit ich die Prüfung bestehe."},
+    {"lesson": 3, "topic": "deshalb-inversion", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase con la inversión correcta tras «deshalb» (verbo en 2ª posición):", "options": ["Ich bin krank, deshalb bleibe ich zu Hause.", "Ich bin krank, deshalb ich bleibe zu Hause.", "Ich bin krank, deshalb zu Hause ich bleibe."], "value": "Ich bin krank, deshalb bleibe ich zu Hause."},
+    {"lesson": 3, "topic": "deswegen", "skill": "writing", "type": "cloze", "prompt": "Completa con «por eso»: Es regnet, ___ nehme ich einen Regenschirm.", "text": "Es regnet, ___ nehme ich einen Regenschirm.", "value": "deswegen", "accepted": ["deswegen", "deshalb"]},
+    {"lesson": 3, "topic": "trotzdem-inversion", "skill": "writing", "type": "reorder", "prompt": "Ordena para formar «A pesar de eso voy a la fiesta» (Es ist spät, ...):", "tiles": ["trotzdem", "gehe", "ich", "zur", "Party"], "sequence": ["trotzdem", "gehe", "ich", "zur", "Party"]},
+    {"lesson": 3, "topic": "deshalb", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Es ist spät, deshalb gehe ich nach Hause.", "options": ["Es ist spät, deshalb gehe ich nach Hause.", "Es ist spät, deshalb gehe ich nach Hamburg.", "Es ist spät, deshalb sehe ich nach Hause."], "value": "Es ist spät, deshalb gehe ich nach Hause."},
+    {"lesson": 3, "topic": "deshalb", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ich bin müde, deshalb gehe ich früh ins Bett."},
+    {"lesson": 4, "topic": "weil-produccion", "skill": "writing", "type": "translation", "prompt": "Traduce: No voy porque estoy cansado.", "source": "No voy porque estoy cansado.", "value": "Ich gehe nicht, weil ich müde bin.", "accepted": ["Ich gehe nicht, weil ich müde bin", "Ich gehe nicht, weil ich müde bin.", "Ich komme nicht, weil ich müde bin", "Ich komme nicht, weil ich müde bin."]},
+    {"lesson": 4, "topic": "obwohl-produccion", "skill": "writing", "type": "word_bank", "prompt": "Construye: Aunque estoy cansado, trabajo.", "tiles": ["Obwohl", "ich", "müde", "bin,", "arbeite", "ich", "und", "ist"], "sequence": ["Obwohl", "ich", "müde", "bin,", "arbeite", "ich"]},
+    {"lesson": 4, "topic": "dass-produccion", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Es tut mir leid, dass ich zu spät bin.", "options": ["Es tut mir leid, dass ich zu spät bin.", "Es tut mir leid, dass ich zu satt bin.", "Es tut mir leid, dass ich zu spät war."], "value": "Es tut mir leid, dass ich zu spät bin."},
+    {"lesson": 4, "topic": "trotzdem-produccion", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Das Wetter ist schlecht, trotzdem machen wir einen Ausflug."}
+  ]
+}

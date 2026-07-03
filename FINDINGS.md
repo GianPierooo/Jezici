@@ -2,6 +2,30 @@
 
 ---
 
+## B1 es→de (escalera A2→B1) — 2026-07-03 ✅ LIVE + VERIFICADO
+> de/nl llegaban a A2; ahora **alemán tiene B1 completo** (units 13-18, encadena A2→B1). nl B1 diferido con retome.
+- **Contenido (mig 111):** 6 unidades, **114 ítems R36/W36/L24/S18** (L=67%, S=50% → objetivo cumplido),
+  audio TTS tl=de **42/42**. Currículo B1 real: Konjunktiv II, Nebensätze/Konnektoren, Relativsätze, Passiv,
+  Verben+Präposition/Genitiv, Konjunktiv II der Vergangenheit. Progresión coherente desde A2.
+- **Autoría:** 6 profesores nativos IA (1 por unidad) + **2 revisores/rebalanceadores nativos** (una pasada
+  que rebalanceó a R6/W6/L4/S3 y corrigió: distractores de listening que delataban la respuesta [«Glas Kuchen»→
+  «Glas Wasser»], tolerancia ue↔ü faltante, verbo-final en Nebensatz/Relativsatz, Genitiv -s, elección
+  haben/sein en Konjunktiv II, campos `lesson`/`topic` que un agente había omitido). `gen_course.py` ahora
+  es robusto ante `topic` faltante (fallback).
+- **Verificado END-TO-END cliente real** (`verify_b1_chain.py de`, JWT): determinista B1 96/96 correctos +
+  96/96 distractores rechazados sin near-match (42501); **CAMINA A1→B1 las 18 unidades EN ORDEN** (U12
+  desbloquea U13 → gating A2→B1 end-to-end; 30/30 lecciones B1 completadas); **0 lesson_items cruzan los 6
+  cursos**; default(en) NO recibe B1 de; audio B1 HEAD 42/42. analyze 0.
+- **Retome EXACTO de B1 es→nl (diferido):** 6 agentes nativos nl (mismos prompts que de, s/alemán/neerlandés)
+  con gramática nl: U13 conditionalis (zou + inf), U14 bijzinnen & voegwoorden (omdat/hoewel/als/dat +
+  daarom, werkwoord achteraan), U15 relatieve bijzinnen (die/dat/wie/waar), U16 lijdende vorm (worden +
+  voltooid deelwoord), U17 vaste voorzetsels + «om…te» (wachten op, denken aan, houden van), U18 voltooid
+  verleden/conditionalis verleden (zou hebben + deelwoord) → validar estructura R6/W6/L4/S3 → `python
+  gen_course.py nl b1` (STAMP 20260703120112 YA reservado en STAMPS/DIFF) → `python gen_audio_missing.py
+  nl-b1` → `python verify_b1_chain.py nl`. Todo el andamiaje (generador, audio, verificador) ya soporta nl b1.
+
+---
+
 ## Idioma META en el onboarding (la puerta principal) — 2026-07-03 ✅ LIVE + VERIFICADO
 > El onboarding era en-first: un usuario NUEVO siempre arrancaba en inglés (el "idioma" del onboarding
 > era el de la APP, no el curso meta) → para aprender otro idioma había que terminar en inglés y cambiar

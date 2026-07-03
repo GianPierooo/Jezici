@@ -1,0 +1,239 @@
+{
+  "unit": {"order": 18, "title_es": "Lo que habría pasado (condicional irreal)", "color": "#4A235A", "icon": "history_toggle_off"},
+  "checkpoint_desc": "Expresa hipótesis y arrepentimientos sobre el pasado con Konjunktiv II (hätte/wäre + Partizip II) y condicionales irreales.",
+  "lessons": [
+    {"order": 1, "title_es": "Wenn ich Zeit gehabt hätte … (condicional irreal del pasado)"},
+    {"order": 2, "title_es": "Ich wäre gekommen (hätte vs. wäre + Partizip II)"},
+    {"order": 3, "title_es": "Ich hätte anrufen sollen (reproche: sollen/können)"},
+    {"order": 4, "title_es": "Repaso B1: presente irreal y frases subordinadas"}
+  ],
+  "vocab": [
+    ["der Fehler", "el error", "sustantivo"],
+    ["die Vergangenheit", "el pasado", "sustantivo"],
+    ["die Möglichkeit", "la posibilidad", "sustantivo"],
+    ["die Entscheidung", "la decisión", "sustantivo"],
+    ["das Bedauern", "el arrepentimiento", "sustantivo"],
+    ["der Rat", "el consejo", "sustantivo"],
+    ["die Gelegenheit", "la ocasión", "sustantivo"],
+    ["der Zufall", "la casualidad", "sustantivo"],
+    ["die Warnung", "la advertencia", "sustantivo"],
+    ["die Folge", "la consecuencia", "sustantivo"],
+    ["der Vorwurf", "el reproche", "sustantivo"],
+    ["die Bedingung", "la condición", "sustantivo"],
+    ["das Ergebnis", "el resultado", "sustantivo"],
+    ["die Absicht", "la intención", "sustantivo"],
+    ["der Unfall", "el accidente", "sustantivo"],
+    ["die Erinnerung", "el recuerdo", "sustantivo"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "type": "match",
+      "skill": "reading",
+      "prompt": "Une cada expresión alemana con su significado en español.",
+      "pairs": [
+        ["Wenn ich Zeit gehabt hätte", "Si hubiera tenido tiempo"],
+        ["Das wäre besser gewesen", "Eso habría sido mejor"],
+        ["Ich hätte es gewusst", "Lo habría sabido"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "type": "multiple_choice",
+      "skill": "reading",
+      "prompt": "¿Cuál frase expresa correctamente 'Si hubiera tenido dinero, habría comprado el coche'?",
+      "options": [
+        "Wenn ich Geld gehabt hätte, hätte ich das Auto gekauft.",
+        "Wenn ich Geld gehabt hätte, wäre ich das Auto gekauft.",
+        "Wenn ich Geld hätte, hätte ich das Auto gekauft."
+      ],
+      "value": "Wenn ich Geld gehabt hätte, hätte ich das Auto gekauft."
+    },
+    {
+      "lesson": 1,
+      "type": "translation",
+      "skill": "writing",
+      "prompt": "Traduce al alemán: 'Si hubiera tenido tiempo, habría ayudado.'",
+      "source": "Si hubiera tenido tiempo, habría ayudado.",
+      "value": "Wenn ich Zeit gehabt hätte, hätte ich geholfen.",
+      "accepted": [
+        "Wenn ich Zeit gehabt hätte, hätte ich geholfen",
+        "Wenn ich Zeit gehabt hätte, hätte ich geholfen.",
+        "Hätte ich Zeit gehabt, hätte ich geholfen.",
+        "Hätte ich Zeit gehabt, hätte ich geholfen"
+      ]
+    },
+    {
+      "lesson": 1,
+      "type": "listening",
+      "skill": "listening",
+      "prompt": "Escucha y elige la frase correcta.",
+      "say": "Wenn das Wetter besser gewesen wäre, wären wir spazieren gegangen.",
+      "options": [
+        "Wenn das Wetter besser gewesen wäre, wären wir spazieren gegangen.",
+        "Wenn das Wetter besser wäre, gehen wir spazieren.",
+        "Wenn das Wetter besser gewesen wäre, hätten wir spazieren gegangen."
+      ],
+      "value": "Wenn das Wetter besser gewesen wäre, wären wir spazieren gegangen."
+    },
+    {
+      "lesson": 2,
+      "type": "multiple_choice",
+      "skill": "reading",
+      "prompt": "¿Qué auxiliar necesita 'kommen' en el condicional irreal del pasado? 'Yo habría venido.'",
+      "options": [
+        "Ich wäre gekommen.",
+        "Ich hätte gekommen.",
+        "Ich würde gekommen."
+      ],
+      "value": "Ich wäre gekommen."
+    },
+    {
+      "lesson": 2,
+      "type": "cloze",
+      "skill": "writing",
+      "prompt": "Completa con el auxiliar correcto (verbo de movimiento): 'Habríamos ido al cine.'",
+      "text": "Wir ___ ins Kino gegangen.",
+      "value": "wären",
+      "accepted": ["wären"]
+    },
+    {
+      "lesson": 2,
+      "type": "word_bank",
+      "skill": "writing",
+      "prompt": "Ordena las fichas para decir: 'Si me hubiera levantado antes, no habría llegado tarde.'",
+      "tiles": ["Wenn", "ich", "früher", "aufgestanden", "wäre", "hätte", "wäre", "ich", "nicht", "zu", "spät", "gekommen"],
+      "sequence": ["Wenn", "ich", "früher", "aufgestanden", "wäre", "wäre", "ich", "nicht", "zu", "spät", "gekommen"]
+    },
+    {
+      "lesson": 2,
+      "type": "listening",
+      "skill": "listening",
+      "prompt": "Escucha y elige la frase correcta.",
+      "say": "Wir wären früher angekommen, aber der Zug hatte Verspätung.",
+      "options": [
+        "Wir wären früher angekommen, aber der Zug hatte Verspätung.",
+        "Wir hätten früher angekommen, aber der Zug hatte Verspätung.",
+        "Wir wären früher ankommen, aber der Zug hatte Verspätung."
+      ],
+      "value": "Wir wären früher angekommen, aber der Zug hatte Verspätung."
+    },
+    {
+      "lesson": 2,
+      "type": "speaking_read_aloud",
+      "skill": "speaking",
+      "prompt": "Lee en voz alta:",
+      "read": "Ich wäre gern mitgekommen, aber ich hatte keine Zeit."
+    },
+    {
+      "lesson": 3,
+      "type": "match",
+      "skill": "reading",
+      "prompt": "Une cada reproche alemán con su significado en español.",
+      "pairs": [
+        ["Ich hätte anrufen sollen", "Debería haber llamado"],
+        ["Du hättest fragen können", "Podrías haber preguntado"],
+        ["Wir hätten aufpassen müssen", "Deberíamos haber tenido cuidado"]
+      ]
+    },
+    {
+      "lesson": 3,
+      "type": "multiple_choice",
+      "skill": "reading",
+      "prompt": "¿Cuál expresa correctamente el reproche 'Deberías haber estudiado más'?",
+      "options": [
+        "Du hättest mehr lernen sollen.",
+        "Du wärst mehr lernen sollen.",
+        "Du hättest mehr gelernt sollen."
+      ],
+      "value": "Du hättest mehr lernen sollen."
+    },
+    {
+      "lesson": 3,
+      "type": "translation",
+      "skill": "writing",
+      "prompt": "Traduce al alemán: 'Podrías haber ayudado.' (tú)",
+      "source": "Podrías haber ayudado.",
+      "value": "Du hättest helfen können.",
+      "accepted": [
+        "Du hättest helfen können",
+        "Du hättest helfen können.",
+        "Du haettest helfen koennen."
+      ]
+    },
+    {
+      "lesson": 3,
+      "type": "reorder",
+      "skill": "writing",
+      "prompt": "Ordena las palabras para decir: 'Deberíamos haber salido antes.'",
+      "tiles": ["Wir", "hätten", "früher", "losfahren", "sollen", "wären"],
+      "sequence": ["Wir", "hätten", "früher", "losfahren", "sollen"]
+    },
+    {
+      "lesson": 3,
+      "type": "speaking_read_aloud",
+      "skill": "speaking",
+      "prompt": "Lee en voz alta:",
+      "read": "Ich hätte dir früher Bescheid sagen sollen."
+    },
+    {
+      "lesson": 4,
+      "type": "multiple_choice",
+      "skill": "reading",
+      "prompt": "¿Cuál frase usa el Konjunktiv II del PRESENTE (hipótesis actual), no del pasado?",
+      "options": [
+        "Wenn ich reich wäre, würde ich reisen.",
+        "Wenn ich reich gewesen wäre, wäre ich gereist.",
+        "Wenn ich reich gewesen wäre, hätte ich gereist."
+      ],
+      "value": "Wenn ich reich wäre, würde ich reisen."
+    },
+    {
+      "lesson": 4,
+      "type": "speaking_read_aloud",
+      "skill": "speaking",
+      "prompt": "Lee en voz alta:",
+      "read": "Wenn ich mehr Zeit gehabt hätte, wäre alles anders gewesen."
+    },
+    {
+      "lesson": 4,
+      "type": "translation",
+      "skill": "writing",
+      "prompt": "Traduce al alemán: 'Si lo hubiera sabido, te lo habría dicho.'",
+      "source": "Si lo hubiera sabido, te lo habría dicho.",
+      "value": "Wenn ich es gewusst hätte, hätte ich es dir gesagt.",
+      "accepted": [
+        "Wenn ich es gewusst hätte, hätte ich es dir gesagt",
+        "Wenn ich es gewusst hätte, hätte ich es dir gesagt.",
+        "Hätte ich es gewusst, hätte ich es dir gesagt.",
+        "Hätte ich es gewusst, hätte ich es dir gesagt"
+      ]
+    },
+    {
+      "lesson": 4,
+      "type": "listening",
+      "skill": "listening",
+      "prompt": "Escucha y elige la frase correcta.",
+      "say": "Wenn ich das gewusst hätte, wäre ich nicht gekommen.",
+      "options": [
+        "Wenn ich das gewusst hätte, wäre ich nicht gekommen.",
+        "Wenn ich das wüsste, würde ich nicht kommen.",
+        "Wenn ich das gewusst hätte, hätte ich nicht gekommen."
+      ],
+      "value": "Wenn ich das gewusst hätte, wäre ich nicht gekommen."
+    },
+    {
+      "lesson": 4,
+      "type": "listening",
+      "skill": "listening",
+      "prompt": "Escucha y elige la frase correcta.",
+      "say": "An deiner Stelle hätte ich das anders gemacht.",
+      "options": [
+        "An deiner Stelle hätte ich das anders gemacht.",
+        "An deiner Stelle wäre ich das anders gemacht.",
+        "An deiner Stelle hätte ich das anders machen."
+      ],
+      "value": "An deiner Stelle hätte ich das anders gemacht."
+    }
+  ]
+}

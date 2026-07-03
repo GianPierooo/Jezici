@@ -32,10 +32,11 @@ STAMPS = {
     ('fr', 'a2'): '20260703120097', ('it', 'a2'): '20260703120098',
     ('de', 'a1'): '20260703120100', ('nl', 'a1'): '20260703120101',
     ('de', 'a2'): '20260703120104', ('nl', 'a2'): '20260703120105',
+    ('de', 'b1'): '20260703120111', ('nl', 'b1'): '20260703120112',
 }
 # palabra "Unidad" en el idioma meta (para el título del checkpoint)
 UNIT_WORD = {'fr': 'Unité', 'it': 'Unità', 'de': 'Einheit', 'nl': 'Eenheid'}
-DIFF = {'a1': 0.16, 'a2': 0.34}
+DIFF = {'a1': 0.16, 'a2': 0.34, 'b1': 0.52}
 ES_LANG = '10000000-0000-0000-0000-000000000001'
 
 
@@ -89,7 +90,8 @@ def item_sql(course_id, iid, level_cefr, diff, skill, it):
         correct = {'expected': it['read']}
     else:
         raise ValueError('tipo desconocido: ' + typ)
-    tags = ['unidad%d' % it['_unit'], it['topic'], skill]
+    topic = it.get('topic') or ('unidad%d_l%s' % (it['_unit'], it.get('lesson', 'x')))
+    tags = ['unidad%d' % it['_unit'], topic, skill]
     tags_sql = 'ARRAY[' + ', '.join(dollar(t) for t in tags) + ']'
     return (f"('{iid}'::uuid,'{course_id}'::uuid,'{level_cefr}','{skill}','{typ}',"
             f"{dollar(it['prompt'])},{jdollar(payload)}::jsonb,{jdollar(correct)}::jsonb,"

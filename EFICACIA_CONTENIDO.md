@@ -6,6 +6,14 @@
 > Prioridad: es→en A1/A2 a fondo (lo que los testers usan hoy). B1–C1 y es→pt: perfil
 > estructural + diferido (ver "Pendiente").
 
+## B1 es→de (escalera A2→B1) (2026-07-03)
+- **B1 alemán completo (mig 111):** 6 unidades (order 13-18), 114 ítems, balance **L=67% S=50%** (objetivo
+  cumplido, no 1:1). Currículo B1 CEFR-real (no traducción del inglés): Konjunktiv II, Nebensätze/Konnektoren,
+  Relativsätze, Passiv, Verben+Präposition/Genitiv, Konjunktiv II der Vergangenheit — progresión desde A2.
+  Autoría por profesores nativos IA + rebalanceo/revisión adversarial nativa (0 errores lingüísticos tras la
+  pasada). Sube alemán de "A1+A2" a **A1→B1** con cadena verificada (verify_b1_chain de). **Diferido: B1 nl**
+  (andamiaje listo; retome exacto en FINDINGS.md). B2+ de/nl no existe aún.
+
 ## Inmersión completa 6/6 + tips pt A2/B1 (2026-07-03)
 - **Historias A1 pt/de/nl (mig 109):** 1ª historia por idioma para pt/de/nl → **los 6 cursos con input
   comprensible / inmersión** (antes solo es→en + fr/it). Cada una A1, 7 segmentos con audio del idioma +

@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 13, "title_es": "Deseos y cortesía (Konjunktiv II)", "color": "#6C3483", "icon": "auto_awesome"},
+  "checkpoint_desc": "Demuestra que sabes pedir con cortesía, expresar deseos y dar consejos usando el Konjunktiv II (würde, hätte, wäre, könnte, sollte).",
+  "lessons": [
+    {"order": 1, "title_es": "Peticiones corteses (Könnten Sie…?, würde)"},
+    {"order": 2, "title_es": "Deseos (Ich hätte gern…, Ich wünschte…)"},
+    {"order": 3, "title_es": "Consejos (An deiner Stelle…, sollte)"},
+    {"order": 4, "title_es": "Situaciones hipotéticas (wäre, könnte)"}
+  ],
+  "vocab": [
+    ["würde", "condicional (auxiliar): -ría", "verbo"],
+    ["hätte", "tendría / tuviera", "verbo"],
+    ["wäre", "sería / fuera / estaría", "verbo"],
+    ["könnte", "podría", "verbo"],
+    ["sollte", "debería", "verbo"],
+    ["der Rat", "el consejo", "sustantivo"],
+    ["die Stelle", "el lugar / puesto", "sustantivo"],
+    ["der Wunsch", "el deseo", "sustantivo"],
+    ["höflich", "cortés / educado", "adjetivo"],
+    ["gern", "con gusto / me gustaría", "adverbio"],
+    ["vielleicht", "quizás", "adverbio"],
+    ["An deiner Stelle", "en tu lugar", "expresion"],
+    ["Ich hätte gern", "quisiera / me gustaría (pedir)", "expresion"],
+    ["Ich wünschte", "ojalá / cómo desearía", "expresion"],
+    ["Könnten Sie…?", "¿Podría usted…?", "expresion"],
+    ["Es wäre besser", "sería mejor", "expresion"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "polite_requests", "skill": "reading", "type": "match", "prompt": "Une cada expresión alemana con su significado.", "pairs": [["Könnten Sie mir helfen?", "¿Podría usted ayudarme?"], ["Würden Sie bitte warten?", "¿Esperaría usted, por favor?"], ["Ich hätte eine Frage.", "Tendría una pregunta."]]},
+    {"lesson": 1, "topic": "polite_requests", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la forma más cortés para pedir algo a un desconocido.", "options": ["Könnten Sie mir bitte helfen?", "Hilf mir!", "Du musst mir helfen."], "value": "Könnten Sie mir bitte helfen?"},
+    {"lesson": 1, "topic": "wuerde_infinitiv", "skill": "writing", "type": "cloze", "prompt": "Completa con el condicional (auxiliar) para «esperaría».", "text": "___ Sie bitte einen Moment warten?", "value": "Würden", "accepted": ["Würden", "würden", "Wuerden", "wuerden"]},
+    {"lesson": 1, "topic": "polite_requests", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Könnten Sie mir das erklären?", "options": ["Könnten Sie mir das erklären?", "Können Sie mir das erklären?", "Könnten Sie mir das schenken?"], "value": "Könnten Sie mir das erklären?"},
+    {"lesson": 1, "topic": "polite_requests", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Würden Sie mir bitte helfen?"},
+    {"lesson": 2, "topic": "wishes_haette_gern", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la manera cortés de pedir un café en un restaurante.", "options": ["Ich hätte gern einen Kaffee.", "Ich will einen Kaffee.", "Gib mir einen Kaffee."], "value": "Ich hätte gern einen Kaffee."},
+    {"lesson": 2, "topic": "wishes_haette_gern", "skill": "writing", "type": "translation", "prompt": "Traduce: Quisiera un vaso de agua.", "source": "Quisiera un vaso de agua.", "value": "Ich hätte gern ein Glas Wasser.", "accepted": ["Ich hätte gern ein Glas Wasser.", "Ich hätte gern ein Glas Wasser", "Ich haette gern ein Glas Wasser.", "Ich haette gern ein Glas Wasser"]},
+    {"lesson": 2, "topic": "wishes_ich_wuenschte", "skill": "writing", "type": "cloze", "prompt": "Completa: «Ojalá tuviera más tiempo».", "text": "Ich wünschte, ich ___ mehr Zeit.", "value": "hätte", "accepted": ["hätte", "haette"]},
+    {"lesson": 2, "topic": "wishes_ich_wuenschte", "skill": "reading", "type": "multiple_choice", "prompt": "Elige el orden correcto (verbo al final tras «Ich wünschte»): «Ojalá estuviera aquí».", "options": ["Ich wünschte, ich wäre hier.", "Ich wünschte, ich bin hier.", "Ich wünschte, ich hier wäre."], "value": "Ich wünschte, ich wäre hier."},
+    {"lesson": 2, "topic": "wishes_haette_gern", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ich hätte gern ein Stück Kuchen.", "options": ["Ich hätte gern ein Stück Kuchen.", "Ich habe ein Stück Kuchen.", "Ich hätte gern ein Glas Wasser."], "value": "Ich hätte gern ein Stück Kuchen."},
+    {"lesson": 2, "topic": "wishes_ich_wuenschte", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ich wünschte, ich hätte mehr Urlaub."},
+    {"lesson": 3, "topic": "advice_an_deiner_stelle", "skill": "reading", "type": "match", "prompt": "Une cada consejo con su significado.", "pairs": [["An deiner Stelle würde ich gehen.", "En tu lugar yo me iría."], ["Du solltest mehr schlafen.", "Deberías dormir más."], ["Es wäre besser zu warten.", "Sería mejor esperar."]]},
+    {"lesson": 3, "topic": "advice_sollte", "skill": "writing", "type": "cloze", "prompt": "Completa con «deberías»: aconsejar a un amigo enfermo.", "text": "Du ___ zum Arzt gehen.", "value": "solltest", "accepted": ["solltest"]},
+    {"lesson": 3, "topic": "advice_sollte", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras para formar el consejo «Deberías descansar más».", "tiles": ["dich", "solltest", "Du", "ausruhen", "mehr"], "sequence": ["Du", "solltest", "dich", "mehr", "ausruhen"]},
+    {"lesson": 3, "topic": "advice_sollte", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Du solltest weniger arbeiten.", "options": ["Du solltest weniger arbeiten.", "Du solltest mehr arbeiten.", "Du willst weniger arbeiten."], "value": "Du solltest weniger arbeiten."},
+    {"lesson": 4, "topic": "hypothetical_waere", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la frase correcta para «Sería estupendo».", "options": ["Das wäre toll.", "Das ist toll.", "Das würde toll."], "value": "Das wäre toll."},
+    {"lesson": 4, "topic": "hypothetical_koennte", "skill": "writing", "type": "translation", "prompt": "Traduce: Con más dinero yo podría viajar.", "source": "Con más dinero yo podría viajar.", "value": "Mit mehr Geld könnte ich reisen.", "accepted": ["Mit mehr Geld könnte ich reisen.", "Mit mehr Geld könnte ich reisen", "Mit mehr Geld koennte ich reisen.", "Mit mehr Geld koennte ich reisen"]},
+    {"lesson": 4, "topic": "hypothetical_waere", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Es wäre besser zu warten.", "options": ["Es wäre besser zu warten.", "Es ist besser zu warten.", "Es wäre besser zu starten."], "value": "Es wäre besser zu warten."},
+    {"lesson": 4, "topic": "hypothetical_koennte", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Mit mehr Zeit könnte ich mehr reisen."}
+  ]
+}
