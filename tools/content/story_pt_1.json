@@ -1,0 +1,33 @@
+{
+  "cefr_level": "A1",
+  "order_index": 1,
+  "title": "A padaria da Ana",
+  "subtitle": "Ana va a la panadería en Río de Janeiro para desayunar.",
+  "emoji": "🥐",
+  "intro": "Es una mañana en Río de Janeiro. Ana sale de casa para desayunar en su panadería favorita. Lee y escucha su pequeña historia.",
+  "segments": [
+    {"en": "Oi! Eu me chamo Ana.", "es": "¡Hola! Me llamo Ana."},
+    {"en": "Eu moro no Rio de Janeiro com a minha família.", "es": "Vivo en Río de Janeiro con mi familia."},
+    {"en": "De manhã, eu vou à padaria perto de casa.", "es": "Por la mañana, voy a la panadería cerca de casa."},
+    {"en": "O atendente pergunta: «Bom dia! O que você quer?»", "es": "El empleado pregunta: «¡Buenos días! ¿Qué quieres?»"},
+    {"en": "Eu queria um café com leite e um pão de queijo.", "es": "Quería un café con leche y un pan de queso."},
+    {"en": "O pão de queijo é quentinho e muito gostoso.", "es": "El pan de queso está calentito y muy rico."},
+    {"en": "Obrigada! Até amanhã!", "es": "¡Gracias! ¡Hasta mañana!"}
+  ],
+  "glossary": [
+    {"word": "oi", "translation": "hola"},
+    {"word": "a padaria", "translation": "la panadería"},
+    {"word": "de manhã", "translation": "por la mañana"},
+    {"word": "o café com leite", "translation": "el café con leche"},
+    {"word": "o pão de queijo", "translation": "el pan de queso (típico brasileño)"},
+    {"word": "quentinho", "translation": "calentito"},
+    {"word": "gostoso", "translation": "rico / sabroso"}
+  ],
+  "questions": [
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Cómo se llama la protagonista?","payload":{"options":["Ana","Maria","Júlia"]},"difficulty":0.2,"correct_answer":{"value":"Ana"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿En qué ciudad vive?","payload":{"options":["São Paulo","Rio de Janeiro","Salvador"]},"difficulty":0.2,"correct_answer":{"value":"Rio de Janeiro"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Adónde va por la mañana?","payload":{"options":["à padaria","à praia","ao trabalho"]},"difficulty":0.2,"correct_answer":{"value":"à padaria"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Qué pide?","payload":{"options":["um café com leite e um pão de queijo","um suco e uma torta","um chá e um pão"]},"difficulty":0.2,"correct_answer":{"value":"um café com leite e um pão de queijo"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Cómo está el pão de queijo?","payload":{"options":["quentinho","frio","ruim"]},"difficulty":0.2,"correct_answer":{"value":"quentinho"}}
+  ]
+}

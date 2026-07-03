@@ -30,6 +30,8 @@ BATCHES = {
               [('pt', 'tips_pt.json'), ('fr', 'tips_fr_a2.json'), ('it', 'tips_it_a2.json')]),
     'de_nl_a2': ('20260703120106', 'seed_tips_de_nl_a2',
                  [('de', 'tips_de_a2.json'), ('nl', 'tips_nl_a2.json')]),
+    'pt_a2_b1': ('20260703120108', 'seed_tips_pt_a2_b1',
+                 [('pt', 'tips_pt_a2.json'), ('pt', 'tips_pt_b1.json')]),
 }
 
 
@@ -53,7 +55,7 @@ def build(batch):
         counts['%s(%s)' % (code, fname)] = len(tips)
         for t in tips:
             unit = int(t['unit'])
-            cefr = 'A1' if unit <= 6 else 'A2'
+            cefr = 'A1' if unit <= 6 else ('A2' if unit <= 12 else 'B1')
             rows.append(
                 "('%s'::uuid,'%s'::uuid,%d,'%s',%s,%s,%s,%s,%s,%s)" % (
                     _id(code, unit), course_id, unit, cefr,

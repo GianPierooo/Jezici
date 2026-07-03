@@ -8,6 +8,12 @@
 
 ---
 
+> **Addendum 2026-07-03 (capa "enseña"):** aditivo a lo auditado — inmersión completa en los 6 cursos
+> (1 historia A1 por curso: en 6, pt/fr/it/de/nl 1) + tips pt hasta B1 (18 A1+A2+B1). Todo course-scoped
+> y **verificado con cliente real** (`verify_stories_multi.py`: 0 cruces entre los 6 cursos; get_story sin
+> fuga de `correct_answer`; submit_story server-side 42501; audio HEAD 200; tips pt U7-18 sin cruce con fr).
+> No cambia el veredicto del núcleo. Diferido: 2ª historia por idioma + historias B1+; B1 de/nl.
+
 ## 0. Resumen ejecutivo
 
 La app está **sólida en el núcleo**: grading 100% server-side (`correct_answer` 42501 confirmado por

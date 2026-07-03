@@ -2,6 +2,25 @@
 
 ---
 
+## Inmersión pt/de/nl + tips pt A2/B1 — 2026-07-03 ✅ LIVE + VERIFICADO
+> Cierre de la capa "enseña" en los 6 cursos: inmersión completa (los 6 con historia) + tips pt hasta B1.
+- **Historias A1 pt/de/nl (mig 109):** +3 historias — pt «A padaria da Ana» (Rio, pão de queijo,
+  café com leite, «queria» de cortesía), de «Beim Bäcker» (Bäckerei, acusativo einen↔ein, Sie,
+  mayúsculas), nl «De koffie van Sanne» (fiets, de/het, V2, «Ik wil graag») → **los 6 cursos con ≥1
+  historia**. Cada una 7 segmentos + audio tl correcto (21/21 HEAD 200) + glosario + 5 preguntas MC.
+  **Validación adversarial nativa (pt-BR/de/nl): 0 errores reales**, 1 pulido pt («quentinho» al glosario) aplicado.
+- **Tips es→pt A2/B1 (mig 108):** +12 tips (units 7-18) → **pt tips A1+A2+B1 completos** (18). A2:
+  pretérito perfeito, futuro «vou»+inf, pegar o ônibus, a conta/garçom, ser/estar, «estou com dor».
+  B1: imperfeito, condicional «gostaria», subjuntivo, relativos, «deu problema/tem jeito», comparativos.
+  `gen_tips_multi.py` ahora deriva cefr A1/A2/**B1** por unit_order.
+- **Verificado cliente real:** `verify_stories_multi.py` — 6 cursos, cada uno ve SOLO sus historias
+  (en=6, pt/fr/it/de/nl=1, **0 cruces**); get_story no expone `correct_answer`; submit_story server-side
+  (correctas 1.0/erróneas 0.0, 42501); `stories.questions` revocada; audio 21/21. Tips pt: cada
+  lección pt U7-18 devuelve su tip; con fr activo **0 cruces**. analyze **0** · test **91/91**.
+- **Diferido (retome):** 2ª historia por idioma + historias B1+; **B1 de/nl** (hoy A1+A2).
+
+---
+
 ## Capa "enseña" — tips A2 de/nl + historias fr/it — 2026-07-03 ✅ LIVE + VERIFICADO
 > Dos frentes de la capa "enseña", ambos course-scoped y verificados con cliente real.
 - **Tips A2 de/nl (mig 106):** +12 tips (6 de + 6 nl, units 7-12) → tips A1+A2 completos en los 4

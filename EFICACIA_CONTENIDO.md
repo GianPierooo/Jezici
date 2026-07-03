@@ -6,12 +6,21 @@
 > Prioridad: es→en A1/A2 a fondo (lo que los testers usan hoy). B1–C1 y es→pt: perfil
 > estructural + diferido (ver "Pendiente").
 
+## Inmersión completa 6/6 + tips pt A2/B1 (2026-07-03)
+- **Historias A1 pt/de/nl (mig 109):** 1ª historia por idioma para pt/de/nl → **los 6 cursos con input
+  comprensible / inmersión** (antes solo es→en + fr/it). Cada una A1, 7 segmentos con audio del idioma +
+  preguntas de comprensión autocalificables, culturalmente relevantes (padaria carioca, Bäckerei berlinesa,
+  café en bici de Ámsterdam). Validación adversarial nativa (0 errores reales). Course-scoped verificado.
+- **Tips es→pt A2/B1 (mig 108):** cierran la capa de tips de pt hasta B1 (18 tips A1+A2+B1); refuerzan
+  los puntos gramaticales clave por unidad (pretérito perfeito, futuro «vou», ser/estar, imperfeito,
+  subjuntivo, relativos, comparativos). Sube la dimensión de **andamiaje explícito** de pt A2/B1.
+- **Diferido:** 2ª historia por idioma + historias B1+; B1 de/nl (hoy A1+A2).
+
 ## Capa "enseña" — tips A2 de/nl + historias fr/it (2026-07-03)
 - **Tips A2 de/nl (mig 106):** completan la capa de tips A1+A2 en los 4 pilotos. **Historias/inmersión
   (mig 107):** 1ª historia por idioma para fr/it (input comprensible A1, 7 segmentos con audio del idioma
   + preguntas de comprensión autocalificables). Sube la dimensión de **input comprensible / inmersión**
-  (clave en la Metodología) de fr/it — antes cero fuera de es→en. Course-scoped verificado. Diferido:
-  historias pt/de/nl.
+  (clave en la Metodología) de fr/it — antes cero fuera de es→en. Course-scoped verificado.
 
 ## Capa "enseña" — tips A1 fr/it/de/nl (2026-07-03)
 - El tip post-lección (refuerza el "enseña, no solo evalúa") existía solo es→en. Sembrados **24 tips

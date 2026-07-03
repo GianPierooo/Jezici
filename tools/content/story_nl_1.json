@@ -1,0 +1,32 @@
+{
+  "cefr_level": "A1",
+  "order_index": 1,
+  "title": "De koffie van Sanne",
+  "subtitle": "Sanne va en bici a un café en Ámsterdam por la mañana.",
+  "emoji": "🚲",
+  "intro": "Es una mañana en Ámsterdam. Sanne coge la bici y va a su café favorito a desayunar. Lee y escucha su pequeña historia.",
+  "segments": [
+    {"en": "Hallo! Ik heet Sanne.", "es": "¡Hola! Me llamo Sanne."},
+    {"en": "Ik woon in Amsterdam met mijn familie.", "es": "Vivo en Ámsterdam con mi familia."},
+    {"en": "'s Morgens ga ik met de fiets naar het café.", "es": "Por la mañana voy en bici al café."},
+    {"en": "De ober vraagt: «Goedemorgen! Wat wil je?»", "es": "El camarero pregunta: «¡Buenos días! ¿Qué quieres?»"},
+    {"en": "Ik wil graag een koffie en een broodje.", "es": "Quiero un café y un bocadillo."},
+    {"en": "Het broodje is lekker en de koffie is warm.", "es": "El bocadillo está rico y el café está caliente."},
+    {"en": "Dank je wel! Tot morgen!", "es": "¡Muchas gracias! ¡Hasta mañana!"}
+  ],
+  "glossary": [
+    {"word": "hallo", "translation": "hola"},
+    {"word": "het café", "translation": "el café (local)"},
+    {"word": "de fiets", "translation": "la bicicleta"},
+    {"word": "de koffie", "translation": "el café (bebida)"},
+    {"word": "het broodje", "translation": "el bocadillo"},
+    {"word": "lekker", "translation": "rico / sabroso"}
+  ],
+  "questions": [
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Cómo se llama la protagonista?","payload":{"options":["Sanne","Emma","Lisa"]},"difficulty":0.2,"correct_answer":{"value":"Sanne"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿En qué ciudad vive?","payload":{"options":["Rotterdam","Amsterdam","Utrecht"]},"difficulty":0.2,"correct_answer":{"value":"Amsterdam"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Cómo va al café?","payload":{"options":["met de fiets","met de auto","met de bus"]},"difficulty":0.2,"correct_answer":{"value":"met de fiets"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Qué quiere?","payload":{"options":["een koffie en een broodje","een thee en taart","een sap"]},"difficulty":0.2,"correct_answer":{"value":"een koffie en een broodje"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Cómo está el bocadillo?","payload":{"options":["lekker","koud","oud"]},"difficulty":0.2,"correct_answer":{"value":"lekker"}}
+  ]
+}

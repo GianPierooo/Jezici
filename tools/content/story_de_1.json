@@ -1,0 +1,32 @@
+{
+  "cefr_level": "A1",
+  "order_index": 1,
+  "title": "Beim Bäcker",
+  "subtitle": "Max va a la panadería en Berlín por la mañana.",
+  "emoji": "🥨",
+  "intro": "Es una mañana en Berlín. Max sale a comprar el desayuno en la panadería de su barrio. Lee y escucha su pequeña historia.",
+  "segments": [
+    {"en": "Hallo! Ich heiße Max.", "es": "¡Hola! Me llamo Max."},
+    {"en": "Ich wohne in Berlin mit meiner Familie.", "es": "Vivo en Berlín con mi familia."},
+    {"en": "Am Morgen gehe ich zur Bäckerei.", "es": "Por la mañana voy a la panadería."},
+    {"en": "Der Verkäufer sagt: «Guten Morgen! Was möchten Sie?»", "es": "El vendedor dice: «¡Buenos días! ¿Qué desea?»"},
+    {"en": "Ich möchte einen Kaffee und ein Brötchen.", "es": "Quiero un café y un panecillo."},
+    {"en": "Das Brötchen ist frisch und der Kaffee ist warm.", "es": "El panecillo está fresco y el café está caliente."},
+    {"en": "Danke schön! Auf Wiedersehen!", "es": "¡Muchas gracias! ¡Adiós!"}
+  ],
+  "glossary": [
+    {"word": "hallo", "translation": "hola"},
+    {"word": "die Bäckerei", "translation": "la panadería"},
+    {"word": "am Morgen", "translation": "por la mañana"},
+    {"word": "der Kaffee", "translation": "el café"},
+    {"word": "das Brötchen", "translation": "el panecillo"},
+    {"word": "frisch", "translation": "fresco"}
+  ],
+  "questions": [
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Cómo se llama el protagonista?","payload":{"options":["Max","Tom","Paul"]},"difficulty":0.2,"correct_answer":{"value":"Max"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿En qué ciudad vive?","payload":{"options":["München","Berlin","Hamburg"]},"difficulty":0.2,"correct_answer":{"value":"Berlin"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Adónde va por la mañana?","payload":{"options":["zur Bäckerei","zur Schule","ins Büro"]},"difficulty":0.2,"correct_answer":{"value":"zur Bäckerei"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Qué quiere?","payload":{"options":["einen Kaffee und ein Brötchen","einen Tee und Kuchen","eine Suppe"]},"difficulty":0.2,"correct_answer":{"value":"einen Kaffee und ein Brötchen"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Cómo está el panecillo?","payload":{"options":["frisch","alt","kalt"]},"difficulty":0.2,"correct_answer":{"value":"frisch"}}
+  ]
+}
