@@ -22,6 +22,13 @@
   "langEn": "English",
   "langPt": "Português",
 
+  "learnLangEn": "inglês",
+  "learnLangPt": "português",
+  "learnLangFr": "francês",
+  "learnLangIt": "italiano",
+  "learnLangDe": "alemão",
+  "learnLangNl": "holandês",
+
   "skillReading": "Leitura",
   "skillWriting": "Escrita",
   "skillListening": "Compreensão auditiva",
@@ -33,10 +40,13 @@
 
   "onbLanguageTitle": "Em qual idioma você prefere o app?",
   "onbLanguageSubtitle": "Escolha o idioma dos menus e mensagens. Não é o idioma que você vai aprender.",
-  "onbLanguageInfoEn": "Você vai aprender inglês 🇬🇧. Isso só muda o idioma do app.",
+  "onbLanguageInfoEn": "Isso só muda o idioma dos menus e textos, não o que você vai aprender.",
   "onbLanguageInfoPt": "Você vai aprender português 🇧🇷. Isso só muda o idioma do app.",
 
-  "onbMotiveTitle": "Por que você está aprendendo inglês?",
+  "onbTargetTitle": "Que idioma você quer aprender?",
+  "onbTargetSubtitle": "Seu curso. Isso define seu plano e o teste de nível. Você pode mudar depois em Ajustes.",
+
+  "onbMotiveTitle": "Por que você está aprendendo {course}?",
   "onbMotiveSubtitle": "Personaliza seu plano, os cenários e as mensagens do seu coach.",
   "onbMotiveWork": "Trabalho",
   "onbMotiveTravel": "Viagens",

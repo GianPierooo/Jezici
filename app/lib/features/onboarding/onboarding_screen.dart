@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/i18n/learn_lang_names.dart';
 import '../../core/i18n/locale_controller.dart';
 import '../../core/plan/estimation.dart';
 import '../../core/theme/app_colors.dart';
 import '../../l10n/app_localizations.dart';
+import '../../data/models/course_models.dart';
 import '../../data/providers.dart';
 import '../../ui/primary_button.dart';
 import 'onboarding_data.dart';
@@ -17,9 +19,9 @@ import 'your_plan_view.dart';
 /// Onboarding (GA4 · auth-first). La cuenta ya existe (pantalla de auth); aquí
 /// SOLO se construye el plan y se personaliza. Cada paso cambia algo aguas abajo
 /// (plan, contenido o coaching); nada redundante. 9 pasos:
-///  0 bienvenida · 1 idioma de la app · 2 motivo · 3 meta+plazo ·
-///  4 compromiso (min/día + días/sem en UNO) · 5 personalidad (4+1) ·
-///  6 micro-arranque (siembra el placement) · 7 ubicación · 8 tu plan → mapa.
+///  0 bienvenida · 1 idioma de la app · 2 idioma META (qué se aprende) · 3 motivo ·
+///  4 meta+plazo · 5 compromiso · 6 personalidad (4+1) · 7 micro-arranque ·
+///  8 ubicación (banco del curso META) · 9 resultado · 10 tu plan → mapa.
 class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key, required this.onComplete});
 
@@ -31,7 +33,7 @@ class OnboardingScreen extends ConsumerStatefulWidget {
 }
 
 class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
-  static const _total = 10;
+  static const _total = 11;
   final OnboardingData _data = OnboardingData();
   int _step = 0;
 
@@ -59,6 +61,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   Future<void> _finish() async {
     try {
       final repo = ref.read(progressRepositoryProvider);
+      // Asegura que el curso ACTIVO sea el META elegido antes de create_plan
+      // (que usa jz_active_course). Idempotente; robustez si el pick falló.
+      if (_data.targetCourseId != null) {
+        try {
+          await repo.setActiveCourse(_data.targetCourseId!);
+        } catch (_) {}
+      }
       final est = estimatePlan(
         currentLevel: _data.currentLevel,
         goalLevel: _data.goalLevel,
@@ -79,9 +88,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         skillLevels: _data.skillLevels,
       );
       await ref.read(localeProvider.notifier).set(_data.uiLang);
+      // El curso activo puede haber cambiado (idioma META) → recarga lo course-scoped.
+      ref.invalidate(coursesProvider);
+      ref.invalidate(mapUnitsProvider);
       ref.invalidate(lessonProgressProvider);
       ref.invalidate(homeStatsProvider);
       ref.invalidate(skillsProvider);
+      ref.invalidate(skillMasteryProvider);
       ref.invalidate(userPlanProvider);
       ref.read(progressRepositoryProvider).logEvent('onboarding_completed');
       if (!mounted) return;
@@ -100,14 +113,17 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final courseName = learnLangName(l10n, _data.targetCourseCode);
     switch (_step) {
       case 0:
         return _welcome();
       case 1:
         return _language();
       case 2:
+        return _targetLanguage();
+      case 3:
         return _select(
-          title: l10n.onbMotiveTitle,
+          title: l10n.onbMotiveTitle(courseName),
           subtitle: l10n.onbMotiveSubtitle,
           options: [
             (l10n.onbMotiveWork, 'Trabajo', Icons.work_outline_rounded),
@@ -120,16 +136,16 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           current: _data.motive,
           onSelect: (v) => _data.motive = v,
         );
-      case 3:
-        return _goal();
       case 4:
-        return _commitment();
+        return _goal();
       case 5:
+        return _commitment();
+      case 6:
         return PersonalityTest(
             data: _data, step: _step + 1, total: _total, onBack: _back, onDone: _next);
-      case 6:
+      case 7:
         return _select(
-          title: l10n.onbStartLevelTitle,
+          title: l10n.onbStartLevelTitle(courseName),
           subtitle: l10n.onbStartLevelSubtitle,
           options: [
             (l10n.onbStartLevelZero, '0', Icons.flag_outlined),
@@ -140,15 +156,17 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           onSelect: (v) => _data.startLevelHint = int.parse(v),
           allowDefault: true,
         );
-      case 7:
+      case 8:
+        // Ubicación sobre el BANCO del curso META elegido (placement_next(courseId)).
         return PlacementTest(
             data: _data,
             step: _step + 1,
             total: _total,
             startLevel: _data.startLevelHint,
+            courseId: _data.targetCourseId,
             onBack: _back,
             onDone: _next);
-      case 8:
+      case 9:
         // RESULTADO del placement (momento "¡saliste en B1!"): nivel + skills + a
         // qué unidad entra + fecha realista. No es aprobar/reprobar: es ubicación.
         return PlacementResultView(
@@ -272,6 +290,57 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         ],
       ),
     );
+  }
+
+  // ── Idioma META: QUÉ se aprende (distinto del idioma de la app) ─────────────
+  Widget _targetLanguage() {
+    final l10n = AppLocalizations.of(context);
+    final coursesAsync = ref.watch(coursesProvider);
+    return OnboardingScaffold(
+      step: _step + 1,
+      total: _total,
+      onBack: _back,
+      title: l10n.onbTargetTitle,
+      subtitle: l10n.onbTargetSubtitle,
+      footer: PrimaryButton(
+        label: l10n.commonContinue,
+        expand: true,
+        onPressed: _data.targetCourseId != null ? _next : null,
+      ),
+      child: coursesAsync.when(
+        loading: () => const Padding(
+          padding: EdgeInsets.symmetric(vertical: 40),
+          child: Center(child: CircularProgressIndicator(color: AppColors.primary)),
+        ),
+        error: (_, _) => Text(l10n.onbSaveError,
+            style: const TextStyle(fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+        data: (courses) => Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            for (final c in courses)
+              OnboardingOption(
+                label: '${c.flag}  ${learnLangName(l10n, c.target)}',
+                selected: _data.targetCourseId == c.id,
+                onTap: () => _pickTarget(c),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  /// Fija el curso META y lo activa server-side (set_active_course) → el placement
+  /// (paso 8) y create_plan (final) usan ESE curso. Idempotente; degrada con gracia.
+  Future<void> _pickTarget(CourseInfo c) async {
+    setState(() {
+      _data.targetCourseId = c.id;
+      _data.targetCourseCode = c.target;
+    });
+    try {
+      await ref.read(progressRepositoryProvider).setActiveCourse(c.id);
+    } catch (_) {
+      // Se reintenta en _finish antes de create_plan.
+    }
   }
 
   Widget _goal() {

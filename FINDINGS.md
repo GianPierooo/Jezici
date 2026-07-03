@@ -2,6 +2,34 @@
 
 ---
 
+## Idioma META en el onboarding (la puerta principal) — 2026-07-03 ✅ LIVE + VERIFICADO
+> El onboarding era en-first: un usuario NUEVO siempre arrancaba en inglés (el "idioma" del onboarding
+> era el de la APP, no el curso meta) → para aprender otro idioma había que terminar en inglés y cambiar
+> en Ajustes. Ahora la puerta principal abre a los 6 idiomas.
+- **Flujo real (Paso 0):** 10 pasos; paso "idioma"(1) = UI de la app; placement(7) con `p_course:null`→en;
+  `create_plan`→jz_active_course=en (usuario nuevo sin `user_active_course`). Copy en-first
+  (onbMotiveTitle/onbStartLevelTitle "…inglés…", onbLanguageInfoEn "aprenderás inglés").
+- **Paso nuevo (2) «¿Qué idioma quieres aprender?»:** lista los 6 cursos activos (bandera + nombre en el
+  idioma de la app vía `learnLangName`), **distinto e inequívoco** del idioma de la app. Al elegir →
+  `set_active_course(<curso>)` (seguro en onboarding: `user_active_course` no FK-a public.users + trigger
+  `on_auth_user_created` crea la fila). El placement (paso 8) corre con `courseId:<curso>` y `create_plan`
+  (paso final) siembra ESE curso (jz_active_course ya = meta). Reusa `PlacementTest(courseId)` +
+  `PlacementResultView` + `create_plan` (cableados en 15ebf20); NO duplica el motor.
+- **Copy course-aware:** motive/nivel-inicial dicen el idioma elegido («¿Por qué aprendes alemán?»,
+  «¿Cuánto alemán sabes ya?») con placeholder {course}; la nota del idioma-de-app ya no afirma inglés.
+  6 nombres localizados × 3 locales (es/en/pt).
+- **Degradación:** usuarios existentes no ven el onboarding (isOnboardingComplete). Default = elegir
+  inglés → comportamiento idéntico al previo. `create_plan` sigue con fallback en si nunca se eligió.
+- **Verificado END-TO-END cliente real** (`verify_onboarding_target.py`, JWT, usuarios NUEVOS): nuevo cuya
+  1ª elección es alemán + responder A2 → **A2 alemán, entra en U7** (no inglés, no A1); **SIN progreso en
+  inglés** (no lo eligió); placement usó SOLO el banco alemán; nuevo principiante→nl A1/U1; nuevo→inglés
+  B1 sin cambio; 42501. +widget test del paso meta (`onboarding_target_test`). analyze 0 · test 93/93.
+- **Diferido:** L/S en placement (audio) + nombre real de la unidad de entrada por curso (rótulo es→en) +
+  cap de la meta al tope del curso (fr/it/de/nl topan A2) + copy en-first fuera del onboarding
+  (missionMainDescription "100 palabras del inglés", errorReviewWhy*).
+
+---
+
 ## Re-placement no-inglés cableado al flujo real — 2026-07-03 ✅ LIVE + VERIFICADO
 > Los bancos fr/it/de/nl (mig 110) existían pero NINGÚN flujo de UI los disparaba: onboarding en-only +
 > cambio de curso sin re-ubicar → un aprendiz de alemán SIEMPRE caía en A1. Cerrado el grifo.

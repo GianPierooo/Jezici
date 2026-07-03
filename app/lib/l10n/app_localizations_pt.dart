@@ -64,6 +64,24 @@ class AppLocalizationsPt extends AppLocalizations {
   String get langPt => 'Português';
 
   @override
+  String get learnLangEn => 'inglês';
+
+  @override
+  String get learnLangPt => 'português';
+
+  @override
+  String get learnLangFr => 'francês';
+
+  @override
+  String get learnLangIt => 'italiano';
+
+  @override
+  String get learnLangDe => 'alemão';
+
+  @override
+  String get learnLangNl => 'holandês';
+
+  @override
   String get skillReading => 'Leitura';
 
   @override
@@ -94,14 +112,23 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get onbLanguageInfoEn =>
-      'Você vai aprender inglês 🇬🇧. Isso só muda o idioma do app.';
+      'Isso só muda o idioma dos menus e textos, não o que você vai aprender.';
 
   @override
   String get onbLanguageInfoPt =>
       'Você vai aprender português 🇧🇷. Isso só muda o idioma do app.';
 
   @override
-  String get onbMotiveTitle => 'Por que você está aprendendo inglês?';
+  String get onbTargetTitle => 'Que idioma você quer aprender?';
+
+  @override
+  String get onbTargetSubtitle =>
+      'Seu curso. Isso define seu plano e o teste de nível. Você pode mudar depois em Ajustes.';
+
+  @override
+  String onbMotiveTitle(String course) {
+    return 'Por que você está aprendendo $course?';
+  }
 
   @override
   String get onbMotiveSubtitle =>
@@ -174,7 +201,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get onbFrequencyIntense => 'Intenso';
 
   @override
-  String get onbStartLevelTitle => 'Quanto inglês você já sabe?';
+  String onbStartLevelTitle(String course) {
+    return 'Quanto inglês você já sabe?';
+  }
 
   @override
   String get onbStartLevelSubtitle =>

@@ -22,6 +22,13 @@
   "langEn": "English",
   "langPt": "Português",
 
+  "learnLangEn": "English",
+  "learnLangPt": "Portuguese",
+  "learnLangFr": "French",
+  "learnLangIt": "Italian",
+  "learnLangDe": "German",
+  "learnLangNl": "Dutch",
+
   "skillReading": "Reading",
   "skillWriting": "Writing",
   "skillListening": "Listening",
@@ -33,10 +40,13 @@
 
   "onbLanguageTitle": "Which language do you prefer for the app?",
   "onbLanguageSubtitle": "Choose the language for menus and messages. It's not the language you'll be learning.",
-  "onbLanguageInfoEn": "You'll be learning English 🇬🇧. This only changes the app's language.",
+  "onbLanguageInfoEn": "This only changes the language of the menus and text, not what you'll learn.",
   "onbLanguageInfoPt": "You'll be learning Portuguese 🇧🇷. This only changes the app's language.",
 
-  "onbMotiveTitle": "Why are you learning English?",
+  "onbTargetTitle": "Which language do you want to learn?",
+  "onbTargetSubtitle": "Your course. This defines your plan and placement test. You can change it later in Settings.",
+
+  "onbMotiveTitle": "Why are you learning {course}?",
   "onbMotiveSubtitle": "Personalizes your plan, the scenarios and your coach's messages.",
   "onbMotiveWork": "Work",
   "onbMotiveTravel": "Travel",
@@ -62,7 +72,7 @@
   "onbFrequencyConstant": "Steady",
   "onbFrequencyIntense": "Intense",
 
-  "onbStartLevelTitle": "How much English do you already know?",
+  "onbStartLevelTitle": "How much {course} do you already know?",
   "onbStartLevelSubtitle": "So we start the placement test at the right point.",
   "onbStartLevelZero": "From scratch",
   "onbStartLevelBasic": "I know the basics",

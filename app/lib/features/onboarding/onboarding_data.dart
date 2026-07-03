@@ -1,7 +1,13 @@
 /// Estado acumulado durante el onboarding (GA4: auth-first, sin redundancia).
 class OnboardingData {
-  /// Idioma de la app (UI). El idioma OBJETIVO del curso es inglés (Fase 1).
+  /// Idioma de la app (UI). Distinto del CURSO META (lo que se aprende).
   String uiLang = 'es'; // es | en | pt
+
+  /// Curso META elegido en el onboarding (qué idioma se APRENDE). null hasta elegir;
+  /// al fijarlo se llama set_active_course → el placement y create_plan usan ESE curso.
+  String? targetCourseId;
+  String targetCourseCode = 'en'; // en | pt | fr | it | de | nl (para el copy)
+
   String motive = '';
 
   /// Compromiso (paso unificado): minutos/día + días/semana en una pantalla.

@@ -208,6 +208,42 @@ abstract class AppLocalizations {
   /// **'Português'**
   String get langPt;
 
+  /// No description provided for @learnLangEn.
+  ///
+  /// In es, this message translates to:
+  /// **'inglés'**
+  String get learnLangEn;
+
+  /// No description provided for @learnLangPt.
+  ///
+  /// In es, this message translates to:
+  /// **'portugués'**
+  String get learnLangPt;
+
+  /// No description provided for @learnLangFr.
+  ///
+  /// In es, this message translates to:
+  /// **'francés'**
+  String get learnLangFr;
+
+  /// No description provided for @learnLangIt.
+  ///
+  /// In es, this message translates to:
+  /// **'italiano'**
+  String get learnLangIt;
+
+  /// No description provided for @learnLangDe.
+  ///
+  /// In es, this message translates to:
+  /// **'alemán'**
+  String get learnLangDe;
+
+  /// No description provided for @learnLangNl.
+  ///
+  /// In es, this message translates to:
+  /// **'neerlandés'**
+  String get learnLangNl;
+
   /// No description provided for @skillReading.
   ///
   /// In es, this message translates to:
@@ -265,7 +301,7 @@ abstract class AppLocalizations {
   /// No description provided for @onbLanguageInfoEn.
   ///
   /// In es, this message translates to:
-  /// **'Vas a aprender inglés 🇬🇧. Esto solo cambia el idioma de la app.'**
+  /// **'Esto solo cambia el idioma de los menús y textos, no lo que vas a aprender.'**
   String get onbLanguageInfoEn;
 
   /// No description provided for @onbLanguageInfoPt.
@@ -274,11 +310,23 @@ abstract class AppLocalizations {
   /// **'Vas a aprender portugués 🇧🇷. Esto solo cambia el idioma de la app.'**
   String get onbLanguageInfoPt;
 
+  /// No description provided for @onbTargetTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Qué idioma quieres aprender?'**
+  String get onbTargetTitle;
+
+  /// No description provided for @onbTargetSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu curso. Esto define tu plan y el test de nivel. Podrás cambiarlo luego en Ajustes.'**
+  String get onbTargetSubtitle;
+
   /// No description provided for @onbMotiveTitle.
   ///
   /// In es, this message translates to:
-  /// **'¿Por qué aprendes inglés?'**
-  String get onbMotiveTitle;
+  /// **'¿Por qué aprendes {course}?'**
+  String onbMotiveTitle(String course);
 
   /// No description provided for @onbMotiveSubtitle.
   ///
@@ -415,8 +463,8 @@ abstract class AppLocalizations {
   /// No description provided for @onbStartLevelTitle.
   ///
   /// In es, this message translates to:
-  /// **'¿Cuánto inglés sabes ya?'**
-  String get onbStartLevelTitle;
+  /// **'¿Cuánto {course} sabes ya?'**
+  String onbStartLevelTitle(String course);
 
   /// No description provided for @onbStartLevelSubtitle.
   ///

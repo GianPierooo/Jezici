@@ -24,6 +24,13 @@
   "langEn": "English",
   "langPt": "Português",
 
+  "learnLangEn": "inglés",
+  "learnLangPt": "portugués",
+  "learnLangFr": "francés",
+  "learnLangIt": "italiano",
+  "learnLangDe": "alemán",
+  "learnLangNl": "neerlandés",
+
   "skillReading": "Lectura",
   "skillWriting": "Escritura",
   "skillListening": "Comprensión auditiva",
@@ -35,10 +42,14 @@
 
   "onbLanguageTitle": "¿En qué idioma prefieres la app?",
   "onbLanguageSubtitle": "Elige el idioma de los menús y mensajes. No es el idioma que vas a aprender.",
-  "onbLanguageInfoEn": "Vas a aprender inglés 🇬🇧. Esto solo cambia el idioma de la app.",
+  "onbLanguageInfoEn": "Esto solo cambia el idioma de los menús y textos, no lo que vas a aprender.",
   "onbLanguageInfoPt": "Vas a aprender portugués 🇧🇷. Esto solo cambia el idioma de la app.",
 
-  "onbMotiveTitle": "¿Por qué aprendes inglés?",
+  "onbTargetTitle": "¿Qué idioma quieres aprender?",
+  "onbTargetSubtitle": "Tu curso. Esto define tu plan y el test de nivel. Podrás cambiarlo luego en Ajustes.",
+
+  "onbMotiveTitle": "¿Por qué aprendes {course}?",
+  "@onbMotiveTitle": { "placeholders": { "course": {"type":"String"} } },
   "onbMotiveSubtitle": "Personaliza tu plan, los escenarios y los mensajes de tu coach.",
   "onbMotiveWork": "Trabajo",
   "onbMotiveTravel": "Viajes",
@@ -65,7 +76,8 @@
   "onbFrequencyConstant": "Constante",
   "onbFrequencyIntense": "Intenso",
 
-  "onbStartLevelTitle": "¿Cuánto inglés sabes ya?",
+  "onbStartLevelTitle": "¿Cuánto {course} sabes ya?",
+  "@onbStartLevelTitle": { "placeholders": { "course": {"type":"String"} } },
   "onbStartLevelSubtitle": "Para empezar el test de nivel en el punto justo.",
   "onbStartLevelZero": "Desde cero",
   "onbStartLevelBasic": "Sé lo básico",
