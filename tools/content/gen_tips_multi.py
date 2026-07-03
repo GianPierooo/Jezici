@@ -28,6 +28,8 @@ BATCHES = {
             ('de', 'tips_de.json'), ('nl', 'tips_nl.json')]),
     'pt_a2': ('20260703120103', 'seed_tips_pt_a2',
               [('pt', 'tips_pt.json'), ('fr', 'tips_fr_a2.json'), ('it', 'tips_it_a2.json')]),
+    'de_nl_a2': ('20260703120106', 'seed_tips_de_nl_a2',
+                 [('de', 'tips_de_a2.json'), ('nl', 'tips_nl_a2.json')]),
 }
 
 

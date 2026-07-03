@@ -1,0 +1,56 @@
+[
+  {
+    "unit": 7,
+    "topic": "perfectum_hebben",
+    "skill": "writing",
+    "type": "gramatica",
+    "title": "El pasado va en dos piezas: hebben + el verbo… al final",
+    "body": "Para contar algo pasado usa «hebben» conjugado justo tras el sujeto y manda el participio (voltooid deelwoord) hasta el FINAL de la frase. Los regulares hacen ge-…-t/-d (gewerkt, gemaakt); muchos frecuentes son irregulares con ge-…-en (gegeten, gedronken, gezien, gedaan).",
+    "example": "Ik heb gisteren gewerkt. · We hebben pizza gegeten. · Zij heeft hem gezien."
+  },
+  {
+    "unit": 8,
+    "topic": "futuro_gaan",
+    "skill": "speaking",
+    "type": "gramatica",
+    "title": "El futuro más natural: «gaan» + el infinitivo al final",
+    "body": "En el día a día el neerlandés dice el futuro con «gaan» + infinitivo, y ese infinitivo cierra la frase: «Ik ga morgen reizen». «Zullen» suena a promesa o formal («Ik zal komen»), y con una marca de tiempo basta el presente con inversión: «Morgen werk ik».",
+    "example": "Ik ga morgen reizen. · Ik zal je bellen. · Morgen werk ik thuis."
+  },
+  {
+    "unit": 9,
+    "topic": "perfectum_zijn",
+    "skill": "writing",
+    "type": "error_comun",
+    "title": "¿«heb» o «ben»? Los verbos de movimiento van con ZIJN",
+    "body": "No todos los perfectos usan «hebben»: los verbos de movimiento o cambio de estado piden «zijn» (gaan, komen, blijven…). Contrasta la acción con objeto y el desplazamiento: «Ik heb een kaartje gekocht» pero «Ik ben naar Amsterdam gegaan».",
+    "example": "Ik ben naar Amsterdam gegaan. · Zij is gekomen. · We zijn thuis gebleven."
+  },
+  {
+    "unit": 10,
+    "topic": "comparativo_dan",
+    "skill": "reading",
+    "type": "error_comun",
+    "title": "Más barato… «dan», nunca «als»",
+    "body": "El comparativo añade -er al adjetivo y la comparación se marca con «dan»: goedkoper dan, groter dan, duurder dan. Ojo con los irregulares (goed→beter, veel→meer, graag→liever). Si sabes alemán o inglés te saldrá «als/as», pero para la desigualdad el neerlandés SIEMPRE usa «dan».",
+    "example": "Deze trui is goedkoper dan die jas. · Dit huis is groter dan het mijne. · Ik drink liever thee dan koffie."
+  },
+  {
+    "unit": 11,
+    "topic": "imperfectum_zijn",
+    "skill": "writing",
+    "type": "gramatica",
+    "title": "Describir el pasado: «was», «waren», «had», «hadden»",
+    "body": "Para pintar cómo era algo no se usa el perfecto sino el imperfectum de zijn y hebben. De «zijn»: was (ik/hij/zij) y waren (wij/jullie/zij); de «hebben»: had y hadden. Sirven para estados, sensaciones y descripciones: «Ik was moe», «Het was leuk».",
+    "example": "Ik was moe. · Het was heel leuk. · Zij had lang haar en we waren blij."
+  },
+  {
+    "unit": 12,
+    "topic": "pijn_klachten",
+    "skill": "speaking",
+    "type": "cultura",
+    "title": "El dolor se pega a la parte del cuerpo: «hoofdpijn»",
+    "body": "En neerlandés el dolor de una zona suele ser UNA sola palabra: hoofd+pijn, buik+pijn, keel+pijn, y se dice con hebben («Ik heb hoofdpijn»). Si no, usa «doet pijn» (o «doen pijn» en plural): «Mijn rug doet pijn», «Mijn voeten doen pijn». Para aconsejar: «Je moet…» o «Je zou … moeten».",
+    "example": "Ik heb keelpijn. · Mijn voeten doen pijn. · Je moet water drinken en rusten."
+  }
+]

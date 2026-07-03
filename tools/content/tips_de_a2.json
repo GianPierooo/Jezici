@@ -1,0 +1,56 @@
+[
+  {
+    "unit": 7,
+    "topic": "perfekt_haben",
+    "skill": "writing",
+    "type": "gramatica",
+    "title": "El participio siempre cierra la frase",
+    "body": "El Perfekt se arma con «haben» conjugado en 2ª posición y el Partizip II AL FINAL, aunque queden palabras en medio. Los regulares hacen ge-…-t (machen → gemacht, kaufen → gekauft) y muchos irregulares ge-…-en (essen → gegessen, trinken → getrunken, sehen → gesehen).",
+    "example": "Ich habe gestern Pizza gegessen. · Wir haben einen Kaffee getrunken. · Was hast du gemacht?"
+  },
+  {
+    "unit": 8,
+    "topic": "futur_werden",
+    "skill": "reading",
+    "type": "gramatica",
+    "title": "El futuro más natural es el presente",
+    "body": "Para hablar de mañana, los alemanes usan el PRESENTE con una marca temporal, y al ponerla delante el verbo salta a 2ª posición: «Morgen fahre ich…». También existe «werden + infinitivo» (con el infinitivo al final) para planes y predicciones. El verbo conjugado va SIEMPRE en 2ª posición.",
+    "example": "Morgen fahre ich nach Berlin. · Nächste Woche besuche ich meine Oma. · Ich werde viel reisen."
+  },
+  {
+    "unit": 9,
+    "topic": "perfekt_sein",
+    "skill": "writing",
+    "type": "error_comun",
+    "title": "Si te mueves, el Perfekt pide «sein»",
+    "body": "Los verbos de movimiento o cambio de estado (gehen, fahren, fliegen, kommen, bleiben) forman el Perfekt con «sein», no con «haben». Truco: ¿cambiaste de lugar o de estado? Entonces «sein». Compara: compraste algo (haben) frente a fuiste a algún sitio (sein).",
+    "example": "Ich bin nach Berlin gefahren. · Sie ist nach Rom geflogen. · Wir sind zu Hause geblieben. (pero: Ich habe ein Ticket gekauft.)"
+  },
+  {
+    "unit": 10,
+    "topic": "comparativo",
+    "skill": "reading",
+    "type": "error_comun",
+    "title": "Para comparar se usa «als», nunca «wie»",
+    "body": "El comparativo añade -er + «als»: billiger als, schneller als. Muchas vocales cortas se ponen Umlaut: groß → größer, alt → älter, jung → jünger. Y memoriza los rebeldes: gut → besser, viel → mehr, gern → lieber. Para la desigualdad jamás digas «wie».",
+    "example": "Das Auto ist billiger als der Zug. · Berlin ist größer als München. · Ich trinke lieber Tee als Kaffee."
+  },
+  {
+    "unit": 11,
+    "topic": "praeteritum_sein_haben",
+    "skill": "reading",
+    "type": "gramatica",
+    "title": "Para el pasado de «ser» y «tener», Präteritum",
+    "body": "Aunque casi todo se cuenta en Perfekt, «sein» y «haben» prefieren el Präteritum para describir cómo eran las cosas: «war» (era/estaba) y «hatte» (tenía). Fíjate: la 1ª y la 3ª persona del singular son idénticas (ich war = er war).",
+    "example": "Ich war müde. · Es war schön. · Sie hatte lange Haare. · Wir hatten kein Geld."
+  },
+  {
+    "unit": 12,
+    "topic": "dolor_wehtun",
+    "skill": "speaking",
+    "type": "gramatica",
+    "title": "Lo que te duele va en dativo",
+    "body": "Con «wehtun» la parte del cuerpo es el sujeto y la persona dolida va en DATIVO: «Mir tut der Kopf weh» (me duele la cabeza). Si duelen varias cosas, el verbo va en plural: «Mir tun die Füße weh». Más fácil aún: «Ich habe Kopfschmerzen». Para aconsejar usa «Du solltest…».",
+    "example": "Mir tut der Kopf weh. · Mir tun die Füße weh. · Ich habe Halsschmerzen. · Du solltest zum Arzt gehen."
+  }
+]
