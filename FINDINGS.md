@@ -2,6 +2,32 @@
 
 ---
 
+## Bancos de placement fr/it/de/nl — 2026-07-03 ✅ LIVE + VERIFICADO
+> El test de ubicación ubicaba bien en en (A1-C1) y pt (A1-B1); fr/it/de/nl no tenían banco → todo
+> aprendiz caía a A1. Cerrado: ahora ubican en su nivel real DENTRO de los niveles sembrados (A1-A2).
+- **Banco (mig 110):** 112 ítems = 28/curso (A1+A2 × 7 reading MC + 7 writing cloze), cubren SOLO A1-A2
+  (los niveles que existen) → **techo honesto A2** (análogo al techo B1 de pt): no ofrecen ubicar donde
+  no hay contenido. Autorados por profesores nativos IA + gramática real por idioma (avoir/avere edad,
+  passé composé/passato prossimo/Perfekt/Perfectum sein/zijn, imparfait/imperfetto/Präteritum,
+  comparativo als/dan, acusativo einen, de/het). `correct_answer` oculto (42501).
+- **Cableado = el propio banco:** `placement_next(p_course)` ya es course-scoped (selecciona ítems
+  WHERE course_id=p_course AND 'placement'=any(tags) y estima el techo con evidencia sobre ese curso).
+  **NO se tocó el RPC** — sembrar el banco basta.
+- **Validación adversarial nativa por idioma:** fr 1 fix («aussi…que» = comparativo de igualdad, 2ª
+  respuesta válida → «beaucoup»); nl 1 fix («hebben» defendible porque «zij»=ella/ellas → «waren»);
+  it 0, de 0. **Mejora:** `gen_placement_multi.py` incluye una **guarda anti-colisión AUTOMÁTICA** que
+  asevera que ningún distractor de cloze sería perdonado por `jz_near_match` (indel dist-1 en palabra
+  única; cualquier edición dist-1 en multi-palabra) — atrapó colisiones reales (nl ben/bent) en la 1ª pasada.
+- **Verificado cliente real (`verify_placement_multi.py`, JWT, nunca service_role):** determinista
+  28/28 correctos + 28/28 distractores rechazados sin near-match por idioma; personas **A1→A1, A2→A2,
+  avanzado→A2** (techo honesto, no promueve por azar) en los 4; **aislamiento: placement_next(fr/it/de/nl)
+  sirve SOLO su curso; placement_next(en) sin fuga → 0 cruces entre los 6 cursos**; en/pt INTACTOS
+  (verify_placement + verify_placement_pt PASS). analyze **0** · test **91/91**.
+- **Diferido (retome):** cablear el placement por-idioma a un onboarding/re-placement (hoy en-only Fase 1;
+  el curso se cambia en Ajustes) + L/S en placement (audio). B1+ fr/it/de/nl no existe → banco tope A2 correcto.
+
+---
+
 ## Inmersión pt/de/nl + tips pt A2/B1 — 2026-07-03 ✅ LIVE + VERIFICADO
 > Cierre de la capa "enseña" en los 6 cursos: inmersión completa (los 6 con historia) + tips pt hasta B1.
 - **Historias A1 pt/de/nl (mig 109):** +3 historias — pt «A padaria da Ana» (Rio, pão de queijo,
