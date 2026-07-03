@@ -94,7 +94,7 @@ def main():
     cross = json.loads(run("select count(*) c from lesson_items li join content_items ci on ci.id=li.item_id "
                            "join lessons le on le.id=li.lesson_id join units u on u.id=le.unit_id "
                            "where ci.course_id <> u.course_id;")[1])[0]['c']
-    ck('global: 0 lesson_items cruzan cursos (los 4)', int(cross) == 0, f"cruces={cross}")
+    ck('global: 0 lesson_items cruzan cursos (todos)', int(cross) == 0, f"cruces={cross}")
 
     # A2 sembrado.
     a2 = json.loads(run("select id,type,skill,correct_answer,payload from content_items "

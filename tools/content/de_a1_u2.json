@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 2, "title_es": "Números, edad y origen", "color": "#2C3E50", "icon": "filter_9_plus"},
+  "checkpoint_desc": "Contar del 0 al 20, decir tu edad con sein, tu origen con kommen aus y usar haben.",
+  "lessons": [
+    {"order": 1, "title_es": "Números 0-20"},
+    {"order": 2, "title_es": "Mi edad"},
+    {"order": 3, "title_es": "¿De dónde eres?"},
+    {"order": 4, "title_es": "Tener (haben)"}
+  ],
+  "vocab": [
+    ["null", "cero", "numero"],
+    ["eins", "uno", "numero"],
+    ["zwei", "dos", "numero"],
+    ["drei", "tres", "numero"],
+    ["zehn", "diez", "numero"],
+    ["zwanzig", "veinte", "numero"],
+    ["das Jahr", "el año", "sustantivo"],
+    ["alt", "viejo / de edad", "adjetivo"],
+    ["kommen", "venir", "verbo"],
+    ["aus", "de (procedencia)", "preposicion"],
+    ["haben", "tener", "verbo"],
+    ["der Bruder", "el hermano", "sustantivo"],
+    ["die Schwester", "la hermana", "sustantivo"],
+    ["Spanien", "España", "sustantivo"],
+    ["der Spanier", "el español", "sustantivo"],
+    ["die Spanierin", "la española", "sustantivo"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "numeros", "skill": "reading", "type": "match", "prompt": "Une cada número en alemán con su cifra.", "pairs": [["drei", "3"], ["zehn", "10"], ["zwanzig", "20"]]},
+    {"lesson": 3, "topic": "origen", "skill": "reading", "type": "match", "prompt": "Une cada palabra con su significado.", "pairs": [["Spanien", "España"], ["kommen", "venir"], ["aus", "de (procedencia)"]]},
+    {"lesson": 1, "topic": "numeros", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se escribe el número 2 en alemán?", "options": ["zwei", "zwölf", "zehn"], "value": "zwei"},
+    {"lesson": 2, "topic": "edad", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál es la forma CORRECTA de decir 'Tengo 20 años' en alemán?", "options": ["Ich bin zwanzig Jahre alt.", "Ich habe zwanzig Jahre.", "Ich bin zwanzig Jahre."], "value": "Ich bin zwanzig Jahre alt."},
+    {"lesson": 3, "topic": "origen", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se pregunta '¿De dónde vienes?' (informal)?", "options": ["Woher kommst du?", "Wohin gehst du?", "Wie alt bist du?"], "value": "Woher kommst du?"},
+    {"lesson": 4, "topic": "haben", "skill": "reading", "type": "multiple_choice", "prompt": "Completa: 'Ich ___ einen Bruder.' (yo tengo)", "options": ["habe", "hast", "bin"], "value": "habe"},
+    {"lesson": 2, "topic": "edad", "skill": "writing", "type": "cloze", "prompt": "Completa con el verbo sein: 'Yo tengo diez años.'", "text": "Ich ___ zehn Jahre alt.", "value": "bin", "accepted": ["bin"]},
+    {"lesson": 3, "topic": "origen", "skill": "writing", "type": "cloze", "prompt": "Completa: 'Vengo de España.'", "text": "Ich komme ___ Spanien.", "value": "aus", "accepted": ["aus"]},
+    {"lesson": 2, "topic": "edad", "skill": "writing", "type": "translation", "prompt": "Traduce: Tengo veinte años.", "source": "Tengo veinte años.", "value": "Ich bin zwanzig Jahre alt.", "accepted": ["Ich bin zwanzig Jahre alt.", "Ich bin zwanzig Jahre alt"]},
+    {"lesson": 4, "topic": "haben", "skill": "writing", "type": "translation", "prompt": "Traduce: Tengo una hermana.", "source": "Tengo una hermana.", "value": "Ich habe eine Schwester.", "accepted": ["Ich habe eine Schwester.", "Ich habe eine Schwester"]},
+    {"lesson": 3, "topic": "origen", "skill": "writing", "type": "word_bank", "prompt": "Ordena: 'Vengo de España.'", "tiles": ["Ich", "komme", "aus", "Spanien", "bin", "gehe"], "sequence": ["Ich", "komme", "aus", "Spanien"]},
+    {"lesson": 2, "topic": "edad", "skill": "writing", "type": "reorder", "prompt": "Ordena la frase: '¿Cuántos años tienes?' (informal)", "tiles": ["alt", "Wie", "du", "bist"], "sequence": ["Wie", "alt", "bist", "du"]},
+    {"lesson": 1, "topic": "numeros", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ich habe zwei Brüder.", "options": ["Ich habe zwei Brüder.", "Ich habe zwölf Brüder.", "Ich habe zehn Brüder."], "value": "Ich habe zwei Brüder."},
+    {"lesson": 2, "topic": "edad", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Wie alt bist du?", "options": ["Wie alt bist du?", "Woher kommst du?", "Wie heißt du?"], "value": "Wie alt bist du?"},
+    {"lesson": 3, "topic": "origen", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ich komme aus Peru.", "options": ["Ich komme aus Peru.", "Ich komme aus Spanien.", "Ich komme aus Berlin."], "value": "Ich komme aus Peru."},
+    {"lesson": 4, "topic": "haben", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ich habe einen Bruder.", "options": ["Ich habe einen Bruder.", "Ich habe eine Schwester.", "Ich bin ein Bruder."], "value": "Ich habe einen Bruder."},
+    {"lesson": 3, "topic": "origen", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ich komme aus Spanien."},
+    {"lesson": 2, "topic": "edad", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ich bin zwanzig Jahre alt."},
+    {"lesson": 4, "topic": "haben", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ich habe einen Bruder."}
+  ]
+}

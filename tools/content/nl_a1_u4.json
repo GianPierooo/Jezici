@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 4, "title_es": "Comida y en el café", "color": "#E67E22", "icon": "restaurant"},
+  "checkpoint_desc": "Pide comida y bebida en un café con Ik wil graag…, usa de/het correcto y pregunta el precio con Wat kost het?.",
+  "lessons": [
+    {"order": 1, "title_es": "Comida y bebida"},
+    {"order": 2, "title_es": "Pedir en el café"},
+    {"order": 3, "title_es": "Por favor y gracias"},
+    {"order": 4, "title_es": "¿Cuánto cuesta?"}
+  ],
+  "vocab": [
+    ["het brood", "el pan", "sustantivo"],
+    ["het water", "el agua", "sustantivo"],
+    ["de koffie", "el café", "sustantivo"],
+    ["de thee", "el té", "sustantivo"],
+    ["de melk", "la leche", "sustantivo"],
+    ["de appel", "la manzana", "sustantivo"],
+    ["het sap", "el zumo", "sustantivo"],
+    ["de taart", "la tarta", "sustantivo"],
+    ["Ik wil graag", "Quisiera / Me gustaría", "expresion"],
+    ["alstublieft", "por favor / aquí tiene", "expresion"],
+    ["dank u wel", "muchas gracias", "expresion"],
+    ["Wat kost het?", "¿Cuánto cuesta?", "expresion"],
+    ["Hoeveel kost het?", "¿Cuánto cuesta?", "expresion"],
+    ["de euro", "el euro", "sustantivo"],
+    ["Dat is", "Son / Eso es", "expresion"],
+    ["een", "un / una", "articulo"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "comida_bebida", "skill": "reading", "type": "match", "prompt": "Une cada palabra neerlandesa con su traducción.", "pairs": [["het brood", "el pan"], ["de koffie", "el café"], ["de melk", "la leche"]]},
+    {"lesson": 1, "topic": "comida_bebida", "skill": "reading", "type": "match", "prompt": "Une cada palabra neerlandesa con su traducción.", "pairs": [["de appel", "la manzana"], ["het sap", "el zumo"], ["de taart", "la tarta"]]},
+    {"lesson": 1, "topic": "articulo_het", "skill": "reading", "type": "multiple_choice", "prompt": "¿Qué artículo lleva la palabra 'water' (agua)?", "options": ["het water", "de water", "een de water"], "value": "het water"},
+    {"lesson": 2, "topic": "pedir", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo pides un café educadamente en el café?", "options": ["Ik wil graag een koffie.", "Ik ben een koffie.", "Ik heb graag koffie euro."], "value": "Ik wil graag een koffie."},
+    {"lesson": 3, "topic": "cortesia", "skill": "reading", "type": "multiple_choice", "prompt": "¿Qué significa 'dank u wel'?", "options": ["muchas gracias", "por favor", "buenos días"], "value": "muchas gracias"},
+    {"lesson": 4, "topic": "precio", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo preguntas '¿Cuánto cuesta?' en neerlandés?", "options": ["Wat kost het?", "Wat is het?", "Wat heb het?"], "value": "Wat kost het?"},
+    {"lesson": 1, "topic": "articulo_de", "skill": "writing", "type": "cloze", "prompt": "Completa con el artículo correcto: '___ appel' (la manzana).", "text": "___ appel", "value": "de", "accepted": ["de"]},
+    {"lesson": 4, "topic": "precio", "skill": "writing", "type": "cloze", "prompt": "Completa: 'Son cinco euros' → 'Dat is vijf ___ .'", "text": "Dat is vijf ___ .", "value": "euro", "accepted": ["euro"]},
+    {"lesson": 2, "topic": "pedir", "skill": "writing", "type": "translation", "prompt": "Traduce: Quisiera un té.", "source": "Quisiera un té.", "value": "Ik wil graag een thee.", "accepted": ["Ik wil graag een thee.", "Ik wil graag een thee"]},
+    {"lesson": 3, "topic": "cortesia", "skill": "writing", "type": "translation", "prompt": "Traduce: Un agua, por favor.", "source": "Un agua, por favor.", "value": "Een water, alstublieft.", "accepted": ["Een water, alstublieft.", "Een water, alstublieft", "Een water alstublieft"]},
+    {"lesson": 2, "topic": "pedir", "skill": "writing", "type": "word_bank", "prompt": "Ordena las fichas para formar: 'Quisiera un pan.'", "tiles": ["Ik", "wil", "graag", "een", "brood", "koffie"], "sequence": ["Ik", "wil", "graag", "een", "brood"]},
+    {"lesson": 4, "topic": "precio", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras para formar: '¿Cuánto cuesta la tarta?'", "tiles": ["kost", "Wat", "taart?", "de"], "sequence": ["Wat", "kost", "de", "taart?"]},
+    {"lesson": 1, "topic": "comida_bebida", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ik wil graag een koffie.", "options": ["Ik wil graag een koffie.", "Ik wil graag een thee.", "Ik wil graag water."], "value": "Ik wil graag een koffie."},
+    {"lesson": 3, "topic": "cortesia", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Een brood, alstublieft.", "options": ["Een brood, alstublieft.", "Een taart, alstublieft.", "Een appel, alstublieft."], "value": "Een brood, alstublieft."},
+    {"lesson": 4, "topic": "precio", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Dat is vijf euro.", "options": ["Dat is vijf euro.", "Dat is drie euro.", "Wat kost het?"], "value": "Dat is vijf euro."},
+    {"lesson": 4, "topic": "precio", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Hoeveel kost de thee?", "options": ["Hoeveel kost de thee?", "Hoeveel kost het brood?", "Wat wil je graag?"], "value": "Hoeveel kost de thee?"},
+    {"lesson": 2, "topic": "pedir", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ik wil graag een koffie."},
+    {"lesson": 3, "topic": "cortesia", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Een thee, alstublieft."},
+    {"lesson": 4, "topic": "precio", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Wat kost het?"}
+  ]
+}

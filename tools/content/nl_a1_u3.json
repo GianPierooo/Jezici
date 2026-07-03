@@ -1,0 +1,376 @@
+{
+  "unit": {
+    "order": 3,
+    "title_es": "La familia",
+    "color": "#8E44AD",
+    "icon": "family_restroom"
+  },
+  "checkpoint_desc": "Presenta a tu familia en neerlandés con de/het, los posesivos mijn/jouw y las frases Dit is… / Dat zijn….",
+  "lessons": [
+    {
+      "order": 1,
+      "title_es": "Padres y hermanos"
+    },
+    {
+      "order": 2,
+      "title_es": "Este es… / Estos son…"
+    },
+    {
+      "order": 3,
+      "title_es": "Mi familia, tu familia"
+    },
+    {
+      "order": 4,
+      "title_es": "Hermanito y hermanita"
+    }
+  ],
+  "vocab": [
+    [
+      "de moeder",
+      "la madre",
+      "sustantivo"
+    ],
+    [
+      "de vader",
+      "el padre",
+      "sustantivo"
+    ],
+    [
+      "de ouders",
+      "los padres",
+      "sustantivo"
+    ],
+    [
+      "de broer",
+      "el hermano",
+      "sustantivo"
+    ],
+    [
+      "de zus",
+      "la hermana",
+      "sustantivo"
+    ],
+    [
+      "het kind",
+      "el niño / la criatura",
+      "sustantivo"
+    ],
+    [
+      "de familie",
+      "la familia",
+      "sustantivo"
+    ],
+    [
+      "de oma",
+      "la abuela",
+      "sustantivo"
+    ],
+    [
+      "de opa",
+      "el abuelo",
+      "sustantivo"
+    ],
+    [
+      "het broertje",
+      "el hermanito",
+      "sustantivo"
+    ],
+    [
+      "het zusje",
+      "la hermanita",
+      "sustantivo"
+    ],
+    [
+      "mijn",
+      "mi",
+      "pronombre"
+    ],
+    [
+      "jouw",
+      "tu",
+      "pronombre"
+    ],
+    [
+      "Dit is",
+      "Este/Esta es",
+      "expresion"
+    ],
+    [
+      "Dat zijn",
+      "Estos/Esas son",
+      "expresion"
+    ],
+    [
+      "de kinderen",
+      "los niños",
+      "sustantivo"
+    ]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "familia_basica",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada palabra neerlandesa con su traducción.",
+      "pairs": [
+        [
+          "de moeder",
+          "la madre"
+        ],
+        [
+          "de vader",
+          "el padre"
+        ],
+        [
+          "de broer",
+          "el hermano"
+        ]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "familia_grupo",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada palabra neerlandesa con su traducción.",
+      "pairs": [
+        [
+          "de zus",
+          "la hermana"
+        ],
+        [
+          "de oma",
+          "la abuela"
+        ],
+        [
+          "de opa",
+          "el abuelo"
+        ]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "articulo_het",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "¿Qué artículo lleva la palabra 'kind' (niño)?",
+      "options": [
+        "het kind",
+        "de kind",
+        "een de kind"
+      ],
+      "value": "het kind"
+    },
+    {
+      "lesson": 2,
+      "topic": "dit_dat",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Completa: '___ mijn moeder' (Esta es mi madre).",
+      "options": [
+        "Dit is",
+        "Dat zijn",
+        "Dit zijn"
+      ],
+      "value": "Dit is"
+    },
+    {
+      "lesson": 3,
+      "topic": "posesivo_mijn",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "¿Cómo se dice 'mi padre' en neerlandés?",
+      "options": [
+        "mijn vader",
+        "jouw vader",
+        "mij vader"
+      ],
+      "value": "mijn vader"
+    },
+    {
+      "lesson": 4,
+      "topic": "diminutivo",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "¿Cómo se dice 'la hermanita' en neerlandés?",
+      "options": [
+        "het zusje",
+        "de zusje",
+        "het zus"
+      ],
+      "value": "het zusje"
+    },
+    {
+      "lesson": 1,
+      "topic": "familia_basica",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa: 'Mi madre' en neerlandés.",
+      "text": "Mijn ___ .",
+      "value": "moeder",
+      "accepted": [
+        "moeder"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "dat_zijn",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con 'Estos son' (plural): '___ mijn ouders'.",
+      "text": "___ mijn ouders.",
+      "value": "Dat zijn",
+      "accepted": [
+        "Dat zijn",
+        "dat zijn"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "dit_is",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: Este es mi hermano.",
+      "source": "Este es mi hermano.",
+      "value": "Dit is mijn broer.",
+      "accepted": [
+        "Dit is mijn broer.",
+        "Dit is mijn broer"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "posesivo_jouw",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: Tu abuela.",
+      "source": "Tu abuela.",
+      "value": "Jouw oma.",
+      "accepted": [
+        "Jouw oma.",
+        "Jouw oma",
+        "jouw oma"
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "diminutivo",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar: 'Este es mi hermanito.'",
+      "tiles": [
+        "Dit",
+        "is",
+        "mijn",
+        "broertje",
+        "zusje"
+      ],
+      "sequence": [
+        "Dit",
+        "is",
+        "mijn",
+        "broertje"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "dat_zijn",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena las palabras para formar: 'Estos son mis padres.'",
+      "tiles": [
+        "ouders",
+        "Dat",
+        "mijn",
+        "zijn"
+      ],
+      "sequence": [
+        "Dat",
+        "zijn",
+        "mijn",
+        "ouders"
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "familia_basica",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Dit is mijn moeder.",
+      "options": [
+        "Dit is mijn moeder.",
+        "Dit is mijn vader.",
+        "Dat zijn mijn ouders."
+      ],
+      "value": "Dit is mijn moeder."
+    },
+    {
+      "lesson": 2,
+      "topic": "dit_dat",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Dat zijn mijn kinderen.",
+      "options": [
+        "Dat zijn mijn kinderen.",
+        "Dit is mijn kind.",
+        "Dit is mijn zus."
+      ],
+      "value": "Dat zijn mijn kinderen."
+    },
+    {
+      "lesson": 3,
+      "topic": "abuelos",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Mijn opa en mijn oma.",
+      "options": [
+        "Mijn opa en mijn oma.",
+        "Mijn broer en mijn zus.",
+        "Jouw vader en jouw moeder."
+      ],
+      "value": "Mijn opa en mijn oma."
+    },
+    {
+      "lesson": 4,
+      "topic": "diminutivo",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ik heb een broertje en een zusje.",
+      "options": [
+        "Ik heb een broertje en een zusje.",
+        "Ik heb een broer en een zus.",
+        "Dit is mijn familie."
+      ],
+      "value": "Ik heb een broertje en een zusje."
+    },
+    {
+      "lesson": 1,
+      "topic": "familia_basica",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Dit is mijn vader."
+    },
+    {
+      "lesson": 3,
+      "topic": "posesivo",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Dat zijn mijn ouders."
+    },
+    {
+      "lesson": 4,
+      "topic": "familia_completa",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Dit is mijn familie."
+    }
+  ]
+}

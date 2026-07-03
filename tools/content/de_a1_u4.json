@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 4, "title_es": "Comida y en el café", "color": "#E67E22", "icon": "restaurant"},
+  "checkpoint_desc": "Practica alimentos y bebidas, la fórmula de cortesía Ich möchte y el acusativo del artículo indefinido.",
+  "lessons": [
+    {"order": 1, "title_es": "Comida y bebida"},
+    {"order": 2, "title_es": "Quiero, por favor"},
+    {"order": 3, "title_es": "einen, eine o ein"},
+    {"order": 4, "title_es": "¿Cuánto cuesta?"}
+  ],
+  "vocab": [
+    ["das Brot", "el pan", "sustantivo"],
+    ["das Wasser", "el agua", "sustantivo"],
+    ["der Kaffee", "el café", "sustantivo"],
+    ["der Tee", "el té", "sustantivo"],
+    ["die Milch", "la leche", "sustantivo"],
+    ["der Apfel", "la manzana", "sustantivo"],
+    ["der Saft", "el zumo", "sustantivo"],
+    ["der Kuchen", "el pastel", "sustantivo"],
+    ["Ich möchte", "quisiera / quiero", "expresion"],
+    ["bitte", "por favor", "adverbio"],
+    ["einen", "un (masc. acusativo)", "articulo"],
+    ["eine", "una (fem.)", "articulo"],
+    ["ein", "un (neutro)", "articulo"],
+    ["Was kostet das?", "¿Cuánto cuesta?", "expresion"],
+    ["Das macht", "Son (el total es)", "expresion"],
+    ["der Euro", "el euro", "sustantivo"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "essen_trinken", "skill": "reading", "type": "match", "prompt": "Une cada palabra alemana con su traducción.", "pairs": [["das Brot", "el pan"], ["der Kaffee", "el café"], ["die Milch", "la leche"]]},
+    {"lesson": 1, "topic": "essen_trinken", "skill": "reading", "type": "match", "prompt": "Une cada palabra alemana con su traducción.", "pairs": [["der Apfel", "la manzana"], ["der Saft", "el zumo"], ["der Kuchen", "el pastel"]]},
+    {"lesson": 1, "topic": "essen_trinken", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se dice \"el agua\" en alemán?", "options": ["das Wasser", "der Wein", "die Milch"], "value": "das Wasser"},
+    {"lesson": 2, "topic": "ich_moechte_hoeflich", "skill": "reading", "type": "multiple_choice", "prompt": "¿Qué significa \"Ich möchte einen Kaffee, bitte.\"?", "options": ["Quisiera un café, por favor.", "Tengo un café, gracias.", "El café está frío."], "value": "Quisiera un café, por favor."},
+    {"lesson": 4, "topic": "preise_bezahlen", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se pregunta \"¿Cuánto cuesta?\" en alemán?", "options": ["Was kostet das?", "Wer ist das?", "Wo ist das?"], "value": "Was kostet das?"},
+    {"lesson": 3, "topic": "akkusativ_unbestimmt", "skill": "reading", "type": "multiple_choice", "prompt": "Elige el artículo correcto: \"Ich möchte ___ Kaffee.\" (Kaffee es masculino, en acusativo).", "options": ["einen", "eine", "ein"], "value": "einen"},
+    {"lesson": 2, "topic": "ich_moechte_hoeflich", "skill": "writing", "type": "cloze", "prompt": "Completa con la fórmula de cortesía (\"quisiera\").", "text": "___ möchte einen Tee.", "value": "Ich", "accepted": ["Ich"]},
+    {"lesson": 3, "topic": "akkusativ_unbestimmt", "skill": "writing", "type": "cloze", "prompt": "Completa con el artículo indefinido correcto (Milch es femenino).", "text": "Ich möchte ___ Milch, bitte.", "value": "eine", "accepted": ["eine"]},
+    {"lesson": 2, "topic": "ich_moechte_hoeflich", "skill": "writing", "type": "translation", "prompt": "Traduce: Quisiera un café, por favor.", "source": "Quisiera un café, por favor.", "value": "Ich möchte einen Kaffee, bitte.", "accepted": ["Ich möchte einen Kaffee, bitte.", "Ich möchte einen Kaffee, bitte", "Ich moechte einen Kaffee, bitte.", "Ich moechte einen Kaffee, bitte"]},
+    {"lesson": 4, "topic": "preise_bezahlen", "skill": "writing", "type": "translation", "prompt": "Traduce: Son cinco euros.", "source": "Son cinco euros.", "value": "Das macht fünf Euro.", "accepted": ["Das macht fünf Euro.", "Das macht fünf Euro", "Das macht fuenf Euro.", "Das macht fuenf Euro"]},
+    {"lesson": 3, "topic": "akkusativ_unbestimmt", "skill": "writing", "type": "word_bank", "prompt": "Ordena las fichas: \"Quisiera un agua.\" (Wasser es neutro).", "tiles": ["Ich", "möchte", "ein", "Wasser", "einen"], "sequence": ["Ich", "möchte", "ein", "Wasser"]},
+    {"lesson": 2, "topic": "ich_moechte_hoeflich", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras para formar: \"Un café, por favor.\"", "tiles": ["Kaffee", "Einen", "bitte"], "sequence": ["Einen", "Kaffee", "bitte"]},
+    {"lesson": 1, "topic": "essen_trinken", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ich möchte ein Brot.", "options": ["Ich möchte ein Brot.", "Ich möchte einen Apfel.", "Ich möchte eine Milch."], "value": "Ich möchte ein Brot."},
+    {"lesson": 2, "topic": "ich_moechte_hoeflich", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Einen Kaffee, bitte.", "options": ["Einen Kaffee, bitte.", "Einen Tee, bitte.", "Ein Wasser, bitte."], "value": "Einen Kaffee, bitte."},
+    {"lesson": 4, "topic": "preise_bezahlen", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Was kostet das?", "options": ["Was kostet das?", "Wie geht es dir?", "Wer ist das?"], "value": "Was kostet das?"},
+    {"lesson": 4, "topic": "preise_bezahlen", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Das macht fünf Euro.", "options": ["Das macht fünf Euro.", "Das macht zwei Euro.", "Das macht zehn Euro."], "value": "Das macht fünf Euro."},
+    {"lesson": 1, "topic": "essen_trinken", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ich möchte einen Apfel und ein Wasser."},
+    {"lesson": 2, "topic": "ich_moechte_hoeflich", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Einen Kaffee und einen Kuchen, bitte."},
+    {"lesson": 4, "topic": "preise_bezahlen", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Was kostet das, bitte?"}
+  ]
+}

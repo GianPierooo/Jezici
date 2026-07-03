@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 6, "title_es": "La ciudad y direcciones", "color": "#16A085", "icon": "location_city"},
+  "checkpoint_desc": "Practica lugares de la ciudad, preguntar dónde está algo y dar direcciones básicas.",
+  "lessons": [
+    {"order": 1, "title_es": "Lugares de la ciudad"},
+    {"order": 2, "title_es": "¿Dónde está?"},
+    {"order": 3, "title_es": "Hay un... / Hay unos..."},
+    {"order": 4, "title_es": "Izquierda y derecha"}
+  ],
+  "vocab": [
+    ["het station", "la estación", "sustantivo"],
+    ["de bank", "el banco", "sustantivo"],
+    ["het museum", "el museo", "sustantivo"],
+    ["het restaurant", "el restaurante", "sustantivo"],
+    ["het hotel", "el hotel", "sustantivo"],
+    ["het plein", "la plaza", "sustantivo"],
+    ["de straat", "la calle", "sustantivo"],
+    ["de apotheek", "la farmacia", "sustantivo"],
+    ["waar", "dónde", "adverbio"],
+    ["links", "a la izquierda", "adverbio"],
+    ["rechts", "a la derecha", "adverbio"],
+    ["rechtdoor", "recto / todo recto", "adverbio"],
+    ["naast", "al lado de", "preposicion"],
+    ["tegenover", "enfrente de", "preposicion"],
+    ["er is", "hay (singular)", "expresion"],
+    ["er zijn", "hay (plural)", "expresion"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "lugares", "skill": "reading", "type": "match", "prompt": "Une cada lugar neerlandés con su significado en español.", "pairs": [["het station", "la estación"], ["de bank", "el banco"], ["het museum", "el museo"]]},
+    {"lesson": 4, "topic": "direcciones", "skill": "reading", "type": "match", "prompt": "Une cada dirección neerlandesa con su significado en español.", "pairs": [["links", "a la izquierda"], ["rechts", "a la derecha"], ["rechtdoor", "todo recto"]]},
+    {"lesson": 2, "topic": "waar", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se pregunta '¿Dónde está la estación?'?", "options": ["Waar is het station?", "Wie is het station?", "Wat is het station?"], "value": "Waar is het station?"},
+    {"lesson": 1, "topic": "lugares", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál es el artículo correcto: '___ museum'?", "options": ["het", "de", "een de"], "value": "het"},
+    {"lesson": 4, "topic": "direcciones", "skill": "reading", "type": "multiple_choice", "prompt": "'De bank is naast het hotel' significa...", "options": ["El banco está al lado del hotel", "El banco está enfrente del hotel", "El banco está lejos del hotel"], "value": "El banco está al lado del hotel"},
+    {"lesson": 3, "topic": "er", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se dice 'Hay un restaurante aquí'?", "options": ["Er is hier een restaurant.", "Er zijn hier een restaurant.", "Het is hier een restaurant."], "value": "Er is hier een restaurant."},
+    {"lesson": 2, "topic": "waar", "skill": "writing", "type": "cloze", "prompt": "Completa: '¿Dónde está la farmacia?'", "text": "___ is de apotheek?", "value": "Waar", "accepted": ["Waar"]},
+    {"lesson": 1, "topic": "lugares", "skill": "writing", "type": "cloze", "prompt": "Completa con el artículo correcto: 'la estación'.", "text": "___ station", "value": "het", "accepted": ["het"]},
+    {"lesson": 3, "topic": "er", "skill": "writing", "type": "translation", "prompt": "Traduce: Hay un hotel al lado de la estación.", "source": "Hay un hotel al lado de la estación.", "value": "Er is een hotel naast het station.", "accepted": ["Er is een hotel naast het station.", "Er is een hotel naast het station"]},
+    {"lesson": 4, "topic": "direcciones", "skill": "writing", "type": "translation", "prompt": "Traduce: El museo está enfrente de la plaza.", "source": "El museo está enfrente de la plaza.", "value": "Het museum is tegenover het plein.", "accepted": ["Het museum is tegenover het plein.", "Het museum is tegenover het plein"]},
+    {"lesson": 2, "topic": "waar", "skill": "writing", "type": "word_bank", "prompt": "Ordena las fichas: '¿Dónde está el restaurante?'", "tiles": ["Waar", "is", "het", "restaurant", "de", "zijn"], "sequence": ["Waar", "is", "het", "restaurant"]},
+    {"lesson": 4, "topic": "direcciones", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras para formar: 'La calle está a la derecha.'", "tiles": ["rechts", "De", "straat", "is"], "sequence": ["De", "straat", "is", "rechts"]},
+    {"lesson": 1, "topic": "lugares", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Het museum is groot.", "options": ["Het museum is groot.", "Het hotel is groot.", "Het station is groot."], "value": "Het museum is groot."},
+    {"lesson": 2, "topic": "waar", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Waar is de bank?", "options": ["Waar is de bank?", "Waar is de straat?", "Waar is de apotheek?"], "value": "Waar is de bank?"},
+    {"lesson": 3, "topic": "er", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Er zijn hier twee hotels.", "options": ["Er zijn hier twee hotels.", "Er is hier een hotel.", "Er zijn hier twee musea."], "value": "Er zijn hier twee hotels."},
+    {"lesson": 4, "topic": "direcciones", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ga rechtdoor en dan links.", "options": ["Ga rechtdoor en dan links.", "Ga rechtdoor en dan rechts.", "Ga links en dan rechtdoor."], "value": "Ga rechtdoor en dan links."},
+    {"lesson": 2, "topic": "waar", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Waar is het station?"},
+    {"lesson": 3, "topic": "er", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Er is hier een restaurant."},
+    {"lesson": 4, "topic": "direcciones", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "De apotheek is rechts."}
+  ]
+}

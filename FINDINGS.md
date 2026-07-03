@@ -2,6 +2,35 @@
 
 ---
 
+## Pilotos es→de + es→nl (A1) — 2026-07-03 ✅ LIVE + VERIFICADO (cliente real, 6 cursos aislados)
+> 5º y 6º curso. Objetivo: A1 completo e impecable en alemán y neerlandés, con **aislamiento
+> multicurso** blindado (ahora **6 cursos** — el riesgo #1). Fuente de verdad = repo+BD (de/nl NO existían).
+
+**Sembrado (mig 100 de / 101 nl):** cada curso = alta de idioma + curso `is_active` + A1 completo
+(6 unidades × [4 lecciones + checkpoint + examen], molde es→fr/it). **115 ítems/curso** (R36/W36/L25/S18
+→ L=69%, S=50%). Audio TTS tl=de/nl **43/43 cada uno**. Autorado por **workflow ultracode**: 6 profesores
+nativos IA (3 de + 3 nl, 2 unidades c/u) + 2 revisores adversariales nativos estructurados.
+
+**Gramática real:** de — der/die/das, **edad con SEIN** (Ich bin 20 Jahre alt, NO haben), sustantivos con
+mayúscula, acusativo ein→einen, du/Sie, ß/ä/ö/ü con tolerancia ss/ae/oe/ue en `accepted`. nl — **de/het**
+(het water/brood/station/museum/restaurant/hotel/kind), **edad con ZIJN** (Ik ben 20 jaar oud), diminutivos
+-je, orden V2. **Revisión adversarial:** de 2 ❌ menores (distractores word_bank: `ist`→`bist`, quitar `nach`),
+nl 3 reales (calco «Ik ben goed»→«Het gaat goed»; «Ik hou van…» no enseñado→«Dit is mijn familie»; quitar
+distractor `voor` ambiguo) — **todos aplicados**. Los 2 "listening con doble correcta" que el revisor marcó
+fueron **retirados por él mismo** (verificados: una sola respuesta).
+
+**Aislamiento de los 6 cursos — VERIFICADO cliente real** (`verify_new_course.py de|nl`, JWT):
+- **0 `lesson_items` cruzan los 6 cursos** (en/pt/fr/it/de/nl).
+- Determinista de 97/97 + nl 97/97 correctos; 97/97 + 97/97 distractores (grading server-side, `correct_answer` 42501).
+- `set_active_course(de|nl)` → `create_plan`/`start_practice`/`user_course_progress` sirven SOLO ese curso;
+  usuario default(en) NO recibe de/nl; cadena lección(100%)+checkpoint(≥80%) por curso; audio HEAD 200.
+- **Cursos existentes INTACTOS:** `verify_chain` (en A1→B2 + certs) y `verify_pt_chain` (pt A1→B1) verdes.
+  `flutter analyze` 0 · `flutter test` 91/91. Banderas 🇩🇪/🇳🇱 + `SpeechLang` de-DE/nl-NL cableados.
+
+**Diferido:** A2+ de/nl; placement de/nl (default→A1); tips/historias/imágenes; onboarding de/nl-específico.
+
+---
+
 ## Multi-idioma del cliente (VOZ + Conversar) — 2026-07-02 ✅ REPARADO
 > Dos bugs de la misma clase: **el cliente asumía inglés** aunque el curso fuera pt/fr/it.
 - **VOZ (TTS de tile + reconocedor de speaking)** estaba hardcodeada a inglés (`word_tts_web`

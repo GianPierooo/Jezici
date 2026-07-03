@@ -1,0 +1,390 @@
+{
+  "unit": {
+    "order": 5,
+    "title_es": "El día y la hora",
+    "color": "#2980B9",
+    "icon": "schedule"
+  },
+  "checkpoint_desc": "Preguntar y decir la hora, los días de la semana y hablar de la rutina con verbos regulares en presente.",
+  "lessons": [
+    {
+      "order": 1,
+      "title_es": "¿Qué hora es?"
+    },
+    {
+      "order": 2,
+      "title_es": "Y cuarto, y media, menos cuarto"
+    },
+    {
+      "order": 3,
+      "title_es": "Los días de la semana"
+    },
+    {
+      "order": 4,
+      "title_es": "Mi rutina: vivir, trabajar, aprender"
+    }
+  ],
+  "vocab": [
+    [
+      "die Uhr",
+      "el reloj / la hora",
+      "sustantivo"
+    ],
+    [
+      "die Stunde",
+      "la hora (duración)",
+      "sustantivo"
+    ],
+    [
+      "die Minute",
+      "el minuto",
+      "sustantivo"
+    ],
+    [
+      "Viertel",
+      "cuarto",
+      "sustantivo"
+    ],
+    [
+      "halb",
+      "medio/a",
+      "adjetivo"
+    ],
+    [
+      "der Montag",
+      "el lunes",
+      "sustantivo"
+    ],
+    [
+      "der Dienstag",
+      "el martes",
+      "sustantivo"
+    ],
+    [
+      "der Mittwoch",
+      "el miércoles",
+      "sustantivo"
+    ],
+    [
+      "der Donnerstag",
+      "el jueves",
+      "sustantivo"
+    ],
+    [
+      "der Freitag",
+      "el viernes",
+      "sustantivo"
+    ],
+    [
+      "der Samstag",
+      "el sábado",
+      "sustantivo"
+    ],
+    [
+      "der Sonntag",
+      "el domingo",
+      "sustantivo"
+    ],
+    [
+      "wohnen",
+      "vivir/residir",
+      "verbo"
+    ],
+    [
+      "arbeiten",
+      "trabajar",
+      "verbo"
+    ],
+    [
+      "lernen",
+      "aprender/estudiar",
+      "verbo"
+    ],
+    [
+      "spielen",
+      "jugar",
+      "verbo"
+    ]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "die_uhrzeit",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada palabra alemana con su significado.",
+      "pairs": [
+        [
+          "die Uhr",
+          "la hora / el reloj"
+        ],
+        [
+          "die Stunde",
+          "la hora (duración)"
+        ],
+        [
+          "die Minute",
+          "el minuto"
+        ]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "die_uhrzeit",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "¿Cómo se pregunta '¿Qué hora es?' en alemán?",
+      "options": [
+        "Wie spät ist es?",
+        "Wie geht es dir?",
+        "Wo ist es?"
+      ],
+      "value": "Wie spät ist es?"
+    },
+    {
+      "lesson": 1,
+      "topic": "die_uhrzeit",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa: 'Son las cuatro en punto.'",
+      "text": "Es ist vier ___.",
+      "value": "Uhr",
+      "accepted": [
+        "Uhr"
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "die_uhrzeit",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Es ist zwei Uhr.",
+      "options": [
+        "Es ist zwei Uhr.",
+        "Es ist zehn Uhr.",
+        "Es ist neun Uhr."
+      ],
+      "value": "Es ist zwei Uhr."
+    },
+    {
+      "lesson": 1,
+      "topic": "die_uhrzeit",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Wie spät ist es?"
+    },
+    {
+      "lesson": 2,
+      "topic": "viertel_halb",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada hora en alemán con su hora en números.",
+      "pairs": [
+        [
+          "Viertel nach drei",
+          "3:15"
+        ],
+        [
+          "halb vier",
+          "3:30"
+        ],
+        [
+          "Viertel vor vier",
+          "3:45"
+        ]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "viertel_halb",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa: 3:15 = 'Es ist ___ nach drei.'",
+      "text": "Es ist ___ nach drei.",
+      "value": "Viertel",
+      "accepted": [
+        "Viertel"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "viertel_halb",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena para decir '3:45' (menos cuarto para las cuatro).",
+      "tiles": [
+        "Es",
+        "ist",
+        "Viertel",
+        "vor",
+        "vier",
+        "halb"
+      ],
+      "sequence": [
+        "Es",
+        "ist",
+        "Viertel",
+        "vor",
+        "vier"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "viertel_halb",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Es ist halb vier.",
+      "options": [
+        "Es ist halb vier.",
+        "Es ist Viertel vor vier.",
+        "Es ist vier Uhr."
+      ],
+      "value": "Es ist halb vier."
+    },
+    {
+      "lesson": 2,
+      "topic": "viertel_halb",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Es ist Viertel nach drei.",
+      "options": [
+        "Es ist Viertel nach drei.",
+        "Es ist Viertel vor drei.",
+        "Es ist halb drei."
+      ],
+      "value": "Es ist Viertel nach drei."
+    },
+    {
+      "lesson": 3,
+      "topic": "die_wochentage",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada día de la semana con su significado.",
+      "pairs": [
+        [
+          "Montag",
+          "lunes"
+        ],
+        [
+          "Mittwoch",
+          "miércoles"
+        ],
+        [
+          "Freitag",
+          "viernes"
+        ]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "die_wochentage",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "¿Qué día viene después del 'Dienstag' (martes)?",
+      "options": [
+        "Mittwoch",
+        "Montag",
+        "Sonntag"
+      ],
+      "value": "Mittwoch"
+    },
+    {
+      "lesson": 3,
+      "topic": "die_wochentage",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: Hoy es sábado.",
+      "source": "Hoy es sábado.",
+      "value": "Heute ist Samstag.",
+      "accepted": [
+        "Heute ist Samstag.",
+        "Heute ist Samstag",
+        "Heute ist Sonnabend.",
+        "Heute ist Sonnabend"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "die_wochentage",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena la frase: 'El domingo yo juego fútbol.'",
+      "tiles": [
+        "spiele",
+        "Am",
+        "ich",
+        "Sonntag",
+        "Fußball"
+      ],
+      "sequence": [
+        "Am",
+        "Sonntag",
+        "spiele",
+        "ich",
+        "Fußball"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "die_wochentage",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Heute ist Donnerstag.",
+      "options": [
+        "Heute ist Donnerstag.",
+        "Heute ist Dienstag.",
+        "Heute ist Montag."
+      ],
+      "value": "Heute ist Donnerstag."
+    },
+    {
+      "lesson": 3,
+      "topic": "die_wochentage",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Am Freitag arbeite ich nicht."
+    },
+    {
+      "lesson": 4,
+      "topic": "regelmaessige_verben",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Completa: 'Du ___ in Berlin.' (tú vives)",
+      "options": [
+        "wohnst",
+        "wohne",
+        "wohnen"
+      ],
+      "value": "wohnst"
+    },
+    {
+      "lesson": 4,
+      "topic": "regelmaessige_verben",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: Yo trabajo en Múnich.",
+      "source": "Yo trabajo en Múnich.",
+      "value": "Ich arbeite in München.",
+      "accepted": [
+        "Ich arbeite in München.",
+        "Ich arbeite in München",
+        "Ich arbeite in Muenchen.",
+        "Ich arbeite in Muenchen"
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "regelmaessige_verben",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Ich wohne in Berlin und lerne Deutsch."
+    }
+  ]
+}

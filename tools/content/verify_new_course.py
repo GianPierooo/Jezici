@@ -16,7 +16,8 @@ from verify_chain import admin
 
 AK = env('SUPABASE_ANON_KEY')
 COURSE = {'en': '20000000-0000-0000-0000-000000000001', 'pt': '20000000-0000-0000-0000-000000000002',
-          'fr': '20000000-0000-0000-0000-000000000003', 'it': '20000000-0000-0000-0000-000000000004'}
+          'fr': '20000000-0000-0000-0000-000000000003', 'it': '20000000-0000-0000-0000-000000000004',
+          'de': '20000000-0000-0000-0000-000000000005', 'nl': '20000000-0000-0000-0000-000000000006'}
 
 def rpc(tok, name, body):
     r = urllib.request.Request(SUPABASE_URL + '/rest/v1/rpc/' + name,
@@ -88,7 +89,7 @@ def main():
         "join content_items ci on ci.id=li.item_id "
         "join lessons le on le.id=li.lesson_id join units u on u.id=le.unit_id "
         "where ci.course_id <> u.course_id;")[1])[0]['c']
-    ck('global: 0 lesson_items cruzan cursos (los 4)', int(cross) == 0, f"cruces={cross}")
+    ck('global: 0 lesson_items cruzan cursos (todos)', int(cross) == 0, f"cruces={cross}")
 
     # Metadatos admin del curso nuevo (para determinista y respuestas).
     items = json.loads(run(

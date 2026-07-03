@@ -1,0 +1,393 @@
+{
+  "unit": {
+    "order": 1,
+    "title_es": "Saludos y presentarte",
+    "color": "#C0392B",
+    "icon": "waving_hand"
+  },
+  "checkpoint_desc": "Saludar, despedirte, decir tu nombre y usar el verbo sein para presentarte.",
+  "lessons": [
+    {
+      "order": 1,
+      "title_es": "Hola y adiós"
+    },
+    {
+      "order": 2,
+      "title_es": "Me llamo..."
+    },
+    {
+      "order": 3,
+      "title_es": "El verbo sein"
+    },
+    {
+      "order": 4,
+      "title_es": "¿Cómo estás?"
+    }
+  ],
+  "vocab": [
+    [
+      "Hallo",
+      "hola",
+      "interjeccion"
+    ],
+    [
+      "Guten Morgen",
+      "buenos días (mañana)",
+      "expresion"
+    ],
+    [
+      "Guten Tag",
+      "buenos días / buenas tardes",
+      "expresion"
+    ],
+    [
+      "Guten Abend",
+      "buenas noches (al llegar)",
+      "expresion"
+    ],
+    [
+      "Tschüss",
+      "adiós (informal)",
+      "interjeccion"
+    ],
+    [
+      "Auf Wiedersehen",
+      "hasta la vista (formal)",
+      "expresion"
+    ],
+    [
+      "ich",
+      "yo",
+      "pronombre"
+    ],
+    [
+      "du",
+      "tú",
+      "pronombre"
+    ],
+    [
+      "Sie",
+      "usted",
+      "pronombre"
+    ],
+    [
+      "heißen",
+      "llamarse",
+      "verbo"
+    ],
+    [
+      "sein",
+      "ser / estar",
+      "verbo"
+    ],
+    [
+      "der Name",
+      "el nombre",
+      "sustantivo"
+    ],
+    [
+      "gut",
+      "bien / bueno",
+      "adjetivo"
+    ],
+    [
+      "danke",
+      "gracias",
+      "interjeccion"
+    ],
+    [
+      "ja",
+      "sí",
+      "adverbio"
+    ],
+    [
+      "nein",
+      "no",
+      "adverbio"
+    ]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "saludos",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada saludo o despedida con su significado.",
+      "pairs": [
+        [
+          "Hallo",
+          "hola"
+        ],
+        [
+          "Tschüss",
+          "adiós"
+        ],
+        [
+          "Guten Morgen",
+          "buenos días"
+        ]
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "cortesia",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada palabra con su significado.",
+      "pairs": [
+        [
+          "danke",
+          "gracias"
+        ],
+        [
+          "gut",
+          "bien"
+        ],
+        [
+          "ja",
+          "sí"
+        ]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "saludos",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "¿Cómo se dice 'buenas noches' al llegar por la tarde/noche?",
+      "options": [
+        "Guten Abend",
+        "Guten Morgen",
+        "Tschüss"
+      ],
+      "value": "Guten Abend"
+    },
+    {
+      "lesson": 1,
+      "topic": "saludos",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "¿Qué usarías para despedirte de un amigo de forma informal?",
+      "options": [
+        "Tschüss",
+        "Hallo",
+        "Guten Tag"
+      ],
+      "value": "Tschüss"
+    },
+    {
+      "lesson": 2,
+      "topic": "presentarse",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "¿Cuál es la pregunta FORMAL para preguntar el nombre (a un desconocido)?",
+      "options": [
+        "Wie heißen Sie?",
+        "Wie heißt du?",
+        "Wie geht es dir?"
+      ],
+      "value": "Wie heißen Sie?"
+    },
+    {
+      "lesson": 3,
+      "topic": "verbo_sein",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Completa correctamente: 'Er ___ Max.' (él)",
+      "options": [
+        "ist",
+        "bin",
+        "bist"
+      ],
+      "value": "ist"
+    },
+    {
+      "lesson": 2,
+      "topic": "presentarse",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa: 'Me llamo Anna.'",
+      "text": "Ich ___ Anna.",
+      "value": "heiße",
+      "accepted": [
+        "heiße",
+        "heisse"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "verbo_sein",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el verbo sein: 'Yo soy Tom.'",
+      "text": "Ich ___ Tom.",
+      "value": "bin",
+      "accepted": [
+        "bin"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "presentarse",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: Me llamo Peter.",
+      "source": "Me llamo Peter.",
+      "value": "Ich heiße Peter.",
+      "accepted": [
+        "Ich heiße Peter.",
+        "Ich heiße Peter",
+        "Ich heisse Peter.",
+        "Ich heisse Peter"
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "estado",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: Bien, gracias.",
+      "source": "Bien, gracias.",
+      "value": "Gut, danke.",
+      "accepted": [
+        "Gut, danke.",
+        "Gut, danke",
+        "Gut danke",
+        "Danke, gut.",
+        "Danke, gut"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "verbo_sein",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena: '¿Cómo te llamas?' (informal)",
+      "tiles": [
+        "Wie",
+        "heißt",
+        "du",
+        "Sie",
+        "bist"
+      ],
+      "sequence": [
+        "Wie",
+        "heißt",
+        "du"
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "estado",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena la frase: '¿Cómo estás?' (informal)",
+      "tiles": [
+        "es",
+        "Wie",
+        "dir",
+        "geht"
+      ],
+      "sequence": [
+        "Wie",
+        "geht",
+        "es",
+        "dir"
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "saludos",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Guten Tag!",
+      "options": [
+        "Guten Tag!",
+        "Guten Abend!",
+        "Gute Nacht!"
+      ],
+      "value": "Guten Tag!"
+    },
+    {
+      "lesson": 2,
+      "topic": "presentarse",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ich heiße Julia.",
+      "options": [
+        "Ich heiße Julia.",
+        "Ich heiße Laura.",
+        "Ich bin Julia."
+      ],
+      "value": "Ich heiße Julia."
+    },
+    {
+      "lesson": 3,
+      "topic": "verbo_sein",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Du bist nett.",
+      "options": [
+        "Du bist nett.",
+        "Ich bin nett.",
+        "Er ist nett."
+      ],
+      "value": "Du bist nett."
+    },
+    {
+      "lesson": 4,
+      "topic": "estado",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Wie geht es dir?",
+      "options": [
+        "Wie geht es dir?",
+        "Wie heißt du?",
+        "Wie geht es Ihnen?"
+      ],
+      "value": "Wie geht es dir?"
+    },
+    {
+      "lesson": 4,
+      "topic": "estado",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Gut, danke.",
+      "options": [
+        "Gut, danke.",
+        "Gute Nacht.",
+        "Guten Tag."
+      ],
+      "value": "Gut, danke."
+    },
+    {
+      "lesson": 1,
+      "topic": "saludos",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Hallo, guten Morgen!"
+    },
+    {
+      "lesson": 2,
+      "topic": "presentarse",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Ich heiße Anna."
+    },
+    {
+      "lesson": 4,
+      "topic": "estado",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Mir geht es gut, danke."
+    }
+  ]
+}

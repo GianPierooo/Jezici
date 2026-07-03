@@ -1,0 +1,389 @@
+{
+  "unit": {
+    "order": 1,
+    "title_es": "Saludos y presentarte",
+    "color": "#C0392B",
+    "icon": "waving_hand"
+  },
+  "checkpoint_desc": "Practica saludos, presentarte con Ik heet/Ik ben, el verbo zijn y preguntar cómo estás.",
+  "lessons": [
+    {
+      "order": 1,
+      "title_es": "Saludos y despedidas"
+    },
+    {
+      "order": 2,
+      "title_es": "Decir tu nombre"
+    },
+    {
+      "order": 3,
+      "title_es": "El verbo zijn (ser/estar)"
+    },
+    {
+      "order": 4,
+      "title_es": "¿Cómo estás?"
+    }
+  ],
+  "vocab": [
+    [
+      "hallo",
+      "hola",
+      "interjeccion"
+    ],
+    [
+      "goedemorgen",
+      "buenos días",
+      "interjeccion"
+    ],
+    [
+      "goedenavond",
+      "buenas noches",
+      "interjeccion"
+    ],
+    [
+      "dag",
+      "hola / adiós",
+      "interjeccion"
+    ],
+    [
+      "doei",
+      "chau",
+      "interjeccion"
+    ],
+    [
+      "tot ziens",
+      "hasta la vista",
+      "expresion"
+    ],
+    [
+      "ik",
+      "yo",
+      "pronombre"
+    ],
+    [
+      "jij",
+      "tú",
+      "pronombre"
+    ],
+    [
+      "heten",
+      "llamarse",
+      "verbo"
+    ],
+    [
+      "zijn",
+      "ser / estar",
+      "verbo"
+    ],
+    [
+      "ben",
+      "soy / estoy",
+      "verbo"
+    ],
+    [
+      "bent",
+      "eres / estás",
+      "verbo"
+    ],
+    [
+      "is",
+      "es / está",
+      "verbo"
+    ],
+    [
+      "hoe",
+      "cómo",
+      "adverbio"
+    ],
+    [
+      "goed",
+      "bien",
+      "adverbio"
+    ],
+    [
+      "dank je",
+      "gracias",
+      "expresion"
+    ]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "saludos",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada saludo neerlandés con su significado.",
+      "pairs": [
+        [
+          "Hallo",
+          "Hola"
+        ],
+        [
+          "Goedemorgen",
+          "Buenos días"
+        ],
+        [
+          "Tot ziens",
+          "Hasta la vista"
+        ]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "saludos",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada palabra con su significado.",
+      "pairs": [
+        [
+          "Goedenavond",
+          "Buenas noches"
+        ],
+        [
+          "Doei",
+          "Chau"
+        ],
+        [
+          "Dag",
+          "Adiós"
+        ]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "saludos",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "¿Cómo saludas por la mañana en neerlandés?",
+      "options": [
+        "Goedemorgen",
+        "Goedenavond",
+        "Tot ziens"
+      ],
+      "value": "Goedemorgen"
+    },
+    {
+      "lesson": 1,
+      "topic": "despedidas",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "¿Cuál de estas palabras es una despedida informal?",
+      "options": [
+        "Doei",
+        "Hallo",
+        "Goedemorgen"
+      ],
+      "value": "Doei"
+    },
+    {
+      "lesson": 2,
+      "topic": "presentarse",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la forma correcta de decir 'Me llamo Anna'.",
+      "options": [
+        "Ik heet Anna",
+        "Ik heten Anna",
+        "Jij heet Anna"
+      ],
+      "value": "Ik heet Anna"
+    },
+    {
+      "lesson": 4,
+      "topic": "estado",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Alguien pregunta 'Hoe gaat het?'. ¿Qué significa?",
+      "options": [
+        "¿Cómo estás?",
+        "¿Cómo te llamas?",
+        "¿De dónde vienes?"
+      ],
+      "value": "¿Cómo estás?"
+    },
+    {
+      "lesson": 2,
+      "topic": "presentarse",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa: 'Me llamo Peter.'",
+      "text": "Ik ___ Peter.",
+      "value": "heet",
+      "accepted": [
+        "heet"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "verbo_zijn",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el verbo zijn: 'Yo soy Anna.'",
+      "text": "Ik ___ Anna.",
+      "value": "ben",
+      "accepted": [
+        "ben"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "presentarse",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: Me llamo Sara.",
+      "source": "Me llamo Sara.",
+      "value": "Ik heet Sara.",
+      "accepted": [
+        "Ik heet Sara.",
+        "Ik heet Sara"
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "estado",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: Estoy bien, gracias.",
+      "source": "Estoy bien, gracias.",
+      "value": "Het gaat goed, dank je.",
+      "accepted": [
+        "Het gaat goed, dank je.",
+        "Het gaat goed, dank je",
+        "Het gaat goed dank je",
+        "Goed, dank je.",
+        "Goed, dank je",
+        "Goed dank je"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "presentarse",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para decir 'Me llamo Tom'.",
+      "tiles": [
+        "Ik",
+        "heet",
+        "Tom",
+        "ben",
+        "jij"
+      ],
+      "sequence": [
+        "Ik",
+        "heet",
+        "Tom"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "verbo_zijn",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena las palabras para formar '¿Cómo te llamas?'.",
+      "tiles": [
+        "heet",
+        "Hoe",
+        "je?"
+      ],
+      "sequence": [
+        "Hoe",
+        "heet",
+        "je?"
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "saludos",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Hallo, goedemorgen!",
+      "options": [
+        "Hallo, goedemorgen!",
+        "Dag, tot ziens!",
+        "Doei, goedenavond!"
+      ],
+      "value": "Hallo, goedemorgen!"
+    },
+    {
+      "lesson": 2,
+      "topic": "presentarse",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ik heet Anna.",
+      "options": [
+        "Ik heet Anna.",
+        "Ik ben Peter.",
+        "Jij bent Sara."
+      ],
+      "value": "Ik heet Anna."
+    },
+    {
+      "lesson": 3,
+      "topic": "verbo_zijn",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Jij bent Tom.",
+      "options": [
+        "Jij bent Tom.",
+        "Ik ben Tom.",
+        "Hij is Tom."
+      ],
+      "value": "Jij bent Tom."
+    },
+    {
+      "lesson": 4,
+      "topic": "estado",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Hoe gaat het?",
+      "options": [
+        "Hoe gaat het?",
+        "Hoe heet je?",
+        "Waar kom je vandaan?"
+      ],
+      "value": "Hoe gaat het?"
+    },
+    {
+      "lesson": 4,
+      "topic": "estado",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Goed, dank je.",
+      "options": [
+        "Goed, dank je.",
+        "Dag, tot ziens.",
+        "Hallo, goedenavond."
+      ],
+      "value": "Goed, dank je."
+    },
+    {
+      "lesson": 1,
+      "topic": "saludos",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Hallo, goedemorgen!"
+    },
+    {
+      "lesson": 2,
+      "topic": "presentarse",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Ik heet Anna."
+    },
+    {
+      "lesson": 4,
+      "topic": "estado",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Hoe gaat het? Goed, dank je."
+    }
+  ]
+}

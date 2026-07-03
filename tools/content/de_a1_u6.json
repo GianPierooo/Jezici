@@ -1,0 +1,52 @@
+{
+  "unit": {"order": 6, "title_es": "La ciudad y direcciones", "color": "#16A085", "icon": "location_city"},
+  "checkpoint_desc": "Nombrar lugares de la ciudad, preguntar dónde están y dar direcciones con izquierda, derecha y todo recto.",
+  "lessons": [
+    {"order": 1, "title_es": "Lugares de la ciudad"},
+    {"order": 2, "title_es": "¿Dónde está...?"},
+    {"order": 3, "title_es": "¿Hay...? Es gibt..."},
+    {"order": 4, "title_es": "Izquierda, derecha, todo recto"}
+  ],
+  "vocab": [
+    ["der Bahnhof", "la estación de tren", "sustantivo"],
+    ["die Bank", "el banco", "sustantivo"],
+    ["das Museum", "el museo", "sustantivo"],
+    ["das Restaurant", "el restaurante", "sustantivo"],
+    ["das Hotel", "el hotel", "sustantivo"],
+    ["der Platz", "la plaza", "sustantivo"],
+    ["die Straße", "la calle", "sustantivo"],
+    ["die Apotheke", "la farmacia", "sustantivo"],
+    ["die Stadt", "la ciudad", "sustantivo"],
+    ["links", "a la izquierda", "adverbio"],
+    ["rechts", "a la derecha", "adverbio"],
+    ["geradeaus", "todo recto", "adverbio"],
+    ["neben", "al lado de", "preposicion"],
+    ["gegenüber", "enfrente de", "preposicion"],
+    ["wo", "dónde", "adverbio"],
+    ["es gibt", "hay", "expresion"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "orte_in_der_stadt", "skill": "reading", "type": "match", "prompt": "Une cada lugar alemán con su significado.", "pairs": [["der Bahnhof", "la estación de tren"], ["das Museum", "el museo"], ["die Apotheke", "la farmacia"]]},
+    {"lesson": 1, "topic": "orte_in_der_stadt", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál es el artículo correcto? '___ Restaurant'", "options": ["das", "der", "die"], "value": "das"},
+    {"lesson": 1, "topic": "orte_in_der_stadt", "skill": "writing", "type": "cloze", "prompt": "Completa: 'el hotel' -> '___ Hotel'", "text": "___ Hotel", "value": "das", "accepted": ["das"]},
+    {"lesson": 1, "topic": "orte_in_der_stadt", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Das ist der Bahnhof.", "options": ["Das ist der Bahnhof.", "Das ist die Apotheke.", "Das ist das Hotel."], "value": "Das ist der Bahnhof."},
+    {"lesson": 1, "topic": "orte_in_der_stadt", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Das Museum ist sehr schön."},
+
+    {"lesson": 2, "topic": "wo_ist", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se pregunta '¿Dónde está la estación?'", "options": ["Wo ist der Bahnhof?", "Wer ist der Bahnhof?", "Was ist der Bahnhof?"], "value": "Wo ist der Bahnhof?"},
+    {"lesson": 2, "topic": "wo_ist", "skill": "writing", "type": "translation", "prompt": "Traduce: ¿Dónde está el hotel?", "source": "¿Dónde está el hotel?", "value": "Wo ist das Hotel?", "accepted": ["Wo ist das Hotel?", "Wo ist das Hotel"]},
+    {"lesson": 2, "topic": "wo_ist", "skill": "writing", "type": "word_bank", "prompt": "Ordena para decir 'El banco está al lado del museo.'", "tiles": ["Die", "Bank", "ist", "neben", "dem", "Museum", "gegenüber"], "sequence": ["Die", "Bank", "ist", "neben", "dem", "Museum"]},
+    {"lesson": 2, "topic": "wo_ist", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Wo ist die Apotheke?", "options": ["Wo ist die Apotheke?", "Wo ist der Bahnhof?", "Wo ist das Restaurant?"], "value": "Wo ist die Apotheke?"},
+    {"lesson": 2, "topic": "wo_ist", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Das Restaurant ist gegenüber dem Hotel."},
+
+    {"lesson": 3, "topic": "es_gibt", "skill": "reading", "type": "multiple_choice", "prompt": "Completa: 'Aquí hay un banco.' -> 'Hier gibt es ___ Bank.' (die Bank, femenino)", "options": ["eine", "einen", "ein"], "value": "eine"},
+    {"lesson": 3, "topic": "es_gibt", "skill": "writing", "type": "cloze", "prompt": "Completa: 'Hay un restaurante.' -> 'Es gibt ___ Restaurant.' (das Restaurant, neutro)", "text": "Es gibt ___ Restaurant.", "value": "ein", "accepted": ["ein"]},
+    {"lesson": 3, "topic": "es_gibt", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se pregunta '¿Hay una farmacia aquí?'", "options": ["Gibt es hier eine Apotheke?", "Ist es hier eine Apotheke?", "Hat es hier eine Apotheke?"], "value": "Gibt es hier eine Apotheke?"},
+    {"lesson": 3, "topic": "es_gibt", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Es gibt hier ein Hotel.", "options": ["Es gibt hier ein Hotel.", "Es gibt hier eine Bank.", "Es gibt hier ein Museum."], "value": "Es gibt hier ein Hotel."},
+
+    {"lesson": 4, "topic": "richtungen", "skill": "reading", "type": "match", "prompt": "Une cada dirección con su significado.", "pairs": [["links", "a la izquierda"], ["rechts", "a la derecha"], ["geradeaus", "todo recto"]]},
+    {"lesson": 4, "topic": "richtungen", "skill": "writing", "type": "translation", "prompt": "Traduce: El banco está a la derecha.", "source": "El banco está a la derecha.", "value": "Die Bank ist rechts.", "accepted": ["Die Bank ist rechts.", "Die Bank ist rechts"]},
+    {"lesson": 4, "topic": "richtungen", "skill": "writing", "type": "word_bank", "prompt": "Ordena para decir 'Ve todo recto y después a la izquierda.'", "tiles": ["Gehen", "Sie", "geradeaus", "und", "dann", "links", "rechts"], "sequence": ["Gehen", "Sie", "geradeaus", "und", "dann", "links"]},
+    {"lesson": 4, "topic": "richtungen", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Der Bahnhof ist geradeaus.", "options": ["Der Bahnhof ist geradeaus.", "Der Bahnhof ist links.", "Der Bahnhof ist rechts."], "value": "Der Bahnhof ist geradeaus."},
+    {"lesson": 4, "topic": "richtungen", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Gehen Sie geradeaus, dann links."}
+  ]
+}

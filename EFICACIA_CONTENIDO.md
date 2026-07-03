@@ -6,6 +6,15 @@
 > Prioridad: es→en A1/A2 a fondo (lo que los testers usan hoy). B1–C1 y es→pt: perfil
 > estructural + diferido (ver "Pendiente").
 
+## Pilotos es→de + es→nl A1 (2026-07-03) — 4 habilidades balanceadas desde el arranque
+- **de A1 y nl A1:** R36 · W36 · **L25 · S18** → L=69%, S=50% de (R+W)/2 (idéntico al molde fr/it).
+  115 ítems/curso, 6 unidades A1 con progresión temática (saludos→ciudad). Gramática CEFR-A1 real por
+  idioma: alemán (género der/die/das, **edad con sein**, mayúsculas de sustantivos, acusativo ein/einen,
+  ß/ä/ö/ü) y neerlandés (**de/het**, **edad con zijn**, diminutivos -je, orden V2). Autorado por workflow
+  ultracode (profesores nativos IA) + validación adversarial nativa (de 2 fixes menores, nl 3 reales, todos
+  aplicados). **Techo determinista de producción idéntico** (speaking=proxy read-aloud; writing tolerante) →
+  sin cert de nivel aún (Fase 2). **Diferido:** A2+ de/nl.
+
 ## Pilotos es→fr + es→it A2 (2026-07-02) — continúa la escalera, mismo balance
 - **fr A2 y it A2:** R36 · W36 · **L25 · S18** → L=69%, S=50% de (R+W)/2 (idéntico al A1). 115 ítems/idioma,
   6 unidades (order 7-12) que ENCADENAN con A1 (gating por checkpoints, verificado con caminata de 12

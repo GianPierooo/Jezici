@@ -1,0 +1,376 @@
+{
+  "unit": {
+    "order": 5,
+    "title_es": "El día y la hora",
+    "color": "#2980B9",
+    "icon": "schedule"
+  },
+  "checkpoint_desc": "Practica decir la hora, los días de la semana y verbos del día a día en presente.",
+  "lessons": [
+    {
+      "order": 1,
+      "title_es": "¿Qué hora es?"
+    },
+    {
+      "order": 2,
+      "title_es": "Los cuartos de hora"
+    },
+    {
+      "order": 3,
+      "title_es": "Los días de la semana"
+    },
+    {
+      "order": 4,
+      "title_es": "Mi rutina diaria"
+    }
+  ],
+  "vocab": [
+    [
+      "hoe laat",
+      "a qué hora / qué hora",
+      "expresion"
+    ],
+    [
+      "het uur",
+      "la hora",
+      "sustantivo"
+    ],
+    [
+      "kwart over",
+      "y cuarto",
+      "expresion"
+    ],
+    [
+      "kwart voor",
+      "menos cuarto",
+      "expresion"
+    ],
+    [
+      "de dag",
+      "el día",
+      "sustantivo"
+    ],
+    [
+      "maandag",
+      "lunes",
+      "sustantivo"
+    ],
+    [
+      "dinsdag",
+      "martes",
+      "sustantivo"
+    ],
+    [
+      "woensdag",
+      "miércoles",
+      "sustantivo"
+    ],
+    [
+      "donderdag",
+      "jueves",
+      "sustantivo"
+    ],
+    [
+      "vrijdag",
+      "viernes",
+      "sustantivo"
+    ],
+    [
+      "zaterdag",
+      "sábado",
+      "sustantivo"
+    ],
+    [
+      "zondag",
+      "domingo",
+      "sustantivo"
+    ],
+    [
+      "wonen",
+      "vivir (residir)",
+      "verbo"
+    ],
+    [
+      "werken",
+      "trabajar",
+      "verbo"
+    ],
+    [
+      "leren",
+      "aprender",
+      "verbo"
+    ],
+    [
+      "spelen",
+      "jugar",
+      "verbo"
+    ]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "hora",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada palabra neerlandesa con su significado en español.",
+      "pairs": [
+        [
+          "hoe laat",
+          "qué hora"
+        ],
+        [
+          "het uur",
+          "la hora"
+        ],
+        [
+          "de dag",
+          "el día"
+        ]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "dagen",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada día de la semana con su significado en español.",
+      "pairs": [
+        [
+          "maandag",
+          "lunes"
+        ],
+        [
+          "vrijdag",
+          "viernes"
+        ],
+        [
+          "zondag",
+          "domingo"
+        ]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "hora",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "¿Cómo se pregunta '¿Qué hora es?' en neerlandés?",
+      "options": [
+        "Hoe laat is het?",
+        "Hoe oud is het?",
+        "Waar is het?"
+      ],
+      "value": "Hoe laat is het?"
+    },
+    {
+      "lesson": 1,
+      "topic": "hora",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "'Het is drie uur' significa...",
+      "options": [
+        "Son las tres",
+        "Son las cuatro",
+        "Es la una"
+      ],
+      "value": "Son las tres"
+    },
+    {
+      "lesson": 2,
+      "topic": "kwart",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "¿Cómo se dice 'las tres y cuarto'?",
+      "options": [
+        "kwart over drie",
+        "kwart voor drie",
+        "half drie"
+      ],
+      "value": "kwart over drie"
+    },
+    {
+      "lesson": 4,
+      "topic": "verbos",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "'Ik werk' significa...",
+      "options": [
+        "Yo trabajo",
+        "Yo vivo",
+        "Yo juego"
+      ],
+      "value": "Yo trabajo"
+    },
+    {
+      "lesson": 1,
+      "topic": "hora",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa: '¿Qué hora es?'",
+      "text": "Hoe ___ is het?",
+      "value": "laat",
+      "accepted": [
+        "laat"
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "verbos",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa: 'Yo vivo en Ámsterdam.'",
+      "text": "Ik ___ in Amsterdam.",
+      "value": "woon",
+      "accepted": [
+        "woon"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "kwart",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: Son las cuatro menos cuarto.",
+      "source": "Son las cuatro menos cuarto.",
+      "value": "Het is kwart voor vier.",
+      "accepted": [
+        "Het is kwart voor vier.",
+        "Het is kwart voor vier"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "dagen",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: Hoy es lunes.",
+      "source": "Hoy es lunes.",
+      "value": "Vandaag is het maandag.",
+      "accepted": [
+        "Vandaag is het maandag.",
+        "Vandaag is het maandag",
+        "Het is maandag.",
+        "Het is maandag"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "kwart",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas: 'Son las tres y cuarto.'",
+      "tiles": [
+        "Het",
+        "is",
+        "kwart",
+        "over",
+        "drie",
+        "uur"
+      ],
+      "sequence": [
+        "Het",
+        "is",
+        "kwart",
+        "over",
+        "drie"
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "verbos",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena las palabras para formar: 'Yo aprendo neerlandés.'",
+      "tiles": [
+        "leer",
+        "Ik",
+        "Nederlands"
+      ],
+      "sequence": [
+        "Ik",
+        "leer",
+        "Nederlands"
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "hora",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Het is twee uur.",
+      "options": [
+        "Het is twee uur.",
+        "Het is tien uur.",
+        "Het is negen uur."
+      ],
+      "value": "Het is twee uur."
+    },
+    {
+      "lesson": 2,
+      "topic": "kwart",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Het is kwart over zes.",
+      "options": [
+        "Het is kwart over zes.",
+        "Het is kwart voor zes.",
+        "Het is zes uur."
+      ],
+      "value": "Het is kwart over zes."
+    },
+    {
+      "lesson": 3,
+      "topic": "dagen",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Vandaag is het woensdag.",
+      "options": [
+        "Vandaag is het woensdag.",
+        "Vandaag is het zaterdag.",
+        "Vandaag is het dinsdag."
+      ],
+      "value": "Vandaag is het woensdag."
+    },
+    {
+      "lesson": 4,
+      "topic": "verbos",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ik werk op maandag.",
+      "options": [
+        "Ik werk op maandag.",
+        "Ik speel op maandag.",
+        "Ik woon op maandag."
+      ],
+      "value": "Ik werk op maandag."
+    },
+    {
+      "lesson": 1,
+      "topic": "hora",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Hoe laat is het?"
+    },
+    {
+      "lesson": 3,
+      "topic": "dagen",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Vandaag is het vrijdag."
+    },
+    {
+      "lesson": 4,
+      "topic": "verbos",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Ik woon in Nederland."
+    }
+  ]
+}

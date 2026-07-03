@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 3, "title_es": "La familia", "color": "#8E44AD", "icon": "family_restroom"},
+  "checkpoint_desc": "Practica los miembros de la familia y los posesivos mein/meine según el género del sustantivo.",
+  "lessons": [
+    {"order": 1, "title_es": "Padres e hijos"},
+    {"order": 2, "title_es": "Hermanos y abuelos"},
+    {"order": 3, "title_es": "Mein o meine"},
+    {"order": 4, "title_es": "¿Quién es este?"}
+  ],
+  "vocab": [
+    ["die Familie", "la familia", "sustantivo"],
+    ["die Mutter", "la madre", "sustantivo"],
+    ["der Vater", "el padre", "sustantivo"],
+    ["die Eltern", "los padres", "sustantivo"],
+    ["der Bruder", "el hermano", "sustantivo"],
+    ["die Schwester", "la hermana", "sustantivo"],
+    ["das Kind", "el niño / el hijo", "sustantivo"],
+    ["die Großmutter", "la abuela", "sustantivo"],
+    ["der Großvater", "el abuelo", "sustantivo"],
+    ["die Großeltern", "los abuelos", "sustantivo"],
+    ["mein", "mi (masc./neutro)", "pronombre"],
+    ["meine", "mi (fem./plural)", "pronombre"],
+    ["Das ist", "Este/Esta es", "expresion"],
+    ["Das sind", "Estos/Estas son", "expresion"],
+    ["Wer", "quién", "pronombre"],
+    ["und", "y", "adverbio"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "familie_grundwortschatz", "skill": "reading", "type": "match", "prompt": "Une cada palabra alemana con su traducción.", "pairs": [["die Mutter", "la madre"], ["der Vater", "el padre"], ["das Kind", "el niño"]]},
+    {"lesson": 2, "topic": "geschwister_grosseltern", "skill": "reading", "type": "match", "prompt": "Une cada palabra alemana con su traducción.", "pairs": [["der Bruder", "el hermano"], ["die Schwester", "la hermana"], ["die Großmutter", "la abuela"]]},
+    {"lesson": 1, "topic": "familie_grundwortschatz", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se dice \"la familia\" en alemán?", "options": ["die Familie", "die Freundin", "die Schule"], "value": "die Familie"},
+    {"lesson": 1, "topic": "familie_grundwortschatz", "skill": "reading", "type": "multiple_choice", "prompt": "¿Qué significa \"die Eltern\"?", "options": ["los padres", "los hijos", "los abuelos"], "value": "los padres"},
+    {"lesson": 2, "topic": "geschwister_grosseltern", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se dice \"el abuelo\" en alemán?", "options": ["der Großvater", "die Großmutter", "der Bruder"], "value": "der Großvater"},
+    {"lesson": 4, "topic": "das_ist_wer", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la pregunta correcta para \"¿Quién es este?\".", "options": ["Wer ist das?", "Wie ist das?", "Wo ist das?"], "value": "Wer ist das?"},
+    {"lesson": 3, "topic": "possessiv_mein_meine", "skill": "writing", "type": "cloze", "prompt": "Completa con el posesivo correcto (Bruder es masculino).", "text": "Das ist ___ Bruder.", "value": "mein", "accepted": ["mein"]},
+    {"lesson": 3, "topic": "possessiv_mein_meine", "skill": "writing", "type": "cloze", "prompt": "Completa con el posesivo correcto (Schwester es femenino).", "text": "Das ist ___ Schwester.", "value": "meine", "accepted": ["meine"]},
+    {"lesson": 1, "topic": "familie_grundwortschatz", "skill": "writing", "type": "translation", "prompt": "Traduce: Esta es mi madre.", "source": "Esta es mi madre.", "value": "Das ist meine Mutter.", "accepted": ["Das ist meine Mutter.", "Das ist meine Mutter"]},
+    {"lesson": 4, "topic": "das_ist_wer", "skill": "writing", "type": "translation", "prompt": "Traduce: Estos son mis padres.", "source": "Estos son mis padres.", "value": "Das sind meine Eltern.", "accepted": ["Das sind meine Eltern.", "Das sind meine Eltern"]},
+    {"lesson": 3, "topic": "possessiv_mein_meine", "skill": "writing", "type": "word_bank", "prompt": "Ordena las fichas: \"Este es mi padre.\"", "tiles": ["Das", "ist", "mein", "Vater", "meine"], "sequence": ["Das", "ist", "mein", "Vater"]},
+    {"lesson": 4, "topic": "das_ist_wer", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras para formar: \"¿Quién es este?\"", "tiles": ["ist", "Wer", "das"], "sequence": ["Wer", "ist", "das"]},
+    {"lesson": 1, "topic": "familie_grundwortschatz", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Das ist meine Mutter.", "options": ["Das ist meine Mutter.", "Das ist mein Vater.", "Das sind meine Eltern."], "value": "Das ist meine Mutter."},
+    {"lesson": 2, "topic": "geschwister_grosseltern", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ich habe einen Bruder.", "options": ["Ich habe einen Bruder.", "Ich habe eine Schwester.", "Ich habe zwei Kinder."], "value": "Ich habe einen Bruder."},
+    {"lesson": 3, "topic": "possessiv_mein_meine", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Das ist mein Bruder.", "options": ["Das ist mein Bruder.", "Das ist meine Schwester.", "Das ist meine Familie."], "value": "Das ist mein Bruder."},
+    {"lesson": 4, "topic": "das_ist_wer", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Wer ist das?", "options": ["Wer ist das?", "Wie geht es dir?", "Wo wohnst du?"], "value": "Wer ist das?"},
+    {"lesson": 1, "topic": "familie_grundwortschatz", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Das ist meine Familie."},
+    {"lesson": 2, "topic": "geschwister_grosseltern", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ich habe einen Bruder und eine Schwester."},
+    {"lesson": 3, "topic": "possessiv_mein_meine", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Das sind meine Großeltern."}
+  ]
+}

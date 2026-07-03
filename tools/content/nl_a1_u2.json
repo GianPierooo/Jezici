@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 2, "title_es": "Números, edad y origen", "color": "#2C3E50", "icon": "filter_9_plus"},
+  "checkpoint_desc": "Practica los números del 0 al 20, decir tu edad con zijn, tu origen y nacionalidad, y el verbo hebben.",
+  "lessons": [
+    {"order": 1, "title_es": "Números del 0 al 20"},
+    {"order": 2, "title_es": "Decir tu edad"},
+    {"order": 3, "title_es": "¿De dónde vienes?"},
+    {"order": 4, "title_es": "Nacionalidad y tener"}
+  ],
+  "vocab": [
+    ["nul", "cero", "numero"],
+    ["een", "uno", "numero"],
+    ["twee", "dos", "numero"],
+    ["drie", "tres", "numero"],
+    ["vier", "cuatro", "numero"],
+    ["vijf", "cinco", "numero"],
+    ["tien", "diez", "numero"],
+    ["twintig", "veinte", "numero"],
+    ["jaar", "año", "sustantivo"],
+    ["oud", "viejo / de edad", "adjetivo"],
+    ["hoe oud", "qué edad", "expresion"],
+    ["komen", "venir", "verbo"],
+    ["vandaan", "de dónde (procedencia)", "adverbio"],
+    ["uit", "de / desde", "preposicion"],
+    ["Spaans", "español (nacionalidad)", "adjetivo"],
+    ["hebben", "tener", "verbo"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "getallen", "skill": "reading", "type": "match", "prompt": "Une cada número neerlandés con su cifra.", "pairs": [["een", "1"], ["drie", "3"], ["vijf", "5"]]},
+    {"lesson": 1, "topic": "getallen", "skill": "reading", "type": "match", "prompt": "Une cada número neerlandés con su cifra.", "pairs": [["nul", "0"], ["tien", "10"], ["twintig", "20"]]},
+    {"lesson": 1, "topic": "getallen", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cómo se escribe el número 4 en neerlandés?", "options": ["vier", "twee", "tien"], "value": "vier"},
+    {"lesson": 2, "topic": "leeftijd", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la forma correcta de decir 'Tengo veinte años'.", "options": ["Ik ben twintig jaar oud", "Ik heb twintig jaar", "Ik ben twintig jaar heb"], "value": "Ik ben twintig jaar oud"},
+    {"lesson": 3, "topic": "herkomst", "skill": "reading", "type": "multiple_choice", "prompt": "'Waar kom je vandaan?' significa:", "options": ["¿De dónde vienes?", "¿Cuántos años tienes?", "¿Cómo te llamas?"], "value": "¿De dónde vienes?"},
+    {"lesson": 4, "topic": "hebben", "skill": "reading", "type": "multiple_choice", "prompt": "Elige la forma correcta de 'tener' para 'jij' (tú).", "options": ["jij hebt", "jij heb", "jij bent"], "value": "jij hebt"},
+    {"lesson": 2, "topic": "leeftijd", "skill": "writing", "type": "cloze", "prompt": "Completa con el verbo correcto: 'Tengo diez años.'", "text": "Ik ___ tien jaar oud.", "value": "ben", "accepted": ["ben"]},
+    {"lesson": 3, "topic": "herkomst", "skill": "writing", "type": "cloze", "prompt": "Completa: 'Vengo de España.'", "text": "Ik kom ___ Spanje.", "value": "uit", "accepted": ["uit"]},
+    {"lesson": 2, "topic": "leeftijd", "skill": "writing", "type": "translation", "prompt": "Traduce: Tengo veinte años.", "source": "Tengo veinte años.", "value": "Ik ben twintig jaar oud.", "accepted": ["Ik ben twintig jaar oud.", "Ik ben twintig jaar oud", "Ik ben twintig jaar", "Ik ben twintig jaar."]},
+    {"lesson": 3, "topic": "herkomst", "skill": "writing", "type": "translation", "prompt": "Traduce: Vengo de Perú.", "source": "Vengo de Perú.", "value": "Ik kom uit Peru.", "accepted": ["Ik kom uit Peru.", "Ik kom uit Peru", "Ik kom uit Perú.", "Ik kom uit Perú"]},
+    {"lesson": 4, "topic": "hebben", "skill": "writing", "type": "word_bank", "prompt": "Ordena las fichas para decir 'Soy española'.", "tiles": ["Ik", "ben", "Spaanse", "heb", "uit"], "sequence": ["Ik", "ben", "Spaanse"]},
+    {"lesson": 3, "topic": "herkomst", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras para formar '¿De dónde vienes?'.", "tiles": ["kom", "Waar", "vandaan?", "je"], "sequence": ["Waar", "kom", "je", "vandaan?"]},
+    {"lesson": 1, "topic": "getallen", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "een, twee, drie", "options": ["een, twee, drie", "vier, vijf, zes", "tien, elf, twaalf"], "value": "een, twee, drie"},
+    {"lesson": 2, "topic": "leeftijd", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ik ben twintig jaar oud.", "options": ["Ik ben twintig jaar oud.", "Ik ben tien jaar oud.", "Ik heb twintig jaar."], "value": "Ik ben twintig jaar oud."},
+    {"lesson": 3, "topic": "herkomst", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ik kom uit Spanje.", "options": ["Ik kom uit Spanje.", "Ik kom uit Peru.", "Ik ben Spaans."], "value": "Ik kom uit Spanje."},
+    {"lesson": 2, "topic": "leeftijd", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Hoe oud ben je?", "options": ["Hoe oud ben je?", "Hoe heet je?", "Waar kom je vandaan?"], "value": "Hoe oud ben je?"},
+    {"lesson": 2, "topic": "leeftijd", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ik ben twintig jaar oud."},
+    {"lesson": 3, "topic": "herkomst", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ik kom uit Spanje."},
+    {"lesson": 4, "topic": "hebben", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ik ben Spaans."}
+  ]
+}

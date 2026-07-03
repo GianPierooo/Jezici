@@ -9,8 +9,9 @@
 App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supabase**
 (Postgres + RLS + RPCs SECURITY DEFINER) + **Vercel** (deploy del web). Repo
 `github.com/GianPierooo/Jezici`, deploy `jezici.vercel.app`.
-- 4 cursos: **es→en** (A1–C1), **es→pt** (A1–B1), **es→fr** (A1–A2 piloto) y **es→it**
-  (A1–A2 piloto). Curso activo por usuario (`jz_active_course`). Selector en Ajustes.
+- 6 cursos: **es→en** (A1–C1), **es→pt** (A1–B1), **es→fr** (A1–A2), **es→it** (A1–A2),
+  **es→de** (A1 piloto) y **es→nl** (A1 piloto). Curso activo por usuario
+  (`jz_active_course`). Selector en Ajustes.
 - Loop: lección → ejercicios (9 tipos) → grading **server-side** → XP/oro/vidas →
   checkpoints (≥80%) → exámenes de nivel + certificados. Práctica/SRS, logros, ligas
   semanales, racha, Matix (notificaciones), onboarding con placement.
@@ -56,6 +57,27 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
   (hoy usa el default → A1); cablear onboarding fr/it-específico (el onboarding sigue en-first,
   el curso se cambia en Ajustes); tips/historias/imágenes para fr/it; examen de nivel + certificado
   fr/it (hoy la progresión intra/inter-nivel A1→A2 es por checkpoints ≥80%, sin cert de nivel aún).
+
+## Pilotos es→de + es→nl (A1) — ✅ LIVE (mig 100/101 · 2026-07-03)
+- **2 cursos NUEVOS (5º y 6º), A1 completo:** **es→de** (course `…0005`, lang `de`/Deutsch) y
+  **es→nl** (course `…0006`, lang `nl`/Nederlands), ambos `is_active`. Molde validado es→fr/it:
+  6 unidades A1 (saludos · números-edad-origen · familia · comida-café · día-hora · ciudad), 4
+  lecciones + checkpoint fresco + examen por unidad. **115 ítems cada uno** (R36/W36/L25/S18 →
+  L=69% S=50%). Autorados por **workflow ultracode** (6 profesores nativos IA + 2 revisores
+  adversariales nativos). **Audio TTS** tl=de/nl: **43/43 cada uno** en Storage.
+- **Gramática real por idioma:** de — género der/die/das, **edad con SEIN** («Ich bin 20 Jahre
+  alt», NO haben), sustantivos con mayúscula, acusativo ein→einen, du/Sie, ß/ä/ö/ü (tolerancia
+  ss/ae/oe/ue en `accepted`); nl — **de/het** (het water/brood/station…), **edad con ZIJN** («Ik
+  ben 20 jaar oud»), diminutivos -je, orden V2. Revisión adversarial: de 2 ❌ menores (distractores
+  de word_bank), nl 3 reales (calco «Ik ben goed»→«Het gaat goed»; «Ik hou van…» no enseñado;
+  distractor ambiguo) — **todos corregidos**.
+- **AISLAMIENTO de los 6 cursos (el riesgo #1) — VERIFICADO cliente real** (`verify_new_course.py
+  de|nl`, JWT): **0 `lesson_items` cruzan los 6 cursos** (en/pt/fr/it/de/nl); determinista de 97/97 +
+  nl 97/97 correctos + 97/97 distractores (42501); `set_active_course`→`create_plan`/`start_practice`
+  sirven SOLO el curso activo; usuario default(en) NO recibe de/nl; cadena lección(100%)+checkpoint(≥80%)
+  por curso; audio HEAD 200. **Cursos existentes INTACTOS** (verify_chain en · verify_pt_chain pt).
+  Banderas 🇩🇪/🇳🇱 + `SpeechLang` de-DE/nl-NL (TTS/reconocedor) añadidos. analyze 0 · test 91/91.
+- **Diferido:** A2+ de/nl; placement de/nl (default→A1); tips/historias/imágenes; onboarding específico.
 
 ## Stack / mecánica clave
 - **Contenido es DB-driven**: los seeds/fixes son migraciones → quedan LIVE al aplicar,
@@ -231,6 +253,7 @@ flutter build web --release  # esperado: Built build/web (wasm dry-run warning d
 
 # Audio: cobertura real en Storage (HEAD a payload.audio_url) — es→en/pt = 692/692 (incl. 312 L/S mig 078–085)
 #   + es→fr A1 41 + A2 43 + es→it A1 43 + A2 43 = 170/170 (pilotos A1+A2, mig 094/095/097/098, tl=fr/it)
+#   + es→de A1 43 + es→nl A1 43 = 86/86 (pilotos A1, mig 100/101, tl=de/nl)
 #   query content_items_public?type=eq.listening|speaking_read_aloud, HEAD cada audio_url
 # Curso nuevo A1 (fr/it): tools/content/verify_new_course.py <code> — determinista + aislamiento (4 cursos) + cadena + audio
 # Nivel A2 (fr/it): tools/content/verify_a2_chain.py <code> — determinista A2 + aislamiento + CAMINATA 12 unidades (gating A1→A2) + audio

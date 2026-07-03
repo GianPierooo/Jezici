@@ -26,6 +26,14 @@ class SpeechLang {
         tts = 'it-IT';
         stt = 'it_IT';
         break;
+      case 'de':
+        tts = 'de-DE';
+        stt = 'de_DE';
+        break;
+      case 'nl':
+        tts = 'nl-NL';
+        stt = 'nl_NL';
+        break;
       default:
         tts = 'en-US';
         stt = 'en_US';
