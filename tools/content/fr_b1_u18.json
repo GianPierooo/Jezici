@@ -1,0 +1,214 @@
+{
+  "unit": {
+    "order": 18,
+    "title_es": "Pronombres (le, lui, y, en) y repaso",
+    "color": "#4A235A",
+    "icon": "swap_horiz"
+  },
+  "checkpoint_desc": "Demuestra que dominas los pronombres complemento (COD le/la/les, COI lui/leur, y, en) y su orden al combinarlos, consolidando el subjuntivo y los relativos de B1.",
+  "lessons": [
+    { "order": 1, "title_es": "COD y COI: le, la, les, lui, leur" },
+    { "order": 2, "title_es": "Los pronombres y & en" },
+    { "order": 3, "title_es": "Doble pronombre: el orden correcto" },
+    { "order": 4, "title_es": "Repaso B1: subjuntivo y relativos" }
+  ],
+  "vocab": [
+    ["le cadeau", "el regalo", "n"],
+    ["la lettre", "la carta", "n"],
+    ["les clés", "las llaves", "n"],
+    ["le collègue", "el colega", "n"],
+    ["la réunion", "la reunión", "n"],
+    ["le dossier", "el expediente", "n"],
+    ["prêter", "prestar", "v"],
+    ["expliquer", "explicar", "v"],
+    ["rendre", "devolver", "v"],
+    ["s'occuper de", "ocuparse de", "v"],
+    ["penser à", "pensar en", "v"],
+    ["avoir besoin de", "necesitar", "v"],
+    ["le conseil", "el consejo", "n"],
+    ["la question", "la pregunta", "n"],
+    ["le rendez-vous", "la cita", "n"],
+    ["la boulangerie", "la panadería", "n"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "cod_coi_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada frase con pronombre con su significado en español.",
+      "pairs": [
+        ["Je la connais.", "La conozco."],
+        ["Je lui parle.", "Le hablo (a él/ella)."],
+        ["Je les vois.", "Los veo."]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "cod_direct_object",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Tu prends le dossier ?» — Completa: «Oui, je ___.» (le dossier = COD)",
+      "options": ["le prends", "lui prends", "y prends"],
+      "value": "le prends"
+    },
+    {
+      "lesson": 1,
+      "topic": "coi_lui_singular",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Sustituye «à ma sœur» por el COI: «Je ___ explique le problème.»",
+      "text": "Je ___ explique le problème.",
+      "value": "lui",
+      "accepted": ["lui"]
+    },
+    {
+      "lesson": 1,
+      "topic": "cod_la_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce (sustituyendo el objeto por un pronombre): «La veo cada día.» (a ella)",
+      "source": "La veo cada día.",
+      "value": "Je la vois chaque jour.",
+      "accepted": ["Je la vois chaque jour", "Je la vois chaque jour.", "Je la vois tous les jours.", "Je la vois tous les jours"]
+    },
+    {
+      "lesson": 2,
+      "topic": "y_pronoun_place",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Tu vas à Paris ?» — Completa con el pronombre de lugar: «Oui, j'___ vais demain.»",
+      "options": ["y vais", "en vais", "lui vais"],
+      "value": "y vais"
+    },
+    {
+      "lesson": 2,
+      "topic": "en_pronoun_quantity",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Tu as des frères ?» — Completa: «Oui, j'___ ai deux.» (de+cantidad)",
+      "options": ["en ai deux", "y ai deux", "les ai deux"],
+      "value": "en ai deux"
+    },
+    {
+      "lesson": 2,
+      "topic": "en_besoin_de_wordbank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena para decir «Necesito uno.» (respondiendo a «Tu as besoin d'un stylo ?»).",
+      "tiles": ["J'", "en", "ai", "besoin", "y", "le"],
+      "sequence": ["J'", "en", "ai", "besoin"]
+    },
+    {
+      "lesson": 3,
+      "topic": "double_pronoun_le_lui",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Tu donnes le cadeau à Marie ?» — Elige el orden correcto del doble pronombre: «Oui, je ___ donne.»",
+      "options": ["le lui donne", "lui le donne", "lui en donne"],
+      "value": "le lui donne"
+    },
+    {
+      "lesson": 3,
+      "topic": "double_pronoun_la_lui_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "«Tu rends la lettre à ton collègue ?» Completa el doble pronombre en orden: «Oui, je ___ ___ rends.»",
+      "text": "Oui, je ___ ___ rends.",
+      "value": "la lui",
+      "accepted": ["la lui"]
+    },
+    {
+      "lesson": 3,
+      "topic": "double_pronoun_reorder",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena la frase: «Se los presto.» (les livres à eux → COD + COI).",
+      "tiles": ["Je", "les", "leur", "prête", "lui", "en"],
+      "sequence": ["Je", "les", "leur", "prête"]
+    },
+    {
+      "lesson": 4,
+      "topic": "subjonctif_review",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Repaso subjuntivo: «Il faut que tu ___ avec moi.» (venir)",
+      "options": ["viennes", "viens", "venir"],
+      "value": "viennes"
+    },
+    {
+      "lesson": 4,
+      "topic": "relatif_dont_review",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Repaso relativos: «C'est le collègue ___ je t'ai parlé.» (parler DE quelqu'un)",
+      "text": "C'est le collègue ___ je t'ai parlé.",
+      "value": "dont",
+      "accepted": ["dont"]
+    },
+    {
+      "lesson": 1,
+      "topic": "coi_leur_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Je leur donne un conseil.",
+      "options": ["Je leur donne un conseil.", "Je lui donne un conseil.", "Je les vois un moment."],
+      "value": "Je leur donne un conseil."
+    },
+    {
+      "lesson": 2,
+      "topic": "y_en_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "J'y vais et j'en reviens vite.",
+      "options": ["J'y vais et j'en reviens vite.", "J'en vais et j'y reviens vite.", "J'y pense et j'en parle vite."],
+      "value": "J'y vais et j'en reviens vite."
+    },
+    {
+      "lesson": 3,
+      "topic": "double_pronoun_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Je le lui explique demain.",
+      "options": ["Je le lui explique demain.", "Je le leur explique demain.", "Je la lui explique demain."],
+      "value": "Je le lui explique demain."
+    },
+    {
+      "lesson": 3,
+      "topic": "double_pronoun_men_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Elle m'en parle souvent.",
+      "options": ["Elle m'en parle souvent.", "Elle m'y pense souvent.", "Elle lui en parle souvent."],
+      "value": "Elle m'en parle souvent."
+    },
+    {
+      "lesson": 1,
+      "topic": "cod_coi_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Je le connais bien et je lui téléphone souvent."
+    },
+    {
+      "lesson": 2,
+      "topic": "y_en_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "J'y pense beaucoup et j'en ai besoin."
+    },
+    {
+      "lesson": 3,
+      "topic": "double_pronoun_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Je le lui donne et il m'en remercie."
+    }
+  ]
+}

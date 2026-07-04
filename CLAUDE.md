@@ -53,9 +53,23 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
   curso en Ajustes vía `start_course`), así que no afloraba en la app, pero el fix es correcto y
   future-proof. `placement_next` ya era course-aware (recibe `p_course`); **banco de placement
   fr/it/de/nl ✅ (mig 110, 2026-07-03)** → ya ubica en su nivel real (ver fila **Test de ubicación**).
-- **Diferido (retome del piloto):** B1+ de fr/it (hoy **A1+A2**); cablear onboarding fr/it-específico
-  (el onboarding sigue en-first, el curso se cambia en Ajustes); imágenes para fr/it; examen de nivel + certificado
-  fr/it (hoy la progresión intra/inter-nivel A1→A2 es por checkpoints ≥80%, sin cert de nivel aún).
+- **B1 es→fr ✅ LIVE (mig 113, 2026-07-03):** 6 unidades (order 13-18, encadenan A2→B1; U12 desbloquea
+  U13), **114 ítems (R36/W36/L24/S18 → L=67% S=50%)**, audio TTS tl=fr **42/42**. Currículo B1 REAL:
+  **subjonctif présent** (Il faut que/bien que…), **futur & conditionnel** (-ai vs -ais, si+imparfait),
+  **pronoms relatifs** (qui/que/dont/où), **accord du participe passé** (être/avoir+COD antepuesto/
+  pronominales), **discours indirect** (que/si/ce que + concordancia de tiempos), **pronoms compléments**
+  (le/lui/y/en + doble pronombre). 6 profesores nativos IA + **rebalanceo/revisión adversarial nativa**
+  (fixes reales: «pour qu'elle» élision, `accepted` que aceptaba «ou» por «où» removido, «s'il»,
+  distractores audibles prise/mise para accord, «si j'aurais» como distractor correcto). **Verificado
+  cliente real (`verify_b1_chain.py fr`):** determinista 96/96 + 96/96 distractores (42501); **CAMINA
+  A1→B1 las 18 unidades** (U12→U13, 30/30 lecciones B1); **0 lesson_items cruzan los 6 cursos**;
+  default(en) sin fuga; audio 42/42. **es→de B1 ✅ (mig 111).**
+- **Diferido (retome del piloto):** **B1 es→it** (retome EXACTO: 6 agentes nativos it mismos prompts
+  s/francés/italiano + gramática it [congiuntivo presente, futuro/condizionale, pronomi relativi che/cui,
+  concordanza del participio, discorso indiretto, pronomi ci/ne/combinati] → validar R6/W6/L4/S3 →
+  `gen_course.py it b1` (STAMP 20260703120114 reservado) → `gen_audio_missing.py it-b1` →
+  `verify_b1_chain.py it`); **B1 es→nl** (mismo retome, STAMP 112); B2+; cablear onboarding fr/it-específico
+  (el onboarding ya deja elegir curso META, el placement corre por curso); imágenes fr/it; cert de nivel.
 
 ## Pilotos es→de + es→nl (A1 + A2) — ✅ LIVE (mig 100/101/104/105 · 2026-07-03)
 - **2 cursos NUEVOS (5º y 6º), A1 Y A2 completos:** **es→de** (course `…0005`, lang `de`/Deutsch) y

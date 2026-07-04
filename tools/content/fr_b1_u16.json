@@ -1,0 +1,215 @@
+{
+  "unit": { "order": 16, "title_es": "Concordancia del participio", "color": "#B9770E", "icon": "spellcheck" },
+  "checkpoint_desc": "Demuestra que dominas la concordancia del participio pasado: con être concuerda con el sujeto, con avoir solo con el COD antepuesto, y en los verbos pronominales.",
+  "lessons": [
+    { "order": 1, "title_es": "Con être: concuerda con el sujeto" },
+    { "order": 2, "title_es": "Con avoir: solo si el COD va delante" },
+    { "order": 3, "title_es": "Verbos pronominales" },
+    { "order": 4, "title_es": "Repaso: elegir la forma correcta" }
+  ],
+  "vocab": [
+    ["la fleur", "la flor", "sustantivo"],
+    ["la lettre", "la carta", "sustantivo"],
+    ["la valise", "la maleta", "sustantivo"],
+    ["la robe", "el vestido", "sustantivo"],
+    ["la clé", "la llave", "sustantivo"],
+    ["arriver", "llegar", "verbo"],
+    ["partir", "irse, partir", "verbo"],
+    ["monter", "subir", "verbo"],
+    ["descendre", "bajar", "verbo"],
+    ["acheter", "comprar", "verbo"],
+    ["prendre", "tomar, coger", "verbo"],
+    ["mettre", "poner", "verbo"],
+    ["se laver", "lavarse", "verbo"],
+    ["se lever", "levantarse", "verbo"],
+    ["hier", "ayer", "adverbio"],
+    ["déjà", "ya", "adverbio"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "etre_accord_sujet",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase con su traducción.",
+      "pairs": [
+        ["Elle est partie tôt.", "Ella se fue temprano."],
+        ["Ils sont arrivés hier.", "Ellos llegaron ayer."],
+        ["Nous sommes montés en haut.", "Subimos arriba."]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "etre_accord_feminin",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Con être, el participio concuerda con el sujeto. Elige la forma correcta: «Marie ___ à Paris.»",
+      "options": ["est allée", "est allé", "est allés"],
+      "value": "est allée"
+    },
+    {
+      "lesson": 1,
+      "topic": "etre_accord_pluriel",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el participio concordado (sujeto femenino plural): «Les filles sont ___ (rester) à la maison.»",
+      "text": "Les filles sont ___ à la maison.",
+      "value": "restées",
+      "accepted": ["restées"]
+    },
+    {
+      "lesson": 1,
+      "topic": "etre_accord_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: «Ellas llegaron tarde.»",
+      "source": "Ellas llegaron tarde.",
+      "value": "Elles sont arrivées tard.",
+      "accepted": ["Elles sont arrivées tard", "Elles sont arrivées tard.", "Elles sont arrivees tard.", "Elles sont arrivees tard"]
+    },
+    {
+      "lesson": 2,
+      "topic": "avoir_pas_daccord",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Con avoir y el COD DETRÁS, el participio no cambia. Elige: «J'ai ___ des fleurs.»",
+      "options": ["acheté", "achetées", "achetés"],
+      "value": "acheté"
+    },
+    {
+      "lesson": 2,
+      "topic": "avoir_pronom_les",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase con su traducción.",
+      "pairs": [
+        ["Je les ai vues.", "Las vi (a ellas)."],
+        ["Il l'a prise.", "Él la cogió."],
+        ["Nous les avons finies.", "Las terminamos."]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "avoir_cod_antepose_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: «La carta que escribí.» (fem. antepuesto → concordancia)",
+      "source": "La carta que escribí.",
+      "value": "La lettre que j'ai écrite.",
+      "accepted": ["La lettre que j'ai écrite", "La lettre que j'ai écrite.", "La lettre que j’ai écrite.", "La lettre que j'ai ecrite.", "La lettre que j'ai ecrite"]
+    },
+    {
+      "lesson": 2,
+      "topic": "avoir_choix_ordre",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena para formar: «Las cogí.» (COD femenino plural antepuesto).",
+      "tiles": ["Je", "les", "ai", "prises", "pris", "prise"],
+      "sequence": ["Je", "les", "ai", "prises"]
+    },
+    {
+      "lesson": 3,
+      "topic": "pronominal_reorder",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena para formar: «Nos levantamos temprano.» (sujeto nous, masc.)",
+      "tiles": ["Nous", "nous", "sommes", "levés", "tôt"],
+      "sequence": ["Nous", "nous", "sommes", "levés", "tôt"]
+    },
+    {
+      "lesson": 3,
+      "topic": "pronominal_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: «Ella se lavó.»",
+      "source": "Ella se lavó.",
+      "value": "Elle s'est lavée.",
+      "accepted": ["Elle s'est lavée", "Elle s'est lavée.", "Elle s’est lavée.", "Elle s’est lavée", "Elle s'est lavee.", "Elle s'est lavee"]
+    },
+    {
+      "lesson": 4,
+      "topic": "revision_reading",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase con su traducción.",
+      "pairs": [
+        ["Il a acheté un livre.", "Compró un libro."],
+        ["Les livres qu'il a lus.", "Los libros que leyó."],
+        ["Elle est descendue.", "Ella bajó."]
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "revision_choix",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "COD «la valise» antepuesto → concordancia. Elige: «La valise que j'ai ___.»",
+      "options": ["prise", "pris", "prises"],
+      "value": "prise"
+    },
+    {
+      "lesson": 1,
+      "topic": "listening_prise",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Je l'ai prise.",
+      "options": ["Je l'ai prise.", "Je l'ai mise.", "Je l'ai finie."],
+      "value": "Je l'ai prise."
+    },
+    {
+      "lesson": 2,
+      "topic": "listening_ecrite",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "La lettre que j'ai écrite.",
+      "options": ["La lettre que j'ai écrite.", "La lettre que j'ai lue.", "La lettre que j'ai reçue."],
+      "value": "La lettre que j'ai écrite."
+    },
+    {
+      "lesson": 3,
+      "topic": "listening_partie",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Elle est partie hier.",
+      "options": ["Elle est partie hier.", "Elle est arrivée hier.", "Elle est rentrée hier."],
+      "value": "Elle est partie hier."
+    },
+    {
+      "lesson": 4,
+      "topic": "listening_descendue",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Elle est descendue vite.",
+      "options": ["Elle est descendue vite.", "Elle est montée vite.", "Elle est tombée vite."],
+      "value": "Elle est descendue vite."
+    },
+    {
+      "lesson": 1,
+      "topic": "speaking_etre",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Mes sœurs sont arrivées ce matin."
+    },
+    {
+      "lesson": 2,
+      "topic": "speaking_avoir",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Les photos que j'ai prises sont belles."
+    },
+    {
+      "lesson": 3,
+      "topic": "speaking_pronominal",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Elles se sont levées très tôt."
+    }
+  ]
+}

@@ -1,0 +1,241 @@
+{
+  "unit": {
+    "order": 15,
+    "title_es": "Pronombres relativos (dont, où)",
+    "color": "#117864",
+    "icon": "link"
+  },
+  "checkpoint_desc": "Une frases con qui, que, dont y où. Elige el pronombre según su función: qui (sujeto), que (complemento directo), dont (con «de»: hablar de, el… cuyo…) y où (lugar y tiempo).",
+  "lessons": [
+    { "order": 1, "title_es": "qui y que: sujeto o complemento" },
+    { "order": 2, "title_es": "dont: los verbos y nombres con «de»" },
+    { "order": 3, "title_es": "où: lugar y tiempo" },
+    { "order": 4, "title_es": "Todo junto: elige el relativo" }
+  ],
+  "vocab": [
+    ["le voisin", "el vecino", "n"],
+    ["la collègue", "la colega", "n"],
+    ["le quartier", "el barrio", "n"],
+    ["l'histoire", "la historia", "n"],
+    ["le roman", "la novela", "n"],
+    ["l'auteur", "el autor", "n"],
+    ["le moment", "el momento", "n"],
+    ["l'endroit", "el lugar", "n"],
+    ["le souvenir", "el recuerdo", "n"],
+    ["la réunion", "la reunión", "n"],
+    ["le résultat", "el resultado", "n"],
+    ["l'entreprise", "la empresa", "n"],
+    ["se souvenir de", "acordarse de", "v"],
+    ["avoir besoin de", "necesitar", "v"],
+    ["parler de", "hablar de", "v"],
+    ["s'occuper de", "encargarse de", "v"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "qui_que_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase en francés con su traducción.",
+      "pairs": [
+        ["la femme qui parle", "la mujer que habla"],
+        ["le livre que je lis", "el libro que leo"],
+        ["l'ami qui arrive", "el amigo que llega"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "qui_sujeto",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Completa: «C'est le voisin ___ habite à côté» (el vecino es el sujeto del verbo). Elige el relativo correcto.",
+      "options": ["qui", "que", "dont"],
+      "value": "qui"
+    },
+    {
+      "lesson": 1,
+      "topic": "que_cod",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Completa: «Voici le roman ___ j'ai lu» (le roman es el complemento directo de lire). Elige el relativo correcto.",
+      "options": ["qui", "que", "où"],
+      "value": "que"
+    },
+    {
+      "lesson": 1,
+      "topic": "qui_sujeto_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Escribe el relativo (sujeto del verbo travaille): «J'ai une collègue ___ travaille avec moi.»",
+      "text": "J'ai une collègue ___ travaille avec moi.",
+      "value": "qui",
+      "accepted": ["qui"]
+    },
+    {
+      "lesson": 2,
+      "topic": "dont_parler_de",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Completa: «C'est le livre ___ je parle souvent» (se dice parler DE quelque chose). Elige el relativo correcto.",
+      "options": ["dont", "que", "qui"],
+      "value": "dont"
+    },
+    {
+      "lesson": 2,
+      "topic": "dont_pere",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Completa: «La fille ___ le père est médecin est mon amie» (el padre DE la chica → le père de la fille). Elige el relativo correcto.",
+      "options": ["dont", "qui", "où"],
+      "value": "dont"
+    },
+    {
+      "lesson": 2,
+      "topic": "dont_besoin",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Escribe el relativo (avoir besoin DE): «Voici l'outil ___ j'ai besoin.»",
+      "text": "Voici l'outil ___ j'ai besoin.",
+      "value": "dont",
+      "accepted": ["dont"]
+    },
+    {
+      "lesson": 2,
+      "topic": "dont_souvenir",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: «Es un momento del que me acuerdo.» (se souvenir DE)",
+      "source": "Es un momento del que me acuerdo.",
+      "value": "C'est un moment dont je me souviens.",
+      "accepted": [
+        "C'est un moment dont je me souviens",
+        "C'est un moment dont je me souviens.",
+        "C’est un moment dont je me souviens.",
+        "C’est un moment dont je me souviens"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "dont_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas: «El autor del que hablamos es famoso.»",
+      "tiles": ["L'auteur", "dont", "nous", "parlons", "est", "célèbre", "que", "qui"],
+      "sequence": ["L'auteur", "dont", "nous", "parlons", "est", "célèbre"]
+    },
+    {
+      "lesson": 3,
+      "topic": "ou_lugar",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Completa: «C'est la ville ___ j'habite» (indica el lugar). Elige el relativo correcto.",
+      "options": ["où", "que", "qui"],
+      "value": "où"
+    },
+    {
+      "lesson": 3,
+      "topic": "ou_tiempo",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Escribe el relativo (indica el momento/día): «Je me rappelle le jour ___ nous sommes partis.»",
+      "text": "Je me rappelle le jour ___ nous sommes partis.",
+      "value": "où",
+      "accepted": ["où"]
+    },
+    {
+      "lesson": 3,
+      "topic": "ou_endroit",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: «Es el lugar donde trabajo.»",
+      "source": "Es el lugar donde trabajo.",
+      "value": "C'est l'endroit où je travaille.",
+      "accepted": [
+        "C'est l'endroit où je travaille",
+        "C'est l'endroit où je travaille.",
+        "C’est l’endroit où je travaille.",
+        "C’est l’endroit où je travaille"
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "eleccion_listening_qui",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "La personne qui parle est ma voisine.",
+      "options": [
+        "La personne qui parle est ma voisine.",
+        "La personne que parle est ma voisine.",
+        "La personne dont parle est ma voisine."
+      ],
+      "value": "La personne qui parle est ma voisine."
+    },
+    {
+      "lesson": 4,
+      "topic": "eleccion_listening_dont",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "C'est le projet dont je suis fier.",
+      "options": [
+        "C'est le projet dont je suis fier.",
+        "C'est le projet que je suis fier.",
+        "C'est le projet où je suis fier."
+      ],
+      "value": "C'est le projet dont je suis fier."
+    },
+    {
+      "lesson": 4,
+      "topic": "eleccion_listening_ou",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Voici l'entreprise où je travaille.",
+      "options": [
+        "Voici l'entreprise où je travaille.",
+        "Voici l'entreprise qui je travaille.",
+        "Voici l'entreprise dont je travaille."
+      ],
+      "value": "Voici l'entreprise où je travaille."
+    },
+    {
+      "lesson": 4,
+      "topic": "eleccion_listening_que",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Le résultat que nous attendons est bon.",
+      "options": [
+        "Le résultat que nous attendons est bon.",
+        "Le résultat qui nous attendons est bon.",
+        "Le résultat dont nous attendons est bon."
+      ],
+      "value": "Le résultat que nous attendons est bon."
+    },
+    {
+      "lesson": 4,
+      "topic": "eleccion_speaking_qui",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "La collègue qui s'occupe de la réunion arrive bientôt."
+    },
+    {
+      "lesson": 4,
+      "topic": "eleccion_speaking_dont",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "C'est le souvenir dont je parle le plus souvent."
+    },
+    {
+      "lesson": 4,
+      "topic": "eleccion_speaking_ou",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Le quartier où nous habitons est très calme."
+    }
+  ]
+}

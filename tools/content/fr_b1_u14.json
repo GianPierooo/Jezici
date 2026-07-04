@@ -1,0 +1,220 @@
+{
+  "unit": {
+    "order": 14,
+    "title_es": "El futuro y el condicional",
+    "color": "#1F618D",
+    "icon": "schedule"
+  },
+  "checkpoint_desc": "Demuestra que dominas el futur simple (je ferai, nous serons), el conditionnel présent (je ferais, je voudrais) y las hipótesis con «si» (Si j'avais le temps, je voyagerais).",
+  "lessons": [
+    { "order": 1, "title_es": "El futur simple" },
+    { "order": 2, "title_es": "El conditionnel présent" },
+    { "order": 3, "title_es": "Cortesía y peticiones" },
+    { "order": 4, "title_es": "Hipótesis con «si»" }
+  ],
+  "vocab": [
+    ["le futur", "el futuro", "n"],
+    ["le projet", "el proyecto", "n"],
+    ["le rêve", "el sueño", "n"],
+    ["l'avenir", "el porvenir", "n"],
+    ["le voyage", "el viaje", "n"],
+    ["la chance", "la suerte", "n"],
+    ["le temps", "el tiempo", "n"],
+    ["l'argent", "el dinero", "n"],
+    ["la possibilité", "la posibilidad", "n"],
+    ["le conseil", "el consejo", "n"],
+    ["peut-être", "quizás", "adv"],
+    ["bientôt", "pronto", "adv"],
+    ["demain", "mañana", "adv"],
+    ["si", "si", "conj"],
+    ["voyager", "viajar", "v"],
+    ["souhaiter", "desear", "v"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "futur_endings",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada forma en francés con su traducción.",
+      "pairs": [
+        ["je ferai", "yo haré"],
+        ["tu iras", "tú irás"],
+        ["nous serons", "nosotros seremos"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "futur_avoir",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Demain, il ___ vingt ans. (futuro de «avoir»)",
+      "options": ["aura", "avait", "a eu"],
+      "value": "aura"
+    },
+    {
+      "lesson": 1,
+      "topic": "futur_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa en futur simple: «Nous ___ (partir) à Paris la semaine prochaine.»",
+      "text": "Nous ___ à Paris la semaine prochaine.",
+      "value": "partirons",
+      "accepted": ["partirons"]
+    },
+    {
+      "lesson": 1,
+      "topic": "futur_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: «Mañana iré al mercado.»",
+      "source": "Mañana iré al mercado.",
+      "value": "Demain, j'irai au marché.",
+      "accepted": ["Demain, j'irai au marché.", "Demain j'irai au marché.", "Demain, j'irai au marché", "Demain j'irai au marché", "Demain, j’irai au marché.", "Demain j’irai au marché.", "J'irai au marché demain.", "J'irai au marché demain"]
+    },
+    {
+      "lesson": 1,
+      "topic": "futur_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Un jour, je serai professeur.",
+      "options": ["Un jour, je serai professeur.", "Un jour, je serais professeur.", "Un jour, j'étais professeur."],
+      "value": "Un jour, je serai professeur."
+    },
+    {
+      "lesson": 2,
+      "topic": "conditionnel_endings",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada forma en francés con su traducción.",
+      "pairs": [
+        ["je ferais", "yo haría"],
+        ["tu irais", "tú irías"],
+        ["nous serions", "nosotros seríamos"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "conditionnel_form",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«À ta place, je ___ plus prudent.» (condicional de «être»)",
+      "options": ["serais", "serai", "suis"],
+      "value": "serais"
+    },
+    {
+      "lesson": 2,
+      "topic": "conditionnel_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa en conditionnel présent: «Avec plus d'argent, nous ___ (voyager) davantage.»",
+      "text": "Avec plus d'argent, nous ___ davantage.",
+      "value": "voyagerions",
+      "accepted": ["voyagerions"]
+    },
+    {
+      "lesson": 2,
+      "topic": "futur_vs_conditionnel",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Je ferais un voyage si je pouvais.",
+      "options": ["Je ferais un voyage si je pouvais.", "Je ferai un voyage si je peux.", "Je faisais un voyage si je pouvais."],
+      "value": "Je ferais un voyage si je pouvais."
+    },
+    {
+      "lesson": 2,
+      "topic": "conditionnel_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "À ta place, je prendrais le train."
+    },
+    {
+      "lesson": 3,
+      "topic": "politeness_vouloir",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Pide algo con cortesía en un café: «___ un café, s'il vous plaît.»",
+      "options": ["Je voudrais", "Je veux", "J'ai voulu"],
+      "value": "Je voudrais"
+    },
+    {
+      "lesson": 3,
+      "topic": "politeness_pourriez",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena una petición cortés con «pouvoir» en condicional: «¿Podría usted repetir, por favor?»",
+      "tiles": ["Pourriez-vous", "répéter", "s'il vous plaît", "Pouvez", "voudrais"],
+      "sequence": ["Pourriez-vous", "répéter", "s'il vous plaît"]
+    },
+    {
+      "lesson": 3,
+      "topic": "politeness_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce con cortesía: «Me gustaría reservar una mesa.»",
+      "source": "Me gustaría reservar una mesa.",
+      "value": "Je voudrais réserver une table.",
+      "accepted": ["Je voudrais réserver une table.", "Je voudrais réserver une table", "J'aimerais réserver une table.", "J'aimerais réserver une table", "J’aimerais réserver une table.", "Je voudrais réserver une table."]
+    },
+    {
+      "lesson": 3,
+      "topic": "politeness_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Est-ce que tu pourrais m'aider ?",
+      "options": ["Est-ce que tu pourrais m'aider ?", "Est-ce que tu pourras m'aider ?", "Est-ce que tu peux m'aider ?"],
+      "value": "Est-ce que tu pourrais m'aider ?"
+    },
+    {
+      "lesson": 3,
+      "topic": "politeness_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Pourriez-vous m'indiquer la gare, s'il vous plaît ?"
+    },
+    {
+      "lesson": 4,
+      "topic": "si_hypothesis_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase en francés con su traducción.",
+      "pairs": [
+        ["Si j'avais le temps", "Si tuviera tiempo"],
+        ["je voyagerais", "yo viajaría"],
+        ["Si tu veux, tu peux", "Si quieres, puedes"]
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "si_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Si j'avais le temps, je voyagerais plus.",
+      "options": ["Si j'avais le temps, je voyagerais plus.", "Si j'aurais le temps, je voyagerais plus.", "Si j'avais le temps, je voyagerai plus."],
+      "value": "Si j'avais le temps, je voyagerais plus."
+    },
+    {
+      "lesson": 4,
+      "topic": "si_reorder",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena la frase: «Si fuera rico, compraría una casa.»",
+      "tiles": ["Si", "j'étais", "riche,", "j'achèterais", "une maison", "j'acheterai"],
+      "sequence": ["Si", "j'étais", "riche,", "j'achèterais", "une maison"]
+    },
+    {
+      "lesson": 4,
+      "topic": "si_real_condition",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Si tu veux, tu peux venir avec nous."
+    }
+  ]
+}

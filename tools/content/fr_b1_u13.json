@@ -1,0 +1,215 @@
+{
+  "unit": {"order": 13, "title_es": "Deseos y necesidad (subjonctif)", "color": "#6C3483", "icon": "auto_awesome"},
+  "checkpoint_desc": "Usa el subjonctif présent para expresar necesidad, deseo, emoción y duda.",
+  "lessons": [
+    {"order": 1, "title_es": "Il faut que… (necesidad)"},
+    {"order": 2, "title_es": "Je veux que… (deseo)"},
+    {"order": 3, "title_es": "Emoción y duda (content que, ne pas croire que)"},
+    {"order": 4, "title_es": "bien que, pour que (conjunciones)"}
+  ],
+  "vocab": [
+    ["il faut que", "es necesario que", "expresion"],
+    ["vouloir", "querer", "verbo"],
+    ["souhaiter", "desear", "verbo"],
+    ["falloir", "hacer falta", "verbo"],
+    ["le subjonctif", "el subjuntivo", "sustantivo"],
+    ["bien que", "aunque", "expresion"],
+    ["pour que", "para que", "expresion"],
+    ["le doute", "la duda", "sustantivo"],
+    ["l'émotion", "la emoción", "sustantivo"],
+    ["content", "contento", "adjetivo"],
+    ["désolé", "apenado", "adjetivo"],
+    ["nécessaire", "necesario", "adjetivo"],
+    ["la peur", "el miedo", "sustantivo"],
+    ["avant que", "antes de que", "expresion"],
+    ["à condition que", "con la condición de que", "expresion"],
+    ["heureux", "feliz", "adjetivo"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "il_faut_que",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une la frase francesa con su traducción.",
+      "pairs": [
+        ["Il faut que tu fasses tes devoirs.", "Es necesario que hagas tus deberes."],
+        ["Il faut que je sois à l'heure.", "Es necesario que yo esté a tiempo."],
+        ["Il faut qu'elle aille chez le médecin.", "Es necesario que ella vaya al médico."]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "faire_subj",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el subjonctif de « faire ».",
+      "text": "Il faut que tu ___ attention.",
+      "value": "fasses",
+      "accepted": ["fasses"]
+    },
+    {
+      "lesson": 1,
+      "topic": "etre_subj",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Il faut que je sois patient.",
+      "options": ["Il faut que je sois patient.", "Il faut que je suis patient.", "Il faut que je serai patient."],
+      "value": "Il faut que je sois patient."
+    },
+    {
+      "lesson": 1,
+      "topic": "aller_subj",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Il faut que nous allions à la gare avant midi."
+    },
+    {
+      "lesson": 2,
+      "topic": "vouloir_que",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la forma correcta del subjonctif.",
+      "options": ["Je veux que tu viennes avec moi.", "Je veux que tu viens avec moi.", "Je veux que tu venir avec moi."],
+      "value": "Je veux que tu viennes avec moi."
+    },
+    {
+      "lesson": 2,
+      "topic": "venir_subj",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Construye la frase: Quiero que vengas mañana.",
+      "tiles": ["Je", "veux", "que", "tu", "viennes", "demain", "viens", "venir"],
+      "sequence": ["Je", "veux", "que", "tu", "viennes", "demain"]
+    },
+    {
+      "lesson": 2,
+      "topic": "souhaiter_que",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: Deseo que tengas suerte.",
+      "source": "Deseo que tengas suerte.",
+      "value": "Je souhaite que tu aies de la chance.",
+      "accepted": [
+        "Je souhaite que tu aies de la chance",
+        "Je souhaite que tu aies de la chance."
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "souhaiter_subj_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la forma correcta del subjonctif.",
+      "options": ["Je souhaite que vous soyez contents.", "Je souhaite que vous êtes contents.", "Je souhaite que vous serez contents."],
+      "value": "Je souhaite que vous soyez contents."
+    },
+    {
+      "lesson": 2,
+      "topic": "pouvoir_subj",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Je veux que tu puisses venir.",
+      "options": ["Je veux que tu puisses venir.", "Je veux que tu peux venir.", "Je veux que tu pourras venir."],
+      "value": "Je veux que tu puisses venir."
+    },
+    {
+      "lesson": 2,
+      "topic": "vouloir_que_speak",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Mes parents veulent que je sois heureux."
+    },
+    {
+      "lesson": 3,
+      "topic": "content_que",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une la frase francesa con su traducción.",
+      "pairs": [
+        ["Je suis content que tu sois là.", "Estoy contento de que estés aquí."],
+        ["Je suis désolé que tu aies mal.", "Lamento que te duela."],
+        ["Je doute qu'il puisse venir.", "Dudo que él pueda venir."]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "etre_subj_emotion",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el subjonctif de « être ».",
+      "text": "Je suis heureux que tu ___ là.",
+      "value": "sois",
+      "accepted": ["sois"]
+    },
+    {
+      "lesson": 3,
+      "topic": "avoir_subj",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la forma correcta del subjonctif.",
+      "options": ["J'ai peur qu'il ait un problème.", "J'ai peur qu'il a un problème.", "J'ai peur qu'il aura un problème."],
+      "value": "J'ai peur qu'il ait un problème."
+    },
+    {
+      "lesson": 3,
+      "topic": "douter_que",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Je doute qu'elle sache la réponse.",
+      "options": ["Je doute qu'elle sache la réponse.", "Je doute qu'elle sait la réponse.", "Je doute qu'elle saura la réponse."],
+      "value": "Je doute qu'elle sache la réponse."
+    },
+    {
+      "lesson": 3,
+      "topic": "emotion_speak",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Je suis désolé que vous ne puissiez pas rester."
+    },
+    {
+      "lesson": 4,
+      "topic": "bien_que",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la forma correcta del subjonctif.",
+      "options": ["Bien que ce soit difficile, je continue.", "Bien que c'est difficile, je continue.", "Bien que ce sera difficile, je continue."],
+      "value": "Bien que ce soit difficile, je continue."
+    },
+    {
+      "lesson": 4,
+      "topic": "pour_que",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el subjonctif de « avoir ».",
+      "text": "Je t'explique pour que tu ___ moins de doutes.",
+      "value": "aies",
+      "accepted": ["aies"]
+    },
+    {
+      "lesson": 4,
+      "topic": "pour_que_reorder",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena las palabras para formar la frase.",
+      "tiles": ["qu'elle", "vienne", "Je", "pour", "l'appelle"],
+      "sequence": ["Je", "l'appelle", "pour", "qu'elle", "vienne"]
+    },
+    {
+      "lesson": 4,
+      "topic": "bien_que_listen",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Bien que tu sois fatigué, tu travailles.",
+      "options": ["Bien que tu sois fatigué, tu travailles.", "Bien que tu es fatigué, tu travailles.", "Bien que tu seras fatigué, tu travailles."],
+      "value": "Bien que tu sois fatigué, tu travailles."
+    }
+  ]
+}

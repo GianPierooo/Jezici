@@ -2,6 +2,27 @@
 
 ---
 
+## B1 es→fr (escalera A2→B1) — 2026-07-03 ✅ LIVE + VERIFICADO
+> Tras alemán, **francés tiene B1 completo** (units 13-18). it/nl B1 diferidos con retome exacto.
+- **Contenido (mig 113):** 6 unidades, **114 ítems R36/W36/L24/S18** (L=67% S=50%), audio TTS tl=fr **42/42**.
+  Currículo B1 real: subjonctif présent, futur & conditionnel, pronoms relatifs (qui/que/dont/où), accord du
+  participe passé, discours indirect, pronoms compléments (le/lui/y/en). Progresión desde A2.
+- **Autoría:** 6 profesores nativos IA (spec estricta R6/W6/L4/S3) + **2 revisores/rebalanceadores nativos**
+  (fixes reales: prompt español agramatical «tengas de la suerte», élision «pour qu'elle»/«s'il», un
+  `accepted` que aceptaba «ou» [conjunción] por «où» [relativo] → removido, distractores audibles para el
+  accord [prise/mise], «si j'aurais» usado como distractor incorrecto). `lesson`/`topic` preservados.
+- **Verificado END-TO-END cliente real** (`verify_b1_chain.py fr`, JWT): determinista B1 96/96 correctos +
+  96/96 distractores (42501); **CAMINA A1→B1 las 18 unidades** (U12→U13 gating; 30/30 lecciones B1); **0
+  lesson_items cruzan los 6 cursos**; default(en) sin fuga; audio HEAD 42/42. analyze 0.
+- **Retome EXACTO B1 es→it (diferido):** 6 agentes nativos it (mismos prompts que fr, s/francés/italiano)
+  con gramática it: U13 congiuntivo presente (che io sia/faccia…), U14 futuro & condizionale (-ò vs -ei,
+  periodo ipotetico), U15 pronomi relativi (che/cui/il quale), U16 concordanza del participio (essere→sogg.,
+  avere+lo/la/li/le antepuesto), U17 discorso indiretto (che/se + concordanza), U18 pronomi (ci/ne/combinati
+  glielo) → validar R6/W6/L4/S3 → `python gen_course.py it b1` (STAMP 20260703120114 reservado) →
+  `python gen_audio_missing.py it-b1` → `python verify_b1_chain.py it`. Andamiaje completo listo.
+
+---
+
 ## B1 es→de (escalera A2→B1) — 2026-07-03 ✅ LIVE + VERIFICADO
 > de/nl llegaban a A2; ahora **alemán tiene B1 completo** (units 13-18, encadena A2→B1). nl B1 diferido con retome.
 - **Contenido (mig 111):** 6 unidades, **114 ítems R36/W36/L24/S18** (L=67%, S=50% → objetivo cumplido),

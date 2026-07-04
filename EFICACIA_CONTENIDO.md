@@ -6,6 +6,14 @@
 > Prioridad: es→en A1/A2 a fondo (lo que los testers usan hoy). B1–C1 y es→pt: perfil
 > estructural + diferido (ver "Pendiente").
 
+## B1 es→fr (escalera A2→B1) (2026-07-03)
+- **B1 francés completo (mig 113):** 6 unidades (order 13-18), 114 ítems, balance **L=67% S=50%**. Currículo
+  B1 CEFR-real (no traducción del inglés): subjonctif présent, futur/conditionnel, pronoms relatifs
+  (qui/que/dont/où), accord du participe passé, discours indirect, pronoms compléments — progresión desde A2.
+  6 profesores nativos IA + rebalanceo/revisión adversarial nativa (0 errores tras la pasada; fixes de
+  élision, accepted, distractores audibles). Francés pasa de "A1+A2" a **A1→B1** (verify_b1_chain fr PASS).
+  **Diferido: B1 it/nl** (andamiaje listo; retome exacto en FINDINGS.md). B2+ no existe aún.
+
 ## B1 es→de (escalera A2→B1) (2026-07-03)
 - **B1 alemán completo (mig 111):** 6 unidades (order 13-18), 114 ítems, balance **L=67% S=50%** (objetivo
   cumplido, no 1:1). Currículo B1 CEFR-real (no traducción del inglés): Konjunktiv II, Nebensätze/Konnektoren,

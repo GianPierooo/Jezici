@@ -1,0 +1,217 @@
+{
+  "unit": {
+    "order": 17,
+    "title_es": "Estilo indirecto (contar lo que dicen)",
+    "color": "#922B21",
+    "icon": "forum"
+  },
+  "checkpoint_desc": "Cuenta lo que otros dicen, preguntan o piden usando el estilo indirecto: los conectores que/si/ce que/de y la concordancia de tiempos cuando el verbo introductor va en pasado.",
+  "lessons": [
+    { "order": 1, "title_es": "Decir que… (dire que / affirmations)" },
+    { "order": 2, "title_es": "Preguntar si… y qué… (demander si / ce que)" },
+    { "order": 3, "title_es": "Pedir que… (dire/demander de + infinitivo)" },
+    { "order": 4, "title_es": "Contar en pasado (concordancia de tiempos)" }
+  ],
+  "vocab": [
+    ["le discours indirect", "el estilo indirecto", "n"],
+    ["une affirmation", "una afirmación", "n"],
+    ["une question", "una pregunta", "n"],
+    ["une demande", "una petición", "n"],
+    ["répéter", "repetir", "v"],
+    ["raconter", "contar, relatar", "v"],
+    ["expliquer", "explicar", "v"],
+    ["ajouter", "añadir", "v"],
+    ["avouer", "confesar, admitir", "v"],
+    ["préciser", "precisar", "v"],
+    ["la veille", "la víspera, el día anterior", "n"],
+    ["le lendemain", "el día siguiente", "n"],
+    ["à ce moment-là", "en ese momento", "adv"],
+    ["ce jour-là", "aquel día", "adv"],
+    ["autrefois", "antaño, antes", "adv"],
+    ["par la suite", "más tarde, después", "adv"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "dire_que_affirmation",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une las frases en estilo indirecto con su significado.",
+      "pairs": [
+        ["Il dit qu'il est fatigué.", "Dice que está cansado."],
+        ["Elle dit qu'elle arrive bientôt.", "Dice que llega pronto."],
+        ["Ils disent qu'ils sont prêts.", "Dicen que están listos."]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "dire_que_connecteur",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Para contar una afirmación tras «Il dit…», ¿qué frase es correcta?",
+      "options": ["Il dit qu'il travaille demain.", "Il dit s'il travaille demain.", "Il dit ce qu'il travaille demain."],
+      "value": "Il dit qu'il travaille demain."
+    },
+    {
+      "lesson": 1,
+      "topic": "dire_que_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa (afirmación): «Ella dice ___ tiene hambre».",
+      "text": "Elle dit ___ elle a faim.",
+      "value": "qu'",
+      "accepted": ["qu'", "qu’"]
+    },
+    {
+      "lesson": 1,
+      "topic": "dire_que_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: «Él dice que vive en París».",
+      "source": "Él dice que vive en París.",
+      "value": "Il dit qu'il habite à Paris.",
+      "accepted": ["Il dit qu'il habite à Paris", "Il dit qu'il habite à Paris.", "Il dit qu’il habite à Paris.", "Il dit qu'il vit à Paris.", "Il dit qu'il vit à Paris"]
+    },
+    {
+      "lesson": 1,
+      "topic": "dire_que_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Elle dit qu'elle est contente.",
+      "options": ["Elle dit qu'elle est contente.", "Elle dit si elle est contente.", "Elle demande si elle est contente."],
+      "value": "Elle dit qu'elle est contente."
+    },
+    {
+      "lesson": 2,
+      "topic": "demander_si_reading",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Pregunta cerrada (sí/no) en estilo indirecto: «Il me demande… je viens».",
+      "options": ["Il me demande si je viens.", "Il me demande que je viens.", "Il me demande ce que je viens."],
+      "value": "Il me demande si je viens."
+    },
+    {
+      "lesson": 2,
+      "topic": "demander_ce_que_reading",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une la pregunta indirecta con su tipo.",
+      "pairs": [
+        ["Il demande si tu es là.", "pregunta sí/no → si"],
+        ["Il demande ce que tu fais.", "pregunta sobre qué → ce que"],
+        ["Il demande où tu vas.", "pregunta sobre lugar → où"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "demander_ce_que_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa (pregunta sobre «qué»): «Él pregunta ___ quieres».",
+      "text": "Il demande ___ tu veux.",
+      "value": "ce que",
+      "accepted": ["ce que", "ce qu'", "ce qu’"]
+    },
+    {
+      "lesson": 2,
+      "topic": "demander_si_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena: «Ella pregunta si tú estás cansado».",
+      "tiles": ["Elle", "demande", "si", "tu", "es", "fatigué", "que", "ce que"],
+      "sequence": ["Elle", "demande", "si", "tu", "es", "fatigué"]
+    },
+    {
+      "lesson": 2,
+      "topic": "demander_ce_que_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Il demande ce que tu fais.",
+      "options": ["Il demande ce que tu fais.", "Il demande si tu viens.", "Il dit ce qu'il fait."],
+      "value": "Il demande ce que tu fais."
+    },
+    {
+      "lesson": 3,
+      "topic": "dire_de_reading",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Convertir una orden («¡Ven!») al estilo indirecto:",
+      "options": ["Il me dit de venir.", "Il me dit que venir.", "Il me dit si venir."],
+      "value": "Il me dit de venir."
+    },
+    {
+      "lesson": 3,
+      "topic": "dire_de_reorder",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena: «Él nos pide cerrar la puerta».",
+      "tiles": ["Il", "nous", "demande", "de", "fermer", "la", "porte", "que"],
+      "sequence": ["Il", "nous", "demande", "de", "fermer", "la", "porte"]
+    },
+    {
+      "lesson": 3,
+      "topic": "dire_de_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Elle me demande d'attendre.",
+      "options": ["Elle me demande d'attendre.", "Elle me demande d'entrer.", "Elle me dit de partir."],
+      "value": "Elle me demande d'attendre."
+    },
+    {
+      "lesson": 3,
+      "topic": "dire_de_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Elle me dit de faire attention."
+    },
+    {
+      "lesson": 4,
+      "topic": "concordance_present_imparfait",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Il a dit…» (pasado). El presente «je suis fatigué» pasa a:",
+      "options": ["Il a dit qu'il était fatigué.", "Il a dit qu'il est fatigué.", "Il a dit qu'il sera fatigué."],
+      "value": "Il a dit qu'il était fatigué."
+    },
+    {
+      "lesson": 4,
+      "topic": "concordance_futur_conditionnel",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "«Elle a dit…» (pasado). El futuro «je viendrai» pasa al condicional: «Elle a dit qu'elle ___ le lendemain».",
+      "text": "Elle a dit qu'elle ___ le lendemain.",
+      "value": "viendrait",
+      "accepted": ["viendrait"]
+    },
+    {
+      "lesson": 4,
+      "topic": "concordance_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Il a expliqué qu'il avait oublié la veille."
+    },
+    {
+      "lesson": 4,
+      "topic": "concordance_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Elle a dit qu'elle était prête.",
+      "options": ["Elle a dit qu'elle était prête.", "Elle a dit qu'elle est prête.", "Elle dit qu'elle était prête."],
+      "value": "Elle a dit qu'elle était prête."
+    },
+    {
+      "lesson": 4,
+      "topic": "concordance_speaking_bis",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Elle a demandé si nous avions compris."
+    }
+  ]
+}
