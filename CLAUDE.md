@@ -26,18 +26,14 @@
 
 ## Cola (retome exacto — orden sugerido)
 > Estado de niveles hoy (verificado en BD): **en A1–C1 · pt A1–B1 · fr A1–B1 · it A1–A2 ·
-> de A1–B2 · nl A1–A2**. Andamiaje de escalera probado 4× (de B1, fr B1, de B2, +): generador
+> de A1–B2 · nl A1–B1**. Andamiaje de escalera probado 5× (de B1, fr B1, de B2, nl B1, +): generador
 > `gen_course.py <code> <a1|a2|b1|b2>`, audio `gen_audio_missing.py <code>-<lvl>`, verificadores
 > `verify_b1_chain.py`/`verify_b2_chain.py <code>`. STAMPS reservados en `gen_course.py`.
-1. **B1 es→nl** (STAMP 20260703120112). 6 agentes nativos nl (prompts de una escalera previa
-   s/idioma/neerlandés) + gramática B1 nl: conditionalis (zou+inf), bijzinnen/voegwoorden
-   (omdat/hoewel/als/dat + daarom, werkwoord achteraan), relatieve bijzinnen (die/dat/wie/waar),
-   lijdende vorm (worden + voltooid deelwoord), vaste voorzetsels + «om…te», voltooid verleden/
-   conditionalis verleden (zou hebben + deelwoord) → rebalanceo/revisión → `gen_course.py nl b1`
-   → `gen_audio_missing.py nl-b1` → `verify_b1_chain.py nl`.
-2. **B2 es→nl** (STAMP 20260703120116) — SOLO tras (1), si no hay hueco A2→B2. Mismo pipeline,
-   `gen_course.py nl b2` → `nl-b2` → `verify_b2_chain.py nl`.
-3. **B1 es→it** (STAMP 20260703120114). 6 agentes nativos it: congiuntivo presente, futuro/
+1. **B2 es→nl** (STAMP 20260703120116) — YA DESBLOQUEADO (nl tiene B1 desde mig 112). 6 agentes
+   nativos nl B2: register/complexe voegwoorden (niettemin/desondanks), lijdende vorm avanzada,
+   deelwoord als bijvoeglijk, indirecte rede, nominalisatie, «zou … hebben». Mismo pipeline:
+   `gen_course.py nl b2` → `gen_audio_missing.py nl-b2` → `verify_b2_chain.py nl`.
+2. **B1 es→it** (STAMP 20260703120114). 6 agentes nativos it: congiuntivo presente, futuro/
    condizionale (periodo ipotetico), pronomi relativi (che/cui), concordanza del participio
    (essere→sogg., avere+lo/la/li/le antepuesto), discorso indiretto, pronomi (ci/ne/combinati
    «glielo») → `gen_course.py it b1` → `it-b1` → `verify_b1_chain.py it`.
@@ -58,7 +54,7 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
 (Postgres + RLS + RPCs SECURITY DEFINER) + **Vercel** (deploy del web). Repo
 `github.com/GianPierooo/Jezici`, deploy `jezici.vercel.app`.
 - 6 cursos: **es→en** (A1–C1), **es→pt** (A1–B1), **es→fr** (A1–B1), **es→it** (A1–A2),
-  **es→de** (A1–B2) y **es→nl** (A1–A2). Curso activo por usuario
+  **es→de** (A1–B2) y **es→nl** (A1–B1). Curso activo por usuario
   (`jz_active_course`). Selector en Ajustes.
 - Loop: lección → ejercicios (9 tipos) → grading **server-side** → XP/oro/vidas →
   checkpoints (≥80%) → exámenes de nivel + certificados. Práctica/SRS, logros, ligas
@@ -169,13 +165,19 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
   `jz_grade` pasa a minúsculas (near-match NO aplica a MC, sí el lowercase) → aceptaba el distractor;
   corregido (Lesen/Lesung/Leser) + guard norm-exacto en TODOS los B2 (0 colisiones, 92/92 distractores
   rechazados) + `gen_course.py` robusto ante `prompt` faltante. **alemán es→de: A1→B2 completo.**
-- **Diferido:** **B2 es→nl BLOQUEADO por B1 es→nl** (nl solo llega a A2 hoy — B1 nl fue diferido). Retome:
-  primero **B1 es→nl** (STAMP 20260703120112) y LUEGO **B2 es→nl** (STAMP 20260703120116), mismo pipeline
-  (6 agentes nativos nl + rebalanceo + `gen_course.py nl b1|b2` + `gen_audio_missing.py nl-b1|nl-b2` +
-  `verify_b1_chain.py nl` / `verify_b2_chain.py nl`). **B1 es→nl** (retome EXACTO: 6 agentes nativos nl mismos prompts s/de/nl + gramática nl
-  [conditionalis zou, bijzinnen/voegwoorden, relatieve bijzinnen die/dat, lijdende vorm worden, vaste
-  voorzetsels + om…te, voltooid verleden/conditionalis verleden] → validar R6/W6/L4/S3 → `gen_course.py
-  nl b1` [STAMP 20260703120112 ya reservado] → `gen_audio_missing.py nl-b1` → `verify_b1_chain.py nl`).
+- **B1 es→nl ✅ LIVE (mig 112, 2026-07-03):** 6 unidades (order 13-18, encadenan A2→B1; U12 desbloquea
+  U13), **114 ítems (R36/W36/L24/S18 → L=67% S=50%)**, audio TTS tl=nl **42/42**. Currículo B1 REAL:
+  **conditionalis** (zou + inf: cortesía/deseos/hipótesis), **bijzinnen & voegwoorden** (omdat/dat/hoewel/
+  als + daarom/dus, werkwoord achteraan), **relatieve bijzinnen** (die/dat/wie/waar), **lijdende vorm**
+  (worden/werd + voltooid deelwoord, door), **vaste voorzetsels + «om…te»** (wachten op, denken aan,
+  houden van), **voltooid verleden + conditionalis verleden** (had/was + deelwoord; zou hebben/zijn +
+  deelwoord). 6 profesores nativos IA + **rebalanceo/revisión adversarial nativa** (als=voegwoord no
+  voornaamwoord, «maar toch», gereisd por 't kofschip, distractor «kok»→«koken» dist-2, listening de
+  «om…te» con distractores audibles, guard de colisión MC). **Verificado cliente real (`verify_b1_chain.py
+  nl`):** determinista 96/96 + 96/96 distractores (42501); **CAMINA A1→B1 las 18 unidades** (U12→U13,
+  30/30 lecciones B1); **0 lesson_items cruzan los 6 cursos**; default(en) sin fuga; audio 42/42.
+- **Diferido:** **B2 es→nl** (YA DESBLOQUEADO — nl tiene B1; STAMP 20260703120116, mismo pipeline;
+  ver "## Cola" ítem 1).
   B2+ de/nl; imágenes; onboarding de/nl-específico.
 
 ## Stack / mecánica clave

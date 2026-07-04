@@ -1,0 +1,271 @@
+{
+  "unit": {
+    "order": 16,
+    "title_es": "La voz pasiva (worden + deelwoord)",
+    "color": "#B9770E",
+    "icon": "settings"
+  },
+  "checkpoint_desc": "Forma la voz pasiva en presente con worden + participio, en pasado con werd/werden + participio y en perfecto con is/zijn + participio, e introduce el agente con door.",
+  "lessons": [
+    { "order": 1, "title_es": "Presente pasivo: wordt/worden + deelwoord" },
+    { "order": 2, "title_es": "El agente con door" },
+    { "order": 3, "title_es": "Pasado pasivo: werd/werden + deelwoord" },
+    { "order": 4, "title_es": "Perfecto pasivo (is/zijn) y activa frente a pasiva" }
+  ],
+  "vocab": [
+    ["worden", "ser (auxiliar de pasiva)", "werkwoord"],
+    ["de fabriek", "la fábrica", "noun"],
+    ["de brug", "el puente", "noun"],
+    ["de brief", "la carta", "noun"],
+    ["het pakket", "el paquete", "noun"],
+    ["het contract", "el contrato", "noun"],
+    ["de rekening", "la factura / la cuenta", "noun"],
+    ["de arbeider", "el obrero", "noun"],
+    ["de schrijver", "el escritor", "noun"],
+    ["de machine", "la máquina", "noun"],
+    ["het resultaat", "el resultado", "noun"],
+    ["bouwen", "construir", "werkwoord"],
+    ["repareren", "reparar", "werkwoord"],
+    ["bezorgen", "entregar / repartir", "werkwoord"],
+    ["door", "por (agente)", "voorzetsel"],
+    ["opgericht", "fundado", "voltooid deelwoord"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "present_passive_intro",
+      "skill": "reading",
+      "type": "match",
+      "reading": true,
+      "prompt": "Une cada palabra neerlandesa con su significado en español.",
+      "pairs": [
+        ["de fabriek", "la fábrica"],
+        ["het contract", "el contrato"],
+        ["repareren", "reparar"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "present_passive_wordt",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "reading": true,
+      "prompt": "Elige la voz pasiva en presente: «La casa se construye».",
+      "options": [
+        "Het huis wordt gebouwd.",
+        "Het huis wordt bouwen.",
+        "Het huis is gebouwd."
+      ],
+      "value": "Het huis wordt gebouwd."
+    },
+    {
+      "lesson": 1,
+      "topic": "present_passive_wordt_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "writing": true,
+      "prompt": "Completa con la forma correcta de 'worden' en presente (sujeto singular): «El puente se repara».",
+      "text": "De brug ___ gerepareerd.",
+      "value": "wordt",
+      "accepted": ["wordt"]
+    },
+    {
+      "lesson": 1,
+      "topic": "present_passive_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "writing": true,
+      "prompt": "Ordena las fichas para formar la frase pasiva en presente: «El contrato se firma».",
+      "tiles": ["Het", "contract", "wordt", "getekend", "werd", "is"],
+      "sequence": ["Het", "contract", "wordt", "getekend"]
+    },
+    {
+      "lesson": 2,
+      "topic": "agent_door_preposition",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "reading": true,
+      "prompt": "¿Qué preposición introduce al agente (quien hace la acción) en la voz pasiva neerlandesa?",
+      "options": [
+        "door",
+        "van",
+        "met"
+      ],
+      "value": "door"
+    },
+    {
+      "lesson": 2,
+      "topic": "agent_door_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "writing": true,
+      "prompt": "Completa con la preposición del agente: «La factura es pagada por el cliente».",
+      "text": "De rekening wordt ___ de klant betaald.",
+      "value": "door",
+      "accepted": ["door"]
+    },
+    {
+      "lesson": 2,
+      "topic": "agent_door_translation",
+      "skill": "writing",
+      "type": "translation",
+      "writing": true,
+      "prompt": "Traduce al neerlandés (presente pasivo con agente): «El libro es leído por el escritor».",
+      "source": "El libro es leído por el escritor.",
+      "value": "Het boek wordt door de schrijver gelezen.",
+      "accepted": [
+        "Het boek wordt door de schrijver gelezen.",
+        "Het boek wordt door de schrijver gelezen",
+        "Het boek wordt gelezen door de schrijver.",
+        "Het boek wordt gelezen door de schrijver"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "past_passive_werd",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "reading": true,
+      "prompt": "Elige la voz pasiva en pasado (sujeto singular): «La casa fue construida».",
+      "options": [
+        "Het huis werd gebouwd.",
+        "Het huis wordt gebouwd.",
+        "Het huis was gebouwd."
+      ],
+      "value": "Het huis werd gebouwd."
+    },
+    {
+      "lesson": 3,
+      "topic": "past_passive_werden_plural_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "writing": true,
+      "prompt": "El sujeto es plural (de huizen = las casas). Completa con la forma de 'worden' en pasado: «Las casas fueron construidas en 1990».",
+      "text": "De huizen ___ in 1990 gebouwd.",
+      "value": "werden",
+      "accepted": ["werden"]
+    },
+    {
+      "lesson": 3,
+      "topic": "past_passive_reorder",
+      "skill": "writing",
+      "type": "reorder",
+      "writing": true,
+      "prompt": "Ordena las palabras para formar la frase pasiva en pasado: «La fábrica fue fundada por mi abuelo».",
+      "tiles": ["De", "fabriek", "werd", "door", "mijn", "opa", "opgericht"],
+      "sequence": ["De", "fabriek", "werd", "door", "mijn", "opa", "opgericht"]
+    },
+    {
+      "lesson": 4,
+      "topic": "perfect_passive_is",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "reading": true,
+      "prompt": "El perfecto pasivo usa 'is/zijn' + participio (sin 'geworden'). Elige la frase correcta: «El trabajo ya ha sido hecho».",
+      "options": [
+        "Het werk is al gedaan.",
+        "Het werk wordt al gedaan.",
+        "Het werk heeft al gedaan."
+      ],
+      "value": "Het werk is al gedaan."
+    },
+    {
+      "lesson": 4,
+      "topic": "active_vs_passive",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "reading": true,
+      "prompt": "Una frase está en ACTIVA y otra en PASIVA. ¿Cuál es la PASIVA?",
+      "options": [
+        "Het huis wordt door de arbeider gebouwd.",
+        "De arbeider bouwt het huis.",
+        "De arbeider heeft het huis gebouwd."
+      ],
+      "value": "Het huis wordt door de arbeider gebouwd."
+    },
+    {
+      "lesson": 1,
+      "topic": "present_passive_listening",
+      "skill": "listening",
+      "type": "listening",
+      "listening": true,
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Het huis wordt gebouwd.",
+      "options": [
+        "Het huis wordt gebouwd.",
+        "Het huis werd gebouwd.",
+        "Het huis is gebouwd."
+      ],
+      "value": "Het huis wordt gebouwd."
+    },
+    {
+      "lesson": 3,
+      "topic": "past_passive_listening",
+      "skill": "listening",
+      "type": "listening",
+      "listening": true,
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "De brug werd gerepareerd.",
+      "options": [
+        "De brug werd gerepareerd.",
+        "De brug wordt gerepareerd.",
+        "De brug is gerepareerd."
+      ],
+      "value": "De brug werd gerepareerd."
+    },
+    {
+      "lesson": 2,
+      "topic": "agent_door_listening",
+      "skill": "listening",
+      "type": "listening",
+      "listening": true,
+      "prompt": "Escucha la frase pasiva con agente y elige la que oíste.",
+      "say": "Het boek wordt door de schrijver geschreven.",
+      "options": [
+        "Het boek wordt door de schrijver geschreven.",
+        "Het boek wordt door de schrijver gelezen.",
+        "Het boek werd door de schrijver geschreven."
+      ],
+      "value": "Het boek wordt door de schrijver geschreven."
+    },
+    {
+      "lesson": 4,
+      "topic": "perfect_passive_listening",
+      "skill": "listening",
+      "type": "listening",
+      "listening": true,
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "De brieven zijn verstuurd.",
+      "options": [
+        "De brieven zijn verstuurd.",
+        "De brieven worden verstuurd.",
+        "De brieven zijn ontvangen."
+      ],
+      "value": "De brieven zijn verstuurd."
+    },
+    {
+      "lesson": 2,
+      "topic": "agent_door_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta esta frase pasiva con agente.",
+      "read": "Het huis wordt door de arbeider gebouwd."
+    },
+    {
+      "lesson": 3,
+      "topic": "past_passive_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta esta frase pasiva en pasado.",
+      "read": "De rekening werd gisteren betaald."
+    },
+    {
+      "lesson": 4,
+      "topic": "perfect_passive_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta esta frase pasiva en perfecto.",
+      "read": "Het contract is door de directeur getekend."
+    }
+  ]
+}

@@ -1,0 +1,258 @@
+{
+  "unit": {
+    "order": 13,
+    "title_es": "Cortesía y deseos (zou + infinitivo)",
+    "color": "#6C3483",
+    "icon": "auto_awesome"
+  },
+  "checkpoint_desc": "Expresa cortesía, deseos e hipótesis con «zou» + infinitivo, colocando el infinitivo al final.",
+  "lessons": [
+    { "order": 1, "title_es": "Pedir con cortesía (zou je... kunnen?)" },
+    { "order": 2, "title_es": "Deseos con zou graag willen" },
+    { "order": 3, "title_es": "Hipótesis y consejos (als ik jou was)" },
+    { "order": 4, "title_es": "¿Qué harías tú? (wat zou jij doen?)" }
+  ],
+  "vocab": [
+    ["zou", "haría/-ía (condicional)", "werkwoord"],
+    ["zouden", "harían/-ían (condicional plural)", "werkwoord"],
+    ["graag", "con gusto / gustaría", "bijwoord"],
+    ["willen", "querer", "werkwoord"],
+    ["kunnen", "poder", "werkwoord"],
+    ["helpen", "ayudar", "werkwoord"],
+    ["misschien", "quizás", "bijwoord"],
+    ["liever", "preferiblemente / más bien", "bijwoord"],
+    ["het advies", "el consejo", "zelfstandig naamwoord"],
+    ["de wens", "el deseo", "zelfstandig naamwoord"],
+    ["als", "si (condicional)", "voegwoord"],
+    ["beleefd", "cortés / educado", "bijvoeglijk naamwoord"],
+    ["moeten", "deber / tener que", "werkwoord"],
+    ["vragen", "preguntar / pedir", "werkwoord"],
+    ["de mogelijkheid", "la posibilidad", "zelfstandig naamwoord"],
+    ["Ik zou graag", "me gustaría", "uitdrukking"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "polite_request",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase cortés en neerlandés con su significado en español.",
+      "pairs": [
+        ["Zou je me kunnen helpen?", "¿Podrías ayudarme?"],
+        ["Zou u dat willen herhalen?", "¿Querría usted repetir eso?"],
+        ["Ik zou graag willen betalen.", "Me gustaría pagar."]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "polite_request",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "¿Cuál es la forma más cortés para pedir ayuda a alguien?",
+      "options": [
+        "Zou je me kunnen helpen?",
+        "Help mij nu meteen.",
+        "Jij helpt mij toch?"
+      ],
+      "value": "Zou je me kunnen helpen?"
+    },
+    {
+      "lesson": 2,
+      "topic": "wish_zou_graag",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la frase donde el infinitivo está correctamente al final.",
+      "options": [
+        "Ik zou graag een koffie willen.",
+        "Ik zou willen graag een koffie.",
+        "Ik graag zou een koffie willen."
+      ],
+      "value": "Ik zou graag een koffie willen."
+    },
+    {
+      "lesson": 3,
+      "topic": "hypothesis_advice",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada hipótesis o consejo en neerlandés con su traducción.",
+      "pairs": [
+        ["Als ik jou was, zou ik gaan.", "Si yo fuera tú, iría."],
+        ["Als ik rijk was, zou ik reizen.", "Si fuera rico, viajaría."],
+        ["Zonder jou zou ik verdwalen.", "Sin ti me perdería."]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "hypothesis_advice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "¿Qué frase da un consejo con «si yo fuera tú»?",
+      "options": [
+        "Als ik jou was, zou ik het proberen.",
+        "Ik was jou, dus ik probeer het.",
+        "Jij bent ik, zou ik het proberen."
+      ],
+      "value": "Als ik jou was, zou ik het proberen."
+    },
+    {
+      "lesson": 4,
+      "topic": "what_would_you_do",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "¿Cómo se pregunta «¿Qué harías tú?» de forma correcta?",
+      "options": [
+        "Wat zou jij doen?",
+        "Wat zal jij morgen doen?",
+        "Wat deed jij toen?"
+      ],
+      "value": "Wat zou jij doen?"
+    },
+    {
+      "lesson": 1,
+      "topic": "polite_request",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa: «¿Podrías ayudarme?» (cortés).",
+      "text": "___ je me kunnen helpen?",
+      "value": "Zou",
+      "accepted": ["Zou", "zou"]
+    },
+    {
+      "lesson": 2,
+      "topic": "wish_zou_graag",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa el deseo: «Me gustaría un té.» El infinitivo va al final.",
+      "text": "Ik zou graag een thee ___.",
+      "value": "willen",
+      "accepted": ["willen"]
+    },
+    {
+      "lesson": 2,
+      "topic": "wish_zou_graag",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al neerlandés: «Me gustaría pagar.»",
+      "source": "Me gustaría pagar.",
+      "value": "Ik zou graag willen betalen.",
+      "accepted": [
+        "Ik zou graag willen betalen.",
+        "Ik zou graag willen betalen",
+        "Ik zou graag betalen.",
+        "Ik zou graag betalen"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "hypothesis_advice",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al neerlandés: «Si yo fuera tú, iría.»",
+      "source": "Si yo fuera tú, iría.",
+      "value": "Als ik jou was, zou ik gaan.",
+      "accepted": [
+        "Als ik jou was, zou ik gaan.",
+        "Als ik jou was, zou ik gaan",
+        "Als ik jou was zou ik gaan."
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "what_would_you_do",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para preguntar «¿Qué harías tú?».",
+      "tiles": ["Wat", "zou", "jij", "doen", "zal", "deed"],
+      "sequence": ["Wat", "zou", "jij", "doen"]
+    },
+    {
+      "lesson": 3,
+      "topic": "hypothesis_advice",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena las palabras: «Si fuera rico, viajaría.»",
+      "tiles": ["Als", "ik", "rijk", "was,", "zou", "ik", "reizen"],
+      "sequence": ["Als", "ik", "rijk", "was,", "zou", "ik", "reizen"]
+    },
+    {
+      "lesson": 1,
+      "topic": "polite_request",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Zou u mij kunnen helpen?",
+      "options": [
+        "Zou u mij kunnen helpen?",
+        "Zal u mij komen halen?",
+        "Zei u mij dat gisteren?"
+      ],
+      "value": "Zou u mij kunnen helpen?"
+    },
+    {
+      "lesson": 2,
+      "topic": "wish_zou_graag",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase correcta.",
+      "say": "Ik zou graag koffie willen.",
+      "options": [
+        "Ik zou graag koffie willen.",
+        "Ik zal graag koffie halen.",
+        "Ik heb graag koffie gehad."
+      ],
+      "value": "Ik zou graag koffie willen."
+    },
+    {
+      "lesson": 4,
+      "topic": "what_would_you_do",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige lo que oíste.",
+      "say": "Wat zou jij in mijn plaats doen?",
+      "options": [
+        "Wat zou jij in mijn plaats doen?",
+        "Wat zal jij vanavond koken?",
+        "Wat deed jij op je werk?"
+      ],
+      "value": "Wat zou jij in mijn plaats doen?"
+    },
+    {
+      "lesson": 3,
+      "topic": "hypothesis_advice",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la hipótesis correcta.",
+      "say": "Als ik tijd had, zou ik komen.",
+      "options": [
+        "Als ik tijd had, zou ik komen.",
+        "Als ik tijd heb, zal ik koken.",
+        "Als ik tijd zoek, mag ik komen."
+      ],
+      "value": "Als ik tijd had, zou ik komen."
+    },
+    {
+      "lesson": 1,
+      "topic": "polite_request",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta esta petición cortés.",
+      "read": "Zou je me alsjeblieft kunnen helpen?"
+    },
+    {
+      "lesson": 2,
+      "topic": "wish_zou_graag",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta este deseo.",
+      "read": "Ik zou graag een kopje thee willen."
+    },
+    {
+      "lesson": 4,
+      "topic": "what_would_you_do",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta esta pregunta.",
+      "read": "Wat zou jij doen als je mij was?"
+    }
+  ]
+}

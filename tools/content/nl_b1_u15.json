@@ -1,0 +1,238 @@
+{
+  "unit": {
+    "order": 15,
+    "title_es": "Frases de relativo (die, dat, wie)",
+    "color": "#117864",
+    "icon": "link"
+  },
+  "checkpoint_desc": "Demuestra que sabes unir frases con pronombres de relativo: die para palabras con de y plurales, dat para palabras con het, wie tras preposición para personas, y wat tras alles/iets/niets. Recuerda: el verbo va al final de la oración de relativo.",
+  "lessons": [
+    { "order": 1, "title_es": "die y dat: de-woord o het-woord" },
+    { "order": 2, "title_es": "wie tras preposición (personas)" },
+    { "order": 3, "title_es": "wat y waar+preposición" },
+    { "order": 4, "title_es": "Frases de relativo en contexto" }
+  ],
+  "vocab": [
+    ["de buurman", "el vecino", "sustantivo"],
+    ["het gebouw", "el edificio", "sustantivo"],
+    ["de collega", "el/la colega", "sustantivo"],
+    ["het pakket", "el paquete", "sustantivo"],
+    ["de sleutel", "la llave", "sustantivo"],
+    ["het gesprek", "la conversación", "sustantivo"],
+    ["de klant", "el/la cliente", "sustantivo"],
+    ["het probleem", "el problema", "sustantivo"],
+    ["de afspraak", "la cita/el acuerdo", "sustantivo"],
+    ["het antwoord", "la respuesta", "sustantivo"],
+    ["de reden", "la razón", "sustantivo"],
+    ["het advies", "el consejo", "sustantivo"],
+    ["de oplossing", "la solución", "sustantivo"],
+    ["het verhaal", "la historia", "sustantivo"],
+    ["betrouwbaar", "fiable", "adjetivo"],
+    ["ingewikkeld", "complicado", "adjetivo"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "die_dat_basic",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase de relativo en neerlandés con su traducción.",
+      "pairs": [
+        ["de man die daar woont", "el hombre que vive ahí"],
+        ["het huis dat ik koop", "la casa que compro"],
+        ["de boeken die ik lees", "los libros que leo"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "die_de_woord",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el pronombre de relativo correcto: «de buurman ___ naast ons woont» (el vecino que vive al lado). Buurman es palabra con 'de'.",
+      "options": ["die", "dat", "wie"],
+      "value": "die"
+    },
+    {
+      "lesson": 1,
+      "topic": "dat_het_woord",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el pronombre de relativo correcto: «het gebouw ___ we gisteren zagen» (el edificio que vimos ayer). Gebouw es palabra con 'het'.",
+      "options": ["dat", "die", "wie"],
+      "value": "dat"
+    },
+    {
+      "lesson": 2,
+      "topic": "wie_preposition",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el relativo correcto tras preposición y referido a persona: «de vrouw met ___ ik praat» (la mujer con quien hablo).",
+      "options": ["wie", "die", "dat"],
+      "value": "wie"
+    },
+    {
+      "lesson": 3,
+      "topic": "wat_alles",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada expresión con 'wat' con su traducción.",
+      "pairs": [
+        ["alles wat ik weet", "todo lo que sé"],
+        ["iets wat me verbaast", "algo que me sorprende"],
+        ["niets wat helpt", "nada que ayude"]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "wat_whole_sentence",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el relativo que se refiere a toda la frase anterior: «Hij kwam te laat, ___ ik heel vervelend vond.» (Llegó tarde, lo cual me pareció muy molesto.)",
+      "options": ["wat", "dat", "die"],
+      "value": "wat"
+    },
+    {
+      "lesson": 1,
+      "topic": "die_dat_choice",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el relativo correcto (het pakket → palabra con 'het'): «El paquete que espero aún no ha llegado.»",
+      "text": "Het pakket ___ ik verwacht, is nog niet aangekomen.",
+      "value": "dat",
+      "accepted": ["dat"]
+    },
+    {
+      "lesson": 1,
+      "topic": "die_plural",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el relativo correcto (plural → siempre 'die'): «Los colegas que trabajan aquí son muy amables.»",
+      "text": "De collega's ___ hier werken, zijn heel aardig.",
+      "value": "die",
+      "accepted": ["die"]
+    },
+    {
+      "lesson": 2,
+      "topic": "wie_preposition_voor",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el relativo para personas tras preposición: «El cliente para quien hago esto es muy importante.»",
+      "text": "De klant voor ___ ik dit doe, is heel belangrijk.",
+      "value": "wie",
+      "accepted": ["wie"]
+    },
+    {
+      "lesson": 3,
+      "topic": "waarover_preposition",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con waar+preposición (cosa, no persona): «Este es el problema del que siempre hablamos» ('praten over' → waarover).",
+      "text": "Dit is het probleem ___ we het steeds hebben.",
+      "value": "waarover",
+      "accepted": ["waarover"]
+    },
+    {
+      "lesson": 3,
+      "topic": "waarmee_reorder",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena las fichas para formar: «La llave con la que abro la puerta.» (waarmee = con la que, para cosas.)",
+      "tiles": ["De", "sleutel", "waarmee", "ik", "de", "deur", "open"],
+      "sequence": ["De", "sleutel", "waarmee", "ik", "de", "deur", "open"]
+    },
+    {
+      "lesson": 4,
+      "topic": "mixed_translation_context",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al neerlandés: «La solución que propusiste es demasiado complicada.»",
+      "source": "La solución que propusiste es demasiado complicada.",
+      "value": "De oplossing die je voorstelde, is te ingewikkeld.",
+      "accepted": [
+        "De oplossing die je voorstelde, is te ingewikkeld.",
+        "De oplossing die je voorstelde is te ingewikkeld",
+        "De oplossing die jij voorstelde, is te ingewikkeld."
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "die_verb_final",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "De sleutel die op tafel ligt, is van mij.",
+      "options": [
+        "De sleutel die op tafel ligt, is van mij.",
+        "De sleutel dat op tafel ligt, is van mij.",
+        "De sleutel wie op tafel ligt, is van mij."
+      ],
+      "value": "De sleutel die op tafel ligt, is van mij."
+    },
+    {
+      "lesson": 2,
+      "topic": "wie_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "De buurman bij wie ik logeer, is heel gastvrij.",
+      "options": [
+        "De buurman bij wie ik logeer, is heel gastvrij.",
+        "De buurman bij die ik logeer, is heel gastvrij.",
+        "De buurman bij dat ik logeer, is heel gastvrij."
+      ],
+      "value": "De buurman bij wie ik logeer, is heel gastvrij."
+    },
+    {
+      "lesson": 2,
+      "topic": "wie_context_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "De man met wie ik werk, is heel betrouwbaar.",
+      "options": [
+        "De man met wie ik werk, is heel betrouwbaar.",
+        "De man met die ik werk, is heel betrouwbaar.",
+        "De man met dat ik werk, is heel betrouwbaar."
+      ],
+      "value": "De man met wie ik werk, is heel betrouwbaar."
+    },
+    {
+      "lesson": 4,
+      "topic": "mixed_die_dat_context",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Het advies dat je me gaf, was heel nuttig.",
+      "options": [
+        "Het advies dat je me gaf, was heel nuttig.",
+        "Het advies die je me gaf, was heel nuttig.",
+        "Het advies wie je me gaf, was heel nuttig."
+      ],
+      "value": "Het advies dat je me gaf, was heel nuttig."
+    },
+    {
+      "lesson": 4,
+      "topic": "mixed_speaking_die",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "De klant die gisteren belde, had een ingewikkelde vraag."
+    },
+    {
+      "lesson": 4,
+      "topic": "mixed_speaking_dat",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Het verhaal dat hij vertelde, was echt ongelooflijk."
+    },
+    {
+      "lesson": 4,
+      "topic": "mixed_speaking_wie",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "De persoon met wie ik de afspraak heb, is er nog niet."
+    }
+  ]
+}

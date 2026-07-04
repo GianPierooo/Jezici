@@ -6,6 +6,13 @@
 > Prioridad: es→en A1/A2 a fondo (lo que los testers usan hoy). B1–C1 y es→pt: perfil
 > estructural + diferido (ver "Pendiente").
 
+## B1 es→nl (escalera A2→B1) (2026-07-03)
+- **B1 neerlandés completo (mig 112):** 6 unidades (order 13-18), 114 ítems, balance **L=67% S=50%**.
+  Currículo B1 CEFR-real: conditionalis, bijzinnen/voegwoorden, relatieve bijzinnen, lijdende vorm, vaste
+  voorzetsels + «om…te», voltooid verleden/conditionalis verleden — progresión desde A2. 6 profesores
+  nativos IA + rebalanceo/revisión adversarial (fixes reales; 0 colisiones MC). **neerlandés era el único
+  piloto sin B1 → ahora A1→B1** (verify_b1_chain nl PASS). **Diferido: B2 nl (ya desbloqueado)**; B1 it; B2 fr/it; C1.
+
 ## B2 es→de (escalera B1→B2) (2026-07-03)
 - **B2 alemán completo (mig 115):** 6 unidades (order 19-24), 114 ítems, balance **L=67% S=50%**. Currículo
   B2 CEFR-real: Konjunktiv I (indirekte Rede), Passiv erweitert, Partizip als Adjektiv, Konnektoren B2,

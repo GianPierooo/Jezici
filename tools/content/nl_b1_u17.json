@@ -1,0 +1,256 @@
+{
+  "unit": {
+    "order": 17,
+    "title_es": "Verbos con preposición y «om…te»",
+    "color": "#922B21",
+    "icon": "alternate_email"
+  },
+  "checkpoint_desc": "Usa la preposición fija correcta de cada verbo (wachten op, denken aan, houden van, bang zijn voor, kijken/luisteren/zoeken naar, praten over) y expresa finalidad con «om … te + infinitivo».",
+  "lessons": [
+    { "order": 1, "title_es": "Esperar, pensar, mirar, escuchar (op/aan/naar)" },
+    { "order": 2, "title_es": "Gustar, temer, buscar, hablar (van/voor/naar/over)" },
+    { "order": 3, "title_es": "Finalidad: «om … te + infinitivo»" },
+    { "order": 4, "title_es": "Todo junto: preposición fija y om…te" }
+  ],
+  "vocab": [
+    ["wachten op", "esperar (a)", "werkwoord"],
+    ["denken aan", "pensar en", "werkwoord"],
+    ["kijken naar", "mirar / ver", "werkwoord"],
+    ["luisteren naar", "escuchar", "werkwoord"],
+    ["houden van", "gustar / querer", "werkwoord"],
+    ["bang zijn voor", "tener miedo de", "werkwoord"],
+    ["zoeken naar", "buscar", "werkwoord"],
+    ["praten over", "hablar de/sobre", "werkwoord"],
+    ["de bus", "el autobús", "zelfstandig naamwoord"],
+    ["de trein", "el tren", "zelfstandig naamwoord"],
+    ["de toekomst", "el futuro", "zelfstandig naamwoord"],
+    ["de muziek", "la música", "zelfstandig naamwoord"],
+    ["de spin", "la araña", "zelfstandig naamwoord"],
+    ["de sleutel", "la llave", "zelfstandig naamwoord"],
+    ["het probleem", "el problema", "zelfstandig naamwoord"],
+    ["om te", "para (finalidad)", "uitdrukking"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "vaste_voorzetsels_op_aan",
+      "skill": "reading",
+      "type": "match",
+      "reading": true,
+      "prompt": "Une cada verbo con su preposición fija.",
+      "pairs": [
+        ["wachten op", "esperar (a)"],
+        ["denken aan", "pensar en"],
+        ["luisteren naar", "escuchar"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "wachten_op",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "reading": true,
+      "prompt": "Elige la preposición correcta: «Ik wacht ___ de bus.» (Espero el autobús.)",
+      "options": ["op", "aan", "naar"],
+      "value": "op"
+    },
+    {
+      "lesson": 1,
+      "topic": "kijken_naar",
+      "skill": "writing",
+      "type": "cloze",
+      "writing": true,
+      "prompt": "Completa con la preposición fija de «mirar/ver»: «Vemos una película.»",
+      "text": "Wij kijken ___ een film.",
+      "value": "naar",
+      "accepted": ["naar"]
+    },
+    {
+      "lesson": 1,
+      "topic": "luisteren_naar",
+      "skill": "listening",
+      "type": "listening",
+      "listening": true,
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ik luister naar muziek.",
+      "options": [
+        "Ik luister naar muziek.",
+        "Ik luister op muziek.",
+        "Ik luister aan muziek."
+      ],
+      "value": "Ik luister naar muziek."
+    },
+    {
+      "lesson": 1,
+      "topic": "wachten_op",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Ik wacht op de trein en denk aan jou."
+    },
+    {
+      "lesson": 2,
+      "topic": "houden_van",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "reading": true,
+      "prompt": "Elige la preposición correcta: «Ik hou ___ muziek.» (Me gusta la música.)",
+      "options": ["van", "voor", "naar"],
+      "value": "van"
+    },
+    {
+      "lesson": 2,
+      "topic": "bang_zijn_voor",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "reading": true,
+      "prompt": "Elige la preposición correcta: «Ik ben bang ___ spinnen.» (Tengo miedo de las arañas.)",
+      "options": ["voor", "van", "op"],
+      "value": "voor"
+    },
+    {
+      "lesson": 2,
+      "topic": "praten_over",
+      "skill": "writing",
+      "type": "cloze",
+      "writing": true,
+      "prompt": "Completa con la preposición fija de «hablar de/sobre»: «Hablamos del problema.»",
+      "text": "We praten ___ het probleem.",
+      "value": "over",
+      "accepted": ["over"]
+    },
+    {
+      "lesson": 2,
+      "topic": "zoeken_naar",
+      "skill": "writing",
+      "type": "word_bank",
+      "writing": true,
+      "prompt": "Ordena las fichas para formar: «Busco mis llaves.»",
+      "tiles": ["Ik", "zoek", "naar", "mijn", "sleutels", "op", "over"],
+      "sequence": ["Ik", "zoek", "naar", "mijn", "sleutels"]
+    },
+    {
+      "lesson": 2,
+      "topic": "houden_van",
+      "skill": "listening",
+      "type": "listening",
+      "listening": true,
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Zij houdt van koffie.",
+      "options": [
+        "Zij houdt van koffie.",
+        "Zij houdt voor koffie.",
+        "Zij houdt naar koffie."
+      ],
+      "value": "Zij houdt van koffie."
+    },
+    {
+      "lesson": 2,
+      "topic": "bang_zijn_voor",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Mijn zus is bang voor honden, maar ik hou van honden."
+    },
+    {
+      "lesson": 3,
+      "topic": "om_te_finaliteit",
+      "skill": "reading",
+      "type": "match",
+      "reading": true,
+      "prompt": "Une cada frase de finalidad con su traducción.",
+      "pairs": [
+        ["om brood te kopen", "para comprar pan"],
+        ["om Nederlands te leren", "para aprender neerlandés"],
+        ["om te rusten", "para descansar"]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "om_te_finaliteit",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "reading": true,
+      "prompt": "Elige la frase correcta con «om…te»: «Voy a la tienda para comprar pan.»",
+      "options": [
+        "Ik ga naar de winkel om brood te kopen.",
+        "Ik ga naar de winkel om te brood kopen.",
+        "Ik ga naar de winkel om brood kopen te."
+      ],
+      "value": "Ik ga naar de winkel om brood te kopen."
+    },
+    {
+      "lesson": 3,
+      "topic": "om_te_finaliteit",
+      "skill": "writing",
+      "type": "cloze",
+      "writing": true,
+      "prompt": "Completa con la partícula que va justo antes del infinitivo en «om … ___ + infinitivo»: «Estudio para aprender neerlandés.»",
+      "text": "Ik studeer om Nederlands ___ leren.",
+      "value": "te",
+      "accepted": ["te"]
+    },
+    {
+      "lesson": 3,
+      "topic": "om_te_finaliteit",
+      "skill": "writing",
+      "type": "translation",
+      "writing": true,
+      "prompt": "Traduce al neerlandés: «Trabajo para ganar dinero.»",
+      "source": "Trabajo para ganar dinero.",
+      "value": "Ik werk om geld te verdienen.",
+      "accepted": [
+        "Ik werk om geld te verdienen.",
+        "Ik werk om geld te verdienen"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "om_te_finaliteit",
+      "skill": "listening",
+      "type": "listening",
+      "listening": true,
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ik bel je om een afspraak te maken.",
+      "options": [
+        "Ik bel je om een afspraak te maken.",
+        "Ik schrijf je om een cadeau te kopen.",
+        "Ik zie je om een pauze te nemen."
+      ],
+      "value": "Ik bel je om een afspraak te maken."
+    },
+    {
+      "lesson": 4,
+      "topic": "vaste_voorzetsels_reorder",
+      "skill": "writing",
+      "type": "reorder",
+      "writing": true,
+      "prompt": "Ordena las palabras: «Espero a mi amigo para hablar.» (esperar + om…te)",
+      "tiles": ["Ik", "wacht", "op", "mijn", "vriend", "om", "te", "praten", "naar", "aan"],
+      "sequence": ["Ik", "wacht", "op", "mijn", "vriend", "om", "te", "praten"]
+    },
+    {
+      "lesson": 4,
+      "topic": "pronominaal_bijwoord",
+      "skill": "listening",
+      "type": "listening",
+      "listening": true,
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ik wacht erop.",
+      "options": [
+        "Ik wacht erop.",
+        "Ik wacht eraan.",
+        "Ik wacht ernaar."
+      ],
+      "value": "Ik wacht erop."
+    },
+    {
+      "lesson": 4,
+      "topic": "vaste_voorzetsels_mix",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Ik denk aan de toekomst en zoek naar een goede baan."
+    }
+  ]
+}

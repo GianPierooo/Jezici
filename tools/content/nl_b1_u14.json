@@ -1,0 +1,249 @@
+{
+  "unit": {
+    "order": 14,
+    "title_es": "Unir ideas: porque, aunque, así que",
+    "color": "#1F618D",
+    "icon": "hub"
+  },
+  "checkpoint_desc": "Une frases con conjunciones subordinantes (omdat, dat, als, hoewel, terwijl, zodat, voordat) colocando el verbo al final, y con adverbios de posición inicial (daarom, dus, toch) usando la inversión.",
+  "lessons": [
+    { "order": 1, "title_es": "Omdat, want y dat: el verbo al final" },
+    { "order": 2, "title_es": "Als, terwijl, voordat: tiempo y condición" },
+    { "order": 3, "title_es": "Hoewel y zodat: contraste y consecuencia" },
+    { "order": 4, "title_es": "Daarom, dus, toch: inversión en posición 1" }
+  ],
+  "vocab": [
+    ["omdat", "porque (subordina)", "conj"],
+    ["want", "porque (coordina)", "conj"],
+    ["dat", "que", "conj"],
+    ["als", "si / cuando", "conj"],
+    ["terwijl", "mientras", "conj"],
+    ["voordat", "antes de que", "conj"],
+    ["nadat", "después de que", "conj"],
+    ["hoewel", "aunque", "conj"],
+    ["zodat", "para que / de modo que", "conj"],
+    ["daarom", "por eso", "adv"],
+    ["dus", "así que", "adv"],
+    ["toch", "aun así / sin embargo", "adv"],
+    ["de reden", "la razón", "noun"],
+    ["het gevolg", "la consecuencia", "noun"],
+    ["de afspraak", "la cita / el acuerdo", "noun"],
+    ["de mening", "la opinión", "noun"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "omdat_vs_want",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada conjunción con su regla de orden de palabras.",
+      "pairs": [
+        ["omdat", "porque (verbo al final)"],
+        ["want", "porque (verbo en 2ª posición)"],
+        ["dat", "que"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "omdat_verb_final",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la subordinada correcta con 'omdat' (verbo al final): «Me quedo en casa porque estoy enfermo».",
+      "options": [
+        "Ik blijf thuis omdat ik ziek ben.",
+        "Ik blijf thuis omdat ik ben ziek.",
+        "Ik blijf thuis omdat ben ik ziek."
+      ],
+      "value": "Ik blijf thuis omdat ik ziek ben."
+    },
+    {
+      "lesson": 1,
+      "topic": "dat_clause_order",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la frase correcta con 'dat' (verbo al final): «Creo que ella viene mañana».",
+      "options": [
+        "Ik denk dat zij morgen komt.",
+        "Ik denk dat zij komt morgen.",
+        "Ik denk dat komt zij morgen."
+      ],
+      "value": "Ik denk dat zij morgen komt."
+    },
+    {
+      "lesson": 2,
+      "topic": "voordat_before",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la frase correcta con 'voordat' (verbo al final): «Me lavo las manos antes de comer».",
+      "options": [
+        "Ik was mijn handen voordat ik eet.",
+        "Ik was mijn handen voordat ik eten.",
+        "Ik was mijn handen voordat eet ik."
+      ],
+      "value": "Ik was mijn handen voordat ik eet."
+    },
+    {
+      "lesson": 2,
+      "topic": "terwijl_simultaneous",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la frase correcta con 'terwijl' (verbo al final en la subordinada): «Ella lee mientras yo cocino».",
+      "options": [
+        "Zij leest terwijl ik kook.",
+        "Zij leest terwijl kook ik.",
+        "Zij leest terwijl ik koken."
+      ],
+      "value": "Zij leest terwijl ik kook."
+    },
+    {
+      "lesson": 3,
+      "topic": "hoewel_contrast",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada conjunción o adverbio con su significado en español.",
+      "pairs": [
+        ["hoewel", "aunque"],
+        ["zodat", "para que"],
+        ["toch", "aun así"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "omdat_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con la conjunción 'porque' que envía el verbo al final: «No voy porque no tengo tiempo».",
+      "text": "Ik ga niet, ___ ik geen tijd heb.",
+      "value": "omdat",
+      "accepted": ["omdat"]
+    },
+    {
+      "lesson": 1,
+      "topic": "want_coordinating",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con 'want' (el verbo queda en 2ª posición, no al final): «Estoy contento, porque tengo vacaciones».",
+      "text": "Ik ben blij, ___ ik heb vakantie.",
+      "value": "want",
+      "accepted": ["want"]
+    },
+    {
+      "lesson": 1,
+      "topic": "omdat_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena la subordinada con 'omdat' (verbo al final): «Ella aprende neerlandés porque vive en Ámsterdam».",
+      "tiles": ["Zij", "leert", "Nederlands", "omdat", "zij", "in", "Amsterdam", "woont", "is", "heeft"],
+      "sequence": ["Zij", "leert", "Nederlands", "omdat", "zij", "in", "Amsterdam", "woont"]
+    },
+    {
+      "lesson": 3,
+      "topic": "hoewel_clause",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al neerlandés: «Aunque está lloviendo, voy a caminar.»",
+      "source": "Aunque está lloviendo, voy a caminar.",
+      "value": "Hoewel het regent, ga ik wandelen.",
+      "accepted": ["Hoewel het regent, ga ik wandelen.", "Hoewel het regent, ga ik wandelen", "Hoewel het regent ga ik wandelen."]
+    },
+    {
+      "lesson": 3,
+      "topic": "zodat_purpose",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con la conjunción 'para que / de modo que': «Hablo despacio para que me entiendas».",
+      "text": "Ik praat langzaam, ___ je mij begrijpt.",
+      "value": "zodat",
+      "accepted": ["zodat"]
+    },
+    {
+      "lesson": 4,
+      "topic": "dus_reorder",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena con inversión tras 'dus' (posición 1 → verbo 2º): «La tienda está cerrada, así que compramos mañana».",
+      "tiles": ["De", "winkel", "is", "dicht", "dus", "kopen", "we", "morgen"],
+      "sequence": ["De", "winkel", "is", "dicht", "dus", "kopen", "we", "morgen"]
+    },
+    {
+      "lesson": 2,
+      "topic": "als_condition",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Als het regent, blijf ik thuis.",
+      "options": [
+        "Als het regent, blijf ik thuis.",
+        "Als het regent, ik blijf thuis.",
+        "Als regent het, blijf ik thuis."
+      ],
+      "value": "Als het regent, blijf ik thuis."
+    },
+    {
+      "lesson": 2,
+      "topic": "terwijl_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ik luister naar muziek terwijl ik werk.",
+      "options": [
+        "Ik luister naar muziek terwijl ik werk.",
+        "Ik luister naar muziek terwijl ik werken.",
+        "Ik luister naar muziek terwijl werk ik."
+      ],
+      "value": "Ik luister naar muziek terwijl ik werk."
+    },
+    {
+      "lesson": 2,
+      "topic": "als_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Als je tijd hebt, help ik je.",
+      "options": [
+        "Als je tijd hebt, help ik je.",
+        "Als je tijd hebt, ik help je.",
+        "Als je tijd hebt, helpen ik je."
+      ],
+      "value": "Als je tijd hebt, help ik je."
+    },
+    {
+      "lesson": 3,
+      "topic": "zodat_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ik doe het licht aan zodat ik beter kan lezen.",
+      "options": [
+        "Ik doe het licht aan zodat ik beter kan lezen.",
+        "Ik doe het licht aan zodat ik kan beter lezen.",
+        "Ik doe het licht aan zodat kan ik beter lezen."
+      ],
+      "value": "Ik doe het licht aan zodat ik beter kan lezen."
+    },
+    {
+      "lesson": 2,
+      "topic": "voordat_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Voordat ik naar bed ga, lees ik een boek."
+    },
+    {
+      "lesson": 3,
+      "topic": "hoewel_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Hoewel het laat is, wil ik nog even praten."
+    },
+    {
+      "lesson": 4,
+      "topic": "toch_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Het is duur, maar toch koop ik het."
+    }
+  ]
+}

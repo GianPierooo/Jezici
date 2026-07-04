@@ -2,6 +2,27 @@
 
 ---
 
+## B1 es→nl (escalera A2→B1) — 2026-07-03 ✅ LIVE + VERIFICADO
+> nl era el único piloto sin B1 (solo A2). Ahora **neerlandés A1→B1**; B2 nl queda desbloqueado en la Cola.
+- **Contenido (mig 112):** 6 unidades (order 13-18), **114 ítems R36/W36/L24/S18** (L=67% S=50%), audio TTS
+  tl=nl **42/42**. Currículo B1 real: conditionalis (zou+inf), bijzinnen & voegwoorden (werkwoord achteraan),
+  relatieve bijzinnen (die/dat/wie/waar), lijdende vorm (worden + deelwoord), vaste voorzetsels + «om…te»,
+  voltooid verleden/conditionalis verleden (had/was + deelwoord; zou hebben/zijn + deelwoord).
+- **Autoría:** 6 profesores nativos IA + revisores/rebalanceadores nativos (fixes reales: als=voegwoord no
+  voornaamwoord, «maar toch» natural, gereisd verificado por 't kofschip, distractor «kok»→«koken» dist-2,
+  listening de «om…te» con distractores léxicos audibles [antes eran variantes de orden inaudibles],
+  guard de colisión MC). `lesson`/`topic`/`prompt` conservados.
+- **Verificado END-TO-END cliente real** (`verify_b1_chain.py nl`, JWT): determinista B1 96/96 correctos +
+  96/96 distractores (42501); **CAMINA A1→B1 las 18 unidades** (U12→U13 gating; 30/30 lecciones B1); **0
+  lesson_items cruzan los 6 cursos**; default(en) sin fuga; audio HEAD 42/42. analyze 0.
+- **Nota (guard MC, regla del agente):** el grader NO aplica near-match a MC/listening (solo exacto tras
+  lowercase); die/dat/wie son palabras distintas (no colisión) — elegir el pronombre correcto ES el objetivo.
+  0 colisiones norm-exactas confirmadas estáticamente + 96/96 distractores rechazados en vivo.
+- **Retome B2 es→nl (Cola ítem 1):** YA DESBLOQUEADO. `gen_course.py nl b2` (STAMP 116) → `nl-b2` →
+  `verify_b2_chain.py nl`, mismo pipeline (6 agentes nativos nl B2 + rebalanceo/revisión).
+
+---
+
 ## B2 es→de (escalera B1→B2) — 2026-07-03 ✅ LIVE + VERIFICADO
 > **alemán completa A1→B2.** nl B2 BLOQUEADO por nl B1 (nl solo llega a A2) → retome en orden.
 - **Contenido (mig 115):** 6 unidades (order 19-24), **114 ítems R36/W36/L24/S18** (L=67% S=50%), audio TTS

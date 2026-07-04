@@ -1,0 +1,49 @@
+{
+  "unit": {"order": 18, "title_es": "Lo que había pasado (condicional irreal)", "color": "#4A235A", "icon": "history_toggle_off"},
+  "checkpoint_desc": "Expresa qué había pasado (voltooid verleden tijd: had/was + participio) e hipótesis y arrepentimientos sobre el pasado con el condicional irreal (zou + hebben/zijn + participio).",
+  "lessons": [
+    {"order": 1, "title_es": "Toen ik aankwam, was hij al vertrokken (voltooid verleden tijd)"},
+    {"order": 2, "title_es": "had gehad vs. was gegaan (elección hebben/zijn)"},
+    {"order": 3, "title_es": "Als ik tijd had gehad, zou ik zijn gekomen (condicional irreal del pasado)"},
+    {"order": 4, "title_es": "Repaso B1: zou + subordinadas"}
+  ],
+  "vocab": [
+    ["de fout", "el error", "sustantivo"],
+    ["het verleden", "el pasado", "sustantivo"],
+    ["de mogelijkheid", "la posibilidad", "sustantivo"],
+    ["de beslissing", "la decisión", "sustantivo"],
+    ["de spijt", "el arrepentimiento", "sustantivo"],
+    ["het advies", "el consejo", "sustantivo"],
+    ["de kans", "la ocasión / oportunidad", "sustantivo"],
+    ["het toeval", "la casualidad", "sustantivo"],
+    ["de waarschuwing", "la advertencia", "sustantivo"],
+    ["het gevolg", "la consecuencia", "sustantivo"],
+    ["het verwijt", "el reproche", "sustantivo"],
+    ["de voorwaarde", "la condición", "sustantivo"],
+    ["het resultaat", "el resultado", "sustantivo"],
+    ["de herinnering", "el recuerdo", "sustantivo"],
+    ["het ongeluk", "el accidente", "sustantivo"],
+    ["de bedoeling", "la intención", "sustantivo"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "plusquamperfectum_intro", "skill": "reading", "type": "match", "prompt": "Une cada frase neerlandesa con su significado en español.", "pairs": [["Toen ik aankwam, was hij al vertrokken", "Cuando llegué, él ya se había ido"], ["Ik had het niet geweten", "Yo no lo había sabido"], ["We hadden de trein gemist", "Habíamos perdido el tren"]]},
+    {"lesson": 1, "topic": "plusquamperfectum_hebben", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál frase dice correctamente 'Yo ya había comido' (voltooid verleden tijd)?", "options": ["Ik had al gegeten.", "Ik heb al gegeten.", "Ik was al gegeten."], "value": "Ik had al gegeten."},
+    {"lesson": 1, "topic": "plusquamperfectum_hebben", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "We hadden de film al gezien.", "options": ["We hadden de film al gezien.", "We hebben de film al gezien.", "We waren de film al gezien."], "value": "We hadden de film al gezien."},
+    {"lesson": 1, "topic": "plusquamperfectum_zijn", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Toen we op het station kwamen, was de trein al vertrokken."},
+    {"lesson": 2, "topic": "aux_choice_zijn", "skill": "reading", "type": "multiple_choice", "prompt": "¿Qué auxiliar necesita 'gaan' en el pluscuamperfecto? 'Ellos ya se habían ido a casa.'", "options": ["Ze waren al naar huis gegaan.", "Ze hadden al naar huis gegaan.", "Ze zouden al naar huis gegaan."], "value": "Ze waren al naar huis gegaan."},
+    {"lesson": 2, "topic": "aux_choice_hebben", "skill": "writing", "type": "cloze", "prompt": "Completa con el auxiliar correcto (verbo 'doen', usa hebben): 'Ella ya lo había hecho.'", "text": "Ze ___ het al gedaan.", "value": "had", "accepted": ["had"]},
+    {"lesson": 2, "topic": "aux_choice_contrast", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ik was naar huis gegaan voordat het begon te regenen.", "options": ["Ik was naar huis gegaan voordat het begon te regenen.", "Ik had naar huis gegaan voordat het begon te regenen.", "Ik ben naar huis gegaan voordat het begon te regenen."], "value": "Ik was naar huis gegaan voordat het begon te regenen."},
+    {"lesson": 2, "topic": "aux_choice_zijn", "skill": "writing", "type": "word_bank", "prompt": "Ordena las fichas para decir: 'Cuando ella llamó, yo ya me había ido.'", "tiles": ["Toen", "ze", "belde", "was", "ik", "al", "vertrokken", "had", "gegaan"], "sequence": ["Toen", "ze", "belde", "was", "ik", "al", "vertrokken"]},
+    {"lesson": 2, "topic": "aux_choice_hebben", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ik had mijn sleutels thuis vergeten.", "options": ["Ik had mijn sleutels thuis vergeten.", "Ik was mijn sleutels thuis vergeten.", "Ik heb mijn sleutels thuis vergeten."], "value": "Ik had mijn sleutels thuis vergeten."},
+    {"lesson": 2, "topic": "aux_choice_contrast", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Ik had het boek gelezen en zij was naar huis gegaan."},
+    {"lesson": 3, "topic": "irreal_past_intro", "skill": "reading", "type": "match", "prompt": "Une cada frase neerlandesa con su significado en español.", "pairs": [["Als ik tijd had gehad, zou ik zijn gekomen", "Si hubiera tenido tiempo, habría venido"], ["Dat zou beter zijn geweest", "Eso habría sido mejor"], ["Ik zou het hebben geweten", "Lo habría sabido"]]},
+    {"lesson": 3, "topic": "irreal_past_zou_hebben", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál frase expresa 'Si hubiera tenido dinero, habría comprado el coche'?", "options": ["Als ik geld had gehad, zou ik de auto hebben gekocht.", "Als ik geld had gehad, zou ik de auto zijn gekocht.", "Als ik geld heb, zou ik de auto hebben gekocht."], "value": "Als ik geld had gehad, zou ik de auto hebben gekocht."},
+    {"lesson": 3, "topic": "irreal_past_zou_hebben", "skill": "writing", "type": "translation", "prompt": "Traduce al neerlandés: 'Si hubiera tenido tiempo, habría ayudado.'", "source": "Si hubiera tenido tiempo, habría ayudado.", "value": "Als ik tijd had gehad, zou ik hebben geholpen.", "accepted": ["Als ik tijd had gehad, zou ik hebben geholpen", "Als ik tijd had gehad, zou ik hebben geholpen.", "Als ik tijd had gehad, zou ik geholpen hebben.", "Als ik tijd had gehad, zou ik geholpen hebben"]},
+    {"lesson": 3, "topic": "irreal_past_zou_zijn", "skill": "writing", "type": "cloze", "prompt": "Completa el condicional irreal (verbo 'komen', usa zijn): 'Si me hubieras invitado, yo habría venido.'", "text": "Als je me had uitgenodigd, zou ik ___ gekomen.", "value": "zijn", "accepted": ["zijn"]},
+    {"lesson": 3, "topic": "irreal_past_zou_zijn", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Als het weer beter was geweest, zouden we naar buiten zijn gegaan.", "options": ["Als het weer beter was geweest, zouden we naar buiten zijn gegaan.", "Als het weer beter is, gaan we naar buiten.", "Als het weer beter was geweest, zouden we naar buiten hebben gegaan."], "value": "Als het weer beter was geweest, zouden we naar buiten zijn gegaan."},
+    {"lesson": 3, "topic": "irreal_past_zou_zijn", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Als ik het had geweten, zou ik eerder zijn vertrokken."},
+    {"lesson": 4, "topic": "review_zou_present_vs_past", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál frase es condicional del PRESENTE (hipótesis actual), no del pasado?", "options": ["Als ik rijk was, zou ik reizen.", "Als ik rijk was geweest, zou ik hebben gereisd.", "Als ik rijk was geweest, zou ik zijn gereisd."], "value": "Als ik rijk was, zou ik reizen."},
+    {"lesson": 4, "topic": "review_reorder", "skill": "writing", "type": "reorder", "prompt": "Ordena las palabras para decir: 'Si me hubiera levantado antes, no habría llegado tarde.' (irreal del pasado)", "tiles": ["Als", "ik", "eerder", "was", "opgestaan", "zou", "ik", "niet", "te", "laat", "zijn", "gekomen", "had"], "sequence": ["Als", "ik", "eerder", "was", "opgestaan", "zou", "ik", "niet", "te", "laat", "zijn", "gekomen"]},
+    {"lesson": 4, "topic": "review_translation", "skill": "writing", "type": "translation", "prompt": "Traduce al neerlandés: 'Si lo hubiera sabido, te lo habría dicho.'", "source": "Si lo hubiera sabido, te lo habría dicho.", "value": "Als ik het had geweten, zou ik het je hebben verteld.", "accepted": ["Als ik het had geweten, zou ik het je hebben verteld", "Als ik het had geweten, zou ik het je hebben verteld.", "Als ik het had geweten, zou ik het je verteld hebben.", "Als ik het had geweten, zou ik het je verteld hebben"]}
+  ]
+}
