@@ -5,12 +5,60 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-03**.
 
+## Reglas del agente (siempre)
+- Fuente de verdad = repo + BD + cliente real, NO los docs. Paso 0 de toda misión:
+  ground truth (git log + introspección de BD) y corrige discrepancias en docs.
+- "Verde" = gh run list SUCCESS en GitHub Actions real (reproduce el CI en local con
+  .env vacío antes de declarar). Prohibido falso verde.
+- NUNCA edites el buildCommand de vercel.json (cualquier edición rompe el deploy pre-build).
+- Cliente REAL (anon Y authenticated, JWT real, nunca service_role). correct_answer = 42501.
+- Aislamiento multicurso (en/pt/fr/it/de/nl): toda inserción confirma con cliente real que
+  cada curso recibe lo suyo, 0 cruces; jz_active_course rutea.
+- MC/listening: ningún distractor puede colisionar con el correcto bajo jz_normalize
+  (minúsculas/tildes/umlaut) ni jz_near_match (dist-1). Guard obligatorio.
+- Profundidad > amplitud: 1 frente impecable > varios a medias. Al tope de sesión, para,
+  deja lo hecho perfecto, y escribe el retome EXACTO en la sección "## Cola" de CLAUDE.md.
+- Contenido nuevo: calidad de profesor nativo, 4 habilidades (listening ~65% de R/W,
+  speaking ~50%), audio tl correcto text-matched, instrucciones en español, checkpoints
+  frescos, gate adversarial nativo.
+- Al terminar: actualiza CLAUDE.md (estado + "## Cola"), FINDINGS.md, EFICACIA_CONTENIDO.md.
+  Cierre: analyze 0, tests verdes, gh run list SUCCESS, deploy READY. Reporta en 1 línea.
+
+## Cola (retome exacto — orden sugerido)
+> Estado de niveles hoy (verificado en BD): **en A1–C1 · pt A1–B1 · fr A1–B1 · it A1–A2 ·
+> de A1–B2 · nl A1–A2**. Andamiaje de escalera probado 4× (de B1, fr B1, de B2, +): generador
+> `gen_course.py <code> <a1|a2|b1|b2>`, audio `gen_audio_missing.py <code>-<lvl>`, verificadores
+> `verify_b1_chain.py`/`verify_b2_chain.py <code>`. STAMPS reservados en `gen_course.py`.
+1. **B1 es→nl** (STAMP 20260703120112). 6 agentes nativos nl (prompts de una escalera previa
+   s/idioma/neerlandés) + gramática B1 nl: conditionalis (zou+inf), bijzinnen/voegwoorden
+   (omdat/hoewel/als/dat + daarom, werkwoord achteraan), relatieve bijzinnen (die/dat/wie/waar),
+   lijdende vorm (worden + voltooid deelwoord), vaste voorzetsels + «om…te», voltooid verleden/
+   conditionalis verleden (zou hebben + deelwoord) → rebalanceo/revisión → `gen_course.py nl b1`
+   → `gen_audio_missing.py nl-b1` → `verify_b1_chain.py nl`.
+2. **B2 es→nl** (STAMP 20260703120116) — SOLO tras (1), si no hay hueco A2→B2. Mismo pipeline,
+   `gen_course.py nl b2` → `nl-b2` → `verify_b2_chain.py nl`.
+3. **B1 es→it** (STAMP 20260703120114). 6 agentes nativos it: congiuntivo presente, futuro/
+   condizionale (periodo ipotetico), pronomi relativi (che/cui), concordanza del participio
+   (essere→sogg., avere+lo/la/li/le antepuesto), discorso indiretto, pronomi (ci/ne/combinati
+   «glielo») → `gen_course.py it b1` → `it-b1` → `verify_b1_chain.py it`.
+4. **B2 es→fr** y **B2 es→it** (nuevos STAMPS): fr — subjonctif passé, concordance des temps,
+   discours indirect avancé, participe présent/gérondif, connecteurs B2; it — congiuntivo
+   imperfetto/trapassato, periodo ipotetico II/III, forma passiva, discorso indiretto avanzado.
+5. **Pulidos onboarding/placement** (código): cap de la meta al tope real del curso (fr/it/de/nl
+   ya no topan A2 tras las escaleras; recalcular por curso), nombre real de la unidad de entrada
+   por curso en `PlacementResultView` (hoy rótulo es→en), L/S en placement (audio).
+6. **Diferidos menores:** 2ª historia/inmersión por idioma + historias B1+; imágenes referenciales
+   fr/it/de/nl (hoy solo es→en A1/A2); tips es→pt B2/C1 (no existe contenido); copy en-first fuera
+   del onboarding (`missionMainDescription` «100 palabras del inglés», `errorReviewWhy*`); cert de
+   nivel por curso (fr/it/de/nl sin examen/cert de nivel aún); C1/C2; cron de cierre de ligas;
+   Sentry DSN + sello JZ_BUILD (requieren a Gian, ver secciones abajo).
+
 ## Qué es
 App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supabase**
 (Postgres + RLS + RPCs SECURITY DEFINER) + **Vercel** (deploy del web). Repo
 `github.com/GianPierooo/Jezici`, deploy `jezici.vercel.app`.
-- 6 cursos: **es→en** (A1–C1), **es→pt** (A1–B1), **es→fr** (A1–A2), **es→it** (A1–A2),
-  **es→de** (A1–A2) y **es→nl** (A1–A2). Curso activo por usuario
+- 6 cursos: **es→en** (A1–C1), **es→pt** (A1–B1), **es→fr** (A1–B1), **es→it** (A1–A2),
+  **es→de** (A1–B2) y **es→nl** (A1–A2). Curso activo por usuario
   (`jz_active_course`). Selector en Ajustes.
 - Loop: lección → ejercicios (9 tipos) → grading **server-side** → XP/oro/vidas →
   checkpoints (≥80%) → exámenes de nivel + certificados. Práctica/SRS, logros, ligas
