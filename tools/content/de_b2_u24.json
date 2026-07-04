@@ -1,0 +1,254 @@
+{
+  "unit": {
+    "order": 24,
+    "title_es": "Preposiciones de genitivo y adverbios preposicionales",
+    "color": "#154360",
+    "icon": "hub"
+  },
+  "checkpoint_desc": "Demuestra que dominas las preposiciones de genitivo (wegen, trotz, während, aufgrund, innerhalb, statt) con der/des + -s, y los adverbios preposicionales da(r)- / wo(r)- para verbos con preposición (warten auf → darauf, sich freuen über → darüber, denken an → daran). Repaso de conectores y voz pasiva de B2.",
+  "lessons": [
+    { "order": 1, "title_es": "Preposiciones de genitivo I: wegen, trotz, während" },
+    { "order": 2, "title_es": "Preposiciones de genitivo II: aufgrund, innerhalb, statt" },
+    { "order": 3, "title_es": "Adverbios preposicionales: da(r)- (darauf, darüber, daran)" },
+    { "order": 4, "title_es": "Preguntas con wo(r)- y repaso B2 (conectores, pasiva)" }
+  ],
+  "vocab": [
+    ["wegen", "a causa de, por (motivo)", "prep"],
+    ["trotz", "a pesar de", "prep"],
+    ["während", "durante", "prep"],
+    ["aufgrund", "debido a, en virtud de", "prep"],
+    ["innerhalb", "dentro de (plazo/lugar)", "prep"],
+    ["statt", "en lugar de", "prep"],
+    ["das Wetter", "el tiempo (clima)", "sust"],
+    ["die Kälte", "el frío", "sust"],
+    ["die Verspätung", "el retraso", "sust"],
+    ["der Streik", "la huelga", "sust"],
+    ["die Frist", "el plazo", "sust"],
+    ["die Entscheidung", "la decisión", "sust"],
+    ["darauf", "en eso, sobre eso (esperar por ello)", "adv"],
+    ["darüber", "sobre eso, por eso (alegrarse)", "adv"],
+    ["daran", "en eso (pensar en ello)", "adv"],
+    ["worüber", "sobre qué, de qué", "adv"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "genitiv_praep_grundlagen",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada sintagma de genitivo con su traducción.",
+      "pairs": [
+        ["wegen des Wetters", "a causa del tiempo"],
+        ["trotz der Kälte", "a pesar del frío"],
+        ["während der Woche", "durante la semana"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "genitiv_wegen_maskulin",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la forma correcta: 'A causa del retraso llegamos tarde.' → 'Wegen ___ Verspätung kamen wir zu spät.' (die Verspätung, genitivo femenino)",
+      "options": ["der", "die", "dem"],
+      "value": "der"
+    },
+    {
+      "lesson": 1,
+      "topic": "genitiv_wegen_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al alemán (der Streik → genitivo des Streiks): 'A causa de la huelga no había trenes.'",
+      "source": "A causa de la huelga no había trenes.",
+      "value": "Wegen des Streiks gab es keine Züge.",
+      "accepted": [
+        "Wegen des Streiks gab es keine Züge",
+        "Wegen des Streiks gab es keine Züge.",
+        "Wegen des Streiks fuhren keine Züge",
+        "Wegen des Streiks fuhren keine Züge.",
+        "Aufgrund des Streiks gab es keine Züge.",
+        "Aufgrund des Streiks gab es keine Züge"
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "genitiv_trotz_listen",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Trotz der Kälte gehen wir spazieren.",
+      "options": [
+        "Trotz der Kälte gehen wir spazieren.",
+        "Trotz die Kälte gehen wir spazieren.",
+        "Wegen der Kälte bleiben wir zu Hause."
+      ],
+      "value": "Trotz der Kälte gehen wir spazieren."
+    },
+    {
+      "lesson": 2,
+      "topic": "genitiv_aufgrund_reading",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la forma correcta: 'Debido a la decisión del jefe cambió todo.' → 'Aufgrund ___ Entscheidung des Chefs änderte sich alles.' (die Entscheidung, genitivo femenino)",
+      "options": ["der", "des", "dem"],
+      "value": "der"
+    },
+    {
+      "lesson": 2,
+      "topic": "genitiv_innerhalb_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa el genitivo femenino (die Frist): 'Dentro del plazo debes responder.'",
+      "text": "Innerhalb ___ Frist musst du antworten.",
+      "value": "der",
+      "accepted": ["der"]
+    },
+    {
+      "lesson": 2,
+      "topic": "genitiv_statt_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al alemán (das Auto → genitivo des Autos): 'En lugar del coche tomamos el tren.'",
+      "source": "En lugar del coche tomamos el tren.",
+      "value": "Statt des Autos nahmen wir den Zug.",
+      "accepted": [
+        "Statt des Autos nahmen wir den Zug",
+        "Statt des Autos nahmen wir den Zug.",
+        "Anstatt des Autos nahmen wir den Zug.",
+        "Anstatt des Autos nahmen wir den Zug",
+        "Statt des Autos nehmen wir den Zug.",
+        "Statt des Autos nehmen wir den Zug"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "genitiv_innerhalb_listen",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Innerhalb einer Woche kommt die Antwort.",
+      "options": [
+        "Innerhalb einer Woche kommt die Antwort.",
+        "Innerhalb eine Woche kommt die Antwort.",
+        "Während einer Woche kommt die Antwort."
+      ],
+      "value": "Innerhalb einer Woche kommt die Antwort."
+    },
+    {
+      "lesson": 3,
+      "topic": "praepositionaladverb_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase con su traducción.",
+      "pairs": [
+        ["Ich warte darauf.", "Espero eso."],
+        ["Ich freue mich darüber.", "Me alegro de eso."],
+        ["Ich denke daran.", "Pienso en eso."]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "praepositionaladverb_warten_auf",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "El verbo es 'warten auf'. Elige el adverbio preposicional: 'Espero eso (el resultado).' → 'Ich warte ___.'",
+      "options": ["darauf", "darüber", "daran"],
+      "value": "darauf"
+    },
+    {
+      "lesson": 3,
+      "topic": "praepositionaladverb_freuen_ueber_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "El verbo es 'sich freuen über'. Completa con el adverbio preposicional: 'Me alegro de eso.'",
+      "text": "Ich freue mich ___.",
+      "value": "darüber",
+      "accepted": ["darüber", "darueber"]
+    },
+    {
+      "lesson": 3,
+      "topic": "praepositionaladverb_denken_an_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "El verbo es 'denken an'. Traduce al alemán: 'Pienso a menudo en eso.'",
+      "source": "Pienso a menudo en eso.",
+      "value": "Ich denke oft daran.",
+      "accepted": [
+        "Ich denke oft daran",
+        "Ich denke oft daran.",
+        "Oft denke ich daran.",
+        "Oft denke ich daran"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "praepositionaladverb_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Ich warte schon lange darauf und denke jeden Tag daran."
+    },
+    {
+      "lesson": 4,
+      "topic": "frageadverb_worueber_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Worüber sprichst du und worauf wartest du eigentlich?"
+    },
+    {
+      "lesson": 4,
+      "topic": "genitiv_repaso_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Trotz des Regens und wegen der Verspätung blieben wir während der Pause im Büro."
+    },
+    {
+      "lesson": 4,
+      "topic": "frageadverb_woran_listen",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Woran denkst du gerade?",
+      "options": [
+        "Woran denkst du gerade?",
+        "Worauf denkst du gerade?",
+        "Worüber wartest du gerade?"
+      ],
+      "value": "Woran denkst du gerade?"
+    },
+    {
+      "lesson": 4,
+      "topic": "frageadverb_worauf_reading",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "El verbo es 'warten auf'. Elige la pregunta correcta: '¿Por qué (a qué) esperas?' → '___ wartest du?'",
+      "options": ["Worauf", "Worüber", "Woran"],
+      "value": "Worauf"
+    },
+    {
+      "lesson": 4,
+      "topic": "repaso_passiv_konnektor_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Repaso de pasiva (Präteritum Passiv de 'entscheiden'): 'La cuestión fue decidida ayer.'",
+      "text": "Die Frage ___ gestern entschieden.",
+      "value": "wurde",
+      "accepted": ["wurde"]
+    },
+    {
+      "lesson": 4,
+      "topic": "frageadverb_worueber_listen",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Worüber freust du dich am meisten?",
+      "options": [
+        "Worüber freust du dich am meisten?",
+        "Worauf freust du dich am meisten?",
+        "Woran freust du dich am meisten?"
+      ],
+      "value": "Worüber freust du dich am meisten?"
+    }
+  ]
+}

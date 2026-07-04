@@ -1,0 +1,218 @@
+{
+  "unit": {
+    "order": 22,
+    "title_es": "Conectores avanzados (je…desto, weder…noch)",
+    "color": "#4A235A",
+    "icon": "account_tree"
+  },
+  "checkpoint_desc": "Enlaza ideas con conectores dobles (je…desto, sowohl…als auch, weder…noch, entweder…oder, nicht nur…sondern auch) y adverbios de contraste (dennoch, trotzdem, allerdings, jedoch) colocando el verbo en la posición correcta.",
+  "lessons": [
+    { "order": 1, "title_es": "je … desto/umso (cuanto más … más)" },
+    { "order": 2, "title_es": "sowohl…als auch · weder…noch · entweder…oder" },
+    { "order": 3, "title_es": "nicht nur…sondern auch · zwar…aber" },
+    { "order": 4, "title_es": "dennoch · trotzdem · allerdings · jedoch" }
+  ],
+  "vocab": [
+    ["der Konnektor", "el conector", "sust"],
+    ["der Zusammenhang", "la conexión, el contexto", "sust"],
+    ["die Voraussetzung", "el requisito, la condición", "sust"],
+    ["der Gegensatz", "el contraste, la oposición", "sust"],
+    ["die Einschränkung", "la restricción, el matiz", "sust"],
+    ["die Fähigkeit", "la capacidad, la habilidad", "sust"],
+    ["der Aufwand", "el esfuerzo, el gasto", "sust"],
+    ["der Fortschritt", "el progreso, el avance", "sust"],
+    ["die Herausforderung", "el desafío, el reto", "sust"],
+    ["zunehmen", "aumentar, incrementarse", "verbo"],
+    ["verbessern", "mejorar", "verbo"],
+    ["einschränken", "restringir, limitar", "verbo"],
+    ["dennoch", "no obstante, aun así", "adv"],
+    ["trotzdem", "a pesar de todo, aun así", "adv"],
+    ["allerdings", "sin embargo, eso sí", "adv"],
+    ["jedoch", "sin embargo, no obstante", "adv"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "je_desto_verb_position",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Cuanto más aprendo, mejor entiendo.» ¿Cuál es correcta? (en la parte «je» el verbo va al final; tras «desto» va comparativo + verbo + sujeto)",
+      "options": ["Je mehr ich lerne, desto besser verstehe ich.", "Je mehr ich lerne, desto ich besser verstehe.", "Je mehr lerne ich, desto besser ich verstehe."],
+      "value": "Je mehr ich lerne, desto besser verstehe ich."
+    },
+    {
+      "lesson": 1,
+      "topic": "je_desto_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: «Cuanto más practicas, más rápido hablas.»",
+      "source": "Cuanto más practicas, más rápido hablas.",
+      "value": "Je mehr du übst, desto schneller sprichst du.",
+      "accepted": ["Je mehr du übst, desto schneller sprichst du", "Je mehr du übst, desto schneller sprichst du.", "Je mehr du uebst, desto schneller sprichst du", "Je mehr du übst, umso schneller sprichst du.", "Je mehr du übst, umso schneller sprichst du"]
+    },
+    {
+      "lesson": 1,
+      "topic": "je_desto_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Je größer die Herausforderung ist, desto größer ist der Fortschritt.",
+      "options": ["Je größer die Herausforderung ist, desto größer ist der Fortschritt.", "Je größer die Herausforderung ist, desto kleiner ist der Fortschritt.", "Je kleiner die Herausforderung ist, desto größer ist der Aufwand."],
+      "value": "Je größer die Herausforderung ist, desto größer ist der Fortschritt."
+    },
+    {
+      "lesson": 1,
+      "topic": "je_desto_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Je länger man wartet, desto teurer wird die Reparatur."
+    },
+    {
+      "lesson": 2,
+      "topic": "doppelkonnektor_forms",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada conector doble con su significado.",
+      "pairs": [
+        ["sowohl … als auch", "tanto … como"],
+        ["weder … noch", "ni … ni"],
+        ["entweder … oder", "o … o"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "weder_noch_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Ni tiene tiempo ni ganas.» ¿Cuál es correcta? (weder … noch, sin negación adicional)",
+      "options": ["Sie hat weder Zeit noch Lust.", "Sie hat weder Zeit noch keine Lust.", "Sie hat sowohl Zeit noch Lust."],
+      "value": "Sie hat weder Zeit noch Lust."
+    },
+    {
+      "lesson": 2,
+      "topic": "entweder_oder_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: «O vamos hoy o nos quedamos en casa.»",
+      "source": "O vamos hoy o nos quedamos en casa.",
+      "value": "Entweder gehen wir heute oder wir bleiben zu Hause.",
+      "accepted": ["Entweder gehen wir heute oder wir bleiben zu Hause", "Entweder gehen wir heute oder wir bleiben zu Hause.", "Entweder gehen wir heute, oder wir bleiben zu Hause.", "Entweder wir gehen heute oder wir bleiben zu Hause."]
+    },
+    {
+      "lesson": 2,
+      "topic": "weder_noch_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Er ist weder müde noch hungrig.",
+      "options": ["Er ist weder müde noch hungrig.", "Er ist sowohl müde als auch hungrig.", "Er ist entweder müde oder hungrig."],
+      "value": "Er ist weder müde noch hungrig."
+    },
+    {
+      "lesson": 2,
+      "topic": "sowohl_als_auch_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Das Hotel ist sowohl günstig als auch zentral.",
+      "options": ["Das Hotel ist sowohl günstig als auch zentral.", "Das Hotel ist weder günstig noch zentral.", "Das Hotel ist entweder günstig oder zentral."],
+      "value": "Das Hotel ist sowohl günstig als auch zentral."
+    },
+    {
+      "lesson": 3,
+      "topic": "nicht_nur_sondern_forms",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada conector con su significado.",
+      "pairs": [
+        ["nicht nur … sondern auch", "no solo … sino también"],
+        ["zwar … aber", "es cierto que … pero"],
+        ["nicht … sondern", "no … sino"]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "nicht_nur_sondern_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«No solo es barato, sino también rápido.» ¿Cuál es correcta?",
+      "options": ["Es ist nicht nur billig, sondern auch schnell.", "Es ist nicht nur billig, aber auch schnell.", "Es ist nicht nur billig, sondern noch schnell."],
+      "value": "Es ist nicht nur billig, sondern auch schnell."
+    },
+    {
+      "lesson": 3,
+      "topic": "zwar_aber_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa (es cierto que … pero): «Das Auto ist zwar teuer, ___ sehr zuverlässig.»",
+      "text": "Das Auto ist zwar teuer, ___ sehr zuverlässig.",
+      "value": "aber",
+      "accepted": ["aber"]
+    },
+    {
+      "lesson": 3,
+      "topic": "nicht_nur_sondern_reorder",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena la frase: «Ella no solo trabaja, sino que también estudia.»",
+      "tiles": ["Sie", "arbeitet", "nicht", "nur,", "sondern", "sie", "studiert", "auch"],
+      "sequence": ["Sie", "arbeitet", "nicht", "nur,", "sondern", "sie", "studiert", "auch"]
+    },
+    {
+      "lesson": 3,
+      "topic": "zwar_aber_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Die Wohnung ist zwar klein, aber sehr gemütlich."
+    },
+    {
+      "lesson": 4,
+      "topic": "trotzdem_verb_position",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Estaba lloviendo; aun así fuimos a pasear.» Tras «trotzdem» hay inversión (verbo en 2ª posición). ¿Cuál es correcta?",
+      "options": ["Es regnete; trotzdem gingen wir spazieren.", "Es regnete; trotzdem wir gingen spazieren.", "Es regnete; trotzdem wir spazieren gingen."],
+      "value": "Es regnete; trotzdem gingen wir spazieren."
+    },
+    {
+      "lesson": 4,
+      "topic": "dennoch_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el verbo en la posición correcta tras «dennoch» (inversión V2): «Sie war krank; dennoch ___ sie zur Arbeit.»",
+      "text": "Sie war krank; dennoch ___ sie zur Arbeit.",
+      "value": "ging",
+      "accepted": ["ging"]
+    },
+    {
+      "lesson": 4,
+      "topic": "allerdings_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce (usa «allerdings» con inversión): «El plan es bueno; sin embargo, es caro.»",
+      "source": "El plan es bueno; sin embargo, es caro.",
+      "value": "Der Plan ist gut; allerdings ist er teuer.",
+      "accepted": ["Der Plan ist gut; allerdings ist er teuer", "Der Plan ist gut; allerdings ist er teuer.", "Der Plan ist gut, allerdings ist er teuer.", "Der Plan ist gut. Allerdings ist er teuer."]
+    },
+    {
+      "lesson": 4,
+      "topic": "trotzdem_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Es war spät; trotzdem blieben wir.",
+      "options": ["Es war spät; trotzdem blieben wir.", "Es war spät; trotzdem wir blieben.", "Es war spät; deshalb blieben wir."],
+      "value": "Es war spät; trotzdem blieben wir."
+    },
+    {
+      "lesson": 4,
+      "topic": "jedoch_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Das Angebot klingt gut; jedoch sollten wir vorsichtig sein."
+    }
+  ]
+}

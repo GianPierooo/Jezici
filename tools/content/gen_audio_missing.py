@@ -41,6 +41,8 @@ GROUPS = {
     "nl-b1": (COURSE_NL, "B1", "nl"),
     "fr-b1": (COURSE_FR, "B1", "fr"),
     "it-b1": (COURSE_IT, "B1", "it"),
+    "de-b2": (COURSE_DE, "B2", "de"),
+    "nl-b2": (COURSE_NL, "B2", "nl"),
 }
 
 def tts(text, tl):

@@ -6,6 +6,14 @@
 > Prioridad: es→en A1/A2 a fondo (lo que los testers usan hoy). B1–C1 y es→pt: perfil
 > estructural + diferido (ver "Pendiente").
 
+## B2 es→de (escalera B1→B2) (2026-07-03)
+- **B2 alemán completo (mig 115):** 6 unidades (order 19-24), 114 ítems, balance **L=67% S=50%**. Currículo
+  B2 CEFR-real: Konjunktiv I (indirekte Rede), Passiv erweitert, Partizip als Adjektiv, Konnektoren B2,
+  Nominalisierung/Funktionsverbgefüge, Genitiv-Präpositionen/Präpositionaladverbien — progresión desde B1.
+  6 profesores nativos IA + rebalanceo/revisión adversarial (fixes reales). **alemán es→de: A1→B2 completo**
+  (verify_b2_chain de PASS). Hallazgo sistémico corregido: distractores de MC que solo cambian mayúscula/umlaut
+  colisionan bajo jz_normalize → guard norm-exacto. **Diferido: B2 nl (bloqueado por B1 nl)**; B2 it/fr; C1.
+
 ## B1 es→fr (escalera A2→B1) (2026-07-03)
 - **B1 francés completo (mig 113):** 6 unidades (order 13-18), 114 ítems, balance **L=67% S=50%**. Currículo
   B1 CEFR-real (no traducción del inglés): subjonctif présent, futur/conditionnel, pronoms relatifs

@@ -106,7 +106,25 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
   (STAMPS/DIFF b1) + robustez `topic` faltante. **Verificado cliente real (`verify_b1_chain.py de`):**
   determinista 96/96 correctos + 96/96 distractores (42501); **CAMINA A1→B1 las 18 unidades** (U12→U13,
   30/30 lecciones B1); **0 lesson_items cruzan los 6 cursos**; default(en) sin fuga; audio HEAD 42/42.
-- **Diferido:** **B1 es→nl** (retome EXACTO: 6 agentes nativos nl mismos prompts s/de/nl + gramática nl
+- **B2 es→de ✅ LIVE (mig 115, 2026-07-03):** 6 unidades (order 19-24, encadenan B1→B2; U18 desbloquea
+  U19), **114 ítems (R36/W36/L24/S18 → L=67% S=50%)**, audio TTS tl=de **42/42**. Currículo B2 REAL:
+  **Konjunktiv I** (indirekte Rede formal: er habe/sei/werde), **Passiv erweitert** (mit Modalverben,
+  Zustandspassiv, sich lassen/sein+zu+Inf), **Partizip als Adjektiv** (Partizip I/II attributiv +
+  declinación), **Konnektoren B2** (je…desto, sowohl…als auch, weder…noch, nicht nur…sondern auch),
+  **Nominalisierung + Funktionsverbgefüge** (das Lesen; Entscheidung treffen, in Frage stellen),
+  **Genitiv-Präpositionen + Präpositionaladverbien** (wegen/trotz/während + darauf/worüber). 6 profesores
+  nativos IA + **rebalanceo/revisión adversarial nativa** (Konjunktiv I audible, «Ein reparierter Auto»→
+  «repariertes» [neutro] en accepted, FVG treffen≠machen, Genitiv -s, distractores audibles). **Verificado
+  cliente real (`verify_b2_chain.py de`):** determinista 96/96 + 96/96 distractores (42501); **CAMINA A1→B2
+  las 24 unidades** (U18→U19, 30/30 lecciones B2); **0 lesson_items cruzan los 6 cursos**; default(en) sin
+  fuga; audio HEAD 42/42. **Fix de colisión:** MC «Das Lesen»/«Das lesen» difería solo en mayúscula y
+  `jz_grade` pasa a minúsculas (near-match NO aplica a MC, sí el lowercase) → aceptaba el distractor;
+  corregido (Lesen/Lesung/Leser) + guard norm-exacto en TODOS los B2 (0 colisiones, 92/92 distractores
+  rechazados) + `gen_course.py` robusto ante `prompt` faltante. **alemán es→de: A1→B2 completo.**
+- **Diferido:** **B2 es→nl BLOQUEADO por B1 es→nl** (nl solo llega a A2 hoy — B1 nl fue diferido). Retome:
+  primero **B1 es→nl** (STAMP 20260703120112) y LUEGO **B2 es→nl** (STAMP 20260703120116), mismo pipeline
+  (6 agentes nativos nl + rebalanceo + `gen_course.py nl b1|b2` + `gen_audio_missing.py nl-b1|nl-b2` +
+  `verify_b1_chain.py nl` / `verify_b2_chain.py nl`). **B1 es→nl** (retome EXACTO: 6 agentes nativos nl mismos prompts s/de/nl + gramática nl
   [conditionalis zou, bijzinnen/voegwoorden, relatieve bijzinnen die/dat, lijdende vorm worden, vaste
   voorzetsels + om…te, voltooid verleden/conditionalis verleden] → validar R6/W6/L4/S3 → `gen_course.py
   nl b1` [STAMP 20260703120112 ya reservado] → `gen_audio_missing.py nl-b1` → `verify_b1_chain.py nl`).

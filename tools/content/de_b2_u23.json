@@ -1,0 +1,376 @@
+{
+  "unit": {
+    "order": 23,
+    "title_es": "Nominalización y perífrasis (Funktionsverbgefüge)",
+    "color": "#641E16",
+    "icon": "functions"
+  },
+  "checkpoint_desc": "Demuestra que dominas la nominalización del verbo y las perífrasis con verbo funcional (eine Entscheidung treffen, in Frage stellen).",
+  "lessons": [
+    {
+      "order": 1,
+      "title_es": "Del verbo al sustantivo (das Lesen, die Entscheidung)"
+    },
+    {
+      "order": 2,
+      "title_es": "Nominalización con preposición (beim Lesen, zum Schwimmen)"
+    },
+    {
+      "order": 3,
+      "title_es": "Perífrasis con verbo funcional I (treffen, stellen, üben)"
+    },
+    {
+      "order": 4,
+      "title_es": "Perífrasis con verbo funcional II (nehmen, ziehen, stehen)"
+    }
+  ],
+  "vocab": [
+    [
+      "die Entscheidung",
+      "la decisión",
+      "sustantivo"
+    ],
+    [
+      "die Entwicklung",
+      "el desarrollo",
+      "sustantivo"
+    ],
+    [
+      "die Verfügung",
+      "la disposición",
+      "sustantivo"
+    ],
+    [
+      "die Rücksicht",
+      "la consideración",
+      "sustantivo"
+    ],
+    [
+      "das Lesen",
+      "la lectura (el leer)",
+      "sustantivo"
+    ],
+    [
+      "das Schwimmen",
+      "la natación (el nadar)",
+      "sustantivo"
+    ],
+    [
+      "die Kritik",
+      "la crítica",
+      "sustantivo"
+    ],
+    [
+      "der Betracht",
+      "la consideración (in Betracht)",
+      "sustantivo"
+    ],
+    [
+      "die Frage",
+      "la pregunta / la cuestión",
+      "sustantivo"
+    ],
+    [
+      "treffen",
+      "tomar (una decisión)",
+      "verbo"
+    ],
+    [
+      "stellen",
+      "poner / plantear",
+      "verbo"
+    ],
+    [
+      "stehen",
+      "estar (a disposición)",
+      "verbo"
+    ],
+    [
+      "nehmen",
+      "tomar / tener (consideración)",
+      "verbo"
+    ],
+    [
+      "ziehen",
+      "tomar (en cuenta)",
+      "verbo"
+    ],
+    [
+      "üben",
+      "ejercer (crítica)",
+      "verbo"
+    ],
+    [
+      "berücksichtigen",
+      "tener en cuenta",
+      "verbo"
+    ]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "verb_zu_nomen",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada verbo con el sustantivo que se forma a partir de él.",
+      "pairs": [
+        [
+          "entscheiden → die Entscheidung",
+          "decidir → la decisión"
+        ],
+        [
+          "entwickeln → die Entwicklung",
+          "desarrollar → el desarrollo"
+        ],
+        [
+          "lesen → das Lesen",
+          "leer → la lectura"
+        ]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "verb_zu_nomen",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la nominalización correcta del verbo (leer es sano).",
+      "options": [
+        "Das Lesen ist gesund.",
+        "Die Lesung ist gesund.",
+        "Der Leser ist gesund."
+      ],
+      "value": "Das Lesen ist gesund."
+    },
+    {
+      "lesson": 1,
+      "topic": "verb_zu_nomen",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Die Entwicklung der Stadt ist beeindruckend.",
+      "options": [
+        "Die Entwicklung der Stadt ist beeindruckend.",
+        "Die Entscheidung der Stadt ist beeindruckend.",
+        "Die Erziehung der Stadt ist beeindruckend."
+      ],
+      "value": "Die Entwicklung der Stadt ist beeindruckend."
+    },
+    {
+      "lesson": 1,
+      "topic": "verb_zu_nomen",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Das Lesen und das Schreiben sind wichtig."
+    },
+    {
+      "lesson": 2,
+      "topic": "nominalisierung_praeposition",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la frase correcta (mientras leo escucho música).",
+      "options": [
+        "Beim Lesen höre ich Musik.",
+        "Beim Lesung höre ich Musik.",
+        "Beim Leser höre ich Musik."
+      ],
+      "value": "Beim Lesen höre ich Musik."
+    },
+    {
+      "lesson": 2,
+      "topic": "nominalisierung_praeposition",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con la preposición fusionada (voy a la piscina para nadar).",
+      "text": "Ich gehe ins Schwimmbad ___ Schwimmen.",
+      "value": "zum",
+      "accepted": [
+        "zum"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "nominalisierung_praeposition",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: Al cocinar (mientras cocino) escucho la radio.",
+      "source": "Al cocinar escucho la radio.",
+      "value": "Beim Kochen höre ich Radio.",
+      "accepted": [
+        "Beim Kochen höre ich Radio.",
+        "Beim Kochen höre ich Radio",
+        "Beim Kochen hoere ich Radio.",
+        "Beim Kochen hoere ich Radio",
+        "Ich höre Radio beim Kochen.",
+        "Ich höre Radio beim Kochen"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "nominalisierung_praeposition",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Beim Schwimmen entspanne ich mich.",
+      "options": [
+        "Beim Schwimmen entspanne ich mich.",
+        "Beim Schreiben entspanne ich mich.",
+        "Zum Schwimmen entscheide ich mich."
+      ],
+      "value": "Beim Schwimmen entspanne ich mich."
+    },
+    {
+      "lesson": 2,
+      "topic": "nominalisierung_praeposition",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Beim Lesen lerne ich viele neue Wörter."
+    },
+    {
+      "lesson": 3,
+      "topic": "funktionsverb_treffen_stellen",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada sustantivo con su verbo funcional correcto.",
+      "pairs": [
+        [
+          "eine Entscheidung",
+          "treffen"
+        ],
+        [
+          "in Frage",
+          "stellen"
+        ],
+        [
+          "Kritik",
+          "üben"
+        ]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "funktionsverb_treffen_stellen",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la perífrasis correcta (tomar una decisión).",
+      "options": [
+        "eine Entscheidung treffen",
+        "eine Entscheidung machen",
+        "eine Entscheidung nehmen"
+      ],
+      "value": "eine Entscheidung treffen"
+    },
+    {
+      "lesson": 3,
+      "topic": "funktionsverb_treffen_stellen",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el verbo funcional en participio (poner algo en cuestión / cuestionar).",
+      "text": "Er hat meine Idee in Frage ___.",
+      "value": "gestellt",
+      "accepted": [
+        "gestellt"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "funktionsverb_treffen_stellen",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: Ayer tomamos una decisión importante.",
+      "source": "Ayer tomamos una decisión importante.",
+      "value": "Gestern haben wir eine wichtige Entscheidung getroffen.",
+      "accepted": [
+        "Gestern haben wir eine wichtige Entscheidung getroffen.",
+        "Gestern haben wir eine wichtige Entscheidung getroffen",
+        "Wir haben gestern eine wichtige Entscheidung getroffen.",
+        "Wir haben gestern eine wichtige Entscheidung getroffen"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "funktionsverb_treffen_stellen",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Die Journalistin übt Kritik an der Regierung.",
+      "options": [
+        "Die Journalistin übt Kritik an der Regierung.",
+        "Die Journalistin macht Kritik an der Regierung.",
+        "Die Journalistin stellt Kritik an der Regierung."
+      ],
+      "value": "Die Journalistin übt Kritik an der Regierung."
+    },
+    {
+      "lesson": 4,
+      "topic": "funktionsverb_nehmen_ziehen",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la perífrasis correcta (tener consideración con alguien).",
+      "options": [
+        "Rücksicht auf jemanden nehmen",
+        "Rücksicht auf jemanden machen",
+        "Rücksicht auf jemanden ziehen"
+      ],
+      "value": "Rücksicht auf jemanden nehmen"
+    },
+    {
+      "lesson": 4,
+      "topic": "funktionsverb_nehmen_ziehen",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el verbo funcional conjugado (estar a disposición).",
+      "text": "Ich ___ Ihnen gern zur Verfügung.",
+      "value": "stehe",
+      "accepted": [
+        "stehe"
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "funktionsverb_nehmen_ziehen",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena las palabras (tomamos esa opción en cuenta / la consideramos).",
+      "tiles": [
+        "Betracht",
+        "ziehen",
+        "Wir",
+        "in",
+        "diese",
+        "Option"
+      ],
+      "sequence": [
+        "Wir",
+        "ziehen",
+        "diese",
+        "Option",
+        "in",
+        "Betracht"
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "funktionsverb_nehmen_ziehen",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Bitte nehmen Sie Rücksicht auf die Nachbarn.",
+      "options": [
+        "Bitte nehmen Sie Rücksicht auf die Nachbarn.",
+        "Bitte ziehen Sie Rücksicht auf die Nachbarn.",
+        "Bitte stellen Sie Rücksicht auf die Nachbarn."
+      ],
+      "value": "Bitte nehmen Sie Rücksicht auf die Nachbarn."
+    },
+    {
+      "lesson": 4,
+      "topic": "funktionsverb_nehmen_ziehen",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Wir stehen Ihnen jederzeit zur Verfügung."
+    }
+  ]
+}

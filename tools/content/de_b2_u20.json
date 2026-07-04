@@ -1,0 +1,393 @@
+{
+  "unit": {
+    "order": 20,
+    "title_es": "Pasiva avanzada (modales, estado, alternativas)",
+    "color": "#7E5109",
+    "icon": "build_circle"
+  },
+  "checkpoint_desc": "Domina la pasiva avanzada: con verbos modales (muss gemacht werden), la pasiva de estado (ist geschlossen) frente a la de proceso (wird geschlossen) y las alternativas a la pasiva (man, sich lassen + infinitivo, sein + zu + infinitivo).",
+  "lessons": [
+    {
+      "order": 1,
+      "title_es": "Pasiva con modales (muss/kann + Partizip + werden)"
+    },
+    {
+      "order": 2,
+      "title_es": "Pasiva de estado vs. de proceso (ist vs. wird)"
+    },
+    {
+      "order": 3,
+      "title_es": "Alternativas: man y sich lassen + infinitivo"
+    },
+    {
+      "order": 4,
+      "title_es": "Alternativas: sein + zu + infinitivo"
+    }
+  ],
+  "vocab": [
+    [
+      "die Reparatur",
+      "la reparación",
+      "sust"
+    ],
+    [
+      "der Vorgang",
+      "el proceso",
+      "sust"
+    ],
+    [
+      "der Zustand",
+      "el estado",
+      "sust"
+    ],
+    [
+      "die Lösung",
+      "la solución",
+      "sust"
+    ],
+    [
+      "die Maßnahme",
+      "la medida",
+      "sust"
+    ],
+    [
+      "die Genehmigung",
+      "la autorización",
+      "sust"
+    ],
+    [
+      "die Frist",
+      "el plazo",
+      "sust"
+    ],
+    [
+      "die Anlage",
+      "la instalación",
+      "sust"
+    ],
+    [
+      "die Voraussetzung",
+      "el requisito",
+      "sust"
+    ],
+    [
+      "die Verantwortung",
+      "la responsabilidad",
+      "sust"
+    ],
+    [
+      "erledigen",
+      "resolver / hacer (una tarea)",
+      "verbo"
+    ],
+    [
+      "reparieren",
+      "reparar",
+      "verbo"
+    ],
+    [
+      "vermeiden",
+      "evitar",
+      "verbo"
+    ],
+    [
+      "ersetzen",
+      "sustituir / reemplazar",
+      "verbo"
+    ],
+    [
+      "umsetzen",
+      "poner en práctica / implementar",
+      "verbo"
+    ],
+    [
+      "dringend",
+      "urgente / urgentemente",
+      "adj"
+    ]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "passiv_modal_match",
+      "skill": "reading",
+      "type": "match",
+      "pairs": [
+        [
+          "Das muss gemacht werden.",
+          "Eso debe hacerse."
+        ],
+        [
+          "Es kann repariert werden.",
+          "Puede ser reparado."
+        ],
+        [
+          "Der Antrag soll geprüft werden.",
+          "La solicitud debe ser revisada."
+        ]
+      ],
+      "prompt": "Une cada elemento con su significado."
+    },
+    {
+      "lesson": 1,
+      "topic": "passiv_modal_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la pasiva con modal correcta para «El error debe (tiene que) ser corregido».",
+      "options": [
+        "Der Fehler muss korrigiert werden.",
+        "Der Fehler muss werden korrigiert.",
+        "Der Fehler muss korrigiert wird."
+      ],
+      "value": "Der Fehler muss korrigiert werden."
+    },
+    {
+      "lesson": 2,
+      "topic": "zustands_vs_vorgangspassiv",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "La puerta ya está cerrada (estado, resultado). ¿Cuál es la pasiva de estado correcta?",
+      "options": [
+        "Die Tür ist geschlossen.",
+        "Die Tür wird geschlossen.",
+        "Die Tür hat geschlossen."
+      ],
+      "value": "Die Tür ist geschlossen."
+    },
+    {
+      "lesson": 2,
+      "topic": "zustands_vs_vorgangspassiv_match",
+      "skill": "reading",
+      "type": "match",
+      "pairs": [
+        [
+          "Das Fenster wird geöffnet.",
+          "La ventana se está abriendo (proceso)."
+        ],
+        [
+          "Das Fenster ist geöffnet.",
+          "La ventana está abierta (estado)."
+        ],
+        [
+          "Der Brief wird geschrieben.",
+          "La carta se está escribiendo (proceso)."
+        ]
+      ],
+      "prompt": "Une cada elemento con su significado."
+    },
+    {
+      "lesson": 3,
+      "topic": "passiversatz_sich_lassen_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la alternativa a la pasiva con «sich lassen» para «Eso se puede hacer / se deja hacer».",
+      "options": [
+        "Das lässt sich machen.",
+        "Das lasst sich machen.",
+        "Das lässt sich gemacht."
+      ],
+      "value": "Das lässt sich machen."
+    },
+    {
+      "lesson": 4,
+      "topic": "sein_zu_infinitiv_match",
+      "skill": "reading",
+      "type": "match",
+      "pairs": [
+        [
+          "Das ist zu erledigen.",
+          "Eso hay que hacerlo (debe hacerse)."
+        ],
+        [
+          "Der Antrag ist bis Montag einzureichen.",
+          "La solicitud debe presentarse hasta el lunes."
+        ],
+        [
+          "Diese Regel ist zu beachten.",
+          "Esta regla debe respetarse."
+        ]
+      ],
+      "prompt": "Une cada elemento con su significado."
+    },
+    {
+      "lesson": 1,
+      "topic": "passiv_modal_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa la pasiva con modal: «La instalación tiene que ser reparada.» Die Anlage muss repariert ___.",
+      "text": "Die Anlage muss repariert ___.",
+      "value": "werden",
+      "accepted": [
+        "werden"
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "passiv_modal_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al alemán (pasiva con modal): «El problema puede ser resuelto.»",
+      "source": "El problema puede ser resuelto.",
+      "value": "Das Problem kann gelöst werden.",
+      "accepted": [
+        "Das Problem kann gelöst werden",
+        "Das Problem kann gelöst werden.",
+        "Das Problem kann geloest werden",
+        "Das Problem kann geloest werden."
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "zustandspassiv_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al alemán (pasiva de estado): «La tienda está cerrada.»",
+      "source": "La tienda está cerrada.",
+      "value": "Das Geschäft ist geschlossen.",
+      "accepted": [
+        "Das Geschäft ist geschlossen",
+        "Das Geschäft ist geschlossen.",
+        "Das Geschaeft ist geschlossen",
+        "Das Geschaeft ist geschlossen.",
+        "Der Laden ist geschlossen",
+        "Der Laden ist geschlossen."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "passiversatz_man_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena para formar la alternativa con «man»: «Aquí se habla alemán.»",
+      "tiles": [
+        "Hier",
+        "spricht",
+        "man",
+        "Deutsch",
+        "wird",
+        "gesprochen"
+      ],
+      "sequence": [
+        "Hier",
+        "spricht",
+        "man",
+        "Deutsch"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "passiversatz_sich_lassen_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con «sich lassen»: «El error se puede evitar.» Der Fehler lässt ___ vermeiden.",
+      "text": "Der Fehler lässt ___ vermeiden.",
+      "value": "sich",
+      "accepted": [
+        "sich"
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "sein_zu_infinitiv_reorder",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena para formar «sein + zu + infinitivo»: «La tarea debe hacerse hoy.»",
+      "tiles": [
+        "Die",
+        "Aufgabe",
+        "ist",
+        "heute",
+        "zu",
+        "erledigen"
+      ],
+      "sequence": [
+        "Die",
+        "Aufgabe",
+        "ist",
+        "heute",
+        "zu",
+        "erledigen"
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "passiv_modal_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Das Auto muss dringend repariert werden.",
+      "options": [
+        "Das Auto muss dringend repariert werden.",
+        "Das Auto kann dringend repariert werden.",
+        "Das Auto ist dringend repariert worden."
+      ],
+      "value": "Das Auto muss dringend repariert werden."
+    },
+    {
+      "lesson": 2,
+      "topic": "zustandspassiv_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Die Tür ist schon geschlossen.",
+      "options": [
+        "Die Tür ist schon geschlossen.",
+        "Die Tür wird schon geschlossen.",
+        "Die Tür bleibt noch geschlossen."
+      ],
+      "value": "Die Tür ist schon geschlossen."
+    },
+    {
+      "lesson": 3,
+      "topic": "sich_lassen_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Das lässt sich leicht machen.",
+      "options": [
+        "Das lässt sich leicht machen.",
+        "Das lässt sich kaum machen.",
+        "Das lässt sich schwer machen."
+      ],
+      "value": "Das lässt sich leicht machen."
+    },
+    {
+      "lesson": 4,
+      "topic": "sein_zu_infinitiv_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Diese Frist ist unbedingt einzuhalten.",
+      "options": [
+        "Diese Frist ist unbedingt einzuhalten.",
+        "Diese Frist wird leider nicht eingehalten.",
+        "Diese Frist ist heute schon abgelaufen."
+      ],
+      "value": "Diese Frist ist unbedingt einzuhalten."
+    },
+    {
+      "lesson": 1,
+      "topic": "passiv_modal_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Die Rechnung muss bis Freitag bezahlt werden.",
+      "prompt": "Lee en voz alta:"
+    },
+    {
+      "lesson": 2,
+      "topic": "zustandspassiv_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Das Geschäft ist heute geschlossen, aber morgen wird es wieder geöffnet.",
+      "prompt": "Lee en voz alta:"
+    },
+    {
+      "lesson": 3,
+      "topic": "sich_lassen_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Dieses Problem lässt sich schnell lösen.",
+      "prompt": "Lee en voz alta:"
+    }
+  ]
+}

@@ -1,0 +1,404 @@
+{
+  "unit": {
+    "order": 19,
+    "title_es": "Discurso indirecto formal (Konjunktiv I)",
+    "color": "#1A5276",
+    "icon": "record_voice_over"
+  },
+  "checkpoint_desc": "Reproduce declaraciones ajenas en estilo indirecto formal con Konjunktiv I (sei, habe, werde) como en la prensa y los informes.",
+  "lessons": [
+    {
+      "order": 1,
+      "title_es": "sein y haben en Konjunktiv I (sei / habe)"
+    },
+    {
+      "order": 2,
+      "title_es": "Verbos modales y werden (könne / werde)"
+    },
+    {
+      "order": 3,
+      "title_es": "El paso a Konjunktiv II (hätten, könnten)"
+    },
+    {
+      "order": 4,
+      "title_es": "Reportar en la prensa y los informes"
+    }
+  ],
+  "vocab": [
+    [
+      "die indirekte Rede",
+      "el estilo/discurso indirecto",
+      "sust"
+    ],
+    [
+      "der Konjunktiv",
+      "el subjuntivo (modo)",
+      "sust"
+    ],
+    [
+      "die Aussage",
+      "la declaración",
+      "sust"
+    ],
+    [
+      "der Sprecher",
+      "el portavoz",
+      "sust"
+    ],
+    [
+      "die Ministerin",
+      "la ministra",
+      "sust"
+    ],
+    [
+      "die Pressekonferenz",
+      "la rueda de prensa",
+      "sust"
+    ],
+    [
+      "der Bericht",
+      "el informe",
+      "sust"
+    ],
+    [
+      "die Behauptung",
+      "la afirmación",
+      "sust"
+    ],
+    [
+      "behaupten",
+      "afirmar, sostener",
+      "verbo"
+    ],
+    [
+      "betonen",
+      "subrayar, recalcar",
+      "verbo"
+    ],
+    [
+      "erklären",
+      "declarar, explicar",
+      "verbo"
+    ],
+    [
+      "mitteilen",
+      "comunicar, notificar",
+      "verbo"
+    ],
+    [
+      "bestreiten",
+      "negar, desmentir",
+      "verbo"
+    ],
+    [
+      "angeblich",
+      "supuestamente",
+      "adv"
+    ],
+    [
+      "laut",
+      "según",
+      "prep"
+    ],
+    [
+      "die Stellungnahme",
+      "la toma de posición",
+      "sust"
+    ]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "konj1_sein_haben_forms",
+      "skill": "reading",
+      "type": "match",
+      "pairs": [
+        [
+          "er sei",
+          "él está/es (dice que)"
+        ],
+        [
+          "sie habe",
+          "ella tiene (dice que)"
+        ],
+        [
+          "sie seien",
+          "ellos están/son (dice que)"
+        ]
+      ],
+      "prompt": "Une cada elemento con su significado."
+    },
+    {
+      "lesson": 1,
+      "topic": "konj1_sein_report",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Estilo indirecto formal de «Ich bin krank»: Er sagte, er ___ krank.",
+      "options": [
+        "sei",
+        "ist",
+        "wäre"
+      ],
+      "value": "sei"
+    },
+    {
+      "lesson": 1,
+      "topic": "konj1_haben_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Sie erklärte, sie habe keine Zeit.",
+      "options": [
+        "Sie erklärte, sie habe keine Zeit.",
+        "Sie erklärte, sie habe keine Lust.",
+        "Sie erklärte, sie habe kein Geld."
+      ],
+      "value": "Sie erklärte, sie habe keine Zeit."
+    },
+    {
+      "lesson": 1,
+      "topic": "konj1_sein_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce (estilo indirecto formal): «Él dijo que estaba cansado.»",
+      "source": "Él dijo que estaba cansado.",
+      "value": "Er sagte, er sei müde.",
+      "accepted": [
+        "Er sagte, er sei müde",
+        "Er sagte, er sei müde.",
+        "Er sagte, er sei muede.",
+        "Er sagte, dass er müde sei.",
+        "Er sagte, dass er müde sei"
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "konj1_sein_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Sie sagte, sie sei zufrieden mit dem Ergebnis.",
+      "options": [
+        "Sie sagte, sie sei zufrieden mit dem Ergebnis.",
+        "Sie fragte, ob sie zufrieden mit dem Ergebnis sei.",
+        "Sie sagte, sie sei zufrieden mit dem Angebot."
+      ],
+      "value": "Sie sagte, sie sei zufrieden mit dem Ergebnis."
+    },
+    {
+      "lesson": 1,
+      "topic": "konj1_sein_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Der Sprecher erklärte, das Problem sei bereits gelöst.",
+      "prompt": "Lee en voz alta:"
+    },
+    {
+      "lesson": 2,
+      "topic": "konj1_modal_werden_forms",
+      "skill": "reading",
+      "type": "match",
+      "pairs": [
+        [
+          "er werde",
+          "él (dice que) va a / hará"
+        ],
+        [
+          "sie könne",
+          "ella (dice que) puede"
+        ],
+        [
+          "man müsse",
+          "(dicen que) hay que"
+        ]
+      ],
+      "prompt": "Une cada elemento con su significado."
+    },
+    {
+      "lesson": 2,
+      "topic": "konj1_werden_future",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Estilo indirecto de «Wir werden handeln»: Der Minister betonte, man ___ handeln.",
+      "options": [
+        "werde",
+        "wird",
+        "würde"
+      ],
+      "value": "werde"
+    },
+    {
+      "lesson": 2,
+      "topic": "konj1_koennen_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Sie sagte, sie könne heute nicht kommen.",
+      "options": [
+        "Sie sagte, sie könne heute nicht kommen.",
+        "Sie sagte, sie wolle heute nicht kommen.",
+        "Sie sagte, sie könne morgen nicht kommen."
+      ],
+      "value": "Sie sagte, sie könne heute nicht kommen."
+    },
+    {
+      "lesson": 2,
+      "topic": "konj1_werden_wordbank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena (estilo indirecto): «La ministra dijo que iba a dimitir.»",
+      "tiles": [
+        "Die",
+        "Ministerin",
+        "sagte,",
+        "sie",
+        "werde",
+        "zurücktreten",
+        "wird",
+        "würde"
+      ],
+      "sequence": [
+        "Die",
+        "Ministerin",
+        "sagte,",
+        "sie",
+        "werde",
+        "zurücktreten"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "konj1_muessen_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce (estilo indirecto formal): «Él subrayó que había que actuar rápido.»",
+      "source": "Él subrayó que había que actuar rápido.",
+      "value": "Er betonte, man müsse schnell handeln.",
+      "accepted": [
+        "Er betonte, man müsse schnell handeln",
+        "Er betonte, man müsse schnell handeln.",
+        "Er betonte, man muesse schnell handeln",
+        "Er betonte, dass man schnell handeln müsse.",
+        "Er betonte, dass man schnell handeln müsse"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "konj1_werden_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Er sagte, er werde bald antworten.",
+      "options": [
+        "Er sagte, er werde bald antworten.",
+        "Er sagte, er werde nie antworten.",
+        "Er fragte, ob er bald antworten werde."
+      ],
+      "value": "Er sagte, er werde bald antworten."
+    },
+    {
+      "lesson": 3,
+      "topic": "konj2_switch_forms",
+      "skill": "reading",
+      "type": "match",
+      "pairs": [
+        [
+          "sie hätten",
+          "ellos tienen (dicen que)"
+        ],
+        [
+          "sie könnten",
+          "ellos pueden (dicen que)"
+        ],
+        [
+          "sie wüssten",
+          "ellos saben (dicen que)"
+        ]
+      ],
+      "prompt": "Une cada elemento con su significado."
+    },
+    {
+      "lesson": 3,
+      "topic": "konj2_haben_plural",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Sie haben» en indirecto: como «haben» = indicativo, se usa Konjunktiv II. Sie sagten, sie ___ keine Zeit.",
+      "options": [
+        "hätten",
+        "haben",
+        "habten"
+      ],
+      "value": "hätten"
+    },
+    {
+      "lesson": 3,
+      "topic": "konj2_koennen_plural_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Konjunktiv II (plural coincide con indicativo): «Die Experten erklärten, sie ___ das nicht bestätigen.» (können)",
+      "text": "Die Experten erklärten, sie ___ das nicht bestätigen.",
+      "value": "könnten",
+      "accepted": [
+        "könnten",
+        "koennten"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "konj2_haben_reorder",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena la frase en estilo indirecto (plural → Konjunktiv II).",
+      "tiles": [
+        "Die",
+        "Nachbarn",
+        "sagten,",
+        "sie",
+        "hätten",
+        "nichts",
+        "gehört"
+      ],
+      "sequence": [
+        "Die",
+        "Nachbarn",
+        "sagten,",
+        "sie",
+        "hätten",
+        "nichts",
+        "gehört"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "konj2_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Die Forscher betonten, sie hätten noch keine Ergebnisse.",
+      "prompt": "Lee en voz alta:"
+    },
+    {
+      "lesson": 4,
+      "topic": "press_report_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce (estilo de prensa): «El presidente afirmó que la situación estaba bajo control.»",
+      "source": "El presidente afirmó que la situación estaba bajo control.",
+      "value": "Der Präsident behauptete, die Lage sei unter Kontrolle.",
+      "accepted": [
+        "Der Präsident behauptete, die Lage sei unter Kontrolle",
+        "Der Präsident behauptete, die Lage sei unter Kontrolle.",
+        "Der Praesident behauptete, die Lage sei unter Kontrolle",
+        "Der Präsident behauptete, dass die Lage unter Kontrolle sei.",
+        "Der Präsident behauptete, dass die Lage unter Kontrolle sei"
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "press_report_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Laut dem Bericht sei die Zahl der Fälle deutlich gesunken.",
+      "prompt": "Lee en voz alta:"
+    }
+  ]
+}

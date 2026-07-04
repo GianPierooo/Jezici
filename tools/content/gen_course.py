@@ -34,10 +34,11 @@ STAMPS = {
     ('de', 'a2'): '20260703120104', ('nl', 'a2'): '20260703120105',
     ('de', 'b1'): '20260703120111', ('nl', 'b1'): '20260703120112',
     ('fr', 'b1'): '20260703120113', ('it', 'b1'): '20260703120114',
+    ('de', 'b2'): '20260703120115', ('nl', 'b2'): '20260703120116',
 }
 # palabra "Unidad" en el idioma meta (para el título del checkpoint)
 UNIT_WORD = {'fr': 'Unité', 'it': 'Unità', 'de': 'Einheit', 'nl': 'Eenheid'}
-DIFF = {'a1': 0.16, 'a2': 0.34, 'b1': 0.52}
+DIFF = {'a1': 0.16, 'a2': 0.34, 'b1': 0.52, 'b2': 0.68}
 ES_LANG = '10000000-0000-0000-0000-000000000001'
 
 
@@ -93,6 +94,13 @@ def item_sql(course_id, iid, level_cefr, diff, skill, it):
         raise ValueError('tipo desconocido: ' + typ)
     topic = it.get('topic') or ('unidad%d_l%s' % (it['_unit'], it.get('lesson', 'x')))
     tags = ['unidad%d' % it['_unit'], topic, skill]
+    _PROMPT_DEF = {'match': 'Une cada elemento con su significado.',
+                   'speaking_read_aloud': 'Lee en voz alta:',
+                   'listening': 'Escucha y elige la frase que oíste.',
+                   'multiple_choice': 'Elige la opción correcta.', 'cloze': 'Completa la frase.',
+                   'translation': 'Traduce la frase.', 'word_bank': 'Construye la frase.',
+                   'reorder': 'Ordena las palabras.'}
+    it['prompt'] = it.get('prompt') or _PROMPT_DEF.get(typ, 'Completa la actividad.')
     tags_sql = 'ARRAY[' + ', '.join(dollar(t) for t in tags) + ']'
     return (f"('{iid}'::uuid,'{course_id}'::uuid,'{level_cefr}','{skill}','{typ}',"
             f"{dollar(it['prompt'])},{jdollar(payload)}::jsonb,{jdollar(correct)}::jsonb,"

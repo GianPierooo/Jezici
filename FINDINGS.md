@@ -2,6 +2,31 @@
 
 ---
 
+## B2 es→de (escalera B1→B2) — 2026-07-03 ✅ LIVE + VERIFICADO
+> **alemán completa A1→B2.** nl B2 BLOQUEADO por nl B1 (nl solo llega a A2) → retome en orden.
+- **Contenido (mig 115):** 6 unidades (order 19-24), **114 ítems R36/W36/L24/S18** (L=67% S=50%), audio TTS
+  tl=de **42/42**. Currículo B2 real: Konjunktiv I (indirekte Rede), Passiv erweitert (Modalverben/
+  Zustandspassiv/sich lassen), Partizip als Adjektiv, Konnektoren B2 (je…desto/weder…noch), Nominalisierung
+  + Funktionsverbgefüge, Genitiv-Präpositionen + Präpositionaladverbien. Progresión desde B1.
+- **Autoría:** 6 profesores nativos IA + **2 revisores/rebalanceadores nativos** (fixes reales: Konjunktiv I
+  con distractores audibles, «Ein reparierter Auto»→«repariertes» [Auto neutro] en accepted, verbo funcional
+  treffen≠machen, Genitiv -s, vocab «invitado convocado»). `gen_course.py` robusto ante `prompt`/`topic` faltante.
+- **HALLAZGO (fix de grading):** un MC de nominalización tenía distractor «Das lesen ist gesund.» que difería
+  del correcto «Das Lesen…» SOLO en la mayúscula; `jz_grade` normaliza a minúsculas (near-match NO aplica a MC,
+  pero el lowercase SÍ) → **aceptaba el distractor** (95/96 en el primer verify). Corregido (distractores
+  Lesen/Lesung/Leser que difieren >1 char) + **guard norm-exacto en TODOS los B2** (0 colisiones) + prueba
+  con cliente real de **los 92 distractores de MC/listening (0 aceptados)**. Lección: para MC, un distractor
+  que solo cambia mayúscula/umlaut colisiona con el correcto bajo jz_normalize.
+- **Verificado END-TO-END cliente real** (`verify_b2_chain.py de`, JWT): determinista B2 96/96 correctos +
+  96/96 distractores (42501); **CAMINA A1→B2 las 24 unidades** (U18→U19 gating; 30/30 lecciones B2); **0
+  lesson_items cruzan los 6 cursos**; default(en) sin fuga; audio HEAD 42/42. analyze 0.
+- **Retome B2 es→nl (BLOQUEADO):** nl solo llega a A2 (B1 nl fue diferido) → hacer PRIMERO **B1 es→nl** (STAMP
+  20260703120112) y LUEGO **B2 es→nl** (STAMP 20260703120116). Pipeline probado 3× (de B1, fr B1, de B2):
+  6 agentes nativos nl (prompts s/de/nl + gramática nl del nivel) → rebalanceo/revisión → `gen_course.py nl
+  <b1|b2>` → `gen_audio_missing.py nl-<b1|b2>` → `verify_<b1|b2>_chain.py nl`. Andamiaje completo listo.
+
+---
+
 ## B1 es→fr (escalera A2→B1) — 2026-07-03 ✅ LIVE + VERIFICADO
 > Tras alemán, **francés tiene B1 completo** (units 13-18). it/nl B1 diferidos con retome exacto.
 - **Contenido (mig 113):** 6 unidades, **114 ítems R36/W36/L24/S18** (L=67% S=50%), audio TTS tl=fr **42/42**.

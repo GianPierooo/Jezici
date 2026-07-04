@@ -1,0 +1,378 @@
+{
+  "unit": {
+    "order": 21,
+    "title_es": "Participios como adjetivos (Partizip I/II)",
+    "color": "#0E6251",
+    "icon": "style"
+  },
+  "checkpoint_desc": "Usa participios como adjetivos: Partizip I para acciones en curso (das lachende Kind) y Partizip II para acciones terminadas o pasivas (die gekochten Eier), con la declinación correcta del adjetivo.",
+  "lessons": [
+    {
+      "order": 1,
+      "title_es": "Partizip I: la acción en curso (lachend, kochend)"
+    },
+    {
+      "order": 2,
+      "title_es": "Partizip II como adjetivo (gekocht, repariert)"
+    },
+    {
+      "order": 3,
+      "title_es": "Declinación: der/ein/die según género y caso"
+    },
+    {
+      "order": 4,
+      "title_es": "Atributos ampliados (das gestern gekaufte Buch)"
+    }
+  ],
+  "vocab": [
+    [
+      "das lachende Kind",
+      "el niño que ríe",
+      "n"
+    ],
+    [
+      "die kochende Suppe",
+      "la sopa hirviendo",
+      "n"
+    ],
+    [
+      "die gekochten Eier",
+      "los huevos cocidos",
+      "n"
+    ],
+    [
+      "der reparierte Wagen",
+      "el coche reparado",
+      "n"
+    ],
+    [
+      "der weinende Junge",
+      "el niño que llora",
+      "n"
+    ],
+    [
+      "die gebratene Wurst",
+      "la salchicha frita",
+      "n"
+    ],
+    [
+      "die schlafende Katze",
+      "el gato que duerme",
+      "n"
+    ],
+    [
+      "das geöffnete Fenster",
+      "la ventana abierta",
+      "n"
+    ],
+    [
+      "die steigenden Preise",
+      "los precios crecientes",
+      "n"
+    ],
+    [
+      "der geladene Gast",
+      "el invitado convocado",
+      "n"
+    ],
+    [
+      "die spielenden Kinder",
+      "los niños que juegan",
+      "n"
+    ],
+    [
+      "das geschriebene Wort",
+      "la palabra escrita",
+      "n"
+    ],
+    [
+      "die brennende Kerze",
+      "la vela encendida",
+      "n"
+    ],
+    [
+      "der geschlossene Laden",
+      "la tienda cerrada",
+      "n"
+    ],
+    [
+      "das fahrende Auto",
+      "el coche en marcha",
+      "n"
+    ],
+    [
+      "die verlorene Zeit",
+      "el tiempo perdido",
+      "n"
+    ]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "partizip_i_meaning",
+      "skill": "reading",
+      "type": "match",
+      "pairs": [
+        [
+          "das lachende Kind",
+          "el niño que ríe"
+        ],
+        [
+          "die kochende Suppe",
+          "la sopa que hierve"
+        ],
+        [
+          "der schlafende Hund",
+          "el perro que duerme"
+        ]
+      ],
+      "prompt": "Une cada elemento con su significado."
+    },
+    {
+      "lesson": 1,
+      "topic": "partizip_i_vs_ii_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«El niño que llora está en el jardín.» ¿Qué forma es correcta?",
+      "options": [
+        "Das weinende Kind ist im Garten.",
+        "Das geweinte Kind ist im Garten.",
+        "Das weinen Kind ist im Garten."
+      ],
+      "value": "Das weinende Kind ist im Garten."
+    },
+    {
+      "lesson": 2,
+      "topic": "partizip_ii_meaning",
+      "skill": "reading",
+      "type": "match",
+      "pairs": [
+        [
+          "die gekochten Eier",
+          "los huevos cocidos"
+        ],
+        [
+          "der reparierte Wagen",
+          "el coche reparado"
+        ],
+        [
+          "das geöffnete Fenster",
+          "la ventana abierta"
+        ]
+      ],
+      "prompt": "Une cada elemento con su significado."
+    },
+    {
+      "lesson": 2,
+      "topic": "partizip_ii_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«El coche reparado ya está en el taller.» ¿Qué forma es correcta?",
+      "options": [
+        "Der reparierte Wagen steht schon in der Werkstatt.",
+        "Der reparierende Wagen steht schon in der Werkstatt.",
+        "Der repariert Wagen steht schon in der Werkstatt."
+      ],
+      "value": "Der reparierte Wagen steht schon in der Werkstatt."
+    },
+    {
+      "lesson": 3,
+      "topic": "adjective_declension_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Es un niño que ríe.» (nominativo, artículo indefinido, neutro) ¿Qué terminación es correcta?",
+      "options": [
+        "Es ist ein lachendes Kind.",
+        "Es ist ein lachende Kind.",
+        "Es ist ein lachender Kind."
+      ],
+      "value": "Es ist ein lachendes Kind."
+    },
+    {
+      "lesson": 4,
+      "topic": "extended_participle_attribute",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«El libro comprado ayer está sobre la mesa.» (atributo ampliado) ¿Qué frase es correcta?",
+      "options": [
+        "Das gestern gekaufte Buch liegt auf dem Tisch.",
+        "Das gestern kaufende Buch liegt auf dem Tisch.",
+        "Das gestern gekauft Buch liegt auf dem Tisch."
+      ],
+      "value": "Das gestern gekaufte Buch liegt auf dem Tisch."
+    },
+    {
+      "lesson": 1,
+      "topic": "partizip_i_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el Partizip I declinado de «kochen»: «Die ___ Suppe riecht gut.» (la sopa que hierve)",
+      "text": "Die ___ Suppe riecht gut.",
+      "value": "kochende",
+      "accepted": [
+        "kochende"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "partizip_ii_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el Partizip II declinado de «braten»: «Ich esse gern die ___ Wurst.» (la salchicha frita, acusativo)",
+      "text": "Ich esse gern die ___ Wurst.",
+      "value": "gebratene",
+      "accepted": [
+        "gebratene"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "declension_plural_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el Partizip II declinado de «kochen»: «Die ___ Eier sind noch warm.» (los huevos cocidos, plural)",
+      "text": "Die ___ Eier sind noch warm.",
+      "value": "gekochten",
+      "accepted": [
+        "gekochten"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "declension_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: «Un coche reparado es más seguro.»",
+      "source": "Un coche reparado es más seguro.",
+      "value": "Ein reparierter Wagen ist sicherer.",
+      "accepted": [
+        "Ein reparierter Wagen ist sicherer.",
+        "Ein reparierter Wagen ist sicherer",
+        "Ein repariertes Auto ist sicherer.",
+        "Ein repariertes Auto ist sicherer"
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "extended_attribute_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: «La ventana abierta deja entrar el frío.»",
+      "source": "La ventana abierta deja entrar el frío.",
+      "value": "Das geöffnete Fenster lässt die Kälte herein.",
+      "accepted": [
+        "Das geöffnete Fenster lässt die Kälte herein.",
+        "Das geöffnete Fenster lässt die Kälte herein",
+        "Das geoeffnete Fenster laesst die Kaelte herein.",
+        "Das geöffnete Fenster lässt die Kälte hinein."
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "extended_attribute_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena: «El pastel horneado ayer ya está frío.» (der gestern gebackene Kuchen)",
+      "tiles": [
+        "Der",
+        "gestern",
+        "gebackene",
+        "Kuchen",
+        "ist",
+        "schon",
+        "kalt",
+        "backende",
+        "gebacken"
+      ],
+      "sequence": [
+        "Der",
+        "gestern",
+        "gebackene",
+        "Kuchen",
+        "ist",
+        "schon",
+        "kalt"
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "partizip_i_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Das lachende Kind spielt im Park.",
+      "options": [
+        "Das lachende Kind spielt im Park.",
+        "Das weinende Kind spielt im Park.",
+        "Das schlafende Kind spielt im Park."
+      ],
+      "value": "Das lachende Kind spielt im Park."
+    },
+    {
+      "lesson": 2,
+      "topic": "partizip_ii_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Wir essen die gekochten Kartoffeln.",
+      "options": [
+        "Wir essen die gekochten Kartoffeln.",
+        "Wir essen die gebratenen Kartoffeln.",
+        "Wir essen die gebackenen Kartoffeln."
+      ],
+      "value": "Wir essen die gekochten Kartoffeln."
+    },
+    {
+      "lesson": 3,
+      "topic": "partizip_contrast_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Die brennende Kerze steht auf dem Tisch.",
+      "options": [
+        "Die brennende Kerze steht auf dem Tisch.",
+        "Die brennende Lampe steht auf dem Tisch.",
+        "Die brennende Kerze liegt auf dem Boden."
+      ],
+      "value": "Die brennende Kerze steht auf dem Tisch."
+    },
+    {
+      "lesson": 4,
+      "topic": "extended_attribute_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Das reparierte Fahrrad steht draußen.",
+      "options": [
+        "Das reparierte Fahrrad steht draußen.",
+        "Das reparierte Fahrrad steht drinnen.",
+        "Das kaputte Fahrrad steht draußen."
+      ],
+      "value": "Das reparierte Fahrrad steht draußen."
+    },
+    {
+      "lesson": 1,
+      "topic": "partizip_i_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Die spielenden Kinder lachen laut im Garten.",
+      "prompt": "Lee en voz alta:"
+    },
+    {
+      "lesson": 2,
+      "topic": "partizip_ii_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Der reparierte Wagen fährt wieder einwandfrei.",
+      "prompt": "Lee en voz alta:"
+    },
+    {
+      "lesson": 4,
+      "topic": "extended_attribute_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Das gestern gekaufte Buch liegt schon auf meinem Tisch.",
+      "prompt": "Lee en voz alta:"
+    }
+  ]
+}
