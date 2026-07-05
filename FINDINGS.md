@@ -2,6 +2,32 @@
 
 ---
 
+## Placement a nivel real + Conversar de/nl + tips B1/B2 (3 frentes) — 2026-07-05 ✅ LIVE + VERIFICADO
+> Paso 0 (ground truth, BD): placement fr/it/de/nl topaba A2 y pt B1, pero esos cursos ya llegan a B2;
+> Conversar servía en/pt/fr/it (de/nl caían al fallback inglés); tips fr/it/de/nl solo A1/A2, pt hasta B1.
+- **[1] Placement a nivel real (mig 122/123, commit 27dea98):** bancos ampliados al techo real del curso —
+  fr/it/de/nl +B1+B2 (112 ítems = 7R MC + 7W cloze × 2 niveles × 4 idiomas), pt +B2 (14). `gen_placement_multi.py`
+  modo `hi` (no reescribe la mig 110) + `gen_placement_pt.py` modo `b2` (la 093 queda byte-idéntica). **Cableado =
+  el propio banco:** `placement_next(p_course)` ya es course-scoped y el estimador "techo con evidencia" sube a B2
+  con los ítems sembrados; NO se toca el RPC. Autorado nativo por idioma (currículo B1/B2 real). Guard: cloze
+  automático (modela `jz_near_match` con y sin diacríticos) + chequeo norm-exacto de MC (0 colisiones). **Verificado
+  cliente real (`verify_placement_multi.py`/`verify_placement_pt.py`, JWT):** personas A1→A1, A2→A2, **B1→B1, B2→B2**,
+  avanzado→B2; aislamiento (placement_next(code) solo su curso; en sin fuga); determinista 56/56 + 56/56 (42501).
+  **Un aprendiz B1/B2 ya se ubica en B1/B2, no en A2.**
+- **[2] Conversar de/nl (commit 9e0a09e):** `ConvTopic.models` ya era un mapa por idioma (en/pt/fr/it) con
+  `modelFor(lang)` + `activeCourseTargetProvider`, pero de/nl (los 2 cursos más nuevos) no tenían modelo → fallback
+  INGLÉS. +de (Sie formal + Perfekt) y +nl (V2 + «Mag ik…» + voltooid tegenwoordige tijd) en los 6 topics, nativos.
+  `SpeechLang` ya mapeaba de-DE/nl-NL (voz/reconocedor). Test extendido a 6 idiomas. **Verificado: analyze 0 · test
+  94/94** (6 topics × 6 idiomas × 3 tips + fallback a en).
+- **[3] Tips B1/B2 (mig 124, commit 96d6b04):** +54 tips = fr/it/de/nl B1+B2 (units 13-24) + pt B2 (19-24), 1 punto
+  gramatical clave/unidad (título/cuerpo en español con el error típico del hispanohablante + ejemplo en el idioma
+  meta), nativos. `gen_tips_multi.py` batch `hi` + cefr por unit_order corregido a B2 (antes capaba en B1). content_tips
+  course-scoped por `get_lesson_tip`. **Verificado cliente real (set_active_course + get_lesson_tip por curso en
+  lección B1/B2):** cada curso recibe SU tip en su idioma (fr→fr…pt→pt), 0 cruce. **Tips A1-B2 en los 6 cursos.**
+- **Diferido (stop clean, retome exacto en ## Cola ítem 1):** historias/inmersión B1 para fr/it/de/nl/pt (hoy todas A1).
+
+---
+
 ## B2 es→pt — los 6 cursos llegan a B2 — 2026-07-05 ✅ LIVE + VERIFICADO
 > Paso 0 (ground truth): introspección BD confirmó pt A1–B1 (18 units, el único rezagado); resto A1–B2.
 > Frente elegido de la Cola: es→pt B2 → paridad (los 6 cursos a B2).
