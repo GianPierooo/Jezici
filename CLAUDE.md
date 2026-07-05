@@ -3,7 +3,7 @@
 > Contexto de arranque para cualquier sesión. **No** es copia de los 21 `.md` de
 > diseño (eso es la carpeta raíz `Jezici_*.md` + `docs/`). Aquí va el ESTADO REAL,
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
-> Última actualización: **2026-07-03**.
+> Última actualización: **2026-07-05**.
 
 ## Reglas del agente (siempre)
 - Fuente de verdad = repo + BD + cliente real, NO los docs. Paso 0 de toda misión:
@@ -26,14 +26,10 @@
 
 ## Cola (retome exacto — orden sugerido)
 > Estado de niveles hoy (verificado en BD): **en A1–C1 · pt A1–B1 · fr A1–B1 · it A1–A2 ·
-> de A1–B2 · nl A1–B1**. Andamiaje de escalera probado 5× (de B1, fr B1, de B2, nl B1, +): generador
+> de A1–B2 · nl A1–B2**. Andamiaje de escalera probado 6× (de B1, fr B1, de B2, nl B1, nl B2, +): generador
 > `gen_course.py <code> <a1|a2|b1|b2>`, audio `gen_audio_missing.py <code>-<lvl>`, verificadores
 > `verify_b1_chain.py`/`verify_b2_chain.py <code>`. STAMPS reservados en `gen_course.py`.
-1. **B2 es→nl** (STAMP 20260703120116) — YA DESBLOQUEADO (nl tiene B1 desde mig 112). 6 agentes
-   nativos nl B2: register/complexe voegwoorden (niettemin/desondanks), lijdende vorm avanzada,
-   deelwoord als bijvoeglijk, indirecte rede, nominalisatie, «zou … hebben». Mismo pipeline:
-   `gen_course.py nl b2` → `gen_audio_missing.py nl-b2` → `verify_b2_chain.py nl`.
-2. **B1 es→it** (STAMP 20260703120114). 6 agentes nativos it: congiuntivo presente, futuro/
+1. **B1 es→it** (STAMP 20260703120114). 6 agentes nativos it: congiuntivo presente, futuro/
    condizionale (periodo ipotetico), pronomi relativi (che/cui), concordanza del participio
    (essere→sogg., avere+lo/la/li/le antepuesto), discorso indiretto, pronomi (ci/ne/combinati
    «glielo») → `gen_course.py it b1` → `it-b1` → `verify_b1_chain.py it`.
@@ -57,7 +53,7 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
 (Postgres + RLS + RPCs SECURITY DEFINER) + **Vercel** (deploy del web). Repo
 `github.com/GianPierooo/Jezici`, deploy `jezici.vercel.app`.
 - 6 cursos: **es→en** (A1–C1), **es→pt** (A1–B1), **es→fr** (A1–B1), **es→it** (A1–A2),
-  **es→de** (A1–B2) y **es→nl** (A1–B1). Curso activo por usuario
+  **es→de** (A1–B2) y **es→nl** (A1–B2). Curso activo por usuario
   (`jz_active_course`). Selector en Ajustes.
 - Loop: lección → ejercicios (9 tipos) → grading **server-side** → XP/oro/vidas →
   checkpoints (≥80%) → exámenes de nivel + certificados. Práctica/SRS, logros, ligas
@@ -179,9 +175,21 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
   «om…te» con distractores audibles, guard de colisión MC). **Verificado cliente real (`verify_b1_chain.py
   nl`):** determinista 96/96 + 96/96 distractores (42501); **CAMINA A1→B1 las 18 unidades** (U12→U13,
   30/30 lecciones B1); **0 lesson_items cruzan los 6 cursos**; default(en) sin fuga; audio 42/42.
-- **Diferido:** **B2 es→nl** (YA DESBLOQUEADO — nl tiene B1; STAMP 20260703120116, mismo pipeline;
-  ver "## Cola" ítem 1).
-  B2+ de/nl; imágenes; onboarding de/nl-específico.
+- **B2 es→nl ✅ LIVE (mig 116, 2026-07-05):** 6 unidades (order 19-24, encadenan B1→B2; U18 desbloquea
+  U19), **114 ítems (R36/W36/L24/S18 → L=67% S=50%)**, audio TTS tl=nl **42/42**. Currículo B2 REAL:
+  **indirecte rede** (tijdsverschuiving was/had/zou, dat/of), **lijdende vorm gevorderd** (met modalen,
+  onpersoonlijk «er wordt/werd», perfectum «is/zijn + deelwoord» sin «geworden», agente «door»),
+  **deelwoord als bijvoeglijk naamwoord** (tegenwoordig -end/-ende vs voltooid ge-…-d/-t/-en + verbuiging
+  -e/-Ø según de/het/een), **complexe voegwoorden** (niettemin/desondanks/daarentegen + inversie;
+  zowel…als/noch…noch; hoewel/ofschoon werkwoord achteraan), **nominalisatie** (het+infinitief; werkwoord→
+  zelfstandig naamwoord met -ing/-heid), **«zou hebben/zijn + deelwoord»** (irrealis del pasado) + register
+  u/je. 6 profesores nativos IA + **rebalanceo/revisión adversarial nativa** (colisiones norm-exactas
+  corregidas: «moest»/«moet» → «moest/wilde/kon»; «Hoewel het regende»→«hard regende»; listening casi-
+  homófonos rediseñados «bleef zij»→«werd zij boos», «koken»/«koker»→«wonen»; 2 cloze sin hueco corregidos;
+  verbuiging het/een verificada). **Verificado cliente real (`verify_b2_chain.py nl`):** determinista 96/96 +
+  96/96 distractores (42501); **CAMINA A1→B2 las 24 unidades** (U18→U19, 30/30 lecciones B2); **0 lesson_items
+  cruzan los 6 cursos**; default(en) sin fuga; audio HEAD 42/42. **neerlandés es→nl: A1→B2 completo.**
+- **Diferido:** imágenes; onboarding de/nl-específico; C1+ de/nl.
 
 ## Stack / mecánica clave
 - **Contenido es DB-driven**: los seeds/fixes son migraciones → quedan LIVE al aplicar,

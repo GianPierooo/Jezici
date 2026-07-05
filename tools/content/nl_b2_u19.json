@@ -1,0 +1,226 @@
+{
+  "unit": { "order": 19, "title_es": "Estilo indirecto (contar lo dicho)", "color": "#1A5276", "icon": "record_voice_over" },
+  "checkpoint_desc": "Reproduce en estilo indirecto lo que alguien dijo o preguntó, aplicando bien dat/of y el desplazamiento temporal (was/had/zou).",
+  "lessons": [
+    { "order": 1, "title_es": "Dat of of: afirmaciones y preguntas" },
+    { "order": 2, "title_es": "Desplazamiento temporal en pasado" },
+    { "order": 3, "title_es": "Órdenes y ruegos referidos" },
+    { "order": 4, "title_es": "Registro formal y periodístico" }
+  ],
+  "vocab": [
+    ["beweren", "afirmar / sostener", "werkwoord"],
+    ["de bewering", "la afirmación", "zelfstandig naamwoord"],
+    ["de woordvoerder", "el portavoz", "zelfstandig naamwoord"],
+    ["het bericht", "la noticia / el mensaje", "zelfstandig naamwoord"],
+    ["verklaren", "declarar", "werkwoord"],
+    ["de verklaring", "la declaración", "zelfstandig naamwoord"],
+    ["benadrukken", "recalcar / subrayar", "werkwoord"],
+    ["ontkennen", "negar", "werkwoord"],
+    ["toegeven", "admitir / reconocer", "werkwoord"],
+    ["volgens", "según", "voorzetsel"],
+    ["de bron", "la fuente", "zelfstandig naamwoord"],
+    ["het onderzoek", "la investigación / el estudio", "zelfstandig naamwoord"],
+    ["de minister", "el ministro / la ministra", "zelfstandig naamwoord"],
+    ["eerder", "antes / anteriormente", "bijwoord"],
+    ["onlangs", "recientemente", "bijwoord"],
+    ["of", "si (en pregunta indirecta)", "voegwoord"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "dat_of_verschil",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase neerlandesa con su equivalente en español.",
+      "pairs": [
+        ["Hij zegt dat hij moe is.", "Dice que está cansado."],
+        ["Ze vraagt of ik meega.", "Pregunta si voy con ella."],
+        ["Ik weet niet of het waar is.", "No sé si es verdad."]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "of_indirecte_vraag",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Pregunta indirecta: «Ze vroeg ___ ik tijd had.» (Preguntó si yo tenía tiempo.) Elige la conjunción correcta.",
+      "options": ["of", "dat", "wat"],
+      "value": "of"
+    },
+    {
+      "lesson": 2,
+      "topic": "tijdsverschuiving_is_was",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Directo: «Ik ben ziek.» En indirecto pasado: «Hij zei dat hij ziek ___.» Elige el verbo con el desplazamiento correcto.",
+      "options": ["was", "is", "geweest"],
+      "value": "was"
+    },
+    {
+      "lesson": 2,
+      "topic": "tijdsverschuiving_heeft_had",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Directo: «Ze heeft een auto.» En indirecto pasado: «Ze zei dat ze een auto ___.» Elige la forma correcta.",
+      "options": ["had", "heeft", "hadden"],
+      "value": "had"
+    },
+    {
+      "lesson": 3,
+      "topic": "bevel_indirect",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Orden referida en pasado: «Hij zei dat ik ___ komen.» (Dijo que yo tenía que venir.) Elige el verbo modal correcto.",
+      "options": ["moest", "wilde", "kon"],
+      "value": "moest"
+    },
+    {
+      "lesson": 4,
+      "topic": "volgens_bron",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada expresión periodística con su significado en español.",
+      "pairs": [
+        ["volgens de woordvoerder", "según el portavoz"],
+        ["de minister verklaarde dat", "el ministro declaró que"],
+        ["de bron ontkende dat", "la fuente negó que"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "dat_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con la conjunción para una afirmación indirecta: «Hij zegt ___ hij morgen komt.» (Dice que viene mañana.)",
+      "text": "Hij zegt ___ hij morgen komt.",
+      "value": "dat",
+      "accepted": ["dat"]
+    },
+    {
+      "lesson": 2,
+      "topic": "tijdsverschuiving_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Directo: «Ik heb honger.» Pásalo a indirecto pasado: «Ze zei dat ze honger ___.» Escribe el verbo con desplazamiento.",
+      "text": "Ze zei dat ze honger ___.",
+      "value": "had",
+      "accepted": ["had"]
+    },
+    {
+      "lesson": 2,
+      "topic": "perfectum_plusquamperfectum",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce (perfectum → plusquamperfectum): «Dijo que había comprado un coche.»",
+      "source": "Dijo que había comprado un coche.",
+      "value": "Hij zei dat hij een auto had gekocht.",
+      "accepted": [
+        "Hij zei dat hij een auto had gekocht",
+        "Hij zei dat hij een auto had gekocht.",
+        "Ze zei dat ze een auto had gekocht",
+        "Ze zei dat ze een auto had gekocht.",
+        "Zij zei dat zij een auto had gekocht.",
+        "Hij zei dat hij een auto gekocht had.",
+        "Hij zei dat hij een auto gekocht had"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "vraag_of_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce (pregunta indirecta con «of» y desplazamiento): «Preguntó si yo venía.»",
+      "source": "Preguntó si yo venía.",
+      "value": "Ze vroeg of ik kwam.",
+      "accepted": [
+        "Ze vroeg of ik kwam",
+        "Ze vroeg of ik kwam.",
+        "Zij vroeg of ik kwam.",
+        "Hij vroeg of ik kwam.",
+        "Hij vroeg of ik kwam"
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "toekomst_zou",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas (futuro zal → zou en indirecto pasado): «Dijo que vendría más tarde.»",
+      "tiles": ["Hij", "zei", "dat", "hij", "later", "zou", "komen", "zal", "is"],
+      "sequence": ["Hij", "zei", "dat", "hij", "later", "zou", "komen"]
+    },
+    {
+      "lesson": 4,
+      "topic": "formeel_verklaren",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena las fichas para formar la frase periodística: «El ministro declaró que la investigación estaba terminada.»",
+      "tiles": ["De", "minister", "verklaarde", "dat", "het", "onderzoek", "klaar", "was"],
+      "sequence": ["De", "minister", "verklaarde", "dat", "het", "onderzoek", "klaar", "was"]
+    },
+    {
+      "lesson": 1,
+      "topic": "of_luisteren",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ze vroeg of ik het wist.",
+      "options": ["Ze vroeg of ik het wist.", "Hij zei dat ik het wist.", "Ze weet niet of ik het wist."],
+      "value": "Ze vroeg of ik het wist."
+    },
+    {
+      "lesson": 2,
+      "topic": "was_luisteren",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Hij zei dat hij ziek was.",
+      "options": ["Hij zei dat hij ziek was.", "Hij zegt dat hij ziek is.", "Hij dacht dat hij ziek werd."],
+      "value": "Hij zei dat hij ziek was."
+    },
+    {
+      "lesson": 3,
+      "topic": "moest_luisteren",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ze zei dat ik moest wachten.",
+      "options": ["Ze zei dat ik moest wachten.", "Ze vroeg of ik wilde wachten.", "Ze dacht dat ik kon wachten."],
+      "value": "Ze zei dat ik moest wachten."
+    },
+    {
+      "lesson": 4,
+      "topic": "zou_luisteren",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "De minister zei dat hij zou komen.",
+      "options": ["De minister zei dat hij zou komen.", "De minister zegt dat hij zal komen.", "De woordvoerder dacht dat hij kon komen."],
+      "value": "De minister zei dat hij zou komen."
+    },
+    {
+      "lesson": 2,
+      "topic": "spreken_tijdsverschuiving",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Hij zei dat hij het boek al had gelezen."
+    },
+    {
+      "lesson": 3,
+      "topic": "spreken_vraag",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Ze vroeg of ik met haar meeging."
+    },
+    {
+      "lesson": 4,
+      "topic": "spreken_formeel",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Volgens de woordvoerder had het bedrijf de fout toegegeven."
+    }
+  ]
+}

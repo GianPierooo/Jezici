@@ -1,0 +1,273 @@
+{
+  "unit": {
+    "order": 24,
+    "title_es": "Lo que habría pasado + registro",
+    "color": "#154360",
+    "icon": "history_toggle_off"
+  },
+  "checkpoint_desc": "Demuestra que dominas el condicional perfecto «zou hebben/zijn + deelwoord» (lo que habría pasado, arrepentimiento con «had moeten») y que distingues el registro formal (u) del informal (jij/je). Repaso de estilo indirecto y voz pasiva.",
+  "lessons": [
+    { "order": 1, "title_es": "Lo que habría pasado (zou hebben/zijn)" },
+    { "order": 2, "title_es": "Arrepentimiento e hipótesis del pasado" },
+    { "order": 3, "title_es": "Registro formal e informal (u / jij)" },
+    { "order": 4, "title_es": "Cierre B2: estilo indirecto y pasiva" }
+  ],
+  "vocab": [
+    ["de spijt", "el arrepentimiento", "sustantivo"],
+    ["het register", "el registro (de lengua)", "sustantivo"],
+    ["formeel", "formal", "adjetivo"],
+    ["informeel", "informal", "adjetivo"],
+    ["beleefd", "cortés, educado", "adjetivo"],
+    ["de hypothese", "la hipótesis", "sustantivo"],
+    ["achteraf", "a posteriori, en retrospectiva", "adverbio"],
+    ["anders", "de otra manera, distinto", "adverbio"],
+    ["destijds", "en aquel entonces", "adverbio"],
+    ["de omstandigheid", "la circunstancia", "sustantivo"],
+    ["de aanpak", "el enfoque, el planteamiento", "sustantivo"],
+    ["de beslissing", "la decisión", "sustantivo"],
+    ["indien", "en caso de que, si (formal)", "conjunción"],
+    ["wellicht", "quizás, posiblemente (formal)", "adverbio"],
+    ["de gelegenheid", "la ocasión, la oportunidad", "sustantivo"],
+    ["het gedrag", "el comportamiento", "sustantivo"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "conditionalis_perfect_intro",
+      "skill": "reading",
+      "type": "match",
+      "reading": true,
+      "prompt": "Une cada frase neerlandesa con su significado en español.",
+      "pairs": [
+        ["Ik zou het anders hebben gedaan", "Yo lo habría hecho de otra manera"],
+        ["Ik zou eerder zijn gekomen", "Yo habría venido antes"],
+        ["Dat zou niet zijn gebeurd", "Eso no habría pasado"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "conditionalis_perfect_zou_hebben",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "reading": true,
+      "prompt": "«Con más tiempo, yo lo habría terminado». Elige la opción correcta.",
+      "options": [
+        "Met meer tijd zou ik het hebben afgemaakt",
+        "Met meer tijd zou ik het zijn afgemaakt",
+        "Met meer tijd zou ik het worden afgemaakt"
+      ],
+      "value": "Met meer tijd zou ik het hebben afgemaakt"
+    },
+    {
+      "lesson": 1,
+      "topic": "conditionalis_perfect_zou_zijn_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "writing": true,
+      "prompt": "Completa: «Sin ese aviso, habría llegado tarde» → «Zonder die waarschuwing ___ ik te laat zijn gekomen». (habría)",
+      "text": "Zonder die waarschuwing ___ ik te laat zijn gekomen.",
+      "value": "zou",
+      "accepted": ["zou"]
+    },
+    {
+      "lesson": 1,
+      "topic": "conditionalis_perfect_auxiliary_choice",
+      "skill": "writing",
+      "type": "cloze",
+      "writing": true,
+      "prompt": "Completa con el auxiliar correcto: «Ella se habría quedado en casa» → «Ze zou thuis ___ gebleven». (auxiliar de blijven)",
+      "text": "Ze zou thuis ___ gebleven.",
+      "value": "zijn",
+      "accepted": ["zijn"]
+    },
+    {
+      "lesson": 1,
+      "topic": "conditionalis_perfect_listening",
+      "skill": "listening",
+      "type": "listening",
+      "listening": true,
+      "prompt": "Escucha y elige exactamente lo que oíste.",
+      "say": "Ik zou het nooit hebben geloofd.",
+      "options": [
+        "Ik zou het nooit hebben geloofd.",
+        "Ik zou het nooit zijn gebleven.",
+        "Ik zou het nooit worden geloofd."
+      ],
+      "value": "Ik zou het nooit hebben geloofd."
+    },
+    {
+      "lesson": 1,
+      "topic": "conditionalis_perfect_produce",
+      "skill": "writing",
+      "type": "translation",
+      "writing": true,
+      "prompt": "Traduce al neerlandés: «Yo lo habría hecho de otra manera.»",
+      "source": "Yo lo habría hecho de otra manera.",
+      "value": "Ik zou het anders hebben gedaan.",
+      "accepted": [
+        "Ik zou het anders hebben gedaan.",
+        "Ik zou het anders hebben gedaan",
+        "Ik zou het anders gedaan hebben.",
+        "Ik zou het anders gedaan hebben"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "regret_had_moeten",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "reading": true,
+      "prompt": "«Debería haberlo hecho (pero no lo hice)». Elige la opción correcta.",
+      "options": [
+        "Ik had het moeten doen",
+        "Ik zou het willen doen",
+        "Ik heb het mogen doen"
+      ],
+      "value": "Ik had het moeten doen"
+    },
+    {
+      "lesson": 2,
+      "topic": "regret_condition_result",
+      "skill": "reading",
+      "type": "match",
+      "reading": true,
+      "prompt": "Une cada frase con su significado.",
+      "pairs": [
+        ["Als ik tijd had gehad, zou ik zijn gekomen", "Si hubiera tenido tiempo, habría venido"],
+        ["Ik had het anders moeten aanpakken", "Debería haberlo enfocado de otra manera"],
+        ["Was ik maar eerder vertrokken", "Ojalá me hubiera ido antes"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "regret_irrealis_condition",
+      "skill": "writing",
+      "type": "cloze",
+      "writing": true,
+      "prompt": "Completa la condición del pasado: «Si hubiera sabido eso...» → «Als ik dat had ___, ...». (deelwoord de weten)",
+      "text": "Als ik dat had ___, zou ik anders hebben gehandeld.",
+      "value": "geweten",
+      "accepted": ["geweten"]
+    },
+    {
+      "lesson": 2,
+      "topic": "regret_had_moeten_produce",
+      "skill": "writing",
+      "type": "word_bank",
+      "writing": true,
+      "prompt": "Ordena las fichas: «Debería haber tomado esa decisión.»",
+      "tiles": ["Ik", "had", "die", "beslissing", "moeten", "nemen", "zou", "genomen"],
+      "sequence": ["Ik", "had", "die", "beslissing", "moeten", "nemen"]
+    },
+    {
+      "lesson": 2,
+      "topic": "regret_listening",
+      "skill": "listening",
+      "type": "listening",
+      "listening": true,
+      "prompt": "Escucha y elige exactamente lo que oíste.",
+      "say": "Ik had eerlijker moeten zijn.",
+      "options": [
+        "Ik had eerlijker moeten zijn.",
+        "Ik zou eerlijker willen zijn.",
+        "Ik heb eerlijker mogen zijn."
+      ],
+      "value": "Ik had eerlijker moeten zijn."
+    },
+    {
+      "lesson": 2,
+      "topic": "regret_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "speaking": true,
+      "prompt": "Lee en voz alta esta frase de arrepentimiento.",
+      "read": "Als ik het had geweten, zou ik anders hebben gehandeld."
+    },
+    {
+      "lesson": 3,
+      "topic": "register_formal_request",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "reading": true,
+      "prompt": "Pides algo a un desconocido de forma FORMAL y cortés: «¿Podría usted ayudarme?». Elige la opción correcta.",
+      "options": [
+        "Zou u mij kunnen helpen?",
+        "Zou je mij kunnen helpen?",
+        "Ga jij mij helpen?"
+      ],
+      "value": "Zou u mij kunnen helpen?"
+    },
+    {
+      "lesson": 3,
+      "topic": "register_formal_informal_pairs",
+      "skill": "reading",
+      "type": "match",
+      "reading": true,
+      "prompt": "Une cada expresión con su registro.",
+      "pairs": [
+        ["Zou u zo vriendelijk willen zijn?", "Formal y muy cortés"],
+        ["Zou je dat even willen doen?", "Informal y cortés"],
+        ["Doe eens rustig!", "Informal y directo"]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "register_informal_polite",
+      "skill": "writing",
+      "type": "cloze",
+      "writing": true,
+      "prompt": "Pides un favor a un amigo (INFORMAL) de forma cortés: «¿Podrías esperarme un momento?» → «Zou ___ even op me willen wachten?». (tú, informal)",
+      "text": "Zou ___ even op me willen wachten?",
+      "value": "je",
+      "accepted": ["je", "jij"]
+    },
+    {
+      "lesson": 3,
+      "topic": "register_listening",
+      "skill": "listening",
+      "type": "listening",
+      "listening": true,
+      "prompt": "Escucha y elige exactamente lo que oíste.",
+      "say": "Zou u mij daarmee kunnen helpen?",
+      "options": [
+        "Zou u mij daarmee kunnen helpen?",
+        "Zou je mij daarmee kunnen helpen?",
+        "Kunt u mij daarna even bellen?"
+      ],
+      "value": "Zou u mij daarmee kunnen helpen?"
+    },
+    {
+      "lesson": 4,
+      "topic": "closure_listening_passive",
+      "skill": "listening",
+      "type": "listening",
+      "listening": true,
+      "prompt": "Escucha y elige exactamente lo que oíste (voz pasiva del condicional perfecto).",
+      "say": "De brief zou eerder zijn verstuurd.",
+      "options": [
+        "De brief zou eerder zijn verstuurd.",
+        "De brief zou eerder hebben verstuurd.",
+        "De brief zou eerder worden verstuurd."
+      ],
+      "value": "De brief zou eerder zijn verstuurd."
+    },
+    {
+      "lesson": 4,
+      "topic": "closure_passive_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "speaking": true,
+      "prompt": "Lee en voz alta esta frase en voz pasiva del condicional perfecto.",
+      "read": "De brief zou eerder zijn verstuurd als het nodig was geweest."
+    },
+    {
+      "lesson": 4,
+      "topic": "closure_register_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "speaking": true,
+      "prompt": "Lee en voz alta esta petición formal.",
+      "read": "Zou u zo vriendelijk willen zijn om mij de beslissing achteraf uit te leggen?"
+    }
+  ]
+}

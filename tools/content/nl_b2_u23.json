@@ -1,0 +1,234 @@
+{
+  "unit": {
+    "order": 23,
+    "title_es": "Nominalización (het lezen, de beslissing)",
+    "color": "#641E16",
+    "icon": "functions"
+  },
+  "checkpoint_desc": "Demuestra que dominas la nominalización del neerlandés B2: el infinitivo sustantivado con «het» (het lezen, bij het koken, door het sporten) y los sustantivos derivados de verbos con su sufijo y artículo correctos (de beslissing, de ontwikkeling, de verklaring, de groei), incluido el registro formal (het gebruik, de toename).",
+  "lessons": [
+    { "order": 1, "title_es": "Het + infinitivo: het lezen is gezond" },
+    { "order": 2, "title_es": "Del verbo al sustantivo: -ing y -e (de beslissing)" },
+    { "order": 3, "title_es": "Nominalización formal: de groei, de toename, het gebruik" },
+    { "order": 4, "title_es": "Practica la nominalización en contexto" }
+  ],
+  "vocab": [
+    ["het lezen", "el leer / la lectura", "sustantivo"],
+    ["het koken", "el cocinar / la cocina", "sustantivo"],
+    ["het sporten", "el hacer deporte", "sustantivo"],
+    ["de beslissing", "la decisión", "sustantivo"],
+    ["de ontwikkeling", "el desarrollo", "sustantivo"],
+    ["de verklaring", "la explicación / declaración", "sustantivo"],
+    ["de groei", "el crecimiento", "sustantivo"],
+    ["de toename", "el aumento / el incremento", "sustantivo"],
+    ["het gebruik", "el uso", "sustantivo"],
+    ["de vergadering", "la reunión", "sustantivo"],
+    ["de oplossing", "la solución", "sustantivo"],
+    ["de daling", "la bajada / el descenso", "sustantivo"],
+    ["de mening", "la opinión", "sustantivo"],
+    ["de verandering", "el cambio", "sustantivo"],
+    ["het onderzoek", "la investigación", "sustantivo"],
+    ["de behandeling", "el tratamiento", "sustantivo"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "het_infinitief_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada infinitivo sustantivado con «het» con su significado en español.",
+      "reading": true,
+      "pairs": [
+        ["het lezen", "el leer / la lectura"],
+        ["het koken", "el cocinar"],
+        ["het sporten", "el hacer deporte"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "het_infinitief_artikel",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Un infinitivo sustantivado siempre lleva un artículo fijo. ¿Cuál completa «___ lezen is gezond» (leer es sano)?",
+      "reading": true,
+      "options": ["het", "de", "een"],
+      "value": "het"
+    },
+    {
+      "lesson": 1,
+      "topic": "bij_het_koken",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Mientras cocina escucha música.» Elige la nominalización correcta con preposición.",
+      "reading": true,
+      "options": ["bij het koken", "bij het kok", "bij de koken"],
+      "value": "bij het koken"
+    },
+    {
+      "lesson": 2,
+      "topic": "beslissen_beslissing",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "El sustantivo derivado de «beslissen» (decidir) es de género femenino con sufijo -ing. Elige la forma correcta para «la decisión».",
+      "reading": true,
+      "options": ["de beslissing", "het beslissing", "de beslissen"],
+      "value": "de beslissing"
+    },
+    {
+      "lesson": 2,
+      "topic": "ontwikkelen_ontwikkeling",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada verbo con el sustantivo que se deriva de él.",
+      "reading": true,
+      "pairs": [
+        ["ontwikkelen", "de ontwikkeling"],
+        ["verklaren", "de verklaring"],
+        ["oplossen", "de oplossing"]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "groeien_groei",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "No todos los sustantivos derivados llevan -ing. De «groeien» (crecer) se forma un sustantivo corto. Elige «el crecimiento».",
+      "reading": true,
+      "options": ["de groei", "de groeiing", "het groei"],
+      "value": "de groei"
+    },
+    {
+      "lesson": 1,
+      "topic": "door_het_sporten",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa: «Gracias a hacer deporte se siente mejor.» → «Door ___ sporten voelt hij zich beter.» Escribe el artículo del infinitivo sustantivado.",
+      "writing": true,
+      "text": "Door ___ sporten voelt hij zich beter.",
+      "value": "het",
+      "accepted": ["het"]
+    },
+    {
+      "lesson": 2,
+      "topic": "verklaren_verklaring_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el sustantivo derivado de «verklaren» (explicar): «Su explicación fue clara». Usa el sufijo -ing.",
+      "writing": true,
+      "text": "Zijn ___ was duidelijk.",
+      "value": "verklaring",
+      "accepted": ["verklaring"]
+    },
+    {
+      "lesson": 3,
+      "topic": "toename_gebruik_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Registro formal. Completa: «El uso de internet crece». Sustantivo derivado de «gebruiken», con artículo het.",
+      "writing": true,
+      "text": "Het ___ van het internet groeit.",
+      "value": "gebruik",
+      "accepted": ["gebruik"]
+    },
+    {
+      "lesson": 4,
+      "topic": "translation_lezen_gezond",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al neerlandés: «Leer es sano.»",
+      "writing": true,
+      "source": "Leer es sano.",
+      "value": "Het lezen is gezond.",
+      "accepted": ["Het lezen is gezond.", "Het lezen is gezond", "Lezen is gezond.", "Lezen is gezond"]
+    },
+    {
+      "lesson": 4,
+      "topic": "translation_beslissing_moeilijk",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al neerlandés: «La decisión fue difícil.»",
+      "writing": true,
+      "source": "La decisión fue difícil.",
+      "value": "De beslissing was moeilijk.",
+      "accepted": ["De beslissing was moeilijk.", "De beslissing was moeilijk", "De beslissing was lastig.", "De beslissing was lastig"]
+    },
+    {
+      "lesson": 4,
+      "topic": "wordbank_ontwikkeling",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para decir: «El desarrollo de la ciudad es rápido.»",
+      "writing": true,
+      "tiles": ["De", "ontwikkeling", "van", "de", "stad", "is", "snel", "ontwikkelen", "het"],
+      "sequence": ["De", "ontwikkeling", "van", "de", "stad", "is", "snel"]
+    },
+    {
+      "lesson": 1,
+      "topic": "listening_het_koken_leuk",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase con la nominalización correcta.",
+      "listening": true,
+      "say": "Het koken vind ik leuk.",
+      "options": ["Het koken vind ik leuk.", "De koken vind ik leuk.", "Het wonen vind ik leuk."],
+      "value": "Het koken vind ik leuk."
+    },
+    {
+      "lesson": 2,
+      "topic": "listening_beslissing",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige el sustantivo derivado correcto.",
+      "listening": true,
+      "say": "De beslissing is genomen.",
+      "options": ["De beslissing is genomen.", "Het beslissing is genomen.", "De beslissen is genomen."],
+      "value": "De beslissing is genomen."
+    },
+    {
+      "lesson": 3,
+      "topic": "listening_groei",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase correcta sobre el crecimiento.",
+      "listening": true,
+      "say": "De groei van de economie is sterk.",
+      "options": ["De groei van de economie is sterk.", "De groeiing van de economie is sterk.", "Het groei van de economie is sterk."],
+      "value": "De groei van de economie is sterk."
+    },
+    {
+      "lesson": 3,
+      "topic": "listening_gebruik_toename",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha esta frase de registro formal y elige la correcta.",
+      "listening": true,
+      "say": "De toename van het gebruik is opvallend.",
+      "options": ["De toename van het gebruik is opvallend.", "De toename van de gebruik is opvallend.", "De toenaam van het gebruik is opvallend."],
+      "value": "De toename van het gebruik is opvallend."
+    },
+    {
+      "lesson": 1,
+      "topic": "speaking_door_het_sporten",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta esta frase con un infinitivo sustantivado.",
+      "read": "Door het sporten blijf ik gezond."
+    },
+    {
+      "lesson": 2,
+      "topic": "speaking_verklaring",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta esta frase con un sustantivo derivado en -ing.",
+      "read": "De verklaring van de dokter was duidelijk."
+    },
+    {
+      "lesson": 3,
+      "topic": "speaking_ontwikkeling_groei",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta esta frase de registro formal.",
+      "read": "De ontwikkeling en de groei van de stad gaan snel."
+    }
+  ]
+}

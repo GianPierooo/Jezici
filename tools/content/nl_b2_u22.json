@@ -1,0 +1,264 @@
+{
+  "unit": {
+    "order": 22,
+    "title_es": "Conectores avanzados (niettemin, zowel…als)",
+    "color": "#4A235A",
+    "icon": "account_tree"
+  },
+  "checkpoint_desc": "Demuestra que dominas los conectores avanzados del neerlandés formal: niettemin, desondanks, bovendien y daarentegen (que en posición inicial exigen inversión sujeto-verbo), hoewel y ofschoon (que envían el verbo al final de la subordinada), y los pares correlativos enerzijds…anderzijds, zowel…als, noch…noch. Elige el conector correcto y coloca el verbo en su sitio.",
+  "lessons": [
+    { "order": 1, "title_es": "Contraste formal: niettemin, desondanks, evenwel" },
+    { "order": 2, "title_es": "Añadir y oponer: bovendien, daarentegen, immers" },
+    { "order": 3, "title_es": "Pares correlativos: enerzijds…anderzijds, zowel…als, noch…noch" },
+    { "order": 4, "title_es": "Concesión con verbo al final: hoewel, ofschoon" }
+  ],
+  "vocab": [
+    ["niettemin", "no obstante, sin embargo", "adv"],
+    ["desondanks", "a pesar de ello", "adv"],
+    ["bovendien", "además", "adv"],
+    ["daarentegen", "en cambio, por el contrario", "adv"],
+    ["evenwel", "sin embargo (formal)", "adv"],
+    ["immers", "pues, ya que (justificación)", "adv"],
+    ["hoewel", "aunque", "conj"],
+    ["ofschoon", "aunque (formal)", "conj"],
+    ["enerzijds", "por una parte", "adv"],
+    ["anderzijds", "por otra parte", "adv"],
+    ["zowel", "tanto (…como)", "conj"],
+    ["noch", "ni", "conj"],
+    ["het bezwaar", "la objeción", "n"],
+    ["de tegenstelling", "el contraste, la oposición", "n"],
+    ["het argument", "el argumento", "n"],
+    ["de conclusie", "la conclusión", "n"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "contrast_adverbs",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada conector formal de contraste con su significado en español.",
+      "reading": true,
+      "pairs": [
+        ["niettemin", "no obstante"],
+        ["desondanks", "a pesar de ello"],
+        ["evenwel", "sin embargo (formal)"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "niettemin_inversion",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "El plan salió mal. Elige la continuación con 'niettemin' e inversión correcta del verbo.",
+      "reading": true,
+      "options": [
+        "Niettemin bleef het team optimistisch.",
+        "Niettemin het team bleef optimistisch.",
+        "Niettemin het bleef team optimistisch."
+      ],
+      "value": "Niettemin bleef het team optimistisch."
+    },
+    {
+      "lesson": 1,
+      "topic": "desondanks_inversion",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Llovió todo el día. Elige la oración con 'desondanks' y el verbo en segunda posición.",
+      "reading": true,
+      "options": [
+        "Desondanks gingen we naar het strand.",
+        "Desondanks we gingen naar het strand.",
+        "Desondanks naar het strand we gingen."
+      ],
+      "value": "Desondanks gingen we naar het strand."
+    },
+    {
+      "lesson": 3,
+      "topic": "enerzijds_anderzijds",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Se presentan dos caras de un asunto. Elige el par correlativo correcto ('por una parte… por otra parte').",
+      "reading": true,
+      "options": [
+        "Enerzijds is het duur, anderzijds is het van hoge kwaliteit.",
+        "Zowel is het duur, noch is het van hoge kwaliteit.",
+        "Enerzijds is het duur, niettemin is het van hoge kwaliteit."
+      ],
+      "value": "Enerzijds is het duur, anderzijds is het van hoge kwaliteit."
+    },
+    {
+      "lesson": 3,
+      "topic": "noch_noch",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada expresión correlativa neerlandesa con su significado en español.",
+      "reading": true,
+      "pairs": [
+        ["zowel … als …", "tanto… como…"],
+        ["noch … noch …", "ni… ni…"],
+        ["enerzijds … anderzijds …", "por una parte… por otra parte…"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "niettemin_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el adverbio de contraste (empieza con n). Fíjate en que el verbo 'blijft' va justo después.",
+      "text": "Het is een lastig project. ___ blijft de directie er vertrouwen in houden.",
+      "value": "Niettemin",
+      "accepted": ["Niettemin", "niettemin"]
+    },
+    {
+      "lesson": 1,
+      "topic": "evenwel_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al neerlandés formal usando 'evenwel' con inversión: 'Sin embargo, el resultado fue positivo.'",
+      "source": "Sin embargo, el resultado fue positivo.",
+      "value": "Evenwel was het resultaat positief.",
+      "accepted": [
+        "Evenwel was het resultaat positief.",
+        "Evenwel was het resultaat positief",
+        "Het resultaat was evenwel positief.",
+        "Het resultaat was evenwel positief"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "daarentegen_contrast",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el adverbio que expresa contraste ('en cambio', empieza con d). El verbo 'zijn' lo sigue.",
+      "text": "Mijn broer houdt van de stad. ___ zijn wij liever op het platteland.",
+      "value": "Daarentegen",
+      "accepted": ["Daarentegen", "daarentegen"]
+    },
+    {
+      "lesson": 3,
+      "topic": "zowel_als_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el segundo elemento del par 'zowel … ___' (tanto… como).",
+      "text": "Zowel de leraar ___ de leerlingen waren tevreden met het resultaat.",
+      "value": "als",
+      "accepted": ["als"]
+    },
+    {
+      "lesson": 3,
+      "topic": "noch_noch_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando 'noch … noch …': 'No tengo ni tiempo ni dinero.'",
+      "source": "No tengo ni tiempo ni dinero.",
+      "value": "Ik heb noch tijd noch geld.",
+      "accepted": [
+        "Ik heb noch tijd noch geld.",
+        "Ik heb noch tijd noch geld"
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "hoewel_wordbank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena: 'Aunque estaba cansado, seguí trabajando.' (Recuerda el verbo al final de la subordinada.)",
+      "tiles": ["Hoewel", "ik", "moe", "was", "bleef", "ik", "doorwerken", "ben", "en"],
+      "sequence": ["Hoewel", "ik", "moe", "was", "bleef", "ik", "doorwerken"]
+    },
+    {
+      "lesson": 4,
+      "topic": "hoewel_verb_final",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Concesión con 'hoewel'. Elige la subordinada con el verbo al final.",
+      "reading": true,
+      "options": [
+        "Hoewel het regende, gingen we wandelen.",
+        "Hoewel het hard regende gingen we wandelen.",
+        "Hoewel regende het, gingen we wandelen."
+      ],
+      "value": "Hoewel het regende, gingen we wandelen."
+    },
+    {
+      "lesson": 1,
+      "topic": "listening_niettemin",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase exacta.",
+      "say": "Niettemin bleef zij kalm.",
+      "options": [
+        "Niettemin bleef zij kalm.",
+        "Niettemin werd zij boos.",
+        "Desondanks bleef zij kalm."
+      ],
+      "value": "Niettemin bleef zij kalm."
+    },
+    {
+      "lesson": 2,
+      "topic": "listening_daarentegen",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase exacta.",
+      "say": "Daarentegen koos hij voor de trein.",
+      "options": [
+        "Daarentegen koos hij voor de trein.",
+        "Bovendien koos hij voor de trein.",
+        "Daarentegen koos hij voor de bus."
+      ],
+      "value": "Daarentegen koos hij voor de trein."
+    },
+    {
+      "lesson": 3,
+      "topic": "listening_noch",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase exacta.",
+      "say": "Ik ken noch de auteur noch het boek.",
+      "options": [
+        "Ik ken noch de auteur noch het boek.",
+        "Ik ken zowel de auteur als het boek.",
+        "Ik ken noch de auteur noch de film."
+      ],
+      "value": "Ik ken noch de auteur noch het boek."
+    },
+    {
+      "lesson": 4,
+      "topic": "listening_hoewel",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase exacta.",
+      "say": "Hoewel hij ziek was, kwam hij toch.",
+      "options": [
+        "Hoewel hij ziek was, kwam hij toch.",
+        "Ofschoon hij ziek was, kwam hij toch.",
+        "Hoewel zij ziek was, kwam zij toch."
+      ],
+      "value": "Hoewel hij ziek was, kwam hij toch."
+    },
+    {
+      "lesson": 1,
+      "topic": "speak_desondanks",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta con entonación formal.",
+      "read": "Desondanks bleef het publiek geboeid luisteren."
+    },
+    {
+      "lesson": 3,
+      "topic": "speak_enerzijds",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta con entonación clara.",
+      "read": "Enerzijds is het handig, anderzijds is het riskant."
+    },
+    {
+      "lesson": 4,
+      "topic": "speak_ofschoon",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta cuidando la pausa antes de la coma.",
+      "read": "Ofschoon de weg lang was, gaven we niet op."
+    }
+  ]
+}

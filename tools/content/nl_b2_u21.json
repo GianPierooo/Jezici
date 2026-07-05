@@ -1,0 +1,212 @@
+{
+  "unit": { "order": 21, "title_es": "Participios como adjetivos", "color": "#0E6251", "icon": "style" },
+  "checkpoint_desc": "Demuestra que sabes usar participios como adjetivos delante del sustantivo: el tegenwoordig deelwoord (infinitivo + d: de lachende man, het rennende kind) para una acción en curso, y el voltooid deelwoord (de gekookte eieren, de gerepareerde auto) para un resultado o pasivo, con la verbuiging correcta (-e tras de-woord/het-woord determinado; sin -e tras 'een' + het-woord: een gekookt ei).",
+  "lessons": [
+    { "order": 1, "title_es": "El participio presente: la acción en curso" },
+    { "order": 2, "title_es": "El participio pasado como adjetivo" },
+    { "order": 3, "title_es": "La verbuiging: -e o sin -e" },
+    { "order": 4, "title_es": "Contrastes y matices en contexto" }
+  ],
+  "vocab": [
+    ["de lachende man", "el hombre que ríe", "frase"],
+    ["het rennende kind", "el niño que corre", "frase"],
+    ["de huilende baby", "el bebé que llora", "frase"],
+    ["de slapende hond", "el perro dormido", "frase"],
+    ["de gekookte eieren", "los huevos cocidos", "frase"],
+    ["een gekookt ei", "un huevo cocido", "frase"],
+    ["de gerepareerde auto", "el coche reparado", "frase"],
+    ["de gebakken vis", "el pescado frito", "frase"],
+    ["de vallende bladeren", "las hojas que caen", "frase"],
+    ["het gebroken glas", "el vidrio roto", "frase"],
+    ["de stromende regen", "la lluvia torrencial", "frase"],
+    ["de verwarmde kamer", "la habitación calentada", "frase"],
+    ["een spelend kind", "un niño que juega", "frase"],
+    ["de geschreven brief", "la carta escrita", "frase"],
+    ["de brandende kaars", "la vela encendida", "frase"],
+    ["het gesloten raam", "la ventana cerrada", "frase"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "tegenwoordig_deelwoord_vorm",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada participio presente con su significado en español.",
+      "pairs": [
+        ["de lachende man", "el hombre que ríe"],
+        ["de huilende baby", "el bebé que llora"],
+        ["het rennende kind", "el niño que corre"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "tegenwoordig_deelwoord_keuze",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el participio presente correcto para «las hojas que caen».",
+      "options": ["de vallende bladeren", "de gevallen bladeren", "de valt bladeren"],
+      "value": "de vallende bladeren"
+    },
+    {
+      "lesson": 1,
+      "topic": "tegenwoordig_deelwoord_betekenis",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«De brandende kaars» describe una vela que arde ahora: elige la traducción correcta.",
+      "options": ["la vela encendida (que arde ahora)", "la vela apagada", "la vela comprada"],
+      "value": "la vela encendida (que arde ahora)"
+    },
+    {
+      "lesson": 2,
+      "topic": "voltooid_deelwoord_vorm",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada participio pasado con su significado en español.",
+      "pairs": [
+        ["de gekookte eieren", "los huevos cocidos"],
+        ["de gerepareerde auto", "el coche reparado"],
+        ["de geschreven brief", "la carta escrita"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "voltooid_deelwoord_keuze",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el participio pasado (resultado) correcto para «el vidrio roto».",
+      "options": ["het gebroken glas", "het brekende glas", "het breekt glas"],
+      "value": "het gebroken glas"
+    },
+    {
+      "lesson": 4,
+      "topic": "deelwoord_contrast",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Un huevo que YA está cocido (het-woord con artículo determinado) se dice: elige la opción correcta.",
+      "options": ["het gekookte ei", "het kokende ei", "het kookt ei"],
+      "value": "het gekookte ei"
+    },
+    {
+      "lesson": 1,
+      "topic": "tegenwoordig_deelwoord_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el participio presente de «slapen» (dormir): «de ___ hond» (el perro que duerme).",
+      "text": "de ___ hond",
+      "value": "slapende",
+      "accepted": ["slapende"]
+    },
+    {
+      "lesson": 2,
+      "topic": "voltooid_deelwoord_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el participio pasado de «bakken» (freír): «de ___ vis» (el pescado frito).",
+      "text": "de ___ vis",
+      "value": "gebakken",
+      "accepted": ["gebakken"]
+    },
+    {
+      "lesson": 3,
+      "topic": "verbuiging_geen_e",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Tras «een» + het-woord el participio NO lleva -e. Completa: «een ___ ei» (un huevo cocido).",
+      "text": "een ___ ei",
+      "value": "gekookt",
+      "accepted": ["gekookt"]
+    },
+    {
+      "lesson": 3,
+      "topic": "verbuiging_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al neerlandés: «la habitación calentada».",
+      "source": "la habitación calentada",
+      "value": "de verwarmde kamer",
+      "accepted": ["de verwarmde kamer", "de verwarmde kamer."]
+    },
+    {
+      "lesson": 2,
+      "topic": "voltooid_deelwoord_wordbank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar «el coche reparado».",
+      "tiles": ["de", "gerepareerde", "auto", "reparerende", "gerepareerd"],
+      "sequence": ["de", "gerepareerde", "auto"]
+    },
+    {
+      "lesson": 4,
+      "topic": "deelwoord_reorder",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena las fichas para formar «El niño que corre está feliz»: «Het rennende kind is blij».",
+      "tiles": ["Het", "rennende", "kind", "is", "blij", "gerend"],
+      "sequence": ["Het", "rennende", "kind", "is", "blij"]
+    },
+    {
+      "lesson": 1,
+      "topic": "tegenwoordig_deelwoord_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "de lachende man",
+      "options": ["de lachende man", "de huilende man", "de slapende man"],
+      "value": "de lachende man"
+    },
+    {
+      "lesson": 2,
+      "topic": "voltooid_deelwoord_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "de gekookte aardappelen",
+      "options": ["de gekookte aardappelen", "de gebakken aardappelen", "de gebroken aardappelen"],
+      "value": "de gekookte aardappelen"
+    },
+    {
+      "lesson": 3,
+      "topic": "verbuiging_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "het gesloten raam",
+      "options": ["het gesloten raam", "het geopende raam", "het gebroken raam"],
+      "value": "het gesloten raam"
+    },
+    {
+      "lesson": 4,
+      "topic": "deelwoord_contrast_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "de brandende kaars",
+      "options": ["de brandende kaars", "de vallende kaars", "de stromende kaars"],
+      "value": "de brandende kaars"
+    },
+    {
+      "lesson": 1,
+      "topic": "tegenwoordig_deelwoord_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Het spelende kind lacht in de tuin."
+    },
+    {
+      "lesson": 2,
+      "topic": "voltooid_deelwoord_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "De gerepareerde auto staat weer voor de deur."
+    },
+    {
+      "lesson": 3,
+      "topic": "verbuiging_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Een gekookt ei is lekker, maar de gebakken eieren zijn beter."
+    }
+  ]
+}

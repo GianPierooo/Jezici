@@ -1,0 +1,263 @@
+{
+  "unit": {
+    "order": 20,
+    "title_es": "Pasiva avanzada (modales, impersonal)",
+    "color": "#7E5109",
+    "icon": "build_circle"
+  },
+  "checkpoint_desc": "Demuestra que dominas la voz pasiva neerlandesa avanzada: con verbos modales (Het moet gedaan worden), en todos los tiempos (wordt/werd + participio; perfecto pasivo Het is gedaan), la pasiva impersonal (Er wordt gedanst, Er werd veel gelachen) y el agente con door.",
+  "lessons": [
+    { "order": 1, "title_es": "Pasiva con modales: moet/kan gedaan worden" },
+    { "order": 2, "title_es": "Pasiva en todos los tiempos: wordt, werd, is gedaan" },
+    { "order": 3, "title_es": "Pasiva impersonal: Er wordt / Er werd" },
+    { "order": 4, "title_es": "El agente con door y repaso" }
+  ],
+  "vocab": [
+    ["de reparatie", "la reparación", "zelfstandig naamwoord"],
+    ["het onderhoud", "el mantenimiento", "zelfstandig naamwoord"],
+    ["de monteur", "el mecánico", "zelfstandig naamwoord"],
+    ["de aannemer", "el contratista", "zelfstandig naamwoord"],
+    ["de vergadering", "la reunión", "zelfstandig naamwoord"],
+    ["het besluit", "la decisión", "zelfstandig naamwoord"],
+    ["de wet", "la ley", "zelfstandig naamwoord"],
+    ["het gebouw", "el edificio", "zelfstandig naamwoord"],
+    ["de brug", "el puente", "zelfstandig naamwoord"],
+    ["de klacht", "la queja", "zelfstandig naamwoord"],
+    ["repareren", "reparar", "werkwoord"],
+    ["bespreken", "discutir / tratar", "werkwoord"],
+    ["afmaken", "terminar", "werkwoord"],
+    ["bouwen", "construir", "werkwoord"],
+    ["onderzoeken", "investigar", "werkwoord"],
+    ["dringend", "urgente", "bijvoeglijk naamwoord"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "passive_modal_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase pasiva con modal con su equivalente en español.",
+      "pairs": [
+        ["Het moet gedaan worden.", "Tiene que hacerse."],
+        ["Het kan gerepareerd worden.", "Puede ser reparado."],
+        ["Het mag niet gebruikt worden.", "No puede/debe usarse."]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "passive_modal_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la forma correcta de la pasiva con modal: «El puente tiene que ser reparado con urgencia».",
+      "options": [
+        "De brug moet dringend gerepareerd worden.",
+        "De brug moet dringend gerepareerd geworden.",
+        "De brug moet dringend repareren worden."
+      ],
+      "value": "De brug moet dringend gerepareerd worden."
+    },
+    {
+      "lesson": 2,
+      "topic": "passive_tenses_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Perfecto pasivo (pasiva de acción en tiempo compuesto): «El trabajo ha sido terminado».",
+      "options": [
+        "Het werk is afgemaakt.",
+        "Het werk is afgemaakt geworden.",
+        "Het werk heeft afgemaakt."
+      ],
+      "value": "Het werk is afgemaakt."
+    },
+    {
+      "lesson": 2,
+      "topic": "passive_past_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Pasiva en pasado (imperfecto): «La casa fue construida en 1920».",
+      "options": [
+        "Het huis werd in 1920 gebouwd.",
+        "Het huis wordt in 1920 gebouwd.",
+        "Het huis is in 1920 gebouwd geworden."
+      ],
+      "value": "Het huis werd in 1920 gebouwd."
+    },
+    {
+      "lesson": 3,
+      "topic": "passive_impersonal_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase de pasiva impersonal con su equivalente en español.",
+      "pairs": [
+        ["Er wordt gedanst.", "Se baila."],
+        ["Er werd veel gelachen.", "Se rió mucho."],
+        ["Er wordt hard gewerkt.", "Se trabaja duro."]
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "passive_agent_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Pasiva con agente: «La queja fue investigada por el jefe».",
+      "options": [
+        "De klacht werd door de baas onderzocht.",
+        "De klacht werd van de baas onderzocht.",
+        "De klacht werd door de baas onderzoeken."
+      ],
+      "value": "De klacht werd door de baas onderzocht."
+    },
+    {
+      "lesson": 1,
+      "topic": "passive_modal_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el infinitivo del auxiliar de pasiva: «El coche puede ser reparado hoy». De auto kan vandaag gerepareerd ___.",
+      "text": "De auto kan vandaag gerepareerd ___.",
+      "value": "worden",
+      "accepted": ["worden"]
+    },
+    {
+      "lesson": 1,
+      "topic": "passive_modal_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al neerlandés (pasiva con modal): «El mantenimiento tiene que hacerse cada año».",
+      "source": "El mantenimiento tiene que hacerse cada año.",
+      "value": "Het onderhoud moet elk jaar gedaan worden.",
+      "accepted": [
+        "Het onderhoud moet elk jaar gedaan worden",
+        "Het onderhoud moet elk jaar gedaan worden.",
+        "Het onderhoud moet ieder jaar gedaan worden.",
+        "Het onderhoud moet ieder jaar gedaan worden",
+        "Het onderhoud moet elk jaar worden gedaan.",
+        "Het onderhoud moet elk jaar worden gedaan"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "passive_perfect_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa el perfecto pasivo (pasiva de acción, sin «geworden»): «La decisión ya ha sido tomada». Het besluit ___ al genomen.",
+      "text": "Het besluit ___ al genomen.",
+      "value": "is",
+      "accepted": ["is"]
+    },
+    {
+      "lesson": 2,
+      "topic": "passive_past_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al neerlandés (pasiva en pasado con agente): «El edificio fue diseñado por un arquitecto famoso».",
+      "source": "El edificio fue diseñado por un arquitecto famoso.",
+      "value": "Het gebouw werd door een beroemde architect ontworpen.",
+      "accepted": [
+        "Het gebouw werd door een beroemde architect ontworpen",
+        "Het gebouw werd door een beroemde architect ontworpen.",
+        "Het gebouw werd ontworpen door een beroemde architect.",
+        "Het gebouw werd ontworpen door een beroemde architect",
+        "Het gebouw is door een beroemde architect ontworpen.",
+        "Het gebouw is door een beroemde architect ontworpen"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "passive_impersonal_wordbank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas: «En la fiesta se bailó mucho» (pasiva impersonal en pasado).",
+      "tiles": ["Er", "werd", "op", "het", "feest", "veel", "gedanst", "wordt", "danst"],
+      "sequence": ["Er", "werd", "op", "het", "feest", "veel", "gedanst"]
+    },
+    {
+      "lesson": 4,
+      "topic": "passive_agent_reorder",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena las fichas: «La reunión será dirigida por la directora».",
+      "tiles": ["De", "vergadering", "wordt", "door", "de", "directeur", "geleid"],
+      "sequence": ["De", "vergadering", "wordt", "door", "de", "directeur", "geleid"]
+    },
+    {
+      "lesson": 1,
+      "topic": "passive_modal_listen",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Het probleem kan snel opgelost worden.",
+      "options": [
+        "Het probleem kan snel opgelost worden.",
+        "Het probleem moet meteen opgelost worden.",
+        "Het probleem is al opgelost geworden."
+      ],
+      "value": "Het probleem kan snel opgelost worden."
+    },
+    {
+      "lesson": 2,
+      "topic": "passive_tense_listen",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "De brief werd gisteren verstuurd.",
+      "options": [
+        "De brief werd gisteren verstuurd.",
+        "De brief wordt vandaag verstuurd.",
+        "De brief is gisteren verstuurd."
+      ],
+      "value": "De brief werd gisteren verstuurd."
+    },
+    {
+      "lesson": 3,
+      "topic": "passive_impersonal_listen",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Er werd veel gelachen tijdens het feest.",
+      "options": [
+        "Er werd veel gelachen tijdens het feest.",
+        "Er wordt veel gedanst tijdens het feest.",
+        "Er werd hard gewerkt tijdens het feest."
+      ],
+      "value": "Er werd veel gelachen tijdens het feest."
+    },
+    {
+      "lesson": 4,
+      "topic": "passive_agent_listen",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Het huis wordt door de aannemer gebouwd.",
+      "options": [
+        "Het huis wordt door de aannemer gebouwd.",
+        "Het huis werd door de monteur gebouwd.",
+        "Het huis is door de aannemer gebouwd."
+      ],
+      "value": "Het huis wordt door de aannemer gebouwd."
+    },
+    {
+      "lesson": 1,
+      "topic": "passive_modal_speak",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "De reparatie moet vandaag afgemaakt worden."
+    },
+    {
+      "lesson": 3,
+      "topic": "passive_impersonal_speak",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Er wordt op het plein gedanst en gezongen."
+    },
+    {
+      "lesson": 2,
+      "topic": "passive_perfect_speak",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "De klacht is door de manager onderzocht."
+    }
+  ]
+}
