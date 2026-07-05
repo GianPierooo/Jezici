@@ -25,14 +25,13 @@
   Cierre: analyze 0, tests verdes, gh run list SUCCESS, deploy READY. Reporta en 1 línea.
 
 ## Cola (retome exacto — orden sugerido)
-> Estado de niveles hoy (verificado en BD): **en A1–C1 · pt A1–B1 · fr A1–B1 · it A1–B1 ·
-> de A1–B2 · nl A1–B2**. Andamiaje de escalera probado 7× (de B1, fr B1, de B2, nl B1, nl B2, it B1, +): generador
-> `gen_course.py <code> <a1|a2|b1|b2>`, audio `gen_audio_missing.py <code>-<lvl>`, verificadores
+> Estado de niveles hoy (verificado en BD): **en A1–C1 · pt A1–B1 · fr A1–B2 · it A1–B2 ·
+> de A1–B2 · nl A1–B2**. Andamiaje de escalera probado 9× (de B1, fr B1, de B2, nl B1, nl B2, it B1, fr B2, it B2, +):
+> generador `gen_course.py <code> <a1|a2|b1|b2>`, audio `gen_audio_missing.py <code>-<lvl>`, verificadores
 > `verify_b1_chain.py`/`verify_b2_chain.py <code>`. STAMPS reservados en `gen_course.py`.
-1. **B2 es→fr** y **B2 es→it** (nuevos STAMPS — reserva en `gen_course.py` STAMPS): fr — subjonctif passé, concordance des temps,
-   discours indirect avancé, participe présent/gérondif, connecteurs B2; it — congiuntivo
-   imperfetto/trapassato, periodo ipotetico II/III, forma passiva, discorso indiretto avanzado.
-   Añade grupo `fr-b2`/`it-b2` en `gen_audio_missing.py`. Mismo pipeline → `verify_b2_chain.py fr|it`.
+1. **es→pt B2** (no sembrado; pt topa en B1) o **C1 es→fr/it/de/nl** (topan en B2): siguiente escalón de contenido.
+   Nuevo STAMP + grupo de audio `<code>-b2|c1` en `gen_audio_missing.py`; mismo pipeline (6 autores nativos +
+   2 revisores adversariales → `gen_course.py` → apply → audio → `verify_b2_chain.py`/nuevo verify_c1_chain).
 5. **Pulidos onboarding/placement** (código): cap de la meta al tope real del curso ✅ (mig 118:
    `get_courses.max_level`; onboarding filtra metas + clampa; `estimatePlan(maxLevel)`; re-placement
    de Ajustes también). Pendiente: nombre real de la unidad de entrada por curso en `PlacementResultView`
@@ -49,7 +48,7 @@
 App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supabase**
 (Postgres + RLS + RPCs SECURITY DEFINER) + **Vercel** (deploy del web). Repo
 `github.com/GianPierooo/Jezici`, deploy `jezici.vercel.app`.
-- 6 cursos: **es→en** (A1–C1), **es→pt** (A1–B1), **es→fr** (A1–B1), **es→it** (A1–B1),
+- 6 cursos: **es→en** (A1–C1), **es→pt** (A1–B1), **es→fr** (A1–B2), **es→it** (A1–B2),
   **es→de** (A1–B2) y **es→nl** (A1–B2). Curso activo por usuario
   (`jz_active_course`). Selector en Ajustes.
 - Loop: lección → ejercicios (9 tipos) → grading **server-side** → XP/oro/vidas →
@@ -117,9 +116,20 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
   «me lo presto»→«te lo presto» lógico + near-homófonos me lo/te lo/ce lo y reorder ambiguo rehechos). **Verificado
   cliente real (`verify_b1_chain.py it`):** determinista 96/96 + 96/96 distractores (42501); **CAMINA A1→B1 las 18
   unidades** (U12→U13, 30/30 lecciones B1); **0 lesson_items cruzan los 6 cursos**; default(en) sin fuga; audio 42/42.
-- **Diferido (retome del piloto):** **B2 es→fr** y **B2 es→it** (nuevos STAMPS; ver "## Cola" ítem 1);
-  cablear onboarding fr/it-específico (el onboarding ya deja elegir curso META, el placement corre por curso);
-  imágenes fr/it; cert de nivel.
+- **B2 es→fr ✅ LIVE (mig 20260705120119, 2026-07-05):** 6 unidades (order 19-24, encadenan B1→B2; U18 desbloquea
+  U19), **114 ítems (R36/W36/L24/S18 → L=67% S=50%)**, audio TTS tl=fr **42/42**. Currículo B2 REAL: **subjonctif passé**
+  (que j'aie fini/qu'elle soit venue; regret/antériorité), **conditionnel passé + irréel du passé** (j'aurais dû;
+  Si+plus-que-parfait→conditionnel passé) **& concordance des temps**, **discours indirect au passé avancé**
+  (présent→imparfait, passé→plus-que-parfait, futur→conditionnel; ce que/ce qui/si; impératif→de+inf; la veille/le
+  lendemain), **participe présent, gérondif & adjectif verbal** (parlant invariable vs fatigant/fatiguant; en+ant),
+  **connecteurs B2** (bien que/pour que/à condition que+subj vs alors que/tandis que+ind; cependant/par conséquent/
+  en revanche), **voix passive avancée + mise en relief** (on/se faire/pronominale de sens passif; c'est…qui/ce que…
+  c'est). 6 profesores nativos IA + **revisión adversarial nativa** (fixes reales: subjonctif con sujeto idéntico→
+  infinitivo «d'avoir fini», élision «ce qu'» ante je removida, 2 word_bank/reorder triviales barajados). **Verificado
+  cliente real (`verify_b2_chain.py fr`):** determinista 96/96 + 96/96 distractores (42501); **CAMINA A1→B2 las 24
+  unidades** (U18→U19, 30/30 lecciones B2); **0 lesson_items cruzan los 6 cursos**; default(en) sin fuga; audio 42/42.
+- **Diferido (retome del piloto):** cablear onboarding fr/it-específico (el onboarding ya deja elegir curso META,
+  el placement corre por curso); imágenes fr/it; cert de nivel; C1 fr/it.
 
 ## Pilotos es→de + es→nl (A1 + A2) — ✅ LIVE (mig 100/101/104/105 · 2026-07-03)
 - **2 cursos NUEVOS (5º y 6º), A1 Y A2 completos:** **es→de** (course `…0005`, lang `de`/Deutsch) y

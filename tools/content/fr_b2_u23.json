@@ -1,0 +1,221 @@
+{
+  "unit": {
+    "order": 23,
+    "title_es": "Conectores lógicos y conjunciones + subjuntivo",
+    "color": "#512E5F",
+    "icon": "account_tree"
+  },
+  "checkpoint_desc": "Enlaza ideas con conjunciones que exigen subjuntivo (bien que, pour que, à condition que, avant que, à moins que), distingue las que llevan indicativo (alors que, tandis que, parce que) y usa conectores de discurso (cependant, par conséquent, en revanche) para expresar oposición, causa y consecuencia.",
+  "lessons": [
+    { "order": 1, "title_es": "Conjunciones + subjuntivo: bien que, pour que" },
+    { "order": 2, "title_es": "à condition que, avant que, à moins que" },
+    { "order": 3, "title_es": "alors que / tandis que + indicativo" },
+    { "order": 4, "title_es": "Conectores: cependant, par conséquent, en revanche" }
+  ],
+  "vocab": [
+    ["bien que", "aunque, si bien", "conjunción"],
+    ["quoique", "aunque", "conjunción"],
+    ["pour que", "para que", "conjunción"],
+    ["afin que", "a fin de que", "conjunción"],
+    ["à condition que", "a condición de que", "conjunción"],
+    ["pourvu que", "con tal de que", "conjunción"],
+    ["avant que", "antes de que", "conjunción"],
+    ["à moins que", "a menos que", "conjunción"],
+    ["sans que", "sin que", "conjunción"],
+    ["tandis que", "mientras que", "conjunción"],
+    ["alors que", "mientras que, siendo así que", "conjunción"],
+    ["cependant", "sin embargo", "adverbio"],
+    ["néanmoins", "no obstante", "adverbio"],
+    ["en revanche", "en cambio", "adverbio"],
+    ["par conséquent", "por consiguiente", "adverbio"],
+    ["en effet", "en efecto, es que", "adverbio"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "bien_que_subjonctif_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Aunque esté cansado, sigue trabajando.» «Bien que» exige subjuntivo. ¿Cuál es correcta?",
+      "options": ["Bien qu'il soit fatigué, il continue à travailler.", "Bien qu'il est fatigué, il continue à travailler.", "Bien qu'il sera fatigué, il continue à travailler."],
+      "value": "Bien qu'il soit fatigué, il continue à travailler."
+    },
+    {
+      "lesson": 1,
+      "topic": "pour_que_subjonctif_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce (usa «pour que» + subjuntivo): «Te lo explico para que entiendas.»",
+      "source": "Te lo explico para que entiendas.",
+      "value": "Je te l'explique pour que tu comprennes.",
+      "accepted": ["Je te l'explique pour que tu comprennes", "Je te l'explique pour que tu comprennes.", "Je te l'explique afin que tu comprennes.", "Je te l'explique afin que tu comprennes"]
+    },
+    {
+      "lesson": 1,
+      "topic": "conjonctions_subjonctif_forms",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada conjunción (todas rigen subjuntivo) con su significado.",
+      "pairs": [
+        ["bien que", "aunque"],
+        ["pour que", "para que"],
+        ["quoique", "aunque, por más que"],
+        ["afin que", "a fin de que"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "pour_que_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Je parle lentement pour que tout le monde comprenne.",
+      "options": ["Je parle lentement pour que tout le monde comprenne.", "Je parle lentement parce que tout le monde comprend.", "Je parle doucement afin que personne ne comprenne."],
+      "value": "Je parle lentement pour que tout le monde comprenne."
+    },
+    {
+      "lesson": 1,
+      "topic": "bien_que_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Bien que le trajet soit long, nous préférons prendre le train."
+    },
+    {
+      "lesson": 2,
+      "topic": "a_condition_que_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Vendré con tal de que no llueva.» «à condition que / pourvu que» exigen subjuntivo. ¿Cuál es correcta?",
+      "options": ["Je viendrai à condition qu'il ne pleuve pas.", "Je viendrai à condition qu'il ne pleut pas.", "Je viendrai à condition qu'il ne pleuvra pas."],
+      "value": "Je viendrai à condition qu'il ne pleuve pas."
+    },
+    {
+      "lesson": 2,
+      "topic": "avant_que_subjonctif_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el subjuntivo de «finir» (3ª pers.) tras «avant que»: esta conjunción SIEMPRE exige subjuntivo. Escribe «finisse».",
+      "text": "Rentrons avant que la réunion ne ___ trop tard.",
+      "value": "finisse",
+      "accepted": ["finisse"]
+    },
+    {
+      "lesson": 2,
+      "topic": "a_moins_que_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce (usa «à moins que» + ne explétif + subjuntivo): «No saldremos a menos que haga buen tiempo.»",
+      "source": "No saldremos a menos que haga buen tiempo.",
+      "value": "Nous ne sortirons pas à moins qu'il ne fasse beau.",
+      "accepted": ["Nous ne sortirons pas à moins qu'il ne fasse beau", "Nous ne sortirons pas à moins qu'il ne fasse beau.", "On ne sortira pas à moins qu'il ne fasse beau.", "Nous ne sortirons pas à moins qu'il fasse beau."]
+    },
+    {
+      "lesson": 2,
+      "topic": "a_condition_que_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Je te prête ma voiture pourvu que tu conduises prudemment.",
+      "options": ["Je te prête ma voiture pourvu que tu conduises prudemment.", "Je te loue ma voiture puisque tu conduis prudemment.", "Je te vends ma voiture bien que tu conduises rapidement."],
+      "value": "Je te prête ma voiture pourvu que tu conduises prudemment."
+    },
+    {
+      "lesson": 2,
+      "topic": "avant_que_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Dépêchons-nous de finir avant que les invités n'arrivent."
+    },
+    {
+      "lesson": 3,
+      "topic": "alors_que_indicatif_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Yo trabajo mientras que él descansa.» «alors que» (oposición) exige INDICATIVO, no subjuntivo. ¿Cuál es correcta?",
+      "options": ["Je travaille alors qu'il se repose.", "Je travaille alors qu'il se repose pas.", "Je travaille alors qu'il se reposât."],
+      "value": "Je travaille alors qu'il se repose."
+    },
+    {
+      "lesson": 3,
+      "topic": "tandis_que_alors_que_forms",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada conjunción con su valor (todas van con indicativo).",
+      "pairs": [
+        ["tandis que", "mientras que (oposición/simultaneidad)"],
+        ["parce que", "porque (causa)"],
+        ["puisque", "puesto que (causa conocida)"],
+        ["pendant que", "mientras (simultaneidad)"]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "tandis_que_indicatif_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el indicativo presente de «préférer» (3ª pers.): tras «tandis que» NO va subjuntivo. «J'aime le thé, tandis qu'elle ___ le café.» Escribe «préfère».",
+      "text": "J'aime le thé, tandis qu'elle ___ le café.",
+      "value": "préfère",
+      "accepted": ["préfère", "prefere"]
+    },
+    {
+      "lesson": 3,
+      "topic": "alors_que_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Il dépense tout son argent alors que son frère économise beaucoup.",
+      "options": ["Il dépense tout son argent alors que son frère économise beaucoup.", "Il gagne tout son argent puisque son frère travaille beaucoup.", "Il garde tout son argent tandis que son frère voyage souvent."],
+      "value": "Il dépense tout son argent alors que son frère économise beaucoup."
+    },
+    {
+      "lesson": 3,
+      "topic": "puisque_indicatif_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Puisque tu insistes, je reste encore une heure tandis que les autres partent."
+    },
+    {
+      "lesson": 4,
+      "topic": "cependant_opposition_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«El proyecto es ambicioso; sin embargo, carece de presupuesto.» Elige el conector de OPOSICIÓN adecuado.",
+      "options": ["Le projet est ambitieux ; cependant, il manque de budget.", "Le projet est ambitieux ; par conséquent, il manque de budget.", "Le projet est ambitieux ; en effet, il manque de budget."],
+      "value": "Le projet est ambitieux ; cependant, il manque de budget."
+    },
+    {
+      "lesson": 4,
+      "topic": "par_consequent_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el conector de CONSECUENCIA (dos palabras, «par c...»): «La route est fermée ; ___ ___, nous devrons faire un détour.» Escribe «par conséquent».",
+      "text": "La route est fermée ; ___, nous devrons faire un détour.",
+      "value": "par conséquent",
+      "accepted": ["par conséquent", "par consequent"]
+    },
+    {
+      "lesson": 4,
+      "topic": "en_revanche_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce (usa «en revanche» para el contraste): «El hotel es caro; en cambio, el servicio es excelente.»",
+      "source": "El hotel es caro; en cambio, el servicio es excelente.",
+      "value": "L'hôtel est cher ; en revanche, le service est excellent.",
+      "accepted": ["L'hôtel est cher ; en revanche, le service est excellent", "L'hôtel est cher ; en revanche, le service est excellent.", "L'hôtel est cher, en revanche le service est excellent.", "L'hotel est cher ; en revanche, le service est excellent."]
+    },
+    {
+      "lesson": 4,
+      "topic": "connecteurs_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Les prix ont augmenté ; néanmoins, la demande reste très forte.",
+      "options": ["Les prix ont augmenté ; néanmoins, la demande reste très forte.", "Les prix ont baissé ; par ailleurs, la demande devient très faible.", "Les prix ont grimpé ; en outre, la demande semble assez stable."],
+      "value": "Les prix ont augmenté ; néanmoins, la demande reste très forte."
+    }
+  ]
+}

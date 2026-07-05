@@ -1,0 +1,392 @@
+{
+  "unit": {
+    "order": 20,
+    "title_es": "Concordancia de tiempos y lo irreal del pasado (condicional pasado)",
+    "color": "#1A5276",
+    "icon": "history_toggle_off"
+  },
+  "checkpoint_desc": "Demuestra que dominas el condicional pasado (aurais/serais + participio) para el arrepentimiento y el reproche, la hipótesis irreal del pasado (si + plus-que-parfait → condicional pasado) y la concordancia de tiempos en el estilo indirecto.",
+  "lessons": [
+    {
+      "order": 1,
+      "title_es": "El condicional pasado: aurais / serais + participio"
+    },
+    {
+      "order": 2,
+      "title_es": "Arrepentimiento y reproche: j'aurais dû, tu aurais pu"
+    },
+    {
+      "order": 3,
+      "title_es": "Lo irreal del pasado: si + plus-que-parfait → condicional pasado"
+    },
+    {
+      "order": 4,
+      "title_es": "Concordancia de tiempos en el estilo indirecto"
+    }
+  ],
+  "vocab": [
+    [
+      "le conditionnel passé",
+      "el condicional pasado",
+      "n"
+    ],
+    [
+      "le regret",
+      "el arrepentimiento / la pena",
+      "n"
+    ],
+    [
+      "le reproche",
+      "el reproche",
+      "n"
+    ],
+    [
+      "l'hypothèse",
+      "la hipótesis",
+      "n"
+    ],
+    [
+      "prévenir",
+      "avisar",
+      "v"
+    ],
+    [
+      "se rendre compte",
+      "darse cuenta",
+      "v"
+    ],
+    [
+      "avoir dû",
+      "haber tenido que / haber debido",
+      "v"
+    ],
+    [
+      "avoir pu",
+      "haber podido",
+      "v"
+    ],
+    [
+      "se passer",
+      "ocurrir / suceder",
+      "v"
+    ],
+    [
+      "éviter",
+      "evitar",
+      "v"
+    ],
+    [
+      "décevoir",
+      "decepcionar",
+      "v"
+    ],
+    [
+      "à ce moment-là",
+      "en aquel momento",
+      "loc"
+    ],
+    [
+      "autrement",
+      "de otro modo",
+      "adv"
+    ],
+    [
+      "sinon",
+      "si no / de lo contrario",
+      "conj"
+    ],
+    [
+      "dès que",
+      "en cuanto",
+      "conj"
+    ],
+    [
+      "à l'époque",
+      "en aquella época",
+      "loc"
+    ]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "conditionnel_passe_formation_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada frase en condicional pasado con su significado en español.",
+      "pairs": [
+        [
+          "J'aurais aimé venir.",
+          "Me habría gustado venir."
+        ],
+        [
+          "Il serait déjà parti.",
+          "Él ya se habría ido."
+        ],
+        [
+          "Nous aurions préféré rester.",
+          "Habríamos preferido quedarnos."
+        ]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "conditionnel_passe_auxiliaire_etre",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Completa en condicional pasado (verbo de movimiento): «Sin ti, ellos nunca ___ (venir).»",
+      "options": [
+        "seraient venus",
+        "auraient venus",
+        "seraient venir"
+      ],
+      "value": "seraient venus"
+    },
+    {
+      "lesson": 2,
+      "topic": "regret_devoir_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Expresa un reproche: «Deberías haberme avisado.» Elige la forma correcta.",
+      "options": [
+        "Tu aurais dû me prévenir.",
+        "Tu aurais dus me prévenir.",
+        "Tu avais dû me prévenir."
+      ],
+      "value": "Tu aurais dû me prévenir."
+    },
+    {
+      "lesson": 3,
+      "topic": "irreel_passe_structure_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada hipótesis irreal del pasado con su significado en español.",
+      "pairs": [
+        [
+          "Si j'avais su, je serais venu.",
+          "Si lo hubiera sabido, habría venido."
+        ],
+        [
+          "Si tu m'avais écouté, ça ne serait pas arrivé.",
+          "Si me hubieras escuchado, no habría pasado."
+        ],
+        [
+          "Si nous étions partis plus tôt, nous aurions eu le train.",
+          "Si hubiéramos salido antes, habríamos cogido el tren."
+        ]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "irreel_present_vs_passe",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Repaso de lo irreal del presente: «Si tuviera tiempo, vendría.» Elige la frase correcta.",
+      "options": [
+        "Si j'avais le temps, je viendrais.",
+        "Si j'aurais le temps, je viendrais.",
+        "Si j'avais le temps, je serais venu."
+      ],
+      "value": "Si j'avais le temps, je viendrais."
+    },
+    {
+      "lesson": 4,
+      "topic": "concordance_temps_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada frase en estilo indirecto con su significado en español.",
+      "pairs": [
+        [
+          "Il a dit qu'il était fatigué.",
+          "Dijo que estaba cansado."
+        ],
+        [
+          "Elle a dit qu'elle avait fini.",
+          "Dijo que había terminado."
+        ],
+        [
+          "Il a dit qu'il viendrait.",
+          "Dijo que vendría."
+        ]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "conditionnel_passe_cloze_avoir",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa en condicional pasado (auxiliar «avoir» + participio): «Me habría gustado quedarme.» J'___ rester.",
+      "text": "J'___ rester.",
+      "value": "aurais aimé",
+      "accepted": [
+        "aurais aimé",
+        "aurais aime"
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "conditionnel_passe_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al francés (condicional pasado): «Ella habría preferido quedarse en casa.»",
+      "source": "Ella habría preferido quedarse en casa.",
+      "value": "Elle aurait préféré rester à la maison.",
+      "accepted": [
+        "Elle aurait préféré rester à la maison",
+        "Elle aurait préféré rester à la maison.",
+        "Elle aurait préféré rester chez elle",
+        "Elle aurait préféré rester chez elle."
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "regret_aurais_voulu_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el condicional pasado de «vouloir» (auxiliar + participio): «Habría querido ayudarte, pero no pude.» J'___ t'aider, mais je n'ai pas pu.",
+      "text": "J'___ t'aider, mais je n'ai pas pu.",
+      "value": "aurais voulu",
+      "accepted": [
+        "aurais voulu"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "regret_reproche_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar el reproche: «Habrías podido llamarme.»",
+      "tiles": [
+        "Tu",
+        "aurais",
+        "pu",
+        "m'appeler",
+        "avais",
+        "serais"
+      ],
+      "sequence": [
+        "Tu",
+        "aurais",
+        "pu",
+        "m'appeler"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "irreel_passe_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al francés (irreal del pasado, si + plus-que-parfait → condicional pasado): «Si hubiera sabido la verdad, no habría venido.»",
+      "source": "Si hubiera sabido la verdad, no habría venido.",
+      "value": "Si j'avais su la vérité, je ne serais pas venu.",
+      "accepted": [
+        "Si j'avais su la vérité, je ne serais pas venu",
+        "Si j'avais su la vérité, je ne serais pas venu.",
+        "Si j'avais su la vérité, je ne serais pas venue",
+        "Si j'avais su la vérité, je ne serais pas venue."
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "concordance_temps_reorder",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena las fichas para formar una frase correcta.",
+      "tiles": [
+        "avait",
+        "Il",
+        "qu'il",
+        "oublié",
+        "dit",
+        "a"
+      ],
+      "sequence": [
+        "Il",
+        "a",
+        "dit",
+        "qu'il",
+        "avait",
+        "oublié"
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "conditionnel_passe_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "J'aurais aimé te voir hier soir.",
+      "options": [
+        "J'aurais aimé te voir hier soir.",
+        "J'aurais préféré te voir hier soir.",
+        "J'avais promis de te voir hier soir."
+      ],
+      "value": "J'aurais aimé te voir hier soir."
+    },
+    {
+      "lesson": 2,
+      "topic": "regret_devoir_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Tu aurais dû me prévenir plus tôt.",
+      "options": [
+        "Tu aurais dû me prévenir plus tôt.",
+        "Tu aurais pu me prévenir plus tôt.",
+        "Tu voulais me prévenir plus tôt."
+      ],
+      "value": "Tu aurais dû me prévenir plus tôt."
+    },
+    {
+      "lesson": 3,
+      "topic": "irreel_passe_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Si nous étions partis plus tôt, nous aurions évité les bouchons.",
+      "options": [
+        "Si nous étions partis plus tôt, nous aurions évité les bouchons.",
+        "Si nous étions partis plus tard, nous aurions raté le train.",
+        "Si nous restions ici ce soir, nous éviterions les bouchons."
+      ],
+      "value": "Si nous étions partis plus tôt, nous aurions évité les bouchons."
+    },
+    {
+      "lesson": 4,
+      "topic": "concordance_temps_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Elle m'a dit qu'elle avait déjà terminé son travail.",
+      "options": [
+        "Elle m'a dit qu'elle avait déjà terminé son travail.",
+        "Elle m'a dit qu'elle allait bientôt finir son travail.",
+        "Elle me demande si elle a déjà terminé son travail."
+      ],
+      "value": "Elle m'a dit qu'elle avait déjà terminé son travail."
+    },
+    {
+      "lesson": 2,
+      "topic": "regret_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "J'aurais dû t'écouter, tu avais raison depuis le début.",
+      "prompt": "Lee en voz alta:"
+    },
+    {
+      "lesson": 3,
+      "topic": "irreel_passe_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Si j'avais su que tu venais, je serais resté à la maison.",
+      "prompt": "Lee en voz alta:"
+    },
+    {
+      "lesson": 4,
+      "topic": "concordance_temps_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Il m'a expliqué qu'il était malade et qu'il ne viendrait pas ce soir.",
+      "prompt": "Lee en voz alta:"
+    }
+  ]
+}

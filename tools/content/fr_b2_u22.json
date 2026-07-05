@@ -1,0 +1,215 @@
+{
+  "unit": {
+    "order": 22,
+    "title_es": "Participio presente, gerundio y adjetivo verbal",
+    "color": "#1B4F72",
+    "icon": "auto_stories"
+  },
+  "checkpoint_desc": "Demuestra que distingues el participe présent invariable (que sustituye a «qui + verbe»), el gérondif «en + -ant» (simultaneidad, manera, condición, con el mismo sujeto) y el adjectif verbal variable, incluyendo sus diferencias ortográficas (fatigant/fatiguant).",
+  "lessons": [
+    { "order": 1, "title_es": "Participe présent: sustituir «qui + verbe»" },
+    { "order": 2, "title_es": "Gérondif: simultaneidad, manera y condición" },
+    { "order": 3, "title_es": "Adjectif verbal vs participe présent (ortografía)" },
+    { "order": 4, "title_es": "Mezcla y «tout en + gérondif»" }
+  ],
+  "vocab": [
+    ["le participe présent", "el participio presente", "n"],
+    ["le gérondif", "el gerundio", "n"],
+    ["l'adjectif verbal", "el adjetivo verbal", "n"],
+    ["simultané", "simultáneo", "adj"],
+    ["fatigant", "cansado (que cansa)", "adj"],
+    ["provocant", "provocador", "adj"],
+    ["précédent", "precedente / anterior", "adj"],
+    ["différent", "diferente", "adj"],
+    ["convaincant", "convincente", "adj"],
+    ["en marchant", "andando / al caminar", "adv"],
+    ["sachant", "sabiendo", "v"],
+    ["ayant fini", "habiendo terminado", "v"],
+    ["souriant", "sonriente / sonriendo", "adj"],
+    ["tout en", "a la vez que / aun", "conj"],
+    ["ainsi", "así", "adv"],
+    ["la manière", "la manera", "n"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "participe_present_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada frase con participio presente con su equivalente en español.",
+      "pairs": [
+        ["les gens parlant français", "las personas que hablan francés"],
+        ["ne sachant pas quoi faire", "no sabiendo qué hacer"],
+        ["ayant fini son travail", "habiendo terminado su trabajo"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "participe_present_replaces_qui",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Sustituye «qui traversent» por un participio presente: «Les voitures ___ la ville sont nombreuses.» (traverser)",
+      "options": ["traversant", "traversent", "en traversant"],
+      "value": "traversant"
+    },
+    {
+      "lesson": 1,
+      "topic": "participe_present_cause",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el participio presente de «savoir» (valor causal: «como no sabía…»): «Ne ___ pas la réponse, il a préféré se taire.»",
+      "text": "Ne ___ pas la réponse, il a préféré se taire.",
+      "value": "sachant",
+      "accepted": ["sachant"]
+    },
+    {
+      "lesson": 1,
+      "topic": "participe_present_compose_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce con participio presente compuesto: «Habiendo terminado, salió.»",
+      "source": "Habiendo terminado, salió.",
+      "value": "Ayant fini, il est sorti.",
+      "accepted": ["Ayant fini, il est sorti", "Ayant fini, il est sorti.", "ayant fini, il est sorti", "Ayant terminé, il est sorti.", "Ayant terminé, il est sorti"]
+    },
+    {
+      "lesson": 2,
+      "topic": "gerondif_condition",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Valor condicional («si trabajas más»): «___ plus, tu réussiras.» (travailler)",
+      "options": ["En travaillant", "Travaillant", "En travaillent"],
+      "value": "En travaillant"
+    },
+    {
+      "lesson": 2,
+      "topic": "gerondif_manner_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa el gerundio de «arriver» (al llegar): «___, j'ai vu que tout le monde était parti.»",
+      "text": "___, j'ai vu que tout le monde était parti.",
+      "value": "En arrivant",
+      "accepted": ["En arrivant", "en arrivant"]
+    },
+    {
+      "lesson": 2,
+      "topic": "gerondif_wordbank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena para decir «Se hizo daño corriendo.»",
+      "tiles": ["courant", "blessé", "à", "Il", "en", "courir", "s'est"],
+      "sequence": ["Il", "s'est", "blessé", "en", "courant"]
+    },
+    {
+      "lesson": 3,
+      "topic": "adjectif_verbal_agreement",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Aquí es adjetivo (concuerda con «histoire»): «C'est une histoire ___.» (fatiguer)",
+      "options": ["fatigante", "fatiguant", "fatigant"],
+      "value": "fatigante"
+    },
+    {
+      "lesson": 3,
+      "topic": "participe_present_vs_adjectif_spelling",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Aquí es participio presente (verbo, invariable, con complemento): «En ___ les élèves, le prof a perdu du temps.» (fatiguer)",
+      "options": ["fatiguant", "fatigant", "fatigante"],
+      "value": "fatiguant"
+    },
+    {
+      "lesson": 3,
+      "topic": "adjectif_verbal_provocant_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Adjetivo verbal femenino de «provoquer» (una actitud provocadora): «Elle a une attitude ___.»",
+      "text": "Elle a une attitude ___.",
+      "value": "provocante",
+      "accepted": ["provocante"]
+    },
+    {
+      "lesson": 3,
+      "topic": "adjectif_verbal_convaincant_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce (adjetivo verbal, concuerda con «arguments»): «Sus argumentos son convincentes.»",
+      "source": "Sus argumentos son convincentes.",
+      "value": "Ses arguments sont convaincants.",
+      "accepted": ["Ses arguments sont convaincants", "Ses arguments sont convaincants.", "ses arguments sont convaincants"]
+    },
+    {
+      "lesson": 4,
+      "topic": "tout_en_gerondif",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Concesión y simultaneidad («aun trabajando duro, descansa»): «___ travaillant dur, elle se repose bien.»",
+      "options": ["Tout en", "Tout", "En tout"],
+      "value": "Tout en"
+    },
+    {
+      "lesson": 1,
+      "topic": "participe_present_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Les étudiants parlant plusieurs langues trouvent du travail.",
+      "options": ["Les étudiants parlant plusieurs langues trouvent du travail.", "Les étudiants apprenant plusieurs langues cherchent du travail.", "Les enfants parlant une seule langue trouvent du travail."],
+      "value": "Les étudiants parlant plusieurs langues trouvent du travail."
+    },
+    {
+      "lesson": 2,
+      "topic": "gerondif_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "En sortant du bureau, elle a rencontré un ami.",
+      "options": ["En sortant du bureau, elle a rencontré un ami.", "En rentrant du bureau, elle a retrouvé un ami.", "En sortant du magasin, elle a salué un ami."],
+      "value": "En sortant du bureau, elle a rencontré un ami."
+    },
+    {
+      "lesson": 4,
+      "topic": "tout_en_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Tout en souriant, il a refusé notre proposition.",
+      "options": ["Tout en souriant, il a refusé notre proposition.", "Tout en pleurant, il a accepté notre proposition.", "Tout en riant, il a refusé notre invitation."],
+      "value": "Tout en souriant, il a refusé notre proposition."
+    },
+    {
+      "lesson": 3,
+      "topic": "adjectif_verbal_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Nous avons eu une semaine vraiment fatigante.",
+      "options": ["Nous avons eu une semaine vraiment fatigante.", "Nous avons eu une journée vraiment fatigante.", "Nous avons passé une semaine assez agréable."],
+      "value": "Nous avons eu une semaine vraiment fatigante."
+    },
+    {
+      "lesson": 2,
+      "topic": "gerondif_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "En arrivant à la gare, j'ai compris que le train était déjà parti."
+    },
+    {
+      "lesson": 1,
+      "topic": "participe_present_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Ne sachant pas quoi répondre, il est resté silencieux un long moment."
+    },
+    {
+      "lesson": 4,
+      "topic": "adjectif_verbal_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Tout en restant polie, elle a donné une réponse très convaincante."
+    }
+  ]
+}

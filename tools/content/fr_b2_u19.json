@@ -1,0 +1,304 @@
+{
+  "unit": {
+    "order": 19,
+    "title_es": "El subjuntivo pasado (subjonctif passé)",
+    "color": "#6C3483",
+    "icon": "history_edu"
+  },
+  "checkpoint_desc": "Forma y usa el subjonctif passé (aie/sois + participe passé) para expresar anterioridad y juicios sobre hechos ya ocurridos, distinguiéndolo del subjonctif présent.",
+  "lessons": [
+    {
+      "order": 1,
+      "title_es": "Formación con avoir (que j'aie fini)"
+    },
+    {
+      "order": 2,
+      "title_es": "Formación con être y el acuerdo (qu'elle soit venue)"
+    },
+    {
+      "order": 3,
+      "title_es": "Usos: sentimiento y anterioridad (Je regrette qu'il ait dit ça)"
+    },
+    {
+      "order": 4,
+      "title_es": "Contraste présent vs passé (qu'il vienne / qu'il soit venu)"
+    }
+  ],
+  "vocab": [
+    ["le subjonctif passé", "el subjuntivo pasado", "gram"],
+    ["que j'aie fini", "que yo haya terminado", "gram"],
+    ["qu'il soit parti", "que él se haya ido", "gram"],
+    ["qu'elle soit venue", "que ella haya venido", "gram"],
+    ["l'auxiliaire", "el auxiliar", "sust"],
+    ["le participe passé", "el participio pasado", "gram"],
+    ["l'antériorité", "la anterioridad", "sust"],
+    ["regretter", "lamentar", "verbo"],
+    ["être content que", "alegrarse de que", "expr"],
+    ["il est possible que", "es posible que", "expr"],
+    ["c'est dommage que", "es una lástima que", "expr"],
+    ["bien que", "aunque", "conj"],
+    ["douter que", "dudar que", "verbo"],
+    ["avant que", "antes de que", "conj"],
+    ["heureux que", "feliz de que", "adj"],
+    ["craindre que", "temer que", "verbo"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "subj_passe_avoir_forms",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada forma con su significado.",
+      "pairs": [
+        ["que j'aie fini", "que yo haya terminado"],
+        ["que tu aies compris", "que tú hayas entendido"],
+        ["qu'il ait mangé", "que él haya comido"],
+        ["que nous ayons parlé", "que nosotros hayamos hablado"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "subj_passe_avoir_form",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Subjuntivo pasado: «Il faut qu'il ___ terminé avant midi.» (terminar, auxiliar avoir)",
+      "options": [
+        "ait",
+        "a",
+        "avait"
+      ],
+      "value": "ait"
+    },
+    {
+      "lesson": 1,
+      "topic": "subj_passe_avoir_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el subjuntivo pasado de «finir» (auxiliar avoir, 1ª pers.): «Mes parents sont contents que j'___ fini mes études.»",
+      "text": "Mes parents sont contents que j'___ fini mes études.",
+      "value": "aie",
+      "accepted": [
+        "aie"
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "subj_passe_avoir_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Je doute qu'elle ait compris la question.",
+      "options": [
+        "Je doute qu'elle ait compris la question.",
+        "Je pense qu'elle a compris la question.",
+        "Je doute qu'elle ait terminé la question."
+      ],
+      "value": "Je doute qu'elle ait compris la question."
+    },
+    {
+      "lesson": 1,
+      "topic": "subj_passe_avoir_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Je suis heureux que tu aies réussi ton examen."
+    },
+    {
+      "lesson": 1,
+      "topic": "subj_passe_avoir_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce (subjuntivo pasado): «Es posible que ellos hayan olvidado la cita.»",
+      "source": "Es posible que ellos hayan olvidado la cita.",
+      "value": "Il est possible qu'ils aient oublié le rendez-vous.",
+      "accepted": [
+        "Il est possible qu'ils aient oublié le rendez-vous",
+        "Il est possible qu'ils aient oublié le rendez-vous.",
+        "Il est possible qu'ils aient oublié le rendez vous."
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "subj_passe_etre_forms",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada forma con su significado (auxiliar être).",
+      "pairs": [
+        ["qu'il soit parti", "que él se haya ido"],
+        ["qu'elle soit venue", "que ella haya venido"],
+        ["qu'ils soient arrivés", "que ellos hayan llegado"],
+        ["que tu sois tombé", "que tú te hayas caído"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "subj_passe_etre_accord",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Acuerdo del participio con être: «Je suis content qu'elle soit ___ hier.» (venir, sujeto femenino)",
+      "options": [
+        "venue",
+        "venu",
+        "venus"
+      ],
+      "value": "venue"
+    },
+    {
+      "lesson": 2,
+      "topic": "subj_passe_etre_accord_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Acuerdo del participio (sujeto «elles», auxiliar être): «Bien qu'elles soient ___ tard, tout s'est bien passé.» (partir)",
+      "text": "Bien qu'elles soient ___ tard, tout s'est bien passé.",
+      "value": "parties",
+      "accepted": [
+        "parties"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "subj_passe_etre_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Nous sommes ravis que vous soyez venus ce soir.",
+      "options": [
+        "Nous sommes ravis que vous soyez venus ce soir.",
+        "Nous sommes ravis que vous soyez restés ce soir.",
+        "Nous sommes déçus que vous soyez partis ce soir."
+      ],
+      "value": "Nous sommes ravis que vous soyez venus ce soir."
+    },
+    {
+      "lesson": 2,
+      "topic": "subj_passe_etre_wordbank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena (subjuntivo pasado, être): «Me alegro de que ella haya vuelto.»",
+      "tiles": [
+        "Je",
+        "suis",
+        "content",
+        "qu'elle",
+        "soit",
+        "revenue",
+        "est",
+        "revenu"
+      ],
+      "sequence": [
+        "Je",
+        "suis",
+        "content",
+        "qu'elle",
+        "soit",
+        "revenue"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "subj_passe_etre_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "C'est dommage qu'ils soient déjà partis avant la fin."
+    },
+    {
+      "lesson": 3,
+      "topic": "subj_passe_regret_forms",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada expresión con su sentido.",
+      "pairs": [
+        ["Je regrette qu'il ait dit ça", "lamento que él haya dicho eso"],
+        ["Bien qu'il ait plu", "aunque haya llovido"],
+        ["Je crains qu'elle soit tombée", "temo que ella se haya caído"]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "subj_passe_bien_que",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Concesiva sobre un hecho pasado: «___ il ait plu toute la nuit, nous sommes sortis.»",
+      "options": [
+        "Bien qu'",
+        "Parce qu'",
+        "Depuis qu'"
+      ],
+      "value": "Bien qu'"
+    },
+    {
+      "lesson": 3,
+      "topic": "subj_passe_regret_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce (subjuntivo pasado): «Lamento que hayas perdido el tren.»",
+      "source": "Lamento que hayas perdido el tren.",
+      "value": "Je regrette que tu aies raté le train.",
+      "accepted": [
+        "Je regrette que tu aies raté le train",
+        "Je regrette que tu aies raté le train.",
+        "Je regrette que tu aies manqué le train."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "subj_passe_regret_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Je regrette que tu n'aies pas pu venir hier.",
+      "options": [
+        "Je regrette que tu n'aies pas pu venir hier.",
+        "Je regrette que tu n'aies pas voulu venir hier.",
+        "Je suis ravi que tu aies pu venir hier."
+      ],
+      "value": "Je regrette que tu n'aies pas pu venir hier."
+    },
+    {
+      "lesson": 3,
+      "topic": "subj_passe_anteriority_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Je suis fier que vous ayez terminé le projet à temps."
+    },
+    {
+      "lesson": 4,
+      "topic": "subj_present_vs_passe_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Je doute qu'il ait dit la vérité hier soir.",
+      "options": [
+        "Je doute qu'il ait dit la vérité hier soir.",
+        "Je doute qu'il dise la vérité ce matin.",
+        "Je pense qu'il a dit la vérité hier soir."
+      ],
+      "value": "Je doute qu'il ait dit la vérité hier soir."
+    },
+    {
+      "lesson": 4,
+      "topic": "subj_present_vs_passe_wordbank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena (acción aún no ocurrida → présent): «Es necesario que él venga mañana.»",
+      "tiles": [
+        "Il",
+        "faut",
+        "qu'il",
+        "vienne",
+        "demain",
+        "soit",
+        "venu"
+      ],
+      "sequence": [
+        "Il",
+        "faut",
+        "qu'il",
+        "vienne",
+        "demain"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,255 @@
+{
+  "unit": {
+    "order": 24,
+    "title_es": "Voz pasiva avanzada, formas impersonales y puesta de relieve",
+    "color": "#1A5276",
+    "icon": "published_with_changes"
+  },
+  "checkpoint_desc": "Demuestra que dominas la voix passive (être + participe passé con concordancia y en varios tiempos, complemento de agente par/de), sus alternativas (on, se faire + infinitif, forme pronominale de sens passif), las tournures impersonnelles (il est important que + subj, il paraît que, il s'agit de, il suffit de, il vaut mieux que + subj) y la mise en relief (c'est… qui / c'est… que, ce que… c'est, ce dont… c'est).",
+  "lessons": [
+    { "order": 1, "title_es": "La voix passive: formación, concordancia y tiempos" },
+    { "order": 2, "title_es": "Alternativas a la pasiva: on, se faire + inf, forme pronominale" },
+    { "order": 3, "title_es": "Tournures impersonnelles: il est important que, il s'agit de…" },
+    { "order": 4, "title_es": "Mise en relief: c'est… qui / ce que… c'est" }
+  ],
+  "vocab": [
+    ["la voix passive", "la voz pasiva", "n"],
+    ["le complément d'agent", "el complemento de agente", "n"],
+    ["publier", "publicar", "v"],
+    ["construire", "construir", "v"],
+    ["être respecté de tous", "ser respetado por todos", "expr"],
+    ["se faire voler", "que le roben a uno", "expr"],
+    ["ce plat se mange froid", "este plato se come frío", "expr"],
+    ["il s'agit de", "se trata de", "expr"],
+    ["il suffit de", "basta con", "expr"],
+    ["il vaut mieux", "más vale", "expr"],
+    ["il paraît que", "parece que (se dice que)", "expr"],
+    ["la mise en relief", "la puesta de relieve", "n"],
+    ["souligner", "subrayar, resaltar", "v"],
+    ["le résultat", "el resultado", "n"],
+    ["le pont", "el puente", "n"],
+    ["le vélo", "la bicicleta", "n"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "voix_passive_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada frase en voz pasiva con su traducción.",
+      "pairs": [
+        ["La lettre a été écrite par Marie.", "La carta fue escrita por Marie."],
+        ["Les résultats seront publiés demain.", "Los resultados serán publicados mañana."],
+        ["Ce pont a été construit en 1900.", "Este puente fue construido en 1900."]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "voix_passive_accord_participe",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Concordancia del participio con el sujeto (les maisons, femenino plural): «Les maisons ont été ___ l'année dernière.» (construire)",
+      "options": ["construites", "construit", "construise"],
+      "value": "construites"
+    },
+    {
+      "lesson": 1,
+      "topic": "voix_passive_passe_compose_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa el auxiliar de la pasiva en passé composé (le tableau, masculino singular): «Le tableau ___ été vendu hier.»",
+      "text": "Le tableau ___ été vendu hier.",
+      "value": "a",
+      "accepted": ["a"]
+    },
+    {
+      "lesson": 1,
+      "topic": "voix_passive_futur_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando la voz pasiva en futuro (publier): «Los resultados serán publicados mañana.»",
+      "source": "Los resultados serán publicados mañana.",
+      "value": "Les résultats seront publiés demain.",
+      "accepted": [
+        "Les résultats seront publiés demain",
+        "Les résultats seront publiés demain.",
+        "Les résultats seront publiés demain ."
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "voix_passive_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Cette maison a été vendue le mois dernier.",
+      "options": [
+        "Cette maison a été vendue le mois dernier.",
+        "Cette voiture a été volée le mois dernier.",
+        "Cette maison sera vendue le mois prochain."
+      ],
+      "value": "Cette maison a été vendue le mois dernier."
+    },
+    {
+      "lesson": 1,
+      "topic": "voix_passive_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Le pont a été construit en 1900 et il est encore admiré de tous aujourd'hui."
+    },
+    {
+      "lesson": 2,
+      "topic": "alternatives_on_reading",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Reformula la pasiva «Ce pont a été construit en 1900» con el pronombre impersonal «on» (agente indeterminado):",
+      "options": [
+        "On a construit ce pont en 1900.",
+        "On est construit ce pont en 1900.",
+        "Ce pont on a construit en 1900."
+      ],
+      "value": "On a construit ce pont en 1900."
+    },
+    {
+      "lesson": 2,
+      "topic": "alternatives_pronominale_passif_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Forma pronominale de sentido pasivo (se manger): «Ce plat ___ mange froid, jamais chaud.»",
+      "text": "Ce plat ___ mange froid, jamais chaud.",
+      "value": "se",
+      "accepted": ["se"]
+    },
+    {
+      "lesson": 2,
+      "topic": "alternatives_se_faire_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Elle s'est fait voler son sac dans le métro.",
+      "options": [
+        "Elle s'est fait voler son sac dans le métro.",
+        "Elle s'est fait couper les cheveux ce matin.",
+        "Elle a perdu son sac dans le train."
+      ],
+      "value": "Elle s'est fait voler son sac dans le métro."
+    },
+    {
+      "lesson": 2,
+      "topic": "alternatives_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "On a rénové cet immeuble l'an dernier, et maintenant les appartements se vendent très vite."
+    },
+    {
+      "lesson": 3,
+      "topic": "impersonnel_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada tournure impersonnelle con su traducción.",
+      "pairs": [
+        ["Il s'agit de", "Se trata de"],
+        ["Il suffit de", "Basta con"],
+        ["Il vaut mieux", "Más vale"]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "impersonnel_subjonctif_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Modo tras «Il est important que» (subjuntivo de venir, 2.ª pers. sing.): «Il est important que tu ___ à l'heure.»",
+      "text": "Il est important que tu ___ à l'heure.",
+      "value": "viennes",
+      "accepted": ["viennes"]
+    },
+    {
+      "lesson": 3,
+      "topic": "impersonnel_il_vaut_mieux_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando «il vaut mieux que» + subjuntivo (partir): «Más vale que nos vayamos ahora.»",
+      "source": "Más vale que nos vayamos ahora.",
+      "value": "Il vaut mieux que nous partions maintenant.",
+      "accepted": [
+        "Il vaut mieux que nous partions maintenant",
+        "Il vaut mieux que nous partions maintenant.",
+        "Il vaut mieux qu'on parte maintenant.",
+        "Il vaut mieux qu'on parte maintenant"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "impersonnel_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Il paraît qu'il va pleuvoir toute la semaine.",
+      "options": [
+        "Il paraît qu'il va pleuvoir toute la semaine.",
+        "Il suffit de partir avant la fin de la semaine.",
+        "Il vaut mieux rester à la maison ce soir."
+      ],
+      "value": "Il paraît qu'il va pleuvoir toute la semaine."
+    },
+    {
+      "lesson": 3,
+      "topic": "impersonnel_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Il vaut mieux que tu partes tôt, car il suffit d'un embouteillage pour tout retarder."
+    },
+    {
+      "lesson": 4,
+      "topic": "mise_en_relief_cest_qui_reading",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Pone de relieve el sujeto «Marie» (la que hace la acción): «___ a fait ça.»",
+      "options": [
+        "C'est Marie qui",
+        "C'est Marie dont",
+        "C'est à Marie que"
+      ],
+      "value": "C'est Marie qui"
+    },
+    {
+      "lesson": 4,
+      "topic": "mise_en_relief_cest_que_reading",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Pone de relieve el complemento de objeto directo «ce livre» (lo que él lee): «___ il lit en ce moment.»",
+      "options": [
+        "C'est ce livre que",
+        "C'est ce livre dont",
+        "C'est de ce livre que"
+      ],
+      "value": "C'est ce livre que"
+    },
+    {
+      "lesson": 4,
+      "topic": "mise_en_relief_ce_que_cest",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena la frase para poner de relieve el complemento: «Lo que quiero es partir.»",
+      "tiles": ["veux", "c'est", "Ce", "partir", "je", "que"],
+      "sequence": ["Ce", "que", "je", "veux", "c'est", "partir"]
+    },
+    {
+      "lesson": 4,
+      "topic": "mise_en_relief_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ce dont j'ai besoin, c'est de vacances.",
+      "options": [
+        "Ce dont j'ai besoin, c'est de vacances.",
+        "Ce que je préfère, c'est le silence.",
+        "Ce dont je rêve, c'est de partir."
+      ],
+      "value": "Ce dont j'ai besoin, c'est de vacances."
+    }
+  ]
+}

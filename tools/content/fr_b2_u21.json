@@ -1,0 +1,250 @@
+{
+  "unit": {
+    "order": 21,
+    "title_es": "El discurso indirecto en pasado (avanzado)",
+    "color": "#6C3483",
+    "icon": "history_edu"
+  },
+  "checkpoint_desc": "Reporta en pasado con la concordancia de tiempos (présent→imparfait, passé composé→plus-que-parfait, futur→conditionnel), maneja la interrogación indirecta (si / ce que / ce qui / où-quand-pourquoi), transforma el imperativo en «de + infinitivo» y adapta los marcadores temporales (hier→la veille, demain→le lendemain).",
+  "lessons": [
+    { "order": 1, "title_es": "Afirmaciones en pasado: présent → imparfait" },
+    { "order": 2, "title_es": "Passé composé → plus-que-parfait; futur → conditionnel" },
+    { "order": 3, "title_es": "La interrogación indirecta (si / ce que / ce qui)" },
+    { "order": 4, "title_es": "Imperativo → de + infinitivo y marcadores temporales" }
+  ],
+  "vocab": [
+    ["le discours indirect", "el discurso indirecto", "n"],
+    ["la concordance des temps", "la concordancia de tiempos", "n"],
+    ["rapporter", "reportar, referir", "v"],
+    ["déclarer", "declarar", "v"],
+    ["annoncer", "anunciar", "v"],
+    ["prétendre", "pretender, afirmar", "v"],
+    ["l'interrogation indirecte", "la interrogación indirecta", "n"],
+    ["l'ordre", "la orden", "n"],
+    ["la veille", "la víspera, el día anterior", "n"],
+    ["le lendemain", "el día siguiente", "n"],
+    ["ce jour-là", "aquel día", "adv"],
+    ["à ce moment-là", "en ese momento", "adv"],
+    ["l'avant-veille", "dos días antes", "n"],
+    ["le surlendemain", "dos días después", "n"],
+    ["ce qui", "lo que (sujeto)", "pron"],
+    ["ce que", "lo que (objeto)", "pron"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "present_to_imparfait_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase reportada en pasado con su significado.",
+      "pairs": [
+        ["Il a dit qu'il était fatigué.", "Dijo que estaba cansado."],
+        ["Elle a expliqué qu'elle habitait à Lyon.", "Explicó que vivía en Lyon."],
+        ["Ils ont affirmé qu'ils voulaient partir.", "Afirmaron que querían irse."]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "present_to_imparfait_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Directo: «Je suis malade», dijo Marc. Al reportarlo en pasado, ¿qué frase es correcta?",
+      "options": [
+        "Marc a dit qu'il était malade.",
+        "Marc a dit qu'il est malade.",
+        "Marc a dit qu'il serait malade."
+      ],
+      "value": "Marc a dit qu'il était malade."
+    },
+    {
+      "lesson": 2,
+      "topic": "passe_compose_to_pqp_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Directo: «J'ai fini mon travail», dijo ella. Reportado en pasado, ¿qué frase es correcta?",
+      "options": [
+        "Elle a dit qu'elle avait fini son travail.",
+        "Elle a dit qu'elle a fini son travail.",
+        "Elle a dit qu'elle finissait son travail."
+      ],
+      "value": "Elle a dit qu'elle avait fini son travail."
+    },
+    {
+      "lesson": 2,
+      "topic": "futur_to_conditionnel_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Directo: «Je viendrai demain», anunció él. Reportado en pasado, ¿qué frase es correcta?",
+      "options": [
+        "Il a annoncé qu'il viendrait le lendemain.",
+        "Il a annoncé qu'il viendra le lendemain.",
+        "Il a annoncé qu'il venait le lendemain."
+      ],
+      "value": "Il a annoncé qu'il viendrait le lendemain."
+    },
+    {
+      "lesson": 3,
+      "topic": "interrogation_indirecte_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada pregunta indirecta con su significado.",
+      "pairs": [
+        ["Il m'a demandé si je venais.", "Me preguntó si yo venía."],
+        ["Elle a demandé ce que je faisais.", "Preguntó qué hacía yo."],
+        ["Il voulait savoir ce qui se passait.", "Quería saber qué pasaba."]
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "imperatif_to_de_inf_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Directo: «Ne bouge pas!», me dijo. Reportado, ¿qué frase es correcta?",
+      "options": [
+        "Il m'a dit de ne pas bouger.",
+        "Il m'a dit de ne bouger pas.",
+        "Il m'a dit que ne pas bouger."
+      ],
+      "value": "Il m'a dit de ne pas bouger."
+    },
+    {
+      "lesson": 1,
+      "topic": "present_to_imparfait_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Reporta en pasado (présent→imparfait). Directo: «Je travaille». «Il a dit qu'il ___.»",
+      "text": "Il a dit qu'il ___.",
+      "value": "travaillait",
+      "accepted": ["travaillait", "Travaillait"]
+    },
+    {
+      "lesson": 1,
+      "topic": "present_to_imparfait_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce reportando en pasado: «Dijo que tenía hambre».",
+      "source": "Dijo que tenía hambre.",
+      "value": "Il a dit qu'il avait faim.",
+      "accepted": ["Il a dit qu'il avait faim", "Il a dit qu'il avait faim.", "Il a dit qu’il avait faim.", "Elle a dit qu'elle avait faim.", "Elle a dit qu'elle avait faim"]
+    },
+    {
+      "lesson": 2,
+      "topic": "passe_compose_to_pqp_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Reporta en pasado (passé composé→plus-que-parfait). Directo: «J'ai compris». «Elle a dit qu'elle ___ compris.»",
+      "text": "Elle a dit qu'elle ___ compris.",
+      "value": "avait",
+      "accepted": ["avait", "Avait"]
+    },
+    {
+      "lesson": 2,
+      "topic": "futur_to_conditionnel_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce reportando en pasado: «Prometió que llamaría al día siguiente».",
+      "source": "Prometió que llamaría al día siguiente.",
+      "value": "Il a promis qu'il appellerait le lendemain.",
+      "accepted": ["Il a promis qu'il appellerait le lendemain", "Il a promis qu'il appellerait le lendemain.", "Il a promis qu’il appellerait le lendemain.", "Elle a promis qu'elle appellerait le lendemain.", "Il a promis qu'il téléphonerait le lendemain."]
+    },
+    {
+      "lesson": 3,
+      "topic": "interrogation_ce_que_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Interrogación indirecta. Directo: «Qu'est-ce que tu fais?» → «Il m'a demandé ___ je faisais.» (lo que, objeto)",
+      "text": "Il m'a demandé ___ je faisais.",
+      "value": "ce que",
+      "accepted": ["ce que", "Ce que"]
+    },
+    {
+      "lesson": 3,
+      "topic": "interrogation_si_wordbank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena la pregunta indirecta: «Me preguntó si yo estaba de acuerdo.»",
+      "tiles": ["Il", "m'a", "demandé", "si", "j'étais", "d'accord", "que", "ce"],
+      "sequence": ["Il", "m'a", "demandé", "si", "j'étais", "d'accord"]
+    },
+    {
+      "lesson": 1,
+      "topic": "present_to_imparfait_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Elle a dit qu'elle était contente.",
+      "options": [
+        "Elle a dit qu'elle était contente.",
+        "Elle a dit qu'elle était fatiguée.",
+        "Elle a dit qu'elle était malade."
+      ],
+      "value": "Elle a dit qu'elle était contente."
+    },
+    {
+      "lesson": 2,
+      "topic": "pqp_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Il a expliqué qu'il avait oublié la clé.",
+      "options": [
+        "Il a expliqué qu'il avait oublié la clé.",
+        "Il a expliqué qu'il avait trouvé la clé.",
+        "Il a expliqué qu'il avait perdu la clé."
+      ],
+      "value": "Il a expliqué qu'il avait oublié la clé."
+    },
+    {
+      "lesson": 3,
+      "topic": "interrogation_ce_qui_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Il voulait savoir ce qui se passait.",
+      "options": [
+        "Il voulait savoir ce qui se passait.",
+        "Il voulait savoir ce qui arrivait.",
+        "Il voulait savoir ce qui changeait."
+      ],
+      "value": "Il voulait savoir ce qui se passait."
+    },
+    {
+      "lesson": 4,
+      "topic": "imperatif_de_inf_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Le médecin lui a dit de se reposer davantage.",
+      "options": [
+        "Le médecin lui a dit de se reposer davantage.",
+        "Le médecin lui a dit de se lever davantage.",
+        "Le médecin lui a dit de marcher davantage."
+      ],
+      "value": "Le médecin lui a dit de se reposer davantage."
+    },
+    {
+      "lesson": 2,
+      "topic": "futur_to_conditionnel_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Il a annoncé qu'il partirait le lendemain et qu'il reviendrait la semaine suivante.",
+      "prompt": "Lee en voz alta:"
+    },
+    {
+      "lesson": 3,
+      "topic": "interrogation_indirecte_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Elle m'a demandé où j'habitais et ce que je faisais dans la vie.",
+      "prompt": "Lee en voz alta:"
+    },
+    {
+      "lesson": 4,
+      "topic": "imperatif_marqueurs_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Il m'avait dit la veille de ne pas m'inquiéter et de le rappeler le lendemain.",
+      "prompt": "Lee en voz alta:"
+    }
+  ]
+}
