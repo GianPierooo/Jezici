@@ -6,6 +6,16 @@
 > Prioridad: es→en A1/A2 a fondo (lo que los testers usan hoy). B1–C1 y es→pt: perfil
 > estructural + diferido (ver "Pendiente").
 
+## B2 es→pt — los 6 cursos a B2 (2026-07-05)
+- **B2 português (mig 121):** 6 unidades (order 19-24), 114 ítems, balance **L=67% S=50%** de origen. Currículo
+  B2 pt-BR CEFR-real, progresión coherente desde B1 (subjuntivo presente «que venha» del B1 → presente+futuro+
+  imperfeito do subjuntivo; período hipotético completo; voz passiva; discurso indireto + colocação; conectores
+  + regência). **Rasgo distintivo del português cubierto:** futuro do subjuntivo (quando eu tiver/for/fizer),
+  ausente en español/inglés — punto de dificultad real para hispanohablantes, enseñado con contraste explícito
+  presente↔futuro do subjuntivo. 6 professores nativos pt-BR + doble revisión adversarial (fixes reales de forma
+  inexistente, revelación de respuesta y 4 colisiones de grador). **português era el único curso sin B2 → ahora
+  A1→B2; los 6 cursos llegan a B2** (en hasta C1). Pendiente: es→pt C1; auditoría pedagógica a fondo del B2 pt.
+
 ## B2 nl + B1 it + B2 fr + B2 it — vaciado de la Cola (2026-07-05)
 - **4 niveles nuevos, todos con balance CEFR-real L=67% S=50%, 114 ítems/nivel (R36/W36/L24/S18):**
   - **B2 es→nl:** indirecte rede, lijdende vorm gevorderd, deelwoord als bijvoeglijk, complexe voegwoorden,

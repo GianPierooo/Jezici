@@ -2,6 +2,30 @@
 
 ---
 
+## B2 es→pt — los 6 cursos llegan a B2 — 2026-07-05 ✅ LIVE + VERIFICADO
+> Paso 0 (ground truth): introspección BD confirmó pt A1–B1 (18 units, el único rezagado); resto A1–B2.
+> Frente elegido de la Cola: es→pt B2 → paridad (los 6 cursos a B2).
+- **Extensión del generador a pt:** `gen_course.py` soportaba fr/it/de/nl pero NO pt (pt se sembró con
+  pipeline antiguo, mig 053). Añadido pt a COURSES (course …0002, lang …0003), STAMPS[('pt','b2')]=…121,
+  UNIT_WORD['pt']='Unidade'; grupo `pt-b2` en `gen_audio_missing.py`. **Sin riesgo de colisión:** verificado
+  que vocabulary/content_items NO tienen unique constraint (solo PK id); los nuevos ids uuid5 de pt B2 (order
+  19-24) no existían → `on conflict do nothing/update` limpio; exams schema coincide (PK id).
+- **Contenido B2 pt-BR (mig 121, commit e3ed5c3):** 6 unidades, 114 ítems R36/W36/L24/S18 (L=67% S=50%),
+  audio tl=pt 42/42. Currículo: presente do subjuntivo + conjunções; **futuro do subjuntivo** (quando eu
+  tiver/for — rasgo clave pt) + imperfeito; período hipotético (3 tipos) + futuro do pretérito; voz passiva
+  (analítica/sintética/estar; particípios duplos); discurso indireto + colocação pronominal; conectores B2 +
+  regência verbal. 6 professores nativos pt-BR + doble revisión adversarial.
+- **Fixes adversariales REALES:** «quiseria» (forma inexistente)→«gostaria»; un word_bank que revelaba la
+  respuesta en el prompt; **4 colisiones de grader** near-match dist-1 en cloze (indicativo por subjuntivo
+  «venha»/«vinha», «puder»/«poder», regência «precise de»/«precisa de», crase «às»/«as regras») → reescritas
+  a multi-palabra o single-word con la sustitución bloqueada (mig 073: near_match no perdona sub en palabra única).
+- **Verificado cliente real (`verify_b2_chain.py pt`, JWT):** determinista 96/96 + 96/96 distractores (42501);
+  CAMINA A1→B2 las 24 unidades (U18→U19, 30/30 lecciones B2); **0 lesson_items cruzan los 6 cursos**; default(en)
+  sin fuga; audio HEAD 42/42. `get_courses.max_level` pt→B2 (cap de meta ofrece B2). **Los 6 cursos: A1→B2
+  (en hasta C1).** CI SUCCESS + deploy READY.
+
+---
+
 ## B2 nl + B1 it + B2 fr + B2 it (vaciado de la Cola) — 2026-07-05 ✅ LIVE + VERIFICADO
 > 4 frentes de contenido, cada uno impecable y verificado ANTES del siguiente (profundidad>amplitud).
 > Estado resultante: **en A1–C1 · pt A1–B1 · fr A1–B2 · it A1–B2 · de A1–B2 · nl A1–B2** (5/6 hasta B2).
