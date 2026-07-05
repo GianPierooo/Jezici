@@ -1,0 +1,210 @@
+{
+  "unit": {"order": 16, "title_es": "Concordancia del participio pasado", "color": "#8E44AD", "icon": "spellcheck"},
+  "checkpoint_desc": "Concuerda el participio pasado con el sujeto (essere) y con el pronombre objeto directo antepuesto lo/la/li/le (avere), y elige el auxiliar correcto.",
+  "lessons": [
+    {"order": 1, "title_es": "Essere: el participio concuerda con el sujeto"},
+    {"order": 2, "title_es": "Verbos pronominales (mi sono svegliato/a)"},
+    {"order": 3, "title_es": "Avere + lo/la/li/le antepuesto"},
+    {"order": 4, "title_es": "Elegir el auxiliar: essere o avere"}
+  ],
+  "vocab": [
+    ["andare", "ir", "verbo"],
+    ["partire", "salir/partir", "verbo"],
+    ["uscire", "salir", "verbo"],
+    ["arrivare", "llegar", "verbo"],
+    ["tornare", "volver", "verbo"],
+    ["nascere", "nacer", "verbo"],
+    ["svegliarsi", "despertarse", "verbo pronominal"],
+    ["alzarsi", "levantarse", "verbo pronominal"],
+    ["vestirsi", "vestirse", "verbo pronominal"],
+    ["comprare", "comprar", "verbo"],
+    ["vedere", "ver", "verbo"],
+    ["conoscere", "conocer", "verbo"],
+    ["il participio", "el participio", "sustantivo"],
+    ["l'ausiliare", "el auxiliar", "sustantivo"],
+    ["il soggetto", "el sujeto", "sustantivo"],
+    ["insieme", "juntos", "adverbio"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "type": "match",
+      "skill": "reading",
+      "topic": "essere_concordanza_soggetto",
+      "prompt": "Relaciona cada forma italiana con su significado en español.",
+      "pairs": [
+        ["Maria è andata", "María ha ido"],
+        ["i ragazzi sono partiti", "los chicos han salido"],
+        ["le ragazze sono uscite", "las chicas han salido"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "type": "multiple_choice",
+      "skill": "reading",
+      "topic": "essere_concordanza_soggetto",
+      "prompt": "El sujeto es «le mie amiche» (femenino plural). ¿Cuál concuerda bien?",
+      "options": ["Le mie amiche sono arrivate tardi.", "Le mie amiche hanno arrivato tardi.", "Le mie amiche è arrivata tardi."],
+      "value": "Le mie amiche sono arrivate tardi."
+    },
+    {
+      "lesson": 1,
+      "type": "multiple_choice",
+      "skill": "reading",
+      "topic": "essere_concordanza_soggetto",
+      "prompt": "¿En cuál el participio concuerda correctamente con el sujeto masculino plural «i turisti»?",
+      "options": ["I turisti sono partiti presto.", "I turisti hanno partito presto.", "I turisti è partita presto."],
+      "value": "I turisti sono partiti presto."
+    },
+    {
+      "lesson": 1,
+      "type": "cloze",
+      "skill": "writing",
+      "topic": "essere_concordanza_soggetto",
+      "prompt": "Completa el participio de «tornare» que concuerda con «Giulia» (fem. singular).",
+      "text": "Giulia è ___ a casa presto.",
+      "value": "tornata",
+      "accepted": ["tornata"]
+    },
+    {
+      "lesson": 1,
+      "type": "word_bank",
+      "skill": "writing",
+      "topic": "essere_concordanza_soggetto",
+      "prompt": "Ordena las fichas para formar: «Los niños han nacido en Roma.»",
+      "tiles": ["I", "bambini", "sono", "nati", "a", "Roma", "nate", "hanno"],
+      "sequence": ["I", "bambini", "sono", "nati", "a", "Roma"]
+    },
+    {
+      "lesson": 2,
+      "type": "cloze",
+      "skill": "writing",
+      "topic": "verbi_pronominali",
+      "prompt": "Sujeto «noi» (nosotros, masc.). Completa el participio de «alzarsi».",
+      "text": "Ci siamo ___ presto stamattina.",
+      "value": "alzati",
+      "accepted": ["alzati"]
+    },
+    {
+      "lesson": 2,
+      "type": "translation",
+      "skill": "writing",
+      "topic": "verbi_pronominali",
+      "prompt": "Traduce al italiano (habla un hombre): «Me he vestido rápidamente.»",
+      "source": "Me he vestido rápidamente.",
+      "value": "Mi sono vestito velocemente.",
+      "accepted": ["Mi sono vestito velocemente.", "mi sono vestito velocemente", "Mi sono vestito velocemente"]
+    },
+    {
+      "lesson": 3,
+      "type": "multiple_choice",
+      "skill": "reading",
+      "topic": "avere_pronome_diretto",
+      "prompt": "Se habla de «la macchina» (aparece como «l'»). ¿Cuál concuerda bien con avere?",
+      "options": ["L'ho vista ieri.", "L'ho comprato ieri.", "Li ho viste ieri."],
+      "value": "L'ho vista ieri."
+    },
+    {
+      "lesson": 3,
+      "type": "multiple_choice",
+      "skill": "reading",
+      "topic": "avere_pronome_diretto",
+      "prompt": "Se habla de «i libri». ¿Con qué pronombre antepuesto y participio concuerda?",
+      "options": ["Li ho comprati online.", "Le ho comprato online.", "Li ho conosciuti online."],
+      "value": "Li ho comprati online."
+    },
+    {
+      "lesson": 3,
+      "type": "cloze",
+      "skill": "writing",
+      "topic": "avere_pronome_diretto",
+      "prompt": "El objeto es «le tue sorelle» (fem. plural). Completa el participio de «conoscere».",
+      "text": "Le ho ___ alla festa.",
+      "value": "conosciute",
+      "accepted": ["conosciute"]
+    },
+    {
+      "lesson": 4,
+      "type": "multiple_choice",
+      "skill": "reading",
+      "topic": "scelta_ausiliare",
+      "prompt": "«Ayer ___ una buena idea.» ¿Qué auxiliar corresponde con «avere»?",
+      "options": ["Ieri ho avuto una buona idea.", "Ieri sono stato una buona idea.", "Ieri ho andato una buona idea."],
+      "value": "Ieri ho avuto una buona idea."
+    },
+    {
+      "lesson": 4,
+      "type": "cloze",
+      "skill": "writing",
+      "topic": "scelta_ausiliare",
+      "prompt": "Elige el auxiliar correcto para «stare» (fem. singular): «Ella ___ stata gentile.»",
+      "text": "Lei ___ stata molto gentile.",
+      "value": "è",
+      "accepted": ["è", "e'"]
+    },
+    {
+      "lesson": 1,
+      "type": "listening",
+      "skill": "listening",
+      "topic": "essere_concordanza_soggetto",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Le ragazze sono uscite insieme.",
+      "options": ["Le ragazze sono uscite insieme.", "I ragazzi hanno finito insieme.", "Le donne sono tornate insieme."],
+      "value": "Le ragazze sono uscite insieme."
+    },
+    {
+      "lesson": 2,
+      "type": "listening",
+      "skill": "listening",
+      "topic": "verbi_pronominali",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Mi sono svegliata alle sette.",
+      "options": ["Mi sono svegliata alle sette.", "Ci siamo alzati alle sette.", "Si è vestita alle sette."],
+      "value": "Mi sono svegliata alle sette."
+    },
+    {
+      "lesson": 3,
+      "type": "listening",
+      "skill": "listening",
+      "topic": "avere_pronome_diretto",
+      "prompt": "Escucha la frase con pronombre antepuesto y elige la que oíste.",
+      "say": "Li ho comprati questa mattina.",
+      "options": ["Li ho comprati questa mattina.", "Le ho conosciute questa mattina.", "Li ho venduti questa mattina."],
+      "value": "Li ho comprati questa mattina."
+    },
+    {
+      "lesson": 4,
+      "type": "listening",
+      "skill": "listening",
+      "topic": "scelta_ausiliare",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ieri ho avuto molto lavoro.",
+      "options": ["Ieri ho avuto molto lavoro.", "Ieri sono andato al lavoro.", "Oggi ho finito il lavoro."],
+      "value": "Ieri ho avuto molto lavoro."
+    },
+    {
+      "lesson": 1,
+      "type": "speaking_read_aloud",
+      "skill": "speaking",
+      "topic": "essere_concordanza_soggetto",
+      "prompt": "Lee en voz alta:",
+      "read": "Le mie amiche sono arrivate insieme alla stazione."
+    },
+    {
+      "lesson": 3,
+      "type": "speaking_read_aloud",
+      "skill": "speaking",
+      "topic": "avere_pronome_diretto",
+      "prompt": "Lee en voz alta:",
+      "read": "Ho visto le foto e le ho trovate bellissime."
+    },
+    {
+      "lesson": 4,
+      "type": "speaking_read_aloud",
+      "skill": "speaking",
+      "topic": "scelta_ausiliare",
+      "prompt": "Lee en voz alta:",
+      "read": "È stata una giornata lunga, ma ho avuto molta fortuna."
+    }
+  ]
+}

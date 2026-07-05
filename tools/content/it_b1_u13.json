@@ -1,0 +1,216 @@
+{
+  "unit": {"order": 13, "title_es": "Opinión y deseo (congiuntivo presente)", "color": "#6C3483", "icon": "auto_awesome"},
+  "checkpoint_desc": "Usa el congiuntivo presente para expresar opinión, duda, voluntad, necesidad y con conjunciones como benché y prima che.",
+  "lessons": [
+    {"order": 1, "title_es": "Formación regular (parli, prenda, senta)"},
+    {"order": 2, "title_es": "Irregulares frecuentes (sia, abbia, faccia, vada)"},
+    {"order": 3, "title_es": "Opinión, duda y voluntad (Penso che, Voglio che)"},
+    {"order": 4, "title_es": "Conjunciones e impersonales (benché, prima che, bisogna che)"}
+  ],
+  "vocab": [
+    ["il congiuntivo", "el subjuntivo", "sustantivo"],
+    ["pensare che", "pensar que", "expresion"],
+    ["credere che", "creer que", "expresion"],
+    ["volere che", "querer que", "expresion"],
+    ["sperare che", "esperar que", "expresion"],
+    ["bisogna che", "es necesario que", "expresion"],
+    ["è importante che", "es importante que", "expresion"],
+    ["è possibile che", "es posible que", "expresion"],
+    ["benché", "aunque", "expresion"],
+    ["sebbene", "aunque", "expresion"],
+    ["affinché", "para que", "expresion"],
+    ["prima che", "antes de que", "expresion"],
+    ["a meno che", "a menos que", "expresion"],
+    ["il dubbio", "la duda", "sustantivo"],
+    ["la volontà", "la voluntad", "sustantivo"],
+    ["l'opinione", "la opinión", "sustantivo"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "congiuntivo_presente",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une la frase italiana con su traducción.",
+      "pairs": [
+        ["Penso che tu parli bene.", "Pienso que tú hablas bien."],
+        ["Credo che lei prenda il treno.", "Creo que ella toma el tren."],
+        ["Spero che loro sentano la musica.", "Espero que ellos oigan la música."]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "congiuntivo_are",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el congiuntivo presente de « parlare ».",
+      "text": "Penso che tu ___ troppo velocemente.",
+      "value": "parli",
+      "accepted": ["parli"]
+    },
+    {
+      "lesson": 1,
+      "topic": "congiuntivo_ere",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la forma correcta del congiuntivo presente.",
+      "options": ["Credo che lui prenda l'autobus.", "Credo che lui prende l'autobus.", "Credo che lui prenderà l'autobus."],
+      "value": "Credo che lui prenda l'autobus."
+    },
+    {
+      "lesson": 1,
+      "topic": "congiuntivo_isc",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Penso che lui finisca il lavoro oggi.",
+      "options": ["Penso che lui finisca il lavoro oggi.", "So che lui finisce il lavoro oggi.", "Penso che lui finirà il lavoro domani."],
+      "value": "Penso che lui finisca il lavoro oggi."
+    },
+    {
+      "lesson": 1,
+      "topic": "congiuntivo_ire",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Spero che voi partiate presto domani mattina."
+    },
+    {
+      "lesson": 2,
+      "topic": "congiuntivo_essere",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la forma correcta del congiuntivo presente.",
+      "options": ["Penso che lei sia stanca.", "Penso che lei è stanca.", "Penso che lei sarà stanca."],
+      "value": "Penso che lei sia stanca."
+    },
+    {
+      "lesson": 2,
+      "topic": "congiuntivo_avere",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el congiuntivo presente de « avere ».",
+      "text": "Credo che loro ___ ragione.",
+      "value": "abbiano",
+      "accepted": ["abbiano"]
+    },
+    {
+      "lesson": 2,
+      "topic": "congiuntivo_fare",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Construye la frase: Quiero que tú hagas silencio.",
+      "tiles": ["Voglio", "che", "tu", "faccia", "silenzio", "fai", "fare"],
+      "sequence": ["Voglio", "che", "tu", "faccia", "silenzio"]
+    },
+    {
+      "lesson": 2,
+      "topic": "congiuntivo_andare",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Bisogna che tu vada dal medico.",
+      "options": ["Bisogna che tu vada dal medico.", "Bisogna che tu vai dal medico.", "Bisogna che tu andrai dal medico."],
+      "value": "Bisogna che tu vada dal medico."
+    },
+    {
+      "lesson": 2,
+      "topic": "congiuntivo_potere",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une la frase italiana con su traducción.",
+      "pairs": [
+        ["Spero che tu possa venire.", "Espero que puedas venir."],
+        ["Voglio che lui venga con noi.", "Quiero que él venga con nosotros."],
+        ["Penso che lei sappia la verità.", "Pienso que ella sabe la verdad."]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "congiuntivo_irregolari",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Spero che tu stia bene e che abbia una buona giornata."
+    },
+    {
+      "lesson": 3,
+      "topic": "opinione_dubbio",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la forma correcta después de « Credo che ».",
+      "options": ["Credo che sia troppo tardi.", "Credo che è troppo tardi.", "Credo che sarà troppo tardi."],
+      "value": "Credo che sia troppo tardi."
+    },
+    {
+      "lesson": 3,
+      "topic": "volere_che",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el congiuntivo presente de « venire ».",
+      "text": "I miei genitori vogliono che io ___ a cena.",
+      "value": "venga",
+      "accepted": ["venga"]
+    },
+    {
+      "lesson": 3,
+      "topic": "sperare_che",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: Espero que tú tengas fortuna.",
+      "source": "Espero que tú tengas fortuna.",
+      "value": "Spero che tu abbia fortuna.",
+      "accepted": [
+        "Spero che tu abbia fortuna",
+        "Spero che tu abbia fortuna."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "indicativo_vs_congiuntivo",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Penso che lei dica sempre la verità.",
+      "options": ["Penso che lei dica sempre la verità.", "So che lei dice sempre la verità.", "Penso che lei dirà sempre la verità."],
+      "value": "Penso che lei dica sempre la verità."
+    },
+    {
+      "lesson": 3,
+      "topic": "opinione_speak",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Credo che questa sia la scelta migliore per tutti noi."
+    },
+    {
+      "lesson": 4,
+      "topic": "benche",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la forma correcta después de « benché ».",
+      "options": ["Benché sia stanco, lavoro ancora.", "Benché sono stanco, lavoro ancora.", "Benché sarò stanco, lavoro ancora."],
+      "value": "Benché sia stanco, lavoro ancora."
+    },
+    {
+      "lesson": 4,
+      "topic": "prima_che",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el congiuntivo presente de « fare ».",
+      "text": "Usciamo prima che ___ buio.",
+      "value": "faccia",
+      "accepted": ["faccia"]
+    },
+    {
+      "lesson": 4,
+      "topic": "a_meno_che",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Vengo con te a meno che tu non voglia andare da solo.",
+      "options": ["Vengo con te a meno che tu non voglia andare da solo.", "Vengo con te a meno che tu non vuoi andare da solo.", "Vengo con te a meno che tu non vorrai andare da solo."],
+      "value": "Vengo con te a meno che tu non voglia andare da solo."
+    }
+  ]
+}

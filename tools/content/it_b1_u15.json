@@ -1,0 +1,242 @@
+{
+  "unit": {
+    "order": 15,
+    "title_es": "Pronombres relativos (che, cui, il quale, chi, dove)",
+    "color": "#117864",
+    "icon": "link"
+  },
+  "checkpoint_desc": "Une frases con che, cui, il/la quale, chi y dove. Elige el relativo según su función: che (sujeto/objeto directo, invariable), cui (tras preposición: a cui, di cui, in cui, con cui), il quale (alternativa formal), il cui (posesivo) y chi/dove.",
+  "lessons": [
+    { "order": 1, "title_es": "che: sujeto y objeto directo" },
+    { "order": 2, "title_es": "cui: con preposiciones (a, di, in, con, per)" },
+    { "order": 3, "title_es": "il quale y il cui: alternativa formal y posesivo" },
+    { "order": 4, "title_es": "chi y dove: todo junto" }
+  ],
+  "vocab": [
+    ["il libro", "el libro", "n"],
+    ["la persona", "la persona", "n"],
+    ["l'amico", "el amigo", "n"],
+    ["la città", "la ciudad", "n"],
+    ["il motivo", "el motivo", "n"],
+    ["lo scrittore", "el escritor", "n"],
+    ["la ragazza", "la chica", "n"],
+    ["il collega", "el colega", "n"],
+    ["la casa", "la casa", "n"],
+    ["il paese", "el pueblo", "n"],
+    ["la ragione", "la razón", "n"],
+    ["il quadro", "el cuadro", "n"],
+    ["parlare di", "hablar de", "v"],
+    ["pensare a", "pensar en", "v"],
+    ["contare su", "contar con", "v"],
+    ["fidarsi di", "fiarse de", "v"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "che_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase en italiano con su traducción.",
+      "pairs": [
+        ["il libro che leggo", "el libro que leo"],
+        ["la donna che parla", "la mujer que habla"],
+        ["l'amico che arriva", "el amigo que llega"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "che_soggetto",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Completa: «È il collega ___ lavora con me» (el colega es el sujeto del verbo). Elige el relativo correcto.",
+      "options": ["che", "cui", "dove"],
+      "value": "che"
+    },
+    {
+      "lesson": 1,
+      "topic": "che_soggetto_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Escribe el relativo (sujeto del verbo abita): «Ho un'amica ___ abita a Roma.» Usa el relativo invariable de sujeto/objeto.",
+      "text": "Ho un'amica ___ abita a Roma.",
+      "value": "che",
+      "accepted": ["che"]
+    },
+    {
+      "lesson": 2,
+      "topic": "cui_in_luogo",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Completa: «È la città in ___ vivo» (tras la preposición «in»). Elige el relativo correcto.",
+      "options": ["cui", "che", "dove"],
+      "value": "cui"
+    },
+    {
+      "lesson": 2,
+      "topic": "cui_a_scrivere",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Completa: «L'amico a ___ scrivo è simpatico» (tras la preposición «a»). Elige el relativo correcto.",
+      "options": ["cui", "che", "quale"],
+      "value": "cui"
+    },
+    {
+      "lesson": 2,
+      "topic": "cui_per_motivo_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Escribe el relativo que va tras la preposición «per»: «Non capisco il motivo per ___ è partito.» (recuerda: tras preposición NO se usa «che»).",
+      "text": "Non capisco il motivo per ___ è partito.",
+      "value": "cui",
+      "accepted": ["cui"]
+    },
+    {
+      "lesson": 2,
+      "topic": "cui_parlare_di",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: «Es el libro del que hablo.» (parlare DI → di cui)",
+      "source": "Es el libro del que hablo.",
+      "value": "È il libro di cui parlo.",
+      "accepted": [
+        "È il libro di cui parlo",
+        "È il libro di cui parlo.",
+        "e il libro di cui parlo",
+        "e il libro di cui parlo."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "il_quale_formale",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Completa la forma FORMAL: «La ragazza della ___ parlo è francese» (alternativa formal a «di cui», concuerda en género/número). Elige la opción correcta.",
+      "options": ["quale", "cui", "dove"],
+      "value": "quale"
+    },
+    {
+      "lesson": 3,
+      "topic": "il_cui_possessivo_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Escribe el relativo posesivo (= «cuyos», delante del sustantivo poseído): «Lo scrittore i ___ libri amo è italiano.»",
+      "text": "Lo scrittore i ___ libri amo è italiano.",
+      "value": "cui",
+      "accepted": ["cui"]
+    },
+    {
+      "lesson": 3,
+      "topic": "il_cui_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: «Es el escritor cuyos libros leo.» (posesivo: i cui libri)",
+      "source": "Es el escritor cuyos libros leo.",
+      "value": "È lo scrittore i cui libri leggo.",
+      "accepted": [
+        "È lo scrittore i cui libri leggo",
+        "È lo scrittore i cui libri leggo.",
+        "e lo scrittore i cui libri leggo",
+        "e lo scrittore i cui libri leggo."
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "chi_proverbio",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Completa el proverbio (= «colui che», quien, referido a personas indefinidas): «___ dorme non piglia pesci.» Elige la opción correcta.",
+      "options": ["Chi", "Quale", "Dove"],
+      "value": "Chi"
+    },
+    {
+      "lesson": 4,
+      "topic": "dove_luogo_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Escribe el relativo de LUGAR (= «en la que», forma simple): «È la casa ___ abito da bambino.» Usa el adverbio relativo de lugar.",
+      "text": "È la casa ___ abito da bambino.",
+      "value": "dove",
+      "accepted": ["dove"]
+    },
+    {
+      "lesson": 4,
+      "topic": "che_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "La persona che parla è mia madre.",
+      "options": [
+        "La persona che parla è mia madre.",
+        "La persona cui parla è mia madre.",
+        "La persona dove parla è mia madre."
+      ],
+      "value": "La persona che parla è mia madre."
+    },
+    {
+      "lesson": 4,
+      "topic": "cui_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "È il paese in cui sono nato.",
+      "options": [
+        "È il paese in cui sono nato.",
+        "È il paese in quale sono nato.",
+        "È il paese in dove sono nato."
+      ],
+      "value": "È il paese in cui sono nato."
+    },
+    {
+      "lesson": 4,
+      "topic": "dove_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ecco il ristorante dove ceniamo spesso.",
+      "options": [
+        "Ecco il ristorante dove ceniamo spesso.",
+        "Ecco il ristorante cui ceniamo spesso.",
+        "Ecco il ristorante quale ceniamo spesso."
+      ],
+      "value": "Ecco il ristorante dove ceniamo spesso."
+    },
+    {
+      "lesson": 4,
+      "topic": "cui_listening_di",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "È un amico di cui mi fido molto.",
+      "options": [
+        "È un amico di cui mi fido molto.",
+        "È un amico di che mi fido molto.",
+        "È un amico di dove mi fido molto."
+      ],
+      "value": "È un amico di cui mi fido molto."
+    },
+    {
+      "lesson": 4,
+      "topic": "che_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Il ragazzo che vive qui è il mio vicino."
+    },
+    {
+      "lesson": 4,
+      "topic": "cui_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "È la ragione per cui sono venuto oggi."
+    },
+    {
+      "lesson": 4,
+      "topic": "chi_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Chi cerca un amico sincero trova un tesoro."
+    }
+  ]
+}

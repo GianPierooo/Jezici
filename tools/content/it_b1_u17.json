@@ -1,0 +1,221 @@
+{
+  "unit": {"order": 17, "title_es": "El discurso indirecto", "color": "#6C3483", "icon": "record_voice_over"},
+  "checkpoint_desc": "Demuestra que sabes referir lo que otros dicen, preguntan y ordenan con el discurso indirecto (dice che, ha detto che + concordanza, chiede se, dire di + infinito).",
+  "lessons": [
+    {"order": 1, "title_es": "Dice che... (verbo principal en presente)"},
+    {"order": 2, "title_es": "Ha detto che... (concordancia de tiempos)"},
+    {"order": 3, "title_es": "Preguntas indirectas: chiede se / dove / quando"},
+    {"order": 4, "title_es": "Órdenes indirectas y deícticos"}
+  ],
+  "vocab": [
+    ["dire", "decir", "verbo"],
+    ["chiedere", "preguntar / pedir", "verbo"],
+    ["rispondere", "responder", "verbo"],
+    ["raccontare", "contar", "verbo"],
+    ["spiegare", "explicar", "verbo"],
+    ["il discorso indiretto", "el discurso indirecto", "gramática"],
+    ["se", "si (interrogativo)", "conjunción"],
+    ["che", "que", "conjunción"],
+    ["dove", "dónde", "interrogativo"],
+    ["quando", "cuándo", "interrogativo"],
+    ["perché", "por qué / porque", "interrogativo"],
+    ["quel giorno", "aquel día", "expresión"],
+    ["il giorno prima", "el día anterior", "expresión"],
+    ["stanco", "cansado", "adjetivo"],
+    ["subito", "enseguida", "adverbio"],
+    ["più tardi", "más tarde", "expresión"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "type": "match",
+      "skill": "reading",
+      "topic": "dice_che_presente",
+      "prompt": "Une cada frase directa con su versión en discurso indirecto (verbo principal en presente).",
+      "pairs": [
+        ["«Sono stanco» → Dice che è stanco", "Dice que está cansado"],
+        ["«Ho fame» → Dice che ha fame", "Dice que tiene hambre"],
+        ["«Arrivo subito» → Dice che arriva subito", "Dice que llega enseguida"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "type": "multiple_choice",
+      "skill": "reading",
+      "topic": "dice_che_presente",
+      "prompt": "«Marco: Ho sonno.» Pásalo a discurso indirecto: Marco dice che ___.",
+      "options": ["ha sonno", "ho sonno", "avere sonno"],
+      "value": "ha sonno"
+    },
+    {
+      "lesson": 1,
+      "type": "cloze",
+      "skill": "writing",
+      "topic": "dice_che_presente",
+      "prompt": "Completa con el verbo en 3ª persona: «Lucia: Sono felice.» → Lucia dice che ___ felice.",
+      "text": "Lucia dice che ___ felice.",
+      "value": "è",
+      "accepted": ["è"]
+    },
+    {
+      "lesson": 1,
+      "type": "translation",
+      "skill": "writing",
+      "topic": "dice_che_presente",
+      "prompt": "Traduce al italiano: Anna dice que tiene razón.",
+      "source": "Anna dice que tiene razón.",
+      "value": "Anna dice che ha ragione.",
+      "accepted": [
+        "Anna dice che ha ragione",
+        "Anna dice che ha ragione.",
+        "anna dice che ha ragione"
+      ]
+    },
+    {
+      "lesson": 1,
+      "type": "listening",
+      "skill": "listening",
+      "topic": "dice_che_presente",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Dice che non può venire stasera.",
+      "options": ["Dice che non può venire stasera.", "Dice che non vuole venire stasera.", "Dice che non deve venire stasera."],
+      "value": "Dice che non può venire stasera."
+    },
+    {
+      "lesson": 1,
+      "type": "speaking_read_aloud",
+      "skill": "speaking",
+      "topic": "dice_che_presente",
+      "prompt": "Lee en voz alta:",
+      "read": "Paolo dice che è contento e che arriva subito."
+    },
+    {
+      "lesson": 2,
+      "type": "match",
+      "skill": "reading",
+      "topic": "ha_detto_concordanza",
+      "prompt": "Une la frase directa pasada con su discurso indirecto (concordancia de tiempos).",
+      "pairs": [
+        ["«Sono stanco» → Ha detto che era stanco", "presente → imperfetto"],
+        ["«Ho finito» → Ha detto che aveva finito", "passato prossimo → trapassato"],
+        ["«Verrò» → Ha detto che sarebbe venuto", "futuro → condizionale composto"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "type": "multiple_choice",
+      "skill": "reading",
+      "topic": "ha_detto_concordanza",
+      "prompt": "«Giulia: Sono a casa.» En pasado: Giulia ha detto che ___ a casa.",
+      "options": ["era", "è", "sarà"],
+      "value": "era"
+    },
+    {
+      "lesson": 2,
+      "type": "translation",
+      "skill": "writing",
+      "topic": "ha_detto_concordanza",
+      "prompt": "Traduce al italiano (passato prossimo → trapassato): Dijo que había terminado el trabajo.",
+      "source": "Dijo que había terminado el trabajo.",
+      "value": "Ha detto che aveva finito il lavoro.",
+      "accepted": [
+        "Ha detto che aveva finito il lavoro",
+        "Ha detto che aveva finito il lavoro.",
+        "ha detto che aveva finito il lavoro"
+      ]
+    },
+    {
+      "lesson": 2,
+      "type": "listening",
+      "skill": "listening",
+      "topic": "ha_detto_concordanza",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ha detto che era molto stanco quel giorno.",
+      "options": ["Ha detto che era molto stanco quel giorno.", "Ha detto che sarà molto stanco quel giorno.", "Ha detto che è molto stanco quel giorno."],
+      "value": "Ha detto che era molto stanco quel giorno."
+    },
+    {
+      "lesson": 3,
+      "type": "multiple_choice",
+      "skill": "reading",
+      "topic": "domande_indirette",
+      "prompt": "Pásalo a pregunta indirecta: «Hai tempo?» → Mi chiede ___ ho tempo.",
+      "options": ["se", "che", "come"],
+      "value": "se"
+    },
+    {
+      "lesson": 3,
+      "type": "cloze",
+      "skill": "writing",
+      "topic": "domande_indirette",
+      "prompt": "Completa la pregunta indirecta: «Dove abiti?» → Mi ha chiesto ___ abitavo.",
+      "text": "Mi ha chiesto ___ abitavo.",
+      "value": "dove",
+      "accepted": ["dove"]
+    },
+    {
+      "lesson": 3,
+      "type": "word_bank",
+      "skill": "writing",
+      "topic": "domande_indirette",
+      "prompt": "Forma la frase: «Me pregunta si estoy libre esta noche.»",
+      "tiles": ["Mi", "chiede", "se", "sono", "libero", "stasera", "che", "quando"],
+      "sequence": ["Mi", "chiede", "se", "sono", "libero", "stasera"]
+    },
+    {
+      "lesson": 3,
+      "type": "listening",
+      "skill": "listening",
+      "topic": "domande_indirette",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Mi ha chiesto quando sarei tornato.",
+      "options": ["Mi ha chiesto quando sarei tornato.", "Mi ha chiesto perché sarei tornato.", "Mi ha chiesto dove sarei tornato."],
+      "value": "Mi ha chiesto quando sarei tornato."
+    },
+    {
+      "lesson": 3,
+      "type": "speaking_read_aloud",
+      "skill": "speaking",
+      "topic": "domande_indirette",
+      "prompt": "Lee en voz alta:",
+      "read": "Mi ha chiesto se avevo tempo e dove volevo andare."
+    },
+    {
+      "lesson": 4,
+      "type": "multiple_choice",
+      "skill": "reading",
+      "topic": "ordini_indiretti_deittici",
+      "prompt": "Pásalo a orden indirecta: «Aspetta!» → Mi dice ___ aspettare.",
+      "options": ["di", "che", "se"],
+      "value": "di"
+    },
+    {
+      "lesson": 4,
+      "type": "cloze",
+      "skill": "writing",
+      "topic": "ordini_indiretti_deittici",
+      "prompt": "Completa la orden indirecta negativa (di + infinito): «Non partire!» → Mi ha detto ___ non partire.",
+      "text": "Mi ha detto ___ non partire.",
+      "value": "di",
+      "accepted": ["di"]
+    },
+    {
+      "lesson": 4,
+      "type": "listening",
+      "skill": "listening",
+      "topic": "ordini_indiretti_deittici",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Mi ha detto di chiamare più tardi.",
+      "options": ["Mi ha detto di chiamare più tardi.", "Mi ha detto di tornare più tardi.", "Mi ha detto di studiare più tardi."],
+      "value": "Mi ha detto di chiamare più tardi."
+    },
+    {
+      "lesson": 4,
+      "type": "speaking_read_aloud",
+      "skill": "speaking",
+      "topic": "ordini_indiretti_deittici",
+      "prompt": "Lee en voz alta:",
+      "read": "Mi ha detto di aspettare lì e di tornare il giorno dopo."
+    }
+  ]
+}

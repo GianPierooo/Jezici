@@ -1,0 +1,217 @@
+{
+  "unit": {"order": 18, "title_es": "Pronombres combinados, ci y ne", "color": "#117A65", "icon": "sync_alt"},
+  "checkpoint_desc": "Usa ci (locativo e idiomático) y ne (partitivo), y combina pronombres indirecto+directo (me lo, te lo, ce lo, glielo, gliene) incluyendo ce n'è / ce ne sono y la posición con infinitivo e imperativo.",
+  "lessons": [
+    {"order": 1, "title_es": "El pronombre ci (Ci vado, Ci penso, Ci vuole)"},
+    {"order": 2, "title_es": "El pronombre ne (Ne voglio due, Ne ho parlato)"},
+    {"order": 3, "title_es": "Pronombres combinados (me lo, te lo, ce lo)"},
+    {"order": 4, "title_es": "Glielo, gliene y ce n'è"}
+  ],
+  "vocab": [
+    ["ci", "allí / en ello", "pronombre"],
+    ["ne", "de ello / de eso", "pronombre"],
+    ["Ci vado", "Voy allí", "expresion"],
+    ["Ci penso io", "Yo me encargo", "expresion"],
+    ["Non ci credo", "No me lo creo", "expresion"],
+    ["Ci vuole tempo", "Hace falta tiempo", "expresion"],
+    ["Ne voglio due", "Quiero dos (de eso)", "expresion"],
+    ["Ne ho parlato", "He hablado de ello", "expresion"],
+    ["Cosa ne pensi?", "¿Qué opinas de eso?", "expresion"],
+    ["me lo dai", "me lo das", "expresion"],
+    ["te lo dico", "te lo digo", "expresion"],
+    ["ce lo porta", "nos lo trae", "expresion"],
+    ["glielo do", "se lo doy", "expresion"],
+    ["gliene parlo", "le hablo de ello", "expresion"],
+    ["ce n'è", "hay (de eso)", "expresion"],
+    ["ce ne sono", "hay (varios)", "expresion"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "ci_locativo",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une la frase italiana con su traducción.",
+      "pairs": [
+        ["Vai a Roma? Sì, ci vado domani.", "¿Vas a Roma? Sí, voy allí mañana."],
+        ["Pensi al lavoro? Ci penso sempre.", "¿Piensas en el trabajo? Pienso en ello siempre."],
+        ["Non ci credo affatto.", "No me lo creo en absoluto."]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "ci_locativo",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la respuesta correcta a « Vai al mare quest'estate? ».",
+      "options": ["Sì, ci vado ad agosto.", "Sì, lo vado ad agosto.", "Sì, ne vado ad agosto."],
+      "value": "Sì, ci vado ad agosto."
+    },
+    {
+      "lesson": 1,
+      "topic": "ci_pensare",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el pronombre correcto (« pensar en ello »).",
+      "text": "Non preoccuparti per la cena: ___ penso io.",
+      "value": "ci",
+      "accepted": ["ci"]
+    },
+    {
+      "lesson": 1,
+      "topic": "ci_volere",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Per imparare bene ci vuole tempo.",
+      "options": ["Per imparare bene ci vuole tempo.", "Per imparare bene ne vuole tempo.", "Per imparare bene serve molto tempo."],
+      "value": "Per imparare bene ci vuole tempo."
+    },
+    {
+      "lesson": 1,
+      "topic": "ci_idiomatico",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Ci vado spesso, ma stavolta non ci credo davvero."
+    },
+    {
+      "lesson": 2,
+      "topic": "ne_partitivo",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la respuesta correcta a « Quante mele vuoi? ».",
+      "options": ["Ne voglio due.", "Le voglio due.", "Ci voglio due."],
+      "value": "Ne voglio due."
+    },
+    {
+      "lesson": 2,
+      "topic": "ne_quantita",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el pronombre partitivo (« de eso »).",
+      "text": "Hai dei fratelli? Sì, ___ ho tre.",
+      "value": "ne",
+      "accepted": ["ne"]
+    },
+    {
+      "lesson": 2,
+      "topic": "ne_di_cio",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Ne ho parlato con il capo, ma lui non ne sa nulla."
+    },
+    {
+      "lesson": 2,
+      "topic": "ne_partitivo",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Quanti libri hai letto? Ne ho letti cinque.",
+      "options": ["Quanti libri hai letto? Ne ho letti cinque.", "Quanti libri hai letto? Li ho comprati tutti.", "Quanti libri hai letto? Ne ho parlato ieri."],
+      "value": "Quanti libri hai letto? Ne ho letti cinque."
+    },
+    {
+      "lesson": 2,
+      "topic": "ne_opinione",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: ¿Qué opinas de mi idea?",
+      "source": "¿Qué opinas de mi idea?",
+      "value": "Cosa ne pensi della mia idea?",
+      "accepted": [
+        "Cosa ne pensi della mia idea",
+        "Cosa ne pensi della mia idea?",
+        "Che ne pensi della mia idea?",
+        "Che ne pensi della mia idea"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "combinati_te_lo",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la respuesta correcta a « Mi presti il libro? » (te lo presto = yo te lo presto).",
+      "options": ["Sì, te lo presto volentieri.", "Sì, ti lo presto volentieri.", "Sì, te li presto volentieri."],
+      "value": "Sì, te lo presto volentieri."
+    },
+    {
+      "lesson": 3,
+      "topic": "combinati_te_lo",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa combinando « ti » + « lo » (te lo).",
+      "text": "Non ti preoccupare, ___ lo dico domani.",
+      "value": "te",
+      "accepted": ["te"]
+    },
+    {
+      "lesson": 3,
+      "topic": "combinati_ce_lo",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Construye la frase: El camarero nos lo trae subito.",
+      "tiles": ["Il", "cameriere", "ce", "lo", "porta", "subito", "ci", "ne"],
+      "sequence": ["Il", "cameriere", "ce", "lo", "porta", "subito"]
+    },
+    {
+      "lesson": 3,
+      "topic": "combinati_me_lo",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Se hai bisogno, me lo puoi chiedere.",
+      "options": ["Se hai bisogno, me lo puoi chiedere.", "Se vuoi, glielo posso spiegare.", "Se preferisci, te ne posso parlare."],
+      "value": "Se hai bisogno, me lo puoi chiedere."
+    },
+    {
+      "lesson": 3,
+      "topic": "combinati_speak",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Se me lo chiedi con gentilezza, te lo spiego subito."
+    },
+    {
+      "lesson": 4,
+      "topic": "combinati_glielo",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une la frase italiana con su traducción.",
+      "pairs": [
+        ["Do il regalo a Marco. Glielo do.", "Le doy el regalo a Marco. Se lo doy."],
+        ["Parlo del progetto a Lucia. Gliene parlo.", "Le hablo del proyecto a Lucía. Le hablo de ello."],
+        ["Compro i fiori a mia madre. Glieli compro.", "Le compro las flores a mi madre. Se las compro."]
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "combinati_glielo",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la forma correcta para « Le doy el libro (a él) ».",
+      "options": ["Glielo do subito.", "Gli lo do subito.", "Lo gli do subito."],
+      "value": "Glielo do subito."
+    },
+    {
+      "lesson": 4,
+      "topic": "combinati_imperativo",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena las palabras para formar la frase.",
+      "tiles": ["Puoi", "darmelo", "per", "favore"],
+      "sequence": ["Puoi", "darmelo", "per", "favore"]
+    },
+    {
+      "lesson": 4,
+      "topic": "ce_ne_sono",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ci sono ancora dei biglietti? Sì, ce ne sono due.",
+      "options": ["Ci sono ancora dei biglietti? Sì, ce ne sono due.", "Ci sono ancora dei biglietti? Sì, ce ne resta due.", "Ci sono ancora dei biglietti? Sì, ce li sono due."],
+      "value": "Ci sono ancora dei biglietti? Sì, ce ne sono due."
+    }
+  ]
+}

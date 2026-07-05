@@ -1,0 +1,52 @@
+{
+  "unit": {"order": 14, "title_es": "Futuro, condicional e hipótesis", "color": "#1F618D", "icon": "schedule"},
+  "checkpoint_desc": "Demuestra que dominas el futuro simple (parlerò, sarò, andrò), el condicional presente (vorrei, potrei, dovrei) y el período hipotético de la realidad (Se piove, resto a casa).",
+  "lessons": [
+    {"order": 1, "title_es": "El futuro simple regular"},
+    {"order": 2, "title_es": "Futuros irregulares y probabilidad"},
+    {"order": 3, "title_es": "El condicional: cortesía y consejos"},
+    {"order": 4, "title_es": "Hipótesis con 'se' (tipo I)"}
+  ],
+  "vocab": [
+    ["il futuro", "el futuro", "sustantivo"],
+    ["il progetto", "el proyecto", "sustantivo"],
+    ["il sogno", "el sueño", "sustantivo"],
+    ["la speranza", "la esperanza", "sustantivo"],
+    ["il consiglio", "el consejo", "sustantivo"],
+    ["la possibilità", "la posibilidad", "sustantivo"],
+    ["il tempo", "el tiempo", "sustantivo"],
+    ["il viaggio", "el viaje", "sustantivo"],
+    ["forse", "quizás", "adverbio"],
+    ["presto", "pronto", "adverbio"],
+    ["domani", "mañana", "adverbio"],
+    ["se", "si", "conjuncion"],
+    ["parlerò", "hablaré", "verbo"],
+    ["vorrei", "querría/quisiera", "verbo"],
+    ["dovrei", "debería", "verbo"],
+    ["mi piacerebbe", "me gustaría", "verbo"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "futuro_semplice", "skill": "reading", "type": "match", "prompt": "Une cada forma de futuro con su traducción.", "pairs": [["parlerò", "hablaré"], ["prenderai", "tomarás"], ["dormiremo", "dormiremos"]]},
+    {"lesson": 1, "topic": "futuro_semplice", "skill": "reading", "type": "multiple_choice", "prompt": "Completa: 'Domani io ___ con Marco.' (futuro de 'parlare')", "options": ["parlerò", "parlavo", "parlo"], "value": "parlerò"},
+    {"lesson": 1, "topic": "futuro_semplice", "skill": "writing", "type": "cloze", "prompt": "Escribe el futuro de 'finire' (noi): 'Domani ___ il lavoro presto.'", "text": "Domani ___ il lavoro presto.", "value": "finiremo", "accepted": ["finiremo"]},
+    {"lesson": 1, "topic": "futuro_semplice", "skill": "writing", "type": "translation", "prompt": "Traduce: 'Mañana llegaré a las ocho.'", "source": "Mañana llegaré a las ocho.", "value": "Domani arriverò alle otto.", "accepted": ["Domani arriverò alle otto.", "Domani arriverò alle otto", "domani arriverò alle otto", "Arriverò alle otto domani.", "Arriverò alle otto domani"]},
+    {"lesson": 1, "topic": "futuro_semplice", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Un giorno partiremo per il Giappone.", "options": ["Un giorno partiremo per il Giappone.", "Un giorno siamo partiti per il Giappone.", "Un giorno partivamo per il Giappone."], "value": "Un giorno partiremo per il Giappone."},
+    {"lesson": 1, "topic": "futuro_semplice", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "La settimana prossima visiterò i miei nonni."},
+
+    {"lesson": 2, "topic": "futuro_irregolare", "skill": "reading", "type": "multiple_choice", "prompt": "Completa: 'Sabato noi ___ al mare.' (futuro de 'andare')", "options": ["andremo", "andiamo", "andavamo"], "value": "andremo"},
+    {"lesson": 2, "topic": "futuro_probabilita", "skill": "writing", "type": "cloze", "prompt": "Futuro de probabilidad. '¿Qué hora es?' — 'No lo sé, ___ le tre.' (futuro de 'essere', loro)", "text": "Non lo so, ___ le tre.", "value": "saranno", "accepted": ["saranno"]},
+    {"lesson": 2, "topic": "futuro_irregolare", "skill": "writing", "type": "word_bank", "prompt": "Forma la frase: 'Mañana tendré mucho tiempo libre.'", "tiles": ["Domani", "avrò", "molto", "tempo", "libero", "avrei", "avevo"], "sequence": ["Domani", "avrò", "molto", "tempo", "libero"]},
+    {"lesson": 2, "topic": "futuro_probabilita", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Marco non risponde, sarà occupato.", "options": ["Marco non risponde, sarà occupato.", "Marco non risponde, era occupato.", "Marco non risponde, è occupato."], "value": "Marco non risponde, sarà occupato."},
+
+    {"lesson": 3, "topic": "condizionale_cortesia", "skill": "reading", "type": "multiple_choice", "prompt": "Pide algo con cortesía en un bar: '___ un caffè, per favore.'", "options": ["Vorrei", "Voglio", "Volevo"], "value": "Vorrei"},
+    {"lesson": 3, "topic": "condizionale_consiglio", "skill": "reading", "type": "multiple_choice", "prompt": "Da un consejo a un amigo cansado: 'Sei stanco, ___ riposare.'", "options": ["dovresti", "devi", "dovevi"], "value": "dovresti"},
+    {"lesson": 3, "topic": "condizionale_desiderio", "skill": "writing", "type": "cloze", "prompt": "Expresa un deseo con el condicional de 'piacere': 'Mi ___ vivere in Italia.'", "text": "Mi ___ vivere in Italia.", "value": "piacerebbe", "accepted": ["piacerebbe"]},
+    {"lesson": 3, "topic": "condizionale_cortesia", "skill": "writing", "type": "translation", "prompt": "Traduce con cortesía: 'Querría reservar una mesa.'", "source": "Querría reservar una mesa.", "value": "Vorrei prenotare un tavolo.", "accepted": ["Vorrei prenotare un tavolo.", "Vorrei prenotare un tavolo", "vorrei prenotare un tavolo", "Vorrei riservare un tavolo.", "Vorrei riservare un tavolo"]},
+    {"lesson": 3, "topic": "condizionale_cortesia", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Potresti aiutarmi con la valigia?", "options": ["Potresti aiutarmi con la valigia?", "Puoi aiutarmi con la valigia?", "Potevi aiutarmi con la valigia?"], "value": "Potresti aiutarmi con la valigia?"},
+    {"lesson": 3, "topic": "condizionale_consiglio", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Al posto tuo, prenderei il treno delle nove."},
+
+    {"lesson": 4, "topic": "periodo_ipotetico_reale", "skill": "reading", "type": "match", "prompt": "Une cada frase con su traducción.", "pairs": [["Se piove, resto a casa", "Si llueve, me quedo en casa"], ["Se avrò tempo, verrò", "Si tengo tiempo, vendré"], ["Se vuoi, puoi venire", "Si quieres, puedes venir"]]},
+    {"lesson": 4, "topic": "periodo_ipotetico_reale", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Se avrò tempo, ti chiamerò stasera.", "options": ["Se avrò tempo, ti chiamerò stasera.", "Se ho tempo, ti chiamo stasera.", "Se avevo tempo, ti chiamavo stasera."], "value": "Se avrò tempo, ti chiamerò stasera."},
+    {"lesson": 4, "topic": "periodo_ipotetico_reale", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Se domani fa bel tempo, andremo al parco."}
+  ]
+}
