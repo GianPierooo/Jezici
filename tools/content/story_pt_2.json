@@ -1,0 +1,32 @@
+{
+  "cefr_level": "B1",
+  "order_index": 2,
+  "title": "A entrevista de Rafael",
+  "subtitle": "Rafael tiene una entrevista de trabajo, pero un imprevisto en el ônibus le cambia el plan.",
+  "emoji": "💼",
+  "intro": "Rafael estaba nervioso: tenía la entrevista más importante de su vida. Todo estaba planeado, pero aquella mañana en São Paulo nada salió como esperaba.",
+  "segments": [
+    {"en": "Rafael tinha uma entrevista de emprego às nove da manhã e estava muito nervoso.", "es": "Rafael tenía una entrevista de trabajo a las nueve de la mañana y estaba muy nervioso."},
+    {"en": "Ele acordou cedo, tomou café e pegou o ônibus que passava perto de casa, como fazia todos os dias.", "es": "Se despertó temprano, desayunó y tomó el autobús que pasaba cerca de casa, como hacía todos los días."},
+    {"en": "No meio do caminho, porém, o ônibus quebrou e todos os passageiros tiveram que descer.", "es": "En medio del camino, sin embargo, el autobús se averió y todos los pasajeros tuvieron que bajar."},
+    {"en": "«Se eu tivesse saído mais cedo, não estaria com esse problema agora», pensou Rafael, olhando o relógio.", "es": "«Si hubiera salido más temprano, no estaría con este problema ahora», pensó Rafael, mirando el reloj."},
+    {"en": "Então ele ligou para a empresa e disse: «Desculpe, gostaria de avisar que vou chegar uns dez minutos atrasado.»", "es": "Entonces llamó a la empresa y dijo: «Disculpe, me gustaría avisar de que voy a llegar unos diez minutos tarde.»"},
+    {"en": "A mulher que atendeu foi muito gentil e respondeu: «Não tem problema, esperamos o senhor. Espero que dê tudo certo!»", "es": "La mujer que atendió fue muy amable y respondió: «No hay problema, lo esperamos. ¡Espero que salga todo bien!»"},
+    {"en": "Rafael pegou um táxi, chegou a tempo e, no fim, conseguiu o emprego que sempre quis.", "es": "Rafael tomó un taxi, llegó a tiempo y, al final, consiguió el trabajo que siempre quiso."}
+  ],
+  "glossary": [
+    {"word": "a entrevista de emprego", "translation": "la entrevista de trabajo"},
+    {"word": "quebrar (o ônibus quebrou)", "translation": "averiarse / romperse"},
+    {"word": "no meio do caminho", "translation": "a mitad de camino"},
+    {"word": "avisar", "translation": "avisar"},
+    {"word": "atrasado", "translation": "tarde / atrasado"},
+    {"word": "dar tudo certo", "translation": "salir todo bien"}
+  ],
+  "questions": [
+    {"type":"multiple_choice","skill":"reading","prompt":"¿A qué hora era la entrevista de Rafael?","payload":{"options":["às nove da manhã","às oito da manhã","ao meio-dia"]},"difficulty":0.5,"correct_answer":{"value":"às nove da manhã"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Qué imprevisto ocurrió?","payload":{"options":["o ônibus quebrou","ele perdeu o celular","choveu muito"]},"difficulty":0.5,"correct_answer":{"value":"o ônibus quebrou"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Qué pensó Rafael al mirar el reloj?","payload":{"options":["que devia ter saído mais cedo","que ia desistir da entrevista","que o ônibus era rápido"]},"difficulty":0.5,"correct_answer":{"value":"que devia ter saído mais cedo"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Cómo reaccionó la mujer de la empresa?","payload":{"options":["foi gentil e disse que esperariam","ficou brava com o atraso","desmarcou a entrevista"]},"difficulty":0.5,"correct_answer":{"value":"foi gentil e disse que esperariam"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Cómo termina la historia?","payload":{"options":["ele conseguiu o emprego","ele chegou atrasado e perdeu a vaga","ele voltou para casa"]},"difficulty":0.5,"correct_answer":{"value":"ele conseguiu o emprego"}}
+  ]
+}

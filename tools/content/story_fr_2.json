@@ -1,0 +1,32 @@
+{
+  "cefr_level": "B1",
+  "order_index": 2,
+  "title": "L'appartement de Karim",
+  "subtitle": "Karim busca un piso en Lyon y va a visitar uno con la propietaria.",
+  "emoji": "🔑",
+  "intro": "Karim acaba de encontrar trabajo en Lyon y necesita mudarse. Lee y escucha cómo visita un apartamento que ha encontrado en internet.",
+  "segments": [
+    {"en": "Quand j'ai trouvé mon nouveau travail à Lyon, j'étais très content, mais je devais trouver un appartement rapidement.", "es": "Cuando encontré mi nuevo trabajo en Lyon, estaba muy contento, pero tenía que encontrar un apartamento rápidamente."},
+    {"en": "J'ai cherché pendant des semaines sur internet, et hier, j'ai enfin trouvé une annonce qui me semblait parfaite.", "es": "Busqué durante semanas en internet, y ayer por fin encontré un anuncio que me parecía perfecto."},
+    {"en": "C'est un petit appartement dont le loyer n'est pas trop cher, dans un quartier où il y a beaucoup de commerces.", "es": "Es un apartamento pequeño cuyo alquiler no es demasiado caro, en un barrio donde hay muchos comercios."},
+    {"en": "La propriétaire, qui s'appelle Madame Rousseau, m'a accueilli et me l'a fait visiter avec le sourire.", "es": "La propietaria, que se llama la señora Rousseau, me recibió y me lo enseñó con una sonrisa."},
+    {"en": "« Si vous prenez cet appartement, vous devrez signer le bail et me donner une caution », m'a-t-elle expliqué.", "es": "«Si toma este apartamento, tendrá que firmar el contrato y darme una fianza», me explicó."},
+    {"en": "Je lui ai répondu qu'il fallait que je réfléchisse, car je voudrais comparer avec un autre logement avant de décider.", "es": "Le respondí que hacía falta que lo pensara, porque querría comparar con otra vivienda antes de decidir."},
+    {"en": "Finalement, l'appartement m'a beaucoup plu, et si tout se passe bien, je pense que je déménagerai le mois prochain.", "es": "Al final, el apartamento me gustó mucho, y si todo va bien, creo que me mudaré el mes que viene."}
+  ],
+  "glossary": [
+    {"word": "une annonce", "translation": "un anuncio"},
+    {"word": "le loyer", "translation": "el alquiler"},
+    {"word": "le bail", "translation": "el contrato de arrendamiento"},
+    {"word": "la caution", "translation": "la fianza / el depósito"},
+    {"word": "il faut que je réfléchisse", "translation": "hace falta que lo piense"},
+    {"word": "déménager", "translation": "mudarse"}
+  ],
+  "questions": [
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Por qué Karim necesitaba encontrar un apartamento rápidamente?","payload":{"options":["porque encontró un nuevo trabajo en Lyon","porque quería vivir cerca del mar","porque su familia venía a visitarlo"]},"difficulty":0.5,"correct_answer":{"value":"porque encontró un nuevo trabajo en Lyon"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Cómo describe el barrio del apartamento?","payload":{"options":["un barrio con muchos comercios","un barrio muy tranquilo y aislado","un barrio lejos del centro"]},"difficulty":0.5,"correct_answer":{"value":"un barrio con muchos comercios"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Quién es la señora Rousseau?","payload":{"options":["la propietaria del apartamento","una vecina del edificio","la jefa de Karim"]},"difficulty":0.5,"correct_answer":{"value":"la propietaria del apartamento"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"Según la propietaria, ¿qué tendrá que hacer Karim si toma el apartamento?","payload":{"options":["firmar el contrato y dar una fianza","pagar un año por adelantado","pintar las paredes él mismo"]},"difficulty":0.5,"correct_answer":{"value":"firmar el contrato y dar una fianza"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Por qué Karim no decide en ese momento?","payload":{"options":["quiere comparar con otra vivienda antes","el apartamento no le gustó nada","el alquiler era demasiado caro"]},"difficulty":0.5,"correct_answer":{"value":"quiere comparar con otra vivienda antes"}}
+  ]
+}

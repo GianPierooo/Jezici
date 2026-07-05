@@ -6,9 +6,53 @@ la herramienta es→en. Reusa tts() de gen_audio_missing. Idempotente (x-upsert)
 
 Uso: python gen_story_audio_multi.py fr it   (procesa las historias de esos cursos)
 """
-import io, json, sys, time, urllib.request, urllib.error
+import io, json, re, sys, time, urllib.request, urllib.error
 from apply_sql import run, SERVICE, SUPABASE_URL
 from gen_audio_missing import tts
+
+# translate_tts limita ~200 chars/request. Los segmentos B1/B2 pueden ser más largos →
+# se parten en trozos <=190 (por frases, luego palabras) y se concatenan los mp3.
+_MAXLEN = 190
+
+
+def _chunks(text):
+    text = text.strip()
+    if len(text) <= _MAXLEN:
+        return [text]
+    parts, buf = [], ''
+    for sent in re.split(r'(?<=[.!?…])\s+', text):
+        s = sent.strip()
+        while len(s) > _MAXLEN:  # una frase sola demasiado larga → cortar por palabras
+            cut = s.rfind(' ', 0, _MAXLEN) or _MAXLEN
+            if cut <= 0:
+                cut = _MAXLEN
+            parts.append(s[:cut].strip()); s = s[cut:].strip()
+        if not s:
+            continue
+        if len(buf) + 1 + len(s) <= _MAXLEN:
+            buf = (buf + ' ' + s).strip()
+        else:
+            if buf:
+                parts.append(buf)
+            buf = s
+    if buf:
+        parts.append(buf)
+    return parts
+
+
+def tts_long(text, tl):
+    """TTS de un texto de cualquier longitud (concatena mp3 de trozos <=190 chars)."""
+    out = b''
+    for ch in _chunks(text):
+        for attempt in range(3):
+            try:
+                out += tts(ch, tl); break
+            except Exception:
+                if attempt == 2:
+                    raise
+                time.sleep(1.5)
+        time.sleep(0.25)
+    return out
 
 COURSE_IDS = {
     'pt': '20000000-0000-0000-0000-000000000002', 'fr': '20000000-0000-0000-0000-000000000003',
@@ -45,7 +89,7 @@ def main(codes):
                 if not text:
                     continue
                 try:
-                    mp3 = tts(text, code)
+                    mp3 = tts_long(text, code)
                 except Exception as e:
                     print("  TTS FALLÓ", i, e); time.sleep(2); continue
                 st = upload("%s-%d" % (sid, i), mp3)

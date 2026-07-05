@@ -2,6 +2,25 @@
 
 ---
 
+## Historias/inmersión B1 (fr/it/de/nl/pt) — 2026-07-05 ✅ LIVE + VERIFICADO
+> Retome #1 de la Cola. Cada curso no-inglés tenía solo 1 historia A1; +1 historia B1 (2ª por idioma).
+- **5 historias B1 (mig 125, commit pendiente):** fr «L'appartement de Karim» (buscar piso en Lyon), it «Il
+  colloquio di Giulia» (entrevista + retraso del tren), de «Die Wohnungsbesichtigung» (Wohnungssuche en Leipzig),
+  nl «De trein die niet reed» (plan que cambia por lluvia/tren cancelado), pt «A entrevista de Rafael» (entrevista
+  en São Paulo, ônibus que quebra). 7 segmentos c/u con arco inicio-nudo-desenlace + gramática B1 real
+  (passé composé/imparfait, subjonctif/congiuntivo/Konjunktiv II/conditionalis/subjuntivo, relativos, condicional,
+  passiva, período hipotético), glosario 6, 5 preguntas MC autocalificables. Autoradas por narradores nativos.
+- **Fix de pipeline (audio B1 más largo):** `translate_tts` (Google) limita ~200 chars/request → los segmentos B1
+  it (184-228 chars) fallaban con HTTP 400. `gen_story_audio_multi.py` gana `tts_long()`/`_chunks()`: parte cualquier
+  segmento >190 chars por frases (luego palabras) y **concatena los mp3** → future-proof para B1/B2. Los demás
+  idiomas (<130 chars) no se veían afectados. Re-generado it → 14/14.
+- **Verificado cliente real (`verify_stories_multi.py`, JWT):** `get_stories` course-scoped (2/curso: A1+B1, en 6),
+  **0 cruces** entre los 6 cursos; `get_story` NO filtra `correct_answer`; `submit_story` server-side (correctas
+  5/5→score 1.0, erróneas 0/5→0.0, 42501); `stories.questions` revocada al cliente; **audio HEAD 35/35**.
+- **Diferido:** historias B2 (misma pipeline, order_index=3).
+
+---
+
 ## Placement a nivel real + Conversar de/nl + tips B1/B2 (3 frentes) — 2026-07-05 ✅ LIVE + VERIFICADO
 > Paso 0 (ground truth, BD): placement fr/it/de/nl topaba A2 y pt B1, pero esos cursos ya llegan a B2;
 > Conversar servía en/pt/fr/it (de/nl caían al fallback inglés); tips fr/it/de/nl solo A1/A2, pt hasta B1.

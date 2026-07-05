@@ -1,0 +1,88 @@
+{
+  "cefr_level": "B1",
+  "order_index": 2,
+  "title": "Il colloquio di Giulia",
+  "subtitle": "Giulia viaja a Milán para una entrevista de trabajo y un imprevisto lo cambia todo.",
+  "emoji": "🚆",
+  "intro": "Giulia tiene una entrevista importante en Milán. Un retraso del tren pondrá a prueba su calma... y su italiano.",
+  "segments": [
+    {
+      "en": "Quella mattina Giulia si è svegliata presto perché aveva un colloquio di lavoro molto importante a Milano. Mentre faceva colazione, ripassava le risposte che avrebbe dato al direttore.",
+      "es": "Aquella mañana Giulia se despertó temprano porque tenía una entrevista de trabajo muy importante en Milán. Mientras desayunaba, repasaba las respuestas que le daría al director."
+    },
+    {
+      "en": "Il treno che doveva prendere partiva alle otto, ma quando è arrivata in stazione, un annuncio ha detto che c'era un ritardo di quaranta minuti. «Non ci posso credere», ha pensato, guardando l'orologio con ansia.",
+      "es": "El tren que debía tomar salía a las ocho, pero cuando llegó a la estación, un anuncio dijo que había un retraso de cuarenta minutos. «No me lo puedo creer», pensó, mirando el reloj con ansiedad."
+    },
+    {
+      "en": "Ha telefonato subito all'azienda per avvisare. «Penso che arriverò con un po' di ritardo, mi dispiace davvero», ha spiegato. La segretaria, gentile, le ha risposto che non c'era problema e che il direttore l'avrebbe aspettata.",
+      "es": "Llamó enseguida a la empresa para avisar. «Creo que llegaré con un poco de retraso, lo siento de verdad», explicó. La secretaria, amable, le respondió que no había problema y que el director la esperaría."
+    },
+    {
+      "en": "Sul treno Giulia ha conosciuto un signore anziano di cui non dimenticherà mai il consiglio. «Se fossi in lei, non mi preoccuperei troppo», le ha detto sorridendo. «Un ritardo può capitare a tutti; ciò che conta è come reagisci.»",
+      "es": "En el tren Giulia conoció a un señor mayor de cuyo consejo nunca se olvidará. «Yo que usted, no me preocuparía demasiado», le dijo sonriendo. «Un retraso le puede pasar a cualquiera; lo que cuenta es cómo reaccionas.»"
+    },
+    {
+      "en": "Quando finalmente è arrivata, si è scusata di nuovo, ma il direttore ne ha riso: «Anch'io una volta ho perso un aereo per un colloquio! L'importante è che lei sia qui adesso.» Quelle parole l'hanno tranquillizzata subito.",
+      "es": "Cuando por fin llegó, se disculpó de nuevo, pero el director se rió de ello: «¡Yo también una vez perdí un avión para una entrevista! Lo importante es que usted esté aquí ahora.» Aquellas palabras la tranquilizaron enseguida."
+    },
+    {
+      "en": "Il colloquio è andato molto meglio di quanto Giulia si aspettasse. Ha parlato con sicurezza dei progetti che aveva seguito e delle lingue che conosceva. Sentiva che, nonostante il ritardo, stava facendo una buona impressione.",
+      "es": "La entrevista fue mucho mejor de lo que Giulia esperaba. Habló con seguridad de los proyectos que había llevado y de los idiomas que conocía. Sentía que, a pesar del retraso, estaba causando una buena impresión."
+    },
+    {
+      "en": "Due settimane dopo ha ricevuto una mail: era stata assunta. Giulia ha sorriso e ha pensato al signore del treno. Aveva ragione: se avesse perso la calma quella mattina, forse tutto sarebbe andato diversamente.",
+      "es": "Dos semanas después recibió un correo: había sido contratada. Giulia sonrió y pensó en el señor del tren. Tenía razón: si hubiera perdido la calma aquella mañana, quizás todo habría salido de otra manera."
+    }
+  ],
+  "glossary": [
+    { "word": "il colloquio di lavoro", "translation": "la entrevista de trabajo" },
+    { "word": "il ritardo", "translation": "el retraso" },
+    { "word": "avvisare", "translation": "avisar" },
+    { "word": "di cui", "translation": "del cual / de quien" },
+    { "word": "essere assunto/a", "translation": "ser contratado/a" },
+    { "word": "nonostante", "translation": "a pesar de" }
+  ],
+  "questions": [
+    {
+      "type": "multiple_choice",
+      "skill": "reading",
+      "prompt": "¿Por qué se despertó temprano Giulia esa mañana?",
+      "payload": { "options": ["Porque tenía una entrevista de trabajo en Milán", "Porque quería visitar a un amigo", "Porque perdía siempre el tren"] },
+      "difficulty": 0.5,
+      "correct_answer": { "value": "Porque tenía una entrevista de trabajo en Milán" }
+    },
+    {
+      "type": "multiple_choice",
+      "skill": "reading",
+      "prompt": "¿Qué imprevisto ocurrió en la estación?",
+      "payload": { "options": ["El tren tenía un retraso de cuarenta minutos", "El tren fue cancelado", "Perdió la cartera"] },
+      "difficulty": 0.5,
+      "correct_answer": { "value": "El tren tenía un retraso de cuarenta minutos" }
+    },
+    {
+      "type": "multiple_choice",
+      "skill": "reading",
+      "prompt": "¿Qué consejo le dio el señor mayor del tren?",
+      "payload": { "options": ["Que no se preocupara demasiado, porque lo que cuenta es cómo reaccionas", "Que bajara en la siguiente parada", "Que llamara otra vez a la empresa"] },
+      "difficulty": 0.5,
+      "correct_answer": { "value": "Que no se preocupara demasiado, porque lo que cuenta es cómo reaccionas" }
+    },
+    {
+      "type": "multiple_choice",
+      "skill": "reading",
+      "prompt": "¿Cómo reaccionó el director ante la disculpa de Giulia?",
+      "payload": { "options": ["Se rió y contó que él también había perdido un avión una vez", "Se enfadó mucho por el retraso", "Terminó la entrevista enseguida"] },
+      "difficulty": 0.5,
+      "correct_answer": { "value": "Se rió y contó que él también había perdido un avión una vez" }
+    },
+    {
+      "type": "multiple_choice",
+      "skill": "reading",
+      "prompt": "¿Qué pasó dos semanas después de la entrevista?",
+      "payload": { "options": ["Recibió un correo que decía que había sido contratada", "Tuvo que repetir la entrevista", "Decidió no aceptar el trabajo"] },
+      "difficulty": 0.5,
+      "correct_answer": { "value": "Recibió un correo que decía que había sido contratada" }
+    }
+  ]
+}

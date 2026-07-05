@@ -1,0 +1,32 @@
+{
+  "cefr_level": "B1",
+  "order_index": 2,
+  "title": "Die Wohnungsbesichtigung",
+  "subtitle": "Lena busca piso en Leipzig y va a una visita que no sale como esperaba.",
+  "emoji": "🔑",
+  "intro": "Lena lleva semanas buscando piso en Leipzig. Por fin la invitan a una visita, aunque un pequeño malentendido casi lo estropea todo. Lee y escucha su historia.",
+  "segments": [
+    {"en": "Seit drei Wochen suche ich eine neue Wohnung in Leipzig, weil meine alte zu teuer geworden ist.", "es": "Desde hace tres semanas busco un piso nuevo en Leipzig, porque el antiguo se ha vuelto demasiado caro."},
+    {"en": "Gestern habe ich endlich eine Anzeige gefunden, die perfekt klang: zwei Zimmer, ein Balkon und eine Küche, die schon möbliert war.", "es": "Ayer por fin encontré un anuncio que sonaba perfecto: dos habitaciones, un balcón y una cocina que ya estaba amueblada."},
+    {"en": "Ich rief sofort an und die Vermieterin, die sehr freundlich war, lud mich zu einer Besichtigung ein.", "es": "Llamé enseguida y la casera, que era muy amable, me invitó a una visita."},
+    {"en": "Obwohl ich pünktlich sein wollte, verpasste ich die Straßenbahn, sodass ich zehn Minuten zu spät ankam.", "es": "Aunque quería ser puntual, perdí el tranvía, de modo que llegué diez minutos tarde."},
+    {"en": "«Entschuldigung, ich hätte früher losfahren sollen», sagte ich außer Atem, aber sie lächelte nur und meinte, das sei kein Problem.", "es": "«Perdón, debería haber salido antes», dije sin aliento, pero ella solo sonrió y dijo que no era ningún problema."},
+    {"en": "Die Wohnung, die im vierten Stock liegt, wurde vor einem Jahr renoviert und war heller, als ich erwartet hatte.", "es": "El piso, que está en el cuarto piso, fue renovado hace un año y era más luminoso de lo que yo esperaba."},
+    {"en": "Wenn ich das Geld hätte, würde ich sofort unterschreiben, aber zuerst muss ich mit der Bank sprechen, damit alles sicher ist.", "es": "Si tuviera el dinero, firmaría enseguida, pero primero tengo que hablar con el banco para que todo esté seguro."}
+  ],
+  "glossary": [
+    {"word": "die Wohnungsbesichtigung", "translation": "la visita del piso"},
+    {"word": "die Anzeige", "translation": "el anuncio"},
+    {"word": "die Vermieterin", "translation": "la casera"},
+    {"word": "renoviert werden", "translation": "ser renovado"},
+    {"word": "außer Atem", "translation": "sin aliento"},
+    {"word": "unterschreiben", "translation": "firmar"}
+  ],
+  "questions": [
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Por qué busca Lena un piso nuevo?","payload":{"options":["Porque el antiguo se ha vuelto demasiado caro","Porque quiere vivir más lejos","Porque el antiguo es demasiado pequeño"]},"difficulty":0.5,"correct_answer":{"value":"Porque el antiguo se ha vuelto demasiado caro"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Qué tenía de especial el piso del anuncio?","payload":{"options":["Una cocina que ya estaba amueblada","Un jardín grande","Un garaje incluido"]},"difficulty":0.5,"correct_answer":{"value":"Una cocina que ya estaba amueblada"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Por qué llegó tarde a la visita?","payload":{"options":["Perdió el tranvía","Se equivocó de dirección","Se quedó dormida"]},"difficulty":0.5,"correct_answer":{"value":"Perdió el tranvía"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Cómo reaccionó la casera ante el retraso?","payload":{"options":["Sonrió y dijo que no era problema","Se enfadó mucho","Canceló la visita"]},"difficulty":0.5,"correct_answer":{"value":"Sonrió y dijo que no era problema"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Qué tiene que hacer Lena antes de firmar?","payload":{"options":["Hablar con el banco","Pintar la cocina","Buscar otro anuncio"]},"difficulty":0.5,"correct_answer":{"value":"Hablar con el banco"}}
+  ]
+}

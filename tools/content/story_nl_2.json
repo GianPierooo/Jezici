@@ -1,0 +1,32 @@
+{
+  "cefr_level": "B1",
+  "order_index": 2,
+  "title": "De trein die niet reed",
+  "subtitle": "Un plan de fin de semana en Utrecht se tuerce por la lluvia y un tren cancelado.",
+  "emoji": "🚉",
+  "intro": "Thomas había planeado un día perfecto con una amiga en Utrecht, pero la lluvia y la NS tenían otros planes. Lee y escucha cómo resuelve el imprevisto.",
+  "segments": [
+    {"en": "Ik had met Lotte afgesproken dat we zaterdag naar de markt in Utrecht zouden gaan.", "es": "Había quedado con Lotte en que el sábado iríamos al mercado de Utrecht."},
+    {"en": "Toen ik 's ochtends wakker werd, regende het hard en de lucht die ik door het raam zag, was helemaal grijs.", "es": "Cuando me desperté por la mañana, llovía con fuerza y el cielo que veía por la ventana estaba completamente gris."},
+    {"en": "Op het station hoorde ik een omroep: de trein naar Utrecht was door werkzaamheden geannuleerd.", "es": "En la estación oí un aviso: el tren a Utrecht había sido cancelado por obras."},
+    {"en": "Hoewel ik behoorlijk teleurgesteld was, belde ik Lotte, omdat we samen een oplossing moesten bedenken.", "es": "Aunque estaba bastante decepcionado, llamé a Lotte, porque teníamos que buscar juntos una solución."},
+    {"en": "«Als ik jou was, zou ik gewoon de bus nemen», zei ze lachend, «want die rijdt nog wel.»", "es": "«Yo que tú, cogería sin más el autobús», dijo riendo, «porque ese sí que sigue circulando.»"},
+    {"en": "We hebben uiteindelijk de bus genomen en zijn tóch op de markt aangekomen, alleen een uur later dan gepland.", "es": "Al final cogimos el autobús y llegamos igualmente al mercado, solo que una hora más tarde de lo previsto."},
+    {"en": "Onder een grote paraplu die Lotte had meegenomen, aten we verse stroopwafels — en de regen kon ons niets meer schelen.", "es": "Bajo un paraguas grande que Lotte había traído, comimos stroopwafels recién hechos, y la lluvia ya nos daba igual."}
+  ],
+  "glossary": [
+    {"word": "afspreken", "translation": "quedar / acordar"},
+    {"word": "de werkzaamheden", "translation": "las obras"},
+    {"word": "geannuleerd", "translation": "cancelado"},
+    {"word": "teleurgesteld", "translation": "decepcionado"},
+    {"word": "een oplossing bedenken", "translation": "encontrar una solución"},
+    {"word": "uiteindelijk", "translation": "al final / finalmente"}
+  ],
+  "questions": [
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Qué habían planeado Thomas y Lotte para el sábado?","payload":{"options":["ir al mercado de Utrecht","ir a la playa","ir al cine"]},"difficulty":0.5,"correct_answer":{"value":"ir al mercado de Utrecht"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Cómo estaba el tiempo por la mañana?","payload":{"options":["llovía con fuerza y el cielo estaba gris","hacía sol","nevaba"]},"difficulty":0.5,"correct_answer":{"value":"llovía con fuerza y el cielo estaba gris"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Por qué se canceló el tren a Utrecht?","payload":{"options":["por obras","por una huelga","por un accidente"]},"difficulty":0.5,"correct_answer":{"value":"por obras"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Qué le aconsejó Lotte por teléfono?","payload":{"options":["coger el autobús","volver a casa","esperar al siguiente tren"]},"difficulty":0.5,"correct_answer":{"value":"coger el autobús"}},
+    {"type":"multiple_choice","skill":"reading","prompt":"¿Qué comieron finalmente en el mercado?","payload":{"options":["stroopwafels","patatas fritas","queso"]},"difficulty":0.5,"correct_answer":{"value":"stroopwafels"}}
+  ]
+}
