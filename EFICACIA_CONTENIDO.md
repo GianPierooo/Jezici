@@ -6,6 +6,26 @@
 > Prioridad: es→en A1/A2 a fondo (lo que los testers usan hoy). B1–C1 y es→pt: perfil
 > estructural + diferido (ver "Pendiente").
 
+## B2 nl + B1 it + B2 fr + B2 it — vaciado de la Cola (2026-07-05)
+- **4 niveles nuevos, todos con balance CEFR-real L=67% S=50%, 114 ítems/nivel (R36/W36/L24/S18):**
+  - **B2 es→nl:** indirecte rede, lijdende vorm gevorderd, deelwoord als bijvoeglijk, complexe voegwoorden,
+    nominalisatie, «zou hebben/zijn+deelwoord» → **nl A1→B2**.
+  - **B1 es→it:** congiuntivo presente, futuro/condizionale+periodo ipotetico I, pronomi relativi, concordanza
+    del participio, discorso indiretto, pronomi ci/ne/combinati → cierra el hueco B1 del piloto it.
+  - **B2 es→fr:** subjonctif passé, conditionnel passé+irréel du passé+concordance des temps, discours indirect
+    avancé, participe présent/gérondif, connecteurs B2, voix passive+mise en relief → **fr A1→B2**.
+  - **B2 es→it:** congiuntivo imperfetto/trapassato, periodo ipotetico II/III+condizionale passato, forma passiva,
+    discorso indiretto avanzado, connettivi B2, nominalizzazione+relativi+frasi scisse → **it A1→B2**.
+- **Progresión coherente:** cada nivel encadena desde el anterior (gating U12→U13 para B1, U18→U19 para B2);
+  la escalera de dificultad DIFF sube (b1=0.52, b2=0.68). Currículos CEFR-reales (no traducción del inglés),
+  autorados por profesores nativos por idioma + doble revisión adversarial nativa (errores REALES corregidos:
+  subjonctif con sujeto idéntico, colisión cloze «i cui»/«il cui», casi-homófonos de listening, run-on gramatical).
+- **Eficacia estructural:** cobertura de los puntos gramaticales núcleo de cada nivel CEFR, 4 habilidades
+  balanceadas (listening ~65% de R/W, speaking proxy read-aloud ~50%), audio TTS text-matched. Techo de
+  producción libre (writing/speaking evaluados) sigue siendo determinista → sin cert C1 por diseño.
+- **Resultado:** **5 de 6 cursos llegan a B2** (solo pt topa en B1). Pendiente: es→pt B2; C1 fr/it/de/nl;
+  auditoría pedagógica a fondo de los B2 nuevos (perfil estructural hecho; spot-check nativo aplicado).
+
 ## B1 es→nl (escalera A2→B1) (2026-07-03)
 - **B1 neerlandés completo (mig 112):** 6 unidades (order 13-18), 114 ítems, balance **L=67% S=50%**.
   Currículo B1 CEFR-real: conditionalis, bijzinnen/voegwoorden, relatieve bijzinnen, lijdende vorm, vaste

@@ -2,6 +2,38 @@
 
 ---
 
+## B2 nl + B1 it + B2 fr + B2 it (vaciado de la Cola) — 2026-07-05 ✅ LIVE + VERIFICADO
+> 4 frentes de contenido, cada uno impecable y verificado ANTES del siguiente (profundidad>amplitud).
+> Estado resultante: **en A1–C1 · pt A1–B1 · fr A1–B2 · it A1–B2 · de A1–B2 · nl A1–B2** (5/6 hasta B2).
+- **Pipeline (idéntico, probado 9×):** 6 profesores nativos IA (1/unidad, spec estricto R6/W6/L4/S3, ítems
+  planos, guard de colisión) → validación estática (balance + prompts + colisión norm-exacta + say==value +
+  sequence⊆tiles + cloze con hueco) → 2 revisores adversariales nativos (por mitades U19-21/U22-24) → re-
+  validación → `gen_course.py <code> <lvl>` → `apply_sql.py` → `gen_audio_missing.py <code>-<lvl>` (TTS tl) →
+  `verify_b{1,2}_chain.py <code>` (cliente real) → commit → CI → deploy READY.
+- **B2 es→nl (mig 116, commit b853aed):** indirecte rede, lijdende vorm gevorderd, deelwoord als bijvoeglijk,
+  complexe voegwoorden (niettemin/desondanks/zowel…als/noch…noch), nominalisatie, «zou hebben/zijn+deelwoord».
+  Fixes reales: colisiones norm-exactas «moest»/«moet»→«moest/wilde/kon», listening casi-homófonos rediseñados,
+  2 cloze sin hueco. verify_b2_chain nl TODO VERDE (96/96 + 96/96 @42501, camina A1→B2 24u, 0 cruces, audio 42/42).
+- **B1 es→it (mig 114, commit fcdc13a):** congiuntivo presente, futuro/condizionale+periodo ipotetico I, pronomi
+  relativi (che/cui/il quale/chi/dove), concordanza del participio (essere→sogg./avere+lo-la-li-le antepuesto),
+  discorso indiretto, pronomi combinati/ci/ne. Fixes reales: listening casi-homófono finisca/finisce, «il giorno
+  prima»→«dopo», «me lo presto»→«te lo presto» (lógico). verify_b1_chain it TODO VERDE (96/96, camina A1→B1 18u).
+- **B2 es→fr (mig 119, commit 6acbaae):** subjonctif passé, conditionnel passé+irréel du passé+concordance des
+  temps, discours indirect avancé, participe présent/gérondif/adjectif verbal, connecteurs B2, voix passive+mise
+  en relief. Fixes reales: subjonctif sujeto idéntico→infinitivo, élision «ce qu'» ante je, 2 word_bank/reorder
+  triviales barajados. verify_b2_chain fr TODO VERDE (96/96, camina A1→B2 24u).
+- **B2 es→it (mig 120, commit 98e6a98):** congiuntivo imperfetto/trapassato, periodo ipotetico II/III+condizionale
+  passato, forma passiva (essere/venire/andare/si passivante), discorso indiretto avanzado, connettivi B2,
+  nominalizzazione+relativi avanzati+frasi scisse. Fixes reales: reorder run-on reescrito, **colisión cloze «i cui»/
+  «il cui» dist-1 (jz_near_match perdona insert-1 en cloze) → convertido a word_bank**, 2 accepted femeninos. verify
+  it TODO VERDE (96/96, camina A1→B2 24u).
+- **Aislamiento (riesgo #1):** los 4 verificadores confirmaron con cliente real (JWT) **0 lesson_items cruzan los
+  6 cursos** y default(en) sin fuga en cada tanda. Todos 114 ítems/nivel, audio TTS 42/42 HEAD 200, gating
+  encadenado (U12→U13 para B1, U18→U19 para B2). CI SUCCESS + deploy READY por frente. STAMPS fr/it b2 reservados
+  en gen_course.py; grupos fr-b2/it-b2 en gen_audio_missing.py.
+
+---
+
 ## Barrido de colisiones MC + cap de meta — 2026-07-03 ✅ LIVE + VERIFICADO
 > Correctitud antes que más contenido: 2 frentes de la Cola priorizados.
 - **[1] Barrido de colisiones MC/listening (mig 117):** para MC/listening el único vector de colisión es
