@@ -1,0 +1,257 @@
+{
+  "unit": {
+    "order": 30,
+    "title_es": "Lengua académica y profesional",
+    "color": "#6C5CE7",
+    "icon": "school"
+  },
+  "checkpoint_desc": "Demuestra que redactas en registro formal y académico a nivel C1: nominalizas (dimostrare → la dimostrazione, aumentare → l'aumento, attuare → l'attuazione), empleas giros impersonales (si ritiene che, va rilevato che, ne consegue che, si evince che), dominas la voz pasiva y las fórmulas burocráticas (la presente ha lo scopo di…, si prega di trovare in allegato) y enlazas con conectores académicos (inoltre, pertanto, altresì, per di più, di conseguenza) en un correo profesional (Gentile…, Distinti saluti).",
+  "lessons": [
+    { "order": 1, "title_es": "Nominalización (dimostrare → la dimostrazione, aumentare → l'aumento)" },
+    { "order": 2, "title_es": "Formas impersonales (si ritiene che, va rilevato che, ne consegue che)" },
+    { "order": 3, "title_es": "Voz pasiva y fórmulas burocráticas (la presente, si prega di)" },
+    { "order": 4, "title_es": "Conectores académicos y correo formal (altresì, pertanto, per di più)" }
+  ],
+  "vocab": [
+    ["la dimostrazione", "la demostración", "n"],
+    ["l'aumento", "el aumento", "n"],
+    ["l'attuazione", "la puesta en práctica", "n"],
+    ["si ritiene che", "se considera que", "expr"],
+    ["è opportuno", "es conveniente", "expr"],
+    ["va rilevato che", "cabe señalar que", "expr"],
+    ["ne consegue che", "de ello se sigue que", "expr"],
+    ["si evince che", "se deduce que", "expr"],
+    ["la presente", "la presente (carta/comunicación)", "n"],
+    ["si prega di", "se ruega", "expr"],
+    ["in allegato", "adjunto, en anexo", "expr"],
+    ["in riferimento a", "con referencia a", "expr"],
+    ["inoltre", "además", "conn"],
+    ["pertanto", "por lo tanto", "conn"],
+    ["altresì", "asimismo", "conn"],
+    ["distinti saluti", "atentamente (cierre formal)", "expr"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "nominalizzazione_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada nominalización italiana con su equivalente en español.",
+      "pairs": [
+        ["l'attuazione del piano", "la puesta en práctica del plan"],
+        ["l'aumento dei costi", "el aumento de los costes"],
+        ["la dimostrazione del teorema", "la demostración del teorema"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "nominalizzazione_aumento_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con la nominalización del verbo «aumentare» (registro académico).",
+      "text": "La relazione evidenzia un netto ___ della spesa pubblica.",
+      "value": "aumento",
+      "accepted": ["aumento", "aumento."]
+    },
+    {
+      "lesson": 1,
+      "topic": "nominalizzazione_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la versión más nominalizada, propia del registro académico.",
+      "options": [
+        "L'attuazione del dispositivo ha richiesto due anni.",
+        "Hanno messo in atto il dispositivo e ci sono voluti due anni.",
+        "Quando hanno attuato il dispositivo, è durato due anni."
+      ],
+      "value": "L'attuazione del dispositivo ha richiesto due anni."
+    },
+    {
+      "lesson": 1,
+      "topic": "nominalizzazione_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "La riduzione del personale ha comportato una riorganizzazione.",
+      "options": [
+        "La riduzione del personale ha comportato una riorganizzazione.",
+        "La riduzione del personale ha comportato una rivalutazione.",
+        "L'aumento del personale ha comportato una riorganizzazione."
+      ],
+      "value": "La riduzione del personale ha comportato una riorganizzazione."
+    },
+    {
+      "lesson": 1,
+      "topic": "nominalizzazione_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al italiano (registro académico, usa una nominalización): «La puesta en práctica de la reforma llevó tres años.» Emplea el passato prossimo.",
+      "source": "La puesta en práctica de la reforma llevó tres años.",
+      "value": "L'attuazione della riforma ha richiesto tre anni.",
+      "accepted": [
+        "L'attuazione della riforma ha richiesto tre anni.",
+        "L'attuazione della riforma ha richiesto tre anni",
+        "l'attuazione della riforma ha richiesto tre anni"
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "nominalizzazione_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "L'aumento dei costi e la tardiva attuazione del progetto spiegano il ritardo riscontrato."
+    },
+    {
+      "lesson": 2,
+      "topic": "impersonale_si_ritiene_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la fórmula impersonal formal correcta.",
+      "options": [
+        "Si ritiene che il termine sia improrogabile.",
+        "Si ritiene che il termine è improrogabile davvero.",
+        "Si ritiene di il termine improrogabile."
+      ],
+      "value": "Si ritiene che il termine sia improrogabile."
+    },
+    {
+      "lesson": 2,
+      "topic": "impersonale_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada giro impersonal formal con su sentido en español.",
+      "pairs": [
+        ["si evince che", "se deduce que"],
+        ["ne consegue che", "de ello se sigue que"],
+        ["va rilevato che", "cabe señalar que"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "impersonale_va_rilevato_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el verbo del giro impersonal «va ___ che» (cabe señalar que); usa el participio de «rilevare».",
+      "text": "In conclusione, va ___ che i dati raccolti restano incompleti.",
+      "value": "rilevato",
+      "accepted": ["rilevato", "rilevato."]
+    },
+    {
+      "lesson": 2,
+      "topic": "impersonale_ne_consegue_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al italiano (registro impersonal formal): «Del informe se deduce que el método es fiable.» Usa «si evince che».",
+      "source": "Del informe se deduce que el método es fiable.",
+      "value": "Dalla relazione si evince che il metodo è affidabile.",
+      "accepted": [
+        "Dalla relazione si evince che il metodo è affidabile.",
+        "Dalla relazione si evince che il metodo è affidabile",
+        "dalla relazione si evince che il metodo è affidabile"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "impersonale_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "È opportuno sottolineare l'importanza di questa decisione.",
+      "options": [
+        "È opportuno sottolineare l'importanza di questa decisione.",
+        "È opportuno sottolineare l'importanza di questa questione.",
+        "È opportuno ricordare l'importanza di questa decisione."
+      ],
+      "value": "È opportuno sottolineare l'importanza di questa decisione."
+    },
+    {
+      "lesson": 2,
+      "topic": "impersonale_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Va rilevato che, nonostante gli sforzi compiuti, gli obiettivi prefissati non sono stati raggiunti."
+    },
+    {
+      "lesson": 3,
+      "topic": "passiva_participio_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el participio pasado de «approvare» concordado en femenino singular (voz pasiva).",
+      "text": "La proposta è stata ___ all'unanimità dal comitato.",
+      "value": "approvata",
+      "accepted": ["approvata", "approvata."]
+    },
+    {
+      "lesson": 3,
+      "topic": "burocrazia_presente_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la versión más formal e impersonal, propia de la comunicación administrativa.",
+      "options": [
+        "La presente ha lo scopo di informarLa della decisione.",
+        "Ti scrivo questa lettera per dirti della decisione.",
+        "Questa lettera è per dirLe come è andata la decisione."
+      ],
+      "value": "La presente ha lo scopo di informarLa della decisione."
+    },
+    {
+      "lesson": 3,
+      "topic": "burocrazia_allegato_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Construye la frase: «Se ruega encontrar el documento solicitado en anexo.» → Si prega di trovare in allegato il documento richiesto.",
+      "tiles": ["Si", "prega", "di", "trovare", "in", "allegato", "il", "documento", "richiesto", "inviato", "chiede"],
+      "sequence": ["Si", "prega", "di", "trovare", "in", "allegato", "il", "documento", "richiesto"]
+    },
+    {
+      "lesson": 3,
+      "topic": "passiva_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "La pratica è stata trasmessa all'ufficio competente.",
+      "options": [
+        "La pratica è stata trasmessa all'ufficio competente.",
+        "La pratica è stata trasmessa all'ufficio interessato.",
+        "La pratica sarà trasmessa all'ufficio competente."
+      ],
+      "value": "La pratica è stata trasmessa all'ufficio competente."
+    },
+    {
+      "lesson": 4,
+      "topic": "connettivi_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada conector académico con su sentido en español.",
+      "pairs": [
+        ["altresì", "asimismo"],
+        ["pertanto", "por lo tanto"],
+        ["per di più", "es más, encima"]
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "connettivi_pertanto_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Inoltre, sarà opportuno precisare le modalità di pagamento.",
+      "options": [
+        "Inoltre, sarà opportuno precisare le modalità di pagamento.",
+        "Inoltre, sarà opportuno precisare le modalità di consegna.",
+        "Pertanto, sarà opportuno precisare le modalità di pagamento."
+      ],
+      "value": "Inoltre, sarà opportuno precisare le modalità di pagamento."
+    },
+    {
+      "lesson": 4,
+      "topic": "connettivi_email_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Gentile Dottoressa, in attesa di un Suo cortese riscontro, colgo l'occasione per porgerLe distinti saluti."
+    }
+  ]
+}

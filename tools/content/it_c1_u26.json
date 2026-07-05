@@ -1,0 +1,243 @@
+{
+  "unit": {
+    "order": 26,
+    "title_es": "Argumentar y persuadir (conectores de argumentación)",
+    "color": "#00B894",
+    "icon": "forum"
+  },
+  "checkpoint_desc": "Articula una argumentación culta en italiano: matiza con concesión/oposición C1 (nondimeno, ciononostante, per quanto/sebbene + congiuntivo, pur + gerundio), encadena causa y consecuencia culta (dal momento che, giacché, al punto che, cosicché), organiza el discurso (va detto che, occorre precisare che, da un lato… dall'altro) y reformula o concluye (in sostanza, in definitiva, tutto sommato).",
+  "lessons": [
+    {"order": 1, "title_es": "Concesión y oposición (nondimeno, per quanto + congiuntivo, pur + gerundio)"},
+    {"order": 2, "title_es": "Causa y consecuencia culta (dal momento che, al punto che, cosicché)"},
+    {"order": 3, "title_es": "Articular el discurso (va detto che, occorre precisare che, da un lato… dall'altro)"},
+    {"order": 4, "title_es": "Reformular y concluir (in sostanza, in definitiva, tutto sommato)"}
+  ],
+  "vocab": [
+    ["nondimeno", "no obstante, sin embargo", "conector"],
+    ["ciononostante", "a pesar de ello, con todo", "conector"],
+    ["per quanto", "por más que, por mucho que", "conector"],
+    ["sebbene", "aunque, si bien", "conj"],
+    ["benché", "aunque, a pesar de que", "conj"],
+    ["pur + gerundio", "aun + gerundio, si bien", "expr"],
+    ["se pure", "aun cuando, si bien", "conector"],
+    ["dal momento che", "dado que, puesto que", "conector"],
+    ["giacché", "ya que, puesto que", "conj"],
+    ["al punto che", "hasta el punto de que", "conector"],
+    ["cosicché", "de modo que, así que", "conector"],
+    ["tant'è che", "tanto es así que", "expr"],
+    ["va detto che", "hay que decir que, cabe señalar que", "expr"],
+    ["occorre precisare che", "conviene precisar que", "expr"],
+    ["in altri termini", "dicho de otro modo, es decir", "conector"],
+    ["in definitiva", "en definitiva, a fin de cuentas", "conector"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "concessione_nondimeno",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Registro culto de concesión. Elige el conector que introduce una objeción tras admitir un hecho: «Il progetto è costoso; ___, potrebbe rivelarsi indispensabile.»",
+      "options": ["nondimeno", "poiché", "infatti"],
+      "value": "nondimeno"
+    },
+    {
+      "lesson": 1,
+      "topic": "concessione_per_quanto_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada estructura concesiva con su valor.",
+      "pairs": [
+        ["per quanto + congiuntivo", "por más que ocurra algo, el resultado no cambia"],
+        ["pur + gerundio", "concede un hecho aunque contradiga lo esperado"],
+        ["ciononostante", "opone una consecuencia inesperada a lo dicho"],
+        ["sebbene + congiuntivo", "introduce una circunstancia admitida (aunque)"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "concessione_per_quanto_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Concesión con congiuntivo: «___ ___ le prove siano numerose, la tesi resta discutibile.» (por más que las pruebas sean numerosas)",
+      "text": "___ ___ le prove siano numerose, la tesi resta discutibile.",
+      "value": "Per quanto",
+      "accepted": ["Per quanto", "per quanto"]
+    },
+    {
+      "lesson": 1,
+      "topic": "concessione_pur_gerundio_wordbank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena (concesión con «pur» + gerundio): «Aun repitiendo el argumento, non convince nessuno.»",
+      "tiles": ["Pur", "ripetendo", "l'argomento", "non", "convince", "nessuno", "sebbene", "benché"],
+      "sequence": ["Pur", "ripetendo", "l'argomento", "non", "convince", "nessuno"]
+    },
+    {
+      "lesson": 1,
+      "topic": "concessione_nondimeno_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Le sue argomentazioni sono solide; nondimeno, la conclusione resta contestabile.",
+      "options": [
+        "Le sue argomentazioni sono solide; nondimeno, la conclusione resta contestabile.",
+        "Le sue argomentazioni sono fragili; pertanto, la conclusione è stabilita.",
+        "Le sue argomentazioni sono solide; infatti, la conclusione è incontestabile."
+      ],
+      "value": "Le sue argomentazioni sono solide; nondimeno, la conclusione resta contestabile."
+    },
+    {
+      "lesson": 1,
+      "topic": "concessione_per_quanto_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Per quanto tu moltiplichi gli esempi, e sebbene siano esatti, essi non proverebbero nulla."
+    },
+    {
+      "lesson": 2,
+      "topic": "causa_dal_momento_che",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Causa culta presentada como aceptada. Elige la locución que significa «dado que»: «La tesi regge ___ i dati restano affidabili.»",
+      "options": ["dal momento che", "a meno che", "per timore che"],
+      "value": "dal momento che"
+    },
+    {
+      "lesson": 2,
+      "topic": "causa_consequenza_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada conector con su valor lógico.",
+      "pairs": [
+        ["giacché", "presenta una causa como dada/aceptada"],
+        ["cosicché", "introduce la consecuencia lógica"],
+        ["al punto che", "consecuencia con idea de intensidad"],
+        ["tant'è che", "aporta una consecuencia que confirma lo dicho"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "causa_al_punto_che_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Consecuencia con intensidad (locución de tres elementos): «I costi sono esplosi, ___ ___ ___ il progetto è stato abbandonato.» (hasta el punto de que)",
+      "text": "I costi sono esplosi, ___ ___ ___ il progetto è stato abbandonato.",
+      "value": "al punto che",
+      "accepted": ["al punto che"]
+    },
+    {
+      "lesson": 2,
+      "topic": "causa_giacche_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce (causa culta con «giacché»): «Puesto que las pruebas eran convincentes, el jurado aceptó la demanda.»",
+      "source": "Puesto que las pruebas eran convincentes, el jurado aceptó la demanda.",
+      "value": "Giacché le prove erano convincenti, la giuria ha accolto la domanda.",
+      "accepted": [
+        "Giacché le prove erano convincenti, la giuria ha accolto la domanda.",
+        "Giacché le prove erano convincenti, la giuria ha accolto la domanda",
+        "Giacché le prove erano convincenti la giuria ha accolto la domanda."
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "causa_cosicche_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "La domanda è crollata, cosicché lo stabilimento ha dovuto chiudere i battenti.",
+      "options": [
+        "La domanda è crollata, cosicché lo stabilimento ha dovuto chiudere i battenti.",
+        "La domanda è aumentata, sicché lo stabilimento ha potuto aprire i battenti.",
+        "La domanda è crollata prima che lo stabilimento chiudesse i battenti."
+      ],
+      "value": "La domanda è crollata, cosicché lo stabilimento ha dovuto chiudere i battenti."
+    },
+    {
+      "lesson": 3,
+      "topic": "articolatore_va_detto_che",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Fórmula de matización culta. Elige la que significa «hay que decir que / cabe señalar que»:",
+      "options": ["va detto che", "può darsi che", "ammesso che"],
+      "value": "va detto che"
+    },
+    {
+      "lesson": 3,
+      "topic": "articolatore_da_un_lato_wordbank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena (articulación del discurso): «Por un lado el coste, por otro lado el plazo, todo lo desaconseja.»",
+      "tiles": ["Da", "un", "lato", "il", "costo", "dall'altro", "il", "termine", "tutto", "lo", "sconsiglia", "sebbene", "quindi"],
+      "sequence": ["Da", "un", "lato", "il", "costo", "dall'altro", "il", "termine", "tutto", "lo", "sconsiglia"]
+    },
+    {
+      "lesson": 3,
+      "topic": "articolatore_occorre_precisare_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce (matización formal con «occorre precisare che»): «El método tiene límites; conviene precisar que sigue siendo el más fiable.»",
+      "source": "El método tiene límites; conviene precisar que sigue siendo el más fiable.",
+      "value": "Il metodo ha dei limiti; occorre precisare che resta il più affidabile.",
+      "accepted": [
+        "Il metodo ha dei limiti; occorre precisare che resta il più affidabile.",
+        "Il metodo ha dei limiti; occorre precisare che resta il più affidabile",
+        "Il metodo ha dei limiti; occorre precisare che rimane il più affidabile."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "articolatore_a_tal_proposito_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "A tal proposito, va detto che le critiche mancano del tutto il bersaglio.",
+      "options": [
+        "A tal proposito, va detto che le critiche mancano del tutto il bersaglio.",
+        "A tale scopo, si può ritenere che le critiche colgano nel segno.",
+        "A questo riguardo, va ammesso che le critiche restino in silenzio."
+      ],
+      "value": "A tal proposito, va detto che le critiche mancano del tutto il bersaglio."
+    },
+    {
+      "lesson": 3,
+      "topic": "articolatore_va_detto_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Va detto che, nonostante le obiezioni sollevate, occorre precisare che la misura si impone."
+    },
+    {
+      "lesson": 4,
+      "topic": "riformulazione_in_altri_termini",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Reformulación. Elige la locución que reformula lo dicho en otros términos: «Il rendimento è calato; ___, l'azienda perde denaro.»",
+      "options": ["in altri termini", "malgrado ciò", "nel caso in cui"],
+      "value": "in altri termini"
+    },
+    {
+      "lesson": 4,
+      "topic": "riformulazione_in_definitiva_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "In definitiva, nessuno degli argomenti addotti resiste a un esame serio.",
+      "options": [
+        "In definitiva, nessuno degli argomenti addotti resiste a un esame serio.",
+        "In linea di principio, ciascun argomento addotto resiste a un esame serio.",
+        "In definitiva, nessuno degli argomenti proposti merita un esame serio."
+      ],
+      "value": "In definitiva, nessuno degli argomenti addotti resiste a un esame serio."
+    },
+    {
+      "lesson": 4,
+      "topic": "riformulazione_in_sostanza_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "In sostanza, per quanto il ragionamento sia seducente, tutto sommato poggia su una premessa fragile."
+    }
+  ]
+}

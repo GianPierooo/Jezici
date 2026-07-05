@@ -1,0 +1,244 @@
+{
+  "unit": {
+    "order": 25,
+    "title_es": "Precisión y matiz léxico: el término exacto",
+    "color": "#6C3483",
+    "icon": "auto_stories"
+  },
+  "checkpoint_desc": "Demuestra que eliges el término exacto a nivel C1: distingues sinónimos finos y sus connotaciones (casa/abitazione/dimora/alloggio, guardare/osservare/scrutare/contemplare, adorare/apprezzare/gradire), dominas las colocaciones verbo+sustantivo (prendere una decisione, trarre una conclusione, nutrire una speranza, sollevare un dubbio), adaptas el registro (formale/colloquiale: automobile/macchina/auto) y evitas errores de precisión (magari, addirittura, anzi, tuttavia vs comunque).",
+  "lessons": [
+    { "order": 1, "title_es": "Sinónimos finos y sus matices (abitazione, osservare, apprezzare…)" },
+    { "order": 2, "title_es": "Colocaciones verbo + sustantivo (prendere una decisione, trarre una conclusione)" },
+    { "order": 3, "title_es": "Registros: formale, colloquiale, familiare" },
+    { "order": 4, "title_es": "Precisión: anzi, addirittura, magari y expresiones fijas" }
+  ],
+  "vocab": [
+    ["l'abitazione", "la vivienda (unidad habitable)", "n"],
+    ["la dimora", "la morada, residencia (culto)", "n"],
+    ["l'alloggio", "el alojamiento", "n"],
+    ["scrutare", "escrutar, escudriñar", "v"],
+    ["contemplare", "contemplar", "v"],
+    ["apprezzare", "apreciar, valorar", "v"],
+    ["gradire", "gustar de, agradecer (formal)", "v"],
+    ["nutrire una speranza", "albergar una esperanza", "expr"],
+    ["trarre una conclusione", "sacar una conclusión", "expr"],
+    ["prendere una decisione", "tomar una decisión", "expr"],
+    ["sollevare un dubbio", "plantear una duda", "expr"],
+    ["anzi", "es más, al contrario", "avv"],
+    ["addirittura", "incluso, hasta (intensidad)", "avv"],
+    ["magari", "ojalá; quizás; incluso", "avv"],
+    ["la sfumatura", "el matiz", "n"],
+    ["la connotazione", "la connotación", "n"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "sinonimi_abitazione_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada término con el matiz que aporta. Fíjate en la connotación de cada uno.",
+      "pairs": [
+        ["la dimora", "la residencia vista con solemnidad, término culto"],
+        ["l'alloggio", "el alojamiento, lo que hospeda temporalmente"],
+        ["l'abitazione", "la vivienda como unidad habitable, término neutro"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "sinonimi_scrutare_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el verbo que expresa observar con atención minuciosa, casi con inquietud: «L'investigatore ___ ogni dettaglio della fotografia.»",
+      "options": ["scrutava", "intravedeva", "adocchiava"],
+      "value": "scrutava"
+    },
+    {
+      "lesson": 1,
+      "topic": "sinonimi_contemplare_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el verbo que expresa mirar algo bello con admiración serena (infinitivo, tras «per»): «Si sono fermati per ___ il tramonto sul mare.»",
+      "text": "Si sono fermati per ___ il tramonto sul mare.",
+      "value": "contemplare",
+      "accepted": ["contemplare"]
+    },
+    {
+      "lesson": 1,
+      "topic": "sinonimi_intensita_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Lei apprezza questo vino, ma suo fratello lo adora davvero.",
+      "options": [
+        "Lei apprezza questo vino, ma suo fratello lo adora davvero.",
+        "Lei detesta questo vino, ma suo fratello lo sopporta appena.",
+        "Lei compra questo vino, ma suo fratello lo rifiuta sempre."
+      ],
+      "value": "Lei apprezza questo vino, ma suo fratello lo adora davvero."
+    },
+    {
+      "lesson": 1,
+      "topic": "sinonimi_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Si può guardare un quadro distrattamente, ma contemplarlo richiede tempo e attenzione."
+    },
+    {
+      "lesson": 2,
+      "topic": "collocazioni_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada verbo con el sustantivo con el que forma la colocación fija correcta.",
+      "pairs": [
+        ["prendere", "una decisione"],
+        ["trarre", "una conclusione"],
+        ["nutrire", "una speranza"],
+        ["sollevare", "un dubbio"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "collocazioni_prendere_decisione_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el verbo que forma la colocación correcta con «una decisione» en italiano: «Il consiglio deve ___ una decisione entro venerdì.»",
+      "options": ["prendere", "fare", "dare"],
+      "value": "prendere"
+    },
+    {
+      "lesson": 2,
+      "topic": "collocazioni_trarre_conclusione_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando la colocación culta «trarre una conclusione»: «El investigador sacó una conclusión precipitada.» Emplea el passato prossimo.",
+      "source": "El investigador sacó una conclusión precipitada.",
+      "value": "Il ricercatore ha tratto una conclusione affrettata.",
+      "accepted": [
+        "Il ricercatore ha tratto una conclusione affrettata",
+        "Il ricercatore ha tratto una conclusione affrettata.",
+        "il ricercatore ha tratto una conclusione affrettata"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "collocazioni_nutrire_speranza_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Nonostante tutto, continua a nutrire la speranza di rivederla un giorno.",
+      "options": [
+        "Nonostante tutto, continua a nutrire la speranza di rivederla un giorno.",
+        "Malgrado ciò, si rifiuta di abbandonare il progetto di partire presto.",
+        "Eppure, comincia a perdere il coraggio all'idea di restare solo."
+      ],
+      "value": "Nonostante tutto, continua a nutrire la speranza di rivederla un giorno."
+    },
+    {
+      "lesson": 2,
+      "topic": "collocazioni_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Prima di trarre una conclusione, occorre prendere il tempo di soppesare ogni argomento."
+    },
+    {
+      "lesson": 3,
+      "topic": "registri_formale_gradire_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "En un registro formal se prefiere «gradire» a «volere». Completa con la forma culta y cortés del condicional (io): «___ un bicchiere d'acqua, se non le dispiace.»",
+      "text": "___ un bicchiere d'acqua, se non le dispiace.",
+      "value": "Gradirei",
+      "accepted": ["Gradirei", "gradirei"]
+    },
+    {
+      "lesson": 3,
+      "topic": "registri_colloquiale_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Entre amigos, ¿qué palabra pertenece al registro coloquial para referirse a «trabajo»? «Ho trovato un nuovo ___ in centro.»",
+      "options": ["lavoretto", "impiego", "incarico"],
+      "value": "lavoretto"
+    },
+    {
+      "lesson": 3,
+      "topic": "registri_formale_dimora_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al registro formal usando «invitare» y «dimora» (residencia, culta): «Nos invitó a su residencia.» Emplea el passato prossimo.",
+      "source": "Nos invitó a su residencia.",
+      "value": "Ci ha invitati nella sua dimora.",
+      "accepted": [
+        "Ci ha invitati nella sua dimora",
+        "Ci ha invitati nella sua dimora.",
+        "ci ha invitati nella sua dimora",
+        "Ci ha invitato nella sua dimora."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "registri_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ha parcheggiato la macchina davanti a casa mia senza avvisare.",
+      "options": [
+        "Ha parcheggiato la macchina davanti a casa mia senza avvisare.",
+        "Ha venduto la moto dietro la casa questa mattina.",
+        "Ha lavato l'automobile davanti al garage ieri sera."
+      ],
+      "value": "Ha parcheggiato la macchina davanti a casa mia senza avvisare."
+    },
+    {
+      "lesson": 3,
+      "topic": "registri_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "A seconda del contesto, si dirà «automobile» in un documento ufficiale, «macchina» nella lingua di ogni giorno e «auto» quando si scrive in fretta."
+    },
+    {
+      "lesson": 4,
+      "topic": "precisione_anzi_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el adverbio que introduce una corrección enfática («no solo no, sino al contrario»): «Non mi ha disturbato; ___, la sua presenza mi ha fatto piacere.»",
+      "options": ["anzi", "eppure", "invece"],
+      "value": "anzi"
+    },
+    {
+      "lesson": 4,
+      "topic": "precisione_addirittura_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el adverbio que expresa sorpresa por un grado extremo («incluso, hasta»): «Non solo è arrivato in orario, ma ___ ha portato un regalo per tutti.»",
+      "text": "Non solo è arrivato in orario, ma ___ ha portato un regalo per tutti.",
+      "value": "addirittura",
+      "accepted": ["addirittura"]
+    },
+    {
+      "lesson": 4,
+      "topic": "precisione_magari_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar: «Magari potessimo restare qui ancora una settimana.»",
+      "tiles": ["potessimo", "Magari", "qui", "restare", "una", "ancora", "settimana", "forse"],
+      "sequence": ["Magari", "potessimo", "restare", "qui", "ancora", "una", "settimana"]
+    },
+    {
+      "lesson": 4,
+      "topic": "precisione_addirittura_anzi_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Quest'anno ha viaggiato addirittura più dell'anno scorso.",
+      "options": [
+        "Quest'anno ha viaggiato addirittura più dell'anno scorso.",
+        "Stamattina ha lavorato molto meno del giorno prima.",
+        "Quest'estate ha speso decisamente più del previsto."
+      ],
+      "value": "Quest'anno ha viaggiato addirittura più dell'anno scorso."
+    }
+  ]
+}

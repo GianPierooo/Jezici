@@ -1,0 +1,242 @@
+{
+  "unit": {
+    "order": 29,
+    "title_es": "Hipótesis y modalidad avanzada",
+    "color": "#8E44AD",
+    "icon": "psychology_alt"
+  },
+  "checkpoint_desc": "Demuestra que manejas la hipótesis y la modalidad a nivel C1: encadenas subordinadas hipotéticas cultas (qualora + subj, a patto che / purché + subj, a meno che… non + subj, nel caso in cui + subj, ammesso che + subj), construyes el periodo hipotético mixto (Se avessi studiato, ora sarei laureato), reconoces el condicional de dissociazione/noticia no confirmada (Il ministro avrebbe dichiarato…), matizas la modalidad entre probabilidad y duda (potrebbe darsi che, non è escluso che, è probabile che + subj) y aplicas el subjuntivo en relativas con antecedente indefinido o superlativo (il migliore che ci sia, cerco qualcuno che sappia).",
+  "lessons": [
+    { "order": 1, "title_es": "Subordinadas hipotéticas cultas (qualora, a patto che / purché, a meno che… non)" },
+    { "order": 2, "title_es": "Nel caso in cui, ammesso che · periodo hipotético mixto" },
+    { "order": 3, "title_es": "Condicional periodístico · potrebbe darsi che, non è escluso che" },
+    { "order": 4, "title_es": "Subjuntivo en relativas: il migliore che ci sia, cerco qualcuno che sappia" }
+  ],
+  "vocab": [
+    ["qualora", "en caso de que, si (+ subj)", "conj"],
+    ["a patto che", "a condición de que (+ subj)", "expr"],
+    ["purché", "con tal de que, siempre que (+ subj)", "conj"],
+    ["a meno che… non", "a menos que (+ subj)", "expr"],
+    ["nel caso in cui", "en el caso en que, por si (+ subj)", "expr"],
+    ["ammesso che", "admitiendo que, suponiendo que (+ subj)", "expr"],
+    ["sempre che", "siempre y cuando (+ subj)", "expr"],
+    ["casomai", "por si acaso, si acaso", "avv"],
+    ["il condizionale giornalistico", "el condicional periodístico (info no confirmada)", "n"],
+    ["potrebbe darsi che", "podría ser que, puede que (+ subj)", "expr"],
+    ["non è escluso che", "no se descarta que (+ subj)", "expr"],
+    ["è probabile che", "es probable que (+ subj)", "expr"],
+    ["il periodo ipotetico", "el periodo hipotético", "n"],
+    ["verosimile", "verosímil, probable", "adj"],
+    ["salvo imprevisti", "salvo imprevistos", "expr"],
+    ["un'eventualità", "una eventualidad, una posibilidad", "n"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "ipotesi_congiunzioni_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada conjunción hipotética culta con el matiz que introduce.",
+      "pairs": [
+        ["qualora", "en el caso, formal, de que se cumpla una condición"],
+        ["purché", "con tal de que se dé una única condición necesaria"],
+        ["a meno che non", "salvo que se cumpla una condición que lo impida"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "ipotesi_qualora_congiuntivo",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Qualora» exige subjuntivo. Elige la forma correcta: «Qualora il progetto ___ approvato, dovremo finanziarlo.»",
+      "options": ["venga", "verrà", "viene"],
+      "value": "venga"
+    },
+    {
+      "lesson": 1,
+      "topic": "ipotesi_purche_congiuntivo_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "«Purché» rige subjuntivo presente. Completa con el subjuntivo de «fare» (3ª pers. sing.): «Ti aiuterò, purché tu ___ la tua parte.»",
+      "text": "Ti aiuterò, purché tu ___ la tua parte.",
+      "value": "faccia",
+      "accepted": ["faccia"]
+    },
+    {
+      "lesson": 1,
+      "topic": "ipotesi_a_meno_che_non_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Non andrò alla riunione, a meno che tu non me lo chieda espressamente.",
+      "options": [
+        "Non andrò alla riunione, a meno che tu non me lo chieda espressamente.",
+        "Passerò in negozio dopo il lavoro per ritirare il tuo pacco.",
+        "Terremo questa decisione riservata fino al voto di venerdì."
+      ],
+      "value": "Non andrò alla riunione, a meno che tu non me lo chieda espressamente."
+    },
+    {
+      "lesson": 1,
+      "topic": "ipotesi_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Purché il tempo lo permetta, partiremo all'alba, a meno che non sopraggiunga un imprevisto."
+    },
+    {
+      "lesson": 2,
+      "topic": "nel_caso_in_cui_congiuntivo_reading",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Nel caso in cui» se construye con subjuntivo, no con futuro ni indicativo presente. Elige la forma correcta: «Prendi l'ombrello, nel caso in cui ___.»",
+      "options": ["piovesse", "pioverà", "piove"],
+      "value": "piovesse"
+    },
+    {
+      "lesson": 2,
+      "topic": "ammesso_che_congiuntivo_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "«Ammesso che» rige subjuntivo presente. Completa con el subjuntivo de «avere» (3ª pers. sing.): «Ammesso che lui ___ ragione, resta un problema di metodo.»",
+      "text": "Ammesso che lui ___ ragione, resta un problema di metodo.",
+      "value": "abbia",
+      "accepted": ["abbia"]
+    },
+    {
+      "lesson": 2,
+      "topic": "periodo_ipotetico_misto_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "El periodo hipotético mixto combina un tiempo del pasado con una consecuencia en el presente. Relaciona cada frase con lo que expresa.",
+      "pairs": [
+        ["Se avessi studiato, ora sarei laureato", "condición irreal en el pasado, consecuencia en el presente"],
+        ["Se fossi partito ieri, oggi saresti a casa", "un hecho no realizado ayer con efecto en el hoy"],
+        ["Se lo sapessi, te lo direi", "hipótesis irreal enteramente en el presente"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "periodo_ipotetico_misto_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Se avessi accettato quell'offerta, oggi lavorerei all'estero.",
+      "options": [
+        "Se avessi accettato quell'offerta, oggi lavorerei all'estero.",
+        "Poiché ho rifiutato la proposta, resto nella stessa azienda.",
+        "Appena riceverò la risposta, ti chiamerò per organizzare tutto."
+      ],
+      "value": "Se avessi accettato quell'offerta, oggi lavorerei all'estero."
+    },
+    {
+      "lesson": 2,
+      "topic": "periodo_ipotetico_misto_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Se avessi ascoltato i tuoi consigli, ora non mi troverei in questa situazione."
+    },
+    {
+      "lesson": 3,
+      "topic": "condizionale_giornalistico_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "El condicional periodístico marca información no confirmada. Relaciona cada titular con lo que implica.",
+      "pairs": [
+        ["Il ministro avrebbe dichiarato…", "se atribuye la declaración, no está confirmada"],
+        ["Il bilancio sarebbe di dieci vittime", "cifra provisional, aún sin verificar"],
+        ["Le trattative sarebbero fallite", "el fracaso se rumorea, sin confirmación oficial"]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "condizionale_giornalistico_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Secondo le nostre fonti, l'accordo sarebbe stato firmato nella notte.",
+      "options": [
+        "Secondo le nostre fonti, l'accordo sarebbe stato firmato nella notte.",
+        "Stando al comunicato, il contratto verrà rescisso già domani mattina.",
+        "Contro ogni previsione, la riunione è stata rinviata alla prossima settimana."
+      ],
+      "value": "Secondo le nostre fonti, l'accordo sarebbe stato firmato nella notte."
+    },
+    {
+      "lesson": 3,
+      "topic": "modalita_potrebbe_darsi_che_reading",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Potrebbe darsi che» expresa posibilidad y exige subjuntivo. Elige la forma correcta: «Potrebbe darsi che lei ___ in ritardo per il traffico.»",
+      "options": ["sia", "sarà", "era"],
+      "value": "sia"
+    },
+    {
+      "lesson": 3,
+      "topic": "modalita_non_e_escluso_che_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "«Non è escluso che» rige subjuntivo presente. Completa con el subjuntivo de «dovere» (3ª pers. sing.): «Non è escluso che il comitato ___ rinviare la conferenza.»",
+      "text": "Non è escluso che il comitato ___ rinviare la conferenza.",
+      "value": "debba",
+      "accepted": ["debba"]
+    },
+    {
+      "lesson": 3,
+      "topic": "modalita_e_probabile_che_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce con la fórmula «è probabile che» + subjuntivo: «Es probable que el resultado nos sorprenda a todos.»",
+      "source": "Es probable que el resultado nos sorprenda a todos.",
+      "value": "È probabile che il risultato ci sorprenda tutti.",
+      "accepted": [
+        "È probabile che il risultato ci sorprenda tutti",
+        "È probabile che il risultato ci sorprenda tutti.",
+        "è probabile che il risultato ci sorprenda tutti",
+        "E' probabile che il risultato ci sorprenda tutti."
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "congiuntivo_relativa_superlativo_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "È l'unico argomento che sia davvero convincente in tutto il dossier.",
+      "options": [
+        "È l'unico argomento che sia davvero convincente in tutto il dossier.",
+        "Ecco l'ultimo capitolo che dobbiamo rileggere prima della pubblicazione.",
+        "Restano diverse obiezioni a cui nessuno ha ancora risposto."
+      ],
+      "value": "È l'unico argomento che sia davvero convincente in tutto il dossier."
+    },
+    {
+      "lesson": 4,
+      "topic": "congiuntivo_relativa_indefinito_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "En una relativa con antecedente indefinido el italiano culto pide subjuntivo. Completa con el subjuntivo de «sapere» (3ª pers. sing.): «Cerco qualcuno che ___ parlare tre lingue.»",
+      "text": "Cerco qualcuno che ___ parlare tre lingue.",
+      "value": "sappia",
+      "accepted": ["sappia"]
+    },
+    {
+      "lesson": 4,
+      "topic": "congiuntivo_relativa_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar: «È il miglior consiglio che io abbia mai ricevuto.»",
+      "tiles": ["il miglior", "È", "consiglio", "mai", "che io abbia", "ricevuto", "che io ho"],
+      "sequence": ["È", "il miglior", "consiglio", "che io abbia", "mai", "ricevuto"]
+    },
+    {
+      "lesson": 4,
+      "topic": "congiuntivo_relativa_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "È il solo progetto che valga la pena portare avanti, ammesso che il budget venga approvato."
+    }
+  ]
+}

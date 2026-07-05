@@ -1,0 +1,52 @@
+{
+  "unit": {"order": 28, "title_es": "Modismos y registro", "color": "#E17055", "icon": "theater_comedy"},
+  "checkpoint_desc": "Demuestra que entiendes modismos italianos frecuentes, distingues el registro formal del coloquial para un mismo sentido y reconoces proverbios y locuciones verbales.",
+  "lessons": [
+    {"order": 1, "title_es": "Modi di dire y su sentido"},
+    {"order": 2, "title_es": "Más modi di dire figurados"},
+    {"order": 3, "title_es": "Registro: formale vs colloquiale"},
+    {"order": 4, "title_es": "Proverbi e locuzioni"}
+  ],
+  "vocab": [
+    ["in bocca al lupo", "buena suerte (mucha mierda)", "idiom"],
+    ["avere le mani in pasta", "estar metido en muchos asuntos", "idiom"],
+    ["prendere due piccioni con una fava", "matar dos pájaros de un tiro", "idiom"],
+    ["non vedere l'ora", "estar deseando / no ver la hora", "idiom"],
+    ["essere al verde", "estar sin blanca / sin dinero", "idiom"],
+    ["tirare a campare", "ir tirando / sobrevivir a duras penas", "idiom"],
+    ["cadere dalle nuvole", "caer de las nubes / quedar atónito", "idiom"],
+    ["avere la testa fra le nuvole", "estar en las nubes / distraído", "idiom"],
+    ["costare un occhio della testa", "costar un ojo de la cara", "idiom"],
+    ["fare orecchie da mercante", "hacerse el sordo / oídos sordos", "idiom"],
+    ["essere distrutto", "estar destrozado / agotado", "colloquiale"],
+    ["essere spossato", "estar exhausto / extenuado", "formale"],
+    ["svignarsela", "escabullirse / largarse a hurtadillas", "colloquiale"],
+    ["allontanarsi", "alejarse / retirarse", "formale"],
+    ["chi va piano va sano e va lontano", "vísteme despacio que tengo prisa", "proverbio"],
+    ["a caval donato non si guarda in bocca", "a caballo regalado no le mires el diente", "proverbio"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "modi_di_dire_senso", "skill": "reading", "type": "multiple_choice", "prompt": "¿Qué se le dice a alguien con «In bocca al lupo!» antes de un examen?", "options": ["Se le desea buena suerte.", "Se le ordena que se calle.", "Se le pide que traiga comida."], "value": "Se le desea buena suerte."},
+    {"lesson": 1, "topic": "modi_di_dire_senso", "skill": "reading", "type": "match", "prompt": "Empareja cada modismo con su sentido:", "pairs": [["essere al verde", "estar sin dinero"], ["non vedere l'ora", "estar deseando algo"], ["costare un occhio della testa", "ser carísimo"]]},
+    {"lesson": 1, "topic": "modi_di_dire_senso", "skill": "writing", "type": "cloze", "prompt": "Completa el modismo (estar sin blanca): «Dopo le vacanze sono completamente al ___.»", "text": "Dopo le vacanze sono completamente al ___.", "value": "verde", "accepted": ["verde", "verde.", "Verde"]},
+    {"lesson": 1, "topic": "modi_di_dire_senso", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Quella borsa firmata costa un occhio della testa.", "options": ["Quella borsa firmata costa un occhio della testa.", "Quella borsa firmata costa davvero pochissimo.", "Quella borsa firmata resta sempre in vetrina."], "value": "Quella borsa firmata costa un occhio della testa."},
+    {"lesson": 1, "topic": "modi_di_dire_senso", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Domani ho l'esame di stato: non vedo l'ora che finisca tutto."},
+
+    {"lesson": 2, "topic": "modi_di_dire_figurati", "skill": "reading", "type": "multiple_choice", "prompt": "¿Qué quiere decir «prendere due piccioni con una fava»?", "options": ["Resolver dos cosas con una sola acción.", "Cazar palomas para cocinarlas.", "Perder el tiempo sin lograr nada."], "value": "Resolver dos cosas con una sola acción."},
+    {"lesson": 2, "topic": "modi_di_dire_figurati", "skill": "writing", "type": "word_bank", "prompt": "Construye el modismo que significa «estar metido en muchos asuntos»: «avere le mani in pasta».", "tiles": ["avere", "le", "mani", "in", "pasta", "testa", "tasca"], "sequence": ["avere", "le", "mani", "in", "pasta"]},
+    {"lesson": 2, "topic": "modi_di_dire_figurati", "skill": "writing", "type": "translation", "prompt": "Traduce con un modismo natural: «Cuando le conté la noticia, se quedó atónito.» (usa el modismo de las nubes)", "source": "Cuando le conté la noticia, se quedó atónito.", "value": "Quando gli ho raccontato la notizia, è caduto dalle nuvole.", "accepted": ["Quando gli ho raccontato la notizia, è caduto dalle nuvole.", "Quando gli ho raccontato la notizia, è caduto dalle nuvole", "quando gli ho raccontato la notizia, è caduto dalle nuvole."]},
+    {"lesson": 2, "topic": "modi_di_dire_figurati", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Con questa mossa prendiamo due piccioni con una fava.", "options": ["Con questa mossa prendiamo due piccioni con una fava.", "Con questa mossa perdiamo tempo e denaro inutilmente.", "Con questa mossa risolviamo un solo problema piccolo."], "value": "Con questa mossa prendiamo due piccioni con una fava."},
+
+    {"lesson": 3, "topic": "registro_formale_colloquiale", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál es la variante FORMAL (culta) de «sono distrutto»?", "options": ["sono spossato", "sono distrutto", "sono a pezzi"], "value": "sono spossato"},
+    {"lesson": 3, "topic": "registro_formale_colloquiale", "skill": "reading", "type": "match", "prompt": "Empareja cada verbo con su registro (mismo sentido: 'irse'):", "pairs": [["allontanarsi", "formale"], ["andare via", "neutro"], ["svignarsela", "colloquiale"]]},
+    {"lesson": 3, "topic": "registro_formale_colloquiale", "skill": "writing", "type": "cloze", "prompt": "Reformula en registro FORMAL (sinónimo culto de «stanco», empieza por s): «Dopo il turno di notte ero completamente ___.»", "text": "Dopo il turno di notte ero completamente ___.", "value": "spossato", "accepted": ["spossato", "spossato.", "spossata", "spossata."]},
+    {"lesson": 3, "topic": "registro_formale_colloquiale", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "La prego di scusarmi, devo allontanarmi un momento.", "options": ["La prego di scusarmi, devo allontanarmi un momento.", "Scusa tanto, adesso me la svigno di corsa.", "Ti giuro che non ho nessuna voglia di restare."], "value": "La prego di scusarmi, devo allontanarmi un momento."},
+    {"lesson": 3, "topic": "registro_formale_colloquiale", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "In un contesto formale si dirà « sono spossato » anziché « sono a pezzi »."},
+
+    {"lesson": 4, "topic": "proverbi_locuzioni", "skill": "reading", "type": "multiple_choice", "prompt": "¿Qué idea transmite el proverbio «Chi va piano va sano e va lontano»?", "options": ["Actuar con calma y prudencia lleva más lejos.", "Hay que correr para llegar el primero.", "El camino más largo es siempre el mejor."], "value": "Actuar con calma y prudencia lleva más lejos."},
+    {"lesson": 4, "topic": "proverbi_locuzioni", "skill": "writing", "type": "word_bank", "prompt": "Reconstruye el proverbio que aconseja no criticar un regalo: «A caval donato non si guarda in bocca».", "tiles": ["A", "caval", "donato", "non", "si", "guarda", "in", "bocca", "denti", "dente"], "sequence": ["A", "caval", "donato", "non", "si", "guarda", "in", "bocca"]},
+    {"lesson": 4, "topic": "proverbi_locuzioni", "skill": "writing", "type": "translation", "prompt": "Traduce el proverbio: «Vísteme despacio que tengo prisa.» (usa el proverbio italiano de ir despacio)", "source": "Vísteme despacio que tengo prisa.", "value": "Chi va piano va sano e va lontano.", "accepted": ["Chi va piano va sano e va lontano.", "Chi va piano va sano e va lontano", "chi va piano va sano e va lontano."]},
+    {"lesson": 4, "topic": "proverbi_locuzioni", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Come si suol dire, chi va piano va sano e va lontano.", "options": ["Come si suol dire, chi va piano va sano e va lontano.", "Come si suol dire, il tempo è denaro per tutti.", "Come si suol dire, tra il dire e il fare c'è di mezzo il mare."], "value": "Come si suol dire, chi va piano va sano e va lontano."},
+    {"lesson": 4, "topic": "proverbi_locuzioni", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "A caval donato non si guarda in bocca, quindi accetta il regalo con gratitudine."}
+  ]
+}

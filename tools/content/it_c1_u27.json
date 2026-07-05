@@ -1,0 +1,245 @@
+{
+  "unit": {
+    "order": 27,
+    "title_es": "Énfasis, puesta de relieve e inferencia",
+    "color": "#7D3C98",
+    "icon": "format_quote"
+  },
+  "checkpoint_desc": "Demuestra que dominas la puesta de relieve avanzada (frasi scisse «è stato Marco a farlo», «è qui che vivo», «è di questo che parlo»), la dislocazione a la izquierda/derecha con retoma pronominal («Il libro, l'ho letto», «A Roma ci vado spesso»), la enfatización con «proprio/perfino/persino», la anteposición estilística («Molto ho imparato», «Grande fu la sorpresa»), la estructura «c'è… che» y la inferencia/litote (non è male = è buono; non pochi = molti) con la negación enfática (non… affatto, non… mica, neanche per sogno).",
+  "lessons": [
+    { "order": 1, "title_es": "Frasi scisse: è… che, è… a (è stato Marco a farlo)" },
+    { "order": 2, "title_es": "Dislocazione + messa in rilievo con proprio/perfino" },
+    { "order": 3, "title_es": "Anteposizione stilistica + c'è… che" },
+    { "order": 4, "title_es": "Litote, inferenza y negazione enfatica (affatto/mica)" }
+  ],
+  "vocab": [
+    ["la frase scissa", "la oración escindida (perífrasis de relieve)", "n"],
+    ["mettere in rilievo", "poner de relieve, destacar", "v"],
+    ["è proprio così", "es exactamente así", "expr"],
+    ["perfino, persino", "incluso, hasta", "avv"],
+    ["la dislocazione a sinistra", "la dislocación a la izquierda", "n"],
+    ["riprendere con un pronome", "retomar con un pronombre", "v"],
+    ["l'anteposizione", "la anteposición (estilística)", "n"],
+    ["grande fu la sorpresa", "grande fue la sorpresa", "expr"],
+    ["c'è una cosa che", "hay una cosa que", "expr"],
+    ["la litote", "la lítote (atenuación)", "n"],
+    ["non è affatto male", "no está nada mal", "expr"],
+    ["non pochi", "no pocos (= muchos)", "expr"],
+    ["non… mica", "no… en absoluto (coloquial)", "expr"],
+    ["neanche per sogno", "ni en sueños, ni hablar", "expr"],
+    ["il sottinteso", "el sobreentendido", "n"],
+    ["sminuire, attenuare", "atenuar, minimizar", "v"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "frase_scissa_e_che_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada oración escindida (frase scissa) con su traducción.",
+      "pairs": [
+        ["È stato Marco a rompere il vaso.", "Fue Marco quien rompió el jarrón."],
+        ["È qui che sono cresciuto.", "Es aquí donde crecí."],
+        ["È di questo che volevo parlarti.", "Es de esto de lo que quería hablarte."]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "frase_scissa_e_a_infinito",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Pon de relieve el sujeto con la escisión «è… a + infinitivo» (fue Marco quien lo hizo): «È stato Marco ___ farlo.»",
+      "options": [
+        "a",
+        "che ha",
+        "di"
+      ],
+      "value": "a"
+    },
+    {
+      "lesson": 1,
+      "topic": "frase_scissa_e_di_che_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Pon de relieve un complemento introducido por «di» (parlare DI qualcosa): «È ___ questo che parlo continuamente.»",
+      "text": "È ___ questo che parlo continuamente.",
+      "value": "di",
+      "accepted": ["di"]
+    },
+    {
+      "lesson": 1,
+      "topic": "frase_scissa_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Non è stato per caso che è successo: è stata la tua costanza a fare la differenza, ed è proprio di questo che sono fiero."
+    },
+    {
+      "lesson": 1,
+      "topic": "frase_scissa_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "È stata proprio lei a insistere perché restassimo.",
+      "options": [
+        "È stata proprio lei a insistere perché restassimo.",
+        "È stato proprio lui a decidere che partissimo.",
+        "Sarà stata forse lei a chiedere che tornassimo."
+      ],
+      "value": "È stata proprio lei a insistere perché restassimo."
+    },
+    {
+      "lesson": 2,
+      "topic": "dislocazione_sinistra_pronome",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Disloca a la izquierda el objeto «il libro» retomándolo con el pronombre correcto: «Il libro, ___ ho già letto.»",
+      "options": ["l'", "gli", "ne"],
+      "value": "l'"
+    },
+    {
+      "lesson": 2,
+      "topic": "dislocazione_destra_ci_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Retoma el complemento de lugar «a Roma» con la partícula adecuada (dislocación): «A Roma ___ vado spesso.»",
+      "text": "A Roma ___ vado spesso.",
+      "value": "ci",
+      "accepted": ["ci"]
+    },
+    {
+      "lesson": 2,
+      "topic": "dislocazione_quanto_a_me_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Quella storia, io non ne voglio più sapere niente.",
+      "options": [
+        "Quella storia, io non ne voglio più sapere niente.",
+        "Questa faccenda, lui non ne vuole più parlare con nessuno.",
+        "Quella storia, io non la voglio più raccontare a nessuno."
+      ],
+      "value": "Quella storia, io non ne voglio più sapere niente."
+    },
+    {
+      "lesson": 2,
+      "topic": "messa_in_rilievo_perfino_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Arma la frase enfática: «Incluso los expertos se sorprendieron.»",
+      "tiles": ["Perfino", "gli", "esperti", "sono", "rimasti", "sorpresi", "proprio", "persino"],
+      "sequence": ["Perfino", "gli", "esperti", "sono", "rimasti", "sorpresi"]
+    },
+    {
+      "lesson": 2,
+      "topic": "messa_in_rilievo_proprio_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Quel dettaglio, l'avevo notato proprio io; e a lei, quella spiegazione, gliela darò persino due volte se serve."
+    },
+    {
+      "lesson": 3,
+      "topic": "anteposizione_stilistica_reading",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Antepone el complemento para dar énfasis estilístico (registro culto): «___ ho imparato da questa esperienza.»",
+      "options": [
+        "Molto",
+        "Ho molto",
+        "Molte cose che"
+      ],
+      "value": "Molto"
+    },
+    {
+      "lesson": 3,
+      "topic": "anteposizione_grande_fu_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa la anteposición enfática del atributo (grande fue la sorpresa): «Grande ___ la sorpresa di tutti quando entrò.»",
+      "text": "Grande ___ la sorpresa di tutti quando entrò.",
+      "value": "fu",
+      "accepted": ["fu"]
+    },
+    {
+      "lesson": 3,
+      "topic": "ce_una_cosa_che_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada frase con «c'è… che» o con anteposición con su traducción.",
+      "pairs": [
+        ["C'è una cosa che non capisco.", "Hay una cosa que no entiendo."],
+        ["Molto avremmo da dire in proposito.", "Mucho tendríamos que decir al respecto."],
+        ["Grande fu il suo coraggio.", "Grande fue su valentía."]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "ce_che_reorder",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena la frase que pone de relieve con la estructura «c'è… che».",
+      "tiles": ["c'è", "che", "una", "domanda", "vorrei", "farti", "ti"],
+      "sequence": ["c'è", "una", "domanda", "che", "vorrei", "farti"]
+    },
+    {
+      "lesson": 3,
+      "topic": "anteposizione_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Poche parole disse, ma grande fu l'effetto che ebbero su di noi.",
+      "options": [
+        "Poche parole disse, ma grande fu l'effetto che ebbero su di noi.",
+        "Molte parole disse, eppure scarso fu l'effetto che ebbero su tutti.",
+        "Poche cose fece, ma grande fu il rispetto che ottenne da noi."
+      ],
+      "value": "Poche parole disse, ma grande fu l'effetto che ebbero su di noi."
+    },
+    {
+      "lesson": 4,
+      "topic": "litote_inference_reading",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Lee la lítote: «Il tuo lavoro non è affatto male.» ¿Qué quiere decir realmente el hablante?",
+      "options": [
+        "que está bastante bien",
+        "que es un desastre",
+        "que le resulta indiferente"
+      ],
+      "value": "que está bastante bien"
+    },
+    {
+      "lesson": 4,
+      "topic": "negazione_enfatica_affatto_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Refuerza la negación con el adverbio que significa «en absoluto» (non… ___): «Questa notizia non mi sorprende ___.»",
+      "text": "Questa notizia non mi sorprende ___.",
+      "value": "affatto",
+      "accepted": ["affatto"]
+    },
+    {
+      "lesson": 4,
+      "topic": "litote_non_pochi_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Non è mica una sciocchezza: non pochi ci hanno creduto davvero.",
+      "options": [
+        "Non è mica una sciocchezza: non pochi ci hanno creduto davvero.",
+        "Non è affatto una novità: non tutti ci hanno creduto sul serio.",
+        "Non era mica una certezza: ben pochi ci avevano creduto allora."
+      ],
+      "value": "Non è mica una sciocchezza: non pochi ci hanno creduto davvero."
+    },
+    {
+      "lesson": 4,
+      "topic": "negazione_enfatica_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Non sono affatto contrario alla tua proposta; diciamo solo che, per ora, non mi convince mica del tutto, ma rifiutarla del tutto? Neanche per sogno."
+    }
+  ]
+}
