@@ -73,6 +73,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         goalLevel: _data.goalLevel,
         dailyMinutes: _data.dailyMinutes,
         daysPerWeek: _data.daysPerWeek,
+        maxLevel: _data.targetMaxLevel,
       );
       await repo.createPlan(
         coachStyle: _data.coachStyle,
@@ -335,6 +336,12 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     setState(() {
       _data.targetCourseId = c.id;
       _data.targetCourseCode = c.target;
+      _data.targetMaxLevel = c.maxLevel;
+      // Capa la meta al tope real del curso (p. ej. it topa en A2: la meta B1 por
+      // defecto pasa a A2). Evita prometer un nivel sin contenido.
+      if (CefrTable.rank(_data.goalLevel) > CefrTable.rank(c.maxLevel)) {
+        _data.goalLevel = c.maxLevel;
+      }
     });
     try {
       await ref.read(progressRepositoryProvider).setActiveCourse(c.id);
@@ -343,8 +350,21 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     }
   }
 
+  /// Nivel CEFR más alto CON contenido del curso META elegido (para capar la meta).
+  String _targetMaxLevel() {
+    final courses = ref
+        .watch(coursesProvider)
+        .maybeWhen(data: (v) => v, orElse: () => const <CourseInfo>[]);
+    var maxLvl = 'C1';
+    for (final c in courses) {
+      if (c.id == _data.targetCourseId) maxLvl = c.maxLevel;
+    }
+    return maxLvl;
+  }
+
   Widget _goal() {
     final l10n = AppLocalizations.of(context);
+    final maxRank = CefrTable.rank(_targetMaxLevel());
     return OnboardingScaffold(
       step: _step + 1,
       total: _total,
@@ -355,12 +375,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          // Solo metas ALCANZABLES: no ofrecer un nivel por encima del tope real del curso.
           for (final (label, value) in [
             (l10n.onbGoalA2, 'A2'),
             (l10n.onbGoalB1, 'B1'),
             (l10n.onbGoalB2, 'B2'),
             (l10n.onbGoalC1, 'C1'),
-          ])
+          ].where((o) => CefrTable.rank(o.$2) <= maxRank))
             OnboardingOption(
               label: label,
               selected: _data.goalLevel == value,

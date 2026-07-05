@@ -80,6 +80,7 @@ class _YourPlanViewState extends State<YourPlanView> {
         goalLevel: widget.data.goalLevel,
         dailyMinutes: _dailyMin,
         daysPerWeek: widget.data.daysPerWeek,
+        maxLevel: widget.data.targetMaxLevel,
       );
 
   void _faster() {

@@ -6,6 +6,7 @@ class CourseInfo {
     required this.target,
     required this.targetName,
     required this.active,
+    this.maxLevel = 'C1',
   });
 
   final String id;
@@ -13,6 +14,7 @@ class CourseInfo {
   final String target; // código ISO del idioma meta (en, pt)
   final String targetName; // nombre legible (English, Português)
   final bool active; // ¿es el curso activo del usuario?
+  final String maxLevel; // nivel CEFR más alto CON contenido (para capar la meta)
 
   /// Etiqueta para la UI, p.ej. "Español → Português".
   String get label => 'Español → $targetName';
@@ -34,5 +36,6 @@ class CourseInfo {
         target: j['target'] as String? ?? '',
         targetName: j['target_name'] as String? ?? '',
         active: j['active'] as bool? ?? false,
+        maxLevel: j['max_level'] as String? ?? 'C1',
       );
 }

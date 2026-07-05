@@ -92,10 +92,15 @@ PlanEstimate estimatePlan({
   required int dailyMinutes,
   required int daysPerWeek,
   DateTime? now,
+  String? maxLevel, // tope real del curso: no promete por encima de lo que existe
 }) {
   final today = now ?? DateTime.now();
   final bumped = CefrTable.rank(goalLevel) <= CefrTable.rank(currentLevel);
-  final effGoal = bumped ? CefrTable.next(currentLevel) : goalLevel;
+  var effGoal = bumped ? CefrTable.next(currentLevel) : goalLevel;
+  // Capa la meta efectiva al tope del curso (p. ej. it topa en A2: no prometer B1).
+  if (maxLevel != null && CefrTable.rank(effGoal) > CefrTable.rank(maxLevel)) {
+    effGoal = maxLevel;
+  }
   final needed =
       (CefrTable.hoursOf(effGoal) - CefrTable.hoursOf(currentLevel)).clamp(1, 999999);
   final perWeek = (dailyMinutes * daysPerWeek) / 60.0;

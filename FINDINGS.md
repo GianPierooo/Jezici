@@ -2,6 +2,29 @@
 
 ---
 
+## Barrido de colisiones MC + cap de meta — 2026-07-03 ✅ LIVE + VERIFICADO
+> Correctitud antes que más contenido: 2 frentes de la Cola priorizados.
+- **[1] Barrido de colisiones MC/listening (mig 117):** para MC/listening el único vector de colisión es
+  `jz_normalize(distractor) == jz_normalize(correcto)` (jz_near_match retorna false salvo cloze/translation;
+  jz_normalize hace lowercase + quita puntuación/apóstrofes, NO pliega tildes/umlaut). Barrido con la
+  `jz_normalize` REAL de la BD sobre los **1611 ítems** MC/listening de los 6 cursos → **1 colisión**: en B2,
+  MC de comas explicativas, correcto «Diego, who runs…» vs distractor «Diego who runs…» (difieren solo por
+  una coma, que jz_normalize quita → distractor aceptado). **Fix:** reenmarcado al PRONOMBRE RELATIVO en
+  cláusula explicativa sobre persona (who correcto; that/which incorrectos — difieren por PALABRA, sí
+  calificable). Re-barrido = **0 colisiones**; verificado cliente real (correcto True, ambos distractores
+  False, 42501). El guard de autoría (generador + prompts de agentes) ya prevenía el resto (1/1611).
+- **[2] Cap de meta al tope del curso (mig 118 + código):** `get_courses` expone **max_level** (nivel CEFR
+  más alto CON contenido, derivado de units → auto-actualiza). `CourseInfo.maxLevel`; el onboarding **filtra
+  las metas** a ≤ max del curso elegido (it ya no ofrece B1/B2/C1) y **clampa** la meta en `_pickTarget`;
+  `estimatePlan(maxLevel)` capa la meta efectiva (incluido el "bump") para no prometer un nivel sin contenido;
+  el re-placement de Ajustes (`CoursePlacementScreen`) también capa la meta reusada (venir de en/C1 a it/A2).
+  Verificado: get_courses max_level real (en→C1, pt→B1, fr→B1, it→A2, de→B2, nl→B1); test unitario del cap
+  (estimation_test); analyze 0 · test 94/94.
+- **Diferido (Cola):** nombre real de la unidad de entrada por curso en PlacementResultView; L/S en placement;
+  B2 nl / B1 it / B2 fr+it; imágenes; etc.
+
+---
+
 ## B1 es→nl (escalera A2→B1) — 2026-07-03 ✅ LIVE + VERIFICADO
 > nl era el único piloto sin B1 (solo A2). Ahora **neerlandés A1→B1**; B2 nl queda desbloqueado en la Cola.
 - **Contenido (mig 112):** 6 unidades (order 13-18), **114 ítems R36/W36/L24/S18** (L=67% S=50%), audio TTS

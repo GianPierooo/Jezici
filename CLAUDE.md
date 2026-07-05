@@ -40,9 +40,12 @@
 4. **B2 es→fr** y **B2 es→it** (nuevos STAMPS): fr — subjonctif passé, concordance des temps,
    discours indirect avancé, participe présent/gérondif, connecteurs B2; it — congiuntivo
    imperfetto/trapassato, periodo ipotetico II/III, forma passiva, discorso indiretto avanzado.
-5. **Pulidos onboarding/placement** (código): cap de la meta al tope real del curso (fr/it/de/nl
-   ya no topan A2 tras las escaleras; recalcular por curso), nombre real de la unidad de entrada
-   por curso en `PlacementResultView` (hoy rótulo es→en), L/S en placement (audio).
+5. **Pulidos onboarding/placement** (código): cap de la meta al tope real del curso ✅ (mig 118:
+   `get_courses.max_level`; onboarding filtra metas + clampa; `estimatePlan(maxLevel)`; re-placement
+   de Ajustes también). Pendiente: nombre real de la unidad de entrada por curso en `PlacementResultView`
+   (hoy rótulo es→en), L/S en placement (audio). **Barrido de colisiones MC/listening ✅ (mig 117):**
+   barrido norm-exacto (jz_normalize) sobre los 1611 ítems → 1 colisión (en B2 «Das Lesen»/«Das lesen»
+   por coma → reenmarcada al pronombre relativo); re-barrido 0. Guard estable.
 6. **Diferidos menores:** 2ª historia/inmersión por idioma + historias B1+; imágenes referenciales
    fr/it/de/nl (hoy solo es→en A1/A2); tips es→pt B2/C1 (no existe contenido); copy en-first fuera
    del onboarding (`missionMainDescription` «100 palabras del inglés», `errorReviewWhy*`); cert de

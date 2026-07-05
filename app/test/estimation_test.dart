@@ -27,4 +27,24 @@ void main() {
     expect(planProgress(currentLevel: 'A2', goalLevel: 'B1'), closeTo(0.339, 0.01));
     expect(planProgress(currentLevel: 'B1', goalLevel: 'B1'), 1.0);
   });
+
+  test('cap de meta: la meta efectiva no supera el tope del curso', () {
+    // it topa en A2: aunque se pida B2, la meta efectiva se capa a A2.
+    final e = estimatePlan(
+        currentLevel: 'A1', goalLevel: 'B2', dailyMinutes: 15, daysPerWeek: 5,
+        maxLevel: 'A2', now: fixedNow);
+    expect(e.goalLevel, 'A2');
+
+    // Placement en el tope (A2) del curso que topa en A2: el "bump" a B1 se capa a A2
+    // (no promete un nivel sin contenido).
+    final atTop = estimatePlan(
+        currentLevel: 'A2', goalLevel: 'A2', dailyMinutes: 15, daysPerWeek: 5,
+        maxLevel: 'A2', now: fixedNow);
+    expect(atTop.goalLevel, 'A2');
+
+    // Sin maxLevel (en, tope C1) el comportamiento previo se mantiene: bump A2→B1.
+    final uncapped = estimatePlan(
+        currentLevel: 'A2', goalLevel: 'A2', dailyMinutes: 15, daysPerWeek: 5, now: fixedNow);
+    expect(uncapped.goalLevel, 'B1');
+  });
 }

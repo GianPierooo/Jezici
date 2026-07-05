@@ -7,6 +7,7 @@ class OnboardingData {
   /// al fijarlo se llama set_active_course → el placement y create_plan usan ESE curso.
   String? targetCourseId;
   String targetCourseCode = 'en'; // en | pt | fr | it | de | nl (para el copy)
+  String targetMaxLevel = 'C1'; // nivel CEFR más alto CON contenido del curso (capa la meta)
 
   String motive = '';
 

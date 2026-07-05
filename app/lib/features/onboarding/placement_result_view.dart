@@ -53,6 +53,7 @@ class PlacementResultView extends StatelessWidget {
       goalLevel: data.goalLevel,
       dailyMinutes: data.dailyMinutes,
       daysPerWeek: data.daysPerWeek,
+      maxLevel: data.targetMaxLevel,
     );
     // Fecha localizada (compacta) sin depender de intl date-init: la aporta
     // flutter_localizations vía MaterialLocalizations.

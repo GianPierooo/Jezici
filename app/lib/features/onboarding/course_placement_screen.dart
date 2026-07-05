@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/plan/estimation.dart';
 import '../../core/theme/app_colors.dart';
+import '../../data/models/course_models.dart';
 import '../../data/providers.dart';
 import 'onboarding_data.dart';
 import 'placement_result_view.dart';
@@ -54,6 +55,16 @@ class _CoursePlacementScreenState extends ConsumerState<CoursePlacementScreen> {
       _data.motive = (p['motive'] as String?) ?? 'Placer';
       _data.coachStyle = (p['coach_style'] as String?) ?? 'suave';
       _data.intensity = (p['intensity'] as int?) ?? 2;
+      // Tope del curso destino: capa la meta reusada (p. ej. venir de en/C1 a it/A2).
+      final courses = ref
+          .read(coursesProvider)
+          .maybeWhen(data: (v) => v, orElse: () => const <CourseInfo>[]);
+      for (final c in courses) {
+        if (c.id == widget.courseId) _data.targetMaxLevel = c.maxLevel;
+      }
+      if (CefrTable.rank(_data.goalLevel) > CefrTable.rank(_data.targetMaxLevel)) {
+        _data.goalLevel = _data.targetMaxLevel;
+      }
     } catch (_) {
       // Defaults de OnboardingData bastan.
     }
@@ -70,6 +81,7 @@ class _CoursePlacementScreenState extends ConsumerState<CoursePlacementScreen> {
         goalLevel: _data.goalLevel,
         dailyMinutes: _data.dailyMinutes,
         daysPerWeek: _data.daysPerWeek,
+        maxLevel: _data.targetMaxLevel,
       );
       // Puente course-scoped (usa jz_active_course = curso ya activado): nivel →
       // unidad de entrada + 4 habilidades + plan del curso.
