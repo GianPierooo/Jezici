@@ -25,14 +25,20 @@
   Cierre: analyze 0, tests verdes, gh run list SUCCESS, deploy READY. Reporta en 1 línea.
 
 ## Cola (retome exacto — orden sugerido)
-> Estado de niveles hoy (verificado en BD): **en A1–C1 · pt A1–B2 · fr A1–B2 · it A1–B2 ·
-> de A1–B2 · nl A1–B2** (los 6 cursos hasta B2; solo en llega a C1). Andamiaje probado 10× (de B1, fr B1, de B2,
-> nl B1, nl B2, it B1, fr B2, it B2, pt B2, +): generador `gen_course.py <code> <a1|a2|b1|b2>` (soporta pt/fr/it/de/nl),
-> audio `gen_audio_missing.py <code>-<lvl>`, verificadores `verify_b1_chain.py`/`verify_b2_chain.py <code>`. STAMPS en `gen_course.py`.
-1. **C1 es→fr/it/de/nl** (topan en B2; siguiente escalón real) — o **C1 es→pt**. Reserva STAMP + `('<code>','c1')` en
-   gen_course.py STAMPS + grupo `<code>-c1` en `gen_audio_missing.py`; añade un `verify_c1_chain.py` (clon de b2, order 25-30,
-   U24→U25). **OJO techo determinista:** C1 = receptivo (R/L a C1) pero **sin examen/cert C1** (writing/speaking libres a C1
-   no evaluables sin IA; blindado en mig 064 = examen tope B2). Mismo pipeline: 6 autores nativos C1 + 2 revisores → gen → apply → audio → verify.
+> Estado de niveles hoy (verificado en BD): **en A1–C1 · pt A1–B2 · fr A1–C1 · it A1–C1 ·
+> de A1–B2 · nl A1–B2**. Andamiaje probado 12× (…nl B2, it B1, fr B2, it B2, pt B2, fr C1, it C1, +): generador
+> `gen_course.py <code> <a1|a2|b1|b2|c1>` (soporta pt/fr/it/de/nl; DIFF c1=0.84), audio `gen_audio_missing.py <code>-<lvl>`
+> (grupos `<code>-c1` listos), verificadores `verify_b1_chain.py`/`verify_b2_chain.py`/**`verify_c1_chain.py`** `<code>`. STAMPS c1 en `gen_course.py`.
+1. **C1 es→de/nl/pt** (topan en B2; fr/it ya en C1). Andamiaje YA listo: STAMPS reservados `('de','c1')=…128`,
+   `('nl','c1')=…129`, `('pt','c1')=…130`; grupos audio `de-c1/nl-c1/pt-c1`; `verify_c1_chain.py` course-agnóstico.
+   Pipeline probado 2× (fr/it C1): 6 autores nativos C1 por idioma (temas: precisión léxica, argumentar/conectores,
+   énfasis/mise en relief, modismos/registro, hipótesis/modalidad avanzada, lengua académica) + 2 revisores adversariales →
+   `gen_course.py <code> c1` → apply → `gen_audio_missing.py <code>-c1` → `verify_c1_chain.py <code>`. Currículo C1 REAL del
+   idioma (de: Konjunktiv I/erweiterte Partizipialkonstruktionen/Nominalstil/gehobenes Register; nl: formeel register/
+   tangconstructies/beknopte bijzinnen; pt: mesóclise/regência culta/conectivos «não obstante»/orações reduzidas).
+   **TECHO HONESTO (NO violar):** C1 = R/L/gramática/vocab se autocalifican; writing/speaking = proxies deterministas
+   (cloze/word_bank/read-aloud). **NO examen ni certificado de nivel C1** (Fase 2). Verificado: fr/it C1 solo 6 checkpoint,
+   0 exam `level`, 0 certificates (idéntico a en). Los cursos escalera NO tienen exams `level` → el techo es automático.
 5. **Pulidos onboarding/placement** (código): cap de la meta al tope real del curso ✅ (mig 118). **Placement a nivel
    REAL ✅ (mig 122/123, 2026-07-05):** bancos fr/it/de/nl ampliados a B1+B2 y pt a B2 (7R MC + 7W cloze/nivel);
    `placement_next` (course-scoped) ya sube el techo → un B1/B2 sale B1/B2 (no A2). Verificado cliente real
@@ -48,7 +54,7 @@
 App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supabase**
 (Postgres + RLS + RPCs SECURITY DEFINER) + **Vercel** (deploy del web). Repo
 `github.com/GianPierooo/Jezici`, deploy `jezici.vercel.app`.
-- 6 cursos: **es→en** (A1–C1), **es→pt** (A1–B2), **es→fr** (A1–B2), **es→it** (A1–B2),
+- 6 cursos: **es→en** (A1–C1), **es→pt** (A1–B2), **es→fr** (A1–C1), **es→it** (A1–C1),
   **es→de** (A1–B2) y **es→nl** (A1–B2). Curso activo por usuario
   (`jz_active_course`). Selector en Ajustes.
 - Loop: lección → ejercicios (9 tipos) → grading **server-side** → XP/oro/vidas →
@@ -143,7 +149,22 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
   real (`verify_b2_chain.py it`):** determinista 96/96 + 96/96 distractores (42501); **CAMINA A1→B2 las 24 unidades**
   (U18→U19, 30/30 lecciones B2); **0 lesson_items cruzan los 6 cursos**; default(en) sin fuga; audio 42/42.
   **italiano es→it: A1→B2 completo.**
-- **Diferido (retome del piloto):** cablear onboarding fr/it-específico (el onboarding ya deja elegir curso META,
+- **C1 es→fr ✅ LIVE (mig 126) + C1 es→it ✅ LIVE (mig 127), 2026-07-05:** 6 unidades c/u (order 25-30, encadenan
+  B2→C1; U24 desbloquea U25), **114 ítems (R36/W36/L24/S18 → L=67% S=50%)**, audio TTS 42/42. Currículo C1 REAL:
+  precisión y matiz léxico (le mot juste / il termine esatto, registros, colocaciones), argumentar y persuadir
+  (connecteurs: néanmoins/quand bien même/dans la mesure où · nondimeno/per quanto+cong/dal momento che), énfasis y
+  mise en relief (c'est…que/ce dont…c'est · frasi scisse è…che/è…a, inversion/anteposizione, litote), modismos y
+  registro (tomber dans les pommes/tirer son épingle du jeu · in bocca al lupo/tirare a campare; soutenu/familier),
+  hipótesis y modalidad avanzada (à supposer que/pour peu que+subj, conditionnel journalistique · qualora/purché+cong,
+  condizionale giornalistico, congiuntivo in relative), lengua académica/profesional (nominalisation, il convient de/
+  il ressort de · si ritiene che/va rilevato che, voz pasiva, conectores académicos, email formal). 6 profesores nativos IA
+  + 2 revisores adversariales por idioma (fixes reales: fr accepted «a»/«qu'» agramaticales + rebalanceo U29 + hueco cloze U30;
+  it mezcla de idiomas U25 + congiuntivo `dobbiamo`→`debba` U29). **Verificado cliente real (`verify_c1_chain.py fr|it`):**
+  determinista 96/96 + 96/96 distractores (42501); **CAMINA A1→C1 las 30 unidades** (U24→U25, 30/30 lecciones C1);
+  0 cruces entre los 6 cursos; default(en) sin fuga; audio 42/42. **TECHO HONESTO** (igual que en): C1 receptivo/guiado
+  se autocalifica (writing/speaking = proxies deterministas), **sin examen ni certificado de nivel C1** (Fase 2) →
+  verificado: fr/it C1 solo 6 checkpoint, 0 exam `level`, 0 certificates. **fr y it: es→fr/it A1→C1 completo.**
+- **Diferido (retome del piloto):** C1 es→de/nl/pt (andamiaje listo; ver "## Cola" ítem 1); cablear onboarding fr/it-específico (el onboarding ya deja elegir curso META,
   el placement corre por curso); imágenes fr/it; cert de nivel; C1 fr/it.
 
 ## Pilotos es→de + es→nl (A1 + A2) — ✅ LIVE (mig 100/101/104/105 · 2026-07-03)

@@ -2,6 +2,28 @@
 
 ---
 
+## C1 es→fr + es→it (techo honesto) — 2026-07-05 ✅ LIVE + VERIFICADO
+> Retome de la Cola: C1 para fr/it/de/nl/pt. Completados fr e it con calidad + verificación (stop clean).
+- **Andamiaje C1 (reutilizable):** `gen_course.py` DIFF['c1']=0.84 + STAMPS c1 (fr…126, it…127, de…128, nl…129, pt…130);
+  `gen_audio_missing.py` grupos `<code>-c1`; **`verify_c1_chain.py`** (clon de b2: camina A1→C1 las 30 unidades, U24→U25,
+  determinista C1, aislamiento, audio HEAD). Course-agnóstico → sirve para los 5.
+- **TECHO HONESTO — hallazgo clave (por construcción):** los cursos escalera (fr/it/de/nl/pt) **NO tienen exams tipo
+  `level`** (solo `checkpoint`); solo en tiene `level` exams (topados en B2 por mig 064). `gen_course.py` emite SOLO
+  `checkpoint`. Por tanto C1 → 6 checkpoints (progresión intra-C1) y **NINGÚN examen ni certificado de nivel C1**,
+  automáticamente. Verificado: fr/it C1 = 6 checkpoint, 0 `level`, 0 certificates (idéntico a en C1). C1 = R/L/gramática/
+  vocab autocalificables; writing/speaking = proxies deterministas (cloze/word_bank/read-aloud). Sin cert 4-skills (Fase 2).
+- **fr C1 (mig 126, commit 5faf85a) + it C1 (mig 127, commit 3e2373c):** 6 unidades c/u (order 25-30), 114 ítems
+  R36/W36/L24/S18 (L=67% S=50%), audio tl 42/42. Currículo C1 real: precisión/matiz léxico, argumentar (conectores C1),
+  énfasis/mise en relief, modismos/registro, hipótesis/modalidad avanzada, lengua académica/profesional. 6 profesores
+  nativos + 2 revisores adversariales por idioma (fixes reales: fr accepted «a»/«qu'» agramaticales, rebalanceo U29,
+  hueco cloze U30; it mezcla de idiomas U25, `dobbiamo`→`debba` U29 para congiuntivo visible).
+- **Verificado cliente real (`verify_c1_chain.py fr|it`, JWT):** determinista 96/96 + distractores 96/96 (42501); CAMINA
+  A1→C1 las 30 unidades (U24→U25, 30/30 lecciones C1); 0 cruces entre los 6 cursos; default(en) sin fuga; audio 42/42.
+  CI SUCCESS + deploy READY. **fr/it: A1→C1.**
+- **Diferido (stop clean, retome exacto en ## Cola ítem 1):** C1 de/nl/pt (andamiaje ya listo).
+
+---
+
 ## Historias/inmersión B1 (fr/it/de/nl/pt) — 2026-07-05 ✅ LIVE + VERIFICADO
 > Retome #1 de la Cola. Cada curso no-inglés tenía solo 1 historia A1; +1 historia B1 (2ª por idioma).
 - **5 historias B1 (mig 125, commit pendiente):** fr «L'appartement de Karim» (buscar piso en Lyon), it «Il
