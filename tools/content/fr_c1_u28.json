@@ -1,0 +1,52 @@
+{
+  "unit": {"order": 28, "title_es": "Expresiones idiomáticas y registro", "color": "#E17055", "icon": "theater_comedy"},
+  "checkpoint_desc": "Demuestra que entiendes expresiones idiomáticas frecuentes, distingues registro soutenu/courant/familier y reconoces locuciones verbales y proverbios franceses.",
+  "lessons": [
+    {"order": 1, "title_es": "Expresiones idiomáticas y su sentido"},
+    {"order": 2, "title_es": "Más expresiones imagées"},
+    {"order": 3, "title_es": "Registro: soutenu, courant, familier"},
+    {"order": 4, "title_es": "Locuciones verbales y proverbios"}
+  ],
+  "vocab": [
+    ["tomber dans les pommes", "desmayarse", "idiom"],
+    ["avoir le cafard", "estar deprimido / tener morriña", "idiom"],
+    ["poser un lapin", "dejar plantado a alguien", "idiom"],
+    ["coûter les yeux de la tête", "costar un ojo de la cara", "idiom"],
+    ["mettre les pieds dans le plat", "meter la pata / hablar sin tacto", "idiom"],
+    ["tirer son épingle du jeu", "salir bien parado / librarse con habilidad", "idiom"],
+    ["avoir d'autres chats à fouetter", "tener cosas más importantes que hacer", "idiom"],
+    ["être à côté de la plaque", "estar equivocado / no dar una", "idiom"],
+    ["en avoir ras-le-bol", "estar hasta las narices", "familier"],
+    ["se casser", "largarse / pirarse", "familier"],
+    ["être épuisé", "estar agotado", "soutenu"],
+    ["être las", "estar hastiado / cansado", "soutenu"],
+    ["s'en aller", "marcharse", "soutenu"],
+    ["il n'y a pas de fumée sans feu", "cuando el río suena, agua lleva", "proverbe"],
+    ["petit à petit, l'oiseau fait son nid", "poco a poco se hace todo", "proverbe"],
+    ["une locution", "una locución / un giro fijo", "n"]
+  ],
+  "items": [
+    {"lesson": 1, "topic": "idiomes_courants_sens", "skill": "reading", "type": "multiple_choice", "prompt": "¿Qué significa la expresión en «En apprenant la nouvelle, elle est tombée dans les pommes»?", "options": ["Se desmayó de la impresión.", "Se echó a reír.", "Se puso a cocinar."], "value": "Se desmayó de la impresión."},
+    {"lesson": 1, "topic": "idiomes_courants_sens", "skill": "reading", "type": "match", "prompt": "Empareja cada expresión idiomática con su sentido:", "pairs": [["avoir le cafard", "estar deprimido"], ["poser un lapin", "dejar plantado a alguien"], ["coûter les yeux de la tête", "ser carísimo"]]},
+    {"lesson": 1, "topic": "idiomes_courants_sens", "skill": "writing", "type": "cloze", "prompt": "Completa la expresión (dejar plantado a alguien): «Il m'avait donné rendez-vous, mais il m'a posé un ___.»", "text": "Il m'avait donné rendez-vous, mais il m'a posé un ___.", "value": "lapin", "accepted": ["lapin", "lapin."]},
+    {"lesson": 1, "topic": "idiomes_courants_sens", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Ce sac de luxe coûte les yeux de la tête.", "options": ["Ce sac de luxe coûte les yeux de la tête.", "Ce sac de luxe coûte trois fois rien.", "Ce sac de luxe traîne dans la vitrine."], "value": "Ce sac de luxe coûte les yeux de la tête."},
+    {"lesson": 1, "topic": "idiomes_courants_sens", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Depuis son départ, elle a le cafard et n'a envie de rien."},
+
+    {"lesson": 2, "topic": "idiomes_imagees", "skill": "reading", "type": "multiple_choice", "prompt": "¿Qué quiere decir «mettre les pieds dans le plat»?", "options": ["Cometer una torpeza o hablar sin tacto.", "Cocinar con esmero.", "Llegar puntual a la cita."], "value": "Cometer una torpeza o hablar sin tacto."},
+    {"lesson": 2, "topic": "idiomes_imagees", "skill": "writing", "type": "word_bank", "prompt": "Construye la expresión que significa «tener cosas más importantes que hacer»: «avoir d'autres chats à fouetter».", "tiles": ["avoir", "d'autres", "chats", "à", "fouetter", "poissons", "manger"], "sequence": ["avoir", "d'autres", "chats", "à", "fouetter"]},
+    {"lesson": 2, "topic": "idiomes_imagees", "skill": "writing", "type": "translation", "prompt": "Traduce con una expresión idiomática natural: «A pesar de la crisis, ha sabido salir bien parado.»", "source": "A pesar de la crisis, ha sabido salir bien parado.", "value": "Malgré la crise, il a su tirer son épingle du jeu.", "accepted": ["Malgré la crise, il a su tirer son épingle du jeu.", "Malgré la crise, il a su tirer son épingle du jeu", "malgré la crise, il a su tirer son épingle du jeu."]},
+    {"lesson": 2, "topic": "idiomes_imagees", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "En pleine réunion, il a mis les pieds dans le plat.", "options": ["En pleine réunion, il a mis les pieds dans le plat.", "En pleine réunion, il a gardé le silence prudent.", "En pleine réunion, il a proposé un bon compromis."], "value": "En pleine réunion, il a mis les pieds dans le plat."},
+
+    {"lesson": 3, "topic": "registre_niveaux", "skill": "reading", "type": "multiple_choice", "prompt": "¿Cuál es la variante SOUTENUE (culta) de «je suis crevé»?", "options": ["je suis épuisé", "je suis crevé", "je suis naze"], "value": "je suis épuisé"},
+    {"lesson": 3, "topic": "registre_niveaux", "skill": "reading", "type": "match", "prompt": "Empareja cada verbo con su registro (mismo sentido: 'marcharse'):", "pairs": [["s'en aller", "soutenu"], ["partir", "courant"], ["se casser", "familier"]]},
+    {"lesson": 3, "topic": "registre_niveaux", "skill": "writing", "type": "cloze", "prompt": "Reformula en registro SOUTENU (sinónimo culto de «fatigué», empieza por é): «Après cette longue journée, je suis ___.»", "text": "Après cette longue journée, je suis ___.", "value": "épuisé", "accepted": ["épuisé", "épuisé.", "las", "las."]},
+    {"lesson": 3, "topic": "registre_niveaux", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Je vous prie de m'excuser, je dois m'en aller.", "options": ["Je vous prie de m'excuser, je dois m'en aller.", "Je vous jure que je ne vais pas rester.", "Je vous promets que je vais bientôt revenir."], "value": "Je vous prie de m'excuser, je dois m'en aller."},
+    {"lesson": 3, "topic": "registre_niveaux", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "En langage soutenu, on dira « je suis las » plutôt que « je suis crevé »."},
+
+    {"lesson": 4, "topic": "locutions_proverbes", "skill": "reading", "type": "multiple_choice", "prompt": "¿Qué idea transmite el proverbio «Il n'y a pas de fumée sans feu»?", "options": ["Todo rumor suele tener algún fundamento.", "El fuego siempre acaba apagándose.", "Nunca hay que fiarse de las apariencias."], "value": "Todo rumor suele tener algún fundamento."},
+    {"lesson": 4, "topic": "locutions_proverbes", "skill": "writing", "type": "word_bank", "prompt": "Reconstruye el proverbio que significa «cuando el río suena, agua lleva»: «Il n'y a pas de fumée sans feu».", "tiles": ["Il", "n'y", "a", "pas", "de", "fumée", "sans", "feu", "flamme", "vent"], "sequence": ["Il", "n'y", "a", "pas", "de", "fumée", "sans", "feu"]},
+    {"lesson": 4, "topic": "locutions_proverbes", "skill": "writing", "type": "translation", "prompt": "Traduce el proverbio: «Poco a poco se hace todo.» (usa el proverbio francés del pájaro y su nido)", "source": "Poco a poco se hace todo.", "value": "Petit à petit, l'oiseau fait son nid.", "accepted": ["Petit à petit, l'oiseau fait son nid.", "Petit à petit, l'oiseau fait son nid", "petit à petit, l'oiseau fait son nid."]},
+    {"lesson": 4, "topic": "locutions_proverbes", "skill": "listening", "type": "listening", "prompt": "Escucha y elige la frase que oíste.", "say": "Comme on dit, il n'y a pas de fumée sans feu.", "options": ["Comme on dit, il n'y a pas de fumée sans feu.", "Comme on dit, chaque médaille a son revers.", "Comme on dit, mieux vaut tard que jamais."], "value": "Comme on dit, il n'y a pas de fumée sans feu."},
+    {"lesson": 4, "topic": "locutions_proverbes", "skill": "speaking", "type": "speaking_read_aloud", "prompt": "Lee en voz alta:", "read": "Comme dit le proverbe, petit à petit, l'oiseau fait son nid."}
+  ]
+}

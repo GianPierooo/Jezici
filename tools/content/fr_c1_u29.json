@@ -1,0 +1,241 @@
+{
+  "unit": {
+    "order": 29,
+    "title_es": "Hipótesis y modalidad avanzada",
+    "color": "#8E44AD",
+    "icon": "psychology_alt"
+  },
+  "checkpoint_desc": "Demuestra que manejas la hipótesis y la modalidad a nivel C1: encadenas subordinadas hipotéticas cultas (à supposer que + subj, pour peu que + subj, à moins que… ne + subj, en admettant que + subj), usas «au cas où» + condicional y «quitte à» + infinitivo, reconoces el condicional periodístico de la información no confirmada (Le président aurait déclaré…), matizas la modalidad entre probabilidad y obligación (il se peut que, il n'est pas exclu que, force est de reconnaître) y aplicas el subjuntivo del registro soutenu tras «le seul/le premier/il n'y a que… qui».",
+  "lessons": [
+    { "order": 1, "title_es": "Subordinadas hipotéticas cultas (à supposer que, pour peu que, à moins que… ne)" },
+    { "order": 2, "title_es": "Au cas où + condicional · quitte à · condicional periodístico" },
+    { "order": 3, "title_es": "Modalidad matizada: il se peut que, il n'est pas exclu que, force est de reconnaître" },
+    { "order": 4, "title_es": "Subjuntivo soutenu tras le seul / le premier / il n'y a que… qui" }
+  ],
+  "vocab": [
+    ["à supposer que", "suponiendo que (+ subj)", "expr"],
+    ["pour peu que", "por poco que, con solo que (+ subj)", "expr"],
+    ["à moins que", "a menos que (+ ne + subj)", "expr"],
+    ["en admettant que", "admitiendo que, aun suponiendo que (+ subj)", "expr"],
+    ["quitte à", "aun a riesgo de, aunque haya que (+ inf)", "expr"],
+    ["au cas où", "por si (acaso) (+ condicional)", "expr"],
+    ["il se peut que", "puede que, es posible que (+ subj)", "expr"],
+    ["il n'est pas exclu que", "no se descarta que (+ subj)", "expr"],
+    ["force est de reconnaître", "hay que reconocer, es forzoso admitir", "expr"],
+    ["le conditionnel journalistique", "el condicional periodístico (info no confirmada)", "n"],
+    ["une hypothèse", "una hipótesis", "n"],
+    ["vraisemblable", "verosímil, probable", "adj"],
+    ["à moins d'un imprévu", "salvo imprevisto", "expr"],
+    ["il n'y a que", "solo, no hay más que (+ subj tras qui)", "expr"],
+    ["à condition que", "a condición de que (+ subj)", "expr"],
+    ["une éventualité", "una eventualidad, una posibilidad", "n"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "hypothese_conjonctions_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada conjunción hipotética culta con el matiz que introduce.",
+      "pairs": [
+        ["à supposer que", "suposición para razonar sobre una hipótesis"],
+        ["pour peu que", "con que se dé apenas una condición mínima"],
+        ["à moins que", "salvo que se cumpla una condición que lo impida"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "hypothese_a_supposer_que_subj",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«À supposer que» exige subjuntivo. Elige la forma correcta: «À supposer que le projet ___ accepté, il faudra le financer.»",
+      "options": ["soit", "sera", "est"],
+      "value": "soit"
+    },
+    {
+      "lesson": 1,
+      "topic": "hypothese_pour_peu_que_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "«Pour peu que» rige subjuntivo. Completa con el subjuntivo presente de «faire» (3ª pers. sing.): «Pour peu qu'il ___ un effort, il réussira.»",
+      "text": "Pour peu qu'il ___ un effort, il réussira.",
+      "value": "fasse",
+      "accepted": ["fasse"]
+    },
+    {
+      "lesson": 1,
+      "topic": "hypothese_a_moins_que_ne_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Je n'irai pas à la réunion, à moins que tu ne me le demandes expressément.",
+      "options": [
+        "Je n'irai pas à la réunion, à moins que tu ne me le demandes expressément.",
+        "Je passerai à la boutique après le travail pour récupérer ton colis.",
+        "Nous garderons cette décision confidentielle jusqu'au vote de vendredi."
+      ],
+      "value": "Je n'irai pas à la réunion, à moins que tu ne me le demandes expressément."
+    },
+    {
+      "lesson": 1,
+      "topic": "hypothese_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Pour peu que le temps le permette, nous partirons à l'aube, à moins qu'un imprévu ne survienne."
+    },
+    {
+      "lesson": 2,
+      "topic": "au_cas_ou_conditionnel_reading",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Au cas où» se construye con condicional, no con subjuntivo ni futuro. Elige la forma correcta: «Prends un parapluie au cas où il ___.»",
+      "options": ["pleuvrait", "pleuve", "pleuvra"],
+      "value": "pleuvrait"
+    },
+    {
+      "lesson": 2,
+      "topic": "quitte_a_infinitif_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "«Quitte à» va seguido de infinitivo. Completa con el infinitivo de «attendre»: «Je préfère vérifier, quitte à ___ une heure de plus.»",
+      "text": "Je préfère vérifier, quitte à ___ une heure de plus.",
+      "value": "attendre",
+      "accepted": ["attendre"]
+    },
+    {
+      "lesson": 2,
+      "topic": "conditionnel_journalistique_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "El condicional periodístico marca información no confirmada. Relaciona cada titular con lo que implica.",
+      "pairs": [
+        ["Le président aurait déclaré…", "se atribuye la declaración, no está confirmada"],
+        ["Le bilan s'élèverait à dix morts", "cifra provisional, aún sin verificar"],
+        ["Les négociations auraient échoué", "el fracaso se rumorea, sin confirmación oficial"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "conditionnel_journalistique_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "D'après nos sources, l'accord aurait été signé dans la nuit.",
+      "options": [
+        "D'après nos sources, l'accord aurait été signé dans la nuit.",
+        "Selon le communiqué, le contrat sera résilié dès demain matin.",
+        "Contre toute attente, la réunion a été reportée à la semaine prochaine."
+      ],
+      "value": "D'après nos sources, l'accord aurait été signé dans la nuit."
+    },
+    {
+      "lesson": 2,
+      "topic": "au_cas_ou_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Je te laisse mon numéro au cas où tu aurais besoin d'aide, quitte à me réveiller en pleine nuit."
+    },
+    {
+      "lesson": 3,
+      "topic": "modalite_il_se_peut_que_reading",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Il se peut que» expresa posibilidad y exige subjuntivo. Elige la forma correcta: «Il se peut qu'elle ___ en retard à cause du trafic.»",
+      "options": ["soit", "sera", "était"],
+      "value": "soit"
+    },
+    {
+      "lesson": 3,
+      "topic": "modalite_devoir_probabilite_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Un mismo modal cambia de sentido según el contexto. Relaciona cada frase con su matiz.",
+      "pairs": [
+        ["Il doit être malade, il est tout pâle", "devoir de probabilidad: deducción casi segura"],
+        ["Tu dois rendre le dossier avant midi", "devoir de obligación: es obligatorio"],
+        ["Elle peut avoir oublié le rendez-vous", "pouvoir de posibilidad: quizá haya ocurrido"]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "modalite_il_nest_pas_exclu_que_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "«Il n'est pas exclu que» rige subjuntivo. Completa con el subjuntivo presente de «avoir» (3ª pers. sing.): «Il n'est pas exclu qu'il ___ raison sur ce point.»",
+      "text": "Il n'est pas exclu qu'il ___ raison sur ce point.",
+      "value": "ait",
+      "accepted": ["ait"]
+    },
+    {
+      "lesson": 3,
+      "topic": "modalite_force_est_de_reconnaitre_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce con la fórmula soutenue «force est de reconnaître que» (hay que reconocer que): «Hay que reconocer que el resultado nos sorprendió.»",
+      "source": "Hay que reconocer que el resultado nos sorprendió.",
+      "value": "Force est de reconnaître que le résultat nous a surpris.",
+      "accepted": [
+        "Force est de reconnaître que le résultat nous a surpris",
+        "Force est de reconnaître que le résultat nous a surpris.",
+        "force est de reconnaître que le résultat nous a surpris"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "modalite_il_se_peut_que_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Il se peut que nous devions reporter la conférence à une date ultérieure.",
+      "options": [
+        "Il se peut que nous devions reporter la conférence à une date ultérieure.",
+        "Il est certain que nous allons maintenir la conférence à la date prévue.",
+        "Il paraît que nous avons annulé la conférence sans prévenir personne."
+      ],
+      "value": "Il se peut que nous devions reporter la conférence à une date ultérieure."
+    },
+    {
+      "lesson": 4,
+      "topic": "subjonctif_soutenu_le_seul_qui_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "C'est le seul argument qui soit vraiment convaincant dans tout le dossier.",
+      "options": [
+        "C'est le seul argument qui soit vraiment convaincant dans tout le dossier.",
+        "Voici le dernier chapitre que nous devons relire avant la publication.",
+        "Il reste plusieurs objections auxquelles personne n'a encore répondu."
+      ],
+      "value": "C'est le seul argument qui soit vraiment convaincant dans tout le dossier."
+    },
+    {
+      "lesson": 4,
+      "topic": "subjonctif_soutenu_il_ny_a_que_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Tras «il n'y a que… qui» el registro soutenu pide subjuntivo. Completa con el subjuntivo presente de «pouvoir» (3ª pers. sing.): «Il n'y a que lui qui ___ résoudre ce problème.»",
+      "text": "Il n'y a que lui qui ___ résoudre ce problème.",
+      "value": "puisse",
+      "accepted": ["puisse"]
+    },
+    {
+      "lesson": 4,
+      "topic": "subjonctif_soutenu_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar: «C'est le premier candidat qui sache vraiment écouter.»",
+      "tiles": ["le premier", "C'est", "candidat", "vraiment", "qui sache", "écouter", "qui sait"],
+      "sequence": ["C'est", "le premier", "candidat", "qui sache", "vraiment", "écouter"]
+    },
+    {
+      "lesson": 4,
+      "topic": "subjonctif_soutenu_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "C'est le seul projet qui vaille la peine, à supposer même que le budget soit approuvé."
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "unit": {
+    "order": 26,
+    "title_es": "Argumentar y persuadir (conectores de argumentación)",
+    "color": "#00B894",
+    "icon": "forum"
+  },
+  "checkpoint_desc": "Articula una argumentación culta en francés: matiza con concesión/oposición C1 (néanmoins, quand bien même, avoir beau), encadena causa y consecuencia (dans la mesure où, si bien que), organiza el discurso (force est de constater que, il n'en demeure pas moins que) y reformula o concluye (en somme, en définitive).",
+  "lessons": [
+    {"order": 1, "title_es": "Concesión y oposición (néanmoins, quand bien même, avoir beau)"},
+    {"order": 2, "title_es": "Causa y consecuencia culta (dans la mesure où, si bien que, faute de)"},
+    {"order": 3, "title_es": "Articular el discurso (force est de constater, il n'en demeure pas moins)"},
+    {"order": 4, "title_es": "Reformular y concluir (en somme, autrement dit, en définitive)"}
+  ],
+  "vocab": [
+    ["néanmoins", "no obstante, sin embargo", "conector"],
+    ["en revanche", "en cambio, por el contrario", "conector"],
+    ["quand bien même", "aun cuando, incluso si", "conector"],
+    ["avoir beau", "por más que, por mucho que", "expr"],
+    ["quoique", "aunque, si bien", "conj"],
+    ["certes… mais", "cierto es que… pero", "expr"],
+    ["dans la mesure où", "en la medida en que", "conector"],
+    ["étant donné que", "dado que, puesto que", "conector"],
+    ["si bien que", "de modo que, tanto que", "conector"],
+    ["au point que", "hasta el punto de que", "conector"],
+    ["faute de", "a falta de, por falta de", "prep"],
+    ["force est de constater que", "no hay más remedio que constatar que", "expr"],
+    ["il n'en demeure pas moins que", "no por ello deja de ser cierto que", "expr"],
+    ["à cet égard", "a este respecto, en este sentido", "expr"],
+    ["autrement dit", "dicho de otro modo, es decir", "conector"],
+    ["en définitive", "en definitiva, en última instancia", "conector"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "concession_neanmoins",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Registro culto de concesión. Elige el conector que introduce una objeción tras admitir un hecho: «Le projet est coûteux; ___, il pourrait s'avérer indispensable.»",
+      "options": ["néanmoins", "car", "en effet"],
+      "value": "néanmoins"
+    },
+    {
+      "lesson": 1,
+      "topic": "concession_avoir_beau",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada estructura concesiva con su valor.",
+      "pairs": [
+        ["avoir beau + infinitif", "por más que uno haga algo, el resultado no cambia"],
+        ["quand bien même + conditionnel", "aun cuando (hipótesis extrema)"],
+        ["certes… mais", "concede un punto y luego lo rebate"],
+        ["en revanche", "opone dos hechos por contraste"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "concession_quand_bien_meme_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Concesión hipotética con conditionnel: «___ ___ ___ il présenterait des preuves, je resterais sceptique.» (aun cuando presentara pruebas)",
+      "text": "___ ___ ___ il présenterait des preuves, je resterais sceptique.",
+      "value": "Quand bien même",
+      "accepted": ["Quand bien même", "quand bien même"]
+    },
+    {
+      "lesson": 1,
+      "topic": "concession_avoir_beau_wordbank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena (concesión con «avoir beau»): «Por más que repita el argumento, no convence a nadie.»",
+      "tiles": ["Il", "a", "beau", "répéter", "l'argument", "il", "ne", "convainc", "personne", "bien", "que", "quoique"],
+      "sequence": ["Il", "a", "beau", "répéter", "l'argument", "il", "ne", "convainc", "personne"]
+    },
+    {
+      "lesson": 1,
+      "topic": "concession_neanmoins_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ses arguments sont solides; néanmoins, la conclusion demeure contestable.",
+      "options": [
+        "Ses arguments sont solides; néanmoins, la conclusion demeure contestable.",
+        "Ses arguments sont fragiles; par conséquent, la conclusion est établie.",
+        "Ses arguments sont solides; en effet, la conclusion est incontestable."
+      ],
+      "value": "Ses arguments sont solides; néanmoins, la conclusion demeure contestable."
+    },
+    {
+      "lesson": 1,
+      "topic": "concession_avoir_beau_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Vous avez beau multiplier les exemples, quand bien même ils seraient exacts, ils ne prouveraient rien."
+    },
+    {
+      "lesson": 2,
+      "topic": "cause_dans_la_mesure_ou",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Causa culta y proporcional. Elige la locución que significa «en la medida en que»: «Sa thèse tient ___ les données restent fiables.»",
+      "options": ["dans la mesure où", "à moins que", "de peur que"],
+      "value": "dans la mesure où"
+    },
+    {
+      "lesson": 2,
+      "topic": "cause_consequence_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada conector con su valor lógico.",
+      "pairs": [
+        ["étant donné que", "presenta una causa como dada/aceptada"],
+        ["si bien que", "introduce la consecuencia lógica"],
+        ["au point que", "consecuencia con idea de intensidad"],
+        ["faute de", "consecuencia por ausencia de algo"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "cause_si_bien_que_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Consecuencia lógica (locución de dos elementos): «Les coûts ont explosé, ___ ___ ___ le projet a été abandonné.»",
+      "text": "Les coûts ont explosé, ___ ___ ___ le projet a été abandonné.",
+      "value": "si bien que",
+      "accepted": ["si bien que"]
+    },
+    {
+      "lesson": 2,
+      "topic": "cause_faute_de_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce (causa por ausencia, con «faute de»): «A falta de pruebas convincentes, el jurado desestimó la demanda.»",
+      "source": "A falta de pruebas convincentes, el jurado desestimó la demanda.",
+      "value": "Faute de preuves convaincantes, le jury a rejeté la demande.",
+      "accepted": [
+        "Faute de preuves convaincantes, le jury a rejeté la demande.",
+        "Faute de preuves convaincantes, le jury a rejeté la demande",
+        "Faute de preuves convaincantes le jury a rejeté la demande."
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "cause_au_point_que_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "La demande a chuté au point que l'usine a dû fermer ses portes.",
+      "options": [
+        "La demande a chuté au point que l'usine a dû fermer ses portes.",
+        "La demande a grimpé de sorte que l'usine a dû ouvrir ses portes.",
+        "La demande a chuté avant que l'usine ne ferme ses portes."
+      ],
+      "value": "La demande a chuté au point que l'usine a dû fermer ses portes."
+    },
+    {
+      "lesson": 3,
+      "topic": "articulateur_force_est_de_constater",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Fórmula de constatación culta. Elige la que significa «no hay más remedio que reconocer que»:",
+      "options": ["force est de constater que", "il se peut que", "à supposer que"],
+      "value": "force est de constater que"
+    },
+    {
+      "lesson": 3,
+      "topic": "articulateur_d_une_part_wordbank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena (articulación del discurso): «Por una parte el coste, por otra parte el plazo, todo lo desaconseja.»",
+      "tiles": ["D'une", "part", "le", "coût", "d'autre", "part", "le", "délai", "tout", "le", "déconseille", "quoique", "ainsi"],
+      "sequence": ["D'une", "part", "le", "coût", "d'autre", "part", "le", "délai", "tout", "le", "déconseille"]
+    },
+    {
+      "lesson": 3,
+      "topic": "articulateur_il_n_en_demeure_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce (concesión formal con «il n'en demeure pas moins que»): «El método tiene límites; no por ello deja de ser el más fiable.»",
+      "source": "El método tiene límites; no por ello deja de ser el más fiable.",
+      "value": "La méthode a des limites; il n'en demeure pas moins qu'elle est la plus fiable.",
+      "accepted": [
+        "La méthode a des limites; il n'en demeure pas moins qu'elle est la plus fiable.",
+        "La méthode a des limites; il n'en demeure pas moins qu'elle est la plus fiable",
+        "La méthode a des limites; il n'en demeure pas moins qu'elle reste la plus fiable."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "articulateur_a_cet_egard_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "À cet égard, force est de constater que les critiques manquent leur cible.",
+      "options": [
+        "À cet égard, force est de constater que les critiques manquent leur cible.",
+        "À cet effet, il est permis de penser que les critiques atteignent leur cible.",
+        "À ce propos, force est d'admettre que les critiques restent silencieuses."
+      ],
+      "value": "À cet égard, force est de constater que les critiques manquent leur cible."
+    },
+    {
+      "lesson": 3,
+      "topic": "articulateur_force_est_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Force est de constater que, malgré les objections soulevées, il n'en demeure pas moins que la mesure s'impose."
+    },
+    {
+      "lesson": 4,
+      "topic": "reformulation_autrement_dit",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Reformulación. Elige la locución que reformula lo dicho en otros términos: «Le rendement a baissé; ___, l'entreprise perd de l'argent.»",
+      "options": ["autrement dit", "en dépit de", "au cas où"],
+      "value": "autrement dit"
+    },
+    {
+      "lesson": 4,
+      "topic": "reformulation_en_definitive_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "En définitive, aucun des arguments avancés ne résiste à un examen sérieux.",
+      "options": [
+        "En définitive, aucun des arguments avancés ne résiste à un examen sérieux.",
+        "En principe, chacun des arguments avancés résiste à un examen sérieux.",
+        "En définitive, aucun des arguments proposés ne mérite un examen sérieux."
+      ],
+      "value": "En définitive, aucun des arguments avancés ne résiste à un examen sérieux."
+    },
+    {
+      "lesson": 4,
+      "topic": "reformulation_en_somme_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "En somme, certes le raisonnement séduit, mais en définitive il repose sur une prémisse fragile."
+    }
+  ]
+}

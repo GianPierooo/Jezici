@@ -1,0 +1,245 @@
+{
+  "unit": {
+    "order": 27,
+    "title_es": "Énfasis, puesta de relieve e inferencia",
+    "color": "#7D3C98",
+    "icon": "format_quote"
+  },
+  "checkpoint_desc": "Demuestra que dominas la mise en relief avanzada (c'est… que/qui, ce qui/ce que/ce dont… c'est, ce à quoi, si… c'est que), la dislocation (Moi, je…; Ce livre, je l'ai adoré), la inversion stylistique (Peut-être a-t-il raison; À peine était-il arrivé que…; Ainsi va la vie), la négation soutenue (ne… guère, ne… point, ne… nullement) y la inferencia/sobreentendido (litote «ce n'est pas mauvais», eufemismo, presupuesto).",
+  "lessons": [
+    { "order": 1, "title_es": "Mise en relief: c'est… que, ce dont… c'est, ce à quoi" },
+    { "order": 2, "title_es": "Dislocation: Moi, je…; Ce livre, je l'ai adoré" },
+    { "order": 3, "title_es": "Inversion stylistique: peut-être, à peine… que, ainsi" },
+    { "order": 4, "title_es": "Litote, euphémisme y négation soutenue" }
+  ],
+  "vocab": [
+    ["la mise en relief", "la puesta de relieve", "n"],
+    ["ce dont il s'agit", "de lo que se trata", "expr"],
+    ["ce à quoi je pense", "aquello en lo que pienso", "expr"],
+    ["souligner", "subrayar, recalcar", "v"],
+    ["la dislocation", "la dislocación (topicalización)", "n"],
+    ["quant à moi", "en cuanto a mí", "expr"],
+    ["à peine… que", "apenas… cuando", "expr"],
+    ["peut-être", "quizá, tal vez", "adv"],
+    ["ainsi", "así, de este modo", "adv"],
+    ["la litote", "la lítote (atenuación)", "n"],
+    ["l'euphémisme", "el eufemismo", "n"],
+    ["le sous-entendu", "el sobreentendido", "n"],
+    ["le présupposé", "el presupuesto (implícito)", "n"],
+    ["ne… guère", "apenas, casi nada", "expr"],
+    ["ne… point", "en absoluto, para nada", "expr"],
+    ["ne… nullement", "de ningún modo", "expr"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "mise_en_relief_cest_que_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada frase de puesta de relieve con su traducción.",
+      "pairs": [
+        ["Ce dont j'ai besoin, c'est de temps.", "Lo que necesito es tiempo."],
+        ["Ce à quoi je pense, c'est à l'avenir.", "En lo que pienso es en el futuro."],
+        ["C'est à lui que je parle.", "Es a él a quien hablo."]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "mise_en_relief_ce_dont_cest",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Pone de relieve un complemento introducido por «de» (avoir besoin DE liberté): «___, c'est de liberté.»",
+      "options": [
+        "Ce dont j'ai besoin",
+        "Ce que j'ai besoin",
+        "Ce à quoi j'ai besoin"
+      ],
+      "value": "Ce dont j'ai besoin"
+    },
+    {
+      "lesson": 1,
+      "topic": "mise_en_relief_ce_a_quoi_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Puesta de relieve de un complemento con «à» (penser À qqch): «Ce ___ quoi je pense, c'est à mon avenir.»",
+      "text": "Ce ___ quoi je pense, c'est à mon avenir.",
+      "value": "à",
+      "accepted": ["à"]
+    },
+    {
+      "lesson": 1,
+      "topic": "mise_en_relief_si_cest_que_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Si je me tais, c'est que je ne suis nullement d'accord; et ce dont il s'agit ici, c'est de principes."
+    },
+    {
+      "lesson": 1,
+      "topic": "mise_en_relief_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ce qui me frappe, c'est son immense talent.",
+      "options": [
+        "Ce qui me frappe, c'est son immense talent.",
+        "Ce que je préfère, c'est son ancien travail.",
+        "Ce dont je doute, c'est de son vrai talent."
+      ],
+      "value": "Ce qui me frappe, c'est son immense talent."
+    },
+    {
+      "lesson": 2,
+      "topic": "dislocation_pronom_reprise",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Disloca el complemento «ce livre» retomándolo con el pronombre adecuado: «Ce livre, je ___ ai adoré.»",
+      "options": ["l'", "lui", "en"],
+      "value": "l'"
+    },
+    {
+      "lesson": 2,
+      "topic": "dislocation_moi_je_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Dislocación del sujeto con pronombre tónico enfático (yo, por mi parte): «___, je préfère rester ici.»",
+      "text": "___, je préfère rester ici.",
+      "value": "Moi",
+      "accepted": ["Moi", "moi"]
+    },
+    {
+      "lesson": 2,
+      "topic": "dislocation_quant_a_moi_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Quant à moi, cette histoire, je ne veux plus en entendre parler.",
+      "options": [
+        "Quant à moi, cette histoire, je ne veux plus en entendre parler.",
+        "Pour ma part, ce projet, je préfère ne pas m'en mêler.",
+        "Quant à lui, cette affaire, il refuse d'en discuter."
+      ],
+      "value": "Quant à moi, cette histoire, je ne veux plus en entendre parler."
+    },
+    {
+      "lesson": 2,
+      "topic": "dislocation_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Arma la frase dislocada: «Esa película, la vi el año pasado.»",
+      "tiles": ["Ce", "film", "je", "l'ai", "vu", "l'an", "dernier", "en", "lui"],
+      "sequence": ["Ce", "film", "je", "l'ai", "vu", "l'an", "dernier"]
+    },
+    {
+      "lesson": 2,
+      "topic": "dislocation_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Moi, ce genre de discours, je ne le supporte guère; toi, en revanche, tu sembles y croire."
+    },
+    {
+      "lesson": 3,
+      "topic": "inversion_peut_etre_reading",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Coloca «peut-être» al inicio con inversión sujeto-verbo (registro culto): «Peut-être ___ raison, après tout.»",
+      "options": [
+        "a-t-il",
+        "il a",
+        "qu'il a"
+      ],
+      "value": "a-t-il"
+    },
+    {
+      "lesson": 3,
+      "topic": "inversion_a_peine_que_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa la conjunción que cierra la estructura «À peine… ___» (apenas… cuando): «À peine était-il arrivé ___ le téléphone sonna.»",
+      "text": "À peine était-il arrivé ___ le téléphone sonna.",
+      "value": "que",
+      "accepted": ["que"]
+    },
+    {
+      "lesson": 3,
+      "topic": "inversion_ainsi_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada frase con inversion stylistique con su traducción.",
+      "pairs": [
+        ["Ainsi va la vie.", "Así es la vida."],
+        ["Peut-être avez-vous raison.", "Quizá tenga usted razón."],
+        ["À peine fut-il parti qu'elle pleura.", "Apenas se marchó, ella lloró."]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "inversion_reorder",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena la frase con inversión estilística tras «sans doute».",
+      "tiles": ["a-t-elle", "Sans", "oublié", "doute", "notre", "rendez-vous", "elle"],
+      "sequence": ["Sans", "doute", "a-t-elle", "oublié", "notre", "rendez-vous"]
+    },
+    {
+      "lesson": 3,
+      "topic": "inversion_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "À peine avait-il fini de parler que la salle applaudit.",
+      "options": [
+        "À peine avait-il fini de parler que la salle applaudit.",
+        "Aussitôt qu'il eut fini de parler, la salle se leva.",
+        "À peine avait-elle commencé que la salle se tut."
+      ],
+      "value": "À peine avait-il fini de parler que la salle applaudit."
+    },
+    {
+      "lesson": 4,
+      "topic": "litote_inference_reading",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Lee la litote: «Ce n'est pas mauvais, ton travail.» ¿Qué quiere decir realmente el hablante?",
+      "options": [
+        "que está bastante bien",
+        "que es un desastre",
+        "que le da igual"
+      ],
+      "value": "que está bastante bien"
+    },
+    {
+      "lesson": 4,
+      "topic": "negation_soutenue_guere_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Negación de registro culto que significa «casi nada» (ne… ___): «Cette nouvelle ne me surprend ___.»",
+      "text": "Cette nouvelle ne me surprend ___.",
+      "value": "guère",
+      "accepted": ["guère", "guere"]
+    },
+    {
+      "lesson": 4,
+      "topic": "euphemisme_litote_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ce n'est pas tout à fait faux, mais ce n'est point brillant non plus.",
+      "options": [
+        "Ce n'est pas tout à fait faux, mais ce n'est point brillant non plus.",
+        "Ce n'est pas vraiment vrai, et ce n'est guère utile non plus.",
+        "Ce n'est nullement faux, mais ce n'est pas si brillant."
+      ],
+      "value": "Ce n'est pas tout à fait faux, mais ce n'est point brillant non plus."
+    },
+    {
+      "lesson": 4,
+      "topic": "negation_soutenue_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Je ne suis nullement opposé à votre idée; disons simplement qu'elle ne me convainc guère pour l'instant."
+    }
+  ]
+}

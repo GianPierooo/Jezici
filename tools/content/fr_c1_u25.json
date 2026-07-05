@@ -1,0 +1,242 @@
+{
+  "unit": {
+    "order": 25,
+    "title_es": "Precisión y matiz léxico: el mot juste",
+    "color": "#6C3483",
+    "icon": "auto_stories"
+  },
+  "checkpoint_desc": "Demuestra que eliges el mot juste a nivel C1: distingues sinónimos finos y sus connotaciones (habitation/logement/domicile/foyer, regarder/observer/scruter/contempler, adorer/apprécier/aimer), dominas las colocaciones verbo+sustantivo (prendre une décision, tirer une conclusion, nourrir un espoir), adaptas el registro (soutenu/courant/familier: automobile/voiture/bagnole) y evitas errores de precisión (davantage vs plus, an vs année, jour vs journée).",
+  "lessons": [
+    { "order": 1, "title_es": "Sinónimos finos y sus matices (habitation, regarder, aimer…)" },
+    { "order": 2, "title_es": "Colocaciones verbo + sustantivo (prendre une décision, tirer une conclusion)" },
+    { "order": 3, "title_es": "Registros: soutenu, courant, familier" },
+    { "order": 4, "title_es": "Precisión: davantage/plus, an/année, jour/journée y expresiones fijas" }
+  ],
+  "vocab": [
+    ["le logement", "la vivienda (unidad habitable)", "n"],
+    ["le domicile", "el domicilio (dirección oficial)", "n"],
+    ["le foyer", "el hogar (afectivo)", "n"],
+    ["scruter", "escrutar, escudriñar", "v"],
+    ["contempler", "contemplar", "v"],
+    ["apprécier", "apreciar, valorar", "v"],
+    ["nourrir un espoir", "albergar una esperanza", "expr"],
+    ["tirer une conclusion", "sacar una conclusión", "expr"],
+    ["prendre une décision", "tomar una decisión", "expr"],
+    ["formuler une hypothèse", "formular una hipótesis", "expr"],
+    ["soutenu", "elevado, culto (registro)", "adj"],
+    ["familier", "coloquial, familiar (registro)", "adj"],
+    ["la bagnole", "el coche (coloquial)", "n"],
+    ["davantage", "más (en mayor cantidad)", "adv"],
+    ["une nuance", "un matiz", "n"],
+    ["une connotation", "una connotación", "n"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "synonymes_habitation_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada término con el matiz que aporta. Fíjate en la connotación de cada uno.",
+      "pairs": [
+        ["le domicile", "la dirección oficial, término administrativo"],
+        ["le foyer", "el hogar visto con afecto, la familia"],
+        ["le logement", "la vivienda como unidad habitable neutra"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "synonymes_regarder_scruter",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el verbo que expresa observar con atención minuciosa, casi con inquietud: «Le détective ___ chaque détail de la photographie.»",
+      "options": ["scrutait", "apercevait", "entrevoyait"],
+      "value": "scrutait"
+    },
+    {
+      "lesson": 1,
+      "topic": "synonymes_contempler_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el verbo que expresa mirar algo bello con admiración serena (infinitivo, tras «pour»): «Ils se sont arrêtés pour ___ le coucher de soleil.»",
+      "text": "Ils se sont arrêtés pour ___ le coucher de soleil.",
+      "value": "contempler",
+      "accepted": ["contempler"]
+    },
+    {
+      "lesson": 1,
+      "topic": "synonymes_intensite_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Elle apprécie ce vin, mais son frère l'adore vraiment.",
+      "options": [
+        "Elle apprécie ce vin, mais son frère l'adore vraiment.",
+        "Elle déteste ce vin, mais son frère le supporte à peine.",
+        "Elle achète ce vin, mais son frère le refuse toujours."
+      ],
+      "value": "Elle apprécie ce vin, mais son frère l'adore vraiment."
+    },
+    {
+      "lesson": 1,
+      "topic": "synonymes_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "On peut regarder un tableau distraitement, mais le contempler exige du temps et de l'attention."
+    },
+    {
+      "lesson": 2,
+      "topic": "collocations_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada verbo con el sustantivo con el que forma la colocación fija correcta.",
+      "pairs": [
+        ["prendre", "une décision"],
+        ["tirer", "une conclusion"],
+        ["nourrir", "un espoir"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "collocations_prendre_decision",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el verbo que forma la colocación correcta con «une décision» en francés (no se calca del español «tomar»): «Le conseil doit ___ une décision avant vendredi.»",
+      "options": ["prendre", "faire", "donner"],
+      "value": "prendre"
+    },
+    {
+      "lesson": 2,
+      "topic": "collocations_formuler_hypothese_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando la colocación culta «formuler une hypothèse»: «El investigador formuló una hipótesis audaz.»",
+      "source": "El investigador formuló una hipótesis audaz.",
+      "value": "Le chercheur a formulé une hypothèse audacieuse.",
+      "accepted": [
+        "Le chercheur a formulé une hypothèse audacieuse",
+        "Le chercheur a formulé une hypothèse audacieuse.",
+        "le chercheur a formulé une hypothèse audacieuse"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "collocations_nourrir_espoir_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Malgré tout, il continue de nourrir l'espoir de la revoir un jour.",
+      "options": [
+        "Malgré tout, il continue de nourrir l'espoir de la revoir un jour.",
+        "Malgré tout, il refuse d'abandonner le projet de la revoir bientôt.",
+        "Pourtant, il commence à perdre courage à l'idée de partir seul."
+      ],
+      "value": "Malgré tout, il continue de nourrir l'espoir de la revoir un jour."
+    },
+    {
+      "lesson": 2,
+      "topic": "collocations_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Avant de tirer une conclusion, il faut prendre le temps de peser chaque argument."
+    },
+    {
+      "lesson": 3,
+      "topic": "registres_soutenu_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "En un discurso formal se prefiere el registro soutenu. Completa con el sinónimo culto de «maison/logement» que designa la residencia: «Le maire inaugurera la nouvelle ___ collective demain.»",
+      "text": "Le maire inaugurera la nouvelle ___ collective demain.",
+      "value": "habitation",
+      "accepted": ["habitation"]
+    },
+    {
+      "lesson": 3,
+      "topic": "registres_familier_reading",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Entre amigos, ¿qué palabra pertenece al registro familier para «tener miedo»? «J'ai eu la ___ dans ce vieux manoir.»",
+      "options": ["trouille", "crainte", "frayeur"],
+      "value": "trouille"
+    },
+    {
+      "lesson": 3,
+      "topic": "registres_soutenu_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al registro soutenu usando «convier» (invitar, culto) y «demeure» (residencia, culta): «Nos invitó a su residencia.»",
+      "source": "Nos invitó a su residencia.",
+      "value": "Il nous a conviés à sa demeure.",
+      "accepted": [
+        "Il nous a conviés à sa demeure",
+        "Il nous a conviés à sa demeure.",
+        "il nous a conviés à sa demeure"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "registres_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Il a garé sa bagnole devant chez moi sans prévenir.",
+      "options": [
+        "Il a garé sa bagnole devant chez moi sans prévenir.",
+        "Il a vendu sa moto derrière la maison ce matin.",
+        "Il a lavé sa voiture devant le garage hier soir."
+      ],
+      "value": "Il a garé sa bagnole devant chez moi sans prévenir."
+    },
+    {
+      "lesson": 3,
+      "topic": "registres_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Selon le contexte, on dira « automobile » dans un rapport, « voiture » au quotidien et « bagnole » entre amis."
+    },
+    {
+      "lesson": 4,
+      "topic": "precision_davantage_reading",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la forma que significa «en mayor cantidad» y no admite complemento con «que» detrás en registro cuidado: «Il faudrait travailler ___ pour réussir.»",
+      "options": ["davantage", "plus que", "aussi"],
+      "value": "davantage"
+    },
+    {
+      "lesson": 4,
+      "topic": "precision_an_annee_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Distingue «an» (punto/conteo) de «année» (duración vivida). Aquí se enfatiza la duración con adjetivo: «Ce fut une ___ particulièrement difficile pour toute l'équipe.»",
+      "text": "Ce fut une ___ particulièrement difficile pour toute l'équipe.",
+      "value": "année",
+      "accepted": ["année"]
+    },
+    {
+      "lesson": 4,
+      "topic": "precision_jour_journee_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar: «J'ai passé une journée entière à la bibliothèque.»",
+      "tiles": ["passé", "journée", "J'ai", "à la", "une", "entière", "bibliothèque", "jour"],
+      "sequence": ["J'ai", "passé", "une", "journée", "entière", "à la", "bibliothèque"]
+    },
+    {
+      "lesson": 4,
+      "topic": "precision_davantage_annee_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Cette année, il a voyagé bien davantage que l'an dernier.",
+      "options": [
+        "Cette année, il a voyagé bien davantage que l'an dernier.",
+        "Ce matin, il a travaillé beaucoup moins que la veille.",
+        "Cet été, elle a dépensé nettement plus que prévu."
+      ],
+      "value": "Cette année, il a voyagé bien davantage que l'an dernier."
+    }
+  ]
+}

@@ -1,0 +1,252 @@
+{
+  "unit": {"order": 30, "title_es": "Lengua académica y profesional", "color": "#6C5CE7", "icon": "school"},
+  "checkpoint_desc": "Redacta en registro formal: nominalización, giros impersonales (il convient de, il ressort de), voz pasiva y fórmulas administrativas, y conectores académicos del correo profesional.",
+  "lessons": [
+    {"order": 1, "title_es": "Nominalisation (démontrer → la démonstration)"},
+    {"order": 2, "title_es": "Giros impersonales (il convient de, il ressort de)"},
+    {"order": 3, "title_es": "Voix passive y fórmulas administrativas"},
+    {"order": 4, "title_es": "Conectores académicos y correo profesional"}
+  ],
+  "vocab": [
+    ["la démonstration", "la demostración", "sustantivo"],
+    ["la mise en œuvre", "la puesta en marcha", "sustantivo"],
+    ["l'augmentation", "el aumento", "sustantivo"],
+    ["il convient de", "conviene / procede", "expresion"],
+    ["il s'avère que", "resulta que", "expresion"],
+    ["il ressort de", "se desprende de", "expresion"],
+    ["force est de constater", "hay que reconocer", "expresion"],
+    ["par ailleurs", "por otra parte", "conector"],
+    ["en outre", "además", "conector"],
+    ["dès lors", "por consiguiente", "conector"],
+    ["partant", "por lo tanto", "conector"],
+    ["à ce titre", "en calidad de eso / por ello", "conector"],
+    ["veuillez trouver ci-joint", "adjunto le remito", "expresion"],
+    ["la présente lettre", "la presente carta", "sustantivo"],
+    ["avoir pour objet", "tener por objeto", "expresion"],
+    ["dans l'attente de", "a la espera de", "expresion"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "nominalisation_sens",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une la nominalización francesa con su equivalente en español.",
+      "pairs": [
+        ["la mise en œuvre du plan", "la puesta en marcha del plan"],
+        ["l'augmentation des coûts", "el aumento de los costes"],
+        ["la démonstration du théorème", "la demostración del teorema"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "nominalisation_augmenter",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con la nominalización de « augmenter » (registro formal).",
+      "text": "Le rapport souligne une nette ___ des dépenses publiques.",
+      "value": "augmentation",
+      "accepted": ["augmentation"]
+    },
+    {
+      "lesson": 1,
+      "topic": "nominalisation_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la versión más nominalizada, propia del registro académico.",
+      "options": [
+        "La mise en œuvre du dispositif a exigé deux ans.",
+        "On a mis le dispositif en place et ça a pris deux ans.",
+        "Quand on a installé le dispositif, ça a duré deux ans."
+      ],
+      "value": "La mise en œuvre du dispositif a exigé deux ans."
+    },
+    {
+      "lesson": 1,
+      "topic": "nominalisation_listen",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "La diminution des effectifs a entraîné une réorganisation.",
+      "options": [
+        "La diminution des effectifs a entraîné une réorganisation.",
+        "La diminution des effectifs a entraîné une réévaluation.",
+        "L'augmentation des effectifs a entraîné une réorganisation."
+      ],
+      "value": "La diminution des effectifs a entraîné une réorganisation."
+    },
+    {
+      "lesson": 1,
+      "topic": "nominalisation_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al francés (registro académico, usa una nominalización): « La aplicación de la reforma llevó tres años. »",
+      "source": "La aplicación de la reforma llevó tres años.",
+      "value": "La mise en œuvre de la réforme a pris trois ans.",
+      "accepted": [
+        "La mise en œuvre de la réforme a pris trois ans.",
+        "La mise en œuvre de la réforme a pris trois ans",
+        "La mise en oeuvre de la réforme a pris trois ans.",
+        "La mise en oeuvre de la réforme a pris trois ans"
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "nominalisation_speak",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "L'augmentation des coûts et la mise en œuvre tardive du projet expliquent le retard constaté."
+    },
+    {
+      "lesson": 2,
+      "topic": "il_convient_de_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la fórmula impersonal formal correcta.",
+      "options": [
+        "Il convient de rappeler que le délai est impératif.",
+        "Il convient de rappelant que le délai est impératif.",
+        "Il convient que rappeler le délai est impératif."
+      ],
+      "value": "Il convient de rappeler que le délai est impératif."
+    },
+    {
+      "lesson": 2,
+      "topic": "il_ressort_de_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une el giro impersonal con su sentido en español.",
+      "pairs": [
+        ["il ressort de l'enquête", "se desprende de la investigación"],
+        ["il s'avère que", "resulta que"],
+        ["force est de constater", "hay que reconocer"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "il_savere_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con la 3ª pers. sing. del verbo « s'avérer » en el giro impersonal « il s'___ que » (resulta que).",
+      "text": "Après vérification, il s'___ que les données étaient incomplètes.",
+      "value": "avère",
+      "accepted": ["avère", "avere"]
+    },
+    {
+      "lesson": 2,
+      "topic": "il_ressort_de_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al francés (registro formal impersonal): « Se desprende del informe que el método es fiable. »",
+      "source": "Se desprende del informe que el método es fiable.",
+      "value": "Il ressort du rapport que la méthode est fiable.",
+      "accepted": [
+        "Il ressort du rapport que la méthode est fiable.",
+        "Il ressort du rapport que la méthode est fiable"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "il_convient_listen",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Il convient de souligner l'importance de cette décision.",
+      "options": [
+        "Il convient de souligner l'importance de cette décision.",
+        "Il convient de souligner l'importance de cette question.",
+        "Il convient de rappeler l'importance de cette décision."
+      ],
+      "value": "Il convient de souligner l'importance de cette décision."
+    },
+    {
+      "lesson": 2,
+      "topic": "impersonnel_speak",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Force est de constater que, malgré les efforts déployés, les objectifs n'ont pas été atteints."
+    },
+    {
+      "lesson": 3,
+      "topic": "voix_passive_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el participio pasado de « adopter » (voz pasiva).",
+      "text": "La proposition a été ___ à l'unanimité par le comité.",
+      "value": "adoptée",
+      "accepted": ["adoptée", "adoptee"]
+    },
+    {
+      "lesson": 3,
+      "topic": "voix_passive_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la versión más formal e impersonal (voz pasiva administrativa).",
+      "options": [
+        "La présente lettre a pour objet de vous informer de la décision.",
+        "Cette lettre, c'est pour vous dire la décision.",
+        "Je vous écris cette lettre pour la décision."
+      ],
+      "value": "La présente lettre a pour objet de vous informer de la décision."
+    },
+    {
+      "lesson": 3,
+      "topic": "voix_passive_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Construye la frase: Adjunto le remito el documento solicitado.",
+      "tiles": ["Veuillez", "trouver", "ci-joint", "le", "document", "demandé", "envoyé", "voici"],
+      "sequence": ["Veuillez", "trouver", "ci-joint", "le", "document", "demandé"]
+    },
+    {
+      "lesson": 4,
+      "topic": "connecteurs_listen",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Par ailleurs, il conviendra de préciser les modalités de paiement.",
+      "options": [
+        "Par ailleurs, il conviendra de préciser les modalités de paiement.",
+        "Par ailleurs, il conviendra de préciser les modalités de livraison.",
+        "En outre, il conviendra de préciser les modalités de paiement."
+      ],
+      "value": "Par ailleurs, il conviendra de préciser les modalités de paiement."
+    },
+    {
+      "lesson": 3,
+      "topic": "voix_passive_listen",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Le dossier a été transmis au service concerné.",
+      "options": [
+        "Le dossier a été transmis au service concerné.",
+        "Le dossier a été transmis au service compétent.",
+        "Le dossier sera transmis au service concerné."
+      ],
+      "value": "Le dossier a été transmis au service concerné."
+    },
+    {
+      "lesson": 4,
+      "topic": "connecteurs_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une el conector académico con su sentido en español.",
+      "pairs": [
+        ["par ailleurs", "por otra parte"],
+        ["dès lors", "por consiguiente"],
+        ["à ce titre", "en calidad de eso"]
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "connecteurs_courriel_speak",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Je me permets de revenir vers vous ; dans l'attente de votre réponse, je vous prie d'agréer mes salutations distinguées."
+    }
+  ]
+}
