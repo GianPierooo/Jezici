@@ -1,0 +1,56 @@
+[
+  {
+    "unit": 13,
+    "topic": "subjonctif_present",
+    "skill": "writing",
+    "type": "gramatica",
+    "title": "El subjonctif: cuando el deseo manda sobre el verbo",
+    "body": "Tras las expresiones de necesidad, deseo, duda o emoción (il faut que, je veux que, bien que, pour que) el verbo va en subjonctif présent, no en indicativo. Se forma con la raíz de la 3.ª persona del plural del presente + -e, -es, -e, -ions, -iez, -ent, pero cuidado con los irregulares clave: être → soit, avoir → ait, aller → aille, faire → fasse, pouvoir → puisse. El error típico del hispanohablante es olvidar el que obligatorio: no se dice «il faut je parte» sino «il faut que je parte». Si el sujeto es el mismo, usa el infinitivo: «je veux partir», no «je veux que je parte».",
+    "example": "Il faut que tu sois à l'heure. · Bien qu'il fasse froid, on sort. · Je veux qu'elle aille chez le médecin."
+  },
+  {
+    "unit": 14,
+    "topic": "futur_conditionnel_hypothese",
+    "skill": "writing",
+    "type": "gramatica",
+    "title": "Si + imparfait → conditionnel: soñar con lo posible",
+    "body": "Para hablar de una hipótesis poco probable o imaginaria en el presente, el francés usa la estructura «si + imparfait, conditionnel présent», igual que el español «si + imperfecto de subjuntivo, condicional». El conditionnel se forma sobre el infinitivo (como el futur) + las terminaciones del imparfait: -ais, -ais, -ait, -ions, -iez, -aient. El error más frecuente es meter el conditionnel dentro del «si»: NUNCA se dice «si j'aurais», sino «si j'avais». El condicional va solo en la otra parte de la frase. Recuerda también no confundir futur (je parlerai, -ai) y conditionnel (je parlerais, -ais), que suenan casi igual.",
+    "example": "Si j'avais le temps, je voyagerais plus. · Si tu étais riche, qu'est-ce que tu ferais ? · Nous irions à la plage s'il faisait beau."
+  },
+  {
+    "unit": 15,
+    "topic": "pronoms_relatifs",
+    "skill": "reading",
+    "type": "gramatica",
+    "title": "Qui, que, dont, où: encadenar ideas con precisión",
+    "body": "Los pronombres relativos evitan repetir el nombre y unen dos frases. Qui es el sujeto (le train QUI arrive = el tren que llega); que es el complemento directo (le livre QUE je lis = el libro que leo). Dont reemplaza un complemento con «de»: parler de → «l'homme dont je parle»; avoir besoin de → «la chose dont j'ai besoin». Où sirve para lugar y tiempo: «la ville où j'habite», «le jour où il est parti». El gran fallo del hispanohablante es usar siempre «que»: en español «el hombre DE QUE hablo» se dice con dont, y «el día EN QUE llegó» se dice con où, nunca con que.",
+    "example": "C'est l'ami dont je t'ai parlé. · Le café où nous nous sommes rencontrés a fermé. · La femme qui chante est ma sœur."
+  },
+  {
+    "unit": 16,
+    "topic": "accord_participe_passe",
+    "skill": "writing",
+    "type": "gramatica",
+    "title": "El participio que concuerda... o no",
+    "body": "Con être (verbos de movimiento y pronominales), el participio concuerda siempre con el sujeto en género y número: «Elle est partie», «Ils sont venus». Con avoir NO concuerda con el sujeto, pero SÍ con el complemento directo si va ANTES del verbo: «les fleurs que j'ai achetées» (achetées concuerda con «les fleurs», que va delante). Si el COD va detrás, no hay concordancia: «j'ai acheté des fleurs». El hispanohablante suele olvidar la concordancia con être («elle est parti» es un error) o intentar concordar siempre con avoir. La clave: con avoir, mira si hay un COD delante.",
+    "example": "Marie est arrivée hier. · Les lettres que tu as écrites sont là. · Nous avons mangé la tarte (sin concordancia, COD detrás)."
+  },
+  {
+    "unit": 17,
+    "topic": "discours_indirect",
+    "skill": "listening",
+    "type": "gramatica",
+    "title": "Del estilo directo al indirecto: los tiempos retroceden",
+    "body": "Al pasar de lo que alguien dijo al discurso indirecto en pasado, los tiempos «retroceden»: presente → imparfait, futur → conditionnel, passé composé → plus-que-parfait. «Il a dit : je suis fatigué» se vuelve «Il a dit qu'il était fatigué». También cambian los pronombres y a menudo se introduce con que. Para preguntas sin palabra interrogativa se usa si: «Est-ce que tu viens ?» → «Il a demandé si je venais». El error típico es mantener el presente: no se dice «il a dit qu'il est fatigué» cuando el marco es pasado, sino «qu'il était fatigué». Ojo: si el marco es presente, no hay retroceso.",
+    "example": "Elle a dit qu'elle avait faim. · Il a demandé si nous étions prêts. · Je pensais que tu viendrais plus tôt."
+  },
+  {
+    "unit": 18,
+    "topic": "pronoms_complements",
+    "skill": "speaking",
+    "type": "gramatica",
+    "title": "Le, lui, y, en: el orden secreto de los pronombres",
+    "body": "Le/la/les reemplazan el complemento directo (je LE vois); lui/leur el indirecto (je LUI parle = a él/ella). Y sustituye «à + cosa o lugar» (j'y pense = pienso en ello; j'y vais = voy allí) y en sustituye «de + cosa» o una cantidad (j'EN veux = quiero de eso; j'en ai trois = tengo tres). Cuando hay dos pronombres juntos, el orden es fijo: me/te/nous/vous, luego le/la/les, luego lui/leur, luego y, luego en. Así «je te le donne», «je le lui donne», «il y en a». El hispanohablante tiende a poner el pronombre detrás del verbo como en español; en francés va SIEMPRE delante (salvo en imperativo afirmativo: «donne-le-moi»).",
+    "example": "Je le lui ai donné. · Il y en a beaucoup. · Tu m'en parles demain ?"
+  }
+]

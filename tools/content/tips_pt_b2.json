@@ -1,0 +1,56 @@
+[
+  {
+    "unit": 19,
+    "topic": "presente_subjuntivo_avancado",
+    "skill": "writing",
+    "type": "gramatica",
+    "title": "Subjuntivo tras «embora, caso, a menos que»",
+    "body": "En B2 el presente do subjuntivo se dispara con conectores que expresan concesión, condición o finalidad: embora (aunque), para que / a fim de que (para que), caso (en caso de que), a menos que / a não ser que (a menos que), sem que (sin que), antes que (antes de que). El verbo «invierte» la vocal temática: -ar → «que fale», -er → «que coma», -ir → «que parta», y los irregulares clave son ser → «seja», ter → «tenha», fazer → «faça», ir → «vá», estar → «esteja», haver → «haja». El hispanohablante suele acertar el subjuntivo, pero olvida que en portugués «embora» rige subjuntivo SIEMPRE (no «embora está», sino «embora esteja») y confunde «caso» con «se»: tras «caso» va subjuntivo directo, sin «que» («caso precise», no «caso que precisa»).",
+    "example": "Embora seja tarde, vou terminar o relatório. · Levo o guarda-chuva caso chova. · Explico de novo para que você entenda. · Não saio a menos que você venha comigo."
+  },
+  {
+    "unit": 20,
+    "topic": "futuro_do_subjuntivo",
+    "skill": "writing",
+    "type": "error_comun",
+    "title": "«Quando eu tiver»: el futuro do subjuntivo (¡no presente!)",
+    "body": "Este es EL rasgo que delata al hispanohablante. Para una condición futura tras quando, se, enquanto, assim que, sempre que o depois que, el portugués usa el futuro do subjuntivo, un tiempo que el español no tiene. Se forma quitando el -ram de la 3ª persona del pretérito perfeito: falaram → «quando eu falar», comeram → «comer», partiram → «partir». Los irregulares nacen del mismo pretérito: ter → «tiver», ser/ir → «for», fazer → «fizer», estar → «estiver», poder → «puder», querer → «quiser», vir → «vier», pôr → «puser». El error clásico es calcar el español y usar el presente: NO «quando eu tenho tempo», sino «quando eu TIVER tempo»; NO «se você quer», sino «se você QUISER». Regla práctica: si la acción del «quando/se» aún no ha ocurrido y mira al futuro, va futuro do subjuntivo.",
+    "example": "Quando eu tiver tempo, te ligo. · Se você quiser, a gente marca amanhã. · Assim que ele chegar, começamos. · Enquanto você não estiver pronto, eu espero."
+  },
+  {
+    "unit": 21,
+    "topic": "periodo_hipotetico",
+    "skill": "writing",
+    "type": "gramatica",
+    "title": "«Se eu tivesse tempo, viajaria»: el condicional irreal",
+    "body": "Para la hipótesis irreal en el presente se usa «se + imperfeito do subjuntivo, futuro do pretérito (condicional)»: «Se eu tivesse tempo, viajaria». El imperfeito do subjuntivo se forma quitando el -ram del pretérito y añadiendo -sse: falaram → «falasse», tiveram → «tivesse», fossem → «fosse», fizeram → «fizesse». El futuro do pretérito (condicional) se hace con -ia: falar → «falaria», fazer → «faria», ser → «seria». Para la hipótesis irreal en el pasado (lo que no llegó a pasar) se encadenan los tiempos compuestos: «Se tivesse estudado, teria passado» (si hubiera estudiado, habría aprobado), con ter en imperfeito do subjuntivo + particípio en la condición, y ter en futuro do pretérito + particípio en la consecuencia. El error típico es meter el condicional en el «se»: NUNCA «se eu teria tempo», siempre «se eu tivesse tempo»; el condicional va solo en la consecuencia.",
+    "example": "Se eu tivesse dinheiro, compraria a casa. · Se você estudasse mais, tiraria notas melhores. · Se eu tivesse sabido, teria avisado você. · No seu lugar, eu não faria isso."
+  },
+  {
+    "unit": 22,
+    "topic": "voz_passiva",
+    "skill": "reading",
+    "type": "gramatica",
+    "title": "«Foi construído / Vendem-se casas»: las dos pasivas",
+    "body": "El portugués tiene dos voces pasivas. La analítica se forma con ser + particípio, que CONCUERDA con el sujeto, y el agente va con por: «A ponte foi construída pelos romanos», «As casas foram vendidas». La pasiva sintética (o pronominal) usa se con verbo en 3ª persona y concuerda con el sujeto: «Vende-se casa» (singular) pero «Vendem-se casas» (plural) — este acuerdo es el error frecuente: no «vende-se casas», sino «vendem-se casas». Ojo también con los particípios duplos: algunos verbos tienen forma regular con ter/haver y una forma corta e irregular con ser/estar. Con la pasiva (ser/estar) se usa la corta: aceitar → «foi aceito» (no «aceitado»), pagar → «a conta foi paga» (no «pagada»), entregar → «foi entregue», ganhar → «foi ganho», gastar → «foi gasto». El hispanohablante también abusa de la pasiva por calco del inglés; en portugués muchas veces es más natural la sintética con se.",
+    "example": "O prédio foi construído em 1920. · Alugam-se salas comerciais. · O pacote já foi entregue ontem. · O projeto foi aceito pela diretoria."
+  },
+  {
+    "unit": 23,
+    "topic": "discurso_indireto_colocacao",
+    "skill": "listening",
+    "type": "gramatica",
+    "title": "«Ele disse que…»: reportar y colocar el pronombre",
+    "body": "Al pasar al discurso indirecto en pasado, los tiempos retroceden: presente → imperfeito («eu trabalho» → «disse que trabalhava»), pretérito perfeito → mais-que-perfeito («eu fiz» → «disse que tinha feito»), futuro → futuro do pretérito («eu irei» → «disse que iria»). El «que» es obligatorio (no se omite como a veces en inglés). Aquí aparece además la colocação pronominal, muy marcada en portugués: por defecto va la ênclise (pronombre después, con guion): «Disse-me a verdade». Pero ciertas palabras «atraen» el pronombre y fuerzan la próclise (pronombre antes): negaciones (não me disse), palabras interrogativas y relativas (quem me disse, que se passou), adverbios (já me falou, sempre me ajuda) y conjunciones subordinantes (porque me pediu, quando se levantou). El hispanohablante tiende a poner siempre el pronombre antes por calco; en el registro cuidado del pt-BR conviene reconocer cuándo la ênclise es la forma esperada y cuándo un «não», «que» o «já» exige la próclise.",
+    "example": "Ela disse que estava cansada e que ligaria depois. · Não me contaram o que tinha acontecido. · Ele perguntou-me se eu viria. · Já te avisei que a reunião foi adiada."
+  },
+  {
+    "unit": 24,
+    "topic": "conectores_regencia",
+    "skill": "writing",
+    "type": "gramatica",
+    "title": "Conectores B2 + la preposición que exige el verbo",
+    "body": "Cierra el B2 dominando qué conector pide subjuntivo y qué verbo pide preposición. Rigen SUBJUNTIVO los que expresan concesión, condición o finalidad: embora, caso, a menos que, para que, nem que. Van con INDICATIVO los que constatan un hecho: à medida que y à proporção que (a medida que), porque, já que / uma vez que (ya que), assim que (una vez cumplido), enquanto (mientras, hecho). El contraste clave es «embora chova» (subjuntivo, concesión) frente a «porque chove» (indicativo, causa real). En cuanto a la regência verbal, muchos verbos rigen una preposición distinta del español: assistir A um filme (ver una película; sin «a» significa «ayudar/atender»), obedecer A / desobedecer A alguém, gostar DE algo, precisar DE algo, depender DE, concordar COM, casar-se COM, chegar A / ir A um lugar (no «chegar em» en la norma culta), esquecer-se DE. El error típico es calcar la preposición española («assistir o filme», «gostar algo», «obedecer alguém») u omitirla.",
+    "example": "Embora custe caro, vale a pena. · À medida que envelhecemos, mudamos de ideia. · Ontem assisti a um documentário sobre o Brasil. · Você precisa de ajuda? Não gosto de sair no calor."
+  }
+]

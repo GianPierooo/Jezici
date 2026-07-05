@@ -32,6 +32,14 @@ BATCHES = {
                  [('de', 'tips_de_a2.json'), ('nl', 'tips_nl_a2.json')]),
     'pt_a2_b1': ('20260703120108', 'seed_tips_pt_a2_b1',
                  [('pt', 'tips_pt_a2.json'), ('pt', 'tips_pt_b1.json')]),
+    # Nivel alto (B1/B2) para los cursos no-inglés que subieron de nivel. cefr por unit_order
+    # (13-18=B1, 19-24=B2). ids uuid5 keyed por (code, unit) → sin colisión con A1/A2/B1.
+    'hi': ('20260705120124', 'seed_tips_hi',
+           [('fr', 'tips_fr_b1.json'), ('fr', 'tips_fr_b2.json'),
+            ('it', 'tips_it_b1.json'), ('it', 'tips_it_b2.json'),
+            ('de', 'tips_de_b1.json'), ('de', 'tips_de_b2.json'),
+            ('nl', 'tips_nl_b1.json'), ('nl', 'tips_nl_b2.json'),
+            ('pt', 'tips_pt_b2.json')]),
 }
 
 
@@ -55,7 +63,7 @@ def build(batch):
         counts['%s(%s)' % (code, fname)] = len(tips)
         for t in tips:
             unit = int(t['unit'])
-            cefr = 'A1' if unit <= 6 else ('A2' if unit <= 12 else 'B1')
+            cefr = 'A1' if unit <= 6 else ('A2' if unit <= 12 else ('B1' if unit <= 18 else 'B2'))
             rows.append(
                 "('%s'::uuid,'%s'::uuid,%d,'%s',%s,%s,%s,%s,%s,%s)" % (
                     _id(code, unit), course_id, unit, cefr,

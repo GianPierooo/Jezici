@@ -1,0 +1,56 @@
+[
+  {
+    "unit": 19,
+    "topic": "subjonctif_passe",
+    "skill": "writing",
+    "type": "gramatica",
+    "title": "Subjonctif passé: la duda sobre algo ya ocurrido",
+    "body": "El subjonctif passé expresa una acción anterior o ya terminada en un contexto que exige subjuntivo (emoción, duda, necesidad). Se forma con el subjonctif présent de avoir o être + el participio pasado: «que j'aie fait», «qu'il soit venu». La elección del auxiliar sigue las mismas reglas que el passé composé, y con être hay concordancia: «qu'elle soit partie», «qu'ils soient arrivés». Se usa cuando la acción del subjuntivo es ANTERIOR a la del verbo principal: «Je suis content que tu sois venu» (viniste antes de que yo esté contento). El error frecuente es usar el subjonctif présent para algo ya pasado: «je doute qu'il soit venu» (pasado), no «qu'il vienne».",
+    "example": "Je suis ravi que tu aies réussi. · Bien qu'elle soit partie tôt, elle a raté le train. · Il faut que j'aie fini avant midi."
+  },
+  {
+    "unit": 20,
+    "topic": "conditionnel_passe_irreel",
+    "skill": "writing",
+    "type": "gramatica",
+    "title": "Lo que habría pasado: el arrepentimiento en francés",
+    "body": "Para expresar una hipótesis imposible en el pasado (lo irreal), se usa «si + plus-que-parfait, conditionnel passé»: «Si j'avais su, je serais venu» (si hubiera sabido, habría venido). El conditionnel passé se forma con el conditionnel présent de avoir/être + participio: «j'aurais fait», «il serait parti». Sirve también para el reproche o el arrepentimiento con devoir y pouvoir: «j'aurais dû partir» (debería haber partido), «tu aurais pu me le dire» (podrías habérmelo dicho). El error clásico del hispanohablante es poner el conditionnel en el «si»: NUNCA «si j'aurais su», siempre «si j'avais su». El condicional va solo en la consecuencia.",
+    "example": "Si tu m'avais appelé, je serais venu. · J'aurais dû étudier davantage. · Ils auraient pu nous prévenir."
+  },
+  {
+    "unit": 21,
+    "topic": "discours_indirect_avance",
+    "skill": "listening",
+    "type": "gramatica",
+    "title": "Discurso indirecto avanzado: el futuro se vuelve condicional",
+    "body": "En el discurso indirecto en pasado, además del retroceso ya visto, el futur se convierte en conditionnel présent y el futur antérieur en conditionnel passé: «Il a dit : je partirai» → «Il a dit qu'il partirait». Para reportar preguntas sin palabra interrogativa clara, «qu'est-ce qui» se vuelve ce qui (sujeto) y «qu'est-ce que» se vuelve ce que (complemento): «Qu'est-ce que tu veux ?» → «Il a demandé ce que je voulais»; «Qu'est-ce qui se passe ?» → «Il a demandé ce qui se passait». El hispanohablante suele mantener el futuro («il a dit qu'il partira») o traducir «qué» siempre por que, olvidando ce que / ce qui. También hay que ajustar los marcadores de tiempo: demain → le lendemain, hier → la veille.",
+    "example": "Elle a annoncé qu'elle déménagerait le lendemain. · Je me demandais ce que tu ferais. · Il a voulu savoir ce qui n'allait pas."
+  },
+  {
+    "unit": 22,
+    "topic": "participe_present_gerondif",
+    "skill": "reading",
+    "type": "gramatica",
+    "title": "En -ant: participe présent, gérondif y adjetivo verbal",
+    "body": "La forma en -ant tiene tres usos que conviene distinguir. El participe présent es invariable y expresa una causa o una acción simultánea: «Ne sachant pas la réponse, il s'est tu». El gérondif es «en + -ant» e indica la manera o el momento de otra acción del MISMO sujeto: «Il chante en travaillant» (canta mientras trabaja). El adjetivo verbal sí concuerda con el nombre y describe una cualidad: «une histoire fascinante», «des enfants charmants». Ojo con la ortografía: el gérondif conserva la raíz verbal (fatiguant, provoquant) mientras que el adjetivo cambia (fatigant, provocant). El error del hispanohablante es usar el gérondif como en español para una acción en curso: no se dice «je suis mangeant», sino «je suis en train de manger».",
+    "example": "En arrivant, j'ai vu la lumière allumée. · C'est une journée fatigante (adjetivo). · Se fatiguant vite, il a fait une pause (participe)."
+  },
+  {
+    "unit": 23,
+    "topic": "connecteurs_b2",
+    "skill": "writing",
+    "type": "gramatica",
+    "title": "Bien que + subjonctif vs alors que + indicatif",
+    "body": "En B2 hay que dominar qué conectores rigen subjuntivo y cuáles indicativo. Exigen SUBJONCTIF: bien que y quoique (aunque), à condition que y pourvu que (con tal de que), pour que y afin que (para que), avant que, sans que, jusqu'à ce que. Van con INDICATIF: alors que y tandis que (mientras que, oposición), parce que (porque), puisque (ya que), pendant que (mientras). El error típico es confundir bien que (concesión, subjuntivo: «bien qu'il soit tard») con alors que (contraste, indicativo: «il dort alors qu'il est midi»). Regla práctica: si el conector expresa algo incierto, un objetivo o una condición, casi siempre pide subjonctif; si constata un hecho real, pide indicativo.",
+    "example": "Bien qu'il pleuve, nous sortirons. · Je t'aide à condition que tu fasses ta part. · Il travaille alors que ses amis se reposent."
+  },
+  {
+    "unit": 24,
+    "topic": "voix_passive_mise_en_relief",
+    "skill": "reading",
+    "type": "gramatica",
+    "title": "La voz pasiva y el arte de resaltar con c'est... qui",
+    "body": "La voz pasiva se forma con être conjugado + participio pasado (que concuerda con el sujeto) + par para el agente: «La lettre a été écrite par Marie». Solo los verbos con complemento directo pueden pasivarse. Para poner de relieve un elemento de la frase, el francés usa dos estructuras muy naturales: «c'est... qui» resalta el sujeto («C'est Marie qui a écrit la lettre») y «c'est... que» resalta otro complemento («C'est cette lettre que j'attendais»). Para destacar toda una idea se usa «ce qui... c'est» / «ce que... c'est»: «Ce que j'aime, c'est le calme». El hispanohablante abusa de la pasiva como en inglés; en francés a menudo es más idiomático usar «on» («on a écrit la lettre») o la mise en relief. Cuidado con la concordancia del participio en la pasiva: «les livres ont été vendus».",
+    "example": "Ce roman a été traduit en dix langues. · C'est toi qui as raison. · Ce qui compte, c'est la santé."
+  }
+]
