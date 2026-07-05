@@ -1,0 +1,243 @@
+{
+  "unit": {"order": 24, "title_es": "Nominalización, relativos avanzados y messa in rilievo", "color": "#1F618D", "icon": "auto_stories"},
+  "checkpoint_desc": "Nominaliza verbos (infinito sostantivato: il mangiare; sufijos -zione/-mento/-anza), usa relativos avanzados (il quale/i cui/ciò che/chi), pone en relieve con frases scisse (È Marco a farlo; È qui che vivo) y elige el registro formal (Le dispiacerebbe…?, forme di cortesia con condicional).",
+  "lessons": [
+    {"order": 1, "title_es": "Infinito sostantivato (il mangiare) y sufijos -zione/-mento"},
+    {"order": 2, "title_es": "Pronomi relativi avanzati: il quale, i cui"},
+    {"order": 3, "title_es": "Ciò che / quello che / chi y frasi scisse (È…che)"},
+    {"order": 4, "title_es": "Registro formal y forme di cortesia (Le dispiacerebbe…?)"}
+  ],
+  "vocab": [
+    ["il mangiare", "el comer / la comida", "sust"],
+    ["l'importante è", "lo importante es", "expresion"],
+    ["la realizzazione", "la realización", "sust"],
+    ["il cambiamento", "el cambio", "sust"],
+    ["l'importanza", "la importancia", "sust"],
+    ["il quale", "el cual", "gram"],
+    ["la quale", "la cual", "gram"],
+    ["i cui libri", "cuyos libros", "gram"],
+    ["ciò che", "lo que", "gram"],
+    ["quello che", "lo que", "gram"],
+    ["chi", "quien / el que", "gram"],
+    ["è stato Marco a", "fue Marco quien", "expresion"],
+    ["è qui che", "es aquí donde", "expresion"],
+    ["Le dispiacerebbe?", "¿le importaría?", "expresion"],
+    ["Potrebbe", "podría (usted)", "cortesia"],
+    ["Vorrei", "querría / quisiera", "cortesia"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "infinito_sostantivato",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada nombre derivado de un verbo con su significado.",
+      "pairs": [
+        ["la realizzazione", "la realización"],
+        ["il cambiamento", "el cambio"],
+        ["l'importanza", "la importancia"],
+        ["il pagamento", "el pago"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "infinito_sostantivato",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Infinito sustantivado como sujeto. Elige la forma correcta: «___ troppo in fretta fa male alla salute.» (el comer, verbo mangiare).",
+      "options": ["Il mangiare", "Mangiando", "Che mangia"],
+      "value": "Il mangiare"
+    },
+    {
+      "lesson": 1,
+      "topic": "nominalizzazione_suffissi",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Nominaliza el verbo «realizzare» con el sufijo -zione: «Il progetto ha richiesto anni prima della sua ___ .»",
+      "text": "Il progetto ha richiesto anni prima della sua ___ .",
+      "value": "realizzazione",
+      "accepted": ["realizzazione"]
+    },
+    {
+      "lesson": 1,
+      "topic": "infinito_sostantivato",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "L'importante è partecipare, non soltanto vincere.",
+      "options": [
+        "L'importante è partecipare, non soltanto vincere.",
+        "L'importante è partire, non soltanto vincere.",
+        "È importante partecipare, non soltanto vincere."
+      ],
+      "value": "L'importante è partecipare, non soltanto vincere."
+    },
+    {
+      "lesson": 1,
+      "topic": "nominalizzazione_suffissi",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Il cambiamento climatico richiede una riflessione seria e immediata."
+    },
+    {
+      "lesson": 2,
+      "topic": "relativo_il_quale",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada relativo formal con su significado.",
+      "pairs": [
+        ["il quale", "el cual"],
+        ["la quale", "la cual"],
+        ["i quali", "los cuales"],
+        ["le quali", "las cuales"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "relativo_il_quale",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Relativo formal tras preposición, referido a «la persona» (femenino singular): «La collega con ___ lavoro è molto competente.»",
+      "options": ["la quale", "il quale", "cui che"],
+      "value": "la quale"
+    },
+    {
+      "lesson": 2,
+      "topic": "relativo_i_cui",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Construye la frase: Es un escritor cuyas novelas se traducen a veinte idiomas. (el relativo posesivo concuerda con «romanzi», masculino plural).",
+      "tiles": ["È", "uno", "scrittore", "i", "cui", "romanzi", "sono", "tradotti", "in", "venti", "lingue", "il", "che"],
+      "sequence": ["È", "uno", "scrittore", "i", "cui", "romanzi", "sono", "tradotti", "in", "venti", "lingue"]
+    },
+    {
+      "lesson": 2,
+      "topic": "relativo_il_quale",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Construye la frase: La ciudad en la cual he crecido es muy tranquila.",
+      "tiles": ["La", "città", "nella", "quale", "sono", "cresciuto", "è", "molto", "tranquilla", "che", "cui"],
+      "sequence": ["La", "città", "nella", "quale", "sono", "cresciuto", "è", "molto", "tranquilla"]
+    },
+    {
+      "lesson": 2,
+      "topic": "relativo_i_cui",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ho conosciuto un regista i cui film hanno vinto molti premi.",
+      "options": [
+        "Ho conosciuto un regista i cui film hanno vinto molti premi.",
+        "Ho conosciuto un regista i cui libri hanno vinto molti premi.",
+        "Ho conosciuto un regista che i film hanno vinto molti premi."
+      ],
+      "value": "Ho conosciuto un regista i cui film hanno vinto molti premi."
+    },
+    {
+      "lesson": 3,
+      "topic": "cio_che_quello_che_chi",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada expresión con su significado.",
+      "pairs": [
+        ["ciò che conta", "lo que cuenta"],
+        ["quello che voglio", "lo que quiero"],
+        ["chi cerca trova", "quien busca encuentra"]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "cio_che_quello_che_chi",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Chi cerca con pazienza alla fine trova quello che desidera.",
+      "options": [
+        "Chi cerca con pazienza alla fine trova quello che desidera.",
+        "Chi cerca con pazienza alla fine trova ciò che desidera.",
+        "Chi lavora con pazienza alla fine trova quello che desidera."
+      ],
+      "value": "Chi cerca con pazienza alla fine trova quello che desidera."
+    },
+    {
+      "lesson": 3,
+      "topic": "frase_scissa",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce con frase escindida de relieve (È … a + infinitivo): «Fue Marco quien organizó la fiesta.»",
+      "source": "Fue Marco quien organizó la fiesta.",
+      "value": "È stato Marco a organizzare la festa.",
+      "accepted": [
+        "È stato Marco a organizzare la festa",
+        "È stato Marco a organizzare la festa.",
+        "E' stato Marco a organizzare la festa.",
+        "E' stato Marco a organizzare la festa"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "frase_scissa",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "È qui che ho passato gli anni più belli della mia vita.",
+      "options": [
+        "È qui che ho passato gli anni più belli della mia vita.",
+        "È qui che ho perso gli anni più belli della mia vita.",
+        "È qui dove ho passato gli anni più belli della mia vita."
+      ],
+      "value": "È qui che ho passato gli anni più belli della mia vita."
+    },
+    {
+      "lesson": 3,
+      "topic": "cio_che_quello_che_chi",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Quello che voglio davvero è un po' di tranquillità e di rispetto."
+    },
+    {
+      "lesson": 4,
+      "topic": "registro_formale",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Petición cortés y formal (usted). Elige el registro más adecuado para dirigirse a un desconocido: «___ aprire la finestra?»",
+      "options": ["Le dispiacerebbe", "Ti va di", "Vuoi"],
+      "value": "Le dispiacerebbe"
+    },
+    {
+      "lesson": 4,
+      "topic": "registro_formale",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Cortesía con condicional del verbo «potere» (usted, 3ª pers. sing.): «Mi scusi, ___ ripetere più lentamente?»",
+      "text": "Mi scusi, ___ ripetere più lentamente?",
+      "value": "potrebbe",
+      "accepted": ["potrebbe", "Potrebbe"]
+    },
+    {
+      "lesson": 4,
+      "topic": "registro_formale",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce en registro cortés/formal (condicional de cortesía): «Querría reservar una mesa para dos.»",
+      "source": "Querría reservar una mesa para dos.",
+      "value": "Vorrei prenotare un tavolo per due.",
+      "accepted": [
+        "Vorrei prenotare un tavolo per due",
+        "Vorrei prenotare un tavolo per due.",
+        "Vorrei riservare un tavolo per due.",
+        "Vorrei riservare un tavolo per due"
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "registro_formale",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Le dispiacerebbe spostarsi un attimo? Vorrei passare, grazie."
+    }
+  ]
+}

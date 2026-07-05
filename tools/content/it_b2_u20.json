@@ -1,0 +1,246 @@
+{
+  "unit": {"order": 20, "title_es": "Periodo hipotético (II y III) y condicional pasado", "color": "#6C3483", "icon": "call_split"},
+  "checkpoint_desc": "Domina los tres periodos hipotéticos italianos: el real (Se piove, resto), el de la posibilidad/irrealidad del presente (Se avessi tempo, verrei) y el de la irrealidad del pasado (Se avessi studiato, avrei superato l'esame), y usa el condicional pasado para el arrepentimiento, la noticia no confirmada y el futuro en el pasado.",
+  "lessons": [
+    {"order": 1, "title_es": "Tipo II: Se + congiuntivo imperfetto → condizionale presente"},
+    {"order": 2, "title_es": "Tipo III: Se + congiuntivo trapassato → condizionale passato"},
+    {"order": 3, "title_es": "Condizionale passato: arrepentimiento y futuro en el pasado"},
+    {"order": 4, "title_es": "Contraste de los tres periodos hipotéticos"}
+  ],
+  "vocab": [
+    ["Se avessi tempo, verrei", "Si tuviera tiempo, vendría", "expresion"],
+    ["Se fossi ricco, viaggerei", "Si fuera rico, viajaría", "expresion"],
+    ["Se potessi, ti aiuterei", "Si pudiera, te ayudaría", "expresion"],
+    ["Se avessi studiato, avrei superato", "Si hubiera estudiado, habría aprobado", "expresion"],
+    ["Se fossi partito prima", "Si hubiera salido antes", "expresion"],
+    ["avrei voluto", "habría querido", "verbo"],
+    ["sarei venuto", "habría venido", "verbo"],
+    ["sarei andata", "habría ido (fem.)", "verbo"],
+    ["Avrei dovuto studiare", "Debería haber estudiado", "expresion"],
+    ["avrebbe detto", "habría dicho (según dicen)", "verbo"],
+    ["Ha detto che sarebbe venuto", "Dijo que vendría", "expresion"],
+    ["magari", "ojalá", "adverbio"],
+    ["altrimenti", "de lo contrario", "conjuncion"],
+    ["l'esame", "el examen", "sust"],
+    ["il rimpianto", "el arrepentimiento", "sust"],
+    ["laureato", "graduado / licenciado", "adj"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "ipotetico_ii_possibilita",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase italiana con su traducción.",
+      "pairs": [
+        ["Se avessi tempo, verrei con te.", "Si tuviera tiempo, iría contigo."],
+        ["Se fossi ricco, viaggerei molto.", "Si fuera rico, viajaría mucho."],
+        ["Se potessi, ti aiuterei subito.", "Si pudiera, te ayudaría enseguida."]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "ipotetico_ii_apodosi",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la apódosis correcta para « Se avessi più soldi, ___ una casa al mare » (posibilidad presente).",
+      "options": ["comprerei", "comprassi", "avrei comprato"],
+      "value": "comprerei"
+    },
+    {
+      "lesson": 2,
+      "topic": "ipotetico_iii_irrealta_passato",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la prótasis correcta para « ___ studiato di più, avrei superato l'esame » (irrealidad del pasado).",
+      "options": ["Se avessi", "Se avrei", "Se avevo"],
+      "value": "Se avessi"
+    },
+    {
+      "lesson": 2,
+      "topic": "ipotetico_iii_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase italiana con su traducción.",
+      "pairs": [
+        ["Se avessi studiato, avrei superato l'esame.", "Si hubiera estudiado, habría aprobado el examen."],
+        ["Se fossi partito prima, non avrei perso il treno.", "Si hubiera salido antes, no habría perdido el tren."],
+        ["Se avessi studiato, ora sarei laureato.", "Si hubiera estudiado, ahora estaría graduado."]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "condizionale_passato_notizia",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la forma correcta para una noticia no confirmada: « Secondo i giornali, il ministro ___ le sue scuse ».",
+      "options": ["avrebbe dato", "ha dato", "darebbe"],
+      "value": "avrebbe dato"
+    },
+    {
+      "lesson": 4,
+      "topic": "tre_tipi_contrasto",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada periodo hipotético con el tipo que representa.",
+      "pairs": [
+        ["Se piove, resto a casa.", "Tipo I: realidad (indicativo)."],
+        ["Se piovesse, resterei a casa.", "Tipo II: posibilidad (presente)."],
+        ["Se fosse piovuto, sarei restato a casa.", "Tipo III: irrealidad (pasado)."]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "ipotetico_ii_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa la apódosis con el condicional presente de « venire » (« Si pudiera, vendría »).",
+      "text": "Se potessi, ___ volentieri alla festa.",
+      "value": "verrei",
+      "accepted": ["verrei"]
+    },
+    {
+      "lesson": 1,
+      "topic": "ipotetico_ii_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce (posibilidad del presente): « Si fuera rico, viajaría por todo el mundo. »",
+      "source": "Si fuera rico, viajaría por todo el mundo.",
+      "value": "Se fossi ricco, viaggerei per tutto il mondo.",
+      "accepted": [
+        "Se fossi ricco, viaggerei per tutto il mondo",
+        "Se fossi ricco, viaggerei per tutto il mondo.",
+        "Se fossi ricco viaggerei per tutto il mondo",
+        "Se fossi ricca, viaggerei per tutto il mondo.",
+        "Se fossi ricca, viaggerei per tutto il mondo",
+        "Se fossi ricca viaggerei per tutto il mondo"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "ipotetico_iii_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa la apódosis con el condicional pasado (« habría aprobado el examen »): auxiliar + participio.",
+      "text": "Se avessi studiato di più, ___ l'esame senza problemi.",
+      "value": "avrei superato",
+      "accepted": ["avrei superato"]
+    },
+    {
+      "lesson": 2,
+      "topic": "ipotetico_iii_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce (irrealidad del pasado): « Si hubiera salido antes, no habría perdido el tren. »",
+      "source": "Si hubiera salido antes, no habría perdido el tren.",
+      "value": "Se fossi partito prima, non avrei perso il treno.",
+      "accepted": [
+        "Se fossi partito prima, non avrei perso il treno",
+        "Se fossi partito prima, non avrei perso il treno.",
+        "Se fossi partita prima, non avrei perso il treno.",
+        "Se fossi partito prima non avrei perso il treno",
+        "Se fossi partita prima, non avrei perso il treno",
+        "Se fossi partita prima non avrei perso il treno"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "condizionale_passato_rimpianto",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Construye la frase de arrepentimiento: « Habría querido venir, pero no pude. »",
+      "tiles": ["Avrei", "voluto", "venire", "ma", "non", "ho", "potuto", "vorrei", "sono"],
+      "sequence": ["Avrei", "voluto", "venire", "ma", "non", "ho", "potuto"]
+    },
+    {
+      "lesson": 3,
+      "topic": "condizionale_passato_futuro_nel_passato",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el condicional pasado para el « futuro en el pasado » (« Dijo que vendría »): auxiliar + participio.",
+      "text": "Marco ha detto che ___ alla riunione, ma poi non è arrivato.",
+      "value": "sarebbe venuto",
+      "accepted": ["sarebbe venuto"]
+    },
+    {
+      "lesson": 1,
+      "topic": "ipotetico_ii_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Se avessi tempo, verrei volentieri con voi.",
+      "options": [
+        "Se avessi tempo, verrei volentieri con voi.",
+        "Se avrò tempo, verrò senz'altro con voi.",
+        "Se ho tempo, vengo sicuramente con voi."
+      ],
+      "value": "Se avessi tempo, verrei volentieri con voi."
+    },
+    {
+      "lesson": 2,
+      "topic": "ipotetico_iii_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Se fossi partito prima, non avrei perso il treno.",
+      "options": [
+        "Se fossi partito prima, non avrei perso il treno.",
+        "Se parto prima, non perdo mai il treno.",
+        "Se partissi prima, non perderei il treno."
+      ],
+      "value": "Se fossi partito prima, non avrei perso il treno."
+    },
+    {
+      "lesson": 3,
+      "topic": "condizionale_passato_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Avrei dovuto studiare molto di più.",
+      "options": [
+        "Avrei dovuto studiare molto di più.",
+        "Avrò bisogno di studiare molto di più.",
+        "Ho dovuto studiare parecchio di più."
+      ],
+      "value": "Avrei dovuto studiare molto di più."
+    },
+    {
+      "lesson": 4,
+      "topic": "tre_tipi_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Se fosse piovuto, saremmo rimasti a casa.",
+      "options": [
+        "Se fosse piovuto, saremmo rimasti a casa.",
+        "Se piovesse adesso, resteremmo a casa.",
+        "Se piove domani, restiamo tutti a casa."
+      ],
+      "value": "Se fosse piovuto, saremmo rimasti a casa."
+    },
+    {
+      "lesson": 1,
+      "topic": "ipotetico_ii_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Se avessi più tempo libero, imparerei a suonare il pianoforte."
+    },
+    {
+      "lesson": 2,
+      "topic": "ipotetico_iii_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Se avessi saputo la verità, mi sarei comportato diversamente."
+    },
+    {
+      "lesson": 3,
+      "topic": "condizionale_passato_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Avrei voluto aiutarti, ma purtroppo non ne ho avuto l'occasione."
+    }
+  ]
+}

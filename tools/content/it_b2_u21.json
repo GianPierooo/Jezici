@@ -1,0 +1,272 @@
+{
+  "unit": {
+    "order": 21,
+    "title_es": "La forma pasiva (essere, venire, andare) y el «si» pasivante",
+    "color": "#7D3C98",
+    "icon": "swap_horiz"
+  },
+  "checkpoint_desc": "Construye la pasiva con essere (con concordancia del participio y complemento agente «da»), la distingue de venire (foco en la acción) y de andare (idea de obligación = dovere essere), y usa el «si» pasivante e impersonal.",
+  "lessons": [
+    {
+      "order": 1,
+      "title_es": "Pasiva con essere: participio, concordancia y tiempos"
+    },
+    {
+      "order": 2,
+      "title_es": "Pasiva con venire vs. essere"
+    },
+    {
+      "order": 3,
+      "title_es": "Pasiva con andare: la idea de obligación"
+    },
+    {
+      "order": 4,
+      "title_es": "El «si» pasivante e impersonal"
+    }
+  ],
+  "vocab": [
+    ["la forma passiva", "la voz pasiva", "gram"],
+    ["il complemento d'agente", "el complemento agente", "gram"],
+    ["essere scritto", "ser escrito", "gram"],
+    ["venire consegnato", "ser entregado", "gram"],
+    ["andare rispettato", "deber ser respetado", "gram"],
+    ["il si passivante", "el «se» pasivo", "gram"],
+    ["la lettera è stata scritta", "la carta ha sido escrita", "frase"],
+    ["il pacco verrà consegnato", "el paquete será entregado", "frase"],
+    ["le regole vanno rispettate", "las reglas deben respetarse", "frase"],
+    ["il modulo va compilato", "el formulario debe rellenarse", "frase"],
+    ["si vendono case", "se venden casas", "frase"],
+    ["si parla italiano", "se habla italiano", "frase"],
+    ["consegnare", "entregar", "verbo"],
+    ["compilare", "rellenar (un formulario)", "verbo"],
+    ["approvare", "aprobar", "verbo"],
+    ["il vincitore", "el ganador", "sust"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "passiva_essere_agente",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase pasiva con su significado.",
+      "pairs": [
+        ["La lettera è stata scritta da Maria.", "La carta fue escrita por María."],
+        ["I libri sono stati venduti.", "Los libros fueron vendidos."],
+        ["La casa sarà costruita l'anno prossimo.", "La casa será construida el próximo año."]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "passiva_essere_accordo",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Las cartas fueron enviadas ayer.» ¿Cuál tiene la concordancia correcta del participio?",
+      "options": [
+        "Le lettere sono state spedite ieri.",
+        "Le lettere sono stati spediti ieri.",
+        "Le lettere è stata spedita ieri."
+      ],
+      "value": "Le lettere sono state spedite ieri."
+    },
+    {
+      "lesson": 2,
+      "topic": "venire_vs_essere",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«La puerta se cierra (es cerrada) a las ocho todos los días.» ¿Qué opción usa correctamente venire para el foco en la acción?",
+      "options": [
+        "La porta viene chiusa alle otto.",
+        "La porta venuta chiusa alle otto.",
+        "La porta viene chiudere alle otto."
+      ],
+      "value": "La porta viene chiusa alle otto."
+    },
+    {
+      "lesson": 2,
+      "topic": "venire_tempi_semplici",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«El paquete será entregado mañana.» ¿Qué opción con venire es correcta?",
+      "options": [
+        "Il pacco verrà consegnato domani.",
+        "Il pacco verrà consegnata domani.",
+        "Il pacco è venuto consegnato domani."
+      ],
+      "value": "Il pacco verrà consegnato domani."
+    },
+    {
+      "lesson": 3,
+      "topic": "andare_obbligo",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Las reglas deben respetarse.» ¿Qué opción con andare expresa correctamente la obligación?",
+      "options": [
+        "Le regole vanno rispettate.",
+        "Le regole vanno rispettati.",
+        "Le regole va rispettata."
+      ],
+      "value": "Le regole vanno rispettate."
+    },
+    {
+      "lesson": 4,
+      "topic": "si_passivante_impersonale",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase con «si» con su significado.",
+      "pairs": [
+        ["Si vendono case al mare.", "Se venden casas junto al mar."],
+        ["In Italia si mangia bene.", "En Italia se come bien."],
+        ["Qui si parlano tre lingue.", "Aquí se hablan tres idiomas."]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "passiva_essere_passato",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa la pasiva con essere en passato prossimo del verbo «scrivere» (femenino singular): «La lettera è ___ scritta da Maria.»",
+      "text": "La lettera è ___ scritta da Maria.",
+      "value": "stata",
+      "accepted": ["stata"]
+    },
+    {
+      "lesson": 1,
+      "topic": "passiva_essere_agente_trad",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando la pasiva con essere: «Los libros fueron vendidos por la librería.»",
+      "source": "Los libros fueron vendidos por la librería.",
+      "value": "I libri sono stati venduti dalla libreria.",
+      "accepted": [
+        "I libri sono stati venduti dalla libreria.",
+        "I libri sono stati venduti dalla libreria",
+        "I libri furono venduti dalla libreria.",
+        "I libri furono venduti dalla libreria"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "venire_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con venire en futuro (3ª persona singular): «Il documento ___ approvato domani.» (será aprobado)",
+      "text": "Il documento ___ approvato domani.",
+      "value": "verrà",
+      "accepted": ["verrà", "verra"]
+    },
+    {
+      "lesson": 3,
+      "topic": "andare_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando andare (idea de obligación): «El formulario debe rellenarse con cuidado.»",
+      "source": "El formulario debe rellenarse con cuidado.",
+      "value": "Il modulo va compilato con attenzione.",
+      "accepted": [
+        "Il modulo va compilato con attenzione.",
+        "Il modulo va compilato con attenzione",
+        "Il modulo va compilato con cura.",
+        "Il modulo va compilato con cura"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "andare_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena para formar: «Estos consejos deben seguirse siempre.» (Questi consigli vanno seguiti sempre.)",
+      "tiles": ["Questi", "consigli", "vanno", "seguiti", "sempre", "seguito", "vengono"],
+      "sequence": ["Questi", "consigli", "vanno", "seguiti", "sempre"]
+    },
+    {
+      "lesson": 4,
+      "topic": "si_passivante_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el «si» pasivante y el verbo «vendere» concordando con «case» (plural): «In quella zona ___ case a buon prezzo.» (se venden casas)",
+      "text": "In quella zona ___ case a buon prezzo.",
+      "value": "si vendono",
+      "accepted": ["si vendono"]
+    },
+    {
+      "lesson": 1,
+      "topic": "passiva_essere_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "La casa è stata costruita nel millenovecento.",
+      "options": [
+        "La casa è stata costruita nel millenovecento.",
+        "La casa è stata comprata a Milano.",
+        "La casa è stata dipinta di verde."
+      ],
+      "value": "La casa è stata costruita nel millenovecento."
+    },
+    {
+      "lesson": 2,
+      "topic": "venire_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Il pacco viene consegnato ogni mattina.",
+      "options": [
+        "Il pacco viene consegnato ogni mattina.",
+        "Il regalo viene spedito ogni settimana.",
+        "Il libro viene stampato ogni anno."
+      ],
+      "value": "Il pacco viene consegnato ogni mattina."
+    },
+    {
+      "lesson": 3,
+      "topic": "andare_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Le regole vanno rispettate da tutti.",
+      "options": [
+        "Le regole vanno rispettate da tutti.",
+        "Le finestre vanno chiuse alla sera.",
+        "Le tasse vanno pagate entro giugno."
+      ],
+      "value": "Le regole vanno rispettate da tutti."
+    },
+    {
+      "lesson": 4,
+      "topic": "si_impersonale_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "In Italia si mangia molto bene.",
+      "options": [
+        "In Italia si mangia molto bene.",
+        "In Francia si beve molto vino.",
+        "In Spagna si dorme dopo pranzo."
+      ],
+      "value": "In Italia si mangia molto bene."
+    },
+    {
+      "lesson": 1,
+      "topic": "passiva_essere_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Il premio è stato consegnato al vincitore dalla giuria.",
+      "prompt": "Lee en voz alta:"
+    },
+    {
+      "lesson": 2,
+      "topic": "venire_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Ogni sera la porta del negozio viene chiusa a chiave.",
+      "prompt": "Lee en voz alta:"
+    },
+    {
+      "lesson": 4,
+      "topic": "si_passivante_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "In questa città si parlano tante lingue diverse.",
+      "prompt": "Lee en voz alta:"
+    }
+  ]
+}

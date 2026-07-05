@@ -1,0 +1,239 @@
+{
+  "unit": {"order": 22, "title_es": "Discurso indirecto avanzado (concordanza dei tempi)", "color": "#1A5276", "icon": "record_voice_over"},
+  "checkpoint_desc": "Transforma el discurso directo en indirecto con verbo principal en pasado aplicando la concordanza completa (presente→imperfetto, passato prossimo→trapassato, futuro→condizionale composto, congiuntivo presente→imperfetto), reformula preguntas indirectas (se/dove/cosa + congiuntivo imperfetto), da órdenes con «di + infinito» y adapta los deícticos (ora→allora, oggi→quel giorno, ieri→il giorno prima, domani→il giorno dopo, qui→lì, questo→quello).",
+  "lessons": [
+    {"order": 1, "title_es": "Presente → imperfetto (Ha detto che stava bene)"},
+    {"order": 2, "title_es": "Passato → trapassato · futuro → condizionale composto"},
+    {"order": 3, "title_es": "Preguntas indirectas (se/dove/cosa) + congiuntivo imperfetto"},
+    {"order": 4, "title_es": "Órdenes con «di + infinito» y cambio de deícticos"}
+  ],
+  "vocab": [
+    ["il discorso indiretto", "el discurso indirecto", "gram"],
+    ["riferire", "referir, transmitir", "verbo"],
+    ["Ha detto che stava bene", "Dijo que estaba bien", "expresion"],
+    ["Ha detto che aveva finito", "Dijo que había terminado", "expresion"],
+    ["Ha detto che sarebbe venuto", "Dijo que vendría", "expresion"],
+    ["Mi ha chiesto se avessi tempo", "Me preguntó si tenía tiempo", "expresion"],
+    ["Voleva sapere dove fossi", "Quería saber dónde estaba", "expresion"],
+    ["Mi ha detto di aspettare", "Me dijo que esperara", "expresion"],
+    ["il condizionale composto", "el condicional compuesto", "gram"],
+    ["la concordanza dei tempi", "la correlación de tiempos", "gram"],
+    ["allora", "entonces (en aquel momento)", "adv"],
+    ["quel giorno", "aquel día", "expresion"],
+    ["il giorno prima", "el día anterior", "expresion"],
+    ["il giorno dopo", "el día siguiente", "expresion"],
+    ["lì", "allí", "adv"],
+    ["quello", "aquello, ese", "pron"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "presente_a_imperfetto",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase en estilo directo con su versión en discurso indirecto (principal en pasado).",
+      "pairs": [
+        ["«Sto bene» → Ha detto che stava bene", "Dijo que estaba bien"],
+        ["«Ho fame» → Ha detto che aveva fame", "Dijo que tenía hambre"],
+        ["«Lavoro qui» → Ha detto che lavorava lì", "Dijo que trabajaba allí"],
+        ["«Non posso» → Ha detto che non poteva", "Dijo que no podía"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "presente_a_imperfetto",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Pasa a discurso indirecto tras principal en pasado. Directo: «Sono molto stanca». Indirecto: «Mi ha detto che ___ molto stanca».",
+      "options": ["era", "è", "sarà"],
+      "value": "era"
+    },
+    {
+      "lesson": 1,
+      "topic": "presente_a_imperfetto",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Transforma a indirecto. Directo: «Abito a Milano». Completa con el imperfetto de «abitare» (3ª pers. sing.).",
+      "text": "Ha detto che ___ a Milano.",
+      "value": "abitava",
+      "accepted": ["abitava"]
+    },
+    {
+      "lesson": 1,
+      "topic": "presente_a_imperfetto",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ha detto che non aveva tempo per finire il progetto.",
+      "options": [
+        "Ha detto che non aveva tempo per finire il progetto.",
+        "Ha detto che non aveva tempo per iniziare il progetto.",
+        "Dice che non ha tempo per finire il progetto."
+      ],
+      "value": "Ha detto che non aveva tempo per finire il progetto."
+    },
+    {
+      "lesson": 1,
+      "topic": "presente_a_imperfetto",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Marco mi ha spiegato che si sentiva molto meglio dopo le vacanze."
+    },
+    {
+      "lesson": 2,
+      "topic": "passato_e_futuro",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase directa con su versión indirecta (anterioridad → trapassato; futuro → condizionale composto).",
+      "pairs": [
+        ["«Ho finito» → Ha detto che aveva finito", "Dijo que había terminado"],
+        ["«Sono arrivati» → Ha detto che erano arrivati", "Dijo que habían llegado"],
+        ["«Verrò domani» → Ha detto che sarebbe venuto", "Dijo que vendría"],
+        ["«Ti chiamerò» → Ha detto che mi avrebbe chiamato", "Dijo que me llamaría"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "passato_e_futuro",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al italiano (indirecto, anterioridad con trapassato prossimo). El verbo principal va en pasado.",
+      "source": "Dijo que ya había comprado los billetes.",
+      "value": "Ha detto che aveva già comprato i biglietti.",
+      "accepted": [
+        "Ha detto che aveva già comprato i biglietti",
+        "Ha detto che aveva già comprato i biglietti.",
+        "Ha detto che aveva comprato già i biglietti.",
+        "Ha detto che aveva comprato già i biglietti"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "passato_e_futuro",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Transforma a indirecto (futuro → condizionale composto). Directo: «Partirò la settimana prossima». Completa con «sarebbe» + participio de «partire».",
+      "text": "Ha detto che ___ partito la settimana successiva.",
+      "value": "sarebbe",
+      "accepted": ["sarebbe"]
+    },
+    {
+      "lesson": 2,
+      "topic": "passato_e_futuro",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ci ha assicurato che sarebbe arrivato prima delle otto.",
+      "options": [
+        "Ci ha assicurato che sarebbe arrivato prima delle otto.",
+        "Ci ha assicurato che sarebbe tornato prima delle otto.",
+        "Ci assicura che arriverà prima delle otto."
+      ],
+      "value": "Ci ha assicurato che sarebbe arrivato prima delle otto."
+    },
+    {
+      "lesson": 3,
+      "topic": "domande_indirette",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Pregunta indirecta con «se» y congiuntivo imperfetto. Directo: «Hai tempo?». Indirecto: «Mi ha chiesto se ___ tempo».",
+      "options": ["avessi", "avevi", "abbia"],
+      "value": "avessi"
+    },
+    {
+      "lesson": 3,
+      "topic": "domande_indirette",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Construye la frase: Quería saber dónde estaba yo el sábado.",
+      "tiles": ["Voleva", "sapere", "dove", "fossi", "il", "sabato", "sono", "ero"],
+      "sequence": ["Voleva", "sapere", "dove", "fossi", "il", "sabato"]
+    },
+    {
+      "lesson": 3,
+      "topic": "domande_indirette",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Mi ha chiesto cosa avessi fatto il giorno prima.",
+      "options": [
+        "Mi ha chiesto cosa avessi fatto il giorno prima.",
+        "Mi ha chiesto dove avessi dormito il giorno prima.",
+        "Mi chiede cosa ho fatto il giorno prima."
+      ],
+      "value": "Mi ha chiesto cosa avessi fatto il giorno prima."
+    },
+    {
+      "lesson": 3,
+      "topic": "domande_indirette",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "L'insegnante voleva sapere perché non fossimo venuti alla lezione."
+    },
+    {
+      "lesson": 4,
+      "topic": "ordini_e_deittici",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Orden en discurso indirecto con «di + infinito». Directo: «Aspetta!». Indirecto: «Mi ha detto ___ aspettare».",
+      "options": ["di", "che", "a"],
+      "value": "di"
+    },
+    {
+      "lesson": 4,
+      "topic": "ordini_e_deittici",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada deíctico del estilo directo con su equivalente en el indirecto (principal en pasado).",
+      "pairs": [
+        ["oggi → quel giorno", "aquel día"],
+        ["ieri → il giorno prima", "el día anterior"],
+        ["domani → il giorno dopo", "el día siguiente"],
+        ["qui → lì", "allí"]
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "ordini_e_deittici",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Orden negativa en indirecto con «di non + infinito». Directo: «Non andare via!». Completa con la preposición que introduce el infinito.",
+      "text": "Mi ha detto ___ non andare via.",
+      "value": "di",
+      "accepted": ["di"]
+    },
+    {
+      "lesson": 4,
+      "topic": "ordini_e_deittici",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Construye la frase: Nos pidió que cerráramos la puerta.",
+      "tiles": ["Ci", "ha", "chiesto", "di", "chiudere", "la", "porta", "che", "chiudessimo"],
+      "sequence": ["Ci", "ha", "chiesto", "di", "chiudere", "la", "porta"]
+    },
+    {
+      "lesson": 4,
+      "topic": "ordini_e_deittici",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ci ha detto di tornare lì il giorno dopo verso mezzogiorno.",
+      "options": [
+        "Ci ha detto di tornare lì il giorno dopo verso mezzogiorno.",
+        "Ci ha detto di restare lì il giorno dopo verso mezzogiorno.",
+        "Ci dice di tornare qui domani verso mezzogiorno."
+      ],
+      "value": "Ci ha detto di tornare lì il giorno dopo verso mezzogiorno."
+    },
+    {
+      "lesson": 4,
+      "topic": "ordini_e_deittici",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Il direttore ci ha ordinato di consegnare quel documento entro il giorno dopo."
+    }
+  ]
+}

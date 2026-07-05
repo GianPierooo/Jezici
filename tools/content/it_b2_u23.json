@@ -1,0 +1,394 @@
+{
+  "unit": {
+    "order": 23,
+    "title_es": "Conectores y conjunciones + subjuntivo",
+    "color": "#5B2C6F",
+    "icon": "hub"
+  },
+  "checkpoint_desc": "Usa las conjunciones que rigen congiuntivo (benché, affinché, purché, prima che, a meno che), distingue anche se/mentre/siccome con indicativo, y enlaza ideas con conectores textuales B2 (tuttavia, quindi, di conseguenza, inoltre).",
+  "lessons": [
+    {
+      "order": 1,
+      "title_es": "Concesión con congiuntivo (benché, sebbene, nonostante)"
+    },
+    {
+      "order": 2,
+      "title_es": "Fin y condición (affinché, purché, prima che, a meno che)"
+    },
+    {
+      "order": 3,
+      "title_es": "Con indicativo (anche se, mentre, siccome)"
+    },
+    {
+      "order": 4,
+      "title_es": "Conectores textuales (tuttavia, quindi, di conseguenza, inoltre)"
+    }
+  ],
+  "vocab": [
+    [
+      "benché",
+      "aunque (+ subj.)",
+      "conjuncion"
+    ],
+    [
+      "sebbene",
+      "aunque (+ subj.)",
+      "conjuncion"
+    ],
+    [
+      "nonostante",
+      "a pesar de que (+ subj.)",
+      "conjuncion"
+    ],
+    [
+      "affinché",
+      "para que (+ subj.)",
+      "conjuncion"
+    ],
+    [
+      "purché",
+      "con tal de que (+ subj.)",
+      "conjuncion"
+    ],
+    [
+      "a patto che",
+      "a condición de que (+ subj.)",
+      "conjuncion"
+    ],
+    [
+      "prima che",
+      "antes de que (+ subj.)",
+      "conjuncion"
+    ],
+    [
+      "a meno che",
+      "a menos que (+ subj.)",
+      "conjuncion"
+    ],
+    [
+      "senza che",
+      "sin que (+ subj.)",
+      "conjuncion"
+    ],
+    [
+      "qualora",
+      "en caso de que (+ subj.)",
+      "conjuncion"
+    ],
+    [
+      "anche se",
+      "aunque (+ indic.)",
+      "conjuncion"
+    ],
+    [
+      "siccome",
+      "como / dado que",
+      "conjuncion"
+    ],
+    [
+      "tuttavia",
+      "sin embargo",
+      "conector"
+    ],
+    [
+      "quindi",
+      "por lo tanto",
+      "conector"
+    ],
+    [
+      "di conseguenza",
+      "en consecuencia",
+      "conector"
+    ],
+    [
+      "inoltre",
+      "además",
+      "conector"
+    ]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "concessive_congiuntivo",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase italiana con su traducción.",
+      "pairs": [
+        [
+          "Benché sia stanco, continua a lavorare.",
+          "Aunque está cansado, sigue trabajando."
+        ],
+        [
+          "Sebbene piova, usciamo lo stesso.",
+          "Aunque llueve, salimos igualmente."
+        ],
+        [
+          "Nonostante abbia poco tempo, mi aiuta.",
+          "A pesar de que tiene poco tiempo, me ayuda."
+        ]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "concessive_congiuntivo",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la forma correcta después de « benché » (aunque sea difícil, ci provo).",
+      "options": [
+        "Benché sia difficile, ci provo.",
+        "Benché è difficile, ci provo.",
+        "Benché era difficile, ci provo."
+      ],
+      "value": "Benché sia difficile, ci provo."
+    },
+    {
+      "lesson": 1,
+      "topic": "concessive_congiuntivo",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el congiuntivo presente de « avere » (a pesar de que tenga razón).",
+      "text": "Nonostante ___ ragione, non insiste mai.",
+      "value": "abbia",
+      "accepted": [
+        "abbia"
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "concessive_congiuntivo",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Sebbene sia giovane, ha molta esperienza.",
+      "options": [
+        "Sebbene sia giovane, ha molta esperienza.",
+        "Poiché è giovane, ha poca esperienza.",
+        "Anche se lavora tanto, guadagna poco."
+      ],
+      "value": "Sebbene sia giovane, ha molta esperienza."
+    },
+    {
+      "lesson": 1,
+      "topic": "concessive_congiuntivo",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Benché sia tardi, voglio finire questo lavoro stasera."
+    },
+    {
+      "lesson": 2,
+      "topic": "final_condizionale_congiuntivo",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la conjunción de finalidad correcta (te lo explico para que lo entiendas).",
+      "options": [
+        "Te lo spiego affinché tu capisca.",
+        "Te lo spiego siccome tu capisca.",
+        "Te lo spiego mentre tu capisca."
+      ],
+      "value": "Te lo spiego affinché tu capisca."
+    },
+    {
+      "lesson": 2,
+      "topic": "final_condizionale_congiuntivo",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el congiuntivo presente de « partire » (antes de que se vaya).",
+      "text": "Voglio salutarlo prima che ___.",
+      "value": "parta",
+      "accepted": [
+        "parta"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "final_condizionale_congiuntivo",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce: Te presto el coche con tal de que conduzcas con cuidado.",
+      "source": "Te presto el coche con tal de que conduzcas con cuidado.",
+      "value": "Ti presto la macchina purché tu guidi con prudenza.",
+      "accepted": [
+        "Ti presto la macchina purché tu guidi con prudenza.",
+        "Ti presto la macchina purché tu guidi con prudenza",
+        "Ti presto la macchina purché guidi con prudenza.",
+        "Ti presto la macchina purché guidi con prudenza",
+        "Ti presto l'auto purché tu guidi con prudenza.",
+        "Ti presto l'auto purché tu guidi con prudenza"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "final_condizionale_congiuntivo",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Verrò alla festa a meno che non piova.",
+      "options": [
+        "Verrò alla festa a meno che non piova.",
+        "Verrò alla festa a patto che tu venga.",
+        "Verrò alla festa qualora sia libero."
+      ],
+      "value": "Verrò alla festa a meno che non piova."
+    },
+    {
+      "lesson": 2,
+      "topic": "final_condizionale_congiuntivo",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Ti aiuto volentieri, purché tu me lo chieda prima che sia troppo tardi."
+    },
+    {
+      "lesson": 3,
+      "topic": "indicativo_contrasto",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la frase correcta con « anche se » (aunque, + indicativo: aunque hace frío, salgo).",
+      "options": [
+        "Anche se fa freddo, esco lo stesso.",
+        "Anche se faccia freddo, esco lo stesso.",
+        "Anche se facesse freddo, esco lo stesso."
+      ],
+      "value": "Anche se fa freddo, esco lo stesso."
+    },
+    {
+      "lesson": 3,
+      "topic": "indicativo_contrasto",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Construye la frase: Como estaba cansado, sono andato a letto presto.",
+      "tiles": [
+        "Siccome",
+        "ero",
+        "stanco",
+        "sono",
+        "andato",
+        "a",
+        "letto",
+        "presto",
+        "benché",
+        "sia"
+      ],
+      "sequence": [
+        "Siccome",
+        "ero",
+        "stanco",
+        "sono",
+        "andato",
+        "a",
+        "letto",
+        "presto"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "indicativo_contrasto",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Mentre lui cucinava, io apparecchiavo la tavola.",
+      "options": [
+        "Mentre lui cucinava, io apparecchiavo la tavola.",
+        "Poiché lui cucinava, io lavavo i piatti.",
+        "Anche se lui cucina, io preparo il dolce."
+      ],
+      "value": "Mentre lui cucinava, io apparecchiavo la tavola."
+    },
+    {
+      "lesson": 4,
+      "topic": "connettivi_testuali",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada conector italiano con su significado en español.",
+      "pairs": [
+        [
+          "tuttavia",
+          "sin embargo"
+        ],
+        [
+          "di conseguenza",
+          "en consecuencia"
+        ],
+        [
+          "inoltre",
+          "además"
+        ]
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "connettivi_testuali",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el conector de consecuencia (llovía, por lo tanto nos quedamos en casa).",
+      "options": [
+        "Pioveva, quindi siamo rimasti a casa.",
+        "Pioveva, inoltre siamo rimasti a casa.",
+        "Pioveva, tuttavia siamo rimasti a casa."
+      ],
+      "value": "Pioveva, quindi siamo rimasti a casa."
+    },
+    {
+      "lesson": 4,
+      "topic": "connettivi_testuali",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el conector de oposición « sin embargo ».",
+      "text": "Il progetto era ambizioso; ___, mancavano i fondi.",
+      "value": "tuttavia",
+      "accepted": [
+        "tuttavia"
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "connettivi_testuali",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena las palabras para formar la frase.",
+      "tiles": [
+        "cambiato",
+        "chiusa;",
+        "La",
+        "quindi",
+        "era",
+        "abbiamo",
+        "percorso",
+        "strada"
+      ],
+      "sequence": [
+        "La",
+        "strada",
+        "era",
+        "chiusa;",
+        "abbiamo",
+        "quindi",
+        "cambiato",
+        "percorso"
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "connettivi_testuali",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Il ristorante è ottimo; inoltre, i prezzi sono ragionevoli.",
+      "options": [
+        "Il ristorante è ottimo; inoltre, i prezzi sono ragionevoli.",
+        "Il ristorante è caro; tuttavia, il servizio è lento.",
+        "Il ristorante è nuovo; quindi, è sempre pieno."
+      ],
+      "value": "Il ristorante è ottimo; inoltre, i prezzi sono ragionevoli."
+    },
+    {
+      "lesson": 4,
+      "topic": "connettivi_testuali",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Il traffico era intenso; di conseguenza, siamo arrivati in ritardo alla riunione."
+    }
+  ]
+}

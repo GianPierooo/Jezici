@@ -26,7 +26,7 @@
 
 ## Cola (retome exacto — orden sugerido)
 > Estado de niveles hoy (verificado en BD): **en A1–C1 · pt A1–B1 · fr A1–B2 · it A1–B2 ·
-> de A1–B2 · nl A1–B2**. Andamiaje de escalera probado 9× (de B1, fr B1, de B2, nl B1, nl B2, it B1, fr B2, it B2, +):
+> de A1–B2 · nl A1–B2** (5 de 6 cursos hasta B2; solo pt topa en B1). Andamiaje probado 9× (de B1, fr B1, de B2, nl B1, nl B2, it B1, fr B2, it B2, +):
 > generador `gen_course.py <code> <a1|a2|b1|b2>`, audio `gen_audio_missing.py <code>-<lvl>`, verificadores
 > `verify_b1_chain.py`/`verify_b2_chain.py <code>`. STAMPS reservados en `gen_course.py`.
 1. **es→pt B2** (no sembrado; pt topa en B1) o **C1 es→fr/it/de/nl** (topan en B2): siguiente escalón de contenido.
@@ -128,6 +128,21 @@ App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supab
   infinitivo «d'avoir fini», élision «ce qu'» ante je removida, 2 word_bank/reorder triviales barajados). **Verificado
   cliente real (`verify_b2_chain.py fr`):** determinista 96/96 + 96/96 distractores (42501); **CAMINA A1→B2 las 24
   unidades** (U18→U19, 30/30 lecciones B2); **0 lesson_items cruzan los 6 cursos**; default(en) sin fuga; audio 42/42.
+- **B2 es→it ✅ LIVE (mig 20260705120120, 2026-07-05):** 6 unidades (order 19-24, encadenan B1→B2; U18 desbloquea
+  U19), **114 ítems (R36/W36/L24/S18 → L=67% S=50%)**, audio TTS tl=it **42/42**. Currículo B2 REAL: **congiuntivo
+  imperfetto/trapassato** (fossi/avessi/facessi; avesse+participio; concordanza «Pensavo che fosse»), **periodo
+  ipotetico II/III + condizionale passato** (Se avessi tempo verrei; Se avessi studiato avrei superato; regret/
+  futuro nel passato/notizia non confermata), **forma passiva** (essere+participio+accord/venire tiempos simples/
+  andare=dovere essere/si passivante), **discorso indiretto avanzado** (concordanza completa presente→imperfetto,
+  passato→trapassato, futuro→condizionale composto; domande indirette+congiuntivo; di+inf; deícticos), **connettivi
+  B2** (benché/sebbene/purché/a meno che+congiuntivo vs anche se/mentre/siccome+indicativo; tuttavia/quindi/di
+  conseguenza/inoltre), **nominalizzazione + relativi avanzati + frasi scisse** (infinito sostantivato, -zione/-mento;
+  il quale/i cui/ciò che/chi; È…che/È…a; registro cortés). 6 profesores nativos IA + **revisión adversarial nativa**
+  (fixes reales: reorder run-on «di conseguenza» reescrito con punto y coma, colisión cloze «i cui»/«il cui» dist-1
+  → convertido a word_bank, 2 accepted femeninos «ricca»/«partita», 1 trivial reorder barajado). **Verificado cliente
+  real (`verify_b2_chain.py it`):** determinista 96/96 + 96/96 distractores (42501); **CAMINA A1→B2 las 24 unidades**
+  (U18→U19, 30/30 lecciones B2); **0 lesson_items cruzan los 6 cursos**; default(en) sin fuga; audio 42/42.
+  **italiano es→it: A1→B2 completo.**
 - **Diferido (retome del piloto):** cablear onboarding fr/it-específico (el onboarding ya deja elegir curso META,
   el placement corre por curso); imágenes fr/it; cert de nivel; C1 fr/it.
 

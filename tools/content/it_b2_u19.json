@@ -1,0 +1,238 @@
+{
+  "unit": {"order": 19, "title_es": "Congiuntivo imperfetto y trapassato", "color": "#6C3483", "icon": "history_edu"},
+  "checkpoint_desc": "Forma y usa el congiuntivo imperfetto (parlassi, prendessi, dormissi + fossi, avessi, facessi) y el trapassato (avessi/fossi + participio) aplicando la concordanza dei tempi tras principal en pasado o condicional.",
+  "lessons": [
+    {"order": 1, "title_es": "Congiuntivo imperfetto regular (parlassi, prendessi, dormissi)"},
+    {"order": 2, "title_es": "Imperfetto irregular (fossi, avessi, facessi, dessi, stessi)"},
+    {"order": 3, "title_es": "Congiuntivo trapassato (avessi/fossi + participio)"},
+    {"order": 4, "title_es": "Concordanza dei tempi: presente vs pasado"}
+  ],
+  "vocab": [
+    ["il congiuntivo imperfetto", "el subjuntivo imperfecto", "gram"],
+    ["il congiuntivo trapassato", "el subjuntivo pluscuamperfecto", "gram"],
+    ["che io parlassi", "que yo hablara", "gram"],
+    ["che tu prendessi", "que tú tomaras", "gram"],
+    ["che lui dormisse", "que él durmiera", "gram"],
+    ["che fossi", "que fuera / estuviera", "gram"],
+    ["che avessi", "que hubiera / tuviera", "gram"],
+    ["che facesse", "que hiciera", "gram"],
+    ["avesse finito", "hubiera terminado", "gram"],
+    ["fossero partiti", "hubieran salido", "gram"],
+    ["credevo che", "creía que", "expresion"],
+    ["pensavo che", "pensaba que", "expresion"],
+    ["vorrei che", "querría que", "expresion"],
+    ["come se", "como si", "conj"],
+    ["l'anteriorità", "la anterioridad", "sust"],
+    ["la concordanza dei tempi", "la correlación de tiempos", "gram"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "cong_imperfetto_regolare",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada forma del congiuntivo imperfetto con su significado.",
+      "pairs": [
+        ["che io parlassi", "que yo hablara"],
+        ["che tu prendessi", "que tú tomaras"],
+        ["che lui dormisse", "que él durmiera"],
+        ["che noi finissimo", "que nosotros termináramos"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "cong_imperfetto_regolare",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Congiuntivo imperfetto tras principal en pasado: «Volevo che tu ___ con noi.» (venir, verbo venire → radical veni-).",
+      "options": ["venissi", "venivi", "venga"],
+      "value": "venissi"
+    },
+    {
+      "lesson": 1,
+      "topic": "cong_imperfetto_regolare",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el congiuntivo imperfetto de «parlare» (2ª pers. sing.): «Speravo che tu mi ___ della tua giornata.»",
+      "text": "Speravo che tu mi ___ della tua giornata.",
+      "value": "parlassi",
+      "accepted": ["parlassi"]
+    },
+    {
+      "lesson": 1,
+      "topic": "cong_imperfetto_regolare",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Volevo che tu prendessi una decisione più chiara.",
+      "options": [
+        "Volevo che tu prendessi una decisione più chiara.",
+        "Volevo che tu vedessi una decisione più chiara.",
+        "Penso che tu prenda una decisione più chiara."
+      ],
+      "value": "Volevo che tu prendessi una decisione più chiara."
+    },
+    {
+      "lesson": 1,
+      "topic": "cong_imperfetto_regolare",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Sarebbe bello se tutti parlassero con più sincerità."
+    },
+    {
+      "lesson": 2,
+      "topic": "cong_imperfetto_irregolare",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada forma irregular con su significado.",
+      "pairs": [
+        ["che io fossi", "que yo fuera / estuviera"],
+        ["che tu avessi", "que tú tuvieras / hubieras"],
+        ["che lui facesse", "que él hiciera"],
+        ["che loro dessero", "que ellos dieran"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "cong_imperfetto_irregolare",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Forma irregular del verbo «essere» tras «pensavo che»: «Pensavo che ___ vero quello che dicevi.» (3ª pers. sing.).",
+      "options": ["fosse", "era", "sia"],
+      "value": "fosse"
+    },
+    {
+      "lesson": 2,
+      "topic": "cong_imperfetto_irregolare",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el congiuntivo imperfetto de «avere» (2ª pers. sing.): «Non sapevo che tu ___ già due figli.»",
+      "text": "Non sapevo che tu ___ già due figli.",
+      "value": "avessi",
+      "accepted": ["avessi"]
+    },
+    {
+      "lesson": 2,
+      "topic": "cong_imperfetto_irregolare",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Construye la frase: Querría que tú estuvieras aquí conmigo.",
+      "tiles": ["Vorrei", "che", "tu", "fossi", "qui", "con", "me", "sei", "eri"],
+      "sequence": ["Vorrei", "che", "tu", "fossi", "qui", "con", "me"]
+    },
+    {
+      "lesson": 2,
+      "topic": "cong_imperfetto_irregolare",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Mi comportavo come se fossi il capo di tutti.",
+      "options": [
+        "Mi comportavo come se fossi il capo di tutti.",
+        "Mi comportavo come se avessi il capo di tutti.",
+        "Mi comporto come se fossi il capo di tutti."
+      ],
+      "value": "Mi comportavo come se fossi il capo di tutti."
+    },
+    {
+      "lesson": 2,
+      "topic": "cong_imperfetto_irregolare",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Vorrei che tu facessi un po' più di attenzione ai dettagli."
+    },
+    {
+      "lesson": 3,
+      "topic": "cong_trapassato",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada forma del congiuntivo trapassato con su significado.",
+      "pairs": [
+        ["che avesse finito", "que hubiera terminado"],
+        ["che fossero partiti", "que hubieran salido"],
+        ["che avessi capito", "que yo hubiera entendido"]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "cong_trapassato",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Anterioridad en el pasado (auxiliar essere + participio): «Credevo che loro ___ già partiti.» (3ª pers. plural).",
+      "options": ["fossero", "erano", "avessero"],
+      "value": "fossero"
+    },
+    {
+      "lesson": 3,
+      "topic": "cong_trapassato",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce (subjuntivo pluscuamperfecto, auxiliar avere): «Pensaba que él ya había terminado el trabajo.»",
+      "source": "Pensaba que él ya había terminado el trabajo.",
+      "value": "Pensavo che avesse già finito il lavoro.",
+      "accepted": [
+        "Pensavo che avesse già finito il lavoro",
+        "Pensavo che avesse già finito il lavoro.",
+        "Pensavo che lui avesse già finito il lavoro.",
+        "Pensavo che lui avesse già finito il lavoro"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "cong_trapassato",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el auxiliar del congiuntivo trapassato de «partire» (essere, 3ª pers. plural): «Temevo che ___ partiti senza salutarmi.»",
+      "text": "Temevo che ___ partiti senza salutarmi.",
+      "value": "fossero",
+      "accepted": ["fossero"]
+    },
+    {
+      "lesson": 3,
+      "topic": "cong_trapassato",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Mi dispiaceva che voi foste già andati via prima della fine."
+    },
+    {
+      "lesson": 4,
+      "topic": "concordanza_tempi",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Construye la frase (principal en presente → congiuntivo presente): Creo que ella esté cansada.",
+      "tiles": ["Penso", "che", "lei", "sia", "stanca", "fosse", "era"],
+      "sequence": ["Penso", "che", "lei", "sia", "stanca"]
+    },
+    {
+      "lesson": 4,
+      "topic": "concordanza_tempi",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Credo che lei abbia ragione, ma pensavo che avesse torto.",
+      "options": [
+        "Credo che lei abbia ragione, ma pensavo che avesse torto.",
+        "Credevo che lei avesse ragione, ma penso che abbia torto.",
+        "Penso che lei abbia ragione, e credo che avesse fretta."
+      ],
+      "value": "Credo che lei abbia ragione, ma pensavo che avesse torto."
+    },
+    {
+      "lesson": 4,
+      "topic": "concordanza_tempi",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Pensavo che fosse più semplice di così.",
+      "options": [
+        "Pensavo che fosse più semplice di così.",
+        "Penso che sia più semplice di così.",
+        "Pensavo che avesse più semplice di così."
+      ],
+      "value": "Pensavo che fosse più semplice di così."
+    }
+  ]
+}
