@@ -1,0 +1,233 @@
+{
+  "unit": {"order": 22, "title_es": "Voz pasiva y participios dobles", "color": "#0EA5A4", "icon": "swap_horiz"},
+  "checkpoint_desc": "Demuestra que formas la voz pasiva (ser/estar + participio, concordancia y agente 'por'), la pasiva pronominal con 'se' y usas los participios dobles (aceito/pago/entregue/ganho).",
+  "lessons": [
+    {"order": 1, "title_es": "Voz pasiva analítica: ser + participio (concordancia y tiempos)"},
+    {"order": 2, "title_es": "El agente de la pasiva: por / pelo / pela"},
+    {"order": 3, "title_es": "Pasiva pronominal con 'se' · estar vs ser + participio"},
+    {"order": 4, "title_es": "Participios dobles: aceito, pego, entregue, ganho, pago, impresso"}
+  ],
+  "vocab": [
+    ["a voz passiva", "la voz pasiva", "gramática"],
+    ["o particípio", "el participio", "gramática"],
+    ["o agente", "el agente (de la pasiva)", "gramática"],
+    ["ser construído", "ser construido", "verbo"],
+    ["foi escrito", "fue escrito", "verbo"],
+    ["foram vendidos", "fueron vendidos", "verbo"],
+    ["será entregue", "será entregado", "verbo"],
+    ["a encomenda", "el paquete / pedido", "sustantivo"],
+    ["a fatura", "la factura", "sustantivo"],
+    ["o contrato", "el contrato", "sustantivo"],
+    ["assinar", "firmar", "verbo"],
+    ["aluga-se", "se alquila", "expresión"],
+    ["vendem-se", "se venden", "expresión"],
+    ["aceito", "aceptado", "participio"],
+    ["pago", "pagado", "participio"],
+    ["ganho", "ganado", "participio"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "voz_passiva_analitica",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase en voz pasiva con su significado.",
+      "pairs": [
+        ["A carta foi escrita por Maria.", "La carta fue escrita por María."],
+        ["Os livros foram vendidos ontem.", "Los libros fueron vendidos ayer."],
+        ["As casas serão construídas aqui.", "Las casas serán construidas aquí."],
+        ["O relatório é revisado todo mês.", "El informe es revisado cada mes."]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "voz_passiva_tempos",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Pasiva en pretérito perfecto: el sujeto 'o contrato' es singular. El contrato ya se firmó. Completa con el verbo 'ser'.",
+      "text": "O contrato ___ assinado pelo diretor na semana passada.",
+      "value": "foi",
+      "accepted": ["foi", "Foi"]
+    },
+    {
+      "lesson": 1,
+      "topic": "voz_passiva_analitica",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "O prédio foi vendido no ano passado.",
+      "options": [
+        "O prédio foi vendido no ano passado.",
+        "O prédio será demolido no próximo mês.",
+        "O prédio está fechado desde ontem."
+      ],
+      "value": "O prédio foi vendido no ano passado."
+    },
+    {
+      "lesson": 1,
+      "topic": "voz_passiva_tempos",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "O relatório é revisado toda semana e será enviado amanhã."
+    },
+    {
+      "lesson": 2,
+      "topic": "agente_da_passiva",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "El agente es 'o professor' (masculino singular). Elige la frase con la contracción de 'por + o' bien formada.",
+      "options": ["A prova foi corrigida pelo professor.", "A prova foi corrigida por a professora.", "A prova foi corrigida com o professor."],
+      "value": "A prova foi corrigida pelo professor."
+    },
+    {
+      "lesson": 2,
+      "topic": "agente_da_passiva",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "El agente es 'a diretora' (femenino). Escribe la contracción de 'por + a'.",
+      "text": "A decisão foi tomada ___ diretora da empresa.",
+      "value": "pela",
+      "accepted": ["pela", "Pela"]
+    },
+    {
+      "lesson": 2,
+      "topic": "agente_da_passiva",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Construye en português: 'La comida fue preparada por el chef.'",
+      "tiles": ["A", "comida", "foi", "preparada", "pelo", "chef", "pela", "com"],
+      "sequence": ["A", "comida", "foi", "preparada", "pelo", "chef"]
+    },
+    {
+      "lesson": 2,
+      "topic": "agente_da_passiva",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "A música foi composta pela cantora famosa.",
+      "options": [
+        "A música foi composta pela cantora famosa.",
+        "A música foi gravada por um estúdio pequeno.",
+        "A música será lançada amanhã de manhã."
+      ],
+      "value": "A música foi composta pela cantora famosa."
+    },
+    {
+      "lesson": 2,
+      "topic": "agente_da_passiva",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "O projeto foi aprovado pela diretora e será apresentado pelos alunos."
+    },
+    {
+      "lesson": 3,
+      "topic": "passiva_sintetica_se",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Pasiva pronominal con 'se': el sujeto es 'casas' (plural). Elige la frase con la concordancia correcta.",
+      "options": ["Vendem-se casas neste bairro.", "Vendem casas para se neste bairro.", "É vendido casas neste bairro."],
+      "value": "Vendem-se casas neste bairro."
+    },
+    {
+      "lesson": 3,
+      "topic": "passiva_sintetica_se",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Anuncio: 'se alquila un apartamento'. Pasiva pronominal: verbo 'alugar' en singular + '-se' pospuesto con guion.",
+      "text": "___ apartamento mobiliado no centro da cidade.",
+      "value": "Aluga-se",
+      "accepted": ["Aluga-se", "aluga-se"]
+    },
+    {
+      "lesson": 3,
+      "topic": "estar_vs_ser_participio",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase con su significado. Fíjate en 'ser' (acción) vs 'estar' (estado/resultado).",
+      "pairs": [
+        ["A porta foi fechada pelo porteiro.", "La puerta fue cerrada por el portero (acción)."],
+        ["A porta está fechada agora.", "La puerta está cerrada ahora (estado)."],
+        ["O trabalho já está feito.", "El trabajo ya está hecho (resultado)."]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "estar_vs_ser_participio",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce a português (estado/resultado con 'estar', no acción): 'El trabajo ya está hecho.'",
+      "source": "El trabajo ya está hecho.",
+      "value": "O trabalho já está feito.",
+      "accepted": ["O trabalho já está feito.", "O trabalho já está feito", "o trabalho já está feito", "O trabalho está feito", "o trabalho está feito"]
+    },
+    {
+      "lesson": 3,
+      "topic": "estar_vs_ser_participio",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "A janela está quebrada desde a tempestade.",
+      "options": [
+        "A janela está quebrada desde a tempestade.",
+        "A janela foi limpa antes da reunião.",
+        "A janela será trocada na próxima semana."
+      ],
+      "value": "A janela está quebrada desde a tempestade."
+    },
+    {
+      "lesson": 4,
+      "topic": "participios_duplos",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Con 'ser/estar' se usa el participio irregular; con 'ter' el regular. Elige la frase correcta.",
+      "options": ["A encomenda foi entregue hoje de manhã.", "A encomenda tem entregado toda semana.", "A encomenda está entregado hoje de manhã."],
+      "value": "A encomenda foi entregue hoje de manhã."
+    },
+    {
+      "lesson": 4,
+      "topic": "participios_duplos",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Con 'ter' se usa el participio regular (terminado en -ado). Pluscuamperfecto del verbo 'aceitar'.",
+      "text": "Eu já tinha ___ a proposta antes da reunião começar.",
+      "value": "aceitado",
+      "accepted": ["aceitado", "Aceitado"]
+    },
+    {
+      "lesson": 4,
+      "topic": "participios_duplos",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase con su significado. Observa el participio irregular con 'ser/estar'.",
+      "pairs": [
+        ["A conta já foi paga.", "La cuenta ya fue pagada."],
+        ["O prêmio foi ganho pela equipe.", "El premio fue ganado por el equipo."],
+        ["Os documentos foram impressos.", "Los documentos fueron impresos."]
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "participios_duplos",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "O prêmio foi ganho pela equipe brasileira.",
+      "options": [
+        "O prêmio foi ganho pela equipe brasileira.",
+        "O contrato foi assinado pelo gerente responsável.",
+        "A fatura já está paga desde a semana passada."
+      ],
+      "value": "O prêmio foi ganho pela equipe brasileira."
+    },
+    {
+      "lesson": 4,
+      "topic": "participios_duplos",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "A conta já foi paga e a encomenda foi entregue esta manhã."
+    }
+  ]
+}

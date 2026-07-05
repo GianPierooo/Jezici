@@ -1,0 +1,383 @@
+{
+  "unit": {
+    "order": 20,
+    "title_es": "Futuro del subjuntivo + Imperfecto del subjuntivo",
+    "color": "#1E7145",
+    "icon": "schedule_send"
+  },
+  "checkpoint_desc": "Domina el futuro del subjuntivo (quando eu tiver, se você quiser, enquanto ele puder) frente al presente, sus formas irregulares (for, tiver, fizer, puder), el imperfecto del subjuntivo en condicionales (se eu tivesse dinheiro, viajaria) y el contraste con «como se».",
+  "lessons": [
+    {
+      "order": 1,
+      "title_es": "Futuro del subjuntivo regular (quando, se, enquanto)"
+    },
+    {
+      "order": 2,
+      "title_es": "Futuro del subjuntivo irregular (for, tiver, fizer, puder)"
+    },
+    {
+      "order": 3,
+      "title_es": "Imperfecto del subjuntivo (se + …, condicional)"
+    },
+    {
+      "order": 4,
+      "title_es": "«Como se» y contraste futuro vs. imperfecto del subjuntivo"
+    }
+  ],
+  "vocab": [
+    [
+      "quando eu tiver tempo",
+      "cuando tenga tiempo",
+      "expr"
+    ],
+    [
+      "se você quiser",
+      "si quieres",
+      "expr"
+    ],
+    [
+      "enquanto ele puder",
+      "mientras él pueda",
+      "expr"
+    ],
+    [
+      "assim que",
+      "en cuanto / tan pronto como",
+      "conj"
+    ],
+    [
+      "logo que",
+      "en cuanto",
+      "conj"
+    ],
+    [
+      "sempre que",
+      "siempre que / cada vez que",
+      "conj"
+    ],
+    [
+      "depois que",
+      "después de que",
+      "conj"
+    ],
+    [
+      "como você achar melhor",
+      "como te parezca mejor",
+      "expr"
+    ],
+    [
+      "se eu tivesse tempo",
+      "si tuviera tiempo",
+      "expr"
+    ],
+    [
+      "se fosse possível",
+      "si fuera posible",
+      "expr"
+    ],
+    [
+      "como se",
+      "como si",
+      "conj"
+    ],
+    [
+      "eu gostaria que",
+      "quisiera que / querría que",
+      "expr"
+    ],
+    [
+      "caso",
+      "en caso de que / si",
+      "conj"
+    ],
+    [
+      "a não ser que",
+      "a menos que",
+      "conj"
+    ],
+    [
+      "por mais que",
+      "por más que",
+      "conj"
+    ],
+    [
+      "viajaria",
+      "viajaría",
+      "verbo"
+    ]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "futuro_subjuntivo_regular_match",
+      "skill": "reading",
+      "type": "match",
+      "pairs": [
+        [
+          "Quando eu falar com ela, aviso você.",
+          "Cuando hable con ella, te aviso."
+        ],
+        [
+          "Se você chegar cedo, me espera.",
+          "Si llegas temprano, espérame."
+        ],
+        [
+          "Enquanto morarmos aqui, ficamos juntos.",
+          "Mientras vivamos aquí, estamos juntos."
+        ]
+      ],
+      "prompt": "Une cada elemento con su significado."
+    },
+    {
+      "lesson": 1,
+      "topic": "futuro_subjuntivo_vs_presente_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Cuando yo termine el trabajo, te llamo.» Elige la forma correcta (futuro del subjuntivo, no presente).",
+      "options": [
+        "Quando eu terminar o trabalho, te ligo.",
+        "Quando eu termino o trabalho, te ligo.",
+        "Quando eu terminei o trabalho, te ligo."
+      ],
+      "value": "Quando eu terminar o trabalho, te ligo."
+    },
+    {
+      "lesson": 1,
+      "topic": "futuro_subjuntivo_sempre_que_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Siempre que puedas, avisa con antelación.» Elige la opción correcta.",
+      "options": [
+        "Sempre que você puder, avise com antecedência.",
+        "Sempre que você pode, avise com antecedência.",
+        "Sempre que você possa, avise com antecedência."
+      ],
+      "value": "Sempre que você puder, avise com antecedência."
+    },
+    {
+      "lesson": 2,
+      "topic": "futuro_subjuntivo_irregular_for_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Cuando yo vaya a São Paulo, te aviso.» Elige el futuro del subjuntivo correcto del verbo «ir».",
+      "options": [
+        "Quando eu for a São Paulo, te aviso.",
+        "Quando eu vou a São Paulo, te aviso.",
+        "Quando eu irei a São Paulo, te aviso."
+      ],
+      "value": "Quando eu for a São Paulo, te aviso."
+    },
+    {
+      "lesson": 2,
+      "topic": "futuro_subjuntivo_irregular_match",
+      "skill": "reading",
+      "type": "match",
+      "pairs": [
+        [
+          "Se ele fizer a lição, pode sair.",
+          "Si él hace la tarea, puede salir."
+        ],
+        [
+          "Quando você tiver notícias, me conte.",
+          "Cuando tengas noticias, cuéntame."
+        ],
+        [
+          "Assim que eu puder, resolvo isso.",
+          "En cuanto pueda, resuelvo eso."
+        ]
+      ],
+      "prompt": "Une cada elemento con su significado."
+    },
+    {
+      "lesson": 4,
+      "topic": "como_se_vs_futuro_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Él habla como si lo supiera todo.» Elige la opción correcta (como se + imperfecto del subjuntivo).",
+      "options": [
+        "Ele fala como se soubesse tudo.",
+        "Ele fala como se sabe tudo.",
+        "Ele fala como se souber tudo."
+      ],
+      "value": "Ele fala como se soubesse tudo."
+    },
+    {
+      "lesson": 1,
+      "topic": "futuro_subjuntivo_se_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al portugués (futuro del subjuntivo con «se»): «Si quieres, vamos juntos.»",
+      "source": "Si quieres, vamos juntos.",
+      "value": "Se você quiser, vamos juntos.",
+      "accepted": [
+        "Se você quiser, vamos juntos",
+        "Se você quiser, vamos juntos.",
+        "Se voce quiser, vamos juntos",
+        "Se você quiser vamos juntos",
+        "Se você quiser, a gente vai junto"
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "futuro_subjuntivo_enquanto_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al portugués (futuro del subjuntivo): «Mientras yo pueda, te ayudo.»",
+      "source": "Mientras yo pueda, te ayudo.",
+      "value": "Enquanto eu puder, te ajudo.",
+      "accepted": [
+        "Enquanto eu puder, te ajudo",
+        "Enquanto eu puder, te ajudo.",
+        "Enquanto eu puder te ajudo",
+        "Enquanto eu puder eu te ajudo"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "futuro_subjuntivo_irregular_tiver_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el futuro del subjuntivo de «ter»: «Cuando tenga tiempo, te llamo.» (no uses el presente)",
+      "text": "Quando eu ___ tempo, te ligo.",
+      "value": "tiver",
+      "accepted": [
+        "tiver"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "futuro_subjuntivo_irregular_fizer_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al portugués (futuro del subjuntivo de «fazer»): «Cuando hagas la comida, me avisas.»",
+      "source": "Cuando hagas la comida, me avisas.",
+      "value": "Quando você fizer a comida, me avisa.",
+      "accepted": [
+        "Quando você fizer a comida, me avisa",
+        "Quando você fizer a comida, me avisa.",
+        "Quando voce fizer a comida, me avisa",
+        "Quando você fizer a comida me avisa",
+        "Quando você fizer o almoço, me avisa"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "imperfeito_subjuntivo_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena para formar «Si yo tuviera dinero, viajaría por el mundo.»",
+      "tiles": [
+        "Se",
+        "eu",
+        "tivesse",
+        "dinheiro",
+        "viajaria",
+        "pelo",
+        "mundo",
+        "tenho",
+        "viajarei"
+      ],
+      "sequence": [
+        "Se",
+        "eu",
+        "tivesse",
+        "dinheiro",
+        "viajaria",
+        "pelo",
+        "mundo"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "imperfeito_subjuntivo_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el imperfecto del subjuntivo de «ser»: «Si fuera posible, iría contigo.»",
+      "text": "Se ___ possível, eu iria com você.",
+      "value": "fosse",
+      "accepted": [
+        "fosse"
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "futuro_subjuntivo_regular_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Assim que eu chegar em casa, te mando uma mensagem.",
+      "options": [
+        "Assim que eu chegar em casa, te mando uma mensagem.",
+        "Depois que eu sair de casa, te mando uma mensagem.",
+        "Sempre que eu voltar do trabalho, te ligo à noite."
+      ],
+      "value": "Assim que eu chegar em casa, te mando uma mensagem."
+    },
+    {
+      "lesson": 2,
+      "topic": "futuro_subjuntivo_irregular_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Quando você tiver um tempinho, me liga.",
+      "options": [
+        "Quando você tiver um tempinho, me liga.",
+        "Quando você quiser um cafezinho, me chama.",
+        "Enquanto você estiver ocupado, eu espero."
+      ],
+      "value": "Quando você tiver um tempinho, me liga."
+    },
+    {
+      "lesson": 3,
+      "topic": "imperfeito_subjuntivo_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Se eu tivesse mais tempo, aprenderia a tocar violão.",
+      "options": [
+        "Se eu tivesse mais tempo, aprenderia a tocar violão.",
+        "Se eu ganhasse mais dinheiro, compraria um carro novo.",
+        "Se ele estivesse aqui agora, ficaria muito feliz."
+      ],
+      "value": "Se eu tivesse mais tempo, aprenderia a tocar violão."
+    },
+    {
+      "lesson": 4,
+      "topic": "como_se_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ela gasta dinheiro como se fosse milionária.",
+      "options": [
+        "Ela gasta dinheiro como se fosse milionária.",
+        "Ele guarda tudo como se estivesse falido.",
+        "Você reclama sempre como se ninguém ajudasse."
+      ],
+      "value": "Ela gasta dinheiro como se fosse milionária."
+    },
+    {
+      "lesson": 2,
+      "topic": "futuro_subjuntivo_irregular_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Quando eu for ao Brasil, quero conhecer o Rio de Janeiro e Salvador.",
+      "prompt": "Lee en voz alta:"
+    },
+    {
+      "lesson": 3,
+      "topic": "imperfeito_subjuntivo_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Se eu pudesse morar em qualquer lugar, escolheria uma cidade perto do mar.",
+      "prompt": "Lee en voz alta:"
+    },
+    {
+      "lesson": 4,
+      "topic": "como_se_contraste_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Assim que eu tiver notícias, aviso você; mas, por enquanto, faça como achar melhor.",
+      "prompt": "Lee en voz alta:"
+    }
+  ]
+}

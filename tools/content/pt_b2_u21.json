@@ -1,0 +1,261 @@
+{
+  "unit": {
+    "order": 21,
+    "title_es": "Período hipotético y futuro do pretérito (condicional)",
+    "color": "#5B2C6F",
+    "icon": "call_split"
+  },
+  "checkpoint_desc": "Usa el futuro do pretérito simple (-ria: falaria, faria) para cortesía, deseo e hipótesis, forma el futuro do pretérito compuesto (teria/seria + particípio) y arma los tres tipos de período hipotético con «se»: real (se + futuro do subjuntivo → presente/futuro), irreal del presente (se + imperfeito do subjuntivo → futuro do pretérito) e irreal del pasado (se + mais-que-perfeito do subjuntivo → futuro do pretérito composto).",
+  "lessons": [
+    { "order": 1, "title_es": "Futuro do pretérito: cortesía, deseo e hipótesis" },
+    { "order": 2, "title_es": "Hipótesis real: se + futuro do subjuntivo → presente/futuro" },
+    { "order": 3, "title_es": "Irreal del presente: se + imperfeito do subjuntivo → …ria" },
+    { "order": 4, "title_es": "Irreal del pasado: se tivesse + particípio → teria + particípio" }
+  ],
+  "vocab": [
+    ["o futuro do pretérito", "el futuro del pretérito (condicional)", "gram"],
+    ["o período hipotético", "el período hipotético", "gram"],
+    ["a hipótese", "la hipótesis", "sust"],
+    ["o futuro do subjuntivo", "el futuro del subjuntivo", "gram"],
+    ["o imperfeito do subjuntivo", "el imperfecto del subjuntivo", "gram"],
+    ["eu gostaria de", "me gustaría (yo)", "frase"],
+    ["você poderia me ajudar", "podrías ayudarme (usted)", "frase"],
+    ["se eu tivesse tempo", "si yo tuviera tiempo", "frase"],
+    ["eu viajaria pelo mundo", "yo viajaría por el mundo", "frase"],
+    ["se eu tiver dinheiro", "si tengo (tuviere) dinero", "frase"],
+    ["teria acontecido", "habría ocurrido", "frase"],
+    ["ele teria dito", "él habría dicho", "frase"],
+    ["desde que", "siempre que, con tal de que", "conj"],
+    ["caso", "en caso de que, si", "conj"],
+    ["do contrário", "de lo contrario", "conj"],
+    ["seria melhor", "sería mejor", "frase"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "futuro_preterito_cortesia",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase cortés en futuro do pretérito con su significado.",
+      "pairs": [
+        ["Você poderia repetir, por favor?", "¿Podrías repetir, por favor?"],
+        ["Eu gostaria de reservar uma mesa.", "Me gustaría reservar una mesa."],
+        ["Nós adoraríamos conhecer o Rio.", "Nos encantaría conocer Río."]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "futuro_preterito_irregular",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«En tu lugar, yo no diría nada.» ¿Cuál usa bien el futuro do pretérito irregular del verbo «dizer»?",
+      "options": [
+        "No seu lugar, eu não diria nada.",
+        "No seu lugar, eu não dizeria nada.",
+        "No seu lugar, eu não direi nada."
+      ],
+      "value": "No seu lugar, eu não diria nada."
+    },
+    {
+      "lesson": 2,
+      "topic": "hipotetico_real_futuro_subjuntivo",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Hipótesis real (probable): «Si mañana tengo tiempo, te llamo.» ¿Cuál usa correctamente el futuro do subjuntivo?",
+      "options": [
+        "Se eu tiver tempo amanhã, eu te ligo.",
+        "Se eu tenho tempo amanhã, eu te ligo.",
+        "Se eu tivesse tempo amanhã, eu te ligo."
+      ],
+      "value": "Se eu tiver tempo amanhã, eu te ligo."
+    },
+    {
+      "lesson": 2,
+      "topic": "hipotetico_real_quando",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase de condición real (futuro do subjuntivo) con su significado.",
+      "pairs": [
+        ["Quando eu puder, eu resolvo isso.", "Cuando pueda, resuelvo eso."],
+        ["Se você quiser, a gente sai hoje.", "Si quieres, salimos hoy."],
+        ["Assim que ele chegar, avise.", "En cuanto él llegue, avisa."]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "irreal_presente_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Hipótesis irreal del presente: «Si yo tuviera dinero, viajaría por el mundo.» ¿Cuál combina bien imperfeito do subjuntivo y futuro do pretérito?",
+      "options": [
+        "Se eu tivesse dinheiro, eu viajaria pelo mundo.",
+        "Se eu tinha dinheiro, eu viajaria pelo mundo.",
+        "Se eu tiver dinheiro, eu viajaria pelo mundo."
+      ],
+      "value": "Se eu tivesse dinheiro, eu viajaria pelo mundo."
+    },
+    {
+      "lesson": 4,
+      "topic": "irreal_passado_choice",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Hipótesis irreal del pasado: «Si yo hubiera estudiado, habría aprobado.» ¿Cuál usa mais-que-perfeito do subjuntivo y futuro do pretérito compuesto?",
+      "options": [
+        "Se eu tivesse estudado, eu teria passado.",
+        "Se eu tivesse estudado, eu tinha passado.",
+        "Se eu tivera estudado, eu teria passado."
+      ],
+      "value": "Se eu tivesse estudado, eu teria passado."
+    },
+    {
+      "lesson": 1,
+      "topic": "futuro_preterito_desejo_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el futuro do pretérito del verbo «gostar» (deseo cortés, 1ª persona): «Eu ___ de morar perto do mar.» (me gustaría)",
+      "text": "Eu ___ de morar perto do mar.",
+      "value": "gostaria",
+      "accepted": ["gostaria", "Gostaria"]
+    },
+    {
+      "lesson": 1,
+      "topic": "futuro_preterito_hipotese_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando el futuro do pretérito (haría): «En tu lugar, yo haría lo mismo.»",
+      "source": "En tu lugar, yo haría lo mismo.",
+      "value": "No seu lugar, eu faria a mesma coisa.",
+      "accepted": [
+        "No seu lugar, eu faria a mesma coisa.",
+        "No seu lugar, eu faria a mesma coisa",
+        "No seu lugar, eu faria o mesmo.",
+        "No seu lugar, eu faria o mesmo",
+        "No teu lugar, eu faria a mesma coisa."
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "hipotetico_real_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el futuro do subjuntivo del verbo «poder» en negativo (condición real, si no puedes/pudieres). Dos palabras: «Se você ___ vir, me avise antes.»",
+      "text": "Se você ___ vir, me avise antes.",
+      "value": "não puder",
+      "accepted": ["não puder", "Não puder", "nao puder", "não puder."]
+    },
+    {
+      "lesson": 3,
+      "topic": "irreal_presente_wordbank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena para formar: «Si yo tuviera más tiempo, aprendería a tocar guitarra.» (Se eu tivesse mais tempo, aprenderia a tocar violão.)",
+      "tiles": ["Se", "eu", "tivesse", "mais", "tempo", "aprenderia", "a", "tocar", "violão", "aprendia", "tiver"],
+      "sequence": ["Se", "eu", "tivesse", "mais", "tempo", "aprenderia", "a", "tocar", "violão"]
+    },
+    {
+      "lesson": 3,
+      "topic": "irreal_presente_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce la hipótesis irreal del presente: «Si él estuviera aquí, nos ayudaría.»",
+      "source": "Si él estuviera aquí, nos ayudaría.",
+      "value": "Se ele estivesse aqui, ele nos ajudaria.",
+      "accepted": [
+        "Se ele estivesse aqui, ele nos ajudaria.",
+        "Se ele estivesse aqui, ele nos ajudaria",
+        "Se ele estivesse aqui, nos ajudaria.",
+        "Se ele estivesse aqui, ele nos ajudaria."
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "irreal_passado_auxiliar_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el auxiliar en mais-que-perfeito do subjuntivo (dos palabras: tivesse + participio de «estudar»): «Se eu ___ para a prova, teria ido melhor.» (hubiera estudiado)",
+      "text": "Se eu ___ para a prova, teria ido melhor.",
+      "value": "tivesse estudado",
+      "accepted": ["tivesse estudado", "Tivesse estudado"]
+    },
+    {
+      "lesson": 1,
+      "topic": "futuro_preterito_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Eu gostaria de viajar para o Nordeste no verão.",
+      "options": [
+        "Eu gostaria de viajar para o Nordeste no verão.",
+        "Eu preciso trabalhar no escritório neste sábado.",
+        "Nós vamos almoçar naquele restaurante amanhã."
+      ],
+      "value": "Eu gostaria de viajar para o Nordeste no verão."
+    },
+    {
+      "lesson": 2,
+      "topic": "hipotetico_real_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Se você chegar cedo, a gente pega o primeiro ônibus.",
+      "options": [
+        "Se você chegar cedo, a gente pega o primeiro ônibus.",
+        "Quando ela terminar tudo, nós vamos comemorar juntos.",
+        "Assim que eles voltarem, eu ligo para o seu celular."
+      ],
+      "value": "Se você chegar cedo, a gente pega o primeiro ônibus."
+    },
+    {
+      "lesson": 3,
+      "topic": "irreal_presente_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Se eu morasse na praia, eu nadaria todas as manhãs.",
+      "options": [
+        "Se eu morasse na praia, eu nadaria todas as manhãs.",
+        "Se ele estudasse mais, ele passaria em qualquer prova.",
+        "Se nós tivéssemos um carro, viajaríamos no feriado."
+      ],
+      "value": "Se eu morasse na praia, eu nadaria todas as manhãs."
+    },
+    {
+      "lesson": 4,
+      "topic": "irreal_passado_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Se ela tivesse avisado antes, nós teríamos mudado os planos.",
+      "options": [
+        "Se ela tivesse avisado antes, nós teríamos mudado os planos.",
+        "Se você tivesse pedido ajuda, tudo teria sido mais fácil.",
+        "Se eu tivesse guardado dinheiro, teria comprado a casa."
+      ],
+      "value": "Se ela tivesse avisado antes, nós teríamos mudado os planos."
+    },
+    {
+      "lesson": 1,
+      "topic": "futuro_preterito_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Você poderia me dizer que horas são? Eu gostaria muito de saber.",
+      "prompt": "Lee en voz alta:"
+    },
+    {
+      "lesson": 3,
+      "topic": "irreal_presente_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Se eu ganhasse na loteria, eu ajudaria a minha família e faria uma longa viagem.",
+      "prompt": "Lee en voz alta:"
+    },
+    {
+      "lesson": 4,
+      "topic": "irreal_passado_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Se tivéssemos saído mais cedo, teríamos chegado a tempo e não teríamos perdido o voo.",
+      "prompt": "Lee en voz alta:"
+    }
+  ]
+}

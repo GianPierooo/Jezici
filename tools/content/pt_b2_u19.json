@@ -1,0 +1,400 @@
+{
+  "unit": {
+    "order": 19,
+    "title_es": "Presente de subjuntivo (avanzado) y conjunciones",
+    "color": "#6C3483",
+    "icon": "psychology_alt"
+  },
+  "checkpoint_desc": "Usa el presente de subjuntivo (regular e irregular) tras verbos de deseo, emoción y duda, y tras conjunciones como embora, para que, caso y a menos que.",
+  "lessons": [
+    {
+      "order": 1,
+      "title_es": "Formación regular (que eu fale, coma, parta)"
+    },
+    {
+      "order": 2,
+      "title_es": "Irregulares clave (seja, tenha, faça, vá, saiba)"
+    },
+    {
+      "order": 3,
+      "title_es": "Deseo, emoción y duda (Espero que… / Duvido que…)"
+    },
+    {
+      "order": 4,
+      "title_es": "Conjunciones (embora, para que, caso, a menos que)"
+    }
+  ],
+  "vocab": [
+    [
+      "o subjuntivo",
+      "el subjuntivo (modo)",
+      "sust"
+    ],
+    [
+      "esperar que",
+      "esperar que",
+      "verbo"
+    ],
+    [
+      "duvidar que",
+      "dudar que",
+      "verbo"
+    ],
+    [
+      "talvez",
+      "quizás, tal vez",
+      "adv"
+    ],
+    [
+      "embora",
+      "aunque",
+      "conj"
+    ],
+    [
+      "para que",
+      "para que",
+      "conj"
+    ],
+    [
+      "a fim de que",
+      "a fin de que",
+      "conj"
+    ],
+    [
+      "a menos que",
+      "a menos que",
+      "conj"
+    ],
+    [
+      "caso",
+      "en caso de que, si",
+      "conj"
+    ],
+    [
+      "contanto que",
+      "con tal de que",
+      "conj"
+    ],
+    [
+      "antes que",
+      "antes de que",
+      "conj"
+    ],
+    [
+      "sem que",
+      "sin que",
+      "conj"
+    ],
+    [
+      "ainda que",
+      "aun cuando, aunque",
+      "conj"
+    ],
+    [
+      "é necessário que",
+      "es necesario que",
+      "expr"
+    ],
+    [
+      "é importante que",
+      "es importante que",
+      "expr"
+    ],
+    [
+      "é possível que",
+      "es posible que",
+      "expr"
+    ]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "subj_pres_regular_forms",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada forma de subjuntivo con su significado.",
+      "pairs": [
+        [
+          "que eu fale",
+          "que yo hable"
+        ],
+        [
+          "que ele coma",
+          "que él coma"
+        ],
+        [
+          "que nós partamos",
+          "que nosotros salgamos"
+        ]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "subj_pres_ar_verb",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Es necesario que + hablar (yo). Elige la forma correcta: É preciso que eu ___ com o chefe.",
+      "options": [
+        "fale",
+        "falava",
+        "falarei"
+      ],
+      "value": "fale"
+    },
+    {
+      "lesson": 1,
+      "topic": "subj_pres_er_verb_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Verbo comer en presente de subjuntivo, en negativo (que él no coma). Completa con dos palabras: É melhor que ele ___ tão depressa.",
+      "text": "É melhor que ele ___ tão depressa.",
+      "value": "não coma",
+      "accepted": [
+        "não coma",
+        "não coma.",
+        "nao coma"
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "subj_pres_regular_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "É importante que você fale com sinceridade.",
+      "options": [
+        "É importante que você fale com sinceridade.",
+        "É importante que você fale com paciência.",
+        "É importante que você fale com o gerente."
+      ],
+      "value": "É importante que você fale com sinceridade."
+    },
+    {
+      "lesson": 1,
+      "topic": "subj_pres_ir_verb_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al portugués (usa subjuntivo): «Es necesario que nosotros salgamos temprano.»",
+      "source": "Es necesario que nosotros salgamos temprano.",
+      "value": "É necessário que nós partamos cedo.",
+      "accepted": [
+        "É necessário que nós partamos cedo",
+        "É necessário que nós partamos cedo.",
+        "É necessario que nós partamos cedo",
+        "É preciso que nós partamos cedo.",
+        "É necessário que partamos cedo.",
+        "É necessário que partamos cedo"
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "subj_pres_regular_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "É importante que você estude um pouco todos os dias.",
+      "prompt": "Lee en voz alta:"
+    },
+    {
+      "lesson": 2,
+      "topic": "subj_pres_irregular_forms",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada verbo irregular con su forma de subjuntivo.",
+      "pairs": [
+        [
+          "ser → que eu",
+          "seja"
+        ],
+        [
+          "ter → que ele",
+          "tenha"
+        ],
+        [
+          "ir → que ele",
+          "vá"
+        ]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "subj_pres_fazer_irregular",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Verbo fazer en subjuntivo tras «Quero que». Elige: Quero que você ___ o trabalho hoje.",
+      "options": [
+        "faça",
+        "faz",
+        "fará"
+      ],
+      "value": "faça"
+    },
+    {
+      "lesson": 2,
+      "topic": "subj_pres_saber_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Talvez ela saiba a resposta certa.",
+      "options": [
+        "Talvez ela saiba a resposta certa.",
+        "Talvez ela saiba a resposta errada.",
+        "Talvez ela saiba o caminho certo."
+      ],
+      "value": "Talvez ela saiba a resposta certa."
+    },
+    {
+      "lesson": 2,
+      "topic": "subj_pres_ir_wordbank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena la frase: «Espero que usted vaya a la reunión.»",
+      "tiles": [
+        "Espero",
+        "que",
+        "você",
+        "vá",
+        "à",
+        "reunião",
+        "vai",
+        "irá"
+      ],
+      "sequence": [
+        "Espero",
+        "que",
+        "você",
+        "vá",
+        "à",
+        "reunião"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "subj_desire_emotion_doubt",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada disparador con lo que expresa.",
+      "pairs": [
+        [
+          "Espero que venha",
+          "deseo / voluntad"
+        ],
+        [
+          "É bom que descanse",
+          "emoción / valoración"
+        ],
+        [
+          "Duvido que seja verdade",
+          "duda"
+        ]
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "subj_vs_indicative_contrast",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Contraste indicativo/subjuntivo. Tras «Duvido que» (duda) se usa subjuntivo: Duvido que isso ___ verdade.",
+      "options": [
+        "seja",
+        "é",
+        "será"
+      ],
+      "value": "seja"
+    },
+    {
+      "lesson": 3,
+      "topic": "subj_desire_vir_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Verbo vir en subjuntivo tras «Espero que», en negativo (que él no venga). Completa con dos palabras: Espero que você ___ atrasado à festa.",
+      "text": "Espero que você ___ atrasado à festa.",
+      "value": "não venha",
+      "accepted": [
+        "não venha",
+        "não venha.",
+        "nao venha"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "subj_doubt_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Duvido que eles cheguem antes das oito.",
+      "options": [
+        "Duvido que eles cheguem antes das oito.",
+        "Duvido que eles cheguem antes das nove.",
+        "Duvido que eles cheguem depois das oito."
+      ],
+      "value": "Duvido que eles cheguem antes das oito."
+    },
+    {
+      "lesson": 3,
+      "topic": "subj_emotion_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Fico feliz que você tenha conseguido o emprego novo.",
+      "prompt": "Lee en voz alta:"
+    },
+    {
+      "lesson": 4,
+      "topic": "subj_conj_embora_reorder",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena las palabras para formar una frase correcta.",
+      "tiles": [
+        "continua",
+        "Embora",
+        "trabalhando",
+        "cansado,",
+        "esteja",
+        "ele"
+      ],
+      "sequence": [
+        "Embora",
+        "esteja",
+        "cansado,",
+        "ele",
+        "continua",
+        "trabalhando"
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "subj_conj_parague_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "read": "Vou explicar tudo de novo para que todos entendam bem.",
+      "prompt": "Lee en voz alta:"
+    },
+    {
+      "lesson": 4,
+      "topic": "subj_conj_caso_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Conjunción caso (en caso de que) + subjuntivo del verbo poder, en negativo (en caso de que no puedas). Completa con dos palabras: Me avise caso você ___ vir mais cedo.",
+      "text": "Me avise caso você ___ vir mais cedo.",
+      "value": "não possa",
+      "accepted": [
+        "não possa",
+        "não possa.",
+        "nao possa"
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "subj_conj_amenosque_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Não vamos sair a menos que pare de chover.",
+      "options": [
+        "Não vamos sair a menos que pare de chover.",
+        "Não vamos sair a menos que comece a chover.",
+        "Não vamos sair a menos que pare de nevar."
+      ],
+      "value": "Não vamos sair a menos que pare de chover."
+    }
+  ]
+}

@@ -1,0 +1,263 @@
+{
+  "unit": {
+    "order": 24,
+    "title_es": "Conectores B2, subordinadas y régimen verbal",
+    "color": "#154360",
+    "icon": "hub"
+  },
+  "checkpoint_desc": "Demuestra que dominas las conjunciones subordinantes con SUBJUNTIVO (concesivas embora/ainda que, condicionales caso/contanto que/a menos que, finales para que, temporales antes que/até que), las que exigen INDICATIVO (à medida que, ao passo que, porque, já que), los conectores textuales B2 (contudo, no entanto, portanto, além disso, ou seja) y la regencia verbal correcta (assistir A, obedecer A, gostar DE, precisar DE).",
+  "lessons": [
+    { "order": 1, "title_es": "Concesivas y condicionales + subjuntivo (embora, caso, contanto que)" },
+    { "order": 2, "title_es": "Conjunciones + indicativo (à medida que, ao passo que, porque)" },
+    { "order": 3, "title_es": "Conectores textuales (contudo, no entanto, portanto, além disso)" },
+    { "order": 4, "title_es": "Regencia verbal (assistir a, obedecer a, gostar de, precisar de)" }
+  ],
+  "vocab": [
+    ["embora", "aunque (concesivo + subjuntivo)", "conj"],
+    ["ainda que", "aunque, aun cuando", "conj"],
+    ["caso", "en caso de que, si", "conj"],
+    ["contanto que", "con tal de que, siempre que", "conj"],
+    ["a menos que", "a menos que, salvo que", "conj"],
+    ["para que", "para que (finalidad)", "conj"],
+    ["à medida que", "a medida que (proporcional)", "conj"],
+    ["ao passo que", "mientras que (contraste)", "conj"],
+    ["já que", "ya que, puesto que", "conj"],
+    ["contudo", "sin embargo, no obstante", "conector"],
+    ["no entanto", "sin embargo", "conector"],
+    ["portanto", "por lo tanto", "conector"],
+    ["além disso", "además", "conector"],
+    ["ou seja", "o sea, es decir", "conector"],
+    ["assistir a", "asistir a / ver (una película)", "regência"],
+    ["obedecer a", "obedecer a", "regência"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "concessivas_condicionais_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada oración en portugués con su traducción.",
+      "pairs": [
+        ["Embora chova, vou sair.", "Aunque llueva, voy a salir."],
+        ["Caso precise, me avise.", "En caso de que necesites, avísame."],
+        ["Vou, contanto que você venha.", "Voy, con tal de que vengas."],
+        ["Não saio a menos que pare.", "No salgo a menos que pare."]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "embora_subjuntivo",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "'embora' exige presente de subjuntivo. Completa: 'Aunque él esté cansado, va a trabajar.'",
+      "options": [
+        "Embora ele esteja cansado, vai trabalhar.",
+        "Embora ele está cansado, vai trabalhar.",
+        "Embora ele estava cansado, vai trabalhar."
+      ],
+      "value": "Embora ele esteja cansado, vai trabalhar."
+    },
+    {
+      "lesson": 1,
+      "topic": "caso_subjuntivo_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "'caso' exige presente de subjuntivo (no indicativo). Conjuga el verbo 'precisar' en la forma correcta: 'En caso de que necesites ayuda, llámame.'",
+      "text": "Caso você ___ de ajuda, me ligue.",
+      "value": "precise",
+      "accepted": ["precise", "Precise"]
+    },
+    {
+      "lesson": 1,
+      "topic": "ainda_que_listen",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ainda que seja difícil, nós vamos tentar.",
+      "options": [
+        "Ainda que seja difícil, nós vamos tentar.",
+        "Ainda que era difícil, nós vamos tentar.",
+        "Já que é difícil, nós vamos desistir."
+      ],
+      "value": "Ainda que seja difícil, nós vamos tentar."
+    },
+    {
+      "lesson": 2,
+      "topic": "indicativo_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada conjunción con su valor y traducción.",
+      "pairs": [
+        ["à medida que", "a medida que (proporción)"],
+        ["ao passo que", "mientras que (contraste)"],
+        ["já que", "ya que (causa)"],
+        ["assim que", "en cuanto (tiempo)"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "a_medida_que_indicativo",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "'à medida que' exige INDICATIVO (no subjuntivo). Completa: 'A medida que el tiempo pasa, aprendo más.'",
+      "options": [
+        "À medida que o tempo passa, aprendo mais.",
+        "À medida que o tempo passasse, aprendia mais.",
+        "À medida que o tempo tenha passado, aprendo mais."
+      ],
+      "value": "À medida que o tempo passa, aprendo mais."
+    },
+    {
+      "lesson": 2,
+      "topic": "ao_passo_que_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "'ao passo que' marca contraste + INDICATIVO. Escribe el conector de tres palabras (empieza por 'ao'): 'Yo estudio, mientras que él descansa.'",
+      "text": "Eu estudo, ___ ele descansa.",
+      "value": "ao passo que",
+      "accepted": ["ao passo que", "Ao passo que"]
+    },
+    {
+      "lesson": 2,
+      "topic": "porque_indicativo_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al portugués usando 'porque' + indicativo (no subjuntivo).",
+      "source": "No fui a la fiesta porque estaba muy cansado.",
+      "value": "Eu não fui à festa porque estava muito cansado.",
+      "accepted": [
+        "Eu não fui à festa porque estava muito cansado",
+        "Eu não fui à festa porque estava muito cansado.",
+        "Não fui à festa porque estava muito cansado.",
+        "Não fui à festa porque estava muito cansado",
+        "Eu não fui à festa porque eu estava muito cansado.",
+        "Eu não fui à festa porque eu estava muito cansado"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "ja_que_listen",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Já que você chegou, vamos começar a reunião.",
+      "options": [
+        "Já que você chegou, vamos começar a reunião.",
+        "Já que você chegasse, vamos começar a reunião.",
+        "Visto que você saiu, vamos terminar a reunião."
+      ],
+      "value": "Já que você chegou, vamos começar a reunião."
+    },
+    {
+      "lesson": 3,
+      "topic": "conectores_textuais_reading",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el conector adecuado. La segunda idea CONTRADICE la primera: 'Estudió mucho; ___, no aprobó.'",
+      "options": ["no entanto", "além disso", "portanto"],
+      "value": "no entanto"
+    },
+    {
+      "lesson": 3,
+      "topic": "portanto_conclusivo_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Falta el conector conclusivo (sinónimo de 'por lo tanto', una sola palabra que empieza por 'p'): 'Llovió toda la noche; ___, el partido fue cancelado.'",
+      "text": "Choveu a noite toda; ___, o jogo foi cancelado.",
+      "value": "portanto",
+      "accepted": ["portanto", "Portanto"]
+    },
+    {
+      "lesson": 3,
+      "topic": "contudo_adversativo_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al portugués usando el conector adversativo 'contudo' (sin embargo).",
+      "source": "El precio es alto; sin embargo, vale la pena.",
+      "value": "O preço é alto; contudo, vale a pena.",
+      "accepted": [
+        "O preço é alto; contudo, vale a pena",
+        "O preço é alto; contudo, vale a pena.",
+        "O preço é alto, contudo, vale a pena.",
+        "O preço é alto, contudo, vale a pena",
+        "O preço é alto; contudo vale a pena.",
+        "O preço é alto; contudo vale a pena"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "alem_disso_listen",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "O hotel é barato; além disso, fica no centro.",
+      "options": [
+        "O hotel é barato; além disso, fica no centro.",
+        "O hotel é caro; no entanto, fica no centro.",
+        "O hotel é barato; ou seja, fica no centro."
+      ],
+      "value": "O hotel é barato; além disso, fica no centro."
+    },
+    {
+      "lesson": 3,
+      "topic": "conectores_textuais_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "O trânsito estava péssimo; no entanto, chegamos no horário e, além disso, sem estresse."
+    },
+    {
+      "lesson": 4,
+      "topic": "regencia_assistir_a_reading",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "El verbo 'assistir' (ver un espectáculo) rige la preposición 'a'. Elige la forma correcta: 'Ayer vimos la película en el cine.'",
+      "options": [
+        "Ontem nós assistimos ao filme no cinema.",
+        "Ontem nós assistimos esse filme no cinema.",
+        "Ontem nós assistimos pelo filme no cinema."
+      ],
+      "value": "Ontem nós assistimos ao filme no cinema."
+    },
+    {
+      "lesson": 4,
+      "topic": "regencia_obedecer_a_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "El verbo 'obedecer' rige la preposición 'a', que se contrae con el artículo femenino plural ('a' + 'as' = 'às'). Escribe SOLO esa contracción: 'Todos deben obedecer las reglas.'",
+      "text": "Todos devem obedecer ___ regras.",
+      "value": "às",
+      "accepted": ["às", "Às"]
+    },
+    {
+      "lesson": 4,
+      "topic": "regencia_precisar_de_listen",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Eu preciso da sua ajuda para terminar o relatório.",
+      "options": [
+        "Eu preciso da sua ajuda para terminar o relatório.",
+        "Eu gosto da sua ajuda para começar o relatório.",
+        "Eu dependo da sua ajuda para entregar o relatório."
+      ],
+      "value": "Eu preciso da sua ajuda para terminar o relatório."
+    },
+    {
+      "lesson": 4,
+      "topic": "regencia_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Eu gosto muito deste curso, mas preciso de mais tempo para assistir às aulas."
+    },
+    {
+      "lesson": 4,
+      "topic": "regencia_gostar_de_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "As crianças obedecem aos pais e todos gostam de brincar no parque."
+    }
+  ]
+}

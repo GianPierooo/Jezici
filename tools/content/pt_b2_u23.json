@@ -1,0 +1,322 @@
+{
+  "unit": {
+    "order": 23,
+    "title_es": "Discurso indirecto y colocación pronominal",
+    "color": "#4A235A",
+    "icon": "record_voice_over"
+  },
+  "checkpoint_desc": "Demuestra que reportas lo que otros dijeron con la concordancia de tiempos correcta (presente→imperfecto, pretérito→pluscuamperfecto, futuro→condicional), formulas preguntas indirectas y colocas los pronombres átonos (próclisis/énclisis) como un hablante nativo.",
+  "lessons": [
+    {
+      "order": 1,
+      "title_es": "Reportar en pasado: presente → imperfecto"
+    },
+    {
+      "order": 2,
+      "title_es": "Pretérito → pluscuamperfecto y futuro → condicional"
+    },
+    {
+      "order": 3,
+      "title_es": "Preguntas indirectas (se, o que, onde) y marcadores"
+    },
+    {
+      "order": 4,
+      "title_es": "Colocación del pronombre: próclisis y énclisis"
+    }
+  ],
+  "vocab": [
+    ["o discurso indireto", "el discurso/estilo indirecto", "sust"],
+    ["a colocação pronominal", "la colocación del pronombre", "sust"],
+    ["a próclise", "la próclisis (pronombre antes)", "sust"],
+    ["a ênclise", "la énclisis (pronombre después)", "sust"],
+    ["relatar", "relatar, reportar", "verbo"],
+    ["contar", "contar", "verbo"],
+    ["afirmar", "afirmar", "verbo"],
+    ["comentar", "comentar", "verbo"],
+    ["perguntar", "preguntar", "verbo"],
+    ["querer saber", "querer saber", "verbo"],
+    ["responder", "responder", "verbo"],
+    ["avisar", "avisar", "verbo"],
+    ["naquele dia", "aquel día", "adv"],
+    ["no dia anterior", "el día anterior", "adv"],
+    ["no dia seguinte", "al día siguiente", "adv"],
+    ["ali", "ahí, allí", "adv"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "presente_para_imperfeito",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Alguien dijo «Estou cansado». Al reportarlo en pasado, elige la forma correcta: Ele disse que ___ cansado.",
+      "options": [
+        "estava",
+        "está",
+        "esteve"
+      ],
+      "value": "estava"
+    },
+    {
+      "lesson": 1,
+      "topic": "presente_para_imperfeito",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ela contou que morava perto do trabalho.",
+      "options": [
+        "Ela contou que morava perto do trabalho.",
+        "Ela contou que trabalhava perto de casa.",
+        "Ela contou que estudava perto do trabalho."
+      ],
+      "value": "Ela contou que morava perto do trabalho."
+    },
+    {
+      "lesson": 1,
+      "topic": "presente_para_imperfeito",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Reporta en pasado en portugués: «Ella dijo que no tenía tiempo.»",
+      "source": "Ella dijo que no tenía tiempo.",
+      "value": "Ela disse que não tinha tempo.",
+      "accepted": [
+        "Ela disse que não tinha tempo",
+        "Ela disse que não tinha tempo.",
+        "Ela falou que não tinha tempo.",
+        "Ela falou que não tinha tempo"
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "presente_para_imperfeito",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Ele comentou que gostava muito daquela cidade."
+    },
+    {
+      "lesson": 2,
+      "topic": "perfeito_para_mais_que_perfeito",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada frase citada con su versión reportada en pasado.",
+      "pairs": [
+        [
+          "«Terminei o relatório»",
+          "Ele disse que tinha terminado o relatório."
+        ],
+        [
+          "«Cheguei atrasado»",
+          "Ele disse que tinha chegado atrasado."
+        ],
+        [
+          "«Perdi o voo»",
+          "Ele disse que tinha perdido o voo."
+        ]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "futuro_para_futuro_do_preterito",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Alguien prometió «Virei amanhã». Al reportarlo en pasado, elige la forma correcta: Ele prometeu que ___ no dia seguinte.",
+      "options": [
+        "viria",
+        "virá",
+        "vinha"
+      ],
+      "value": "viria"
+    },
+    {
+      "lesson": 2,
+      "topic": "perfeito_para_mais_que_perfeito",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Reporta en pasado. La frase original era «Já enviei o e-mail». Completa con el pluscuamperfecto compuesto del verbo enviar.",
+      "text": "Ela avisou que já ___ enviado o e-mail.",
+      "value": "tinha",
+      "accepted": [
+        "tinha",
+        "havia"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "futuro_para_futuro_do_preterito",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Reporta en pasado en portugués: «Dijeron que nos ayudarían.»",
+      "source": "Dijeron que nos ayudarían.",
+      "value": "Disseram que nos ajudariam.",
+      "accepted": [
+        "Disseram que nos ajudariam",
+        "Disseram que nos ajudariam.",
+        "Eles disseram que nos ajudariam.",
+        "Eles disseram que nos ajudariam"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "futuro_para_futuro_do_preterito",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ele garantiu que resolveria o problema naquela semana.",
+      "options": [
+        "Ele garantiu que resolveria o problema naquela semana.",
+        "Ele garantiu que estudaria o problema naquela semana.",
+        "Ele garantiu que resolveria o assunto naquele momento."
+      ],
+      "value": "Ele garantiu que resolveria o problema naquela semana."
+    },
+    {
+      "lesson": 3,
+      "topic": "pergunta_indireta_se",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Convierte la pregunta directa «Você tem tempo?» en indirecta reportada en pasado. Elige la opción correcta.",
+      "options": [
+        "Ele perguntou se eu tinha tempo.",
+        "Ele perguntou que eu tinha tempo.",
+        "Ele perguntou tenho tempo."
+      ],
+      "value": "Ele perguntou se eu tinha tempo."
+    },
+    {
+      "lesson": 3,
+      "topic": "pergunta_indireta_marcadores",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Reporta en pasado adaptando el marcador temporal. La frase original era «Cheguei ontem». Completa con la expresión que sustituye a «ontem».",
+      "text": "Ele contou que tinha chegado no dia ___.",
+      "value": "anterior",
+      "accepted": [
+        "anterior"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "pergunta_indireta_oque_onde",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Construye la pregunta indirecta reportada EN PASADO que equivale a «Ella quiso saber dónde yo vivía» (usa el verbo en imperfecto, no en presente).",
+      "tiles": [
+        "Ela",
+        "quis",
+        "saber",
+        "onde",
+        "eu",
+        "morava",
+        "moro",
+        "que"
+      ],
+      "sequence": [
+        "Ela",
+        "quis",
+        "saber",
+        "onde",
+        "eu",
+        "morava"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "pergunta_indireta_oque_onde",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ela quis saber o que eu fazia nas horas vagas.",
+      "options": [
+        "Ela quis saber o que eu fazia nas horas vagas.",
+        "Ela quis saber por que eu saía nas horas vagas.",
+        "Ela quis saber com quem eu estava nas horas vagas."
+      ],
+      "value": "Ela quis saber o que eu fazia nas horas vagas."
+    },
+    {
+      "lesson": 3,
+      "topic": "pergunta_indireta_se",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "O médico perguntou se eu sentia alguma dor naquele momento."
+    },
+    {
+      "lesson": 4,
+      "topic": "colocacao_proclise",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Une cada causa de próclisis (pronombre antes del verbo) con la frase que la ilustra.",
+      "pairs": [
+        [
+          "negación (não)",
+          "Não se preocupe com isso."
+        ],
+        [
+          "adverbio (sempre)",
+          "Ela sempre me ajuda."
+        ],
+        [
+          "palabra interrogativa (quem)",
+          "Quem te disse isso?"
+        ]
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "colocacao_proclise",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Hay una conjunción subordinante («que»), que exige próclisis. Elige la colocación correcta del pronombre.",
+      "options": [
+        "Ele avisou que me esperava lá fora.",
+        "Ele avisou que esperava-me lá fora.",
+        "Ele avisou que esperava me lá fora."
+      ],
+      "value": "Ele avisou que me esperava lá fora."
+    },
+    {
+      "lesson": 4,
+      "topic": "colocacao_enclise",
+      "skill": "writing",
+      "type": "reorder",
+      "prompt": "Ordena las palabras para formar una presentación formal con énclisis (pronombre después del verbo, con guion).",
+      "tiles": [
+        "muito",
+        "Chamo-me",
+        "e",
+        "prazer",
+        "Rafael"
+      ],
+      "sequence": [
+        "Chamo-me",
+        "Rafael",
+        "e",
+        "muito",
+        "prazer"
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "colocacao_enclise",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Disse-me que o pacote chegaria hoje.",
+      "options": [
+        "Disse-me que o pacote chegaria hoje.",
+        "Contou-me que o pacote chegaria hoje.",
+        "Disse-me que o pedido chegaria hoje."
+      ],
+      "value": "Disse-me que o pacote chegaria hoje."
+    },
+    {
+      "lesson": 4,
+      "topic": "colocacao_proclise",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Ninguém me avisou que a reunião tinha sido adiada."
+    }
+  ]
+}
