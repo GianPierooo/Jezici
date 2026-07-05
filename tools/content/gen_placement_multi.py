@@ -16,7 +16,7 @@ near-match). Emite 20260703120110_placement_bank_fritdenl.sql (uuid5, idempotent
 import uuid, json, io, os, sys, unicodedata
 
 NS = uuid.UUID('20000000-0000-0000-0000-0000000000aa')
-DIFF = {'A1': 0.12, 'A2': 0.34}
+DIFF = {'A1': 0.12, 'A2': 0.34, 'B1': 0.52, 'B2': 0.68}
 COURSES = {
     'fr': '20000000-0000-0000-0000-000000000003',
     'it': '20000000-0000-0000-0000-000000000004',
@@ -169,6 +169,136 @@ BANKS = {
 },
 }
 
+# ── B1/B2 (los cursos fr/it/de/nl ya llegan a B2). Autorado nativo + guard near_match. ──
+BANKS['fr']['B1'] = [
+ ('w', 'Il faut que tu ___ à la banque avant midi.', ['ailles', 'vas', 'allé'], 'ailles'),
+ ('w', "Bien qu'il ___ malade, il est venu travailler.", ['soit', 'est', 'sera'], 'soit'),
+ ('w', "Si j'avais plus de temps, je ___ du piano tous les jours.", ['jouerais', 'joue', 'jouais'], 'jouerais'),
+ ('w', "La femme ___ je t'ai parlé hier est ma voisine.", ['dont', 'que', 'qui'], 'dont'),
+ ('w', 'Les lettres que nous avons ___ sont arrivées ce matin.', ['écrites', 'écrit', 'écrivant'], 'écrites'),
+ ('w', "Elle m'a dit qu'elle ___ fatiguée ce jour-là.", ['était', 'est', 'sera'], 'était'),
+ ('w', "Tu as pensé à ton rendez-vous ? Oui, j'___ pense.", ['y', 'en', 'le'], 'y'),
+ ('r', 'Choisissez la phrase correcte :', ["Je veux que tu viennes.", 'Je veux que tu viens.', 'Je veux que tu venir.'], "Je veux que tu viennes."),
+ ('r', "Complétez : « Le village ___ nous passons nos vacances est magnifique. »", ['où', 'que', 'dont'], 'où'),
+ ('r', 'Quelle phrase exprime une hypothèse correcte ?', ["Si j'étais riche, je voyagerais.", "Si je serais riche, je voyagerais.", "Si j'étais riche, je voyagerai."], "Si j'étais riche, je voyagerais."),
+ ('r', "Discours indirect. « Je pars demain », a-t-il dit. Il a dit qu'il ___ le lendemain.", ['partait', 'part', 'partira'], 'partait'),
+ ('r', "Choisissez l'accord correct :", ["Les fleurs qu'il a offertes sont belles.", "Les fleurs qu'il a offert sont belles.", "Les fleurs qu'il a offerts sont belles."], "Les fleurs qu'il a offertes sont belles."),
+ ('r', "Remplacez : « J'ai donné le livre à Paul. »", ['Je le lui ai donné.', 'Je lui le ai donné.', 'Je le leur ai donné.'], 'Je le lui ai donné.'),
+ ('r', "Complétez : « Il faut absolument que nous ___ ce travail aujourd'hui. »", ['fassions', 'faisons', 'ferons'], 'fassions'),
+]
+BANKS['fr']['B2'] = [
+ ('w', "Je suis content que tu ___ venu à la fête hier.", ['sois', 'es', 'étais'], 'sois'),
+ ('w', "Si tu m'avais prévenu, je serais ___ te chercher.", ['venu', 'venir', 'venais'], 'venu'),
+ ('w', "Tu es tombé malade ? Tu ___ te reposer davantage.", ['aurais dû', 'devrais', 'as dû'], 'aurais dû'),
+ ('w', "Il m'a assuré qu'il ___ tout terminé avant la fin du mois.", ['aurait', 'aura', 'avait'], 'aurait'),
+ ('w', "___ en marchant dans le parc, elle a eu une idée brillante.", ['Tout', 'Bien', 'Alors'], 'Tout'),
+ ('w', "Je te prêterai la voiture à condition que tu ___ prudent.", ['sois', 'es', 'seras'], 'sois'),
+ ('w', "C'est le courage ___ nous avons tous besoin en ce moment.", ['dont', 'que', 'qui'], 'dont'),
+ ('r', 'Choisissez la phrase correcte (subjonctif passé) :', ["Bien qu'elle ait fini, elle continue.", "Bien qu'elle a fini, elle continue.", "Bien qu'elle finit, elle continue."], "Bien qu'elle ait fini, elle continue."),
+ ('r', "Irréel du passé : « Si nous avions su, nous ___ autrement. »", ['aurions agi', 'aurions agit', 'avions agi'], 'aurions agi'),
+ ('r', "Discours indirect. « Je le ferai », dit-elle. Elle a dit qu'elle ___.", ['le ferait', 'le fera', 'le faisait'], 'le ferait'),
+ ('r', "Choisissez la forme correcte :", ["C'est une histoire fascinante.", "C'est une histoire fascinant.", "C'est une histoire en fascinant."], "C'est une histoire fascinante."),
+ ('r', "Mise en relief sur « Marie » : « Marie a résolu le problème. »", ["C'est Marie qui a résolu le problème.", "C'est Marie qu'a résolu le problème.", "C'est Marie que a résolu le problème."], "C'est Marie qui a résolu le problème."),
+ ('r', 'Quelle phrase est grammaticalement correcte ?', ["Il travaille alors que les autres se reposent.", "Il travaille alors que les autres se reposeront.", "Il travaille bien que les autres se reposent."], "Il travaille alors que les autres se reposent."),
+ ('r', "Discours indirect. « Que veux-tu ? » Il m'a demandé ___ je voulais.", ['ce que', 'ce qui', 'que'], 'ce que'),
+]
+BANKS['it']['B1'] = [
+ ('w', 'Penso che Marco ___ stanco oggi.', ['sia', 'era', 'fosse'], 'sia'),
+ ('w', 'È importante che tu ___ pazienza con i bambini.', ['abbia', 'ha', 'avesse'], 'abbia'),
+ ('w', 'Se domani piove, ___ a casa a studiare.', ['resto', 'resterei', 'restassi'], 'resto'),
+ ('w', 'Scusi, ___ un caffè, per favore.', ['vorrei', 'voglio', 'volevo'], 'vorrei'),
+ ('w', "L'amica di ___ ti ho parlato arriva stasera.", ['cui', 'che', 'quale'], 'cui'),
+ ('w', 'Le mie amiche ___ già partite per Roma.', ['sono', 'è', 'ho'], 'sono'),
+ ('w', 'Marta voleva il libro e io ___ ho prestato subito.', ['glielo', 'gli', 'lo'], 'glielo'),
+ ('r', 'Scegli la frase corretta:', ['Ho comprato le mele e le ho mangiate.', 'Ho comprato le mele e le ho mangiato.', 'Ho comprato le mele e le ho mangiati.'], 'Ho comprato le mele e le ho mangiate.'),
+ ('r', 'Anna dice: « Ho finito il lavoro. » Anna dice che ___', ['ha finito il lavoro.', 'ho finito il lavoro.', 'aveva finito il lavoro.'], 'ha finito il lavoro.'),
+ ('r', 'Completa: « Non conosco nessuno ___ possa aiutarmi. »', ['che', 'cui', 'chi'], 'che'),
+ ('r', 'Scegli la frase corretta:', ['Bevo troppo caffè, ma non ne posso fare a meno.', 'Bevo troppo caffè, ma non lo posso fare a meno.', 'Bevo troppo caffè, ma non ci posso fare a meno.'], 'Bevo troppo caffè, ma non ne posso fare a meno.'),
+ ('r', 'Leggi: « Se avessi tempo, ti aiuterei. » Chi parla:', ['non ha tempo ora', 'ha molto tempo', 'ha finito di aiutare'], 'non ha tempo ora'),
+ ('r', 'Scegli la frase corretta:', ['Credo che loro abbiano ragione.', 'Credo che loro hanno ragione.', 'Credo che loro avranno ragione.'], 'Credo che loro abbiano ragione.'),
+ ('r', "Completa: « Ecco la ragazza ___ abito è vicino al mio. »", ['il cui', 'di cui', 'che'], 'il cui'),
+]
+BANKS['it']['B2'] = [
+ ('w', 'Pensavo che lui ___ più simpatico, invece è stato scortese.', ['fosse', 'era', 'sarebbe'], 'fosse'),
+ ('w', 'Non sapevo che tu ___ già mangiato prima di uscire.', ['avesse', 'aveva', 'abbia'], 'avesse'),
+ ('w', 'Se avessi più tempo libero, ___ volentieri con voi.', ['verrei', 'vengo', 'venni'], 'verrei'),
+ ('w', "Se tu avessi studiato di più, ___ superato l'esame.", ['avrei', 'ho', 'avevo'], 'avrei'),
+ ('w', 'Il ponte ___ costruito dai Romani molti secoli fa.', ['venne', 'fu', 'sarà'], 'fu'),
+ ('w', 'Benché ___ molto stanco, ha continuato a lavorare.', ['sia', 'è', 'era'], 'sia'),
+ ('w', 'In questo negozio ___ prodotti biologici di ottima qualità.', ['vendono', 'vende', 'venderanno'], 'vendono'),
+ ('r', 'Scegli la frase corretta (discorso indiretto):', ['Disse che sarebbe partito il giorno dopo.', 'Disse che partirebbe il giorno dopo.', 'Disse che partirà il giorno dopo.'], 'Disse che sarebbe partito il giorno dopo.'),
+ ('r', 'Scegli la frase corretta:', ['Sebbene fosse ricco, non era felice.', 'Sebbene era ricco, non era felice.', 'Sebbene sarebbe ricco, non era felice.'], 'Sebbene fosse ricco, non era felice.'),
+ ('r', 'Trasforma in passiva: « Il direttore ha firmato il contratto. »', ['Il contratto è stato firmato dal direttore.', 'Il contratto ha firmato il direttore.', 'Il contratto si firma dal direttore.'], 'Il contratto è stato firmato dal direttore.'),
+ ('r', "Completa (frase scissa): « ___ Marco a rompere il vaso, non io. »", ['È stato', 'Ha stato', 'Era stato di'], 'È stato'),
+ ('r', "Leggi: « Se me l'avessi detto, sarei venuto. » Che cosa è successo?", ["Non gliel'hanno detto e non è venuto.", "Gliel'hanno detto ed è venuto.", 'Verrà se glielo dicono.'], "Non gliel'hanno detto e non è venuto."),
+ ('r', 'Scegli la frase corretta:', ['Temevo che non ci avesse capito.', 'Temevo che non ci ha capito.', 'Temevo che non ci capisce.'], 'Temevo che non ci avesse capito.'),
+ ('r', 'Completa: « Una volta ___ i risultati, ti chiamerò. »', ['ottenuti', 'ottenuto', 'ottenendo'], 'ottenuti'),
+]
+BANKS['de']['B1'] = [
+ ('w', 'Wenn ich reich ___, würde ich um die Welt reisen.', ['wäre', 'bin', 'sei'], 'wäre'),
+ ('w', 'An deiner Stelle ___ ich mehr schlafen.', ['würde', 'sollte', 'kann'], 'würde'),
+ ('w', 'Ich bleibe heute zu Hause, ___ ich krank bin.', ['weil', 'denn', 'aber'], 'weil'),
+ ('w', 'Das ist der Film, ___ ich dir empfohlen habe.', ['den', 'das', 'wer'], 'den'),
+ ('w', 'Das Haus ___ letztes Jahr renoviert.', ['wurde', 'hat', 'ist'], 'wurde'),
+ ('w', 'Viele Kinder warten ___ den Bus.', ['auf', 'für', 'an'], 'auf'),
+ ('w', 'Das ist das Auto ___ Vaters.', ['meines', 'mein', 'unser'], 'meines'),
+ ('r', 'Wähle den richtigen Satz:', ['Ich weiß, dass er morgen kommt.', 'Ich weiß, dass er kommt morgen.', 'Ich weiß, dass kommt er morgen.'], 'Ich weiß, dass er morgen kommt.'),
+ ('r', 'Lies: „Hätte ich mehr Zeit gehabt, wäre ich gekommen." Was stimmt?', ['Er ist nicht gekommen.', 'Er ist gekommen.', 'Er hatte viel Zeit.'], 'Er ist nicht gekommen.'),
+ ('r', 'Welcher Satz drückt einen höflichen Wunsch aus?', ['Könnten Sie mir bitte helfen?', 'Können Sie helfen!', 'Sie helfen mir.'], 'Könnten Sie mir bitte helfen?'),
+ ('r', 'Ergänze: „Es regnet, ___ nehme ich einen Schirm mit."', ['deshalb', 'obwohl', 'weil'], 'deshalb'),
+ ('r', 'Welcher Satz steht korrekt im Passiv?', ['Der Brief wird geschrieben.', 'Der Brief schreibt.', 'Man schreibt der Brief.'], 'Der Brief wird geschrieben.'),
+ ('r', 'Lies: „Obwohl es kalt war, ging sie schwimmen." Was bedeutet das?', ['Sie ging trotz der Kälte schwimmen.', 'Sie ging nicht schwimmen.', 'Es war warm.'], 'Sie ging trotz der Kälte schwimmen.'),
+ ('r', 'Welches Relativpronomen passt? „Die Frau, ___ ich das Buch gegeben habe, ist meine Lehrerin."', ['der', 'die', 'wer'], 'der'),
+]
+BANKS['de']['B2'] = [
+ ('w', 'Er sagte, er ___ keine Zeit für das Projekt.', ['habe', 'hat', 'wird'], 'habe'),
+ ('w', 'Der Minister erklärte, er ___ am Freitag zurücktreten.', ['werde', 'wollte', 'kann'], 'werde'),
+ ('w', 'Der Vertrag muss bis morgen unterschrieben ___.', ['werden', 'sein', 'haben'], 'werden'),
+ ('w', 'Das Problem lässt ___ leicht lösen.', ['sich', 'es', 'ihn'], 'sich'),
+ ('w', 'Je mehr er übte, ___ besser wurde er.', ['desto', 'als', 'wie'], 'desto'),
+ ('w', 'Wir müssen heute noch eine wichtige Entscheidung ___.', ['treffen', 'machen', 'nehmen'], 'treffen'),
+ ('w', '___ des schlechten Wetters fand das Spiel statt.', ['Trotz', 'Wegen', 'Während'], 'Trotz'),
+ ('r', 'Wähle den korrekten Satz mit Partizip als Adjektiv:', ['Das reparierte Auto steht draußen.', 'Das reparierende Auto steht draußen.', 'Das repariert Auto steht draußen.'], 'Das reparierte Auto steht draußen.'),
+ ('r', 'Indirekte Rede korrekt: Direkt „Ich bin müde."', ['Er sagte, er sei müde.', 'Er sagte, er ist müde.', 'Er sagte, er wäre gewesen müde.'], 'Er sagte, er sei müde.'),
+ ('r', 'Welcher Satz nutzt „sowohl als auch" korrekt?', ['Sie spricht sowohl Deutsch als auch Spanisch.', 'Sie spricht sowohl Deutsch als Spanisch auch.', 'Sie spricht weder Deutsch als auch Spanisch.'], 'Sie spricht sowohl Deutsch als auch Spanisch.'),
+ ('r', 'Ergänze: „Worüber habt ihr gesprochen?" „___ die Prüfung."', ['Über', 'Darüber', 'Worüber'], 'Über'),
+ ('r', 'Welcher Satz steht im Zustandspassiv?', ['Die Tür ist geöffnet.', 'Die Tür wird geöffnet.', 'Die Tür öffnet sich.'], 'Die Tür ist geöffnet.'),
+ ('r', 'Lies: „Nicht nur die Studenten, sondern auch die Lehrer waren begeistert." Wer war begeistert?', ['Studenten und Lehrer.', 'Nur die Studenten.', 'Nur die Lehrer.'], 'Studenten und Lehrer.'),
+ ('r', 'Welcher Satz ist grammatisch korrekt (Genitiv-Präposition)?', ['Während des Films schlief er ein.', 'Während dem Film schlief er ein.', 'Während der Film schlief er ein.'], 'Während des Films schlief er ein.'),
+]
+BANKS['nl']['B1'] = [
+ ('w', 'Als ik rijk was, ___ ik een groot huis kopen.', ['zou', 'zal', 'wil'], 'zou'),
+ ('w', 'Ik blijf thuis ___ het regent.', ['omdat', 'daarom', 'hoewel'], 'omdat'),
+ ('w', 'De man ___ daar loopt, is mijn buurman.', ['die', 'dat', 'wat'], 'die'),
+ ('w', 'Het brood ___ gisteren door de bakker gebakken.', ['werd', 'was', 'is'], 'werd'),
+ ('w', 'Ik wacht al een uur ___ de bus.', ['op', 'aan', 'voor'], 'op'),
+ ('w', 'Als ik het geweten had, ___ ik je gebeld hebben.', ['zou', 'zal', 'wil'], 'zou'),
+ ('w', 'Wij gingen naar buiten ___ te spelen.', ['om', 'te', 'voor'], 'om'),
+ ('r', 'Kies de juiste zin:', ['Ik weet niet of hij komt.', 'Ik weet niet of komt hij.', 'Ik weet niet of hij komen.'], 'Ik weet niet of hij komt.'),
+ ('r', 'Lees: „Hoewel het koud was, ging hij zwemmen." Wat betekent dit?', ['Hij ging zwemmen ondanks de kou.', 'Hij ging niet zwemmen door de kou.', 'Hij ging zwemmen omdat het koud was.'], 'Hij ging zwemmen ondanks de kou.'),
+ ('r', 'Kies de juiste bijzin:', ['Ik denk dat hij morgen komt.', 'Ik denk dat hij komt morgen.', 'Ik denk dat komt hij morgen.'], 'Ik denk dat hij morgen komt.'),
+ ('r', 'Welke zin staat in de lijdende vorm?', ['De brief wordt geschreven.', 'Hij schrijft de brief.', 'Hij gaat de brief schrijven.'], 'De brief wordt geschreven.'),
+ ('r', 'Kies de juiste zin met een betrekkelijk voornaamwoord:', ['Dit is het boek dat ik las.', 'Dit is het boek die ik las.', 'Dit is het boek wie ik las.'], 'Dit is het boek dat ik las.'),
+ ('r', 'Lees: „Ik zou graag een kopje koffie willen." Wat drukt de spreker uit?', ['een beleefde wens', 'een bevel', 'een verbod'], 'een beleefde wens'),
+ ('r', 'Kies de juiste zin:', ['Ze bleef thuis omdat ze ziek was.', 'Ze bleef thuis omdat ze was ziek.', 'Ze bleef thuis omdat was ze ziek.'], 'Ze bleef thuis omdat ze ziek was.'),
+]
+BANKS['nl']['B2'] = [
+ ('w', 'Hij zei dat hij de volgende dag ___ komen.', ['zou', 'zal', 'wil'], 'zou'),
+ ('w', 'In dit restaurant ___ er veel gerookt.', ['wordt', 'heeft', 'gaat'], 'wordt'),
+ ('w', 'De ___ bloemen op tafel roken heerlijk.', ['bloeiende', 'bloeien', 'gebloeid'], 'bloeiende'),
+ ('w', 'Het was koud; ___ gingen we toch wandelen.', ['niettemin', 'omdat', 'terwijl'], 'niettemin'),
+ ('w', 'Als hij harder had gewerkt, ___ hij geslaagd zijn.', ['zou', 'zal', 'wil'], 'zou'),
+ ('w', '___ lezen van boeken maakt je slimmer.', ['Het', 'De', 'Een'], 'Het'),
+ ('w', 'De brief is gisteren ___ verstuurd.', ['al', 'nog', 'pas'], 'al'),
+ ('r', 'Kies de correcte indirecte rede: „Ik heb honger", zei ze.', ['Ze zei dat ze honger had.', 'Ze zei dat ze honger heeft.', 'Ze zei dat ze had honger.'], 'Ze zei dat ze honger had.'),
+ ('r', 'Welke zin is correct (voltooid, lijdende vorm)?', ['De auto is gemaakt.', 'De auto is gemaakt geworden.', 'De auto heeft gemaakt.'], 'De auto is gemaakt.'),
+ ('r', 'Kies de juiste zin met inversie na „desondanks":', ['Desondanks bleef hij kalm.', 'Desondanks hij bleef kalm.', 'Desondanks hij kalm bleef.'], 'Desondanks bleef hij kalm.'),
+ ('r', 'Kies het juiste voltooid deelwoord als bijvoeglijk naamwoord:', ['de gesloten deur', 'de sluiten deur', 'de sloot deur'], 'de gesloten deur'),
+ ('r', 'Lees: „Was ik maar eerder vertrokken, dan had ik de trein gehaald." Wat drukt dit uit?', ['spijt over het verleden', 'een plan voor morgen', 'een gewoonte'], 'spijt over het verleden'),
+ ('r', 'Kies de juiste zin:', ['Zowel Jan als Piet komt.', 'Zowel Jan en Piet komt.', 'Zowel Jan of Piet komt.'], 'Zowel Jan als Piet komt.'),
+ ('r', 'Welke zin gebruikt „noch noch" correct?', ['Noch hij noch zij was aanwezig.', 'Noch hij en zij was aanwezig.', 'Noch hij of zij was aanwezig.'], 'Noch hij noch zij was aanwezig.'),
+]
+
 
 def _strip(s):
     s = s.strip().lower()
@@ -194,12 +324,41 @@ def sql_str(s):
 
 
 def main():
+    # Modo: sin arg = A1/A2 → mig 110 (histórico, ya aplicado). 'hi' = B1/B2 → mig nueva
+    # (los cursos fr/it/de/nl ya llegan a B2; ampliar el techo del placement a su nivel real).
+    mode = sys.argv[1] if len(sys.argv) > 1 else 'a1a2'
+    if mode == 'hi':
+        EMIT = {'B1', 'B2'}
+        OUT_NAME = '20260705120122_placement_bank_fritdenl_hi.sql'
+        HEADER = [
+            "-- 20260705120122_placement_bank_fritdenl_hi.sql",
+            "-- Amplía el banco de PLACEMENT fr/it/de/nl a B1+B2 (esos cursos ya llegan a B2).",
+            "-- reading=MC (exacto), writing=cloze (guarda automática near_match). Tag 'placement'.",
+            "-- placement_next(p_course) es course-scoped → sembrar el banco ES el cableado; con B1/B2",
+            "-- el techo del estimador sube a B2. Calificación server-side (jz_grade, 42501). uuid5 idempotente.",
+            "",
+        ]
+    else:
+        EMIT = {'A1', 'A2'}
+        OUT_NAME = '20260703120110_placement_bank_fritdenl.sql'
+        HEADER = [
+            "-- 20260703120110_placement_bank_fritdenl.sql",
+            "-- Banco de PLACEMENT fr/it/de/nl (cursos ...0003/0004/0005/0006), A1+A2",
+            "-- (los niveles que EXISTEN en esos cursos). reading=MC (exacto), writing=cloze",
+            "-- (sin distractores a distancia Levenshtein <=1 del correcto → guarda automática).",
+            "-- Tag 'placement' (excluido de pools). Calificación server-side (placement_next/",
+            "-- jz_grade, correct_answer 42501). placement_next(p_course) ya es course-scoped →",
+            "-- sembrar el banco ES el cableado; techo capado en A2 por la evidencia. uuid5 idempotente.",
+            "",
+        ]
     errors = []
     rows = []
     counts = {}
     for lang, levels in BANKS.items():
         cid = COURSES[lang]
         for lvl, items in levels.items():
+            if lvl not in EMIT:
+                continue
             r = w = 0
             for i, (kind, prompt, options, answer) in enumerate(items):
                 assert answer in options, f"{lang} {lvl} #{i}: answer '{answer}' not in options {options}"
@@ -240,22 +399,13 @@ def main():
         for e in errors:
             print(" ", e)
         sys.exit(1)
-    lines = [
-        "-- 20260703120110_placement_bank_fritdenl.sql",
-        "-- Banco de PLACEMENT fr/it/de/nl (cursos ...0003/0004/0005/0006), A1+A2",
-        "-- (los niveles que EXISTEN en esos cursos). reading=MC (exacto), writing=cloze",
-        "-- (sin distractores a distancia Levenshtein <=1 del correcto → guarda automática).",
-        "-- Tag 'placement' (excluido de pools). Calificación server-side (placement_next/",
-        "-- jz_grade, correct_answer 42501). placement_next(p_course) ya es course-scoped →",
-        "-- sembrar el banco ES el cableado; techo capado en A2 por la evidencia. uuid5 idempotente.",
-        "",
+    lines = HEADER + [
         "insert into content_items (id, course_id, cefr_level, skill, type, prompt, payload, correct_answer, difficulty, tags) values",
         ",\n".join(rows),
         "on conflict (id) do nothing;",
         "",
     ]
-    out = os.path.join(os.path.dirname(__file__), '..', '..', 'supabase', 'migrations',
-                       '20260703120110_placement_bank_fritdenl.sql')
+    out = os.path.join(os.path.dirname(__file__), '..', '..', 'supabase', 'migrations', OUT_NAME)
     with io.open(out, 'w', encoding='utf-8') as f:
         f.write("\n".join(lines))
     print(f"escrito: {out} ({len(rows)} items)")

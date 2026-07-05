@@ -7,11 +7,11 @@ server-side (placement_next / jz_grade). Guardas anti-colisión:
     (inserción/borrado) del correcto, y ninguno igual tras jz_normalize.
 Emite la migración 20260702120093_placement_bank_pt.sql (uuid5 estable, idempotente).
 """
-import uuid, json, io, os
+import uuid, json, io, os, sys
 
 PT = '20000000-0000-0000-0000-000000000002'
 NS = uuid.UUID('20000000-0000-0000-0000-0000000000aa')
-DIFF = {'A1': 0.12, 'A2': 0.32, 'B1': 0.52}
+DIFF = {'A1': 0.12, 'A2': 0.32, 'B1': 0.52, 'B2': 0.68}
 
 # (skill, type, prompt, options, answer). type: 'w'=cloze(writing), 'r'=mc(reading).
 BANK = {
@@ -65,22 +65,61 @@ BANK = {
 ],
 }
 
+# ── B2 (el curso pt ya llega a B2, mig 121). Autorado nativo pt-BR + guard near_match. ──
+BANK['B2'] = [
+ ('w', 'Quando eu ___ tempo, farei uma longa viagem pelo Nordeste.', ['tiver', 'tenho', 'terei'], 'tiver'),
+ ('w', 'Se você ___ falar com o gerente, ligue depois das duas da tarde.', ['quiser', 'quer', 'quererá'], 'quiser'),
+ ('w', 'Se eu ___ mais dinheiro, compraria aquele apartamento perto da praia.', ['tivesse', 'tenho', 'terei'], 'tivesse'),
+ ('w', 'Embora ele ___ cansado, terminou o relatório antes da meia-noite.', ['estivesse', 'estava', 'estará'], 'estivesse'),
+ ('w', 'Os documentos já ___ assinados pelo diretor na semana passada.', ['foram', 'estavam', 'seriam'], 'foram'),
+ ('w', 'Ela disse que ___ ao médico no dia seguinte, mas acabou desistindo.', ['iria', 'vai', 'foi'], 'iria'),
+ ('w', 'Caso a reunião ___ cancelada, avise a equipe por e-mail imediatamente.', ['seja', 'foi', 'era'], 'seja'),
+ ('r', 'Escolha a frase correta:', ['Quando eu chegar, te aviso.', 'Quando eu chegue, te aviso.', 'Quando eu chegarei, te aviso.'], 'Quando eu chegar, te aviso.'),
+ ('r', 'Escolha a frase correta (período hipotético):', ['Se eu tivesse estudado, teria passado.', 'Se eu tinha estudado, teria passado.', 'Se eu teria estudado, tinha passado.'], 'Se eu tivesse estudado, teria passado.'),
+ ('r', 'Complete corretamente: "É bom que todos ___ presentes na cerimônia."', ['estejam', 'estão', 'estarão'], 'estejam'),
+ ('r', 'Escolha a frase na voz passiva:', ['A ponte foi construída em 1920.', 'A ponte construiu em 1920.', 'A ponte tem construído em 1920.'], 'A ponte foi construída em 1920.'),
+ ('r', 'Leia: "Ela perguntou se eu estava bem." O discurso direto correspondente é:', ['"Você está bem?"', '"Você estava bem?"', '"Eu estarei bem?"'], '"Você está bem?"'),
+ ('r', 'Escolha a regência verbal correta:', ['Assisti ao jogo ontem.', 'Assisti o jogo ontem.', 'Assisti no jogo ontem.'], 'Assisti ao jogo ontem.'),
+ ('r', 'Escolha a frase correta:', ['A menos que chova, faremos o piquenique.', 'A menos que chove, faremos o piquenique.', 'A menos que choveria, faremos o piquenique.'], 'A menos que chova, faremos o piquenique.'),
+]
+
 def sql_str(s):
     return "'" + s.replace("'", "''") + "'"
 
 def main():
-    lines = []
-    lines.append("-- 20260702120093_placement_bank_pt.sql")
-    lines.append("-- Banco de PLACEMENT es->pt (curso ...0002), A1/A2/B1, reading+writing.")
-    lines.append("-- Espeja mig 075 (es->en) adaptado a portugués de Brasil. Tag 'placement'")
-    lines.append("-- (excluido de los pools de lección/examen). Calificación server-side")
-    lines.append("-- (placement_next/jz_grade, correct_answer 42501). Guardas: reading=MC")
-    lines.append("-- (exacto), writing=cloze sin distractores a distancia-1 del correcto.")
-    lines.append("-- Idempotente (uuid5 estable + on conflict do nothing).")
-    lines.append("")
+    # Modo: sin arg = A1/A2/B1 → mig 093 (histórico, ya aplicado). 'b2' = solo B2 → mig
+    # nueva (pt ya llega a B2 desde mig 121; ampliar el techo del placement a B2).
+    mode = sys.argv[1] if len(sys.argv) > 1 else 'low'
+    if mode == 'b2':
+        EMIT = {'B2'}
+        OUT_NAME = '20260705120123_placement_bank_pt_b2.sql'
+        HEADER = [
+            "-- 20260705120123_placement_bank_pt_b2.sql",
+            "-- Amplía el banco de PLACEMENT es->pt a B2 (el curso pt ya llega a B2, mig 121).",
+            "-- reading=MC (exacto), writing=cloze (sin distractores a distancia-1 del correcto).",
+            "-- Tag 'placement'. Calificación server-side (placement_next/jz_grade, 42501).",
+            "-- placement_next(pt) es course-scoped → sembrar el banco sube el techo a B2. uuid5 idempotente.",
+            "",
+        ]
+    else:
+        EMIT = {'A1', 'A2', 'B1'}
+        OUT_NAME = '20260702120093_placement_bank_pt.sql'
+        HEADER = [
+            "-- 20260702120093_placement_bank_pt.sql",
+            "-- Banco de PLACEMENT es->pt (curso ...0002), A1/A2/B1, reading+writing.",
+            "-- Espeja mig 075 (es->en) adaptado a portugués de Brasil. Tag 'placement'",
+            "-- (excluido de los pools de lección/examen). Calificación server-side",
+            "-- (placement_next/jz_grade, correct_answer 42501). Guardas: reading=MC",
+            "-- (exacto), writing=cloze sin distractores a distancia-1 del correcto.",
+            "-- Idempotente (uuid5 estable + on conflict do nothing).",
+            "",
+        ]
+    lines = list(HEADER)
     rows = []
     n = 0
     for lvl, items in BANK.items():
+        if lvl not in EMIT:
+            continue
         for i, (kind, prompt, options, answer) in enumerate(items):
             assert answer in options, f"answer not in options: {answer} {options}"
             skill = 'writing' if kind == 'w' else 'reading'
@@ -104,8 +143,7 @@ def main():
     lines.append(",\n".join(rows))
     lines.append("on conflict (id) do nothing;")
     lines.append("")
-    out = os.path.join(os.path.dirname(__file__), '..', '..', 'supabase', 'migrations',
-                       '20260702120093_placement_bank_pt.sql')
+    out = os.path.join(os.path.dirname(__file__), '..', '..', 'supabase', 'migrations', OUT_NAME)
     with io.open(out, 'w', encoding='utf-8') as f:
         f.write("\n".join(lines))
     print(f"escrito: {out} ({n} items)")

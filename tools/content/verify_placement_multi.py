@@ -87,11 +87,11 @@ def main():
             if isinstance(bad, dict) and bad.get('correct') is False: det_bad += 1
         ck(f'{code} determinista: correctos aceptados', det_ok == len(cids), f"{det_ok}/{len(cids)}")
         ck(f'{code} determinista: distractores rechazados (sin near-match)', det_bad == len(cids), f"{det_bad}/{len(cids)}")
-        # 2) Personas (techo A2)
-        for name, prank in [('A1', 0), ('A2', 1), ('avanzado', 4)]:
+        # 2) Personas (techo B2: los cursos fr/it/de/nl ya llegan a B2)
+        for name, prank in [('A1', 0), ('A2', 1), ('B1', 2), ('B2', 3), ('avanzado', 4)]:
             res, seen = run_persona(cid, prank)
             lvl = res.get('level') if isinstance(res, dict) else None
-            expect = {'A1': 'A1', 'A2': 'A2', 'avanzado': 'A2'}[name]
+            expect = {'A1': 'A1', 'A2': 'A2', 'B1': 'B1', 'B2': 'B2', 'avanzado': 'B2'}[name]
             only = seen <= {cid}
             ck(f'{code} persona {name} → {expect}', lvl == expect and only,
                f"ubicó={lvl} solo_curso={only} skills={res.get('skill_levels') if isinstance(res,dict) else None}")

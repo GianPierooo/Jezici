@@ -81,11 +81,11 @@ def main():
             hist.append({'item_id': iid, 'answer': ans})
         return None, seen_courses, asked_lvls
 
-    for name, prank in [('A1', 0), ('A2', 1), ('B1', 2), ('avanzado', 4)]:
+    for name, prank in [('A1', 0), ('A2', 1), ('B1', 2), ('B2', 3), ('avanzado', 4)]:
         res, courses, asked = run_persona(prank)
         lvl = res.get('level') if isinstance(res, dict) else None
-        # avanzado: el curso pt tope es B1 → debe ubicar en B1 (techo honesto).
-        expect = {'A1': 'A1', 'A2': 'A2', 'B1': 'B1', 'avanzado': 'B1'}[name]
+        # pt ya llega a B2 (mig 121) → avanzado ubica en B2 (techo real del curso).
+        expect = {'A1': 'A1', 'A2': 'A2', 'B1': 'B1', 'B2': 'B2', 'avanzado': 'B2'}[name]
         onlypt = courses <= {PT}
         ck(f'persona {name} → {expect}', lvl == expect and onlypt,
            f"ubicó={lvl} skills={res.get('skill_levels') if isinstance(res,dict) else res} asked={asked} solo_pt={onlypt}")
