@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import '../../../core/feedback/feedback_fx.dart';
+import '../../../core/speech/word_tts.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/content_item_model.dart';
 import '../grading/grader.dart';
@@ -67,6 +68,7 @@ class _MatchExerciseState extends State<MatchExercise> {
   void _tapLeft(int i) {
     if (widget.locked) return;
     FeedbackFx.tap();
+    WordTts.speak(_lefts[i]); // pronuncia la palabra META tocada (Web Speech, best-effort)
     setState(() {
       if (_pairs.containsKey(i)) {
         _pairs.remove(i); // deshacer

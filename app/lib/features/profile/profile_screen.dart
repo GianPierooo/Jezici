@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/plan/estimation.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/ui/responsive_center.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/skill_names.dart';
 import '../../data/models/achievement_models.dart';
@@ -104,7 +105,9 @@ class ProfileScreen extends ConsumerWidget {
       bottom: false,
       child: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(20, 16, 20, 110),
-        child: Column(
+        child: ResponsiveCenter(
+          maxWidth: 640,
+          child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Cabecera: acciones (notificaciones, ajustes).
@@ -340,6 +343,7 @@ class ProfileScreen extends ConsumerWidget {
                 children: [for (final a in achievements) _BadgeTile(a: a)],
               ),
           ],
+        ),
         ),
       ),
     );

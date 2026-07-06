@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/speech/speakable_text.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/immersion_models.dart';
 import '../../data/providers.dart';
@@ -208,8 +209,9 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Palabra META: tócala para oírla (Web Speech, idioma del curso).
                   Expanded(
-                    child: Text(g.word,
+                    child: SpeakableText(g.word,
                         style: const TextStyle(fontWeight: FontWeight.w800, color: AppColors.text)),
                   ),
                   Expanded(

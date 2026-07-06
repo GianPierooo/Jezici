@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/feedback/feedback_fx.dart';
+import '../../core/speech/speakable_text.dart';
 import '../../core/theme/app_colors.dart';
 import '../learn/widgets/parrot_mascot.dart';
 import '../../data/models/progress_models.dart';
@@ -452,7 +453,8 @@ class _TipCard extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
               decoration:
                   BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12)),
-              child: Text(tip.example!,
+              // Ejemplo en el idioma META: tócalo para oírlo (Web Speech).
+              child: SpeakableText(tip.example!,
                   style: const TextStyle(
                       fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.text, height: 1.35)),
             ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
+import '../../../core/ui/responsive_center.dart';
 
 /// Shell común de los pasos del onboarding: barra de progreso, mascota, título
 /// y un footer fijo (botón continuar).
@@ -83,7 +84,9 @@ class OnboardingScaffold extends StatelessWidget {
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.fromLTRB(24, 8, 24, 20),
-                child: Column(
+                child: ResponsiveCenter(
+                  maxWidth: 480,
+                  child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     if (showMascot)
@@ -108,12 +111,13 @@ class OnboardingScaffold extends StatelessWidget {
                     child,
                   ],
                 ),
+                ),
               ),
             ),
             if (footer != null)
               Padding(
                 padding: const EdgeInsets.fromLTRB(24, 8, 24, 20),
-                child: footer!,
+                child: ResponsiveCenter(maxWidth: 480, child: footer!),
               ),
           ],
         ),

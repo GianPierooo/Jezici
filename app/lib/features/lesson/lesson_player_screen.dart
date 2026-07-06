@@ -7,6 +7,7 @@ import '../../core/feedback/feedback_fx.dart';
 import '../../core/speech/speech_recognizer.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/ui/jz_transitions.dart';
+import '../../core/ui/responsive_center.dart';
 import '../../data/models/content_item_model.dart';
 import '../../data/models/lesson_model.dart';
 import '../../data/providers.dart';
@@ -377,7 +378,9 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
-                child: Column(
+                child: ResponsiveCenter(
+                  maxWidth: 560,
+                  child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     if ((_item.prompt ?? '').isNotEmpty)
@@ -406,6 +409,7 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
                               locked),
                     ),
                   ],
+                ),
                 ),
               ),
             ),
@@ -593,25 +597,31 @@ class _BottomArea extends StatelessWidget {
     if (isStub) {
       return Padding(
         padding: const EdgeInsets.fromLTRB(20, 8, 20, 22),
-        child: _BigButton(
-          label: l10n.commonContinue,
-          color: AppColors.primary,
-          onTap: onStubContinue,
+        child: ResponsiveCenter(
+          maxWidth: 560,
+          child: _BigButton(
+            label: l10n.commonContinue,
+            color: AppColors.primary,
+            onTap: onStubContinue,
+          ),
         ),
       );
     }
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 8, 20, 22),
-      child: ValueListenableBuilder<Object?>(
-        valueListenable: answer,
-        builder: (context, value, _) {
-          final enabled = value != null;
-          return _BigButton(
-            label: l10n.commonCheck,
-            color: enabled ? AppColors.primary : const Color(0xFFC9CDDD),
-            onTap: enabled ? onCheck : null,
-          );
-        },
+      child: ResponsiveCenter(
+        maxWidth: 560,
+        child: ValueListenableBuilder<Object?>(
+          valueListenable: answer,
+          builder: (context, value, _) {
+            final enabled = value != null;
+            return _BigButton(
+              label: l10n.commonCheck,
+              color: enabled ? AppColors.primary : const Color(0xFFC9CDDD),
+              onTap: enabled ? onCheck : null,
+            );
+          },
+        ),
       ),
     );
   }
@@ -647,7 +657,9 @@ class _FeedbackBar extends StatelessWidget {
         border: Border(top: BorderSide(color: accent.withValues(alpha: 0.4), width: 2)),
       ),
       padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
-      child: Column(
+      child: ResponsiveCenter(
+        maxWidth: 560,
+        child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -702,6 +714,7 @@ class _FeedbackBar extends StatelessWidget {
           const SizedBox(height: 14),
           _BigButton(label: l10n.commonContinue, color: accent, onTap: onContinue),
         ],
+      ),
       ),
       ),
     );

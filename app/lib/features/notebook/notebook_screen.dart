@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/speech/speakable_text.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/tip_models.dart';
 import '../../data/providers.dart';
@@ -125,7 +126,8 @@ class _NotebookTip extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 8),
               decoration: BoxDecoration(
                   color: AppColors.background, borderRadius: BorderRadius.circular(10)),
-              child: Text(tip.example!,
+              // Ejemplo en el idioma META: tócalo para oírlo (Web Speech).
+              child: SpeakableText(tip.example!,
                   style: const TextStyle(
                       fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.text, height: 1.3)),
             ),

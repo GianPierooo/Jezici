@@ -253,19 +253,24 @@ class _MapBodyState extends State<_MapBody> {
 
     return LayoutBuilder(
       builder: (context, constraints) {
-        final width = math.min(constraints.maxWidth, _maxWidth);
+        // En pantalla ancha el fondo (cielo + escenografía) es full-bleed y la
+        // COLUMNA de nodos queda centrada en un ancho tipo-móvil → sin franjas
+        // vacías. En móvil layoutWidth≈colWidth → dx0≈0 → layout idéntico.
+        final layoutWidth = constraints.maxWidth;
+        final colWidth = math.min(constraints.maxWidth, _maxWidth);
+        final dx0 = (layoutWidth - colWidth) / 2;
         final contentHeight = _topPad + _bottomPad + (n - 1) * _gap;
 
-        // Centro (x,y) de cada nodo, de abajo (i=0) hacia arriba.
+        // Centro (x,y) de cada nodo, de abajo (i=0) hacia arriba (columna centrada).
         final centers = <Offset>[
           for (var i = 0; i < n; i++)
-            Offset(_laneX(width, i), contentHeight - _bottomPad - i * _gap),
+            Offset(dx0 + _laneX(colWidth, i), contentHeight - _bottomPad - i * _gap),
         ];
 
         // Sendero: nodos + un punto hacia la cima para que suba al certificado.
         final trailPoints = <Offset>[
           ...centers,
-          Offset(width * 0.5, _topPad * 0.55),
+          Offset(dx0 + colWidth * 0.5, _topPad * 0.55),
         ];
 
         final children = <Widget>[
@@ -365,13 +370,10 @@ class _MapBodyState extends State<_MapBody> {
 
         return SingleChildScrollView(
           controller: _controller,
-          child: Align(
-            alignment: Alignment.topCenter,
-            child: SizedBox(
-              width: width,
-              height: contentHeight,
-              child: Stack(clipBehavior: Clip.none, children: children),
-            ),
+          child: SizedBox(
+            width: layoutWidth,
+            height: contentHeight,
+            child: Stack(clipBehavior: Clip.none, children: children),
           ),
         );
       },

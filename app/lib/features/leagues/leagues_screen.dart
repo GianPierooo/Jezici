@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../core/ui/jz_skeleton.dart';
+import '../../core/ui/responsive_center.dart';
 import '../../data/models/league_models.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
@@ -29,18 +30,21 @@ class _LeaguesScreenState extends State<LeaguesScreen> {
     final l10n = AppLocalizations.of(context);
     return SafeArea(
       bottom: false,
-      child: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 14, 20, 6),
-            child: _Segmented(
-              options: [l10n.leagueTabMyLeague, l10n.leagueTabTables],
-              selected: _tab,
-              onChanged: (i) => setState(() => _tab = i),
+      child: ResponsiveCenter(
+        maxWidth: 640,
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 14, 20, 6),
+              child: _Segmented(
+                options: [l10n.leagueTabMyLeague, l10n.leagueTabTables],
+                selected: _tab,
+                onChanged: (i) => setState(() => _tab = i),
+              ),
             ),
-          ),
-          Expanded(child: _tab == 0 ? const _MyLeagueView() : const _LeaderboardView()),
-        ],
+            Expanded(child: _tab == 0 ? const _MyLeagueView() : const _LeaderboardView()),
+          ],
+        ),
       ),
     );
   }

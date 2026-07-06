@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/audio/music_service.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/ui/responsive_center.dart';
 import '../../data/models/checkpoint_models.dart';
 import '../../data/models/lesson_model.dart';
 import '../../data/providers.dart';
@@ -273,7 +274,9 @@ class _CheckpointPlayerScreenState extends ConsumerState<CheckpointPlayerScreen>
             Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
-                child: Column(
+                child: ResponsiveCenter(
+                  maxWidth: 560,
+                  child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     if ((item.prompt ?? '').isNotEmpty)
@@ -291,11 +294,14 @@ class _CheckpointPlayerScreenState extends ConsumerState<CheckpointPlayerScreen>
                     ),
                   ],
                 ),
+                ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 8, 20, 22),
-              child: GestureDetector(
+              child: ResponsiveCenter(
+                maxWidth: 560,
+                child: GestureDetector(
                 onTap: _next,
                 child: Container(
                   height: 56,
@@ -313,6 +319,7 @@ class _CheckpointPlayerScreenState extends ConsumerState<CheckpointPlayerScreen>
                         letterSpacing: 1),
                   ),
                 ),
+              ),
               ),
             ),
           ],

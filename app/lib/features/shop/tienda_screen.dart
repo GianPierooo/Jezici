@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/theme/app_colors.dart';
+import '../../core/ui/responsive_center.dart';
 import '../../data/models/shop_models.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
@@ -128,7 +129,9 @@ class _TiendaScreenState extends ConsumerState<TiendaScreen> {
       ),
       body: Stack(
         children: [
-          ListView(
+          ResponsiveCenter(
+            maxWidth: 640,
+            child: ListView(
             padding: const EdgeInsets.fromLTRB(20, 12, 20, 28),
             children: [
               _ShopCard(
@@ -162,6 +165,7 @@ class _TiendaScreenState extends ConsumerState<TiendaScreen> {
                 onTap: _freeze,
               ),
             ],
+          ),
           ),
           Align(
             alignment: Alignment.topCenter,

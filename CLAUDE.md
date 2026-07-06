@@ -5,6 +5,24 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-06**.
 
+## UX: TTS global + responsive ✅ (2026-07-06 · solo cliente, sin migración)
+Ingeniería pura (cero IA), determinista. 2 frentes:
+- **F1 · Voz al tocar cualquier palabra META.** Antes el TTS de tile (Web Speech) solo estaba en
+  word_bank/reorder (`tile_arrange_exercise`). Nuevo widget reutilizable `SpeakableText`
+  (`core/speech/speakable_text.dart`): tap → `WordTts.speak` (usa `SpeechLang.tts` = idioma del curso
+  activo) + ícono de altavoz, disparado por TAP (sin problema de unlock iOS), interrumpible, degrada con
+  gracia (no-op sin síntesis). Cableado en: **match** (columna META, speak-on-tap sin ícono), **historias**
+  (glosario `story_reader`), **tips** (ejemplo en reference + lesson_complete + notebook). Excluido a
+  propósito: listening/MC (no delatar la respuesta). Verificado: analyze 0, test 94/94.
+- **F2 · Responsive real (móvil→desktop).** Nuevo `core/ui/responsive_center.dart` (`ResponsiveCenter`:
+  `Align`+`ConstrainedBox(maxWidth)` → **no-op en móvil** cuando ancho ≤ maxWidth, así el target principal
+  queda PIXEL-idéntico; solo centra/capa en ancho). Aplicado: **mapa** (fondo cielo+escenografía full-bleed
+  + columna de nodos centrada vía `dx0` → sin franjas vacías; en móvil `dx0≈0` = idéntico), **loop de
+  lección** (scroll + botones + feedback bar, 560), **checkpoint** (560), **onboarding/placement/resultado**
+  (`OnboardingScaffold`, 480), **ligas/perfil/tienda/historias** (640). Barras/appbars/fondos siguen
+  full-width; solo se centra el CONTENIDO. Verificado: analyze 0, test 94/94, build web OK, smoke visual
+  móvil (auth 280px sin romper). Diferido: screenshot de viewport ancho (el preview local topa en 280px).
+
 ## Onboarding + mapa — CORRECTITUD (feedback real) ✅ (mig 124 · 2026-07-06)
 5 frentes, causa real diagnosticada con cliente real antes de tocar:
 - **F1 · Fuera la pregunta de intensidad.** El onboarding ya NO pregunta frecuencia/intensidad;
@@ -59,10 +77,6 @@
 > de A1–B2 · nl A1–B2**. Andamiaje probado 12× (…nl B2, it B1, fr B2, it B2, pt B2, fr C1, it C1, +): generador
 > `gen_course.py <code> <a1|a2|b1|b2|c1>` (soporta pt/fr/it/de/nl; DIFF c1=0.84), audio `gen_audio_missing.py <code>-<lvl>`
 > (grupos `<code>-c1` listos), verificadores `verify_b1_chain.py`/`verify_b2_chain.py`/**`verify_c1_chain.py`** `<code>`. STAMPS c1 en `gen_course.py`.
-0. **TTS-global + responsive** (prompt aparte, diferido de la misión onboarding+mapa 2026-07-06): revisar
-   que el TTS (Web Speech de tile + audio pre-generado) use SIEMPRE el idioma del curso activo en TODAS
-   las superficies (no solo lección/speaking ya arreglados) + auditoría de layout responsive (móvil/tablet/
-   desktop) del onboarding, mapa y loop. No tocado en esta misión.
 1. **C1 es→de/nl/pt** (topan en B2; fr/it ya en C1). Andamiaje YA listo: STAMPS reservados `('de','c1')=…128`,
    `('nl','c1')=…129`, `('pt','c1')=…130`; grupos audio `de-c1/nl-c1/pt-c1`; `verify_c1_chain.py` course-agnóstico.
    Pipeline probado 2× (fr/it C1): 6 autores nativos C1 por idioma (temas: precisión léxica, argumentar/conectores,

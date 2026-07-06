@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../core/ui/jz_transitions.dart';
+import '../../core/ui/responsive_center.dart';
 import '../../data/models/immersion_models.dart';
 import '../../data/providers.dart';
 import 'story_reader_screen.dart';
@@ -49,7 +50,9 @@ class ImmersionScreen extends ConsumerWidget {
           for (final s in stories) {
             byLevel.putIfAbsent(s.level, () => []).add(s);
           }
-          return ListView(
+          return ResponsiveCenter(
+            maxWidth: 640,
+            child: ListView(
             padding: const EdgeInsets.fromLTRB(20, 8, 20, 28),
             children: [
               const Text('Lee y escucha historias a tu nivel. Luego responde unas preguntas.',
@@ -65,6 +68,7 @@ class ImmersionScreen extends ConsumerWidget {
                 const SizedBox(height: 10),
               ],
             ],
+          ),
           );
         },
       ),
