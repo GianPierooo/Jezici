@@ -3,7 +3,37 @@
 > Contexto de arranque para cualquier sesión. **No** es copia de los 21 `.md` de
 > diseño (eso es la carpeta raíz `Jezici_*.md` + `docs/`). Aquí va el ESTADO REAL,
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
-> Última actualización: **2026-07-05**.
+> Última actualización: **2026-07-06**.
+
+## Onboarding + mapa — CORRECTITUD (feedback real) ✅ (mig 124 · 2026-07-06)
+5 frentes, causa real diagnosticada con cliente real antes de tocar:
+- **F1 · Fuera la pregunta de intensidad.** El onboarding ya NO pregunta frecuencia/intensidad;
+  se fija `intensity=3` (ALTA) por defecto para todos en `create_plan`→`user_personality`
+  (`onboarding_data.dart`), la 5ª pregunta se quitó de `personality_test.dart` (quedan las 4 de
+  estilo de coach). Ajustable luego en Ajustes (el control sigue ahí). NO se hace backfill de filas
+  existentes (no pisar preferencias reales). Sin romper usuarios.
+- **F2 · "Empezar desde cero" salta el examen.** Si en el paso de nivel de arranque elige "desde
+  cero" (`startLevelHint==0`), el onboarding SALTA ubicación+resultado → plan directo A1/U1
+  (`_skipPlacement` en `onboarding_screen.dart`, back coherente). El test solo corre si elige
+  "sé algo"/"buen nivel"/default.
+- **F3 · Override en el resultado.** `PlacementResultView` ofrece "Prefiero empezar desde el inicio"
+  (botón secundario, i18n es/en/pt, con diálogo de confirmación) → fija A1 y continúa. La elección
+  del usuario manda sobre el algoritmo. Solo se muestra si el resultado no fue A1.
+- **F4 · Nodos bajo el nivel de entrada en DORADO.** DIAGNÓSTICO (cliente real, `diag_map_golden.py`):
+  el puente de `create_plan` YA marca `completed` las 61 lecciones de U1–U12 al ubicar en B1 (61/61,
+  llegan por RLS) → el mapa las pintaba **verde-completado accesible, NO candado**; el "candado" era
+  de cuentas pre-puente (antes de mig 077) o del primer paint sin progreso. El intent "verse DORADO"
+  se resuelve en el CLIENTE: `learn_map_screen._stateFor` sube `completed`→`mastered` (dorado) para
+  unidades con nivel CEFR < nivel de entrada del plan. **NO se marca `golden` en BD**: dispararía el
+  logro "impecable" (`achievements`, v_golden≥1) sin haberlo ganado (deshonesto). Verificado: U1–U12
+  dorado 61/61, U13 available, resto locked.
+- **F5 · Placement ágil (subir/bajar rápido).** `placement_next` (mig 124) añade parada por
+  SATURACIÓN: los extremos (todo correcto/todo mal) no generan reversals y llegaban al máximo (14
+  ítems); ahora paran cuando la banda se clava en un extremo (`pin≥3`) con evidencia mínima (n≥8).
+  Verificado cliente real (`diag_placement_agile.py`): fuerte→C1/8, débil→A1/8, intermedio→B1/8
+  (antes 14). Estimador `jz_placement_level` intacto (verify_estimator 7/7, sin sobreestimación).
+- **Verde:** analyze 0 · test 94/94 · build web OK; verify_placement_wiring/multi/pt VERDES con la
+  nueva RPC. Pendiente (## Cola): **TTS-global + responsive** (prompt aparte).
 
 ## Reglas del agente (siempre)
 - Fuente de verdad = repo + BD + cliente real, NO los docs. Paso 0 de toda misión:
@@ -29,6 +59,10 @@
 > de A1–B2 · nl A1–B2**. Andamiaje probado 12× (…nl B2, it B1, fr B2, it B2, pt B2, fr C1, it C1, +): generador
 > `gen_course.py <code> <a1|a2|b1|b2|c1>` (soporta pt/fr/it/de/nl; DIFF c1=0.84), audio `gen_audio_missing.py <code>-<lvl>`
 > (grupos `<code>-c1` listos), verificadores `verify_b1_chain.py`/`verify_b2_chain.py`/**`verify_c1_chain.py`** `<code>`. STAMPS c1 en `gen_course.py`.
+0. **TTS-global + responsive** (prompt aparte, diferido de la misión onboarding+mapa 2026-07-06): revisar
+   que el TTS (Web Speech de tile + audio pre-generado) use SIEMPRE el idioma del curso activo en TODAS
+   las superficies (no solo lección/speaking ya arreglados) + auditoría de layout responsive (móvil/tablet/
+   desktop) del onboarding, mapa y loop. No tocado en esta misión.
 1. **C1 es→de/nl/pt** (topan en B2; fr/it ya en C1). Andamiaje YA listo: STAMPS reservados `('de','c1')=…128`,
    `('nl','c1')=…129`, `('pt','c1')=…130`; grupos audio `de-c1/nl-c1/pt-c1`; `verify_c1_chain.py` course-agnóstico.
    Pipeline probado 2× (fr/it C1): 6 autores nativos C1 por idioma (temas: precisión léxica, argumentar/conectores,

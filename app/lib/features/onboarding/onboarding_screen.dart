@@ -47,13 +47,38 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   void _logStep() =>
       ref.read(progressRepositoryProvider).logEvent('onboarding_step', props: {'step': _step});
 
+  // Pasos: 7 = nivel de arranque · 8 = ubicación · 9 = resultado · 10 = plan.
+  static const _stepStartLevel = 7;
+  static const _stepPlan = 10;
+
+  /// "Empezar desde cero" (startLevelHint == 0) → SALTA el examen: el usuario ya
+  /// declaró que es principiante, no tiene sentido examinarlo. Va directo a A1/U1.
+  bool get _skipPlacement => _data.startLevelHint == 0;
+
   void _next() {
+    // Al salir del paso de nivel de arranque: si eligió "desde cero", salta la
+    // ubicación (8) y el resultado (9) → plan (10) con nivel A1 fijado.
+    if (_step == _stepStartLevel && _skipPlacement) {
+      _data.placementLevel = 'A1';
+      _data.skillLevels = {
+        'reading': 'A1',
+        'listening': 'A1',
+        'writing': 'A1',
+        'speaking': 'A1',
+      };
+      setState(() => _step = _stepPlan);
+      _logStep();
+      return;
+    }
     setState(() => _step++);
     _logStep();
   }
 
   void _back() {
-    setState(() => _step = (_step - 1).clamp(0, _total - 1));
+    // Desde el plan, si se saltó la ubicación, vuelve al paso de nivel de arranque.
+    final target =
+        (_step == _stepPlan && _skipPlacement) ? _stepStartLevel : _step - 1;
+    setState(() => _step = target.clamp(0, _total - 1));
     _logStep();
   }
 

@@ -67,7 +67,22 @@ class PlacementResultView extends StatelessWidget {
       showMascot: false,
       title: l10n.placementResultTitle(level),
       subtitle: l10n.placementResultSubtitle,
-      footer: PrimaryButton(label: l10n.placementResultViewPlan, expand: true, onPressed: onContinue),
+      footer: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          PrimaryButton(label: l10n.placementResultViewPlan, expand: true, onPressed: onContinue),
+          // Override: el usuario manda sobre el algoritmo. Si sospecha que su
+          // resultado quedó inflado ("por suerte acerté"), puede empezar en A1.
+          // Solo tiene sentido si NO salió ya en A1.
+          if (level != 'A1')
+            TextButton(
+              onPressed: () => _startFromZero(context, l10n, level),
+              child: Text(l10n.placementResultStartFromZero,
+                  style: const TextStyle(
+                      fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.textMuted)),
+            ),
+        ],
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -143,6 +158,30 @@ class PlacementResultView extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  /// Override del usuario: ignora el resultado del algoritmo y arranca en A1/U1.
+  /// Confirmación para evitar toques accidentales (se pierde la ubicación).
+  Future<void> _startFromZero(BuildContext context, AppLocalizations l10n, String level) async {
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        content: Text(l10n.placementResultStartFromZeroConfirm(level)),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(ctx, false), child: Text(l10n.commonCancel)),
+          TextButton(onPressed: () => Navigator.pop(ctx, true), child: Text(l10n.commonStart)),
+        ],
+      ),
+    );
+    if (ok != true) return;
+    data.placementLevel = 'A1';
+    data.skillLevels = {
+      'reading': 'A1',
+      'listening': 'A1',
+      'writing': 'A1',
+      'speaking': 'A1',
+    };
+    onContinue();
   }
 }
 

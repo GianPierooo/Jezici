@@ -373,6 +373,15 @@ class AppLocalizationsEn extends AppLocalizations {
   String get placementResultViewPlan => 'SEE MY PLAN';
 
   @override
+  String get placementResultStartFromZero =>
+      'I\'d rather start from the beginning';
+
+  @override
+  String placementResultStartFromZeroConfirm(String level) {
+    return 'You\'ll start from A1 (Unit 1), not $level. It\'s your call: you\'ll progress at your own pace. Continue?';
+  }
+
+  @override
   String get placementResultHero => 'WE PLACED YOU AT';
 
   @override

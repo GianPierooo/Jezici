@@ -5,9 +5,10 @@ import 'onboarding_data.dart';
 import 'widgets/onboarding_scaffold.dart';
 
 /// Test de personalidad (Test_Personalidad.md): 4 preguntas de estilo (cada una
-/// es una situación DISTINTA, sin variantes repetidas) + 1 de intensidad. Mapea
-/// a un estilo de coach (mano_dura/positivo/rezago/suave) que gobierna el tono
-/// de Matix en toda la app.
+/// es una situación DISTINTA, sin variantes repetidas). Mapea a un estilo de coach
+/// (mano_dura/positivo/rezago/suave) que gobierna el tono de Matix en toda la app.
+/// La INTENSIDAD ya no se pregunta aquí: se fija ALTA por defecto (OnboardingData)
+/// y el usuario puede ajustarla luego en Ajustes.
 class PersonalityTest extends StatefulWidget {
   const PersonalityTest({
     super.key,
@@ -29,14 +30,13 @@ class PersonalityTest extends StatefulWidget {
 }
 
 class _PQ {
-  const _PQ(this.prompt, this.options, {this.isIntensity = false});
+  const _PQ(this.prompt, this.options);
   final String prompt;
   final List<(String, String)> options; // (label, key)
-  final bool isIntensity;
 }
 
 // 4 situaciones DISTINTAS (fallo · empujón · competencia · logro), cada opción
-// mapea a un estilo. + 1 pregunta de intensidad (frecuencia, dimensión aparte).
+// mapea a un estilo de coach. La intensidad NO se pregunta (ALTA por defecto).
 List<_PQ> _buildQuestions(AppLocalizations l10n) => <_PQ>[
       _PQ(l10n.onbPersonalityQ1, [
         (l10n.onbPersonalityQ1Opt1, 'mano_dura'),
@@ -62,11 +62,6 @@ List<_PQ> _buildQuestions(AppLocalizations l10n) => <_PQ>[
         (l10n.onbPersonalityQ4Opt3, 'rezago'),
         (l10n.onbPersonalityQ4Opt4, 'suave'),
       ]),
-      _PQ(l10n.onbIntensityQ, [
-        (l10n.onbIntensityOpt1, '3'),
-        (l10n.onbIntensityOpt2, '2'),
-        (l10n.onbIntensityOpt3, '1'),
-      ], isIntensity: true),
     ];
 
 class _PersonalityTestState extends State<PersonalityTest> {
@@ -80,12 +75,7 @@ class _PersonalityTestState extends State<PersonalityTest> {
 
   void _answer(String key) {
     final questions = _buildQuestions(AppLocalizations.of(context));
-    final q = questions[_q];
-    if (q.isIntensity) {
-      widget.data.intensity = int.tryParse(key) ?? 2;
-    } else {
-      _scores[key] = (_scores[key] ?? 0) + 1;
-    }
+    _scores[key] = (_scores[key] ?? 0) + 1;
     if (_q + 1 >= questions.length) {
       // Estilo dominante; empate → preferir la P1.
       var best = 'suave';

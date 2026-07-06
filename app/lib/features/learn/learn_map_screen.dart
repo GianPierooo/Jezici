@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/plan/estimation.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/ui/jz_transitions.dart';
 import '../../l10n/app_localizations.dart';
@@ -51,7 +52,12 @@ class LearnMapScreen extends ConsumerWidget {
               }
               // Estados de nodo REALES desde user_lesson_progress (paso E).
               final progress = ref.watch(lessonProgressProvider).value ?? const {};
-              return _MapBody(units: units, progress: progress);
+              // Nivel de ENTRADA del plan (del placement): las unidades por DEBAJO
+              // se pintan doradas ("te saltaste estos niveles → conquistados"),
+              // aunque en BD sean 'completed' (no se toca el estado: 'golden' en BD
+              // dispararía el logro "impecable" sin haberlo ganado).
+              final entryLevel = ref.watch(userPlanProvider).value?.currentLevel ?? 'A1';
+              return _MapBody(units: units, progress: progress, entryLevel: entryLevel);
             },
           ),
         ),
@@ -85,9 +91,10 @@ class _Entry {
 /// sendero serpenteante continuo, de abajo (Unidad 1) hacia arriba (la cima).
 /// Las unidades superiores quedan bloqueadas hasta aprobar el checkpoint previo.
 class _MapBody extends StatefulWidget {
-  const _MapBody({required this.units, required this.progress});
+  const _MapBody({required this.units, required this.progress, required this.entryLevel});
   final List<UnitModel> units;
   final Map<String, String> progress; // lesson_id -> status (real)
+  final String entryLevel; // nivel de entrada del plan (placement) → dorado por debajo
 
   @override
   State<_MapBody> createState() => _MapBodyState();
@@ -179,6 +186,13 @@ class _MapBodyState extends State<_MapBody> {
     return i >= 0 ? i : 0;
   }
 
+  /// ¿La unidad de este nodo está por DEBAJO del nivel de entrada del plan?
+  /// (el placement la marcó 'completed'; visualmente la pintamos dorada).
+  bool _belowEntry(int index) {
+    if (index < 0 || index >= _entries.length) return false;
+    return CefrTable.rank(_entries[index].unit.cefrLevel) < CefrTable.rank(widget.entryLevel);
+  }
+
   /// Estado del nodo: del progreso REAL (user_lesson_progress); si no hay
   /// progreso cargado, heurística local (primera lección disponible).
   NodeState _stateFor(LessonModel lesson, int index) {
@@ -186,7 +200,9 @@ class _MapBodyState extends State<_MapBody> {
     if (status != null) {
       switch (status) {
         case 'completed':
-          return NodeState.completed;
+          // Lo que quedó por debajo de tu nivel de entrada (placement) se pinta
+          // DORADO (conquistado), no verde-completado. Sigue accesible/rejugable.
+          return _belowEntry(index) ? NodeState.mastered : NodeState.completed;
         case 'golden':
           return NodeState.mastered;
         case 'available':

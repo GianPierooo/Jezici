@@ -24,7 +24,9 @@ class OnboardingData {
 
   // Test de personalidad → estilo de coach (Matix).
   String coachStyle = 'suave';
-  int intensity = 2;
+  // Intensidad del coaching: ya NO se pregunta en el onboarding → ALTA (3) por
+  // defecto para todos. Ajustable luego en Ajustes.
+  int intensity = 3;
 
   // Test de ubicación → nivel real + 4 habilidades.
   String placementLevel = 'A1';

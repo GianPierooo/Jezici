@@ -718,6 +718,18 @@ abstract class AppLocalizations {
   /// **'VER MI PLAN'**
   String get placementResultViewPlan;
 
+  /// No description provided for @placementResultStartFromZero.
+  ///
+  /// In es, this message translates to:
+  /// **'Prefiero empezar desde el inicio'**
+  String get placementResultStartFromZero;
+
+  /// No description provided for @placementResultStartFromZeroConfirm.
+  ///
+  /// In es, this message translates to:
+  /// **'Empezarás desde A1 (Unidad 1), no desde {level}. Tú decides: avanzarás a tu ritmo. ¿Continuar?'**
+  String placementResultStartFromZeroConfirm(String level);
+
   /// No description provided for @placementResultHero.
   ///
   /// In es, this message translates to:
