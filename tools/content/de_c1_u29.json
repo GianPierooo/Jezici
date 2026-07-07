@@ -1,0 +1,250 @@
+{
+  "unit": {
+    "order": 29,
+    "title_es": "Hipótesis y modalidad avanzada: Konjunktiv y suposición",
+    "color": "#7D3C98",
+    "icon": "psychology_alt"
+  },
+  "checkpoint_desc": "Demuestra que manejas la modalidad a nivel C1: formas condiciones irreales con Konjunktiv II (wäre/hätte + Partizip, würde + Inf), expresas suposición con verbos modales (dürfte = probable, müsste = lógicamente, will/soll = afirmación/rumor), usas el Konjunktiv I del estilo indirecto formal (er sei, er habe) y comparaciones irreales con «als ob» + Konjunktiv.",
+  "lessons": [
+    { "order": 1, "title_es": "Condiciones y deseos irreales (Konjunktiv II)" },
+    { "order": 2, "title_es": "Suposición con modales: dürfte, müsste, will, soll" },
+    { "order": 3, "title_es": "Estilo indirecto formal (Konjunktiv I)" },
+    { "order": 4, "title_es": "Comparación irreal: als ob + Konjunktiv" }
+  ],
+  "vocab": [
+    ["Konjunktiv II", "el subjuntivo II (irreal)", "n"],
+    ["irreal", "irreal, hipotético", "adj"],
+    ["dürfte", "(modal) probablemente, es de suponer", "v"],
+    ["müsste", "(modal) debería lógicamente", "v"],
+    ["will (behaupten)", "(modal) afirma (de sí mismo, dudoso)", "v"],
+    ["soll (Gerücht)", "(modal) se dice que, dizque", "v"],
+    ["die Vermutung", "la suposición, la conjetura", "n"],
+    ["die indirekte Rede", "el estilo indirecto", "n"],
+    ["als ob", "como si (+ Konjunktiv)", "conj"],
+    ["angeblich", "supuestamente, según dicen", "adv"],
+    ["vermutlich", "presumiblemente", "adv"],
+    ["die Bedingung", "la condición", "n"],
+    ["zurückweisen", "rechazar, desmentir", "v"],
+    ["einräumen", "admitir, conceder", "v"],
+    ["beteuern", "asegurar, jurar", "v"],
+    ["der Vorwurf", "el reproche, la acusación", "n"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "konjunktiv2_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada construcción irreal con su valor.",
+      "pairs": [
+        ["Wenn ich Zeit hätte, käme ich mit.", "condición irreal en el presente"],
+        ["Wenn ich Zeit gehabt hätte, wäre ich mitgekommen.", "condición irreal en el pasado"],
+        ["An deiner Stelle würde ich schweigen.", "consejo irreal (yo, en tu lugar)"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "konjunktiv2_plusquam_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la forma de Konjunktiv II del pasado (condición irreal ya cumplida): «Wenn er früher ___, hätte er den Zug noch erreicht.»",
+      "options": ["losgefahren wäre", "losgefahren ist", "losfahren würde"],
+      "value": "losgefahren wäre"
+    },
+    {
+      "lesson": 1,
+      "topic": "konjunktiv2_wunsch_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa el deseo irreal del pasado (dos palabras: participio + auxiliar en Konjunktiv II): «Wenn ich das nur früher ___ ___!» (saber → hubiera sabido)",
+      "text": "Wenn ich das nur früher ___ ___!",
+      "value": "gewusst hätte",
+      "accepted": ["gewusst hätte"]
+    },
+    {
+      "lesson": 1,
+      "topic": "konjunktiv2_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "An deiner Stelle hätte ich das Angebot nicht so schnell abgelehnt.",
+      "options": [
+        "An deiner Stelle hätte ich das Angebot nicht so schnell abgelehnt.",
+        "An meiner Stelle hättest du das Angebot sofort annehmen sollen.",
+        "In diesem Fall habe ich das Angebot gar nicht erst bekommen."
+      ],
+      "value": "An deiner Stelle hätte ich das Angebot nicht so schnell abgelehnt."
+    },
+    {
+      "lesson": 1,
+      "topic": "konjunktiv2_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Wäre das Wetter besser gewesen, hätten wir die Wanderung wohl zu Ende gebracht."
+    },
+    {
+      "lesson": 2,
+      "topic": "vermutung_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada verbo modal con el matiz de suposición que expresa.",
+      "pairs": [
+        ["Er dürfte schon zu Hause sein.", "suposición probable del hablante"],
+        ["Sie soll sehr wohlhabend sein.", "rumor: se dice que…"],
+        ["Er will alles gesehen haben.", "él lo afirma de sí mismo (dudoso)"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "vermutung_duerfte_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el verbo modal que expresa una suposición probable del hablante: «Es ist schon spät; sie ___ inzwischen zu Hause sein.»",
+      "options": ["dürfte", "darf", "durfte"],
+      "value": "dürfte"
+    },
+    {
+      "lesson": 2,
+      "topic": "vermutung_soll_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando el modal «sollen» para un rumor (se dice que): «Se dice que el castillo es muy antiguo.»",
+      "source": "Se dice que el castillo es muy antiguo.",
+      "value": "Das Schloss soll sehr alt sein.",
+      "accepted": [
+        "Das Schloss soll sehr alt sein",
+        "Das Schloss soll sehr alt sein.",
+        "Das Schloß soll sehr alt sein."
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "vermutung_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Nach dem vielen Regen müsste der Boden eigentlich völlig durchnässt sein.",
+      "options": [
+        "Nach dem vielen Regen müsste der Boden eigentlich völlig durchnässt sein.",
+        "Trotz des starken Regens dürfte der Boden erstaunlich trocken bleiben.",
+        "Wegen der langen Dürre ist der Boden inzwischen völlig ausgetrocknet."
+      ],
+      "value": "Nach dem vielen Regen müsste der Boden eigentlich völlig durchnässt sein."
+    },
+    {
+      "lesson": 2,
+      "topic": "vermutung_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Er will von nichts gewusst haben, doch die Unterlagen sprechen eine andere Sprache."
+    },
+    {
+      "lesson": 3,
+      "topic": "konjunktiv1_habe_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "En el estilo indirecto formal se usa el Konjunktiv I. Elige la forma correcta: «Sie erklärte, sie ___ nichts von der Sache gewusst.»",
+      "options": ["habe", "hat", "hatte"],
+      "value": "habe"
+    },
+    {
+      "lesson": 3,
+      "topic": "konjunktiv1_sei_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al estilo indirecto formal con Konjunktiv I «sei»: «El portavoz dijo que el presidente estaba enfermo.»",
+      "source": "El portavoz dijo que el presidente estaba enfermo.",
+      "value": "Der Sprecher sagte, der Präsident sei krank.",
+      "accepted": [
+        "Der Sprecher sagte, der Präsident sei krank",
+        "Der Sprecher sagte, der Präsident sei krank.",
+        "Der Sprecher sagte, dass der Präsident krank sei."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "konjunktiv1_zurueckweisen_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al estilo indirecto formal (Konjunktiv I «weise … zurück»): «El ministro subrayó que rechazaba las acusaciones.»",
+      "source": "El ministro subrayó que rechazaba las acusaciones.",
+      "value": "Der Minister betonte, er weise die Vorwürfe zurück.",
+      "accepted": [
+        "Der Minister betonte, er weise die Vorwürfe zurück",
+        "Der Minister betonte, er weise die Vorwürfe zurück.",
+        "Der Minister betonte, dass er die Vorwürfe zurückweise."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "konjunktiv1_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Die Sprecherin erklärte, das Unternehmen habe die Vorwürfe umfassend geprüft.",
+      "options": [
+        "Die Sprecherin erklärte, das Unternehmen habe die Vorwürfe umfassend geprüft.",
+        "Die Sprecherin bestritt, dass das Unternehmen die Vorwürfe je geprüft habe.",
+        "Der Sprecher räumte ein, das Unternehmen werde die Vorwürfe künftig prüfen."
+      ],
+      "value": "Die Sprecherin erklärte, das Unternehmen habe die Vorwürfe umfassend geprüft."
+    },
+    {
+      "lesson": 3,
+      "topic": "konjunktiv1_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "In der Erklärung heißt es, man sei sich der Verantwortung bewusst und werde alle Hinweise prüfen."
+    },
+    {
+      "lesson": 4,
+      "topic": "alsob_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Tras «als ob» (como si) el verbo va al final en Konjunktiv. Elige la frase correcta: «Er tut so, ___.»",
+      "options": [
+        "als ob er alles verstanden hätte",
+        "als ob er hätte alles verstanden",
+        "als ob hätte er alles verstanden"
+      ],
+      "value": "als ob er alles verstanden hätte"
+    },
+    {
+      "lesson": 4,
+      "topic": "alsob_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa la conjunción de comparación irreal (dos palabras: «como si»): «Sie sah mich an, ___ ___ sie mich nie zuvor gesehen hätte.»",
+      "text": "Sie sah mich an, ___ ___ sie mich nie zuvor gesehen hätte.",
+      "value": "als ob",
+      "accepted": ["als ob"]
+    },
+    {
+      "lesson": 4,
+      "topic": "alsob_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar: «An seiner Stelle hätte ich anders reagiert.»",
+      "tiles": ["hätte", "An seiner Stelle", "reagiert", "ich", "anders", "habe", "würde"],
+      "sequence": ["An seiner Stelle", "hätte", "ich", "anders", "reagiert"]
+    },
+    {
+      "lesson": 4,
+      "topic": "alsob_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Er redete weiter, als ob nichts geschehen wäre, obwohl alle ihn anstarrten.",
+      "options": [
+        "Er redete weiter, als ob nichts geschehen wäre, obwohl alle ihn anstarrten.",
+        "Sie schwieg beharrlich, als ob alles geklärt wäre, obwohl niemand zufrieden war.",
+        "Er entschuldigte sich sofort, sobald ihm sein Fehler bewusst geworden war."
+      ],
+      "value": "Er redete weiter, als ob nichts geschehen wäre, obwohl alle ihn anstarrten."
+    }
+  ]
+}

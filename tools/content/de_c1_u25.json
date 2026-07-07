@@ -1,0 +1,245 @@
+{
+  "unit": {
+    "order": 25,
+    "title_es": "Precisión y matiz léxico: das treffende Wort",
+    "color": "#6C3483",
+    "icon": "auto_stories"
+  },
+  "checkpoint_desc": "Demuestra que eliges la palabra precisa a nivel C1: distingues sinónimos finos y su connotación (betrachten/beobachten/mustern, wohnen/leben, schätzen/mögen/lieben), dominas las colocaciones verbo+sustantivo (eine Entscheidung treffen, einen Beschluss fassen, Kritik üben), adaptas el registro (gehoben/neutral/umgangssprachlich: Wagen/Auto/Karre, speisen/essen) y evitas errores de precisión (kennen vs wissen, scheinbar vs anscheinend).",
+  "lessons": [
+    { "order": 1, "title_es": "Sinónimos finos y su matiz (betrachten, beobachten, mustern…)" },
+    { "order": 2, "title_es": "Colocaciones verbo + sustantivo (eine Entscheidung treffen, Kritik üben)" },
+    { "order": 3, "title_es": "Registros: gehoben, neutral, umgangssprachlich" },
+    { "order": 4, "title_es": "Precisión: kennen/wissen, scheinbar/anscheinend, Wortwahl fija" }
+  ],
+  "vocab": [
+    ["betrachten", "contemplar, mirar con detenimiento", "v"],
+    ["beobachten", "observar (durante un tiempo)", "v"],
+    ["mustern", "escrutar, mirar de arriba abajo", "v"],
+    ["schätzen", "apreciar, valorar", "v"],
+    ["eine Entscheidung treffen", "tomar una decisión", "expr"],
+    ["einen Beschluss fassen", "adoptar un acuerdo/una resolución", "expr"],
+    ["Kritik üben", "ejercer/hacer crítica", "expr"],
+    ["Maßnahmen ergreifen", "tomar medidas", "expr"],
+    ["der Wagen", "el coche (registro elevado)", "n"],
+    ["die Karre", "el coche (coloquial, despectivo)", "n"],
+    ["speisen", "comer, cenar (registro elevado)", "v"],
+    ["gehoben", "elevado, culto (registro)", "adj"],
+    ["umgangssprachlich", "coloquial (registro)", "adj"],
+    ["scheinbar", "aparente (solo en apariencia, no real)", "adj"],
+    ["anscheinend", "al parecer, por lo visto", "adv"],
+    ["die Konnotation", "la connotación", "n"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "synonyme_sehen_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada verbo con el matiz que aporta. Fíjate en la connotación de cada uno.",
+      "pairs": [
+        ["mustern", "mirar de arriba abajo examinando a alguien"],
+        ["beobachten", "observar con atención durante un tiempo"],
+        ["anstarren", "mirar fijamente y de forma descortés"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "synonyme_betrachten_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el verbo que expresa mirar algo con calma y detenimiento, casi con admiración: «Sie blieben stehen, um den Sonnenuntergang in Ruhe zu ___.»",
+      "options": ["betrachten", "erblicken", "bemerken"],
+      "value": "betrachten"
+    },
+    {
+      "lesson": 1,
+      "topic": "synonyme_wohnen_leben_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Distingue «wohnen» (residir en un sitio) de «leben» (vivir, existir). Aquí se habla del lugar de residencia: «Seit drei Jahren ___ er in einer kleinen Wohnung am Stadtrand.»",
+      "text": "Seit drei Jahren ___ er in einer kleinen Wohnung am Stadtrand.",
+      "value": "wohnt",
+      "accepted": ["wohnt"]
+    },
+    {
+      "lesson": 1,
+      "topic": "synonyme_schaetzen_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ich schätze seine Ehrlichkeit, auch wenn ich seine Meinung nicht teile.",
+      "options": [
+        "Ich schätze seine Ehrlichkeit, auch wenn ich seine Meinung nicht teile.",
+        "Ich bezweifle seine Aufrichtigkeit, weil er seine Meinung ständig ändert.",
+        "Ich bewundere seinen Ehrgeiz, obwohl er seine Pläne selten verrät."
+      ],
+      "value": "Ich schätze seine Ehrlichkeit, auch wenn ich seine Meinung nicht teile."
+    },
+    {
+      "lesson": 1,
+      "topic": "synonyme_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Man kann ein Bild flüchtig ansehen, doch es zu betrachten verlangt Zeit und Aufmerksamkeit."
+    },
+    {
+      "lesson": 2,
+      "topic": "kollokationen_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada verbo con el sustantivo con el que forma la colocación fija correcta en alemán.",
+      "pairs": [
+        ["eine Entscheidung", "treffen"],
+        ["einen Beschluss", "fassen"],
+        ["Kritik", "üben"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "kollokationen_entscheidung_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el verbo que forma la colocación correcta con «eine Entscheidung» (no se calca del español «tomar»): «Der Vorstand muss bis Freitag eine Entscheidung ___.»",
+      "options": ["treffen", "nehmen", "machen"],
+      "value": "treffen"
+    },
+    {
+      "lesson": 2,
+      "topic": "kollokationen_massnahmen_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando la colocación culta «Maßnahmen ergreifen» (tomar medidas): «El gobierno tomó medidas drásticas.»",
+      "source": "El gobierno tomó medidas drásticas.",
+      "value": "Die Regierung ergriff drastische Maßnahmen.",
+      "accepted": [
+        "Die Regierung ergriff drastische Maßnahmen",
+        "Die Regierung ergriff drastische Maßnahmen.",
+        "Die Regierung hat drastische Maßnahmen ergriffen.",
+        "Die Regierung hat drastische Maßnahmen ergriffen",
+        "Die Regierung ergriff drastische Massnahmen."
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "kollokationen_kritik_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "An diesem Vorschlag wurde von mehreren Seiten scharfe Kritik geübt.",
+      "options": [
+        "An diesem Vorschlag wurde von mehreren Seiten scharfe Kritik geübt.",
+        "Für diesen Vorschlag wurde von allen Seiten großes Lob ausgesprochen.",
+        "Gegen diesen Beschluss hat bislang niemand ernsthafte Einwände erhoben."
+      ],
+      "value": "An diesem Vorschlag wurde von mehreren Seiten scharfe Kritik geübt."
+    },
+    {
+      "lesson": 2,
+      "topic": "kollokationen_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Bevor wir einen Beschluss fassen, sollten wir jedes Argument sorgfältig abwägen."
+    },
+    {
+      "lesson": 3,
+      "topic": "register_gehoben_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "En un menú elegante se usa el registro elevado para «comer/cenar». Completa con el verbo culto (infinitivo): «Die Gäste ___ heute Abend im großen Saal.» (pista: no es «essen»)",
+      "text": "Die Gäste ___ heute Abend im großen Saal.",
+      "value": "speisen",
+      "accepted": ["speisen"]
+    },
+    {
+      "lesson": 3,
+      "topic": "register_umgangssprachlich_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Entre amigos, ¿qué palabra pertenece al registro coloquial (y algo despectivo) para «coche»? «Steig ein, meine alte ___ springt sofort an.»",
+      "options": ["Karre", "Limousine", "Kutsche"],
+      "value": "Karre"
+    },
+    {
+      "lesson": 3,
+      "topic": "register_gehoben_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al registro elevado usando «der Wagen» (coche, culto) y «erwerben» (adquirir, culto): «Se compró un coche nuevo.»",
+      "source": "Se compró un coche nuevo.",
+      "value": "Er erwarb einen neuen Wagen.",
+      "accepted": [
+        "Er erwarb einen neuen Wagen",
+        "Er erwarb einen neuen Wagen.",
+        "Er hat einen neuen Wagen erworben.",
+        "Er hat einen neuen Wagen erworben"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "register_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Er hat seine Karre einfach vor meiner Einfahrt abgestellt.",
+      "options": [
+        "Er hat seine Karre einfach vor meiner Einfahrt abgestellt.",
+        "Sie hat ihr Fahrrad ordentlich hinter dem Haus verstaut.",
+        "Wir haben den Wagen gestern in der Werkstatt abgeholt."
+      ],
+      "value": "Er hat seine Karre einfach vor meiner Einfahrt abgestellt."
+    },
+    {
+      "lesson": 3,
+      "topic": "register_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Je nach Situation sagt man «Automobil» im Bericht, «Auto» im Alltag und «Karre» unter Freunden."
+    },
+    {
+      "lesson": 4,
+      "topic": "praezision_kennen_wissen_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Distingue «kennen» (estar familiarizado con algo/alguien) de «wissen» (saber un hecho). Elige la forma correcta: «Ich ___ diese Stadt gut, aber ich ___ nicht, wann das Museum öffnet.»",
+      "options": ["kenne … weiß", "weiß … kenne", "kenne … kenne"],
+      "value": "kenne … weiß"
+    },
+    {
+      "lesson": 4,
+      "topic": "praezision_scheinbar_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "«scheinbar» = solo en apariencia (no real); «anscheinend» = por lo visto (probablemente real). Aquí ella SÍ estaba tranquila por lo visto: «___ hatte sie die schlechte Nachricht schon vorher erfahren.»",
+      "text": "___ hatte sie die schlechte Nachricht schon vorher erfahren.",
+      "value": "Anscheinend",
+      "accepted": ["Anscheinend", "anscheinend"]
+    },
+    {
+      "lesson": 4,
+      "topic": "praezision_wortstellung_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar: «Er schätzt an ihr vor allem die ehrliche Art.»",
+      "tiles": ["schätzt", "vor allem", "Er", "die", "an ihr", "ehrliche", "Art", "mag"],
+      "sequence": ["Er", "schätzt", "an ihr", "vor allem", "die", "ehrliche", "Art"]
+    },
+    {
+      "lesson": 4,
+      "topic": "praezision_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Sein Erfolg war nur scheinbar mühelos, dahinter steckten Jahre harter Arbeit.",
+      "options": [
+        "Sein Erfolg war nur scheinbar mühelos, dahinter steckten Jahre harter Arbeit.",
+        "Ihr Aufstieg war tatsächlich mühsam, doch niemand nahm davon Notiz.",
+        "Sein Scheitern war letztlich absehbar, weil er kaum Einsatz zeigte."
+      ],
+      "value": "Sein Erfolg war nur scheinbar mühelos, dahinter steckten Jahre harter Arbeit."
+    }
+  ]
+}

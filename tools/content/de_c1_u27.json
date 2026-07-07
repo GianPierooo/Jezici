@@ -1,0 +1,252 @@
+{
+  "unit": {
+    "order": 27,
+    "title_es": "Énfasis y focalización: partículas y orden de palabras",
+    "color": "#117A65",
+    "icon": "campaign"
+  },
+  "checkpoint_desc": "Demuestra que enfatizas a nivel C1: usas partículas modales (doch, wohl, eben) para dar tono, partículas de foco (sogar, selbst, ausgerechnet) para resaltar, oraciones escindidas «Es war X, der …» y la anteposición al Vorfeld con V2 para focalizar un elemento, además de negaciones enfáticas (keineswegs, sehr wohl).",
+  "lessons": [
+    { "order": 1, "title_es": "Partículas modales: doch, wohl, eben" },
+    { "order": 2, "title_es": "Partículas de foco: sogar, selbst, ausgerechnet" },
+    { "order": 3, "title_es": "Focalización: oración escindida y negación enfática" },
+    { "order": 4, "title_es": "Anteposición al Vorfeld (V2) para dar relieve" }
+  ],
+  "vocab": [
+    ["doch", "partícula: contradice o recuerda algo sabido", "part"],
+    ["wohl", "partícula: expresa suposición", "part"],
+    ["eben", "partícula: resignación, «es así»", "part"],
+    ["sogar", "incluso", "part"],
+    ["selbst", "incluso, hasta (antepuesto)", "part"],
+    ["ausgerechnet", "precisamente, justo (con fastidio)", "part"],
+    ["keineswegs", "de ningún modo, en absoluto", "adv"],
+    ["hervorheben", "resaltar, destacar", "v"],
+    ["betonen", "enfatizar, subrayar", "v"],
+    ["die Umstellung", "la reordenación (de palabras)", "n"],
+    ["das Vorfeld", "el campo inicial (antes del verbo)", "n"],
+    ["der Spaltsatz", "la oración escindida (cleft)", "n"],
+    ["zweifellos", "sin duda", "adv"],
+    ["durchaus", "perfectamente, sin duda (refuerzo)", "adv"],
+    ["die Nuance", "el matiz", "n"],
+    ["auffallen", "llamar la atención, destacar", "v"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "modalpartikel_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada partícula modal con el tono que aporta.",
+      "pairs": [
+        ["doch", "recuerda o contradice algo que el otro debería saber"],
+        ["wohl", "expresa una suposición (probablemente)"],
+        ["eben", "resignación: es así y no hay más que hablar"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "modalpartikel_doch_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la partícula que recuerda al interlocutor algo que ya sabe: «Du kennst ihn ___! Ihr habt zusammen studiert.»",
+      "options": ["doch", "denn", "etwa"],
+      "value": "doch"
+    },
+    {
+      "lesson": 1,
+      "topic": "modalpartikel_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando la partícula modal «doch» para animar/insistir amablemente: «¡Anda, ven con nosotros!»",
+      "source": "¡Anda, ven con nosotros!",
+      "value": "Komm doch mit uns mit!",
+      "accepted": [
+        "Komm doch mit uns mit",
+        "Komm doch mit uns mit!",
+        "Komm doch mit uns!",
+        "Komm doch mit uns!."
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "modalpartikel_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Das hast du eben nicht bedacht, sonst wäre es anders gelaufen.",
+      "options": [
+        "Das hast du eben nicht bedacht, sonst wäre es anders gelaufen.",
+        "Das hättest du fast nicht geschafft, sonst wäre alles gut gegangen.",
+        "Das habe ich damals nicht gewusst, sonst hätte ich dich gewarnt."
+      ],
+      "value": "Das hast du eben nicht bedacht, sonst wäre es anders gelaufen."
+    },
+    {
+      "lesson": 1,
+      "topic": "modalpartikel_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Das wird wohl stimmen, auch wenn ich es an deiner Stelle noch einmal überprüfen würde."
+    },
+    {
+      "lesson": 2,
+      "topic": "fokuspartikel_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada partícula de foco con su significado.",
+      "pairs": [
+        ["sogar", "incluso (más de lo esperado)"],
+        ["ausgerechnet", "precisamente ese, justo ese (con fastidio)"],
+        ["selbst", "hasta, incluso (antepuesto al elemento)"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "fokuspartikel_sogar_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la partícula que resalta algo sorprendente por exceso: «Er hat die Prüfung bestanden, ___ mit Bestnote.»",
+      "options": ["sogar", "erst", "kaum"],
+      "value": "sogar"
+    },
+    {
+      "lesson": 2,
+      "topic": "fokuspartikel_ausgerechnet_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con la partícula que expresa «justo/precisamente ese, con fastidio», en primera posición: «___ am Tag der Prüfung wurde er krank.»",
+      "text": "___ am Tag der Prüfung wurde er krank.",
+      "value": "Ausgerechnet",
+      "accepted": ["Ausgerechnet", "ausgerechnet"]
+    },
+    {
+      "lesson": 2,
+      "topic": "fokuspartikel_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Selbst die schärfsten Kritiker mussten die Leistung am Ende anerkennen.",
+      "options": [
+        "Selbst die schärfsten Kritiker mussten die Leistung am Ende anerkennen.",
+        "Sogar die treuesten Anhänger begannen die Leistung allmählich zu bezweifeln.",
+        "Nicht einmal die wohlwollenden Beobachter wollten die Leistung würdigen."
+      ],
+      "value": "Selbst die schärfsten Kritiker mussten die Leistung am Ende anerkennen."
+    },
+    {
+      "lesson": 2,
+      "topic": "fokuspartikel_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Ausgerechnet der leiseste Kollege hatte am Ende das schlagkräftigste Argument."
+    },
+    {
+      "lesson": 3,
+      "topic": "fokus_keineswegs_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el adverbio de negación enfática «de ningún modo»: «Das Ergebnis ist ___ zufällig, sondern das Resultat jahrelanger Arbeit.»",
+      "text": "Das Ergebnis ist ___ zufällig, sondern das Resultat jahrelanger Arbeit.",
+      "value": "keineswegs",
+      "accepted": ["keineswegs"]
+    },
+    {
+      "lesson": 3,
+      "topic": "fokus_spaltsatz_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la oración escindida (Spaltsatz) que focaliza «seine Geduld» correctamente: «Was alle überraschte, war …»",
+      "options": [
+        "Es war seine Geduld, die alle überraschte.",
+        "Es war seine Geduld, das alle überraschte.",
+        "Das war seine Geduld, wer alle überraschte."
+      ],
+      "value": "Es war seine Geduld, die alle überraschte."
+    },
+    {
+      "lesson": 3,
+      "topic": "fokus_spaltsatz_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce con una oración escindida «Es war … der …»: «Fue el director quien tomó la decisión.»",
+      "source": "Fue el director quien tomó la decisión.",
+      "value": "Es war der Direktor, der die Entscheidung traf.",
+      "accepted": [
+        "Es war der Direktor, der die Entscheidung traf",
+        "Es war der Direktor, der die Entscheidung traf.",
+        "Es war der Direktor, der die Entscheidung getroffen hat.",
+        "Es war der Direktor, der die Entscheidung getroffen hat"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "fokus_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Es war nicht das Geld, das ihn reizte, sondern die Herausforderung selbst.",
+      "options": [
+        "Es war nicht das Geld, das ihn reizte, sondern die Herausforderung selbst.",
+        "Es war nicht der Ruhm, der sie lockte, sondern die Aussicht auf Ruhe.",
+        "Es war weniger die Aufgabe, die ihn schreckte, als die knappe Frist."
+      ],
+      "value": "Es war nicht das Geld, das ihn reizte, sondern die Herausforderung selbst."
+    },
+    {
+      "lesson": 3,
+      "topic": "fokus_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Nicht die Theorie war das Problem, sondern ihre Umsetzung in die Praxis."
+    },
+    {
+      "lesson": 4,
+      "topic": "vorfeld_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Para dar relieve al objeto anteponiéndolo al Vorfeld, el verbo conjugado debe quedar en segunda posición (V2). Elige la frase correcta:",
+      "options": [
+        "Diesen Fehler hätte niemand bemerkt.",
+        "Diesen Fehler niemand hätte bemerkt.",
+        "Diesen Fehler bemerkt hätte niemand."
+      ],
+      "value": "Diesen Fehler hätte niemand bemerkt."
+    },
+    {
+      "lesson": 4,
+      "topic": "vorfeld_sehr_wohl_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con la fórmula enfática de dos palabras que contradice («sí que», «muy bien»): «Man behauptet, er wisse nichts davon, doch er hat es ___ ___ bemerkt.»",
+      "text": "Man behauptet, er wisse nichts davon, doch er hat es ___ ___ bemerkt.",
+      "value": "sehr wohl",
+      "accepted": ["sehr wohl"]
+    },
+    {
+      "lesson": 4,
+      "topic": "vorfeld_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar (objeto antepuesto al Vorfeld): «Von diesem Vorschlag halte ich wenig.»",
+      "tiles": ["halte", "Von diesem", "wenig", "ich", "Vorschlag", "viel", "nichts"],
+      "sequence": ["Von diesem", "Vorschlag", "halte", "ich", "wenig"]
+    },
+    {
+      "lesson": 4,
+      "topic": "vorfeld_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Auf diese Nachricht hatte die ganze Belegschaft seit Wochen gewartet.",
+      "options": [
+        "Auf diese Nachricht hatte die ganze Belegschaft seit Wochen gewartet.",
+        "Über diese Neuigkeit hatte sich die halbe Abteilung tagelang geärgert.",
+        "Auf diese Entscheidung war im Betrieb schon lange niemand mehr gespannt."
+      ],
+      "value": "Auf diese Nachricht hatte die ganze Belegschaft seit Wochen gewartet."
+    }
+  ]
+}

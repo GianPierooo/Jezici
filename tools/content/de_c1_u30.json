@@ -1,0 +1,246 @@
+{
+  "unit": {
+    "order": 30,
+    "title_es": "Lengua académica y profesional: Nominalstil y estructuras complejas",
+    "color": "#212F3D",
+    "icon": "school"
+  },
+  "checkpoint_desc": "Demuestra que dominas el registro académico-profesional a nivel C1: usas el estilo nominal y las locuciones verbo-nominales (in Betracht ziehen, zur Verfügung stellen), la voz pasiva ampliada (Vorgangs- y Zustandspassiv, con verbo modal), las construcciones de participio atributivo ampliado (das vom Parlament verabschiedete Gesetz), las preposiciones cultas (hinsichtlich, bezüglich, im Hinblick auf) y las fórmulas de un correo formal.",
+  "lessons": [
+    { "order": 1, "title_es": "Nominalstil y locuciones verbo-nominales (Funktionsverbgefüge)" },
+    { "order": 2, "title_es": "Voz pasiva ampliada (Vorgangs-, Zustands-, con modal)" },
+    { "order": 3, "title_es": "Participio atributivo ampliado y preposiciones cultas" },
+    { "order": 4, "title_es": "Correo formal: fórmulas y preposiciones (bezüglich, im Hinblick auf)" }
+  ],
+  "vocab": [
+    ["in Betracht ziehen", "tener en cuenta, considerar", "expr"],
+    ["zur Verfügung stellen", "poner a disposición", "expr"],
+    ["in Frage stellen", "poner en cuestión", "expr"],
+    ["die Durchführung", "la realización, la ejecución", "n"],
+    ["die Berücksichtigung", "la consideración, el tener en cuenta", "n"],
+    ["das Vorgangspassiv", "la pasiva de proceso", "n"],
+    ["das Zustandspassiv", "la pasiva de estado", "n"],
+    ["verabschieden", "aprobar (una ley); despedirse", "v"],
+    ["hinsichtlich", "en lo referente a (+ genitivo)", "präp"],
+    ["bezüglich", "con respecto a (+ genitivo)", "präp"],
+    ["im Hinblick auf", "de cara a, en vista de", "präp"],
+    ["angesichts", "ante, en vista de (+ genitivo)", "präp"],
+    ["gemäß", "conforme a, según (+ dativo)", "präp"],
+    ["die Anfrage", "la consulta, la solicitud", "n"],
+    ["mit freundlichen Grüßen", "atentamente (despedida formal)", "expr"],
+    ["das Anliegen", "la petición, el asunto", "n"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "nominalstil_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada locución verbo-nominal (Funktionsverbgefüge) con su significado.",
+      "pairs": [
+        ["in Betracht ziehen", "tener en cuenta, considerar"],
+        ["zur Verfügung stellen", "poner a disposición"],
+        ["in Frage stellen", "poner en cuestión, cuestionar"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "nominalstil_betracht_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el sustantivo que forma la locución con «ziehen» y significa «considerar»: «Wir sollten alle Alternativen in ___ ziehen.»",
+      "options": ["Betracht", "Frage", "Rechnung"],
+      "value": "Betracht"
+    },
+    {
+      "lesson": 1,
+      "topic": "nominalstil_pruefung_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Estilo nominal: transforma el verbo en sustantivo. Completa con el sustantivo de «prüfen» (examinar): «Nach eingehender ___ der Unterlagen entscheidet der Ausschuss.»",
+      "text": "Nach eingehender ___ der Unterlagen entscheidet der Ausschuss.",
+      "value": "Prüfung",
+      "accepted": ["Prüfung"]
+    },
+    {
+      "lesson": 1,
+      "topic": "nominalstil_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Die Durchführung des Projekts setzt die Zustimmung aller Beteiligten voraus.",
+      "options": [
+        "Die Durchführung des Projekts setzt die Zustimmung aller Beteiligten voraus.",
+        "Die Verschiebung des Projekts erfordert die Zustimmung der halben Belegschaft.",
+        "Die Finanzierung des Vorhabens hängt allein vom Wohlwollen des Vorstands ab."
+      ],
+      "value": "Die Durchführung des Projekts setzt die Zustimmung aller Beteiligten voraus."
+    },
+    {
+      "lesson": 1,
+      "topic": "nominalstil_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Die Berücksichtigung sämtlicher Einwände nahm mehr Zeit in Anspruch als die eigentliche Entscheidung."
+    },
+    {
+      "lesson": 2,
+      "topic": "passiv_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada frase con el tipo de pasiva que ilustra.",
+      "pairs": [
+        ["Das Gesetz wurde gestern verabschiedet.", "pasiva de proceso (Vorgangspassiv)"],
+        ["Die Rechnung ist bereits bezahlt.", "pasiva de estado (Zustandspassiv)"],
+        ["Der Antrag muss noch geprüft werden.", "pasiva con verbo modal"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "passiv_zustand_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la pasiva de ESTADO (resultado ya alcanzado), no la de proceso: «Keine Sorge, die Tür ___ längst abgeschlossen.»",
+      "options": ["ist", "wird", "worden"],
+      "value": "ist"
+    },
+    {
+      "lesson": 2,
+      "topic": "passiv_modal_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce con pasiva + verbo modal: «El informe debe ser revisado antes del viernes.»",
+      "source": "El informe debe ser revisado antes del viernes.",
+      "value": "Der Bericht muss bis Freitag geprüft werden.",
+      "accepted": [
+        "Der Bericht muss bis Freitag geprüft werden",
+        "Der Bericht muss bis Freitag geprüft werden.",
+        "Der Bericht muss vor Freitag geprüft werden."
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "passiv_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Über den Antrag wird in der nächsten Sitzung abschließend entschieden werden.",
+      "options": [
+        "Über den Antrag wird in der nächsten Sitzung abschließend entschieden werden.",
+        "Gegen den Beschluss ist in der letzten Sitzung heftig protestiert worden.",
+        "Für den Vorschlag hat in der heutigen Runde niemand stimmen wollen."
+      ],
+      "value": "Über den Antrag wird in der nächsten Sitzung abschließend entschieden werden."
+    },
+    {
+      "lesson": 2,
+      "topic": "passiv_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Sämtliche Unterlagen sind geprüft worden und werden Ihnen umgehend zur Verfügung gestellt."
+    },
+    {
+      "lesson": 3,
+      "topic": "partizip_attribut_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "En el participio atributivo ampliado, el participio se declina como adjetivo. Elige la forma correcta: «das von der Kommission ___ Gesetz».",
+      "options": ["verabschiedete", "verabschiedet", "verabschieden"],
+      "value": "verabschiedete"
+    },
+    {
+      "lesson": 3,
+      "topic": "partizip_hinsichtlich_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con la preposición culta que rige genitivo y significa «en lo referente a», en primera posición: «___ der entstehenden Kosten sind noch einige Fragen offen.»",
+      "text": "___ der entstehenden Kosten sind noch einige Fragen offen.",
+      "value": "Hinsichtlich",
+      "accepted": ["Hinsichtlich", "hinsichtlich"]
+    },
+    {
+      "lesson": 3,
+      "topic": "partizip_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce con participio atributivo ampliado (das vom … Partizip … Substantiv): «La ley aprobada por el parlamento entra en vigor mañana.»",
+      "source": "La ley aprobada por el parlamento entra en vigor mañana.",
+      "value": "Das vom Parlament verabschiedete Gesetz tritt morgen in Kraft.",
+      "accepted": [
+        "Das vom Parlament verabschiedete Gesetz tritt morgen in Kraft",
+        "Das vom Parlament verabschiedete Gesetz tritt morgen in Kraft.",
+        "Das vom Parlament verabschiedete Gesetz tritt morgen in Kraft ."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "partizip_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Die im letzten Quartal erzielten Ergebnisse übertrafen alle Erwartungen der Analysten.",
+      "options": [
+        "Die im letzten Quartal erzielten Ergebnisse übertrafen alle Erwartungen der Analysten.",
+        "Die im nächsten Quartal erwarteten Verluste beunruhigten sämtliche Aktionäre.",
+        "Die vor einem Jahr getroffenen Annahmen erwiesen sich als völlig haltlos."
+      ],
+      "value": "Die im letzten Quartal erzielten Ergebnisse übertrafen alle Erwartungen der Analysten."
+    },
+    {
+      "lesson": 3,
+      "topic": "partizip_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Die von der Kommission vorgeschlagenen und vom Parlament gebilligten Änderungen treten im Januar in Kraft."
+    },
+    {
+      "lesson": 4,
+      "topic": "email_anrede_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "En un correo formal a un destinatario desconocido, ¿qué encabezamiento es correcto?",
+      "options": [
+        "Sehr geehrte Damen und Herren,",
+        "Hallo zusammen,",
+        "Na, ihr Lieben,"
+      ],
+      "value": "Sehr geehrte Damen und Herren,"
+    },
+    {
+      "lesson": 4,
+      "topic": "email_bezueglich_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con la preposición culta «con respecto a» (+ genitivo), en primera posición: «___ Ihrer Anfrage vom 3. Mai teilen wir Ihnen Folgendes mit.»",
+      "text": "___ Ihrer Anfrage vom 3. Mai teilen wir Ihnen Folgendes mit.",
+      "value": "Bezüglich",
+      "accepted": ["Bezüglich", "bezüglich"]
+    },
+    {
+      "lesson": 4,
+      "topic": "email_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar (fórmula de cortesía): «Für Ihre Bemühungen bedanke ich mich im Voraus.»",
+      "tiles": ["bedanke", "Für Ihre Bemühungen", "im Voraus", "ich", "mich", "danke", "nachträglich"],
+      "sequence": ["Für Ihre Bemühungen", "bedanke", "ich", "mich", "im Voraus"]
+    },
+    {
+      "lesson": 4,
+      "topic": "email_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Im Hinblick auf die anstehende Prüfung bitten wir Sie um die vollständigen Unterlagen.",
+      "options": [
+        "Im Hinblick auf die anstehende Prüfung bitten wir Sie um die vollständigen Unterlagen.",
+        "Angesichts der bestandenen Prüfung danken wir Ihnen für die geleistete Arbeit.",
+        "Trotz der verschobenen Sitzung senden wir Ihnen die fehlenden Formulare zu."
+      ],
+      "value": "Im Hinblick auf die anstehende Prüfung bitten wir Sie um die vollständigen Unterlagen."
+    }
+  ]
+}

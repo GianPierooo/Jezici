@@ -1,0 +1,243 @@
+{
+  "unit": {
+    "order": 26,
+    "title_es": "Argumentar y persuadir: conectores del discurso",
+    "color": "#1F618D",
+    "icon": "forum"
+  },
+  "checkpoint_desc": "Demuestra que argumentas a nivel C1: usas conectores concesivos (dennoch, gleichwohl, nichtsdestotrotz), causales que refuerzan (zumal, insofern als), consecutivos (folglich, mithin, somit), la preposición «ungeachtet» + genitivo y estructuras de contraste (zwar … aber, geschweige denn), respetando la posición del verbo (V2 tras conector en primera posición).",
+  "lessons": [
+    { "order": 1, "title_es": "Concesivos: dennoch, gleichwohl, nichtsdestotrotz" },
+    { "order": 2, "title_es": "Causales de refuerzo y grado: zumal, insofern als" },
+    { "order": 3, "title_es": "Consecutivos y contraste: folglich, mithin, indes" },
+    { "order": 4, "title_es": "Estructuras: ungeachtet + genitivo, zwar … aber, geschweige denn" }
+  ],
+  "vocab": [
+    ["dennoch", "sin embargo, no obstante (concesivo)", "adv"],
+    ["gleichwohl", "no obstante (culto)", "adv"],
+    ["nichtsdestotrotz", "a pesar de todo, aun así", "adv"],
+    ["zumal", "tanto más cuanto que, sobre todo porque", "conj"],
+    ["insofern", "en ese sentido, en la medida en que", "adv"],
+    ["folglich", "por consiguiente", "adv"],
+    ["mithin", "por tanto (culto)", "adv"],
+    ["somit", "así pues, por tanto", "adv"],
+    ["indes", "entretanto; sin embargo (literario)", "adv"],
+    ["ungeachtet", "sin tener en cuenta, pese a (+ genitivo)", "präp"],
+    ["geschweige denn", "y mucho menos, ni hablar de", "expr"],
+    ["zwar", "es verdad que, ciertamente (… aber)", "adv"],
+    ["der Einwand", "la objeción", "n"],
+    ["die Schlussfolgerung", "la conclusión (deducción)", "n"],
+    ["stichhaltig", "convincente, sólido (argumento)", "adj"],
+    ["einräumen", "admitir, conceder (un punto)", "v"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "konzessiv_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada conector con su función argumentativa.",
+      "pairs": [
+        ["dennoch", "aun así, a pesar de lo dicho (concesivo)"],
+        ["folglich", "por consiguiente (consecutivo)"],
+        ["zumal", "sobre todo porque (refuerza la causa)"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "konzessiv_dennoch_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el conector concesivo que enlaza dos ideas opuestas: «Die Kritik war heftig; ___ hielt sie an ihrem Plan fest.»",
+      "options": ["dennoch", "deshalb", "sofern"],
+      "value": "dennoch"
+    },
+    {
+      "lesson": 1,
+      "topic": "konzessiv_gleichwohl_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el conector concesivo de registro culto (sinónimo elevado de «dennoch»), en primera posición: «Der Aufwand war enorm; ___ hat sich das Projekt am Ende gelohnt.»",
+      "text": "Der Aufwand war enorm; ___ hat sich das Projekt am Ende gelohnt.",
+      "value": "gleichwohl",
+      "accepted": ["gleichwohl"]
+    },
+    {
+      "lesson": 1,
+      "topic": "konzessiv_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Alle Einwände waren berechtigt; nichtsdestotrotz wurde der Antrag angenommen.",
+      "options": [
+        "Alle Einwände waren berechtigt; nichtsdestotrotz wurde der Antrag angenommen.",
+        "Sämtliche Vorschläge waren umstritten, weshalb der Antrag vertagt wurde.",
+        "Kaum jemand hatte Bedenken, also wurde der Antrag einstimmig abgelehnt."
+      ],
+      "value": "Alle Einwände waren berechtigt; nichtsdestotrotz wurde der Antrag angenommen."
+    },
+    {
+      "lesson": 1,
+      "topic": "konzessiv_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Man muss einräumen, dass der Einwand berechtigt ist; dennoch überzeugt die Gegenposition nicht."
+    },
+    {
+      "lesson": 2,
+      "topic": "kausal_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada conector con el matiz que introduce.",
+      "pairs": [
+        ["zumal", "sobre todo porque, y con mayor razón"],
+        ["insofern als", "en la medida en que, en cuanto que"],
+        ["somit", "así pues, por tanto (conclusión)"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "kausal_zumal_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el conector que añade una razón de peso adicional: «Wir sollten früh aufbrechen, ___ der Verkehr am Morgen unberechenbar ist.»",
+      "options": ["zumal", "obwohl", "damit"],
+      "value": "zumal"
+    },
+    {
+      "lesson": 2,
+      "topic": "kausal_insofern_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando «insofern» al inicio con inversión (por tanto/en ese sentido): «En ese sentido tiene razón el crítico.»",
+      "source": "En ese sentido tiene razón el crítico.",
+      "value": "Insofern hat der Kritiker recht.",
+      "accepted": [
+        "Insofern hat der Kritiker recht",
+        "Insofern hat der Kritiker recht.",
+        "Insofern hat der Kritiker Recht.",
+        "Insofern hat der Kritiker Recht"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "kausal_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Der Beweis ist stichhaltig, zumal er durch mehrere Zeugen bestätigt wird.",
+      "options": [
+        "Der Beweis ist stichhaltig, zumal er durch mehrere Zeugen bestätigt wird.",
+        "Der Verdacht ist unbegründet, obwohl ihn kaum ein Zeuge entkräften kann.",
+        "Die Aussage ist widersprüchlich, weshalb sie kein Gericht anerkennen würde."
+      ],
+      "value": "Der Beweis ist stichhaltig, zumal er durch mehrere Zeugen bestätigt wird."
+    },
+    {
+      "lesson": 2,
+      "topic": "kausal_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Das Argument ist insofern stichhaltig, als es sich auf belastbare Zahlen stützt."
+    },
+    {
+      "lesson": 3,
+      "topic": "konsekutiv_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el conector consecutivo culto (sinónimo elevado de «folglich»/«also»), en primera posición: «Die Prämisse ist falsch; ___ kann auch die Schlussfolgerung nicht stimmen.»",
+      "text": "Die Prämisse ist falsch; ___ kann auch die Schlussfolgerung nicht stimmen.",
+      "value": "mithin",
+      "accepted": ["mithin"]
+    },
+    {
+      "lesson": 3,
+      "topic": "konsekutiv_folglich_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el conector consecutivo: «Die Nachfrage ist stark gestiegen; ___ mussten die Preise angehoben werden.»",
+      "options": ["folglich", "obgleich", "sofern"],
+      "value": "folglich"
+    },
+    {
+      "lesson": 3,
+      "topic": "kontrast_indes_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando el adverbio adversativo literario «indes» al inicio con inversión (sin embargo): «Sin embargo, se negó a comentar el asunto.»",
+      "source": "Sin embargo, se negó a comentar el asunto.",
+      "value": "Indes weigerte er sich, die Angelegenheit zu kommentieren.",
+      "accepted": [
+        "Indes weigerte er sich, die Angelegenheit zu kommentieren",
+        "Indes weigerte er sich, die Angelegenheit zu kommentieren.",
+        "Indes weigerte sie sich, die Angelegenheit zu kommentieren."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "kontrast_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Die Theorie ist elegant; gleichwohl bleibt die Frage nach ihrem praktischen Nutzen.",
+      "options": [
+        "Die Theorie ist elegant; gleichwohl bleibt die Frage nach ihrem praktischen Nutzen.",
+        "Die Theorie ist umstritten, weshalb kaum jemand ihren praktischen Nutzen bestreitet.",
+        "Die Methode ist erprobt, sodass sich die Frage nach ihrem Nutzen erübrigt."
+      ],
+      "value": "Die Theorie ist elegant; gleichwohl bleibt die Frage nach ihrem praktischen Nutzen."
+    },
+    {
+      "lesson": 3,
+      "topic": "kontrast_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Die Datenlage ist dünn; folglich sollten wir unsere Schlussfolgerungen mit Vorsicht formulieren."
+    },
+    {
+      "lesson": 4,
+      "topic": "struktur_ungeachtet_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«ungeachtet» rige genitivo. Elige la forma correcta: «___ aller Warnungen setzte er die riskante Fahrt fort.»",
+      "options": ["Ungeachtet", "Ungeachtet zu", "Ungeachtet von"],
+      "value": "Ungeachtet"
+    },
+    {
+      "lesson": 4,
+      "topic": "struktur_geschweige_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa la expresión «geschweige denn» (y mucho menos), que refuerza una negación previa: «Er kann kaum gehen, ___ ___ rennen.»",
+      "text": "Er kann kaum gehen, ___ ___ rennen.",
+      "value": "geschweige denn",
+      "accepted": ["geschweige denn"]
+    },
+    {
+      "lesson": 4,
+      "topic": "struktur_zwar_aber_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar: «Der Plan ist zwar ehrgeizig, aber durchaus realistisch.»",
+      "tiles": ["ehrgeizig", "Der Plan", "aber", "zwar", "ist", "realistisch", "durchaus", "trotzdem"],
+      "sequence": ["Der Plan", "ist", "zwar", "ehrgeizig", "aber", "durchaus", "realistisch"]
+    },
+    {
+      "lesson": 4,
+      "topic": "struktur_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ungeachtet der Bedenken hielt der Ausschuss an seiner Empfehlung fest.",
+      "options": [
+        "Ungeachtet der Bedenken hielt der Ausschuss an seiner Empfehlung fest.",
+        "Aufgrund der Bedenken nahm der Ausschuss seine Empfehlung wieder zurück.",
+        "Trotz der Zustimmung verwarf der Ausschuss den ursprünglichen Vorschlag."
+      ],
+      "value": "Ungeachtet der Bedenken hielt der Ausschuss an seiner Empfehlung fest."
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "unit": {
+    "order": 28,
+    "title_es": "Modismos y registro: idiomático, gehoben y umgangssprachlich",
+    "color": "#B9770E",
+    "icon": "sms"
+  },
+  "checkpoint_desc": "Demuestra que dominas la fraseología a nivel C1: entiendes y usas modismos (den Nagel auf den Kopf treffen, die Katze im Sack kaufen, ins Fettnäpfchen treten, die Flinte ins Korn werfen), reconoces su sentido figurado y ajustas el registro entre lo culto (versterben, sich beeilen) y lo coloquial (einen Zahn zulegen, Kohle), sin tomar los modismos al pie de la letra.",
+  "lessons": [
+    { "order": 1, "title_es": "Modismos frecuentes y su sentido (I)" },
+    { "order": 2, "title_es": "Modismos frecuentes y su sentido (II)" },
+    { "order": 3, "title_es": "Registro: gehoben frente a neutral" },
+    { "order": 4, "title_es": "Registro coloquial y modismos en contexto" }
+  ],
+  "vocab": [
+    ["den Nagel auf den Kopf treffen", "dar en el clavo", "expr"],
+    ["die Katze im Sack kaufen", "comprar a ciegas", "expr"],
+    ["jemandem auf den Zahn fühlen", "sondear a alguien", "expr"],
+    ["ins Fettnäpfchen treten", "meter la pata", "expr"],
+    ["die Flinte ins Korn werfen", "tirar la toalla", "expr"],
+    ["um den heißen Brei herumreden", "irse por las ramas", "expr"],
+    ["aus dem Nähkästchen plaudern", "contar intimidades", "expr"],
+    ["versterben", "fallecer (culto)", "v"],
+    ["sich beeilen", "darse prisa (neutral)", "v"],
+    ["einen Zahn zulegen", "acelerar, apretar (coloquial)", "expr"],
+    ["die Kohle", "la pasta, el dinero (coloquial)", "n"],
+    ["das Vermögen", "el patrimonio, la fortuna (culto)", "n"],
+    ["die Redewendung", "el modismo, la locución", "n"],
+    ["wörtlich", "literal", "adj"],
+    ["übertragen", "figurado", "adj"],
+    ["treffend", "acertado, certero", "adj"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "idiome_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada modismo con su significado (sentido figurado).",
+      "pairs": [
+        ["den Nagel auf den Kopf treffen", "acertar de pleno, dar en el clavo"],
+        ["um den heißen Brei herumreden", "no ir al grano, irse por las ramas"],
+        ["die Flinte ins Korn werfen", "rendirse, tirar la toalla"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "idiome_nagel_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el modismo que significa «acertar exactamente»: «Mit dieser Analyse hast du den ___ auf den Kopf getroffen.»",
+      "options": ["Nagel", "Hammer", "Daumen"],
+      "value": "Nagel"
+    },
+    {
+      "lesson": 1,
+      "topic": "idiome_katze_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa el modismo que significa «comprar sin comprobar» (tres palabras): «Ich unterschreibe nichts ungeprüft — ich kaufe doch nicht die ___ ___ ___.»",
+      "text": "Ich unterschreibe nichts ungeprüft — ich kaufe doch nicht die ___ ___ ___.",
+      "value": "Katze im Sack",
+      "accepted": ["Katze im Sack"]
+    },
+    {
+      "lesson": 1,
+      "topic": "idiome_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Statt klar zu antworten, redet er ständig um den heißen Brei herum.",
+      "options": [
+        "Statt klar zu antworten, redet er ständig um den heißen Brei herum.",
+        "Anstatt lange zu zögern, kommt sie meistens sofort zur Sache.",
+        "Bevor er etwas verspricht, überlegt er immer sehr genau."
+      ],
+      "value": "Statt klar zu antworten, redet er ständig um den heißen Brei herum."
+    },
+    {
+      "lesson": 1,
+      "topic": "idiome_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Gib jetzt bloß nicht auf; wer die Flinte ins Korn wirft, hat schon verloren."
+    },
+    {
+      "lesson": 2,
+      "topic": "idiome2_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada modismo con su significado.",
+      "pairs": [
+        ["ins Fettnäpfchen treten", "meter la pata, decir algo inoportuno"],
+        ["jemandem auf den Zahn fühlen", "sondear a alguien, ponerlo a prueba"],
+        ["aus dem Nähkästchen plaudern", "contar intimidades o secretos"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "idiome2_fettnaepfchen_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el modismo que significa «cometer una torpeza social»: «Mit dieser Bemerkung bin ich gehörig ins ___ getreten.»",
+      "options": ["Fettnäpfchen", "Rampenlicht", "Abseits"],
+      "value": "Fettnäpfchen"
+    },
+    {
+      "lesson": 2,
+      "topic": "idiome2_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando el modismo «jemandem auf den Zahn fühlen» (sondear a alguien): «El periodista sondeó al ministro.»",
+      "source": "El periodista sondeó al ministro.",
+      "value": "Der Journalist fühlte dem Minister auf den Zahn.",
+      "accepted": [
+        "Der Journalist fühlte dem Minister auf den Zahn",
+        "Der Journalist fühlte dem Minister auf den Zahn.",
+        "Der Journalist hat dem Minister auf den Zahn gefühlt.",
+        "Der Journalist hat dem Minister auf den Zahn gefühlt"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "idiome2_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Bei dem Empfang bin ich prompt ins Fettnäpfchen getreten.",
+      "options": [
+        "Bei dem Empfang bin ich prompt ins Fettnäpfchen getreten.",
+        "Bei der Feier habe ich zum Glück alle Fettnäpfchen umgangen.",
+        "Auf dem Treffen hat er sich erstaunlich diplomatisch verhalten."
+      ],
+      "value": "Bei dem Empfang bin ich prompt ins Fettnäpfchen getreten."
+    },
+    {
+      "lesson": 2,
+      "topic": "idiome2_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Sie plaudert gern aus dem Nähkästchen, doch heute hielt sie sich auffällig zurück."
+    },
+    {
+      "lesson": 3,
+      "topic": "register_versterben_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "En una necrológica se usa el verbo culto para «morir». Completa (pretérito): «Der Dichter ___ im Alter von achtzig Jahren in seiner Heimatstadt.» (pista: no es «starb»)",
+      "text": "Der Dichter ___ im Alter von achtzig Jahren in seiner Heimatstadt.",
+      "value": "verstarb",
+      "accepted": ["verstarb"]
+    },
+    {
+      "lesson": 3,
+      "topic": "register_vermoegen_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "En un texto formal, ¿qué palabra designa «la fortuna/el patrimonio» (registro culto)? «Sie verwaltet ein beträchtliches ___.»",
+      "options": ["Vermögen", "Kohle", "Kleingeld"],
+      "value": "Vermögen"
+    },
+    {
+      "lesson": 3,
+      "topic": "register_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al registro culto usando «sich beeilen» (darse prisa): «Debemos darnos prisa para no perder el tren.»",
+      "source": "Debemos darnos prisa para no perder el tren.",
+      "value": "Wir müssen uns beeilen, um den Zug nicht zu verpassen.",
+      "accepted": [
+        "Wir müssen uns beeilen, um den Zug nicht zu verpassen",
+        "Wir müssen uns beeilen, um den Zug nicht zu verpassen.",
+        "Wir müssen uns beeilen, damit wir den Zug nicht verpassen."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "register_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Nach kurzer, schwerer Krankheit ist er gestern friedlich verstorben.",
+      "options": [
+        "Nach kurzer, schwerer Krankheit ist er gestern friedlich verstorben.",
+        "Nach langer, glücklicher Genesung ist sie gestern nach Hause gekommen.",
+        "Trotz schwerer Krankheit hat er sich vollständig wieder erholt."
+      ],
+      "value": "Nach kurzer, schwerer Krankheit ist er gestern friedlich verstorben."
+    },
+    {
+      "lesson": 3,
+      "topic": "register_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Im Nachruf heißt es «verstorben», im Alltag «gestorben» und salopp «ins Gras gebissen»."
+    },
+    {
+      "lesson": 4,
+      "topic": "umgang_zahn_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Entre amigos, ¿qué expresión coloquial significa «acelerar, darse más prisa»? «Wenn wir den Bus kriegen wollen, müssen wir einen ___ zulegen.»",
+      "options": ["Zahn", "Fuß", "Schritt"],
+      "value": "Zahn"
+    },
+    {
+      "lesson": 4,
+      "topic": "umgang_flinte_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa el modismo «rendirse» (tres palabras): «Nach dem ersten Rückschlag darfst du nicht gleich die ___ ___ ___ werfen.»",
+      "text": "Nach dem ersten Rückschlag darfst du nicht gleich die ___ ___ ___ werfen.",
+      "value": "Flinte ins Korn",
+      "accepted": ["Flinte ins Korn"]
+    },
+    {
+      "lesson": 4,
+      "topic": "umgang_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar: «Er hat mit dieser Antwort den Nagel auf den Kopf getroffen.»",
+      "tiles": ["den Nagel", "getroffen", "Er hat", "auf den Kopf", "mit dieser Antwort", "Hammer", "geschlagen"],
+      "sequence": ["Er hat", "mit dieser Antwort", "den Nagel", "auf den Kopf", "getroffen"]
+    },
+    {
+      "lesson": 4,
+      "topic": "umgang_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Für den alten Wagen habe ich am Ende richtig viel Kohle hingelegt.",
+      "options": [
+        "Für den alten Wagen habe ich am Ende richtig viel Kohle hingelegt.",
+        "Für das neue Fahrrad hat sie zum Glück kaum etwas bezahlt.",
+        "Für die kleine Wohnung mussten wir überraschend wenig Miete zahlen."
+      ],
+      "value": "Für den alten Wagen habe ich am Ende richtig viel Kohle hingelegt."
+    }
+  ]
+}
