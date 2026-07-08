@@ -1,0 +1,242 @@
+{
+  "unit": {
+    "order": 29,
+    "title_es": "Hipótesis y modalidad avanzada: subjuntivo y suposición",
+    "color": "#7D3C98",
+    "icon": "psychology_alt"
+  },
+  "checkpoint_desc": "Demuestra que manejas la modalidad a nivel C1 en portugués: usas el futuro del subjuntivo (quando eu tiver/for), el período hipotético en sus tres tipos (se chover → futuro; se tivesse → futuro do pretérito; se tivesse estudado → teria passado), la modalización (deve estar, futuro do pretérito de rumor: estaria) y la concordancia de tiempos en el estilo indirecto.",
+  "lessons": [
+    { "order": 1, "title_es": "Futuro del subjuntivo (quando eu tiver, se precisares)" },
+    { "order": 2, "title_es": "Período hipotético (tres tipos) y futuro do pretérito" },
+    { "order": 3, "title_es": "Modalización: deve estar, futuro do pretérito de rumor" },
+    { "order": 4, "title_es": "Estilo indirecto y subjuntivo en subordinadas" }
+  ],
+  "vocab": [
+    ["o futuro do subjuntivo", "el futuro de subjuntivo (tiver, for, fizer)", "n"],
+    ["o período hipotético", "el período hipotético (condicional)", "n"],
+    ["o futuro do pretérito", "el condicional (-ia)", "n"],
+    ["irreal", "irreal, hipotético", "adj"],
+    ["a modalização", "la modalización", "n"],
+    ["a conjectura", "la conjetura, la suposición", "n"],
+    ["presumivelmente", "presumiblemente", "adv"],
+    ["a concordância", "la concordancia (de tiempos)", "n"],
+    ["o discurso indireto", "el estilo indirecto", "n"],
+    ["a condição", "la condición", "n"],
+    ["imprescindível", "imprescindible", "adj"],
+    ["refutar", "refutar, desmentir", "v"],
+    ["a alegação", "la alegación, la afirmación", "n"],
+    ["conceder", "conceder, admitir", "v"],
+    ["ponderar", "ponderar, sopesar", "v"],
+    ["a suposição", "la suposición", "n"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "futsubj_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada frase con el uso del futuro del subjuntivo.",
+      "pairs": [
+        ["Quando eu tiver tempo, ligo para você.", "tras «quando» (acción futura eventual)"],
+        ["Se precisares de ajuda, avisa.", "tras «se» (condición futura, registro culto)"],
+        ["Faça como quiser.", "tras «como» (modo futuro indefinido)"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "futsubj_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Tras «quando» con valor futuro, el portugués usa el futuro del subjuntivo. Elige la forma correcta: «Quando você ___ pronto, avise-me.»",
+      "options": ["estiver", "estar", "está"],
+      "value": "estiver"
+    },
+    {
+      "lesson": 1,
+      "topic": "futsubj_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el futuro del subjuntivo de «estar» (3.ª persona plural): «Faremos a reunião assim que todos ___ presentes.»",
+      "text": "Faremos a reunião assim que todos ___ presentes.",
+      "value": "estiverem",
+      "accepted": ["estiverem"]
+    },
+    {
+      "lesson": 1,
+      "topic": "futsubj_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Assim que recebermos a sua confirmação, daremos início ao processo.",
+      "options": [
+        "Assim que recebermos a sua confirmação, daremos início ao processo.",
+        "Logo que enviarmos a nossa proposta, encerraremos as negociações.",
+        "Antes que percamos o prazo, precisamos revisar todo o documento."
+      ],
+      "value": "Assim que recebermos a sua confirmação, daremos início ao processo."
+    },
+    {
+      "lesson": 1,
+      "topic": "futsubj_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Quando tivermos todos os dados e virmos os resultados, tomaremos uma decisão."
+    },
+    {
+      "lesson": 2,
+      "topic": "hipotetico_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada condición con su tipo.",
+      "pairs": [
+        ["Se chover, ficaremos em casa.", "real/eventual (futuro do subjuntivo)"],
+        ["Se eu tivesse tempo, iria ao evento.", "irreal presente (imperfeito → futuro do pretérito)"],
+        ["Se eu tivesse estudado, teria passado.", "irreal pasado (teria + particípio)"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "hipotetico_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "En el período irreal del presente, «se» exige el imperfecto del subjuntivo. Elige la forma correcta: «Se eu ___ mais tempo, viajaria mais.»",
+      "options": ["tivesse", "tinha", "teria"],
+      "value": "tivesse"
+    },
+    {
+      "lesson": 2,
+      "topic": "hipotetico_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce el período irreal del pasado (se + mais-que-perfeito do subjuntivo → teria + particípio): «Si hubiera estudiado, habría aprobado.»",
+      "source": "Si hubiera estudiado, habría aprobado.",
+      "value": "Se tivesse estudado, teria passado.",
+      "accepted": [
+        "Se tivesse estudado, teria passado",
+        "Se tivesse estudado, teria passado.",
+        "Se eu tivesse estudado, teria passado."
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "hipotetico_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Se o tempo tivesse ajudado, teríamos terminado a caminhada.",
+      "options": [
+        "Se o tempo tivesse ajudado, teríamos terminado a caminhada.",
+        "Se a estrada estivesse aberta, chegaríamos ainda hoje à cidade.",
+        "Se o ônibus não atrasasse, pegaríamos o voo com folga."
+      ],
+      "value": "Se o tempo tivesse ajudado, teríamos terminado a caminhada."
+    },
+    {
+      "lesson": 2,
+      "topic": "hipotetico_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "No seu lugar, eu teria agido de outra maneira diante de tamanha pressão."
+    },
+    {
+      "lesson": 3,
+      "topic": "modalizacao_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "El futuro do pretérito expresa un dato no confirmado (rumor). Elige la forma correcta: «Segundo a imprensa, o suspeito ___ foragido.»",
+      "options": ["estaria", "está", "esteve"],
+      "value": "estaria"
+    },
+    {
+      "lesson": 3,
+      "topic": "modalizacao_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con la perífrasis de probabilidad (dos palabras: «debe de estar»): «Já é tarde; ela ___ ___ em casa a esta hora.»",
+      "text": "Já é tarde; ela ___ ___ em casa a esta hora.",
+      "value": "deve estar",
+      "accepted": ["deve estar"]
+    },
+    {
+      "lesson": 3,
+      "topic": "modalizacao_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando el futuro do pretérito de cortesía/suposición «deveria»: «El informe debería estar pronto antes del viernes.»",
+      "source": "El informe debería estar pronto antes del viernes.",
+      "value": "O relatório deveria estar pronto antes de sexta-feira.",
+      "accepted": [
+        "O relatório deveria estar pronto antes de sexta-feira",
+        "O relatório deveria estar pronto antes de sexta-feira.",
+        "O relatório deveria ficar pronto antes de sexta-feira."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "modalizacao_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Depois de tanta chuva, o solo deveria estar completamente encharcado.",
+      "options": [
+        "Depois de tanta chuva, o solo deveria estar completamente encharcado.",
+        "Apesar da forte chuva, o solo continuaria surpreendentemente seco.",
+        "Por causa da longa seca, o solo já está completamente ressecado."
+      ],
+      "value": "Depois de tanta chuva, o solo deveria estar completamente encharcado."
+    },
+    {
+      "lesson": 3,
+      "topic": "modalizacao_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Ele alega não saber de nada, mas os documentos contam uma outra história."
+    },
+    {
+      "lesson": 4,
+      "topic": "indireto_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "En el estilo indirecto con la principal en pasado, la subordinada retrocede al pasado. Elige la forma correcta: «Ela declarou que ___ nada sobre o assunto.»",
+      "options": ["não sabia", "não sabe", "não saberá"],
+      "value": "não sabia"
+    },
+    {
+      "lesson": 4,
+      "topic": "indireto_subjuntivo_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Tras «é imprescindível que» se usa el presente del subjuntivo. Completa con el subjuntivo de «estar» (3.ª persona plural): «É imprescindível que todos ___ presentes na sessão.»",
+      "text": "É imprescindível que todos ___ presentes na sessão.",
+      "value": "estejam",
+      "accepted": ["estejam"]
+    },
+    {
+      "lesson": 4,
+      "topic": "indireto_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar (futuro del subjuntivo + ênclise): «Quando você chegar, avise-me pelo telefone.»",
+      "tiles": ["Quando", "avise-me", "você chegar,", "pelo telefone", "me avise", "chegou"],
+      "sequence": ["Quando", "você chegar,", "avise-me", "pelo telefone"]
+    },
+    {
+      "lesson": 4,
+      "topic": "indireto_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "A porta-voz afirmou que a empresa havia apurado as alegações a fundo.",
+      "options": [
+        "A porta-voz afirmou que a empresa havia apurado as alegações a fundo.",
+        "A porta-voz negou que a empresa tivesse apurado as alegações algum dia.",
+        "O porta-voz admitiu que a empresa apuraria as alegações no futuro."
+      ],
+      "value": "A porta-voz afirmou que a empresa havia apurado as alegações a fundo."
+    }
+  ]
+}

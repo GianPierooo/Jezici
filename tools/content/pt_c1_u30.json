@@ -1,0 +1,246 @@
+{
+  "unit": {
+    "order": 30,
+    "title_es": "Lengua académica y profesional: nominalización y estructuras complejas",
+    "color": "#212F3D",
+    "icon": "school"
+  },
+  "checkpoint_desc": "Demuestra que dominas el registro académico-profesional a nivel C1 en portugués: usas el estilo nominal y las locuciones (levar em consideração, colocar à disposição), la voz pasiva (analítica ser+particípio, pronominal vendem-se, con verbo modal), las oraciones reducidas (gerúndio/particípio/infinitivo), las preposiciones cultas (mediante, perante, consoante) y las fórmulas de un correo formal.",
+  "lessons": [
+    { "order": 1, "title_es": "Estilo nominal y locuciones (levar em consideração)" },
+    { "order": 2, "title_es": "Voz pasiva (analítica, pronominal, con verbo modal)" },
+    { "order": 3, "title_es": "Oraciones reducidas (gerúndio, particípio, infinitivo)" },
+    { "order": 4, "title_es": "Correo formal y preposiciones cultas (mediante, perante)" }
+  ],
+  "vocab": [
+    ["levar em consideração", "tener en cuenta, considerar", "expr"],
+    ["colocar à disposição", "poner a disposición", "expr"],
+    ["pôr em questão", "poner en cuestión", "expr"],
+    ["a avaliação", "la evaluación, el examen", "n"],
+    ["a voz passiva", "la voz pasiva", "n"],
+    ["a oração reduzida", "la oración reducida", "n"],
+    ["o gerúndio", "el gerundio", "n"],
+    ["o particípio", "el participio", "n"],
+    ["mediante", "mediante, previa (+ sustantivo)", "prep"],
+    ["perante", "ante, delante de", "prep"],
+    ["consoante", "según, conforme a", "prep"],
+    ["a solicitação", "la solicitud", "n"],
+    ["prezado", "estimado (tratamiento formal)", "adj"],
+    ["atenciosamente", "atentamente (despedida formal)", "adv"],
+    ["prorrogar", "prorrogar, aplazar", "v"],
+    ["o pleito", "la petición, la demanda", "n"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "nominal_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada locución con su significado.",
+      "pairs": [
+        ["levar em consideração", "tener en cuenta, considerar"],
+        ["colocar à disposição", "poner a disposición"],
+        ["pôr em questão", "poner en cuestión, cuestionar"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "nominal_consideracao_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el verbo que forma la locución con «em consideração» (considerar): «Devemos ___ em consideração todas as alternativas.»",
+      "options": ["levar", "fazer", "dar"],
+      "value": "levar"
+    },
+    {
+      "lesson": 1,
+      "topic": "nominal_avaliacao_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Estilo nominal: sustituye el verbo por un sustantivo. Completa con el sustantivo de «avaliar» (evaluar): «Após minuciosa ___ dos documentos, a comissão tomará uma decisão.»",
+      "text": "Após minuciosa ___ dos documentos, a comissão tomará uma decisão.",
+      "value": "avaliação",
+      "accepted": ["avaliação"]
+    },
+    {
+      "lesson": 1,
+      "topic": "nominal_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "A realização do projeto pressupõe a anuência de todos os envolvidos.",
+      "options": [
+        "A realização do projeto pressupõe a anuência de todos os envolvidos.",
+        "O adiamento do projeto exige a aprovação de metade dos funcionários.",
+        "O financiamento da obra depende apenas da boa vontade da diretoria."
+      ],
+      "value": "A realização do projeto pressupõe a anuência de todos os envolvidos."
+    },
+    {
+      "lesson": 1,
+      "topic": "nominal_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "O fato de levar em consideração todas as ressalvas tomou mais tempo do que a própria decisão."
+    },
+    {
+      "lesson": 2,
+      "topic": "passiva_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada frase con el tipo de voz pasiva que ilustra.",
+      "pairs": [
+        ["A lei foi aprovada ontem.", "pasiva analítica (ser + particípio)"],
+        ["Vendem-se casas nesta rua.", "pasiva pronominal/sintética (se)"],
+        ["O pedido precisa ser analisado.", "pasiva con verbo modal"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "passiva_pronominal_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "En la pasiva pronominal, el verbo concuerda con el sujeto paciente. Elige la forma culta: «Nesta livraria ___ livros usados.»",
+      "options": ["vendem-se", "vende-se", "se vende"],
+      "value": "vendem-se"
+    },
+    {
+      "lesson": 2,
+      "topic": "passiva_modal_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce con voz pasiva analítica + verbo modal: «El informe debe ser revisado antes del viernes.»",
+      "source": "El informe debe ser revisado antes del viernes.",
+      "value": "O relatório deve ser revisado antes de sexta-feira.",
+      "accepted": [
+        "O relatório deve ser revisado antes de sexta-feira",
+        "O relatório deve ser revisado antes de sexta-feira.",
+        "O relatório precisa ser revisado antes de sexta-feira."
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "passiva_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Sobre o requerimento será decidido em definitivo na próxima sessão.",
+      "options": [
+        "Sobre o requerimento será decidido em definitivo na próxima sessão.",
+        "Contra a decisão foi protestado com veemência na sessão anterior.",
+        "A favor da proposta ninguém quis se manifestar na reunião de hoje."
+      ],
+      "value": "Sobre o requerimento será decidido em definitivo na próxima sessão."
+    },
+    {
+      "lesson": 2,
+      "topic": "passiva_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Todos os documentos foram conferidos e serão colocados à sua disposição o quanto antes."
+    },
+    {
+      "lesson": 3,
+      "topic": "reduzida_gerundio_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la oración reducida de gerundio correcta (equivale a «Depois que terminou…»): «___ o relatório, ele saiu.»",
+      "options": ["Tendo terminado", "Tendo terminar", "Ter terminado"],
+      "value": "Tendo terminado"
+    },
+    {
+      "lesson": 3,
+      "topic": "reduzida_participio_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "En la oración reducida de participio, el participio concuerda con el sustantivo. Completa con «dar» (participio, fem. plural: «dadas»): «___ as circunstâncias, o adiamento foi inevitável.»",
+      "text": "___ as circunstâncias, o adiamento foi inevitável.",
+      "value": "Dadas",
+      "accepted": ["Dadas", "dadas"]
+    },
+    {
+      "lesson": 3,
+      "topic": "reduzida_infinitivo_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce con una reducida de infinitivo «Ao + infinitivo»: «Al llegar a casa, llamó a su madre.»",
+      "source": "Al llegar a casa, llamó a su madre.",
+      "value": "Ao chegar em casa, ligou para a mãe.",
+      "accepted": [
+        "Ao chegar em casa, ligou para a mãe",
+        "Ao chegar em casa, ligou para a mãe.",
+        "Ao chegar a casa, ligou para a mãe."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "reduzida_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Os resultados obtidos no último trimestre superaram todas as expectativas dos analistas.",
+      "options": [
+        "Os resultados obtidos no último trimestre superaram todas as expectativas dos analistas.",
+        "Os prejuízos previstos para o próximo trimestre preocuparam todos os acionistas.",
+        "As suposições feitas há um ano revelaram-se completamente infundadas."
+      ],
+      "value": "Os resultados obtidos no último trimestre superaram todas as expectativas dos analistas."
+    },
+    {
+      "lesson": 3,
+      "topic": "reduzida_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Concluída a análise e aprovadas as alterações, o texto seguirá para publicação."
+    },
+    {
+      "lesson": 4,
+      "topic": "email_saudacao_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "En un correo formal a un destinatario desconocido, ¿qué encabezamiento es correcto?",
+      "options": [
+        "Prezados senhores,",
+        "Oi, pessoal,",
+        "E aí, galera,"
+      ],
+      "value": "Prezados senhores,"
+    },
+    {
+      "lesson": 4,
+      "topic": "email_mediante_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con la preposición culta «mediante» (previa/mediante), en primera posición: «___ solicitação por escrito, o prazo poderá ser prorrogado.»",
+      "text": "___ solicitação por escrito, o prazo poderá ser prorrogado.",
+      "value": "Mediante",
+      "accepted": ["Mediante", "mediante"]
+    },
+    {
+      "lesson": 4,
+      "topic": "email_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar (fórmula de cortesía): «Desde já, agradeço a sua atenção.»",
+      "tiles": ["agradeço", "Desde já,", "a sua atenção", "a compreensão", "eu"],
+      "sequence": ["Desde já,", "agradeço", "a sua atenção"]
+    },
+    {
+      "lesson": 4,
+      "topic": "email_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Perante a comissão, todos os candidatos apresentaram os documentos exigidos.",
+      "options": [
+        "Perante a comissão, todos os candidatos apresentaram os documentos exigidos.",
+        "Diante da recusa, alguns candidatos retiraram a sua inscrição do processo.",
+        "Apesar do adiamento, poucos candidatos enviaram os formulários a tempo."
+      ],
+      "value": "Perante a comissão, todos os candidatos apresentaram os documentos exigidos."
+    }
+  ]
+}

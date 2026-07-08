@@ -53,6 +53,18 @@ Ingeniería pura (cero IA), determinista. 2 frentes:
 - **Verde:** analyze 0 · test 94/94 · build web OK; verify_placement_wiring/multi/pt VERDES con la
   nueva RPC. Pendiente (## Cola): **TTS-global + responsive** (prompt aparte).
 
+## C1 COMPLETO en los 6 cursos ✅ LIVE (es→de/nl mig 128/129 · es→pt mig 130 · 2026-07-06)
+**es→pt C1 (mig 130) cierra el último idioma → en/pt/fr/it/de/nl TODOS A1→C1.** pt-BR norma culta:
+regência culta (assistir a, preferir X a Y), conectivos (não obstante/conquanto+subj/porquanto/
+outrossim/todavia≠«todavía»), clivagem+denotativas + **colocação pronominal (próclise/ênclise/
+MESÓCLISE: far-se-á, dir-lhe-ia, conceder-se-á)**, idiomatismos/registro, **futuro do subjuntivo**
++ período hipotético (3 tipos) + modalização (estaria de rumor), nominalização/voz passiva
+(vendem-se)/orações reduzidas/preposições cultas (mediante/perante)/e-mail formal. 6 autores nativos
+pt-BR + 2 revisores adversariales C1 (fixes reales: U29 «Antes que perdermos»→«percamos» [antes que
+exige subj. presente]; U27 prompt de cloze revelaba «me deram»→reformulado). Verificado cliente real
+(`verify_c1_chain.py pt`): 96/96 + 96/96 distractores, camina A1→C1 30 U, U24→U25, 30/30 lecciones C1,
+audio 42/42, techo honesto (6 checkpoint, 0 exam level). **NO queda ningún curso sin C1.**
+
 ## C1 es→de + es→nl ✅ LIVE (mig 128/129 · 2026-07-06)
 Cerrados 2 idiomas C1 con el pipeline probado (fr/it): 6 unidades c/u (order 25-30, encadenan B2→C1;
 U24 desbloquea U25), **114 ítems (R36/W36/L24/S18 → L=67% S=50%)**, audio TTS 42/42 (tl=de/nl). Currículo
@@ -92,23 +104,17 @@ en B2; andamiaje idéntico listo: STAMP `('pt','c1')=…130`, grupo audio `pt-c1
   Cierre: analyze 0, tests verdes, gh run list SUCCESS, deploy READY. Reporta en 1 línea.
 
 ## Cola (retome exacto — orden sugerido)
-> Estado de niveles hoy (verificado en BD): **en A1–C1 · pt A1–B2 · fr A1–C1 · it A1–C1 ·
-> de A1–C1 · nl A1–C1** (solo pt topa en B2). Andamiaje probado 14× (…fr C1, it C1, de C1, nl C1, +): generador
+> Estado de niveles hoy (verificado en BD): **en/pt/fr/it/de/nl TODOS A1–C1** (los 6 cursos a C1;
+> C2 no sembrado en ninguno). Andamiaje probado 15× (…de C1, nl C1, pt C1): generador
 > `gen_course.py <code> <a1|a2|b1|b2|c1>` (soporta pt/fr/it/de/nl; DIFF c1=0.84), audio `gen_audio_missing.py <code>-<lvl>`
 > (grupos `<code>-c1` listos), verificadores `verify_b1_chain.py`/`verify_b2_chain.py`/**`verify_c1_chain.py`** `<code>`. STAMPS c1 en `gen_course.py`.
-1. **C1 es→pt** (ÚNICO pendiente; en/fr/it/de/nl ya en C1). Andamiaje YA listo: STAMP reservado
-   `('pt','c1')=…130`; grupo audio `pt-c1`; `verify_c1_chain.py pt` course-agnóstico.
-   Currículo C1 pt-BR REAL: mesóclise, regência culta, conectivos «não obstante/outrossim», orações
-   reduzidas (gerúndio/particípio), colocação pronominal culta, futuro do subjuntivo em registro formal,
-   voz passiva analítica/pronominal, e-mail formal («Prezado(a)», «Atenciosamente»).
-   Pipeline probado 2× (fr/it C1): 6 autores nativos C1 por idioma (temas: precisión léxica, argumentar/conectores,
-   énfasis/mise en relief, modismos/registro, hipótesis/modalidad avanzada, lengua académica) + 2 revisores adversariales →
-   `gen_course.py <code> c1` → apply → `gen_audio_missing.py <code>-c1` → `verify_c1_chain.py <code>`. Currículo C1 REAL del
-   idioma (de: Konjunktiv I/erweiterte Partizipialkonstruktionen/Nominalstil/gehobenes Register; nl: formeel register/
-   tangconstructies/beknopte bijzinnen; pt: mesóclise/regência culta/conectivos «não obstante»/orações reduzidas).
-   **TECHO HONESTO (NO violar):** C1 = R/L/gramática/vocab se autocalifican; writing/speaking = proxies deterministas
-   (cloze/word_bank/read-aloud). **NO examen ni certificado de nivel C1** (Fase 2). Verificado: fr/it C1 solo 6 checkpoint,
-   0 exam `level`, 0 certificates (idéntico a en). Los cursos escalera NO tienen exams `level` → el techo es automático.
+1. **C1 en los 6 cursos ✅ COMPLETADO (mig 126/127 fr/it · 128/129 de/nl · 130 pt).** Ya NO queda ningún
+   idioma sin C1. Pipeline (por si se reusa para C2): 6 autores nativos por idioma + 2 revisores adversariales →
+   `gen_course.py <code> c1` → apply → `gen_audio_missing.py <code>-c1` → `verify_c1_chain.py <code>`.
+   **TECHO HONESTO (NO violar):** C1 = R/L/gramática/vocab se autocalifican; writing/speaking = proxies
+   deterministas. **NO examen ni certificado de nivel C1** (Fase 2). Los cursos escalera no tienen exams `level`
+   → el techo es automático (verificado los 6: solo 6 checkpoint C1, 0 exam level). Siguiente techo real = **C2**
+   (no sembrado en ninguno; requeriría evaluación de producción libre = Fase 2 con IA).
 5. **Pulidos onboarding/placement** (código): cap de la meta al tope real del curso ✅ (mig 118). **Placement a nivel
    REAL ✅ (mig 122/123, 2026-07-05):** bancos fr/it/de/nl ampliados a B1+B2 y pt a B2 (7R MC + 7W cloze/nivel);
    `placement_next` (course-scoped) ya sube el techo → un B1/B2 sale B1/B2 (no A2). Verificado cliente real

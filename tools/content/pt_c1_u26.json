@@ -1,0 +1,242 @@
+{
+  "unit": {
+    "order": 26,
+    "title_es": "Argumentar y persuadir: conectivos del discurso",
+    "color": "#1F618D",
+    "icon": "forum"
+  },
+  "checkpoint_desc": "Demuestra que argumentas a nivel C1 en portugués: usas conectivos concesivos (não obstante, conquanto + subjuntivo, malgrado), causales (porquanto, visto que), aditivos formales (outrossim, ademais), consecutivos (por conseguinte, destarte) y adversativos (todavia, contudo), sin confundir «todavia» (=sin embargo) con el español «todavía».",
+  "lessons": [
+    { "order": 1, "title_es": "Concesivos: não obstante, conquanto, malgrado" },
+    { "order": 2, "title_es": "Causales y aditivos: porquanto, outrossim" },
+    { "order": 3, "title_es": "Consecutivos y adversativos: por conseguinte, todavia" },
+    { "order": 4, "title_es": "Estructuras: conquanto + subjuntivo, não obstante + sustantivo" }
+  ],
+  "vocab": [
+    ["não obstante", "no obstante, a pesar de ello", "conj"],
+    ["conquanto", "aunque (concesivo + subjuntivo)", "conj"],
+    ["malgrado", "a pesar de (formal)", "prep"],
+    ["porquanto", "puesto que, porque (formal)", "conj"],
+    ["outrossim", "asimismo, además (formal)", "adv"],
+    ["ademais", "además, por lo demás", "adv"],
+    ["por conseguinte", "por consiguiente", "conj"],
+    ["destarte", "de este modo, así pues (formal)", "adv"],
+    ["todavia", "sin embargo (¡no «todavía»!)", "conj"],
+    ["contudo", "no obstante, con todo", "conj"],
+    ["visto que", "dado que, puesto que", "conj"],
+    ["a ressalva", "la salvedad, la objeción", "n"],
+    ["a ilação", "la deducción, la inferencia", "n"],
+    ["consistente", "sólido, coherente (argumento)", "adj"],
+    ["conceder", "conceder, admitir (un punto)", "v"],
+    ["refutar", "refutar", "v"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "concessivo_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada conectivo con su función argumentativa.",
+      "pairs": [
+        ["não obstante", "a pesar de lo dicho, aun así (concesivo)"],
+        ["por conseguinte", "por consiguiente (consecutivo)"],
+        ["porquanto", "puesto que, porque (causal)"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "concessivo_naoobstante_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el conectivo concesivo que enlaza dos ideas opuestas: «A crítica foi dura; ___, ela manteve o seu plano.»",
+      "options": ["não obstante", "por isso", "desde que"],
+      "value": "não obstante"
+    },
+    {
+      "lesson": 1,
+      "topic": "concessivo_conquanto_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el conectivo concesivo culto que exige subjuntivo (aunque), en primera posición: «___ fosse enorme o esforço, o projeto acabou valendo a pena.»",
+      "text": "___ fosse enorme o esforço, o projeto acabou valendo a pena.",
+      "value": "Conquanto",
+      "accepted": ["Conquanto", "conquanto"]
+    },
+    {
+      "lesson": 1,
+      "topic": "concessivo_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Todas as ressalvas eram procedentes; não obstante, a proposta foi aprovada.",
+      "options": [
+        "Todas as ressalvas eram procedentes; não obstante, a proposta foi aprovada.",
+        "Todas as propostas eram polêmicas, razão pela qual a votação foi adiada.",
+        "Quase ninguém tinha objeções, de modo que a proposta foi rejeitada por unanimidade."
+      ],
+      "value": "Todas as ressalvas eram procedentes; não obstante, a proposta foi aprovada."
+    },
+    {
+      "lesson": 1,
+      "topic": "concessivo_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "É preciso conceder que a ressalva é pertinente; não obstante, o argumento contrário não convence."
+    },
+    {
+      "lesson": 2,
+      "topic": "causal_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada conectivo con el matiz que introduce.",
+      "pairs": [
+        ["porquanto", "puesto que, porque (formal)"],
+        ["outrossim", "asimismo, además (formal)"],
+        ["conquanto", "aunque (concesivo + subjuntivo)"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "causal_outrossim_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el conectivo aditivo formal (asimismo, además): «O relatório está completo; ___, foi revisado por dois especialistas.»",
+      "options": ["outrossim", "porquanto", "conquanto"],
+      "value": "outrossim"
+    },
+    {
+      "lesson": 2,
+      "topic": "causal_porquanto_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando el conectivo causal formal «porquanto» (puesto que): «No pudo negarse, puesto que había dado su palabra.»",
+      "source": "No pudo negarse, puesto que había dado su palabra.",
+      "value": "Não pôde recusar, porquanto havia dado a sua palavra.",
+      "accepted": [
+        "Não pôde recusar, porquanto havia dado a sua palavra",
+        "Não pôde recusar, porquanto havia dado a sua palavra.",
+        "Não pôde recusar, porquanto tinha dado a sua palavra."
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "causal_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "A prova é consistente, visto que é confirmada por diversas testemunhas.",
+      "options": [
+        "A prova é consistente, visto que é confirmada por diversas testemunhas.",
+        "A suspeita é infundada, embora quase nenhuma testemunha a desminta.",
+        "O depoimento é contraditório, razão pela qual nenhum juiz o aceitaria."
+      ],
+      "value": "A prova é consistente, visto que é confirmada por diversas testemunhas."
+    },
+    {
+      "lesson": 2,
+      "topic": "causal_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "O argumento é consistente, porquanto se apoia em dados confiáveis e verificáveis."
+    },
+    {
+      "lesson": 3,
+      "topic": "consecutivo_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con la locución consecutiva formal «por consiguiente» (dos palabras), en primera posición: «A premissa é falsa; ___ ___, a conclusão também não se sustenta.»",
+      "text": "A premissa é falsa; ___ ___, a conclusão também não se sustenta.",
+      "value": "por conseguinte",
+      "accepted": ["por conseguinte"]
+    },
+    {
+      "lesson": 3,
+      "topic": "consecutivo_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el conectivo consecutivo: «A procura aumentou muito; ___, os preços tiveram de subir.»",
+      "options": ["por conseguinte", "conquanto", "à medida que"],
+      "value": "por conseguinte"
+    },
+    {
+      "lesson": 3,
+      "topic": "adversativo_todavia_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando «todavia» (que en portugués significa «sin embargo», NO «todavía») al inicio: «Sin embargo, se negó a comentar el asunto.»",
+      "source": "Sin embargo, se negó a comentar el asunto.",
+      "value": "Todavia, recusou-se a comentar o assunto.",
+      "accepted": [
+        "Todavia, recusou-se a comentar o assunto",
+        "Todavia, recusou-se a comentar o assunto.",
+        "Todavia, ele recusou-se a comentar o assunto."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "adversativo_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "A teoria é elegante; contudo, permanece a questão do seu proveito prático.",
+      "options": [
+        "A teoria é elegante; contudo, permanece a questão do seu proveito prático.",
+        "A teoria é polêmica, razão pela qual quase ninguém contesta o seu proveito.",
+        "O método é comprovado, de modo que a questão do seu proveito se torna supérflua."
+      ],
+      "value": "A teoria é elegante; contudo, permanece a questão do seu proveito prático."
+    },
+    {
+      "lesson": 3,
+      "topic": "adversativo_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Os dados são escassos; por conseguinte, devemos formular as nossas ilações com cautela."
+    },
+    {
+      "lesson": 4,
+      "topic": "estrutura_conquanto_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«Conquanto» introduce la concesión sin «que» y exige subjuntivo. Elige la forma correcta: «___ o esforço fosse grande, valeu a pena.»",
+      "options": ["Conquanto", "Conquanto que", "Conquanto de"],
+      "value": "Conquanto"
+    },
+    {
+      "lesson": 4,
+      "topic": "estrutura_naoobstante_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con la locución concesiva «a pesar de» (dos palabras) seguida de sustantivo, en primera posición: «___ ___ todas as advertências, ele prosseguiu a viagem arriscada.»",
+      "text": "___ ___ todas as advertências, ele prosseguiu a viagem arriscada.",
+      "value": "Não obstante",
+      "accepted": ["Não obstante", "não obstante"]
+    },
+    {
+      "lesson": 4,
+      "topic": "estrutura_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar: «O plano, conquanto ambicioso, é perfeitamente viável.»",
+      "tiles": ["conquanto", "O plano,", "ambicioso,", "é", "viável", "perfeitamente", "contudo"],
+      "sequence": ["O plano,", "conquanto", "ambicioso,", "é", "perfeitamente", "viável"]
+    },
+    {
+      "lesson": 4,
+      "topic": "estrutura_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Não obstante as objeções, a comissão manteve a sua recomendação.",
+      "options": [
+        "Não obstante as objeções, a comissão manteve a sua recomendação.",
+        "Em razão das objeções, a comissão retirou a sua recomendação.",
+        "Apesar da aprovação, a comissão rejeitou a proposta original."
+      ],
+      "value": "Não obstante as objeções, a comissão manteve a sua recomendação."
+    }
+  ]
+}

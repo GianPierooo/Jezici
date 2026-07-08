@@ -1,0 +1,246 @@
+{
+  "unit": {
+    "order": 25,
+    "title_es": "Precisión y matiz léxico: a palavra exata",
+    "color": "#6C3483",
+    "icon": "auto_stories"
+  },
+  "checkpoint_desc": "Demuestra que eliges la palabra precisa a nivel C1 en portugués: distingues sinónimos finos y su connotación (fitar/contemplar/vislumbrar, morar/viver), dominas las colocaciones (tomar uma decisão, tecer críticas, adotar medidas), adaptas el registro (formal/coloquial: automóvel/carro/lata-velha, adquirir) y respetas la regencia culta (assistir a, obedecer a, preferir X a Y).",
+  "lessons": [
+    { "order": 1, "title_es": "Sinónimos finos y su matiz (fitar, contemplar, vislumbrar…)" },
+    { "order": 2, "title_es": "Colocaciones (tomar uma decisão, tecer críticas, adotar medidas)" },
+    { "order": 3, "title_es": "Registros: formal, neutro, coloquial" },
+    { "order": 4, "title_es": "Regencia culta: assistir a, obedecer a, preferir X a Y" }
+  ],
+  "vocab": [
+    ["fitar", "mirar fijamente, sin apartar los ojos", "v"],
+    ["contemplar", "contemplar, mirar con admiración", "v"],
+    ["vislumbrar", "vislumbrar, entrever", "v"],
+    ["morar", "residir, vivir (en un sitio)", "v"],
+    ["tomar uma decisão", "tomar una decisión", "expr"],
+    ["tecer críticas", "hacer críticas", "expr"],
+    ["adotar medidas", "adoptar medidas", "expr"],
+    ["chegar a uma conclusão", "llegar a una conclusión", "expr"],
+    ["o automóvel", "el automóvil (formal)", "n"],
+    ["a lata-velha", "el cacharro, el coche viejo (coloquial)", "n"],
+    ["adquirir", "adquirir (formal)", "v"],
+    ["a regência", "la regencia (verbal)", "n"],
+    ["a conotação", "la connotación", "n"],
+    ["a nuance", "el matiz", "n"],
+    ["preferir", "preferir (preferir X a Y)", "v"],
+    ["assistir a", "presenciar, ver (assistir ao filme)", "v"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "sinonimos_olhar_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada verbo con el matiz que aporta. Fíjate en la connotación.",
+      "pairs": [
+        ["fitar", "mirar fijamente, sin apartar los ojos"],
+        ["vislumbrar", "percibir de refilón, entrever"],
+        ["contemplar", "mirar con admiración y detenimiento"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "sinonimos_contemplar_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el verbo que expresa mirar algo bello con calma y admiración: «Eles pararam para ___ o pôr do sol com toda a calma.»",
+      "options": ["contemplar", "avistar", "notar"],
+      "value": "contemplar"
+    },
+    {
+      "lesson": 1,
+      "topic": "sinonimos_morar_viver_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Distingue «morar» (residir en un sitio) de «viver» (vivir, existir). Aquí se habla del lugar de residencia: «Há três anos ele ___ num pequeno apartamento na periferia.»",
+      "text": "Há três anos ele ___ num pequeno apartamento na periferia.",
+      "value": "mora",
+      "accepted": ["mora"]
+    },
+    {
+      "lesson": 1,
+      "topic": "sinonimos_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Eu aprecio a honestidade dele, ainda que não concorde com a sua opinião.",
+      "options": [
+        "Eu aprecio a honestidade dele, ainda que não concorde com a sua opinião.",
+        "Eu duvido da sinceridade dele, porque muda de opinião o tempo todo.",
+        "Eu admiro a ambição dele, embora raramente revele os seus planos."
+      ],
+      "value": "Eu aprecio a honestidade dele, ainda que não concorde com a sua opinião."
+    },
+    {
+      "lesson": 1,
+      "topic": "sinonimos_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Pode-se olhar um quadro de relance, mas contemplá-lo exige tempo e atenção."
+    },
+    {
+      "lesson": 2,
+      "topic": "colocacoes_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada verbo con el sustantivo con el que forma la colocación fija correcta.",
+      "pairs": [
+        ["tomar", "uma decisão"],
+        ["tecer", "críticas"],
+        ["adotar", "medidas"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "colocacoes_decisao_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el verbo que forma la colocación correcta con «uma decisão»: «O conselho precisa ___ uma decisão até sexta-feira.»",
+      "options": ["tomar", "fazer", "dar"],
+      "value": "tomar"
+    },
+    {
+      "lesson": 2,
+      "topic": "colocacoes_medidas_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando la colocación «adotar medidas» (adoptar medidas): «El gobierno adoptó medidas drásticas.»",
+      "source": "El gobierno adoptó medidas drásticas.",
+      "value": "O governo adotou medidas drásticas.",
+      "accepted": [
+        "O governo adotou medidas drásticas",
+        "O governo adotou medidas drásticas.",
+        "O governo tomou medidas drásticas."
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "colocacoes_criticas_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "À proposta foram tecidas duras críticas por vários setores.",
+      "options": [
+        "À proposta foram tecidas duras críticas por vários setores.",
+        "À proposta foram dirigidos muitos elogios por parte de todos.",
+        "Contra o projeto ninguém levantou objeções sérias até agora."
+      ],
+      "value": "À proposta foram tecidas duras críticas por vários setores."
+    },
+    {
+      "lesson": 2,
+      "topic": "colocacoes_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Antes de chegar a uma conclusão, é preciso ponderar cada argumento com cuidado."
+    },
+    {
+      "lesson": 3,
+      "topic": "registro_adquirir_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "En un texto formal se prefiere el verbo culto para «comprar». Completa (infinitivo): «A prefeitura vai ___ novos equipamentos para o hospital.» (pista: no es «comprar»)",
+      "text": "A prefeitura vai ___ novos equipamentos para o hospital.",
+      "value": "adquirir",
+      "accepted": ["adquirir"]
+    },
+    {
+      "lesson": 3,
+      "topic": "registro_latavelha_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Entre amigos, ¿qué palabra pertenece al registro coloquial para «coche viejo»? «Sobe, minha ___ pega na hora.»",
+      "options": ["lata-velha", "limusine", "carruagem"],
+      "value": "lata-velha"
+    },
+    {
+      "lesson": 3,
+      "topic": "registro_automovel_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al registro formal usando «adquirir» y «automóvel»: «Se compró un coche nuevo.»",
+      "source": "Se compró un coche nuevo.",
+      "value": "Ele adquiriu um automóvel novo.",
+      "accepted": [
+        "Ele adquiriu um automóvel novo",
+        "Ele adquiriu um automóvel novo.",
+        "Ela adquiriu um automóvel novo."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "registro_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ele largou a lata-velha bem na frente da minha garagem sem avisar.",
+      "options": [
+        "Ele largou a lata-velha bem na frente da minha garagem sem avisar.",
+        "Ela guardou a bicicleta direitinho atrás da casa ontem à tarde.",
+        "Nós buscamos o automóvel na oficina no fim da manhã de hoje."
+      ],
+      "value": "Ele largou a lata-velha bem na frente da minha garagem sem avisar."
+    },
+    {
+      "lesson": 3,
+      "topic": "registro_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Conforme o contexto, diz-se «automóvel» num relatório, «carro» no dia a dia e «lata-velha» entre amigos."
+    },
+    {
+      "lesson": 4,
+      "topic": "regencia_assistir_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "En la norma culta, «assistir» (presenciar/ver) rige la preposición «a». Elige la forma correcta: «Ontem nós assistimos ___ filme no cinema.»",
+      "options": ["ao", "o", "no"],
+      "value": "ao"
+    },
+    {
+      "lesson": 4,
+      "topic": "regencia_preferir_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce respetando la regencia culta «preferir X a Y» (nunca «do que»): «Prefiero el silencio al bullicio.»",
+      "source": "Prefiero el silencio al bullicio.",
+      "value": "Prefiro o silêncio à confusão.",
+      "accepted": [
+        "Prefiro o silêncio à confusão",
+        "Prefiro o silêncio à confusão.",
+        "Prefiro o silêncio ao barulho."
+      ]
+    },
+    {
+      "lesson": 4,
+      "topic": "regencia_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar (regencia «obedecer a»): «Todos devem obedecer às normas de segurança.»",
+      "tiles": ["obedecer", "Todos", "às", "devem", "normas de segurança", "as", "seguir"],
+      "sequence": ["Todos", "devem", "obedecer", "às", "normas de segurança"]
+    },
+    {
+      "lesson": 4,
+      "topic": "regencia_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ela prefere a leitura silenciosa às longas discussões em grupo.",
+      "options": [
+        "Ela prefere a leitura silenciosa às longas discussões em grupo.",
+        "Ela prefere as viagens curtas aos feriados prolongados no interior.",
+        "Ele detesta o silêncio absoluto tanto quanto o barulho constante."
+      ],
+      "value": "Ela prefere a leitura silenciosa às longas discussões em grupo."
+    }
+  ]
+}

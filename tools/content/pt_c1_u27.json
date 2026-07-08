@@ -1,0 +1,246 @@
+{
+  "unit": {
+    "order": 27,
+    "title_es": "Énfasis y realce: clivagem, denotativas y colocación pronominal",
+    "color": "#117A65",
+    "icon": "campaign"
+  },
+  "checkpoint_desc": "Demuestra que enfatizas a nivel C1 en portugués: usas la oración hendida (Foi X que…, é que), las palabras denotativas de realce (justamente, sobretudo) y dominas la colocación pronominal de la norma culta: próclise por atracción (não/adverbios), ênclise a inicio de oración y mesóclise con futuro y condicional (far-se-á, dir-lhe-ei).",
+  "lessons": [
+    { "order": 1, "title_es": "Oración hendida (clivagem) y realce con «é que»" },
+    { "order": 2, "title_es": "Palabras denotativas de realce: sobretudo, justamente" },
+    { "order": 3, "title_es": "Colocación pronominal: próclise y ênclise" },
+    { "order": 4, "title_es": "Mesóclise con futuro y condicional (far-se-á, dir-lhe-ei)" }
+  ],
+  "vocab": [
+    ["a clivagem", "la construcción hendida (cleft)", "n"],
+    ["realçar", "resaltar, poner de relieve", "v"],
+    ["justamente", "precisamente, exactamente", "adv"],
+    ["sobretudo", "sobre todo, ante todo", "adv"],
+    ["a próclise", "la próclisis (pronombre antepuesto)", "n"],
+    ["a ênclise", "la enclisis (pronombre pospuesto)", "n"],
+    ["a mesóclise", "la mesóclisis (pronombre en el medio)", "n"],
+    ["a colocação pronominal", "la colocación pronominal", "n"],
+    ["o pronome átono", "el pronombre átono (me, te, se, lhe)", "n"],
+    ["a atração", "la atracción (que provoca próclise)", "n"],
+    ["divulgar", "divulgar, dar a conocer", "v"],
+    ["conceder", "conceder, otorgar", "v"],
+    ["a ênfase", "el énfasis", "n"],
+    ["o advérbio", "el adverbio", "n"],
+    ["indubitavelmente", "sin duda", "adv"],
+    ["o realce", "el realce, la puesta de relieve", "n"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "clivagem_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada frase con el elemento que realza la clivagem.",
+      "pairs": [
+        ["Foi o diretor que tomou a decisão.", "realza el sujeto (fue él quien)"],
+        ["Foi ontem que ele chegou.", "realza el circunstante de tiempo"],
+        ["É de ti que eles falam.", "realza el complemento"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "clivagem_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la oración hendida (clivada) correcta para realzar «o diretor»:",
+      "options": [
+        "Foi o diretor que tomou a decisão.",
+        "Foi o diretor tomou a decisão.",
+        "O diretor foi que tomando a decisão."
+      ],
+      "value": "Foi o diretor que tomou a decisão."
+    },
+    {
+      "lesson": 1,
+      "topic": "clivagem_justamente_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con la palabra denotativa de realce «precisamente/justo», en posición interna: «Foi ___ no dia da prova que ele adoeceu.»",
+      "text": "Foi ___ no dia da prova que ele adoeceu.",
+      "value": "justamente",
+      "accepted": ["justamente"]
+    },
+    {
+      "lesson": 1,
+      "topic": "clivagem_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Não foi o dinheiro que o motivou, mas o próprio desafio.",
+      "options": [
+        "Não foi o dinheiro que o motivou, mas o próprio desafio.",
+        "Não foi a fama que a atraiu, mas a perspectiva de sossego.",
+        "Não foi tanto a tarefa que o assustou quanto o prazo apertado."
+      ],
+      "value": "Não foi o dinheiro que o motivou, mas o próprio desafio."
+    },
+    {
+      "lesson": 1,
+      "topic": "clivagem_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Não foi a teoria que criou o problema, mas a sua aplicação na prática."
+    },
+    {
+      "lesson": 2,
+      "topic": "denotativas_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada palabra denotativa con su valor.",
+      "pairs": [
+        ["sobretudo", "principalmente, ante todo"],
+        ["justamente", "precisamente, exactamente"],
+        ["apenas", "solamente, no más que"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "denotativas_sobretudo_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la palabra que realza lo más importante (ante todo): «Ele é competente e, ___, muito honesto.»",
+      "options": ["sobretudo", "apesar disso", "por acaso"],
+      "value": "sobretudo"
+    },
+    {
+      "lesson": 2,
+      "topic": "denotativas_clivagem_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce con una oración hendida «Foi … que …»: «Fue su paciencia lo que sorprendió a todos.»",
+      "source": "Fue su paciencia lo que sorprendió a todos.",
+      "value": "Foi a paciência dele que surpreendeu a todos.",
+      "accepted": [
+        "Foi a paciência dele que surpreendeu a todos",
+        "Foi a paciência dele que surpreendeu a todos.",
+        "Foi a paciência dela que surpreendeu a todos."
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "denotativas_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Sobretudo os críticos mais severos tiveram de reconhecer o desempenho.",
+      "options": [
+        "Sobretudo os críticos mais severos tiveram de reconhecer o desempenho.",
+        "Até os apoiadores mais fiéis começaram a duvidar do desempenho.",
+        "Nem mesmo os observadores benevolentes quiseram valorizar o desempenho."
+      ],
+      "value": "Sobretudo os críticos mais severos tiveram de reconhecer o desempenho."
+    },
+    {
+      "lesson": 2,
+      "topic": "denotativas_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Justamente o colega mais discreto tinha, ao final, o argumento mais contundente."
+    },
+    {
+      "lesson": 3,
+      "topic": "colocacao_proclise_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Con una palabra negativa o un adverbio atractor, el pronombre átono va ANTES del verbo (próclise). Elige la forma culta: «Ninguém ___ a verdade.»",
+      "options": ["me disse", "disse-me", "disse me"],
+      "value": "me disse"
+    },
+    {
+      "lesson": 3,
+      "topic": "colocacao_proclise_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "El adverbio «ainda não» atrae el pronombre (próclise). Coloca el pronombre «me» y el verbo «deram» en el orden culto: «Eles ainda não ___ ___ a resposta definitiva.»",
+      "text": "Eles ainda não ___ ___ a resposta definitiva.",
+      "value": "me deram",
+      "accepted": ["me deram"]
+    },
+    {
+      "lesson": 3,
+      "topic": "colocacao_enclise_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "A inicio de oración no se admite próclise: usa ênclise (pronombre pospuesto con guion). Traduce: «Me dijeron la verdad.»",
+      "source": "Me dijeron la verdad.",
+      "value": "Disseram-me a verdade.",
+      "accepted": [
+        "Disseram-me a verdade",
+        "Disseram-me a verdade.",
+        "Disseram-me a verdade ."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "colocacao_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ninguém me avisou de que a reunião havia sido adiada para amanhã.",
+      "options": [
+        "Ninguém me avisou de que a reunião havia sido adiada para amanhã.",
+        "Alguém lhe garantiu que a reunião seria mantida no mesmo horário.",
+        "Ninguém nos informou de que a reunião havia sido cancelada de vez."
+      ],
+      "value": "Ninguém me avisou de que a reunião havia sido adiada para amanhã."
+    },
+    {
+      "lesson": 3,
+      "topic": "colocacao_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Disseram-me a verdade, embora ninguém me tivesse perguntado nada."
+    },
+    {
+      "lesson": 4,
+      "topic": "mesoclise_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Con el futuro y sin palabra atractora, la norma culta exige mesóclise (pronombre en medio del verbo). Elige la forma correcta: «O resultado ___ na próxima semana.»",
+      "options": ["divulgar-se-á", "se divulgará", "divulgará-se"],
+      "value": "divulgar-se-á"
+    },
+    {
+      "lesson": 4,
+      "topic": "mesoclise_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con la mesóclise de «fará» (futuro de «fazer» + «se»): «O anúncio oficial ___ amanhã pela manhã.»",
+      "text": "O anúncio oficial ___ amanhã pela manhã.",
+      "value": "far-se-á",
+      "accepted": ["far-se-á", "far-se-a"]
+    },
+    {
+      "lesson": 4,
+      "topic": "mesoclise_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar (mesóclise con condicional): «Dir-lhe-ia a verdade se me perguntasse.»",
+      "tiles": ["Dir-lhe-ia", "se", "a verdade", "me perguntasse", "diria-lhe", "eu"],
+      "sequence": ["Dir-lhe-ia", "a verdade", "se", "me perguntasse"]
+    },
+    {
+      "lesson": 4,
+      "topic": "mesoclise_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Conceder-se-á um prazo maior aos candidatos que o solicitarem por escrito.",
+      "options": [
+        "Conceder-se-á um prazo maior aos candidatos que o solicitarem por escrito.",
+        "Negar-se-á qualquer prazo adicional aos candidatos que não comparecerem.",
+        "Exigir-se-á uma segunda prova apenas dos candidatos que forem reprovados."
+      ],
+      "value": "Conceder-se-á um prazo maior aos candidatos que o solicitarem por escrito."
+    }
+  ]
+}

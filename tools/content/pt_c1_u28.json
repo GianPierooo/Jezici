@@ -1,0 +1,242 @@
+{
+  "unit": {
+    "order": 28,
+    "title_es": "Modismos y registro: idiomático, formal y coloquial",
+    "color": "#B9770E",
+    "icon": "sms"
+  },
+  "checkpoint_desc": "Demuestra que dominas la fraseología a nivel C1 en portugués: entiendes y usas modismos (acertar na mosca, chover no molhado, engolir sapo, pagar o pato, jogar a toalha), reconoces su sentido figurado y ajustas el registro entre lo formal (falecer, patrimônio) y lo coloquial (grana), sin tomar los modismos al pie de la letra.",
+  "lessons": [
+    { "order": 1, "title_es": "Modismos frecuentes y su sentido (I)" },
+    { "order": 2, "title_es": "Modismos frecuentes y su sentido (II)" },
+    { "order": 3, "title_es": "Registro: formal frente a neutro" },
+    { "order": 4, "title_es": "Registro coloquial y modismos en contexto" }
+  ],
+  "vocab": [
+    ["acertar na mosca", "dar en el clavo, acertar de pleno", "expr"],
+    ["chover no molhado", "insistir en lo evidente, llover sobre mojado", "expr"],
+    ["fazer rodeios", "andarse con rodeos, no ir al grano", "expr"],
+    ["engolir sapo", "aguantarse, tragar sapos", "expr"],
+    ["pagar o pato", "pagar el pato, cargar con la culpa", "expr"],
+    ["descascar o abacaxi", "resolver un marrón, un problema difícil", "expr"],
+    ["jogar a toalha", "tirar la toalla, rendirse", "expr"],
+    ["falecer", "fallecer (formal)", "v"],
+    ["o patrimônio", "el patrimonio, la fortuna (formal)", "n"],
+    ["a grana", "la pasta, el dinero (coloquial)", "n"],
+    ["apressar-se", "darse prisa", "v"],
+    ["a expressão idiomática", "el modismo, la locución", "n"],
+    ["literal", "literal", "adj"],
+    ["figurado", "figurado", "adj"],
+    ["certeiro", "certero, acertado", "adj"],
+    ["a mancada", "la metedura de pata", "n"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "idiomaticas_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada modismo con su significado (sentido figurado).",
+      "pairs": [
+        ["acertar na mosca", "acertar de pleno, dar en el clavo"],
+        ["fazer rodeios", "no ir al grano, andarse con rodeos"],
+        ["jogar a toalha", "rendirse, tirar la toalla"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "idiomaticas_mosca_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el modismo que significa «acertar exactamente»: «Com esse comentário, você acertou na ___.»",
+      "options": ["mosca", "aranha", "formiga"],
+      "value": "mosca"
+    },
+    {
+      "lesson": 1,
+      "topic": "idiomaticas_chover_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa el modismo que significa «insistir en algo ya evidente» (tres palabras): «Repetir isso agora é ___ ___ ___.»",
+      "text": "Repetir isso agora é ___ ___ ___.",
+      "value": "chover no molhado",
+      "accepted": ["chover no molhado"]
+    },
+    {
+      "lesson": 1,
+      "topic": "idiomaticas_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Em vez de responder direto, ele fica sempre fazendo rodeios.",
+      "options": [
+        "Em vez de responder direto, ele fica sempre fazendo rodeios.",
+        "Em vez de hesitar muito, ela costuma ir logo ao ponto.",
+        "Antes de prometer qualquer coisa, ele sempre pensa muito bem."
+      ],
+      "value": "Em vez de responder direto, ele fica sempre fazendo rodeios."
+    },
+    {
+      "lesson": 1,
+      "topic": "idiomaticas_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Não desista agora; quem joga a toalha no primeiro obstáculo já perdeu."
+    },
+    {
+      "lesson": 2,
+      "topic": "idiomaticas2_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada modismo con su significado.",
+      "pairs": [
+        ["engolir sapo", "aguantarse, callar algo desagradable"],
+        ["pagar o pato", "cargar con la culpa de otros"],
+        ["descascar o abacaxi", "resolver un problema difícil"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "idiomaticas2_pato_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el modismo que significa «cargar con la culpa ajena»: «No fim, fui eu quem teve de pagar o ___.»",
+      "options": ["pato", "ganso", "peru"],
+      "value": "pato"
+    },
+    {
+      "lesson": 2,
+      "topic": "idiomaticas2_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando el modismo «engolir sapo» (aguantarse): «Tuve que aguantarme y quedarme callado.»",
+      "source": "Tuve que aguantarme y quedarme callado.",
+      "value": "Tive de engolir sapo e ficar calado.",
+      "accepted": [
+        "Tive de engolir sapo e ficar calado",
+        "Tive de engolir sapo e ficar calado.",
+        "Tive que engolir sapo e ficar calado."
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "idiomaticas2_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Sobrou para mim a tarefa de descascar esse abacaxi sozinho.",
+      "options": [
+        "Sobrou para mim a tarefa de descascar esse abacaxi sozinho.",
+        "Coube a ela o prazer de encerrar esse assunto sem pressa.",
+        "Restou para nós o trabalho de comemorar essa conquista juntos."
+      ],
+      "value": "Sobrou para mim a tarefa de descascar esse abacaxi sozinho."
+    },
+    {
+      "lesson": 2,
+      "topic": "idiomaticas2_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Ele teve de engolir muito sapo antes de finalmente ser reconhecido."
+    },
+    {
+      "lesson": 3,
+      "topic": "registro_falecer_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "En una necrológica se usa el verbo formal para «morir». Completa (pretérito): «O poeta ___ aos oitenta anos na sua cidade natal.» (pista: no es «morreu»)",
+      "text": "O poeta ___ aos oitenta anos na sua cidade natal.",
+      "value": "faleceu",
+      "accepted": ["faleceu"]
+    },
+    {
+      "lesson": 3,
+      "topic": "registro_patrimonio_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "En un texto formal, ¿qué palabra designa «la fortuna/el patrimonio» (registro culto)? «Ela administra um ___ considerável.»",
+      "options": ["patrimônio", "grana", "trocado"],
+      "value": "patrimônio"
+    },
+    {
+      "lesson": 3,
+      "topic": "registro_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al registro formal usando «apressar-se» (darse prisa): «Debemos darnos prisa para no perder el tren.»",
+      "source": "Debemos darnos prisa para no perder el tren.",
+      "value": "Devemos nos apressar para não perder o trem.",
+      "accepted": [
+        "Devemos nos apressar para não perder o trem",
+        "Devemos nos apressar para não perder o trem.",
+        "Temos de nos apressar para não perder o trem."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "registro_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Após uma breve e grave enfermidade, ele faleceu ontem serenamente.",
+      "options": [
+        "Após uma breve e grave enfermidade, ele faleceu ontem serenamente.",
+        "Após uma longa e feliz recuperação, ela voltou ontem para casa.",
+        "Apesar da grave enfermidade, ele se recuperou por completo."
+      ],
+      "value": "Após uma breve e grave enfermidade, ele faleceu ontem serenamente."
+    },
+    {
+      "lesson": 3,
+      "topic": "registro_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Num obituário diz-se «faleceu», no dia a dia «morreu» e, na gíria, «bateu as botas»."
+    },
+    {
+      "lesson": 4,
+      "topic": "coloquial_grana_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Entre amigos, ¿qué palabra coloquial designa «el dinero»? «Por esse carro velho eu acabei pagando muita ___.»",
+      "options": ["grana", "ações", "poupança"],
+      "value": "grana"
+    },
+    {
+      "lesson": 4,
+      "topic": "coloquial_toalha_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa el modismo «rendirse» (dos palabras): «Depois do primeiro tropeço, você não pode logo jogar ___ ___.»",
+      "text": "Depois do primeiro tropeço, você não pode logo jogar ___ ___.",
+      "value": "a toalha",
+      "accepted": ["a toalha"]
+    },
+    {
+      "lesson": 4,
+      "topic": "coloquial_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar: «Com essa resposta, ele acertou na mosca.»",
+      "tiles": ["acertou", "Com essa resposta,", "na mosca", "ele", "errou", "feio"],
+      "sequence": ["Com essa resposta,", "ele", "acertou", "na mosca"]
+    },
+    {
+      "lesson": 4,
+      "topic": "coloquial_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Desse contrato complicado ela realmente não entende nada.",
+      "options": [
+        "Desse contrato complicado ela realmente não entende nada.",
+        "Dessa tarefa simples ele por acaso entende bastante.",
+        "Sobre esse assunto difícil ela se informou muito bem."
+      ],
+      "value": "Desse contrato complicado ela realmente não entende nada."
+    }
+  ]
+}
