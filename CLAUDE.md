@@ -30,13 +30,10 @@ guacamayo animado con **globo blanco** ("¡Hagamos un plan a tu medida!"). Todo 
 "Tu plan" celebración + palanca reversible; onboarding_target camina el nuevo paso de nombre) · build web OK ·
 `verify_placement_serious` re-verificado (azar→0% B2/C1, intacto). Commit `990e3c9`. La **mig 132 ya está LIVE**
 (aplicada por Management API, deploy-independiente → los usuarios NUEVOS de Google ya reciben su nombre HOY).
-**⚠️ DEPLOY del cliente BLOQUEADO (acción de Gian):** el repo GitHub pasó a **PRIVADO** durante la sesión →
-el deploy de Vercel de `990e3c9` quedó en estado **BLOCKED** (0 build logs = nunca compiló) y el API público
-de GitHub da 404. Producción sigue servida por `ee88a99` (READY, HTTP 200) — SIN los cambios de cliente
-(paso de nombre + "Tu plan" nuevo), pero CON la mig 132. **Para desbloquear:** re-autorizar la GitHub App de
-Vercel para el repo ahora privado (Vercel → Project → Settings → Git) o revisar spend/deployment-protection;
-tras eso, un push (o "Redeploy" de `990e3c9`) construirá y servirá lo nuevo. Verificación manual de Gian una
-vez desplegado: usuario nuevo Google/email → pide y guarda el nombre; "Tu plan" se ve como el mockup.
+**Deploy ✅ desbloqueado (repo volvió a PÚBLICO):** mientras el repo estuvo privado el deploy de `990e3c9`
+quedó BLOCKED; al volver a público un push nuevo compila y despliega normal → los cambios de cliente (paso de
+nombre + "Tu plan" nuevo) ya se sirven en producción. Verificación manual de Gian: usuario nuevo Google/email
+→ pide y guarda el nombre; "Tu plan" se ve como el mockup.
 
 ## Placement SERIO — anti-azar (bug real ARREGLADO) ✅ LIVE (mig 131 · 2026-07-08)
 **Bug reproducido (no sintético):** un usuario NUEVO marcando AL AZAR salía B1/B2/**C1**. Los 3 "fixes"
