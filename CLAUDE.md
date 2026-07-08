@@ -3,7 +3,7 @@
 > Contexto de arranque para cualquier sesión. **No** es copia de los 21 `.md` de
 > diseño (eso es la carpeta raíz `Jezici_*.md` + `docs/`). Aquí va el ESTADO REAL,
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
-> Última actualización: **2026-07-07**.
+> Última actualización: **2026-07-08**.
 
 ## Placement SERIO — anti-azar (bug real ARREGLADO) ✅ LIVE (mig 131 · 2026-07-08)
 **Bug reproducido (no sintético):** un usuario NUEVO marcando AL AZAR salía B1/B2/**C1**. Los 3 "fixes"
@@ -188,8 +188,11 @@ en B2; andamiaje idéntico listo: STAMP `('pt','c1')=…130`, grupo audio `pt-c1
    REAL ✅ (mig 122/123, 2026-07-05):** bancos fr/it/de/nl ampliados a B1+B2 y pt a B2 (7R MC + 7W cloze/nivel);
    `placement_next` (course-scoped) ya sube el techo → un B1/B2 sale B1/B2 (no A2). Verificado cliente real
    (`verify_placement_multi.py`/`verify_placement_pt.py`): personas A1→A1…B2→B2, avanzado→B2, aislamiento, 56/56
-   determinista. Pendiente: nombre real de la unidad de entrada por curso en `PlacementResultView` (hoy rótulo es→en);
-   L/S en placement (audio). **Barrido de colisiones MC/listening ✅ (mig 117).**
+   determinista. **Placement SERIO anti-azar ✅ (mig 131, 2026-07-08):** el azar (1/3 por MC) ya NO infla —
+   estimador guess-aware + arranque clampeado a A2 + examen más largo; azar→A1 (0% B2/C1), persona→su nivel.
+   Verificado con el FLUJO REAL (`verify_placement_serious.py`/`repro_placement_random.py`, cliente JWT). Pendiente:
+   nombre real de la unidad de entrada por curso en `PlacementResultView` (hoy rótulo es→en); L/S en placement
+   (audio). **Barrido de colisiones MC/listening ✅ (mig 117).**
 6. **Diferidos menores:** historias B2 por idioma (B1 ✅ mig 125); imágenes referenciales
    fr/it/de/nl (hoy solo es→en A1/A2); copy en-first fuera del onboarding (`missionMainDescription` «100 palabras del
    inglés», `errorReviewWhy*`); cert de nivel por curso (fr/it/de/nl sin examen/cert de nivel aún); C1/C2; cron de
