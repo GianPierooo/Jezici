@@ -25,9 +25,9 @@ El código ya está LIVE; el botón funciona en cuanto se complete esto (cero re
 `https://wiauinufpbkmjlbqlkxo.supabase.co/auth/v1/callback`.
 1. **Google Cloud Console** (console.cloud.google.com): crea/elige un proyecto → **APIs & Services → OAuth
    consent screen**: User type **External**; app name «Jezici», support email, developer email; **scopes**
-   básicos `openid`, `.../auth/userinfo.email`, `.../auth/userinfo.profile`; añade los links de **Privacidad y
-   Términos** (los tienes in-app, publica su URL pública); **PUBLICA la app** (botón «Publish app» → estado
-   «In production») para NO tener que whitelistear 50 testers.
+   básicos `openid`, `.../auth/userinfo.email`, `.../auth/userinfo.profile`; en **App privacy policy** pega
+   `https://jezici.vercel.app/privacy` y en **Terms of service** `https://jezici.vercel.app/terms` (ya LIVE,
+   públicas); **PUBLICA la app** (botón «Publish app» → estado «In production») para NO whitelistear 50 testers.
 2. **Google Cloud → Credentials → Create credentials → OAuth client ID → Web application**: en **Authorized
    JavaScript origins** añade `https://jezici.vercel.app` (y `http://localhost` si pruebas local); en
    **Authorized redirect URIs** añade EXACTAMENTE `https://wiauinufpbkmjlbqlkxo.supabase.co/auth/v1/callback`.
@@ -446,11 +446,21 @@ se mueve, por diseño.
 - Previo: `correct_answer` ya estaba cerrado (mig 055), `jz_*` helpers revocados (mig 049).
 - Admin allowlist NO se gestiona por SQL roles → es la tabla `admins` (agregar/quitar user_id).
 
-## Legal in-app (Privacidad + Términos) — mig 062 · ⚠️ BORRADOR (falta abogado)
-- **Contenido:** `features/legal/legal_screen.dart` (Privacidad + Términos en español, ya
-  redactados) con **banner de beta** (borrador + certificado interno no oficial + pagos
-  inactivos) y la **versión** `kLegalVersion = '2026-06-draft'`. Alcanzable desde **Ajustes**
-  (ambos links) **y el registro** (links + checkbox).
+## Legal — PÁGINAS PÚBLICAS + in-app (Privacidad + Términos) · ⚠️ BORRADOR (falta abogado)
+- **PÁGINAS PÚBLICAS ✅ LIVE (2026-07-07):** `app/web/privacy.html` + `app/web/terms.html` (HTML
+  autocontenido, responsive, banner beta, tema claro/oscuro) → Flutter los copia a `build/web/` y
+  **Vercel los sirve sin login**. `vercel.json` **rewrites** (buildCommand INTACTO): `/privacy`→
+  `/privacy.html`, `/terms`→`/terms.html`, antes del catch-all SPA. **URLs estables para Google OAuth /
+  Search Console:** `https://jezici.vercel.app/privacy` y `https://jezici.vercel.app/terms` (200 público,
+  verificado). Contenido HONESTO derivado de introspección real: cuenta+Google OAuth (email/nombre/foto,
+  scopes básicos), progreso/skills/stats, analítica (allowlist de eventos, ids opacos), feedback in-app,
+  monitoreo de errores, Supabase+RLS+Vercel, retención, y **derechos que YA existen** (export_my_data /
+  delete_account desde Ajustes). **Fuente única:** el HTML es canónico; la app **enlaza** (no duplica).
+- **Enlace in-app:** `features/legal/legal_screen.dart` ahora es un módulo de enlaces (`kLegalVersion`
+  = `'2026-07-draft'`, `kPrivacyPath`/`kTermsPath`, `openLegalPage()` con import condicional web
+  `legal_open_web.dart`/`_io.dart` → `window.open('${Uri.base.origin}/privacy','_blank')`, no-op fuera de
+  web, degrada con gracia). **Ajustes** (2 links) **y el registro** (checkbox + links) abren la página
+  pública en pestaña nueva. Se eliminó el widget de texto in-app (evita duplicar el texto).
 - **Aceptación (mig 062):** en "Crear cuenta", checkbox **requerido** "He leído y acepto
   Términos + Privacidad" (botón deshabilitado sin marcar). Tras el alta → `accept_legal(version)`
   persiste `legal_consents(user_id, doc_version, accepted_at)` (RLS self; escritura solo por RPC).

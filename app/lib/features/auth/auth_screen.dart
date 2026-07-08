@@ -226,10 +226,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                     _accepted = v;
                     if (v) _error = null;
                   }),
-                  onTapTerms: () => Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (_) => LegalScreen.terms())),
-                  onTapPrivacy: () => Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (_) => LegalScreen.privacy())),
+                  onTapTerms: () => openLegalPage(kTermsPath),
+                  onTapPrivacy: () => openLegalPage(kPrivacyPath),
                 ),
               ],
               const SizedBox(height: 18),

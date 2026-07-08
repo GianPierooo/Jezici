@@ -328,7 +328,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                 title: const Text('Política de Privacidad',
                     style: TextStyle(fontWeight: FontWeight.w900, color: AppColors.text, fontSize: 14)),
                 trailing: const Icon(Icons.chevron_right_rounded, color: AppColors.textMuted),
-                onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => LegalScreen.privacy())),
+                onTap: () => openLegalPage(kPrivacyPath),
               ),
               const Divider(height: 4),
               ListTile(
@@ -337,7 +337,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                 title: const Text('Términos y Condiciones',
                     style: TextStyle(fontWeight: FontWeight.w900, color: AppColors.text, fontSize: 14)),
                 trailing: const Icon(Icons.chevron_right_rounded, color: AppColors.textMuted),
-                onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (_) => LegalScreen.terms())),
+                onTap: () => openLegalPage(kTermsPath),
               ),
             ]),
           ),
