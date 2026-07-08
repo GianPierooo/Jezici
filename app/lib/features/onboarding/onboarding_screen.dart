@@ -18,10 +18,11 @@ import 'your_plan_view.dart';
 
 /// Onboarding (GA4 · auth-first). La cuenta ya existe (pantalla de auth); aquí
 /// SOLO se construye el plan y se personaliza. Cada paso cambia algo aguas abajo
-/// (plan, contenido o coaching); nada redundante. 9 pasos:
-///  0 bienvenida · 1 idioma de la app · 2 idioma META (qué se aprende) · 3 motivo ·
-///  4 meta+plazo · 5 compromiso · 6 personalidad (4+1) · 7 micro-arranque ·
-///  8 ubicación (banco del curso META) · 9 resultado · 10 tu plan → mapa.
+/// (plan, contenido o coaching); nada redundante. Pasos:
+///  0 bienvenida · 1 idioma de la app · 2 NOMBRE (se persiste en Perfil) ·
+///  3 idioma META (qué se aprende) · 4 motivo · 5 meta+plazo · 6 compromiso ·
+///  7 personalidad (4+1) · 8 micro-arranque · 9 ubicación (banco del curso META) ·
+///  10 resultado · 11 tu plan → mapa.
 class OnboardingScreen extends ConsumerStatefulWidget {
   const OnboardingScreen({super.key, required this.onComplete});
 
@@ -33,23 +34,55 @@ class OnboardingScreen extends ConsumerStatefulWidget {
 }
 
 class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
-  static const _total = 11;
+  static const _total = 12;
   final OnboardingData _data = OnboardingData();
+  final TextEditingController _nameCtrl = TextEditingController();
   int _step = 0;
 
   @override
   void initState() {
     super.initState();
     _logStep();
+    _prefillName();
+  }
+
+  @override
+  void dispose() {
+    _nameCtrl.dispose();
+    super.dispose();
+  }
+
+  /// Pre-rellena el nombre: primero el metadata de Google (OAuth, síncrono), luego
+  /// el perfil ya guardado (alta por email lo fijó). Solo autocompleta si el campo
+  /// sigue vacío (no pisa lo que el usuario escriba).
+  Future<void> _prefillName() async {
+    final repo = ref.read(progressRepositoryProvider);
+    try {
+      final metaName = repo.authMetadataName;
+      if (metaName != null && _nameCtrl.text.isEmpty) {
+        _nameCtrl.text = metaName;
+        _data.name = metaName;
+      }
+    } catch (_) {}
+    try {
+      final p = await repo.fetchProfile();
+      final saved = p.name?.trim();
+      if (saved != null && saved.isNotEmpty && _nameCtrl.text.isEmpty && mounted) {
+        setState(() {
+          _nameCtrl.text = saved;
+          _data.name = saved;
+        });
+      }
+    } catch (_) {}
   }
 
   /// Analítica de drop-off por paso (GA4 · B7).
   void _logStep() =>
       ref.read(progressRepositoryProvider).logEvent('onboarding_step', props: {'step': _step});
 
-  // Pasos: 7 = nivel de arranque · 8 = ubicación · 9 = resultado · 10 = plan.
-  static const _stepStartLevel = 7;
-  static const _stepPlan = 10;
+  // Pasos: 8 = nivel de arranque · 9 = ubicación · 10 = resultado · 11 = plan.
+  static const _stepStartLevel = 8;
+  static const _stepPlan = 11;
 
   /// "Empezar desde cero" (startLevelHint == 0) → SALTA el examen: el usuario ya
   /// declaró que es principiante, no tiene sentido examinarlo. Va directo a A1/U1.
@@ -86,6 +119,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   Future<void> _finish() async {
     try {
       final repo = ref.read(progressRepositoryProvider);
+      // Persiste el nombre (safety idempotente; ya se intentó al salir del paso).
+      final nm = _data.name.trim();
+      if (nm.isNotEmpty) {
+        try {
+          await repo.setProfile(name: nm);
+        } catch (_) {}
+      }
       // Asegura que el curso ACTIVO sea el META elegido antes de create_plan
       // (que usa jz_active_course). Idempotente; robustez si el pick falló.
       if (_data.targetCourseId != null) {
@@ -146,8 +186,10 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       case 1:
         return _language();
       case 2:
-        return _targetLanguage();
+        return _nameStep();
       case 3:
+        return _targetLanguage();
+      case 4:
         return _select(
           title: l10n.onbMotiveTitle(courseName),
           subtitle: l10n.onbMotiveSubtitle,
@@ -162,14 +204,14 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           current: _data.motive,
           onSelect: (v) => _data.motive = v,
         );
-      case 4:
-        return _goal();
       case 5:
-        return _commitment();
+        return _goal();
       case 6:
+        return _commitment();
+      case 7:
         return PersonalityTest(
             data: _data, step: _step + 1, total: _total, onBack: _back, onDone: _next);
-      case 7:
+      case 8:
         return _select(
           title: l10n.onbStartLevelTitle(courseName),
           subtitle: l10n.onbStartLevelSubtitle,
@@ -182,7 +224,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           onSelect: (v) => _data.startLevelHint = int.parse(v),
           allowDefault: true,
         );
-      case 8:
+      case 9:
         // Ubicación sobre el BANCO del curso META elegido (placement_next(courseId)).
         return PlacementTest(
             data: _data,
@@ -192,7 +234,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             courseId: _data.targetCourseId,
             onBack: _back,
             onDone: _next);
-      case 9:
+      case 10:
         // RESULTADO del placement (momento "¡saliste en B1!"): nivel + skills + a
         // qué unidad entra + fecha realista. No es aprobar/reprobar: es ubicación.
         return PlacementResultView(
@@ -316,6 +358,70 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         ],
       ),
     );
+  }
+
+  // ── Nombre real: se muestra en Perfil / saludos / certificado ──────────────
+  // Se pide ANTES del examen (correctitud: hoy el alta por Google nunca lo pedía).
+  Widget _nameStep() {
+    final l10n = AppLocalizations.of(context);
+    return OnboardingScaffold(
+      step: _step + 1,
+      total: _total,
+      onBack: _back,
+      title: l10n.onbNameTitle,
+      subtitle: l10n.onbNameSubtitle,
+      footer: PrimaryButton(
+        label: l10n.commonContinue,
+        expand: true,
+        onPressed: _nameCtrl.text.trim().isNotEmpty ? _continueName : null,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          TextField(
+            controller: _nameCtrl,
+            autofocus: true,
+            textCapitalization: TextCapitalization.words,
+            textInputAction: TextInputAction.done,
+            maxLength: 40,
+            onChanged: (_) => setState(() {}),
+            onSubmitted: (_) {
+              if (_nameCtrl.text.trim().isNotEmpty) _continueName();
+            },
+            style: const TextStyle(
+                fontSize: 18, fontWeight: FontWeight.w800, color: AppColors.text),
+            decoration: InputDecoration(
+              hintText: l10n.onbNameHint,
+              counterText: '',
+              filled: true,
+              fillColor: Colors.white,
+              prefixIcon: const Icon(Icons.person_outline_rounded, color: AppColors.textMuted),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: const BorderSide(color: Color(0xFFE5E7F1), width: 2),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(16),
+                borderSide: const BorderSide(color: AppColors.primary, width: 2),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// Guarda el nombre (set_profile) y avanza. Degrada con gracia: si la escritura
+  /// falla (offline), continúa igual — se reintenta en _finish (idempotente).
+  Future<void> _continueName() async {
+    final n = _nameCtrl.text.trim();
+    _data.name = n;
+    if (n.isNotEmpty) {
+      try {
+        await ref.read(progressRepositoryProvider).setProfile(name: n);
+      } catch (_) {}
+    }
+    _next();
   }
 
   // ── Idioma META: QUÉ se aprende (distinto del idioma de la app) ─────────────

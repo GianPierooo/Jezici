@@ -286,6 +286,12 @@ abstract class AppLocalizations {
   /// **'Toma ~2 minutos.'**
   String get onbWelcomeNote;
 
+  /// No description provided for @onbCoachBubble.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Hagamos un plan a tu medida! 🦜'**
+  String get onbCoachBubble;
+
   /// No description provided for @onbLanguageTitle.
   ///
   /// In es, this message translates to:
@@ -309,6 +315,24 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Vas a aprender portugués 🇧🇷. Esto solo cambia el idioma de la app.'**
   String get onbLanguageInfoPt;
+
+  /// No description provided for @onbNameTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Cómo te llamas?'**
+  String get onbNameTitle;
+
+  /// No description provided for @onbNameSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Así te saludamos y aparecerá en tu perfil y certificados.'**
+  String get onbNameSubtitle;
+
+  /// No description provided for @onbNameHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu nombre'**
+  String get onbNameHint;
 
   /// No description provided for @onbTargetTitle.
   ///
@@ -911,6 +935,66 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'META'**
   String get planBadgeGoal;
+
+  /// No description provided for @planReadyKicker.
+  ///
+  /// In es, this message translates to:
+  /// **'PERSONALIZADO PARA TI'**
+  String get planReadyKicker;
+
+  /// No description provided for @planStartJourney.
+  ///
+  /// In es, this message translates to:
+  /// **'Empezar mi viaje'**
+  String get planStartJourney;
+
+  /// No description provided for @planJourneyHere.
+  ///
+  /// In es, this message translates to:
+  /// **'ESTÁS AQUÍ'**
+  String get planJourneyHere;
+
+  /// No description provided for @planJourneyGoal.
+  ///
+  /// In es, this message translates to:
+  /// **'TU META'**
+  String get planJourneyGoal;
+
+  /// No description provided for @planHalfTime.
+  ///
+  /// In es, this message translates to:
+  /// **'⚡ ¡La mitad de tiempo!'**
+  String get planHalfTime;
+
+  /// No description provided for @planPaceLine.
+  ///
+  /// In es, this message translates to:
+  /// **'Con {minutes} min/día llegas a {level} el'**
+  String planPaceLine(int minutes, String level);
+
+  /// No description provided for @planLeverTitleOff.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Quieres llegar más rápido?'**
+  String get planLeverTitleOff;
+
+  /// No description provided for @planLeverTitleOn.
+  ///
+  /// In es, this message translates to:
+  /// **'🚀 ¡Vas a toda máquina!'**
+  String get planLeverTitleOn;
+
+  /// No description provided for @planLeverTextOff.
+  ///
+  /// In es, this message translates to:
+  /// **'Sube a {minutes} min/día y llegas en la mitad del tiempo 💪'**
+  String planLeverTextOff(int minutes);
+
+  /// No description provided for @planLeverTextOn.
+  ///
+  /// In es, this message translates to:
+  /// **'Plan de {minutes} min/día activado: llegas en la mitad del tiempo.'**
+  String planLeverTextOn(int minutes);
 
   /// No description provided for @authTitleSignUp.
   ///

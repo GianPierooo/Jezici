@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
 import '../../../core/ui/responsive_center.dart';
+import '../../../l10n/app_localizations.dart';
+import '../../learn/widgets/parrot_mascot.dart';
 
 /// Shell común de los pasos del onboarding: barra de progreso, mascota, título
 /// y un footer fijo (botón continuar).
@@ -57,27 +59,30 @@ class OnboardingScaffold extends StatelessWidget {
                           ),
                   ),
                   const SizedBox(width: 12),
+                  // Progreso SEGMENTADO (Onboarding.dc): un tramo por paso.
                   Expanded(
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Stack(children: [
-                        Container(height: 10, color: const Color(0xFFE5E7F1)),
-                        AnimatedFractionallySizedBox(
-                          duration: const Duration(milliseconds: 280),
-                          widthFactor: (step / total).clamp(0.0, 1.0),
-                          child: Container(
-                            height: 10,
-                            decoration: const BoxDecoration(
-                              gradient: LinearGradient(
-                                  colors: [AppColors.primaryLight, AppColors.primary]),
+                    child: Row(
+                      children: [
+                        for (int i = 0; i < total; i++) ...[
+                          if (i > 0) const SizedBox(width: 4),
+                          Expanded(
+                            child: AnimatedContainer(
+                              duration: const Duration(milliseconds: 260),
+                              height: 7,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                color: i < step ? AppColors.primary : const Color(0xFFE2E5F0),
+                              ),
                             ),
                           ),
-                        ),
-                      ]),
+                        ],
+                      ],
                     ),
                   ),
-                  const SizedBox(width: 12),
-                  const SizedBox(width: 34),
+                  const SizedBox(width: 10),
+                  Text('$step/$total',
+                      style: const TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.w900, color: Color(0xFF9A9FB8))),
                 ],
               ),
             ),
@@ -90,9 +95,16 @@ class OnboardingScaffold extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     if (showMascot)
-                      const Padding(
-                        padding: EdgeInsets.only(bottom: 8),
-                        child: Text('🦜', style: TextStyle(fontSize: 44)),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 12),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            const ParrotMascot(size: 46),
+                            const SizedBox(width: 10),
+                            Flexible(child: _CoachBubble(AppLocalizations.of(context).onbCoachBubble)),
+                          ],
+                        ),
                       ),
                     Text(
                       title,
@@ -122,6 +134,35 @@ class OnboardingScaffold extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+/// Globo de diálogo blanco del guacamayo (Onboarding.dc FRAME A).
+class _CoachBubble extends StatelessWidget {
+  const _CoachBubble(this.text);
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(16),
+          topRight: Radius.circular(16),
+          bottomRight: Radius.circular(16),
+          bottomLeft: Radius.circular(4),
+        ),
+        boxShadow: [
+          BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 4), blurRadius: 0),
+          BoxShadow(color: Color(0x14312E78), offset: Offset(0, 8), blurRadius: 16),
+        ],
+      ),
+      child: Text(text,
+          style: const TextStyle(
+              fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.text)),
     );
   }
 }

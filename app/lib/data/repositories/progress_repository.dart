@@ -23,6 +23,17 @@ class ProgressRepository {
   String? get _uid => _client.auth.currentUser?.id;
   bool get isSignedIn => _client.auth.currentSession != null;
 
+  /// Nombre sugerido para prellenar la captura del onboarding. Google/OAuth
+  /// entregan `full_name`/`name` en el metadata de la sesión (el alta por email
+  /// no). null si no hay nada usable. No toca la BD; solo lee la sesión local.
+  String? get authMetadataName {
+    final m = _client.auth.currentUser?.userMetadata;
+    if (m == null) return null;
+    final raw = (m['full_name'] ?? m['name']) as String?;
+    final n = raw?.trim();
+    return (n != null && n.isNotEmpty) ? n : null;
+  }
+
   /// Califica un ítem en el SERVIDOR (mig 055): el cliente nunca tuvo la
   /// respuesta. Devuelve {correct, graded, expected} — `expected` (la respuesta
   /// canónica) sólo se revela DESPUÉS de responder, para el feedback.

@@ -3,6 +3,11 @@ class OnboardingData {
   /// Idioma de la app (UI). Distinto del CURSO META (lo que se aprende).
   String uiLang = 'es'; // es | en | pt
 
+  /// Nombre real del usuario (se muestra en Perfil/saludos/certificado). Se pide
+  /// en el onboarding (antes del examen) y se persiste con set_profile. Puede
+  /// venir pre-rellenado desde el metadata de Google (OAuth).
+  String name = '';
+
   /// Curso META elegido en el onboarding (qué idioma se APRENDE). null hasta elegir;
   /// al fijarlo se llama set_active_course → el placement y create_plan usan ESE curso.
   String? targetCourseId;

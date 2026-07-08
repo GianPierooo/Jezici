@@ -32,6 +32,8 @@ class FakeProgressRepository implements ProgressRepository {
   @override
   bool get isSignedIn => true;
   @override
+  String? get authMetadataName => null;
+  @override
   Future<void> ensureSignedIn() async {}
   @override
   Future<void> startCourse() async {}

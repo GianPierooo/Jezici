@@ -5,6 +5,32 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-08**.
 
+## Onboarding — NOMBRE + fidelidad al mockup ✅ (mig 132 · 2026-07-08)
+Dos frentes de Onboarding.dc (fuente de diseño), sin tocar placement/create_plan.
+**F1 · Correctitud: se PIDE el nombre (antes nunca).** Bug real: "Continuar con Google" (OAuth) crea
+la cuenta saltándose el formulario de email → nunca se llamaba `set_profile(name)` → el perfil quedaba
+en "Coloque seu nome" (`needs_name=true`). Fix en 2 capas: **(belt, mig 132)** `handle_new_user` siembra
+`users.name/display_name` desde `raw_user_meta_data` (`full_name`/`name` que Google entrega) al INSERT —
+solo afecta a altas NUEVAS (`on conflict do nothing`), 0 impacto en existentes. **(suspenders, cliente)**
+paso de **nombre nuevo en el onboarding** (case 2, ANTES del examen), pre-rellenado desde el metadata de
+OAuth (`ProgressRepository.authMetadataName`) y desde `get_profile` (alta por email ya lo fijó), persistido
+con `set_profile` al continuar y de nuevo en `_finish` (idempotente, degrada offline). i18n es/en/pt.
+**Verificado cliente real** (`verify_onboarding_name.py`): OAuth con `full_name` → `users.name` sembrado +
+`get_profile` needs_name=false; email sin metadata → nace needs_name=true → `set_profile` del onboarding lo
+persiste. **F2 · "Tu plan" fiel al mockup (FRAME B):** `your_plan_view` rehecho — **header de CELEBRACIÓN**
+(gradiente violeta + confeti `jzFall` + halo `jzGlow` + guacamayo festejando `ParrotMascot.celebrate` +
+kicker "PERSONALIZADO PARA TI"), **MAPA DE VIAJE** (colinas + camino punteado que asciende, `CustomPaint`
+animado; pin "ESTÁS AQUÍ" = nivel actual → bandera "TU META" = meta efectiva, con milestone intermedio si
+el salto ≥2 niveles), tarjeta de fecha viva (`AnimatedSwitcher`) con badge "⚡ ¡La mitad de tiempo!",
+**palanca REVERSIBLE** (toggle base↔rápido que recalcula en vivo; antes solo subía por tiers), CTA coral
+"Empezar mi viaje". **F2b · pasos de pregunta (FRAME A):** progreso **segmentado** + contador "n/total",
+guacamayo animado con **globo blanco** ("¡Hagamos un plan a tu medida!"). Todo **reduce-motion aware**
+(`MediaQuery.disableAnimations`) y responsive (`ResponsiveCenter` 480). **NO se tocó** placement anti-azar,
+"empezar desde cero"→A1, elegir idioma meta, ni create_plan. Verde: **analyze 0 · test 96/96** (+widget test
+"Tu plan" celebración + palanca reversible; onboarding_target camina el nuevo paso de nombre) · build web OK ·
+`verify_placement_serious` re-verificado (azar→0% B2/C1, intacto). **Verificación manual pendiente de Gian**
+(ver reporte): usuario nuevo Google/email → pide y guarda el nombre; "Tu plan" se ve como el mockup.
+
 ## Placement SERIO — anti-azar (bug real ARREGLADO) ✅ LIVE (mig 131 · 2026-07-08)
 **Bug reproducido (no sintético):** un usuario NUEVO marcando AL AZAR salía B1/B2/**C1**. Los 3 "fixes"
 previos pasaron con sims deterministas pero NO tocaron el camino real. **Causa raíz (3 factores):**

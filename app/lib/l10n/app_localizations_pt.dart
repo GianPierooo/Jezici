@@ -104,6 +104,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get onbWelcomeNote => 'Leva ~2 minutos.';
 
   @override
+  String get onbCoachBubble => 'Vamos montar um plano sob medida! 🦜';
+
+  @override
   String get onbLanguageTitle => 'Em qual idioma você prefere o app?';
 
   @override
@@ -117,6 +120,16 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get onbLanguageInfoPt =>
       'Você vai aprender português 🇧🇷. Isso só muda o idioma do app.';
+
+  @override
+  String get onbNameTitle => 'Como você se chama?';
+
+  @override
+  String get onbNameSubtitle =>
+      'É assim que vamos te chamar, e aparece no seu perfil e certificados.';
+
+  @override
+  String get onbNameHint => 'Seu nome';
 
   @override
   String get onbTargetTitle => 'Que idioma você quer aprender?';
@@ -501,6 +514,42 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get planBadgeGoal => 'META';
+
+  @override
+  String get planReadyKicker => 'PERSONALIZADO PARA VOCÊ';
+
+  @override
+  String get planStartJourney => 'Começar minha jornada';
+
+  @override
+  String get planJourneyHere => 'VOCÊ ESTÁ AQUI';
+
+  @override
+  String get planJourneyGoal => 'SUA META';
+
+  @override
+  String get planHalfTime => '⚡ Metade do tempo!';
+
+  @override
+  String planPaceLine(int minutes, String level) {
+    return 'Com $minutes min/dia você chega ao $level em';
+  }
+
+  @override
+  String get planLeverTitleOff => 'Quer chegar mais rápido?';
+
+  @override
+  String get planLeverTitleOn => '🚀 A todo vapor!';
+
+  @override
+  String planLeverTextOff(int minutes) {
+    return 'Suba para $minutes min/dia e chegue na metade do tempo 💪';
+  }
+
+  @override
+  String planLeverTextOn(int minutes) {
+    return 'Plano de $minutes min/dia ativado: você chega na metade do tempo.';
+  }
 
   @override
   String get authTitleSignUp => 'Crie sua conta';
