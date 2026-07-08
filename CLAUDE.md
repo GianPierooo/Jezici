@@ -5,6 +5,19 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-07**.
 
+## UI del login/auth MODERNIZADA ✅ (2026-07-08 · solo capa visual, sin tocar lógica)
+`auth_screen.dart` no tenía mockup (una de las 13 sin mockup, ver MOCKUP_GAP.md) → rediseñada con el
+LENGUAJE VISUAL de los mockups: **tarjeta de auth centrada** (`ResponsiveCenter` maxWidth 460 → móvil
+llena, desktop centrada, no estirada) con **hero de gradiente violeta** (`#7A6BF0→#6C5CE7→#5B4ECF`) +
+**guacamayo animado** (`ParrotMascot` idle bob, halo suave, respeta reduce-motion) + título/subtítulo
+blancos, y **cuerpo blanco** con Google (sombra suave) + divisor «o» + toggle + campos con fill claro
+(`#F6F7FB`) + **pills de error/aviso** (rojo suave / violeta, con icono) + `PrimaryButton` 3D. Fondo con
+halo radial violeta. **Motion sutil:** entrada fade+sube (jzRise, 560ms, reduce-motion-aware). Fuente
+Nunito + tokens de `AppColors`. **NO se tocó la lógica** (`signInWithGoogle`/`signUpEmail`/flujo OAuth
+intactos); solo `build`+widgets. i18n es/en/pt (0 strings nuevos). Verificado: analyze 0, test 94/94,
+build web OK, smoke visual (render limpio, 0 errores de consola). **Verificación manual pendiente de Gian:**
+Android (teclado no tapa campos) + desktop (tarjeta centrada) + login Google/email de punta a punta.
+
 ## Registro sin fricción — Google Sign-In + email (beta) ✅ código LIVE (2026-07-07 · solo cliente)
 Ingeniería pura, sin migración. Auth-first (GA4). **Frente 1 · "Continuar con Google" (PWA):**
 `ProgressRepository.signInWithGoogle()` → `signInWithOAuth(OAuthProvider.google, redirectTo: Uri.base.origin)`

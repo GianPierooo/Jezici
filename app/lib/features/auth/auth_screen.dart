@@ -4,9 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../core/theme/app_colors.dart';
+import '../../core/ui/responsive_center.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
 import '../../ui/primary_button.dart';
+import '../learn/widgets/parrot_mascot.dart';
 import '../legal/legal_screen.dart';
 
 /// Pantalla de ENTRADA (GA4 auth-first): crear cuenta o iniciar sesión.
@@ -18,7 +20,8 @@ class AuthScreen extends ConsumerStatefulWidget {
   ConsumerState<AuthScreen> createState() => _AuthScreenState();
 }
 
-class _AuthScreenState extends ConsumerState<AuthScreen> {
+class _AuthScreenState extends ConsumerState<AuthScreen>
+    with SingleTickerProviderStateMixin {
   final _name = TextEditingController();
   final _email = TextEditingController();
   final _password = TextEditingController();
@@ -27,6 +30,12 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   bool _accepted = false; // aceptación legal (requerida para crear cuenta)
   String? _error;
   String? _notice; // mensaje neutral (p. ej. "revisa tu correo")
+
+  // Entrada de la tarjeta al montar (fade + sube), coherente con jzRise del
+  // resto de la app. Se salta con "reducir movimiento" (a11y).
+  late final AnimationController _entry = AnimationController(
+      vsync: this, duration: const Duration(milliseconds: 560))
+    ..forward();
 
   @override
   void initState() {
@@ -49,6 +58,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
 
   @override
   void dispose() {
+    _entry.dispose();
     _name.dispose();
     _email.dispose();
     _password.dispose();
@@ -150,97 +160,195 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
     return Scaffold(
-      backgroundColor: AppColors.background,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(28, 24, 28, 28),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              const SizedBox(height: 8),
-              const Center(child: Text('🦜', style: TextStyle(fontSize: 72))),
-              const SizedBox(height: 14),
-              Text(_signUp ? l10n.authTitleSignUp : l10n.authTitleSignIn,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      fontSize: 26, fontWeight: FontWeight.w900, color: AppColors.text)),
-              const SizedBox(height: 6),
-              Text(
-                _signUp ? l10n.authSubtitleSignUp : l10n.authSubtitleSignIn,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                    fontSize: 14, fontWeight: FontWeight.w700, color: AppColors.textMuted, height: 1.4),
-              ),
-              const SizedBox(height: 24),
-              // "Continuar con Google" (camino rápido, sin contraseña). Solo web
-              // (PWA): usa redirect OAuth. Si el proveedor aún no está configurado
-              // en Supabase, el retorno trae un error que mostramos con gracia.
-              if (kIsWeb) ...[
-                _GoogleButton(
-                  label: l10n.authContinueGoogle,
-                  onTap: _loading ? null : _google,
-                ),
-                const SizedBox(height: 16),
-                _OrDivider(label: l10n.authOr),
-                const SizedBox(height: 16),
-              ],
-              // Selector crear cuenta / iniciar sesión.
-              _SegToggle(
-                signUp: _signUp,
-                onChanged: (v) => setState(() {
-                  _signUp = v;
-                  _error = null;
-                  _notice = null;
-                }),
-              ),
-              const SizedBox(height: 18),
-              if (_signUp) ...[
-                _field(_name, l10n.authFieldName, Icons.person_outline_rounded,
-                    keyboard: TextInputType.name),
-                const SizedBox(height: 12),
-              ],
-              _field(_email, l10n.authFieldEmail, Icons.mail_outline_rounded,
-                  keyboard: TextInputType.emailAddress),
-              const SizedBox(height: 12),
-              _field(_password, l10n.authFieldPassword, Icons.lock_outline_rounded, obscure: true),
-              if (_error != null) ...[
-                const SizedBox(height: 10),
-                Text(_error!,
-                    style: const TextStyle(
-                        color: AppColors.hearts, fontWeight: FontWeight.w800, fontSize: 12.5)),
-              ],
-              if (_notice != null) ...[
-                const SizedBox(height: 10),
-                Text(_notice!,
-                    style: const TextStyle(
-                        color: AppColors.primary, fontWeight: FontWeight.w800, fontSize: 12.5, height: 1.4)),
-              ],
-              if (_signUp) ...[
-                const SizedBox(height: 16),
-                _LegalCheckbox(
-                  l10n: l10n,
-                  value: _accepted,
-                  onChanged: (v) => setState(() {
-                    _accepted = v;
-                    if (v) _error = null;
-                  }),
-                  onTapTerms: () => openLegalPage(kTermsPath),
-                  onTapPrivacy: () => openLegalPage(kPrivacyPath),
-                ),
-              ],
-              const SizedBox(height: 18),
-              PrimaryButton(
-                label: _loading
-                    ? (_signUp ? l10n.authCtaCreating : l10n.authCtaLoggingIn)
-                    : (_signUp ? l10n.authCtaSignUp : l10n.authCtaSignIn),
-                expand: true,
-                onPressed: (_loading || (_signUp && !_accepted)) ? null : _submit,
-              ),
-            ],
+      // Fondo suave con halo violeta arriba, como los mockups (radial superior).
+      body: DecoratedBox(
+        decoration: const BoxDecoration(
+          gradient: RadialGradient(
+            center: Alignment(0, -1.05),
+            radius: 1.15,
+            colors: [Color(0xFFE7E3FF), Color(0xFFEFF0F8), AppColors.background],
+            stops: [0.0, 0.55, 1.0],
           ),
         ),
+        child: SafeArea(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(18, 22, 18, 28),
+            child: ResponsiveCenter(
+              maxWidth: 460,
+              child: _reveal(context, _card(context)),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// Entrada de la tarjeta: fade + sube (jzRise). Se salta con reduce-motion.
+  Widget _reveal(BuildContext context, Widget child) {
+    if (MediaQuery.of(context).disableAnimations) return child;
+    return AnimatedBuilder(
+      animation: _entry,
+      builder: (_, c) {
+        final t = Curves.easeOutCubic.transform(_entry.value);
+        return Opacity(
+          opacity: t,
+          child: Transform.translate(offset: Offset(0, (1 - t) * 30), child: c),
+        );
+      },
+      child: child,
+    );
+  }
+
+  /// Tarjeta de auth: hero violeta con la mascota + cuerpo blanco. Bordes
+  /// redondeados y sombra suave (mismo lenguaje que el onboarding/checkpoint).
+  Widget _card(BuildContext context) {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(28),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.primary.withValues(alpha: 0.16),
+            offset: const Offset(0, 22),
+            blurRadius: 44,
+            spreadRadius: -8,
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(28),
+        child: Column(mainAxisSize: MainAxisSize.min, children: [_hero(context), _body(context)]),
+      ),
+    );
+  }
+
+  // ── Hero: gradiente violeta + guacamayo animado + título/subtítulo ──────────
+  Widget _hero(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.fromLTRB(26, 26, 26, 24),
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xFF7A6BF0), AppColors.primary, Color(0xFF5B4ECF)],
+        ),
+      ),
+      child: Column(
+        children: [
+          // Guacamayo con halo suave (bob idle · respeta reduce-motion).
+          Container(
+            width: 92,
+            height: 92,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: RadialGradient(colors: [
+                Colors.white.withValues(alpha: 0.22),
+                Colors.white.withValues(alpha: 0.0),
+              ]),
+            ),
+            child: const ParrotMascot(size: 60, mood: MascotMood.idle),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            _signUp ? l10n.authTitleSignUp : l10n.authTitleSignIn,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w900, color: Colors.white),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            _signUp ? l10n.authSubtitleSignUp : l10n.authSubtitleSignIn,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 13.5,
+                fontWeight: FontWeight.w700,
+                height: 1.4,
+                color: Colors.white.withValues(alpha: 0.85)),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // ── Cuerpo blanco: Google + email/registro + CTA ────────────────────────────
+  Widget _body(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Container(
+      width: double.infinity,
+      color: Colors.white,
+      padding: const EdgeInsets.fromLTRB(22, 20, 22, 24),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          // "Continuar con Google" (camino rápido, sin contraseña). Solo web
+          // (PWA): redirect OAuth. Si el proveedor aún no está configurado, el
+          // retorno trae un error que mostramos con gracia (initState).
+          if (kIsWeb) ...[
+            _GoogleButton(label: l10n.authContinueGoogle, onTap: _loading ? null : _google),
+            const SizedBox(height: 16),
+            _OrDivider(label: l10n.authOr),
+            const SizedBox(height: 16),
+          ],
+          _SegToggle(
+            signUp: _signUp,
+            onChanged: (v) => setState(() {
+              _signUp = v;
+              _error = null;
+              _notice = null;
+            }),
+          ),
+          const SizedBox(height: 16),
+          if (_signUp) ...[
+            _field(_name, l10n.authFieldName, Icons.person_outline_rounded,
+                keyboard: TextInputType.name),
+            const SizedBox(height: 11),
+          ],
+          _field(_email, l10n.authFieldEmail, Icons.mail_outline_rounded,
+              keyboard: TextInputType.emailAddress),
+          const SizedBox(height: 11),
+          _field(_password, l10n.authFieldPassword, Icons.lock_outline_rounded, obscure: true),
+          if (_error != null) ...[
+            const SizedBox(height: 12),
+            _Pill(
+              icon: Icons.error_outline_rounded,
+              text: _error!,
+              bg: const Color(0xFFFFE9ED),
+              fg: const Color(0xFFD6294B),
+            ),
+          ],
+          if (_notice != null) ...[
+            const SizedBox(height: 12),
+            _Pill(
+              icon: Icons.mark_email_read_outlined,
+              text: _notice!,
+              bg: AppColors.navActiveBg,
+              fg: AppColors.primary,
+            ),
+          ],
+          if (_signUp) ...[
+            const SizedBox(height: 14),
+            _LegalCheckbox(
+              l10n: l10n,
+              value: _accepted,
+              onChanged: (v) => setState(() {
+                _accepted = v;
+                if (v) _error = null;
+              }),
+              onTapTerms: () => openLegalPage(kTermsPath),
+              onTapPrivacy: () => openLegalPage(kPrivacyPath),
+            ),
+          ],
+          const SizedBox(height: 18),
+          PrimaryButton(
+            label: _loading
+                ? (_signUp ? l10n.authCtaCreating : l10n.authCtaLoggingIn)
+                : (_signUp ? l10n.authCtaSignUp : l10n.authCtaSignIn),
+            expand: true,
+            onPressed: (_loading || (_signUp && !_accepted)) ? null : _submit,
+          ),
+        ],
       ),
     );
   }
@@ -255,17 +363,52 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
       style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
       decoration: InputDecoration(
         hintText: hint,
+        hintStyle: const TextStyle(color: Color(0xFFAAB0C6), fontWeight: FontWeight.w700),
         prefixIcon: Icon(icon, color: AppColors.textMuted),
         filled: true,
-        fillColor: Colors.white,
+        fillColor: const Color(0xFFF6F7FB),
+        contentPadding: const EdgeInsets.symmetric(vertical: 15),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
-          borderSide: const BorderSide(color: Color(0xFFE5E7F1), width: 2),
+          borderSide: const BorderSide(color: Color(0xFFE9EBF3), width: 1.5),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(14),
           borderSide: const BorderSide(color: AppColors.primary, width: 2),
         ),
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(14),
+          borderSide: const BorderSide(color: Color(0xFFEDEFF5), width: 1.5),
+        ),
+      ),
+    );
+  }
+}
+
+/// Pastilla de aviso (error rojo suave / notice violeta). Reemplaza el texto
+/// suelto por un contenedor con icono, más legible y bonito.
+class _Pill extends StatelessWidget {
+  const _Pill({required this.icon, required this.text, required this.bg, required this.fg});
+  final IconData icon;
+  final String text;
+  final Color bg;
+  final Color fg;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(12)),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(icon, size: 17, color: fg),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Text(text,
+                style: TextStyle(color: fg, fontWeight: FontWeight.w800, fontSize: 12.5, height: 1.35)),
+          ),
+        ],
       ),
     );
   }
@@ -347,12 +490,15 @@ class _GoogleButton extends StatelessWidget {
       child: Opacity(
         opacity: disabled ? 0.6 : 1,
         child: Container(
-          height: 52,
+          height: 54,
           alignment: Alignment.center,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(14),
             border: Border.all(color: const Color(0xFFDADCE6), width: 2),
+            boxShadow: const [
+              BoxShadow(color: Color(0x0F1A1A2E), offset: Offset(0, 3), blurRadius: 8),
+            ],
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
