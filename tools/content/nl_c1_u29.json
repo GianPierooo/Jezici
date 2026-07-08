@@ -1,0 +1,251 @@
+{
+  "unit": {
+    "order": 29,
+    "title_es": "Hipótesis y modalidad avanzada: conditionalis y suposición",
+    "color": "#7D3C98",
+    "icon": "psychology_alt"
+  },
+  "checkpoint_desc": "Demuestra que manejas la modalidad a nivel C1 en neerlandés: formas condiciones irreales (Als ik tijd had, zou ik …; Als ik tijd had gehad, was ik …), expresas suposición (zal wel, moet … zijn, schijnt/blijkt te …), reproduces el estilo indirecto con el desplazamiento temporal, usas el modo optativo formal (moge, ware) y comparaciones irreales con «alsof» + pasado.",
+  "lessons": [
+    { "order": 1, "title_es": "Condiciones y deseos irreales (conditionalis)" },
+    { "order": 2, "title_es": "Suposición: zal wel, moet … zijn, schijnt te …" },
+    { "order": 3, "title_es": "Estilo indirecto y modo optativo (moge, ware)" },
+    { "order": 4, "title_es": "Comparación irreal: alsof + verleden tijd" }
+  ],
+  "vocab": [
+    ["de conditionalis", "el condicional (zou + inf.)", "n"],
+    ["irreëel", "irreal, hipotético", "adj"],
+    ["zal wel", "probablemente, seguramente", "expr"],
+    ["schijnen", "parecer; al parecer (schijnt te)", "v"],
+    ["blijken", "resultar (ser), constatarse", "v"],
+    ["naar verluidt", "según se dice", "expr"],
+    ["het vermoeden", "la suposición, la sospecha", "n"],
+    ["de indirecte rede", "el estilo indirecto", "n"],
+    ["alsof", "como si (+ pasado)", "conj"],
+    ["zogenaamd", "supuestamente", "adv"],
+    ["vermoedelijk", "presumiblemente", "adv"],
+    ["de voorwaarde", "la condición", "n"],
+    ["moge", "ojalá, que (optativo formal)", "v"],
+    ["ware", "fuera/sería (optativo formal de zijn)", "v"],
+    ["het verwijt", "el reproche, la acusación", "n"],
+    ["ontkennen", "negar, desmentir", "v"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "conditionalis_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada construcción irreal con su valor.",
+      "pairs": [
+        ["Als ik tijd had, zou ik meegaan.", "condición irreal en el presente"],
+        ["Als ik tijd had gehad, was ik meegegaan.", "condición irreal en el pasado"],
+        ["In jouw plaats zou ik zwijgen.", "consejo irreal (yo, en tu lugar)"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "conditionalis_plusquam_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la forma irreal del pasado (condición que ya no puede cumplirse): «Als hij eerder ___, had hij de trein nog gehaald.»",
+      "options": ["was vertrokken", "is vertrokken", "zou vertrekken"],
+      "value": "was vertrokken"
+    },
+    {
+      "lesson": 1,
+      "topic": "conditionalis_wens_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa el participio de «meegaan» (ir con) en esta condición irreal del pasado: «Als ik meer tijd had gehad, was ik zeker ___.»",
+      "text": "Als ik meer tijd had gehad, was ik zeker ___.",
+      "value": "meegegaan",
+      "accepted": ["meegegaan"]
+    },
+    {
+      "lesson": 1,
+      "topic": "conditionalis_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "In jouw plaats had ik het aanbod niet zo snel afgewezen.",
+      "options": [
+        "In jouw plaats had ik het aanbod niet zo snel afgewezen.",
+        "In mijn plaats had jij het aanbod meteen moeten aannemen.",
+        "In dat geval heb ik het aanbod helemaal niet gekregen."
+      ],
+      "value": "In jouw plaats had ik het aanbod niet zo snel afgewezen."
+    },
+    {
+      "lesson": 1,
+      "topic": "conditionalis_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Als het weer beter was geweest, hadden we de wandeling waarschijnlijk afgemaakt."
+    },
+    {
+      "lesson": 2,
+      "topic": "vermoeden_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada expresión con el matiz de suposición que aporta.",
+      "pairs": [
+        ["Hij zal wel thuis zijn.", "suposición probable del hablante"],
+        ["Zij schijnt heel rijk te zijn.", "al parecer, según se oye"],
+        ["Dat moet een vergissing zijn.", "conclusión lógica casi segura"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "vermoeden_zalwel_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la expresión que indica una suposición probable del hablante: «Het is al laat; ze ___ inmiddels wel thuis zijn.»",
+      "options": ["zal", "mag", "hoeft"],
+      "value": "zal"
+    },
+    {
+      "lesson": 2,
+      "topic": "vermoeden_schijnt_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando «schijnen te» para lo que se oye decir (al parecer): «Se dice que el castillo es muy antiguo.»",
+      "source": "Se dice que el castillo es muy antiguo.",
+      "value": "Het kasteel schijnt heel oud te zijn.",
+      "accepted": [
+        "Het kasteel schijnt heel oud te zijn",
+        "Het kasteel schijnt heel oud te zijn.",
+        "Het kasteel schijnt erg oud te zijn."
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "vermoeden_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Na al die regen moet de grond eigenlijk helemaal doorweekt zijn.",
+      "options": [
+        "Na al die regen moet de grond eigenlijk helemaal doorweekt zijn.",
+        "Ondanks de hevige regen zal de grond verrassend droog blijven.",
+        "Door de lange droogte is de grond inmiddels helemaal uitgedroogd."
+      ],
+      "value": "Na al die regen moet de grond eigenlijk helemaal doorweekt zijn."
+    },
+    {
+      "lesson": 2,
+      "topic": "vermoeden_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Hij beweert van niets te weten, maar de stukken spreken een andere taal."
+    },
+    {
+      "lesson": 3,
+      "topic": "indirect_backshift_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "En el estilo indirecto hay desplazamiento temporal: la principal en pasado exige el pasado en la subordinada. Elige la forma correcta: «Zij verklaarde dat ze van niets ___.»",
+      "options": ["wist", "weet", "zal weten"],
+      "value": "wist"
+    },
+    {
+      "lesson": 3,
+      "topic": "indirect_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al estilo indirecto con desplazamiento temporal (was): «El portavoz dijo que el presidente estaba enfermo.»",
+      "source": "El portavoz dijo que el presidente estaba enfermo.",
+      "value": "De woordvoerder zei dat de president ziek was.",
+      "accepted": [
+        "De woordvoerder zei dat de president ziek was",
+        "De woordvoerder zei dat de president ziek was.",
+        "De woordvoerder verklaarde dat de president ziek was."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "optatief_moge_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce con el modo optativo formal «moge» (que…, ojalá), con el verbo al final: «Que descanse en paz.»",
+      "source": "Que descanse en paz.",
+      "value": "Moge hij in vrede rusten.",
+      "accepted": [
+        "Moge hij in vrede rusten",
+        "Moge hij in vrede rusten.",
+        "Moge zij in vrede rusten",
+        "Moge zij in vrede rusten."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "indirect_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "De woordvoerster verklaarde dat het bedrijf de verwijten grondig had onderzocht.",
+      "options": [
+        "De woordvoerster verklaarde dat het bedrijf de verwijten grondig had onderzocht.",
+        "De woordvoerster ontkende dat het bedrijf de verwijten ooit had onderzocht.",
+        "De woordvoerder gaf toe dat het bedrijf de verwijten voortaan zou onderzoeken."
+      ],
+      "value": "De woordvoerster verklaarde dat het bedrijf de verwijten grondig had onderzocht."
+    },
+    {
+      "lesson": 3,
+      "topic": "optatief_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "In de verklaring staat dat men zich van de verantwoordelijkheid bewust is en alle aanwijzingen zal onderzoeken."
+    },
+    {
+      "lesson": 4,
+      "topic": "alsof_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Tras «alsof» (como si) el neerlandés usa el pasado y el verbo va al final. Elige la frase correcta: «Hij doet ___.»",
+      "options": [
+        "alsof hij alles begrepen had",
+        "alsof had hij alles begrepen",
+        "alsof hij had alles begrepen"
+      ],
+      "value": "alsof hij alles begrepen had"
+    },
+    {
+      "lesson": 4,
+      "topic": "alsof_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa la conjunción de comparación irreal («como si»): «Ze keek me aan, ___ ze me nooit eerder had gezien.»",
+      "text": "Ze keek me aan, ___ ze me nooit eerder had gezien.",
+      "value": "alsof",
+      "accepted": ["alsof"]
+    },
+    {
+      "lesson": 4,
+      "topic": "alsof_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar: «In zijn plaats zou ik anders hebben gereageerd.»",
+      "tiles": ["zou", "In zijn plaats", "gereageerd", "ik", "anders", "hebben", "had"],
+      "sequence": ["In zijn plaats", "zou", "ik", "anders", "hebben", "gereageerd"]
+    },
+    {
+      "lesson": 4,
+      "topic": "alsof_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Hij praatte verder alsof er niets was gebeurd, hoewel iedereen hem aanstaarde.",
+      "options": [
+        "Hij praatte verder alsof er niets was gebeurd, hoewel iedereen hem aanstaarde.",
+        "Zij zweeg halsstarrig alsof alles was opgelost, hoewel niemand tevreden was.",
+        "Hij verontschuldigde zich meteen zodra hij zijn fout had ingezien."
+      ],
+      "value": "Hij praatte verder alsof er niets was gebeurd, hoewel iedereen hem aanstaarde."
+    }
+  ]
+}

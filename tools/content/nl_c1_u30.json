@@ -1,0 +1,247 @@
+{
+  "unit": {
+    "order": 30,
+    "title_es": "Lengua académica y profesional: nominalisatie y estructuras complejas",
+    "color": "#212F3D",
+    "icon": "school"
+  },
+  "checkpoint_desc": "Demuestra que dominas el registro académico-profesional a nivel C1 en neerlandés: usas el estilo nominal y las locuciones fijas (in overweging nemen, ter beschikking stellen), la voz pasiva (worden/zijn, con verbo modal), las oraciones reducidas con participio (gezien, gelet op), las preposiciones cultas (betreffende, met betrekking tot, gelet op) y las fórmulas de un correo formal (Geachte heer of mevrouw, Hoogachtend).",
+  "lessons": [
+    { "order": 1, "title_es": "Estilo nominal y locuciones fijas (in overweging nemen)" },
+    { "order": 2, "title_es": "Voz pasiva (worden/zijn, con verbo modal)" },
+    { "order": 3, "title_es": "Oración reducida con participio y preposiciones cultas" },
+    { "order": 4, "title_es": "Correo formal: fórmulas y preposiciones (betreffende, met betrekking tot)" }
+  ],
+  "vocab": [
+    ["in overweging nemen", "tener en cuenta, considerar", "expr"],
+    ["ter beschikking stellen", "poner a disposición", "expr"],
+    ["ter discussie stellen", "poner en cuestión", "expr"],
+    ["in twijfel trekken", "poner en duda", "expr"],
+    ["de uitvoering", "la ejecución, la realización", "n"],
+    ["de lijdende vorm", "la voz pasiva", "n"],
+    ["aannemen", "aprobar (una ley); suponer", "v"],
+    ["gezien", "visto, en vista de (participio-prep.)", "prep"],
+    ["gelet op", "habida cuenta de, en vista de", "prep"],
+    ["betreffende", "referente a, con respecto a", "prep"],
+    ["met betrekking tot", "en relación con", "prep"],
+    ["overeenkomstig", "conforme a, según", "prep"],
+    ["de aanvraag", "la solicitud, la consulta", "n"],
+    ["hoogachtend", "atentamente (despedida muy formal)", "adv"],
+    ["geacht", "estimado (tratamiento formal)", "adj"],
+    ["het verzoek", "la petición, la solicitud", "n"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "nominaalstijl_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada locución fija con su significado.",
+      "pairs": [
+        ["in overweging nemen", "tener en cuenta, considerar"],
+        ["ter beschikking stellen", "poner a disposición"],
+        ["ter discussie stellen", "poner en cuestión, someter a debate"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "nominaalstijl_overweging_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el sustantivo que forma la locución con «nemen» y significa «considerar»: «We moeten alle alternatieven in ___ nemen.»",
+      "options": ["overweging", "gebruik", "gebreke"],
+      "value": "overweging"
+    },
+    {
+      "lesson": 1,
+      "topic": "nominaalstijl_onderzoek_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Estilo nominal: sustituye el verbo por un sustantivo. Completa con el sustantivo de «onderzoeken» (examinar): «Na grondig ___ van de stukken neemt de commissie een besluit.»",
+      "text": "Na grondig ___ van de stukken neemt de commissie een besluit.",
+      "value": "onderzoek",
+      "accepted": ["onderzoek"]
+    },
+    {
+      "lesson": 1,
+      "topic": "nominaalstijl_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "De uitvoering van het project vereist de instemming van alle betrokkenen.",
+      "options": [
+        "De uitvoering van het project vereist de instemming van alle betrokkenen.",
+        "De uitstel van het project vergt de goedkeuring van het halve personeel.",
+        "De financiering van het plan hangt alleen af van de welwillendheid van het bestuur."
+      ],
+      "value": "De uitvoering van het project vereist de instemming van alle betrokkenen."
+    },
+    {
+      "lesson": 1,
+      "topic": "nominaalstijl_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Het in overweging nemen van alle bezwaren kostte meer tijd dan de eigenlijke besluitvorming."
+    },
+    {
+      "lesson": 2,
+      "topic": "lijdend_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada frase con el tipo de pasiva que ilustra.",
+      "pairs": [
+        ["De wet werd gisteren aangenomen.", "pasiva de proceso (worden)"],
+        ["De rekening is al betaald.", "pasiva de estado (zijn + participio)"],
+        ["Het verzoek moet nog worden onderzocht.", "pasiva con verbo modal"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "lijdend_toestand_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la pasiva de ESTADO (resultado ya alcanzado), no la de proceso: «Geen zorgen, de deur ___ allang op slot.»",
+      "options": ["is", "wordt", "werd"],
+      "value": "is"
+    },
+    {
+      "lesson": 2,
+      "topic": "lijdend_modaal_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce con voz pasiva + verbo modal: «El informe debe ser revisado antes del viernes.»",
+      "source": "El informe debe ser revisado antes del viernes.",
+      "value": "Het rapport moet vóór vrijdag worden gecontroleerd.",
+      "accepted": [
+        "Het rapport moet voor vrijdag worden gecontroleerd",
+        "Het rapport moet voor vrijdag worden gecontroleerd.",
+        "Het rapport moet vóór vrijdag worden gecontroleerd.",
+        "Het rapport moet vóór vrijdag gecontroleerd worden."
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "lijdend_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Over het verzoek zal in de volgende vergadering definitief worden beslist.",
+      "options": [
+        "Over het verzoek zal in de volgende vergadering definitief worden beslist.",
+        "Tegen het besluit is in de vorige vergadering fel geprotesteerd.",
+        "Voor het voorstel heeft in de vergadering van vandaag niemand willen stemmen."
+      ],
+      "value": "Over het verzoek zal in de volgende vergadering definitief worden beslist."
+    },
+    {
+      "lesson": 2,
+      "topic": "lijdend_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Alle stukken zijn gecontroleerd en worden u zo spoedig mogelijk ter beschikking gesteld."
+    },
+    {
+      "lesson": 3,
+      "topic": "beknopt_gezien_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "En la oración reducida con participio, «gezien» funciona como preposición (en vista de). Elige la forma correcta: «___ de omstandigheden was uitstel onvermijdelijk.»",
+      "options": ["Gezien", "Ziende", "Gezien dat"],
+      "value": "Gezien"
+    },
+    {
+      "lesson": 3,
+      "topic": "beknopt_geletop_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con la locución preposicional culta «habida cuenta de / en vista de» (dos palabras), en primera posición: «___ ___ de hoge kosten is nader overleg noodzakelijk.»",
+      "text": "___ ___ de hoge kosten is nader overleg noodzakelijk.",
+      "value": "Gelet op",
+      "accepted": ["Gelet op", "gelet op"]
+    },
+    {
+      "lesson": 3,
+      "topic": "beknopt_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce con el participio atributivo formal (De door … aangenomen wet …): «La ley aprobada por el parlamento entra en vigor mañana.»",
+      "source": "La ley aprobada por el parlamento entra en vigor mañana.",
+      "value": "De door het parlement aangenomen wet treedt morgen in werking.",
+      "accepted": [
+        "De door het parlement aangenomen wet treedt morgen in werking",
+        "De door het parlement aangenomen wet treedt morgen in werking.",
+        "De door het parlement aangenomen wet treedt morgen in werking ."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "beknopt_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "De in het laatste kwartaal behaalde resultaten overtroffen alle verwachtingen van de analisten.",
+      "options": [
+        "De in het laatste kwartaal behaalde resultaten overtroffen alle verwachtingen van de analisten.",
+        "De in het volgende kwartaal verwachte verliezen verontrustten alle aandeelhouders.",
+        "De een jaar geleden gemaakte aannames bleken volledig ongegrond."
+      ],
+      "value": "De in het laatste kwartaal behaalde resultaten overtroffen alle verwachtingen van de analisten."
+    },
+    {
+      "lesson": 3,
+      "topic": "beknopt_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "De door de commissie voorgestelde en door het parlement goedgekeurde wijzigingen treden in januari in werking."
+    },
+    {
+      "lesson": 4,
+      "topic": "email_aanhef_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "En un correo formal a un destinatario desconocido, ¿qué encabezamiento es correcto?",
+      "options": [
+        "Geachte heer of mevrouw,",
+        "Hoi allemaal,",
+        "Beste jongens,"
+      ],
+      "value": "Geachte heer of mevrouw,"
+    },
+    {
+      "lesson": 4,
+      "topic": "email_betreffende_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con la preposición culta «referente a», en primera posición: «___ uw aanvraag van 3 mei delen wij u het volgende mee.»",
+      "text": "___ uw aanvraag van 3 mei delen wij u het volgende mee.",
+      "value": "Betreffende",
+      "accepted": ["Betreffende", "betreffende"]
+    },
+    {
+      "lesson": 4,
+      "topic": "email_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar (fórmula de cortesía): «Voor uw moeite dank ik u bij voorbaat.»",
+      "tiles": ["dank", "Voor uw moeite", "bij voorbaat", "ik", "u", "bedank", "achteraf"],
+      "sequence": ["Voor uw moeite", "dank", "ik", "u", "bij voorbaat"]
+    },
+    {
+      "lesson": 4,
+      "topic": "email_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Met betrekking tot de aanstaande toetsing verzoeken wij u om de volledige stukken.",
+      "options": [
+        "Met betrekking tot de aanstaande toetsing verzoeken wij u om de volledige stukken.",
+        "Gezien de afgelegde toetsing danken wij u voor het geleverde werk.",
+        "Ondanks de uitgestelde vergadering sturen wij u de ontbrekende formulieren toe."
+      ],
+      "value": "Met betrekking tot de aanstaande toetsing verzoeken wij u om de volledige stukken."
+    }
+  ]
+}

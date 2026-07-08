@@ -1,0 +1,246 @@
+{
+  "unit": {
+    "order": 27,
+    "title_es": "Énfasis y focalización: partículas y orden de palabras",
+    "color": "#117A65",
+    "icon": "campaign"
+  },
+  "checkpoint_desc": "Demuestra que enfatizas a nivel C1 en neerlandés: usas partículas modales (toch, wel, nou) para dar tono, partículas de foco (zelfs, juist, uitgerekend) para resaltar, oraciones escindidas «Het was X die/dat …» (con la relativa correcta según de-/het-woord), la anteposición al principio de la oración con V2 y negaciones enfáticas (geenszins, wel degelijk).",
+  "lessons": [
+    { "order": 1, "title_es": "Partículas modales: toch, wel, nou" },
+    { "order": 2, "title_es": "Partículas de foco: zelfs, juist, uitgerekend" },
+    { "order": 3, "title_es": "Focalización: oración escindida y negación enfática" },
+    { "order": 4, "title_es": "Anteposición (V2) para dar relieve" }
+  ],
+  "vocab": [
+    ["toch", "partícula: contradice o recuerda algo sabido", "part"],
+    ["wel", "partícula: afirma frente a una negación", "part"],
+    ["nou", "partícula: pues, vaya (tono)", "part"],
+    ["zelfs", "incluso", "part"],
+    ["juist", "precisamente, justo", "part"],
+    ["uitgerekend", "precisamente ese, justo ese (con fastidio)", "part"],
+    ["geenszins", "de ningún modo, en absoluto", "adv"],
+    ["wel degelijk", "sí que, ciertamente (enfático)", "expr"],
+    ["benadrukken", "enfatizar, subrayar", "v"],
+    ["de nadruk", "el énfasis, el acento", "n"],
+    ["vooropplaatsen", "anteponer (al inicio)", "v"],
+    ["de tangconstructie", "la construcción de paréntesis verbal", "n"],
+    ["opvallen", "llamar la atención, destacar", "v"],
+    ["ongetwijfeld", "sin duda", "adv"],
+    ["treffend", "acertado, certero", "adj"],
+    ["de klemtoon", "el acento (de intensidad)", "n"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "modaalpartikel_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada partícula modal con el tono que aporta.",
+      "pairs": [
+        ["toch", "recuerda o contradice algo que el otro debería saber"],
+        ["wel", "afirma con énfasis frente a una negación"],
+        ["nou", "expresa reacción o énfasis: pues, vaya"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "modaalpartikel_toch_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la partícula que recuerda al interlocutor algo que ya sabe: «Je kent hem ___! Jullie hebben samen gestudeerd.»",
+      "options": ["toch", "maar", "soms"],
+      "value": "toch"
+    },
+    {
+      "lesson": 1,
+      "topic": "modaalpartikel_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando la partícula modal «toch» para animar/insistir amablemente: «¡Anda, ven con nosotros!»",
+      "source": "¡Anda, ven con nosotros!",
+      "value": "Kom toch met ons mee!",
+      "accepted": [
+        "Kom toch met ons mee",
+        "Kom toch met ons mee!",
+        "Kom toch met ons mee!."
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "modaalpartikel_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Dat heb je nu eenmaal niet bedacht, anders was het anders gelopen.",
+      "options": [
+        "Dat heb je nu eenmaal niet bedacht, anders was het anders gelopen.",
+        "Dat had je bijna niet gered, anders was alles goed gegaan.",
+        "Dat wist ik toen nog niet, anders had ik je gewaarschuwd."
+      ],
+      "value": "Dat heb je nu eenmaal niet bedacht, anders was het anders gelopen."
+    },
+    {
+      "lesson": 1,
+      "topic": "modaalpartikel_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Dat zal wel kloppen, ook al zou ik het op jouw plaats nog eens controleren."
+    },
+    {
+      "lesson": 2,
+      "topic": "focuspartikel_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada partícula de foco con su significado.",
+      "pairs": [
+        ["zelfs", "incluso (más de lo esperado)"],
+        ["uitgerekend", "precisamente ese, justo ese (con fastidio)"],
+        ["juist", "precisamente, exactamente"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "focuspartikel_zelfs_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la partícula que resalta algo sorprendente por exceso: «Hij is geslaagd voor het examen, ___ met de hoogste score.»",
+      "options": ["zelfs", "pas", "amper"],
+      "value": "zelfs"
+    },
+    {
+      "lesson": 2,
+      "topic": "focuspartikel_uitgerekend_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con la partícula que expresa «justo/precisamente ese, con fastidio», en primera posición: «___ op de dag van het examen werd hij ziek.»",
+      "text": "___ op de dag van het examen werd hij ziek.",
+      "value": "Uitgerekend",
+      "accepted": ["Uitgerekend", "uitgerekend"]
+    },
+    {
+      "lesson": 2,
+      "topic": "focuspartikel_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Zelfs de scherpste critici moesten de prestatie uiteindelijk erkennen.",
+      "options": [
+        "Zelfs de scherpste critici moesten de prestatie uiteindelijk erkennen.",
+        "Zelfs de trouwste aanhangers begonnen de prestatie langzaam te betwijfelen.",
+        "Niet eens de welwillende waarnemers wilden de prestatie waarderen."
+      ],
+      "value": "Zelfs de scherpste critici moesten de prestatie uiteindelijk erkennen."
+    },
+    {
+      "lesson": 2,
+      "topic": "focuspartikel_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Uitgerekend de stilste collega had aan het eind het overtuigendste argument."
+    },
+    {
+      "lesson": 3,
+      "topic": "nadruk_geenszins_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el adverbio de negación enfática «de ningún modo»: «Het resultaat is ___ toevallig, maar het gevolg van jarenlang werk.»",
+      "text": "Het resultaat is ___ toevallig, maar het gevolg van jarenlang werk.",
+      "value": "geenszins",
+      "accepted": ["geenszins"]
+    },
+    {
+      "lesson": 3,
+      "topic": "nadruk_cleft_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "En la oración escindida, el pronombre relativo depende de si es de-woord o het-woord. «geduld» es het-woord. Elige la forma correcta: «Het was zijn geduld ___ iedereen verraste.»",
+      "options": ["dat", "die", "wat"],
+      "value": "dat"
+    },
+    {
+      "lesson": 3,
+      "topic": "nadruk_cleft_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce con una oración escindida «Het was … die …» (de-woord «directeur»): «Fue el director quien tomó la decisión.»",
+      "source": "Fue el director quien tomó la decisión.",
+      "value": "Het was de directeur die de beslissing nam.",
+      "accepted": [
+        "Het was de directeur die de beslissing nam",
+        "Het was de directeur die de beslissing nam.",
+        "Het was de directeur die het besluit nam."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "nadruk_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Het was niet het geld dat hem prikkelde, maar de uitdaging zelf.",
+      "options": [
+        "Het was niet het geld dat hem prikkelde, maar de uitdaging zelf.",
+        "Het was niet de roem die haar lokte, maar het vooruitzicht op rust.",
+        "Het was minder de taak die hem afschrikte dan de krappe deadline."
+      ],
+      "value": "Het was niet het geld dat hem prikkelde, maar de uitdaging zelf."
+    },
+    {
+      "lesson": 3,
+      "topic": "nadruk_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Niet de theorie was het probleem, maar de uitvoering ervan in de praktijk."
+    },
+    {
+      "lesson": 4,
+      "topic": "vooropplaatsing_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Al anteponer el objeto al inicio de la oración, el verbo conjugado queda en segunda posición (V2). Elige la frase correcta:",
+      "options": [
+        "Deze fout zou niemand hebben opgemerkt.",
+        "Deze fout niemand zou hebben opgemerkt.",
+        "Deze fout hebben zou niemand opgemerkt."
+      ],
+      "value": "Deze fout zou niemand hebben opgemerkt."
+    },
+    {
+      "lesson": 4,
+      "topic": "vooropplaatsing_weldegelijk_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con la fórmula enfática de dos palabras que contradice («sí que»): «Men beweert dat hij van niets weet, maar hij heeft het ___ ___ gemerkt.»",
+      "text": "Men beweert dat hij van niets weet, maar hij heeft het ___ ___ gemerkt.",
+      "value": "wel degelijk",
+      "accepted": ["wel degelijk"]
+    },
+    {
+      "lesson": 4,
+      "topic": "vooropplaatsing_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar (objeto antepuesto): «Van dit voorstel houd ik niet veel.»",
+      "tiles": ["houd", "Van dit", "veel", "ik", "voorstel", "niet", "weinig"],
+      "sequence": ["Van dit", "voorstel", "houd", "ik", "niet", "veel"]
+    },
+    {
+      "lesson": 4,
+      "topic": "vooropplaatsing_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Op dit bericht had het hele personeel al weken gewacht.",
+      "options": [
+        "Op dit bericht had het hele personeel al weken gewacht.",
+        "Over dit nieuws had de halve afdeling zich dagenlang geërgerd.",
+        "Op dit besluit was in het bedrijf allang niemand meer gespannen."
+      ],
+      "value": "Op dit bericht had het hele personeel al weken gewacht."
+    }
+  ]
+}

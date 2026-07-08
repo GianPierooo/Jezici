@@ -1,0 +1,244 @@
+{
+  "unit": {
+    "order": 25,
+    "title_es": "Precisión y matiz léxico: het juiste woord",
+    "color": "#6C3483",
+    "icon": "auto_stories"
+  },
+  "checkpoint_desc": "Demuestra que eliges la palabra precisa a nivel C1 en neerlandés: distingues sinónimos finos y su connotación (bekijken/staren/gluren/turen, wonen/leven), dominas las colocaciones (een besluit nemen, kritiek uiten, maatregelen treffen), adaptas el registro (formeel/informeel: wagen/auto/kar, dineren/eten) y evitas errores de precisión (kennen vs weten, liggen vs leggen).",
+  "lessons": [
+    { "order": 1, "title_es": "Sinónimos finos y su matiz (bekijken, staren, gluren…)" },
+    { "order": 2, "title_es": "Colocaciones (een besluit nemen, kritiek uiten, maatregelen treffen)" },
+    { "order": 3, "title_es": "Registros: formeel, neutraal, informeel" },
+    { "order": 4, "title_es": "Precisión: kennen/weten, liggen/leggen" }
+  ],
+  "vocab": [
+    ["bekijken", "mirar con detenimiento, examinar", "v"],
+    ["staren", "mirar fijamente", "v"],
+    ["gluren", "mirar a hurtadillas, espiar", "v"],
+    ["turen", "mirar entornando los ojos", "v"],
+    ["aanschouwen", "contemplar (registro elevado)", "v"],
+    ["een besluit nemen", "tomar una decisión", "expr"],
+    ["kritiek uiten", "expresar/hacer crítica", "expr"],
+    ["maatregelen treffen", "tomar medidas", "expr"],
+    ["de wagen", "el coche (registro elevado)", "n"],
+    ["de kar", "el coche (coloquial)", "n"],
+    ["dineren", "cenar (formal)", "v"],
+    ["formeel", "formal (registro)", "adj"],
+    ["informeel", "informal (registro)", "adj"],
+    ["de connotatie", "la connotación", "n"],
+    ["de nuance", "el matiz", "n"],
+    ["treffend", "acertado, certero", "adj"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "synoniemen_kijken_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada verbo con el matiz que aporta. Fíjate en la connotación.",
+      "pairs": [
+        ["staren", "mirar fijamente y de forma descortés"],
+        ["gluren", "mirar a hurtadillas, a escondidas"],
+        ["turen", "mirar entornando los ojos, con esfuerzo"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "synoniemen_aanschouwen_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el verbo culto que expresa contemplar con calma algo bello: «Ze bleven staan om de zonsondergang in alle rust te ___.»",
+      "options": ["aanschouwen", "bespeuren", "opmerken"],
+      "value": "aanschouwen"
+    },
+    {
+      "lesson": 1,
+      "topic": "synoniemen_wonen_leven_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Distingue «wonen» (residir en un sitio) de «leven» (vivir, existir). Aquí se habla del lugar de residencia: «Sinds drie jaar ___ hij in een klein appartement aan de rand van de stad.»",
+      "text": "Sinds drie jaar ___ hij in een klein appartement aan de rand van de stad.",
+      "value": "woont",
+      "accepted": ["woont"]
+    },
+    {
+      "lesson": 1,
+      "topic": "synoniemen_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Ik waardeer zijn eerlijkheid, ook al deel ik zijn mening niet.",
+      "options": [
+        "Ik waardeer zijn eerlijkheid, ook al deel ik zijn mening niet.",
+        "Ik betwijfel zijn oprechtheid, omdat hij zijn mening steeds verandert.",
+        "Ik bewonder zijn eerzucht, hoewel hij zijn plannen zelden verraadt."
+      ],
+      "value": "Ik waardeer zijn eerlijkheid, ook al deel ik zijn mening niet."
+    },
+    {
+      "lesson": 1,
+      "topic": "synoniemen_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Je kunt een schilderij vluchtig bekijken, maar het aanschouwen vergt tijd en aandacht."
+    },
+    {
+      "lesson": 2,
+      "topic": "collocaties_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada sustantivo con el verbo con el que forma la colocación fija correcta.",
+      "pairs": [
+        ["een besluit", "nemen"],
+        ["kritiek", "uiten"],
+        ["maatregelen", "treffen"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "collocaties_besluit_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el verbo que forma la colocación correcta con «een besluit» (no se calca del español «hacer/tomar»): «De raad moet vóór vrijdag een besluit ___.»",
+      "options": ["nemen", "maken", "doen"],
+      "value": "nemen"
+    },
+    {
+      "lesson": 2,
+      "topic": "collocaties_maatregelen_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando la colocación «maatregelen treffen» (tomar medidas): «El gobierno tomó medidas drásticas.»",
+      "source": "El gobierno tomó medidas drásticas.",
+      "value": "De regering trof drastische maatregelen.",
+      "accepted": [
+        "De regering trof drastische maatregelen",
+        "De regering trof drastische maatregelen.",
+        "De regering heeft drastische maatregelen getroffen.",
+        "De regering heeft drastische maatregelen getroffen"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "collocaties_kritiek_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Op dit voorstel werd van meerdere kanten scherpe kritiek geuit.",
+      "options": [
+        "Op dit voorstel werd van meerdere kanten scherpe kritiek geuit.",
+        "Voor dit voorstel werd van alle kanten grote lof uitgesproken.",
+        "Tegen dit besluit heeft tot nu toe niemand ernstig bezwaar gemaakt."
+      ],
+      "value": "Op dit voorstel werd van meerdere kanten scherpe kritiek geuit."
+    },
+    {
+      "lesson": 2,
+      "topic": "collocaties_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Voordat we een besluit nemen, moeten we elk argument zorgvuldig afwegen."
+    },
+    {
+      "lesson": 3,
+      "topic": "register_dineren_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "En un contexto elegante se usa el registro formal para «cenar». Completa con el verbo culto (infinitivo): «De gasten ___ vanavond in de grote zaal.» (pista: no es «eten»)",
+      "text": "De gasten ___ vanavond in de grote zaal.",
+      "value": "dineren",
+      "accepted": ["dineren"]
+    },
+    {
+      "lesson": 3,
+      "topic": "register_kar_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Entre amigos, ¿qué palabra pertenece al registro coloquial para «coche»? «Stap in, mijn oude ___ start meteen.»",
+      "options": ["kar", "limousine", "koets"],
+      "value": "kar"
+    },
+    {
+      "lesson": 3,
+      "topic": "register_formeel_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al registro formal usando «de wagen» (coche, culto) y «aanschaffen» (adquirir): «Se compró un coche nuevo.»",
+      "source": "Se compró un coche nuevo.",
+      "value": "Hij schafte een nieuwe wagen aan.",
+      "accepted": [
+        "Hij schafte een nieuwe wagen aan",
+        "Hij schafte een nieuwe wagen aan.",
+        "Hij heeft een nieuwe wagen aangeschaft.",
+        "Hij heeft een nieuwe wagen aangeschaft"
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "register_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Hij heeft zijn kar zomaar voor mijn oprit neergezet.",
+      "options": [
+        "Hij heeft zijn kar zomaar voor mijn oprit neergezet.",
+        "Zij heeft haar fiets netjes achter het huis gestald.",
+        "Wij hebben de wagen gisteren uit de garage opgehaald."
+      ],
+      "value": "Hij heeft zijn kar zomaar voor mijn oprit neergezet."
+    },
+    {
+      "lesson": 3,
+      "topic": "register_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Afhankelijk van de situatie zeg je «voertuig» in een rapport, «auto» in het dagelijks leven en «kar» onder vrienden."
+    },
+    {
+      "lesson": 4,
+      "topic": "precisie_kennen_weten_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Distingue «kennen» (estar familiarizado con algo/alguien) de «weten» (saber un hecho). Elige la forma correcta: «Ik ___ die stad goed, maar ik ___ niet wanneer het museum opengaat.»",
+      "options": ["ken … weet", "weet … ken", "ken … ken"],
+      "value": "ken … weet"
+    },
+    {
+      "lesson": 4,
+      "topic": "precisie_liggen_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Distingue «liggen» (estar situado/yacer) de «leggen» (colocar). Aquí se indica ubicación: «Het dorp ___ aan de oever van een brede rivier.»",
+      "text": "Het dorp ___ aan de oever van een brede rivier.",
+      "value": "ligt",
+      "accepted": ["ligt"]
+    },
+    {
+      "lesson": 4,
+      "topic": "precisie_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar: «Ik waardeer in haar vooral de eerlijke manier van doen.»",
+      "tiles": ["waardeer", "Ik", "in haar", "de eerlijke", "vooral", "manier van doen", "mag"],
+      "sequence": ["Ik", "waardeer", "in haar", "vooral", "de eerlijke", "manier van doen"]
+    },
+    {
+      "lesson": 4,
+      "topic": "precisie_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Zijn succes was maar schijnbaar moeiteloos; erachter gingen jaren van hard werk schuil.",
+      "options": [
+        "Zijn succes was maar schijnbaar moeiteloos; erachter gingen jaren van hard werk schuil.",
+        "Haar opgang was in werkelijkheid moeizaam, maar niemand nam er notitie van.",
+        "Zijn mislukking was uiteindelijk voorspelbaar, omdat hij nauwelijks inzet toonde."
+      ],
+      "value": "Zijn succes was maar schijnbaar moeiteloos; erachter gingen jaren van hard werk schuil."
+    }
+  ]
+}

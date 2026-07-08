@@ -1,0 +1,243 @@
+{
+  "unit": {
+    "order": 28,
+    "title_es": "Modismos y registro: idiomático, formeel e informeel",
+    "color": "#B9770E",
+    "icon": "sms"
+  },
+  "checkpoint_desc": "Demuestra que dominas la fraseología a nivel C1 en neerlandés: entiendes y usas modismos (de spijker op zijn kop slaan, een kat in de zak kopen, iemand aan de tand voelen, de handdoek in de ring gooien), reconoces su sentido figurado y ajustas el registro entre lo formal (overlijden, vermogen) y lo coloquial (centen, poen), sin tomar los modismos al pie de la letra.",
+  "lessons": [
+    { "order": 1, "title_es": "Modismos frecuentes y su sentido (I)" },
+    { "order": 2, "title_es": "Modismos frecuentes y su sentido (II)" },
+    { "order": 3, "title_es": "Registro: formeel frente a neutraal" },
+    { "order": 4, "title_es": "Registro coloquial y modismos en contexto" }
+  ],
+  "vocab": [
+    ["de spijker op zijn kop slaan", "dar en el clavo", "expr"],
+    ["een kat in de zak kopen", "comprar a ciegas, gato por liebre", "expr"],
+    ["iemand aan de tand voelen", "sondear a alguien", "expr"],
+    ["de handdoek in de ring gooien", "tirar la toalla", "expr"],
+    ["ergens omheen draaien", "andarse con rodeos, irse por las ramas", "expr"],
+    ["uit de school klappen", "contar secretos, irse de la lengua", "expr"],
+    ["ergens geen kaas van gegeten hebben", "no tener ni idea de algo", "expr"],
+    ["overlijden", "fallecer (formal)", "v"],
+    ["het vermogen", "el patrimonio, la fortuna (formal)", "n"],
+    ["de centen", "la pasta, el dinero (coloquial)", "n"],
+    ["schransen", "zampar, comer con ansia (coloquial)", "v"],
+    ["de uitdrukking", "el modismo, la expresión", "n"],
+    ["letterlijk", "literal", "adj"],
+    ["figuurlijk", "figurado", "adj"],
+    ["treffend", "acertado, certero", "adj"],
+    ["de blunder", "la metedura de pata", "n"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "idiomen_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada modismo con su significado (sentido figurado).",
+      "pairs": [
+        ["de spijker op zijn kop slaan", "acertar de pleno, dar en el clavo"],
+        ["ergens omheen draaien", "no ir al grano, andarse con rodeos"],
+        ["de handdoek in de ring gooien", "rendirse, tirar la toalla"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "idiomen_spijker_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el modismo que significa «acertar exactamente»: «Met deze analyse heb je de ___ op zijn kop geslagen.»",
+      "options": ["spijker", "hamer", "duim"],
+      "value": "spijker"
+    },
+    {
+      "lesson": 1,
+      "topic": "idiomen_kat_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa el modismo que significa «comprar sin comprobar» (cuatro palabras): «Ik teken niets ongezien — ik koop toch geen ___ ___ ___ ___.»",
+      "text": "Ik teken niets ongezien — ik koop toch geen ___ ___ ___ ___.",
+      "value": "kat in de zak",
+      "accepted": ["kat in de zak"]
+    },
+    {
+      "lesson": 1,
+      "topic": "idiomen_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "In plaats van duidelijk te antwoorden, draait hij er voortdurend omheen.",
+      "options": [
+        "In plaats van duidelijk te antwoorden, draait hij er voortdurend omheen.",
+        "In plaats van lang te aarzelen, komt zij meestal meteen ter zake.",
+        "Voordat hij iets belooft, denkt hij er altijd heel goed over na."
+      ],
+      "value": "In plaats van duidelijk te antwoorden, draait hij er voortdurend omheen."
+    },
+    {
+      "lesson": 1,
+      "topic": "idiomen_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Geef nu vooral niet op; wie de handdoek in de ring gooit, heeft al verloren."
+    },
+    {
+      "lesson": 2,
+      "topic": "idiomen2_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada modismo con su significado.",
+      "pairs": [
+        ["iemand aan de tand voelen", "sondear a alguien, ponerlo a prueba"],
+        ["uit de school klappen", "contar secretos, irse de la lengua"],
+        ["ergens geen kaas van gegeten hebben", "no tener ni idea de algo"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "idiomen2_tand_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el modismo que significa «sondear, interrogar a fondo»: «De commissie voelde de kandidaat stevig aan de ___.»",
+      "options": ["tand", "pols", "mouw"],
+      "value": "tand"
+    },
+    {
+      "lesson": 2,
+      "topic": "idiomen2_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando el modismo «iemand aan de tand voelen» (sondear a alguien): «El periodista sondeó al ministro.»",
+      "source": "El periodista sondeó al ministro.",
+      "value": "De journalist voelde de minister aan de tand.",
+      "accepted": [
+        "De journalist voelde de minister aan de tand",
+        "De journalist voelde de minister aan de tand.",
+        "De journalist heeft de minister aan de tand gevoeld.",
+        "De journalist heeft de minister aan de tand gevoeld"
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "idiomen2_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Van boekhouden heeft hij eerlijk gezegd geen kaas gegeten.",
+      "options": [
+        "Van boekhouden heeft hij eerlijk gezegd geen kaas gegeten.",
+        "Van koken heeft zij naar eigen zeggen juist veel verstand.",
+        "Over de begroting heeft hij zich verrassend goed geïnformeerd."
+      ],
+      "value": "Van boekhouden heeft hij eerlijk gezegd geen kaas gegeten."
+    },
+    {
+      "lesson": 2,
+      "topic": "idiomen2_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Ze klapt graag uit de school, maar vandaag hield ze zich opvallend op de vlakte."
+    },
+    {
+      "lesson": 3,
+      "topic": "register_overlijden_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "En una necrológica se usa el verbo formal para «morir». Completa (pretérito): «De dichter ___ op tachtigjarige leeftijd in zijn geboortestad.» (pista: no es «stierf»)",
+      "text": "De dichter ___ op tachtigjarige leeftijd in zijn geboortestad.",
+      "value": "overleed",
+      "accepted": ["overleed"]
+    },
+    {
+      "lesson": 3,
+      "topic": "register_vermogen_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "En un texto formal, ¿qué palabra designa «la fortuna/el patrimonio» (registro culto)? «Zij beheert een aanzienlijk ___.»",
+      "options": ["vermogen", "poen", "kleingeld"],
+      "value": "vermogen"
+    },
+    {
+      "lesson": 3,
+      "topic": "register_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce al registro formal usando «zich haasten» (darse prisa): «Debemos darnos prisa para no perder el tren.»",
+      "source": "Debemos darnos prisa para no perder el tren.",
+      "value": "We moeten ons haasten om de trein niet te missen.",
+      "accepted": [
+        "We moeten ons haasten om de trein niet te missen",
+        "We moeten ons haasten om de trein niet te missen.",
+        "Wij moeten ons haasten om de trein niet te missen."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "register_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Na een kort maar zwaar ziekbed is hij gisteren rustig overleden.",
+      "options": [
+        "Na een kort maar zwaar ziekbed is hij gisteren rustig overleden.",
+        "Na een lang en gelukkig herstel is zij gisteren naar huis gekomen.",
+        "Ondanks een zwaar ziekbed is hij volledig hersteld."
+      ],
+      "value": "Na een kort maar zwaar ziekbed is hij gisteren rustig overleden."
+    },
+    {
+      "lesson": 3,
+      "topic": "register_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "In een rouwbericht heet het «overleden», in het dagelijks leven «gestorven» en plat «het loodje gelegd»."
+    },
+    {
+      "lesson": 4,
+      "topic": "informeel_centen_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Entre amigos, ¿qué palabra coloquial designa «el dinero»? «Voor die oude wagen heb ik uiteindelijk veel ___ neergeteld.»",
+      "options": ["centen", "aandelen", "wisselgeld"],
+      "value": "centen"
+    },
+    {
+      "lesson": 4,
+      "topic": "informeel_handdoek_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa el modismo «rendirse» (cuatro palabras): «Na de eerste tegenslag mag je niet meteen de ___ ___ ___ ___ gooien.»",
+      "text": "Na de eerste tegenslag mag je niet meteen de ___ ___ ___ ___ gooien.",
+      "value": "handdoek in de ring",
+      "accepted": ["handdoek in de ring"]
+    },
+    {
+      "lesson": 4,
+      "topic": "informeel_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar: «Hij heeft met dit antwoord de spijker op zijn kop geslagen.»",
+      "tiles": ["de spijker", "geslagen", "Hij heeft", "op zijn kop", "met dit antwoord", "hamer", "geraakt"],
+      "sequence": ["Hij heeft", "met dit antwoord", "de spijker", "op zijn kop", "geslagen"]
+    },
+    {
+      "lesson": 4,
+      "topic": "informeel_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Van dat ingewikkelde contract heeft zij echt geen kaas gegeten.",
+      "options": [
+        "Van dat ingewikkelde contract heeft zij echt geen kaas gegeten.",
+        "Van die eenvoudige opdracht heeft hij juist veel verstand.",
+        "Over dat lastige dossier heeft zij zich grondig laten informeren."
+      ],
+      "value": "Van dat ingewikkelde contract heeft zij echt geen kaas gegeten."
+    }
+  ]
+}

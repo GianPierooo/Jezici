@@ -1,0 +1,242 @@
+{
+  "unit": {
+    "order": 26,
+    "title_es": "Argumentar y persuadir: conectores del discurso",
+    "color": "#1F618D",
+    "icon": "forum"
+  },
+  "checkpoint_desc": "Demuestra que argumentas a nivel C1 en neerlandés: usas conectores concesivos (niettemin, desalniettemin, nochtans), causales (aangezien, immers, temeer daar), consecutivos (bijgevolg, derhalve), la preposición «niettegenstaande» + segundo caso y estructuras de contraste (weliswaar … maar, laat staan), respetando la V2 tras el conector en primera posición.",
+  "lessons": [
+    { "order": 1, "title_es": "Concesivos: niettemin, desalniettemin, nochtans" },
+    { "order": 2, "title_es": "Causales y de refuerzo: aangezien, immers, temeer daar" },
+    { "order": 3, "title_es": "Consecutivos y contraste: bijgevolg, derhalve, evenwel" },
+    { "order": 4, "title_es": "Estructuras: niettegenstaande, weliswaar … maar, laat staan" }
+  ],
+  "vocab": [
+    ["niettemin", "no obstante, sin embargo", "adv"],
+    ["desalniettemin", "a pesar de todo, aun así", "adv"],
+    ["nochtans", "no obstante (formal/literario)", "adv"],
+    ["aangezien", "dado que, puesto que", "conj"],
+    ["immers", "pues, ya que (aporta una razón)", "adv"],
+    ["temeer daar", "tanto más cuanto que", "conj"],
+    ["bijgevolg", "por consiguiente", "adv"],
+    ["derhalve", "por tanto (formal)", "adv"],
+    ["evenwel", "sin embargo (formal)", "adv"],
+    ["niettegenstaande", "a pesar de (+ segundo caso)", "prep"],
+    ["laat staan", "y mucho menos, ni hablar de", "expr"],
+    ["weliswaar", "es cierto que, ciertamente (… maar)", "adv"],
+    ["het bezwaar", "la objeción, el inconveniente", "n"],
+    ["de gevolgtrekking", "la conclusión (deducción)", "n"],
+    ["steekhoudend", "convincente, sólido (argumento)", "adj"],
+    ["toegeven", "admitir, conceder", "v"]
+  ],
+  "items": [
+    {
+      "lesson": 1,
+      "topic": "concessief_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada conector con su función argumentativa.",
+      "pairs": [
+        ["niettemin", "aun así, a pesar de lo dicho (concesivo)"],
+        ["bijgevolg", "por consiguiente (consecutivo)"],
+        ["aangezien", "dado que, puesto que (causal)"]
+      ]
+    },
+    {
+      "lesson": 1,
+      "topic": "concessief_niettemin_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el conector concesivo que enlaza dos ideas opuestas: «De kritiek was fel; ___ hield ze vast aan haar plan.»",
+      "options": ["niettemin", "daarom", "mits"],
+      "value": "niettemin"
+    },
+    {
+      "lesson": 1,
+      "topic": "concessief_desalniettemin_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el conector concesivo enfático «a pesar de todo», en primera posición (recuerda la V2): «De inspanning was enorm; ___ heeft het project zich uiteindelijk uitbetaald.»",
+      "text": "De inspanning was enorm; ___ heeft het project zich uiteindelijk uitbetaald.",
+      "value": "desalniettemin",
+      "accepted": ["desalniettemin"]
+    },
+    {
+      "lesson": 1,
+      "topic": "concessief_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Alle bezwaren waren terecht; nochtans werd het voorstel aangenomen.",
+      "options": [
+        "Alle bezwaren waren terecht; nochtans werd het voorstel aangenomen.",
+        "Alle voorstellen waren omstreden, waardoor de stemming werd uitgesteld.",
+        "Nauwelijks iemand had bedenkingen, dus werd het voorstel unaniem verworpen."
+      ],
+      "value": "Alle bezwaren waren terecht; nochtans werd het voorstel aangenomen."
+    },
+    {
+      "lesson": 1,
+      "topic": "concessief_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Je moet toegeven dat het bezwaar terecht is; niettemin overtuigt het tegenargument niet."
+    },
+    {
+      "lesson": 2,
+      "topic": "causaal_match",
+      "skill": "reading",
+      "type": "match",
+      "prompt": "Relaciona cada conector con el matiz que introduce.",
+      "pairs": [
+        ["aangezien", "dado que, puesto que (causa)"],
+        ["immers", "pues, después de todo (aporta la razón)"],
+        ["temeer daar", "tanto más cuanto que"]
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "causaal_aangezien_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige la conjunción causal (el verbo va al final): «We moeten vroeg vertrekken, ___ het ochtendverkeer onvoorspelbaar is.»",
+      "options": ["aangezien", "hoewel", "zodat"],
+      "value": "aangezien"
+    },
+    {
+      "lesson": 2,
+      "topic": "causaal_immers_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando el adverbio «immers» (pues, después de todo) en posición interna: «No podía negarse; después de todo, había dado su palabra.»",
+      "source": "No podía negarse; después de todo, había dado su palabra.",
+      "value": "Hij kon niet weigeren; hij had immers zijn woord gegeven.",
+      "accepted": [
+        "Hij kon niet weigeren; hij had immers zijn woord gegeven",
+        "Hij kon niet weigeren; hij had immers zijn woord gegeven.",
+        "Hij kon niet weigeren, hij had immers zijn woord gegeven."
+      ]
+    },
+    {
+      "lesson": 2,
+      "topic": "causaal_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Het bewijs is steekhoudend, temeer daar het door meerdere getuigen wordt bevestigd.",
+      "options": [
+        "Het bewijs is steekhoudend, temeer daar het door meerdere getuigen wordt bevestigd.",
+        "De verdenking is ongegrond, hoewel nauwelijks een getuige haar kan ontkrachten.",
+        "De verklaring is tegenstrijdig, waardoor geen rechter haar zou erkennen."
+      ],
+      "value": "Het bewijs is steekhoudend, temeer daar het door meerdere getuigen wordt bevestigd."
+    },
+    {
+      "lesson": 2,
+      "topic": "causaal_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "Het argument is steekhoudend, aangezien het op betrouwbare cijfers berust."
+    },
+    {
+      "lesson": 3,
+      "topic": "consecutief_derhalve_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa con el conector consecutivo formal (sinónimo culto de «dus»), en primera posición: «De premisse is onjuist; ___ kan ook de gevolgtrekking niet kloppen.»",
+      "text": "De premisse is onjuist; ___ kan ook de gevolgtrekking niet kloppen.",
+      "value": "derhalve",
+      "accepted": ["derhalve"]
+    },
+    {
+      "lesson": 3,
+      "topic": "consecutief_bijgevolg_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "Elige el conector consecutivo: «De vraag is sterk gestegen; ___ moesten de prijzen worden verhoogd.»",
+      "options": ["bijgevolg", "hoewel", "mits"],
+      "value": "bijgevolg"
+    },
+    {
+      "lesson": 3,
+      "topic": "contrast_nochtans_translation",
+      "skill": "writing",
+      "type": "translation",
+      "prompt": "Traduce usando el adverbio adversativo formal «nochtans» al inicio con inversión (sin embargo): «Sin embargo, se negó a comentar el asunto.»",
+      "source": "Sin embargo, se negó a comentar el asunto.",
+      "value": "Nochtans weigerde hij de kwestie te becommentariëren.",
+      "accepted": [
+        "Nochtans weigerde hij de kwestie te becommentariëren",
+        "Nochtans weigerde hij de kwestie te becommentariëren.",
+        "Nochtans weigerde zij de kwestie te becommentariëren."
+      ]
+    },
+    {
+      "lesson": 3,
+      "topic": "contrast_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "De theorie is elegant; evenwel blijft de vraag naar haar praktische nut bestaan.",
+      "options": [
+        "De theorie is elegant; evenwel blijft de vraag naar haar praktische nut bestaan.",
+        "De theorie is omstreden, waardoor bijna niemand haar praktische nut betwist.",
+        "De methode is beproefd, zodat de vraag naar haar nut overbodig wordt."
+      ],
+      "value": "De theorie is elegant; evenwel blijft de vraag naar haar praktische nut bestaan."
+    },
+    {
+      "lesson": 3,
+      "topic": "contrast_speaking",
+      "skill": "speaking",
+      "type": "speaking_read_aloud",
+      "prompt": "Lee en voz alta:",
+      "read": "De gegevens zijn schaars; bijgevolg moeten we onze gevolgtrekkingen met voorzichtigheid formuleren."
+    },
+    {
+      "lesson": 4,
+      "topic": "structuur_niettegenstaande_mc",
+      "skill": "reading",
+      "type": "multiple_choice",
+      "prompt": "«niettegenstaande» funciona como preposición (a pesar de). Elige la forma correcta: «___ alle waarschuwingen zette hij de riskante reis voort.»",
+      "options": ["Niettegenstaande", "Niettegenstaande van", "Niettegenstaande te"],
+      "value": "Niettegenstaande"
+    },
+    {
+      "lesson": 4,
+      "topic": "structuur_laatstaan_cloze",
+      "skill": "writing",
+      "type": "cloze",
+      "prompt": "Completa la expresión «laat staan» (y mucho menos), que refuerza una negación previa: «Hij kan amper lopen, ___ ___ rennen.»",
+      "text": "Hij kan amper lopen, ___ ___ rennen.",
+      "value": "laat staan",
+      "accepted": ["laat staan"]
+    },
+    {
+      "lesson": 4,
+      "topic": "structuur_weliswaar_word_bank",
+      "skill": "writing",
+      "type": "word_bank",
+      "prompt": "Ordena las fichas para formar: «Het plan is weliswaar ambitieus, maar zeker haalbaar.»",
+      "tiles": ["ambitieus", "Het plan", "maar", "weliswaar", "is", "haalbaar", "zeker", "toch"],
+      "sequence": ["Het plan", "is", "weliswaar", "ambitieus", "maar", "zeker", "haalbaar"]
+    },
+    {
+      "lesson": 4,
+      "topic": "structuur_listening",
+      "skill": "listening",
+      "type": "listening",
+      "prompt": "Escucha y elige la frase que oíste.",
+      "say": "Niettegenstaande de bezwaren hield de commissie vast aan haar aanbeveling.",
+      "options": [
+        "Niettegenstaande de bezwaren hield de commissie vast aan haar aanbeveling.",
+        "Vanwege de bezwaren trok de commissie haar aanbeveling weer in.",
+        "Ondanks de instemming verwierp de commissie het oorspronkelijke voorstel."
+      ],
+      "value": "Niettegenstaande de bezwaren hield de commissie vast aan haar aanbeveling."
+    }
+  ]
+}

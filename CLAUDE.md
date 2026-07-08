@@ -53,6 +53,25 @@ Ingeniería pura (cero IA), determinista. 2 frentes:
 - **Verde:** analyze 0 · test 94/94 · build web OK; verify_placement_wiring/multi/pt VERDES con la
   nueva RPC. Pendiente (## Cola): **TTS-global + responsive** (prompt aparte).
 
+## C1 es→de + es→nl ✅ LIVE (mig 128/129 · 2026-07-06)
+Cerrados 2 idiomas C1 con el pipeline probado (fr/it): 6 unidades c/u (order 25-30, encadenan B2→C1;
+U24 desbloquea U25), **114 ítems (R36/W36/L24/S18 → L=67% S=50%)**, audio TTS 42/42 (tl=de/nl). Currículo
+C1 REAL de cada idioma: **de** — präzise Wortwahl/Kollokationen/Register, Konnektoren (dennoch/gleichwohl/
+zumal/ungeachtet+Gen/mithin), Modal-/Fokuspartikeln + Spaltsatz + Vorfeld, Redewendungen, Konjunktiv II/
+Vermutungsmodalverben/Konjunktiv I, Nominalstil/Passiv/**erweiterte Partizipialattribute**/formelle E-Mail;
+**nl** — het juiste woord, connectoren (niettemin/nochtans/niettegenstaande+2e nv/derhalve), modale/focus-
+partikels + cleft (die/dat) + vooropplaatsing, idioom/register, conditionalis/vermoeden/**aanvoegende wijs
+(moge/ware)**/alsof, nominalisatie/lijdende vorm/**beknopte bijzin (gezien/gelet op)**/formele e-mail.
+6 profesores nativos IA + 2 revisores adversariales nativos por idioma (fixes reales: de U26 «somit…dennoch»
+incoherente→«gleichwohl», U28 «Gang» ambiguo→«Fuß»; nl U30 «aanmerking» ambiguo→«gebruik», U29 «moge» orden
+verbo-final). Guard de colisión (MC/listening exacto — `jz_near_match` no aplica a MC/listening, solo cloze/
+translation). **TECHO HONESTO** (igual que en/fr/it): C1 receptivo/guiado se autocalifica, writing/speaking =
+proxies deterministas, **0 examen/cert de nivel C1** (solo 6 checkpoint/idioma, verificado). **Verificado
+cliente real (`verify_c1_chain.py de|nl`):** determinista 96/96 + distractores 96/96 (42501); CAMINA A1→C1
+las 30 unidades (U24→U25, 30/30 lecciones C1); 0 cruces entre los 6 cursos; default(en) sin fuga; audio 42/42.
+CI de C1 SUCCESS. **alemán y neerlandés: es→de/nl A1→C1 completo.** Diferido (## Cola): **es→pt C1** (pt topa
+en B2; andamiaje idéntico listo: STAMP `('pt','c1')=…130`, grupo audio `pt-c1`, `verify_c1_chain.py pt`).
+
 ## Reglas del agente (siempre)
 - Fuente de verdad = repo + BD + cliente real, NO los docs. Paso 0 de toda misión:
   ground truth (git log + introspección de BD) y corrige discrepancias en docs.
@@ -74,11 +93,14 @@ Ingeniería pura (cero IA), determinista. 2 frentes:
 
 ## Cola (retome exacto — orden sugerido)
 > Estado de niveles hoy (verificado en BD): **en A1–C1 · pt A1–B2 · fr A1–C1 · it A1–C1 ·
-> de A1–B2 · nl A1–B2**. Andamiaje probado 12× (…nl B2, it B1, fr B2, it B2, pt B2, fr C1, it C1, +): generador
+> de A1–C1 · nl A1–C1** (solo pt topa en B2). Andamiaje probado 14× (…fr C1, it C1, de C1, nl C1, +): generador
 > `gen_course.py <code> <a1|a2|b1|b2|c1>` (soporta pt/fr/it/de/nl; DIFF c1=0.84), audio `gen_audio_missing.py <code>-<lvl>`
 > (grupos `<code>-c1` listos), verificadores `verify_b1_chain.py`/`verify_b2_chain.py`/**`verify_c1_chain.py`** `<code>`. STAMPS c1 en `gen_course.py`.
-1. **C1 es→de/nl/pt** (topan en B2; fr/it ya en C1). Andamiaje YA listo: STAMPS reservados `('de','c1')=…128`,
-   `('nl','c1')=…129`, `('pt','c1')=…130`; grupos audio `de-c1/nl-c1/pt-c1`; `verify_c1_chain.py` course-agnóstico.
+1. **C1 es→pt** (ÚNICO pendiente; en/fr/it/de/nl ya en C1). Andamiaje YA listo: STAMP reservado
+   `('pt','c1')=…130`; grupo audio `pt-c1`; `verify_c1_chain.py pt` course-agnóstico.
+   Currículo C1 pt-BR REAL: mesóclise, regência culta, conectivos «não obstante/outrossim», orações
+   reduzidas (gerúndio/particípio), colocação pronominal culta, futuro do subjuntivo em registro formal,
+   voz passiva analítica/pronominal, e-mail formal («Prezado(a)», «Atenciosamente»).
    Pipeline probado 2× (fr/it C1): 6 autores nativos C1 por idioma (temas: precisión léxica, argumentar/conectores,
    énfasis/mise en relief, modismos/registro, hipótesis/modalidad avanzada, lengua académica) + 2 revisores adversariales →
    `gen_course.py <code> c1` → apply → `gen_audio_missing.py <code>-c1` → `verify_c1_chain.py <code>`. Currículo C1 REAL del
