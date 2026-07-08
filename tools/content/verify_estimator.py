@@ -12,14 +12,24 @@ def lvl(ranks, corr):
     ck = 'ARRAY[' + ','.join('true' if x else 'false' for x in corr) + ']'
     return json.loads(run('select jz_placement_level(%s::int[], %s::boolean[]) v;' % (rk, ck))[1])[0]['v']
 
+# Estimador guess-aware (mig 131): nivel ACREDITADO = mayor r con asked>=3,
+# corr>=ceil(0.72*asked) y corr>=3; sin fallback laxo; piso global acc<0.5 -> tope A2.
 CASES = [
-    ('B1 consistente + B2/C1 aciertos SUELTOS (v1 daba C1)', [1, 2, 2, 3, 4], [1, 1, 1, 1, 1], 2),
-    ('3 aciertos sueltos en alto, sin evidencia (v1 daba C1)', [2, 3, 4], [1, 1, 1], 0),
-    ('B1 solido + 1 fluke C1', [0, 1, 2, 2, 2, 3, 3, 4], [1, 1, 1, 1, 1, 0, 0, 1], 2),
-    ('A1 consistente', [0, 0, 0, 1, 1], [1, 1, 1, 0, 0], 0),
-    ('B2 consistente (asked2 corr2 c/u)', [2, 2, 3, 3, 4, 4], [1, 1, 1, 1, 0, 0], 3),
-    ('C1 real (2 aciertos C1)', [2, 3, 3, 4, 4], [1, 1, 1, 1, 1], 4),
-    ('B1: B2 al 50% NO promueve', [2, 2, 3, 3], [1, 1, 1, 0], 2),
+    # Evidencia SOSTENIDA -> acredita el nivel.
+    ('B1 sostenido (3/3 en A1,A2,B1)', [0, 0, 0, 1, 1, 1, 2, 2, 2], [1] * 9, 2),
+    ('B2 solido (3/3 hasta B2)', [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3], [1] * 12, 3),
+    ('C1 real (3/3 hasta C1)', [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4], [1] * 15, 4),
+    # AZAR / fluke -> A1 (lo que rompia antes).
+    ('aciertos altos SUELTOS (asked<3 por nivel) -> A1', [2, 3, 4, 3, 2, 4], [1, 1, 1, 1, 1, 1], 0),
+    ('B1 al 50% (3/6) NO acredita (azar) -> A1', [2, 2, 2, 2, 2, 2], [1, 1, 1, 0, 0, 0], 0),
+    ('azar disperso 1/3 (12 items) -> A1', [0, 0, 1, 1, 2, 2, 0, 1, 2, 0, 1, 2],
+     [1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0], 0),
+    # PISO global: B1 acreditado pero acc total <0.5 -> tope A2.
+    ('piso: B1 ok pero acc total <0.5 -> tope A2',
+     [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
+     [1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 1),
+    # A1 real (solo domina A1).
+    ('A1 consistente (4/4 A1, falla A2)', [0, 0, 0, 0, 1, 1, 1], [1, 1, 1, 1, 0, 0, 0], 0),
 ]
 
 def main():

@@ -5,6 +5,27 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-07**.
 
+## Placement SERIO — anti-azar (bug real ARREGLADO) ✅ LIVE (mig 131 · 2026-07-08)
+**Bug reproducido (no sintético):** un usuario NUEVO marcando AL AZAR salía B1/B2/**C1**. Los 3 "fixes"
+previos pasaron con sims deterministas pero NO tocaron el camino real. **Causa raíz (3 factores):**
+(1) **todos** los ítems de placement (incluidas las cloze) llevan `options` → la UI los presenta como
+opción múltiple → **azar = 1/3 de acierto en CADA ítem**; las verificaciones previas respondían
+100%/0%/persona-determinista, **nunca azar uniforme 1/3**. (2) Estimador débil: **fallback `acc≥0.5`**
+(una moneda al aire promovía un nivel) + dominación con solo ~2 ítems/nivel. (3) El arranque "buen nivel"
+sembraba la escalera en B1 → el azar rebotaba alto. **Evidencia ANTES** (`repro_placement_random.py`,
+cliente real, 60 al azar): en/B1 **C1 5% · B2 10%** (15% inflado); pt/B1 B2 5%.
+**Fix (mig 131, tuneado con `sim_placement_tune.py`, 4000 trials/caso):** (A) `jz_placement_level`
+**guess-aware** — un nivel se acredita solo con evidencia SOSTENIDA (`asked≥3 & corr≥⌈0.72·asked⌉ &
+corr≥3`), se toma el más alto, **se elimina el fallback laxo**, y **piso global** (acc total <0.5 → tope
+A2, imposible B1+). (B) `placement_next` examen **más largo** (min 12 / max 22, reversals≥6 o pin≥4) +
+**arranque CLAMPEADO a A2 máx** + skill_levels = nivel global (el split R/W sobre ~6 ítems era ruido y
+subcreditaba). **Aplica a los 6 cursos** (lógica course-agnóstica). **Verificado DESPUÉS (cliente real,
+`verify_placement_serious.py`, en+pt):** azar (peor caso B1) → **0% B2/C1** (en 16 A1/2 B1; pt 18 A1);
+persona B1 real → B1 (10/12, 9/12); persona A2 → centro A1/A2 (nunca C1); aislamiento OK. Estimador
+`verify_estimator.py` 8/8 (incl. casos anti-azar). analyze 0 · test 94/94. "Desde cero" declarado sigue
+saltando el examen → A1 (`_skipPlacement`, cliente, sin cambios). El límite adyacente A2↔B1 tiene algo de
+borrosidad (inherente a un CAT breve; el usuario tiene override "empezar desde el inicio").
+
 ## UI del login/auth MODERNIZADA ✅ (2026-07-08 · solo capa visual, sin tocar lógica)
 `auth_screen.dart` no tenía mockup (una de las 13 sin mockup, ver MOCKUP_GAP.md) → rediseñada con el
 LENGUAJE VISUAL de los mockups: **tarjeta de auth centrada** (`ResponsiveCenter` maxWidth 460 → móvil
