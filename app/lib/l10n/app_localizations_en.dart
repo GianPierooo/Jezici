@@ -583,6 +583,20 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authErrorFallback => 'We couldn\'t continue. Check your details.';
 
   @override
+  String get authContinueGoogle => 'Continue with Google';
+
+  @override
+  String get authOr => 'or';
+
+  @override
+  String get authGoogleError =>
+      'Couldn\'t continue with Google. Try with your email.';
+
+  @override
+  String get authCheckEmail =>
+      'We sent you an email to confirm your account. Open it and come back to continue.';
+
+  @override
   String get lessonSaveErrorTitle => 'We couldn\'t save your progress';
 
   @override

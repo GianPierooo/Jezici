@@ -180,6 +180,10 @@
   "authErrorInvalid": "Email ou senha incorretos.",
   "authErrorPasswordLength": "A senha deve ter 6+ caracteres.",
   "authErrorFallback": "Não foi possível continuar. Verifique seus dados.",
+  "authContinueGoogle": "Continuar com o Google",
+  "authOr": "ou",
+  "authGoogleError": "Não foi possível continuar com o Google. Tente com seu email.",
+  "authCheckEmail": "Enviamos um email para confirmar sua conta. Abra-o e volte para continuar.",
 
   "lessonSaveErrorTitle": "Não foi possível salvar seu progresso",
   "lessonSaveErrorMsg": "Verifique sua conexão e tente de novo.",

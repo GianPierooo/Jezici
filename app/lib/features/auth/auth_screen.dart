@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -25,6 +26,26 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
   bool _loading = false;
   bool _accepted = false; // aceptación legal (requerida para crear cuenta)
   String? _error;
+  String? _notice; // mensaje neutral (p. ej. "revisa tu correo")
+
+  @override
+  void initState() {
+    super.initState();
+    // Si volvemos de un OAuth fallido (proveedor sin configurar o cancelado),
+    // Supabase reenvía a la app con un ?error=/#error= en la URL. Lo mostramos
+    // con gracia en vez de dejar al usuario sin señal. Solo web.
+    if (kIsWeb) {
+      final u = Uri.base;
+      final hasError = u.queryParameters.containsKey('error') ||
+          u.queryParameters.containsKey('error_description') ||
+          u.fragment.contains('error=');
+      if (hasError) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted) setState(() => _error = AppLocalizations.of(context).authGoogleError);
+        });
+      }
+    }
+  }
 
   @override
   void dispose() {
@@ -56,11 +77,22 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
     setState(() {
       _loading = true;
       _error = null;
+      _notice = null;
     });
     try {
       final repo = ref.read(progressRepositoryProvider);
       if (_signUp) {
-        await repo.signUpEmail(email, pw);
+        final hasSession = await repo.signUpEmail(email, pw);
+        if (!hasSession) {
+          // Proyecto con "confirm email" ON: todavía no hay sesión → no podemos
+          // guardar perfil/consentimiento (RLS). Avisamos con gracia y salimos.
+          if (!mounted) return;
+          setState(() {
+            _loading = false;
+            _notice = l10n.authCheckEmail;
+          });
+          return;
+        }
         await repo.setProfile(name: name); // guarda el nombre real de entrada
         await repo.acceptLegal(kLegalVersion); // registra el consentimiento (versión + fecha)
       } else {
@@ -78,6 +110,27 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
       setState(() {
         _loading = false;
         _error = l10n.authErrorGeneral;
+      });
+    }
+  }
+
+  /// "Continuar con Google": en web dispara un redirect de página completa a
+  /// Google; la sesión (o el error) llega al volver a la app. Degrada con gracia.
+  Future<void> _google() async {
+    final l10n = AppLocalizations.of(context);
+    setState(() {
+      _loading = true;
+      _error = null;
+      _notice = null;
+    });
+    try {
+      await ref.read(progressRepositoryProvider).signInWithGoogle();
+      // No navegamos aquí: en web el navegador ya está redirigiendo.
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        _loading = false;
+        _error = l10n.authGoogleError;
       });
     }
   }
@@ -121,12 +174,25 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                     fontSize: 14, fontWeight: FontWeight.w700, color: AppColors.textMuted, height: 1.4),
               ),
               const SizedBox(height: 24),
+              // "Continuar con Google" (camino rápido, sin contraseña). Solo web
+              // (PWA): usa redirect OAuth. Si el proveedor aún no está configurado
+              // en Supabase, el retorno trae un error que mostramos con gracia.
+              if (kIsWeb) ...[
+                _GoogleButton(
+                  label: l10n.authContinueGoogle,
+                  onTap: _loading ? null : _google,
+                ),
+                const SizedBox(height: 16),
+                _OrDivider(label: l10n.authOr),
+                const SizedBox(height: 16),
+              ],
               // Selector crear cuenta / iniciar sesión.
               _SegToggle(
                 signUp: _signUp,
                 onChanged: (v) => setState(() {
                   _signUp = v;
                   _error = null;
+                  _notice = null;
                 }),
               ),
               const SizedBox(height: 18),
@@ -144,6 +210,12 @@ class _AuthScreenState extends ConsumerState<AuthScreen> {
                 Text(_error!,
                     style: const TextStyle(
                         color: AppColors.hearts, fontWeight: FontWeight.w800, fontSize: 12.5)),
+              ],
+              if (_notice != null) ...[
+                const SizedBox(height: 10),
+                Text(_notice!,
+                    style: const TextStyle(
+                        color: AppColors.primary, fontWeight: FontWeight.w800, fontSize: 12.5, height: 1.4)),
               ],
               if (_signUp) ...[
                 const SizedBox(height: 16),
@@ -256,6 +328,71 @@ class _LegalCheckbox extends StatelessWidget {
             ),
           ),
         ),
+      ],
+    );
+  }
+}
+
+/// Botón "Continuar con Google". Sin assets externos (CSP del deploy bloquea
+/// hosts externos): la "G" se dibuja con la tipografía Material, en los colores
+/// de la marca. Blanco con borde, estilo estándar de proveedor.
+class _GoogleButton extends StatelessWidget {
+  const _GoogleButton({required this.label, required this.onTap});
+  final String label;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final disabled = onTap == null;
+    return GestureDetector(
+      onTap: onTap,
+      child: Opacity(
+        opacity: disabled ? 0.6 : 1,
+        child: Container(
+          height: 52,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: const Color(0xFFDADCE6), width: 2),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // "G" multicolor aproximada con la tipografía (sin imagen externa).
+              const Text('G',
+                  style: TextStyle(
+                      fontSize: 22, fontWeight: FontWeight.w900, color: Color(0xFF4285F4))),
+              const SizedBox(width: 12),
+              Text(label,
+                  style: const TextStyle(
+                      fontSize: 15.5, fontWeight: FontWeight.w900, color: Color(0xFF3C4043))),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Divisor "— o —" entre el camino Google y el de email.
+class _OrDivider extends StatelessWidget {
+  const _OrDivider({required this.label});
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    const line = Expanded(child: Divider(color: Color(0xFFE0E2EC), thickness: 1.5));
+    return Row(
+      children: [
+        line,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: Text(label,
+              style: const TextStyle(
+                  fontSize: 12.5, fontWeight: FontWeight.w800, color: AppColors.textMuted)),
+        ),
+        line,
       ],
     );
   }

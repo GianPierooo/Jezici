@@ -103,9 +103,11 @@ class FakeProgressRepository implements ProgressRepository {
           {String? name, String? country, String? bio, String? avatarColor}) async =>
       ProfileInfo.empty;
   @override
-  Future<void> signUpEmail(String email, String password) async {}
+  Future<bool> signUpEmail(String email, String password) async => true;
   @override
   Future<void> signInEmail(String email, String password) async {}
+  @override
+  Future<void> signInWithGoogle() async {}
   @override
   Future<bool> isOnboardingComplete() async => true;
   @override

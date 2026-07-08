@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../models/achievement_models.dart';
@@ -140,14 +141,30 @@ class ProgressRepository {
     }
   }
 
-  /// Crea la cuenta con email/contraseña (autoconfirm → sesión inmediata).
-  Future<void> signUpEmail(String email, String password) async {
-    await _client.auth.signUp(email: email, password: password);
+  /// Crea la cuenta con email/contraseña. Devuelve TRUE si quedó sesión activa
+  /// (proyecto con "confirm email" OFF → autoconfirm → sesión inmediata); FALSE
+  /// si Supabase exige confirmación por correo (sin sesión hasta abrir el enlace).
+  Future<bool> signUpEmail(String email, String password) async {
+    final res = await _client.auth.signUp(email: email, password: password);
+    return res.session != null;
   }
 
   /// Inicia sesión con email/contraseña (flujo auth-first, GA4).
   Future<void> signInEmail(String email, String password) async {
     await _client.auth.signInWithPassword(email: email, password: password);
+  }
+
+  /// "Continuar con Google" (OAuth). En web (PWA) hace un redirect de página
+  /// completa a Google y vuelve al `redirectTo` = origen actual del sitio
+  /// (deploy-agnóstico: jezici.vercel.app en prod, la preview URL en previews);
+  /// supabase_flutter detecta la sesión en la URL de retorno y `onAuthStateChange`
+  /// enruta. Si el proveedor aún no está configurado en Supabase, el retorno trae
+  /// un error en la URL que la pantalla de auth muestra con gracia (no crashea).
+  Future<void> signInWithGoogle() async {
+    await _client.auth.signInWithOAuth(
+      OAuthProvider.google,
+      redirectTo: kIsWeb ? Uri.base.origin : null,
+    );
   }
 
   /// ¿El usuario ya terminó el onboarding? (user_plans.onboarding_completed).

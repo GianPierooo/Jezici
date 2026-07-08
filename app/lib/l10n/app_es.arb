@@ -203,6 +203,10 @@
   "authErrorInvalid": "Email o contraseña incorrectos.",
   "authErrorPasswordLength": "La contraseña debe tener 6+ caracteres.",
   "authErrorFallback": "No se pudo continuar. Revisa tus datos.",
+  "authContinueGoogle": "Continuar con Google",
+  "authOr": "o",
+  "authGoogleError": "No se pudo continuar con Google. Intenta con tu email.",
+  "authCheckEmail": "Te enviamos un correo para confirmar tu cuenta. Ábrelo y vuelve para continuar.",
 
   "lessonSaveErrorTitle": "No se pudo guardar tu progreso",
   "lessonSaveErrorMsg": "Revisa tu conexión e inténtalo de nuevo.",

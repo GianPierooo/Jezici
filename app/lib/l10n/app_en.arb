@@ -180,6 +180,10 @@
   "authErrorInvalid": "Wrong email or password.",
   "authErrorPasswordLength": "The password must be 6+ characters.",
   "authErrorFallback": "We couldn't continue. Check your details.",
+  "authContinueGoogle": "Continue with Google",
+  "authOr": "or",
+  "authGoogleError": "Couldn't continue with Google. Try with your email.",
+  "authCheckEmail": "We sent you an email to confirm your account. Open it and come back to continue.",
 
   "lessonSaveErrorTitle": "We couldn't save your progress",
   "lessonSaveErrorMsg": "Check your connection and try again.",

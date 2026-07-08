@@ -582,6 +582,20 @@ class AppLocalizationsEs extends AppLocalizations {
   String get authErrorFallback => 'No se pudo continuar. Revisa tus datos.';
 
   @override
+  String get authContinueGoogle => 'Continuar con Google';
+
+  @override
+  String get authOr => 'o';
+
+  @override
+  String get authGoogleError =>
+      'No se pudo continuar con Google. Intenta con tu email.';
+
+  @override
+  String get authCheckEmail =>
+      'Te enviamos un correo para confirmar tu cuenta. Ábrelo y vuelve para continuar.';
+
+  @override
   String get lessonSaveErrorTitle => 'No se pudo guardar tu progreso';
 
   @override

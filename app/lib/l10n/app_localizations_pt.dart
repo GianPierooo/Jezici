@@ -586,6 +586,20 @@ class AppLocalizationsPt extends AppLocalizations {
       'Não foi possível continuar. Verifique seus dados.';
 
   @override
+  String get authContinueGoogle => 'Continuar com o Google';
+
+  @override
+  String get authOr => 'ou';
+
+  @override
+  String get authGoogleError =>
+      'Não foi possível continuar com o Google. Tente com seu email.';
+
+  @override
+  String get authCheckEmail =>
+      'Enviamos um email para confirmar sua conta. Abra-o e volte para continuar.';
+
+  @override
   String get lessonSaveErrorTitle => 'Não foi possível salvar seu progresso';
 
   @override

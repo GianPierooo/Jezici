@@ -1068,6 +1068,30 @@ abstract class AppLocalizations {
   /// **'No se pudo continuar. Revisa tus datos.'**
   String get authErrorFallback;
 
+  /// No description provided for @authContinueGoogle.
+  ///
+  /// In es, this message translates to:
+  /// **'Continuar con Google'**
+  String get authContinueGoogle;
+
+  /// No description provided for @authOr.
+  ///
+  /// In es, this message translates to:
+  /// **'o'**
+  String get authOr;
+
+  /// No description provided for @authGoogleError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo continuar con Google. Intenta con tu email.'**
+  String get authGoogleError;
+
+  /// No description provided for @authCheckEmail.
+  ///
+  /// In es, this message translates to:
+  /// **'Te enviamos un correo para confirmar tu cuenta. Ábrelo y vuelve para continuar.'**
+  String get authCheckEmail;
+
   /// No description provided for @lessonSaveErrorTitle.
   ///
   /// In es, this message translates to:

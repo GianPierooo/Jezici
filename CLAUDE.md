@@ -3,7 +3,42 @@
 > Contexto de arranque para cualquier sesión. **No** es copia de los 21 `.md` de
 > diseño (eso es la carpeta raíz `Jezici_*.md` + `docs/`). Aquí va el ESTADO REAL,
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
-> Última actualización: **2026-07-06**.
+> Última actualización: **2026-07-07**.
+
+## Registro sin fricción — Google Sign-In + email (beta) ✅ código LIVE (2026-07-07 · solo cliente)
+Ingeniería pura, sin migración. Auth-first (GA4). **Frente 1 · "Continuar con Google" (PWA):**
+`ProgressRepository.signInWithGoogle()` → `signInWithOAuth(OAuthProvider.google, redirectTo: Uri.base.origin)`
+(deploy-agnóstico: prod jezici.vercel.app, previews su URL). PKCE + `detectSessionInUrl` (default) → la
+sesión llega al volver y `onAuthStateChange` (main.dart) enruta. Botón en `auth_screen` **solo web** (`kIsWeb`)
++ divisor «o» + formulario email. **Degrada con gracia:** si el proveedor no está configurado, el retorno trae
+`?error=`/`#error=` → `initState` lo detecta y muestra `authGoogleError` («No se pudo continuar con Google.
+Intenta con tu email.»), formulario email 100% usable; `try/catch` en el tap. i18n es/en/pt. **Frente 2 · email
+fluido:** `signUpEmail` ahora devuelve `bool hasSession` — con **confirm-email OFF** hay sesión inmediata
+(autoconfirm, ya funcionaba); con confirm-email ON (sin sesión) muestra `authCheckEmail` («revisa tu correo»)
+y NO intenta setProfile/acceptLegal (evita fallo RLS). Magic-link NO añadido (requiere SMTP; confirm-OFF ya da
+alta trivial). Verificado: analyze 0, test 94/94, build web OK, **smoke visual** (botón renderiza; retorno
+`?error=` muestra el aviso amable sin romper). **Sin CSP externa:** la «G» se dibuja con tipografía (sin imagen
+de host externo). **NO toca el resto del onboarding.**
+
+### ⚠️ Frente 3 · Pasos MANUALES para Gian (dashboards — solo él puede) para ACTIVAR Google:
+El código ya está LIVE; el botón funciona en cuanto se complete esto (cero redeploy). Callback de Supabase =
+`https://wiauinufpbkmjlbqlkxo.supabase.co/auth/v1/callback`.
+1. **Google Cloud Console** (console.cloud.google.com): crea/elige un proyecto → **APIs & Services → OAuth
+   consent screen**: User type **External**; app name «Jezici», support email, developer email; **scopes**
+   básicos `openid`, `.../auth/userinfo.email`, `.../auth/userinfo.profile`; añade los links de **Privacidad y
+   Términos** (los tienes in-app, publica su URL pública); **PUBLICA la app** (botón «Publish app» → estado
+   «In production») para NO tener que whitelistear 50 testers.
+2. **Google Cloud → Credentials → Create credentials → OAuth client ID → Web application**: en **Authorized
+   JavaScript origins** añade `https://jezici.vercel.app` (y `http://localhost` si pruebas local); en
+   **Authorized redirect URIs** añade EXACTAMENTE `https://wiauinufpbkmjlbqlkxo.supabase.co/auth/v1/callback`.
+   Copia el **Client ID** y **Client secret**.
+3. **Supabase → Authentication → Providers → Google**: **Enable**, pega Client ID + Client secret, **Save**.
+4. **Supabase → Authentication → URL Configuration**: **Site URL** = `https://jezici.vercel.app`; en **Redirect
+   URLs** añade `https://jezici.vercel.app/**` (y la URL de preview si usas previews).
+5. **Beta sin fricción de email** — **Supabase → Authentication → Providers → Email**: desactiva **«Confirm
+   email»** (OFF) para que el alta por email dé sesión inmediata (o, si prefieres verificación, déjalo ON: el
+   código ya muestra «revisa tu correo»). Con confirm OFF necesitas 0 SMTP.
+6. Prueba: abre jezici.vercel.app → «Continuar con Google» → elige cuenta → vuelve logeado al onboarding.
 
 ## UX: TTS global + responsive ✅ (2026-07-06 · solo cliente, sin migración)
 Ingeniería pura (cero IA), determinista. 2 frentes:
