@@ -588,6 +588,15 @@ flutter build web --release  # esperado: Built build/web (wasm dry-run warning d
 - **UX_AUDIT.md** (2026-06-23, solo lectura) — UX/estética/**dinamismo** por pantalla: deriva del
   sistema de diseño (212 colores hardcodeados, AppSpacing/Radius casi sin usar), motion faltante
   (feedback ✅/❌, háptica, transiciones, contadores de recompensa), + top-10 cambios por impacto.
+- **MOCKUP_GAP.md** (2026-07-08, solo lectura) — fidelidad de los 15 mockups de Claude Design
+  (`/mockups`, fuente de verdad del diseño) vs implementación, pantalla por pantalla con severidad
+  P0/P1/P2 + esfuerzo + orden de implementación en 3 tandas. Veredicto: **tokens/Nunito FIELES**
+  (paleta 1:1); los gaps sistémicos son **motion/celebración** (jzBob/jzCheer/jzFall… casi sin
+  replicar), **labio 3D ausente en el CTA del loop** (`_BigButton`), y **mascota emoji vs SVG**.
+  P0 de producto destacados: el certificado NO imprime el nombre del titular; Ligas muestra
+  gradiente BRONCE hardcodeado sea cual sea la división; SinVidas promete cobrar oro que el código
+  no cobra; Cofre/Simulacro/Practicar muy desviados. Fase 2 (no gaps): Conversar en vivo, planes
+  del Paywall, correo del coach, informe de banda de simulacros.
 
 ## Memoria del proyecto
 `~/.claude/projects/.../memory/` (cargada cada sesión vía MEMORY.md). Incluye: deploy mechanics,
