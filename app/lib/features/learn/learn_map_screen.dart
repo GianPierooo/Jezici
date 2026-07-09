@@ -288,7 +288,10 @@ class _MapBodyState extends State<_MapBody> {
         ];
 
         final children = <Widget>[
-          // Fondo: gradiente cielo→cima.
+          // Fondo: degradado vertical SUAVE del mockup (8 paradas, pie→cima). Es
+          // el que da la transición entre regiones (ciudad-morado abajo → cielo/mar
+          // azul-cian en medio → cima crema arriba); la escenografía se integra
+          // encima. Nada de bandas de color plano.
           Positioned.fill(
             child: Container(
               decoration: const BoxDecoration(
@@ -297,11 +300,15 @@ class _MapBodyState extends State<_MapBody> {
                   end: Alignment.topCenter,
                   colors: [
                     Color(0xFFC8B7F2),
+                    Color(0xFFBBA8EE),
+                    Color(0xFFB9C2F2),
                     Color(0xFFBFD4F5),
+                    Color(0xFFC8E2F3),
                     Color(0xFFD8EEFA),
+                    Color(0xFFEAF4FF),
                     Color(0xFFFFF7E2),
                   ],
-                  stops: [0.0, 0.4, 0.74, 1.0],
+                  stops: [0.0, 0.08, 0.26, 0.44, 0.60, 0.74, 0.86, 1.0],
                 ),
               ),
             ),
@@ -359,10 +366,12 @@ class _MapBodyState extends State<_MapBody> {
                 onTap: () => _onTapNode(entry, state),
               ),
             ));
-            // Pill "EXAMEN · UNIDAD N" bajo el portal.
+            // Pill "EXAMEN · UNIDAD N" en el HUECO bajo el portal (no encima del
+            // arco). El portal (art ~100px, centrado en c.dy) llega a ~c.dy+50;
+            // el siguiente nodo empieza ~c.dy+98 → la pill se centra en medio.
             children.add(Positioned(
               left: c.dx - 90,
-              top: c.dy + size / 2 + 10,
+              top: c.dy + 62,
               width: 180,
               child: Center(child: _ExamPill(unitOrder: entry.unit.orderIndex)),
             ));

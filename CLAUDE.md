@@ -5,6 +5,22 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-09**.
 
+## FONDO DEL MAPA rehecho — fin de las "franjas" ✅ (2026-07-09 · solo cliente)
+Feedback Android de Gian: el fondo del mapa se veía como **franjas de color planas sueltas** (moradas/
+verdes/coral) desalineadas que cortaban el sendero. **Causa raíz:** `scenery_painter.dart` posicionaba los
+set-pieces por **FRACCIÓN de la altura del contenido** — que es variable (2500–5200px en mapas largos, vs los
+1860px fijos del mockup) → las bandas (mar, montañas) se separaban con enormes huecos de degradado plano y
+parecían franjas flotantes. **Fix (capa visual, NO toca nodos/progresión/gating):** se PORTA 1:1 el SVG de
+Aprender v2.dc con **anclaje ABSOLUTO en px** — la escenografía LEJANA (sol, montañas nevadas, nubes, costa con
+velero) se ancla ARRIBA; el PRIMER PLANO (5 colinas contiguas + pinos + ciudad con ventanas) se ancla ABAJO; el
+MEDIO es puro **degradado vertical de 8 paradas** del mockup (morado-ciudad abajo → azul/cian-cielo → crema-cima)
+que es lo que da la transición suave entre regiones. Resultado: **paisaje cohesivo a cualquier altura, sin
+franjas**, sendero limpio encima. Extras: nubes suaves semitransparentes rellenan el cielo medio en mapas altos;
+**velo superior** (fadeUp) funde la cima; full-bleed (llena el ancho en desktop, columna de nodos centrada dx0).
+El globo **"EXAMEN · UNIDAD N"** se bajó al hueco bajo el portal (ya no se monta sobre el arco). Verificado
+visualmente con un golden temporal (paisaje integrado; borrado por flaky en CI Linux). Verde: analyze 0
+(CI-exact) · test 125/125 (+scenery_painter: pinta sin excepción a 4 alturas) · build web OK.
+
 ## 2 BUGS de uso real (feedback Android de Gian) ✅ (2026-07-09 · solo cliente)
 - **BUG 1 · Conversar salía 100% en ESPAÑOL con la app en otro idioma.** `conversar_screen.dart` tenía
   título/subtítulos/banner/rótulos y las situaciones ("Pedir un café", "Estás en una cafetería…")
