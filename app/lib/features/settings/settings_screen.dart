@@ -11,6 +11,7 @@ import '../../core/feedback/feedback_sheet.dart';
 import '../../core/i18n/locale_controller.dart';
 import '../../core/prefs/notify_prefs.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/ui/jz_sheen.dart';
 import '../../core/ui/responsive_center.dart';
 import '../../data/models/course_models.dart';
 import '../../data/models/progress_models.dart';
@@ -261,15 +262,19 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                     color: Color(0xFFF4B400), size: 19),
                 title: l10n.settingsSubscription,
                 trailing: Row(mainAxisSize: MainAxisSize.min, children: [
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                    decoration: BoxDecoration(
-                      gradient: const LinearGradient(colors: [Color(0xFFFFDD7A), Color(0xFFF4B400)]),
-                      borderRadius: BorderRadius.circular(8),
+                  JzSheen(
+                    borderRadius: BorderRadius.circular(8),
+                    period: const Duration(milliseconds: 3400),
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(colors: [Color(0xFFFFDD7A), Color(0xFFF4B400)]),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Text(l10n.settingsPlanFree,
+                          style: const TextStyle(
+                              fontSize: 11, fontWeight: FontWeight.w900, color: Color(0xFF5B3A00))),
                     ),
-                    child: Text(l10n.settingsPlanFree,
-                        style: const TextStyle(
-                            fontSize: 11, fontWeight: FontWeight.w900, color: Color(0xFF5B3A00))),
                   ),
                   const SizedBox(width: 6),
                   const Icon(Icons.chevron_right_rounded, color: _kChevron, size: 20),

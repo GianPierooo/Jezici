@@ -14,6 +14,7 @@ import '../../l10n/app_localizations.dart';
 import '../../l10n/skill_names.dart';
 import '../notifications/coach_styles.dart';
 import '../../ui/daily_goal_bar.dart';
+import '../../core/ui/jz_glow_pulse.dart';
 import '../../ui/primary_button.dart';
 
 /// Pantalla de fin: muestra el resumen DEVUELTO POR EL SERVIDOR (complete_lesson).
@@ -325,10 +326,14 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
                     ),
                   ],
                   const SizedBox(height: 22),
-                  PrimaryButton(
-                    label: l10n.commonContinue,
-                    expand: true,
-                    onPressed: () => Navigator.of(context).popUntil((route) => route.isFirst),
+                  // Halo que respira en el CTA de recompensa (guía la atención).
+                  JzGlowPulse(
+                    color: AppColors.primary,
+                    child: PrimaryButton(
+                      label: l10n.commonContinue,
+                      expand: true,
+                      onPressed: () => Navigator.of(context).popUntil((route) => route.isFirst),
+                    ),
                   ),
                 ],
               ),

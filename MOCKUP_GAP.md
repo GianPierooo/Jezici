@@ -40,10 +40,16 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
    `#E09A00`, `textMuted #7A809B` vs `#9A9FB8`; hardcodeados fuera de tokens: `#ECEDF6`
    (sombra card), `#FFF4D6`, grises de tiles, gradiente bronce de Ligas. Faltan tokens del
    CTA dorado 3D (`#FFDD7A/#F4B400/#D69400`).
-2. **Gap sistémico #1 — MOTION/celebración:** los mockups animan todo
-   (`jzBob/jzCheer/jzFall/jzGlow/jzTwinkle/jzSheen/jzDash/jzLive/jzWiggle`); la app casi no
-   anima (excepciones: pulso del nodo, confetti en complete/checkpoint, contadores, banner
-   Matix). Común a las 15 pantallas.
+2. **Gap sistémico #1 — MOTION/celebración:** ✅ **CERRADO (2026-07-09).** Ya existían pulso del nodo,
+   confetti (5 pantallas), contadores animados, mascota `ParrotMascot` (bob/cheer), banner Matix, halo
+   del portal/emblema, wiggle del cofre, entrada del feedback bar + combo. Se añadió el motion que
+   faltaba **con criterio** (rápido, sutil, reduce-motion-aware): **`JzSheen`** (destello diagonal del
+   mockup jzSheen, ~700ms + pausa) sobre los DORADOS/premio — badge "EXAMEN SUPERADO", CTA "Ver
+   certificado", tarjeta del certificado, badge "Plan gratis · Mejorar"; y **`JzGlowPulse`** (halo que
+   respira, guía la atención) en los CTA de PREMIO — CONTINUAR de fin de lección, "Continúa" de
+   checkpoint aprobado, "Empezar mi viaje" de Tu plan. Ambos helpers baratos (transform/opacity/shadow)
+   y **calman con reduce-motion**. No se sobre-animó (ligas/cofre ya tenían movimiento propio). El motion
+   es RÁPIDO — no entorpece el loop.
 3. **Gap sistémico #2 — botón 3D "con labio"** (`0 Npx 0 <colorDark>` + hundido al presionar):
    `PrimaryButton` lo tiene, pero el CTA del loop (`_BigButton` COMPROBAR/CONTINUAR), los CTA
    dorados (cofre/checkpoint), y varios botones secundarios NO — inconsistencia interna.

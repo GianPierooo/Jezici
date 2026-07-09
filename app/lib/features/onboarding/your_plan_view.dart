@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/plan/estimation.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/ui/jz_glow_pulse.dart';
 import '../../core/ui/responsive_center.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/duration_format.dart';
@@ -216,13 +217,16 @@ class _YourPlanViewState extends State<YourPlanView>
             padding: EdgeInsets.fromLTRB(20, 8, 20, 20 + bottomPad),
             child: ResponsiveCenter(
               maxWidth: 480,
-              child: PrimaryButton(
-                label: _loading ? l10n.planPreparing : l10n.planStartJourney,
-                icon: _loading ? null : Icons.arrow_forward_rounded,
+              child: JzGlowPulse(
                 color: AppColors.coral,
-                depthColor: AppColors.coralDark,
-                expand: true,
-                onPressed: _loading ? null : _finish,
+                child: PrimaryButton(
+                  label: _loading ? l10n.planPreparing : l10n.planStartJourney,
+                  icon: _loading ? null : Icons.arrow_forward_rounded,
+                  color: AppColors.coral,
+                  depthColor: AppColors.coralDark,
+                  expand: true,
+                  onPressed: _loading ? null : _finish,
+                ),
               ),
             ),
           ),

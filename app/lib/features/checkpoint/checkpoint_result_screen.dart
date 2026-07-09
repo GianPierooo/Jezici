@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/feedback/feedback_fx.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/ui/jz_glow_pulse.dart';
 import '../../data/models/checkpoint_models.dart';
 import '../../data/models/lesson_model.dart';
 import '../../l10n/app_localizations.dart';
@@ -121,10 +122,14 @@ class _CheckpointResultScreenState extends State<CheckpointResultScreen> {
                       ],
                     ),
                     const SizedBox(height: 22),
-                    PrimaryButton(
-                      label: l10n.checkpointContinueJourney,
-                      expand: true,
-                      onPressed: () => Navigator.of(context).popUntil((r) => r.isFirst),
+                    // CTA de premio con halo que respira (guía la atención).
+                    JzGlowPulse(
+                      color: AppColors.primary,
+                      child: PrimaryButton(
+                        label: l10n.checkpointContinueJourney,
+                        expand: true,
+                        onPressed: () => Navigator.of(context).popUntil((r) => r.isFirst),
+                      ),
                     ),
                   ] else ...[
                     _Reinforce(

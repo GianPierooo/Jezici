@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/feedback/feedback_fx.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/achievement_models.dart';
+import '../../core/ui/jz_sheen.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
 import '../learn/widgets/parrot_mascot.dart';
@@ -89,19 +90,29 @@ class _CertificateScreenState extends ConsumerState<CertificateScreen> {
             // + inset inferior (barra de navegación Android); 0 donde no aplica.
             padding: EdgeInsets.fromLTRB(20, 8, 20, 28 + MediaQuery.paddingOf(context).bottom),
             children: [
-              // El certificado.
+              // El certificado (con un sheen lento: "documento que atrapa la luz").
+              // El halo dorado va en un DecoratedBox externo para que el clip del
+              // sheen no lo recorte.
               AspectRatio(
                 aspectRatio: 1000 / 700,
-                child: Container(
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(18),
+                    boxShadow: [
+                      BoxShadow(color: AppColors.gold.withValues(alpha: 0.3), offset: const Offset(0, 10), blurRadius: 24),
+                    ],
+                  ),
+                  child: JzSheen(
+                  borderRadius: BorderRadius.circular(18),
+                  period: const Duration(milliseconds: 4600),
+                  intensity: 0.3,
+                  child: Container(
                   decoration: BoxDecoration(
                     gradient: const LinearGradient(
                         begin: Alignment.topLeft, end: Alignment.bottomRight,
                         colors: [Color(0xFFF7F5FF), Color(0xFFFFFDF5)]),
                     borderRadius: BorderRadius.circular(18),
                     border: Border.all(color: AppColors.primary, width: 3),
-                    boxShadow: [
-                      BoxShadow(color: AppColors.gold.withValues(alpha: 0.3), offset: const Offset(0, 10), blurRadius: 24),
-                    ],
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(14),
@@ -150,6 +161,8 @@ class _CertificateScreenState extends ConsumerState<CertificateScreen> {
                         ],
                       ),
                     ),
+                  ),
+                  ),
                   ),
                 ),
               ),

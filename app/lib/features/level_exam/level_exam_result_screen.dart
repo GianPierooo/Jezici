@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/feedback/feedback_fx.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/ui/jz_sheen.dart';
 import '../../core/ui/responsive_center.dart';
 import '../../data/models/checkpoint_models.dart';
 import '../../data/models/level_exam_models.dart';
@@ -354,21 +355,27 @@ class _CelebrationHeader extends StatelessWidget {
                 ParrotMascot(
                     size: 72, mood: pass ? MascotMood.celebrate : MascotMood.encourage),
                 const SizedBox(height: 10),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
-                  decoration: BoxDecoration(
-                    color: pass
-                        ? AppColors.gold.withValues(alpha: 0.95)
-                        : Colors.white.withValues(alpha: 0.22),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Text(
-                    pass ? l10n.examPassedBadge : l10n.examFailedBadge,
-                    style: TextStyle(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w900,
-                        letterSpacing: 1.5,
-                        color: pass ? const Color(0xFF5B3A00) : Colors.white),
+                // Badge dorado "EXAMEN SUPERADO" con sheen (solo al aprobar).
+                JzSheen(
+                  borderRadius: BorderRadius.circular(10),
+                  period: const Duration(milliseconds: 2600),
+                  intensity: pass ? 0.5 : 0.0,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
+                    decoration: BoxDecoration(
+                      color: pass
+                          ? AppColors.gold.withValues(alpha: 0.95)
+                          : Colors.white.withValues(alpha: 0.22),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Text(
+                      pass ? l10n.examPassedBadge : l10n.examFailedBadge,
+                      style: TextStyle(
+                          fontSize: 11,
+                          fontWeight: FontWeight.w900,
+                          letterSpacing: 1.5,
+                          color: pass ? const Color(0xFF5B3A00) : Colors.white),
+                    ),
                   ),
                 ),
               ],
@@ -838,26 +845,37 @@ class _GoldButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        height: 56,
-        alignment: Alignment.center,
+      // Labio 3D en un DecoratedBox EXTERNO (para que el sheen, que clippa, no lo
+      // recorte); el sheen barre solo la superficie dorada del CTA.
+      child: DecoratedBox(
         decoration: BoxDecoration(
-          gradient:
-              const LinearGradient(colors: [Color(0xFFFFDD7A), AppColors.gold]),
           borderRadius: BorderRadius.circular(17),
           boxShadow: const [
             BoxShadow(color: Color(0xFFD69400), offset: Offset(0, 6), blurRadius: 0),
           ],
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(Icons.workspace_premium_rounded, color: AppColors.text, size: 19),
-            const SizedBox(width: 8),
-            Text(label,
-                style: const TextStyle(
-                    fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
-          ],
+        child: JzSheen(
+          borderRadius: BorderRadius.circular(17),
+          period: const Duration(milliseconds: 2800),
+          child: Container(
+            height: 56,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              gradient:
+                  const LinearGradient(colors: [Color(0xFFFFDD7A), AppColors.gold]),
+              borderRadius: BorderRadius.circular(17),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(Icons.workspace_premium_rounded, color: AppColors.text, size: 19),
+                const SizedBox(width: 8),
+                Text(label,
+                    style: const TextStyle(
+                        fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+              ],
+            ),
+          ),
         ),
       ),
     );

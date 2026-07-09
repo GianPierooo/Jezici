@@ -5,6 +5,26 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-09**.
 
+## MOTION/CELEBRACIÓN transversal — cierra el último gap sistémico ✅ (2026-07-09 · solo cliente)
+Los mockups animan con intención (jzSheen/jzGlow/jzBob…); la app ya tenía bastante (pulso del nodo,
+confetti en 5 pantallas, contadores, `ParrotMascot` bob/cheer, halo del portal/emblema, wiggle del cofre,
+entrada del feedback bar + combo). Faltaba el **brillo de los dorados** y el **realce del CTA de premio**.
+Añadido **con criterio** (motion sirve para feedback/premio/guía, NO para decorar; rápido y sutil;
+reduce-motion-aware; barato en FPS). **NO toca lógica** (grading/loop/economía) — capa de animación pura.
+- **`JzSheen`** (`core/ui/jz_sheen.dart`): el destello diagonal del mockup (jzSheen) — barrido de ~700ms
+  y pausa larga, clipado al hijo, translúcido. Aplicado a los **elementos DORADOS/premio**: badge
+  "EXAMEN SUPERADO", CTA dorado "Ver certificado", **tarjeta del certificado** (sheen lento, "documento
+  que atrapa la luz"; el halo dorado va en un `DecoratedBox` externo para no recortarlo), badge
+  "Plan gratis · Mejorar" de Ajustes.
+- **`JzGlowPulse`** (`core/ui/jz_glow_pulse.dart`): halo que **respira** detrás de un CTA de PREMIO para
+  guiar la atención (jzGlow). Aplicado a **CONTINUAR del fin de lección**, **"Continúa" del checkpoint
+  aprobado**, y **"Empezar mi viaje" de Tu plan**.
+- **Ambos calman con reduce-motion** (sheen desaparece; glow queda fijo tenue). No se sobre-animó: ligas,
+  cofre y el loop de feedback ya tenían su motion propio y se dejaron intactos.
+Smoke test (`jz_motion_test`: sheen+glow pintan el hijo con y sin reduce-motion). Sheen verificado
+visualmente con golden temporal (barrido diagonal sobre dorado, borrado por flaky en CI). Verde: analyze 0
+(CI-exact) · test 129/129 · build web OK.
+
 ## FONDO DEL MAPA rehecho — fin de las "franjas" ✅ (2026-07-09 · solo cliente)
 Feedback Android de Gian: el fondo del mapa se veía como **franjas de color planas sueltas** (moradas/
 verdes/coral) desalineadas que cortaban el sendero. **Causa raíz:** `scenery_painter.dart` posicionaba los
