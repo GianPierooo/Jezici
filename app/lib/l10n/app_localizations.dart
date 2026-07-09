@@ -1602,11 +1602,35 @@ abstract class AppLocalizations {
   /// **'Recargar vidas y seguir'**
   String get noHeartsRefill;
 
+  /// No description provided for @noHeartsRefillPriced.
+  ///
+  /// In es, this message translates to:
+  /// **'Recargar vidas · 🪙{gold}'**
+  String noHeartsRefillPriced(int gold);
+
+  /// No description provided for @noHeartsInsufficientGold.
+  ///
+  /// In es, this message translates to:
+  /// **'No tienes oro suficiente para recargar.'**
+  String get noHeartsInsufficientGold;
+
+  /// No description provided for @noHeartsRefilled.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Vidas recargadas! ❤️'**
+  String get noHeartsRefilled;
+
   /// No description provided for @noHeartsQuit.
   ///
   /// In es, this message translates to:
   /// **'Salir de la lección'**
   String get noHeartsQuit;
+
+  /// No description provided for @certHolderIntro.
+  ///
+  /// In es, this message translates to:
+  /// **'Se certifica que'**
+  String get certHolderIntro;
 
   /// No description provided for @checkpointStartError.
   ///

@@ -1,23 +1,27 @@
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/feedback/feedback_fx.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/achievement_models.dart';
+import '../../data/providers.dart';
+import '../../l10n/app_localizations.dart';
 
 /// Pantalla de CERTIFICADO (el gran diferenciador): celebración + el certificado
-/// con folio y código de verificación emitidos server-side. Compartible.
-class CertificateScreen extends StatefulWidget {
+/// con folio, código de verificación y NOMBRE DEL TITULAR emitidos server-side.
+/// Compartible.
+class CertificateScreen extends ConsumerStatefulWidget {
   const CertificateScreen({super.key, required this.cert, this.celebrate = true});
   final Certificate cert;
   final bool celebrate;
 
   @override
-  State<CertificateScreen> createState() => _CertificateScreenState();
+  ConsumerState<CertificateScreen> createState() => _CertificateScreenState();
 }
 
-class _CertificateScreenState extends State<CertificateScreen> {
+class _CertificateScreenState extends ConsumerState<CertificateScreen> {
   late final ConfettiController _confetti;
 
   static const _months = [
@@ -43,11 +47,21 @@ class _CertificateScreenState extends State<CertificateScreen> {
   String _fmt(DateTime? d) =>
       d == null ? '' : '${d.day} de ${_months[d.month - 1]} de ${d.year}';
 
+  /// Nombre del titular: el congelado al emitir (mig 133); si el objeto no lo trae
+  /// (certificado recién emitido por submit_level_exam), cae a get_profile — la
+  /// MISMA fuente (users.display_name/name).
+  String _holder() {
+    final frozen = widget.cert.holderName?.trim();
+    if (frozen != null && frozen.isNotEmpty) return frozen;
+    final p = ref.read(profileProvider).asData?.value.name?.trim();
+    return (p != null && p.isNotEmpty) ? p : 'Aprendiz';
+  }
+
   void _share() {
     final c = widget.cert;
     Clipboard.setData(ClipboardData(
         text:
-            'Certificado Jezici · Inglés ${c.cefrLevel}\nFolio: ${c.folio}\nVerificación: ${c.verificationCode}'));
+            'Certificado Jezici · ${_holder()} · Inglés ${c.cefrLevel}\nFolio: ${c.folio}\nVerificación: ${c.verificationCode}'));
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(const SnackBar(
@@ -59,6 +73,7 @@ class _CertificateScreenState extends State<CertificateScreen> {
   @override
   Widget build(BuildContext context) {
     final c = widget.cert;
+    ref.watch(profileProvider); // carga el nombre para el fallback (certs recién emitidos)
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
@@ -113,6 +128,24 @@ class _CertificateScreenState extends State<CertificateScreen> {
                               style: const TextStyle(fontSize: 56, fontWeight: FontWeight.w900, color: AppColors.goldDark, height: 1)),
                           const Text('Marco Común Europeo (MCER)',
                               style: TextStyle(fontSize: 10.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                          const SizedBox(height: 12),
+                          // Titular (Examen.dc "Se certifica que <NOMBRE>").
+                          Text(AppLocalizations.of(context).certHolderIntro,
+                              style: const TextStyle(
+                                  fontSize: 10.5, fontWeight: FontWeight.w700, color: Color(0xFF8A8068))),
+                          const SizedBox(height: 3),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: Text(_holder(),
+                                textAlign: TextAlign.center,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.w900,
+                                    color: AppColors.text,
+                                    height: 1.1)),
+                          ),
                         ],
                       ),
                     ),

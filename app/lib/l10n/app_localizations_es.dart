@@ -907,7 +907,22 @@ class AppLocalizationsEs extends AppLocalizations {
   String get noHeartsRefill => 'Recargar vidas y seguir';
 
   @override
+  String noHeartsRefillPriced(int gold) {
+    return 'Recargar vidas · 🪙$gold';
+  }
+
+  @override
+  String get noHeartsInsufficientGold =>
+      'No tienes oro suficiente para recargar.';
+
+  @override
+  String get noHeartsRefilled => '¡Vidas recargadas! ❤️';
+
+  @override
   String get noHeartsQuit => 'Salir de la lección';
+
+  @override
+  String get certHolderIntro => 'Se certifica que';
 
   @override
   String get checkpointStartError =>

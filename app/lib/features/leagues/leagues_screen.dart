@@ -8,6 +8,7 @@ import '../../data/models/league_models.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/division_names.dart';
+import 'division_theme.dart';
 
 /// Pestaña LIGAS. Dos vistas vía segmento superior:
 ///  • "Mi liga": ranking semanal por XP en TU división, con zonas de ascenso
@@ -101,6 +102,7 @@ class _Board extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final divTheme = DivisionTheme.of(lg.division);
     final members = lg.members.where((m) => !m.isBot).toList();
     final n = members.length;
     return ListView(
@@ -109,16 +111,16 @@ class _Board extends StatelessWidget {
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
+            gradient: LinearGradient(
               begin: Alignment.topLeft, end: Alignment.bottomRight,
-              colors: [Color(0xFFCD9B6A), Color(0xFFB07B45)],
+              colors: [divTheme.start, divTheme.end],
             ),
             borderRadius: BorderRadius.circular(22),
-            boxShadow: [BoxShadow(color: const Color(0xFFB07B45).withValues(alpha: 0.4), offset: const Offset(0, 8), blurRadius: 18)],
+            boxShadow: [BoxShadow(color: divTheme.shadow.withValues(alpha: 0.4), offset: const Offset(0, 8), blurRadius: 18)],
           ),
           child: Row(
             children: [
-              const Icon(Icons.emoji_events_rounded, color: Colors.white, size: 38),
+              Icon(divTheme.icon, color: Colors.white, size: 38),
               const SizedBox(width: 14),
               Expanded(
                 child: Column(

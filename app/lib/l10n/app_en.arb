@@ -278,7 +278,12 @@
   "noHeartsTitle": "You're out of hearts ❤️",
   "noHeartsMsg": "No worries, it happens to everyone! Hearts regenerate over time; if you want to keep going now, refill them with gold.",
   "noHeartsRefill": "Refill hearts and continue",
+  "noHeartsRefillPriced": "Refill lives · 🪙{gold}",
+  "@noHeartsRefillPriced": { "placeholders": { "gold": {"type":"int"} } },
+  "noHeartsInsufficientGold": "You don't have enough gold to refill.",
+  "noHeartsRefilled": "Lives refilled! ❤️",
   "noHeartsQuit": "Leave the lesson",
+  "certHolderIntro": "This certifies that",
 
   "checkpointStartError": "We couldn't start the exam. Try again.",
   "checkpointPortalTitle": "The unit portal",

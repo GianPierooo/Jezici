@@ -90,7 +90,7 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
 - Coincide: sheet blanco r30 + asa exacta; 5 corazones vacíos `#E2E5F0` exactos; título "Te quedaste sin vidas ❤️" copy EXACTO; botón fantasma final.
 - Desviaciones:
   - [P0] Faltan 3 de los 4 cuerpos del mockup: (1) TIMER "Próxima vida gratis en 28:14" con anillo + corazón pulsante + barra; (2) opción "Ver un anuncio · Recupera 1 vida"; (3) opción Premium "Vidas ilimitadas" con badge dorado.
-  - [P1] "Recargar todas" del mockup cuesta 🪙350; en la app el botón NO muestra precio y la recarga es local y GRATUITA (`_hearts = 5` sin cobrar oro) — economía distinta a la diseñada (y el subtítulo promete cobro que el código no ejecuta).
+  - [P0-coherencia] ✅ **ARREGLADO (2026-07-08):** el botón ya NO promete cobro sin ejecutarlo. Ahora la recarga **cobra oro de verdad server-side** (`buy_hearts()`, mig 026): muestra el precio real (🪙50, misma economía que la tienda — se eligió alinear al costo REAL existente en vez de hardcodear el 350 del mockup, que nada enforce), descuenta el oro y **si no hay suficiente NO recarga** (aviso inline). Verificado cliente real (`verify_p0_product.py`: con oro→recarga+descuenta 50; sin oro→no recarga, oro intacto). (Pendiente P0 estético: timer de regeneración + opción anuncio/Premium — requieren infra.)
   - [P1] Sin guacamayo asomado sobre la hoja ni backdrop especial (blur+tinte violeta).
   - [P2] 2ª mitad del subtítulo divergente; botón de recarga violeta genérico en vez de tarjeta blanca con moneda.
 - No implementado del mockup: timer con countdown en vivo, opción anuncio, opción Premium, loro, jzPulseHeart/jzBob.
@@ -115,7 +115,7 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
   - [P0] Resultado sin header de celebración (gradiente+confeti+loro graduado+badge "EXAMEN SUPERADO") — fondo plano con 🎓.
   - [P0] Sin card "Las 4 habilidades en B1" (barras con línea de META punteada, chip "4/4 ✓", escala CEFR, "por eso se certifica") — la app muestra % de aciertos, no niveles vs meta.
   - [P0] Sin card "Puntaje global" (anillo 87/100, "top 12%", fortaleza/pulir, grid de secciones).
-  - [P0] **El certificado NO imprime el nombre del titular** (mockup: "Se certifica que Lucía Marín Castro" + firma) — el certificado no dice de quién es.
+  - [P0] ✅ **ARREGLADO (mig 133, 2026-07-08):** el certificado imprime el NOMBRE del titular ("Se certifica que <NOMBRE>"). Columna `holder_name` congelada al emitir (trigger desde users, misma fuente que get_profile) + backfill + `get_certificates` lo devuelve; `CertificateScreen` lo muestra (fallback a get_profile). Verificado cliente real (`verify_p0_product.py`).
   - [P1] Reprobado sin diagnóstico per-skill ("sube tu Speaking" + botón "Reforzar Speaking"); sin botón compartir cuadrado; sin línea "✓ Verificado por el examen Jezici".
   - [P1] Certificado: sin ambiente oscuro (papel crema sobre `#1C1B2E`), sin marco ornamental dorado (violeta en su lugar), sin serif ceremonial (Playfair), sin sello "VERIFICADO" ni marca de agua; acciones sin "Descargar PDF" ni share LinkedIn.
   - [P2] Metadatos fuera de la tarjeta; sin URL pública de verificación; "Certificado de Inglés" hardcodeado (no course-aware).
@@ -227,7 +227,7 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
 - Estado: **MUY DESVIADO** · Esfuerzo: **L**
 - Coincide: ranking semanal con fila-usuario resaltada, top-3, zonas verde/coral; estados extra bien resueltos que el mockup no contempla (skeleton, error, beta <13).
 - Desviaciones:
-  - [P0] Header de división: banner violeta con emblema-medalla dorada 128px (laureles, cintas, halo animado) + "Liga Oro" vs card con gradiente BRONCE **hardcodeado sea cual sea la división real** + `Icons.emoji_events`.
+  - [P0] ✅ **ARREGLADO (2026-07-08):** el header ya NO es bronce hardcodeado — refleja la división REAL (`DivisionTheme.of(lg.division)`: gradiente+emblema por bronce/plata/oro/zafiro/rubi/diamante, colores de Ligas.dc). Verificado cliente real 2 divisiones (`verify_p0_product.py`: get_league oro→oro, diamante→diamante) + test unitario. (Pendiente P1: emblema-medalla 128px con laureles/halo animado — mejora estética, no bug.)
   - [P0] Falta la fila de las 6 divisiones (Bronce→Diamante, actual destacada, futuras a 50%).
   - [P1] Sin countdown "Termina en 2d 14h"; separadores sin división destino ("SUBEN A ZAFIRO"); filas sin tinte por zona ni tags ("Sube"/"En riesgo"); avatares grises uniformes vs coloreados por persona; top-3 emoji vs círculos rellenos.
   - [P1] Sin loro animador con globo "¡Sigue subiendo! 💪".

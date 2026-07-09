@@ -5,6 +5,29 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-08**.
 
+## 3 P0 de producto del MOCKUP_GAP ✅ (mig 133 · 2026-07-08)
+Tres bugs (no estética) de MOCKUP_GAP.md, arreglados y verificados con cliente real (`verify_p0_product.py`).
+- **F1 · El certificado imprime el NOMBRE del titular (Examen.dc).** Antes no decía de quién era. El nombre
+  YA se calculaba al emitir (embebido en el SVG) pero no se guardaba en columna ni lo devolvía la API. Fix
+  (mig 133, SIN reescribir el gran `submit_level_exam`): columna `certificates.holder_name` **congelada al
+  emitir** por trigger `jz_cert_set_holder` (fuente = `users.display_name/name`, la misma que get_profile) +
+  **backfill** de los ya emitidos + `get_certificates` la devuelve. `Certificate.holderName` + `CertificateScreen`
+  muestra «Se certifica que <NOMBRE>» (fallback a get_profile para el cert recién emitido). i18n es/en/pt.
+  Verificado: trigger congela «María Certif», get_certificates lo devuelve, y **cambiar el nombre después NO
+  altera el certificado** (congelado).
+- **F2 · Ligas usa la DIVISIÓN REAL (no bronce hardcodeado).** El header pintaba un gradiente bronce fijo +
+  `Icons.emoji_events` sea cual fuera la división. Nuevo `division_theme.dart` (`DivisionTheme.of(division)`:
+  gradiente + sombra + emblema por bronce/plata/oro/zafiro/rubi/diamante, colores de Ligas.dc); el header de
+  `_Board` usa `lg.division`. Verificado cliente real 2 divisiones (`get_league` oro→oro, diamante→diamante) +
+  test unitario (`division_theme_test`). (P1 diferido: emblema-medalla 128px con laureles/halo — estético.)
+- **F3 · SinVidas: coherencia de oro.** El copy prometía cobrar oro pero la recarga era `_hearts=5` local y
+  GRATIS. **Decisión:** cobrar de verdad, alineado a la economía EXISTENTE (no inventar el 350 del mockup, que
+  nada enforce) → la recarga usa el RPC real `buy_hearts()` (mig 026, **50 oro** = costo de la tienda), muestra
+  el precio real, descuenta server-side y **si no hay oro suficiente NO recarga** (aviso inline; el sheet
+  devuelve `refill` solo si la compra tuvo éxito). i18n es/en/pt. Verificado cliente real: con oro→recarga+
+  descuenta 50 y hearts=5; sin oro→`insufficient_gold`, oro intacto. **No rompe** economía/loop/seguridad
+  (buy_hearts ya existía y se usa en la tienda). Verde: analyze 0 · test 97/97 (+division_theme) · build web OK.
+
 ## Onboarding — NOMBRE + fidelidad al mockup ✅ (mig 132 · 2026-07-08)
 Dos frentes de Onboarding.dc (fuente de diseño), sin tocar placement/create_plan.
 **F1 · Correctitud: se PIDE el nombre (antes nunca).** Bug real: "Continuar con Google" (OAuth) crea

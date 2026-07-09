@@ -278,7 +278,12 @@
   "noHeartsTitle": "Você ficou sem vidas ❤️",
   "noHeartsMsg": "Relaxa, acontece com todo mundo! As vidas se regeneram com o tempo; se quiser seguir agora, recarregue com ouro.",
   "noHeartsRefill": "Recarregar vidas e seguir",
+  "noHeartsRefillPriced": "Recarregar vidas · 🪙{gold}",
+  "@noHeartsRefillPriced": { "placeholders": { "gold": {"type":"int"} } },
+  "noHeartsInsufficientGold": "Você não tem ouro suficiente para recarregar.",
+  "noHeartsRefilled": "Vidas recarregadas! ❤️",
   "noHeartsQuit": "Sair da lição",
+  "certHolderIntro": "Certifica-se que",
 
   "checkpointStartError": "Não foi possível iniciar o exame. Tente de novo.",
   "checkpointPortalTitle": "O portal da unidade",

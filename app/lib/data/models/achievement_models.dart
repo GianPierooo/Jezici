@@ -35,6 +35,7 @@ class Certificate {
     required this.cefrLevel,
     required this.folio,
     required this.verificationCode,
+    this.holderName,
     this.issuedAt,
     this.pdfUrl,
   });
@@ -42,6 +43,10 @@ class Certificate {
   final String cefrLevel;
   final String folio;
   final String verificationCode;
+
+  /// Nombre del titular congelado al emitir (get_certificates, mig 133). null en
+  /// el certificado recién emitido por submit_level_exam (la pantalla cae a get_profile).
+  final String? holderName;
   final DateTime? issuedAt;
   final String? pdfUrl;
 
@@ -49,6 +54,9 @@ class Certificate {
         cefrLevel: j['cefr_level'] as String? ?? '',
         folio: j['folio'] as String? ?? '',
         verificationCode: j['verification_code'] as String? ?? '',
+        holderName: (j['holder_name'] as String?)?.trim().isEmpty ?? true
+            ? null
+            : (j['holder_name'] as String).trim(),
         issuedAt: DateTime.tryParse(j['issued_at']?.toString() ?? ''),
         pdfUrl: j['pdf_url'] as String?,
       );
