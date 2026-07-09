@@ -3,7 +3,30 @@
 > Contexto de arranque para cualquier sesión. **No** es copia de los 21 `.md` de
 > diseño (eso es la carpeta raíz `Jezici_*.md` + `docs/`). Aquí va el ESTADO REAL,
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
-> Última actualización: **2026-07-08**.
+> Última actualización: **2026-07-09**.
+
+## AJUSTES fiel a Ajustes.dc ✅ (2026-07-09 · solo cliente)
+Capa visual + estructura; **NO toca la lógica de settings/personalidad/economía** (updateSettings/
+create_plan/setActiveCourse intactos). `settings_screen.dart` era una lista plana de cards con
+`SwitchListTile` Material violetas + botón "GUARDAR AJUSTES" → reescrita fiel al mockup.
+- **5 secciones con micro-headers MAYÚSCULOS** (IDIOMA/NOTIFICACIONES/META Y RECORDATORIOS/CUENTA/OTROS)
+  + AVANZADO (interno/GDPR), cada fila con **icon-tile 36×36 coloreado + divisores** (`_Group`/`_tile`).
+- **Loro Matix animado** (`ParrotMascot` idle, reduce-motion-aware) **+ burbuja de preview del tono** elegido
+  (`#F4F2FF`, texto violeta, con cola) + **4 radios** de coach + segmento de intensidad Suave/Media/Alta.
+- **Toggle verde custom `#2ECC71`** (`_GreenToggle`, pista 48×28 + perilla animada) reemplaza los Material;
+  **guardado IMPLÍCITO** (cada cambio server-backed llama `_save()` en silencio; sin botón "GUARDAR").
+- **Toggles "Recordatorio diario" + "Aviso de racha en peligro"** — persistidos localmente
+  (`core/prefs/notify_prefs.dart`, patrón `SoundController`), **NO muertos**: el maestro real `push_enabled`
+  se **DERIVA** de ambos al guardar (apagar los dos → Matix deja de empujar). Scheduler push = Fase 2
+  (nota honesta bajo la card). **Vibración** real: `vibrationEnabledProvider` sincroniza
+  `FeedbackFx.hapticsEnabled` → apagarlo silencia TODO el háptico.
+- **Fila "Aprendes / \<curso real\> · Objetivo \<meta\> · Cambiar"** course-aware (reusa `_switchCourse` →
+  placement/desde-cero) + **badge "Plan gratis · Mejorar"** → `PremiumScreen`. Sheets para meta diaria,
+  quiet hours, idioma de app, curso y legal (privacidad/términos).
+- Se conserva: quiet hours, idiomas es/en/pt, cerrar sesión, sello de versión, export/borrado, métricas,
+  Probar a Matix. i18n es/en/pt (56 claves) + `ResponsiveCenter` 480.
+Verde: analyze 0 (CI-exact, .env vacío) · test 115/115 (+settings_screen: secciones/Aprendes/badge/preview +
+intensidad guarda) · build web OK.
 
 ## COFRE: pantalla de revelación dedicada fiel a Cofre.dc ✅ (2026-07-09 · solo cliente)
 Antes el cofre era una fila de la tienda que daba la recompensa con un **SnackBar**. Ahora es una **pantalla

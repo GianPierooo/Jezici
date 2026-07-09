@@ -22,7 +22,7 @@
 | 10 | Cofre.dc.html | tienda_screen (fila cofre) | MUY DESVIADO | L |
 | 11 | Paywall.dc.html | premium_screen | DESVIADO (beta sin pagos) | M |
 | 12 | Practicar.dc.html | practice_screen | MUY DESVIADO | L |
-| 13 | Ajustes.dc.html | settings_screen | DESVIADO | M |
+| 13 | Ajustes.dc.html | settings_screen | ✅ FIEL (2026-07-09) | M |
 | 14 | Perfil.dc.html | profile_screen | DESVIADO | L |
 | 15 | Ligas.dc.html | leagues_screen | MUY DESVIADO | L |
 
@@ -199,15 +199,18 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
 
 ## 13) Ajustes
 - Mockup: mockups/Ajustes.dc.html · Implementación: `settings_screen.dart`
-- Estado: **DESVIADO** · Esfuerzo: **M**
+- Estado: ✅ **FIEL (2026-07-09)** · Esfuerzo: **M**
 - Coincide: título/top bar; cards blancas con sombra dura; selector de coach 4 opciones con preview; quiet hours 22:00–8:00; idiomas; cerrar sesión coral; sello de versión.
-- Desviaciones:
-  - [P1] Sin micro-headers MAYÚSCULOS con icon-tiles por fila ni divisores — estructura de secciones distinta.
-  - [P1] Sin loro Matix animado con burbuja de preview del tono.
-  - [P1] Toggles Material violetas vs switch custom verde `#2ECC71`; guardado con botón "GUARDAR AJUSTES" vs guardado implícito.
-  - [P1] Sin toggles "Recordatorio diario"/"Aviso de racha en peligro" (solo un toggle genérico); fila "Aprendes / Inglés · Objetivo B2 · Cambiar" ausente (lista inline de 6 cursos sin objetivo).
-  - [P2] Sin badge "Plan gratis · Mejorar"; "Vibración" no existe; meta diaria como chips (más rica, distinta); pie "Jezici dev" (sello JZ_BUILD bloqueado — limitación conocida).
-- No implementado del mockup: loro con burbuja, toggles de recordatorio/racha, vibración, badge de plan, icon-tiles.
+- ✅ **ARREGLADO (2026-07-09 · solo cliente, capa visual+estructura, NO toca lógica de settings/personalidad/economía):**
+  - Reestructurado en **5 secciones con micro-headers MAYÚSCULOS** (IDIOMA/NOTIFICACIONES/META Y RECORDATORIOS/CUENTA/OTROS) + **AVANZADO** para interno/GDPR, cada fila con **icon-tile 36×36 coloreado + divisores 1.5px** (`_Group`/`_tile`).
+  - **Loro Matix animado (`ParrotMascot` idle bob, reduce-motion-aware) + burbuja de preview del tono** seleccionado (`#F4F2FF`, texto violeta, con cola) que muestra el ejemplo del coach elegido.
+  - **Toggle verde custom `#2ECC71`** (`_GreenToggle`, pista 48×28 + perilla 22 animada, reduce-motion-aware) en lugar de los `SwitchListTile` Material violetas; **guardado IMPLÍCITO** (cualquier cambio server-backed llama a `_save()` en silencio; se quitó el botón "GUARDAR AJUSTES").
+  - **Toggles "Recordatorio diario" y "Aviso de racha en peligro"** — persistidos localmente (`notify_prefs.dart`, patrón `SoundController`), **no muertos**: el maestro real `push_enabled` se DERIVA de ambos al guardar (si apagas los dos, Matix deja de empujar). El scheduler de push es Fase 2 (nota honesta bajo la card).
+  - **Fila "Aprendes / \<curso real\> · Objetivo \<meta\> · Cambiar"** course-aware (bandera + `targetName` + `goalLevel` reales → picker de curso que reusa `_switchCourse`).
+  - **Badge "Plan gratis · Mejorar"** (gradiente dorado) en la fila Suscripción → `PremiumScreen`.
+  - **"Vibración"** ahora existe y es real: `vibrationEnabledProvider` sincroniza `FeedbackFx.hapticsEnabled` → apagarlo silencia TODO el háptico de la app.
+  - i18n es/en/pt (56 claves) + `ResponsiveCenter` 480. Verde: analyze 0 · test 115/115 (+settings_screen) · build web OK.
+- Diferido (P2): sello JZ_BUILD sigue "dev" (bloqueado en vercel.json, limitación conocida); mascota SVG vs emoji (global).
 
 ## 14) Perfil
 - Mockup: mockups/Perfil.dc.html · Implementación: `profile_screen.dart` + `widgets/skill_radar.dart`

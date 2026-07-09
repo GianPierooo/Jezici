@@ -64,6 +64,182 @@ class AppLocalizationsPt extends AppLocalizations {
   String get langPt => 'Português';
 
   @override
+  String get settingsTitle => 'Configurações';
+
+  @override
+  String get settingsSecLanguage => 'IDIOMA';
+
+  @override
+  String get settingsSecNotifications => 'NOTIFICAÇÕES';
+
+  @override
+  String get settingsSecGoal => 'META E LEMBRETES';
+
+  @override
+  String get settingsSecAccount => 'CONTA';
+
+  @override
+  String get settingsSecOther => 'OUTROS';
+
+  @override
+  String get settingsSecAdvanced => 'AVANÇADO';
+
+  @override
+  String get settingsLearns => 'Você aprende';
+
+  @override
+  String settingsLearnsSub(String lang, String goal) {
+    return '$lang · Meta $goal';
+  }
+
+  @override
+  String get settingsChange => 'Mudar';
+
+  @override
+  String get settingsAppLanguageRow => 'Idioma do app';
+
+  @override
+  String get settingsChooseCourse => 'Qual idioma você quer aprender?';
+
+  @override
+  String get settingsChooseAppLang => 'Idioma do app';
+
+  @override
+  String get settingsCoachIntensity => 'Intensidade do coach';
+
+  @override
+  String get settingsCoachInsist => 'Quanto o Matix insiste?';
+
+  @override
+  String get settingsIntensityLow => 'Suave';
+
+  @override
+  String get settingsIntensityMid => 'Média';
+
+  @override
+  String get settingsIntensityHigh => 'Alta';
+
+  @override
+  String get settingsQuiet => 'Não perturbe';
+
+  @override
+  String get settingsQuietSub => 'Sem avisos neste horário';
+
+  @override
+  String get settingsQuietOff => 'Desativado';
+
+  @override
+  String get settingsQuietEnable => 'Ativar horário de silêncio';
+
+  @override
+  String get settingsQuietFrom => 'De';
+
+  @override
+  String get settingsQuietTo => 'Até';
+
+  @override
+  String get settingsMeta => 'Meta diária';
+
+  @override
+  String settingsMetaSub(int min, int xp) {
+    return '$min min · $xp XP por dia';
+  }
+
+  @override
+  String settingsMetaXpDay(int xp) {
+    return '≈ $xp XP/dia (mais minutos = meta maior)';
+  }
+
+  @override
+  String get settingsDailyReminder => 'Lembrete diário';
+
+  @override
+  String get settingsDailyReminderSub => 'Todos os dias às 20:00';
+
+  @override
+  String get settingsStreakAlert => 'Aviso de ofensiva em risco';
+
+  @override
+  String get settingsStreakAlertSub => 'Se você esquecer de praticar';
+
+  @override
+  String get settingsReminderNote =>
+      'Sua preferência fica salva. Os lembretes push chegam em breve.';
+
+  @override
+  String get settingsEditProfile => 'Editar perfil';
+
+  @override
+  String get settingsSubscription => 'Assinatura';
+
+  @override
+  String get settingsPlanFree => 'Plano grátis · Melhorar';
+
+  @override
+  String get settingsLogout => 'Sair';
+
+  @override
+  String get settingsSounds => 'Sons';
+
+  @override
+  String get settingsMusic => 'Música do mapa';
+
+  @override
+  String get settingsMusicSub =>
+      'Loop ambiente no Aprender. Abaixa sozinha com os sons.';
+
+  @override
+  String get settingsVibration => 'Vibração';
+
+  @override
+  String get settingsPrivacy => 'Privacidade e dados';
+
+  @override
+  String get settingsPrivacyPolicy => 'Política de Privacidade';
+
+  @override
+  String get settingsTerms => 'Termos e Condições';
+
+  @override
+  String get settingsTestMatix => 'Testar o Matix';
+
+  @override
+  String get settingsMetrics => 'Ver métricas (interno)';
+
+  @override
+  String get settingsExport => 'Exportar meus dados';
+
+  @override
+  String get settingsDelete => 'Excluir minha conta';
+
+  @override
+  String get settingsSaveError => 'Não foi possível salvar as configurações.';
+
+  @override
+  String get coachNameManoDura => 'Mão firme';
+
+  @override
+  String get coachNamePositivo => 'Positivo';
+
+  @override
+  String get coachNameRezago => 'Sem atraso';
+
+  @override
+  String get coachNameSuave => 'Suave';
+
+  @override
+  String get coachExManoDura => '«Sem desculpas. Bora agora. 💪»';
+
+  @override
+  String get coachExPositivo => '«Você está indo muito bem, continue! 🎉»';
+
+  @override
+  String get coachExRezago => '«Faz 2 dias que você não pratica… 👀»';
+
+  @override
+  String get coachExSuave => '«Sem pressa, vá no seu ritmo 🌱»';
+
+  @override
   String get learnLangEn => 'inglês';
 
   @override

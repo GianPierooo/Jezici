@@ -64,6 +64,182 @@ class AppLocalizationsEn extends AppLocalizations {
   String get langPt => 'Português';
 
   @override
+  String get settingsTitle => 'Settings';
+
+  @override
+  String get settingsSecLanguage => 'LANGUAGE';
+
+  @override
+  String get settingsSecNotifications => 'NOTIFICATIONS';
+
+  @override
+  String get settingsSecGoal => 'GOAL & REMINDERS';
+
+  @override
+  String get settingsSecAccount => 'ACCOUNT';
+
+  @override
+  String get settingsSecOther => 'OTHER';
+
+  @override
+  String get settingsSecAdvanced => 'ADVANCED';
+
+  @override
+  String get settingsLearns => 'Learning';
+
+  @override
+  String settingsLearnsSub(String lang, String goal) {
+    return '$lang · Goal $goal';
+  }
+
+  @override
+  String get settingsChange => 'Change';
+
+  @override
+  String get settingsAppLanguageRow => 'App language';
+
+  @override
+  String get settingsChooseCourse => 'Which language do you want to learn?';
+
+  @override
+  String get settingsChooseAppLang => 'App language';
+
+  @override
+  String get settingsCoachIntensity => 'Coach intensity';
+
+  @override
+  String get settingsCoachInsist => 'How much does Matix insist?';
+
+  @override
+  String get settingsIntensityLow => 'Gentle';
+
+  @override
+  String get settingsIntensityMid => 'Medium';
+
+  @override
+  String get settingsIntensityHigh => 'High';
+
+  @override
+  String get settingsQuiet => 'Do not disturb';
+
+  @override
+  String get settingsQuietSub => 'No notifications during these hours';
+
+  @override
+  String get settingsQuietOff => 'Off';
+
+  @override
+  String get settingsQuietEnable => 'Enable quiet hours';
+
+  @override
+  String get settingsQuietFrom => 'From';
+
+  @override
+  String get settingsQuietTo => 'To';
+
+  @override
+  String get settingsMeta => 'Daily goal';
+
+  @override
+  String settingsMetaSub(int min, int xp) {
+    return '$min min · $xp XP a day';
+  }
+
+  @override
+  String settingsMetaXpDay(int xp) {
+    return '≈ $xp XP/day (more minutes = higher goal)';
+  }
+
+  @override
+  String get settingsDailyReminder => 'Daily reminder';
+
+  @override
+  String get settingsDailyReminderSub => 'Every day at 8:00 PM';
+
+  @override
+  String get settingsStreakAlert => 'Streak-at-risk alert';
+
+  @override
+  String get settingsStreakAlertSub => 'If you forget to practice';
+
+  @override
+  String get settingsReminderNote =>
+      'Your choice is saved. Push reminders are coming soon.';
+
+  @override
+  String get settingsEditProfile => 'Edit profile';
+
+  @override
+  String get settingsSubscription => 'Subscription';
+
+  @override
+  String get settingsPlanFree => 'Free plan · Upgrade';
+
+  @override
+  String get settingsLogout => 'Log out';
+
+  @override
+  String get settingsSounds => 'Sounds';
+
+  @override
+  String get settingsMusic => 'Map music';
+
+  @override
+  String get settingsMusicSub =>
+      'Ambient loop on Learn. Lowers itself under sounds.';
+
+  @override
+  String get settingsVibration => 'Vibration';
+
+  @override
+  String get settingsPrivacy => 'Privacy & data';
+
+  @override
+  String get settingsPrivacyPolicy => 'Privacy Policy';
+
+  @override
+  String get settingsTerms => 'Terms & Conditions';
+
+  @override
+  String get settingsTestMatix => 'Test Matix';
+
+  @override
+  String get settingsMetrics => 'View metrics (internal)';
+
+  @override
+  String get settingsExport => 'Export my data';
+
+  @override
+  String get settingsDelete => 'Delete my account';
+
+  @override
+  String get settingsSaveError => 'Couldn\'t save your settings.';
+
+  @override
+  String get coachNameManoDura => 'Tough love';
+
+  @override
+  String get coachNamePositivo => 'Positive';
+
+  @override
+  String get coachNameRezago => 'No slacking';
+
+  @override
+  String get coachNameSuave => 'Gentle';
+
+  @override
+  String get coachExManoDura => '“No excuses. Get in there. 💪”';
+
+  @override
+  String get coachExPositivo => '“You\'re doing great, keep going! 🎉”';
+
+  @override
+  String get coachExRezago => '“You\'ve gone 2 days without practicing… 👀”';
+
+  @override
+  String get coachExSuave => '“No rush, go at your own pace 🌱”';
+
+  @override
   String get learnLangEn => 'English';
 
   @override

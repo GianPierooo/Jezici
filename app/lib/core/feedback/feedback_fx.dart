@@ -7,42 +7,50 @@ import '../audio/sound_service.dart';
 class FeedbackFx {
   FeedbackFx._();
 
+  /// Preferencia de vibración (Ajustes → Vibración). Sincronizada por
+  /// VibrationController; cuando está apagada, ninguna llamada háptica vibra.
+  static bool hapticsEnabled = true;
+
+  static void _haptic(void Function() fn) {
+    if (hapticsEnabled) fn();
+  }
+
   static void correct() {
-    HapticFeedback.lightImpact();
+    _haptic(HapticFeedback.lightImpact);
     SoundService.instance.play(Sfx.correct);
   }
 
   static void wrong() {
-    HapticFeedback.heavyImpact();
+    _haptic(HapticFeedback.heavyImpact);
     SoundService.instance.play(Sfx.wrong);
   }
 
   static void combo() {
-    HapticFeedback.mediumImpact();
+    _haptic(HapticFeedback.mediumImpact);
     SoundService.instance.play(Sfx.combo);
   }
 
   static void lessonComplete({bool golden = false}) {
-    HapticFeedback.mediumImpact();
+    _haptic(HapticFeedback.mediumImpact);
     SoundService.instance.play(golden ? Sfx.celebrate : Sfx.lessonComplete);
   }
 
   static void levelUp() {
-    HapticFeedback.heavyImpact();
+    _haptic(HapticFeedback.heavyImpact);
     SoundService.instance.play(Sfx.levelUp);
   }
 
   static void celebrate() {
-    HapticFeedback.heavyImpact();
+    _haptic(HapticFeedback.heavyImpact);
     SoundService.instance.play(Sfx.celebrate);
   }
 
   static void streak() {
-    HapticFeedback.mediumImpact();
+    _haptic(HapticFeedback.mediumImpact);
     SoundService.instance.play(Sfx.streak);
   }
 
   static void tap() {
-    HapticFeedback.selectionClick();
+    _haptic(HapticFeedback.selectionClick);
   }
 }

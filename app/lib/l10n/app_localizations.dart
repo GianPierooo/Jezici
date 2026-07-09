@@ -208,6 +208,342 @@ abstract class AppLocalizations {
   /// **'Português'**
   String get langPt;
 
+  /// No description provided for @settingsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Ajustes'**
+  String get settingsTitle;
+
+  /// No description provided for @settingsSecLanguage.
+  ///
+  /// In es, this message translates to:
+  /// **'IDIOMA'**
+  String get settingsSecLanguage;
+
+  /// No description provided for @settingsSecNotifications.
+  ///
+  /// In es, this message translates to:
+  /// **'NOTIFICACIONES'**
+  String get settingsSecNotifications;
+
+  /// No description provided for @settingsSecGoal.
+  ///
+  /// In es, this message translates to:
+  /// **'META Y RECORDATORIOS'**
+  String get settingsSecGoal;
+
+  /// No description provided for @settingsSecAccount.
+  ///
+  /// In es, this message translates to:
+  /// **'CUENTA'**
+  String get settingsSecAccount;
+
+  /// No description provided for @settingsSecOther.
+  ///
+  /// In es, this message translates to:
+  /// **'OTROS'**
+  String get settingsSecOther;
+
+  /// No description provided for @settingsSecAdvanced.
+  ///
+  /// In es, this message translates to:
+  /// **'AVANZADO'**
+  String get settingsSecAdvanced;
+
+  /// No description provided for @settingsLearns.
+  ///
+  /// In es, this message translates to:
+  /// **'Aprendes'**
+  String get settingsLearns;
+
+  /// No description provided for @settingsLearnsSub.
+  ///
+  /// In es, this message translates to:
+  /// **'{lang} · Objetivo {goal}'**
+  String settingsLearnsSub(String lang, String goal);
+
+  /// No description provided for @settingsChange.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambiar'**
+  String get settingsChange;
+
+  /// No description provided for @settingsAppLanguageRow.
+  ///
+  /// In es, this message translates to:
+  /// **'Idioma de la app'**
+  String get settingsAppLanguageRow;
+
+  /// No description provided for @settingsChooseCourse.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Qué idioma quieres aprender?'**
+  String get settingsChooseCourse;
+
+  /// No description provided for @settingsChooseAppLang.
+  ///
+  /// In es, this message translates to:
+  /// **'Idioma de la app'**
+  String get settingsChooseAppLang;
+
+  /// No description provided for @settingsCoachIntensity.
+  ///
+  /// In es, this message translates to:
+  /// **'Intensidad del coach'**
+  String get settingsCoachIntensity;
+
+  /// No description provided for @settingsCoachInsist.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Cuánto insiste Matix?'**
+  String get settingsCoachInsist;
+
+  /// No description provided for @settingsIntensityLow.
+  ///
+  /// In es, this message translates to:
+  /// **'Suave'**
+  String get settingsIntensityLow;
+
+  /// No description provided for @settingsIntensityMid.
+  ///
+  /// In es, this message translates to:
+  /// **'Media'**
+  String get settingsIntensityMid;
+
+  /// No description provided for @settingsIntensityHigh.
+  ///
+  /// In es, this message translates to:
+  /// **'Alta'**
+  String get settingsIntensityHigh;
+
+  /// No description provided for @settingsQuiet.
+  ///
+  /// In es, this message translates to:
+  /// **'No molestar'**
+  String get settingsQuiet;
+
+  /// No description provided for @settingsQuietSub.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin avisos en este horario'**
+  String get settingsQuietSub;
+
+  /// No description provided for @settingsQuietOff.
+  ///
+  /// In es, this message translates to:
+  /// **'Desactivado'**
+  String get settingsQuietOff;
+
+  /// No description provided for @settingsQuietEnable.
+  ///
+  /// In es, this message translates to:
+  /// **'Activar horario de silencio'**
+  String get settingsQuietEnable;
+
+  /// No description provided for @settingsQuietFrom.
+  ///
+  /// In es, this message translates to:
+  /// **'Desde'**
+  String get settingsQuietFrom;
+
+  /// No description provided for @settingsQuietTo.
+  ///
+  /// In es, this message translates to:
+  /// **'Hasta'**
+  String get settingsQuietTo;
+
+  /// No description provided for @settingsMeta.
+  ///
+  /// In es, this message translates to:
+  /// **'Meta diaria'**
+  String get settingsMeta;
+
+  /// No description provided for @settingsMetaSub.
+  ///
+  /// In es, this message translates to:
+  /// **'{min} min · {xp} XP al día'**
+  String settingsMetaSub(int min, int xp);
+
+  /// No description provided for @settingsMetaXpDay.
+  ///
+  /// In es, this message translates to:
+  /// **'≈ {xp} XP/día (más minutos = meta más alta)'**
+  String settingsMetaXpDay(int xp);
+
+  /// No description provided for @settingsDailyReminder.
+  ///
+  /// In es, this message translates to:
+  /// **'Recordatorio diario'**
+  String get settingsDailyReminder;
+
+  /// No description provided for @settingsDailyReminderSub.
+  ///
+  /// In es, this message translates to:
+  /// **'Todos los días a las 20:00'**
+  String get settingsDailyReminderSub;
+
+  /// No description provided for @settingsStreakAlert.
+  ///
+  /// In es, this message translates to:
+  /// **'Aviso de racha en peligro'**
+  String get settingsStreakAlert;
+
+  /// No description provided for @settingsStreakAlertSub.
+  ///
+  /// In es, this message translates to:
+  /// **'Si olvidas practicar'**
+  String get settingsStreakAlertSub;
+
+  /// No description provided for @settingsReminderNote.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu preferencia se guarda. Los recordatorios push llegan pronto.'**
+  String get settingsReminderNote;
+
+  /// No description provided for @settingsEditProfile.
+  ///
+  /// In es, this message translates to:
+  /// **'Editar perfil'**
+  String get settingsEditProfile;
+
+  /// No description provided for @settingsSubscription.
+  ///
+  /// In es, this message translates to:
+  /// **'Suscripción'**
+  String get settingsSubscription;
+
+  /// No description provided for @settingsPlanFree.
+  ///
+  /// In es, this message translates to:
+  /// **'Plan gratis · Mejorar'**
+  String get settingsPlanFree;
+
+  /// No description provided for @settingsLogout.
+  ///
+  /// In es, this message translates to:
+  /// **'Cerrar sesión'**
+  String get settingsLogout;
+
+  /// No description provided for @settingsSounds.
+  ///
+  /// In es, this message translates to:
+  /// **'Sonidos'**
+  String get settingsSounds;
+
+  /// No description provided for @settingsMusic.
+  ///
+  /// In es, this message translates to:
+  /// **'Música del mapa'**
+  String get settingsMusic;
+
+  /// No description provided for @settingsMusicSub.
+  ///
+  /// In es, this message translates to:
+  /// **'Loop ambiente en Aprender. Baja sola con los sonidos.'**
+  String get settingsMusicSub;
+
+  /// No description provided for @settingsVibration.
+  ///
+  /// In es, this message translates to:
+  /// **'Vibración'**
+  String get settingsVibration;
+
+  /// No description provided for @settingsPrivacy.
+  ///
+  /// In es, this message translates to:
+  /// **'Privacidad y datos'**
+  String get settingsPrivacy;
+
+  /// No description provided for @settingsPrivacyPolicy.
+  ///
+  /// In es, this message translates to:
+  /// **'Política de Privacidad'**
+  String get settingsPrivacyPolicy;
+
+  /// No description provided for @settingsTerms.
+  ///
+  /// In es, this message translates to:
+  /// **'Términos y Condiciones'**
+  String get settingsTerms;
+
+  /// No description provided for @settingsTestMatix.
+  ///
+  /// In es, this message translates to:
+  /// **'Probar a Matix'**
+  String get settingsTestMatix;
+
+  /// No description provided for @settingsMetrics.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver métricas (interno)'**
+  String get settingsMetrics;
+
+  /// No description provided for @settingsExport.
+  ///
+  /// In es, this message translates to:
+  /// **'Exportar mis datos'**
+  String get settingsExport;
+
+  /// No description provided for @settingsDelete.
+  ///
+  /// In es, this message translates to:
+  /// **'Borrar mi cuenta'**
+  String get settingsDelete;
+
+  /// No description provided for @settingsSaveError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudieron guardar los ajustes.'**
+  String get settingsSaveError;
+
+  /// No description provided for @coachNameManoDura.
+  ///
+  /// In es, this message translates to:
+  /// **'Mano dura'**
+  String get coachNameManoDura;
+
+  /// No description provided for @coachNamePositivo.
+  ///
+  /// In es, this message translates to:
+  /// **'Positivo'**
+  String get coachNamePositivo;
+
+  /// No description provided for @coachNameRezago.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin rezago'**
+  String get coachNameRezago;
+
+  /// No description provided for @coachNameSuave.
+  ///
+  /// In es, this message translates to:
+  /// **'Suave'**
+  String get coachNameSuave;
+
+  /// No description provided for @coachExManoDura.
+  ///
+  /// In es, this message translates to:
+  /// **'«Sin excusas. Entra ya. 💪»'**
+  String get coachExManoDura;
+
+  /// No description provided for @coachExPositivo.
+  ///
+  /// In es, this message translates to:
+  /// **'«¡Vas genial, sigue así! 🎉»'**
+  String get coachExPositivo;
+
+  /// No description provided for @coachExRezago.
+  ///
+  /// In es, this message translates to:
+  /// **'«Llevas 2 días sin practicar… 👀»'**
+  String get coachExRezago;
+
+  /// No description provided for @coachExSuave.
+  ///
+  /// In es, this message translates to:
+  /// **'«Sin prisa, ve a tu ritmo 🌱»'**
+  String get coachExSuave;
+
   /// No description provided for @learnLangEn.
   ///
   /// In es, this message translates to:
