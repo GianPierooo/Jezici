@@ -44,6 +44,21 @@ Smoke test (`jz_motion_test`: sheen+glow pintan el hijo con y sin reduce-motion)
 visualmente con golden temporal (barrido diagonal sobre dorado, borrado por flaky en CI). Verde: analyze 0
 (CI-exact) · test 129/129 · build web OK.
 
+## FONDO DEL MAPA v2 — quitados los EDIFICIOS (las "franjas verticales") ✅ (2026-07-09 · solo cliente)
+Gian SEGUÍA viendo "franjas verticales moradas/verdes/coral" tras el fix de anclaje (v1). **Causa real
+encontrada renderizando el PIE de un mapa alto** (los mapas son MUY altos: `_flatten` = TODAS las lecciones
+de todas las unidades → contentHeight 5.000–23.000px): al inicio del viaje se veía la **CIUDAD = edificios
+VERTICALES morados/coral** (`#7E6FE6/#6C5CE7/#FF8585`) plantados sobre el verde de las colinas → eso ERA las
+"franjas verticales moradas/coral" (y el verde de las colinas). No parecía un paisaje: barras verticales
+sobre césped. **Fix:** se **ELIMINÓ `_city`** (los edificios) por completo — el mockup lista velero/pinos/
+nubes/montañas como la escenografía buena, NO la ciudad. En su lugar, **bosque de pinos más denso** hacia el
+pie + **ramp de verdes de pasos suaves** (contraste bajo entre capas → colinas que se funden, sin bandas
+duras). Resultado (verificado con golden del pie y del full): paisaje **limpio y cohesivo** — cima con
+montañas/sol, costa con velero, cielo en degradado, y **colinas verdes con pinos** en el pie; **cero barras
+verticales**, sendero limpio. Se conserva todo lo que se veía bien (velero, pinos, nubes, montañas). El globo
+"EXAMEN · UNIDAD N" ya estaba bajado al hueco del portal (c.dy+62). Verde: analyze 0 (CI-exact) · test
+130/130 · build web OK.
+
 ## FONDO DEL MAPA rehecho — fin de las "franjas" ✅ (2026-07-09 · solo cliente)
 Feedback Android de Gian: el fondo del mapa se veía como **franjas de color planas sueltas** (moradas/
 verdes/coral) desalineadas que cortaban el sendero. **Causa raíz:** `scenery_painter.dart` posicionaba los

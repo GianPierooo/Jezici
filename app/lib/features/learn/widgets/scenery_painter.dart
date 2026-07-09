@@ -33,8 +33,11 @@ class SceneryPainter extends CustomPainter {
     _clouds(canvas, x, w, h); // nubes (arriba + algunas en el cielo medio)
     _coast(canvas, x); // mar + playa + velero (arriba, bajo las montañas)
     _hills(canvas, x, bottom, w); // colinas (abajo, contiguas hasta el pie)
-    _pines(canvas, x, bottom); // pinos sobre las colinas
-    _city(canvas, x, bottom); // ciudad (pie: donde empieza el viaje)
+    _pines(canvas, x, bottom); // pinos sobre las colinas (paisaje limpio en el pie)
+    // NOTA: la "ciudad" (edificios verticales) se ELIMINÓ — en el pie de un mapa
+    // alto se veía como FRANJAS VERTICALES moradas/coral sobre el verde (no un
+    // paisaje). Un paisaje de colinas + pinos + degradado es limpio y cohesivo a
+    // cualquier altura (guía de la misión: "mejor limpio y bonito que roto").
     _topHaze(canvas, w, h); // velo suave que funde la cima en el cielo
   }
 
@@ -233,12 +236,13 @@ class SceneryPainter extends CustomPainter {
       );
     }
 
-    // Capa extra clara arriba para fundir con el cielo (sin borde verde duro).
-    hill(870, 800, 858, 906, 840, const Color(0xFFA6E4BC));
-    hill(1010, 928, 990, 1044, 968, const Color(0xFF86DBA3));
-    hill(1150, 1078, 1140, 1184, 1120, const Color(0xFF56CC88));
-    hill(1310, 1244, 1310, 1356, 1300, const Color(0xFF37BB70));
-    hill(1500, 1448, 1512, 1548, 1500, const Color(0xFF27A45F));
+    // Ramp verde de pasos SUAVES (contraste bajo entre capas → colinas que se
+    // funden, sin bandas duras). Capa clara arriba para mezclar con el cielo.
+    hill(870, 800, 858, 906, 840, const Color(0xFFAEE6C2));
+    hill(1010, 928, 990, 1044, 968, const Color(0xFF93DDAE));
+    hill(1150, 1078, 1140, 1184, 1120, const Color(0xFF77D19A));
+    hill(1310, 1244, 1310, 1356, 1300, const Color(0xFF5DC386));
+    hill(1500, 1448, 1512, 1548, 1500, const Color(0xFF48B474));
   }
 
   void _pines(Canvas canvas, double Function(double) x, double Function(double) bottom) {
@@ -247,6 +251,13 @@ class SceneryPainter extends CustomPainter {
     _pine(canvas, Offset(x(64), bottom(1268)), x(18));
     _pine(canvas, Offset(x(310), bottom(1238)), x(17));
     _pine(canvas, Offset(x(36), bottom(1420)), x(19));
+    // Bosque más denso hacia el PIE (donde antes iban los edificios) → base viva.
+    _pine(canvas, Offset(x(300), bottom(1470)), x(20));
+    _pine(canvas, Offset(x(70), bottom(1620)), x(22));
+    _pine(canvas, Offset(x(200), bottom(1560)), x(18));
+    _pine(canvas, Offset(x(330), bottom(1660)), x(21));
+    _pine(canvas, Offset(x(150), bottom(1720)), x(19));
+    _pine(canvas, Offset(x(28), bottom(1770)), x(23));
   }
 
   void _pine(Canvas canvas, Offset base, double s) {
@@ -270,45 +281,6 @@ class SceneryPainter extends CustomPainter {
         ..close(),
       Paint()..color = const Color(0xFF2BA866),
     );
-  }
-
-  // ── Ciudad / distrito laboral (el PIE: donde empieza el viaje) ──────────────
-  void _city(Canvas canvas, double Function(double) x, double Function(double) bottom) {
-    void building(double mx, double topY, double mw, Color color) {
-      canvas.drawRRect(
-        RRect.fromRectAndRadius(
-          Rect.fromLTRB(x(mx), bottom(topY), x(mx + mw), bottom(1860)),
-          const Radius.circular(6),
-        ),
-        Paint()..color = color,
-      );
-    }
-
-    building(6, 1640, 50, const Color(0xFF7E6FE6));
-    building(60, 1590, 44, const Color(0xFF6C5CE7));
-    building(300, 1610, 56, const Color(0xFF7E6FE6));
-    building(256, 1668, 42, const Color(0xFF6155C9));
-    building(284, 1700, 36, const Color(0xFFFF8585));
-
-    // Ventanas iluminadas.
-    final win = Paint()..color = const Color(0xFFFFE08A);
-    void windows(double mx, double topY, int cols, int rows) {
-      for (var r = 0; r < rows; r++) {
-        for (var col = 0; col < cols; col++) {
-          canvas.drawRRect(
-            RRect.fromRectAndRadius(
-              Rect.fromLTWH(x(mx + col * 16), bottom(topY + r * 24), x(9), 11),
-              const Radius.circular(2),
-            ),
-            win,
-          );
-        }
-      }
-    }
-
-    windows(16, 1616, 2, 4);
-    windows(70, 1614, 2, 5);
-    windows(312, 1636, 2, 4);
   }
 
   // ── Velo superior: funde la cima/montañas en el cielo (mockup: fadeUp) ──────
