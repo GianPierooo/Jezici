@@ -420,6 +420,8 @@
   "@mapUnitBanner": { "placeholders": { "num": {"type":"int"}, "level": {"type":"String"} } },
   "mapUnitBannerLocked": "UNIDAD {num} · {level} · 🔒 BLOQUEADA",
   "@mapUnitBannerLocked": { "placeholders": { "num": {"type":"int"}, "level": {"type":"String"} } },
+  "mapExamUnit": "EXAMEN · UNIDAD {num}",
+  "@mapExamUnit": { "placeholders": { "num": {"type":"int"} } },
   "topBarMusicOff": "Apagar música del mapa",
   "topBarMusicOn": "Encender música del mapa",
   "topBarNotifications": "Notificaciones",

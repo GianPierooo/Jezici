@@ -60,12 +60,12 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
 - Estado: **DESVIADO** · Esfuerzo: **L**
 - Coincide: estructura full-bleed + sendero serpenteante + cima; 4 estados de nodo con hex casi exactos (mastered `#FFDD7A→#FFC02E` exacto); pulso coral del disponible fiel (+ fallback reduce-motion, mejora); globo "EMPIEZA" y copy exactos; colores del sendero y colinas exactos.
 - Desviaciones:
-  - [P1] Checkpoint: mockup = PORTAL/arco de examen (pilares violeta, interior dorado brillante, estrella, glow animado, rótulo "EXAMEN · UNIDAD 3") vs app = círculo con `Icons.sports_score`.
+  - [P1] ✅ **ARREGLADO (2026-07-08):** el checkpoint es ahora un **PORTAL de examen** (`checkpoint_portal.dart`: pilares violeta + reflejo, arco, interior dorado con gradiente, estrella-llave, halo pulsante reduce-motion-aware) + pill "EXAMEN · UNIDAD N"; estado bloqueado = gris apagado + candado. Respeta el gating (≥80% dominio) sin tocar la lógica.
   - [P1] Mascota: SVG guacamayo animado (jzBob) vs emoji 🦜.
-  - [P1] Escenografía recortada: faltan cordillera lejana, nubes, costa con mar/playa/velero y ciudad al pie; pinos 3 de una capa vs 5 de dos.
+  - [P1] ✅ **ARREGLADO (2026-07-08):** escenografía por región enriquecida (`scenery_painter.dart`): **cordillera lejana con cumbres nevadas + nubes** (cima), **costa con mar/playa/velero** (media), 5 capas de colinas + 5 pinos de 2 capas, y **ciudad/distrito laboral con ventanas** (base). Full-bleed; la columna de nodos sigue centrada (dx0).
   - [P2] Certificado de cima sin subtítulo "Fluidez · Avanzado", sin labio 3D `0 8px 0 #E7B23A`, sin halo animado.
   - [P2] Mastered sin sheen deslizante ni banderín coral; misión sin chispa ni tarjeta lateral "★ MISIÓN".
-  - [P2] Nodo disponible sin ANILLO DE PROGRESO (dasharray ≈ avance de la lección); globo "EMPIEZA" sin flotación ni cola.
+  - [P2] ✅ **ARREGLADO (2026-07-08):** el nodo disponible tiene **ANILLO DE PROGRESO** (pista blanca + arco coral = avance de la unidad, lecciones completadas/total). (Pendiente P2: flotación/cola del globo "EMPIEZA".)
   - [P2] Etiquetas bajo TODOS los nodos (mockup: solo disponible+checkpoint, con prefijo "Lección N ·").
   - [P2] Cielo 4 paradas vs 8; sendero 34/24px vs 40/30px; sin velo blanco sobre regiones bloqueadas ni pill compacta con candado.
   - [P2] Top bar sin blur; bandera 🇬🇧 hardcodeada (no refleja el curso activo de 6 y no es botón).

@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import '../../../core/theme/app_colors.dart';
@@ -15,12 +17,16 @@ class MapNode extends StatefulWidget {
     required this.state,
     this.onTap,
     this.size = 72,
+    this.progress = 0,
   });
 
   final LessonType type;
   final NodeState state;
   final VoidCallback? onTap;
   final double size;
+
+  /// Avance de la unidad (0..1) para el ANILLO del nodo disponible (Aprender.dc).
+  final double progress;
 
   @override
   State<MapNode> createState() => _MapNodeState();
@@ -207,6 +213,12 @@ class _MapNodeState extends State<MapNode> with SingleTickerProviderStateMixin {
                 );
               },
             ),
+          // Anillo de progreso de la unidad alrededor del nodo disponible.
+          if (_isAvailable && widget.progress > 0)
+            CustomPaint(
+              size: Size(size * 1.16, size * 1.16),
+              painter: _ProgressRing(widget.progress),
+            ),
           GestureDetector(
             onTapDown: widget.onTap != null
                 ? (_) => setState(() => _pressed = true)
@@ -236,6 +248,39 @@ class _MapNodeState extends State<MapNode> with SingleTickerProviderStateMixin {
       ),
     );
   }
+}
+
+/// Anillo de progreso (pista blanca + arco coral) alrededor del nodo disponible.
+class _ProgressRing extends CustomPainter {
+  _ProgressRing(this.progress);
+  final double progress; // 0..1
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final c = size.center(Offset.zero);
+    final r = size.width / 2 - 3;
+    final track = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 6
+      ..strokeCap = StrokeCap.round
+      ..color = Colors.white.withValues(alpha: 0.7);
+    canvas.drawCircle(c, r, track);
+    final arc = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 6
+      ..strokeCap = StrokeCap.round
+      ..color = AppColors.coral;
+    canvas.drawArc(
+      Rect.fromCircle(center: c, radius: r),
+      -math.pi / 2,
+      2 * math.pi * progress.clamp(0.0, 1.0),
+      false,
+      arc,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant _ProgressRing old) => old.progress != progress;
 }
 
 class _NodeStyle {

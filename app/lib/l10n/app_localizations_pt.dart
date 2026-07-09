@@ -1211,6 +1211,11 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
+  String mapExamUnit(int num) {
+    return 'EXAME · UNIDADE $num';
+  }
+
+  @override
   String get topBarMusicOff => 'Desligar a música do mapa';
 
   @override

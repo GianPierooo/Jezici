@@ -368,6 +368,8 @@
   "mapSummitPeak": "⛰ O TOPO",
   "mapUnitBanner": "UNIDADE {num} · {level}",
   "mapUnitBannerLocked": "UNIDADE {num} · {level} · 🔒 BLOQUEADA",
+  "mapExamUnit": "EXAME · UNIDADE {num}",
+  "@mapExamUnit": { "placeholders": { "num": {"type":"int"} } },
   "topBarMusicOff": "Desligar a música do mapa",
   "topBarMusicOn": "Ligar a música do mapa",
   "topBarNotifications": "Notificações",

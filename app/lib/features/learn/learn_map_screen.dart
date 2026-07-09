@@ -13,6 +13,7 @@ import '../../data/providers.dart';
 import '../checkpoint/checkpoint_intro_screen.dart';
 import '../lesson/lesson_preview_screen.dart';
 import 'mission_screen.dart';
+import 'widgets/checkpoint_portal.dart';
 import 'widgets/learn_top_bar.dart';
 import 'widgets/map_node.dart';
 import 'widgets/parrot_mascot.dart';
@@ -223,6 +224,19 @@ class _MapBodyState extends State<_MapBody> {
     return i.isEven ? width * 0.30 : width * 0.70;
   }
 
+  /// Avance de la unidad (0..1): lecciones dominadas/completadas / total. Alimenta
+  /// el ANILLO del nodo disponible (Aprender.dc). No cambia ninguna lógica.
+  double _unitProgress(String unitId) {
+    var done = 0, total = 0;
+    for (var k = 0; k < _entries.length; k++) {
+      if (_entries[k].unit.id != unitId) continue;
+      total++;
+      final s = _stateFor(_entries[k].lesson, k);
+      if (s == NodeState.completed || s == NodeState.mastered) done++;
+    }
+    return total == 0 ? 0 : done / total;
+  }
+
   void _onTapNode(_Entry entry, NodeState state) {
     final lesson = entry.lesson;
     // Bloqueada → aviso. Disponible/completada → checkpoint o lección.
@@ -328,28 +342,51 @@ class _MapBodyState extends State<_MapBody> {
           final lesson = entry.lesson;
           final c = centers[i];
           final state = _stateFor(lesson, i);
-          final size = lesson.type == LessonType.checkpoint ? 88.0 : 72.0;
-          final box = size * 1.5;
+          final isCheckpoint = lesson.type == LessonType.checkpoint;
+          final size = isCheckpoint ? 88.0 : 72.0;
 
-          // Nodo.
-          children.add(Positioned(
-            left: c.dx - box / 2,
-            top: c.dy - box / 2,
-            child: MapNode(
-              type: lesson.type,
-              state: state,
-              size: size,
-              onTap: () => _onTapNode(entry, state),
-            ),
-          ));
-
-          // Etiqueta debajo del nodo.
-          children.add(Positioned(
-            left: c.dx - 90,
-            top: c.dy + size / 2 + 8,
-            width: 180,
-            child: _NodeLabel(title: lesson.title, available: state == NodeState.available),
-          ));
+          // Nodo: el CHECKPOINT es un PORTAL de examen (Aprender.dc); el resto,
+          // nodo circular con anillo de progreso cuando está disponible.
+          if (isCheckpoint) {
+            const portalW = 108.0;
+            const portalBox = portalW * 1.5;
+            children.add(Positioned(
+              left: c.dx - portalBox / 2,
+              top: c.dy - portalBox / 2,
+              child: CheckpointPortal(
+                state: state,
+                width: portalW,
+                onTap: () => _onTapNode(entry, state),
+              ),
+            ));
+            // Pill "EXAMEN · UNIDAD N" bajo el portal.
+            children.add(Positioned(
+              left: c.dx - 90,
+              top: c.dy + size / 2 + 10,
+              width: 180,
+              child: Center(child: _ExamPill(unitOrder: entry.unit.orderIndex)),
+            ));
+          } else {
+            final box = size * 1.5;
+            children.add(Positioned(
+              left: c.dx - box / 2,
+              top: c.dy - box / 2,
+              child: MapNode(
+                type: lesson.type,
+                state: state,
+                size: size,
+                progress: state == NodeState.available ? _unitProgress(entry.unit.id) : 0,
+                onTap: () => _onTapNode(entry, state),
+              ),
+            ));
+            // Etiqueta debajo del nodo.
+            children.add(Positioned(
+              left: c.dx - 90,
+              top: c.dy + size / 2 + 8,
+              width: 180,
+              child: _NodeLabel(title: lesson.title, available: state == NodeState.available),
+            ));
+          }
 
           // Globo "EMPIEZA" sobre el nodo disponible.
           if (state == NodeState.available) {
@@ -412,6 +449,35 @@ class _NodeLabel extends StatelessWidget {
             fontWeight: FontWeight.w900,
             fontSize: 11.5,
           ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Rótulo del portal de examen: pill oscura "EXAMEN · UNIDAD N" (Aprender.dc).
+class _ExamPill extends StatelessWidget {
+  const _ExamPill({required this.unitOrder});
+  final int unitOrder;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+      decoration: BoxDecoration(
+        color: AppColors.text,
+        borderRadius: BorderRadius.circular(11),
+        boxShadow: [
+          BoxShadow(color: Colors.black.withValues(alpha: 0.25), offset: const Offset(0, 4), blurRadius: 10),
+        ],
+      ),
+      child: Text(
+        AppLocalizations.of(context).mapExamUnit(unitOrder),
+        style: const TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.w900,
+          fontSize: 10,
+          letterSpacing: 1,
         ),
       ),
     );

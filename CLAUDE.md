@@ -5,6 +5,28 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-08**.
 
+## HOME/MAPA fiel a Aprender.dc — portal + escenografía + anillo ✅ (2026-07-08 · solo cliente)
+Ingeniería pura (cero IA), **capa visual + composición: NO toca la lógica de progresión/desbloqueo/gating**
+(intacta). La base del mapa ya era fiel (nodos, pulso, sendero, colinas); se añadieron los elementos de
+"viaje" que faltaban (MOCKUP_GAP §1):
+- **Portal de examen** (`checkpoint_portal.dart`): el nodo de checkpoint es ahora un **arco/portal** (CustomPaint:
+  base, pilares violeta con reflejo, arco superior, interior dorado con gradiente `#FFE9A8→#FFC93C`, estrella-
+  llave, **halo pulsante** `jzGlow` reduce-motion-aware) + pill **"EXAMEN · UNIDAD N"**. Estado **bloqueado** =
+  gris apagado + candado (respeta el gating ≥80% dominio sin cambiar nada). Reemplaza el círculo con
+  `Icons.sports_score`. Cableado en `learn_map_screen` (branch por `LessonType.checkpoint`).
+- **Escenografía por región** (`scenery_painter.dart`, full-bleed): de la base a la cima — **ciudad/distrito
+  laboral con ventanas iluminadas** (donde empiezas), **costa con mar/playa/velero**, 5 capas de colinas + 5
+  pinos de 2 capas, **cordillera lejana con cumbres nevadas + nubes** bajo la cima. Posicionada por FRACCIÓN de
+  la altura total → el mapa "evoluciona" al desplazarse sea cual sea el nº de unidades. La columna de nodos
+  sigue centrada (dx0/ResponsiveCenter) → móvil pixel-fiel, desktop centrado sin franjas.
+- **Anillo de progreso** en el nodo disponible (`MapNode.progress`): pista blanca + arco **coral** = avance de la
+  unidad (lecciones completadas/total), como en Aprender.dc.
+- Motion reduce-motion-aware (halo del portal se congela; el pulso del nodo y el aro fijo ya existían).
+i18n es/en/pt (1 clave nueva `mapExamUnit`). **La barra superior (ya funcional) queda integrada arriba** sin
+cambios. Verde: analyze 0 · test 100/100 (+map_visuals: portal disponible/bloqueado, anillo, escenografía sin
+excepción) · build web OK. **Diferido (P1/P2 estético):** mascota SVG vs emoji, sheen/banderín del dorado,
+chispa+tarjeta de misión, velo de zona bloqueada, flotación del globo "EMPIEZA".
+
 ## Barra superior FUNCIONAL — cada stat hace algo real ✅ (2026-07-08 · solo cliente)
 Ingeniería pura (cero IA), reutilizando la economía existente. Antes en `learn_top_bar.dart`: ❤️ vidas
 **sin onTap** (muerta), ⚡ meta abría StreakScreen (destino incorrecto), 🪙 oro→Tienda directo (sin explicar),

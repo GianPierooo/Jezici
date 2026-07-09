@@ -2082,6 +2082,12 @@ abstract class AppLocalizations {
   /// **'UNIDAD {num} · {level} · 🔒 BLOQUEADA'**
   String mapUnitBannerLocked(int num, String level);
 
+  /// No description provided for @mapExamUnit.
+  ///
+  /// In es, this message translates to:
+  /// **'EXAMEN · UNIDAD {num}'**
+  String mapExamUnit(int num);
+
   /// No description provided for @topBarMusicOff.
   ///
   /// In es, this message translates to:

@@ -368,6 +368,8 @@
   "mapSummitPeak": "⛰ THE SUMMIT",
   "mapUnitBanner": "UNIT {num} · {level}",
   "mapUnitBannerLocked": "UNIT {num} · {level} · 🔒 LOCKED",
+  "mapExamUnit": "EXAM · UNIT {num}",
+  "@mapExamUnit": { "placeholders": { "num": {"type":"int"} } },
   "topBarMusicOff": "Turn off map music",
   "topBarMusicOn": "Turn on map music",
   "topBarNotifications": "Notifications",
