@@ -8,6 +8,7 @@ import '../../../data/providers.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../ui/stat_chip.dart';
 import '../../notifications/notification_center_screen.dart';
+import '../../onboarding/course_switcher.dart';
 import '../../plan/mi_plan_screen.dart';
 import '../../streak/streak_screen.dart';
 import 'top_bar_panels.dart';
@@ -20,6 +21,13 @@ class LearnTopBar extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final stats = ref.watch(homeStatsProvider).value ?? HomeStats.empty;
+    // Bandera = CURSO ACTIVO real (lo que aprendes), no 🇬🇧 fijo. Tocarla abre el
+    // cambio de curso (misma lógica que Ajustes; el idioma de la APP va en Ajustes).
+    final courses = ref.watch(coursesProvider).value;
+    final activeCourse = (courses == null || courses.isEmpty)
+        ? null
+        : courses.firstWhere((c) => c.active, orElse: () => courses.first);
+    final courseFlag = activeCourse?.flag ?? '🌐';
 
     return Container(
       margin: const EdgeInsets.fromLTRB(12, 8, 12, 0),
@@ -41,20 +49,28 @@ class LearnTopBar extends ConsumerWidget {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFF4F5FB),
-                  borderRadius: BorderRadius.circular(13),
-                ),
-                child: const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text('🇬🇧', style: TextStyle(fontSize: 16)),
-                    SizedBox(width: 4),
-                    Icon(Icons.keyboard_arrow_down_rounded,
-                        size: 16, color: AppColors.navInactive),
-                  ],
+              Semantics(
+                button: true,
+                label: AppLocalizations.of(context).settingsChooseCourse,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () => showCoursePickerSheet(context, ref),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF4F5FB),
+                      borderRadius: BorderRadius.circular(13),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(courseFlag, style: const TextStyle(fontSize: 16)),
+                        const SizedBox(width: 4),
+                        const Icon(Icons.keyboard_arrow_down_rounded,
+                            size: 16, color: AppColors.navInactive),
+                      ],
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(width: 6),

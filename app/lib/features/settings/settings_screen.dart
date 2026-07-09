@@ -22,7 +22,7 @@ import '../legal/legal_screen.dart';
 import '../metrics/metrics_screen.dart';
 import '../notifications/coach_styles.dart';
 import '../notifications/matix_test_buttons.dart';
-import '../onboarding/course_placement_screen.dart';
+import '../onboarding/course_switcher.dart';
 import '../premium/premium_screen.dart';
 
 const _kDivider = Color(0xFFF2F3F8);
@@ -924,66 +924,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     Navigator.of(context).popUntil((r) => r.isFirst);
   }
 
-  Future<void> _switchCourse(CourseInfo c) async {
-    final l10n = AppLocalizations.of(context);
-    final choice = await showDialog<String>(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text(l10n.coursePlacementOfferTitle),
-        content: Text(l10n.coursePlacementOfferBody(c.label)),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx, 'scratch'),
-            child: Text(l10n.coursePlacementFromScratch),
-          ),
-          TextButton(
-            onPressed: () => Navigator.pop(ctx, 'test'),
-            child: Text(l10n.coursePlacementDoTest),
-          ),
-        ],
-      ),
-    );
-    if (choice == null || !mounted) return;
-    try {
-      await ref.read(progressRepositoryProvider).setActiveCourse(c.id);
-      ref.invalidate(coursesProvider);
-      ref.invalidate(lessonProgressProvider);
-      ref.invalidate(skillsProvider);
-      ref.invalidate(skillMasteryProvider);
-      ref.invalidate(homeStatsProvider);
-      ref.invalidate(levelExamStatusProvider);
-      ref.invalidate(planTrackingProvider);
-      ref.invalidate(userPlanProvider);
-
-      if (choice == 'test' && mounted) {
-        final level = await Navigator.of(context).push<String>(
-          MaterialPageRoute(
-            builder: (_) => CoursePlacementScreen(courseId: c.id, courseLabel: c.label),
-          ),
-        );
-        if (!mounted) return;
-        ref.invalidate(coursesProvider);
-        ref.invalidate(mapUnitsProvider);
-        if (level != null) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(l10n.coursePlacementDone(level))),
-          );
-          return;
-        }
-      }
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('${c.flag}  ${c.targetName}')),
-        );
-      }
-    } catch (_) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('No se pudo cambiar el curso.')),
-        );
-      }
-    }
-  }
+  // Cambio de curso + re-placement: lógica ÚNICA compartida con la bandera del
+  // top bar del mapa (features/onboarding/course_switcher.dart).
+  Future<void> _switchCourse(CourseInfo c) => switchCourseFlow(context, ref, c);
 }
 
 /// Card blanca con la sombra dura del mockup (0 4 0 #E4E6EE + halo suave).

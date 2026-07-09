@@ -544,6 +544,264 @@ abstract class AppLocalizations {
   /// **'«Sin prisa, ve a tu ritmo 🌱»'**
   String get coachExSuave;
 
+  /// No description provided for @courseSwitchFailed.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo cambiar el curso.'**
+  String get courseSwitchFailed;
+
+  /// No description provided for @convTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Conversar'**
+  String get convTitle;
+
+  /// No description provided for @convSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Practica conversaciones reales. A tu ritmo, sin presión.'**
+  String get convSubtitle;
+
+  /// No description provided for @convLiveTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'🎙️  Conversación en vivo — próximamente'**
+  String get convLiveTitle;
+
+  /// No description provided for @convLiveBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Pronto podrás conversar con feedback en tiempo real. Lo lanzaremos con moderación y verificación de edad para que sea seguro. Mientras, practica abajo.'**
+  String get convLiveBody;
+
+  /// No description provided for @convPracticeHeader.
+  ///
+  /// In es, this message translates to:
+  /// **'Practica hablando o escribiendo'**
+  String get convPracticeHeader;
+
+  /// No description provided for @convPracticeSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Elige una situación, responde, y compárate con una respuesta modelo.'**
+  String get convPracticeSubtitle;
+
+  /// No description provided for @convInterestTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Usarías la conversación en vivo?'**
+  String get convInterestTitle;
+
+  /// No description provided for @convInterestYes.
+  ///
+  /// In es, this message translates to:
+  /// **'Sí, me encantaría'**
+  String get convInterestYes;
+
+  /// No description provided for @convInterestNo.
+  ///
+  /// In es, this message translates to:
+  /// **'No por ahora'**
+  String get convInterestNo;
+
+  /// No description provided for @convInterestHint.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Sobre qué temas? (opcional)'**
+  String get convInterestHint;
+
+  /// No description provided for @convSend.
+  ///
+  /// In es, this message translates to:
+  /// **'ENVIAR'**
+  String get convSend;
+
+  /// No description provided for @convSending.
+  ///
+  /// In es, this message translates to:
+  /// **'ENVIANDO…'**
+  String get convSending;
+
+  /// No description provided for @convInterestThanks.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Gracias! Te avisaremos cuando la conversación en vivo esté lista.'**
+  String get convInterestThanks;
+
+  /// No description provided for @convInterestFailed.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo enviar. Inténtalo de nuevo.'**
+  String get convInterestFailed;
+
+  /// No description provided for @convModeWrite.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribir'**
+  String get convModeWrite;
+
+  /// No description provided for @convModeSpeak.
+  ///
+  /// In es, this message translates to:
+  /// **'Hablar'**
+  String get convModeSpeak;
+
+  /// No description provided for @convHintWrite.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe tu respuesta…'**
+  String get convHintWrite;
+
+  /// No description provided for @convHintVoice.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu transcripción aparecerá aquí (o edítala)'**
+  String get convHintVoice;
+
+  /// No description provided for @convSeeModel.
+  ///
+  /// In es, this message translates to:
+  /// **'VER RESPUESTA MODELO'**
+  String get convSeeModel;
+
+  /// No description provided for @convModelAnswer.
+  ///
+  /// In es, this message translates to:
+  /// **'Respuesta modelo'**
+  String get convModelAnswer;
+
+  /// No description provided for @convKeyPhrases.
+  ///
+  /// In es, this message translates to:
+  /// **'Frases clave'**
+  String get convKeyPhrases;
+
+  /// No description provided for @convSelfEval.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Qué tan cerca estuviste del modelo?'**
+  String get convSelfEval;
+
+  /// No description provided for @convSaveFinish.
+  ///
+  /// In es, this message translates to:
+  /// **'GUARDAR Y TERMINAR'**
+  String get convSaveFinish;
+
+  /// No description provided for @convSaving.
+  ///
+  /// In es, this message translates to:
+  /// **'GUARDANDO…'**
+  String get convSaving;
+
+  /// No description provided for @convSaved.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Guardado! Cada práctica suma. 🦜'**
+  String get convSaved;
+
+  /// No description provided for @convSaveFailed.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo guardar. Inténtalo de nuevo.'**
+  String get convSaveFailed;
+
+  /// No description provided for @convMicPreparing.
+  ///
+  /// In es, this message translates to:
+  /// **'Preparando micrófono…'**
+  String get convMicPreparing;
+
+  /// No description provided for @convMicUnavailable.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu navegador no permite el micrófono. Escribe tu respuesta 🙂'**
+  String get convMicUnavailable;
+
+  /// No description provided for @convListening.
+  ///
+  /// In es, this message translates to:
+  /// **'Escuchando…'**
+  String get convListening;
+
+  /// No description provided for @convSpeakBtn.
+  ///
+  /// In es, this message translates to:
+  /// **'Hablar'**
+  String get convSpeakBtn;
+
+  /// No description provided for @convTopicCafeTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Pedir un café'**
+  String get convTopicCafeTitle;
+
+  /// No description provided for @convTopicCafeScenario.
+  ///
+  /// In es, this message translates to:
+  /// **'Estás en una cafetería. Pide un café y algo de comer, y pregunta el precio.'**
+  String get convTopicCafeScenario;
+
+  /// No description provided for @convTopicIntroTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Presentarte'**
+  String get convTopicIntroTitle;
+
+  /// No description provided for @convTopicIntroScenario.
+  ///
+  /// In es, this message translates to:
+  /// **'Conoces a alguien nuevo. Preséntate: nombre, de dónde eres y qué haces.'**
+  String get convTopicIntroScenario;
+
+  /// No description provided for @convTopicAirportTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'En el aeropuerto'**
+  String get convTopicAirportTitle;
+
+  /// No description provided for @convTopicAirportScenario.
+  ///
+  /// In es, this message translates to:
+  /// **'Estás en el aeropuerto. Pregunta por tu puerta y la hora del vuelo.'**
+  String get convTopicAirportScenario;
+
+  /// No description provided for @convTopicWeekendTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu fin de semana'**
+  String get convTopicWeekendTitle;
+
+  /// No description provided for @convTopicWeekendScenario.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuenta qué hiciste el fin de semana pasado (pasado simple).'**
+  String get convTopicWeekendScenario;
+
+  /// No description provided for @convTopicInterviewTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Una entrevista breve'**
+  String get convTopicInterviewTitle;
+
+  /// No description provided for @convTopicInterviewScenario.
+  ///
+  /// In es, this message translates to:
+  /// **'Te preguntan por qué quieres el trabajo. Responde con 2 razones.'**
+  String get convTopicInterviewScenario;
+
+  /// No description provided for @convTopicDirectionsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Pedir indicaciones'**
+  String get convTopicDirectionsTitle;
+
+  /// No description provided for @convTopicDirectionsScenario.
+  ///
+  /// In es, this message translates to:
+  /// **'Pregunta cómo llegar a la estación de tren y si está lejos.'**
+  String get convTopicDirectionsScenario;
+
   /// No description provided for @learnLangEn.
   ///
   /// In es, this message translates to:

@@ -5,6 +5,31 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-09**.
 
+## 2 BUGS de uso real (feedback Android de Gian) ✅ (2026-07-09 · solo cliente)
+- **BUG 1 · Conversar salía 100% en ESPAÑOL con la app en otro idioma.** `conversar_screen.dart` tenía
+  título/subtítulos/banner/rótulos y las situaciones ("Pedir un café", "Estás en una cafetería…")
+  HARDCODEADOS en español (mismo bug que ya arreglamos en Práctica; Conversar quedó fuera del barrido).
+  **Fix:** todo el CHROME va por i18n es/en/pt (44 claves nuevas): título, subtítulo, banner "en vivo",
+  cabeceras, tarjeta de interés, pantalla de práctica (modos escribir/hablar, hints, "VER RESPUESTA MODELO",
+  "Respuesta modelo"/"Frases clave", autoevaluación, guardar, estados del micrófono). Los **topics** ahora
+  tienen un **slug estable** (`id`: cafe/intro/airport/weekend/interview/directions) → título+escenario por
+  i18n de la APP; la **respuesta modelo + tips siguen siendo CONTENIDO por idioma del curso** (`ConvModel`
+  multi-idioma en/pt/fr/it/de/nl vía `modelFor(lang)` con `activeCourseTargetProvider`). El intento se guarda
+  con `topic.id` (analítica coherente, no varía por idioma). Verificado con test: la app en **pt** no deja
+  español ("Pratique conversas reais…", "Pedir um café"; 0 strings es).
+- **BUG 2 · La bandera ▼ del top bar del mapa no hacía NADA + estaba 🇬🇧 fija.** PASO 0: era un
+  `const Container` con `🇬🇧` + flecha, **sin `onTap`** (widget muerto) y sin leer el curso. **Decisión fija:**
+  representa el idioma del CURSO (lo que aprendes). **Fix:** la bandera refleja el **curso activo real**
+  (`coursesProvider` → `active.flag`) y al tocarla abre el **cambio de curso** entre los 6. La lógica de
+  cambio+re-placement se **EXTRAJO** de Ajustes a un módulo compartido (`features/onboarding/course_switcher.dart`:
+  `switchCourseFlow` + `showCoursePickerSheet`) — **NO duplicada**; Ajustes ahora la delega (`_switchCourse` =
+  one-liner). El **idioma de la APP se sigue cambiando SOLO en Ajustes** (no se tocó). El error de cambio de
+  curso pasó a i18n (`courseSwitchFailed`).
+- **Aislamiento multicurso INTACTO** (la bandera reusa el MISMO `set_active_course` → `jz_active_course` rutea):
+  `verify_placement_wiring.py` (cliente real, JWT) **TODO VERDE** — cada curso sirve SOLO lo suyo (`solo_curso=True`),
+  el progreso EN queda intacto tras re-ubicar otros, grading server-side (42501). NO toca loop/seguridad/ligas.
+  Verde: analyze 0 (CI-exact) · test 124/124 (+bugfix: Conversar pt sin español, bandera = curso activo) · build web OK.
+
 ## MASCOTA SVG ÚNICA — Matix guacamayo escarlata (gap sistémico #3) ✅ (2026-07-09 · solo cliente)
 El diferenciador de marca: el emoji 🦜 estático → **guacamayo escarlata VECTOR propio**, sin assets ni
 paquetes (CSP-safe, cero peso de red). En `features/learn/widgets/parrot_mascot.dart`:

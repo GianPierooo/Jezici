@@ -240,6 +240,146 @@ class AppLocalizationsEs extends AppLocalizations {
   String get coachExSuave => '«Sin prisa, ve a tu ritmo 🌱»';
 
   @override
+  String get courseSwitchFailed => 'No se pudo cambiar el curso.';
+
+  @override
+  String get convTitle => 'Conversar';
+
+  @override
+  String get convSubtitle =>
+      'Practica conversaciones reales. A tu ritmo, sin presión.';
+
+  @override
+  String get convLiveTitle => '🎙️  Conversación en vivo — próximamente';
+
+  @override
+  String get convLiveBody =>
+      'Pronto podrás conversar con feedback en tiempo real. Lo lanzaremos con moderación y verificación de edad para que sea seguro. Mientras, practica abajo.';
+
+  @override
+  String get convPracticeHeader => 'Practica hablando o escribiendo';
+
+  @override
+  String get convPracticeSubtitle =>
+      'Elige una situación, responde, y compárate con una respuesta modelo.';
+
+  @override
+  String get convInterestTitle => '¿Usarías la conversación en vivo?';
+
+  @override
+  String get convInterestYes => 'Sí, me encantaría';
+
+  @override
+  String get convInterestNo => 'No por ahora';
+
+  @override
+  String get convInterestHint => '¿Sobre qué temas? (opcional)';
+
+  @override
+  String get convSend => 'ENVIAR';
+
+  @override
+  String get convSending => 'ENVIANDO…';
+
+  @override
+  String get convInterestThanks =>
+      '¡Gracias! Te avisaremos cuando la conversación en vivo esté lista.';
+
+  @override
+  String get convInterestFailed => 'No se pudo enviar. Inténtalo de nuevo.';
+
+  @override
+  String get convModeWrite => 'Escribir';
+
+  @override
+  String get convModeSpeak => 'Hablar';
+
+  @override
+  String get convHintWrite => 'Escribe tu respuesta…';
+
+  @override
+  String get convHintVoice => 'Tu transcripción aparecerá aquí (o edítala)';
+
+  @override
+  String get convSeeModel => 'VER RESPUESTA MODELO';
+
+  @override
+  String get convModelAnswer => 'Respuesta modelo';
+
+  @override
+  String get convKeyPhrases => 'Frases clave';
+
+  @override
+  String get convSelfEval => '¿Qué tan cerca estuviste del modelo?';
+
+  @override
+  String get convSaveFinish => 'GUARDAR Y TERMINAR';
+
+  @override
+  String get convSaving => 'GUARDANDO…';
+
+  @override
+  String get convSaved => '¡Guardado! Cada práctica suma. 🦜';
+
+  @override
+  String get convSaveFailed => 'No se pudo guardar. Inténtalo de nuevo.';
+
+  @override
+  String get convMicPreparing => 'Preparando micrófono…';
+
+  @override
+  String get convMicUnavailable =>
+      'Tu navegador no permite el micrófono. Escribe tu respuesta 🙂';
+
+  @override
+  String get convListening => 'Escuchando…';
+
+  @override
+  String get convSpeakBtn => 'Hablar';
+
+  @override
+  String get convTopicCafeTitle => 'Pedir un café';
+
+  @override
+  String get convTopicCafeScenario =>
+      'Estás en una cafetería. Pide un café y algo de comer, y pregunta el precio.';
+
+  @override
+  String get convTopicIntroTitle => 'Presentarte';
+
+  @override
+  String get convTopicIntroScenario =>
+      'Conoces a alguien nuevo. Preséntate: nombre, de dónde eres y qué haces.';
+
+  @override
+  String get convTopicAirportTitle => 'En el aeropuerto';
+
+  @override
+  String get convTopicAirportScenario =>
+      'Estás en el aeropuerto. Pregunta por tu puerta y la hora del vuelo.';
+
+  @override
+  String get convTopicWeekendTitle => 'Tu fin de semana';
+
+  @override
+  String get convTopicWeekendScenario =>
+      'Cuenta qué hiciste el fin de semana pasado (pasado simple).';
+
+  @override
+  String get convTopicInterviewTitle => 'Una entrevista breve';
+
+  @override
+  String get convTopicInterviewScenario =>
+      'Te preguntan por qué quieres el trabajo. Responde con 2 razones.';
+
+  @override
+  String get convTopicDirectionsTitle => 'Pedir indicaciones';
+
+  @override
+  String get convTopicDirectionsScenario =>
+      'Pregunta cómo llegar a la estación de tren y si está lejos.';
+
+  @override
   String get learnLangEn => 'inglés';
 
   @override
