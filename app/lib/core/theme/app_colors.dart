@@ -16,6 +16,10 @@ class AppColors {
   static const Color coralDark = Color(0xFFD94545);
   static const Color gold = Color(0xFFFFC93C);
   static const Color goldDark = Color(0xFFE0980C);
+  // Token del CTA dorado 3D "jugoso" (Cofre.dc/Examen.dc): degradado + labio.
+  static const Color goldCtaTop = Color(0xFFFFDD7A);
+  static const Color goldCtaBottom = Color(0xFFF4B400);
+  static const Color goldCtaDepth = Color(0xFFD69400);
   static const Color success = Color(0xFF2ECC71);
   static const Color successDark = Color(0xFF1E9B52);
   static const Color streak = Color(0xFFFF7A00); // fuego/racha

@@ -2574,6 +2574,72 @@ abstract class AppLocalizations {
   /// **'REINTENTAR EXAMEN'**
   String get examRetry;
 
+  /// No description provided for @chestTitleClosed.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Un cofre te espera!'**
+  String get chestTitleClosed;
+
+  /// No description provided for @chestSubClosed.
+  ///
+  /// In es, this message translates to:
+  /// **'Tócalo para descubrir tu premio'**
+  String get chestSubClosed;
+
+  /// No description provided for @chestOpenCta.
+  ///
+  /// In es, this message translates to:
+  /// **'Abrir cofre'**
+  String get chestOpenCta;
+
+  /// No description provided for @chestTitleOpened.
+  ///
+  /// In es, this message translates to:
+  /// **'¡+{reward} de oro!'**
+  String chestTitleOpened(int reward);
+
+  /// No description provided for @chestSubOpened.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu recompensa del día'**
+  String get chestSubOpened;
+
+  /// No description provided for @chestGoldLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'ORO'**
+  String get chestGoldLabel;
+
+  /// No description provided for @chestClaimCta.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Reclamar!'**
+  String get chestClaimCta;
+
+  /// No description provided for @chestComeBack.
+  ///
+  /// In es, this message translates to:
+  /// **'Vuelve mañana por otro cofre 🎁'**
+  String get chestComeBack;
+
+  /// No description provided for @chestTitleTomorrow.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya abriste tu cofre'**
+  String get chestTitleTomorrow;
+
+  /// No description provided for @chestSubTomorrow.
+  ///
+  /// In es, this message translates to:
+  /// **'Vuelve mañana por otro 🎁'**
+  String get chestSubTomorrow;
+
+  /// No description provided for @chestCloseCta.
+  ///
+  /// In es, this message translates to:
+  /// **'Entendido'**
+  String get chestCloseCta;
+
   /// No description provided for @missionAppBarTitle.
   ///
   /// In es, this message translates to:

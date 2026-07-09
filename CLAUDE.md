@@ -5,6 +5,21 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-08**.
 
+## COFRE: pantalla de revelación dedicada fiel a Cofre.dc ✅ (2026-07-09 · solo cliente)
+Antes el cofre era una fila de la tienda que daba la recompensa con un **SnackBar**. Ahora es una **pantalla
+dedicada de revelación** (`shop/chest_reveal_screen.dart`, Cofre.dc): fondo violeta (5B4ECF→6C5CE7→8273E8),
+**guacamayo festejando** (`ParrotMascot`), **sparkles** de ambiente, **cofre que hace wiggle** (CustomPaint:
+cuerpo violeta + correas/candado dorados + gema) → tap/CTA lo abre → **reveal** con **rayos giratorios + halo
+pulsante + haz de luz + medalla + "+N ORO"** (pop `easeOutBack`) + **confeti** + cofre abierto con monedas
+derramando. **CTA dorado 3D 62px** (token nuevo `AppColors.goldCtaTop/Bottom/Depth` = FFDD7A/F4B400/D69400,
+"el token que faltaba") que **muta a verde "¡Reclamar!"**. **La recompensa es la REAL del servidor**
+(`open_daily_chest`): la pantalla llama al RPC al abrir y muestra `reward`; **NO cambia la economía**. Estados
+**cerrado / abierto / mañana** (cofre gris + candado, sin RPC). **Reduce-motion-aware** (sin animación revela
+directo, legible). Responsive (`ResponsiveCenter` 440). i18n es/en/pt (13 claves). La tienda: el card del
+cofre **navega** a la pantalla (`fullscreenDialog`) y refresca el saldo al volver — se quitó el confeti/SnackBar
+inline (el guard anti-doble-tap se mantiene). Verde: analyze 0 · test 113/113 (+chest_reveal: cerrado→abrir→
+premio real+¡Reclamar!; mañana sin RPC) · build web OK.
+
 ## MOMENTOS DE APROBAR: Checkpoint + Examen fieles a sus mockups ✅ (2026-07-09 · solo cliente)
 Capa visual + datos reales; **NO cambia scoring/gating/certificación**.
 **F1 · Checkpoint resultado (Checkpoint.dc):** header con **guacamayo animado** (celebrate/encourage) + halo

@@ -1,4 +1,3 @@
-import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -7,6 +6,7 @@ import '../../core/ui/responsive_center.dart';
 import '../../data/models/shop_models.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
+import 'chest_reveal_screen.dart';
 
 /// Tienda: gasto de oro (recargar vidas, congelar racha) + cofre diario de
 /// recompensa variable. Todo el saldo lo mueve el servidor.
@@ -17,14 +17,7 @@ class TiendaScreen extends ConsumerStatefulWidget {
 }
 
 class _TiendaScreenState extends ConsumerState<TiendaScreen> {
-  final ConfettiController _confetti = ConfettiController(duration: const Duration(seconds: 2));
   String? _busy;
-
-  @override
-  void dispose() {
-    _confetti.dispose();
-    super.dispose();
-  }
 
   void _refresh() {
     ref.invalidate(shopStatusProvider);
@@ -41,26 +34,16 @@ class _TiendaScreenState extends ConsumerState<TiendaScreen> {
       ));
   }
 
+  /// Abre la PANTALLA de revelación (Cofre.dc) — la recompensa real (open_daily_chest)
+  /// la abre esa pantalla. Al volver, refresca el saldo.
   Future<void> _chest() async {
     if (_busy != null) return; // guard anti doble-tap (race del cofre)
-    setState(() => _busy = 'chest');
-    final l10n = AppLocalizations.of(context);
-    try {
-      final r = await ref.read(progressRepositoryProvider).openDailyChest();
-      if (r['ok'] == true) {
-        _confetti.play();
-        final reward = (r['reward'] as num?)?.toInt() ?? 0;
-        final total = (r['gold'] as num?)?.toInt() ?? 0;
-        _toast(l10n.shopChestWon(reward, total));
-      } else {
-        _toast(l10n.shopChestAlready, ok: false);
-      }
-      _refresh();
-    } catch (_) {
-      _toast(l10n.authErrorGeneral, ok: false);
-    } finally {
-      if (mounted) setState(() => _busy = null);
-    }
+    final available = ref.read(shopStatusProvider).value?.chestAvailable ?? false;
+    await Navigator.of(context).push(MaterialPageRoute(
+      builder: (_) => ChestRevealScreen(available: available),
+      fullscreenDialog: true,
+    ));
+    if (mounted) _refresh();
   }
 
   Future<void> _hearts() async {
@@ -127,9 +110,7 @@ class _TiendaScreenState extends ConsumerState<TiendaScreen> {
           ),
         ],
       ),
-      body: Stack(
-        children: [
-          ResponsiveCenter(
+      body: ResponsiveCenter(
             maxWidth: 640,
             child: ListView(
             padding: const EdgeInsets.fromLTRB(20, 12, 20, 28),
@@ -167,18 +148,6 @@ class _TiendaScreenState extends ConsumerState<TiendaScreen> {
             ],
           ),
           ),
-          Align(
-            alignment: Alignment.topCenter,
-            child: ConfettiWidget(
-              confettiController: _confetti,
-              blastDirectionality: BlastDirectionality.explosive,
-              numberOfParticles: 14,
-              gravity: 0.3,
-              colors: const [AppColors.gold, AppColors.coral, AppColors.success, AppColors.primary],
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

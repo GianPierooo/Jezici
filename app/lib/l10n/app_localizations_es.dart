@@ -1504,6 +1504,41 @@ class AppLocalizationsEs extends AppLocalizations {
   String get examRetry => 'REINTENTAR EXAMEN';
 
   @override
+  String get chestTitleClosed => '¡Un cofre te espera!';
+
+  @override
+  String get chestSubClosed => 'Tócalo para descubrir tu premio';
+
+  @override
+  String get chestOpenCta => 'Abrir cofre';
+
+  @override
+  String chestTitleOpened(int reward) {
+    return '¡+$reward de oro!';
+  }
+
+  @override
+  String get chestSubOpened => 'Tu recompensa del día';
+
+  @override
+  String get chestGoldLabel => 'ORO';
+
+  @override
+  String get chestClaimCta => '¡Reclamar!';
+
+  @override
+  String get chestComeBack => 'Vuelve mañana por otro cofre 🎁';
+
+  @override
+  String get chestTitleTomorrow => 'Ya abriste tu cofre';
+
+  @override
+  String get chestSubTomorrow => 'Vuelve mañana por otro 🎁';
+
+  @override
+  String get chestCloseCta => 'Entendido';
+
+  @override
   String get missionAppBarTitle => 'Misión';
 
   @override

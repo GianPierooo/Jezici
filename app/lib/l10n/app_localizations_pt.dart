@@ -1509,6 +1509,41 @@ class AppLocalizationsPt extends AppLocalizations {
   String get examRetry => 'REPETIR EXAME';
 
   @override
+  String get chestTitleClosed => 'Um baú te espera!';
+
+  @override
+  String get chestSubClosed => 'Toque para descobrir seu prêmio';
+
+  @override
+  String get chestOpenCta => 'Abrir baú';
+
+  @override
+  String chestTitleOpened(int reward) {
+    return '+$reward de ouro!';
+  }
+
+  @override
+  String get chestSubOpened => 'Sua recompensa do dia';
+
+  @override
+  String get chestGoldLabel => 'OURO';
+
+  @override
+  String get chestClaimCta => 'Resgatar!';
+
+  @override
+  String get chestComeBack => 'Volte amanhã por outro baú 🎁';
+
+  @override
+  String get chestTitleTomorrow => 'Você já abriu seu baú';
+
+  @override
+  String get chestSubTomorrow => 'Volte amanhã por outro 🎁';
+
+  @override
+  String get chestCloseCta => 'Entendi';
+
+  @override
   String get missionAppBarTitle => 'Missão';
 
   @override

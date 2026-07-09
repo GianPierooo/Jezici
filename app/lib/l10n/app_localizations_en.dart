@@ -1505,6 +1505,41 @@ class AppLocalizationsEn extends AppLocalizations {
   String get examRetry => 'RETRY EXAM';
 
   @override
+  String get chestTitleClosed => 'A chest awaits you!';
+
+  @override
+  String get chestSubClosed => 'Tap it to reveal your prize';
+
+  @override
+  String get chestOpenCta => 'Open chest';
+
+  @override
+  String chestTitleOpened(int reward) {
+    return '+$reward gold!';
+  }
+
+  @override
+  String get chestSubOpened => 'Your reward of the day';
+
+  @override
+  String get chestGoldLabel => 'GOLD';
+
+  @override
+  String get chestClaimCta => 'Claim!';
+
+  @override
+  String get chestComeBack => 'Come back tomorrow for another chest 🎁';
+
+  @override
+  String get chestTitleTomorrow => 'You already opened your chest';
+
+  @override
+  String get chestSubTomorrow => 'Come back tomorrow for another 🎁';
+
+  @override
+  String get chestCloseCta => 'Got it';
+
+  @override
   String get missionAppBarTitle => 'Mission';
 
   @override

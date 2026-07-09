@@ -169,10 +169,10 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
 - Estado: **MUY DESVIADO** · Esfuerzo: **L**
 - Coincide: estados disponible/abierto/mañana; confetti al abrir; tokens correctos; recompensa real del servidor.
 - Desviaciones:
-  - [P0] El mockup es una PANTALLA DEDICADA de revelación full-screen (fondo violeta, cofre que wiggle → tap → premio con haz de luz y monedas); la app es una fila de lista con SnackBar.
-  - [P1] Animaciones ausentes (jzWiggle/jzSpin/jzGlow/jzCheer/jzTwinkle/jzPop); CTA dorado 3D 62px que muta a verde "¡Reclamar!" vs ElevatedButton plano.
-  - [P2] Copy y mascota.
-- No implementado del mockup: la escena de revelación completa.
+  - [P0] ✅ **ARREGLADO (2026-07-09):** PANTALLA DEDICADA de revelación full-screen (`chest_reveal_screen.dart`): fondo violeta, guacamayo festejando, sparkles, cofre que hace **wiggle** → tap/CTA lo abre (recompensa REAL de `open_daily_chest`) → **reveal con haz de luz + monedas + medalla + "+N ORO"** (jzPop) + confeti. La tienda ya no da SnackBar: el card navega a esta pantalla y refresca el saldo al volver.
+  - [P1] ✅ **ARREGLADO:** animaciones (wiggle/rayos giratorios/glow/cheer/sparkles/pop del premio) reduce-motion-aware (sin animación revela directo); **CTA dorado 3D 62px** (token `goldCtaTop/Bottom/Depth` adoptado en AppColors) que **muta a verde "¡Reclamar!"** al abrir.
+  - Estados disponible / abierto / **mañana** respetados (cofre gris + candado, sin RPC). i18n es/en/pt.
+- (Todo el cofre del mockup implementado; la recompensa sigue siendo la real del servidor.)
 
 ## 11) Paywall
 - Mockup: mockups/Paywall.dc.html · Implementación: `premium_screen.dart`
