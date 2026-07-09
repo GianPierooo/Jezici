@@ -190,11 +190,12 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
 - Estado: **MUY DESVIADO** (el hub) · Esfuerzo: **L**
 - Coincide: título y los 4 conceptos núcleo (Rescate de palabras — mismo nombre —, punto débil, contrarreloj, por habilidad); contador de palabras pendientes; nota de XP; tokens.
 - Desviaciones:
-  - [P0] Jerarquía del hub perdida: mockup = header violeta + hero grande + fila compacta + grid 2×2 + banner; app = 7 cards idénticas en lista.
-  - [P0] Hero "Rescate de palabras" sin: cabecera durazno, contador rojo 58px con glow, chips de palabras que se desvanecen, barra "Memoria media 58%" (dato no expuesto por el provider), CTA "Rescatar ahora 🪝".
-  - [P1] Punto débil sin mini-barra ni badge CEFR; "por habilidad" = bottom sheet con 2 skills (limitación real del grading Fase 1) vs grid 2×2 con 4+conteos; **contrarreloj 60 s (app) vs 90 s (mockup)** y sin badge "+XP EXTRA".
-  - [P2] Cards extra sin mockup (Repaso/Inmersión/Reforzar fallos); sin animaciones.
-- No implementado del mockup: header con mascota, hero rico del SRS, grid por habilidad, banner contrarreloj.
+  - [P0] ✅ **ARREGLADO (2026-07-09):** jerarquía del hub reconstruida fiel al mockup — **header violeta** (kicker/título/subtítulo + guacamayo) + **HERO "Rescate de palabras"** (SRS) + fila del **punto débil** + fila "reforzar fallos" + **grid 2×2** + **banner de contrarreloj**. Se acabaron las 7 cards idénticas.
+  - [P0] ✅ **ARREGLADO:** el HERO tiene cabecera durazno (`#FFE9D6→#FFE0E0`), pill "REPASO ESPACIADO", **contador coral con glow** (dato REAL `status.dueWords`) + copy + CTA coral "Rescatar ahora 🪝". **Degradación honesta:** la barra "Memoria media 58%" y los chips de palabras **NO se pintan** porque el provider no expone ni el % de memoria ni la lista de palabras (no se inventan datos).
+  - [P1] ✅ **ARREGLADO:** el punto débil muestra **mini-barra + badge CEFR reales** (`SkillLevel.levelProgress`/`cefrLevel` de la skill débil); **contrarreloj alineado a 90 s** (antes 60) + badge "+XP EXTRA". La práctica por habilidad son tiles directos (Lectura/Escritura, las gradables en Fase 1) dentro del grid, sin bottom sheet.
+  - [P2] ✅ Los modos extra (Repaso/Inmersión/Reforzar fallos) **integrados con criterio** en la jerarquía (Repaso+Inmersión en el grid 2×2, "Reforzar fallos" como fila compacta) — no se pierde ninguno. Motion sutil (glow del contador, botones 3D con hundido, guacamayo idle, reduce-motion-aware).
+  - **i18n:** ✅ **toda la copia va por localización (es/en/pt)** — corregido el bug de que la pantalla salía en ESPAÑOL con la app en portugués/inglés (títulos, subtítulos, snackbars y nombres de skill).
+- No implementado (P2 estético): chips de palabras y barra de memoria (dato no expuesto por el provider — Fase 2).
 
 ## 13) Ajustes
 - Mockup: mockups/Ajustes.dc.html · Implementación: `settings_screen.dart`

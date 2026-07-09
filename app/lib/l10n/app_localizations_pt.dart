@@ -1225,6 +1225,95 @@ class AppLocalizationsPt extends AppLocalizations {
   String get topBarNotifications => 'Notificações';
 
   @override
+  String get practiceKicker => 'TREINO';
+
+  @override
+  String get practiceTitle => 'Praticar';
+
+  @override
+  String get practiceHeaderSubtitle =>
+      'Reforce o que já viu para não esquecer 🧠';
+
+  @override
+  String get practiceSrsBadge => 'REVISÃO ESPAÇADA';
+
+  @override
+  String get practiceSrsTitle => 'Resgate de palavras';
+
+  @override
+  String get practiceSrsWords => 'palavras para revisar';
+
+  @override
+  String get practiceSrsSubtitle => 'Antes que você esqueça';
+
+  @override
+  String get practiceSrsUpToDate =>
+      'Você está em dia! Nada urgente para revisar';
+
+  @override
+  String get practiceSrsCta => 'Resgatar agora 🪝';
+
+  @override
+  String get practiceWeakTitle => 'Reforce seu ponto fraco';
+
+  @override
+  String get practiceWeakGeneric => 'Treine sua habilidade mais fraca';
+
+  @override
+  String get practicePracticeBtn => 'Praticar';
+
+  @override
+  String get practiceReinforceTitle => 'Reforçar o que errei';
+
+  @override
+  String get practiceReinforceSubtitle =>
+      'Refaz só os exercícios que você errou';
+
+  @override
+  String get practiceMoreTitle => 'Mais prática';
+
+  @override
+  String get practiceReadingHint => 'Compreensão';
+
+  @override
+  String get practiceWritingHint => 'Redação';
+
+  @override
+  String get practiceRepasoTitle => 'Revisão';
+
+  @override
+  String get practiceRepasoSubtitle => 'Conceitos por habilidade';
+
+  @override
+  String get practiceImmersionTitle => 'Imersão';
+
+  @override
+  String get practiceImmersionSubtitle => 'Histórias com áudio';
+
+  @override
+  String get practiceTimedTitle => 'Contra o relógio';
+
+  @override
+  String get practiceTimedBadge => '+XP EXTRA';
+
+  @override
+  String get practiceTimedSubtitle => 'Responda rápido e ganhe XP extra · 90 s';
+
+  @override
+  String get practiceTimedCta => 'Começar contra o relógio';
+
+  @override
+  String get practiceXpNote =>
+      'A prática dá um pouco menos de XP que uma lição nova. Para ganhar mais, avance no mapa.';
+
+  @override
+  String get practiceNothingToReview =>
+      'Nada para reforçar agora! Você está em dia. 🎉';
+
+  @override
+  String get practiceStartError => 'Não foi possível iniciar a prática.';
+
+  @override
   String get missionAppBarTitle => 'Missão';
 
   @override

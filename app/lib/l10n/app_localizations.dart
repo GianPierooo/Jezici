@@ -2106,6 +2106,174 @@ abstract class AppLocalizations {
   /// **'Notificaciones'**
   String get topBarNotifications;
 
+  /// No description provided for @practiceKicker.
+  ///
+  /// In es, this message translates to:
+  /// **'ENTRENAMIENTO'**
+  String get practiceKicker;
+
+  /// No description provided for @practiceTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Practicar'**
+  String get practiceTitle;
+
+  /// No description provided for @practiceHeaderSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Refuerza lo que ya viste y no lo olvides 🧠'**
+  String get practiceHeaderSubtitle;
+
+  /// No description provided for @practiceSrsBadge.
+  ///
+  /// In es, this message translates to:
+  /// **'REPASO ESPACIADO'**
+  String get practiceSrsBadge;
+
+  /// No description provided for @practiceSrsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Rescate de palabras'**
+  String get practiceSrsTitle;
+
+  /// No description provided for @practiceSrsWords.
+  ///
+  /// In es, this message translates to:
+  /// **'palabras por repasar'**
+  String get practiceSrsWords;
+
+  /// No description provided for @practiceSrsSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Antes de que se te olviden'**
+  String get practiceSrsSubtitle;
+
+  /// No description provided for @practiceSrsUpToDate.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Vas al día! Nada urgente por repasar'**
+  String get practiceSrsUpToDate;
+
+  /// No description provided for @practiceSrsCta.
+  ///
+  /// In es, this message translates to:
+  /// **'Rescatar ahora 🪝'**
+  String get practiceSrsCta;
+
+  /// No description provided for @practiceWeakTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Refuerza tu punto débil'**
+  String get practiceWeakTitle;
+
+  /// No description provided for @practiceWeakGeneric.
+  ///
+  /// In es, this message translates to:
+  /// **'Trabaja tu habilidad más floja'**
+  String get practiceWeakGeneric;
+
+  /// No description provided for @practicePracticeBtn.
+  ///
+  /// In es, this message translates to:
+  /// **'Practicar'**
+  String get practicePracticeBtn;
+
+  /// No description provided for @practiceReinforceTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Reforzar lo que fallé'**
+  String get practiceReinforceTitle;
+
+  /// No description provided for @practiceReinforceSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Re-evalúa solo los ejercicios que erraste'**
+  String get practiceReinforceSubtitle;
+
+  /// No description provided for @practiceMoreTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Más práctica'**
+  String get practiceMoreTitle;
+
+  /// No description provided for @practiceReadingHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Comprensión'**
+  String get practiceReadingHint;
+
+  /// No description provided for @practiceWritingHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Redacción'**
+  String get practiceWritingHint;
+
+  /// No description provided for @practiceRepasoTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Repaso'**
+  String get practiceRepasoTitle;
+
+  /// No description provided for @practiceRepasoSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Conceptos por habilidad'**
+  String get practiceRepasoSubtitle;
+
+  /// No description provided for @practiceImmersionTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Inmersión'**
+  String get practiceImmersionTitle;
+
+  /// No description provided for @practiceImmersionSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Historias con audio'**
+  String get practiceImmersionSubtitle;
+
+  /// No description provided for @practiceTimedTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Contrarreloj'**
+  String get practiceTimedTitle;
+
+  /// No description provided for @practiceTimedBadge.
+  ///
+  /// In es, this message translates to:
+  /// **'+XP EXTRA'**
+  String get practiceTimedBadge;
+
+  /// No description provided for @practiceTimedSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Responde rápido y gana XP extra · 90 s'**
+  String get practiceTimedSubtitle;
+
+  /// No description provided for @practiceTimedCta.
+  ///
+  /// In es, this message translates to:
+  /// **'Empezar contrarreloj'**
+  String get practiceTimedCta;
+
+  /// No description provided for @practiceXpNote.
+  ///
+  /// In es, this message translates to:
+  /// **'La práctica da un poco menos de XP que una lección nueva. Para ganar más, avanza en el mapa.'**
+  String get practiceXpNote;
+
+  /// No description provided for @practiceNothingToReview.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Nada que reforzar ahora! Vas al día. 🎉'**
+  String get practiceNothingToReview;
+
+  /// No description provided for @practiceStartError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo iniciar la práctica.'**
+  String get practiceStartError;
+
   /// No description provided for @missionAppBarTitle.
   ///
   /// In es, this message translates to:

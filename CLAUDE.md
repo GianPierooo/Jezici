@@ -5,6 +5,27 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-08**.
 
+## PRÁCTICA fiel a Practicar.dc + i18n arreglado ✅ (2026-07-09 · solo cliente)
+Ingeniería pura (cero IA). `practice_screen.dart` era una **lista de 7 cards idénticas** con **toda la copia
+hardcodeada en español** (salía en español con la app en pt/en — bug real). Reescrita con la **jerarquía del
+mockup** y 100% localizada. **La lógica de práctica/SRS/scoring es server-side y NO se toca** (cada card solo
+dispara la sesión real existente: `start_practice` / ReferenceScreen / ImmersionScreen).
+- **Header violeta** (gradiente `#7A6BF0→#6C5CE7→#5B4ECF`): kicker "ENTRENAMIENTO" + título + subtítulo +
+  guacamayo (`ParrotMascot`). Full-bleed; contenido en `ResponsiveCenter` 480.
+- **HERO "Rescate de palabras" (SRS):** cabecera durazno + pill "REPASO ESPACIADO" + **contador coral con glow
+  = `status.dueWords` REAL** + CTA coral "Rescatar ahora 🪝". **Degradación HONESTA:** la barra "Memoria media"
+  y los chips de palabras del mockup **NO se pintan** — el provider no expone ni el % ni la lista (no se inventa).
+- **Fila punto débil:** icon-tile + nombre de la skill + **mini-barra + badge CEFR reales** (`SkillLevel`
+  de `skillsProvider`) + botón "Practicar". **Fila "Reforzar lo que fallé".**
+- **Grid 2×2 "Más práctica":** Lectura, Escritura (skills gradables Fase 1), **Repaso** (ReferenceScreen),
+  **Inmersión** (ImmersionScreen) — los modos EXTRA integrados con criterio, no se pierde ninguno.
+- **Banner contrarreloj:** gradiente violeta + reloj dorado + badge "+XP EXTRA" + **90 s** (alineado al mockup;
+  antes 60) + CTA blanca. + nota de XP.
+- Motion sutil (glow del contador, botones 3D con hundido, guacamayo idle) reduce-motion-aware.
+**i18n es/en/pt** (29 claves nuevas + nombres de skill vía `skillName`): en pt/en ya **no queda español**.
+Verde: analyze 0 · test 105/105 (+practice_screen: ES rinde HERO/contador/CEFR/90s; **PT sin español filtrado**)
+· build web OK. Overflows horizontales corregidos (título largo del banner en pt, fila del punto débil).
+
 ## HOME/MAPA fiel a Aprender.dc — portal + escenografía + anillo ✅ (2026-07-08 · solo cliente)
 Ingeniería pura (cero IA), **capa visual + composición: NO toca la lógica de progresión/desbloqueo/gating**
 (intacta). La base del mapa ya era fiel (nodos, pulso, sendero, colinas); se añadieron los elementos de
