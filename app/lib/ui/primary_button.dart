@@ -13,6 +13,7 @@ class PrimaryButton extends StatefulWidget {
     this.icon,
     this.color = AppColors.primary,
     this.depthColor = AppColors.primaryDark,
+    this.foreground = Colors.white,
     this.expand = false,
   });
 
@@ -21,6 +22,9 @@ class PrimaryButton extends StatefulWidget {
   final IconData? icon;
   final Color color;
   final Color depthColor;
+
+  /// Color del texto/icono (blanco por defecto; oscuro en CTAs dorados).
+  final Color foreground;
   final bool expand;
 
   @override
@@ -73,13 +77,13 @@ class _PrimaryButtonState extends State<PrimaryButton> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (widget.icon != null) ...[
-                Icon(widget.icon, color: Colors.white, size: 20),
+                Icon(widget.icon, color: widget.foreground, size: 20),
                 const SizedBox(width: AppSpacing.sm),
               ],
               Text(
                 widget.label,
-                style: const TextStyle(
-                  color: Colors.white,
+                style: TextStyle(
+                  color: widget.foreground,
                   fontWeight: FontWeight.w900,
                   fontSize: 16,
                   letterSpacing: 0.4,

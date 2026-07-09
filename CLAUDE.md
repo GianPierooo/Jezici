@@ -44,6 +44,33 @@ Smoke test (`jz_motion_test`: sheen+glow pintan el hijo con y sin reduce-motion)
 visualmente con golden temporal (barrido diagonal sobre dorado, borrado por flaky en CI). Verde: analyze 0
 (CI-exact) · test 129/129 · build web OK.
 
+## AUDITORÍA UI GENERAL + pulido (foco INICIO) ✅ (2026-07-09 · solo cliente)
+Pasada FRESCA contra mockups (goldens del inicio + barrido de consistencia con agente por las 15+
+pantallas). **NO toca lógica.** Qué se mejoró por pantalla:
+- **Splash (main.dart) — REBRANDEADO:** era fondo gris + loro 64px + spinner genérico + **español
+  hardcodeado** ("No se pudo cargar tu sesión."/"Reintentar" fugaba en pt/en pese a EXISTIR las claves).
+  Ahora: **gradiente violeta de la casa + guacamayo 92px con halo + wordmark "Jezici"** + spinner blanco;
+  error usa `splashLoadError`/`commonRetry` (i18n). La primera impresión ES de marca.
+- **Onboarding · bienvenida:** mismo lenguaje de APERTURA que el auth — halo radial violeta de fondo,
+  mascota 104px con halo, **CTA EMPEZAR con `JzGlowPulse`** + `ResponsiveCenter` 480. Ya no es una
+  pantalla gris suelta.
+- **Consistencia del botón 3D (el hallazgo transversal #1 del barrido):** `PrimaryButton` casi no se usaba
+  — cada pantalla rodaba su propio `ElevatedButton` PLANO. Convertidos a `PrimaryButton` (labio + hundido)
+  los CTA full-width más vistos: **misión inicial** (inicio), **EMPEZAR EXAMEN** (intro), **reintentar
+  examen** (resultado), **volver al mapa** (checkpoint player error), **LISTO** (fin de práctica),
+  **COMPARTIR** (certificado), **HAZTE PREMIUM** (dorado 3D), **QUIERO LLEGAR MÁS RÁPIDO** (Mi plan,
+  dorado 3D), **ENVIAR/GUARDAR** (Conversar). `PrimaryButton` ganó `foreground` opcional (texto oscuro
+  `#5B3A00` en dorados, contraste del mockup).
+- **Historias · resultado del quiz:** emoji 🎉/📖 → **`ParrotMascot` celebrate/encourage** (coherencia de
+  mascota en TODAS las celebraciones).
+**ENCOLADO (retome exacto, ## Cola):** (a) botones COMPACTOS inline aún planos (tienda comprar,
+congelador de racha) → variante mini-3D; (b) **i18n de pantallas secundarias** con títulos/cuerpos en
+español hardcodeado (Inmersión/Historia/Glosario, Cuaderno, Métricas, Mi plan, Certificado, Simulacros,
+Premium, Repaso, Notificaciones, intro examen, diálogos de Ajustes export/delete/logout, player examen)
+— lista completa con file:line en el barrido; (c) armonizar sombras suaves (blur 16-32) que conviven con
+la sombra dura de la casa en perfil/práctica/ligas/your_plan. Verde: analyze 0 (CI-exact) · test 130/130
+· build web OK.
+
 ## FONDO DEL MAPA v2 — quitados los EDIFICIOS (las "franjas verticales") ✅ (2026-07-09 · solo cliente)
 Gian SEGUÍA viendo "franjas verticales moradas/verdes/coral" tras el fix de anclaje (v1). **Causa real
 encontrada renderizando el PIE de un mapa alto** (los mapas son MUY altos: `_flatten` = TODAS las lecciones
@@ -518,6 +545,15 @@ en B2; andamiaje idéntico listo: STAMP `('pt','c1')=…130`, grupo audio `pt-c1
   Cierre: analyze 0, tests verdes, gh run list SUCCESS, deploy READY. Reporta en 1 línea.
 
 ## Cola (retome exacto — orden sugerido)
+0. **Pulido UI restante (de la auditoría 2026-07-09, lista con file:line en el barrido del agente):**
+   (a) variante MINI-3D para botones compactos inline (tienda `tienda_screen.dart:202`, congelador
+   `streak_screen.dart:296`); (b) **i18n de pantallas secundarias** — títulos/cuerpos en español
+   hardcodeado: Inmersión (`immersion_screen.dart:24`), Historia/Glosario (`story_reader_screen.dart:107/202`),
+   Cuaderno (`notebook_screen.dart:22`), Métricas, Mi plan (`mi_plan_screen.dart:36+`), Certificado
+   (`certificate_screen.dart:85+`), Simulacros, Premium, Repaso (`reference_screen.dart:73+`),
+   Notificaciones, intro/player de examen (`level_exam_intro_screen.dart:42+`), diálogos de Ajustes
+   (export/delete/logout `settings_screen.dart:842+`); (c) armonizar sombras SUAVES (blur 16–32) que
+   conviven con la dura de la casa (perfil `profile_screen.dart:162+`, práctica, ligas, your_plan).
 > Estado de niveles hoy (verificado en BD): **en/pt/fr/it/de/nl TODOS A1–C1** (los 6 cursos a C1;
 > C2 no sembrado en ninguno). Andamiaje probado 15× (…de C1, nl C1, pt C1): generador
 > `gen_course.py <code> <a1|a2|b1|b2|c1>` (soporta pt/fr/it/de/nl; DIFF c1=0.84), audio `gen_audio_missing.py <code>-<lvl>`

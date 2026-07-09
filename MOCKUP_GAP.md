@@ -51,8 +51,12 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
    y **calman con reduce-motion**. No se sobre-animó (ligas/cofre ya tenían movimiento propio). El motion
    es RÁPIDO — no entorpece el loop.
 3. **Gap sistémico #2 — botón 3D "con labio"** (`0 Npx 0 <colorDark>` + hundido al presionar):
-   `PrimaryButton` lo tiene, pero el CTA del loop (`_BigButton` COMPROBAR/CONTINUAR), los CTA
-   dorados (cofre/checkpoint), y varios botones secundarios NO — inconsistencia interna.
+   ✅ **CERRADO para los CTA full-width (2026-07-09).** `_BigButton` del loop lo ganó (2026-07-09 AM) y
+   la auditoría UI general convirtió a `PrimaryButton` los flat `ElevatedButton` más vistos: misión
+   inicial, EMPEZAR EXAMEN, reintentar examen, volver-al-mapa (checkpoint), LISTO (práctica), COMPARTIR
+   (certificado), HAZTE PREMIUM (dorado 3D, texto `#5B3A00`), QUIERO LLEGAR MÁS RÁPIDO (Mi plan, dorado
+   3D), ENVIAR/GUARDAR (Conversar). `PrimaryButton` ganó `foreground` opcional. **Pendiente menor:**
+   botones COMPACTOS inline (comprar de la tienda, congelador de racha) → variante mini-3D (encolado).
 4. **Gap sistémico #3 — mascota:** ✅ **CERRADO (2026-07-09).** Matix es ahora un **guacamayo escarlata
    VECTOR propio** (`ParrotArt`, CustomPaint portando 1:1 el SVG de los mockups Ajustes/Leccion: cuerpo/
    cabeza escarlata, ala y cola dorado-naranja, cresta, cara crema, pico dorado; sin assets/paquetes,

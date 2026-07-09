@@ -10,6 +10,7 @@ import '../../data/models/checkpoint_models.dart';
 import '../../data/models/lesson_model.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
+import '../../ui/primary_button.dart';
 import '../lesson/exercises/exercise_registry.dart';
 import 'checkpoint_result_screen.dart';
 
@@ -174,19 +175,11 @@ class _CheckpointPlayerScreenState extends ConsumerState<CheckpointPlayerScreen>
                       textAlign: TextAlign.center,
                       style: const TextStyle(fontSize: 13.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
                   const SizedBox(height: 18),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 50,
-                    child: ElevatedButton(
-                      onPressed: () => Navigator.of(context).popUntil((r) => r.isFirst),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.primary,
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-                      ),
-                      child: Text(l10n.checkpointBackToMapCta,
-                          style: const TextStyle(fontWeight: FontWeight.w900, letterSpacing: 0.4)),
-                    ),
+                  // Botón 3D de la casa (labio + hundido).
+                  PrimaryButton(
+                    label: l10n.checkpointBackToMapCta,
+                    expand: true,
+                    onPressed: () => Navigator.of(context).popUntil((r) => r.isFirst),
                   ),
                 ],
               ),

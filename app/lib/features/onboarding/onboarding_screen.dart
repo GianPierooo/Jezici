@@ -6,6 +6,8 @@ import '../../core/i18n/locale_controller.dart';
 import '../learn/widgets/parrot_mascot.dart';
 import '../../core/plan/estimation.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/ui/jz_glow_pulse.dart';
+import '../../core/ui/responsive_center.dart';
 import '../../l10n/app_localizations.dart';
 import '../../data/models/course_models.dart';
 import '../../data/providers.dart';
@@ -285,34 +287,70 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
 
   Widget _welcome() {
     final l10n = AppLocalizations.of(context);
+    // Primera pantalla del onboarding: mismo lenguaje de APERTURA que el auth
+    // (halo radial violeta + mascota con halo + CTA que respira) → la primera
+    // impresión se siente de la misma app, no de una pantalla suelta.
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(28),
-          child: Column(
-            children: [
-              const Spacer(),
-              const ParrotMascot(size: 96),
-              const SizedBox(height: 20),
-              Text(l10n.onbWelcomeTitle,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      fontSize: 28, fontWeight: FontWeight.w900, color: AppColors.text)),
-              const SizedBox(height: 10),
-              Text(
-                l10n.onbWelcomeSubtitle,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                    fontSize: 15, fontWeight: FontWeight.w700, color: AppColors.textMuted, height: 1.4),
-              ),
-              const Spacer(),
-              PrimaryButton(label: l10n.commonStart, expand: true, onPressed: _next),
-              const SizedBox(height: 12),
-              Text(l10n.onbWelcomeNote,
-                  style: const TextStyle(
-                      fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: RadialGradient(
+            center: const Alignment(0, -0.55),
+            radius: 1.1,
+            colors: [
+              AppColors.primary.withValues(alpha: 0.14),
+              AppColors.background.withValues(alpha: 0.0),
             ],
+          ),
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(28),
+            child: ResponsiveCenter(
+              maxWidth: 480,
+              child: Column(
+                children: [
+                  const Spacer(),
+                  Container(
+                    padding: const EdgeInsets.all(24),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: RadialGradient(colors: [
+                        AppColors.primary.withValues(alpha: 0.14),
+                        AppColors.primary.withValues(alpha: 0.0),
+                      ]),
+                    ),
+                    child: const ParrotMascot(size: 104),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(l10n.onbWelcomeTitle,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontSize: 28, fontWeight: FontWeight.w900, color: AppColors.text)),
+                  const SizedBox(height: 10),
+                  Text(
+                    l10n.onbWelcomeSubtitle,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.textMuted,
+                        height: 1.4),
+                  ),
+                  const Spacer(),
+                  JzGlowPulse(
+                    color: AppColors.primary,
+                    child:
+                        PrimaryButton(label: l10n.commonStart, expand: true, onPressed: _next),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(l10n.onbWelcomeNote,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                ],
+              ),
+            ),
           ),
         ),
       ),

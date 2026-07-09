@@ -8,6 +8,7 @@ import '../../core/theme/app_colors.dart';
 import '../../data/models/achievement_models.dart';
 import '../../core/ui/jz_sheen.dart';
 import '../../data/providers.dart';
+import '../../ui/primary_button.dart';
 import '../../l10n/app_localizations.dart';
 import '../learn/widgets/parrot_mascot.dart';
 
@@ -171,19 +172,12 @@ class _CertificateScreenState extends ConsumerState<CertificateScreen> {
               _Row(label: 'Código de verificación', value: c.verificationCode),
               if (c.issuedAt != null) _Row(label: 'Emitido el', value: _fmt(c.issuedAt)),
               const SizedBox(height: 18),
-              SizedBox(
-                height: 54,
-                child: ElevatedButton.icon(
-                  onPressed: _share,
-                  icon: const Icon(Icons.ios_share_rounded),
-                  label: const Text('COMPARTIR',
-                      style: TextStyle(fontWeight: FontWeight.w900, letterSpacing: 1)),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primary,
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                  ),
-                ),
+              // Botón 3D de la casa (labio + hundido).
+              PrimaryButton(
+                label: 'COMPARTIR',
+                icon: Icons.ios_share_rounded,
+                expand: true,
+                onPressed: _share,
               ),
               const SizedBox(height: 8),
               const Text('Tu código verifica la autenticidad del certificado.',

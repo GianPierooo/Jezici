@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../data/providers.dart';
+import '../../ui/primary_button.dart';
 import 'level_exam_player_screen.dart';
 
 /// Intro del examen de nivel A1: explica las reglas y arranca el examen.
@@ -64,17 +65,11 @@ class _State extends ConsumerState<LevelExamIntroScreen> {
               const _Bullet(icon: Icons.verified_rounded, text: 'Necesitas 80% para aprobar'),
               _Bullet(icon: Icons.workspace_premium_rounded, text: 'Al aprobar: certificado $level compartible'),
               const Spacer(),
-              SizedBox(
-                width: double.infinity, height: 56,
-                child: ElevatedButton(
-                  onPressed: _loading ? null : _start,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primary, foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))),
-                  child: _loading
-                      ? const SizedBox(width: 22, height: 22, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2.5))
-                      : const Text('EMPEZAR EXAMEN', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16, letterSpacing: 0.5)),
-                ),
+              // Botón 3D de la casa (labio + hundido).
+              PrimaryButton(
+                label: _loading ? '…' : 'EMPEZAR EXAMEN',
+                expand: true,
+                onPressed: _loading ? null : _start,
               ),
             ],
           ),

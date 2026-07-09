@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/theme/app_colors.dart';
+import '../../ui/primary_button.dart';
 
 /// Paywall de Jezici Premium (Modelo_Negocio). Fase 1: solo estructura/UI, sin
 /// pagos reales. Lista los beneficios premium y marca el plan gratis vs premium.
@@ -71,20 +72,18 @@ class PremiumScreen extends StatelessWidget {
             ]),
           ),
           const SizedBox(height: 18),
-          SizedBox(
-            height: 56,
-            child: ElevatedButton(
-              onPressed: () => ScaffoldMessenger.of(context)
-                ..hideCurrentSnackBar()
-                ..showSnackBar(const SnackBar(
-                  behavior: SnackBarBehavior.floating,
-                  content: Text('Los pagos llegan pronto. ¡Gracias por tu interés! 💜'))),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.gold, foregroundColor: AppColors.text,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))),
-              child: const Text('HAZTE PREMIUM · PRÓXIMAMENTE',
-                  style: TextStyle(fontWeight: FontWeight.w900, fontSize: 14, letterSpacing: 0.5)),
-            ),
+          // CTA dorado 3D (tokens goldCta*), coherente con el resto de dorados.
+          PrimaryButton(
+            label: 'HAZTE PREMIUM · PRÓXIMAMENTE',
+            expand: true,
+            color: AppColors.gold,
+            depthColor: AppColors.goldDark,
+            foreground: const Color(0xFF5B3A00),
+            onPressed: () => ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(const SnackBar(
+                behavior: SnackBarBehavior.floating,
+                content: Text('Los pagos llegan pronto. ¡Gracias por tu interés! 💜'))),
           ),
           const SizedBox(height: 8),
           const Text('Estás en el plan Gratis. Todo el contenido A1 es gratuito.',

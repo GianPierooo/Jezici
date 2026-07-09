@@ -12,6 +12,7 @@ import '../../data/models/level_exam_models.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/skill_names.dart';
+import '../../ui/primary_button.dart';
 import '../learn/widgets/parrot_mascot.dart';
 import '../practice/practice_player_screen.dart';
 import 'certificate_screen.dart';
@@ -245,25 +246,14 @@ class _LevelExamResultScreenState extends ConsumerState<LevelExamResultScreen> {
                           onReinforce: () => _reinforce(worst.skill),
                         ),
                       const SizedBox(height: 14),
-                      SizedBox(
-                        height: 54,
-                        child: ElevatedButton(
-                          onPressed: () => Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => const LevelExamIntroScreen())),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.primary,
-                            foregroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16)),
-                          ),
-                          child: Text(l10n.examRetry,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 15,
-                                  letterSpacing: 0.5)),
-                        ),
+                      // Botón 3D de la casa (labio + hundido).
+                      PrimaryButton(
+                        label: l10n.examRetry,
+                        expand: true,
+                        onPressed: () => Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (_) => const LevelExamIntroScreen())),
                       ),
                       const SizedBox(height: 6),
                       Center(

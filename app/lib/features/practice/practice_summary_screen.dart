@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../data/models/practice_models.dart';
+import '../../ui/primary_button.dart';
 import '../learn/widgets/parrot_mascot.dart';
 
 /// Resumen de una sesión de práctica (datos del servidor).
@@ -71,19 +72,11 @@ class PracticeSummaryScreen extends StatelessWidget {
                 ),
               ],
               const Spacer(),
-              SizedBox(
-                width: double.infinity,
-                height: 54,
-                child: ElevatedButton(
-                  onPressed: () => Navigator.of(context).popUntil((r) => r.isFirst),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primary,
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                  ),
-                  child: const Text('LISTO',
-                      style: TextStyle(fontWeight: FontWeight.w900, fontSize: 16, letterSpacing: 1)),
-                ),
+              // Botón 3D de la casa (labio + hundido).
+              PrimaryButton(
+                label: 'LISTO',
+                expand: true,
+                onPressed: () => Navigator.of(context).popUntil((r) => r.isFirst),
               ),
             ],
           ),

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/progress_models.dart';
 import '../../data/providers.dart';
+import '../../ui/primary_button.dart';
 
 /// "Mi Plan" — dashboard de seguimiento (GA4 · B2, diferenciador):
 /// fecha de llegada recalculada con el ritmo real, "vas X días adelante/atrás",
@@ -170,20 +171,15 @@ class MiPlanScreen extends ConsumerWidget {
           ),
         ],
         const SizedBox(height: 18),
-        // Palanca "llegar más rápido".
-        SizedBox(
-          width: double.infinity,
-          height: 54,
-          child: ElevatedButton.icon(
-            onPressed: () => _faster(context, ref, t),
-            icon: const Icon(Icons.rocket_launch_rounded),
-            label: const Text('QUIERO LLEGAR MÁS RÁPIDO',
-                style: TextStyle(fontWeight: FontWeight.w900, letterSpacing: 0.4)),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.gold, foregroundColor: AppColors.text,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-            ),
-          ),
+        // Palanca "llegar más rápido" (botón dorado 3D de la casa).
+        PrimaryButton(
+          label: 'QUIERO LLEGAR MÁS RÁPIDO',
+          icon: Icons.rocket_launch_rounded,
+          expand: true,
+          color: AppColors.gold,
+          depthColor: AppColors.goldDark,
+          foreground: const Color(0xFF5B3A00),
+          onPressed: () => _faster(context, ref, t),
         ),
       ],
     );

@@ -6,6 +6,7 @@ import '../../core/theme/app_colors.dart';
 import '../../data/models/immersion_models.dart';
 import '../../data/providers.dart';
 import '../../ui/primary_button.dart';
+import '../learn/widgets/parrot_mascot.dart';
 import '../lesson/exercises/audio_play_button.dart';
 
 /// Lector de historia: lee/escucha los segmentos (input comprensible) → responde
@@ -346,8 +347,10 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
           child: ListView(
             padding: const EdgeInsets.fromLTRB(20, 20, 20, 16),
             children: [
+              // Mascota celebrando/animando (antes un emoji suelto).
               Center(
-                child: Text(good ? '🎉' : '📖', style: const TextStyle(fontSize: 56)),
+                child: ParrotMascot(
+                    size: 64, mood: good ? MascotMood.celebrate : MascotMood.encourage),
               ),
               const SizedBox(height: 8),
               Center(

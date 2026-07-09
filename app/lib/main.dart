@@ -183,30 +183,72 @@ class _AppGateState extends ConsumerState<AppGate> {
   }
 }
 
-/// Splash mínimo de marca mientras se resuelve el estado de onboarding.
+/// Splash de MARCA (la primera impresión): gradiente violeta de la casa +
+/// guacamayo grande con halo + wordmark "Jezici". Mientras se resuelve el estado
+/// de onboarding. Error localizado (antes hardcodeaba español → fugaba en pt/en).
 class _Splash extends StatelessWidget {
   const _Splash({this.onRetry});
   final VoidCallback? onRetry;
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
-      backgroundColor: AppColors.background,
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const ParrotArt(size: 64),
-            const SizedBox(height: 18),
-            if (onRetry == null)
-              const CircularProgressIndicator(color: AppColors.primary)
-            else ...[
-              const Text('No se pudo cargar tu sesión.',
-                  style: TextStyle(fontWeight: FontWeight.w800, color: AppColors.textMuted)),
-              const SizedBox(height: 12),
-              TextButton(onPressed: onRetry, child: const Text('Reintentar')),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xFF7A6BF0), AppColors.primary, Color(0xFF5B4ECF)],
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // Halo suave detrás de la mascota (momento de marca).
+              Container(
+                padding: const EdgeInsets.all(26),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: RadialGradient(colors: [
+                    Colors.white.withValues(alpha: 0.16),
+                    Colors.white.withValues(alpha: 0.0),
+                  ]),
+                ),
+                child: const ParrotMascot(size: 92),
+              ),
+              const SizedBox(height: 10),
+              const Text(
+                'Jezici',
+                style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w900,
+                    color: Colors.white,
+                    letterSpacing: 1.5),
+              ),
+              const SizedBox(height: 22),
+              if (onRetry == null)
+                const SizedBox(
+                  width: 26,
+                  height: 26,
+                  child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2.6),
+                )
+              else ...[
+                Text(l10n.splashLoadError,
+                    style: TextStyle(
+                        fontWeight: FontWeight.w800,
+                        color: Colors.white.withValues(alpha: 0.85))),
+                const SizedBox(height: 10),
+                TextButton(
+                  onPressed: onRetry,
+                  style: TextButton.styleFrom(foregroundColor: Colors.white),
+                  child: Text(l10n.commonRetry,
+                      style: const TextStyle(fontWeight: FontWeight.w900)),
+                ),
+              ],
             ],
-          ],
+          ),
         ),
       ),
     );

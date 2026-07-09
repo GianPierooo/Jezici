@@ -6,6 +6,7 @@ import '../../core/theme/app_colors.dart';
 import '../../data/models/lesson_model.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
+import '../../ui/primary_button.dart';
 import 'widgets/parrot_mascot.dart';
 
 /// Nodo MISIÓN "100 esenciales" (GA9): primer nodo del mapa. Explica la misión
@@ -171,16 +172,11 @@ class _MissionScreenState extends ConsumerState<MissionScreen> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(24, 4, 24, 20),
-              child: SizedBox(
-                width: double.infinity, height: 56,
-                child: ElevatedButton(
-                  onPressed: _loading ? null : _start,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primary, foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))),
-                  child: Text(_loading ? l10n.missionStartLoading : l10n.missionStartCta,
-                      style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 16, letterSpacing: 0.4)),
-                ),
+              // Botón 3D de la casa (labio + hundido), coherente con toda la app.
+              child: PrimaryButton(
+                label: _loading ? l10n.missionStartLoading : l10n.missionStartCta,
+                expand: true,
+                onPressed: _loading ? null : _start,
               ),
             ),
           ],

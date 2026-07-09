@@ -7,6 +7,7 @@ import '../../core/speech/speech_recognizer.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
+import '../../ui/primary_button.dart';
 
 /// CONVERSAR — versión SEGURA y usable (GA7). NADA de chat con desconocidos ni
 /// IA: práctica de conversación EN SOLITARIO/asíncrona (tema → escribe o habla →
@@ -287,16 +288,11 @@ class _InterestCardState extends ConsumerState<_InterestCard> {
                 ),
               ),
               const SizedBox(height: 10),
-              SizedBox(
-                width: double.infinity, height: 46,
-                child: ElevatedButton(
-                  onPressed: (_wouldUse == null || _sending) ? null : _send,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primary, foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(13))),
-                  child: Text(_sending ? l10n.convSending : l10n.convSend,
-                      style: const TextStyle(fontWeight: FontWeight.w900, letterSpacing: 0.4)),
-                ),
+              // Botón 3D de la casa (labio + hundido).
+              PrimaryButton(
+                label: _sending ? l10n.convSending : l10n.convSend,
+                expand: true,
+                onPressed: (_wouldUse == null || _sending) ? null : _send,
               ),
             ]),
     );
@@ -528,16 +524,11 @@ class _ConversarPracticeScreenState extends ConsumerState<ConversarPracticeScree
                 for (var i = 1; i <= 5; i++) _scoreChip(i),
               ]),
               const SizedBox(height: 16),
-              SizedBox(
-                width: double.infinity, height: 52,
-                child: ElevatedButton(
-                  onPressed: _saving ? null : _save,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.primary, foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14))),
-                  child: Text(_saving ? l10n.convSaving : l10n.convSaveFinish,
-                      style: const TextStyle(fontWeight: FontWeight.w900, letterSpacing: 0.4)),
-                ),
+              // Botón 3D de la casa (labio + hundido).
+              PrimaryButton(
+                label: _saving ? l10n.convSaving : l10n.convSaveFinish,
+                expand: true,
+                onPressed: _saving ? null : _save,
               ),
             ],
           ],
