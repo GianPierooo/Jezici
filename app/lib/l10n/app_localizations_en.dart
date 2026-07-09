@@ -1226,7 +1226,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noHeartsMsg =>
-      'No worries, it happens to everyone! Hearts regenerate over time; if you want to keep going now, refill them with gold.';
+      'No worries, it happens to everyone! They come back free next lesson, or keep going now 💪';
 
   @override
   String get noHeartsRefill => 'Refill hearts and continue';
@@ -1245,6 +1245,33 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noHeartsQuit => 'Leave the lesson';
+
+  @override
+  String get noHeartsFreeNext => 'Free hearts next lesson';
+
+  @override
+  String get noHeartsFreeNextSub => 'No waiting: every lesson starts with 5 ❤️';
+
+  @override
+  String get noHeartsWatchAd => 'Watch an ad';
+
+  @override
+  String get noHeartsWatchAdSub => 'Get 1 heart back';
+
+  @override
+  String get noHeartsSoon => 'Soon';
+
+  @override
+  String get noHeartsRefillAll => 'Refill all';
+
+  @override
+  String get noHeartsRefillAllSub => 'Fill your 5 hearts instantly';
+
+  @override
+  String get noHeartsUnlimited => 'Unlimited hearts';
+
+  @override
+  String get noHeartsUnlimitedSub => 'Never wait again · with Premium';
 
   @override
   String get certHolderIntro => 'This certifies that';

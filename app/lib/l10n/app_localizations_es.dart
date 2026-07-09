@@ -1225,7 +1225,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get noHeartsMsg =>
-      '¡Tranqui, le pasa a todos! Las vidas se regeneran con el tiempo; si quieres seguir ahora, recárgalas con oro.';
+      '¡Tranqui, le pasa a todos! Vuelven gratis en tu próxima lección, o sigue ahora 💪';
 
   @override
   String get noHeartsRefill => 'Recargar vidas y seguir';
@@ -1244,6 +1244,34 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get noHeartsQuit => 'Salir de la lección';
+
+  @override
+  String get noHeartsFreeNext => 'Vidas gratis en tu próxima lección';
+
+  @override
+  String get noHeartsFreeNextSub =>
+      'Sin esperas: cada lección empieza con 5 ❤️';
+
+  @override
+  String get noHeartsWatchAd => 'Ver un anuncio';
+
+  @override
+  String get noHeartsWatchAdSub => 'Recupera 1 vida';
+
+  @override
+  String get noHeartsSoon => 'Pronto';
+
+  @override
+  String get noHeartsRefillAll => 'Recargar todas';
+
+  @override
+  String get noHeartsRefillAllSub => 'Rellena tus 5 vidas al instante';
+
+  @override
+  String get noHeartsUnlimited => 'Vidas ilimitadas';
+
+  @override
+  String get noHeartsUnlimitedSub => 'Nunca más esperes · con Premium';
 
   @override
   String get certHolderIntro => 'Se certifica que';

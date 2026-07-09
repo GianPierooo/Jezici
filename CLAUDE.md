@@ -5,6 +5,25 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-09**.
 
+## SINVIDAS fiel a SinVidas.dc (con honestidad) ✅ (2026-07-09 · solo cliente)
+Capa visual; **NO toca la economía de vidas/oro ni la recarga** (buy_hearts 50 oro = P0, intacto).
+`no_hearts_sheet.dart` reescrita fiel al mockup:
+- **Guacamayo asomado** sobre la hoja (`ParrotMascot` bob) + **backdrop violeta** (`barrierColor` tintado).
+- **3 opciones** como tarjetas del mockup (icon-tile + título/subtítulo + trailing): **"Ver un anuncio · Pronto"**
+  (ads = Fase 2 sin infra → deshabilitada y etiquetada honestamente, NO botón muerto); **"Recargar todas · 🪙50"**
+  (cobro REAL `buy_hearts`, el P0); **"Vidas ilimitadas · PREMIUM"** (card violeta labio 3D → `PremiumScreen`).
+- **TIMER — decisión HONESTA (paso 0 verificado en BD/código):** NO existe regen de vidas por tiempo
+  (`hearts_updated_at` nunca se lee para sumar; sin cron; en la lección las vidas son LOCALES, empiezan en 5
+  cada lección). Un contador "próxima vida gratis en MM:SS" sería una **promesa falsa** → se sustituye por una
+  tarjeta con **corazón coral pulsante** (jzPulseHeart, en anillo) + la verdad: **"Vidas gratis en tu próxima
+  lección · cada lección empieza con 5 ❤️"**. La recarga de pago sirve para seguir ESTA lección ahora. Se
+  corrigió el copy `noHeartsMsg` (antes "se regeneran con el tiempo", falso).
+- Motion (jzBob del loro, jzPulseHeart) reduce-motion-aware; sheet **scrollable** (no desborda en pantallas
+  cortas). i18n es/en/pt (10 claves). Verificado visualmente con golden temporal (loro + backdrop + tarjeta
+  honesta + opciones). **Diferido:** timer real de countdown (requiere regen server-side = tocar economía);
+  infra de ads; FRENTE 2 (pose de celebración alterna del loro, Frame B) — encolado. Verde: analyze 0
+  (CI-exact) · test 130/130 (+no_hearts_sheet) · build web OK.
+
 ## MOTION/CELEBRACIÓN transversal — cierra el último gap sistémico ✅ (2026-07-09 · solo cliente)
 Los mockups animan con intención (jzSheen/jzGlow/jzBob…); la app ya tenía bastante (pulso del nodo,
 confetti en 5 pantallas, contadores, `ParrotMascot` bob/cheer, halo del portal/emblema, wiggle del cofre,

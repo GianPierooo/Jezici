@@ -12,7 +12,7 @@
 |---|--------|-------------|--------|----------|
 | 1 | Aprender v2.dc.html | learn_map_screen + widgets | DESVIADO | L |
 | 2 | Leccion.dc.html | lesson_player / complete / preview | DESVIADO (el más fiel) | M |
-| 3 | SinVidas.dc.html | no_hearts_sheet | MUY DESVIADO | M |
+| 3 | SinVidas.dc.html | no_hearts_sheet | ✅ FIEL (2026-07-09) | M |
 | 4 | Checkpoint.dc.html | checkpoint intro/player/result | DESVIADO | M+M |
 | 5 | Examen.dc.html | level_exam result + certificate | MUY DESVIADO | L+L |
 | 6 | Simulacro.dc.html | simulacros_screen | MUY DESVIADO (placeholder) | L |
@@ -107,14 +107,14 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
 
 ## 3) SinVidas
 - Mockup: mockups/SinVidas.dc.html · Implementación: `lesson/widgets/no_hearts_sheet.dart`
-- Estado: **MUY DESVIADO** · Esfuerzo: **M** (timer+oro; ads/premium requieren infra)
-- Coincide: sheet blanco r30 + asa exacta; 5 corazones vacíos `#E2E5F0` exactos; título "Te quedaste sin vidas ❤️" copy EXACTO; botón fantasma final.
-- Desviaciones:
-  - [P0] Faltan 3 de los 4 cuerpos del mockup: (1) TIMER "Próxima vida gratis en 28:14" con anillo + corazón pulsante + barra; (2) opción "Ver un anuncio · Recupera 1 vida"; (3) opción Premium "Vidas ilimitadas" con badge dorado.
-  - [P0-coherencia] ✅ **ARREGLADO (2026-07-08):** el botón ya NO promete cobro sin ejecutarlo. Ahora la recarga **cobra oro de verdad server-side** (`buy_hearts()`, mig 026): muestra el precio real (🪙50, misma economía que la tienda — se eligió alinear al costo REAL existente en vez de hardcodear el 350 del mockup, que nada enforce), descuenta el oro y **si no hay suficiente NO recarga** (aviso inline). Verificado cliente real (`verify_p0_product.py`: con oro→recarga+descuenta 50; sin oro→no recarga, oro intacto). (Pendiente P0 estético: timer de regeneración + opción anuncio/Premium — requieren infra.)
-  - [P1] Sin guacamayo asomado sobre la hoja ni backdrop especial (blur+tinte violeta).
-  - [P2] 2ª mitad del subtítulo divergente; botón de recarga violeta genérico en vez de tarjeta blanca con moneda.
-- No implementado del mockup: timer con countdown en vivo, opción anuncio, opción Premium, loro, jzPulseHeart/jzBob.
+- Estado: ✅ **FIEL (2026-07-09)** (con honestidad; ver timer) · Esfuerzo: **M**
+- Coincide: sheet blanco r30 + asa; 5 corazones vacíos `#E2E5F0`; título "Te quedaste sin vidas ❤️" copy EXACTO; botón fantasma final.
+- ✅ **REHECHO (2026-07-09 · solo cliente visual; NO toca la economía de vidas/oro):**
+  - **Guacamayo asomado** sobre la hoja (`ParrotMascot` bob, reduce-motion-aware) + **backdrop violeta** (`barrierColor` tintado) del mockup.
+  - Las **3 opciones** del mockup como tarjetas fieles (icon-tile + título/subtítulo + trailing): **"Ver un anuncio"** en estado HONESTO **"Pronto"** (ads = Fase 2, sin infra → deshabilitado y etiquetado, NO botón muerto); **"Recargar todas · 🪙50"** (cobro REAL `buy_hearts`, el P0); **"Vidas ilimitadas · PREMIUM"** (card violeta con labio 3D → enlaza a `PremiumScreen` real).
+  - **TIMER — decisión honesta (paso 0, verificado en BD/código):** NO existe regeneración de vidas por tiempo (`hearts_updated_at` nunca se lee para sumar vidas; no hay cron; en la lección las vidas son LOCALES y empiezan en 5 cada lección). Un contador "próxima vida gratis en MM:SS" sería una **promesa falsa** (prohibido) → se reemplaza por una tarjeta HONESTA con el **corazón coral pulsante** (jzPulseHeart, en un anillo) + la verdad: **"Vidas gratis en tu próxima lección · cada lección empieza con 5 ❤️"**. La recarga de pago sirve para seguir ESTA lección ahora. Se corrigió también el copy `noHeartsMsg` (antes decía "se regeneran con el tiempo", falso).
+  - Motion del mockup (jzBob del loro, jzPulseHeart) reduce-motion-aware; sheet **scrollable** (isScrollControlled) → no desborda en pantallas cortas. i18n es/en/pt (10 claves). Verde: analyze 0 · test 130/130 (+no_hearts_sheet: copy honesto + opciones) · build web OK.
+- Diferido honesto: TIMER real de countdown (requiere implementar regen por tiempo server-side = tocar la economía, fuera de alcance); infra de ADS real; pose de celebración alterna del loro (Frame B). Verificado visualmente con golden temporal (loro + backdrop + tarjeta honesta + opciones).
 
 ## 4) Checkpoint (intro + player + resultado)
 - Mockup: mockups/Checkpoint.dc.html · Implementación: `checkpoint_intro_screen.dart` + `checkpoint_player_screen.dart` + `checkpoint_result_screen.dart`

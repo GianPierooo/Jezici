@@ -2199,7 +2199,7 @@ abstract class AppLocalizations {
   /// No description provided for @noHeartsMsg.
   ///
   /// In es, this message translates to:
-  /// **'¡Tranqui, le pasa a todos! Las vidas se regeneran con el tiempo; si quieres seguir ahora, recárgalas con oro.'**
+  /// **'¡Tranqui, le pasa a todos! Vuelven gratis en tu próxima lección, o sigue ahora 💪'**
   String get noHeartsMsg;
 
   /// No description provided for @noHeartsRefill.
@@ -2231,6 +2231,60 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Salir de la lección'**
   String get noHeartsQuit;
+
+  /// No description provided for @noHeartsFreeNext.
+  ///
+  /// In es, this message translates to:
+  /// **'Vidas gratis en tu próxima lección'**
+  String get noHeartsFreeNext;
+
+  /// No description provided for @noHeartsFreeNextSub.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin esperas: cada lección empieza con 5 ❤️'**
+  String get noHeartsFreeNextSub;
+
+  /// No description provided for @noHeartsWatchAd.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver un anuncio'**
+  String get noHeartsWatchAd;
+
+  /// No description provided for @noHeartsWatchAdSub.
+  ///
+  /// In es, this message translates to:
+  /// **'Recupera 1 vida'**
+  String get noHeartsWatchAdSub;
+
+  /// No description provided for @noHeartsSoon.
+  ///
+  /// In es, this message translates to:
+  /// **'Pronto'**
+  String get noHeartsSoon;
+
+  /// No description provided for @noHeartsRefillAll.
+  ///
+  /// In es, this message translates to:
+  /// **'Recargar todas'**
+  String get noHeartsRefillAll;
+
+  /// No description provided for @noHeartsRefillAllSub.
+  ///
+  /// In es, this message translates to:
+  /// **'Rellena tus 5 vidas al instante'**
+  String get noHeartsRefillAllSub;
+
+  /// No description provided for @noHeartsUnlimited.
+  ///
+  /// In es, this message translates to:
+  /// **'Vidas ilimitadas'**
+  String get noHeartsUnlimited;
+
+  /// No description provided for @noHeartsUnlimitedSub.
+  ///
+  /// In es, this message translates to:
+  /// **'Nunca más esperes · con Premium'**
+  String get noHeartsUnlimitedSub;
 
   /// No description provided for @certHolderIntro.
   ///
