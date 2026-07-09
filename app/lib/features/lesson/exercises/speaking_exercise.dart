@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../core/speech/mic_messages.dart';
 import '../../../core/speech/speech_lang.dart';
 import '../../../core/speech/speech_recognizer.dart';
 import '../../../core/theme/app_colors.dart';
@@ -11,20 +12,25 @@ import 'audio_play_button.dart';
 /// Speaking REAL (Fase 1): el usuario escucha el modelo y lee en voz alta.
 /// GA8: usa el reconocedor de voz correcto (Web Speech cruda en web, sin
 /// duplicados) + comparación TOLERANTE (una lectura razonable APRUEBA) +
-/// degradación con gracia si no hay micrófono/permiso ("Ya lo leí").
+/// degradación HONESTA si no hay soporte/permiso/mic: mensaje con la CAUSA
+/// real (micMessageFor) + "Ya lo leí" para no bloquear la sesión.
 class SpeakingExercise extends StatefulWidget {
-  const SpeakingExercise({super.key, required this.item});
+  const SpeakingExercise({super.key, required this.item, this.recognizer});
   final ContentItemModel item;
+
+  /// Inyectable para tests; null = reconocedor real de la plataforma.
+  final SpeechRecognizer? recognizer;
 
   @override
   State<SpeakingExercise> createState() => _SpeakingExerciseState();
 }
 
 class _SpeakingExerciseState extends State<SpeakingExercise> {
-  final SpeechRecognizer _rec = createSpeechRecognizer();
+  late final SpeechRecognizer _rec = widget.recognizer ?? createSpeechRecognizer();
   bool _ready = false;
   bool _available = false;
   bool _listening = false;
+  String? _micError; // código SpeechErrors → mensaje honesto en la UI
   String? _heard; // limpio
   double? _score; // 0..1 (sólo tras resultado final)
   bool _doneManually = false;
@@ -59,13 +65,14 @@ class _SpeakingExerciseState extends State<SpeakingExercise> {
     if (!_available || _listening) return;
     setState(() {
       _listening = true;
+      _micError = null;
       _heard = null;
       _score = null;
     });
     HapticFeedback.selectionClick();
     _rec.listen(
       localeId: SpeechLang.stt, // idioma del curso activo (en/pt/fr/it), no inglés fijo
-      listenFor: const Duration(seconds: 8),
+      listenFor: const Duration(seconds: 12),
       onResult: (transcript, isFinal) {
         if (!mounted) return;
         setState(() {
@@ -77,8 +84,19 @@ class _SpeakingExerciseState extends State<SpeakingExercise> {
           }
         });
       },
-      onError: (_) {
-        if (mounted) setState(() => _listening = false);
+      onError: (e) {
+        if (!mounted) return;
+        setState(() {
+          _listening = false;
+          if (micErrorIsFatal(e)) {
+            // Permiso bloqueado / sin mic / sin soporte: el mic se apaga para
+            // el resto del ejercicio y se explica la CAUSA + "Ya lo leí".
+            _available = false;
+            _micError = e;
+          } else if (e == SpeechErrors.network) {
+            _micError = e; // transitorio: aviso + el mic queda para reintentar
+          }
+        });
       },
       onDone: () {
         if (mounted) setState(() => _listening = false);
@@ -107,13 +125,22 @@ class _SpeakingExerciseState extends State<SpeakingExercise> {
               child: Text(l10n.speakingPreparingMic,
                   style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)))
         else if (!_available) ...[
-          Text(l10n.speakingNoMic,
+          // La CAUSA real (sin soporte / permiso bloqueado / sin mic), no un
+          // genérico: el usuario sabe qué hacer y puede continuar con "Ya lo leí".
+          Text(micMessageFor(l10n, _micError ?? _rec.unavailableReason),
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
           const SizedBox(height: 12),
           Center(child: _readItButton()),
         ] else ...[
           Center(child: _micButton()),
+          if (_micError == SpeechErrors.network) ...[
+            const SizedBox(height: 8),
+            Text(micMessageFor(l10n, _micError),
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                    fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.coral)),
+          ],
           const SizedBox(height: 10),
           Center(
             child: TextButton(

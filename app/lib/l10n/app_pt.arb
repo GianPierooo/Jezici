@@ -1,7 +1,6 @@
 {
   "@@locale": "pt",
   "appTitle": "Jezici",
-
   "commonContinue": "CONTINUAR",
   "commonStart": "COMEÇAR",
   "commonCheck": "VERIFICAR",
@@ -13,15 +12,12 @@
   "commonRetry": "Tentar de novo",
   "commonNext": "Próximo",
   "commonDone": "Pronto",
-
   "splashLoadError": "Não foi possível carregar sua sessão.",
-
   "settingsLanguageTitle": "Idioma do app",
   "settingsLanguageSubtitle": "O idioma dos menus e instruções. Não muda o idioma que você está aprendendo.",
   "langEs": "Español",
   "langEn": "English",
   "langPt": "Português",
-
   "settingsTitle": "Configurações",
   "settingsSecLanguage": "IDIOMA",
   "settingsSecNotifications": "NOTIFICAÇÕES",
@@ -78,7 +74,6 @@
   "coachExPositivo": "«Você está indo muito bem, continue! 🎉»",
   "coachExRezago": "«Faz 2 dias que você não pratica… 👀»",
   "coachExSuave": "«Sem pressa, vá no seu ritmo 🌱»",
-
   "courseSwitchFailed": "Não foi possível trocar de curso.",
   "convTitle": "Conversar",
   "convSubtitle": "Pratique conversas reais. No seu ritmo, sem pressão.",
@@ -122,24 +117,20 @@
   "convTopicInterviewScenario": "Perguntam por que você quer o emprego. Responda com 2 motivos.",
   "convTopicDirectionsTitle": "Pedir informações",
   "convTopicDirectionsScenario": "Pergunte como chegar à estação de trem e se é longe.",
-
   "learnLangEn": "inglês",
   "learnLangPt": "português",
   "learnLangFr": "francês",
   "learnLangIt": "italiano",
   "learnLangDe": "alemão",
   "learnLangNl": "holandês",
-
   "skillReading": "Leitura",
   "skillWriting": "Escrita",
   "skillListening": "Compreensão auditiva",
   "skillSpeaking": "Expressão oral",
-
   "onbWelcomeTitle": "Vamos montar seu plano",
   "onbWelcomeSubtitle": "Algumas perguntas rápidas e um teste de nível para montar seu plano com data real. Cada resposta personaliza seu caminho.",
   "onbWelcomeNote": "Leva ~2 minutos.",
   "onbCoachBubble": "Vamos montar um plano sob medida! 🦜",
-
   "onbLanguageTitle": "Em qual idioma você prefere o app?",
   "onbLanguageSubtitle": "Escolha o idioma dos menus e mensagens. Não é o idioma que você vai aprender.",
   "onbLanguageInfoEn": "Isso só muda o idioma dos menus e textos, não o que você vai aprender.",
@@ -147,10 +138,8 @@
   "onbNameTitle": "Como você se chama?",
   "onbNameSubtitle": "É assim que vamos te chamar, e aparece no seu perfil e certificados.",
   "onbNameHint": "Seu nome",
-
   "onbTargetTitle": "Que idioma você quer aprender?",
   "onbTargetSubtitle": "Seu curso. Isso define seu plano e o teste de nível. Você pode mudar depois em Ajustes.",
-
   "onbMotiveTitle": "Por que você está aprendendo {course}?",
   "onbMotiveSubtitle": "Personaliza seu plano, os cenários e as mensagens do seu coach.",
   "onbMotiveWork": "Trabalho",
@@ -159,7 +148,6 @@
   "onbMotiveStudies": "Estudos",
   "onbMotiveRelocation": "Mudança",
   "onbMotivePleasure": "Por prazer",
-
   "onbGoalTitle": "Aonde você quer chegar?",
   "onbGoalSubtitle": "Sua meta. O topo do mapa.",
   "onbGoalA2": "A2 · Me viro",
@@ -168,7 +156,6 @@
   "onbGoalC1": "C1 · Avançado",
   "onbDeadlineEmpty": "Prazo (opcional)",
   "onbDeadlineFilled": "Meta: {day}/{month}/{year}",
-
   "onbCommitmentTitle": "Quanto tempo você pode dedicar?",
   "onbCommitmentSubtitle": "Isso define sua meta diária e a data de chegada.",
   "onbCommitmentMinutesLabel": "Minutos por dia",
@@ -176,22 +163,18 @@
   "onbFrequencyRelaxed": "Tranquilo",
   "onbFrequencyConstant": "Constante",
   "onbFrequencyIntense": "Intenso",
-
   "onbStartLevelTitle": "Quanto inglês você já sabe?",
   "onbStartLevelSubtitle": "Para começar o teste de nível no ponto certo.",
   "onbStartLevelZero": "Do zero",
   "onbStartLevelBasic": "Sei o básico",
   "onbStartLevelGood": "Tenho um bom nível",
-
   "onbMinutesShort": "{m} min",
   "onbDaysShort": "{days, plural, =1{{days} dia} other{{days} dias}}",
   "planDurationLessThanWeek": "menos de 1 semana",
   "planDurationWeeks": "{count, plural, =1{≈ 1 semana} other{≈ {count} semanas}}",
   "planDurationMonths": "{count, plural, other{≈ {count} meses}}",
   "planDurationYears": "≈ {years} anos",
-
   "onbSaveError": "Não foi possível salvar seu plano. Tente de novo.",
-
   "onbPersonalityTitle": "Seu coach ideal",
   "onbPersonalityStep": "Pergunta {q} de {total}",
   "onbPersonalityQ1": "Se você não bater sua meta do dia, o que prefere ouvir?",
@@ -218,7 +201,6 @@
   "onbIntensityOpt1": "Bastante, não me deixe afrouxar",
   "onbIntensityOpt2": "Na medida certa",
   "onbIntensityOpt3": "Pouco",
-
   "placementTitle": "Teste de nível",
   "placementSpeak": "Falar",
   "placementListening": "Ouvindo…",
@@ -230,19 +212,23 @@
   "placementResultViewPlan": "VER MEU PLANO",
   "placementResultStartFromZero": "Prefiro começar do início",
   "placementResultStartFromZeroConfirm": "Você começará do A1 (Unidade 1), não do {level}. A escolha é sua: avançará no seu ritmo. Continuar?",
-  "@placementResultStartFromZeroConfirm": { "placeholders": { "level": {"type":"String"} } },
+  "@placementResultStartFromZeroConfirm": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "placementResultHero": "COLOCAMOS VOCÊ EM",
   "placementResultSkillsTitle": "Por habilidade",
   "placementResultEntryUnit": "Você vai começar na Unidade {unitNum} — {unitName} ({level}). O anterior fica acessível para revisar.",
   "placementResultEstimateReached": "Você já alcançou sua meta. Se continuar até {goalLevel}: {humanDuration} (aprox. {formattedDate}).",
   "placementResultEstimateGoal": "Se você cumprir seu plano, chega a {goalLevel} em {humanDuration} (aprox. {formattedDate}).",
-
   "coursePlacementOfferTitle": "Fazer o teste de nivelamento?",
   "coursePlacementOfferBody": "Faça um teste curto e comece no seu nível real de {course}, em vez de começar do início.",
   "coursePlacementDoTest": "Fazer o teste",
   "coursePlacementFromScratch": "Começar do início",
   "coursePlacementDone": "Pronto! Colocamos você em {level}.",
-
   "planFocusWork": "Foco no trabalho: reuniões, e-mails e entrevistas.",
   "planFocusTravel": "Foco em viagens: aeroporto, hotel, direções e restaurantes.",
   "planFocusExam": "Foco em exame: simulados IELTS/Cambridge e as 4 habilidades.",
@@ -268,14 +254,34 @@
   "planJourneyGoal": "SUA META",
   "planHalfTime": "⚡ Metade do tempo!",
   "planPaceLine": "Com {minutes} min/dia você chega ao {level} em",
-  "@planPaceLine": { "placeholders": { "minutes": {"type":"int"}, "level": {"type":"String"} } },
+  "@planPaceLine": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      },
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "planLeverTitleOff": "Quer chegar mais rápido?",
   "planLeverTitleOn": "🚀 A todo vapor!",
   "planLeverTextOff": "Suba para {minutes} min/dia e chegue na metade do tempo 💪",
-  "@planLeverTextOff": { "placeholders": { "minutes": {"type":"int"} } },
+  "@planLeverTextOff": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
   "planLeverTextOn": "Plano de {minutes} min/dia ativado: você chega na metade do tempo.",
-  "@planLeverTextOn": { "placeholders": { "minutes": {"type":"int"} } },
-
+  "@planLeverTextOn": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
   "authTitleSignUp": "Crie sua conta",
   "authTitleSignIn": "Bem-vindo de volta",
   "authSubtitleSignUp": "Um plano com data real, um exame das 4 habilidades e um coach que traz você de volta.",
@@ -306,7 +312,6 @@
   "authOr": "ou",
   "authGoogleError": "Não foi possível continuar com o Google. Tente com seu email.",
   "authCheckEmail": "Enviamos um email para confirmar sua conta. Abra-o e volte para continuar.",
-
   "lessonSaveErrorTitle": "Não foi possível salvar seu progresso",
   "lessonSaveErrorMsg": "Verifique sua conexão e tente de novo.",
   "lessonNoExercises": "Esta lição ainda não tem exercícios.",
@@ -318,7 +323,6 @@
   "lessonFeedbackRightAnswer": "Resposta correta: {answer}",
   "lessonAudioUnavailableTitle": "Áudio indisponível",
   "lessonAudioUnavailableMsg": "Este exercício ainda não tem o áudio. Vamos pular: não afeta suas vidas nem sua pontuação.",
-
   "lessonCompletePerfectTitle": "LIÇÃO PERFEITA",
   "lessonCompleteTitle": "LIÇÃO CONCLUÍDA",
   "lessonCompletePerfectMsg": "Impecável! 🌟",
@@ -340,7 +344,6 @@
   "lessonCompleteSkillAdvanced": "▲ subiu",
   "tipCardHeader": "Matix ensina você · {type}",
   "tipCardPersonalized": "Estou te dando isto porque sua {skill} precisa de um empurrão. 🦜",
-
   "errorReviewWhyTranslation": "Repare na forma exata em inglês — o sentido completo importa.",
   "errorReviewWhyCloze": "Revise a palavra que faltava na frase.",
   "errorReviewWhyWordOrder": "Cuide da ORDEM das palavras: o inglês é mais fixo que o espanhol.",
@@ -350,7 +353,6 @@
   "errorReviewTitle": "Revise o que você errou",
   "errorReviewSubtitle": "{count, plural, =1{1 exercício para reforçar. Você está quase lá!} other{{count} exercícios para reforçar. Você está quase lá!}}",
   "errorReviewPracticeCta": "Praticar os que você errou",
-
   "tileArrangePlaceholder": "Toque nas palavras para formar a frase…",
   "tileArrangeAllPlaced": "Tudo colocado — toque em VERIFICAR",
   "translationHint": "Escreva a tradução…",
@@ -370,7 +372,6 @@
   "speakingRetryHint": "Ouvi: \"{heard}\". Você pode tentar de novo ou tocar em \"Já li ✓\".",
   "speakingHearModel": "Ouvir o modelo",
   "audioPlayDefault": "Ouvir",
-
   "stubTagPronunciation": "PRONÚNCIA",
   "stubNotePronunciation": "O reconhecimento de voz chega em breve. Por ora, pratique em voz alta e continue.",
   "stubTagListening": "COMPREENSÃO AUDITIVA",
@@ -381,12 +382,17 @@
   "stubNoteGuidedWriting": "A escrita guiada com correção chega em breve. Por ora, continue.",
   "stubTagComingSoon": "EM BREVE",
   "stubNoteComingSoon": "Este tipo de exercício chega em breve. Por ora, continue.",
-
   "noHeartsTitle": "Você ficou sem vidas ❤️",
   "noHeartsMsg": "Relaxa, acontece com todo mundo! Elas voltam de graça na próxima lição, ou siga agora 💪",
   "noHeartsRefill": "Recarregar vidas e seguir",
   "noHeartsRefillPriced": "Recarregar vidas · 🪙{gold}",
-  "@noHeartsRefillPriced": { "placeholders": { "gold": {"type":"int"} } },
+  "@noHeartsRefillPriced": {
+    "placeholders": {
+      "gold": {
+        "type": "int"
+      }
+    }
+  },
   "noHeartsInsufficientGold": "Você não tem ouro suficiente para recarregar.",
   "noHeartsRefilled": "Vidas recarregadas! ❤️",
   "noHeartsQuit": "Sair da lição",
@@ -410,7 +416,6 @@
   "dailyPanelWhat": "Conta o XP que você ganha em lições e prática. Cumpra todo dia para manter sua sequência.",
   "dailyPanelDone": "Meta de hoje cumprida! 🎉 Continue assim para sua sequência.",
   "dailyPanelClose": "Continuar aprendendo",
-
   "checkpointStartError": "Não foi possível iniciar o exame. Tente de novo.",
   "checkpointPortalTitle": "O portal da unidade",
   "checkpointCoachMsg": "🦜  Mostre o que você sabe!",
@@ -438,7 +443,6 @@
   "checkpointMissingPoints": "Faltaram {missing} pontos para os {pct}%. Quase!",
   "checkpointReinforceTitle": "REFORCE ESTAS HABILIDADES",
   "checkpointReinforceEmpty": "Revise a unidade e tente de novo.",
-
   "checkpointSubmitError": "Não foi possível enviar o exame. Tente de novo.",
   "checkpointExitTitle": "Sair do exame?",
   "checkpointExitMsg": "Você vai perder o progresso desta tentativa.",
@@ -448,31 +452,24 @@
   "checkpointBackToMapCta": "VOLTAR AO MAPA",
   "checkpointFinish": "TERMINAR",
   "checkpointNext": "PRÓXIMO",
-
   "lessonPreviewLoadError": "Não foi possível carregar a lição.\n{error}",
   "lessonPreviewExerciseCount": "{count, plural, =1{1 exercício} other{{count} exercícios}}",
-
   "dailyGoalTitle": "Meta de hoje",
   "dailyGoalXpOf": "{earned}/{goal} XP",
   "dailyGoalMet": "Meta cumprida! Sua ofensiva avança hoje 🔥",
   "dailyGoalRemaining": "Faltam {n} XP para cumprir hoje",
   "dailyGoalSemantics": "Meta diária: {earned} de {goal} XP",
-
   "missionWelcomeTitle": "Sua jornada começou!",
   "missionWelcomeBody": "Colecione as 100 palavras essenciais ao avançar. Vamos!",
   "missionRewardBanner": "+{xp} XP · +{gold} de ouro de boas-vindas",
   "missionStartError": "Não foi possível começar. Tente de novo.",
-
   "comboLabel": "x{combo}",
-
   "shopChestWon": "🎁 Você ganhou {reward} de ouro! Agora você tem {total}.",
   "shopChestAlready": "Você já abriu o baú de hoje. Volte amanhã 🙂",
   "shopHeartsRefilled": "❤️ Vidas recarregadas. Você gastou 50 de ouro, restam {gold}.",
   "shopFreezeBought": "🧊 Congelador comprado. Você gastou 50 de ouro, restam {gold}.",
   "shopNotEnoughGold": "Você não tem ouro suficiente (custa {cost}).",
-
   "leagueNoMovementNote": "No beta ainda não há promoções nem rebaixamentos: jogue para ganhar XP e subir na tabela.",
-
   "mapLoading": "Carregando seu mapa…",
   "mapLoadError": "Não foi possível carregar o mapa.\n{error}",
   "mapEmptyState": "Ainda não há conteúdo semeado.",
@@ -485,7 +482,13 @@
   "mapUnitBanner": "UNIDADE {num} · {level}",
   "mapUnitBannerLocked": "UNIDADE {num} · {level} · 🔒 BLOQUEADA",
   "mapExamUnit": "EXAME · UNIDADE {num}",
-  "@mapExamUnit": { "placeholders": { "num": {"type":"int"} } },
+  "@mapExamUnit": {
+    "placeholders": {
+      "num": {
+        "type": "int"
+      }
+    }
+  },
   "topBarMusicOff": "Desligar a música do mapa",
   "topBarMusicOn": "Ligar a música do mapa",
   "topBarNotifications": "Notificações",
@@ -519,40 +522,127 @@
   "practiceStartError": "Não foi possível iniciar a prática.",
   "profileHeaderKicker": "MEU PERFIL",
   "profileTravelerChip": "Nível de viajante {level}",
-  "@profileTravelerChip": { "placeholders": { "level": {"type":"int"} } },
+  "@profileTravelerChip": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
   "profileTravelerNext": "Nível {level} · {xp} XP",
-  "@profileTravelerNext": { "placeholders": { "level": {"type":"int"}, "xp": {"type":"int"} } },
+  "@profileTravelerNext": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      },
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
   "profileActiveLangLabel": "IDIOMA ATIVO",
   "profileActiveLangValue": "{language} · Objetivo {goal}",
-  "@profileActiveLangValue": { "placeholders": { "language": {"type":"String"}, "goal": {"type":"String"} } },
+  "@profileActiveLangValue": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      },
+      "goal": {
+        "type": "String"
+      }
+    }
+  },
   "profileActiveLangChange": "Trocar",
   "profileRadarGoalTag": "META {level}",
-  "@profileRadarGoalTag": { "placeholders": { "level": {"type":"String"} } },
+  "@profileRadarGoalTag": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "profileSkillsReadyChip": "{ready} / 4 em {level}",
-  "@profileSkillsReadyChip": { "placeholders": { "ready": {"type":"int"}, "level": {"type":"String"} } },
+  "@profileSkillsReadyChip": {
+    "placeholders": {
+      "ready": {
+        "type": "int"
+      },
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "profileWeakAlertTitle": "Seu ponto fraco é",
   "profileWeakAlertBody": "Suba para {level} e você certificará seu nível completo.",
-  "@profileWeakAlertBody": { "placeholders": { "level": {"type":"String"} } },
+  "@profileWeakAlertBody": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "profileCertLockedNeed": "Você precisa de {level} nas 4 habilidades",
-  "@profileCertLockedNeed": { "placeholders": { "level": {"type":"String"} } },
+  "@profileCertLockedNeed": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "profileCertReadyCount": "{n} de 4 habilidades prontas",
-  "@profileCertReadyCount": { "placeholders": { "n": {"type":"int"} } },
+  "@profileCertReadyCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "profileCertVerifiedLine": "Verificado · exame Jezici",
   "profileStatsTitle": "Estatísticas",
   "profileStreakLine": "{n} dias de sequência",
-  "@profileStreakLine": { "placeholders": { "n": {"type":"int"} } },
+  "@profileStreakLine": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "profileStreakBest": "Melhor: {n}",
-  "@profileStreakBest": { "placeholders": { "n": {"type":"int"} } },
+  "@profileStreakBest": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "profileStreakToday": "HOJE",
   "profileLeagueRank": "Posição {n}",
-  "@profileLeagueRank": { "placeholders": { "n": {"type":"int"} } },
+  "@profileLeagueRank": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "leagueCurrentDivision": "DIVISÃO ATUAL",
   "leagueEndsIn": "Termina em",
   "leagueXpThisWeek": "XP esta semana",
   "leaguePromoteTo": "SOBEM PARA {division}",
-  "@leaguePromoteTo": { "placeholders": { "division": {"type":"String"} } },
+  "@leaguePromoteTo": {
+    "placeholders": {
+      "division": {
+        "type": "String"
+      }
+    }
+  },
   "leagueDemoteTo": "DESCEM PARA {division}",
-  "@leagueDemoteTo": { "placeholders": { "division": {"type":"String"} } },
+  "@leagueDemoteTo": {
+    "placeholders": {
+      "division": {
+        "type": "String"
+      }
+    }
+  },
   "leagueTagUp": "Subindo",
   "leagueTagRisk": "Em risco",
   "leagueTagYou": "Mantenha-se no topo!",
@@ -560,40 +650,103 @@
   "checkpointMapDone": "UNIDADE ✓",
   "checkpointMapNext": "PRÓXIMA REGIÃO",
   "checkpointFailCount": "{n} erros",
-  "@checkpointFailCount": { "placeholders": { "n": {"type":"int"} } },
+  "@checkpointFailCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "examPassedBadge": "EXAME APROVADO",
   "examFailedBadge": "AINDA NÃO · QUASE!",
   "examPassedVerdict": "Parabéns! Você alcançou o",
   "examFailedVerdict": "Você ainda não alcança o",
   "examLevelWord": "nível {level}",
-  "@examLevelWord": { "placeholders": { "level": {"type":"String"} } },
+  "@examLevelWord": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "examVerifiedBy": "Verificado pelo exame Jezici",
   "examSkillsAtLevel": "As 4 habilidades em {level}",
-  "@examSkillsAtLevel": { "placeholders": { "level": {"type":"String"} } },
+  "@examSkillsAtLevel": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "examSkillsWhyCertified": "Todas alcançam a meta — por isso certifica",
   "examSkillsGoalHint": "Meta: {pct}% por habilidade",
-  "@examSkillsGoalHint": { "placeholders": { "pct": {"type":"int"} } },
+  "@examSkillsGoalHint": {
+    "placeholders": {
+      "pct": {
+        "type": "int"
+      }
+    }
+  },
   "examGoalTag": "META {level}",
-  "@examGoalTag": { "placeholders": { "level": {"type":"String"} } },
+  "@examGoalTag": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "examGlobalScore": "Pontuação global",
   "examStrength": "Ponto forte",
   "examPolish": "Polir",
   "examSeeCertificate": "Ver certificado",
   "examShareCopied": "Resultado copiado para compartilhar ✓",
   "examRewards": "+{xp} XP · +{gold} ouro por certificar",
-  "@examRewards": { "placeholders": { "xp": {"type":"int"}, "gold": {"type":"int"} } },
+  "@examRewards": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      },
+      "gold": {
+        "type": "int"
+      }
+    }
+  },
   "examNotYetCertified": "Você ainda não certifica {level}",
-  "@examNotYetCertified": { "placeholders": { "level": {"type":"String"} } },
+  "@examNotYetCertified": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "examRaiseSkill": "suba seu {skill}",
-  "@examRaiseSkill": { "placeholders": { "skill": {"type":"String"} } },
+  "@examRaiseSkill": {
+    "placeholders": {
+      "skill": {
+        "type": "String"
+      }
+    }
+  },
   "examReinforceSkill": "Reforçar {skill}",
-  "@examReinforceSkill": { "placeholders": { "skill": {"type":"String"} } },
+  "@examReinforceSkill": {
+    "placeholders": {
+      "skill": {
+        "type": "String"
+      }
+    }
+  },
   "examRetry": "REPETIR EXAME",
   "chestTitleClosed": "Um baú te espera!",
   "chestSubClosed": "Toque para descobrir seu prêmio",
   "chestOpenCta": "Abrir baú",
   "chestTitleOpened": "+{reward} de ouro!",
-  "@chestTitleOpened": { "placeholders": { "reward": {"type":"int"} } },
+  "@chestTitleOpened": {
+    "placeholders": {
+      "reward": {
+        "type": "int"
+      }
+    }
+  },
   "chestSubOpened": "Sua recompensa do dia",
   "chestGoldLabel": "OURO",
   "chestClaimCta": "Resgatar!",
@@ -601,7 +754,6 @@
   "chestTitleTomorrow": "Você já abriu seu baú",
   "chestSubTomorrow": "Volte amanhã por outro 🎁",
   "chestCloseCta": "Entendi",
-
   "missionAppBarTitle": "Missão",
   "missionMainTitle": "As 100 palavras essenciais",
   "missionMainDescription": "Seu primeiro grande objetivo: dominar as 100 palavras e frases mais frequentes do inglês. Você vai colecioná-las ao completar suas lições. Ao juntar todas, ganha o selo \"100 essenciais\".",
@@ -615,7 +767,6 @@
   "missionCatFamily": "Pessoas e família",
   "missionCatDaily": "Cotidiano",
   "missionCatQuestions": "Perguntas e essenciais",
-
   "shopTitle": "Loja",
   "shopChestCardTitle": "Baú diário",
   "shopChestCardSubtitleAvailable": "Abra para uma recompensa surpresa",
@@ -626,7 +777,6 @@
   "shopHeartsCardSubtitle": "Volte a 5 corações · você tem {hearts}",
   "shopFreezeCardTitle": "Congelador de ofensiva",
   "shopFreezeCardSubtitle": "Proteja sua ofensiva por um dia · você tem {freezes}",
-
   "streakTitle": "Sua ofensiva",
   "streakDaysCount": "{count, plural, =1{ofensiva de {count} dia} other{ofensiva de {count} dias}}",
   "streakRecord": "Recorde: {longest} · Cumpra sua meta diária para somar",
@@ -639,7 +789,6 @@
   "streakFreezeCount": "Você tem {freezes}",
   "streakFreezePrice": "Custa {cost} de ouro",
   "streakFreezeBuy": "Comprar",
-
   "leagueTabMyLeague": "Minha liga",
   "leagueTabTables": "Tabelas",
   "leagueTitle": "Liga {division}",
@@ -678,7 +827,6 @@
   "leaderboardNotRanked": "Você ainda não está nesta tabela",
   "leaderboardShowingTop": "Mostrando top {shown} de {total}",
   "leagueLoadError": "Não foi possível carregar a liga.",
-
   "profilePracticeNoWeaknessToday": "Nada para reforçar agora! Você está em dia. 🎉",
   "profilePracticeWeaknessTitle": "Reforço de pontos fracos",
   "profilePracticeStartError": "Não foi possível iniciar a prática.",
@@ -727,5 +875,9 @@
   "profileEditBioHint": "Ex.: Quero viajar pelo Brasil este ano",
   "profileEditSave": "SALVAR",
   "profileEditSaving": "SALVANDO…",
-  "profileLevelPill": "Nível {level}"
+  "profileLevelPill": "Nível {level}",
+  "micUnsupported": "Seu navegador não suporta reconhecimento de voz. Experimente o Chrome ou o Edge.",
+  "micDenied": "A permissão do microfone está bloqueada. Ative no cadeado 🔒 ao lado do endereço (ou nas configurações do site) e tente novamente.",
+  "micNoDevice": "Nenhum microfone foi detectado neste dispositivo.",
+  "micNetwork": "O serviço de voz não respondeu (verifique sua conexão). Tente novamente."
 }

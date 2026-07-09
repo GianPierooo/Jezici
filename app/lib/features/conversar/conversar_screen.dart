@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/speech/mic_messages.dart';
 import '../../core/speech/speech_lang.dart';
 import '../../core/speech/speech_recognizer.dart';
 import '../../core/theme/app_colors.dart';
@@ -335,6 +336,7 @@ class _ConversarPracticeScreenState extends ConsumerState<ConversarPracticeScree
   bool _sttReady = false;
   bool _sttAvailable = false;
   bool _listening = false;
+  String? _micError; // código SpeechErrors → mensaje honesto (modo hablar)
   bool _revealed = false;
   int? _selfScore;
   bool _saving = false;
@@ -367,7 +369,10 @@ class _ConversarPracticeScreenState extends ConsumerState<ConversarPracticeScree
   void _listen() {
     if (!_sttAvailable || _listening) return;
     _sttBase = _text.text.trim(); // conserva lo escrito/confirmado previo
-    setState(() => _listening = true);
+    setState(() {
+      _listening = true;
+      _micError = null;
+    });
     HapticFeedback.selectionClick();
     _rec.listen(
       localeId: SpeechLang.stt, // idioma del curso activo (en/pt/fr/it), no inglés fijo
@@ -389,8 +394,19 @@ class _ConversarPracticeScreenState extends ConsumerState<ConversarPracticeScree
           }
         });
       },
-      onError: (_) {
-        if (mounted) setState(() => _listening = false);
+      onError: (e) {
+        if (!mounted) return;
+        setState(() {
+          _listening = false;
+          // Causa REAL visible (permiso/mic/soporte/red); el modo ESCRIBIR
+          // sigue disponible — la sesión nunca se bloquea.
+          if (micErrorIsFatal(e)) {
+            _sttAvailable = false;
+            _micError = e;
+          } else if (e == SpeechErrors.network) {
+            _micError = e;
+          }
+        });
       },
       onDone: () {
         if (mounted) setState(() => _listening = false);
@@ -564,25 +580,36 @@ class _ConversarPracticeScreenState extends ConsumerState<ConversarPracticeScree
           style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted));
     }
     if (!_sttAvailable) {
-      return Text(l10n.convMicUnavailable,
+      // La CAUSA real (sin soporte / permiso bloqueado / sin mic) — y el modo
+      // ESCRIBIR sigue disponible justo abajo.
+      return Text(micMessageFor(l10n, _micError ?? _rec.unavailableReason),
           textAlign: TextAlign.center,
           style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted));
     }
-    return GestureDetector(
-      onTap: _listen,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 14),
-        decoration: BoxDecoration(
-          color: _listening ? AppColors.coral : AppColors.primary,
-          borderRadius: BorderRadius.circular(16)),
-        child: Row(mainAxisSize: MainAxisSize.min, children: [
-          Icon(_listening ? Icons.mic_rounded : Icons.mic_none_rounded, color: Colors.white),
-          const SizedBox(width: 8),
-          Text(_listening ? l10n.convListening : l10n.convSpeakBtn,
-              style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 16)),
-        ]),
+    return Column(mainAxisSize: MainAxisSize.min, children: [
+      GestureDetector(
+        onTap: _listen,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 14),
+          decoration: BoxDecoration(
+            color: _listening ? AppColors.coral : AppColors.primary,
+            borderRadius: BorderRadius.circular(16)),
+          child: Row(mainAxisSize: MainAxisSize.min, children: [
+            Icon(_listening ? Icons.mic_rounded : Icons.mic_none_rounded, color: Colors.white),
+            const SizedBox(width: 8),
+            Text(_listening ? l10n.convListening : l10n.convSpeakBtn,
+                style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 16)),
+          ]),
+        ),
       ),
-    );
+      if (_micError == SpeechErrors.network) ...[
+        const SizedBox(height: 8),
+        Text(micMessageFor(l10n, _micError),
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+                fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.coral)),
+      ],
+    ]);
   }
 
   Widget _scoreChip(int i) {

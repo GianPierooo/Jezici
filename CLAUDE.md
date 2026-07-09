@@ -5,6 +5,34 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-09**.
 
+## MICRÓFONO ROBUSTO Y HONESTO (feedback real: "no capta en PC / cuesta en celular") ✅ (2026-07-09 · solo cliente)
+**Causas REALES (confirmadas en código):** (1) los errores del reconocedor se TRAGABAN en las 3 superficies
+(lección/placement/Conversar: `onError: (_)`) y encima `_handleEnd` emitía un final `''` → con permiso denegado,
+sin mic, Brave (service-not-allowed) o red caída el usuario veía **"No te escuché — sube el volumen"** (mensaje
+FALSO) o un mic que "no hace nada"; (2) `init()` web solo comprobaba que existiera el constructor de
+SpeechRecognition — NO miraba permiso denegado ni hardware → se ofrecía un mic muerto; (3) el permiso nunca se
+pedía explícitamente: `start()` disparaba el prompt del navegador con el reconocimiento YA corriendo → en
+Android el 1er intento moría en 'no-speech' mientras el prompt estaba abierto, y si el usuario negó una vez,
+TODOS los starts fallaban en silencio para siempre; (4) 8s de tope cortaba frases largas en móvil.
+**Fix (`speech_recognizer_web.dart` reescrito + API):**
+- **init():** sin soporte → `unavailableReason='unsupported'`; **Permissions API** (sin prompt) detecta permiso
+  YA denegado → `'denied'` y no se ofrece el mic (placement lo excluye desde el arranque con `p_exclude_skills`).
+- **listen():** **getUserMedia explícito bajo el gesto** (1ª vez) ANTES de arrancar el reconocimiento (pistas
+  liberadas al instante) → el prompt se resuelve limpio (arregla el 1er intento en Android) y denied/no-mic se
+  detectan con su causa; luego arranca la SpeechRecognition.
+- **Errores TIPADOS** (`SpeechErrors`): not-allowed/service-not-allowed→`denied`, audio-capture→`no-mic`,
+  `network` (transitorio); con error FATAL **NO se emite el final `''` engañoso**. `listenFor` 8→12s.
+- **UI en las 3 superficies** (`mic_messages.dart` compartido): mensaje con la **CAUSA real** — "Tu navegador no
+  soporta reconocimiento de voz. Prueba con Chrome o Edge." / "El permiso del micrófono está bloqueado. Actívalo
+  en el candado 🔒…" / "No se detectó ningún micrófono" / red→aviso y el mic queda para reintentar. Salidas que NO
+  bloquean: lección "Ya lo leí ✓", placement "Saltar los ejercicios de hablar" (exclude, sin puntuar en contra),
+  Conversar modo ESCRIBIR. i18n es/en/pt (4 claves). Reconocedor **inyectable** en lección/placement (tests).
+**Matriz de soporte** (documentada en FINDINGS): Chrome/Edge desktop+Android ✅ (Edge vía Azure); Safari macOS/iOS
+14.5+ ⚠️ parcial (webkit, vía Siri) — si falla degrada con mensaje; **Firefox ❌ sin API** → mensaje "usa Chrome" +
+saltar/escribir; Brave ❌ servicio deshabilitado → detectado como `denied` con mensaje. Verde: analyze 0 (CI-exact) ·
+test 137/137 (+6: mic_robustness — sin soporte/denegado en init/denegado al hablar/sin mic/red reintentable; placement
+excluye speaking con mic muerto) · build web OK. **Prueba manual de Gian:** ver pasos en FINDINGS §Micrófono.
+
 ## PLACEMENT de 4 HABILIDADES REALES ✅ LIVE (mig 135/136 · 2026-07-09)
 El test de ubicación ahora evalúa **reading + LISTENING + writing + SPEAKING** (antes solo R/W) y devuelve
 `skill_levels` **por habilidad REAL** (antes global ×4). Todo el v2 anti-azar (mig 131/134) intacto.

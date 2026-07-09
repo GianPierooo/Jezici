@@ -1,8 +1,9 @@
 {
   "@@locale": "es",
   "appTitle": "Jezici",
-  "@appTitle": { "description": "Nombre de la app (marca; normalmente no se traduce)" },
-
+  "@appTitle": {
+    "description": "Nombre de la app (marca; normalmente no se traduce)"
+  },
   "commonContinue": "CONTINUAR",
   "commonStart": "EMPEZAR",
   "commonCheck": "COMPROBAR",
@@ -14,16 +15,15 @@
   "commonRetry": "Reintentar",
   "commonNext": "Siguiente",
   "commonDone": "Listo",
-
   "splashLoadError": "No se pudo cargar tu sesión.",
-
   "settingsLanguageTitle": "Idioma de la app",
-  "@settingsLanguageTitle": { "description": "Selector del idioma de la interfaz (no del curso)" },
+  "@settingsLanguageTitle": {
+    "description": "Selector del idioma de la interfaz (no del curso)"
+  },
   "settingsLanguageSubtitle": "El idioma de los menús y las instrucciones. No cambia el idioma que estás aprendiendo.",
   "langEs": "Español",
   "langEn": "English",
   "langPt": "Português",
-
   "settingsTitle": "Ajustes",
   "settingsSecLanguage": "IDIOMA",
   "settingsSecNotifications": "NOTIFICACIONES",
@@ -33,7 +33,16 @@
   "settingsSecAdvanced": "AVANZADO",
   "settingsLearns": "Aprendes",
   "settingsLearnsSub": "{lang} · Objetivo {goal}",
-  "@settingsLearnsSub": { "placeholders": { "lang": {"type":"String"}, "goal": {"type":"String"} } },
+  "@settingsLearnsSub": {
+    "placeholders": {
+      "lang": {
+        "type": "String"
+      },
+      "goal": {
+        "type": "String"
+      }
+    }
+  },
   "settingsChange": "Cambiar",
   "settingsAppLanguageRow": "Idioma de la app",
   "settingsChooseCourse": "¿Qué idioma quieres aprender?",
@@ -51,9 +60,24 @@
   "settingsQuietTo": "Hasta",
   "settingsMeta": "Meta diaria",
   "settingsMetaSub": "{min} min · {xp} XP al día",
-  "@settingsMetaSub": { "placeholders": { "min": {"type":"int"}, "xp": {"type":"int"} } },
+  "@settingsMetaSub": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      },
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
   "settingsMetaXpDay": "≈ {xp} XP/día (más minutos = meta más alta)",
-  "@settingsMetaXpDay": { "placeholders": { "xp": {"type":"int"} } },
+  "@settingsMetaXpDay": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
   "settingsDailyReminder": "Recordatorio diario",
   "settingsDailyReminderSub": "Todos los días a las 20:00",
   "settingsStreakAlert": "Aviso de racha en peligro",
@@ -83,7 +107,6 @@
   "coachExPositivo": "«¡Vas genial, sigue así! 🎉»",
   "coachExRezago": "«Llevas 2 días sin practicar… 👀»",
   "coachExSuave": "«Sin prisa, ve a tu ritmo 🌱»",
-
   "courseSwitchFailed": "No se pudo cambiar el curso.",
   "convTitle": "Conversar",
   "convSubtitle": "Practica conversaciones reales. A tu ritmo, sin presión.",
@@ -127,24 +150,20 @@
   "convTopicInterviewScenario": "Te preguntan por qué quieres el trabajo. Responde con 2 razones.",
   "convTopicDirectionsTitle": "Pedir indicaciones",
   "convTopicDirectionsScenario": "Pregunta cómo llegar a la estación de tren y si está lejos.",
-
   "learnLangEn": "inglés",
   "learnLangPt": "portugués",
   "learnLangFr": "francés",
   "learnLangIt": "italiano",
   "learnLangDe": "alemán",
   "learnLangNl": "neerlandés",
-
   "skillReading": "Lectura",
   "skillWriting": "Escritura",
   "skillListening": "Comprensión auditiva",
   "skillSpeaking": "Expresión oral",
-
   "onbWelcomeTitle": "Construyamos tu plan",
   "onbWelcomeSubtitle": "Unas preguntas rápidas y un test de nivel para armar tu plan con fecha real. Cada respuesta personaliza tu camino.",
   "onbWelcomeNote": "Toma ~2 minutos.",
   "onbCoachBubble": "¡Hagamos un plan a tu medida! 🦜",
-
   "onbLanguageTitle": "¿En qué idioma prefieres la app?",
   "onbLanguageSubtitle": "Elige el idioma de los menús y mensajes. No es el idioma que vas a aprender.",
   "onbLanguageInfoEn": "Esto solo cambia el idioma de los menús y textos, no lo que vas a aprender.",
@@ -152,12 +171,16 @@
   "onbNameTitle": "¿Cómo te llamas?",
   "onbNameSubtitle": "Así te saludamos y aparecerá en tu perfil y certificados.",
   "onbNameHint": "Tu nombre",
-
   "onbTargetTitle": "¿Qué idioma quieres aprender?",
   "onbTargetSubtitle": "Tu curso. Esto define tu plan y el test de nivel. Podrás cambiarlo luego en Ajustes.",
-
   "onbMotiveTitle": "¿Por qué aprendes {course}?",
-  "@onbMotiveTitle": { "placeholders": { "course": {"type":"String"} } },
+  "@onbMotiveTitle": {
+    "placeholders": {
+      "course": {
+        "type": "String"
+      }
+    }
+  },
   "onbMotiveSubtitle": "Personaliza tu plan, los escenarios y los mensajes de tu coach.",
   "onbMotiveWork": "Trabajo",
   "onbMotiveTravel": "Viajes",
@@ -165,7 +188,6 @@
   "onbMotiveStudies": "Estudios",
   "onbMotiveRelocation": "Mudanza",
   "onbMotivePleasure": "Por placer",
-
   "onbGoalTitle": "¿A dónde quieres llegar?",
   "onbGoalSubtitle": "Tu meta. La cima del mapa.",
   "onbGoalA2": "A2 · Me defiendo",
@@ -174,8 +196,19 @@
   "onbGoalC1": "C1 · Avanzado",
   "onbDeadlineEmpty": "Fecha límite (opcional)",
   "onbDeadlineFilled": "Meta: {day}/{month}/{year}",
-  "@onbDeadlineFilled": { "placeholders": { "day": {"type":"int"}, "month": {"type":"int"}, "year": {"type":"int"} } },
-
+  "@onbDeadlineFilled": {
+    "placeholders": {
+      "day": {
+        "type": "int"
+      },
+      "month": {
+        "type": "int"
+      },
+      "year": {
+        "type": "int"
+      }
+    }
+  },
   "onbCommitmentTitle": "¿Cuánto puedes dedicar?",
   "onbCommitmentSubtitle": "Esto fija tu meta diaria y la fecha de llegada.",
   "onbCommitmentMinutesLabel": "Minutos al día",
@@ -183,32 +216,72 @@
   "onbFrequencyRelaxed": "Relajado",
   "onbFrequencyConstant": "Constante",
   "onbFrequencyIntense": "Intenso",
-
   "onbStartLevelTitle": "¿Cuánto {course} sabes ya?",
-  "@onbStartLevelTitle": { "placeholders": { "course": {"type":"String"} } },
+  "@onbStartLevelTitle": {
+    "placeholders": {
+      "course": {
+        "type": "String"
+      }
+    }
+  },
   "onbStartLevelSubtitle": "Para empezar el test de nivel en el punto justo.",
   "onbStartLevelZero": "Desde cero",
   "onbStartLevelBasic": "Sé lo básico",
   "onbStartLevelGood": "Tengo buen nivel",
-
   "onbMinutesShort": "{m} min",
-  "@onbMinutesShort": { "placeholders": { "m": {"type":"int"} } },
+  "@onbMinutesShort": {
+    "placeholders": {
+      "m": {
+        "type": "int"
+      }
+    }
+  },
   "onbDaysShort": "{days, plural, =1{{days} día} other{{days} días}}",
-  "@onbDaysShort": { "placeholders": { "days": {"type":"int"} } },
-
+  "@onbDaysShort": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
   "planDurationLessThanWeek": "menos de 1 semana",
   "planDurationWeeks": "{count, plural, =1{≈ 1 semana} other{≈ {count} semanas}}",
-  "@planDurationWeeks": { "placeholders": { "count": {"type":"int"} } },
+  "@planDurationWeeks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "planDurationMonths": "{count, plural, other{≈ {count} meses}}",
-  "@planDurationMonths": { "placeholders": { "count": {"type":"int"} } },
+  "@planDurationMonths": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "planDurationYears": "≈ {years} años",
-  "@planDurationYears": { "placeholders": { "years": {"type":"String"} } },
-
+  "@planDurationYears": {
+    "placeholders": {
+      "years": {
+        "type": "String"
+      }
+    }
+  },
   "onbSaveError": "No se pudo guardar tu plan. Reinténtalo.",
-
   "onbPersonalityTitle": "Tu coach ideal",
   "onbPersonalityStep": "Pregunta {q} de {total}",
-  "@onbPersonalityStep": { "placeholders": { "q": {"type":"int"}, "total": {"type":"int"} } },
+  "@onbPersonalityStep": {
+    "placeholders": {
+      "q": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "onbPersonalityQ1": "Si fallas tu meta del día, ¿qué prefieres oír?",
   "onbPersonalityQ1Opt1": "\"Sin excusas. Retómalo ya.\"",
   "onbPersonalityQ1Opt2": "\"¡Mañana lo das todo, tú puedes! 💪\"",
@@ -233,38 +306,104 @@
   "onbIntensityOpt1": "Mucho, no me dejes aflojar",
   "onbIntensityOpt2": "Lo justo",
   "onbIntensityOpt3": "Poco",
-
   "placementTitle": "Test de ubicación",
   "placementSpeak": "Hablar",
   "placementListening": "Escuchando…",
   "placementSendAnswer": "Enviar mi respuesta",
   "placementSkipSpeaking": "Saltar los ejercicios de hablar",
   "placementSubtitle": "Sin pistas · pregunta {asked} de {max}",
-  "@placementSubtitle": { "placeholders": { "asked": {"type":"int"}, "max": {"type":"int"} } },
+  "@placementSubtitle": {
+    "placeholders": {
+      "asked": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
   "placementResultTitle": "Tu nivel: {level}",
-  "@placementResultTitle": { "placeholders": { "level": {"type":"String"} } },
+  "@placementResultTitle": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "placementResultSubtitle": "Esto no es un examen que se aprueba o se reprueba: es tu punto de partida.",
   "placementResultViewPlan": "VER MI PLAN",
   "placementResultStartFromZero": "Prefiero empezar desde el inicio",
   "placementResultStartFromZeroConfirm": "Empezarás desde A1 (Unidad 1), no desde {level}. Tú decides: avanzarás a tu ritmo. ¿Continuar?",
-  "@placementResultStartFromZeroConfirm": { "placeholders": { "level": {"type":"String"} } },
+  "@placementResultStartFromZeroConfirm": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "placementResultHero": "TE UBICAMOS EN",
   "placementResultSkillsTitle": "Por habilidad",
   "placementResultEntryUnit": "Empezarás en la Unidad {unitNum} — {unitName} ({level}). Lo anterior queda accesible para repasar.",
-  "@placementResultEntryUnit": { "placeholders": { "unitNum": {"type":"int"}, "unitName": {"type":"String"}, "level": {"type":"String"} } },
+  "@placementResultEntryUnit": {
+    "placeholders": {
+      "unitNum": {
+        "type": "int"
+      },
+      "unitName": {
+        "type": "String"
+      },
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "placementResultEstimateReached": "Ya alcanzas tu meta. Si sigues hasta {goalLevel}: {humanDuration} (aprox. {formattedDate}).",
-  "@placementResultEstimateReached": { "placeholders": { "goalLevel": {"type":"String"}, "humanDuration": {"type":"String"}, "formattedDate": {"type":"String"} } },
+  "@placementResultEstimateReached": {
+    "placeholders": {
+      "goalLevel": {
+        "type": "String"
+      },
+      "humanDuration": {
+        "type": "String"
+      },
+      "formattedDate": {
+        "type": "String"
+      }
+    }
+  },
   "placementResultEstimateGoal": "Si cumples tu plan, llegas a {goalLevel} en {humanDuration} (aprox. {formattedDate}).",
-  "@placementResultEstimateGoal": { "placeholders": { "goalLevel": {"type":"String"}, "humanDuration": {"type":"String"}, "formattedDate": {"type":"String"} } },
-
+  "@placementResultEstimateGoal": {
+    "placeholders": {
+      "goalLevel": {
+        "type": "String"
+      },
+      "humanDuration": {
+        "type": "String"
+      },
+      "formattedDate": {
+        "type": "String"
+      }
+    }
+  },
   "coursePlacementOfferTitle": "¿Hacer el test de ubicación?",
   "coursePlacementOfferBody": "Haz una prueba corta y empieza en tu nivel real de {course}, en lugar de desde el principio.",
-  "@coursePlacementOfferBody": { "placeholders": { "course": {"type":"String"} } },
+  "@coursePlacementOfferBody": {
+    "placeholders": {
+      "course": {
+        "type": "String"
+      }
+    }
+  },
   "coursePlacementDoTest": "Hacer el test",
   "coursePlacementFromScratch": "Empezar desde el principio",
   "coursePlacementDone": "¡Listo! Te ubicamos en {level}.",
-  "@coursePlacementDone": { "placeholders": { "level": {"type":"String"} } },
-
+  "@coursePlacementDone": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "planFocusWork": "Enfoque laboral: reuniones, correos y entrevistas.",
   "planFocusTravel": "Enfoque viajes: aeropuerto, hotel, direcciones y restaurantes.",
   "planFocusExam": "Enfoque examen: simulacros IELTS/Cambridge y las 4 habilidades.",
@@ -277,15 +416,45 @@
   "planStartMyPlan": "EMPEZAR MI PLAN",
   "planCompletionLabel": "LLEGARÁS APROX. EL",
   "planStatsHours": "{hours} h",
-  "@planStatsHours": { "placeholders": { "hours": {"type":"int"} } },
+  "@planStatsHours": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
   "planStatsTotalLabel": "totales",
   "planStatsFrequency": "× {days} días/sem",
-  "@planStatsFrequency": { "placeholders": { "days": {"type":"int"} } },
+  "@planStatsFrequency": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
   "planMaxPace": "¡Vas al máximo ritmo! 🔥",
   "planFasterCta": "Quiero llegar más rápido (sube a {minutes} min/día)",
-  "@planFasterCta": { "placeholders": { "minutes": {"type":"int"} } },
+  "@planFasterCta": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
   "planStartUnit": "Empiezas en la Unidad {unitNum} — {unitName} ({level}).",
-  "@planStartUnit": { "placeholders": { "unitNum": {"type":"int"}, "unitName": {"type":"String"}, "level": {"type":"String"} } },
+  "@planStartUnit": {
+    "placeholders": {
+      "unitNum": {
+        "type": "int"
+      },
+      "unitName": {
+        "type": "String"
+      },
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "planBadgeNow": "AHORA",
   "planBadgeGoal": "META",
   "planReadyKicker": "PERSONALIZADO PARA TI",
@@ -294,14 +463,34 @@
   "planJourneyGoal": "TU META",
   "planHalfTime": "⚡ ¡La mitad de tiempo!",
   "planPaceLine": "Con {minutes} min/día llegas a {level} el",
-  "@planPaceLine": { "placeholders": { "minutes": {"type":"int"}, "level": {"type":"String"} } },
+  "@planPaceLine": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      },
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "planLeverTitleOff": "¿Quieres llegar más rápido?",
   "planLeverTitleOn": "🚀 ¡Vas a toda máquina!",
   "planLeverTextOff": "Sube a {minutes} min/día y llegas en la mitad del tiempo 💪",
-  "@planLeverTextOff": { "placeholders": { "minutes": {"type":"int"} } },
+  "@planLeverTextOff": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
   "planLeverTextOn": "Plan de {minutes} min/día activado: llegas en la mitad del tiempo.",
-  "@planLeverTextOn": { "placeholders": { "minutes": {"type":"int"} } },
-
+  "@planLeverTextOn": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
   "authTitleSignUp": "Crea tu cuenta",
   "authTitleSignIn": "Bienvenido de vuelta",
   "authSubtitleSignUp": "Un plan con fecha real, examen de las 4 habilidades y un coach que te trae de vuelta.",
@@ -332,7 +521,6 @@
   "authOr": "o",
   "authGoogleError": "No se pudo continuar con Google. Intenta con tu email.",
   "authCheckEmail": "Te enviamos un correo para confirmar tu cuenta. Ábrelo y vuelve para continuar.",
-
   "lessonSaveErrorTitle": "No se pudo guardar tu progreso",
   "lessonSaveErrorMsg": "Revisa tu conexión e inténtalo de nuevo.",
   "lessonNoExercises": "Esta lección aún no tiene ejercicios.",
@@ -340,13 +528,24 @@
   "lessonFeedbackCorrect": "¡Correcto! 🦜",
   "lessonFeedbackWrong": "No del todo 🦜",
   "lessonFeedbackCorrectForm": "La forma correcta es: {form}",
-  "@lessonFeedbackCorrectForm": { "placeholders": { "form": {"type":"String"} } },
+  "@lessonFeedbackCorrectForm": {
+    "placeholders": {
+      "form": {
+        "type": "String"
+      }
+    }
+  },
   "lessonFeedbackWellDone": "¡Bien hecho, sigue así!",
   "lessonFeedbackRightAnswer": "Respuesta correcta: {answer}",
-  "@lessonFeedbackRightAnswer": { "placeholders": { "answer": {"type":"String"} } },
+  "@lessonFeedbackRightAnswer": {
+    "placeholders": {
+      "answer": {
+        "type": "String"
+      }
+    }
+  },
   "lessonAudioUnavailableTitle": "Audio no disponible",
   "lessonAudioUnavailableMsg": "Este ejercicio aún no tiene su audio. Lo saltamos: no afecta tus vidas ni tu puntaje.",
-
   "lessonCompletePerfectTitle": "LECCIÓN PERFECTA",
   "lessonCompleteTitle": "LECCIÓN COMPLETADA",
   "lessonCompletePerfectMsg": "¡Impecable! 🌟",
@@ -356,11 +555,32 @@
   "lessonCompleteGoldLabel": "ORO",
   "lessonCompleteComboBonusLabel": "Bonus de combo",
   "lessonCompleteComboDetail": "+{bonus} XP · x{combo} seguidas",
-  "@lessonCompleteComboDetail": { "placeholders": { "bonus": {"type":"int"}, "combo": {"type":"int"} } },
+  "@lessonCompleteComboDetail": {
+    "placeholders": {
+      "bonus": {
+        "type": "int"
+      },
+      "combo": {
+        "type": "int"
+      }
+    }
+  },
   "lessonCompleteMilestone": "¡Hito de {days} días! Recompensa de oro desbloqueada",
-  "@lessonCompleteMilestone": { "placeholders": { "days": {"type":"int"} } },
+  "@lessonCompleteMilestone": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
   "lessonCompleteStreakDays": "{streak, plural, =1{🔥 {streak} día de racha} other{🔥 {streak} días de racha}}",
-  "@lessonCompleteStreakDays": { "placeholders": { "streak": {"type":"int"} } },
+  "@lessonCompleteStreakDays": {
+    "placeholders": {
+      "streak": {
+        "type": "int"
+      }
+    }
+  },
   "lessonCompleteStreakAdvanced": "¡+1 hoy! Cumpliste tu meta diaria",
   "lessonCompleteGoalMet": "Meta diaria cumplida",
   "lessonCompleteGoalPending": "Sigue para cumplir tu meta de hoy",
@@ -368,13 +588,30 @@
   "lessonCompleteFreezeMulti": "Tus congeladores salvaron tu racha",
   "lessonCompleteSkillsUp": "Habilidades que subieron",
   "lessonCompleteSkillNext": "Sigue así para alcanzar {level} y acercarte al certificado",
-  "@lessonCompleteSkillNext": { "placeholders": { "level": {"type":"String"} } },
+  "@lessonCompleteSkillNext": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "lessonCompleteSkillAdvanced": "▲ subió",
   "tipCardHeader": "Matix te enseña · {type}",
-  "@tipCardHeader": { "placeholders": { "type": {"type":"String"} } },
+  "@tipCardHeader": {
+    "placeholders": {
+      "type": {
+        "type": "String"
+      }
+    }
+  },
   "tipCardPersonalized": "Te lo doy porque tu {skill} necesita un empujón. 🦜",
-  "@tipCardPersonalized": { "placeholders": { "skill": {"type":"String"} } },
-
+  "@tipCardPersonalized": {
+    "placeholders": {
+      "skill": {
+        "type": "String"
+      }
+    }
+  },
   "errorReviewWhyTranslation": "Fíjate en la forma exacta en inglés — el sentido completo importa.",
   "errorReviewWhyCloze": "Repasa la palabra que faltaba en la frase.",
   "errorReviewWhyWordOrder": "Cuida el ORDEN de las palabras: el inglés es más fijo que el español.",
@@ -383,9 +620,14 @@
   "errorReviewWhyDefault": "Repásalo: lo verás de nuevo pronto en tu repaso.",
   "errorReviewTitle": "Repasa lo que fallaste",
   "errorReviewSubtitle": "{count, plural, =1{1 ejercicio para reforzar. ¡Ya casi lo tienes!} other{{count} ejercicios para reforzar. ¡Ya casi los tienes!}}",
-  "@errorReviewSubtitle": { "placeholders": { "count": {"type":"int"} } },
+  "@errorReviewSubtitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "errorReviewPracticeCta": "Practicar los fallados",
-
   "tileArrangePlaceholder": "Toca las palabras para formar la frase…",
   "tileArrangeAllPlaced": "Todas colocadas — pulsa COMPROBAR",
   "translationHint": "Escribe la traducción…",
@@ -401,13 +643,24 @@
   "speakingNoSound": "No te escuché — acércate e inténtalo",
   "speakingOk": "Vas bien. Léelo otra vez si quieres",
   "speakingHeard": "Escuché: \"{heard}\"",
-  "@speakingHeard": { "placeholders": { "heard": {"type":"String"} } },
+  "@speakingHeard": {
+    "placeholders": {
+      "heard": {
+        "type": "String"
+      }
+    }
+  },
   "speakingVolumeHint": "Sube el volumen del micro, o toca \"Ya lo leí ✓\" para continuar.",
   "speakingRetryHint": "Escuché: \"{heard}\". Puedes reintentar o tocar \"Ya lo leí ✓\".",
-  "@speakingRetryHint": { "placeholders": { "heard": {"type":"String"} } },
+  "@speakingRetryHint": {
+    "placeholders": {
+      "heard": {
+        "type": "String"
+      }
+    }
+  },
   "speakingHearModel": "Oír el modelo",
   "audioPlayDefault": "Escuchar",
-
   "stubTagPronunciation": "PRONUNCIACIÓN",
   "stubNotePronunciation": "El reconocimiento de voz llega pronto. Por ahora, practícalo en voz alta y continúa.",
   "stubTagListening": "COMPRENSIÓN AUDITIVA",
@@ -418,12 +671,17 @@
   "stubNoteGuidedWriting": "La escritura guiada con corrección llega pronto. Por ahora, continúa.",
   "stubTagComingSoon": "PRÓXIMAMENTE",
   "stubNoteComingSoon": "Este tipo de ejercicio llega pronto. Por ahora, continúa.",
-
   "noHeartsTitle": "Te quedaste sin vidas ❤️",
   "noHeartsMsg": "¡Tranqui, le pasa a todos! Vuelven gratis en tu próxima lección, o sigue ahora 💪",
   "noHeartsRefill": "Recargar vidas y seguir",
   "noHeartsRefillPriced": "Recargar vidas · 🪙{gold}",
-  "@noHeartsRefillPriced": { "placeholders": { "gold": {"type":"int"} } },
+  "@noHeartsRefillPriced": {
+    "placeholders": {
+      "gold": {
+        "type": "int"
+      }
+    }
+  },
   "noHeartsInsufficientGold": "No tienes oro suficiente para recargar.",
   "noHeartsRefilled": "¡Vidas recargadas! ❤️",
   "noHeartsQuit": "Salir de la lección",
@@ -447,7 +705,6 @@
   "dailyPanelWhat": "Cuenta el XP que ganas en lecciones y práctica. Cúmplela cada día para mantener tu racha.",
   "dailyPanelDone": "¡Meta de hoy cumplida! 🎉 Sigue así para tu racha.",
   "dailyPanelClose": "Seguir aprendiendo",
-
   "checkpointStartError": "No se pudo iniciar el examen. Intenta de nuevo.",
   "checkpointPortalTitle": "El portal de la unidad",
   "checkpointCoachMsg": "🦜  ¡Demuestra lo que sabes!",
@@ -463,24 +720,56 @@
   "checkpointPassedMsg": "¡Unidad superada!",
   "checkpointFailedMsg": "Aún no superas el portal",
   "checkpointPassedScore": "{pct}% de aciertos",
-  "@checkpointPassedScore": { "placeholders": { "pct": {"type":"int"} } },
+  "@checkpointPassedScore": {
+    "placeholders": {
+      "pct": {
+        "type": "int"
+      }
+    }
+  },
   "checkpointFailedScore": "{pct}% · necesitas 80%",
-  "@checkpointFailedScore": { "placeholders": { "pct": {"type":"int"} } },
+  "@checkpointFailedScore": {
+    "placeholders": {
+      "pct": {
+        "type": "int"
+      }
+    }
+  },
   "checkpointSkillSoon": "pronto",
   "checkpointRegionUnlockedLabel": "✦ NUEVA REGIÓN DESBLOQUEADA",
   "checkpointCompleteLabel": "✓ UNIDAD COMPLETA",
   "checkpointRegionUnlockedMsg": "¡{unit} completa! Se desbloqueó la siguiente región.",
-  "@checkpointRegionUnlockedMsg": { "placeholders": { "unit": {"type":"String"} } },
+  "@checkpointRegionUnlockedMsg": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
   "checkpointCompleteSoonMsg": "¡{unit} completa! La siguiente región llega pronto.",
-  "@checkpointCompleteSoonMsg": { "placeholders": { "unit": {"type":"String"} } },
+  "@checkpointCompleteSoonMsg": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
   "checkpointContinueJourney": "CONTINUAR EL VIAJE",
   "checkpointRetry": "REINTENTAR",
   "checkpointBackToMap": "Volver al mapa",
   "checkpointMissingPoints": "Te faltaron {missing} puntos para el {pct}%. ¡Casi!",
-  "@checkpointMissingPoints": { "placeholders": { "missing": {"type":"int"}, "pct": {"type":"int"} } },
+  "@checkpointMissingPoints": {
+    "placeholders": {
+      "missing": {
+        "type": "int"
+      },
+      "pct": {
+        "type": "int"
+      }
+    }
+  },
   "checkpointReinforceTitle": "REFUERZA ESTAS HABILIDADES",
   "checkpointReinforceEmpty": "Repasa la unidad y reintenta.",
-
   "checkpointSubmitError": "No se pudo enviar el examen. Intenta de nuevo.",
   "checkpointExitTitle": "¿Salir del examen?",
   "checkpointExitMsg": "Perderás el progreso de este intento.",
@@ -490,45 +779,122 @@
   "checkpointBackToMapCta": "VOLVER AL MAPA",
   "checkpointFinish": "TERMINAR",
   "checkpointNext": "SIGUIENTE",
-
   "lessonPreviewLoadError": "No se pudo cargar la lección.\n{error}",
-  "@lessonPreviewLoadError": { "placeholders": { "error": {"type":"String"} } },
+  "@lessonPreviewLoadError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "lessonPreviewExerciseCount": "{count, plural, =1{1 ejercicio} other{{count} ejercicios}}",
-  "@lessonPreviewExerciseCount": { "placeholders": { "count": {"type":"int"} } },
-
+  "@lessonPreviewExerciseCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "dailyGoalTitle": "Meta de hoy",
   "dailyGoalXpOf": "{earned}/{goal} XP",
-  "@dailyGoalXpOf": { "placeholders": { "earned": {"type":"int"}, "goal": {"type":"int"} } },
+  "@dailyGoalXpOf": {
+    "placeholders": {
+      "earned": {
+        "type": "int"
+      },
+      "goal": {
+        "type": "int"
+      }
+    }
+  },
   "dailyGoalMet": "¡Meta cumplida! Tu racha avanza hoy 🔥",
   "dailyGoalRemaining": "Te faltan {n} XP para cumplir hoy",
-  "@dailyGoalRemaining": { "placeholders": { "n": {"type":"int"} } },
+  "@dailyGoalRemaining": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "dailyGoalSemantics": "Meta diaria: {earned} de {goal} XP",
-  "@dailyGoalSemantics": { "placeholders": { "earned": {"type":"int"}, "goal": {"type":"int"} } },
-
+  "@dailyGoalSemantics": {
+    "placeholders": {
+      "earned": {
+        "type": "int"
+      },
+      "goal": {
+        "type": "int"
+      }
+    }
+  },
   "missionWelcomeTitle": "¡Tu viaje ha comenzado!",
   "missionWelcomeBody": "Colecciona las 100 palabras esenciales al avanzar. ¡Vamos!",
   "missionRewardBanner": "+{xp} XP · +{gold} oro de bienvenida",
-  "@missionRewardBanner": { "placeholders": { "xp": {"type":"int"}, "gold": {"type":"int"} } },
+  "@missionRewardBanner": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      },
+      "gold": {
+        "type": "int"
+      }
+    }
+  },
   "missionStartError": "No se pudo empezar. Inténtalo de nuevo.",
-
   "comboLabel": "x{combo}",
-  "@comboLabel": { "placeholders": { "combo": {"type":"int"} } },
-
+  "@comboLabel": {
+    "placeholders": {
+      "combo": {
+        "type": "int"
+      }
+    }
+  },
   "shopChestWon": "🎁 ¡Ganaste {reward} de oro! Ahora tienes {total}.",
-  "@shopChestWon": { "placeholders": { "reward": {"type":"int"}, "total": {"type":"int"} } },
+  "@shopChestWon": {
+    "placeholders": {
+      "reward": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "shopChestAlready": "Ya abriste el cofre hoy. Vuelve mañana 🙂",
   "shopHeartsRefilled": "❤️ Vidas recargadas. Gastaste 50 oro, te quedan {gold}.",
-  "@shopHeartsRefilled": { "placeholders": { "gold": {"type":"int"} } },
+  "@shopHeartsRefilled": {
+    "placeholders": {
+      "gold": {
+        "type": "int"
+      }
+    }
+  },
   "shopFreezeBought": "🧊 Congelador comprado. Gastaste 50 oro, te quedan {gold}.",
-  "@shopFreezeBought": { "placeholders": { "gold": {"type":"int"} } },
+  "@shopFreezeBought": {
+    "placeholders": {
+      "gold": {
+        "type": "int"
+      }
+    }
+  },
   "shopNotEnoughGold": "No tienes suficiente oro (cuesta {cost}).",
-  "@shopNotEnoughGold": { "placeholders": { "cost": {"type":"int"} } },
-
+  "@shopNotEnoughGold": {
+    "placeholders": {
+      "cost": {
+        "type": "int"
+      }
+    }
+  },
   "leagueNoMovementNote": "En beta aún no hay ascensos ni descensos: juega para ganar XP y subir en la tabla.",
-
   "mapLoading": "Cargando tu mapa…",
   "mapLoadError": "No se pudo cargar el mapa.\n{error}",
-  "@mapLoadError": { "placeholders": { "error": {"type":"String"} } },
+  "@mapLoadError": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
   "mapEmptyState": "Aún no hay contenido sembrado.",
   "mapNodeLockedNextUnit": "Bloqueada · aprueba el checkpoint de la unidad anterior",
   "mapNodeLockedNextLesson": "Bloqueada · completa la lección anterior",
@@ -537,11 +903,35 @@
   "mapSummitCertLabel": "TU META · CERTIFICADO",
   "mapSummitPeak": "⛰ LA CIMA",
   "mapUnitBanner": "UNIDAD {num} · {level}",
-  "@mapUnitBanner": { "placeholders": { "num": {"type":"int"}, "level": {"type":"String"} } },
+  "@mapUnitBanner": {
+    "placeholders": {
+      "num": {
+        "type": "int"
+      },
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "mapUnitBannerLocked": "UNIDAD {num} · {level} · 🔒 BLOQUEADA",
-  "@mapUnitBannerLocked": { "placeholders": { "num": {"type":"int"}, "level": {"type":"String"} } },
+  "@mapUnitBannerLocked": {
+    "placeholders": {
+      "num": {
+        "type": "int"
+      },
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "mapExamUnit": "EXAMEN · UNIDAD {num}",
-  "@mapExamUnit": { "placeholders": { "num": {"type":"int"} } },
+  "@mapExamUnit": {
+    "placeholders": {
+      "num": {
+        "type": "int"
+      }
+    }
+  },
   "topBarMusicOff": "Apagar música del mapa",
   "topBarMusicOn": "Encender música del mapa",
   "topBarNotifications": "Notificaciones",
@@ -575,40 +965,127 @@
   "practiceStartError": "No se pudo iniciar la práctica.",
   "profileHeaderKicker": "MI PERFIL",
   "profileTravelerChip": "Nivel de viajero {level}",
-  "@profileTravelerChip": { "placeholders": { "level": {"type":"int"} } },
+  "@profileTravelerChip": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
   "profileTravelerNext": "Nivel {level} · {xp} XP",
-  "@profileTravelerNext": { "placeholders": { "level": {"type":"int"}, "xp": {"type":"int"} } },
+  "@profileTravelerNext": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      },
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
   "profileActiveLangLabel": "IDIOMA ACTIVO",
   "profileActiveLangValue": "{language} · Objetivo {goal}",
-  "@profileActiveLangValue": { "placeholders": { "language": {"type":"String"}, "goal": {"type":"String"} } },
+  "@profileActiveLangValue": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      },
+      "goal": {
+        "type": "String"
+      }
+    }
+  },
   "profileActiveLangChange": "Cambiar",
   "profileRadarGoalTag": "META {level}",
-  "@profileRadarGoalTag": { "placeholders": { "level": {"type":"String"} } },
+  "@profileRadarGoalTag": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "profileSkillsReadyChip": "{ready} / 4 en {level}",
-  "@profileSkillsReadyChip": { "placeholders": { "ready": {"type":"int"}, "level": {"type":"String"} } },
+  "@profileSkillsReadyChip": {
+    "placeholders": {
+      "ready": {
+        "type": "int"
+      },
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "profileWeakAlertTitle": "Tu punto débil es",
   "profileWeakAlertBody": "Súbelo a {level} y certificarás tu nivel completo.",
-  "@profileWeakAlertBody": { "placeholders": { "level": {"type":"String"} } },
+  "@profileWeakAlertBody": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "profileCertLockedNeed": "Necesitas {level} en las 4 habilidades",
-  "@profileCertLockedNeed": { "placeholders": { "level": {"type":"String"} } },
+  "@profileCertLockedNeed": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "profileCertReadyCount": "{n} de 4 habilidades listas",
-  "@profileCertReadyCount": { "placeholders": { "n": {"type":"int"} } },
+  "@profileCertReadyCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "profileCertVerifiedLine": "Verificado · examen Jezici",
   "profileStatsTitle": "Estadísticas",
   "profileStreakLine": "{n} días de racha",
-  "@profileStreakLine": { "placeholders": { "n": {"type":"int"} } },
+  "@profileStreakLine": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "profileStreakBest": "Mejor: {n}",
-  "@profileStreakBest": { "placeholders": { "n": {"type":"int"} } },
+  "@profileStreakBest": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "profileStreakToday": "HOY",
   "profileLeagueRank": "Puesto {n}",
-  "@profileLeagueRank": { "placeholders": { "n": {"type":"int"} } },
+  "@profileLeagueRank": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "leagueCurrentDivision": "DIVISIÓN ACTUAL",
   "leagueEndsIn": "Termina en",
   "leagueXpThisWeek": "XP esta semana",
   "leaguePromoteTo": "SUBEN A {division}",
-  "@leaguePromoteTo": { "placeholders": { "division": {"type":"String"} } },
+  "@leaguePromoteTo": {
+    "placeholders": {
+      "division": {
+        "type": "String"
+      }
+    }
+  },
   "leagueDemoteTo": "BAJAN A {division}",
-  "@leagueDemoteTo": { "placeholders": { "division": {"type":"String"} } },
+  "@leagueDemoteTo": {
+    "placeholders": {
+      "division": {
+        "type": "String"
+      }
+    }
+  },
   "leagueTagUp": "Sube",
   "leagueTagRisk": "En riesgo",
   "leagueTagYou": "¡Mantente arriba!",
@@ -616,40 +1093,103 @@
   "checkpointMapDone": "UNIDAD ✓",
   "checkpointMapNext": "SIGUIENTE REGIÓN",
   "checkpointFailCount": "{n} fallos",
-  "@checkpointFailCount": { "placeholders": { "n": {"type":"int"} } },
+  "@checkpointFailCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "examPassedBadge": "EXAMEN SUPERADO",
   "examFailedBadge": "AÚN NO · ¡CASI!",
   "examPassedVerdict": "¡Felicidades! Alcanzaste el",
   "examFailedVerdict": "Aún no alcanzas el",
   "examLevelWord": "nivel {level}",
-  "@examLevelWord": { "placeholders": { "level": {"type":"String"} } },
+  "@examLevelWord": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "examVerifiedBy": "Verificado por el examen Jezici",
   "examSkillsAtLevel": "Las 4 habilidades en {level}",
-  "@examSkillsAtLevel": { "placeholders": { "level": {"type":"String"} } },
+  "@examSkillsAtLevel": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "examSkillsWhyCertified": "Todas alcanzan la meta — por eso se certifica",
   "examSkillsGoalHint": "Meta: {pct}% por habilidad",
-  "@examSkillsGoalHint": { "placeholders": { "pct": {"type":"int"} } },
+  "@examSkillsGoalHint": {
+    "placeholders": {
+      "pct": {
+        "type": "int"
+      }
+    }
+  },
   "examGoalTag": "META {level}",
-  "@examGoalTag": { "placeholders": { "level": {"type":"String"} } },
+  "@examGoalTag": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "examGlobalScore": "Puntaje global",
   "examStrength": "Fortaleza",
   "examPolish": "Pulir",
   "examSeeCertificate": "Ver certificado",
   "examShareCopied": "Resultado copiado para compartir ✓",
   "examRewards": "+{xp} XP · +{gold} oro por certificar",
-  "@examRewards": { "placeholders": { "xp": {"type":"int"}, "gold": {"type":"int"} } },
+  "@examRewards": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      },
+      "gold": {
+        "type": "int"
+      }
+    }
+  },
   "examNotYetCertified": "Aún no certificas {level}",
-  "@examNotYetCertified": { "placeholders": { "level": {"type":"String"} } },
+  "@examNotYetCertified": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "examRaiseSkill": "sube tu {skill}",
-  "@examRaiseSkill": { "placeholders": { "skill": {"type":"String"} } },
+  "@examRaiseSkill": {
+    "placeholders": {
+      "skill": {
+        "type": "String"
+      }
+    }
+  },
   "examReinforceSkill": "Reforzar {skill}",
-  "@examReinforceSkill": { "placeholders": { "skill": {"type":"String"} } },
+  "@examReinforceSkill": {
+    "placeholders": {
+      "skill": {
+        "type": "String"
+      }
+    }
+  },
   "examRetry": "REINTENTAR EXAMEN",
   "chestTitleClosed": "¡Un cofre te espera!",
   "chestSubClosed": "Tócalo para descubrir tu premio",
   "chestOpenCta": "Abrir cofre",
   "chestTitleOpened": "¡+{reward} de oro!",
-  "@chestTitleOpened": { "placeholders": { "reward": {"type":"int"} } },
+  "@chestTitleOpened": {
+    "placeholders": {
+      "reward": {
+        "type": "int"
+      }
+    }
+  },
   "chestSubOpened": "Tu recompensa del día",
   "chestGoldLabel": "ORO",
   "chestClaimCta": "¡Reclamar!",
@@ -657,12 +1197,17 @@
   "chestTitleTomorrow": "Ya abriste tu cofre",
   "chestSubTomorrow": "Vuelve mañana por otro 🎁",
   "chestCloseCta": "Entendido",
-
   "missionAppBarTitle": "Misión",
   "missionMainTitle": "Las 100 palabras esenciales",
   "missionMainDescription": "Tu primer gran objetivo: dominar las 100 palabras y frases de más alta frecuencia del inglés. Las irás coleccionando al completar tus lecciones. Al juntarlas, ganas el badge \"100 esenciales\".",
   "missionWordsCount": "{n} palabras",
-  "@missionWordsCount": { "placeholders": { "n": {"type":"int"} } },
+  "@missionWordsCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "missionStartLoading": "PREPARANDO…",
   "missionStartCta": "¡EMPEZAR MI VIAJE! 🚀",
   "missionCatGreetings": "Saludos y cortesía",
@@ -672,7 +1217,6 @@
   "missionCatFamily": "Personas y familia",
   "missionCatDaily": "Cotidiano",
   "missionCatQuestions": "Preguntas y útiles",
-
   "shopTitle": "Tienda",
   "shopChestCardTitle": "Cofre diario",
   "shopChestCardSubtitleAvailable": "Ábrelo para una recompensa sorpresa",
@@ -681,42 +1225,118 @@
   "shopChestCardActionTomorrow": "MAÑANA",
   "shopHeartsCardTitle": "Recargar vidas",
   "shopHeartsCardSubtitle": "Vuelve a 5 corazones · tienes {hearts}",
-  "@shopHeartsCardSubtitle": { "placeholders": { "hearts": {"type":"int"} } },
+  "@shopHeartsCardSubtitle": {
+    "placeholders": {
+      "hearts": {
+        "type": "int"
+      }
+    }
+  },
   "shopFreezeCardTitle": "Congelador de racha",
   "shopFreezeCardSubtitle": "Protege tu racha un día · tienes {freezes}",
-  "@shopFreezeCardSubtitle": { "placeholders": { "freezes": {"type":"int"} } },
-
+  "@shopFreezeCardSubtitle": {
+    "placeholders": {
+      "freezes": {
+        "type": "int"
+      }
+    }
+  },
   "streakTitle": "Tu racha",
   "streakDaysCount": "{count, plural, =1{{count} día de racha} other{{count} días de racha}}",
-  "@streakDaysCount": { "placeholders": { "count": {"type":"int"} } },
+  "@streakDaysCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "streakRecord": "Récord: {longest} · Cumple tu meta diaria para sumar",
-  "@streakRecord": { "placeholders": { "longest": {"type":"int"} } },
+  "@streakRecord": {
+    "placeholders": {
+      "longest": {
+        "type": "int"
+      }
+    }
+  },
   "streakMilestonesTitle": "Hitos",
   "streakMilestonesSubtitle": "Cada hito desbloquea oro de recompensa.",
   "streakMilestoneReached": "¡Conseguido!",
   "streakMilestoneNext": "Próximo · vas {current}/{days}",
-  "@streakMilestoneNext": { "placeholders": { "current": {"type":"int"}, "days": {"type":"int"} } },
+  "@streakMilestoneNext": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "days": {
+        "type": "int"
+      }
+    }
+  },
   "streakMilestoneLocked": "Bloqueado",
   "streakFreezeSubtitle": "Protege tu racha un día que no puedas practicar.",
   "streakFreezeCount": "Tienes {freezes}",
-  "@streakFreezeCount": { "placeholders": { "freezes": {"type":"int"} } },
+  "@streakFreezeCount": {
+    "placeholders": {
+      "freezes": {
+        "type": "int"
+      }
+    }
+  },
   "streakFreezePrice": "Cuesta {cost} oro",
-  "@streakFreezePrice": { "placeholders": { "cost": {"type":"int"} } },
+  "@streakFreezePrice": {
+    "placeholders": {
+      "cost": {
+        "type": "int"
+      }
+    }
+  },
   "streakFreezeBuy": "Comprar",
-
   "leagueTabMyLeague": "Mi liga",
   "leagueTabTables": "Tablas",
   "leagueTitle": "Liga {division}",
-  "@leagueTitle": { "placeholders": { "division": {"type":"String"} } },
+  "@leagueTitle": {
+    "placeholders": {
+      "division": {
+        "type": "String"
+      }
+    }
+  },
   "leagueWarmingUpSubtitle": "{count, plural, =1{{count} jugador · arrancando} other{{count} jugadores · arrancando}}",
-  "@leagueWarmingUpSubtitle": { "placeholders": { "count": {"type":"int"} } },
+  "@leagueWarmingUpSubtitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "leagueRankActive": "Vas #{rank} esta semana · top {promote} ascienden",
-  "@leagueRankActive": { "placeholders": { "rank": {"type":"int"}, "promote": {"type":"int"} } },
+  "@leagueRankActive": {
+    "placeholders": {
+      "rank": {
+        "type": "int"
+      },
+      "promote": {
+        "type": "int"
+      }
+    }
+  },
   "leagueRankInactive": "Vas #{rank} esta semana",
-  "@leagueRankInactive": { "placeholders": { "rank": {"type":"int"} } },
+  "@leagueRankInactive": {
+    "placeholders": {
+      "rank": {
+        "type": "int"
+      }
+    }
+  },
   "leagueWarmingUpTitle": "Tu liga está arrancando",
   "leagueWarmingUpMessage": "Cuando haya al menos {min} jugadores activos, competiréis por ascender. Mientras, suma XP: tu progreso ya cuenta.",
-  "@leagueWarmingUpMessage": { "placeholders": { "min": {"type":"int"} } },
+  "@leagueWarmingUpMessage": {
+    "placeholders": {
+      "min": {
+        "type": "int"
+      }
+    }
+  },
   "leagueWeeklyRankingTitle": "Clasificación de la semana",
   "leagueWeeklyRankingHint": "Suma XP (lecciones y práctica) para subir. Cierre cada lunes.",
   "leaguePromotionZone": "ZONA DE ASCENSO",
@@ -744,19 +1364,51 @@
   "leaderboardLoadError": "No se pudo cargar la tabla.",
   "leaderboardEmpty": "Aún no hay datos para esta tabla. ¡Sé el primero en aparecer!",
   "leaderboardMyPosition": "Tu posición: #{rank} de {total}",
-  "@leaderboardMyPosition": { "placeholders": { "rank": {"type":"int"}, "total": {"type":"int"} } },
+  "@leaderboardMyPosition": {
+    "placeholders": {
+      "rank": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "leaderboardNotRanked": "Aún no estás en esta tabla",
   "leaderboardShowingTop": "Mostrando top {shown} de {total}",
   "leagueLoadError": "No se pudo cargar la liga.",
-  "@leaderboardShowingTop": { "placeholders": { "shown": {"type":"int"}, "total": {"type":"int"} } },
-
+  "@leaderboardShowingTop": {
+    "placeholders": {
+      "shown": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "profilePracticeNoWeaknessToday": "¡Nada que reforzar ahora! Vas al día. 🎉",
   "profilePracticeWeaknessTitle": "Refuerzo de debilidades",
   "profilePracticeStartError": "No se pudo iniciar la práctica.",
   "profileSkillsTitle": "Tus 4 habilidades",
   "profileSkillsDescription": "Las lecciones suben tu DOMINIO; el nivel sube al aprobar el examen.",
   "profileSkillImbalanceWarning": "Tu {skillA} va al {pct1}% pero tu {skillB} al {pct2}% → refuerza {skillB}.",
-  "@profileSkillImbalanceWarning": { "placeholders": { "skillA": {"type":"String"}, "pct1": {"type":"int"}, "skillB": {"type":"String"}, "pct2": {"type":"int"} } },
+  "@profileSkillImbalanceWarning": {
+    "placeholders": {
+      "skillA": {
+        "type": "String"
+      },
+      "pct1": {
+        "type": "int"
+      },
+      "skillB": {
+        "type": "String"
+      },
+      "pct2": {
+        "type": "int"
+      }
+    }
+  },
   "profileStatStreak": "RACHA",
   "profileStatXp": "XP TOTAL",
   "profileStatGold": "ORO",
@@ -765,45 +1417,159 @@
   "profileAchievementsTitle": "Logros",
   "profileNoAchievements": "Completa lecciones para ganar logros.",
   "profileExamCardTitle": "Examen de nivel {level}",
-  "@profileExamCardTitle": { "placeholders": { "level": {"type":"String"} } },
+  "@profileExamCardTitle": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "profileExamCardTitleLocked": "Examen de nivel {level} (bloqueado)",
-  "@profileExamCardTitleLocked": { "placeholders": { "level": {"type":"String"} } },
+  "@profileExamCardTitleLocked": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "profileExamReady": "¡Listo para certificar! Toca para empezar.",
   "profileExamUnitsRequired": "Completa las unidades: {done}/{total} checkpoints",
-  "@profileExamUnitsRequired": { "placeholders": { "done": {"type":"int"}, "total": {"type":"int"} } },
+  "@profileExamUnitsRequired": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "profileExamMasteryRequired": "Lleva una habilidad al 80% de dominio para abrir su examen",
   "profileCertificateCardTitle": "Certificado {level}",
-  "@profileCertificateCardTitle": { "placeholders": { "level": {"type":"String"} } },
+  "@profileCertificateCardTitle": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "profileCertificateInfo": "Folio {folio} · cód. {code}",
-  "@profileCertificateInfo": { "placeholders": { "folio": {"type":"String"}, "code": {"type":"String"} } },
+  "@profileCertificateInfo": {
+    "placeholders": {
+      "folio": {
+        "type": "String"
+      },
+      "code": {
+        "type": "String"
+      }
+    }
+  },
   "profileForYouTitle": "Para ti",
   "profileWeakestSkill": "Tu punto débil ahora: {skill} ({level}). Unos minutos lo equilibran.",
-  "@profileWeakestSkill": { "placeholders": { "skill": {"type":"String"}, "level": {"type":"String"} } },
+  "@profileWeakestSkill": {
+    "placeholders": {
+      "skill": {
+        "type": "String"
+      },
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "profilePracticeWeaknessButton": "PRACTICAR {skill}",
-  "@profilePracticeWeaknessButton": { "placeholders": { "skill": {"type":"String"} } },
+  "@profilePracticeWeaknessButton": {
+    "placeholders": {
+      "skill": {
+        "type": "String"
+      }
+    }
+  },
   "profileSkillWeakestBadge": "más débil",
   "profileSkillExamReadyBadge": "examen listo",
   "profileMasteryGateCertified": "Ya certificaste {level} 🎓",
-  "@profileMasteryGateCertified": { "placeholders": { "level": {"type":"String"} } },
+  "@profileMasteryGateCertified": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "profileMasteryGateUnlocked": "Examen {level} desbloqueado 🔓 ({count, plural, =1{1 habilidad} other{{count} habilidades}})",
-  "@profileMasteryGateUnlocked": { "placeholders": { "level": {"type":"String"}, "count": {"type":"int"} } },
+  "@profileMasteryGateUnlocked": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      },
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "profileMasteryGateLocked": "Dominio {level}: lleva una habilidad al 80% para abrir su examen (vas {pct}%)",
-  "@profileMasteryGateLocked": { "placeholders": { "level": {"type":"String"}, "pct": {"type":"int"} } },
+  "@profileMasteryGateLocked": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      },
+      "pct": {
+        "type": "int"
+      }
+    }
+  },
   "profilePlanTitle": "Mi plan",
   "profilePlanOnTrack": "Justo en tu plan",
   "profilePlanAhead": "{n, plural, =1{Vas 1 día adelante 🎉} other{Vas {n} días adelante 🎉}}",
-  "@profilePlanAhead": { "placeholders": { "n": {"type":"int"} } },
+  "@profilePlanAhead": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "profilePlanBehind": "{n, plural, =1{Vas 1 día atrás} other{Vas {n} días atrás}}",
-  "@profilePlanBehind": { "placeholders": { "n": {"type":"int"} } },
+  "@profilePlanBehind": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "profilePlanProgress": "Avance a {level}",
-  "@profilePlanProgress": { "placeholders": { "level": {"type":"String"} } },
+  "@profilePlanProgress": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "profilePlanEstimatedCompletion": "Llegas aprox. el {date}",
-  "@profilePlanEstimatedCompletion": { "placeholders": { "date": {"type":"String"} } },
+  "@profilePlanEstimatedCompletion": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "profilePlanIntensity": "{mins} min/día · {days} días/semana",
-  "@profilePlanIntensity": { "placeholders": { "mins": {"type":"int"}, "days": {"type":"int"} } },
+  "@profilePlanIntensity": {
+    "placeholders": {
+      "mins": {
+        "type": "int"
+      },
+      "days": {
+        "type": "int"
+      }
+    }
+  },
   "profileNamePlaceholder": "Pon tu nombre",
   "profileMemberSince": "Miembro desde {date}",
-  "@profileMemberSince": { "placeholders": { "date": {"type":"String"} } },
+  "@profileMemberSince": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
   "profileNotebookTitle": "Cuaderno de datos",
   "profileNotebookSubtitle": "Tips y trucos que has aprendido",
   "profileEditNameError": "Escribe tu nombre.",
@@ -816,5 +1582,15 @@
   "profileEditSave": "GUARDAR",
   "profileEditSaving": "GUARDANDO…",
   "profileLevelPill": "Nivel {level}",
-  "@profileLevelPill": { "placeholders": { "level": {"type":"String"} } }
+  "@profileLevelPill": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "micUnsupported": "Tu navegador no soporta reconocimiento de voz. Prueba con Chrome o Edge.",
+  "micDenied": "El permiso del micrófono está bloqueado. Actívalo en el candado 🔒 junto a la dirección (o en los ajustes del sitio) y reintenta.",
+  "micNoDevice": "No se detectó ningún micrófono en este dispositivo.",
+  "micNetwork": "El servicio de voz no respondió (revisa tu conexión). Vuelve a intentarlo."
 }

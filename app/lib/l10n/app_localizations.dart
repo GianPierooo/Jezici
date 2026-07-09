@@ -4060,6 +4060,30 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Nivel {level}'**
   String profileLevelPill(String level);
+
+  /// No description provided for @micUnsupported.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu navegador no soporta reconocimiento de voz. Prueba con Chrome o Edge.'**
+  String get micUnsupported;
+
+  /// No description provided for @micDenied.
+  ///
+  /// In es, this message translates to:
+  /// **'El permiso del micrófono está bloqueado. Actívalo en el candado 🔒 junto a la dirección (o en los ajustes del sitio) y reintenta.'**
+  String get micDenied;
+
+  /// No description provided for @micNoDevice.
+  ///
+  /// In es, this message translates to:
+  /// **'No se detectó ningún micrófono en este dispositivo.'**
+  String get micNoDevice;
+
+  /// No description provided for @micNetwork.
+  ///
+  /// In es, this message translates to:
+  /// **'El servicio de voz no respondió (revisa tu conexión). Vuelve a intentarlo.'**
+  String get micNetwork;
 }
 
 class _AppLocalizationsDelegate

@@ -2,6 +2,60 @@
 
 ---
 
+## Micrófono robusto y honesto — 2026-07-09 ✅ (cliente; pendiente prueba manual de Gian)
+> Feedback real: "en PC no capta la respuesta hablada; en celular cuesta". Diagnóstico en código, cero IA.
+
+**Causas reales (todas confirmadas leyendo `speech_recognizer_web.dart` + las 3 superficies):**
+1. **Errores tragados + mensaje FALSO.** Las 3 superficies (speaking de lección, placement, Conversar) hacían
+   `onError: (_) => _listening=false` — 'not-allowed' (permiso), 'service-not-allowed' (Brave), 'audio-capture'
+   (sin mic) y 'network' morían en silencio; además `_handleEnd` emitía un final `''` → la UI decía
+   **"No te escuché — sube el volumen"** cuando la causa real era el permiso/soporte. Eso ES el "no capta en PC".
+2. **`init()` mentía:** solo comprobaba que existiera `SpeechRecognition`/`webkitSpeechRecognition`. Permiso ya
+   denegado o sin micrófono → seguía ofreciendo el botón de hablar (feature muerta sin explicación).
+3. **Permiso implícito y tardío:** `recognition.start()` abría el prompt del navegador CON el reconocimiento ya
+   corriendo → en Android el primer intento moría en 'no-speech' mientras el prompt estaba abierto; y si el
+   usuario negaba una vez, el navegador lo recuerda y TODOS los intentos posteriores fallaban en silencio.
+4. **Móvil:** Android Chrome entrega pocos/ningún resultado parcial (solo el final) y el tope de 8s cortaba
+   frases largas → sensación de "cuesta".
+
+**Qué se cambió (solo cliente, sin migración):**
+- `speech_recognizer_web.dart` reescrito: `init()` = soporte + **Permissions API sin prompt** (denied detectado
+  → no se ofrece el mic); `listen()` = **getUserMedia explícito bajo el gesto** la 1ª vez (pistas liberadas al
+  instante) ANTES de arrancar el reconocimiento; errores crudos → **códigos tipados** (`SpeechErrors`:
+  unsupported/denied/no-mic/network); con error fatal NO se emite el final `''` engañoso; `listenFor` 8→12s.
+- `speech_recognizer_api.dart`: `unavailableReason` + contrato de códigos. `mic_messages.dart`: mapeo código →
+  mensaje honesto (compartido). i18n es/en/pt: `micUnsupported`/`micDenied`/`micNoDevice`/`micNetwork`.
+- Superficies: **lección** — causa real + "Ya lo leí ✓" (sin bloquear); red → aviso y mic reintentable;
+  **placement** — pill con la causa junto a "Saltar los ejercicios de hablar" (exclude ya existente, sin puntuar
+  en contra; con permiso denegado detectado en init, speaking se excluye ANTES de servir el 1er ítem);
+  **Conversar** — causa real y el modo ESCRIBIR sigue. Reconocedor inyectable (tests).
+
+**Matriz de soporte (Web Speech API - SpeechRecognition):**
+| Navegador | Estado | Qué ve el usuario |
+|---|---|---|
+| Chrome desktop/Android | ✅ | Mic normal; permiso se pide limpio al 1er toque (reconoce en servidores de Google → necesita internet; sin red → aviso "servicio de voz no respondió", reintentable) |
+| Edge desktop | ✅ | Igual (vía Azure) |
+| Safari macOS 14.1+/iOS 14.5+ | ⚠️ parcial | webkit vía Siri; si el dispositivo no lo permite → error mapeado con mensaje claro + saltar |
+| Firefox (todos) | ❌ sin API | "Tu navegador no soporta reconocimiento de voz. Prueba con Chrome o Edge." + saltar/escribir; en placement speaking se excluye solo |
+| Brave | ❌ servicio off | La API existe pero el servicio está deshabilitado → detectado como permiso/servicio bloqueado, mensaje claro + saltar |
+| PWA instalada (Android) | ✅ | Es Chrome por debajo; mismo comportamiento |
+
+**Pasos de prueba manual para Gian (5 min):**
+1. **Chrome PC** — jezici.vercel.app → Practicar → ejercicio de speaking (o placement con curso en/pt):
+   toca "Hablar" → debe salir el prompt de micrófono UNA vez → acepta → habla → la transcripción aparece y
+   califica. Luego bloquea el permiso (candado 🔒 → Micrófono: Bloquear) y vuelve a intentar → debe decir
+   "El permiso del micrófono está bloqueado…" (NO "no te escuché") y dejarte "Ya lo leí"/"Saltar".
+2. **Chrome Android** — mismo flujo; el 1er toque pide permiso y el 2º ya reconoce; hablar una frase larga
+   (~8-10 palabras) debe entrar completa (12s de margen).
+3. **Firefox (PC o móvil)** — el ejercicio de speaking debe decir "Tu navegador no soporta reconocimiento de
+   voz. Prueba con Chrome o Edge." SIN botón de hablar; en el placement no deben aparecer ejercicios de hablar.
+4. **Sin internet momentáneo (Chrome)** — poner el dispositivo en avión a mitad de un "Hablar" → aviso de
+   "servicio de voz no respondió", y el mic queda para reintentar.
+
+Verde: analyze 0 (CI-exact) · test 137/137 (+6 mic_robustness + placement excluye speaking) · build web OK.
+
+---
+
 ## Placement de 4 HABILIDADES reales (en+pt) — 2026-07-09 ✅ LIVE + VERIFICADO
 > Retome del 4º frente del placement v2. El test de ubicación solo evaluaba R/W y copiaba el global ×4.
 - **Banco L/S (mig 135):** 27 listening (en 15 A1–C1, pt 12 A1–B2; MC "¿qué oíste?", 3 opciones, guarda

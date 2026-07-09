@@ -1,12 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:jezici/core/speech/speech_recognizer_api.dart';
 import 'package:jezici/data/providers.dart';
 import 'package:jezici/data/repositories/progress_repository.dart';
 import 'package:jezici/features/onboarding/onboarding_data.dart';
 import 'package:jezici/features/lesson/exercises/audio_play_button.dart';
 import 'package:jezici/features/onboarding/placement_test.dart';
 import 'package:jezici/l10n/app_localizations.dart';
+
+/// Reconocedor muerto (navegador sin soporte / permiso denegado en init).
+class _DeadRec implements SpeechRecognizer {
+  @override
+  Future<bool> init() async => false;
+  @override
+  bool get available => false;
+  @override
+  String? get unavailableReason => SpeechErrors.unsupported;
+  @override
+  bool get listening => false;
+  @override
+  void listen({
+    required SpeechResultCallback onResult,
+    SpeechErrorCallback? onError,
+    void Function()? onDone,
+    String localeId = 'en_US',
+    Duration listenFor = const Duration(seconds: 8),
+  }) {}
+  @override
+  void stop() {}
+  @override
+  void dispose() {}
+}
 
 /// Fake del repo que GUIONA las respuestas de placement_next (servidor) para probar
 /// el relay del cliente: muestra ítems, envía la opción elegida y aplica el nivel
@@ -207,6 +232,32 @@ void main() {
     expect(fake.calls.last.length, 1); // solo la respuesta de listening
     expect(fake.calls.last.first['item_id'], 'L1');
     expect(data.placementLevel, 'A2');
+  });
+
+  testWidgets('Mic no disponible → speaking se EXCLUYE del examen (sin ofrecer lo muerto)',
+      (tester) async {
+    final fake = _PlacementFakeRepo([
+      _item('i1', ['hola', 'gracias']),
+      {'done': true, 'level': 'A1', 'skill_levels': const {}},
+    ]);
+    final data = OnboardingData();
+    await tester.pumpWidget(ProviderScope(
+      overrides: [progressRepositoryProvider.overrideWithValue(fake)],
+      child: MaterialApp(
+        locale: const Locale('es'),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: PlacementTest(
+          data: data, step: 8, total: 9, recognizer: _DeadRec(), onBack: () {}, onDone: () {}),
+      ),
+    ));
+    await _flush(tester);
+
+    // Al responder, la siguiente petición ya EXCLUYE speaking (init detectó
+    // que el mic no funciona → no se le sirve un ejercicio imposible).
+    await tester.tap(find.text('hola'));
+    await _flush(tester);
+    expect(fake.excludes.last, contains('speaking'));
   });
 
   testWidgets('El placement propaga el courseId al motor (re-ubicación no-inglés)', (tester) async {

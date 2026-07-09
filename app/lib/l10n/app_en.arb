@@ -1,7 +1,6 @@
 {
   "@@locale": "en",
   "appTitle": "Jezici",
-
   "commonContinue": "CONTINUE",
   "commonStart": "START",
   "commonCheck": "CHECK",
@@ -13,15 +12,12 @@
   "commonRetry": "Retry",
   "commonNext": "Next",
   "commonDone": "Done",
-
   "splashLoadError": "We couldn't load your session.",
-
   "settingsLanguageTitle": "App language",
   "settingsLanguageSubtitle": "The language of the menus and instructions. It doesn't change the language you're learning.",
   "langEs": "Español",
   "langEn": "English",
   "langPt": "Português",
-
   "settingsTitle": "Settings",
   "settingsSecLanguage": "LANGUAGE",
   "settingsSecNotifications": "NOTIFICATIONS",
@@ -78,7 +74,6 @@
   "coachExPositivo": "“You're doing great, keep going! 🎉”",
   "coachExRezago": "“You've gone 2 days without practicing… 👀”",
   "coachExSuave": "“No rush, go at your own pace 🌱”",
-
   "courseSwitchFailed": "Couldn't switch course.",
   "convTitle": "Converse",
   "convSubtitle": "Practice real conversations. At your own pace, no pressure.",
@@ -122,24 +117,20 @@
   "convTopicInterviewScenario": "They ask why you want the job. Answer with 2 reasons.",
   "convTopicDirectionsTitle": "Ask for directions",
   "convTopicDirectionsScenario": "Ask how to get to the train station and whether it's far.",
-
   "learnLangEn": "English",
   "learnLangPt": "Portuguese",
   "learnLangFr": "French",
   "learnLangIt": "Italian",
   "learnLangDe": "German",
   "learnLangNl": "Dutch",
-
   "skillReading": "Reading",
   "skillWriting": "Writing",
   "skillListening": "Listening",
   "skillSpeaking": "Speaking",
-
   "onbWelcomeTitle": "Let's build your plan",
   "onbWelcomeSubtitle": "A few quick questions and a placement test to build your plan with a real target date. Every answer personalizes your path.",
   "onbWelcomeNote": "Takes ~2 minutes.",
   "onbCoachBubble": "Let's build a plan just for you! 🦜",
-
   "onbLanguageTitle": "Which language do you prefer for the app?",
   "onbLanguageSubtitle": "Choose the language for menus and messages. It's not the language you'll be learning.",
   "onbLanguageInfoEn": "This only changes the language of the menus and text, not what you'll learn.",
@@ -147,10 +138,8 @@
   "onbNameTitle": "What's your name?",
   "onbNameSubtitle": "That's how we'll greet you, and it appears on your profile and certificates.",
   "onbNameHint": "Your name",
-
   "onbTargetTitle": "Which language do you want to learn?",
   "onbTargetSubtitle": "Your course. This defines your plan and placement test. You can change it later in Settings.",
-
   "onbMotiveTitle": "Why are you learning {course}?",
   "onbMotiveSubtitle": "Personalizes your plan, the scenarios and your coach's messages.",
   "onbMotiveWork": "Work",
@@ -159,7 +148,6 @@
   "onbMotiveStudies": "Studies",
   "onbMotiveRelocation": "Relocation",
   "onbMotivePleasure": "For fun",
-
   "onbGoalTitle": "Where do you want to get to?",
   "onbGoalSubtitle": "Your goal. The top of the map.",
   "onbGoalA2": "A2 · I get by",
@@ -168,7 +156,6 @@
   "onbGoalC1": "C1 · Advanced",
   "onbDeadlineEmpty": "Deadline (optional)",
   "onbDeadlineFilled": "Goal: {month}/{day}/{year}",
-
   "onbCommitmentTitle": "How much time can you give?",
   "onbCommitmentSubtitle": "This sets your daily goal and your arrival date.",
   "onbCommitmentMinutesLabel": "Minutes a day",
@@ -176,22 +163,18 @@
   "onbFrequencyRelaxed": "Relaxed",
   "onbFrequencyConstant": "Steady",
   "onbFrequencyIntense": "Intense",
-
   "onbStartLevelTitle": "How much {course} do you already know?",
   "onbStartLevelSubtitle": "So we start the placement test at the right point.",
   "onbStartLevelZero": "From scratch",
   "onbStartLevelBasic": "I know the basics",
   "onbStartLevelGood": "I have a good level",
-
   "onbMinutesShort": "{m} min",
   "onbDaysShort": "{days, plural, =1{{days} day} other{{days} days}}",
   "planDurationLessThanWeek": "less than a week",
   "planDurationWeeks": "{count, plural, =1{≈ 1 week} other{≈ {count} weeks}}",
   "planDurationMonths": "{count, plural, other{≈ {count} months}}",
   "planDurationYears": "≈ {years} years",
-
   "onbSaveError": "We couldn't save your plan. Try again.",
-
   "onbPersonalityTitle": "Your ideal coach",
   "onbPersonalityStep": "Question {q} of {total}",
   "onbPersonalityQ1": "If you miss your daily goal, what would you rather hear?",
@@ -218,7 +201,6 @@
   "onbIntensityOpt1": "A lot, don't let me slack",
   "onbIntensityOpt2": "Just right",
   "onbIntensityOpt3": "A little",
-
   "placementTitle": "Placement test",
   "placementSpeak": "Speak",
   "placementListening": "Listening…",
@@ -230,19 +212,23 @@
   "placementResultViewPlan": "SEE MY PLAN",
   "placementResultStartFromZero": "I'd rather start from the beginning",
   "placementResultStartFromZeroConfirm": "You'll start from A1 (Unit 1), not {level}. It's your call: you'll progress at your own pace. Continue?",
-  "@placementResultStartFromZeroConfirm": { "placeholders": { "level": {"type":"String"} } },
+  "@placementResultStartFromZeroConfirm": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "placementResultHero": "WE PLACED YOU AT",
   "placementResultSkillsTitle": "By skill",
   "placementResultEntryUnit": "You'll start at Unit {unitNum} — {unitName} ({level}). Everything before stays available to review.",
   "placementResultEstimateReached": "You've already reached your goal. If you keep going to {goalLevel}: {humanDuration} (approx. {formattedDate}).",
   "placementResultEstimateGoal": "If you stick to your plan, you'll reach {goalLevel} in {humanDuration} (approx. {formattedDate}).",
-
   "coursePlacementOfferTitle": "Take the placement test?",
   "coursePlacementOfferBody": "Take a short test and start at your real {course} level instead of from the beginning.",
   "coursePlacementDoTest": "Take the test",
   "coursePlacementFromScratch": "Start from the beginning",
   "coursePlacementDone": "Done! We placed you at {level}.",
-
   "planFocusWork": "Work focus: meetings, emails and interviews.",
   "planFocusTravel": "Travel focus: airport, hotel, directions and restaurants.",
   "planFocusExam": "Exam focus: IELTS/Cambridge mock tests and the 4 skills.",
@@ -268,14 +254,34 @@
   "planJourneyGoal": "YOUR GOAL",
   "planHalfTime": "⚡ Half the time!",
   "planPaceLine": "With {minutes} min/day you reach {level} by",
-  "@planPaceLine": { "placeholders": { "minutes": {"type":"int"}, "level": {"type":"String"} } },
+  "@planPaceLine": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      },
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "planLeverTitleOff": "Want to get there faster?",
   "planLeverTitleOn": "🚀 Full speed ahead!",
   "planLeverTextOff": "Bump to {minutes} min/day and get there in half the time 💪",
-  "@planLeverTextOff": { "placeholders": { "minutes": {"type":"int"} } },
+  "@planLeverTextOff": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
   "planLeverTextOn": "{minutes} min/day plan on: you get there in half the time.",
-  "@planLeverTextOn": { "placeholders": { "minutes": {"type":"int"} } },
-
+  "@planLeverTextOn": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
   "authTitleSignUp": "Create your account",
   "authTitleSignIn": "Welcome back",
   "authSubtitleSignUp": "A plan with a real date, an exam across the 4 skills, and a coach that brings you back.",
@@ -306,7 +312,6 @@
   "authOr": "or",
   "authGoogleError": "Couldn't continue with Google. Try with your email.",
   "authCheckEmail": "We sent you an email to confirm your account. Open it and come back to continue.",
-
   "lessonSaveErrorTitle": "We couldn't save your progress",
   "lessonSaveErrorMsg": "Check your connection and try again.",
   "lessonNoExercises": "This lesson doesn't have exercises yet.",
@@ -318,7 +323,6 @@
   "lessonFeedbackRightAnswer": "Correct answer: {answer}",
   "lessonAudioUnavailableTitle": "Audio unavailable",
   "lessonAudioUnavailableMsg": "This exercise doesn't have its audio yet. We'll skip it: it won't affect your hearts or your score.",
-
   "lessonCompletePerfectTitle": "PERFECT LESSON",
   "lessonCompleteTitle": "LESSON COMPLETE",
   "lessonCompletePerfectMsg": "Flawless! 🌟",
@@ -340,7 +344,6 @@
   "lessonCompleteSkillAdvanced": "▲ up",
   "tipCardHeader": "Matix teaches you · {type}",
   "tipCardPersonalized": "I'm giving you this because your {skill} needs a boost. 🦜",
-
   "errorReviewWhyTranslation": "Watch the exact English form — the full meaning matters.",
   "errorReviewWhyCloze": "Review the word that was missing in the sentence.",
   "errorReviewWhyWordOrder": "Mind the word ORDER: English is more fixed than Spanish.",
@@ -350,7 +353,6 @@
   "errorReviewTitle": "Review what you missed",
   "errorReviewSubtitle": "{count, plural, =1{1 exercise to reinforce. You're almost there!} other{{count} exercises to reinforce. You're almost there!}}",
   "errorReviewPracticeCta": "Practice the ones you missed",
-
   "tileArrangePlaceholder": "Tap the words to build the sentence…",
   "tileArrangeAllPlaced": "All placed — tap CHECK",
   "translationHint": "Write the translation…",
@@ -370,7 +372,6 @@
   "speakingRetryHint": "I heard: \"{heard}\". You can try again or tap \"I read it ✓\".",
   "speakingHearModel": "Hear the model",
   "audioPlayDefault": "Listen",
-
   "stubTagPronunciation": "PRONUNCIATION",
   "stubNotePronunciation": "Voice recognition is coming soon. For now, practice it out loud and continue.",
   "stubTagListening": "LISTENING",
@@ -381,12 +382,17 @@
   "stubNoteGuidedWriting": "Guided writing with feedback is coming soon. For now, continue.",
   "stubTagComingSoon": "COMING SOON",
   "stubNoteComingSoon": "This exercise type is coming soon. For now, continue.",
-
   "noHeartsTitle": "You're out of hearts ❤️",
   "noHeartsMsg": "No worries, it happens to everyone! They come back free next lesson, or keep going now 💪",
   "noHeartsRefill": "Refill hearts and continue",
   "noHeartsRefillPriced": "Refill lives · 🪙{gold}",
-  "@noHeartsRefillPriced": { "placeholders": { "gold": {"type":"int"} } },
+  "@noHeartsRefillPriced": {
+    "placeholders": {
+      "gold": {
+        "type": "int"
+      }
+    }
+  },
   "noHeartsInsufficientGold": "You don't have enough gold to refill.",
   "noHeartsRefilled": "Lives refilled! ❤️",
   "noHeartsQuit": "Leave the lesson",
@@ -410,7 +416,6 @@
   "dailyPanelWhat": "It counts the XP you earn in lessons and practice. Hit it every day to keep your streak.",
   "dailyPanelDone": "Today's goal done! 🎉 Keep it up for your streak.",
   "dailyPanelClose": "Keep learning",
-
   "checkpointStartError": "We couldn't start the exam. Try again.",
   "checkpointPortalTitle": "The unit portal",
   "checkpointCoachMsg": "🦜  Show what you know!",
@@ -438,7 +443,6 @@
   "checkpointMissingPoints": "You were {missing} points short of {pct}%. So close!",
   "checkpointReinforceTitle": "REINFORCE THESE SKILLS",
   "checkpointReinforceEmpty": "Review the unit and try again.",
-
   "checkpointSubmitError": "We couldn't submit the exam. Try again.",
   "checkpointExitTitle": "Leave the exam?",
   "checkpointExitMsg": "You'll lose this attempt's progress.",
@@ -448,31 +452,24 @@
   "checkpointBackToMapCta": "BACK TO THE MAP",
   "checkpointFinish": "FINISH",
   "checkpointNext": "NEXT",
-
   "lessonPreviewLoadError": "We couldn't load the lesson.\n{error}",
   "lessonPreviewExerciseCount": "{count, plural, =1{1 exercise} other{{count} exercises}}",
-
   "dailyGoalTitle": "Today's goal",
   "dailyGoalXpOf": "{earned}/{goal} XP",
   "dailyGoalMet": "Goal met! Your streak advances today 🔥",
   "dailyGoalRemaining": "{n} XP to go today",
   "dailyGoalSemantics": "Daily goal: {earned} of {goal} XP",
-
   "missionWelcomeTitle": "Your journey has begun!",
   "missionWelcomeBody": "Collect the 100 essential words as you go. Let's do it!",
   "missionRewardBanner": "+{xp} XP · +{gold} gold welcome bonus",
   "missionStartError": "We couldn't start. Try again.",
-
   "comboLabel": "x{combo}",
-
   "shopChestWon": "🎁 You won {reward} gold! You now have {total}.",
   "shopChestAlready": "You already opened today's chest. Come back tomorrow 🙂",
   "shopHeartsRefilled": "❤️ Hearts refilled. You spent 50 gold, {gold} left.",
   "shopFreezeBought": "🧊 Streak freeze bought. You spent 50 gold, {gold} left.",
   "shopNotEnoughGold": "You don't have enough gold (costs {cost}).",
-
   "leagueNoMovementNote": "In beta there are no promotions or demotions yet: play to earn XP and climb the table.",
-
   "mapLoading": "Loading your map…",
   "mapLoadError": "We couldn't load the map.\n{error}",
   "mapEmptyState": "No content seeded yet.",
@@ -485,7 +482,13 @@
   "mapUnitBanner": "UNIT {num} · {level}",
   "mapUnitBannerLocked": "UNIT {num} · {level} · 🔒 LOCKED",
   "mapExamUnit": "EXAM · UNIT {num}",
-  "@mapExamUnit": { "placeholders": { "num": {"type":"int"} } },
+  "@mapExamUnit": {
+    "placeholders": {
+      "num": {
+        "type": "int"
+      }
+    }
+  },
   "topBarMusicOff": "Turn off map music",
   "topBarMusicOn": "Turn on map music",
   "topBarNotifications": "Notifications",
@@ -519,40 +522,127 @@
   "practiceStartError": "Couldn't start the practice.",
   "profileHeaderKicker": "MY PROFILE",
   "profileTravelerChip": "Traveler level {level}",
-  "@profileTravelerChip": { "placeholders": { "level": {"type":"int"} } },
+  "@profileTravelerChip": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
   "profileTravelerNext": "Level {level} · {xp} XP",
-  "@profileTravelerNext": { "placeholders": { "level": {"type":"int"}, "xp": {"type":"int"} } },
+  "@profileTravelerNext": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      },
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
   "profileActiveLangLabel": "ACTIVE LANGUAGE",
   "profileActiveLangValue": "{language} · Goal {goal}",
-  "@profileActiveLangValue": { "placeholders": { "language": {"type":"String"}, "goal": {"type":"String"} } },
+  "@profileActiveLangValue": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      },
+      "goal": {
+        "type": "String"
+      }
+    }
+  },
   "profileActiveLangChange": "Change",
   "profileRadarGoalTag": "GOAL {level}",
-  "@profileRadarGoalTag": { "placeholders": { "level": {"type":"String"} } },
+  "@profileRadarGoalTag": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "profileSkillsReadyChip": "{ready} / 4 at {level}",
-  "@profileSkillsReadyChip": { "placeholders": { "ready": {"type":"int"}, "level": {"type":"String"} } },
+  "@profileSkillsReadyChip": {
+    "placeholders": {
+      "ready": {
+        "type": "int"
+      },
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "profileWeakAlertTitle": "Your weak spot is",
   "profileWeakAlertBody": "Raise it to {level} and you'll certify your full level.",
-  "@profileWeakAlertBody": { "placeholders": { "level": {"type":"String"} } },
+  "@profileWeakAlertBody": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "profileCertLockedNeed": "You need {level} in all 4 skills",
-  "@profileCertLockedNeed": { "placeholders": { "level": {"type":"String"} } },
+  "@profileCertLockedNeed": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "profileCertReadyCount": "{n} of 4 skills ready",
-  "@profileCertReadyCount": { "placeholders": { "n": {"type":"int"} } },
+  "@profileCertReadyCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "profileCertVerifiedLine": "Verified · Jezici exam",
   "profileStatsTitle": "Statistics",
   "profileStreakLine": "{n}-day streak",
-  "@profileStreakLine": { "placeholders": { "n": {"type":"int"} } },
+  "@profileStreakLine": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "profileStreakBest": "Best: {n}",
-  "@profileStreakBest": { "placeholders": { "n": {"type":"int"} } },
+  "@profileStreakBest": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "profileStreakToday": "TODAY",
   "profileLeagueRank": "Rank {n}",
-  "@profileLeagueRank": { "placeholders": { "n": {"type":"int"} } },
+  "@profileLeagueRank": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "leagueCurrentDivision": "CURRENT DIVISION",
   "leagueEndsIn": "Ends in",
   "leagueXpThisWeek": "XP this week",
   "leaguePromoteTo": "PROMOTED TO {division}",
-  "@leaguePromoteTo": { "placeholders": { "division": {"type":"String"} } },
+  "@leaguePromoteTo": {
+    "placeholders": {
+      "division": {
+        "type": "String"
+      }
+    }
+  },
   "leagueDemoteTo": "DEMOTED TO {division}",
-  "@leagueDemoteTo": { "placeholders": { "division": {"type":"String"} } },
+  "@leagueDemoteTo": {
+    "placeholders": {
+      "division": {
+        "type": "String"
+      }
+    }
+  },
   "leagueTagUp": "Moving up",
   "leagueTagRisk": "At risk",
   "leagueTagYou": "Stay on top!",
@@ -560,40 +650,103 @@
   "checkpointMapDone": "UNIT ✓",
   "checkpointMapNext": "NEXT REGION",
   "checkpointFailCount": "{n} misses",
-  "@checkpointFailCount": { "placeholders": { "n": {"type":"int"} } },
+  "@checkpointFailCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "examPassedBadge": "EXAM PASSED",
   "examFailedBadge": "NOT YET · SO CLOSE!",
   "examPassedVerdict": "Congratulations! You reached",
   "examFailedVerdict": "You haven't reached",
   "examLevelWord": "level {level}",
-  "@examLevelWord": { "placeholders": { "level": {"type":"String"} } },
+  "@examLevelWord": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "examVerifiedBy": "Verified by the Jezici exam",
   "examSkillsAtLevel": "All 4 skills at {level}",
-  "@examSkillsAtLevel": { "placeholders": { "level": {"type":"String"} } },
+  "@examSkillsAtLevel": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "examSkillsWhyCertified": "All reach the goal — that's why it certifies",
   "examSkillsGoalHint": "Goal: {pct}% per skill",
-  "@examSkillsGoalHint": { "placeholders": { "pct": {"type":"int"} } },
+  "@examSkillsGoalHint": {
+    "placeholders": {
+      "pct": {
+        "type": "int"
+      }
+    }
+  },
   "examGoalTag": "GOAL {level}",
-  "@examGoalTag": { "placeholders": { "level": {"type":"String"} } },
+  "@examGoalTag": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "examGlobalScore": "Global score",
   "examStrength": "Strength",
   "examPolish": "Polish",
   "examSeeCertificate": "See certificate",
   "examShareCopied": "Result copied to share ✓",
   "examRewards": "+{xp} XP · +{gold} gold for certifying",
-  "@examRewards": { "placeholders": { "xp": {"type":"int"}, "gold": {"type":"int"} } },
+  "@examRewards": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      },
+      "gold": {
+        "type": "int"
+      }
+    }
+  },
   "examNotYetCertified": "You don't certify {level} yet",
-  "@examNotYetCertified": { "placeholders": { "level": {"type":"String"} } },
+  "@examNotYetCertified": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
   "examRaiseSkill": "raise your {skill}",
-  "@examRaiseSkill": { "placeholders": { "skill": {"type":"String"} } },
+  "@examRaiseSkill": {
+    "placeholders": {
+      "skill": {
+        "type": "String"
+      }
+    }
+  },
   "examReinforceSkill": "Reinforce {skill}",
-  "@examReinforceSkill": { "placeholders": { "skill": {"type":"String"} } },
+  "@examReinforceSkill": {
+    "placeholders": {
+      "skill": {
+        "type": "String"
+      }
+    }
+  },
   "examRetry": "RETRY EXAM",
   "chestTitleClosed": "A chest awaits you!",
   "chestSubClosed": "Tap it to reveal your prize",
   "chestOpenCta": "Open chest",
   "chestTitleOpened": "+{reward} gold!",
-  "@chestTitleOpened": { "placeholders": { "reward": {"type":"int"} } },
+  "@chestTitleOpened": {
+    "placeholders": {
+      "reward": {
+        "type": "int"
+      }
+    }
+  },
   "chestSubOpened": "Your reward of the day",
   "chestGoldLabel": "GOLD",
   "chestClaimCta": "Claim!",
@@ -601,7 +754,6 @@
   "chestTitleTomorrow": "You already opened your chest",
   "chestSubTomorrow": "Come back tomorrow for another 🎁",
   "chestCloseCta": "Got it",
-
   "missionAppBarTitle": "Mission",
   "missionMainTitle": "The 100 essential words",
   "missionMainDescription": "Your first big goal: master the 100 most frequent words and phrases in English. You'll collect them as you complete your lessons. Gather them all to earn the \"100 essentials\" badge.",
@@ -615,7 +767,6 @@
   "missionCatFamily": "People and family",
   "missionCatDaily": "Everyday",
   "missionCatQuestions": "Questions and essentials",
-
   "shopTitle": "Shop",
   "shopChestCardTitle": "Daily chest",
   "shopChestCardSubtitleAvailable": "Open it for a surprise reward",
@@ -626,7 +777,6 @@
   "shopHeartsCardSubtitle": "Back to 5 hearts · you have {hearts}",
   "shopFreezeCardTitle": "Streak freeze",
   "shopFreezeCardSubtitle": "Protect your streak for a day · you have {freezes}",
-
   "streakTitle": "Your streak",
   "streakDaysCount": "{count, plural, =1{{count}-day streak} other{{count}-day streak}}",
   "streakRecord": "Record: {longest} · Meet your daily goal to add to it",
@@ -639,7 +789,6 @@
   "streakFreezeCount": "You have {freezes}",
   "streakFreezePrice": "Costs {cost} gold",
   "streakFreezeBuy": "Buy",
-
   "leagueTabMyLeague": "My league",
   "leagueTabTables": "Tables",
   "leagueTitle": "{division} League",
@@ -678,7 +827,6 @@
   "leaderboardNotRanked": "You're not on this table yet",
   "leaderboardShowingTop": "Showing top {shown} of {total}",
   "leagueLoadError": "We couldn't load the league.",
-
   "profilePracticeNoWeaknessToday": "Nothing to reinforce right now! You're up to date. 🎉",
   "profilePracticeWeaknessTitle": "Weakness practice",
   "profilePracticeStartError": "We couldn't start practice.",
@@ -727,5 +875,9 @@
   "profileEditBioHint": "e.g. I want to travel around Brazil this year",
   "profileEditSave": "SAVE",
   "profileEditSaving": "SAVING…",
-  "profileLevelPill": "Level {level}"
+  "profileLevelPill": "Level {level}",
+  "micUnsupported": "Your browser doesn't support voice recognition. Try Chrome or Edge.",
+  "micDenied": "Microphone permission is blocked. Enable it via the lock 🔒 next to the address bar (or the site settings) and try again.",
+  "micNoDevice": "No microphone was detected on this device.",
+  "micNetwork": "The voice service didn't respond (check your connection). Try again."
 }

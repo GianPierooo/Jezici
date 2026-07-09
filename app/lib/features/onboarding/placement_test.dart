@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/speech/mic_messages.dart';
 import '../../core/speech/speech_lang.dart';
 import '../../core/speech/speech_recognizer.dart';
 import '../../core/theme/app_colors.dart';
@@ -31,6 +32,7 @@ class PlacementTest extends ConsumerStatefulWidget {
     required this.onDone,
     this.startLevel = 1,
     this.courseId,
+    this.recognizer,
   });
 
   final OnboardingData data;
@@ -45,6 +47,9 @@ class PlacementTest extends ConsumerStatefulWidget {
   /// Curso META a ubicar. null = curso activo más antiguo (es→en, onboarding).
   final String? courseId;
 
+  /// Inyectable para tests; null = reconocedor real de la plataforma.
+  final SpeechRecognizer? recognizer;
+
   @override
   ConsumerState<PlacementTest> createState() => _PlacementTestState();
 }
@@ -54,7 +59,7 @@ class _PlacementTestState extends ConsumerState<PlacementTest> {
 
   final List<Map<String, dynamic>> _history = [];
   final List<String> _excluded = [];
-  final SpeechRecognizer _rec = createSpeechRecognizer();
+  late final SpeechRecognizer _rec = widget.recognizer ?? createSpeechRecognizer();
 
   Map<String, dynamic>? _item;
   int _asked = 0;
@@ -63,6 +68,7 @@ class _PlacementTestState extends ConsumerState<PlacementTest> {
   int _retries = 0;
   bool _listening = false;
   String _transcript = '';
+  String? _micError; // código SpeechErrors → aviso honesto junto a "Saltar"
 
   String get _hint => _hintCefr[widget.startLevel.clamp(0, _hintCefr.length - 1)];
 
@@ -99,6 +105,7 @@ class _PlacementTestState extends ConsumerState<PlacementTest> {
       _loading = true;
       _transcript = '';
       _listening = false;
+      _micError = null;
     });
     try {
       final res = await ref.read(progressRepositoryProvider).placementNext(
@@ -144,10 +151,13 @@ class _PlacementTestState extends ConsumerState<PlacementTest> {
 
   void _listen() {
     if (_listening) return;
-    setState(() => _listening = true);
+    setState(() {
+      _listening = true;
+      _micError = null;
+    });
     _rec.listen(
       localeId: SpeechLang.stt,
-      listenFor: const Duration(seconds: 10),
+      listenFor: const Duration(seconds: 12),
       onResult: (t, isFinal) {
         if (!mounted) return;
         setState(() {
@@ -155,8 +165,14 @@ class _PlacementTestState extends ConsumerState<PlacementTest> {
           if (isFinal) _listening = false;
         });
       },
-      onError: (_) {
-        if (mounted) setState(() => _listening = false);
+      onError: (e) {
+        if (!mounted) return;
+        setState(() {
+          _listening = false;
+          // Causa REAL visible (permiso/mic/soporte/red) junto al botón de
+          // saltar — nunca un mic que "no hace nada" sin explicación.
+          if (micErrorIsFatal(e) || e == SpeechErrors.network) _micError = e;
+        });
       },
       onDone: () {
         if (mounted) setState(() => _listening = false);
@@ -281,6 +297,19 @@ class _PlacementTestState extends ConsumerState<PlacementTest> {
                       ),
                     ),
                   ),
+                  if (_micError != null) ...[
+                    const SizedBox(height: 12),
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                          color: const Color(0xFFFFF1E9),
+                          borderRadius: BorderRadius.circular(12)),
+                      child: Text(micMessageFor(l10n, _micError),
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.coral)),
+                    ),
+                  ],
                   if (_transcript.isNotEmpty) ...[
                     const SizedBox(height: 12),
                     Container(

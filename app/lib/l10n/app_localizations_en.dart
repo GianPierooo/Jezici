@@ -2379,4 +2379,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String profileLevelPill(String level) {
     return 'Level $level';
   }
+
+  @override
+  String get micUnsupported =>
+      'Your browser doesn\'t support voice recognition. Try Chrome or Edge.';
+
+  @override
+  String get micDenied =>
+      'Microphone permission is blocked. Enable it via the lock 🔒 next to the address bar (or the site settings) and try again.';
+
+  @override
+  String get micNoDevice => 'No microphone was detected on this device.';
+
+  @override
+  String get micNetwork =>
+      'The voice service didn\'t respond (check your connection). Try again.';
 }

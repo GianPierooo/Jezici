@@ -18,6 +18,8 @@ class _IoSpeechRecognizer implements SpeechRecognizer {
   @override
   bool get available => _available;
   @override
+  String? get unavailableReason => _available ? null : SpeechErrors.unsupported;
+  @override
   bool get listening => _listening;
 
   @override
