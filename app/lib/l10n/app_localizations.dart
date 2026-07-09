@@ -1632,6 +1632,66 @@ abstract class AppLocalizations {
   /// **'Se certifica que'**
   String get certHolderIntro;
 
+  /// No description provided for @heartsPanelTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Vidas'**
+  String get heartsPanelTitle;
+
+  /// No description provided for @heartsPanelRegen.
+  ///
+  /// In es, this message translates to:
+  /// **'Se regeneran solas con el tiempo. Pierdes una vida por cada respuesta incorrecta.'**
+  String get heartsPanelRegen;
+
+  /// No description provided for @heartsPanelFull.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Tienes todas tus vidas! ❤️'**
+  String get heartsPanelFull;
+
+  /// No description provided for @goldPanelTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Oro'**
+  String get goldPanelTitle;
+
+  /// No description provided for @goldPanelWhat.
+  ///
+  /// In es, this message translates to:
+  /// **'Ganas oro completando lecciones y retos. Sirve para recargar vidas y comprar en la tienda.'**
+  String get goldPanelWhat;
+
+  /// No description provided for @goldPanelOpenShop.
+  ///
+  /// In es, this message translates to:
+  /// **'Abrir tienda'**
+  String get goldPanelOpenShop;
+
+  /// No description provided for @dailyPanelTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Meta diaria'**
+  String get dailyPanelTitle;
+
+  /// No description provided for @dailyPanelWhat.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuenta el XP que ganas en lecciones y práctica. Cúmplela cada día para mantener tu racha.'**
+  String get dailyPanelWhat;
+
+  /// No description provided for @dailyPanelDone.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Meta de hoy cumplida! 🎉 Sigue así para tu racha.'**
+  String get dailyPanelDone;
+
+  /// No description provided for @dailyPanelClose.
+  ///
+  /// In es, this message translates to:
+  /// **'Seguir aprendiendo'**
+  String get dailyPanelClose;
+
   /// No description provided for @checkpointStartError.
   ///
   /// In es, this message translates to:

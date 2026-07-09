@@ -926,6 +926,40 @@ class AppLocalizationsEn extends AppLocalizations {
   String get certHolderIntro => 'This certifies that';
 
   @override
+  String get heartsPanelTitle => 'Lives';
+
+  @override
+  String get heartsPanelRegen =>
+      'They refill on their own over time. You lose a life for each wrong answer.';
+
+  @override
+  String get heartsPanelFull => 'You have all your lives! ❤️';
+
+  @override
+  String get goldPanelTitle => 'Gold';
+
+  @override
+  String get goldPanelWhat =>
+      'Earn gold by completing lessons and challenges. Use it to refill lives and buy in the shop.';
+
+  @override
+  String get goldPanelOpenShop => 'Open shop';
+
+  @override
+  String get dailyPanelTitle => 'Daily goal';
+
+  @override
+  String get dailyPanelWhat =>
+      'It counts the XP you earn in lessons and practice. Hit it every day to keep your streak.';
+
+  @override
+  String get dailyPanelDone =>
+      'Today\'s goal done! 🎉 Keep it up for your streak.';
+
+  @override
+  String get dailyPanelClose => 'Keep learning';
+
+  @override
   String get checkpointStartError => 'We couldn\'t start the exam. Try again.';
 
   @override

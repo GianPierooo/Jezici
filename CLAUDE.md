@@ -5,6 +5,29 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-08**.
 
+## Barra superior FUNCIONAL — cada stat hace algo real ✅ (2026-07-08 · solo cliente)
+Ingeniería pura (cero IA), reutilizando la economía existente. Antes en `learn_top_bar.dart`: ❤️ vidas
+**sin onTap** (muerta), ⚡ meta abría StreakScreen (destino incorrecto), 🪙 oro→Tienda directo (sin explicar),
+🔥 racha→StreakScreen ✓, 🔔 campana→NotificationCenterScreen ✓ pero sin señal de vida. Ahora cada ítem es
+tappable con acción real (`widgets/top_bar_panels.dart`, bottom-sheets con el lenguaje visual del mockup +
+motion sutil de entrada, reduce-motion-aware):
+- **❤️ VIDAS → panel:** 5 corazones (llenos = vidas reales de HomeStats), «se regeneran solas / pierdes una
+  por fallo», y **Recargar · 🪙50** que llama el RPC real `buy_hearts()` (mig 026, misma economía que la tienda
+  y que SinVidas); sin oro → aviso inline, no recarga. Oculta el botón si están llenas.
+- **🪙 ORO → panel:** saldo real + «para qué sirve» (ganar/gastar) + **Abrir tienda** → `TiendaScreen`.
+- **⚡ META DIARIA → panel:** anillo grande X/Y XP hoy (dato real) + qué cuenta (lecciones+práctica) + tie-in de
+  racha; «¡Meta cumplida!» al llegar. (Antes abría por error la pantalla de racha.)
+- **🔥 RACHA → `StreakScreen`** (ya real: contador, récord, hitos, **congelador** a 50 oro) — sin cambios.
+- **🔔 NOTIFICACIONES → `NotificationCenterScreen`** (ya real: tabla `notifications`/Matix con RLS + estado
+  vacío decente) + **badge de conteo** en la campana (lee `notificationsProvider`, muestra n/9+). NO es botón
+  muerto: `matix_fire` (el mismo RPC del centro) inserta y el usuario la lee bajo RLS.
+- **🇬🇧 bandera + 🎵 música:** sin cambios (fuera de alcance).
+i18n es/en/pt (10 claves nuevas). **Verificado cliente real (`verify_topbar.py`):** matix_fire crea notificación
+'sent' y el usuario la lee bajo RLS (parte de estado vacío→1); buy_hearts cobra y recarga server-side (80→30,
+hearts 5). Widget test (`top_bar_panels_test`): los 3 paneles rinden vidas/oro/meta reales + sus acciones.
+Verde: analyze 0 · test 100/100 (+3) · build web OK. NO toca loop/economía/seguridad (buy_hearts/tienda/
+StreakScreen/centro ya existían).
+
 ## 3 P0 de producto del MOCKUP_GAP ✅ (mig 133 · 2026-07-08)
 Tres bugs (no estética) de MOCKUP_GAP.md, arreglados y verificados con cliente real (`verify_p0_product.py`).
 - **F1 · El certificado imprime el NOMBRE del titular (Examen.dc).** Antes no decía de quién era. El nombre

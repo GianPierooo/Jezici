@@ -9,8 +9,8 @@ import '../../../l10n/app_localizations.dart';
 import '../../../ui/stat_chip.dart';
 import '../../notifications/notification_center_screen.dart';
 import '../../plan/mi_plan_screen.dart';
-import '../../shop/tienda_screen.dart';
 import '../../streak/streak_screen.dart';
+import 'top_bar_panels.dart';
 
 /// Top bar minimal de "Aprender" (Estructura_App §1, §3): idioma activo · racha ·
 /// oro · vidas · mini anillo de meta diaria. Lee datos REALES (paso E).
@@ -75,14 +75,25 @@ class LearnTopBar extends ConsumerWidget {
                 child: StreakIndicator(days: stats.currentStreak),
               ),
               const SizedBox(width: 13),
-              GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute(builder: (_) => const TiendaScreen())),
-                child: GoldCounter(amount: stats.gold),
+              Semantics(
+                button: true,
+                label: AppLocalizations.of(context).goldPanelTitle,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () => showGoldPanel(context),
+                  child: GoldCounter(amount: stats.gold),
+                ),
               ),
               const SizedBox(width: 13),
-              HeartsIndicator(hearts: stats.hearts),
+              Semantics(
+                button: true,
+                label: AppLocalizations.of(context).heartsPanelTitle,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () => showHeartsPanel(context),
+                  child: HeartsIndicator(hearts: stats.hearts),
+                ),
+              ),
               const SizedBox(width: 10),
               Semantics(
                 button: true,
@@ -90,8 +101,7 @@ class LearnTopBar extends ConsumerWidget {
                     .dailyGoalSemantics(stats.dailyXpEarned, stats.dailyGoalXp),
                 child: GestureDetector(
                   behavior: HitTestBehavior.opaque,
-                  onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => const StreakScreen())),
+                  onTap: () => showDailyGoalPanel(context),
                   child: _DailyGoalPill(
                     earned: stats.dailyXpEarned,
                     goal: stats.dailyGoalXp,
@@ -100,6 +110,7 @@ class LearnTopBar extends ConsumerWidget {
                 ),
               ),
               _BellButton(
+                count: ref.watch(notificationsProvider).asData?.value.length ?? 0,
                 onTap: () => Navigator.of(context).push(MaterialPageRoute(
                     builder: (_) => const NotificationCenterScreen())),
               ),
@@ -209,8 +220,9 @@ class _MusicToggle extends StatelessWidget {
 }
 
 class _BellButton extends StatelessWidget {
-  const _BellButton({required this.onTap});
+  const _BellButton({required this.onTap, this.count = 0});
   final VoidCallback onTap;
+  final int count;
 
   @override
   Widget build(BuildContext context) {
@@ -221,11 +233,11 @@ class _BellButton extends StatelessWidget {
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTap: onTap,
-        child: const SizedBox(
+        child: SizedBox(
           width: 44,
           height: 44,
           child: Center(
-            child: _BellGlyph(),
+            child: _BellGlyph(count: count),
           ),
         ),
       ),
@@ -234,18 +246,49 @@ class _BellButton extends StatelessWidget {
 }
 
 class _BellGlyph extends StatelessWidget {
-  const _BellGlyph();
+  const _BellGlyph({this.count = 0});
+  final int count;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: 32,
       height: 32,
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: const Color(0xFFF4F5FB),
-        borderRadius: BorderRadius.circular(10),
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          Container(
+            width: 32,
+            height: 32,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: const Color(0xFFF4F5FB),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: const Icon(Icons.notifications_rounded, size: 18, color: AppColors.primary),
+          ),
+          // Badge de notificaciones existentes (conteo real).
+          if (count > 0)
+            Positioned(
+              top: -4,
+              right: -4,
+              child: Container(
+                constraints: const BoxConstraints(minWidth: 16, minHeight: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                decoration: BoxDecoration(
+                  color: AppColors.coral,
+                  borderRadius: BorderRadius.circular(8),
+                  border: Border.all(color: Colors.white, width: 1.5),
+                ),
+                child: Text(
+                  count > 9 ? '9+' : '$count',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontSize: 9, fontWeight: FontWeight.w900, color: Colors.white, height: 1.2),
+                ),
+              ),
+            ),
+        ],
       ),
-      child: const Icon(Icons.notifications_rounded, size: 18, color: AppColors.primary),
     );
   }
 }
