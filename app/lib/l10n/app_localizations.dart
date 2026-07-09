@@ -2436,6 +2436,144 @@ abstract class AppLocalizations {
   /// **'¡Sigue subiendo! 💪'**
   String get leagueMascotCheer;
 
+  /// No description provided for @checkpointMapDone.
+  ///
+  /// In es, this message translates to:
+  /// **'UNIDAD ✓'**
+  String get checkpointMapDone;
+
+  /// No description provided for @checkpointMapNext.
+  ///
+  /// In es, this message translates to:
+  /// **'SIGUIENTE REGIÓN'**
+  String get checkpointMapNext;
+
+  /// No description provided for @checkpointFailCount.
+  ///
+  /// In es, this message translates to:
+  /// **'{n} fallos'**
+  String checkpointFailCount(int n);
+
+  /// No description provided for @examPassedBadge.
+  ///
+  /// In es, this message translates to:
+  /// **'EXAMEN SUPERADO'**
+  String get examPassedBadge;
+
+  /// No description provided for @examFailedBadge.
+  ///
+  /// In es, this message translates to:
+  /// **'AÚN NO · ¡CASI!'**
+  String get examFailedBadge;
+
+  /// No description provided for @examPassedVerdict.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Felicidades! Alcanzaste el'**
+  String get examPassedVerdict;
+
+  /// No description provided for @examFailedVerdict.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no alcanzas el'**
+  String get examFailedVerdict;
+
+  /// No description provided for @examLevelWord.
+  ///
+  /// In es, this message translates to:
+  /// **'nivel {level}'**
+  String examLevelWord(String level);
+
+  /// No description provided for @examVerifiedBy.
+  ///
+  /// In es, this message translates to:
+  /// **'Verificado por el examen Jezici'**
+  String get examVerifiedBy;
+
+  /// No description provided for @examSkillsAtLevel.
+  ///
+  /// In es, this message translates to:
+  /// **'Las 4 habilidades en {level}'**
+  String examSkillsAtLevel(String level);
+
+  /// No description provided for @examSkillsWhyCertified.
+  ///
+  /// In es, this message translates to:
+  /// **'Todas alcanzan la meta — por eso se certifica'**
+  String get examSkillsWhyCertified;
+
+  /// No description provided for @examSkillsGoalHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Meta: {pct}% por habilidad'**
+  String examSkillsGoalHint(int pct);
+
+  /// No description provided for @examGoalTag.
+  ///
+  /// In es, this message translates to:
+  /// **'META {level}'**
+  String examGoalTag(String level);
+
+  /// No description provided for @examGlobalScore.
+  ///
+  /// In es, this message translates to:
+  /// **'Puntaje global'**
+  String get examGlobalScore;
+
+  /// No description provided for @examStrength.
+  ///
+  /// In es, this message translates to:
+  /// **'Fortaleza'**
+  String get examStrength;
+
+  /// No description provided for @examPolish.
+  ///
+  /// In es, this message translates to:
+  /// **'Pulir'**
+  String get examPolish;
+
+  /// No description provided for @examSeeCertificate.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver certificado'**
+  String get examSeeCertificate;
+
+  /// No description provided for @examShareCopied.
+  ///
+  /// In es, this message translates to:
+  /// **'Resultado copiado para compartir ✓'**
+  String get examShareCopied;
+
+  /// No description provided for @examRewards.
+  ///
+  /// In es, this message translates to:
+  /// **'+{xp} XP · +{gold} oro por certificar'**
+  String examRewards(int xp, int gold);
+
+  /// No description provided for @examNotYetCertified.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no certificas {level}'**
+  String examNotYetCertified(String level);
+
+  /// No description provided for @examRaiseSkill.
+  ///
+  /// In es, this message translates to:
+  /// **'sube tu {skill}'**
+  String examRaiseSkill(String skill);
+
+  /// No description provided for @examReinforceSkill.
+  ///
+  /// In es, this message translates to:
+  /// **'Reforzar {skill}'**
+  String examReinforceSkill(String skill);
+
+  /// No description provided for @examRetry.
+  ///
+  /// In es, this message translates to:
+  /// **'REINTENTAR EXAMEN'**
+  String get examRetry;
+
   /// No description provided for @missionAppBarTitle.
   ///
   /// In es, this message translates to:

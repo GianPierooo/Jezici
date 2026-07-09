@@ -1417,6 +1417,94 @@ class AppLocalizationsEn extends AppLocalizations {
   String get leagueMascotCheer => 'Keep climbing! 💪';
 
   @override
+  String get checkpointMapDone => 'UNIT ✓';
+
+  @override
+  String get checkpointMapNext => 'NEXT REGION';
+
+  @override
+  String checkpointFailCount(int n) {
+    return '$n misses';
+  }
+
+  @override
+  String get examPassedBadge => 'EXAM PASSED';
+
+  @override
+  String get examFailedBadge => 'NOT YET · SO CLOSE!';
+
+  @override
+  String get examPassedVerdict => 'Congratulations! You reached';
+
+  @override
+  String get examFailedVerdict => 'You haven\'t reached';
+
+  @override
+  String examLevelWord(String level) {
+    return 'level $level';
+  }
+
+  @override
+  String get examVerifiedBy => 'Verified by the Jezici exam';
+
+  @override
+  String examSkillsAtLevel(String level) {
+    return 'All 4 skills at $level';
+  }
+
+  @override
+  String get examSkillsWhyCertified =>
+      'All reach the goal — that\'s why it certifies';
+
+  @override
+  String examSkillsGoalHint(int pct) {
+    return 'Goal: $pct% per skill';
+  }
+
+  @override
+  String examGoalTag(String level) {
+    return 'GOAL $level';
+  }
+
+  @override
+  String get examGlobalScore => 'Global score';
+
+  @override
+  String get examStrength => 'Strength';
+
+  @override
+  String get examPolish => 'Polish';
+
+  @override
+  String get examSeeCertificate => 'See certificate';
+
+  @override
+  String get examShareCopied => 'Result copied to share ✓';
+
+  @override
+  String examRewards(int xp, int gold) {
+    return '+$xp XP · +$gold gold for certifying';
+  }
+
+  @override
+  String examNotYetCertified(String level) {
+    return 'You don\'t certify $level yet';
+  }
+
+  @override
+  String examRaiseSkill(String skill) {
+    return 'raise your $skill';
+  }
+
+  @override
+  String examReinforceSkill(String skill) {
+    return 'Reinforce $skill';
+  }
+
+  @override
+  String get examRetry => 'RETRY EXAM';
+
+  @override
   String get missionAppBarTitle => 'Mission';
 
   @override

@@ -5,6 +5,25 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-08**.
 
+## MOMENTOS DE APROBAR: Checkpoint + Examen fieles a sus mockups ✅ (2026-07-09 · solo cliente)
+Capa visual + datos reales; **NO cambia scoring/gating/certificación**.
+**F1 · Checkpoint resultado (Checkpoint.dc):** header con **guacamayo animado** (celebrate/encourage) + halo
+dorado; tarjeta "NUEVA REGIÓN DESBLOQUEADA" con **mini-mapa SVG del desbloqueo** (portal superado ✓ → camino
+punteado violeta→verde → siguiente región con glow) — el "momento wow". **Reprobado:** anillo de score real
+("64%") + "te faltaron N puntos" + filas de refuerzo **con conteo de fallos REALES** ("N fallos"). Degradación
+honesta: el RPC no expone fallos por TEMA → fallos reales POR HABILIDAD (`perSkill.graded − correct`).
+**F2 · Examen resultado (Examen.dc, reescrito — antes fondo plano con 🎓 y TODO hardcodeado en español):**
+header de celebración (gradiente + confeti + guacamayo + badge dorado **"EXAMEN SUPERADO"** / apagado "AÚN NO");
+"¡Felicidades! Alcanzaste el nivel X" + **"✓ Verificado por el examen Jezici"**; card **"Las 4 habilidades en
+X"** (barras = accuracy real por skill vs **línea de META punteada al umbral real** + tag "META X" + chip
+"N/4 ✓" + "Todas alcanzan la meta — por eso se certifica" — la regla REAL per-skill ≥80%); card **"Puntaje
+global"** (anillo N/100 = `score_global` real + chips Fortaleza/Pulir + grid de skills; el percentil "top 12%"
+NO existe → se omite, honesto); botones "Ver certificado" dorado + **compartir** (copia folio+verificación) +
+banner de recompensas. **Reprobado:** diagnóstico per-skill (barra de la más floja + "sube tu \<skill\>" +
+**"Reforzar \<skill\>"** → `startPractice` skill/debilidad real) + reintentar + volver. i18n es/en/pt (22 claves).
+Verde: analyze 0 · test 111/111 (+results_screens: aprobado examen, reprobado examen con Reforzar, reprobado
+checkpoint con anillo+fallos) · build web OK.
+
 ## PERFIL + LIGAS fieles a sus mockups ✅ (2026-07-09 · solo cliente)
 Capa visual + datos que ya existen; **NO cambia lógica de skills/ligas/scoring/economía**.
 **F1 · Perfil (Perfil.dc):** banner "pasaporte" full-bleed ("MI PERFIL" + campana/ajustes) con **avatar con

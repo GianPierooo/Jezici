@@ -1416,6 +1416,94 @@ class AppLocalizationsEs extends AppLocalizations {
   String get leagueMascotCheer => '¡Sigue subiendo! 💪';
 
   @override
+  String get checkpointMapDone => 'UNIDAD ✓';
+
+  @override
+  String get checkpointMapNext => 'SIGUIENTE REGIÓN';
+
+  @override
+  String checkpointFailCount(int n) {
+    return '$n fallos';
+  }
+
+  @override
+  String get examPassedBadge => 'EXAMEN SUPERADO';
+
+  @override
+  String get examFailedBadge => 'AÚN NO · ¡CASI!';
+
+  @override
+  String get examPassedVerdict => '¡Felicidades! Alcanzaste el';
+
+  @override
+  String get examFailedVerdict => 'Aún no alcanzas el';
+
+  @override
+  String examLevelWord(String level) {
+    return 'nivel $level';
+  }
+
+  @override
+  String get examVerifiedBy => 'Verificado por el examen Jezici';
+
+  @override
+  String examSkillsAtLevel(String level) {
+    return 'Las 4 habilidades en $level';
+  }
+
+  @override
+  String get examSkillsWhyCertified =>
+      'Todas alcanzan la meta — por eso se certifica';
+
+  @override
+  String examSkillsGoalHint(int pct) {
+    return 'Meta: $pct% por habilidad';
+  }
+
+  @override
+  String examGoalTag(String level) {
+    return 'META $level';
+  }
+
+  @override
+  String get examGlobalScore => 'Puntaje global';
+
+  @override
+  String get examStrength => 'Fortaleza';
+
+  @override
+  String get examPolish => 'Pulir';
+
+  @override
+  String get examSeeCertificate => 'Ver certificado';
+
+  @override
+  String get examShareCopied => 'Resultado copiado para compartir ✓';
+
+  @override
+  String examRewards(int xp, int gold) {
+    return '+$xp XP · +$gold oro por certificar';
+  }
+
+  @override
+  String examNotYetCertified(String level) {
+    return 'Aún no certificas $level';
+  }
+
+  @override
+  String examRaiseSkill(String skill) {
+    return 'sube tu $skill';
+  }
+
+  @override
+  String examReinforceSkill(String skill) {
+    return 'Reforzar $skill';
+  }
+
+  @override
+  String get examRetry => 'REINTENTAR EXAMEN';
+
+  @override
   String get missionAppBarTitle => 'Misión';
 
   @override

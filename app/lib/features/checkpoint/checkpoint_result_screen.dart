@@ -9,6 +9,7 @@ import '../../l10n/app_localizations.dart';
 import '../../l10n/skill_names.dart';
 import '../../ui/primary_button.dart';
 import '../../ui/progress_bar.dart';
+import '../learn/widgets/parrot_mascot.dart';
 import 'checkpoint_intro_screen.dart';
 
 /// Resultado del checkpoint (mockup Frame B): veredicto, desglose por las 4
@@ -126,7 +127,11 @@ class _CheckpointResultScreenState extends State<CheckpointResultScreen> {
                       onPressed: () => Navigator.of(context).popUntil((r) => r.isFirst),
                     ),
                   ] else ...[
-                    _Reinforce(weaknesses: r.weaknesses, scorePct: r.scorePct, thresholdPct: r.thresholdPct),
+                    _Reinforce(
+                        weaknesses: r.weaknesses,
+                        perSkill: r.perSkill,
+                        scorePct: r.scorePct,
+                        thresholdPct: r.thresholdPct),
                     const SizedBox(height: 18),
                     PrimaryButton(
                       label: l10n.checkpointRetry,
@@ -196,12 +201,30 @@ class _Header extends StatelessWidget {
                 colors: const [AppColors.gold, AppColors.coral, AppColors.success, Colors.white],
               ),
             ),
+          // Halo dorado detrás del guacamayo (jzGlow del mockup, estático-suave).
+          if (passed)
+            Align(
+              alignment: const Alignment(0, -0.55),
+              child: Container(
+                width: 170,
+                height: 170,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: RadialGradient(colors: [
+                    AppColors.gold.withValues(alpha: 0.35),
+                    AppColors.gold.withValues(alpha: 0),
+                  ]),
+                ),
+              ),
+            ),
           Padding(
             padding: const EdgeInsets.only(top: 36),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text('🦜', style: TextStyle(fontSize: 80)),
+                ParrotMascot(
+                    size: 72,
+                    mood: passed ? MascotMood.celebrate : MascotMood.encourage),
                 const SizedBox(height: 6),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 5),
@@ -327,7 +350,145 @@ class _RegionUnlock extends StatelessWidget {
                   color: Colors.white),
             ),
           ),
-          const SizedBox(height: 10),
+          // Mini-mapa del desbloqueo (Checkpoint.dc): portal superado (✓) →
+          // camino punteado → siguiente región con glow. El "momento wow".
+          if (nextUnlocked) ...[
+            SizedBox(
+              height: 112,
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child: CustomPaint(painter: _UnlockMapPainter()),
+                  ),
+                  // Portal superado (izquierda).
+                  Positioned(
+                    left: 4,
+                    top: 28,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          width: 52,
+                          height: 50,
+                          child: Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              Container(
+                                width: 48,
+                                height: 44,
+                                decoration: BoxDecoration(
+                                  gradient: const LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [Color(0xFF8474F0), AppColors.primary]),
+                                  borderRadius: const BorderRadius.vertical(
+                                      top: Radius.circular(14), bottom: Radius.circular(10)),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                        color: AppColors.primaryDark,
+                                        offset: Offset(0, 4),
+                                        blurRadius: 0)
+                                  ],
+                                ),
+                                alignment: Alignment.center,
+                                child: Container(
+                                  width: 20,
+                                  height: 26,
+                                  decoration: const BoxDecoration(
+                                    gradient: LinearGradient(
+                                        begin: Alignment.topCenter,
+                                        end: Alignment.bottomCenter,
+                                        colors: [Color(0xFFFFE9A8), AppColors.gold]),
+                                    borderRadius: BorderRadius.vertical(
+                                        top: Radius.circular(10), bottom: Radius.circular(4)),
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                bottom: -4,
+                                left: 15,
+                                child: Container(
+                                  width: 18,
+                                  height: 18,
+                                  decoration: BoxDecoration(
+                                    color: AppColors.success,
+                                    shape: BoxShape.circle,
+                                    border: Border.all(color: Colors.white, width: 2),
+                                  ),
+                                  child: const Icon(Icons.check_rounded,
+                                      color: Colors.white, size: 10),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 6),
+                        Text(l10n.checkpointMapDone,
+                            style: const TextStyle(
+                                fontSize: 8.5,
+                                fontWeight: FontWeight.w900,
+                                color: AppColors.primary)),
+                      ],
+                    ),
+                  ),
+                  // Siguiente región con glow (derecha).
+                  Positioned(
+                    right: 2,
+                    top: 8,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          width: 58,
+                          height: 58,
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Container(
+                                width: 58,
+                                height: 58,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  gradient: RadialGradient(colors: [
+                                    AppColors.success.withValues(alpha: 0.4),
+                                    AppColors.success.withValues(alpha: 0),
+                                  ]),
+                                ),
+                              ),
+                              Container(
+                                width: 50,
+                                height: 50,
+                                decoration: const BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [Color(0xFF3FD97E), AppColors.success]),
+                                  shape: BoxShape.circle,
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: AppColors.successDark,
+                                        offset: Offset(0, 4),
+                                        blurRadius: 0)
+                                  ],
+                                ),
+                                child: const Icon(Icons.play_arrow_rounded,
+                                    color: Colors.white, size: 24),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 3),
+                        Text(l10n.checkpointMapNext,
+                            style: const TextStyle(
+                                fontSize: 8.5,
+                                fontWeight: FontWeight.w900,
+                                color: Color(0xFF1B8E4E))),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 6),
+          ],
           Row(
             children: [
               const Icon(Icons.check_circle_rounded, color: AppColors.success, size: 26),
@@ -347,6 +508,60 @@ class _RegionUnlock extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Fondo del mini-mapa: colina + costa insinuada + camino punteado que pasa de
+/// violeta (recorrido) a verde (por recorrer) — Checkpoint.dc.
+class _UnlockMapPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final w = size.width, h = size.height;
+    // Colina.
+    final hill = Path()
+      ..moveTo(0, h * 0.8)
+      ..quadraticBezierTo(w * 0.27, h * 0.56, w * 0.54, h * 0.74)
+      ..quadraticBezierTo(w * 0.78, h * 0.88, w, h * 0.52)
+      ..lineTo(w, h)
+      ..lineTo(0, h)
+      ..close();
+    canvas.drawPath(hill, Paint()..color = const Color(0xFFD9F0E2));
+    // Costa insinuada (derecha).
+    final coast = Path()
+      ..moveTo(w * 0.74, h * 0.56)
+      ..quadraticBezierTo(w * 0.87, h * 0.5, w, h * 0.56)
+      ..lineTo(w, h)
+      ..lineTo(w * 0.74, h)
+      ..close();
+    canvas.drawPath(coast, Paint()..color = const Color(0xFFBFE7F0).withValues(alpha: 0.7));
+    // Camino punteado: tramo recorrido (violeta) y tramo nuevo (verde).
+    void dots(Path p, Color color) {
+      final paint = Paint()..color = color;
+      for (final m in p.computeMetrics()) {
+        var d = 0.0;
+        while (d < m.length) {
+          final t = m.getTangentForOffset(d);
+          if (t != null) canvas.drawCircle(t.position, 2.4, paint);
+          d += 12;
+        }
+      }
+    }
+
+    dots(
+      Path()
+        ..moveTo(w * 0.17, h * 0.62)
+        ..quadraticBezierTo(w * 0.3, h * 0.54, w * 0.45, h * 0.64),
+      const Color(0xFFC7BEF0),
+    );
+    dots(
+      Path()
+        ..moveTo(w * 0.55, h * 0.58)
+        ..quadraticBezierTo(w * 0.72, h * 0.48, w * 0.86, h * 0.34),
+      const Color(0xFF9FD9C2),
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant _UnlockMapPainter old) => false;
 }
 
 class _Reward extends StatelessWidget {
@@ -400,15 +615,34 @@ class _Reward extends StatelessWidget {
 }
 
 class _Reinforce extends StatelessWidget {
-  const _Reinforce({required this.weaknesses, required this.scorePct, required this.thresholdPct});
+  const _Reinforce({
+    required this.weaknesses,
+    required this.perSkill,
+    required this.scorePct,
+    required this.thresholdPct,
+  });
   final List<String> weaknesses;
+  final List<SkillScore> perSkill;
   final int scorePct;
   final int thresholdPct;
+
+  static const _skillIcons = {
+    'reading': Icons.menu_book_rounded,
+    'listening': Icons.headphones_rounded,
+    'writing': Icons.edit_rounded,
+    'speaking': Icons.mic_rounded,
+  };
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final missing = (thresholdPct - scorePct).clamp(0, 100);
+    // Fallos REALES por habilidad (total - correct de los ítems calificados).
+    // (El servidor no expone fallos por TEMA → degradación honesta al dato real.)
+    final fails = [
+      for (final s in perSkill)
+        if (s.isGraded && (s.graded - s.correct) > 0) (s.skill, s.graded - s.correct),
+    ]..sort((a, b) => b.$2.compareTo(a.$2));
     return Container(
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
@@ -419,10 +653,43 @@ class _Reinforce extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(l10n.checkpointMissingPoints(missing, thresholdPct),
-              style: const TextStyle(
-                  fontSize: 13.5, fontWeight: FontWeight.w900, color: AppColors.text)),
-          const SizedBox(height: 12),
+          // Anillo de score (Checkpoint.dc): "64%" + te faltaron N puntos.
+          Row(
+            children: [
+              SizedBox(
+                width: 52,
+                height: 52,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    SizedBox(
+                      width: 52,
+                      height: 52,
+                      child: CircularProgressIndicator(
+                        value: (scorePct / 100).clamp(0.0, 1.0),
+                        strokeWidth: 6,
+                        strokeCap: StrokeCap.round,
+                        backgroundColor: const Color(0xFFF0F1F8),
+                        valueColor: const AlwaysStoppedAnimation(AppColors.coral),
+                      ),
+                    ),
+                    Text('$scorePct%',
+                        style: const TextStyle(
+                            fontSize: 12.5,
+                            fontWeight: FontWeight.w900,
+                            color: AppColors.hearts)),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(l10n.checkpointMissingPoints(missing, thresholdPct),
+                    style: const TextStyle(
+                        fontSize: 13.5, fontWeight: FontWeight.w900, color: AppColors.text)),
+              ),
+            ],
+          ),
+          const SizedBox(height: 13),
           Text(l10n.checkpointReinforceTitle,
               style: const TextStyle(
                   fontSize: 11,
@@ -430,10 +697,52 @@ class _Reinforce extends StatelessWidget {
                   letterSpacing: 0.4,
                   color: AppColors.textMuted)),
           const SizedBox(height: 8),
-          if (weaknesses.isEmpty)
+          if (fails.isEmpty && weaknesses.isEmpty)
             Text(l10n.checkpointReinforceEmpty,
                 style: const TextStyle(
                     fontSize: 12.5, fontWeight: FontWeight.w800, color: AppColors.textMuted))
+          else if (fails.isNotEmpty)
+            // Filas con CONTEO DE FALLOS reales (formato del mockup).
+            Column(
+              children: [
+                for (final (skill, n) in fails)
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 7),
+                    padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 9),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: const Color(0xFFEEF0F7), width: 1.5),
+                    ),
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 22,
+                          height: 22,
+                          decoration: BoxDecoration(
+                              color: const Color(0xFFFFEFEF),
+                              borderRadius: BorderRadius.circular(7)),
+                          child: Icon(_skillIcons[skill] ?? Icons.star_rounded,
+                              size: 13, color: AppColors.coral),
+                        ),
+                        const SizedBox(width: 9),
+                        Expanded(
+                          child: Text(skillName(l10n, skill),
+                              style: const TextStyle(
+                                  fontSize: 12.5,
+                                  fontWeight: FontWeight.w900,
+                                  color: AppColors.text)),
+                        ),
+                        Text(l10n.checkpointFailCount(n),
+                            style: const TextStyle(
+                                fontSize: 10,
+                                fontWeight: FontWeight.w900,
+                                color: AppColors.hearts)),
+                      ],
+                    ),
+                  ),
+              ],
+            )
           else
             Wrap(
               spacing: 8,

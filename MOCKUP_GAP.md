@@ -102,8 +102,8 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
 - Desviaciones:
   - [P1] Intro sin escenografía (estrellas jzTwinkle, montañas, portal SVG tallado) — portal geométrico simple; loro sin burbuja ("¡Demuestra lo que sabes!" como texto plano).
   - [P1] Intro sin chips "QUÉ ENTRA" (temas de la unidad).
-  - [P1] Resultado sin mini-mapa SVG del desbloqueo (nodo check + siguiente unidad con glow) — el "momento wow".
-  - [P1] Reprobado sin anillo de score ("64%") y con "REFUERZA ESTAS HABILIDADES" (skills) en vez de "REFUERZA ESTOS TEMAS" con conteo de fallos por tema.
+  - [P1] ✅ **ARREGLADO (2026-07-09):** el resultado aprobado tiene **mini-mapa SVG del desbloqueo** (portal superado con ✓ → camino punteado violeta→verde → siguiente región con glow) dentro de "NUEVA REGIÓN DESBLOQUEADA" — el "momento wow". + Guacamayo animado (celebrate/encourage) y halo dorado en el header.
+  - [P1] ✅ **ARREGLADO:** reprobado con **anillo de score real** ("64%") + filas de refuerzo **con conteo de fallos reales** ("N fallos", formato del mockup). Degradación honesta: el servidor no expone fallos por TEMA → se usan los fallos reales POR HABILIDAD (`perSkill.graded - correct`).
   - [P2] Stats de intro hardcodeadas ("5 min / 10") vs datos reales del servidor; iconos monocolor; título sin nº de unidad; "SUPERADO"→"APROBADO"; borde dashed→sólido.
 - No implementado del mockup: portal SVG + estrellas, burbuja del loro, chips de temas, mini-mapa, anillo de %, temas fallados, jzCheer/jzGlow. (Extra app: desglose por habilidad.)
 
@@ -112,11 +112,11 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
 - Estado: **MUY DESVIADO** · Esfuerzo: **L + L**
 - Coincide: veredicto con nivel y umbral; desglose per-skill (concepto); CTA dorado; rama reprobado con reintento; certificado con doble marco, folio y verificación server-side reales.
 - Desviaciones:
-  - [P0] Resultado sin header de celebración (gradiente+confeti+loro graduado+badge "EXAMEN SUPERADO") — fondo plano con 🎓.
-  - [P0] Sin card "Las 4 habilidades en B1" (barras con línea de META punteada, chip "4/4 ✓", escala CEFR, "por eso se certifica") — la app muestra % de aciertos, no niveles vs meta.
-  - [P0] Sin card "Puntaje global" (anillo 87/100, "top 12%", fortaleza/pulir, grid de secciones).
+  - [P0] ✅ **ARREGLADO (2026-07-09):** header de celebración (gradiente violeta + confeti + guacamayo + halo + badge dorado "EXAMEN SUPERADO"; reprobado = gradiente apagado + "AÚN NO · ¡CASI!").
+  - [P0] ✅ **ARREGLADO:** card "Las 4 habilidades en \<nivel\>" con barras (accuracy real por skill) vs **línea de META punteada al umbral real** + tag "META X" + chip "N/4 ✓" + escala 0/umbral/100 + "Todas alcanzan la meta — por eso se certifica" (la regla REAL de certificación per-skill ≥80%).
+  - [P0] ✅ **ARREGLADO:** card "Puntaje global" (anillo N/100 con `score_global` real + chips Fortaleza/Pulir por mejor/peor skill + grid de skills). **Degradación honesta:** el percentil "top 12%" del mockup NO existe en el servidor → se omite.
   - [P0] ✅ **ARREGLADO (mig 133, 2026-07-08):** el certificado imprime el NOMBRE del titular ("Se certifica que <NOMBRE>"). Columna `holder_name` congelada al emitir (trigger desde users, misma fuente que get_profile) + backfill + `get_certificates` lo devuelve; `CertificateScreen` lo muestra (fallback a get_profile). Verificado cliente real (`verify_p0_product.py`).
-  - [P1] Reprobado sin diagnóstico per-skill ("sube tu Speaking" + botón "Reforzar Speaking"); sin botón compartir cuadrado; sin línea "✓ Verificado por el examen Jezici".
+  - [P1] ✅ **ARREGLADO:** reprobado con **diagnóstico per-skill** (barra de la skill más floja + "Aún no certificas X: sube tu \<skill\>" + botón "Reforzar \<skill\>" → práctica real por skill/debilidad); **botón compartir cuadrado** (copia folio+verificación); línea "✓ Verificado por el examen Jezici" en aprobado. Todo i18n es/en/pt (antes la pantalla estaba hardcodeada en español).
   - [P1] Certificado: sin ambiente oscuro (papel crema sobre `#1C1B2E`), sin marco ornamental dorado (violeta en su lugar), sin serif ceremonial (Playfair), sin sello "VERIFICADO" ni marca de agua; acciones sin "Descargar PDF" ni share LinkedIn.
   - [P2] Metadatos fuera de la tarjeta; sin URL pública de verificación; "Certificado de Inglés" hardcodeado (no course-aware).
 - No implementado del mockup: celebración, META por skill, puntaje global/percentil, nombre del titular, sello/serif/oscuro, PDF, URL de verificación.
