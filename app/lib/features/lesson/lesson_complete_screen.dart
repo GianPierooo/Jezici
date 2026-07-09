@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/feedback/feedback_fx.dart';
+import '../../core/plan/estimation.dart';
 import '../../core/speech/speakable_text.dart';
 import '../../core/theme/app_colors.dart';
 import '../learn/widgets/parrot_mascot.dart';
@@ -37,6 +38,9 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
     _confetti = ConfettiController(duration: const Duration(seconds: 2));
     _confetti.play();
     FeedbackFx.lessonComplete(golden: widget.summary.status == 'golden');
+    // Refresca los niveles de skill: complete_lesson ya corrió en el servidor →
+    // la tarjeta del fin muestra el CEFR/progreso POST-lección (dato fresco real).
+    ref.invalidate(skillsProvider);
     _loadTip();
   }
 
@@ -300,69 +304,14 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
                   ],
                   if (r.skillsUp.isNotEmpty) ...[
                     const SizedBox(height: 13),
-                    Container(
-                      padding: const EdgeInsets.all(15),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(18),
-                        boxShadow: const [
-                          BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 4), blurRadius: 0),
-                        ],
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Container(
-                                width: 40,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFFE7F9EF),
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: const Icon(Icons.insights_rounded,
-                                    color: AppColors.success, size: 20),
-                              ),
-                              const SizedBox(width: 11),
-                              Expanded(
-                                child: Text(
-                                  l10n.lessonCompleteSkillsUp,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w900,
-                                    color: AppColors.text,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 10),
-                          Wrap(
-                            spacing: 8,
-                            runSpacing: 8,
-                            children: [
-                              for (final s in r.skillsUp)
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 11, vertical: 6),
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xFFE7F9EF),
-                                    borderRadius: BorderRadius.circular(11),
-                                  ),
-                                  child: Text(
-                                    '${skillName(l10n, s)} ▲',
-                                    style: const TextStyle(
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w900,
-                                      color: AppColors.successDark,
-                                    ),
-                                  ),
-                                ),
-                            ],
-                          ),
-                        ],
-                      ),
+                    _SkillsUpCard(
+                      skillsUp: r.skillsUp,
+                      // Niveles reales (post-lección). Puede estar cargando → la
+                      // card degrada a chips simples si aún no hay dato.
+                      levels: {
+                        for (final sl in (ref.watch(skillsProvider).value ?? const <SkillLevel>[]))
+                          sl.skill: sl
+                      },
                     ),
                   ],
                   // Tarjeta de TIP (capa "enseña"): personalizada a la skill débil,
@@ -386,6 +335,188 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// Tarjeta de habilidades que subieron (Leccion.dc Frame B): por cada skill que
+/// ganó puntos, fila con icono + nombre + badge "▲" + BARRA DE PROGRESO real
+/// (avance dentro del nivel) + CHIP DE NIVEL CEFR real, y un PIE MOTIVACIONAL
+/// ("Sigue así para alcanzar B1…") con el siguiente nivel real de la skill más
+/// baja. Todo dato real de `user_skill_levels`; si aún no cargó, degrada a un
+/// chip simple (no inventa progreso ni nivel).
+class _SkillsUpCard extends StatelessWidget {
+  const _SkillsUpCard({required this.skillsUp, required this.levels});
+  final List<String> skillsUp;
+  final Map<String, SkillLevel> levels;
+
+  static IconData _iconFor(String skill) => switch (skill) {
+        'listening' => Icons.headphones_rounded,
+        'writing' => Icons.edit_rounded,
+        'speaking' => Icons.mic_rounded,
+        _ => Icons.menu_book_rounded,
+      };
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    // Skill con dato real de nivel más BAJO → la que más se acerca al certificado
+    // al mejorar; su siguiente CEFR alimenta el pie motivacional.
+    SkillLevel? lowest;
+    for (final s in skillsUp) {
+      final sl = levels[s];
+      if (sl == null) continue;
+      if (lowest == null ||
+          CefrTable.rank(sl.cefrLevel) < CefrTable.rank(lowest.cefrLevel) ||
+          (CefrTable.rank(sl.cefrLevel) == CefrTable.rank(lowest.cefrLevel) &&
+              sl.progressPoints < lowest.progressPoints)) {
+        lowest = sl;
+      }
+    }
+    return Container(
+      padding: const EdgeInsets.all(15),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(18),
+        boxShadow: const [
+          BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 4), blurRadius: 0),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                width: 40,
+                height: 40,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFE7F9EF),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Icon(Icons.insights_rounded, color: AppColors.success, size: 20),
+              ),
+              const SizedBox(width: 11),
+              Expanded(
+                child: Text(
+                  l10n.lessonCompleteSkillsUp,
+                  style: const TextStyle(
+                      fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.text),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+          for (final s in skillsUp)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: levels[s] == null
+                  ? _SkillChip(name: skillName(l10n, s))
+                  : _SkillUpRow(name: skillName(l10n, s), level: levels[s]!),
+            ),
+          if (lowest != null)
+            Text(
+              l10n.lessonCompleteSkillNext(CefrTable.next(lowest.cefrLevel)),
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  fontSize: 11, fontWeight: FontWeight.w800, color: AppColors.textMuted),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Fila rica de skill con barra de progreso real + chip CEFR (Leccion.dc).
+class _SkillUpRow extends StatelessWidget {
+  const _SkillUpRow({required this.name, required this.level});
+  final String name;
+  final SkillLevel level;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Row(
+      children: [
+        Container(
+          width: 40,
+          height: 40,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: const Color(0xFFE7F9EF),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Icon(_SkillsUpCard._iconFor(level.skill), color: AppColors.success, size: 20),
+        ),
+        const SizedBox(width: 11),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Flexible(
+                    child: Text(name,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.text)),
+                  ),
+                  const SizedBox(width: 8),
+                  Text(l10n.lessonCompleteSkillAdvanced,
+                      style: const TextStyle(
+                          fontSize: 12, fontWeight: FontWeight.w900, color: AppColors.success)),
+                ],
+              ),
+              const SizedBox(height: 5),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: LinearProgressIndicator(
+                  value: level.levelProgress,
+                  minHeight: 8,
+                  backgroundColor: const Color(0xFFF0F1F8),
+                  valueColor: const AlwaysStoppedAnimation(AppColors.success),
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(width: 10),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 3),
+          decoration: BoxDecoration(
+            color: AppColors.coral,
+            borderRadius: BorderRadius.circular(9),
+          ),
+          child: Text(level.cefrLevel,
+              style: const TextStyle(
+                  fontSize: 12, fontWeight: FontWeight.w900, color: Colors.white)),
+        ),
+      ],
+    );
+  }
+}
+
+/// Chip simple (fallback cuando aún no cargó el nivel real de la skill).
+class _SkillChip extends StatelessWidget {
+  const _SkillChip({required this.name});
+  final String name;
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 6),
+        decoration: BoxDecoration(
+          color: const Color(0xFFE7F9EF),
+          borderRadius: BorderRadius.circular(11),
+        ),
+        child: Text('$name ▲',
+            style: const TextStyle(
+                fontSize: 12, fontWeight: FontWeight.w900, color: AppColors.successDark)),
       ),
     );
   }

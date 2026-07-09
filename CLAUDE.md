@@ -5,6 +5,32 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-09**.
 
+## LECCIÓN: pulido fiel a Leccion.dc ✅ (2026-07-09 · solo cliente)
+Capa visual + TTS (determinista, cero IA). **NO toca grading/loop/scoring.**
+- **F1 · Labio 3D en el CTA del loop (`_BigButton` COMPROBAR/CONTINUAR):** era un `Container` plano
+  (radius 16, sin labio ni hundido) → ahora StatefulWidget con **sombra dura `0 6px 0 <depthColor>` +
+  hundido al presionar** (translateY 4, 6→2px), idéntico a `PrimaryButton` y al mockup (COMPROBAR
+  `0 6px 0 #4B3FC9`, CONTINUAR verde `#1E9B52`, coral `#D6294B`, deshabilitado gris `#B3B8CC`).
+  Reduce-motion-aware. Los 3 call-sites pasan `depthColor` real (el feedback ya calculaba `accentDark`).
+- **F2 · Altavoz TTS en la frase origen (word_bank/reorder):** el enunciado con frase ENTRECOMILLADA
+  lleva un **botón altavoz** (tile 40 violeta claro, icono violeta) a la izquierda (`_PromptText` +
+  `promptSourcePhrase` extrae « »/" "/" "). **Decisión honesta (discrepancia doc↔BD):** el prompt de
+  estos ítems es SIEMPRE la frase ORIGEN en **español** (es→X; mig 068 la puso en español para no
+  revelar). Leerla con voz meta la destrozaría, y leer la traducción META **revelaría la respuesta**
+  (el reto es el orden) → el altavoz usa **voz española** (`WordTts.speakSource`, fijo `es-ES`). El TTS
+  de tile sigue pronunciando las palabras META al tocarlas (pronunciación meta cubierta). Si el
+  enunciado no tiene comillas (reorder genérico), NO se pinta el altavoz. Tap → sin unlock iOS,
+  interrumpible, degrada con gracia.
+- **F3 · Tarjeta de skills del fin enriquecida (dato real):** por cada skill que subió, fila con icono +
+  nombre + badge "▲" + **barra de progreso real** (`levelProgress` de `user_skill_levels`) + **chip CEFR
+  real** + **pie motivacional** ("Sigue así para alcanzar \<siguiente CEFR real\>…", `CefrTable.next` de
+  la skill de nivel más bajo). Se **invalida `skillsProvider`** al entrar → datos POST-lección frescos.
+  **Degrada** a chip simple si el nivel aún no cargó (no inventa progreso/nivel).
+- Diferido honesto (P2): guacamayo SVG + globo en la fila del enunciado (el asset es emoji, no SVG →
+  no se fuerza); confeti ráfaga vs loop; gradiente del CONTINUAR final.
+i18n es/en/pt (3 claves). Verde: analyze 0 (CI-exact) · test 120/120 (+F3 skills card, +F2 extracción
+frase) · build web OK.
+
 ## AJUSTES fiel a Ajustes.dc ✅ (2026-07-09 · solo cliente)
 Capa visual + estructura; **NO toca la lógica de settings/personalidad/economía** (updateSettings/
 create_plan/setActiveCourse intactos). `settings_screen.dart` era una lista plana de cards con

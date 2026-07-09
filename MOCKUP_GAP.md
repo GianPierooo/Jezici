@@ -73,16 +73,25 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
 
 ## 2) Lección (loop + fin)
 - Mockup: mockups/Leccion.dc.html · Implementación: `lesson_player_screen.dart`, `lesson_complete_screen.dart`, `lesson_preview_screen.dart`, `exercises/common.dart`
-- Estado: **DESVIADO** (el más cercano de todos) · Esfuerzo: **M**
+- Estado: ✅ **FIEL (2026-07-09)** (el más cercano de todos) · Esfuerzo: **M**
 - Coincide: top bar (X, barra, corazón `#FF4D6D`, chip skill `#EDEBFF`) hex exactos; zona de construcción + placeholder copy y hex EXACTOS; `JzTile` prácticamente exacta (labio `0 4px 0 #D4D8E8`); COMPROBAR habilitado/deshabilitado exactos; feedback `#E5F8EE/#FFE9ED` exactos + animación de entrada fiel; Frame B: gradiente header EXACTO, tiles XP/PRECISIÓN/ORO exactos, combo y racha fieles, confetti.
-- Desviaciones:
-  - [P1] Fila del enunciado sin guacamayo+globo y sin BOTÓN ALTAVOZ junto a la frase origen (word_bank/reorder = texto plano).
-  - [P1] `_BigButton` (COMPROBAR/CONTINUAR del loop) SIN labio 3D ni estado presionado — rompe el estilo firma en el CTA más usado; inconsistente con `PrimaryButton` que sí lo tiene.
-  - [P2] Copy feedback: falta "+15 XP · combo x3 🔥" en la franja (el combo vive en el top bar); "Casi…" ≠ "No del todo 🦜" (la app además tiene estado near dorado que el mockup no contempla).
-  - [P2] Zona de construcción sin líneas-guía; minHeight 96 vs 118.
-  - [P2] Tarjeta de skills del fin sin barra de progreso, chip de nivel ni pie motivacional ("Sigue así para alcanzar B1…").
-  - [P2] Chip racha "+1" verde vs "+1 hoy" blanco/naranja; CONTINUAR final sin gradiente; confetti ráfaga vs loop.
-- No implementado del mockup: altavoz TTS en frase origen, loro SVG, barra+nivel+pie de skill, glow del header. (Extras app: estado near, hito racha, congelador, DailyGoalBar, TipCard, repaso de errores.)
+- ✅ **ARREGLADO (2026-07-09 · solo cliente, NO toca grading/loop/scoring):**
+  - **[P1] Labio 3D en `_BigButton`** (COMPROBAR/CONTINUAR): sombra dura `0 6px 0 <depthColor>` + hundido al
+    presionar (translateY 4), idéntico a `PrimaryButton`/mockup. Reduce-motion-aware. Los 3 call-sites pasan
+    el `depthColor` real (primary/success/coral/gold/deshabilitado).
+  - **[P1] Botón ALTAVOZ en la frase origen** (word_bank/reorder): `_PromptText` pinta un tile altavoz junto
+    al enunciado entrecomillado. **Voz española** (`WordTts.speakSource`, `es-ES`): la frase origen es siempre
+    español (es→X; mig 068 anti-reveal) → leer la traducción META revelaría la respuesta y la voz meta
+    destrozaría el español. Sin comillas → sin altavoz. Complementa el TTS de tile (voz META por palabra).
+  - **[P2] Tarjeta de skills del fin** con **barra de progreso + chip CEFR + pie motivacional** ("Sigue así
+    para alcanzar B1…"), todo dato real de `user_skill_levels` (`skillsProvider` invalidado al entrar → fresco);
+    degrada a chip simple si aún no cargó.
+- Desviaciones restantes (P2, no bloqueantes):
+  - Copy feedback: "+15 XP · combo x3 🔥" en la franja (el combo vive en el top bar); estado near dorado (extra app).
+  - Zona de construcción sin líneas-guía; minHeight 96 vs 118.
+  - Guacamayo+globo en la fila del enunciado: **diferido honesto** (la mascota es emoji, no SVG → no se fuerza).
+  - Chip racha "+1" verde vs "+1 hoy" naranja; CONTINUAR final sin gradiente; confetti ráfaga vs loop; glow del header.
+- Extras app (más allá del mockup): estado near, hito racha, congelador, DailyGoalBar, TipCard, repaso de errores.
 
 ## 3) SinVidas
 - Mockup: mockups/SinVidas.dc.html · Implementación: `lesson/widgets/no_hearts_sheet.dart`

@@ -926,6 +926,14 @@ class AppLocalizationsEn extends AppLocalizations {
   String get lessonCompleteSkillsUp => 'Skills that leveled up';
 
   @override
+  String lessonCompleteSkillNext(String level) {
+    return 'Keep it up to reach $level and get closer to the certificate';
+  }
+
+  @override
+  String get lessonCompleteSkillAdvanced => '▲ up';
+
+  @override
   String tipCardHeader(String type) {
     return 'Matix teaches you · $type';
   }

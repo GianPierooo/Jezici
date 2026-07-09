@@ -288,6 +288,8 @@
   "lessonCompleteFreezeSingle": "Your streak freeze saved your streak",
   "lessonCompleteFreezeMulti": "Your streak freezes saved your streak",
   "lessonCompleteSkillsUp": "Skills that leveled up",
+  "lessonCompleteSkillNext": "Keep it up to reach {level} and get closer to the certificate",
+  "lessonCompleteSkillAdvanced": "▲ up",
   "tipCardHeader": "Matix teaches you · {type}",
   "tipCardPersonalized": "I'm giving you this because your {skill} needs a boost. 🦜",
 

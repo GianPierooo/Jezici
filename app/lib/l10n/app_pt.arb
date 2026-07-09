@@ -288,6 +288,8 @@
   "lessonCompleteFreezeSingle": "Seu congelador salvou sua ofensiva",
   "lessonCompleteFreezeMulti": "Seus congeladores salvaram sua ofensiva",
   "lessonCompleteSkillsUp": "Habilidades que subiram",
+  "lessonCompleteSkillNext": "Continue assim para alcançar {level} e chegar mais perto do certificado",
+  "lessonCompleteSkillAdvanced": "▲ subiu",
   "tipCardHeader": "Matix ensina você · {type}",
   "tipCardPersonalized": "Estou te dando isto porque sua {skill} precisa de um empurrão. 🦜",
 

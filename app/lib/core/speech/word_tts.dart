@@ -12,4 +12,15 @@ class WordTts {
     if (w.isEmpty) return;
     impl.speakWord(w, SpeechLang.tts);
   }
+
+  /// Pronuncia la frase ORIGEN (español) del enunciado de un word_bank/reorder.
+  /// Fijo `es-ES`: los 6 cursos son es→X, así que la frase a traducir es siempre
+  /// española → se lee con voz española (NO con la voz meta, que la destrozaría; y
+  /// NO se lee la traducción meta, que revelaría la respuesta — mig 068). Mismo
+  /// motor que `speak` (Web Speech en web, no-op fuera → degrada con gracia).
+  static void speakSource(String phrase) {
+    final w = phrase.trim();
+    if (w.isEmpty) return;
+    impl.speakWord(w, 'es-ES');
+  }
 }

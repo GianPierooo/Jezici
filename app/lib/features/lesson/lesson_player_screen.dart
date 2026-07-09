@@ -5,6 +5,7 @@ import '../../core/audio/audio_engine.dart';
 import '../../core/audio/music_service.dart';
 import '../../core/feedback/feedback_fx.dart';
 import '../../core/speech/speech_recognizer.dart';
+import '../../core/speech/word_tts.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/ui/jz_transitions.dart';
 import '../../core/ui/responsive_center.dart';
@@ -386,15 +387,7 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
                     if ((_item.prompt ?? '').isNotEmpty)
                       Padding(
                         padding: const EdgeInsets.only(bottom: 18),
-                        child: Text(
-                          _item.prompt!,
-                          style: const TextStyle(
-                            fontSize: 21,
-                            fontWeight: FontWeight.w900,
-                            color: AppColors.text,
-                            height: 1.3,
-                          ),
-                        ),
+                        child: _PromptText(item: _item),
                       ),
                     KeyedSubtree(
                       key: ValueKey(_item.id),
@@ -602,6 +595,7 @@ class _BottomArea extends StatelessWidget {
           child: _BigButton(
             label: l10n.commonContinue,
             color: AppColors.primary,
+            depthColor: AppColors.primaryDark,
             onTap: onStubContinue,
           ),
         ),
@@ -618,6 +612,7 @@ class _BottomArea extends StatelessWidget {
             return _BigButton(
               label: l10n.commonCheck,
               color: enabled ? AppColors.primary : const Color(0xFFC9CDDD),
+              depthColor: enabled ? AppColors.primaryDark : const Color(0xFFB3B8CC),
               onTap: enabled ? onCheck : null,
             );
           },
@@ -712,7 +707,7 @@ class _FeedbackBar extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 14),
-          _BigButton(label: l10n.commonContinue, color: accent, onTap: onContinue),
+          _BigButton(label: l10n.commonContinue, color: accent, depthColor: accentDark, onTap: onContinue),
         ],
       ),
       ),
@@ -759,25 +754,125 @@ class _AudioUnavailableNotice extends StatelessWidget {
   }
 }
 
-class _BigButton extends StatelessWidget {
-  const _BigButton({required this.label, required this.color, this.onTap});
-  final String label;
-  final Color color;
-  final VoidCallback? onTap;
+/// Enunciado del ejercicio. En word_bank/reorder (Leccion.dc Frame A), la frase
+/// ORIGEN entrecomillada lleva un BOTÓN ALTAVOZ a la izquierda que la pronuncia
+/// (voz española, `WordTts.speakSource`, disparado por tap → sin unlock iOS,
+/// interrumpible, degrada con gracia). Si no hay frase entrecomillada (p.ej. un
+/// `reorder` con enunciado genérico), NO se pinta el altavoz — nada que leer.
+/// Frase ORIGEN entrecomillada del enunciado de un word_bank/reorder (« », " ",
+/// " ", ' '). null si el tipo no aplica o no hay comillas → el altavoz no se pinta.
+/// Público para poder verificarlo en tests.
+String? promptSourcePhrase(ContentItemModel item) {
+  if (item.type != ContentItemType.wordBank && item.type != ContentItemType.reorder) {
+    return null;
+  }
+  final p = item.prompt ?? '';
+  final m = RegExp('[«"“‹‘]([^»"”›’]+)'
+          '[»"”›’]')
+      .firstMatch(p);
+  final phrase = m?.group(1)?.trim();
+  return (phrase != null && phrase.isNotEmpty) ? phrase : null;
+}
+
+class _PromptText extends StatelessWidget {
+  const _PromptText({required this.item});
+  final ContentItemModel item;
+
+  static const _style = TextStyle(
+      fontSize: 21, fontWeight: FontWeight.w900, color: AppColors.text, height: 1.3);
+
+  @override
+  Widget build(BuildContext context) {
+    final prompt = item.prompt ?? '';
+    final source = promptSourcePhrase(item);
+    if (source == null) return Text(prompt, style: _style);
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _SpeakerButton(onTap: () {
+          FeedbackFx.tap();
+          WordTts.speakSource(source);
+        }),
+        const SizedBox(width: 12),
+        Expanded(child: Text(prompt, style: _style)),
+      ],
+    );
+  }
+}
+
+/// Botón altavoz del enunciado (Leccion.dc): tile 40×40 violeta claro con icono.
+class _SpeakerButton extends StatelessWidget {
+  const _SpeakerButton({required this.onTap});
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
+      behavior: HitTestBehavior.opaque,
       child: Container(
+        width: 40,
+        height: 40,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: AppColors.navActiveBg,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: const Icon(Icons.volume_up_rounded, color: AppColors.primary, size: 20),
+      ),
+    );
+  }
+}
+
+/// CTA del loop (COMPROBAR / CONTINUAR): el botón más pulsado de la app.
+/// Lleva el "labio" 3D (sombra dura `0 6px 0 <depthColor>`) + hundido al presionar,
+/// idéntico a `PrimaryButton` (Sistema_Diseno §5) y al mockup Leccion.dc (COMPROBAR
+/// `0 6px 0 #4B3FC9`, CONTINUAR verde `0 5px 0 #1E9B52`). Reduce-motion-aware.
+class _BigButton extends StatefulWidget {
+  const _BigButton({required this.label, required this.color, this.depthColor, this.onTap});
+  final String label;
+  final Color color;
+  final Color? depthColor;
+  final VoidCallback? onTap;
+
+  @override
+  State<_BigButton> createState() => _BigButtonState();
+}
+
+class _BigButtonState extends State<_BigButton> {
+  bool _pressed = false;
+  bool get _enabled => widget.onTap != null;
+
+  @override
+  Widget build(BuildContext context) {
+    final reduceMotion = MediaQuery.of(context).disableAnimations;
+    final depthColor = widget.depthColor ?? AppColors.primaryDark;
+    final double depth = _pressed ? 2 : 6;
+    return GestureDetector(
+      onTapDown: _enabled ? (_) => setState(() => _pressed = true) : null,
+      onTapUp: _enabled ? (_) => setState(() => _pressed = false) : null,
+      onTapCancel: _enabled ? () => setState(() => _pressed = false) : null,
+      onTap: widget.onTap,
+      child: AnimatedContainer(
+        duration: reduceMotion ? Duration.zero : const Duration(milliseconds: 70),
+        transform: Matrix4.translationValues(0, _pressed ? 4 : 0, 0),
         height: 56,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: color,
+          color: widget.color,
           borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(color: depthColor, offset: Offset(0, depth), blurRadius: 0),
+            if (_enabled)
+              BoxShadow(
+                color: widget.color.withValues(alpha: 0.4),
+                offset: const Offset(0, 12),
+                blurRadius: 20,
+              ),
+          ],
         ),
         child: Text(
-          label,
+          widget.label,
           style: const TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w900,

@@ -1680,6 +1680,18 @@ abstract class AppLocalizations {
   /// **'Habilidades que subieron'**
   String get lessonCompleteSkillsUp;
 
+  /// No description provided for @lessonCompleteSkillNext.
+  ///
+  /// In es, this message translates to:
+  /// **'Sigue así para alcanzar {level} y acercarte al certificado'**
+  String lessonCompleteSkillNext(String level);
+
+  /// No description provided for @lessonCompleteSkillAdvanced.
+  ///
+  /// In es, this message translates to:
+  /// **'▲ subió'**
+  String get lessonCompleteSkillAdvanced;
+
   /// No description provided for @tipCardHeader.
   ///
   /// In es, this message translates to:
