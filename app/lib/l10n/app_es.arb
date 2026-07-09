@@ -235,6 +235,10 @@
   "onbIntensityOpt3": "Poco",
 
   "placementTitle": "Test de ubicación",
+  "placementSpeak": "Hablar",
+  "placementListening": "Escuchando…",
+  "placementSendAnswer": "Enviar mi respuesta",
+  "placementSkipSpeaking": "Saltar los ejercicios de hablar",
   "placementSubtitle": "Sin pistas · pregunta {asked} de {max}",
   "@placementSubtitle": { "placeholders": { "asked": {"type":"int"}, "max": {"type":"int"} } },
   "placementResultTitle": "Tu nivel: {level}",

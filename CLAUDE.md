@@ -5,6 +5,30 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-09**.
 
+## PLACEMENT de 4 HABILIDADES REALES ✅ LIVE (mig 135/136 · 2026-07-09)
+El test de ubicación ahora evalúa **reading + LISTENING + writing + SPEAKING** (antes solo R/W) y devuelve
+`skill_levels` **por habilidad REAL** (antes global ×4). Todo el v2 anti-azar (mig 131/134) intacto.
+- **Banco L/S (mig 135) para en+pt** (los cursos de verificación): **27 listening** (en 15 A1–C1, pt 12 A1–B2;
+  MC "¿qué oíste?" con 3 opciones, guarda anti-colisión norm-exacta, opciones rotadas) + **18 speaking**
+  (en 10, pt 8; **read-aloud** = `type=translation` sin opciones — gradable con tolerancia typo, ideal para STT;
+  `speaking_read_aloud` es stub y el RPC lo filtra) + **audio TTS 27/27** en Storage (text-matched, tl correcto).
+- **RPC v3 (firma 4-arg + `p_exclude_skills`):** rotación **R→L→W→S** sobre las skills DISPONIBLES en el banco
+  del curso (fr/it/de/nl sin banco L/S → sigue R/W, cero regresión); **mínimo 3 ítems por skill** antes de poder
+  parar (mig 136: min = max(10, 3×skills) → 12 con 4 skills, DENTRO del largo v2 10–16); estimación por skill
+  **DEMOTE-only anclada al global** (una skill solo se diferencia hacia ABAJO con ≥3 ítems y acc≤0.5 → global−1;
+  JAMÁS promueve → el azar no puede inflar ninguna). Sin evidencia (skill excluida/sin banco) → global (honesto).
+- **Cliente:** `placement_test.dart` renderiza **listening** (AudioPlayButton del loop + opciones) y **speaking**
+  (frase destacada + botón mic con transcripción en vivo + "Enviar mi respuesta"; `SpeechLang` = idioma del curso).
+  **Mic no disponible o "Saltar los ejercicios de hablar"** → `p_exclude_skills=['speaking']` y el ítem saltado
+  NO se puntúa (no se añade a history). El examen arranca YA y el mic se inicializa en paralelo. i18n es/en/pt (4 claves).
+- **Verificado REAL (cliente JWT, `verify_placement_4skills.py`, en+pt) TODO VERDE:** sirve las 4 skills; largo
+  12 (∈10–16); persona fuerte-R/floja-L → **reading>listening en 3/4 corridas** (perfil DIFERENCIADO, p.ej. A2/A1);
+  **azar → 0 skills B2/C1 en 8 corridas ×4 skills**; aislamiento por curso. Regresiones: `verify_placement_serious`
+  TODO VERDE (las personas ya enfrentan L/S) + `verify_estimator` 8/8. `audit_placement_bank` eximido para speaking
+  (sin opciones) y prompts-instrucción L/S. Verde: analyze 0 (CI-exact) · test 131/131 (+placement_flow: listening
+  rinde audio, speaking rinde mic y saltar excluye) · build web OK.
+- **Re-encolado:** banco L/S para **fr/it/de/nl** (su placement sigue R/W + fallback global, seguro). Retome exacto en ## Cola.
+
 ## SINVIDAS fiel a SinVidas.dc (con honestidad) ✅ (2026-07-09 · solo cliente)
 Capa visual; **NO toca la economía de vidas/oro ni la recarga** (buy_hearts 50 oro = P0, intacto).
 `no_hearts_sheet.dart` reescrita fiel al mockup:
@@ -46,7 +70,7 @@ visualmente con golden temporal (barrido diagonal sobre dorado, borrado por flak
 
 ## PLACEMENT serio v2: largo + calidad + sin intensidad ✅ LIVE (mig 134 · 2026-07-09)
 Rediseño del test de ubicación (feedback real: se sentía interminable, 22 ítems). 3 de los 4 frentes
-CERRADOS con verificación real; el 4º (L/S en placement) ENCOLADO con retome exacto (ver ## Cola).
+CERRADOS con verificación real; el 4º (L/S en placement) **✅ HECHO en en+pt (mig 135/136, ver sección arriba)**.
 - **PASO 0 (ground truth):** banco = 349 ítems, SOLO reading(MC)+writing(cloze) — 0 listening/speaking;
   en A1–C1 (~14/nivel), pt/fr/it/de/nl A1–B2 (14/nivel). RPC min12/max22, para rev≥6|pin≥4 (casi nunca
   antes del tope → los 22 de Gian). skill_levels = global copiado ×4.
@@ -619,9 +643,18 @@ en B2; andamiaje idéntico listo: STAMP `('pt','c1')=…130`, grupo audio `pt-c1
    (`verify_placement_multi.py`/`verify_placement_pt.py`): personas A1→A1…B2→B2, avanzado→B2, aislamiento, 56/56
    determinista. **Placement SERIO anti-azar ✅ (mig 131, 2026-07-08):** el azar (1/3 por MC) ya NO infla —
    estimador guess-aware + arranque clampeado a A2 + examen más largo; azar→A1 (0% B2/C1), persona→su nivel.
-   Verificado con el FLUJO REAL (`verify_placement_serious.py`/`repro_placement_random.py`, cliente JWT). Pendiente:
-   nombre real de la unidad de entrada por curso en `PlacementResultView` (hoy rótulo es→en); L/S en placement
-   (audio). **Barrido de colisiones MC/listening ✅ (mig 117).**
+   Verificado con el FLUJO REAL (`verify_placement_serious.py`/`repro_placement_random.py`, cliente JWT).
+   **4 HABILIDADES en placement ✅ para en+pt (mig 135/136, 2026-07-09):** banco L/S en+pt (27 listening MC con
+   audio + 18 speaking read-aloud sin opciones), RPC v3 rotación R→L→W→S + `p_exclude_skills` + skill_levels
+   por habilidad demote-only; cliente renderiza audio y mic (saltable). Verificado `verify_placement_4skills.py`
+   TODO VERDE. **Retome fr/it/de/nl (banco L/S):** extender los dicts `LISTENING`/`SPEAKING` de
+   `tools/content/gen_placement_ls.py` con fr/it/de/nl A1–B2 (autor nativo + revisor adversarial; la guarda
+   anti-colisión del script aborta sola), regenerar la migración (**SOLO ítems — el RPC ya está live, quitar
+   RPC_SQL del output o dejarlo idéntico**), `apply_sql.py`, audio con el snippet de tts/upload de
+   `gen_audio_missing.py` (join `languages` para tl), y correr `verify_placement_4skills.py` extendido a esos
+   cursos. Su placement HOY sigue R/W + skill_levels=global (fallback seguro, cero regresión). Pendiente además:
+   nombre real de la unidad de entrada por curso en `PlacementResultView` (hoy rótulo es→en).
+   **Barrido de colisiones MC/listening ✅ (mig 117).**
 6. **Diferidos menores:** historias B2 por idioma (B1 ✅ mig 125); imágenes referenciales
    fr/it/de/nl (hoy solo es→en A1/A2); copy en-first fuera del onboarding (`missionMainDescription` «100 palabras del
    inglés», `errorReviewWhy*`); cert de nivel por curso (fr/it/de/nl sin examen/cert de nivel aún); C1/C2; cron de

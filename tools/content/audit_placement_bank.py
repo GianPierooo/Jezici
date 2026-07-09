@@ -53,14 +53,19 @@ having count(*) > 1;  -- el correcto aparece >1 vez == duplicado/colisión real
 print(json.dumps(r, ensure_ascii=False, indent=1)[:2000])
 
 print("\n== 2) PROMPTS duplicados por curso ==")
+# Exentos: listening/speaking (mig 135) — su prompt es una INSTRUCCIÓN genérica
+# ("Escucha el audio…"/"Lee esta frase…"); el estímulo real es el audio/texto.
 r = q("""
 select course_id, jz_normalize(prompt) np, count(*) n, array_agg(left(prompt,50)) ejemplos
 from content_items where 'placement' = any(tags)
+  and skill::text not in ('listening','speaking')
 group by course_id, jz_normalize(prompt) having count(*) > 1;
 """)
 print(json.dumps(r, ensure_ascii=False, indent=1)[:2000])
 
 print("\n== 3) SANIDAD: correcto no está en options / options < 3 ==")
+# Exentos: ítems de SPEAKING del placement (mig 135) = read-aloud SIN opciones
+# (type=translation, la respuesta es la transcripción del micrófono).
 r = q("""
 select ci.course_id, ci.cefr_level, ci.type, left(ci.prompt,60) prompt,
        coalesce(ci.correct_answer->>'value', ci.correct_answer->>'text') corr,
@@ -71,6 +76,7 @@ select ci.course_id, ci.cefr_level, ci.type, left(ci.prompt,60) prompt,
        ) corr_in_opts
 from content_items ci
 where 'placement' = any(ci.tags)
+  and ci.skill::text <> 'speaking'
   and (
     jsonb_array_length(coalesce(ci.payload->'options','[]'::jsonb)) < 3
     or not exists (

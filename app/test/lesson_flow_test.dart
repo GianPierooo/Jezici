@@ -86,6 +86,7 @@ class FakeProgressRepository implements ProgressRepository {
     required String startLevel,
     required List<Map<String, dynamic>> history,
     String? courseId,
+    List<String>? excludeSkills,
   }) async =>
       {'done': true, 'level': 'A1', 'skill_levels': const {}};
   @override

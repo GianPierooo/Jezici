@@ -220,6 +220,10 @@
   "onbIntensityOpt3": "A little",
 
   "placementTitle": "Placement test",
+  "placementSpeak": "Speak",
+  "placementListening": "Listening…",
+  "placementSendAnswer": "Send my answer",
+  "placementSkipSpeaking": "Skip speaking exercises",
   "placementSubtitle": "No hints · question {asked} of {max}",
   "placementResultTitle": "Your level: {level}",
   "placementResultSubtitle": "This isn't a pass-or-fail exam: it's your starting point.",

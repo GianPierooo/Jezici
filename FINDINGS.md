@@ -2,6 +2,30 @@
 
 ---
 
+## Placement de 4 HABILIDADES reales (en+pt) — 2026-07-09 ✅ LIVE + VERIFICADO
+> Retome del 4º frente del placement v2. El test de ubicación solo evaluaba R/W y copiaba el global ×4.
+- **Banco L/S (mig 135):** 27 listening (en 15 A1–C1, pt 12 A1–B2; MC "¿qué oíste?", 3 opciones, guarda
+  anti-colisión norm-exacta en `gen_placement_ls.py` — aborta sola) + 18 speaking (en 10, pt 8; read-aloud
+  como `type=translation` SIN opciones: gradable con tolerancia typo, apto para STT; `speaking_read_aloud`
+  es stub y el RPC lo filtra). Audio TTS 27/27 en Storage (tl vía join `languages`).
+- **RPC v3 + tuning (mig 136):** rotación R→L→W→S sobre skills disponibles; `p_exclude_skills` (mic muerto/
+  salto → speaking fuera, sin puntuar en contra); **mínimo 3 ítems por skill** (min=max(10,3×skills)=12 con
+  4 skills, dentro del largo v2 10–16 — hallazgo: parando en 10, listening recibía 2-3 ítems, evidencia
+  insuficiente para diferenciar); estimación por skill **DEMOTE-only** anclada al global (≥3 ítems &
+  acc≤0.5 → global−1; jamás promueve → el azar no infla ninguna). Sin banco L/S (fr/it/de/nl) → R/W +
+  skill_levels=global, cero regresión.
+- **Cliente:** listening = AudioPlayButton + opciones; speaking = frase + mic (`SpeechRecognizer`,
+  `SpeechLang` del curso) + transcripción en vivo + enviar/saltar. El examen arranca sin esperar al mic
+  (hallazgo: encadenar `_load` tras el init del mic bloqueaba el arranque; ahora paralelo).
+- **Verificado REAL (JWT, `verify_placement_4skills.py`, en+pt) TODO VERDE:** 4 skills servidas; largo 12;
+  persona fuerte-R/floja-L → reading>listening 3/4 corridas (perfil diferenciado); azar → 0 skills B2/C1
+  (8 corridas ×4 skills); aislamiento. Regresiones: `verify_placement_serious` TODO VERDE, `verify_estimator`
+  8/8, `audit_placement_bank` limpio (speaking/instrucciones L/S eximidos). analyze 0 · test 131/131 · build OK.
+- **Diferido (retome exacto en ## Cola ítem 5):** banco L/S fr/it/de/nl (extender dicts de
+  `gen_placement_ls.py`, migración SOLO ítems, audio, verificar).
+
+---
+
 ## C1 es→fr + es→it (techo honesto) — 2026-07-05 ✅ LIVE + VERIFICADO
 > Retome de la Cola: C1 para fr/it/de/nl/pt. Completados fr e it con calidad + verificación (stop clean).
 - **Andamiaje C1 (reutilizable):** `gen_course.py` DIFF['c1']=0.84 + STAMPS c1 (fr…126, it…127, de…128, nl…129, pt…130);

@@ -685,6 +685,18 @@ class AppLocalizationsEn extends AppLocalizations {
   String get placementTitle => 'Placement test';
 
   @override
+  String get placementSpeak => 'Speak';
+
+  @override
+  String get placementListening => 'Listening…';
+
+  @override
+  String get placementSendAnswer => 'Send my answer';
+
+  @override
+  String get placementSkipSpeaking => 'Skip speaking exercises';
+
+  @override
   String placementSubtitle(int asked, int max) {
     return 'No hints · question $asked of $max';
   }

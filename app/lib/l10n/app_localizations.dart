@@ -1312,6 +1312,30 @@ abstract class AppLocalizations {
   /// **'Test de ubicación'**
   String get placementTitle;
 
+  /// No description provided for @placementSpeak.
+  ///
+  /// In es, this message translates to:
+  /// **'Hablar'**
+  String get placementSpeak;
+
+  /// No description provided for @placementListening.
+  ///
+  /// In es, this message translates to:
+  /// **'Escuchando…'**
+  String get placementListening;
+
+  /// No description provided for @placementSendAnswer.
+  ///
+  /// In es, this message translates to:
+  /// **'Enviar mi respuesta'**
+  String get placementSendAnswer;
+
+  /// No description provided for @placementSkipSpeaking.
+  ///
+  /// In es, this message translates to:
+  /// **'Saltar los ejercicios de hablar'**
+  String get placementSkipSpeaking;
+
   /// No description provided for @placementSubtitle.
   ///
   /// In es, this message translates to:

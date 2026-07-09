@@ -220,6 +220,10 @@
   "onbIntensityOpt3": "Pouco",
 
   "placementTitle": "Teste de nível",
+  "placementSpeak": "Falar",
+  "placementListening": "Ouvindo…",
+  "placementSendAnswer": "Enviar minha resposta",
+  "placementSkipSpeaking": "Pular os exercícios de fala",
   "placementSubtitle": "Sem dicas · pergunta {asked} de {max}",
   "placementResultTitle": "Seu nível: {level}",
   "placementResultSubtitle": "Isto não é uma prova de passar ou reprovar: é seu ponto de partida.",

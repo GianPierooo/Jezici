@@ -1,17 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/speech/speech_lang.dart';
+import '../../core/speech/speech_recognizer.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
+import '../lesson/exercises/audio_play_button.dart';
 import 'onboarding_data.dart';
 import 'widgets/onboarding_scaffold.dart';
 
-/// Test de ubicación adaptativo, calificado en el SERVIDOR (placement_next, mig 076).
-/// El cliente es un RELAY: pide el siguiente ítem, muestra las opciones, envía la
-/// elegida y repite hasta que el servidor devuelve el nivel final. NO califica ni ve
-/// la respuesta correcta (correct_answer sigue 42501). El motor adaptativo (escalera
-/// + estimador "techo") vive en el servidor → ubica al usuario en su nivel REAL.
+/// Test de ubicación adaptativo, calificado en el SERVIDOR (placement_next).
+/// El cliente es un RELAY: pide el siguiente ítem, lo muestra, envía la respuesta
+/// y repite hasta que el servidor devuelve el nivel final. NO califica ni ve la
+/// respuesta correcta (correct_answer sigue 42501).
+///
+/// 4 HABILIDADES (mig 135): además de reading/writing (opciones), renderiza
+/// LISTENING (audio TTS + opciones "¿qué oíste?") y SPEAKING (read-aloud: muestra
+/// la frase, reconoce la voz y envía la TRANSCRIPCIÓN como respuesta; el servidor
+/// la califica con tolerancia typo). Si el micrófono no está disponible (o el
+/// usuario lo salta), 'speaking' se EXCLUYE del examen (p_exclude_skills) y su
+/// nivel cae al global — degradación honesta, nunca un fallo injusto.
 class PlacementTest extends ConsumerStatefulWidget {
   const PlacementTest({
     super.key,
@@ -34,7 +43,6 @@ class PlacementTest extends ConsumerStatefulWidget {
   final int startLevel;
 
   /// Curso META a ubicar. null = curso activo más antiguo (es→en, onboarding).
-  /// Con valor → ubica en el banco de ESE curso (re-placement fr/it/de/nl).
   final String? courseId;
 
   @override
@@ -45,26 +53,59 @@ class _PlacementTestState extends ConsumerState<PlacementTest> {
   static const _hintCefr = ['A1', 'A2', 'B1'];
 
   final List<Map<String, dynamic>> _history = [];
-  Map<String, dynamic>? _item; // ítem actual (id, type, skill, cefr_level, prompt, payload)
+  final List<String> _excluded = [];
+  final SpeechRecognizer _rec = createSpeechRecognizer();
+
+  Map<String, dynamic>? _item;
   int _asked = 0;
-  int _max = 12;
+  int _max = 16;
   bool _loading = true;
   int _retries = 0;
+  bool _listening = false;
+  String _transcript = '';
 
   String get _hint => _hintCefr[widget.startLevel.clamp(0, _hintCefr.length - 1)];
 
   @override
   void initState() {
     super.initState();
-    _load();
+    _load(); // el examen arranca YA (la rotación sirve reading primero)
+    _initSpeech(); // en paralelo: idioma del curso + mic
+  }
+
+  Future<void> _initSpeech() async {
+    // Voz/reconocedor en el idioma del CURSO a ubicar (no en-US fijo).
+    try {
+      final target = await ref.read(activeCourseTargetProvider.future);
+      SpeechLang.setFromCourseTarget(target);
+    } catch (_) {}
+    // Micrófono no disponible → speaking fuera del resto del examen (honesto).
+    try {
+      final ok = await _rec.init();
+      if (!ok && !_excluded.contains('speaking')) _excluded.add('speaking');
+    } catch (_) {
+      if (!_excluded.contains('speaking')) _excluded.add('speaking');
+    }
+  }
+
+  @override
+  void dispose() {
+    _rec.dispose();
+    super.dispose();
   }
 
   Future<void> _load() async {
-    setState(() => _loading = true);
+    setState(() {
+      _loading = true;
+      _transcript = '';
+      _listening = false;
+    });
     try {
-      final res = await ref
-          .read(progressRepositoryProvider)
-          .placementNext(startLevel: _hint, history: _history, courseId: widget.courseId);
+      final res = await ref.read(progressRepositoryProvider).placementNext(
+          startLevel: _hint,
+          history: _history,
+          courseId: widget.courseId,
+          excludeSkills: _excluded);
       if (!mounted) return;
       if (res['done'] == true) {
         _finish(res);
@@ -78,8 +119,6 @@ class _PlacementTestState extends ConsumerState<PlacementTest> {
       });
     } catch (_) {
       if (!mounted) return;
-      // Reintento suave; si persiste, no dejamos el onboarding sin salida: ubicamos
-      // por el hint del usuario (su autoevaluación) y seguimos.
       if (_retries < 1) {
         _retries++;
         _load();
@@ -94,6 +133,35 @@ class _PlacementTestState extends ConsumerState<PlacementTest> {
     if (it == null) return;
     _history.add({'item_id': it['id'], 'answer': value});
     _load();
+  }
+
+  /// Saltar speaking: NO se añade a la historia (el ítem queda sin responder, no
+  /// se puntúa en contra) y se excluye la skill del resto del examen.
+  void _skipSpeaking() {
+    if (!_excluded.contains('speaking')) _excluded.add('speaking');
+    _load();
+  }
+
+  void _listen() {
+    if (_listening) return;
+    setState(() => _listening = true);
+    _rec.listen(
+      localeId: SpeechLang.stt,
+      listenFor: const Duration(seconds: 10),
+      onResult: (t, isFinal) {
+        if (!mounted) return;
+        setState(() {
+          _transcript = t.trim();
+          if (isFinal) _listening = false;
+        });
+      },
+      onError: (_) {
+        if (mounted) setState(() => _listening = false);
+      },
+      onDone: () {
+        if (mounted) setState(() => _listening = false);
+      },
+    );
   }
 
   void _finish(Map<String, dynamic> res) {
@@ -124,9 +192,14 @@ class _PlacementTestState extends ConsumerState<PlacementTest> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final it = _item;
+    final payload = (it?['payload'] as Map?) ?? const {};
+    final skill = (it?['skill'] ?? '').toString();
     final options =
-        ((it?['payload'] as Map?)?['options'] as List?)?.map((e) => e.toString()).toList() ??
-            const <String>[];
+        (payload['options'] as List?)?.map((e) => e.toString()).toList() ?? const <String>[];
+    final audioUrl = (payload['audio_url'] ?? '').toString();
+    final speakText = (payload['text'] ?? '').toString();
+    final isSpeaking = skill == 'speaking';
+
     return OnboardingScaffold(
       step: widget.step,
       total: widget.total,
@@ -151,15 +224,92 @@ class _PlacementTestState extends ConsumerState<PlacementTest> {
                       BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 4), blurRadius: 0),
                     ],
                   ),
-                  child: Text((it['prompt'] ?? '').toString(),
-                      style: const TextStyle(fontSize: 19, fontWeight: FontWeight.w800, height: 1.3)),
-                ),
-                for (final opt in options)
-                  OnboardingOption(
-                    label: opt,
-                    selected: false,
-                    onTap: () => _answer(opt),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text((it['prompt'] ?? '').toString(),
+                          style: const TextStyle(
+                              fontSize: 19, fontWeight: FontWeight.w800, height: 1.3)),
+                      // LISTENING: audio del ítem (mismo player del loop).
+                      if (audioUrl.isNotEmpty) ...[
+                        const SizedBox(height: 12),
+                        Center(child: AudioPlayButton(url: audioUrl)),
+                      ],
+                      // SPEAKING: frase a leer en voz alta.
+                      if (isSpeaking && speakText.isNotEmpty) ...[
+                        const SizedBox(height: 10),
+                        Text(speakText,
+                            style: const TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.w900,
+                                color: AppColors.primary,
+                                height: 1.3)),
+                      ],
+                    ],
                   ),
+                ),
+                if (!isSpeaking)
+                  for (final opt in options)
+                    OnboardingOption(label: opt, selected: false, onTap: () => _answer(opt))
+                else ...[
+                  // Micrófono + transcripción en vivo + enviar/saltar.
+                  Center(
+                    child: GestureDetector(
+                      onTap: _listen,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 14),
+                        decoration: BoxDecoration(
+                          color: _listening ? AppColors.coral : AppColors.primary,
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
+                                color: _listening ? AppColors.coralDark : AppColors.primaryDark,
+                                offset: const Offset(0, 4),
+                                blurRadius: 0),
+                          ],
+                        ),
+                        child: Row(mainAxisSize: MainAxisSize.min, children: [
+                          Icon(_listening ? Icons.mic_rounded : Icons.mic_none_rounded,
+                              color: Colors.white),
+                          const SizedBox(width: 8),
+                          Text(_listening ? l10n.placementListening : l10n.placementSpeak,
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 16)),
+                        ]),
+                      ),
+                    ),
+                  ),
+                  if (_transcript.isNotEmpty) ...[
+                    const SizedBox(height: 12),
+                    Container(
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                          color: AppColors.navActiveBg,
+                          borderRadius: BorderRadius.circular(12)),
+                      child: Text('“$_transcript”',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w800, color: AppColors.primary)),
+                    ),
+                    const SizedBox(height: 10),
+                    OnboardingOption(
+                      label: l10n.placementSendAnswer,
+                      selected: false,
+                      onTap: () => _answer(_transcript),
+                    ),
+                  ],
+                  const SizedBox(height: 6),
+                  Center(
+                    child: TextButton(
+                      onPressed: _skipSpeaking,
+                      child: Text(l10n.placementSkipSpeaking,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w800, color: AppColors.textMuted)),
+                    ),
+                  ),
+                ],
               ],
             ),
     );

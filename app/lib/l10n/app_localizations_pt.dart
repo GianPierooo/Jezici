@@ -687,6 +687,18 @@ class AppLocalizationsPt extends AppLocalizations {
   String get placementTitle => 'Teste de nível';
 
   @override
+  String get placementSpeak => 'Falar';
+
+  @override
+  String get placementListening => 'Ouvindo…';
+
+  @override
+  String get placementSendAnswer => 'Enviar minha resposta';
+
+  @override
+  String get placementSkipSpeaking => 'Pular os exercícios de fala';
+
+  @override
   String placementSubtitle(int asked, int max) {
     return 'Sem dicas · pergunta $asked de $max';
   }

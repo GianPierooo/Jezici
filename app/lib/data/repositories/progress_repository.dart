@@ -200,13 +200,18 @@ class ProgressRepository {
     required String startLevel,
     required List<Map<String, dynamic>> history,
     String? courseId,
+    List<String>? excludeSkills,
   }) async {
     // p_course null → curso activo más antiguo (es→en) = onboarding en-first.
     // Con courseId → ubica en el banco de ESE curso (fr/it/de/nl re-placement).
+    // excludeSkills: p.ej. ['speaking'] si el micrófono no está disponible → el
+    // RPC no sirve esa skill y su nivel cae al global (degradación honesta).
     final res = await _client.rpc('placement_next', params: {
       'p_course': courseId,
       'p_start_level': startLevel,
       'p_history': history,
+      if (excludeSkills != null && excludeSkills.isNotEmpty)
+        'p_exclude_skills': excludeSkills,
     });
     return Map<String, dynamic>.from(res as Map);
   }
