@@ -50,7 +50,6 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   bool _saving = false;
 
   late String _coach;
-  late int _intensity;
   bool _quietOn = false;
   TimeOfDay _quietStart = const TimeOfDay(hour: 22, minute: 0);
   TimeOfDay _quietEnd = const TimeOfDay(hour: 8, minute: 0);
@@ -59,7 +58,6 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   void _seed(UserSettings s, int? planMinutes) {
     if (_init) return;
     _coach = s.coachStyle;
-    _intensity = s.intensity;
     _quietOn = s.quietStart != null && s.quietEnd != null;
     if (s.quietStart != null) _quietStart = _parse(s.quietStart!, _quietStart);
     if (s.quietEnd != null) _quietEnd = _parse(s.quietEnd!, _quietEnd);
@@ -89,7 +87,9 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     try {
       await ref.read(progressRepositoryProvider).updateSettings(
             coachStyle: _coach,
-            intensity: _intensity,
+            // La INTENSIDAD ya no se pregunta en ninguna parte: el coach opera
+            // SIEMPRE en intensidad máxima (decisión de producto, misión 134).
+            intensity: 3,
             quietStart: _quietOn ? _fmt(_quietStart) : null,
             quietEnd: _quietOn ? _fmt(_quietEnd) : null,
             dailyMinutes: _dailyMinutes,
@@ -502,19 +502,6 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                 },
               ),
             ),
-          const SizedBox(height: 6),
-          Text(l10n.settingsCoachInsist,
-              style: const TextStyle(
-                  fontSize: 11.5, fontWeight: FontWeight.w800, color: _kSubtle)),
-          const SizedBox(height: 8),
-          _SegmentRow(
-            options: [l10n.settingsIntensityLow, l10n.settingsIntensityMid, l10n.settingsIntensityHigh],
-            index: (_intensity - 1).clamp(0, 2),
-            onSelect: (i) {
-              setState(() => _intensity = i + 1);
-              _save();
-            },
-          ),
           ],
         ),
       ],
@@ -1064,48 +1051,6 @@ class _CoachRadioRow extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _SegmentRow extends StatelessWidget {
-  const _SegmentRow({required this.options, required this.index, required this.onSelect});
-  final List<String> options;
-  final int index;
-  final ValueChanged<int> onSelect;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(4),
-      decoration: BoxDecoration(
-        color: const Color(0xFFF4F5FB),
-        borderRadius: BorderRadius.circular(14),
-      ),
-      child: Row(
-        children: [
-          for (var i = 0; i < options.length; i++)
-            Expanded(
-              child: GestureDetector(
-                onTap: () => onSelect(i),
-                child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 3),
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: i == index ? AppColors.primary : Colors.transparent,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Text(options[i],
-                      style: TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w900,
-                          color: i == index ? Colors.white : AppColors.textMuted)),
-                ),
-              ),
-            ),
-        ],
       ),
     );
   }

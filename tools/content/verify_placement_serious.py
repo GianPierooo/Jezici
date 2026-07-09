@@ -90,12 +90,15 @@ def main():
         rpc(tok, 'set_active_course', {'p_course_id': C})
         rng = random.Random(99)
 
-        # 1) AZAR -> nunca B2/C1
+        # 1) AZAR -> nivel bajo. La cola B2+ del azar es IRREDUCIBLE (~0.7-1.1% con
+        # MC de 3 opciones + acreditación 3-de-4; sim 20k trials, mig 134): la
+        # aserción "==0 en 18 intentos" era estadísticamente flaky (7-17%/run y
+        # pasaba de suerte). Spec sana: a lo sumo 1 caso B2/C1 en 18 (P(>=2)~1.6%).
         rc = Counter()
         for _ in range(18):
             rc[trial(tok, C, 'B1', random_ans, rng)] += 1  # peor caso: arranque "buen nivel"
         infl = rc.get('B2', 0) + rc.get('C1', 0)
-        ck(f'{code}: AZAR (arranque B1) NUNCA B2/C1', infl == 0,
+        ck(f'{code}: AZAR (arranque B1) a lo sumo 1 B2/C1 en 18', infl <= 1,
            f"{dict(rc)}")
         ck(f'{code}: AZAR mayoria A1/A2', rc.get('A1', 0) + rc.get('A2', 0) >= 14, f"A1={rc.get('A1',0)} A2={rc.get('A2',0)}")
 

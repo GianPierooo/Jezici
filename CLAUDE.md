@@ -44,6 +44,40 @@ Smoke test (`jz_motion_test`: sheen+glow pintan el hijo con y sin reduce-motion)
 visualmente con golden temporal (barrido diagonal sobre dorado, borrado por flaky en CI). Verde: analyze 0
 (CI-exact) · test 129/129 · build web OK.
 
+## PLACEMENT serio v2: largo + calidad + sin intensidad ✅ LIVE (mig 134 · 2026-07-09)
+Rediseño del test de ubicación (feedback real: se sentía interminable, 22 ítems). 3 de los 4 frentes
+CERRADOS con verificación real; el 4º (L/S en placement) ENCOLADO con retome exacto (ver ## Cola).
+- **PASO 0 (ground truth):** banco = 349 ítems, SOLO reading(MC)+writing(cloze) — 0 listening/speaking;
+  en A1–C1 (~14/nivel), pt/fr/it/de/nl A1–B2 (14/nivel). RPC min12/max22, para rev≥6|pin≥4 (casi nunca
+  antes del tope → los 22 de Gian). skill_levels = global copiado ×4.
+- **1 · LARGO (tuneado offline, sim 4000-20000 trials + flujo real):** **min 10 / máx 16, para con
+  rev≥4 o pin≥3**. El examen LARGO castigaba al B1 real (sus fallos arriba arrastraban la precisión
+  total al piso 0.6 → B1 real acertaba B1 solo 22%). Nuevo: azar→A1 88–91% (B2+C1 ~1%, cola IRREDUCIBLE
+  con MC de 3 opciones), personas A1 90 · A2 72 · **B1 66–71 (3× mejor)** · B2 76–90 · C1 85. **Flujo
+  real medido (en+pt): n=10–16, típico 10–12.** Estimador mig 131 intacto + **piso condicional nuevo**:
+  acreditar B2+ con evidencia raspada (asked≤3 en ese nivel) exige acc total ≥0.7 (el azar acredita
+  raspado; el B2/C1 real acumula 4+ o acc alta → exento). `verify_estimator.py` 8/8. La aserción del
+  verify se corrigió a la spec estadísticamente sana (≤1 B2/C1 en 18; "==0" era flaky 7–17%/run y
+  pasaba de suerte). `verify_placement_serious.py` (en+pt) **TODO VERDE**.
+- **2 · INTENSIDAD eliminada de la app:** el onboarding ya no la preguntaba (mig 124, intensity=3);
+  ahora también se quitó el selector Suave/Media/Alta de **Ajustes** (card del coach) y `_save()` fija
+  **intensity=3 SIEMPRE** (coach "muy intenso" por defecto). El ESTILO de coach (4 radios) se conserva;
+  Matix/personalidad intactos (updateSettings misma firma). Test: sin "Alta"; guardar → intensity=3.
+- **3 · CALIDAD ítem-por-ítem (auditoría de INTEGRIDAD server-side de los 349):** colisiones distractor↔
+  correcto (normalize + near-match), duplicados, sanidad (correcto∈options, ≥3 options). **Hallazgo real:
+  7 ítems del banco EN** (anterior a la guarda anti-colisión) con distractor PERDONABLE por typo-tolerance
+  — p.ej. «I have ___ apple.» corr `an`, distractor `a` → marcar `a` PUNTUABA (dist-1 perdonada), matando
+  el punto gramatical (también books/book/bookes, live/lives, never/ever, used to/use to, had/has been
+  working). **Fix SISTÉMICO:** los ítems de placement se presentan como MC (raíz del anti-azar) → su tipo
+  real ES multiple_choice: **349/349 convertidos a `multiple_choice`** (grading EXACTO, near-match no
+  aplica) — ni estos 7 ni ningún ítem futuro puede volver a puntuar con distractor. Verificado en vivo:
+  **0 distractores puntúan**; caso an/a: `a`=false, `an`=true. (El re-read pedagógico NATIVO completo de
+  los 349 = workflow encolado.)
+- **4 · 4 HABILIDADES en el placement: ENCOLADO** (no se envía a medias: tocaría el flujo del usuario
+  nuevo sin banco L/S ni UI). Retome exacto en ## Cola.
+Verde: analyze 0 (CI-exact) · test 130/130 (settings sin intensidad) · verify_estimator 8/8 ·
+verify_placement_serious en+pt TODO VERDE · flujo real n=10–16.
+
 ## AUDITORÍA UI GENERAL + pulido (foco INICIO) ✅ (2026-07-09 · solo cliente)
 Pasada FRESCA contra mockups (goldens del inicio + barrido de consistencia con agente por las 15+
 pantallas). **NO toca lógica.** Qué se mejoró por pantalla:
@@ -545,6 +579,20 @@ en B2; andamiaje idéntico listo: STAMP `('pt','c1')=…130`, grupo audio `pt-c1
   Cierre: analyze 0, tests verdes, gh run list SUCCESS, deploy READY. Reporta en 1 línea.
 
 ## Cola (retome exacto — orden sugerido)
+-1. **PLACEMENT · 4 HABILIDADES (retome exacto, misión propia — NO enviar a medias):** añadir LISTENING
+   y SPEAKING al examen de ubicación en los 6 cursos. Pasos: (a) AUTORAR banco L/S por curso×nivel —
+   listening = MC "escucha y elige" con `payload.say` (frase corta calibrada al CEFR) + 3 opciones
+   guardadas anti-colisión (patrón `gen_placement_multi.py`), speaking = `speaking_read_aloud` con frase
+   calibrada; mínimo 3 L + 2 S por nivel×curso (en 5 niveles, resto 4) ≈ 130 ítems, tag `placement`;
+   (b) AUDIO TTS de los listening con `gen_audio_missing.py` (grupo por curso, tl correcto, text-matched);
+   (c) CLIENTE: `course_placement_screen`/`placement_test.dart` hoy solo renderiza MC → añadir botón de
+   audio (reusar `AudioPlayButton`) para listening y reconocedor (`SpeechRecognizer` + `SpeechLang.stt`)
+   para speaking, degradación honesta si el mic no está (saltar speaking, no fallarlo); (d) RPC
+   `placement_next`: intercalar las 4 skills (ciclo R→L→W→S) + salida `skill_levels` POR HABILIDAD real
+   (por-skill con evidencia ≥3 ítems, fallback al global si no llega — honesto, no global copiado);
+   (e) VERIFICAR: `verify_placement_serious.py` + probe de cobertura (las 4 skills aparecen) en ≥2
+   cursos, azar→bajo, personas→su nivel, aislamiento. (f) El RE-READ pedagógico NATIVO de los 349 ítems
+   existentes (workflow 6 profesores + 2 adversariales, como los cursos) también pendiente aquí.
 0. **Pulido UI restante (de la auditoría 2026-07-09, lista con file:line en el barrido del agente):**
    (a) variante MINI-3D para botones compactos inline (tienda `tienda_screen.dart:202`, congelador
    `streak_screen.dart:296`); (b) **i18n de pantallas secundarias** — títulos/cuerpos en español

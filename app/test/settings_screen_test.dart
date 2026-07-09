@@ -104,7 +104,8 @@ void main() {
     expect(find.text('«¡Vas genial, sigue así! 🎉»'), findsOneWidget);
   });
 
-  testWidgets('Ajustes: cambiar la intensidad guarda en el servidor', (tester) async {
+  testWidgets('Ajustes: sin selector de intensidad; guardar fija intensidad ALTA (3)',
+      (tester) async {
     await tester.binding.setSurfaceSize(const Size(430, 2600));
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
@@ -113,11 +114,16 @@ void main() {
     await tester.pump();
     await tester.pump();
 
-    // Guardado IMPLÍCITO: tocar "Alta" en el segmento de intensidad persiste.
-    await tester.tap(find.text('Alta'));
+    // La pregunta de INTENSIDAD ya NO existe en la app (decisión de producto):
+    expect(find.text('Alta'), findsNothing);
+    expect(find.text('Suave'), findsOneWidget); // solo como ESTILO de coach
+
+    // Guardado implícito al cambiar el ESTILO de coach → intensidad SIEMPRE 3.
+    await tester.tap(find.text('Mano dura'));
     await tester.pump();
     await tester.pump();
     expect(repo.saves, greaterThan(0));
+    expect(repo.lastArgs?['coachStyle'], 'mano_dura');
     expect(repo.lastArgs?['intensity'], 3);
   });
 }
