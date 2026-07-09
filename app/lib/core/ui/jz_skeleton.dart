@@ -37,8 +37,17 @@ class JzShimmer extends StatefulWidget {
 }
 
 class _JzShimmerState extends State<JzShimmer> with SingleTickerProviderStateMixin {
-  late final AnimationController _c =
-      AnimationController(vsync: this, duration: const Duration(milliseconds: 1200))..repeat();
+  // Inicializado en initState (no `late final` perezoso): con reduce-motion el
+  // build no lo toca y dispose lo inicializaba tarde → ancestor lookup en un
+  // widget desactivado (assert en debug).
+  late final AnimationController _c;
+
+  @override
+  void initState() {
+    super.initState();
+    _c = AnimationController(vsync: this, duration: const Duration(milliseconds: 1200))
+      ..repeat();
+  }
 
   @override
   void dispose() {

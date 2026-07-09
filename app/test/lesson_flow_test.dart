@@ -647,11 +647,15 @@ void main() {
     addTearDown(tester.view.resetDevicePixelRatio);
 
     await tester.pumpWidget(_wrapRepo(const LeaguesScreen(), LeaderboardFakeRepository()));
-    await tester.pumpAndSettle();
+    // NB: el banner de división anima en bucle (glow del emblema) → pumpAndSettle
+    // nunca termina; usamos pumps acotados.
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 100));
 
     // Cambia al segmento "Tablas".
     await tester.tap(find.text('Tablas'));
-    await tester.pumpAndSettle();
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 100));
 
     // Filas del leaderboard + "tu posición".
     expect(find.text('Sofía'), findsOneWidget);

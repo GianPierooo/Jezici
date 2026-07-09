@@ -1314,6 +1314,113 @@ class AppLocalizationsPt extends AppLocalizations {
   String get practiceStartError => 'Não foi possível iniciar a prática.';
 
   @override
+  String get profileHeaderKicker => 'MEU PERFIL';
+
+  @override
+  String profileTravelerChip(int level) {
+    return 'Nível de viajante $level';
+  }
+
+  @override
+  String profileTravelerNext(int level, int xp) {
+    return 'Nível $level · $xp XP';
+  }
+
+  @override
+  String get profileActiveLangLabel => 'IDIOMA ATIVO';
+
+  @override
+  String profileActiveLangValue(String language, String goal) {
+    return '$language · Objetivo $goal';
+  }
+
+  @override
+  String get profileActiveLangChange => 'Trocar';
+
+  @override
+  String profileRadarGoalTag(String level) {
+    return 'META $level';
+  }
+
+  @override
+  String profileSkillsReadyChip(int ready, String level) {
+    return '$ready / 4 em $level';
+  }
+
+  @override
+  String get profileWeakAlertTitle => 'Seu ponto fraco é';
+
+  @override
+  String profileWeakAlertBody(String level) {
+    return 'Suba para $level e você certificará seu nível completo.';
+  }
+
+  @override
+  String profileCertLockedNeed(String level) {
+    return 'Você precisa de $level nas 4 habilidades';
+  }
+
+  @override
+  String profileCertReadyCount(int n) {
+    return '$n de 4 habilidades prontas';
+  }
+
+  @override
+  String get profileCertVerifiedLine => 'Verificado · exame Jezici';
+
+  @override
+  String get profileStatsTitle => 'Estatísticas';
+
+  @override
+  String profileStreakLine(int n) {
+    return '$n dias de sequência';
+  }
+
+  @override
+  String profileStreakBest(int n) {
+    return 'Melhor: $n';
+  }
+
+  @override
+  String get profileStreakToday => 'HOJE';
+
+  @override
+  String profileLeagueRank(int n) {
+    return 'Posição $n';
+  }
+
+  @override
+  String get leagueCurrentDivision => 'DIVISÃO ATUAL';
+
+  @override
+  String get leagueEndsIn => 'Termina em';
+
+  @override
+  String get leagueXpThisWeek => 'XP esta semana';
+
+  @override
+  String leaguePromoteTo(String division) {
+    return 'SOBEM PARA $division';
+  }
+
+  @override
+  String leagueDemoteTo(String division) {
+    return 'DESCEM PARA $division';
+  }
+
+  @override
+  String get leagueTagUp => 'Subindo';
+
+  @override
+  String get leagueTagRisk => 'Em risco';
+
+  @override
+  String get leagueTagYou => 'Mantenha-se no topo!';
+
+  @override
+  String get leagueMascotCheer => 'Continue subindo! 💪';
+
+  @override
   String get missionAppBarTitle => 'Missão';
 
   @override

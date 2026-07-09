@@ -27,4 +27,19 @@ class DivisionTheme {
   };
 
   static DivisionTheme of(String division) => _map[division] ?? _map['bronce']!;
+
+  /// Escalera de divisiones en orden ascendente (espejo de jz_div_up/down).
+  static const ladder = ['bronce', 'plata', 'oro', 'zafiro', 'rubi', 'diamante'];
+
+  /// División a la que se ASCIENDE desde [division] (tope: diamante).
+  static String up(String division) {
+    final i = ladder.indexOf(division);
+    return i < 0 ? division : ladder[(i + 1).clamp(0, ladder.length - 1)];
+  }
+
+  /// División a la que se DESCIENDE desde [division] (piso: bronce).
+  static String down(String division) {
+    final i = ladder.indexOf(division);
+    return i < 0 ? division : ladder[(i - 1).clamp(0, ladder.length - 1)];
+  }
 }

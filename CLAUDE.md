@@ -5,6 +5,33 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-08**.
 
+## PERFIL + LIGAS fieles a sus mockups ✅ (2026-07-09 · solo cliente)
+Capa visual + datos que ya existen; **NO cambia lógica de skills/ligas/scoring/economía**.
+**F1 · Perfil (Perfil.dc):** banner "pasaporte" full-bleed ("MI PERFIL" + campana/ajustes) con **avatar con
+anillo de XP + badge de nivel de viajero + barra al siguiente** — el sistema no existía (`users.player_level`
+nunca se actualiza) → derivado honesto de `xp_total` (`traveler_level.dart`, T(n)=50·(n−1)·n, determinista, con
+test) — y **chip "IDIOMA ACTIVO · \<curso real\> · Objetivo \<meta\> · Cambiar"** course-aware (tap → Ajustes).
+Radar con **anillo de META punteado + tag "META X" + vértices coloreados** (coral = bajo meta) + **labels
+localizados** (fix i18n: salían en español vía kSkillEs). **Alerta de punto débil con mascota + CTA coral**;
+filas de skill **coloreadas por estado** ("X → Y · %"). **Certificados**: medalla con check (obtenidos) + **card
+BLOQUEADA con requisitos** ("Necesitas X en las 4" + 4 mini-barras por `examReady` real + "N de 4 listas"; tap →
+examen si desbloqueado; absorbe la _LevelExamCard). **Stats**: **calendario semanal de racha** (días activos
+derivados de la racha REAL: si racha=N y hoy hubo XP, los últimos N días fueron activos; "Mejor: N"; HOY 🔥) +
+tiles XP/Oro/**Liga (división+puesto reales)**/Logros. Se conserva: DailyGoalBar, Para ti, cuaderno, MasteryGate,
+plan, logros, editar perfil.
+**F2 · Ligas (Ligas.dc):** banner violeta con **emblema-medalla por división REAL** (CustomPaint: gradiente de
+`DivisionTheme` + estrella + cintas + laureles + halo pulsante reduce-motion-aware) + **carrusel de las 6
+divisiones** (actual destacada, futuras 50%) + **countdown "Termina en Xd Yh"** (`week_start` real del RPC —
+parseado nuevo en `LeagueStanding` — + 7 días). Ranking: separadores **con división destino** ("SUBEN A
+ZAFIRO"/"BAJAN A PLATA", `DivisionTheme.up/down` espejo de jz_div_up/down), filas con **tinte por zona + tags**
+("Sube"/"En riesgo"/"¡Mantente arriba!"), **top-3 círculos-medalla**, **avatares coloreados**, rótulo "XP esta
+semana", **mascota animadora** ("¡Sigue subiendo! 💪"). Estados conservados: skeleton/error/beta<13. El tab
+Tablas mantiene su fila simple (`_LbRow`).
+**Fix latente de paso:** `JzShimmer` inicializaba su AnimationController perezosamente en `dispose` con
+reduce-motion (ancestor lookup en widget desactivado, assert en debug) → init movido a `initState`.
+i18n es/en/pt (27 claves nuevas). Verde: analyze 0 · test 108/108 (+traveler_level determinista, up/down con
+topes, widget Ligas es: división real + countdown + destinos + tags) · build web OK.
+
 ## PRÁCTICA fiel a Practicar.dc + i18n arreglado ✅ (2026-07-09 · solo cliente)
 Ingeniería pura (cero IA). `practice_screen.dart` era una **lista de 7 cards idénticas** con **toda la copia
 hardcodeada en español** (salía en español con la app en pt/en — bug real). Reescrita con la **jerarquía del

@@ -86,8 +86,13 @@ class LeagueStanding {
     this.players = 0,
     this.minPlayers = 5,
     this.warmingUp = false,
+    this.weekStart,
   });
   final String division; // bronce | plata | ...
+
+  /// Lunes (UTC) de la semana de liga; el cierre real es weekStart + 7 días
+  /// (jz_close_weeks). Alimenta el countdown "Termina en Xd Yh" (Ligas.dc).
+  final DateTime? weekStart;
   final int myRank;
   final int promote; // top N asciende
   final int demote; // bottom N desciende
@@ -121,6 +126,7 @@ class LeagueStanding {
         players: (j['players'] as num?)?.toInt() ?? 0,
         minPlayers: (j['min_players'] as num?)?.toInt() ?? 5,
         warmingUp: j['warming_up'] as bool? ?? false,
+        weekStart: DateTime.tryParse(j['week_start']?.toString() ?? ''),
         members: ((j['members'] as List?) ?? const [])
             .map((e) => LeagueMember.fromJson(Map<String, dynamic>.from(e as Map)))
             .toList(),

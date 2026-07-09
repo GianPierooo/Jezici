@@ -214,14 +214,14 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
 - Estado: **DESVIADO** · Esfuerzo: **L**
 - Coincide: orden macro (hero→4 habilidades+radar→plan→stats→certs/logros); copy exacto en títulos; radar real de 4 ejes violeta; filas de skill con barra+badge CEFR; badge "MÁS DÉBIL"; CTA practicar debilidad.
 - Desviaciones:
-  - [P1] Header card vs banner full-bleed con "MI PERFIL" + chip "IDIOMA ACTIVO · Inglés · Objetivo B2 · Cambiar".
-  - [P1] Sin anillo de XP en el avatar ni "nivel de viajero" (badge 14, barra a Nivel 15) — sistema inexistente.
-  - [P1] Radar sin anillo de META punteado + tag "META B1", sin vértices coloreados por débil/fuerte, labels no-i18n (`kSkillEs`).
-  - [P1] Alerta de punto débil sin loro ni botón coral; filas de skill sin color por estado (débil no se distingue salvo el badge).
-  - [P1] Certificados sin la card BLOQUEADA con requisitos ("Necesitas B1 en las 4" + 4 mini-barras + "2 de 4 listas") ni medalla animada.
-  - [P1] Stats sin calendario semanal de racha ("Mejor: 28") ni tiles Liga/Logros.
-  - [P2] Meta diaria como barra arriba vs anillo dentro de "Mi plan"; sin animaciones sheen/glow.
-- No implementado del mockup: nivel de viajero, chip idioma activo, cert bloqueado con requisitos, calendario de racha, tiles Liga/Logros, mascota.
+  - [P1] ✅ **ARREGLADO (2026-07-09):** banner full-bleed "MI PERFIL" (gradiente violeta) + chip **"IDIOMA ACTIVO · \<curso real\> · Objetivo \<meta\> · Cambiar"** course-aware (bandera + `learnLangName`, tap → Ajustes) — no más "Inglés" hardcodeado.
+  - [P1] ✅ **ARREGLADO:** anillo de XP en el avatar + badge de **nivel de viajero** + barra al siguiente. El sistema no existía (`users.player_level` nunca se actualiza) → implementado simple y honesto client-side desde `xp_total` (`traveler_level.dart`, progresión triangular T(n)=50·(n−1)·n, determinista, con test).
+  - [P1] ✅ **ARREGLADO:** radar con **anillo de META punteado + tag "META \<nivel\>"**, **vértices coloreados** (coral = bajo la meta) y **labels localizados** (fix i18n: antes salían en español vía kSkillEs).
+  - [P1] ✅ **ARREGLADO:** alerta de punto débil con **mascota + botón coral "Practicar"**; filas de skill **coloreadas por estado** (débil/bajo meta = coral, con "X → Y · %").
+  - [P1] ✅ **ARREGLADO:** certificados con **card BLOQUEADA con requisitos** ("Necesitas \<nivel\> en las 4" + 4 mini-barras verde/coral por examReady real + "N de 4 listas", tap → examen si está desbloqueado) + **medalla** con check para los obtenidos.
+  - [P1] ✅ **ARREGLADO:** stats con **calendario semanal de racha** (días activos derivados de la racha real, "Mejor: N", HOY 🔥) + **tiles Liga** (división+puesto reales) **y Logros**.
+  - [P2] Meta diaria como barra arriba vs anillo dentro de "Mi plan"; sin sheen deslizante en la medalla (glow estático).
+- Diferido P2: sheen animado de la medalla, meta diaria dentro de "Mi plan".
 
 ## 15) Ligas
 - Mockup: mockups/Ligas.dc.html · Implementación: `leagues_screen.dart`
@@ -229,11 +229,11 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
 - Coincide: ranking semanal con fila-usuario resaltada, top-3, zonas verde/coral; estados extra bien resueltos que el mockup no contempla (skeleton, error, beta <13).
 - Desviaciones:
   - [P0] ✅ **ARREGLADO (2026-07-08):** el header ya NO es bronce hardcodeado — refleja la división REAL (`DivisionTheme.of(lg.division)`: gradiente+emblema por bronce/plata/oro/zafiro/rubi/diamante, colores de Ligas.dc). Verificado cliente real 2 divisiones (`verify_p0_product.py`: get_league oro→oro, diamante→diamante) + test unitario. (Pendiente P1: emblema-medalla 128px con laureles/halo animado — mejora estética, no bug.)
-  - [P0] Falta la fila de las 6 divisiones (Bronce→Diamante, actual destacada, futuras a 50%).
-  - [P1] Sin countdown "Termina en 2d 14h"; separadores sin división destino ("SUBEN A ZAFIRO"); filas sin tinte por zona ni tags ("Sube"/"En riesgo"); avatares grises uniformes vs coloreados por persona; top-3 emoji vs círculos rellenos.
-  - [P1] Sin loro animador con globo "¡Sigue subiendo! 💪".
-  - [P2] Sin rótulo "XP esta semana"; el segmented "Mi liga/Tablas" es añadido de la app.
-- No implementado del mockup: emblema por división, carrusel de divisiones, countdown, pills con destino, tags/tintes por fila, avatares coloreados, mascota.
+  - [P0] ✅ **ARREGLADO (2026-07-09):** banner violeta con **emblema-medalla** (CustomPaint: medalla con gradiente de la división + estrella + cintas + laureles + halo pulsante reduce-motion-aware) + **fila de las 6 divisiones** (actual destacada con anillo blanco y más grande, futuras a 50%).
+  - [P1] ✅ **ARREGLADO:** **countdown "Termina en Xd Yh"** (weekStart real + 7 días, `jz_close_weeks`); separadores **con división destino** ("SUBEN A ZAFIRO"/"BAJAN A PLATA", espejo de jz_div_up/down); filas **con tinte por zona + tags** ("Sube"/"En riesgo"/"¡Mantente arriba!"); **avatares coloreados** por persona; **top-3 con círculos-medalla** rellenos.
+  - [P1] ✅ **ARREGLADO:** **mascota animadora** con globo "¡Sigue subiendo! 💪" flotando sobre el ranking.
+  - [P2] ✅ Rótulo "XP esta semana" añadido. (El segmented "Mi liga/Tablas" se mantiene — extra de la app.)
+- Estados buenos conservados: skeleton, error, beta <13 (aviso + sin zonas engañosas).
 
 ---
 

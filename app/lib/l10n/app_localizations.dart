@@ -2274,6 +2274,168 @@ abstract class AppLocalizations {
   /// **'No se pudo iniciar la práctica.'**
   String get practiceStartError;
 
+  /// No description provided for @profileHeaderKicker.
+  ///
+  /// In es, this message translates to:
+  /// **'MI PERFIL'**
+  String get profileHeaderKicker;
+
+  /// No description provided for @profileTravelerChip.
+  ///
+  /// In es, this message translates to:
+  /// **'Nivel de viajero {level}'**
+  String profileTravelerChip(int level);
+
+  /// No description provided for @profileTravelerNext.
+  ///
+  /// In es, this message translates to:
+  /// **'Nivel {level} · {xp} XP'**
+  String profileTravelerNext(int level, int xp);
+
+  /// No description provided for @profileActiveLangLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'IDIOMA ACTIVO'**
+  String get profileActiveLangLabel;
+
+  /// No description provided for @profileActiveLangValue.
+  ///
+  /// In es, this message translates to:
+  /// **'{language} · Objetivo {goal}'**
+  String profileActiveLangValue(String language, String goal);
+
+  /// No description provided for @profileActiveLangChange.
+  ///
+  /// In es, this message translates to:
+  /// **'Cambiar'**
+  String get profileActiveLangChange;
+
+  /// No description provided for @profileRadarGoalTag.
+  ///
+  /// In es, this message translates to:
+  /// **'META {level}'**
+  String profileRadarGoalTag(String level);
+
+  /// No description provided for @profileSkillsReadyChip.
+  ///
+  /// In es, this message translates to:
+  /// **'{ready} / 4 en {level}'**
+  String profileSkillsReadyChip(int ready, String level);
+
+  /// No description provided for @profileWeakAlertTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu punto débil es'**
+  String get profileWeakAlertTitle;
+
+  /// No description provided for @profileWeakAlertBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Súbelo a {level} y certificarás tu nivel completo.'**
+  String profileWeakAlertBody(String level);
+
+  /// No description provided for @profileCertLockedNeed.
+  ///
+  /// In es, this message translates to:
+  /// **'Necesitas {level} en las 4 habilidades'**
+  String profileCertLockedNeed(String level);
+
+  /// No description provided for @profileCertReadyCount.
+  ///
+  /// In es, this message translates to:
+  /// **'{n} de 4 habilidades listas'**
+  String profileCertReadyCount(int n);
+
+  /// No description provided for @profileCertVerifiedLine.
+  ///
+  /// In es, this message translates to:
+  /// **'Verificado · examen Jezici'**
+  String get profileCertVerifiedLine;
+
+  /// No description provided for @profileStatsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Estadísticas'**
+  String get profileStatsTitle;
+
+  /// No description provided for @profileStreakLine.
+  ///
+  /// In es, this message translates to:
+  /// **'{n} días de racha'**
+  String profileStreakLine(int n);
+
+  /// No description provided for @profileStreakBest.
+  ///
+  /// In es, this message translates to:
+  /// **'Mejor: {n}'**
+  String profileStreakBest(int n);
+
+  /// No description provided for @profileStreakToday.
+  ///
+  /// In es, this message translates to:
+  /// **'HOY'**
+  String get profileStreakToday;
+
+  /// No description provided for @profileLeagueRank.
+  ///
+  /// In es, this message translates to:
+  /// **'Puesto {n}'**
+  String profileLeagueRank(int n);
+
+  /// No description provided for @leagueCurrentDivision.
+  ///
+  /// In es, this message translates to:
+  /// **'DIVISIÓN ACTUAL'**
+  String get leagueCurrentDivision;
+
+  /// No description provided for @leagueEndsIn.
+  ///
+  /// In es, this message translates to:
+  /// **'Termina en'**
+  String get leagueEndsIn;
+
+  /// No description provided for @leagueXpThisWeek.
+  ///
+  /// In es, this message translates to:
+  /// **'XP esta semana'**
+  String get leagueXpThisWeek;
+
+  /// No description provided for @leaguePromoteTo.
+  ///
+  /// In es, this message translates to:
+  /// **'SUBEN A {division}'**
+  String leaguePromoteTo(String division);
+
+  /// No description provided for @leagueDemoteTo.
+  ///
+  /// In es, this message translates to:
+  /// **'BAJAN A {division}'**
+  String leagueDemoteTo(String division);
+
+  /// No description provided for @leagueTagUp.
+  ///
+  /// In es, this message translates to:
+  /// **'Sube'**
+  String get leagueTagUp;
+
+  /// No description provided for @leagueTagRisk.
+  ///
+  /// In es, this message translates to:
+  /// **'En riesgo'**
+  String get leagueTagRisk;
+
+  /// No description provided for @leagueTagYou.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Mantente arriba!'**
+  String get leagueTagYou;
+
+  /// No description provided for @leagueMascotCheer.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Sigue subiendo! 💪'**
+  String get leagueMascotCheer;
+
   /// No description provided for @missionAppBarTitle.
   ///
   /// In es, this message translates to:
