@@ -5,6 +5,7 @@ import '../../core/ui/jz_transitions.dart';
 import '../../data/models/content_item_model.dart';
 import '../../data/models/lesson_model.dart';
 import '../../l10n/app_localizations.dart';
+import '../learn/widgets/parrot_mascot.dart';
 import '../../ui/primary_button.dart';
 import 'lesson_player_screen.dart';
 
@@ -55,7 +56,7 @@ class ErrorReviewScreen extends StatelessWidget {
               child: ListView(
                 padding: EdgeInsets.fromLTRB(20, 18, 20, 12 + MediaQuery.paddingOf(context).bottom),
                 children: [
-                  const Text('🦜', style: TextStyle(fontSize: 44)),
+                  const Align(alignment: Alignment.centerLeft, child: ParrotArt(size: 44)),
                   const SizedBox(height: 6),
                   Text(l10n.errorReviewTitle,
                       style: const TextStyle(

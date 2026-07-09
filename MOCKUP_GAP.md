@@ -47,8 +47,14 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
 3. **Gap sistémico #2 — botón 3D "con labio"** (`0 Npx 0 <colorDark>` + hundido al presionar):
    `PrimaryButton` lo tiene, pero el CTA del loop (`_BigButton` COMPROBAR/CONTINUAR), los CTA
    dorados (cofre/checkpoint), y varios botones secundarios NO — inconsistencia interna.
-4. **Gap sistémico #3 — mascota:** el guacamayo de los mockups es un SVG propio animado con
-   globo de diálogo; la app usa el emoji 🦜 estático en todas las superficies.
+4. **Gap sistémico #3 — mascota:** ✅ **CERRADO (2026-07-09).** Matix es ahora un **guacamayo escarlata
+   VECTOR propio** (`ParrotArt`, CustomPaint portando 1:1 el SVG de los mockups Ajustes/Leccion: cuerpo/
+   cabeza escarlata, ala y cola dorado-naranja, cresta, cara crema, pico dorado; sin assets/paquetes,
+   CSP-safe). `ParrotMascot` (animado idle/celebrate/encourage, reduce-motion-aware) lo usa con **globo
+   de diálogo blanco** estilo mockup. Reemplazó el emoji 🦜 en TODAS las superficies de personaje (mapa,
+   lección enunciado+fin, onboarding, práctica, error-review, checkpoint/examen/certificado, ligas,
+   ajustes/Matix, notificaciones, cuaderno, splash). Quedan como texto los 🦜 decorativos dentro de la
+   COPIA i18n (p.ej. "¡Correcto! 🦜") — son puntuación, no el personaje.
 5. **Decisiones de producto (NO son gaps):** Conversar en vivo (salas/compañeros) = Fase 2;
    selector de planes del Paywall = pagos inactivos en beta; canal de CORREO del coach = sin
    SMTP; pregunta de intensidad del onboarding = eliminada a propósito (mig 124).
@@ -61,7 +67,7 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
 - Coincide: estructura full-bleed + sendero serpenteante + cima; 4 estados de nodo con hex casi exactos (mastered `#FFDD7A→#FFC02E` exacto); pulso coral del disponible fiel (+ fallback reduce-motion, mejora); globo "EMPIEZA" y copy exactos; colores del sendero y colinas exactos.
 - Desviaciones:
   - [P1] ✅ **ARREGLADO (2026-07-08):** el checkpoint es ahora un **PORTAL de examen** (`checkpoint_portal.dart`: pilares violeta + reflejo, arco, interior dorado con gradiente, estrella-llave, halo pulsante reduce-motion-aware) + pill "EXAMEN · UNIDAD N"; estado bloqueado = gris apagado + candado. Respeta el gating (≥80% dominio) sin tocar la lógica.
-  - [P1] Mascota: SVG guacamayo animado (jzBob) vs emoji 🦜.
+  - [P1] ✅ **ARREGLADO (2026-07-09):** mascota = guacamayo escarlata **SVG vector** propio (`ParrotArt`/`ParrotMascot`) animado (jzBob), ya no el emoji 🦜 (gap sistémico #3 cerrado, ver arriba).
   - [P1] ✅ **ARREGLADO (2026-07-08):** escenografía por región enriquecida (`scenery_painter.dart`): **cordillera lejana con cumbres nevadas + nubes** (cima), **costa con mar/playa/velero** (media), 5 capas de colinas + 5 pinos de 2 capas, y **ciudad/distrito laboral con ventanas** (base). Full-bleed; la columna de nodos sigue centrada (dx0).
   - [P2] Certificado de cima sin subtítulo "Fluidez · Avanzado", sin labio 3D `0 8px 0 #E7B23A`, sin halo animado.
   - [P2] Mastered sin sheen deslizante ni banderín coral; misión sin chispa ni tarjeta lateral "★ MISIÓN".
@@ -89,7 +95,7 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
 - Desviaciones restantes (P2, no bloqueantes):
   - Copy feedback: "+15 XP · combo x3 🔥" en la franja (el combo vive en el top bar); estado near dorado (extra app).
   - Zona de construcción sin líneas-guía; minHeight 96 vs 118.
-  - Guacamayo+globo en la fila del enunciado: **diferido honesto** (la mascota es emoji, no SVG → no se fuerza).
+  - Guacamayo+globo en la fila del enunciado: la mascota ya es **SVG vector** (gap #3 cerrado); asomarla en la fila del enunciado del loop queda como pulido menor.
   - Chip racha "+1" verde vs "+1 hoy" naranja; CONTINUAR final sin gradiente; confetti ráfaga vs loop; glow del header.
 - Extras app (más allá del mockup): estado near, hito racha, congelador, DailyGoalBar, TipCard, repaso de errores.
 
@@ -145,7 +151,7 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
 - Coincide: fondo/tokens/Nunito; botón atrás casi idéntico; `PrimaryButton` con labio 3D EXACTO al mockup; opción seleccionada violeta+check; 6 opciones de minutos; "¡Tu plan está listo! 🎉" + fecha viva (AnimatedSwitcher) + palanca que recalcula.
 - Desviaciones:
   - [P1] Barra de progreso continua vs 9 segmentos + contador "5/9".
-  - [P1] Mascota emoji estática sin globo de diálogo ("¡Hagamos un plan a tu medida! 🦜").
+  - [P1] ✅ **ARREGLADO (2026-07-09):** mascota = guacamayo escarlata **SVG vector** animado con globo de diálogo blanco (`ParrotMascot`), ya no el emoji (gap sistémico #3 cerrado).
   - [P1] Opciones de minutos como chips compactos sin badges (Relajado/Recomendado/Experto…) ni iconos (la app fusiona minutos+días en un paso — decisión razonable, visual distinta).
   - [P1] "Tu plan" sin header de celebración (confeti jzFall + glow + loro jzCheer + kicker "PERSONALIZADO PARA TI").
   - [P1] Sin MAPA DE VIAJE A2→B2 (colinas SVG, camino punteado animado, pin "ESTÁS AQUÍ", bandera "TU META") — solo 2 badges estáticos.

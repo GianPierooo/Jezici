@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../data/models/progress_models.dart';
+import '../learn/widgets/parrot_mascot.dart';
 import 'coach_styles.dart';
 import 'matix_service.dart';
 
@@ -85,7 +86,7 @@ class _MatixBannerCardState extends State<_MatixBannerCard> with SingleTickerPro
                   ),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const Text('🦜', style: TextStyle(fontSize: 22)),
+                child: const ParrotArt(size: 26),
               ),
               const SizedBox(width: 11),
               Expanded(

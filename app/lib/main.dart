@@ -15,6 +15,7 @@ import 'core/theme/app_theme.dart';
 import 'data/providers.dart';
 import 'l10n/app_localizations.dart';
 import 'features/auth/auth_screen.dart';
+import 'features/learn/widgets/parrot_mascot.dart';
 import 'features/notifications/matix_service.dart';
 import 'features/onboarding/onboarding_screen.dart';
 import 'features/shell/home_shell.dart';
@@ -195,7 +196,7 @@ class _Splash extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text('🦜', style: TextStyle(fontSize: 64)),
+            const ParrotArt(size: 64),
             const SizedBox(height: 18),
             if (onRetry == null)
               const CircularProgressIndicator(color: AppColors.primary)

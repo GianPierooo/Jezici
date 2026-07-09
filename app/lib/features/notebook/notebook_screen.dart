@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/speech/speakable_text.dart';
 import '../../core/theme/app_colors.dart';
+import '../learn/widgets/parrot_mascot.dart';
 import '../../data/models/tip_models.dart';
 import '../../data/providers.dart';
 
@@ -60,7 +61,7 @@ class _Empty extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('🦜', style: TextStyle(fontSize: 56)),
+            ParrotArt(size: 56),
             SizedBox(height: 14),
             Text('Tu cuaderno está vacío… por ahora',
                 textAlign: TextAlign.center,

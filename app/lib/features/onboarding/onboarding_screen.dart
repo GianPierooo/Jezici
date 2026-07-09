@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/i18n/learn_lang_names.dart';
 import '../../core/i18n/locale_controller.dart';
+import '../learn/widgets/parrot_mascot.dart';
 import '../../core/plan/estimation.dart';
 import '../../core/theme/app_colors.dart';
 import '../../l10n/app_localizations.dart';
@@ -292,7 +293,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           child: Column(
             children: [
               const Spacer(),
-              const Text('🦜', style: TextStyle(fontSize: 96)),
+              const ParrotMascot(size: 96),
               const SizedBox(height: 20),
               Text(l10n.onbWelcomeTitle,
                   textAlign: TextAlign.center,

@@ -8,6 +8,7 @@ import '../../core/theme/app_colors.dart';
 import '../../data/models/achievement_models.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
+import '../learn/widgets/parrot_mascot.dart';
 
 /// Pantalla de CERTIFICADO (el gran diferenciador): celebración + el certificado
 /// con folio, código de verificación y NOMBRE DEL TITULAR emitidos server-side.
@@ -116,7 +117,7 @@ class _CertificateScreenState extends ConsumerState<CertificateScreen> {
                               style: TextStyle(
                                   fontSize: 11, letterSpacing: 4, fontWeight: FontWeight.w900, color: AppColors.textMuted)),
                           const SizedBox(height: 6),
-                          const Text('🦜', style: TextStyle(fontSize: 38)),
+                          const ParrotArt(size: 38),
                           const SizedBox(height: 4),
                           const Text('Certificado de Inglés',
                               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: AppColors.text)),

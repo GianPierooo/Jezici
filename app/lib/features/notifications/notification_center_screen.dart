@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/progress_models.dart';
 import '../../data/providers.dart';
+import '../learn/widgets/parrot_mascot.dart';
 import 'matix_service.dart';
 import 'matix_test_buttons.dart';
 
@@ -98,7 +99,7 @@ class _EmptyState extends StatelessWidget {
       ),
       child: const Column(
         children: [
-          Text('🦜', style: TextStyle(fontSize: 40)),
+          ParrotArt(size: 40),
           SizedBox(height: 8),
           Text('Sin notificaciones todavía',
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.text)),
@@ -148,7 +149,7 @@ class _NotifTile extends StatelessWidget {
               color: AppColors.navActiveBg,
               borderRadius: BorderRadius.circular(11),
             ),
-            child: const Text('🦜', style: TextStyle(fontSize: 19)),
+            child: const ParrotArt(size: 24),
           ),
           const SizedBox(width: 11),
           Expanded(

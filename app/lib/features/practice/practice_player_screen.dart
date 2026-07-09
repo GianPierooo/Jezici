@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/feedback/feedback_fx.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/content_item_model.dart';
+import '../learn/widgets/parrot_mascot.dart';
 import '../../data/providers.dart';
 import '../lesson/exercises/exercise_registry.dart';
 import '../lesson/grading/grader.dart';
@@ -180,7 +181,7 @@ class _PracticePlayerScreenState extends ConsumerState<PracticePlayerScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text('🦜', style: TextStyle(fontSize: 44)),
+                  const ParrotArt(size: 44),
                   const SizedBox(height: 8),
                   const Text('Nada que practicar por ahora.',
                       style: TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../data/models/practice_models.dart';
+import '../learn/widgets/parrot_mascot.dart';
 
 /// Resumen de una sesión de práctica (datos del servidor).
 class PracticeSummaryScreen extends StatelessWidget {
@@ -20,7 +21,9 @@ class PracticeSummaryScreen extends StatelessWidget {
           child: Column(
             children: [
               const Spacer(),
-              Text(perfect ? '🌟' : '🦜', style: const TextStyle(fontSize: 72)),
+              perfect
+                  ? const Text('🌟', style: TextStyle(fontSize: 72))
+                  : const ParrotMascot(size: 72, mood: MascotMood.celebrate),
               const SizedBox(height: 8),
               Text(
                 r.graded == 0

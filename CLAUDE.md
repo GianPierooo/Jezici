@@ -5,6 +5,27 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-09**.
 
+## MASCOTA SVG ÚNICA — Matix guacamayo escarlata (gap sistémico #3) ✅ (2026-07-09 · solo cliente)
+El diferenciador de marca: el emoji 🦜 estático → **guacamayo escarlata VECTOR propio**, sin assets ni
+paquetes (CSP-safe, cero peso de red). En `features/learn/widgets/parrot_mascot.dart`:
+- **`ParrotArt`** (StatelessWidget · CustomPaint): porta **1:1 el SVG de los mockups** (Ajustes/Leccion,
+  viewBox 84×90) → cuerpo/cabeza escarlata (`#FF4D6D`/`#FF6B6B`), vientre rosa, ala y cola dorado-naranja
+  (`#FFC93C`/`#FF7A00`), **cresta** de 2 plumas, cara crema, ojo con pupila+brillo, pico dorado. Estático,
+  reutilizable en superficies pequeñas/inline (banners, listas, estados vacíos, splash). Verificado
+  visualmente (golden temporal → se ve el guacamayo, borrado por flaky en Linux CI).
+- **`ParrotMascot`** (animado): usa `ParrotArt` como cuerpo + los estados idle/celebrate/encourage
+  (bob/brinco/asentimiento, reduce-motion-aware) + **globo de diálogo BLANCO** estilo mockup (antes era
+  oscuro). Sus 14 usos (mapa, lección, perfil, ligas, ajustes/Matix, checkpoint/examen, onboarding…) pasan
+  a SVG automáticamente.
+- **Reemplazado el emoji standalone** en 10 superficies más: onboarding (hero 96), práctica (header +
+  summary celebración), error-review, translation-exercise, certificado, cuaderno (vacío), Matix banner,
+  centro de notificaciones (vacío + avatar de fila), splash (main.dart). **Se conserva** el 🦜 decorativo
+  dentro de la COPIA i18n ("¡Correcto! 🦜") — es puntuación, no el personaje. Los avatares de usuario
+  (fallback) tampoco se tocan (no son Matix).
+- Cierra el gap sistémico #3 de MOCKUP_GAP y los "diferidos de mascota" de Aprender/Onboarding/Lección.
+i18n intacto (globos ya localizados). Verde: analyze 0 (CI-exact) · test 122/122 (+parrot_mascot: vector
+sin emoji + globo) · build web OK.
+
 ## LECCIÓN: pulido fiel a Leccion.dc ✅ (2026-07-09 · solo cliente)
 Capa visual + TTS (determinista, cero IA). **NO toca grading/loop/scoring.**
 - **F1 · Labio 3D en el CTA del loop (`_BigButton` COMPROBAR/CONTINUAR):** era un `Container` plano

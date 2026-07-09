@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/content_item_model.dart';
 import '../../../l10n/app_localizations.dart';
+import '../../learn/widgets/parrot_mascot.dart';
 import '../grading/grader.dart';
 
 /// Traducción: muestra la frase origen y un campo para escribir la traducción.
@@ -48,7 +49,7 @@ class _TranslationExerciseState extends State<TranslationExercise> {
       children: [
         Row(
           children: [
-            const Text('🦜', style: TextStyle(fontSize: 40)),
+            const ParrotArt(size: 40),
             const SizedBox(width: 12),
             Expanded(
               child: Container(
