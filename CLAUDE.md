@@ -5,6 +5,32 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-09**.
 
+## PLACEMENT 4 HABILIDADES en LOS 6 CURSOS ✅ LIVE (mig 139 · 2026-07-10)
+Retome de ## Cola ítem 5 CERRADO: fr/it/de/nl quedan al nivel de en+pt — el examen de ubicación mide
+**reading + LISTENING + writing + SPEAKING con perfil por habilidad REAL en los 6 cursos**.
+- **Banco L/S (mig 139, SOLO ítems — el RPC v3 de mig 135/136 ya era live y course-agnóstico, NO se
+  tocó):** por curso (fr/it/de/nl, A1–B2 como pt): **12 listening** (MC "¿qué oíste?", 3 opciones
+  rotadas, guarda anti-colisión) + **8 speaking** (read-aloud `type=translation` sin opciones). Total
+  **80 ítems** autorados con calidad NATIVA (criterio: un distractor cambia una PALABRA de contenido
+  audible, el otro el TIEMPO/persona; jamás pares mínimos de diacríticos ß/ss·ä/a) + revisión
+  adversarial por idioma (fr subjonctif «Bien qu'il soit», de Konjunktiv I «er habe», it congiuntivo
+  «Benché sia», nl «werkt ze door»/pluperfecto). **Audio TTS 48/48** en Storage (tl real vía join
+  `languages`, text-matched, HEAD 200 48/48).
+- **`gen_placement_ls.py` fase 2:** dicts LISTENING/SPEAKING extendidos a los 6 idiomas; `main()` emite
+  la mig 139 items-only para `PHASE2` (la mig 135 histórica no se regenera).
+- **Auditoría de INTEGRIDAD del banco COMPLETO** (`audit_placement_bank.py`): 0 colisiones norm-exactas,
+  0 duplicados, 0 sanidad — y de paso se ARREGLÓ el check 1 del audit, que estaba roto de origen
+  (llamaba `jz_near_match(text,text)`; la firma real es `(type, jsonb, jsonb)` → 400 silencioso): ahora
+  el chequeo near-match de cloze/translation corre DE VERDAD → 0 distractores perdonables en todo el banco.
+- **Verificado REAL (cliente JWT, `verify_placement_4skills.py`, LOS 6 CURSOS) TODO VERDE:** 4 skills
+  servidas · largo 12 (∈10–16) · **persona fuerte-R/floja-L → reading>listening 4/4 en CADA curso**
+  (B2/B1, 0 invertidas) · azar → 0 skills B2/C1 (8 corridas ×4 skills/curso) · aislamiento (ítems solo
+  del curso activo). La aserción de persona se volvió **DETERMINISTA** (lectora perfecta/sorda al audio:
+  global B2 + demote de listening es matemática, no suerte — la 0.9-aleatoria era flaky y en un run cayó
+  2/4 por fase de rotación, no por el banco). Regresiones: `verify_placement_serious` (en+pt) TODO VERDE ·
+  `verify_estimator` 8/8 · analyze 0 (CI-exact) · test 141/141 (cliente sin cambios: ya renderizaba L/S
+  course-agnóstico y `SpeechLang` ya mapea fr/it/de/nl).
+
 ## BARRIDO DE FIDELIDAD UI — 4 pantallas cerradas (mig 138 · 2026-07-10)
 PASO 0 releyó MOCKUP_GAP + código: la mayoría de pantallas YA estaban cerradas (la tabla del gap estaba
 desactualizada; el "SinVidas timer" sugerido ya se resolvió honesto el 07-09). Se cerraron las 4 con P1
@@ -158,7 +184,7 @@ El test de ubicación ahora evalúa **reading + LISTENING + writing + SPEAKING**
   TODO VERDE (las personas ya enfrentan L/S) + `verify_estimator` 8/8. `audit_placement_bank` eximido para speaking
   (sin opciones) y prompts-instrucción L/S. Verde: analyze 0 (CI-exact) · test 131/131 (+placement_flow: listening
   rinde audio, speaking rinde mic y saltar excluye) · build web OK.
-- **Re-encolado:** banco L/S para **fr/it/de/nl** (su placement sigue R/W + fallback global, seguro). Retome exacto en ## Cola.
+- **fr/it/de/nl ✅ igualados (mig 139, 2026-07-10):** banco L/S + audio + verificación 6/6 — ver sección PLACEMENT 4 HABILIDADES en LOS 6 CURSOS.
 
 ## SINVIDAS fiel a SinVidas.dc (con honestidad) ✅ (2026-07-09 · solo cliente)
 Capa visual; **NO toca la economía de vidas/oro ni la recarga** (buy_hearts 50 oro = P0, intacto).
@@ -782,12 +808,9 @@ en B2; andamiaje idéntico listo: STAMP `('pt','c1')=…130`, grupo audio `pt-c1
    **4 HABILIDADES en placement ✅ para en+pt (mig 135/136, 2026-07-09):** banco L/S en+pt (27 listening MC con
    audio + 18 speaking read-aloud sin opciones), RPC v3 rotación R→L→W→S + `p_exclude_skills` + skill_levels
    por habilidad demote-only; cliente renderiza audio y mic (saltable). Verificado `verify_placement_4skills.py`
-   TODO VERDE. **Retome fr/it/de/nl (banco L/S):** extender los dicts `LISTENING`/`SPEAKING` de
-   `tools/content/gen_placement_ls.py` con fr/it/de/nl A1–B2 (autor nativo + revisor adversarial; la guarda
-   anti-colisión del script aborta sola), regenerar la migración (**SOLO ítems — el RPC ya está live, quitar
-   RPC_SQL del output o dejarlo idéntico**), `apply_sql.py`, audio con el snippet de tts/upload de
-   `gen_audio_missing.py` (join `languages` para tl), y correr `verify_placement_4skills.py` extendido a esos
-   cursos. Su placement HOY sigue R/W + skill_levels=global (fallback seguro, cero regresión). Pendiente además:
+   TODO VERDE. **Banco L/S fr/it/de/nl ✅ (mig 139, 2026-07-10):** los 6 cursos miden las 4 habilidades
+   con perfil por-skill real; `verify_placement_4skills.py` corre los 6 (persona determinista B2/B1
+   diferenciada 4/4, azar 0 altas, aislamiento). Pendiente además:
    nombre real de la unidad de entrada por curso en `PlacementResultView` (hoy rótulo es→en).
    **Barrido de colisiones MC/listening ✅ (mig 117).**
 6. **Diferidos menores:** historias B2 por idioma (B1 ✅ mig 125); imágenes referenciales

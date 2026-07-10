@@ -22,14 +22,12 @@ with p as (
        lateral jsonb_array_elements_text(coalesce(ci.payload->'options','[]'::jsonb)) opt(value)
   where 'placement' = any(ci.tags)
 )
-select course_id, cefr_level, skill, type, left(prompt, 60) prompt, corr, opt
-from p
-where jz_normalize(opt) <> jz_normalize(corr)  -- es un distractor de verdad
-  and (
-    jz_normalize(opt) = jz_normalize(corr)     -- (imposible aquí, guard)
-    or (type::text not in ('multiple_choice','listening') and jz_near_match(opt, corr))
-  )
-order by course_id, cefr_level;
+select p.course_id, p.cefr_level, p.skill, p.type, left(p.prompt, 60) prompt, p.corr, p.opt
+from p join content_items ci on ci.id = p.id
+where jz_normalize(p.opt) <> jz_normalize(p.corr)  -- es un distractor de verdad
+  and p.type::text not in ('multiple_choice','listening')  -- MC/listening = exacto
+  and jz_near_match(ci.type, ci.correct_answer, to_jsonb(p.opt))  -- firma real
+order by p.course_id, p.cefr_level;
 """)
 print(json.dumps(r, ensure_ascii=False, indent=1)[:3000])
 

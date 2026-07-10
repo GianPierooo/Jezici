@@ -21,7 +21,15 @@ NS = uuid.UUID('20000000-0000-0000-0000-0000000000aa')  # mismo namespace del ba
 COURSES = {
     'en': '20000000-0000-0000-0000-000000000001',
     'pt': '20000000-0000-0000-0000-000000000002',
+    'fr': '20000000-0000-0000-0000-000000000003',
+    'it': '20000000-0000-0000-0000-000000000004',
+    'de': '20000000-0000-0000-0000-000000000005',
+    'nl': '20000000-0000-0000-0000-000000000006',
 }
+
+# Fase 2 (mig 139): fr/it/de/nl - el main() emite SOLO estos (items, sin RPC:
+# el RPC v3 ya esta live y es course-agnostico). en+pt quedaron en mig 135.
+PHASE2 = ('fr', 'it', 'de', 'nl')
 DIFF = {'A1': 0.15, 'A2': 0.35, 'B1': 0.55, 'B2': 0.72, 'C1': 0.84}
 AUDIO_BASE = 'https://wiauinufpbkmjlbqlkxo.supabase.co/storage/v1/object/public/audio/items'
 
@@ -59,6 +67,98 @@ LISTENING = {
             ("Notwithstanding the delays, the project succeeded.", ["Notwithstanding the delays, the project collapsed.", "Despite the delays, the project succeeded."]),
         ],
     },
+    # -- fr/it/de/nl (mig 139): mismo diseno - un distractor cambia una PALABRA
+    # de contenido audible, el otro cambia el TIEMPO/persona gramatical. Nunca
+    # pares minimos de diacriticos (ß/ss, ä/a): criterio de autor = diferencias
+    # de palabra completa (la guarda local + audit_placement_bank lo verifican).
+    'fr': {
+        'A1': [
+            ("Elle a deux frères.", ["Elle a deux sœurs.", "Il a deux frères."]),
+            ("Le livre est sur la table.", ["Le livre est sous la table.", "Le verre est sur la table."]),
+            ("Je me lève à sept heures.", ["Je me lève à six heures.", "Je me couche à sept heures."]),
+        ],
+        'A2': [
+            ("Hier, je suis allé à la plage.", ["Hier, je suis allé à la gare.", "Demain, je vais à la plage."]),
+            ("Elle est plus grande que son frère.", ["Elle est plus âgée que son frère.", "Elle est plus grande que sa mère."]),
+            ("Nous n'avons pas eu le temps de manger.", ["Nous n'avons pas le temps de manger.", "Nous n'avons pas eu le temps de dormir."]),
+        ],
+        'B1': [
+            ("Je n'ai jamais vu ce film.", ["Je n'ai jamais vu ce pont.", "Je ne vais jamais voir ce film."]),
+            ("S'il pleut, nous resterons à la maison.", ["S'il pleuvait, nous resterions à la maison.", "S'il pleut, nous resterons au bureau."]),
+            ("Elle habite ici depuis mars.", ["Elle habite ici depuis mai.", "Elle habitait ici depuis mars."]),
+        ],
+        'B2': [
+            ("Les résultats seront annoncés demain.", ["Les résultats ont été annoncés hier.", "Les résultats seront annoncés lundi."]),
+            ("Il a dit qu'il avait déjà terminé le rapport.", ["Il a dit qu'il allait bientôt terminer le rapport.", "Il dit qu'il a déjà terminé le rapport."]),
+            ("Bien qu'il soit tard, elle continue à travailler.", ["Bien qu'il est tard, elle continue à travailler.", "Parce qu'il est tard, elle arrête de travailler."]),
+        ],
+    },
+    'it': {
+        'A1': [
+            ("Io ho due fratelli.", ["Io ho due sorelle.", "Lui ha due fratelli."]),
+            ("Il libro è sul tavolo.", ["Il libro è sotto il tavolo.", "Il bicchiere è sul tavolo."]),
+            ("Mi alzo alle sette.", ["Mi alzo alle sei.", "Vado a letto alle sette."]),
+        ],
+        'A2': [
+            ("Ieri sono andato al mare.", ["Ieri sono andato al bar.", "Domani vado al mare."]),
+            ("Lei è più alta di suo fratello.", ["Lei è più vecchia di suo fratello.", "Lei è più alta di sua madre."]),
+            ("Non abbiamo avuto tempo di mangiare.", ["Non abbiamo tempo di mangiare.", "Non abbiamo avuto tempo di dormire."]),
+        ],
+        'B1': [
+            ("Non ho mai visto quel film.", ["Non ho mai visto quel ponte.", "Non vado mai a vedere quel film."]),
+            ("Se piove, restiamo a casa.", ["Se piovesse, resteremmo a casa.", "Se piove, restiamo in ufficio."]),
+            ("Abita qui da marzo.", ["Abita qui da maggio.", "Abitava qui da marzo."]),
+        ],
+        'B2': [
+            ("I risultati saranno annunciati domani.", ["I risultati sono stati annunciati ieri.", "I risultati saranno annunciati lunedì."]),
+            ("Ha detto che aveva già finito la relazione.", ["Ha detto che avrebbe finito presto la relazione.", "Dice che ha già finito la relazione."]),
+            ("Benché sia tardi, continua a lavorare.", ["Benché fosse tardi, continuava a lavorare.", "Poiché è tardi, smette di lavorare."]),
+        ],
+    },
+    'de': {
+        'A1': [
+            ("Ich habe zwei Brüder.", ["Ich habe zwei Schwestern.", "Er hat zwei Brüder."]),
+            ("Das Buch liegt auf dem Tisch.", ["Das Buch liegt unter dem Tisch.", "Das Glas steht auf dem Tisch."]),
+            ("Ich stehe um sieben Uhr auf.", ["Ich stehe um sechs Uhr auf.", "Ich gehe um sieben Uhr schlafen."]),
+        ],
+        'A2': [
+            ("Gestern bin ich an den Strand gefahren.", ["Gestern bin ich in die Stadt gefahren.", "Morgen fahre ich an den Strand."]),
+            ("Sie ist größer als ihr Bruder.", ["Sie ist älter als ihr Bruder.", "Sie ist größer als ihre Mutter."]),
+            ("Wir hatten keine Zeit zu essen.", ["Wir haben keine Zeit zu essen.", "Wir hatten keine Zeit zu schlafen."]),
+        ],
+        'B1': [
+            ("Ich habe diesen Film noch nie gesehen.", ["Ich habe diese Brücke noch nie gesehen.", "Ich hatte diesen Film noch nie gesehen."]),
+            ("Wenn es regnet, bleiben wir zu Hause.", ["Wenn es regnete, würden wir zu Hause bleiben.", "Wenn es regnet, bleiben wir im Büro."]),
+            ("Sie wohnt seit März hier.", ["Sie wohnt seit Mai hier.", "Sie wohnte seit März hier."]),
+        ],
+        'B2': [
+            ("Die Ergebnisse werden morgen bekannt gegeben.", ["Die Ergebnisse wurden gestern bekannt gegeben.", "Die Ergebnisse werden am Montag bekannt gegeben."]),
+            ("Er sagte, er habe den Bericht schon beendet.", ["Er sagte, er werde den Bericht bald beenden.", "Er sagt, er hat den Bericht schon beendet."]),
+            ("Obwohl es spät ist, arbeitet sie weiter.", ["Obwohl es spät war, arbeitete sie weiter.", "Weil es spät ist, hört sie auf zu arbeiten."]),
+        ],
+    },
+    'nl': {
+        'A1': [
+            ("Ik heb twee broers.", ["Ik heb twee zussen.", "Hij heeft twee broers."]),
+            ("Het boek ligt op de tafel.", ["Het boek ligt onder de tafel.", "Het glas staat op de tafel."]),
+            ("Ik sta om zeven uur op.", ["Ik sta om zes uur op.", "Ik ga om zeven uur slapen."]),
+        ],
+        'A2': [
+            ("Gisteren ben ik naar het strand geweest.", ["Gisteren ben ik naar de stad geweest.", "Morgen ga ik naar het strand."]),
+            ("Zij is groter dan haar broer.", ["Zij is ouder dan haar broer.", "Zij is groter dan haar moeder."]),
+            ("We hadden geen tijd om te eten.", ["We hebben geen tijd om te eten.", "We hadden geen tijd om te slapen."]),
+        ],
+        'B1': [
+            ("Ik heb die film nog nooit gezien.", ["Ik heb die brug nog nooit gezien.", "Ik had die film nog nooit gezien."]),
+            ("Als het regent, blijven we thuis.", ["Als het regende, zouden we thuis blijven.", "Als het regent, blijven we op kantoor."]),
+            ("Zij woont hier sinds maart.", ["Zij woont hier sinds mei.", "Zij woonde hier sinds maart."]),
+        ],
+        'B2': [
+            ("De resultaten worden morgen bekendgemaakt.", ["De resultaten werden gisteren bekendgemaakt.", "De resultaten worden maandag bekendgemaakt."]),
+            ("Hij zei dat hij het rapport al had afgerond.", ["Hij zei dat hij het rapport snel zou afronden.", "Hij zegt dat hij het rapport al heeft afgerond."]),
+            ("Hoewel het laat is, werkt ze door.", ["Hoewel het laat was, werkte ze door.", "Omdat het laat is, stopt ze met werken."]),
+        ],
+    },
     'pt': {
         'A1': [
             ("Eu tenho dois irmãos.", ["Eu tenho duas irmãs.", "Ele tem dois irmãos."]),
@@ -93,6 +193,30 @@ SPEAKING = {
         'B2': ["The meeting had already started when I arrived", "This document must be signed by the manager"],
         'C1': ["Had it not been for her advice, I would have failed", "The findings ought to be interpreted with caution"],
     },
+    'fr': {
+        'A1': ["J'ai deux chats", "Le café est très bon"],
+        'A2': ["Le week-end dernier, j'ai rendu visite à ma grand-mère", "Je vais voyager le mois prochain"],
+        'B1': ["J'étudie le français depuis deux ans", "Si j'avais plus de temps, je lirais plus de livres"],
+        'B2': ["La réunion avait déjà commencé quand je suis arrivé", "Ce document doit être signé par le directeur"],
+    },
+    'it': {
+        'A1': ["Ho due gatti", "Il caffè è molto buono"],
+        'A2': ["Il fine settimana scorso ho visitato mia nonna", "Andrò in vacanza il mese prossimo"],
+        'B1': ["Studio l'italiano da due anni", "Se avessi più tempo, leggerei più libri"],
+        'B2': ["La riunione era già cominciata quando sono arrivato", "Questo documento deve essere firmato dal direttore"],
+    },
+    'de': {
+        'A1': ["Ich habe zwei Katzen", "Der Kaffee ist sehr gut"],
+        'A2': ["Letztes Wochenende habe ich meine Oma besucht", "Ich werde nächsten Monat verreisen"],
+        'B1': ["Ich lerne seit zwei Jahren Deutsch", "Wenn ich mehr Zeit hätte, würde ich mehr Bücher lesen"],
+        'B2': ["Die Besprechung hatte schon begonnen, als ich ankam", "Dieses Dokument muss vom Chef unterschrieben werden"],
+    },
+    'nl': {
+        'A1': ["Ik heb twee katten", "De koffie is erg lekker"],
+        'A2': ["Afgelopen weekend heb ik mijn oma bezocht", "Ik ga volgende maand op reis"],
+        'B1': ["Ik leer al twee jaar Nederlands", "Als ik meer tijd had, zou ik meer boeken lezen"],
+        'B2': ["De vergadering was al begonnen toen ik aankwam", "Dit document moet door de manager worden ondertekend"],
+    },
     'pt': {
         'A1': ["Eu moro em uma casa pequena", "O café está muito bom"],
         'A2': ["No fim de semana passado eu visitei minha avó", "Eu vou viajar no mês que vem"],
@@ -116,22 +240,21 @@ def sql_str(s):
 
 
 def main():
+    # Fase 2 (mig 139): emite SOLO fr/it/de/nl, items-only. La mig 135 (en+pt +
+    # RPC v3) es historia APLICADA y no se regenera; el RPC ya es course-agnóstico.
+    listening = {k: v for k, v in LISTENING.items() if k in PHASE2}
+    speaking = {k: v for k, v in SPEAKING.items() if k in PHASE2}
     lines = [
         '-- ============================================================================',
-        '-- Jezici · Migración 135 · PLACEMENT 4 HABILIDADES (Fase 1: banco L/S en+pt)',
+        '-- Jezici · Migración 139 · BANCO L/S de placement para fr/it/de/nl (Fase 2)',
         '-- ----------------------------------------------------------------------------',
-        '-- El placement solo medía reading/writing y copiaba el global ×4 → perfil de',
-        '-- skills FALSO. Ahora: banco LISTENING (type=listening: MC exacto + audio TTS)',
-        '-- y SPEAKING (read-aloud verificado: type=translation, transcripción STT con',
-        '-- tolerancia typo, SIN options=sin colisión) para en+pt (cursos de verificación;',
-        '-- fr/it/de/nl en ## Cola con este mismo generador gen_placement_ls.py).',
-        '-- RPC v3: intercala las skills DISPONIBLES del banco (R→L→W→S), acepta',
-        '-- p_exclude_skills (mic no disponible → speaking fuera, honesto), y estima',
-        '-- nivel POR HABILIDAD con rigor anti-azar: global v2 intacto como ancla +',
-        '-- DEMOTE-only por skill (una skill con >=3 ítems y acc<=0.4 baja 1 nivel;',
-        '-- NUNCA se promueve por skill → el azar no puede inflar ninguna habilidad).',
-        '-- Cursos sin banco L/S: rotación sirve R/W y L/S caen al global (igual que hoy).',
-        '-- Mantiene min10/max16, rev>=4|pin>=3, clamp A2, estimador mig 134. 42501 OK.',
+        '-- Retome de ## Cola (ítem 5): en+pt ya miden 4 habilidades (mig 135/136);',
+        '-- este banco iguala fr/it/de/nl (A1–B2, como pt): 12 listening MC "¿qué oíste?"',
+        '-- (guarda anti-colisión, opciones rotadas, audio TTS text-matched) + 8',
+        '-- speaking read-aloud (type=translation, sin options) por curso. SOLO ítems:',
+        '-- el RPC v3 (rotación R→L→W→S + p_exclude_skills + per-skill demote-only,',
+        '-- mig 135/136) ya está live y es course-agnóstico — NO se toca. Autor nativo',
+        '-- + revisor adversarial por idioma; distractores = PALABRA completa distinta.',
         '-- ============================================================================',
         'begin;',
         '',
@@ -139,7 +262,7 @@ def main():
     ]
     rows = []
     errors = []
-    for lang, levels in LISTENING.items():
+    for lang, levels in listening.items():
         cid = COURSES[lang]
         for lvl, items in levels.items():
             for i, (say, distractors) in enumerate(items):
@@ -162,7 +285,7 @@ def main():
                     f"{sql_str(json.dumps(ca, ensure_ascii=False))}::jsonb, {DIFF[lvl]}, "
                     "ARRAY[" + ', '.join(sql_str(t) for t in tags) + '])'
                 )
-    for lang, levels in SPEAKING.items():
+    for lang, levels in speaking.items():
         cid = COURSES[lang]
         for lvl, items in levels.items():
             for i, sent in enumerate(items):
@@ -181,13 +304,12 @@ def main():
     lines.append(',\n'.join(rows))
     lines.append('on conflict (id) do nothing;')
     lines.append('')
-    lines.append(RPC_SQL)
     lines.append('commit;')
-    out = '../../supabase/migrations/20260709120135_placement_4skills.sql'
+    out = '../../supabase/migrations/20260710120139_placement_ls_multi.sql'
     with open(out, 'w', encoding='utf-8') as f:
         f.write('\n'.join(lines) + '\n')
-    print(f'OK {out} · listening={sum(len(v) for l in LISTENING.values() for v in l.values())} '
-          f'speaking={sum(len(v) for l in SPEAKING.values() for v in l.values())}')
+    print(f'OK {out} · listening={sum(len(v) for l in listening.values() for v in l.values())} '
+          f'speaking={sum(len(v) for l in speaking.values() for v in l.values())}')
 
 
 RPC_SQL = r'''

@@ -1,17 +1,27 @@
 # -*- coding: utf-8 -*-
 """Verificación REAL (flujo humano, cliente JWT) del placement de 4 HABILIDADES
-(mig 135) en 2 cursos (en, pt):
+(mig 135/136 en+pt · mig 139 fr/it/de/nl) en LOS 6 CURSOS:
   1. COBERTURA: el examen sirve las 4 skills (reading/listening/writing/speaking).
   2. AZAR → nivel bajo en las 4 (speaking sin opciones → transcripción basura).
   3. PERSONA fuerte-en-reading / floja-en-listening → skill_levels.reading >
      skill_levels.listening (perfil DIFERENCIADO, no global ×4).
   4. AISLAMIENTO: ítems solo del curso activo. 5. LARGO dentro de 10-16.
-python verify_placement_4skills.py"""
+python verify_placement_4skills.py [códigos… p.ej. fr it de nl]"""
 import json
 import random
+import sys
 from collections import Counter
 
 import verify_placement_serious as V
+
+COURSES = {
+    'en': '20000000-0000-0000-0000-000000000001',
+    'pt': '20000000-0000-0000-0000-000000000002',
+    'fr': '20000000-0000-0000-0000-000000000003',
+    'it': '20000000-0000-0000-0000-000000000004',
+    'de': '20000000-0000-0000-0000-000000000005',
+    'nl': '20000000-0000-0000-0000-000000000006',
+}
 
 RANK = {'A1': 0, 'A2': 1, 'B1': 2, 'B2': 3, 'C1': 4}
 
@@ -37,15 +47,17 @@ def azar_ans(it, opts, rng):
 
 
 def persona_RW_fuerte_L_floja(it, opts, rng):
-    """Sabe reading/writing/speaking hasta B1 (0.9); en LISTENING no entiende el
-    audio → responde MAL (elige una opción incorrecta, como quien oye ruido)."""
+    """Persona DETERMINISTA caso-límite (aserción repetible, sin flakiness):
+    PERFECTA en reading/writing/speaking a cualquier nivel, y no entiende NADA
+    de audio (listening siempre mal). Prueba el MECANISMO por-skill limpio:
+    global acredita B2 (solo los fallos de listening restan), listening (n>=3,
+    acc 0) DEMOTE 1 nivel, reading (acc 1.0) queda en el global → reading >
+    listening en TODAS las corridas, jamás al revés."""
     correct = V._CORRECT.get(it['id'])
-    if it['skill'] == 'listening':
+    if it['skill'] == 'listening' or correct is None:
         wrong = [o for o in opts if o != correct]
-        return rng.choice(wrong) if wrong else 'x'
-    if RANK.get(it.get('cefr_level'), 0) <= 2 and correct is not None and rng.random() < 0.9:
-        return correct
-    return rng.choice(opts) if opts else 'x'
+        return wrong[0] if wrong else 'x'
+    return correct
 
 
 def main():
@@ -59,10 +71,11 @@ def main():
         print(('  OK  ' if cond else '  XX  ') + name + ('  ' + detail if detail else ''))
         passed = passed and cond
 
+    codes = sys.argv[1:] or ['en', 'pt', 'fr', 'it', 'de', 'nl']
     tok, uid = V.mk_user('verify4sk@test.jezici.dev')
     try:
-        for code in ['en', 'pt']:
-            C = V.COURSES[code]
+        for code in codes:
+            C = COURSES[code]
             V.rpc(tok, 'set_active_course', {'p_course_id': C})
             rng = random.Random(42)
 
@@ -80,12 +93,12 @@ def main():
                f'{sorted(all_skills)}')
             ck(f'{code}: largo 10-16', all(10 <= n <= 16 for n in ns), f'n={ns}')
 
-            # 3) Perfil DIFERENCIADO: fuerte-R/floja-L → reading > listening en
-            # >=3 de 4 corridas (demote-only exige >=3 ítems L fallados + global
-            # >=A2; una corrida puede caer a global A1 por la brevedad del CAT).
+            # 3) Perfil DIFERENCIADO: la persona es determinista → reading >
+            # listening en TODAS las corridas (y jamás al revés).
             dif = sum(1 for r_, l_ in diffs if RANK[r_] > RANK[l_])
-            ck(f'{code}: fuerte-R/floja-L → reading>listening (>=3/4)', dif >= 3,
-               f'{diffs} (diferenciadas={dif}/4)')
+            inv = sum(1 for r_, l_ in diffs if RANK[l_] > RANK[r_])
+            ck(f'{code}: fuerte-R/floja-L → reading>listening (4/4, 0 invertidas)',
+               dif == 4 and inv == 0, f'{diffs}')
 
             # 2) AZAR → bajo en las 4 skills (ninguna B2/C1; a lo sumo 1 caso raro).
             high = 0
