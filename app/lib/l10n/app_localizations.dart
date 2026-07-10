@@ -4162,6 +4162,198 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Tu Speaking: {level} — súbelo hablando aquí'**
   String convSpeakingPill(String level);
+
+  /// No description provided for @checkpointWhatsIn.
+  ///
+  /// In es, this message translates to:
+  /// **'QUÉ ENTRA'**
+  String get checkpointWhatsIn;
+
+  /// No description provided for @certScreenTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu certificado'**
+  String get certScreenTitle;
+
+  /// No description provided for @certTitleOf.
+  ///
+  /// In es, this message translates to:
+  /// **'Certificado de {language}'**
+  String certTitleOf(String language);
+
+  /// No description provided for @certLevelReached.
+  ///
+  /// In es, this message translates to:
+  /// **'por alcanzar el nivel'**
+  String get certLevelReached;
+
+  /// No description provided for @certMcer.
+  ///
+  /// In es, this message translates to:
+  /// **'Marco Común Europeo (MCER)'**
+  String get certMcer;
+
+  /// No description provided for @certRowFolio.
+  ///
+  /// In es, this message translates to:
+  /// **'Folio'**
+  String get certRowFolio;
+
+  /// No description provided for @certRowVerification.
+  ///
+  /// In es, this message translates to:
+  /// **'Código de verificación'**
+  String get certRowVerification;
+
+  /// No description provided for @certRowIssued.
+  ///
+  /// In es, this message translates to:
+  /// **'Emitido el'**
+  String get certRowIssued;
+
+  /// No description provided for @certShare.
+  ///
+  /// In es, this message translates to:
+  /// **'COMPARTIR'**
+  String get certShare;
+
+  /// No description provided for @certShareCopied.
+  ///
+  /// In es, this message translates to:
+  /// **'Certificado copiado para compartir ✓'**
+  String get certShareCopied;
+
+  /// No description provided for @certVerifyNote.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu código verifica la autenticidad del certificado.'**
+  String get certVerifyNote;
+
+  /// No description provided for @certSealVerified.
+  ///
+  /// In es, this message translates to:
+  /// **'VERIFICADO'**
+  String get certSealVerified;
+
+  /// No description provided for @matixNow.
+  ///
+  /// In es, this message translates to:
+  /// **'ahora'**
+  String get matixNow;
+
+  /// No description provided for @coachTagFirm.
+  ///
+  /// In es, this message translates to:
+  /// **'Firme'**
+  String get coachTagFirm;
+
+  /// No description provided for @coachTagUpbeat.
+  ///
+  /// In es, this message translates to:
+  /// **'Animado'**
+  String get coachTagUpbeat;
+
+  /// No description provided for @coachTagCompetitive.
+  ///
+  /// In es, this message translates to:
+  /// **'Competitivo'**
+  String get coachTagCompetitive;
+
+  /// No description provided for @coachTagCalm.
+  ///
+  /// In es, this message translates to:
+  /// **'Tranquilo'**
+  String get coachTagCalm;
+
+  /// No description provided for @premiumHeroTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Lleva tu {language} más lejos'**
+  String premiumHeroTitle(String language);
+
+  /// No description provided for @premiumHeroSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Todo lo del plan gratis, y más para certificarte antes.'**
+  String get premiumHeroSubtitle;
+
+  /// No description provided for @premiumFeatMocksTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Simulacros IELTS y Cambridge'**
+  String get premiumFeatMocksTitle;
+
+  /// No description provided for @premiumFeatMocksDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Exámenes de práctica con formato real'**
+  String get premiumFeatMocksDesc;
+
+  /// No description provided for @premiumFeatHeartsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Vidas infinitas'**
+  String get premiumFeatHeartsTitle;
+
+  /// No description provided for @premiumFeatHeartsDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Practica sin quedarte sin corazones'**
+  String get premiumFeatHeartsDesc;
+
+  /// No description provided for @premiumFeatRetriesTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Reintentos ilimitados'**
+  String get premiumFeatRetriesTitle;
+
+  /// No description provided for @premiumFeatRetriesDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Repite checkpoints y exámenes sin límite'**
+  String get premiumFeatRetriesDesc;
+
+  /// No description provided for @premiumFeatNoAdsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin anuncios'**
+  String get premiumFeatNoAdsTitle;
+
+  /// No description provided for @premiumFeatNoAdsDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Aprende sin interrupciones'**
+  String get premiumFeatNoAdsDesc;
+
+  /// No description provided for @premiumFeatReportsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Informes avanzados'**
+  String get premiumFeatReportsTitle;
+
+  /// No description provided for @premiumFeatReportsDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Análisis profundo de tus 4 habilidades'**
+  String get premiumFeatReportsDesc;
+
+  /// No description provided for @premiumCtaSoon.
+  ///
+  /// In es, this message translates to:
+  /// **'HAZTE PREMIUM · PRÓXIMAMENTE'**
+  String get premiumCtaSoon;
+
+  /// No description provided for @premiumCtaSnack.
+  ///
+  /// In es, this message translates to:
+  /// **'Los pagos llegan pronto. ¡Gracias por tu interés! 💜'**
+  String get premiumCtaSnack;
+
+  /// No description provided for @premiumFreeNote.
+  ///
+  /// In es, this message translates to:
+  /// **'Estás en el plan Gratis. Todo el contenido A1 es gratuito.'**
+  String get premiumFreeNote;
 }
 
 class _AppLocalizationsDelegate

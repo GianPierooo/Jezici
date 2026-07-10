@@ -1612,5 +1612,51 @@
         "type": "String"
       }
     }
-  }
+  },
+  "checkpointWhatsIn": "QUÉ ENTRA",
+  "certScreenTitle": "Tu certificado",
+  "certTitleOf": "Certificado de {language}",
+  "@certTitleOf": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "certLevelReached": "por alcanzar el nivel",
+  "certMcer": "Marco Común Europeo (MCER)",
+  "certRowFolio": "Folio",
+  "certRowVerification": "Código de verificación",
+  "certRowIssued": "Emitido el",
+  "certShare": "COMPARTIR",
+  "certShareCopied": "Certificado copiado para compartir ✓",
+  "certVerifyNote": "Tu código verifica la autenticidad del certificado.",
+  "certSealVerified": "VERIFICADO",
+  "matixNow": "ahora",
+  "coachTagFirm": "Firme",
+  "coachTagUpbeat": "Animado",
+  "coachTagCompetitive": "Competitivo",
+  "coachTagCalm": "Tranquilo",
+  "premiumHeroTitle": "Lleva tu {language} más lejos",
+  "@premiumHeroTitle": {
+    "placeholders": {
+      "language": {
+        "type": "String"
+      }
+    }
+  },
+  "premiumHeroSubtitle": "Todo lo del plan gratis, y más para certificarte antes.",
+  "premiumFeatMocksTitle": "Simulacros IELTS y Cambridge",
+  "premiumFeatMocksDesc": "Exámenes de práctica con formato real",
+  "premiumFeatHeartsTitle": "Vidas infinitas",
+  "premiumFeatHeartsDesc": "Practica sin quedarte sin corazones",
+  "premiumFeatRetriesTitle": "Reintentos ilimitados",
+  "premiumFeatRetriesDesc": "Repite checkpoints y exámenes sin límite",
+  "premiumFeatNoAdsTitle": "Sin anuncios",
+  "premiumFeatNoAdsDesc": "Aprende sin interrupciones",
+  "premiumFeatReportsTitle": "Informes avanzados",
+  "premiumFeatReportsDesc": "Análisis profundo de tus 4 habilidades",
+  "premiumCtaSoon": "HAZTE PREMIUM · PRÓXIMAMENTE",
+  "premiumCtaSnack": "Los pagos llegan pronto. ¡Gracias por tu interés! 💜",
+  "premiumFreeNote": "Estás en el plan Gratis. Todo el contenido A1 es gratuito."
 }

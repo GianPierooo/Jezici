@@ -5,10 +5,13 @@ import '../../core/theme/app_colors.dart';
 import '../../data/models/lesson_model.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
+import '../learn/widgets/parrot_mascot.dart';
 import 'checkpoint_player_screen.dart';
 
-/// Intro del checkpoint (mockup Checkpoint, Frame A): portal + condiciones de
-/// examen (cronometrado, 80%, nº de preguntas) y "Empezar checkpoint".
+/// Intro del checkpoint (mockup Checkpoint, Frame A): escena nocturna con
+/// estrellas + portal + loro con burbuja, chips "QUÉ ENTRA" (las lecciones
+/// REALES de la unidad) y condiciones del examen. Los valores 5 min / 80% / 10
+/// son las CONSTANTES reales de `start_checkpoint` (300s, 0.80, 3R+3W+2L+2S).
 class CheckpointIntroScreen extends ConsumerWidget {
   const CheckpointIntroScreen({super.key, required this.lesson, required this.unitTitle});
 
@@ -43,11 +46,26 @@ class CheckpointIntroScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
+    // QUÉ ENTRA: los títulos REALES de las lecciones de esta unidad (dato que ya
+    // existe en mapUnitsProvider). Sin datos → la sección se omite (honesto).
+    final unitLessons = ref.watch(mapUnitsProvider).maybeWhen(
+        data: (units) {
+          for (final u in units) {
+            if (u.id == lesson.unitId) {
+              return [
+                for (final le in u.lessons)
+                  if (le.type != LessonType.checkpoint) le.title
+              ];
+            }
+          }
+          return const <String>[];
+        },
+        orElse: () => const <String>[]);
     return Scaffold(
       backgroundColor: AppColors.background,
       body: Column(
         children: [
-          // Escena del portal.
+          // Escena del portal (noche estrellada del mockup).
           Expanded(
             child: Container(
               width: double.infinity,
@@ -60,7 +78,9 @@ class CheckpointIntroScreen extends ConsumerWidget {
               ),
               child: SafeArea(
                 bottom: false,
-                child: Column(
+                child: Stack(children: [
+                  const Positioned.fill(child: _Stars()),
+                  Column(
                   children: [
                     Padding(
                       padding: const EdgeInsets.all(14),
@@ -93,7 +113,15 @@ class CheckpointIntroScreen extends ConsumerWidget {
                         ],
                       ),
                     ),
-                    const Spacer(),
+                    // Centro ESCALABLE: en pantallas cortas el portal/título se
+                    // encogen (FittedBox) en vez de desbordar.
+                    Expanded(
+                      child: Center(
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
                     // Portal.
                     Stack(
                       alignment: Alignment.center,
@@ -174,23 +202,34 @@ class CheckpointIntroScreen extends ConsumerWidget {
                           fontWeight: FontWeight.w800,
                           color: Colors.white.withValues(alpha: 0.8)),
                     ),
-                    const Spacer(),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    // Loro con BURBUJA de diálogo (mockup), no texto plano suelto.
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 14, right: 20),
+                      padding: const EdgeInsets.only(bottom: 30, right: 16),
                       child: Align(
                         alignment: Alignment.centerRight,
-                        child: Text(l10n.checkpointCoachMsg,
-                            style: const TextStyle(
-                                color: Colors.white, fontWeight: FontWeight.w800, fontSize: 13)),
+                        child: ParrotMascot(
+                            size: 52,
+                            mood: MascotMood.encourage,
+                            message: l10n.checkpointCoachMsg),
                       ),
                     ),
                   ],
-                ),
+                  ),
+                ]),
               ),
             ),
           ),
-          // Hoja de info.
-          Container(
+          // Hoja de info (scrollable con tope: en pantallas cortas no desborda —
+          // la escena de arriba conserva al menos ~1/3 del alto).
+          ConstrainedBox(
+            constraints: BoxConstraints(
+                maxHeight: MediaQuery.sizeOf(context).height * 0.62),
+            child: Container(
             width: double.infinity,
             decoration: const BoxDecoration(
               color: AppColors.background,
@@ -200,6 +239,7 @@ class CheckpointIntroScreen extends ConsumerWidget {
             // + inset inferior: en Android (PWA) la barra de navegación del sistema
             // tapaba el botón/última línea ("se corta levemente"). 0 en pantallas sin inset.
             padding: EdgeInsets.fromLTRB(20, 20, 20, 28 + MediaQuery.paddingOf(context).bottom),
+            child: SingleChildScrollView(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -209,6 +249,34 @@ class CheckpointIntroScreen extends ConsumerWidget {
                   style: const TextStyle(
                       fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.textMuted),
                 ),
+                // QUÉ ENTRA: chips con las lecciones reales de la unidad.
+                if (unitLessons.isNotEmpty) ...[
+                  const SizedBox(height: 14),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(l10n.checkpointWhatsIn,
+                        style: const TextStyle(
+                            fontSize: 11,
+                            fontWeight: FontWeight.w900,
+                            letterSpacing: 0.5,
+                            color: AppColors.textMuted)),
+                  ),
+                  const SizedBox(height: 8),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Wrap(
+                      spacing: 7,
+                      runSpacing: 7,
+                      children: [
+                        // Máx 4 chips + "+N" (como el mockup; la hoja no crece sin tope).
+                        for (final t in unitLessons.take(4))
+                          _chip(t),
+                        if (unitLessons.length > 4)
+                          _chip('+${unitLessons.length - 4}'),
+                      ],
+                    ),
+                  ),
+                ],
                 const SizedBox(height: 16),
                 Row(
                   children: [
@@ -244,11 +312,102 @@ class CheckpointIntroScreen extends ConsumerWidget {
                         fontSize: 11, fontWeight: FontWeight.w800, color: AppColors.textMuted)),
               ],
             ),
+            ),
+          ),
           ),
         ],
       ),
     );
   }
+
+  Widget _chip(String t) => Container(
+        padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 5),
+        decoration: BoxDecoration(
+          color: AppColors.navActiveBg,
+          borderRadius: BorderRadius.circular(9),
+        ),
+        child: Text(t,
+            style: const TextStyle(
+                fontSize: 11.5, fontWeight: FontWeight.w900, color: AppColors.primary)),
+      );
+}
+
+/// Estrellas de la escena nocturna (jzTwinkle del mockup): puntitos que
+/// parpadean suave. Con reduce-motion quedan FIJAS semitransparentes.
+class _Stars extends StatefulWidget {
+  const _Stars();
+  @override
+  State<_Stars> createState() => _StarsState();
+}
+
+class _StarsState extends State<_Stars> with SingleTickerProviderStateMixin {
+  late final AnimationController _c =
+      AnimationController(vsync: this, duration: const Duration(milliseconds: 2600));
+  bool _reduce = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _reduce = MediaQuery.disableAnimationsOf(context);
+    if (_reduce) {
+      _c.stop();
+    } else if (!_c.isAnimating) {
+      _c.repeat();
+    }
+  }
+
+  @override
+  void dispose() {
+    _c.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return IgnorePointer(
+      child: AnimatedBuilder(
+        animation: _c,
+        builder: (_, _) =>
+            CustomPaint(painter: _StarsPainter(_reduce ? 0.5 : _c.value)),
+      ),
+    );
+  }
+}
+
+class _StarsPainter extends CustomPainter {
+  _StarsPainter(this.t);
+  final double t; // fase 0..1
+
+  // Posiciones del mockup (fracciones de 368×~400 de la escena) + extras.
+  static const _stars = <(double, double, double, double, bool)>[
+    // (fx, fy, radio, desfase, dorada)
+    (0.11, 0.16, 2.5, 0.0, false),
+    (0.82, 0.20, 2.0, 0.35, false),
+    (0.68, 0.13, 3.0, 0.60, true),
+    (0.22, 0.26, 2.0, 0.20, false),
+    (0.92, 0.34, 2.2, 0.80, false),
+    (0.05, 0.42, 1.8, 0.55, false),
+    (0.45, 0.10, 2.0, 0.45, true),
+  ];
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    for (final (fx, fy, r, phase, gold) in _stars) {
+      // Parpadeo suave 0.3..1.0 (jzTwinkle) con desfase por estrella.
+      final wave = (0.5 - (((t + phase) % 1.0) - 0.5).abs()) * 2; // 0..1
+      final alpha = 0.3 + 0.7 * wave;
+      canvas.drawCircle(
+        Offset(size.width * fx, size.height * fy),
+        r,
+        Paint()
+          ..color = (gold ? const Color(0xFFFFD86B) : Colors.white)
+              .withValues(alpha: alpha),
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _StarsPainter old) => old.t != t;
 }
 
 class _StatCard extends StatelessWidget {

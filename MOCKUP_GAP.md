@@ -125,11 +125,11 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
 - Estado: **DESVIADO** · Esfuerzo: **M + M** (player: FIEL — el mockup no lo diseña)
 - Coincide (intro): gradiente escena, badge "⚑ CHECKPOINT", copy de la hoja y del hint EXACTOS; CTA con labio `0 6px 0 #D69400`; stat-cards con sombra exacta. (Resultado): header + confetti; tarjeta "NUEVA REGIÓN DESBLOQUEADA" hex y copy exactos; rewards; rama reprobado fiel en colores.
 - Desviaciones:
-  - [P1] Intro sin escenografía (estrellas jzTwinkle, montañas, portal SVG tallado) — portal geométrico simple; loro sin burbuja ("¡Demuestra lo que sabes!" como texto plano).
-  - [P1] Intro sin chips "QUÉ ENTRA" (temas de la unidad).
+  - [P1] ✅ **ARREGLADO (2026-07-10):** intro con **estrellas jzTwinkle** (CustomPaint determinista, fijas con reduce-motion) + **loro con BURBUJA** (`ParrotMascot` encourage con globo, ya no texto plano) + centro escalable (FittedBox: no desborda en pantallas cortas; hoja scrollable con tope).
+  - [P1] ✅ **ARREGLADO (2026-07-10):** chips **"QUÉ ENTRA"** con los títulos REALES de las lecciones de la unidad (`mapUnitsProvider`; máx 4 + "+N"; sin datos → se omite). i18n es/en/pt.
   - [P1] ✅ **ARREGLADO (2026-07-09):** el resultado aprobado tiene **mini-mapa SVG del desbloqueo** (portal superado con ✓ → camino punteado violeta→verde → siguiente región con glow) dentro de "NUEVA REGIÓN DESBLOQUEADA" — el "momento wow". + Guacamayo animado (celebrate/encourage) y halo dorado en el header.
   - [P1] ✅ **ARREGLADO:** reprobado con **anillo de score real** ("64%") + filas de refuerzo **con conteo de fallos reales** ("N fallos", formato del mockup). Degradación honesta: el servidor no expone fallos por TEMA → se usan los fallos reales POR HABILIDAD (`perSkill.graded - correct`).
-  - [P2] Stats de intro hardcodeadas ("5 min / 10") vs datos reales del servidor; iconos monocolor; título sin nº de unidad; "SUPERADO"→"APROBADO"; borde dashed→sólido.
+  - [P2] ✅ Stats de intro VERIFICADAS contra el servidor (2026-07-10): 5 min / 80% / 10 son las CONSTANTES reales de `start_checkpoint` (300s, 0.80, 3R+3W+2L+2S) — no eran datos falsos; obtenerlas por RPC exigiría ARRANCAR el examen desde el intro (crearía intento) → se quedan como constantes documentadas. Quedan P2 menores: iconos monocolor, "SUPERADO"→"APROBADO", borde dashed.
 - No implementado del mockup: portal SVG + estrellas, burbuja del loro, chips de temas, mini-mapa, anillo de %, temas fallados, jzCheer/jzGlow. (Extra app: desglose por habilidad.)
 
 ## 5) Examen (resultado + certificado)
@@ -142,8 +142,8 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
   - [P0] ✅ **ARREGLADO:** card "Puntaje global" (anillo N/100 con `score_global` real + chips Fortaleza/Pulir por mejor/peor skill + grid de skills). **Degradación honesta:** el percentil "top 12%" del mockup NO existe en el servidor → se omite.
   - [P0] ✅ **ARREGLADO (mig 133, 2026-07-08):** el certificado imprime el NOMBRE del titular ("Se certifica que <NOMBRE>"). Columna `holder_name` congelada al emitir (trigger desde users, misma fuente que get_profile) + backfill + `get_certificates` lo devuelve; `CertificateScreen` lo muestra (fallback a get_profile). Verificado cliente real (`verify_p0_product.py`).
   - [P1] ✅ **ARREGLADO:** reprobado con **diagnóstico per-skill** (barra de la skill más floja + "Aún no certificas X: sube tu \<skill\>" + botón "Reforzar \<skill\>" → práctica real por skill/debilidad); **botón compartir cuadrado** (copia folio+verificación); línea "✓ Verificado por el examen Jezici" en aprobado. Todo i18n es/en/pt (antes la pantalla estaba hardcodeada en español).
-  - [P1] Certificado: sin ambiente oscuro (papel crema sobre `#1C1B2E`), sin marco ornamental dorado (violeta en su lugar), sin serif ceremonial (Playfair), sin sello "VERIFICADO" ni marca de agua; acciones sin "Descargar PDF" ni share LinkedIn.
-  - [P2] Metadatos fuera de la tarjeta; sin URL pública de verificación; "Certificado de Inglés" hardcodeado (no course-aware).
+  - [P1] ✅ **ARREGLADO (2026-07-10):** certificado CEREMONIAL — ambiente oscuro `#1C1B2E`, papel crema con **doble marco DORADO** ornamental, **serif Playfair Display** (título/nivel/titular), **sello "VERIFICADO"** dorado, **marca de agua** de guacamayo tenue, filas de metadatos en claro sobre el fondo oscuro. Pantalla 100% i18n es/en/pt (antes hardcodeada en español).
+  - [P2] ✅ **"Certificado de \<idioma\>" course-aware (mig 138):** `get_certificates` expone `lang` (dato que YA existía: certificates.course_id→courses→languages) → el título usa el idioma REAL del cert, no "Inglés" fijo. ⛔ **Degradado honesto:** "Descargar PDF"/share LinkedIn/URL pública de verificación NO se muestran — no existe generador de PDF ni endpoint público de verificación (Fase 2); compartir copia folio+código real.
 - No implementado del mockup: celebración, META por skill, puntaje global/percentil, nombre del titular, sello/serif/oscuro, PDF, URL de verificación.
 
 ## 6) Simulacro
@@ -174,9 +174,9 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
 - Estado: **DESVIADO** · Esfuerzo: **M** (correo = L, fuera de beta)
 - Coincide: los 4 estilos con las MISMAS keys (mano_dura/positivo/rezago/suave) y el test de personalidad como selector; banner in-app estilo push (avatar, "Matix", autocierre); los 4 acentos del mockup YA existen como tokens (hearts/primary/streak/success).
 - Desviaciones:
-  - [P1] SIN acento por tono: el banner es idéntico (blanco+violeta) para los 4 estilos; el mockup colorea dot/tag/barra/CTA por estilo.
-  - [P1] Sin bloque de progreso contextual (label+barra+% "Racha de 11 días · 88%") ni CTA por tono ("Recuperar mi racha", "Seguir brillando"…).
-  - [P2] Nombres/samples divergen levemente; tags (Firme/Animado/Competitivo/Tranquilo) no existen.
+  - [P1] ✅ **ARREGLADO (2026-07-10):** el banner se COLOREA por el tono REAL del usuario — barra de acento (borde izq. 4px), avatar con gradiente del acento y **tag con dot** (Firme/Animado/Competitivo/Tranquilo, i18n es/en/pt) usando los tokens que ya existían (mano_dura=hearts, positivo=primary, rezago=streak, suave=success). "ahora" también i18n.
+  - [P1] ⛔ **Degradado honesto:** el bloque de progreso contextual ("Racha de 11 días · 88%") y el CTA por tono requieren que `MatixResult` transporte datos de progreso + acciones que el motor no expone → diferido a cuando el motor los provea (no se inventan).
+  - [P2] Nombres/samples divergen levemente (sin cambio).
 - No implementado del mockup: canal de CORREO completo (sin SMTP = decisión beta); barra+CTA del push; acentos por tono.
 
 ## 9) Conversar
@@ -212,9 +212,9 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
 - Coincide: estructura header→beneficios→CTA→nota gratis; 5 beneficios conceptualmente iguales; sombras/tokens; Nunito.
 - Desviaciones:
   - [P0 — justificado por beta] Selector de 3 PLANES con precios (Mensual 9,99 € · Anual 49,99 € "MEJOR VALOR · ahorras 58%" · Familiar 89,99 €) ausente — pagos inactivos.
-  - [P1] Beneficios sin chip de color POR ítem (rojo/rosa/violeta/ámbar/verde) ni check verde — semántica invertida (app: candado "bloqueado" vs mockup: check "incluido").
-  - [P1] CTA sin labio 3D dorado ni subtexto de trial; copy hero distinto y "inglés" hardcodeado (hay 6 cursos).
-  - [P2] Header card con 👑 estático vs banner full-bleed con loro coronado animado; sin "Restaurar compra"/"Seguir gratis".
+  - [P1] ✅ **ARREGLADO (2026-07-10):** beneficios con **chip de color POR ítem** (coral/rosa/violeta/ámbar/verde) + **CHECK verde "incluido"** (semántica del mockup, se quitó el candado). Pantalla 100% i18n es/en/pt (antes hardcodeada en español).
+  - [P1] ✅ CTA dorado 3D ya estaba (PrimaryButton goldCta, auditoría 07-09); **copy hero course-aware** ("Lleva tu \<idioma real\> más lejos" vía activeCourseTarget, no "inglés" fijo). Trial/subtexto = pagos inactivos (beta).
+  - [P2] ✅ Header con **guacamayo coronado** (`ParrotArt` + 👑). "Restaurar compra"/"Seguir gratis" = pagos inactivos (beta, no gap).
 - No implementado del mockup: planes+precios (beta), trial, restaurar compra, loro animado.
 
 ## 12) Practicar

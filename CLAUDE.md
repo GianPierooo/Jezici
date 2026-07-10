@@ -5,6 +5,33 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-09**.
 
+## BARRIDO DE FIDELIDAD UI — 4 pantallas cerradas (mig 138 · 2026-07-10)
+PASO 0 releyó MOCKUP_GAP + código: la mayoría de pantallas YA estaban cerradas (la tabla del gap estaba
+desactualizada; el "SinVidas timer" sugerido ya se resolvió honesto el 07-09). Se cerraron las 4 con P1
+REALES restantes, impecables y con test (`ui_fidelity_sweep_test`, 3 widgets):
+- **Checkpoint INTRO (Checkpoint.dc):** escena nocturna con **estrellas jzTwinkle** (CustomPaint
+  determinista; fijas con reduce-motion) + **loro con BURBUJA** (`ParrotMascot` encourage, ya no texto
+  plano) + **chips "QUÉ ENTRA" con las lecciones REALES de la unidad** (`mapUnitsProvider`, máx 4 + "+N",
+  sin datos se omite) + centro ESCALABLE (FittedBox) y hoja scrollable con tope → no desborda en pantallas
+  cortas. **Stats verificadas contra el servidor:** 5 min/80%/10 son las CONSTANTES reales de
+  `start_checkpoint` (300s, 0.80, 3R+3W+2L+2S) — no eran datos falsos; leerlas por RPC crearía un intento.
+- **CERTIFICADO ceremonial (Examen.dc):** ambiente oscuro `#1C1B2E` + papel crema con **doble marco
+  DORADO** + **serif Playfair Display** + **sello "VERIFICADO"** + marca de agua de guacamayo + título
+  **course-aware** — **mig 138**: `get_certificates` expone `lang` (dato que YA existía vía
+  certificates.course_id→languages; verificado con certs reales) → "Certificado de \<idioma\>" real, no
+  "Inglés" fijo. Pantalla 100% i18n (antes hardcodeada es). ⛔ Honesto: sin PDF/LinkedIn/URL pública (no
+  existe esa infra — Fase 2); compartir copia folio+código.
+- **MATIX banner (CoachTonos.dc):** acento por TONO real — barra izq. 4px + avatar en gradiente del acento
+  + **tag con dot** (Firme/Animado/Competitivo/Tranquilo, i18n) con los tokens que ya existían (mano_dura=
+  hearts, positivo=primary, rezago=streak, suave=success). ⛔ Honesto: el bloque de progreso ("Racha de 11
+  días · 88%") y el CTA por tono requieren datos/acciones que `MatixResult` no transporta → diferidos.
+- **PAYWALL (Paywall.dc):** beneficios con **chip de color POR ítem** + **CHECK verde "incluido"**
+  (semántica del mockup; fuera el candado) + **copy hero course-aware** ("Lleva tu \<idioma real\> más
+  lejos") + **guacamayo coronado** + 100% i18n (antes hardcodeada es). Planes/precios = pagos inactivos
+  (beta, decisión, no gap).
+Verde: analyze 0 (CI-exact) · test **141/141** (+3 sweep) · build web OK. **Re-encolado** (## Cola): ver
+ítem 0 actualizado (Simulacro hub = requiere motor; mini-3D compactos; i18n secundarias restantes; sombras).
+
 ## CONVERSAR pulido al lenguaje de Conversar.dc (sin features sociales) ✅ (2026-07-10 · solo cliente)
 La pantalla eran **rectángulos planos**; se subió al lenguaje visual del mockup **sin construir el hub social
 en vivo** (salas/"320 en línea"/compañeros/crear sala = Fase 2 por diseño, no se toca). Capa visual + un dato
@@ -721,15 +748,19 @@ en B2; andamiaje idéntico listo: STAMP `('pt','c1')=…130`, grupo audio `pt-c1
    (e) VERIFICAR: `verify_placement_serious.py` + probe de cobertura (las 4 skills aparecen) en ≥2
    cursos, azar→bajo, personas→su nivel, aislamiento. (f) El RE-READ pedagógico NATIVO de los 349 ítems
    existentes (workflow 6 profesores + 2 adversariales, como los cursos) también pendiente aquí.
-0. **Pulido UI restante (de la auditoría 2026-07-09, lista con file:line en el barrido del agente):**
+0. **Pulido UI restante (tras el BARRIDO DE FIDELIDAD 2026-07-10 — Certificado y Premium ya i18n/fieles):**
    (a) variante MINI-3D para botones compactos inline (tienda `tienda_screen.dart:202`, congelador
    `streak_screen.dart:296`); (b) **i18n de pantallas secundarias** — títulos/cuerpos en español
    hardcodeado: Inmersión (`immersion_screen.dart:24`), Historia/Glosario (`story_reader_screen.dart:107/202`),
-   Cuaderno (`notebook_screen.dart:22`), Métricas, Mi plan (`mi_plan_screen.dart:36+`), Certificado
-   (`certificate_screen.dart:85+`), Simulacros, Premium, Repaso (`reference_screen.dart:73+`),
-   Notificaciones, intro/player de examen (`level_exam_intro_screen.dart:42+`), diálogos de Ajustes
-   (export/delete/logout `settings_screen.dart:842+`); (c) armonizar sombras SUAVES (blur 16–32) que
-   conviven con la dura de la casa (perfil `profile_screen.dart:162+`, práctica, ligas, your_plan).
+   Cuaderno (`notebook_screen.dart:22`), Métricas, Mi plan (`mi_plan_screen.dart:36+`), Simulacros, Repaso
+   (`reference_screen.dart:73+`), Notificaciones, intro/player de examen (`level_exam_intro_screen.dart:42+`),
+   diálogos de Ajustes (export/delete/logout `settings_screen.dart:842+`); (c) armonizar sombras SUAVES
+   (blur 16–32) que conviven con la dura de la casa (perfil `profile_screen.dart:162+`, práctica, ligas,
+   your_plan); (d) **Simulacro hub visual (Simulacro.dc)**: header navy + 4 section-cards + contador "0 de 4"
+   — REQUIERE el motor de simulacros para no ser botones muertos (Fase 2, no solo visual); (e) P2 finos
+   restantes de Aprender (certificado de cima labio 3D/subtítulo, sheen del mastered, etiquetas de nodos) y
+   Lección (líneas-guía, copy combo en franja); (f) Matix: bloque de progreso + CTA por tono cuando el motor
+   exponga los datos.
 > Estado de niveles hoy (verificado en BD): **en/pt/fr/it/de/nl TODOS A1–C1** (los 6 cursos a C1;
 > C2 no sembrado en ninguno). Andamiaje probado 15× (…de C1, nl C1, pt C1): generador
 > `gen_course.py <code> <a1|a2|b1|b2|c1>` (soporta pt/fr/it/de/nl; DIFF c1=0.84), audio `gen_audio_missing.py <code>-<lvl>`

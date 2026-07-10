@@ -2440,4 +2440,109 @@ class AppLocalizationsPt extends AppLocalizations {
   String convSpeakingPill(String level) {
     return 'Seu Speaking: $level — melhore falando aqui';
   }
+
+  @override
+  String get checkpointWhatsIn => 'O QUE ENTRA';
+
+  @override
+  String get certScreenTitle => 'Seu certificado';
+
+  @override
+  String certTitleOf(String language) {
+    return 'Certificado de $language';
+  }
+
+  @override
+  String get certLevelReached => 'por alcançar o nível';
+
+  @override
+  String get certMcer => 'Quadro Europeu Comum (QECR)';
+
+  @override
+  String get certRowFolio => 'Fólio';
+
+  @override
+  String get certRowVerification => 'Código de verificação';
+
+  @override
+  String get certRowIssued => 'Emitido em';
+
+  @override
+  String get certShare => 'COMPARTILHAR';
+
+  @override
+  String get certShareCopied => 'Certificado copiado para compartilhar ✓';
+
+  @override
+  String get certVerifyNote =>
+      'Seu código verifica a autenticidade do certificado.';
+
+  @override
+  String get certSealVerified => 'VERIFICADO';
+
+  @override
+  String get matixNow => 'agora';
+
+  @override
+  String get coachTagFirm => 'Firme';
+
+  @override
+  String get coachTagUpbeat => 'Animado';
+
+  @override
+  String get coachTagCompetitive => 'Competitivo';
+
+  @override
+  String get coachTagCalm => 'Tranquilo';
+
+  @override
+  String premiumHeroTitle(String language) {
+    return 'Leve seu $language mais longe';
+  }
+
+  @override
+  String get premiumHeroSubtitle =>
+      'Tudo do plano grátis, e mais para se certificar antes.';
+
+  @override
+  String get premiumFeatMocksTitle => 'Simulados IELTS e Cambridge';
+
+  @override
+  String get premiumFeatMocksDesc => 'Provas de prática com formato real';
+
+  @override
+  String get premiumFeatHeartsTitle => 'Vidas infinitas';
+
+  @override
+  String get premiumFeatHeartsDesc => 'Pratique sem ficar sem corações';
+
+  @override
+  String get premiumFeatRetriesTitle => 'Tentativas ilimitadas';
+
+  @override
+  String get premiumFeatRetriesDesc => 'Repita checkpoints e provas sem limite';
+
+  @override
+  String get premiumFeatNoAdsTitle => 'Sem anúncios';
+
+  @override
+  String get premiumFeatNoAdsDesc => 'Aprenda sem interrupções';
+
+  @override
+  String get premiumFeatReportsTitle => 'Relatórios avançados';
+
+  @override
+  String get premiumFeatReportsDesc =>
+      'Análise profunda das suas 4 habilidades';
+
+  @override
+  String get premiumCtaSoon => 'SEJA PREMIUM · EM BREVE';
+
+  @override
+  String get premiumCtaSnack =>
+      'Os pagamentos chegam em breve. Obrigado pelo interesse! 💜';
+
+  @override
+  String get premiumFreeNote =>
+      'Você está no plano Grátis. Todo o conteúdo A1 é gratuito.';
 }

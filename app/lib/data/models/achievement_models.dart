@@ -38,11 +38,15 @@ class Certificate {
     this.holderName,
     this.issuedAt,
     this.pdfUrl,
+    this.lang = 'en',
   });
 
   final String cefrLevel;
   final String folio;
   final String verificationCode;
+
+  /// Idioma META del curso del certificado ('en'|'pt'|...; mig 138).
+  final String lang;
 
   /// Nombre del titular congelado al emitir (get_certificates, mig 133). null en
   /// el certificado recién emitido por submit_level_exam (la pantalla cae a get_profile).
@@ -59,5 +63,6 @@ class Certificate {
             : (j['holder_name'] as String).trim(),
         issuedAt: DateTime.tryParse(j['issued_at']?.toString() ?? ''),
         pdfUrl: j['pdf_url'] as String?,
+        lang: j['lang'] as String? ?? 'en',
       );
 }

@@ -2,9 +2,22 @@ import 'package:flutter/material.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../data/models/progress_models.dart';
+import '../../l10n/app_localizations.dart';
 import '../learn/widgets/parrot_mascot.dart';
 import 'coach_styles.dart';
 import 'matix_service.dart';
+
+/// Acento por TONO del coach (CoachTonos.dc): el banner se COLOREA según el
+/// estilo real del usuario — dot/tag/avatar/borde. Tokens que ya existían:
+/// mano_dura=hearts (Firme), positivo=primary (Animado), rezago=streak
+/// (Competitivo), suave=success (Tranquilo).
+({Color accent, String tag}) coachAccent(AppLocalizations l10n, String key) =>
+    switch (key) {
+      'mano_dura' => (accent: AppColors.hearts, tag: l10n.coachTagFirm),
+      'positivo' => (accent: AppColors.primary, tag: l10n.coachTagUpbeat),
+      'rezago' => (accent: AppColors.streak, tag: l10n.coachTagCompetitive),
+      _ => (accent: AppColors.success, tag: l10n.coachTagCalm),
+    };
 
 /// Muestra una notificación estilo "push" del sistema en la parte superior
 /// (la prueba visible en web de que Matix eligió el copy del estilo correcto).
@@ -54,7 +67,9 @@ class _MatixBannerCardState extends State<_MatixBannerCard> with SingleTickerPro
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final sent = widget.res.sent;
+    final tone = coachAccent(l10n, widget.style.key);
     return SlideTransition(
       position: Tween(begin: const Offset(0, -0.4), end: Offset.zero)
           .animate(CurvedAnimation(parent: _c, curve: Curves.easeOutBack)),
@@ -65,6 +80,8 @@ class _MatixBannerCardState extends State<_MatixBannerCard> with SingleTickerPro
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(18),
+            // Barra de acento por tono (borde izquierdo del mockup).
+            border: Border(left: BorderSide(color: tone.accent, width: 4)),
             boxShadow: [
               BoxShadow(
                 color: const Color(0xFF28326E).withValues(alpha: 0.22),
@@ -81,8 +98,8 @@ class _MatixBannerCardState extends State<_MatixBannerCard> with SingleTickerPro
                 height: 42,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [AppColors.primaryLight, AppColors.primary],
+                  gradient: LinearGradient(
+                    colors: [tone.accent.withValues(alpha: 0.75), tone.accent],
                   ),
                   borderRadius: BorderRadius.circular(12),
                 ),
@@ -99,12 +116,31 @@ class _MatixBannerCardState extends State<_MatixBannerCard> with SingleTickerPro
                             style: TextStyle(
                                 fontSize: 13.5, fontWeight: FontWeight.w900, color: AppColors.text)),
                         const SizedBox(width: 6),
-                        Text('· ${widget.style.emoji} ${widget.style.label}',
-                            style: const TextStyle(
-                                fontSize: 11, fontWeight: FontWeight.w800, color: AppColors.primary)),
+                        // Tag del TONO (Firme/Animado/Competitivo/Tranquilo) con
+                        // dot + chip del acento, como en CoachTonos.dc.
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: tone.accent.withValues(alpha: 0.12),
+                            borderRadius: BorderRadius.circular(7),
+                          ),
+                          child: Row(mainAxisSize: MainAxisSize.min, children: [
+                            Container(
+                                width: 6,
+                                height: 6,
+                                decoration: BoxDecoration(
+                                    color: tone.accent, shape: BoxShape.circle)),
+                            const SizedBox(width: 5),
+                            Text(tone.tag,
+                                style: TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w900,
+                                    color: tone.accent)),
+                          ]),
+                        ),
                         const Spacer(),
-                        const Text('ahora',
-                            style: TextStyle(
+                        Text(l10n.matixNow,
+                            style: const TextStyle(
                                 fontSize: 10.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
                       ],
                     ),

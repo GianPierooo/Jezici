@@ -2436,4 +2436,109 @@ class AppLocalizationsEn extends AppLocalizations {
   String convSpeakingPill(String level) {
     return 'Your Speaking: $level — level it up here';
   }
+
+  @override
+  String get checkpointWhatsIn => 'WHAT\'S COVERED';
+
+  @override
+  String get certScreenTitle => 'Your certificate';
+
+  @override
+  String certTitleOf(String language) {
+    return '$language Certificate';
+  }
+
+  @override
+  String get certLevelReached => 'for reaching level';
+
+  @override
+  String get certMcer => 'Common European Framework (CEFR)';
+
+  @override
+  String get certRowFolio => 'Folio';
+
+  @override
+  String get certRowVerification => 'Verification code';
+
+  @override
+  String get certRowIssued => 'Issued on';
+
+  @override
+  String get certShare => 'SHARE';
+
+  @override
+  String get certShareCopied => 'Certificate copied to share ✓';
+
+  @override
+  String get certVerifyNote =>
+      'Your code verifies the authenticity of the certificate.';
+
+  @override
+  String get certSealVerified => 'VERIFIED';
+
+  @override
+  String get matixNow => 'now';
+
+  @override
+  String get coachTagFirm => 'Firm';
+
+  @override
+  String get coachTagUpbeat => 'Upbeat';
+
+  @override
+  String get coachTagCompetitive => 'Competitive';
+
+  @override
+  String get coachTagCalm => 'Calm';
+
+  @override
+  String premiumHeroTitle(String language) {
+    return 'Take your $language further';
+  }
+
+  @override
+  String get premiumHeroSubtitle =>
+      'Everything in the free plan, plus more to get certified sooner.';
+
+  @override
+  String get premiumFeatMocksTitle => 'IELTS & Cambridge mock exams';
+
+  @override
+  String get premiumFeatMocksDesc => 'Practice exams with the real format';
+
+  @override
+  String get premiumFeatHeartsTitle => 'Unlimited hearts';
+
+  @override
+  String get premiumFeatHeartsDesc => 'Practice without running out of hearts';
+
+  @override
+  String get premiumFeatRetriesTitle => 'Unlimited retries';
+
+  @override
+  String get premiumFeatRetriesDesc =>
+      'Repeat checkpoints and exams without limits';
+
+  @override
+  String get premiumFeatNoAdsTitle => 'No ads';
+
+  @override
+  String get premiumFeatNoAdsDesc => 'Learn without interruptions';
+
+  @override
+  String get premiumFeatReportsTitle => 'Advanced reports';
+
+  @override
+  String get premiumFeatReportsDesc => 'Deep analysis of your 4 skills';
+
+  @override
+  String get premiumCtaSoon => 'GO PREMIUM · COMING SOON';
+
+  @override
+  String get premiumCtaSnack =>
+      'Payments are coming soon. Thanks for your interest! 💜';
+
+  @override
+  String get premiumFreeNote =>
+      'You\'re on the Free plan. All A1 content is free.';
 }
