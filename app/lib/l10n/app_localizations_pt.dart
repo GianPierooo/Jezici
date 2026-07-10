@@ -108,7 +108,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settingsCoachIntensity => 'Intensidade do coach';
 
   @override
-  String get settingsCoachInsist => 'Quanto o Matix insiste?';
+  String get settingsCoachInsist => 'Quanto o Jezi insiste?';
 
   @override
   String get settingsIntensityLow => 'Suave';
@@ -201,7 +201,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get settingsTerms => 'Termos e Condições';
 
   @override
-  String get settingsTestMatix => 'Testar o Matix';
+  String get settingsTestMatix => 'Testar o Jezi';
 
   @override
   String get settingsMetrics => 'Ver métricas (interno)';
@@ -1090,7 +1090,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String tipCardHeader(String type) {
-    return 'Matix ensina você · $type';
+    return 'Jezi ensina você · $type';
   }
 
   @override

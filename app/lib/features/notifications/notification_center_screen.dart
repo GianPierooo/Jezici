@@ -50,12 +50,12 @@ class NotificationCenterScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
-                Text('Probar a Matix',
+                Text('Probar a Jezi',
                     style: TextStyle(
                         fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
                 SizedBox(height: 3),
                 Text(
-                  'Simula un evento: Matix elige el copy de tu estilo de coach y te lo manda.',
+                  'Simula un evento: Jezi elige el copy de tu estilo de coach y te lo manda.',
                   style: TextStyle(
                       fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted),
                 ),
@@ -104,7 +104,7 @@ class _EmptyState extends StatelessWidget {
           Text('Sin notificaciones todavía',
               style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.text)),
           SizedBox(height: 4),
-          Text('Usa "Probar a Matix" para ver cómo suena tu coach.',
+          Text('Usa "Probar a Jezi" para ver cómo suena tu coach.',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
         ],

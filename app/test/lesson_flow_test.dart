@@ -102,6 +102,8 @@ class FakeProgressRepository implements ProgressRepository {
   @override
   Future<ProfileInfo> fetchProfile() async => ProfileInfo.empty;
   @override
+  Future<bool> amIAdmin() async => false;
+  @override
   Future<ProfileInfo> setProfile(
           {String? name,
           String? country,

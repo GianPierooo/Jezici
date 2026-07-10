@@ -4,7 +4,7 @@
 // roto); los assets estáticos van stale-while-revalidate; navegación offline
 // cae al index cacheado. skipWaiting + claim para que las actualizaciones
 // tomen efecto al instante. También maneja Web Push (Matix).
-const VERSION = 'jezici-v4'; // bump: P0.5 — no-store en el shell (evita HTTP cache viejo) + aviso de update
+const VERSION = 'jezici-v5'; // bump: iconos PWA rebrandeados (guacamayo) — refresca cache de iconos/manifest
 const SHELL = [
   './', 'index.html', 'flutter_bootstrap.js', 'manifest.json',
   'favicon.png', 'icons/Icon-192.png', 'icons/Icon-512.png',

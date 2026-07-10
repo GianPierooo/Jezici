@@ -5,6 +5,32 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-09**.
 
+## TANDA 1 — 4 fixes de correctitud/seguridad (mig 140 · 2026-07-10)
+Feedback real de Gian + auditoría. Cero IA.
+- **F1 · P0 SEGURIDAD — métricas admin-only.** "Ver métricas (interno)" en Ajustes se mostraba a TODOS.
+  PASO 0 (cliente real): el SERVER ya estaba blindado (mig 058) — `get_metrics/get_engagement/
+  get_onboarding_funnel/get_feedback` devuelven **"admin only" (P0001, 400)** a un usuario normal aunque
+  llame el RPC a mano (verificado). Era solo UI. Fix: **`am_i_admin()`** (mig 140, RPC público que devuelve
+  SOLO un bool sobre `auth.uid()`; wrapper de `jz_is_admin` que está revocado) → `isAdminProvider` → la
+  entrada de métricas se **oculta** si no eres admin (fail-closed ante error). La seguridad real sigue
+  server-side; esto solo evita mostrar una puerta cerrada. Verificado: usuario normal `am_i_admin=false`.
+- **F2 · P0 PRODUCTO — voz TTS por idioma.** Las palabras del idioma meta sonaban con **voz española**
+  (pronunciación incorrecta). PASO 0: `word_tts_web.dart` seteaba `utterance.lang` PERO NO `.voice` → con
+  voz por defecto es-ES el navegador ignora el `lang` y lee inglés con acento español. Fix: **selección
+  explícita de voz** — `getVoices()` cacheado + `onvoiceschanged` (cargan async); elige voz por BCP-47
+  exacto → mismo idioma base (prefiriendo `localService`) → si no hay, deja solo `lang` (NUNCA fuerza es
+  sobre otro idioma). El TTS de la frase ORIGEN sigue es-ES (correcto por diseño; ahora también elige voz es).
+- **F3 · P1 — íconos PWA rebrandeados.** El manifest/favicon/apple-touch/splash seguían con el logo viejo.
+  Regenerados los 6 PNG (192/512/maskable-192/512/apple-touch-180/favicon-96) con el **guacamayo** (`ParrotArt`
+  → render a PNG sobre violeta de marca; maskable con safe-zone) + `manifest.json`/`index.html` con `?v=5` +
+  **SW bump v4→v5** (refresca la caché de iconos/manifest). Descripción del manifest ya no dice "inglés".
+- **F4 · P1 — la mascota se llama "Jezi".** "Matix" era nombre interno reusado. Barridos TODOS los strings
+  VISIBLES → "Jezi": i18n (`settingsTestMatix`/`settingsCoachInsist`/`tipCardHeader` es/en/pt), label del
+  banner push, "Probar a Jezi"/copys del centro de notificaciones, cuaderno. **0 "Matix" visible** (dart +
+  valores arb + `notifications.body` server). El código interno (matix_banner.dart/matix_fire/MatixService)
+  conserva el nombre.
+Verde: analyze 0 (CI-exact) · test 141/141 (+amIAdmin en fakes) · build web OK (confirma el web TTS).
+
 ## PLACEMENT 4 HABILIDADES en LOS 6 CURSOS ✅ LIVE (mig 139 · 2026-07-10)
 Retome de ## Cola ítem 5 CERRADO: fr/it/de/nl quedan al nivel de en+pt — el examen de ubicación mide
 **reading + LISTENING + writing + SPEAKING con perfil por habilidad REAL en los 6 cursos**.

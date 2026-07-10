@@ -31,6 +31,12 @@ final profileProvider = FutureProvider<ProfileInfo>(
   (ref) => ref.watch(progressRepositoryProvider).fetchProfile(),
 );
 
+/// ¿El usuario es admin? (am_i_admin, mig 140). Sirve para OCULTAR las entradas
+/// internas (métricas). Default false ante error → fail-closed.
+final isAdminProvider = FutureProvider<bool>(
+  (ref) => ref.watch(progressRepositoryProvider).amIAdmin(),
+);
+
 /// Referencia navegable (capa "enseña"): conceptos del curso activo + skill floja.
 final referenceProvider = FutureProvider<ReferenceData>(
   (ref) => ref.watch(progressRepositoryProvider).fetchReference(),

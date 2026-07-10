@@ -67,7 +67,7 @@ class _Empty extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900, color: AppColors.text)),
             SizedBox(height: 6),
-            Text('Completa lecciones y Matix te enseñará datos, trucos y errores comunes que se guardarán aquí.',
+            Text('Completa lecciones y Jezi te enseñará datos, trucos y errores comunes que se guardarán aquí.',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.textMuted)),
           ],

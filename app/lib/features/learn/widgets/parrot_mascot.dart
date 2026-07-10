@@ -256,3 +256,7 @@ class _ParrotPainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant _ParrotPainter oldDelegate) => false;
 }
+
+/// Painter del guacamayo expuesto para generar los íconos de la PWA
+/// (test/_gen_icons_test.dart → render a PNG). No se usa en runtime.
+CustomPainter parrotPainterForIcons() => _ParrotPainter();

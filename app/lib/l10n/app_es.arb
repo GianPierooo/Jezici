@@ -48,7 +48,7 @@
   "settingsChooseCourse": "¿Qué idioma quieres aprender?",
   "settingsChooseAppLang": "Idioma de la app",
   "settingsCoachIntensity": "Intensidad del coach",
-  "settingsCoachInsist": "¿Cuánto insiste Matix?",
+  "settingsCoachInsist": "¿Cuánto insiste Jezi?",
   "settingsIntensityLow": "Suave",
   "settingsIntensityMid": "Media",
   "settingsIntensityHigh": "Alta",
@@ -94,7 +94,7 @@
   "settingsPrivacy": "Privacidad y datos",
   "settingsPrivacyPolicy": "Política de Privacidad",
   "settingsTerms": "Términos y Condiciones",
-  "settingsTestMatix": "Probar a Matix",
+  "settingsTestMatix": "Probar a Jezi",
   "settingsMetrics": "Ver métricas (interno)",
   "settingsExport": "Exportar mis datos",
   "settingsDelete": "Borrar mi cuenta",
@@ -596,7 +596,7 @@
     }
   },
   "lessonCompleteSkillAdvanced": "▲ subió",
-  "tipCardHeader": "Matix te enseña · {type}",
+  "tipCardHeader": "Jezi te enseña · {type}",
   "@tipCardHeader": {
     "placeholders": {
       "type": {

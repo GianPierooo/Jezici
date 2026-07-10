@@ -112,7 +112,7 @@ class _MatixBannerCardState extends State<_MatixBannerCard> with SingleTickerPro
                   children: [
                     Row(
                       children: [
-                        const Text('Matix',
+                        const Text('Jezi',
                             style: TextStyle(
                                 fontSize: 13.5, fontWeight: FontWeight.w900, color: AppColors.text)),
                         const SizedBox(width: 6),

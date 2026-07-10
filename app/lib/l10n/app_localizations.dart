@@ -295,7 +295,7 @@ abstract class AppLocalizations {
   /// No description provided for @settingsCoachInsist.
   ///
   /// In es, this message translates to:
-  /// **'¿Cuánto insiste Matix?'**
+  /// **'¿Cuánto insiste Jezi?'**
   String get settingsCoachInsist;
 
   /// No description provided for @settingsIntensityLow.
@@ -469,7 +469,7 @@ abstract class AppLocalizations {
   /// No description provided for @settingsTestMatix.
   ///
   /// In es, this message translates to:
-  /// **'Probar a Matix'**
+  /// **'Probar a Jezi'**
   String get settingsTestMatix;
 
   /// No description provided for @settingsMetrics.
@@ -1977,7 +1977,7 @@ abstract class AppLocalizations {
   /// No description provided for @tipCardHeader.
   ///
   /// In es, this message translates to:
-  /// **'Matix te enseña · {type}'**
+  /// **'Jezi te enseña · {type}'**
   String tipCardHeader(String type);
 
   /// No description provided for @tipCardPersonalized.

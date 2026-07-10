@@ -335,12 +335,15 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             _header(l10n.settingsSecAdvanced),
             const _Group(padding: EdgeInsets.all(14), children: [MatixTestButtons()]),
             const SizedBox(height: 10),
-            _quietTextButton(
-              icon: Icons.bar_chart_rounded,
-              label: l10n.settingsMetrics,
-              onTap: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => const MetricsScreen())),
-            ),
+            // "Ver métricas" es INTERNO (admin only server-side, mig 058). Se
+            // OCULTA a usuarios normales: no mostrar una puerta cerrada.
+            if (ref.watch(isAdminProvider).maybeWhen(data: (a) => a, orElse: () => false))
+              _quietTextButton(
+                icon: Icons.bar_chart_rounded,
+                label: l10n.settingsMetrics,
+                onTap: () => Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => const MetricsScreen())),
+              ),
             _quietTextButton(
               icon: Icons.download_rounded,
               label: l10n.settingsExport,

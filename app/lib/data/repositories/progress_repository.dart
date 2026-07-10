@@ -489,6 +489,18 @@ class ProgressRepository {
     } catch (_) {}
   }
 
+  /// ¿El usuario actual es admin? (am_i_admin, mig 140) — para OCULTAR la entrada
+  /// de métricas a usuarios normales. La seguridad real es server-side (los RPC
+  /// admin rechazan a no-admin); esto es solo para no mostrar una puerta cerrada.
+  Future<bool> amIAdmin() async {
+    try {
+      final res = await _client.rpc('am_i_admin');
+      return res == true;
+    } catch (_) {
+      return false; // ante cualquier duda, NO mostrar (fail-closed)
+    }
+  }
+
   /// Métricas agregadas §13 (panel mínimo interno).
   Future<Map<String, dynamic>> fetchMetrics() async {
     final res = await _client.rpc('get_metrics');
