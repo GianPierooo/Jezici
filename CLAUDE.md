@@ -1265,6 +1265,16 @@ flutter build web --release  # esperado: Built build/web (wasm dry-run warning d
   el build que usan los usuarios HOY (no asumir que `main` == producción).
 
 ## Reportes de diagnóstico (raíz)
+- **EVAL_AUDIT.md** (2026-07-10, solo lectura) — auditoría del SISTEMA DE EVALUACIÓN por habilidad y por
+  tipo (placement/checkpoint/examen), con números reales de BD + flujo corrido 2–3×. Hallazgos clave:
+  (P0) el **nivel mostrado** (`user_skill_levels.cefr_level`, sube por puntos de grind 12/acierto·4/stub,
+  100=+1 CEFR, **inflable**) **DIVERGE** del **certificable** (`jz_skill_mastery` = cobertura×precisión,
+  riguroso); (P0) **certificado EN-ONLY tope B2** (`jz_resolve_exam_level` capa B2; solo `en` tiene exámenes
+  `level`); (P0) **checkpoints C1 (en) casi vacíos por skill** (unidad25 = R1/W1 → 1 ítem fijo, cero
+  aleatorización; 252/299 ítems C1 sin tag `unidadN`); (P1) **opciones NO se barajan al servir** (orden fijo
+  BD; placement solapa 50% / checkpoint 40% en SELECCIÓN, ✅); (P1) **speaking del examen solo mide
+  PARTICIPACIÓN** (no vacío), no destreza; placement L/S delgado (3L/2S por nivel). Lista P0/P1/P2 con
+  esfuerzo al final. **Cero cambios de código.**
 - **QA_AUDIT.md** (2026-06-27, solo lectura) — QA exhaustivo end-to-end + veredicto de flujo (cliente real).
   **P0 ✅ ARREGLADO (mig 090, 2026-07-02):** el congelador de racha ahora SÍ protege — `jz_register_activity`
   consume `freezes_available` al haber un hueco y preserva la racha (verify_streak_freeze.py 7/7, cliente real);
