@@ -2394,4 +2394,38 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get micNetwork =>
       'The voice service didn\'t respond (check your connection). Try again.';
+
+  @override
+  String get onbAdultConfirm => 'I confirm that I am an adult';
+
+  @override
+  String get completeProfileTitle => 'Complete your profile';
+
+  @override
+  String get completeProfileSubtitle =>
+      'We just need your name and a confirmation that you\'re an adult. Everything else is optional and editable in your Profile.';
+
+  @override
+  String get profileEditBirthday => 'Birthday (day and month, optional)';
+
+  @override
+  String get profileEditDay => 'Day';
+
+  @override
+  String get profileEditMonth => 'Month';
+
+  @override
+  String get profileEditGender => 'Gender (optional)';
+
+  @override
+  String get genderFemale => 'Female';
+
+  @override
+  String get genderMale => 'Male';
+
+  @override
+  String get genderOther => 'Other';
+
+  @override
+  String get genderPreferNot => 'Prefer not to say';
 }

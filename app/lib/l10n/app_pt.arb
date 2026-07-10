@@ -879,5 +879,16 @@
   "micUnsupported": "Seu navegador não suporta reconhecimento de voz. Experimente o Chrome ou o Edge.",
   "micDenied": "A permissão do microfone está bloqueada. Ative no cadeado 🔒 ao lado do endereço (ou nas configurações do site) e tente novamente.",
   "micNoDevice": "Nenhum microfone foi detectado neste dispositivo.",
-  "micNetwork": "O serviço de voz não respondeu (verifique sua conexão). Tente novamente."
+  "micNetwork": "O serviço de voz não respondeu (verifique sua conexão). Tente novamente.",
+  "onbAdultConfirm": "Confirmo que sou maior de idade",
+  "completeProfileTitle": "Complete seu perfil",
+  "completeProfileSubtitle": "Só falta seu nome e a confirmação de que você é maior de idade. O resto é opcional e editável no seu Perfil.",
+  "profileEditBirthday": "Aniversário (dia e mês, opcional)",
+  "profileEditDay": "Dia",
+  "profileEditMonth": "Mês",
+  "profileEditGender": "Gênero (opcional)",
+  "genderFemale": "Feminino",
+  "genderMale": "Masculino",
+  "genderOther": "Outro",
+  "genderPreferNot": "Prefiro não dizer"
 }

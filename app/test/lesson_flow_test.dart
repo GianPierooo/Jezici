@@ -103,7 +103,15 @@ class FakeProgressRepository implements ProgressRepository {
   Future<ProfileInfo> fetchProfile() async => ProfileInfo.empty;
   @override
   Future<ProfileInfo> setProfile(
-          {String? name, String? country, String? bio, String? avatarColor}) async =>
+          {String? name,
+          String? country,
+          String? bio,
+          String? avatarColor,
+          int? birthdayDay,
+          int? birthdayMonth,
+          bool? isAdult,
+          String? timezone,
+          String? gender}) async =>
       ProfileInfo.empty;
   @override
   Future<bool> signUpEmail(String email, String password) async => true;

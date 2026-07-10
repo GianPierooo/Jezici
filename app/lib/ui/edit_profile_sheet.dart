@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import '../core/theme/app_colors.dart';
 import '../l10n/app_localizations.dart';
@@ -34,6 +35,9 @@ class _EditProfileSheetState extends ConsumerState<_EditProfileSheet> {
       TextEditingController(text: widget.profile.bio ?? '');
   late String _color = widget.profile.avatarColor;
   late String? _country = widget.profile.country;
+  late int? _bDay = widget.profile.birthdayDay;
+  late int? _bMonth = widget.profile.birthdayMonth;
+  late String? _gender = widget.profile.gender;
   bool _saving = false;
   String? _error;
 
@@ -56,11 +60,19 @@ class _EditProfileSheetState extends ConsumerState<_EditProfileSheet> {
       _error = null;
     });
     try {
+      // Zona horaria: best-effort silencioso (offset actual del dispositivo).
+      final off = DateTime.now().timeZoneOffset;
+      final tz = 'UTC${off.isNegative ? '-' : '+'}${off.inHours.abs()}'
+          '${off.inMinutes.abs() % 60 == 0 ? '' : ':30'}';
       await ref.read(progressRepositoryProvider).setProfile(
             name: name,
             country: _country,
             bio: _bio.text.trim(),
             avatarColor: _color,
+            birthdayDay: _bDay,
+            birthdayMonth: _bMonth,
+            gender: _gender,
+            timezone: tz,
           );
       ref.invalidate(profileProvider);
       ref.invalidate(leagueProvider); // el nombre aparece en ligas
@@ -154,6 +166,71 @@ class _EditProfileSheetState extends ConsumerState<_EditProfileSheet> {
                 ],
               ),
               const SizedBox(height: 16),
+              // Cumpleaños OPCIONAL — SOLO día y mes (sin año, a propósito:
+              // sirve para saludos, no calcula edad). Deseleccionable.
+              Text(l10n.profileEditBirthday,
+                  style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  Expanded(
+                    child: DropdownButtonFormField<int?>(
+                      initialValue: _bDay,
+                      decoration: _dec(l10n.profileEditDay),
+                      items: [
+                        DropdownMenuItem(value: null, child: Text('—')),
+                        for (var d = 1; d <= 31; d++)
+                          DropdownMenuItem(value: d, child: Text('$d')),
+                      ],
+                      onChanged: (v) => setState(() => _bDay = v),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    flex: 2,
+                    child: DropdownButtonFormField<int?>(
+                      initialValue: _bMonth,
+                      decoration: _dec(l10n.profileEditMonth),
+                      items: [
+                        DropdownMenuItem(value: null, child: Text('—')),
+                        for (var m = 1; m <= 12; m++)
+                          DropdownMenuItem(
+                            value: m,
+                            child: Text(DateFormat.MMMM(
+                                    Localizations.localeOf(context).toString())
+                                .format(DateTime(2024, m))),
+                          ),
+                      ],
+                      onChanged: (v) => setState(() => _bMonth = v),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+              // Género OPCIONAL (con "prefiero no decirlo"); tocar de nuevo
+              // deselecciona.
+              Text(l10n.profileEditGender,
+                  style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
+              const SizedBox(height: 10),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: [
+                  for (final (code, label) in [
+                    ('female', l10n.genderFemale),
+                    ('male', l10n.genderMale),
+                    ('other', l10n.genderOther),
+                    ('prefer_not_to_say', l10n.genderPreferNot),
+                  ])
+                    _GenderChip(
+                      label: label,
+                      selected: _gender == code,
+                      onTap: () => setState(
+                          () => _gender = _gender == code ? null : code),
+                    ),
+                ],
+              ),
+              const SizedBox(height: 16),
               Text(l10n.profileEditBio,
                   style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
               const SizedBox(height: 8),
@@ -195,6 +272,35 @@ class _EditProfileSheetState extends ConsumerState<_EditProfileSheet> {
           borderSide: const BorderSide(color: AppColors.primary, width: 2),
         ),
       );
+}
+
+class _GenderChip extends StatelessWidget {
+  const _GenderChip({required this.label, required this.selected, required this.onTap});
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 140),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        decoration: BoxDecoration(
+          color: selected ? AppColors.primary : Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+              color: selected ? AppColors.primary : const Color(0xFFE5E7F1), width: 2),
+        ),
+        child: Text(label,
+            style: TextStyle(
+                fontSize: 12.5,
+                fontWeight: FontWeight.w800,
+                color: selected ? Colors.white : AppColors.text)),
+      ),
+    );
+  }
 }
 
 class _CountryChip extends StatelessWidget {

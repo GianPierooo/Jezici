@@ -8,6 +8,11 @@ class ProfileInfo {
     this.avatarColor = '#6C5CE7',
     this.memberSince,
     this.needsName = false,
+    this.birthdayDay,
+    this.birthdayMonth,
+    this.isAdult,
+    this.timezone,
+    this.gender,
   });
 
   final String? name;
@@ -17,6 +22,15 @@ class ProfileInfo {
   final String avatarColor; // hex
   final String? memberSince; // YYYY-MM-DD
   final bool needsName;
+
+  /// Cumpleaños SOLO día/mes (sin año, deliberado: minimización de datos).
+  final int? birthdayDay;
+  final int? birthdayMonth;
+
+  /// Confirmación "soy mayor de edad". null = nunca respondió.
+  final bool? isAdult;
+  final String? timezone;
+  final String? gender; // male|female|other|prefer_not_to_say
 
   /// Inicial para el avatar generado.
   String get initial {
@@ -34,6 +48,11 @@ class ProfileInfo {
         avatarColor: (j['avatar_color'] as String?) ?? '#6C5CE7',
         memberSince: j['member_since'] as String?,
         needsName: j['needs_name'] as bool? ?? false,
+        birthdayDay: (j['birthday_day'] as num?)?.toInt(),
+        birthdayMonth: (j['birthday_month'] as num?)?.toInt(),
+        isAdult: j['is_adult'] as bool?,
+        timezone: j['timezone'] as String?,
+        gender: j['gender'] as String?,
       );
 
   static final empty = ProfileInfo();

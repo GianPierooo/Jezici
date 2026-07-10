@@ -115,17 +115,29 @@ class ProgressRepository {
   }
 
   /// Actualiza el perfil propio (RPC set_profile). Campos null = sin cambio.
+  /// Esquema amplio (mig 137): cumpleaños SOLO día/mes, confirmación de mayoría
+  /// de edad, zona horaria y género — todo opcional/nullable.
   Future<ProfileInfo> setProfile({
     String? name,
     String? country,
     String? bio,
     String? avatarColor,
+    int? birthdayDay,
+    int? birthdayMonth,
+    bool? isAdult,
+    String? timezone,
+    String? gender,
   }) async {
     final res = await _client.rpc('set_profile', params: {
       'p_name': name,
       'p_country': country,
       'p_bio': bio,
       'p_avatar_color': avatarColor,
+      'p_birthday_day': ?birthdayDay,
+      'p_birthday_month': ?birthdayMonth,
+      'p_is_adult': ?isAdult,
+      'p_timezone': ?timezone,
+      'p_gender': ?gender,
     });
     return ProfileInfo.fromJson(Map<String, dynamic>.from(res as Map));
   }

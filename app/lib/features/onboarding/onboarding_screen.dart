@@ -40,6 +40,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   static const _total = 12;
   final OnboardingData _data = OnboardingData();
   final TextEditingController _nameCtrl = TextEditingController();
+  bool _adultOk = false; // confirmación "soy mayor de edad" (requerida)
   int _step = 0;
 
   @override
@@ -412,7 +413,8 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       footer: PrimaryButton(
         label: l10n.commonContinue,
         expand: true,
-        onPressed: _nameCtrl.text.trim().isNotEmpty ? _continueName : null,
+        onPressed:
+            (_nameCtrl.text.trim().isNotEmpty && _adultOk) ? _continueName : null,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -425,7 +427,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             maxLength: 40,
             onChanged: (_) => setState(() {}),
             onSubmitted: (_) {
-              if (_nameCtrl.text.trim().isNotEmpty) _continueName();
+              if (_nameCtrl.text.trim().isNotEmpty && _adultOk) _continueName();
             },
             style: const TextStyle(
                 fontSize: 18, fontWeight: FontWeight.w800, color: AppColors.text),
@@ -445,6 +447,29 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               ),
             ),
           ),
+          const SizedBox(height: 14),
+          // Confirmación de MAYORÍA de edad (gating; no se guarda fecha de
+          // nacimiento con año — minimización de datos).
+          InkWell(
+            onTap: () => setState(() => _adultOk = !_adultOk),
+            borderRadius: BorderRadius.circular(12),
+            child: Row(
+              children: [
+                Checkbox(
+                  value: _adultOk,
+                  activeColor: AppColors.primary,
+                  onChanged: (v) => setState(() => _adultOk = v ?? false),
+                ),
+                Expanded(
+                  child: Text(l10n.onbAdultConfirm,
+                      style: const TextStyle(
+                          fontSize: 13.5,
+                          fontWeight: FontWeight.w700,
+                          color: AppColors.text)),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
@@ -457,7 +482,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
     _data.name = n;
     if (n.isNotEmpty) {
       try {
-        await ref.read(progressRepositoryProvider).setProfile(name: n);
+        await ref
+            .read(progressRepositoryProvider)
+            .setProfile(name: n, isAdult: _adultOk ? true : null);
       } catch (_) {}
     }
     _next();

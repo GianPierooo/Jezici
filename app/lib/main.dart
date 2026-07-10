@@ -18,6 +18,7 @@ import 'features/auth/auth_screen.dart';
 import 'features/learn/widgets/parrot_mascot.dart';
 import 'features/notifications/matix_service.dart';
 import 'features/onboarding/onboarding_screen.dart';
+import 'features/profile/complete_profile_screen.dart';
 import 'features/shell/home_shell.dart';
 
 Future<void> main() async {
@@ -176,9 +177,31 @@ class _AppGateState extends ConsumerState<AppGate> {
     return onb.when(
       loading: () => const _Splash(),
       error: (_, _) => _Splash(onRetry: () => ref.invalidate(onboardingCompleteProvider)),
-      data: (done) => done
-          ? const HomeShell()
-          : OnboardingScreen(onComplete: () => ref.invalidate(onboardingCompleteProvider)),
+      data: (done) {
+        if (!done) {
+          return OnboardingScreen(onComplete: () {
+            ref.invalidate(onboardingCompleteProvider);
+            ref.invalidate(profileProvider); // el onboarding acaba de fijar nombre+adult
+          });
+        }
+        // RED DE SEGURIDAD del registro: si el perfil quedó sin nombre o sin la
+        // confirmación de mayoría de edad (cuenta vieja, OAuth que saltó el paso,
+        // PWA cacheada), se pide UNA vez aquí. Mientras carga el perfil se muestra
+        // el mapa (no se bloquea el arranque); si llega incompleto, se antepone.
+        final prof = ref.watch(profileProvider);
+        final needsGate = prof.maybeWhen(
+            data: (p) => p.needsName || p.isAdult != true, orElse: () => false);
+        if (needsGate) {
+          return CompleteProfileScreen(
+            profile: prof.value!,
+            onDone: () {
+              ref.invalidate(profileProvider);
+              ref.invalidate(leagueProvider); // el nombre aparece en ligas
+            },
+          );
+        }
+        return const HomeShell();
+      },
     );
   }
 }

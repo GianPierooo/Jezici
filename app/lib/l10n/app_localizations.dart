@@ -4084,6 +4084,72 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'El servicio de voz no respondió (revisa tu conexión). Vuelve a intentarlo.'**
   String get micNetwork;
+
+  /// No description provided for @onbAdultConfirm.
+  ///
+  /// In es, this message translates to:
+  /// **'Confirmo que soy mayor de edad'**
+  String get onbAdultConfirm;
+
+  /// No description provided for @completeProfileTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Completa tu perfil'**
+  String get completeProfileTitle;
+
+  /// No description provided for @completeProfileSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Solo falta tu nombre y confirmar que eres mayor de edad. Lo demás es opcional y lo puedes editar en tu Perfil.'**
+  String get completeProfileSubtitle;
+
+  /// No description provided for @profileEditBirthday.
+  ///
+  /// In es, this message translates to:
+  /// **'Cumpleaños (día y mes, opcional)'**
+  String get profileEditBirthday;
+
+  /// No description provided for @profileEditDay.
+  ///
+  /// In es, this message translates to:
+  /// **'Día'**
+  String get profileEditDay;
+
+  /// No description provided for @profileEditMonth.
+  ///
+  /// In es, this message translates to:
+  /// **'Mes'**
+  String get profileEditMonth;
+
+  /// No description provided for @profileEditGender.
+  ///
+  /// In es, this message translates to:
+  /// **'Género (opcional)'**
+  String get profileEditGender;
+
+  /// No description provided for @genderFemale.
+  ///
+  /// In es, this message translates to:
+  /// **'Femenino'**
+  String get genderFemale;
+
+  /// No description provided for @genderMale.
+  ///
+  /// In es, this message translates to:
+  /// **'Masculino'**
+  String get genderMale;
+
+  /// No description provided for @genderOther.
+  ///
+  /// In es, this message translates to:
+  /// **'Otro'**
+  String get genderOther;
+
+  /// No description provided for @genderPreferNot.
+  ///
+  /// In es, this message translates to:
+  /// **'Prefiero no decirlo'**
+  String get genderPreferNot;
 }
 
 class _AppLocalizationsDelegate

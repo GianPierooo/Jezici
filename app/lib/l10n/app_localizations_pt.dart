@@ -2398,4 +2398,38 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get micNetwork =>
       'O serviço de voz não respondeu (verifique sua conexão). Tente novamente.';
+
+  @override
+  String get onbAdultConfirm => 'Confirmo que sou maior de idade';
+
+  @override
+  String get completeProfileTitle => 'Complete seu perfil';
+
+  @override
+  String get completeProfileSubtitle =>
+      'Só falta seu nome e a confirmação de que você é maior de idade. O resto é opcional e editável no seu Perfil.';
+
+  @override
+  String get profileEditBirthday => 'Aniversário (dia e mês, opcional)';
+
+  @override
+  String get profileEditDay => 'Dia';
+
+  @override
+  String get profileEditMonth => 'Mês';
+
+  @override
+  String get profileEditGender => 'Gênero (opcional)';
+
+  @override
+  String get genderFemale => 'Feminino';
+
+  @override
+  String get genderMale => 'Masculino';
+
+  @override
+  String get genderOther => 'Outro';
+
+  @override
+  String get genderPreferNot => 'Prefiro não dizer';
 }

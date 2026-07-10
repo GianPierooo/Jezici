@@ -13,6 +13,7 @@ import 'package:jezici/l10n/app_localizations.dart';
 class _FakeRepo implements ProgressRepository {
   final List<String> activeCalls = [];
   final List<String?> nameCalls = [];
+  final List<bool?> adultCalls = [];
   @override
   Future<void> setActiveCourse(String courseId) async => activeCalls.add(courseId);
   @override
@@ -23,8 +24,17 @@ class _FakeRepo implements ProgressRepository {
   Future<ProfileInfo> fetchProfile() async => ProfileInfo(needsName: true);
   @override
   Future<ProfileInfo> setProfile(
-      {String? name, String? country, String? bio, String? avatarColor}) async {
+      {String? name,
+      String? country,
+      String? bio,
+      String? avatarColor,
+      int? birthdayDay,
+      int? birthdayMonth,
+      bool? isAdult,
+      String? timezone,
+      String? gender}) async {
     nameCalls.add(name);
+    adultCalls.add(isAdult);
     return ProfileInfo();
   }
 
@@ -67,10 +77,17 @@ void main() {
     expect(find.text('¿Cómo te llamas?'), findsOneWidget);
     await tester.enterText(find.byType(TextField), 'Ana');
     await tester.pump();
+    // Con nombre pero SIN confirmar mayoría de edad, CONTINUAR no avanza.
+    await tester.tap(find.text('CONTINUAR').first);
+    await tester.pump();
+    expect(fake.nameCalls, isEmpty);
+    await tester.tap(find.byType(Checkbox));
+    await tester.pump();
     await tester.tap(find.text('CONTINUAR').first);
     await tester.pump(); // _continueName: await setProfile
     await tester.pump(); // _next
     expect(fake.nameCalls, contains('Ana'));
+    expect(fake.adultCalls, contains(true));
 
     // Paso 3: idioma META. Aparecen los cursos con el nombre en el idioma de la app.
     expect(find.text('¿Qué idioma quieres aprender?'), findsOneWidget);

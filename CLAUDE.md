@@ -5,6 +5,40 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-09**.
 
+## PERFIL COMPLETO + 2 BUGS (nombre en registro · dashboard vacío) ✅ LIVE (mig 137 · 2026-07-09)
+Principio: **esquema amplio, formulario mínimo** (el registro pide SOLO nombre + mayoría de edad; el resto
+es opcional en Perfil). PASO 0 en BD/código encontró las causas reales de ambos bugs.
+- **F1 · Esquema (mig 137, todo NULLABLE, 0 impacto):** `users` += `birthday_day`/`birthday_month`
+  (**SOLO día/mes, sin año** — minimización de datos, no se puede calcular edad), `is_adult`, `timezone`,
+  `gender` (whitelist con `prefer_not_to_say`), `referral_source` (schema listo, sin UI aún). `set_profile`
+  extendido a 11 args con defaults (compatible con clientes viejos de 4 args — verificado) + validación
+  server-side (día 1-31/mes 1-12/gender whitelist: inválidos se IGNORAN); `get_profile` devuelve todo.
+- **F2 · Registro pide lo MÍNIMO (bug a):** el paso de nombre del onboarding YA existía (case 2, mig 132)
+  y funciona — la CAUSA real del "no pide nombre" son cuentas que completaron onboarding ANTES de mig 132
+  (o PWA cacheada vieja): quedan `needs_name=true` para siempre sin camino que lo pida. Fix en 2 capas:
+  (1) el paso de nombre del onboarding ahora incluye **checkbox requerido "Confirmo que soy mayor de edad"**
+  (persiste `is_adult=true` con el nombre); (2) **`CompleteProfileScreen` = red de seguridad en main.dart**:
+  tras el onboarding, si el perfil quedó sin nombre O sin confirmar mayoría → pantalla única (nombre
+  pre-rellenado + checkbox) ANTES del HomeShell. Cubre Google OAuth, email y cuentas viejas. El arranque no
+  se bloquea (el perfil carga en paralelo; si llega incompleto se antepone).
+- **F3 · Perfil opcional:** hoja "Editar perfil" += **cumpleaños (día/mes, dropdowns con mes localizado,
+  deseleccionable)** + **género opcional** (4 chips + deseleccionar) + **timezone silenciosa** (offset del
+  dispositivo, best-effort). País/avatar/bio ya existían. Nada obligatorio.
+- **F4 · Dashboard vacío (bug b) — CAUSA REAL:** "dashboard" = **Mi Plan** (`get_plan_tracking` course-aware).
+  Cambiar de curso con **"empezar desde cero" NUNCA llamaba create_plan** (bug heredado del _switchCourse de
+  Ajustes) y abandonar el test a mitad tampoco → curso activo SIN `user_plans` → `ok:false` → "Aún no tienes
+  un plan" + mapa sin entrada. **Reproducido server-side** (sin plan → ok:false; con plan → datos reales).
+  Fix (`switchCourseFlow` con INVARIANTE "curso activo siempre con plan"): curso destino con plan previo →
+  se activa SIN diálogo y sin resetear; "desde cero" → **create_plan A1 real** (meta B1 capada al tope del
+  curso, respeta el estilo de coach actual vía fetchSettings); test abandonado → **REVIERTE al curso
+  anterior** (nada queda a medias).
+- **Verificado REAL (cliente JWT):** email nuevo → needs_name=true → set_profile guarda nombre+adult+
+  cumpleaños+país+tz+gender; inválidos (día 40/mes 13/gender basura) ignorados; firma vieja compatible;
+  "Google" (alta con `full_name` en metadata) → `users.name` sembrado por el trigger (needs_name=false);
+  get_plan_tracking sin plan ok:false / con plan ok:true+datos. i18n es/en/pt (11 claves). Verde: analyze 0
+  (CI-exact) · test 138/138 (+complete_profile gate; onboarding exige el checkbox; fakes actualizados) ·
+  build web OK.
+
 ## MICRÓFONO ROBUSTO Y HONESTO (feedback real: "no capta en PC / cuesta en celular") ✅ (2026-07-09 · solo cliente)
 **Causas REALES (confirmadas en código):** (1) los errores del reconocedor se TRAGABAN en las 3 superficies
 (lección/placement/Conversar: `onError: (_)`) y encima `_handleEnd` emitía un final `''` → con permiso denegado,

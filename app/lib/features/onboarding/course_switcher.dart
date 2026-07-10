@@ -1,49 +1,67 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/plan/estimation.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/course_models.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
 import 'course_placement_screen.dart';
+import 'onboarding_data.dart';
 
 /// Lógica ÚNICA de cambio de curso + re-placement (antes privada en Ajustes;
-/// ahora la comparten Ajustes y la bandera del top bar del mapa). Ofrece hacer el
-/// test de ubicación del idioma meta o empezar desde el principio, activa el curso
-/// (`set_active_course` → `jz_active_course` rutea TODO el contenido al curso
-/// elegido → aislamiento multicurso intacto) e invalida los providers dependientes
-/// para que el mapa/perfil/ligas se recarguen con el curso nuevo.
+/// ahora la comparten Ajustes y la bandera del top bar del mapa).
+///
+/// INVARIANTE (fix "dashboard vacío"): el curso activo SIEMPRE termina con un
+/// plan (`user_plans`). Antes, "empezar desde cero" activaba el curso pero NUNCA
+/// llamaba create_plan (bug heredado de Ajustes), y abandonar el test a mitad
+/// también dejaba el curso sin plan → Mi Plan decía "Aún no tienes un plan" y el
+/// mapa quedaba sin unidad de entrada. Ahora: curso con plan previo → solo se
+/// activa (sin diálogo, sin resetear); "desde cero" → create_plan A1 real; test
+/// abandonado → se REVIERTE al curso anterior (nada queda a medias).
 Future<void> switchCourseFlow(BuildContext context, WidgetRef ref, CourseInfo c) async {
   final l10n = AppLocalizations.of(context);
-  final choice = await showDialog<String>(
-    context: context,
-    builder: (ctx) => AlertDialog(
-      title: Text(l10n.coursePlacementOfferTitle),
-      content: Text(l10n.coursePlacementOfferBody(c.label)),
-      actions: [
-        TextButton(
-          onPressed: () => Navigator.pop(ctx, 'scratch'),
-          child: Text(l10n.coursePlacementFromScratch),
-        ),
-        TextButton(
-          onPressed: () => Navigator.pop(ctx, 'test'),
-          child: Text(l10n.coursePlacementDoTest),
-        ),
-      ],
-    ),
-  );
-  if (choice == null || !context.mounted) return;
+  final repo = ref.read(progressRepositoryProvider);
+
+  // Curso activo ANTERIOR (para revertir si el cambio queda a medias).
+  CourseInfo? prev;
+  for (final x in ref.read(coursesProvider).value ?? const <CourseInfo>[]) {
+    if (x.active) prev = x;
+  }
+
+  // ¿El curso destino YA tiene plan? (el usuario VUELVE a un idioma que ya
+  // estudiaba) → activar y listo: sin diálogo y sin tocar su progreso/plan.
+  bool hasPlan = false;
   try {
-    await ref.read(progressRepositoryProvider).setActiveCourse(c.id);
-    ref.invalidate(coursesProvider);
-    ref.invalidate(lessonProgressProvider);
-    ref.invalidate(skillsProvider);
-    ref.invalidate(skillMasteryProvider);
-    ref.invalidate(homeStatsProvider);
-    ref.invalidate(levelExamStatusProvider);
-    ref.invalidate(planTrackingProvider);
-    ref.invalidate(userPlanProvider);
-    ref.invalidate(mapUnitsProvider);
+    hasPlan = (await repo.fetchPlan(courseId: c.id)) != null;
+  } catch (_) {}
+  if (!context.mounted) return;
+
+  String? choice = 'resume';
+  if (!hasPlan) {
+    choice = await showDialog<String>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: Text(l10n.coursePlacementOfferTitle),
+        content: Text(l10n.coursePlacementOfferBody(c.label)),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, 'scratch'),
+            child: Text(l10n.coursePlacementFromScratch),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, 'test'),
+            child: Text(l10n.coursePlacementDoTest),
+          ),
+        ],
+      ),
+    );
+    if (choice == null || !context.mounted) return;
+  }
+
+  try {
+    await repo.setActiveCourse(c.id);
+    _invalidateCourseScope(ref);
 
     if (choice == 'test' && context.mounted) {
       final level = await Navigator.of(context).push<String>(
@@ -60,6 +78,57 @@ Future<void> switchCourseFlow(BuildContext context, WidgetRef ref, CourseInfo c)
         );
         return;
       }
+      // Abandonó el examen a mitad → el curso quedó SIN plan: revertir al
+      // anterior (mejor "no cambió nada" que un curso activo vacío).
+      bool planNow = false;
+      try {
+        planNow = (await repo.fetchPlan(courseId: c.id)) != null;
+      } catch (_) {}
+      if (!planNow && prev != null && prev.id != c.id) {
+        await repo.setActiveCourse(prev.id);
+        _invalidateCourseScope(ref);
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('${prev.flag}  ${prev.targetName}')),
+          );
+        }
+        return;
+      }
+    } else if (choice == 'scratch') {
+      // "Desde el principio": crear el plan A1 REAL (el bug: antes no se creaba
+      // nada → Mi Plan/mapa vacíos). Respeta el estilo de coach actual.
+      var coach = 'suave';
+      try {
+        coach = (await repo.fetchSettings()).coachStyle;
+      } catch (_) {}
+      var goal = 'B1';
+      if (CefrTable.rank(goal) > CefrTable.rank(c.maxLevel)) goal = c.maxLevel;
+      final est = estimatePlan(
+        currentLevel: 'A1',
+        goalLevel: goal,
+        dailyMinutes: OnboardingData().dailyMinutes,
+        daysPerWeek: OnboardingData().daysPerWeek,
+        maxLevel: c.maxLevel,
+      );
+      await repo.createPlan(
+        coachStyle: coach,
+        intensity: 3,
+        currentLevel: 'A1',
+        goalLevel: goal,
+        dailyMinutes: OnboardingData().dailyMinutes,
+        daysPerWeek: OnboardingData().daysPerWeek,
+        motive: '',
+        deadline: null,
+        estimatedHours: est.hoursNeeded,
+        estimatedCompletion: est.completionDate.toIso8601String().split('T').first,
+        skillLevels: const {
+          'reading': 'A1',
+          'listening': 'A1',
+          'writing': 'A1',
+          'speaking': 'A1',
+        },
+      );
+      _invalidateCourseScope(ref);
     }
     if (context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -73,6 +142,18 @@ Future<void> switchCourseFlow(BuildContext context, WidgetRef ref, CourseInfo c)
       );
     }
   }
+}
+
+void _invalidateCourseScope(WidgetRef ref) {
+  ref.invalidate(coursesProvider);
+  ref.invalidate(lessonProgressProvider);
+  ref.invalidate(skillsProvider);
+  ref.invalidate(skillMasteryProvider);
+  ref.invalidate(homeStatsProvider);
+  ref.invalidate(levelExamStatusProvider);
+  ref.invalidate(planTrackingProvider);
+  ref.invalidate(userPlanProvider);
+  ref.invalidate(mapUnitsProvider);
 }
 
 /// Hoja para elegir el idioma que se aprende (curso). Reusa `switchCourseFlow`.
