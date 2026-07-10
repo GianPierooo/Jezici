@@ -3,7 +3,39 @@
 > Contexto de arranque para cualquier sesión. **No** es copia de los 21 `.md` de
 > diseño (eso es la carpeta raíz `Jezici_*.md` + `docs/`). Aquí va el ESTADO REAL,
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
-> Última actualización: **2026-07-09**.
+> Última actualización: **2026-07-10**.
+
+## NIVEL MOSTRADO == NIVEL CERTIFICABLE — fin de la inflación por grind ✅ LIVE (mig 141/142 · 2026-07-10)
+El P0 estructural de EVAL_AUDIT.md. **Antes (divergencia real, reproducida):** el `cefr_level` del radar
+subía por GRIND — `complete_lesson`/`submit_checkpoint` sumaban **puntos** (12/acierto, 4/stub; 100 = +1
+CEFR) SIN mirar el nivel del contenido → grindeando ítems A1 fáciles el radar llegaba a B1/B2 **sin ver ese
+contenido**, mientras el certificado usa `jz_skill_mastery` (cobertura×precisión ≥0.80, rigurosa) → radar
+decía "Reading B2" y el examen "no calificas". **Además el pipeline de dominio estaba MUERTO:** `jz_record_item`
+no se llamaba desde NINGÚN RPC del loop → `user_item_attempts` vacío → `jz_skill_mastery` real ≈ 0 →
+certificación de facto imposible.
+- **Diseño (una sola verdad):** el `cefr_level` mostrado se fija a
+  `greatest(cefr_level, jz_displayed_level(uid,curso,skill))` en complete_lesson/submit_checkpoint;
+  **`jz_displayed_level`** (nuevo) = el nivel MÁS ALTO con `jz_skill_mastery ≥ 0.80` (la MISMA barra del
+  certificado, piso A1) → **para MOSTRAR B1 hay que DOMINAR ítems B1**. Los `progress_points` (0–100)
+  **siguen** para el progreso VISUAL dentro del nivel (la subida por lecciones sigue gratificante); el CEFR
+  ahora viene del dominio, no del grind. Nunca BAJA en caliente (greatest).
+- **Pipeline revivido (mig 141):** complete_lesson/submit_checkpoint/submit_level_exam ahora `jz_record_item`
+  cada ítem calificado (stub → participación) en `user_item_attempts` → `jz_skill_mastery` mide dominio REAL.
+- **Cobertura corregida (mig 142):** el denominador de `jz_skill_mastery` = ítems ALCANZABLES por lecciones del
+  nivel (join `lesson_items`), NO todo el banco (antes B1 reading=78 pero las lecciones exponían el mismo set →
+  dominar TODAS las lecciones capaba <0.80 → certificación imposible). Ahora dominar las lecciones del nivel SÍ
+  demuestra el nivel.
+- **Migración de existentes:** `cefr_level = greatest(nivel del plan/placement, jz_displayed_level)` + backfill
+  de `user_skill_mastery` desde `user_lesson_progress`. El grind inflado BAJA al dominio real; el **placement**
+  (test adaptativo = señal de dominio legítima) y los **exámenes/certs** se preservan (nunca se pierde progreso
+  ni XP). **108/108 filas coherentes** (disp == greatest(plan,dominio)), 0 incoherentes.
+- **Verificado cliente REAL (`verify_level_unification.py`, JWT) TODO VERDE:** (A) grind de A1 (12 lecciones al
+  100%) → radar **A1** (no infla; mastery A1 0.80, disp A1); (B) dominar B1 (todas las lecciones) → mastery B1
+  **1.0** → radar **B1** == `jz_displayed_level` == exam-ready. **Radar y jz_skill_mastery ya no divergen.**
+  Regresiones VERDES: `verify_placement_serious en/pt` · `verify_estimator` 8/8 · `verify_placement_4skills en`
+  · **`verify_chain` (cadena A1→B2 + certs A1/A2/B1/B2 emitidos)** — el examen sigue siendo el rigor y certifica.
+  El cliente NO cambió (lee `cefr_level` y `jz_skill_mastery` por interfaces intactas). Verde: analyze 0
+  (CI-exact) · test 143/143 · build web OK.
 
 ## LAG DEL MAPA — viewport culling + RepaintBoundary ✅ (2026-07-10 · solo cliente)
 Feedback real (lag en el mapa y al moverse entre niveles, aun en equipos potentes). **Se DIAGNOSTICÓ

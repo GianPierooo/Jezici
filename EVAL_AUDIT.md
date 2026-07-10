@@ -181,10 +181,20 @@ en  C1 R7 L24 W4 S12  → NO se usa (C1 sin examen de nivel; tope B2)
    existentes** (252/299 sin tag) o sembrar el pool de checkpoint C1 a ≥3R/3W/2L/2S ×2. Sin esto, el
    checkpoint C1 no mide reading/writing y repite el mismo ítem. **Esfuerzo: M** (re-tag por SQL si el
    contenido ya existe; verificar cadena C1).
-2. **Nivel mostrado vs nivel certificable divergen.** Decidir el modelo honesto: o el radar del Perfil usa
-   `jz_skill_mastery` (real, no inflable), o se comunica claramente que el "nivel de habilidad" es progreso
-   y el "nivel certificado" es el examen. **Esfuerzo: M** (cambiar la fuente del radar/nivel a mastery, o
-   añadir gate de contenido al `progress_points`).
+2. ✅ **RESUELTO (mig 141/142, 2026-07-10) — Nivel mostrado == nivel certificable.** El `cefr_level`
+   mostrado ya NO sube por GRIND: `complete_lesson`/`submit_checkpoint` fijan
+   `cefr_level = greatest(cefr_level, jz_displayed_level(uid,curso,skill))`, y `jz_displayed_level` = el
+   nivel MÁS ALTO con `jz_skill_mastery ≥ 0.80` (misma barra que el certificado) → para MOSTRAR B1 hay que
+   DOMINAR ítems B1. Los `progress_points` (0–100) siguen para el progreso VISUAL dentro del nivel (la
+   subida por lecciones sigue gratificante); el CEFR viene del dominio. Además se **revivió el pipeline
+   muerto** (`jz_record_item` no se llamaba desde ningún RPC del loop → 0 evidencia real): ahora
+   complete_lesson/checkpoint/examen registran cada ítem en `user_item_attempts`. **Cobertura corregida
+   (mig 142):** el denominador de `jz_skill_mastery` = ítems ALCANZABLES por lecciones del nivel (antes todo
+   el banco → dominar todas las lecciones capaba <0.80, certificación imposible). **Migración de existentes:**
+   `cefr_level = greatest(nivel del plan/placement, jz_displayed_level)` — el grind inflado baja al dominio
+   real, el placement (test adaptativo = señal de dominio) y los exámenes/certs se preservan; **108/108 filas
+   coherentes, 0 rompen progreso/XP**. Verificado cliente real (`verify_level_unification.py`): grind de A1 →
+   radar A1 (no infla); dominar B1 → radar B1 == certificable; radar y jz_skill_mastery ya no divergen.
 3. **Certificación solo en inglés, tope B2.** Decisión de producto explícita: pt/fr/it/de/nl **no certifican
    nada** hoy. Si el certificado es "el diferenciador", falta el examen de nivel (tabla `exams` tipo `level`
    + pool `unidad%`) para los otros 5 cursos y elevar el tope. **Esfuerzo: L** (por curso; C1/C2 requieren
