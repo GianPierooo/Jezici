@@ -5,6 +5,27 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-09**.
 
+## FONDO DEL MAPA v3 — "cielo con nubes" (fin real de las franjas) ✅ (2026-07-09 · solo cliente)
+Gian seguía viendo el fondo "roto" tras v1/v2. **Causa de RAÍZ (no un set-piece suelto): el mockup es UNA
+escena de altura FIJA (368×1860); estirarla sobre mapas de 5.000–23.000px** (`_flatten` = todas las
+lecciones) rompe el MEDIO — la vista de cima anclada arriba y las colinas ancladas al pie dejaban **miles de
+px de degradado estirado en medio**, que con las transiciones se leía como losas/bandas chocantes. Los fixes
+v1 (anclaje absoluto) y v2 (quitar edificios) atacaron síntomas, no la geometría. **Fix v3 (fiel al mockup +
+robusto a CUALQUIER altura, guía "mejor limpio que roto"):** `scenery_painter.dart` reescrito a **DOS escenas
+ancladas + cielo en el medio**:
+- **Vista de cima arriba** (sol + cordillera nevada + costa con velero) = el DESTINO. La **costa se DISUELVE
+  hacia abajo con su PROPIO color** (`_dissolveDown`, opaco→transparente) → sin borde duro flotando sobre el cielo.
+- **Primer plano verde abajo** (4 colinas de verdes suaves + pinos) = donde ESTÁS, anclado al pie; se encuentra
+  con el cielo directamente como en el mockup (contraste bajo, sin borde).
+- **El MEDIO es CIELO**: solo el degradado de 8 paradas del mockup + **nubes suaves traslúcidas distribuidas por
+  TODA la altura** (`_skyClouds`, densidad ∝ alto, posiciones deterministas). Óvalos translúcidos → **imposible
+  que se lean como bandas**; el sendero queda limpio encima.
+Estático (sin coste de animación, reduce-motion seguro), full-bleed en X (llena el ancho en desktop; la columna
+de nodos se centra aparte con dx0). El globo "EXAMEN · UNIDAD N" sigue en el hueco bajo el portal (c.dy+62, no
+tapa el nodo de arriba). **NO toca lógica de nodos/progresión/gating.** Verificado con **golden a 3 alturas**
+(corto 390×1200 · alto 390×6000 · desktop 900×6000): paisaje integrado y bonito, cero franjas, costa fundida.
+Verde: analyze 0 (CI-exact) · test 138/138 (map_visuals pinta sin excepción) · build web OK.
+
 ## PERFIL COMPLETO + 2 BUGS (nombre en registro · dashboard vacío) ✅ LIVE (mig 137 · 2026-07-09)
 Principio: **esquema amplio, formulario mínimo** (el registro pide SOLO nombre + mayoría de edad; el resto
 es opcional en Perfil). PASO 0 en BD/código encontró las causas reales de ambos bugs.

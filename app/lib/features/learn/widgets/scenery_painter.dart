@@ -1,44 +1,85 @@
 import 'package:flutter/material.dart';
 
-/// Escenografía del mapa (Aprender v2.dc), portada 1:1 del SVG del mockup.
+/// Escenografía del mapa (Aprender v2.dc). El mockup es UNA escena de altura FIJA
+/// (368×1860): cima arriba → cielo → costa → colinas → base. Los mapas reales son
+/// MUCHO más altos (5.000–23.000px: `_flatten` = todas las lecciones), así que
+/// estirar ese diseño dejaba un enorme MEDIO casi plano que —con las transiciones
+/// del degradado— se leía como losas/bandas rotas y chocantes ("las franjas").
 ///
-/// CLAVE (fix del "fondo en franjas"): el mockup pinta la escena sobre un lienzo
-/// de altura FIJA (368×1860) con set-pieces en píxeles absolutos. La versión vieja
-/// los posicionaba por FRACCIÓN de la altura del contenido (variable: 2500–5000px
-/// en mapas largos), así que las bandas (mar, montañas) se separaban con enormes
-/// huecos de degradado plano → parecían franjas sueltas y chocantes.
-///
-/// Ahora: la escenografía LEJANA (sol, montañas, nubes, costa) se ancla ARRIBA en
-/// px absolutos (el horizonte/destino, siempre en la cima del viaje) y el PRIMER
-/// PLANO (colinas, pinos, ciudad) se ancla ABAJO en px absolutos (donde estás). El
-/// MEDIO es puro degradado (cielo) → mapa cohesivo a cualquier altura, sin franjas.
-/// Full-bleed: escala en X por la proporción del mockup (llena el ancho en desktop);
-/// la columna de nodos se centra aparte (dx0). Estático (sin coste de animación).
+/// FIX (limpio y robusto a cualquier altura, fiel al mockup):
+///  • VISTA DE CIMA arriba (sol, cordilleras, costa con velero) — el DESTINO del
+///    viaje. Su base se FUNDE al cielo (sin borde duro).
+///  • PRIMER PLANO verde abajo (colinas suaves + pinos) — donde ESTÁS. Su cresta
+///    se FUNDE al cielo.
+///  • El MEDIO es CIELO: solo el degradado del fondo + NUBES suaves traslúcidas
+///    distribuidas por TODA la altura (densidad ∝ alto). Óvalos translúcidos →
+///    imposible que se lean como bandas. El sendero queda limpio encima.
+/// Full-bleed en X (llena el ancho en desktop); la columna de nodos se centra
+/// aparte (dx0). Estático (sin coste de animación · reduce-motion seguro).
 class SceneryPainter extends CustomPainter {
   SceneryPainter();
 
   static const double _mockW = 368;
-  static const double _mockH = 1860;
+
+  // Alturas de las dos "escenas" ancladas (px del mockup).
+  static const double _topSceneH = 900; // cima + montañas + costa (arriba)
+  static const double _foreH = 720; // colinas + pinos (abajo)
 
   @override
   void paint(Canvas canvas, Size size) {
     final w = size.width;
     final h = size.height;
     final sx = w / _mockW; // escala horizontal (proporción del mockup)
-    double x(double mx) => mx * sx; // X del mockup → X real
-    double bottom(double my) => h - _mockH + my; // Y anclada al PIE
+    double x(double mx) => mx * sx;
 
-    _summit(canvas, x); // sol + pico (arriba, absoluto)
-    _mountains(canvas, x); // cordilleras lejanas (arriba)
-    _clouds(canvas, x, w, h); // nubes (arriba + algunas en el cielo medio)
-    _coast(canvas, x); // mar + playa + velero (arriba, bajo las montañas)
-    _hills(canvas, x, bottom, w); // colinas (abajo, contiguas hasta el pie)
-    _pines(canvas, x, bottom); // pinos sobre las colinas (paisaje limpio en el pie)
-    // NOTA: la "ciudad" (edificios verticales) se ELIMINÓ — en el pie de un mapa
-    // alto se veía como FRANJAS VERTICALES moradas/coral sobre el verde (no un
-    // paisaje). Un paisaje de colinas + pinos + degradado es limpio y cohesivo a
-    // cualquier altura (guía de la misión: "mejor limpio y bonito que roto").
-    _topHaze(canvas, w, h); // velo suave que funde la cima en el cielo
+    // MEDIO primero (queda detrás): cielo con nubes suaves por toda la altura.
+    _skyClouds(canvas, w, h);
+
+    // VISTA DE CIMA (arriba, absoluta) — el destino.
+    _summit(canvas, x);
+    _mountains(canvas, x);
+    _coast(canvas, x);
+    // La costa flota sobre el cielo (borde duro en y=880): se DISUELVE hacia abajo
+    // con SU PROPIO color (correcto sea cual sea el degradado detrás).
+    _dissolveDown(canvas, w, 858, 1010, const Color(0xFF6FC4DD));
+
+    // PRIMER PLANO (abajo, absoluto) — donde estás. Las colinas se encuentran con
+    // el cielo directamente, como en el mockup (contraste bajo → sin borde duro).
+    double fg(double my) => h - _foreH + my; // Y anclada al pie (0.._foreH)
+    _hills(canvas, x, fg);
+    _pines(canvas, x, fg);
+
+    _topHaze(canvas, w); // velo que funde la cima en el cielo
+  }
+
+  // ── Cielo: nubes suaves distribuidas por TODA la altura (traslúcidas) ────────
+  void _skyClouds(Canvas canvas, double w, double h) {
+    // Banda de cielo "climbable" entre la vista de cima y el primer plano.
+    final top = _topSceneH - 120;
+    final bot = h - _foreH + 60;
+    if (bot <= top) return;
+    // Densidad proporcional a la altura del cielo (una nube cada ~460px).
+    final band = bot - top;
+    final count = (band / 460).clamp(2, 40).round();
+    for (var i = 0; i < count; i++) {
+      // Distribución determinista (sin Math.random): dispersa en X e Y.
+      final t = (i + 0.5) / count;
+      final cy = top + t * band;
+      final jitter = ((i * 37) % 100) / 100.0; // 0..1 pseudo-disperso estable
+      final cx = w * (0.12 + 0.76 * jitter);
+      final s = 0.8 + ((i * 53) % 40) / 100.0; // 0.8..1.2
+      final alpha = 0.34 + ((i * 29) % 22) / 100.0; // 0.34..0.56
+      _softCloud(canvas, cx, cy, s * (w / _mockW) * 1.0, alpha);
+    }
+  }
+
+  void _softCloud(Canvas canvas, double cx, double cy, double s, double alpha) {
+    final c = Paint()..color = Colors.white.withValues(alpha: alpha);
+    canvas.drawOval(Rect.fromCenter(center: Offset(cx, cy), width: 96 * s, height: 30 * s), c);
+    canvas.drawOval(
+        Rect.fromCenter(center: Offset(cx + 26 * s, cy - 9 * s), width: 56 * s, height: 32 * s), c);
+    canvas.drawOval(
+        Rect.fromCenter(center: Offset(cx - 24 * s, cy - 5 * s), width: 46 * s, height: 26 * s), c);
   }
 
   // ── Cima: halo de sol + pico nevado (px absolutos desde arriba) ─────────────
@@ -64,7 +105,6 @@ class SceneryPainter extends CustomPainter {
         ..close(),
       Paint()..color = const Color(0xFF8676D2),
     );
-    // Lado sombreado.
     canvas.drawPath(
       Path()
         ..moveTo(x(104), 470)
@@ -73,7 +113,6 @@ class SceneryPainter extends CustomPainter {
         ..close(),
       Paint()..color = const Color(0xFF9486DE).withValues(alpha: 0.7),
     );
-    // Nieve de la cumbre.
     canvas.drawPath(
       Path()
         ..moveTo(x(184), 250)
@@ -94,7 +133,6 @@ class SceneryPainter extends CustomPainter {
 
   // ── Cordilleras lejanas con cumbres nevadas ─────────────────────────────────
   void _mountains(Canvas canvas, double Function(double) x) {
-    // Fondo.
     canvas.drawPath(
       Path()
         ..moveTo(x(0), 470)
@@ -109,7 +147,6 @@ class SceneryPainter extends CustomPainter {
         ..close(),
       Paint()..color = const Color(0xFF9D8FE0),
     );
-    // Cumbres nevadas.
     final snow = Paint()..color = Colors.white.withValues(alpha: 0.85);
     for (final p in [
       [150.0, 290.0],
@@ -124,7 +161,6 @@ class SceneryPainter extends CustomPainter {
         snow,
       );
     }
-    // Cordillera frontal, más clara.
     canvas.drawPath(
       Path()
         ..moveTo(x(0), 500)
@@ -138,33 +174,6 @@ class SceneryPainter extends CustomPainter {
         ..close(),
       Paint()..color = const Color(0xFFB4A8EA),
     );
-  }
-
-  // ── Nubes: las del mockup (arriba) + un par en el cielo medio (mapas largos) ─
-  void _clouds(Canvas canvas, double Function(double) x, double w, double h) {
-    final c = Paint()..color = Colors.white.withValues(alpha: 0.88);
-    void cloud(double cx, double cy, double s) {
-      canvas.drawOval(Rect.fromCenter(center: Offset(cx, cy), width: 80 * s, height: 30 * s), c);
-      canvas.drawOval(Rect.fromCenter(center: Offset(cx + 24 * s, cy - 8 * s), width: 50 * s, height: 32 * s), c);
-    }
-
-    cloud(x(80), 424, 1.0);
-    cloud(x(288), 388, 0.95);
-    cloud(x(186), 540, 0.8);
-    // Nubes suaves en el cielo intermedio para que un viaje largo no quede vacío
-    // (semitransparentes → nunca se leen como franjas duras).
-    final soft = Paint()..color = Colors.white.withValues(alpha: 0.5);
-    void softCloud(double cx, double cy, double s) {
-      canvas.drawOval(Rect.fromCenter(center: Offset(cx, cy), width: 90 * s, height: 30 * s), soft);
-      canvas.drawOval(Rect.fromCenter(center: Offset(cx + 26 * s, cy - 8 * s), width: 54 * s, height: 30 * s), soft);
-    }
-
-    // Solo si hay cielo medio de sobra (mapa alto) para no ensuciar mapas cortos.
-    if (h > 2200) {
-      softCloud(w * 0.24, h * 0.42, 1.0);
-      softCloud(w * 0.74, h * 0.52, 0.9);
-      softCloud(w * 0.40, h * 0.62, 0.85);
-    }
   }
 
   // ── Región costera: mar (2 tonos) + playa + velero (arriba) ─────────────────
@@ -188,7 +197,6 @@ class SceneryPainter extends CustomPainter {
         ..close(),
       Paint()..color = const Color(0xFF6FC4DD),
     );
-    // Playa (borde superior del mar).
     canvas.drawPath(
       Path()
         ..moveTo(x(0), 700)
@@ -198,7 +206,6 @@ class SceneryPainter extends CustomPainter {
         ..close(),
       Paint()..color = const Color(0xFFFBE6BC),
     );
-    // Velero.
     final bx = x(250), by = 718.0;
     canvas.drawPath(
       Path()
@@ -219,45 +226,38 @@ class SceneryPainter extends CustomPainter {
     );
   }
 
-  // ── Colinas: 5 capas contiguas que suben desde el PIE (anti-hueco) ──────────
-  void _hills(Canvas canvas, double Function(double) x, double Function(double) bottom, double w) {
-    void hill(double my, double q1y, double m2y, double q2y, double m3y, Color color) {
-      // Réplica de las curvas del mockup: cresta ondulada que baja al pie.
-      final top = bottom(my);
+  // ── Primer plano: colinas suaves contiguas + pinos (ancladas al PIE) ────────
+  // Coordenadas locales 0.._foreH (720) → la más alta (cresta) se funde al cielo.
+  void _hills(Canvas canvas, double Function(double) x, double Function(double) fg) {
+    void hill(double crest, double q1, double mid, double q2, double end, Color color) {
       canvas.drawPath(
         Path()
-          ..moveTo(x(0), top)
-          ..quadraticBezierTo(x(92), bottom(q1y), x(200), bottom(m2y))
-          ..quadraticBezierTo(x(300), bottom(q2y), x(368), bottom(m3y))
-          ..lineTo(x(368), bottom(1860))
-          ..lineTo(x(0), bottom(1860))
+          ..moveTo(x(0), fg(crest))
+          ..quadraticBezierTo(x(92), fg(q1), x(200), fg(mid))
+          ..quadraticBezierTo(x(300), fg(q2), x(368), fg(end))
+          ..lineTo(x(368), fg(_foreH))
+          ..lineTo(x(0), fg(_foreH))
           ..close(),
         Paint()..color = color,
       );
     }
 
-    // Ramp verde de pasos SUAVES (contraste bajo entre capas → colinas que se
-    // funden, sin bandas duras). Capa clara arriba para mezclar con el cielo.
-    hill(870, 800, 858, 906, 840, const Color(0xFFAEE6C2));
-    hill(1010, 928, 990, 1044, 968, const Color(0xFF93DDAE));
-    hill(1150, 1078, 1140, 1184, 1120, const Color(0xFF77D19A));
-    hill(1310, 1244, 1310, 1356, 1300, const Color(0xFF5DC386));
-    hill(1500, 1448, 1512, 1548, 1500, const Color(0xFF48B474));
+    // Ramp de verdes de pasos SUAVES (contraste bajo → colinas que se funden).
+    hill(150, 90, 140, 200, 120, const Color(0xFFAEE6C2));
+    hill(280, 210, 270, 330, 250, const Color(0xFF93DDAE));
+    hill(420, 350, 410, 470, 400, const Color(0xFF77D19A));
+    hill(560, 500, 560, 610, 560, const Color(0xFF5DC386));
   }
 
-  void _pines(Canvas canvas, double Function(double) x, double Function(double) bottom) {
-    _pine(canvas, Offset(x(40), bottom(1108)), x(15));
-    _pine(canvas, Offset(x(322), bottom(1066)), x(14));
-    _pine(canvas, Offset(x(64), bottom(1268)), x(18));
-    _pine(canvas, Offset(x(310), bottom(1238)), x(17));
-    _pine(canvas, Offset(x(36), bottom(1420)), x(19));
-    // Bosque más denso hacia el PIE (donde antes iban los edificios) → base viva.
-    _pine(canvas, Offset(x(300), bottom(1470)), x(20));
-    _pine(canvas, Offset(x(70), bottom(1620)), x(22));
-    _pine(canvas, Offset(x(200), bottom(1560)), x(18));
-    _pine(canvas, Offset(x(330), bottom(1660)), x(21));
-    _pine(canvas, Offset(x(150), bottom(1720)), x(19));
-    _pine(canvas, Offset(x(28), bottom(1770)), x(23));
+  void _pines(Canvas canvas, double Function(double) x, double Function(double) fg) {
+    _pine(canvas, Offset(x(40), fg(300)), x(16));
+    _pine(canvas, Offset(x(322), fg(268)), x(15));
+    _pine(canvas, Offset(x(70), fg(440)), x(19));
+    _pine(canvas, Offset(x(300), fg(410)), x(18));
+    _pine(canvas, Offset(x(160), fg(500)), x(17));
+    _pine(canvas, Offset(x(36), fg(560)), x(21));
+    _pine(canvas, Offset(x(330), fg(580)), x(20));
+    _pine(canvas, Offset(x(210), fg(620)), x(19));
   }
 
   void _pine(Canvas canvas, Offset base, double s) {
@@ -283,8 +283,23 @@ class SceneryPainter extends CustomPainter {
     );
   }
 
+  // ── Disuelve el borde de una escena hacia ABAJO con su propio color ─────────
+  // (opaco arriba → transparente abajo). Independiente del fondo: nunca ensucia.
+  void _dissolveDown(Canvas canvas, double w, double top, double bottom, Color color) {
+    final rect = Rect.fromLTWH(0, top, w, bottom - top);
+    canvas.drawRect(
+      rect,
+      Paint()
+        ..shader = LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [color.withValues(alpha: 0.7), color.withValues(alpha: 0.0)],
+        ).createShader(rect),
+    );
+  }
+
   // ── Velo superior: funde la cima/montañas en el cielo (mockup: fadeUp) ──────
-  void _topHaze(Canvas canvas, double w, double h) {
+  void _topHaze(Canvas canvas, double w) {
     final rect = Rect.fromLTWH(0, 0, w, 560);
     canvas.drawRect(
       rect,
