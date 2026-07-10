@@ -5,6 +5,34 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-10**.
 
+## CHECKPOINT C1 con banco suficiente + OPCIONES barajadas al servir ✅ LIVE (mig 143 · 2026-07-10)
+Dos hallazgos de EVAL_AUDIT.md (§1 P0 + §3 P1). **Cero contenido nuevo, cero IA.**
+- **F1 (P0) · Checkpoint C1 aleatoriza de verdad.** PASO 0 (BD real): el checkpoint (`start_checkpoint`)
+  filtra el pool por tag `unidadN` y saca 3R/3W/2L/2S al azar; pero en **C1 solo ~1R/1W por unidad** tenían
+  el tag (47 de 317 ítems C1 taggeados) → reading/writing servían **SIEMPRE el mismo ítem fijo**. El
+  contenido YA existía (alcanzable por lecciones: R12–16 · W17–21 · L9–10 · S7–8 por unidad) — era un hueco
+  de **TAGGING**, no de banco. Fix (mig 143): **re-tag por SQL** derivando la unidad de `lesson_items →
+  units.order_index` (0 ítems ambiguos, guardado idempotente). Ahora cada unidad C1 expone 4–6× el pick,
+  como A1–B2. **Escaneo de los 6 cursos × niveles: solo en C1 estaba flaco** (los otros 180 (curso,unidad)
+  ya sanos). Re-tag seguro: el tag `unidadN` solo lo usa `start_checkpoint` y `start_level_exam` (y en C1
+  no hay examen de nivel, tope B2); `start_practice`/`create_plan` solo lo mencionan en comentarios,
+  `get_lesson_tip` lo EXCLUYE. Verificado cliente real: checkpoint C1 sirve 3R/3W/2L/2S, dos intentos
+  difieren, **reading/writing ya varían**.
+- **F2 (P1) · Opciones barajadas al SERVIR.** El audit: la selección de ítems aleatoriza, pero el orden de
+  las **opciones** salía fijo de BD (0 cambian) → un repetidor memoriza posiciones. **Grading confirmado por
+  VALOR** (`jz_grade`/`grade_item` comparan `jz_normalize(answer)=jz_normalize(correct->>'value')`, no por
+  índice) → barajar el orden mostrado NO rompe la corrección. Fix en 2 capas coherentes: **server-side**
+  `jz_shuffle_options(payload)` (VOLATILE, `order by random()` sobre `payload.options`) en `start_checkpoint`
+  + `start_level_exam` (real-client verificable, resiste inspección de API); **cliente** `multiple_choice_exercise`
+  baraja una vez por ítem al montar → cubre la superficie de LECCIÓN (select directo, sin RPC) y listening
+  (reusa ese widget). Solo toca `options` (MC/listening/true_false); word_bank/reorder/match/cloze intactos.
+  Verificado cliente real: mismo ítem MC servido 2× → **opciones en orden distinto (mismo conjunto)**, y
+  grading por valor correcto (valor correcto→correcto, incorrecto→incorrecto). +3 widget tests (permutación,
+  no-fijo, tap envía el valor).
+- **No rota nada:** cadena de certificación A1→B2 (con `start_level_exam` barajado) VERDE, certs A1/A2/B1/B2
+  emitidos; aislamiento multicurso intacto (re-tag es en-C1 only). Verde: analyze 0 (CI-exact) · test 146/146
+  (+3 shuffle) · build web OK.
+
 ## NIVEL MOSTRADO == NIVEL CERTIFICABLE — fin de la inflación por grind ✅ LIVE (mig 141/142 · 2026-07-10)
 El P0 estructural de EVAL_AUDIT.md. **Antes (divergencia real, reproducida):** el `cefr_level` del radar
 subía por GRIND — `complete_lesson`/`submit_checkpoint` sumaban **puntos** (12/acierto, 4/stub; 100 = +1

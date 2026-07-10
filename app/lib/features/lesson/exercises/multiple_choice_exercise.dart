@@ -24,16 +24,24 @@ class MultipleChoiceExercise extends StatefulWidget {
 
 class _MultipleChoiceExerciseState extends State<MultipleChoiceExercise> {
   String? _selected;
+  late final List<String> _options;
 
   @override
   void initState() {
     super.initState();
     _selected = widget.answer.value as String?;
+    // Baraja el orden de las opciones UNA vez por ítem (no en cada build, para no
+    // reordenar al comprobar). Cierra la memorización de posiciones del repetidor
+    // ("siempre la 2ª"). El grading es por VALOR (grade_item/jz_grade compara el
+    // texto, no el índice) → barajar el orden mostrado NO afecta la corrección.
+    // Cubre la superficie de LECCIÓN (select directo, sin RPC); checkpoints y
+    // exámenes ya llegan barajados desde el servidor (jz_shuffle_options).
+    _options = ((widget.item.payload['options'] as List?)
+            ?.map((e) => e.toString())
+            .toList() ??
+        <String>[])
+      ..shuffle();
   }
-
-  List<String> get _options =>
-      (widget.item.payload['options'] as List?)?.map((e) => e.toString()).toList() ??
-      const [];
 
   String get _correct => (widget.item.correctAnswer['value'] ?? '').toString();
 

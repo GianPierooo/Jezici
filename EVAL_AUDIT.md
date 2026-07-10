@@ -177,10 +177,14 @@ en  C1 R7 L24 W4 S12  → NO se usa (C1 sin examen de nivel; tope B2)
 ## Lista priorizada de mejoras (P0/P1/P2)
 
 ### P0 — corregir antes de "mejorar la evaluación"
-1. **Checkpoints C1 (en) casi vacíos por skill** (unidad25: R1/W1). **Taggear `unidadN` los ítems C1 ya
-   existentes** (252/299 sin tag) o sembrar el pool de checkpoint C1 a ≥3R/3W/2L/2S ×2. Sin esto, el
-   checkpoint C1 no mide reading/writing y repite el mismo ítem. **Esfuerzo: M** (re-tag por SQL si el
-   contenido ya existe; verificar cadena C1).
+1. ✅ **RESUELTO (mig 143, 2026-07-10) — Checkpoints C1 con banco suficiente.** El problema era de
+   TAGGING, no de contenido: el checkpoint filtra por `unidadN` y solo ~1R/1W por unidad C1 tenían el tag
+   (los ítems existían pero invisibles). **Re-tag por SQL** derivando la unidad de `lesson_items` (0 ítems
+   ambiguos, idempotente): cada unidad C1 ahora expone **R12–16 · W17–21 · L9–10 · S7–8** taggeados →
+   4–6× el pick (3R/3W/2L/2S), como A1–B2. Verificado cliente real: el checkpoint C1 sirve 3R/3W/2L/2S,
+   dos intentos difieren (solapamiento 3/10), **reading/writing ya NO son fijos** (varían entre intentos).
+   Escaneo de los 6 cursos × niveles: **solo en C1 estaba flaco**; los otros 180 (curso,unidad) ya sanos.
+   Cadena de certificación A1→B2 intacta (certs emitidos). **Cero contenido nuevo.**
 2. ✅ **RESUELTO (mig 141/142, 2026-07-10) — Nivel mostrado == nivel certificable.** El `cefr_level`
    mostrado ya NO sube por GRIND: `complete_lesson`/`submit_checkpoint` fijan
    `cefr_level = greatest(cefr_level, jz_displayed_level(uid,curso,skill))`, y `jz_displayed_level` = el
@@ -201,8 +205,14 @@ en  C1 R7 L24 W4 S12  → NO se usa (C1 sin examen de nivel; tope B2)
    evaluación de producción = Fase 2 IA — mantener tope honesto).
 
 ### P1 — precisión / anti-trampa / honestidad
-4. **Barajar `options` al servir** (checkpoint/examen/placement) — server-side (`order by random()` sobre
-   el array) o cliente. Cierra la memorización de posiciones del repetidor. **Esfuerzo: S.**
+4. ✅ **RESUELTO (mig 143 + cliente, 2026-07-10) — Opciones barajadas al servir.** Server-side:
+   `jz_shuffle_options(payload)` (VOLATILE, `order by random()` sobre `payload.options`) aplicado en
+   `start_checkpoint` y `start_level_exam` → cada request devuelve las opciones en orden distinto (real-
+   client verificable, resiste inspección de API). Cliente: `multiple_choice_exercise` baraja una vez por
+   ítem al montar (cubre la superficie de LECCIÓN = select directo sin RPC, y listening que reusa ese
+   widget). **Grading intacto** porque es por VALOR (`jz_grade`/`grade_item` comparan texto, no índice) —
+   verificado: mismo ítem servido 2× → opciones en orden distinto (mismo conjunto), respuesta correcta por
+   valor sigue correcta. Solo toca `options` (MC/listening/true_false); word_bank/reorder/match/cloze intactos.
 5. **Placement L/S delgado** (listening 3/nivel, speaking 2/nivel): subir a ≥5L/≥3S por nivel×curso para
    más evidencia y variedad → per-skill del placement con mejor resolución. **Esfuerzo: M** (autor nativo +
    audio, pipeline ya existe: `gen_placement_ls.py`).
