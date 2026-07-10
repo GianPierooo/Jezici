@@ -17,7 +17,19 @@ import 'package:flutter/material.dart';
 /// Full-bleed en X (llena el ancho en desktop); la columna de nodos se centra
 /// aparte (dx0). Estático (sin coste de animación · reduce-motion seguro).
 class SceneryPainter extends CustomPainter {
-  SceneryPainter();
+  SceneryPainter({this.scroll, this.viewH = 0, this.debugScrollTop})
+      : super(repaint: scroll);
+
+  /// Scroll del mapa: la escenografía solo repinta el TRAMO VISIBLE (culling) y
+  /// se refresca cuando el scroll cambia, no cuando la mascota anima.
+  final ScrollController? scroll;
+  final double viewH;
+
+  /// Solo tests (medir la ruta con culling sin un ScrollController real).
+  final double? debugScrollTop;
+
+  double get _scrollTop =>
+      debugScrollTop ?? ((scroll?.hasClients ?? false) ? scroll!.offset : 0);
 
   static const double _mockW = 368;
 
@@ -32,28 +44,45 @@ class SceneryPainter extends CustomPainter {
     final sx = w / _mockW; // escala horizontal (proporción del mockup)
     double x(double mx) => mx * sx;
 
+    // VIEWPORT CULLING: banda visible en coordenadas de contenido (con margen).
+    // clipRect hace que Skia SALTE los draws fuera de la ventana (baratísimo), y
+    // los bloques por-escena se saltan por completo si no intersecan. En mapas de
+    // 27.000px esto reduce el trabajo de ~cientos de shapes a los ~pocos visibles.
+    const margin = 500.0;
+    final double bandTop = viewH > 0 ? (_scrollTop - margin).clamp(0, h) : 0;
+    final double bandBot = viewH > 0 ? (_scrollTop + viewH + margin).clamp(0, h) : h;
+    bool visible(double top, double bot) => bandBot > top && bandTop < bot;
+
+    canvas.save();
+    canvas.clipRect(Rect.fromLTWH(0, bandTop, w, bandBot - bandTop));
+
     // MEDIO primero (queda detrás): cielo con nubes suaves por toda la altura.
-    _skyClouds(canvas, w, h);
+    _skyClouds(canvas, w, h, bandTop, bandBot);
 
-    // VISTA DE CIMA (arriba, absoluta) — el destino.
-    _summit(canvas, x);
-    _mountains(canvas, x);
-    _coast(canvas, x);
-    // La costa flota sobre el cielo (borde duro en y=880): se DISUELVE hacia abajo
-    // con SU PROPIO color (correcto sea cual sea el degradado detrás).
-    _dissolveDown(canvas, w, 858, 1010, const Color(0xFF6FC4DD));
+    // VISTA DE CIMA (arriba, absoluta) — el destino. Solo si la ventana la toca.
+    if (visible(0, 1010)) {
+      _summit(canvas, x);
+      _mountains(canvas, x);
+      _coast(canvas, x);
+      // La costa flota sobre el cielo (borde duro en y=880): se DISUELVE hacia abajo
+      // con SU PROPIO color (correcto sea cual sea el degradado detrás).
+      _dissolveDown(canvas, w, 858, 1010, const Color(0xFF6FC4DD));
+      _topHaze(canvas, w); // velo que funde la cima en el cielo
+    }
 
-    // PRIMER PLANO (abajo, absoluto) — donde estás. Las colinas se encuentran con
-    // el cielo directamente, como en el mockup (contraste bajo → sin borde duro).
-    double fg(double my) => h - _foreH + my; // Y anclada al pie (0.._foreH)
-    _hills(canvas, x, fg);
-    _pines(canvas, x, fg);
+    // PRIMER PLANO (abajo, absoluto) — donde estás. Solo si la ventana lo toca.
+    if (visible(h - _foreH, h)) {
+      double fg(double my) => h - _foreH + my; // Y anclada al pie (0.._foreH)
+      _hills(canvas, x, fg);
+      _pines(canvas, x, fg);
+    }
 
-    _topHaze(canvas, w); // velo que funde la cima en el cielo
+    canvas.restore();
   }
 
   // ── Cielo: nubes suaves distribuidas por TODA la altura (traslúcidas) ────────
-  void _skyClouds(Canvas canvas, double w, double h) {
+  // Solo pinta las nubes cuyo centro cae en la banda visible [bandTop, bandBot].
+  void _skyClouds(Canvas canvas, double w, double h, double bandTop, double bandBot) {
     // Banda de cielo "climbable" entre la vista de cima y el primer plano.
     final top = _topSceneH - 120;
     final bot = h - _foreH + 60;
@@ -65,6 +94,7 @@ class SceneryPainter extends CustomPainter {
       // Distribución determinista (sin Math.random): dispersa en X e Y.
       final t = (i + 0.5) / count;
       final cy = top + t * band;
+      if (cy < bandTop - 60 || cy > bandBot + 60) continue; // culling de nube
       final jitter = ((i * 37) % 100) / 100.0; // 0..1 pseudo-disperso estable
       final cx = w * (0.12 + 0.76 * jitter);
       final s = 0.8 + ((i * 53) % 40) / 100.0; // 0.8..1.2
@@ -313,5 +343,6 @@ class SceneryPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant SceneryPainter oldDelegate) => false;
+  bool shouldRepaint(covariant SceneryPainter oldDelegate) =>
+      oldDelegate.viewH != viewH || oldDelegate.scroll != scroll;
 }

@@ -3,16 +3,35 @@ import 'package:flutter/material.dart';
 /// Dibuja el sendero serpenteante que conecta los nodos (estilo "camino/viaje",
 /// NO una lista vertical plana). Recibe los centros de nodo ordenados de abajo
 /// hacia arriba y traza curvas S suaves entre ellos, con relieve de carretera.
+///
+/// RENDIMIENTO (viewport culling): los mapas son MUY altos (5.000–23.000px). El
+/// bucle de guiones (`computeMetrics` + `extractPath`) recorría TODO el sendero
+/// en cada frame → ~1500 segmentos a 27.000px, re-ejecutado cada frame de scroll
+/// y cada frame de animación (mascota/pulso comparten capa). Ahora se pinta SOLO
+/// el tramo VISIBLE (offset del scroll ± margen): el path se construye solo con
+/// los nodos de la ventana + 1 vecino a cada lado, y los guiones se limitan a esa
+/// banda. Se repinta cuando el scroll cambia (`repaint: scroll`), no cuando la
+/// mascota anima. Visualmente IDÉNTICO (mismos trazos, mismo camino).
 class TrailPainter extends CustomPainter {
-  TrailPainter(this.points);
+  TrailPainter(this.points, {this.scroll, this.viewH = 0, this.debugScrollTop})
+      : super(repaint: scroll);
 
   final List<Offset> points;
+  final ScrollController? scroll;
+  final double viewH;
 
-  Path _buildPath() {
+  /// Solo tests (medir la ruta con culling sin un ScrollController real).
+  final double? debugScrollTop;
+
+  double get _scrollTop =>
+      debugScrollTop ?? ((scroll?.hasClients ?? false) ? scroll!.offset : 0);
+
+  /// Construye el path solo entre los índices [lo..hi] (inclusive), con las
+  /// mismas curvas S que el original (curva desde el nodo anterior).
+  Path _buildPath(int lo, int hi) {
     final path = Path();
-    if (points.isEmpty) return path;
-    path.moveTo(points.first.dx, points.first.dy);
-    for (var i = 1; i < points.length; i++) {
+    path.moveTo(points[lo].dx, points[lo].dy);
+    for (var i = lo + 1; i <= hi; i++) {
       final p0 = points[i - 1];
       final p1 = points[i];
       final midY = (p0.dy + p1.dy) / 2;
@@ -25,7 +44,28 @@ class TrailPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     if (points.length < 2) return;
-    final path = _buildPath();
+
+    // Banda visible en coordenadas de contenido (con margen para el borde).
+    const margin = 500.0;
+    final double bandTop = viewH > 0 ? _scrollTop - margin : 0;
+    final double bandBot = viewH > 0 ? _scrollTop + viewH + margin : size.height;
+
+    // Índices de nodos dentro de la banda (+1 vecino a cada lado para continuidad
+    // de la curva). Los puntos vienen ordenados de ABAJO (dy grande) hacia ARRIBA
+    // (dy pequeño), así que buscamos por rango de dy sin asumir dirección.
+    var lo = points.length, hi = -1;
+    for (var i = 0; i < points.length; i++) {
+      final y = points[i].dy;
+      if (y >= bandTop && y <= bandBot) {
+        if (i < lo) lo = i;
+        if (i > hi) hi = i;
+      }
+    }
+    if (hi < 0) return; // nada del sendero en la ventana → no pinta
+    lo = (lo - 1).clamp(0, points.length - 1);
+    hi = (hi + 1).clamp(0, points.length - 1);
+    if (hi - lo < 1) return;
+    final path = _buildPath(lo, hi);
 
     final road = Paint()
       ..style = PaintingStyle.stroke
@@ -63,5 +103,7 @@ class TrailPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant TrailPainter oldDelegate) =>
-      oldDelegate.points != points;
+      oldDelegate.points != points ||
+      oldDelegate.viewH != viewH ||
+      oldDelegate.scroll != scroll;
 }

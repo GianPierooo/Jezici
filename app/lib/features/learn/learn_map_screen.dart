@@ -313,9 +313,28 @@ class _MapBodyState extends State<_MapBody> {
               ),
             ),
           ),
-          // Escenografía + sendero.
-          Positioned.fill(child: CustomPaint(painter: SceneryPainter())),
-          Positioned.fill(child: CustomPaint(painter: TrailPainter(trailPoints))),
+          // Escenografía + sendero — con VIEWPORT CULLING (solo pintan el tramo
+          // visible, driven por el scroll → no repintan la escena de 27.000px
+          // cada frame). isComplex+willChange dan mejores hints al compositor.
+          Positioned.fill(
+            child: RepaintBoundary(
+              child: CustomPaint(
+                painter: SceneryPainter(scroll: _controller, viewH: constraints.maxHeight),
+                isComplex: true,
+                willChange: true,
+              ),
+            ),
+          ),
+          Positioned.fill(
+            child: RepaintBoundary(
+              child: CustomPaint(
+                painter: TrailPainter(trailPoints,
+                    scroll: _controller, viewH: constraints.maxHeight),
+                isComplex: true,
+                willChange: true,
+              ),
+            ),
+          ),
           // Certificado de la cima.
           Positioned(
             top: _topPad * 0.18,
@@ -360,10 +379,14 @@ class _MapBodyState extends State<_MapBody> {
             children.add(Positioned(
               left: c.dx - portalBox / 2,
               top: c.dy - portalBox / 2,
-              child: CheckpointPortal(
-                state: state,
-                width: portalW,
-                onTap: () => _onTapNode(entry, state),
+              // RepaintBoundary: el halo pulsante del portal NO invalida la
+              // escenografía/sendero (aísla la animación en su propia capa).
+              child: RepaintBoundary(
+                child: CheckpointPortal(
+                  state: state,
+                  width: portalW,
+                  onTap: () => _onTapNode(entry, state),
+                ),
               ),
             ));
             // Pill "EXAMEN · UNIDAD N" en el HUECO bajo el portal (no encima del
@@ -380,12 +403,16 @@ class _MapBodyState extends State<_MapBody> {
             children.add(Positioned(
               left: c.dx - box / 2,
               top: c.dy - box / 2,
-              child: MapNode(
-                type: lesson.type,
-                state: state,
-                size: size,
-                progress: state == NodeState.available ? _unitProgress(entry.unit.id) : 0,
-                onTap: () => _onTapNode(entry, state),
+              // RepaintBoundary: el pulso del nodo disponible se aísla → no
+              // repinta la escena gigante cada frame.
+              child: RepaintBoundary(
+                child: MapNode(
+                  type: lesson.type,
+                  state: state,
+                  size: size,
+                  progress: state == NodeState.available ? _unitProgress(entry.unit.id) : 0,
+                  onTap: () => _onTapNode(entry, state),
+                ),
               ),
             ));
             // Etiqueta debajo del nodo.
@@ -405,11 +432,13 @@ class _MapBodyState extends State<_MapBody> {
               width: 120,
               child: const Center(child: _StartBubble()),
             ));
-            // Mascota junto al nodo disponible.
+            // Mascota junto al nodo disponible. RepaintBoundary: su bob (bucle
+            // continuo) se aísla → NO invalida la escenografía cada frame (era
+            // la causa #1 del lag continuo, incluso estando quieto).
             children.add(Positioned(
               left: c.dx + size * 0.5,
               top: c.dy - size * 0.95,
-              child: ParrotMascot(message: l10n.mapMascotPeak),
+              child: RepaintBoundary(child: ParrotMascot(message: l10n.mapMascotPeak)),
             ));
           }
         }

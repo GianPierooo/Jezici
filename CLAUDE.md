@@ -5,6 +5,32 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-09**.
 
+## LAG DEL MAPA — viewport culling + RepaintBoundary ✅ (2026-07-10 · solo cliente)
+Feedback real (lag en el mapa y al moverse entre niveles, aun en equipos potentes). **Se DIAGNOSTICÓ
+antes de tocar** (benchmark headless de `paint()` a la altura de un curso largo: inglés A1→C1 ≈ 180
+nodos → contentHeight ≈ **27.000px**).
+- **Causa REAL (3 factores, con números):** (1) **sin `RepaintBoundary`**, la mascota (bob continuo) y el
+  pulso del nodo disponible **comparten capa** con la escenografía+sendero → marcan sucia la capa GIGANTE
+  ~60 veces/s → re-pintan toda la escena de 27.000px **aunque estés quieto** (lag continuo) y en cada frame
+  de scroll (la capa gigante se re-reproduce). (2) `TrailPainter` recorría **TODO** el sendero
+  (`computeMetrics`+`extractPath`, ~1500 guiones a 27.000px) en cada paint → **3.76 ms/paint** medido, y
+  escala con la altura. (3) `TrailPainter.shouldRepaint` comparaba `!=` sobre una lista NUEVA cada build →
+  siempre `true`. Total painters: **4.17 ms/paint** de solo grabar draw-ops en CPU de escritorio (en web
+  CanvasKit, rasterizar la capa de 27.000px es mucho peor).
+- **Fix (capa de RENDIMIENTO, visual IDÉNTICO):** **VIEWPORT CULLING** en `SceneryPainter`/`TrailPainter` —
+  toman el `ScrollController` (`repaint: scroll`) y pintan SOLO la banda visible (offset ± 500px de margen):
+  `clipRect` a la ventana + saltar escenas/nubes fuera de banda; el sendero construye el path solo con los
+  nodos de la ventana (+1 vecino) → guiones acotados. **`RepaintBoundary`** alrededor de nodos/portal/mascota
+  → sus animaciones se aíslan en su propia capa y **ya NO invalidan la escenografía**. `shouldRepaint`
+  corregido. `isComplex+willChange` como hints al compositor.
+- **Medido (benchmark headless, mismo 27.000px):** painters **4.17 ms → 0.28 ms/paint (−93%)**; y con los
+  RepaintBoundary esos paints ya **no ocurren por frame de animación** (solo en scroll, y acotados a la
+  ventana). El mapa se ve **idéntico** (golden completo con culling-off = diseño actual: sol, montañas
+  nevadas, costa, colinas, pinos; culling solo cambia QUÉ se dibuja al hacer scroll, no el diseño).
+  Reduce-motion intacto. **NO** se aplicó la idea de "ocultar lo no desbloqueado" (se perdería el viaje).
+  Verde: analyze 0 (CI-exact) · test 143/143 (+map_culling: pinta sin excepción a 27.000px + culling −>50%
+  del costo del sendero) · build web OK.
+
 ## TANDA 1 — 4 fixes de correctitud/seguridad (mig 140 · 2026-07-10)
 Feedback real de Gian + auditoría. Cero IA.
 - **F1 · P0 SEGURIDAD — métricas admin-only.** "Ver métricas (interno)" en Ajustes se mostraba a TODOS.
