@@ -5,6 +5,30 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-10**.
 
+## CERTIFICACIÓN en los 6 CURSOS (A1–B2) — course-agnóstica + aislamiento multicurso ✅ LIVE (mig 144 · 2026-07-10)
+El P0 de EVAL_AUDIT.md. **PASO 0 (BD + cliente real) reveló que la certificación YA era course-agnóstica**
+(`submit_level_exam`/`jz_level_status`/`jz_resolve_exam_level` todo scopeado a `jz_active_course`, cert con
+`course_id`) — **pt certificaba A1 HOY**; el banco `unidad%` cubre A1–B2 en los 6 cursos (≥36R/36W/24L/18S por
+nivel, censado). El bloqueo real NO era "faltan exámenes de nivel" sino **aislamiento multicurso**:
+- **(A) `certificates UNIQUE (user_id, cefr_level)`** sin `course_id` → un **políglota no podía tener "A1
+  inglés" Y "A1 portugués"** (el 2º insert chocaba → sin cert; peor: el lookup devolvía la cert de OTRO curso).
+  Fix: constraint **`(user_id, course_id, cefr_level)`** + TODAS las consultas de cert en `submit_level_exam`
+  scopeadas por `course_id` + `has_certificate` de `jz_level_status` por curso. (0 duplicados cross-curso hoy
+  → migración segura.)
+- **(B) id de examen de nivel HARDCODEADO/compartido** (`50000000-…-<lvl>`, una fila por nivel con
+  `course_id=en`) → `exam_attempts` de todos los cursos colisionaban. Fix: **fila de examen POR CURSO**
+  (lookup-or-create como `start_checkpoint`); **en conserva su fila histórica** (la encuentra) → 0 regresión.
+- **Techo honesto:** `jz_resolve_exam_level` sigue capando **B2**. C1/C2 no certifican (requieren evaluación
+  de producción libre = Fase 2 IA). Cada curso llega a **B2** (el banco lo respalda en los 6).
+- **Sin cambio de cliente:** el flujo de examen/certificado ya es course-agnóstico (lee `get_skill_mastery`/
+  `level_exam_status` del curso activo; el certificado ya es course-aware por idioma, mig 133/138).
+- **Verificado cliente REAL (`verify_cert_chain.py` en los 6 cursos) TODO VERDE:** cadena **A1→B2** (dominar
+  las 4 skills al nivel N → examen → **cert `JZC-<N>-` con `course_id` del curso** → suben las 4 skills); techo
+  B2; **FALLO** (sin dominar 1 skill → NO certifica, `get_skill_mastery` muestra qué skill falta); **AISLAMIENTO
+  políglota** (mismo usuario certifica A1 en EN y en el otro curso → **ambas certs coexisten**, y las skills de
+  EN no se tocan al certificar el otro). **en sin regresión** (`verify_chain` A1→B2 VERDE). Verde: analyze 0
+  (CI-exact) · test 146/146 · build web OK.
+
 ## CHECKPOINT C1 con banco suficiente + OPCIONES barajadas al servir ✅ LIVE (mig 143 · 2026-07-10)
 Dos hallazgos de EVAL_AUDIT.md (§1 P0 + §3 P1). **Cero contenido nuevo, cero IA.**
 - **F1 (P0) · Checkpoint C1 aleatoriza de verdad.** PASO 0 (BD real): el checkpoint (`start_checkpoint`)
@@ -927,8 +951,9 @@ en B2; andamiaje idéntico listo: STAMP `('pt','c1')=…130`, grupo audio `pt-c1
    **Barrido de colisiones MC/listening ✅ (mig 117).**
 6. **Diferidos menores:** historias B2 por idioma (B1 ✅ mig 125); imágenes referenciales
    fr/it/de/nl (hoy solo es→en A1/A2); copy en-first fuera del onboarding (`missionMainDescription` «100 palabras del
-   inglés», `errorReviewWhy*`); cert de nivel por curso (fr/it/de/nl sin examen/cert de nivel aún); C1/C2; cron de
-   cierre de ligas; Sentry DSN + sello JZ_BUILD (requieren a Gian, ver secciones abajo).
+   inglés», `errorReviewWhy*`); **cert de nivel por curso ✅ (mig 144: los 6 cursos certifican A1–B2; C1/C2 =
+   techo honesto Fase 2 IA)**; cron de cierre de ligas; Sentry DSN + sello JZ_BUILD (requieren a Gian, ver
+   secciones abajo).
 
 ## Qué es
 App de aprendizaje de idiomas (estilo Duolingo). **Flutter (web PWA)** + **Supabase**

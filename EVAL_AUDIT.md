@@ -199,10 +199,21 @@ en  C1 R7 L24 W4 S12  → NO se usa (C1 sin examen de nivel; tope B2)
    real, el placement (test adaptativo = señal de dominio) y los exámenes/certs se preservan; **108/108 filas
    coherentes, 0 rompen progreso/XP**. Verificado cliente real (`verify_level_unification.py`): grind de A1 →
    radar A1 (no infla); dominar B1 → radar B1 == certificable; radar y jz_skill_mastery ya no divergen.
-3. **Certificación solo en inglés, tope B2.** Decisión de producto explícita: pt/fr/it/de/nl **no certifican
-   nada** hoy. Si el certificado es "el diferenciador", falta el examen de nivel (tabla `exams` tipo `level`
-   + pool `unidad%`) para los otros 5 cursos y elevar el tope. **Esfuerzo: L** (por curso; C1/C2 requieren
-   evaluación de producción = Fase 2 IA — mantener tope honesto).
+3. ✅ **RESUELTO (mig 144, 2026-07-10) — Certificación en los 6 cursos (A1–B2).** PASO 0 (BD + cliente
+   real): `submit_level_exam`/`jz_level_status`/`jz_resolve_exam_level` **YA eran course-agnósticos**
+   (todo scopeado a `jz_active_course`; cert con `course_id`) y **pt certificaba A1 HOY**; el banco taggeado
+   `unidad%` cubre A1–B2 en los 6 (≥36R/36W/24L/18S por nivel). El bloqueo real era de **aislamiento
+   multicurso**: (A) `certificates UNIQUE (user_id, cefr_level)` sin `course_id` → un políglota no podía
+   tener "A1 inglés" Y "A1 portugués" (el 2º insert chocaba → sin cert, y el lookup devolvía la cert de
+   OTRO curso); (B) el id de examen de nivel estaba **hardcodeado/compartido** (`50000000-…-<lvl>`) →
+   `exam_attempts` de todos los cursos colisionaban en una fila `course_id=en`. Fix: constraint
+   `(user_id, course_id, cefr_level)` + todas las consultas de cert scopeadas por `course_id` +
+   `has_certificate` por curso + **fila de examen por curso** (lookup-or-create como `start_checkpoint`; en
+   conserva su fila histórica). `jz_resolve_exam_level` sigue capando **B2** (C1/C2 = techo honesto, sin
+   producción libre = Fase 2 IA). Verificado cliente real (`verify_cert_chain.py` en los 6): cadena A1→B2 →
+   cert `JZC-<N>-` course-aware; sin dominar 1 skill → NO certifica y se ve qué falta; **políglota certifica
+   A1 en EN y en el otro curso, ambas coexisten** (certificar en un curso no toca el otro). en sin regresión
+   (`verify_chain`).
 
 ### P1 — precisión / anti-trampa / honestidad
 4. ✅ **RESUELTO (mig 143 + cliente, 2026-07-10) — Opciones barajadas al servir.** Server-side:
