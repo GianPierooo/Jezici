@@ -890,5 +890,7 @@
   "genderFemale": "Female",
   "genderMale": "Male",
   "genderOther": "Other",
-  "genderPreferNot": "Prefer not to say"
+  "genderPreferNot": "Prefer not to say",
+  "convKicker": "JEZICI COMMUNITY",
+  "convSpeakingPill": "Your Speaking: {level} — level it up here"
 }

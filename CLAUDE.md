@@ -5,6 +5,27 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-09**.
 
+## CONVERSAR pulido al lenguaje de Conversar.dc (sin features sociales) ✅ (2026-07-10 · solo cliente)
+La pantalla eran **rectángulos planos**; se subió al lenguaje visual del mockup **sin construir el hub social
+en vivo** (salas/"320 en línea"/compañeros/crear sala = Fase 2 por diseño, no se toca). Capa visual + un dato
+real; NO agrega lógica ni features sociales.
+- **Header de COMUNIDAD full-bleed** (`_Header`): gradiente violeta 150° (#7A6BF0→#6C5CE7→#5B4ECF) con esquinas
+  inferiores redondeadas + kicker **"COMUNIDAD JEZICI"** + título "Conversar" + subtítulo + **guacamayo SVG**
+  (`ParrotArt`) + **pill "Tu Speaking: X — súbelo hablando aquí" con el nivel REAL** (de `skillsProvider`,
+  skill speaking; si aún no cargó, la pill se OMITE — honesto, no inventa nivel).
+- **Tarjetas de situación RICAS** (`_TopicCard` → StatefulWidget): **icon-tile coloreado distinto por situación**
+  (mapa `_topicTint`: café durazno, intro violeta, aeropuerto cian, finde coral, entrevista verde, direcciones
+  violeta) + chevron en chip del mismo tinte + doble sombra (labio duro + sombra suave) + **motion de presión**
+  (se hunde 3px al tocar, reduce-motion-aware). Ya no 6 rectángulos idénticos.
+- **Banner "en vivo · próximamente"** (`_LiveBanner`): estilo del mockup (gradiente + punto verde live + sombra)
+  **SIN contador falso de gente en línea**. El texto honesto (Fase 2) se conserva.
+- **"Reto de conversación · HOY" NO se construyó** — el mockup promete "gana oro por tu creatividad" y **no
+  existe infra de reto ni de recompensa** → fingirlo sería deshonesto (degradación honesta, documentada).
+- **i18n intacto** (regla): chrome por idioma de la APP (es/en/pt, +2 claves `convKicker`/`convSpeakingPill`),
+  contenido (respuesta modelo/tips) por idioma del CURSO vía `modelFor(lang)`. La pantalla de práctica de cada
+  situación (responder + modelo + autoevaluación + mic honesto) intacta. Verde: analyze 0 (CI-exact) · test
+  138/138 (Conversar pt sin español ✓, bandera=curso activo ✓) · build web OK.
+
 ## FONDO DEL MAPA v3 — "cielo con nubes" (fin real de las franjas) ✅ (2026-07-09 · solo cliente)
 Gian seguía viendo el fondo "roto" tras v1/v2. **Causa de RAÍZ (no un set-piece suelto): el mockup es UNA
 escena de altura FIJA (368×1860); estirarla sobre mapas de 5.000–23.000px** (`_flatten` = todas las

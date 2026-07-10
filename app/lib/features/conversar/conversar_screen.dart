@@ -9,6 +9,7 @@ import '../../core/theme/app_colors.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
 import '../../ui/primary_button.dart';
+import '../learn/widgets/parrot_mascot.dart';
 
 /// CONVERSAR — versión SEGURA y usable (GA7). NADA de chat con desconocidos ni
 /// IA: práctica de conversación EN SOLITARIO/asíncrona (tema → escribe o habla →
@@ -76,52 +77,178 @@ class ConversarScreen extends ConsumerWidget {
     final l10n = AppLocalizations.of(context);
     // Idioma META del curso activo → la respuesta modelo se muestra en ese idioma.
     final lang = ref.watch(activeCourseTargetProvider).maybeWhen(data: (v) => v, orElse: () => 'en');
+    // Nivel REAL de speaking para la pill del header (dato honesto, no inventado).
+    final speaking = ref.watch(skillsProvider).maybeWhen(
+        data: (s) {
+          for (final sk in s) {
+            if (sk.skill == 'speaking') return sk.cefrLevel;
+          }
+          return null;
+        },
+        orElse: () => null);
     return SafeArea(
       bottom: false,
       child: ListView(
-        padding: const EdgeInsets.fromLTRB(20, 18, 20, 120),
+        padding: const EdgeInsets.only(bottom: 120),
         children: [
-          Text(l10n.convTitle,
-              style: const TextStyle(fontSize: 26, fontWeight: FontWeight.w900, color: AppColors.text)),
-          const SizedBox(height: 2),
-          Text(l10n.convSubtitle,
-              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
-          const SizedBox(height: 16),
-          // Visión (honesta) de la conversación en vivo.
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                  begin: Alignment.topLeft, end: Alignment.bottomRight,
-                  colors: [Color(0xFF7A6BF0), AppColors.primary]),
-              borderRadius: BorderRadius.circular(20),
-            ),
+          _Header(speaking: speaking),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text(l10n.convLiveTitle,
-                    style: const TextStyle(fontSize: 15.5, fontWeight: FontWeight.w900, color: Colors.white)),
-                const SizedBox(height: 6),
-                Text(l10n.convLiveBody,
-                    style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: Colors.white, height: 1.35)),
+                // Visión (honesta) de la conversación EN VIVO (Fase 2).
+                _LiveBanner(l10n: l10n),
+                const SizedBox(height: 20),
+                Text(l10n.convPracticeHeader,
+                    style: const TextStyle(
+                        fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+                const SizedBox(height: 4),
+                Text(l10n.convPracticeSubtitle,
+                    style: const TextStyle(
+                        fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                const SizedBox(height: 12),
+                for (final t in topics)
+                  _TopicCard(
+                    topic: t,
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => ConversarPracticeScreen(topic: t, lang: lang))),
+                  ),
+                const SizedBox(height: 8),
+                const _InterestCard(),
               ],
             ),
           ),
-          const SizedBox(height: 18),
-          Text(l10n.convPracticeHeader,
-              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
-          const SizedBox(height: 4),
-          Text(l10n.convPracticeSubtitle,
-              style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
-          const SizedBox(height: 12),
-          for (final t in topics)
-            _TopicCard(
-              topic: t,
-              onTap: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => ConversarPracticeScreen(topic: t, lang: lang))),
+        ],
+      ),
+    );
+  }
+}
+
+/// Header de COMUNIDAD (Conversar.dc): gradiente violeta full-bleed + kicker +
+/// título + guacamayo (SVG) + pill "Tu Speaking: X" con el nivel REAL.
+class _Header extends StatelessWidget {
+  const _Header({this.speaking});
+  final String? speaking;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final top = MediaQuery.paddingOf(context).top;
+    return Container(
+      padding: EdgeInsets.fromLTRB(20, 18 + top * 0.2, 20, 22),
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xFF7A6BF0), AppColors.primary, Color(0xFF5B4ECF)],
+          stops: [0.0, 0.6, 1.0],
+        ),
+        borderRadius: BorderRadius.vertical(bottom: Radius.circular(26)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(l10n.convKicker,
+                        style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w900,
+                            letterSpacing: 1.6,
+                            color: Colors.white.withValues(alpha: 0.72))),
+                    const SizedBox(height: 2),
+                    Text(l10n.convTitle,
+                        style: const TextStyle(
+                            fontSize: 27, fontWeight: FontWeight.w900, color: Colors.white)),
+                    const SizedBox(height: 4),
+                    Text(l10n.convSubtitle,
+                        style: TextStyle(
+                            fontSize: 12.5,
+                            fontWeight: FontWeight.w700,
+                            height: 1.3,
+                            color: Colors.white.withValues(alpha: 0.82))),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 8),
+              const ParrotArt(size: 54),
+            ],
+          ),
+          const SizedBox(height: 14),
+          // Pill de nivel REAL de speaking (si aún no cargó, se omite — honesto).
+          if (speaking != null)
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.15),
+                borderRadius: BorderRadius.circular(13),
+                border: Border.all(color: Colors.white.withValues(alpha: 0.18)),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.mic_rounded, size: 16, color: Color(0xFFFFC93C)),
+                  const SizedBox(width: 8),
+                  Flexible(
+                    child: Text(l10n.convSpeakingPill(speaking!),
+                        style: const TextStyle(
+                            fontSize: 12.5, fontWeight: FontWeight.w800, color: Colors.white)),
+                  ),
+                ],
+              ),
             ),
-          const SizedBox(height: 8),
-          const _InterestCard(),
+        ],
+      ),
+    );
+  }
+}
+
+/// Banner honesto de "en vivo · próximamente" (Fase 2). Estilo del mockup
+/// (gradiente + punto live) SIN inventar un contador de gente en línea.
+class _LiveBanner extends StatelessWidget {
+  const _LiveBanner({required this.l10n});
+  final AppLocalizations l10n;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xFF7A6BF0), AppColors.primary]),
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+              color: AppColors.primary.withValues(alpha: 0.28),
+              offset: const Offset(0, 8),
+              blurRadius: 20),
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(children: [
+            Container(width: 9, height: 9,
+                decoration: const BoxDecoration(color: Color(0xFF3FE08A), shape: BoxShape.circle)),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(l10n.convLiveTitle,
+                  style: const TextStyle(
+                      fontSize: 15.5, fontWeight: FontWeight.w900, color: Colors.white)),
+            ),
+          ]),
+          const SizedBox(height: 6),
+          Text(l10n.convLiveBody,
+              style: const TextStyle(
+                  fontSize: 12.5, fontWeight: FontWeight.w700, color: Colors.white, height: 1.35)),
         ],
       ),
     );
@@ -170,39 +297,91 @@ class ConvTopic {
       };
 }
 
-class _TopicCard extends StatelessWidget {
+/// Color del icon-tile por situación (jerarquía visual del mockup: cada tarjeta
+/// distinta, no rectángulos idénticos). (fondo suave, ícono/acento saturado).
+const Map<String, (Color, Color)> _topicTint = {
+  'cafe': (Color(0xFFFFE7CF), Color(0xFFE8850E)),
+  'intro': (Color(0xFFE6ECFF), Color(0xFF5B6BF0)),
+  'airport': (Color(0xFFDFF3FB), Color(0xFF1E9BC7)),
+  'weekend': (Color(0xFFFFE7EC), Color(0xFFE03457)),
+  'interview': (Color(0xFFEAF7EC), Color(0xFF2BA866)),
+  'directions': (Color(0xFFF0EBFF), Color(0xFF7A6BF0)),
+};
+
+/// Tarjeta de situación con motion de presión (labio 3D que se hunde), fiel al
+/// lenguaje del mockup. Reduce-motion-aware (sin hundido si se desactivan animaciones).
+class _TopicCard extends StatefulWidget {
   const _TopicCard({required this.topic, required this.onTap});
   final ConvTopic topic;
   final VoidCallback onTap;
   @override
+  State<_TopicCard> createState() => _TopicCardState();
+}
+
+class _TopicCardState extends State<_TopicCard> {
+  bool _down = false;
+
+  @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final reduce = MediaQuery.disableAnimationsOf(context);
+    final tint = _topicTint[widget.topic.id] ?? _topicTint['directions']!;
+    final pressed = _down && !reduce;
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(18),
-        child: Container(
+      child: GestureDetector(
+        onTapDown: (_) => setState(() => _down = true),
+        onTapUp: (_) => setState(() => _down = false),
+        onTapCancel: () => setState(() => _down = false),
+        onTap: widget.onTap,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 90),
+          transform: Matrix4.translationValues(0, pressed ? 3 : 0, 0),
           padding: const EdgeInsets.all(15),
           decoration: BoxDecoration(
-            color: Colors.white, borderRadius: BorderRadius.circular(18),
-            boxShadow: const [BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 5), blurRadius: 0)]),
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(18),
+            boxShadow: [
+              BoxShadow(
+                  color: const Color(0xFFECEDF6),
+                  offset: Offset(0, pressed ? 2 : 5),
+                  blurRadius: 0),
+              BoxShadow(
+                  color: const Color(0x143C3778),
+                  offset: const Offset(0, 10),
+                  blurRadius: 22),
+            ],
+          ),
           child: Row(children: [
             Container(
-              width: 46, height: 46, alignment: Alignment.center,
-              decoration: BoxDecoration(color: AppColors.navActiveBg, borderRadius: BorderRadius.circular(13)),
-              child: Text(topic.emoji, style: const TextStyle(fontSize: 22))),
+              width: 48,
+              height: 48,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(color: tint.$1, borderRadius: BorderRadius.circular(14)),
+              child: Text(widget.topic.emoji, style: const TextStyle(fontSize: 23)),
+            ),
             const SizedBox(width: 13),
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(topic.title(l10n),
-                    style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
-                const SizedBox(height: 2),
-                Text(topic.scenario(l10n), maxLines: 2, overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                Text(widget.topic.title(l10n),
+                    style: const TextStyle(
+                        fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+                const SizedBox(height: 3),
+                Text(widget.topic.scenario(l10n),
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                        fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
               ]),
             ),
-            const Icon(Icons.chevron_right_rounded, color: AppColors.primary),
+            const SizedBox(width: 8),
+            Container(
+              width: 30,
+              height: 30,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(color: tint.$1, borderRadius: BorderRadius.circular(10)),
+              child: Icon(Icons.chevron_right_rounded, size: 20, color: tint.$2),
+            ),
           ]),
         ),
       ),

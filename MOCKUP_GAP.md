@@ -185,8 +185,15 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
 - Coincide: título/paleta/sombras; tarjeta gradiente violeta ("en vivo — próximamente"); 6 topics con práctica hablada/escrita multi-idioma; waitlist honesto.
 - Desviaciones:
   - [P0] El mockup es un hub SOCIAL EN VIVO (salas, "320 en línea", compañeros verificados, "Crear sala") y la app es práctica en solitario — Fase 2 documentada.
-  - [P1] Sin header con kicker "COMUNIDAD JEZICI" + pill "Tu Speaking: A2" + contador live.
-  - [P1] Sin "Reto de conversación · HOY" (consigna gramatical + oro por creatividad).
+  - [P1] ✅ **PULIDO (2026-07-10):** header full-bleed de COMUNIDAD (gradiente violeta 150° + kicker
+    "COMUNIDAD JEZICI" + título + subtítulo + guacamayo SVG `ParrotArt` + **pill "Tu Speaking: X" con el nivel
+    REAL** de `skillsProvider`); las 6 situaciones ahora son **tarjetas ricas** (icon-tile coloreado distinto por
+    situación + chevron en chip + doble sombra + **motion de presión** reduce-motion-aware), no rectángulos
+    idénticos; banner "en vivo · próximamente" con punto live SIN contador falso. i18n intacto (chrome por app,
+    contenido por curso; +convKicker/convSpeakingPill). analyze 0 · test 138/138 · build OK.
+  - [P1] ⛔ **"Reto de conversación · HOY" NO construido (honesto):** el mockup promete "gana oro por tu
+    creatividad" y no existe infra de reto/recompensa → fingirlo sería deshonesto. Diferido a cuando exista la
+    lógica real (Fase 2).
 - No implementado del mockup: salas en vivo, reto en pareja, "Compañeros para ti", nota de seguridad, jzLive — todo Fase 2.
 
 ## 10) Cofre

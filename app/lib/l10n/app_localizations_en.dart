@@ -2428,4 +2428,12 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get genderPreferNot => 'Prefer not to say';
+
+  @override
+  String get convKicker => 'JEZICI COMMUNITY';
+
+  @override
+  String convSpeakingPill(String level) {
+    return 'Your Speaking: $level — level it up here';
+  }
 }

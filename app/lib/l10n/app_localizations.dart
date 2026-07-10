@@ -4150,6 +4150,18 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Prefiero no decirlo'**
   String get genderPreferNot;
+
+  /// No description provided for @convKicker.
+  ///
+  /// In es, this message translates to:
+  /// **'COMUNIDAD JEZICI'**
+  String get convKicker;
+
+  /// No description provided for @convSpeakingPill.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu Speaking: {level} — súbelo hablando aquí'**
+  String convSpeakingPill(String level);
 }
 
 class _AppLocalizationsDelegate

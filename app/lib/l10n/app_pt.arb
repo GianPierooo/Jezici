@@ -890,5 +890,7 @@
   "genderFemale": "Feminino",
   "genderMale": "Masculino",
   "genderOther": "Outro",
-  "genderPreferNot": "Prefiro não dizer"
+  "genderPreferNot": "Prefiro não dizer",
+  "convKicker": "COMUNIDADE JEZICI",
+  "convSpeakingPill": "Seu Speaking: {level} — melhore falando aqui"
 }

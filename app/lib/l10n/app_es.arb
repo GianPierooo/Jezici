@@ -1603,5 +1603,14 @@
   "genderFemale": "Femenino",
   "genderMale": "Masculino",
   "genderOther": "Otro",
-  "genderPreferNot": "Prefiero no decirlo"
+  "genderPreferNot": "Prefiero no decirlo",
+  "convKicker": "COMUNIDAD JEZICI",
+  "convSpeakingPill": "Tu Speaking: {level} — súbelo hablando aquí",
+  "@convSpeakingPill": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  }
 }
