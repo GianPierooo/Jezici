@@ -232,8 +232,16 @@ en  C1 R7 L24 W4 S12  → NO se usa (C1 sin examen de nivel; tope B2)
    **Esfuerzo: M** (cliente ya transcribe; falta puntuar la transcripción en el examen, no solo no-vacío).
 
 ### P2 — pulido / cobertura
-7. **Comprensión más profunda en reading/listening** (inferencia, textos/audios más largos) — hoy es
-   comprensión de frase. **Esfuerzo: L** (autoría).
+7. 🔄 **EN PROGRESO (mig 145, 2026-07-10) — Comprensión más profunda en reading/listening.** Censo preciso:
+   el vocab-suelto ("¿qué significa/cómo se dice") se concentra en **A1** (de 35%, en 33%, it 29%, nl 29%,
+   fr A2 26%); B1+ ya es ~0% (comprensión de frase es la norma). **it A1 CERRADO IMPECABLE:** +30 ítems de
+   comprensión REAL (18 reading inferencia + 12 listening diálogo→pregunta, no "¿cuál oíste?"), autoría
+   nativa + revisión adversarial madrelingua (3 fixes: 2 echo→inferencia, 1 vocab-suelto→comparación de
+   edad). Ítems de POOL (tag `unidadN`+`comprension`, no cableados a lecciones → densifican checkpoints/
+   exámenes sin tocar lecciones ni el denominador de mastery → 0 regresión). it A1 reading 36→54, listening
+   25→37; vocab-suelto MC reading 29%→17%. Audio TTS 12/12, 0 colisiones, aislamiento OK, cadena cert it
+   verde. **RE-ENCOLADO (mismo patrón `gen_it_a1_comprehension.py`):** it A2 + fr/de/nl A1-A2 + pt A1 (los
+   otros focos de vocab-suelto). **Esfuerzo restante: M** (por curso×nivel).
 8. **Listening con audio natural** (hoy TTS) para acentos/velocidad reales — mejora validez del listening.
    **Esfuerzo: L** (locución/licencia).
 9. **Densificar fr/it/de/nl y pt B2/C1** (densidad base 114/nivel) para que sus checkpoints tengan el mismo

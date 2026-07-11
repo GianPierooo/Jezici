@@ -5,6 +5,29 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-10**.
 
+## COMPRENSIÓN más profunda — it A1 (P2 EVAL_AUDIT) ✅ LIVE (mig 145 · 2026-07-10)
+Primer frente del P2 "comprensión reading/listening". **PASO 0 (censo preciso):** el vocab-suelto
+("¿qué significa/cómo se dice X?") se concentra en **A1** (de 35% · en 33% · **it 29%** · nl 29% · fr A2 26%);
+B1+ ya es ~0% (comprensión de frase = norma). Densidad: fr/it/de/nl ≈36R/24L por nivel (6–12× el pick del
+checkpoint → aleatoriza bien, pero fino vs en 78–97R). **Profundidad > amplitud → cerré it A1 IMPECABLE:**
+- **+30 ítems de comprensión REAL** (18 reading inferencia + 12 listening **diálogo→pregunta**, NO "¿cuál
+  oíste?"): mini-contexto/situación → inferencia. Ej. reading: «Marco ha 8 anni. Suo nonno ha 80 anni. ¿Quién
+  es mayor?» → *Il nonno*; listening (audio it) «Prende un caffè? No grazie, vorrei un tè.» + pregunta "¿Qué
+  quiere tomar?" → *Un tè* (hay que PARSEAR la negación, no repetir lo oído).
+- **Autoría NATIVA italiana + revisión adversarial madrelingua** (agente revisor CEFR): 3 fixes reales
+  aplicados (2 listening "echo puro" → inferencia de nacionalidad / día siguiente; 1 reading vocab-suelto +
+  clave imprecisa "il nonno = padre de padre" → comparación de edad). Re-revisión: **OK impeccabili**.
+- **Ítems de POOL** (tags `unidadN`+`comprension`, NO cableados a lecciones) → densifican checkpoints/exámenes
+  SIN tocar lecciones ni el denominador de `jz_skill_mastery` (mig 142) → **0 regresión** a usuarios en curso.
+  El prompt (pregunta) SÍ se muestra en checkpoint/examen (los players renderizan `item.prompt` sobre el
+  ejercicio → verificado en código) → la pregunta de comprensión es visible; sin cambio de cliente.
+- **Censo antes→después:** it A1 reading 36→**54**, listening 25→**37**; vocab-suelto MC reading **29%→17%**.
+  Audio TTS **12/12** (HEAD 200), **0 colisiones**, 0 duplicados, aislamiento (0 `comprension` en otros cursos).
+  Grading por VALOR verificado (correcto→correct, incorrecto→incorrect). **Cadena cert it A1→B2 VERDE**
+  (`verify_cert_chain.py it`, pool ampliado sigue certificando + aislamiento políglota). Verde: analyze 0
+  (CI-exact) · test 146/146 · build web OK. **Re-encolado (## Cola):** it A2 + fr/de/nl A1-A2 + pt A1 con el
+  mismo patrón `gen_it_a1_comprehension.py` + revisor adversarial nativo.
+
 ## CERTIFICACIÓN en los 6 CURSOS (A1–B2) — course-agnóstica + aislamiento multicurso ✅ LIVE (mig 144 · 2026-07-10)
 El P0 de EVAL_AUDIT.md. **PASO 0 (BD + cliente real) reveló que la certificación YA era course-agnóstica**
 (`submit_level_exam`/`jz_level_status`/`jz_resolve_exam_level` todo scopeado a `jz_active_course`, cert con
@@ -949,6 +972,15 @@ en B2; andamiaje idéntico listo: STAMP `('pt','c1')=…130`, grupo audio `pt-c1
    diferenciada 4/4, azar 0 altas, aislamiento). Pendiente además:
    nombre real de la unidad de entrada por curso en `PlacementResultView` (hoy rótulo es→en).
    **Barrido de colisiones MC/listening ✅ (mig 117).**
+7. **COMPRENSIÓN reading/listening (P2 EVAL_AUDIT §7) — retome exacto:** it A1 ✅ CERRADO (mig 145, +30
+   ítems comprensión POOL). Repetir el MISMO patrón para los otros focos de vocab-suelto A1/A2 (censo:
+   **de A1 35% · fr A2 26% · nl A1 29% · fr A1 19% · it A2 · pt A1 13%**): copiar `gen_it_a1_comprehension.py`
+   → cambiar COURSE + autorar 3 reading-inferencia + 2 listening-diálogo→pregunta por unidad (6 unidades/nivel),
+   revisor adversarial NATIVO por idioma (agente CEFR), tags `unidadN`+`comprension`+skill (POOL, no cablear a
+   lecciones), `gen_audio_missing.py <code>-<lvl>` para el audio, verificar con `verify_cert_chain.py <code>` +
+   censo antes/después + HEAD audio + 0 colisiones. **Umbral sano definido:** el pool ya aleatoriza (≥6× el pick);
+   el objetivo NO es densidad sino BAJAR el vocab-suelto <20% y meter comprensión/inferencia real. Densificar
+   pt B2/C1 (36R/24L) es secundario (aleatoriza, solo fino vs en). NADA a medias: cerrar por curso×nivel.
 6. **Diferidos menores:** historias B2 por idioma (B1 ✅ mig 125); imágenes referenciales
    fr/it/de/nl (hoy solo es→en A1/A2); copy en-first fuera del onboarding (`missionMainDescription` «100 palabras del
    inglés», `errorReviewWhy*`); **cert de nivel por curso ✅ (mig 144: los 6 cursos certifican A1–B2; C1/C2 =
