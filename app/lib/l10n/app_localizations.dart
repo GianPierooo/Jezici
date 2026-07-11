@@ -4121,6 +4121,132 @@ abstract class AppLocalizations {
   /// **'Año de nacimiento'**
   String get ageGateYearHint;
 
+  /// No description provided for @convFriendsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Amigos'**
+  String get convFriendsTitle;
+
+  /// No description provided for @convFriendsSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Practica con amigos por chat'**
+  String get convFriendsSubtitle;
+
+  /// No description provided for @convYourCode.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu código'**
+  String get convYourCode;
+
+  /// No description provided for @convAddFriend.
+  ///
+  /// In es, this message translates to:
+  /// **'Agregar'**
+  String get convAddFriend;
+
+  /// No description provided for @convEnterCode.
+  ///
+  /// In es, this message translates to:
+  /// **'Código de tu amigo'**
+  String get convEnterCode;
+
+  /// No description provided for @convRequestSent.
+  ///
+  /// In es, this message translates to:
+  /// **'Solicitud enviada'**
+  String get convRequestSent;
+
+  /// No description provided for @convCodeError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo agregar. Revisa el código.'**
+  String get convCodeError;
+
+  /// No description provided for @convCodeCopied.
+  ///
+  /// In es, this message translates to:
+  /// **'Código copiado'**
+  String get convCodeCopied;
+
+  /// No description provided for @convContactFilterNote.
+  ///
+  /// In es, this message translates to:
+  /// **'Por tu seguridad, no compartas teléfonos ni enlaces.'**
+  String get convContactFilterNote;
+
+  /// No description provided for @convRequests.
+  ///
+  /// In es, this message translates to:
+  /// **'Solicitudes'**
+  String get convRequests;
+
+  /// No description provided for @convAccept.
+  ///
+  /// In es, this message translates to:
+  /// **'Aceptar'**
+  String get convAccept;
+
+  /// No description provided for @convReject.
+  ///
+  /// In es, this message translates to:
+  /// **'Rechazar'**
+  String get convReject;
+
+  /// No description provided for @convNoFriends.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no tienes amigos. Comparte tu código para agregar a alguien.'**
+  String get convNoFriends;
+
+  /// No description provided for @convChatHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe un mensaje'**
+  String get convChatHint;
+
+  /// No description provided for @convChatEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Saluda 👋'**
+  String get convChatEmpty;
+
+  /// No description provided for @convSendError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo enviar'**
+  String get convSendError;
+
+  /// No description provided for @convReport.
+  ///
+  /// In es, this message translates to:
+  /// **'Reportar'**
+  String get convReport;
+
+  /// No description provided for @convBlock.
+  ///
+  /// In es, this message translates to:
+  /// **'Bloquear'**
+  String get convBlock;
+
+  /// No description provided for @convReported.
+  ///
+  /// In es, this message translates to:
+  /// **'Reportado. Gracias.'**
+  String get convReported;
+
+  /// No description provided for @convCorrect.
+  ///
+  /// In es, this message translates to:
+  /// **'Corregir'**
+  String get convCorrect;
+
+  /// No description provided for @convSendCorrection.
+  ///
+  /// In es, this message translates to:
+  /// **'Enviar corrección'**
+  String get convSendCorrection;
+
   /// No description provided for @profileEditBirthday.
   ///
   /// In es, this message translates to:

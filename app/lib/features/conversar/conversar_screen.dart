@@ -10,6 +10,7 @@ import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
 import '../../ui/primary_button.dart';
 import '../learn/widgets/parrot_mascot.dart';
+import 'friends.dart';
 
 /// CONVERSAR — versión SEGURA y usable (GA7). NADA de chat con desconocidos ni
 /// IA: práctica de conversación EN SOLITARIO/asíncrona (tema → escribe o habla →
@@ -97,6 +98,10 @@ class ConversarScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                // OLA 1 (social async cerrado): entrada a "Amigos" — solo visible
+                // si el usuario tiene acceso social (18+ y en beta). El público no
+                // ve nada; para ellos sigue el banner honesto de abajo.
+                const FriendsEntryCard(),
                 // Visión (honesta) de la conversación EN VIVO (Fase 2).
                 _LiveBanner(l10n: l10n),
                 const SizedBox(height: 20),

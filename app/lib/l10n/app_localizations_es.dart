@@ -2417,6 +2417,71 @@ class AppLocalizationsEs extends AppLocalizations {
   String get ageGateYearHint => 'Año de nacimiento';
 
   @override
+  String get convFriendsTitle => 'Amigos';
+
+  @override
+  String get convFriendsSubtitle => 'Practica con amigos por chat';
+
+  @override
+  String get convYourCode => 'Tu código';
+
+  @override
+  String get convAddFriend => 'Agregar';
+
+  @override
+  String get convEnterCode => 'Código de tu amigo';
+
+  @override
+  String get convRequestSent => 'Solicitud enviada';
+
+  @override
+  String get convCodeError => 'No se pudo agregar. Revisa el código.';
+
+  @override
+  String get convCodeCopied => 'Código copiado';
+
+  @override
+  String get convContactFilterNote =>
+      'Por tu seguridad, no compartas teléfonos ni enlaces.';
+
+  @override
+  String get convRequests => 'Solicitudes';
+
+  @override
+  String get convAccept => 'Aceptar';
+
+  @override
+  String get convReject => 'Rechazar';
+
+  @override
+  String get convNoFriends =>
+      'Aún no tienes amigos. Comparte tu código para agregar a alguien.';
+
+  @override
+  String get convChatHint => 'Escribe un mensaje';
+
+  @override
+  String get convChatEmpty => 'Saluda 👋';
+
+  @override
+  String get convSendError => 'No se pudo enviar';
+
+  @override
+  String get convReport => 'Reportar';
+
+  @override
+  String get convBlock => 'Bloquear';
+
+  @override
+  String get convReported => 'Reportado. Gracias.';
+
+  @override
+  String get convCorrect => 'Corregir';
+
+  @override
+  String get convSendCorrection => 'Enviar corrección';
+
+  @override
   String get profileEditBirthday => 'Cumpleaños (día y mes, opcional)';
 
   @override

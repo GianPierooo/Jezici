@@ -29,6 +29,9 @@ class FakeProgressRepository implements ProgressRepository {
   FakeProgressRepository({this.gradeItems = const []});
   // Ítems para calificar localmente (simula grade_item del servidor, mig 055).
   final List<ContentItemModel> gradeItems;
+  // Catch-all para métodos no usados por este test (p.ej. los sociales de Ola 1).
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
   @override
   bool get isSignedIn => true;
   @override

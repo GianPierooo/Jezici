@@ -5,6 +5,36 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-10**.
 
+## CONVERSAR OLA 1 — social ASÍNCRONO CERRADO (amigos + chat) 🔶 LIVE-CERRADO (mig 147 · 2026-07-11)
+Primera ola social sobre los cimientos P1 (mig 146). Decisiones de Gian: **18+ solo · sin tutores · sin
+IA · solo Supabase**. **CERRADO al público** por allowlist `social_beta` + `jz_social_access` (adulto Y
+(admin O beta)) → un usuario público NO ve ni accede a nada; la UI solo muestra "Amigos" si hay acceso.
+- **A1 · Amigos por CÓDIGO** — `users.friend_code` (7 chars sin ambigüedad) por `get_social_status`;
+  `send_friend_request(code)` (no buscador de desconocidos, no-self, no-bloqueado, rate ≤50/día, auto-
+  acepta si es mutuo) / `respond_friend_request(accept)` / `list_friends`. `connections` +requested_by
+  +accepted_at, par canónico único.
+- **A2 · Chat texto 1:1** — `messages` + `send_message` (rate ≤30/min, **filtro de contacto**
+  `jz_strip_contact`: teléfono/email/URL/@ → `⟨•⟩` al GUARDAR, para que no saquen la charla de la
+  plataforma) + `list_messages`; **Realtime** (`messages` en la publicación; la RLS aplica al canal).
+- **A4 · Corrección entre amigos** — `corrections` + `add_correction` (corriges el mensaje del OTRO, no
+  el tuyo); aparece inline en el chat.
+- **A5 · Racha con amigos** — `jz_friend_streak` derivada de `daily_goals` (días consecutivos en que AMBOS
+  cumplieron su meta), en `list_friends`.
+- **report/block en el chat** (reusa P1). **RLS estricta:** messages/corrections solo miembros ACEPTADOS y
+  **no bloqueados** (el bloqueo corta en ambas direcciones); escritura solo por RPC (grants revocados).
+- **Cliente:** sección "Amigos" en Conversar (gate por `socialStatusProvider.access`), `FriendsScreen`
+  (tu código + agregar + solicitudes + lista con racha 🔥) y `ChatScreen` (burbujas Realtime + enviar +
+  reportar/bloquear + long-press→corregir). i18n es/en/pt (21 claves). Lenguaje del sistema (tokens, Jezi).
+- **Verificado cliente REAL (`verify_conversar_ola1.py`, JWT) TODO VERDE:** gate cerrado (adulto sin beta →
+  sin acceso), **no-adulto excluido aunque esté en beta**, amigos por código (solicitar→aceptar), no-amigos
+  no chatean, **filtro de contacto actúa** (`⟨•⟩`), rate limit, corrección, racha ≥1, **BLOQUEO corta el
+  chat en la RLS** (send + list + SELECT directo + desaparece de amigos), INSERT directo a messages 403.
+  Verde: analyze 0 (CI-exact) · test 146/146 · build web OK.
+- **Re-encolado (## Cola):** A3 notas de voz (recorder web + Storage RLS + retención), A6 co-op (crear/
+  aceptar/avanzar sobre `coop_challenges`), F5 postales de voz, F7 apuesta con amigo.
+- ⚠️ **BLOQUEO de Gian (legal, no código):** la APERTURA al público sigue **bloqueada hasta TÉRMINOS/
+  PRIVACIDAD revisados por abogado** (UGC/social/menores). Hoy solo `social_beta` (verificación privada).
+
 ## CONVERSAR P1 — CIMIENTOS DE SEGURIDAD (age gate 18+ + moderación) ✅ LIVE (mig 146 · 2026-07-11)
 Prerrequisito de TODA ola social (ver CONVERSAR_FASE2.md). **NO abre ninguna función social**; solo la
 compuerta. Decisiones de Gian: **18+ SOLO para lo social · sin tutores · sin IA · solo Supabase**.
@@ -950,15 +980,16 @@ en B2; andamiaje idéntico listo: STAMP `('pt','c1')=…130`, grupo audio `pt-c1
   Cierre: analyze 0, tests verdes, gh run list SUCCESS, deploy READY. Reporta en 1 línea.
 
 ## Cola (retome exacto — orden sugerido)
--2. **CONVERSAR · OLA 1 (social ASÍNCRONO cerrado) — retome tras P1 (mig 146):** amigos por código/QR +
-   chat texto 1:1 + notas de voz + corrección entre amigos + rachas/accountability + co-op + postales de
-   voz. Reusar los cimientos P1 (`jz_is_adult_user` como gate 18+, `jz_blocked_between` en RLS,
-   block/mute/report, rate limits, `connections`/`coop_challenges` ya existentes). Datos a añadir:
-   `friend_codes`, `messages`(text/voice), `corrections`; RLS = miembros del thread Y sin bloqueo Y 18+.
-   Stack: **solo Supabase** (Realtime + Storage), sin gasto externo. Ver CONVERSAR_FASE2.md §Ola 1 + §7.
+-2. **CONVERSAR · OLA 1 — restos (retome tras mig 147, A1/A2/A4/A5 ya LIVE-cerrado):**
+   (a) **A3 notas de voz** (misión propia): `messages.kind='voice'`+`audio_url` ya reservado → grabar en
+   web (MediaRecorder, ≤60s) + subir al bucket `audio` (carpeta `voice_notes/<id>`), RLS de Storage por
+   miembro de la conexión, retención para reporte; RPC `send_voice_message(connection_id, audio_url)` +
+   render en ChatScreen (AudioPlayButton). (b) **A6 co-op** (server+cliente): `create_coop`/`accept_coop`/
+   `advance_coop` sobre `coop_challenges` + tarjeta de meta compartida en FriendsScreen. (c) **F5 postales
+   de voz** (sobre A3) y **F7 apuesta con amigo** (reusa `wagers`). Reusar `jz_social_access`/rate limits/
+   RLS de mig 147. Sigue **cerrado** (`social_beta`); apertura = legal.
    ⚠️ **BLOQUEO de Gian (no código): NO ABRIR al público hasta TÉRMINOS/PRIVACIDAD revisados por abogado**
-   para UGC/social/menores. El diseño puede construirse y verificarse en privado; la apertura es la que
-   espera al legal.
+   para UGC/social/menores. Todo se construye y verifica en privado (allowlist); la apertura espera al legal.
 -1. **PLACEMENT · 4 HABILIDADES (retome exacto, misión propia — NO enviar a medias):** añadir LISTENING
    y SPEAKING al examen de ubicación en los 6 cursos. Pasos: (a) AUTORAR banco L/S por curso×nivel —
    listening = MC "escucha y elige" con `payload.say` (frase corta calibrada al CEFR) + 3 opciones

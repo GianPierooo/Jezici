@@ -21,6 +21,10 @@ class ProgressRepository {
   final SupabaseClient _client;
 
   String? get _uid => _client.auth.currentUser?.id;
+
+  /// Id del usuario autenticado (público; usado por el chat para distinguir
+  /// mis mensajes de los del amigo).
+  String? get currentUserId => _client.auth.currentUser?.id;
   bool get isSignedIn => _client.auth.currentSession != null;
 
   /// Nombre sugerido para prellenar la captura del onboarding. Google/OAuth
@@ -553,6 +557,63 @@ class ProgressRepository {
       'p_app_version': appVersion,
       'p_platform': platform,
     });
+  }
+
+  // ── CONVERSAR · OLA 1 (social async CERRADO, mig 147) ──────────────────────
+  // Todo 18+ (jz_social_access), por RPC SECURITY DEFINER, con blocks/rate limits
+  // aplicados server-side. CERRADO al público (allowlist social_beta); la UI solo
+  // muestra "Amigos" si get_social_status.access == true.
+
+  /// Estado social: {access, is_adult, friend_code}. access=false → oculto.
+  Future<Map<String, dynamic>> getSocialStatus() async {
+    final res = await _client.rpc('get_social_status');
+    return Map<String, dynamic>.from(res as Map);
+  }
+
+  Future<Map<String, dynamic>> sendFriendRequest(String code) async =>
+      Map<String, dynamic>.from(
+          await _client.rpc('send_friend_request', params: {'p_code': code}) as Map);
+
+  Future<void> respondFriendRequest(String connectionId, bool accept) async {
+    await _client.rpc('respond_friend_request',
+        params: {'p_connection_id': connectionId, 'p_accept': accept});
+  }
+
+  Future<Map<String, dynamic>> listFriends() async =>
+      Map<String, dynamic>.from(await _client.rpc('list_friends') as Map);
+
+  Future<Map<String, dynamic>> sendChatMessage(String connectionId, String body) async =>
+      Map<String, dynamic>.from(await _client
+          .rpc('send_message', params: {'p_connection_id': connectionId, 'p_body': body}) as Map);
+
+  Future<List<Map<String, dynamic>>> listChatMessages(String connectionId) async {
+    final res = await _client.rpc('list_messages', params: {'p_connection_id': connectionId});
+    return (res as List).map((e) => Map<String, dynamic>.from(e as Map)).toList();
+  }
+
+  Future<void> addCorrection(String messageId, String corrected, String? note) async {
+    await _client.rpc('add_correction',
+        params: {'p_message_id': messageId, 'p_corrected': corrected, 'p_note': note});
+  }
+
+  Future<void> blockUser(String targetId) async {
+    await _client.rpc('block_user', params: {'p_target': targetId});
+  }
+
+  Future<void> reportUser(String targetId, String reason, {String context = 'message'}) async {
+    await _client.rpc('report_user',
+        params: {'p_target': targetId, 'p_reason': reason, 'p_context_type': context});
+  }
+
+  /// Stream Realtime de mensajes de una conversación (la RLS aplica también aquí:
+  /// un no-miembro/bloqueado no recibe nada).
+  Stream<List<Map<String, dynamic>>> chatMessagesStream(String connectionId) {
+    return _client
+        .from('messages')
+        .stream(primaryKey: ['id'])
+        .eq('connection_id', connectionId)
+        .order('created_at')
+        .map((rows) => rows.map((e) => Map<String, dynamic>.from(e)).toList());
   }
 
   /// Guarda un intento de conversación en solitario (gancho Fase 2).
