@@ -1382,6 +1382,18 @@ flutter build web --release  # esperado: Built build/web (wasm dry-run warning d
   el build que usan los usuarios HOY (no asumir que `main` == producción).
 
 ## Reportes de diagnóstico (raíz)
+- **CONVERSAR_FASE2.md** (2026-07-10, diseño — solo lectura) — investigación + PLAN a fondo de CONVERSAR
+  (el gran diferencial, "ADN Tandem"). PASO 0 real: las 8 tablas sociales EXISTEN como stubs vacíos
+  (RLS ON, solo SELECT, 0 filas, sin RPCs de escritura); Conversar hoy = práctica async en solitario +
+  waitlist; edad = solo `is_adult` checkbox (sin año → **insuficiente para social**). Cataloga TODAS las
+  formas (chat con amigos, corrección comunitaria verificada, salas de audio, retos por creatividad,
+  tutores/marketplace + ideas propias: compañero IA, cápsulas, postales de voz…) con valor/esfuerzo/
+  riesgo/async-RT. **Ordenadas en OLAS de riesgo creciente** (solo → amigos async → IA → correctores →
+  audio con desconocidos 18+ → tutores). **Seguridad de menores como COMPUERTA** (verificación de edad
+  real, moderación sin IA = block/report/mute/rate-limit/filtro, consentimiento de grabación, RLS de
+  toda tabla, riesgos legales COPPA/GDPR-K/AADC/DSA + mitigaciones mínimas). Stack (Supabase Realtime
+  para chat; **LiveKit** para audio; **Stripe Connect+Identity** para tutores; STT/LLM para IA), modelo
+  de datos a añadir + RLS, plan por fases con lo BLOQUEADO en cuentas de Gian, y 5 decisiones abiertas.
 - **EVAL_AUDIT.md** (2026-07-10, solo lectura) — auditoría del SISTEMA DE EVALUACIÓN por habilidad y por
   tipo (placement/checkpoint/examen), con números reales de BD + flujo corrido 2–3×. Hallazgos clave:
   (P0) el **nivel mostrado** (`user_skill_levels.cefr_level`, sube por puntos de grind 12/acierto·4/stub,
