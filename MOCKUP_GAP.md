@@ -194,6 +194,13 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
   - [P1] ⛔ **"Reto de conversación · HOY" NO construido (honesto):** el mockup promete "gana oro por tu
     creatividad" y no existe infra de reto/recompensa → fingirlo sería deshonesto. Diferido a cuando exista la
     lógica real (Fase 2).
+  - [P1] ✅ **CATÁLOGO DE SITUACIONES (2026-07-11):** las 6 situaciones de práctica en solitario se veían como
+    filas blancas planas idénticas → rehechas como **grid a color** (`_ScenarioTile`, 2 col móvil / 3 desktop):
+    fondo tintado por situación + **badge de emoji en gradiente** del color del tema + flecha en chip + escenario
+    + **CTA "Practicar" con el acento** + **labio TINTADO** + motion de presión. Encabezado con acento + kicker
+    "PRÁCTICA EN SOLITARIO". La pantalla de práctica de cada situación: escenario tintado con emoji en badge de
+    gradiente + kicker "TU SITUACIÓN". i18n es/en/pt (+3 claves), reduce-motion-aware, responsive. analyze 0 ·
+    test 149/149 · build OK.
   - [P1] ✅ **REDISEÑO SOCIAL (2026-07-11):** feedback de testers "raro y feo" — Amigos/Chat/Co-op usaban
     Material por defecto (ListTile, FilledButton, cajas con borde gris) fuera del sistema. Rehechos con el
     lenguaje de la casa (`friends.dart`): **tarjetas con labio duro `0 5px 0 #ECEDF6` + sombra suave**

@@ -5,6 +5,27 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-11**.
 
+## CONVERSAR · tarjetas de SITUACIÓN = catálogo a color ✅ (2026-07-11 · solo cliente)
+Feedback: las 6 situaciones de práctica en solitario ("Pedir un café", "Presentarte"…) se veían como
+**filas blancas planas idénticas** (icon-tile + título + subtítulo + chevron gris) — leen como lista
+genérica frente a Amigos/Chat ya rediseñado. **NO hay mockup directo** (Conversar.dc es hub social en vivo),
+así que apliqué el lenguaje de la casa. **Cero IA, cero cambios de lógica** (práctica/contenido por curso/
+TTS/banner "en vivo próximamente" intactos):
+- **Encabezado con estilo:** barra de acento + kicker "PRÁCTICA EN SOLITARIO" + título + subtítulo.
+- **Catálogo en GRID responsive** (`_ScenarioTile`, `LayoutBuilder`+`Wrap`: **2 columnas móvil / 3 desktop**)
+  en vez de 6 filas iguales — cada tile con: **fondo tintado suave** por situación (el `_topicTint` que ya
+  existía), **badge de emoji en GRADIENTE** del color del tema (46px r14 + sombra de color), **flecha en chip
+  blanco**, título, escenario (2 líneas), y **CTA "Practicar" con el acento del tema** (icono `graphic_eq`).
+  **Profundidad de labio TINTADA** con el acento (no gris plano) + **motion de presión** (se hunde 3px,
+  reduce-motion-aware). Resulta un catálogo vivo y distinto por tema, no una lista básica.
+- **Pantalla de práctica** de cada situación: el escenario pasó de caja lila plana a **tarjeta tintada con el
+  color del tema** (gradiente suave) + **emoji en badge de gradiente 52px** + kicker "TU SITUACIÓN" → coherente
+  con el catálogo. El resto (toggle escribir/hablar, mic honesto, respuesta modelo, autoevaluación, PrimaryButton
+  3D) ya estaba en el lenguaje de la casa; intacto.
+- i18n es/en/pt (+3 claves: convPracticeKicker/convPracticeCta/convYourSituation; pt/en sin español).
+  Responsive (grid recol­umna) + reduce-motion-aware. Verificado con **goldens temporales** (lista = catálogo a
+  color; práctica = escenario tintado; borrados). Verde: analyze 0 (CI-exact) · test 149/149 · build web OK.
+
 ## REDISEÑO UI de CONVERSAR + AMIGOS/CHAT/CO-OP ✅ (2026-07-11 · solo cliente)
 Feedback real de testers: "está raro y feo" — rompía la estética. **Causa concreta (PASO 0):** la sección
 social usaba **Material por defecto** (ListTile, FilledButton, AppBar plano, cajas blancas con borde gris

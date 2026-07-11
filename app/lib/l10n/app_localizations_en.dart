@@ -257,6 +257,15 @@ class AppLocalizationsEn extends AppLocalizations {
       'Soon you\'ll be able to converse with real-time feedback. We\'ll launch it with moderation and age verification to keep it safe. Meanwhile, practice below.';
 
   @override
+  String get convPracticeKicker => 'SOLO PRACTICE';
+
+  @override
+  String get convPracticeCta => 'Practice';
+
+  @override
+  String get convYourSituation => 'YOUR SITUATION';
+
+  @override
   String get convPracticeHeader => 'Practice speaking or writing';
 
   @override

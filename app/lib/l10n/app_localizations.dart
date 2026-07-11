@@ -574,6 +574,24 @@ abstract class AppLocalizations {
   /// **'Pronto podrás conversar con feedback en tiempo real. Lo lanzaremos con moderación y verificación de edad para que sea seguro. Mientras, practica abajo.'**
   String get convLiveBody;
 
+  /// No description provided for @convPracticeKicker.
+  ///
+  /// In es, this message translates to:
+  /// **'PRÁCTICA EN SOLITARIO'**
+  String get convPracticeKicker;
+
+  /// No description provided for @convPracticeCta.
+  ///
+  /// In es, this message translates to:
+  /// **'Practicar'**
+  String get convPracticeCta;
+
+  /// No description provided for @convYourSituation.
+  ///
+  /// In es, this message translates to:
+  /// **'TU SITUACIÓN'**
+  String get convYourSituation;
+
   /// No description provided for @convPracticeHeader.
   ///
   /// In es, this message translates to:
