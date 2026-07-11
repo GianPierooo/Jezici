@@ -2410,6 +2410,16 @@ class AppLocalizationsPt extends AppLocalizations {
       'Só falta seu nome e a confirmação de que você é maior de idade. O resto é opcional e editável no seu Perfil.';
 
   @override
+  String get ageGateTitle => 'Um último passo';
+
+  @override
+  String get ageGateSubtitle =>
+      'Para personalizar sua experiência, informe seu ano de nascimento. Fica privado.';
+
+  @override
+  String get ageGateYearHint => 'Ano de nascimento';
+
+  @override
   String get profileEditBirthday => 'Aniversário (dia e mês, opcional)';
 
   @override

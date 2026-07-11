@@ -13,6 +13,8 @@ class ProfileInfo {
     this.isAdult,
     this.timezone,
     this.gender,
+    this.birthYear,
+    this.ageTier,
   });
 
   final String? name;
@@ -31,6 +33,13 @@ class ProfileInfo {
   final bool? isAdult;
   final String? timezone;
   final String? gender; // male|female|other|prefer_not_to_say
+
+  /// Age gate (Conversar P1): AÑO de nacimiento (minimización: solo el año) y el
+  /// tier derivado en el servidor (child/teen/adult). null birthYear = falta el
+  /// gate → se pide una vez. 18+ es requisito SOLO de lo social (futuro), NO del
+  /// loop de aprendizaje: un menor usa la app, solo no accede a lo social.
+  final int? birthYear;
+  final String? ageTier; // child | teen | adult (derivado en el servidor)
 
   /// Inicial para el avatar generado.
   String get initial {
@@ -53,6 +62,8 @@ class ProfileInfo {
         isAdult: j['is_adult'] as bool?,
         timezone: j['timezone'] as String?,
         gender: j['gender'] as String?,
+        birthYear: (j['birth_year'] as num?)?.toInt(),
+        ageTier: j['age_tier'] as String?,
       );
 
   static final empty = ProfileInfo();

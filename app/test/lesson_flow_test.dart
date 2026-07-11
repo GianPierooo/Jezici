@@ -116,6 +116,9 @@ class FakeProgressRepository implements ProgressRepository {
           String? gender}) async =>
       ProfileInfo.empty;
   @override
+  Future<Map<String, dynamic>> submitAgeGate(int birthYear) async =>
+      const {'age_tier': 'adult', 'is_adult': true};
+  @override
   Future<bool> signUpEmail(String email, String password) async => true;
   @override
   Future<void> signInEmail(String email, String password) async {}

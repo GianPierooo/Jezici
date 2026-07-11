@@ -142,6 +142,14 @@ class ProgressRepository {
     return ProfileInfo.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
+  /// AGE GATE (Conversar P1): guarda el AÑO de nacimiento (pantalla neutral) y el
+  /// servidor recomputa is_adult REAL. Devuelve {age_tier, is_adult}. 18+ es
+  /// requisito SOLO de lo social (aún no abierto); un menor sigue usando la app.
+  Future<Map<String, dynamic>> submitAgeGate(int birthYear) async {
+    final res = await _client.rpc('submit_age_gate', params: {'p_birth_year': birthYear});
+    return Map<String, dynamic>.from(res as Map);
+  }
+
   // ── Multi-curso (es→en / es→pt) ────────────────────────────────────────────
 
   /// Cursos disponibles + cuál es el activo del usuario (RPC get_courses).

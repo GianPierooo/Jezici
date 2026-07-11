@@ -2406,6 +2406,16 @@ class AppLocalizationsEn extends AppLocalizations {
       'We just need your name and a confirmation that you\'re an adult. Everything else is optional and editable in your Profile.';
 
   @override
+  String get ageGateTitle => 'One last step';
+
+  @override
+  String get ageGateSubtitle =>
+      'To personalize your experience, tell us your year of birth. It stays private.';
+
+  @override
+  String get ageGateYearHint => 'Year of birth';
+
+  @override
   String get profileEditBirthday => 'Birthday (day and month, optional)';
 
   @override

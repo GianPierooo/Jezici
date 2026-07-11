@@ -5,6 +5,37 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-10**.
 
+## CONVERSAR P1 — CIMIENTOS DE SEGURIDAD (age gate 18+ + moderación) ✅ LIVE (mig 146 · 2026-07-11)
+Prerrequisito de TODA ola social (ver CONVERSAR_FASE2.md). **NO abre ninguna función social**; solo la
+compuerta. Decisiones de Gian: **18+ SOLO para lo social · sin tutores · sin IA · solo Supabase**.
+PASO 0 (BD real): las 8 tablas sociales eran stubs vacíos (RLS ON, solo SELECT, sin RPCs de escritura) +
+grants de write a authenticated/anon (RLS los negaba, pero feos); edad = solo `is_adult` checkbox + día/mes
+sin año.
+- **AGE GATE 18+ REAL:** `users.birth_year` (minimización: solo el año) + `jz_age_tier` (child/teen/adult
+  desde año+mes/día, conservador) + **`jz_is_adult_user` fail-closed** (sin fecha → no adulto). RPCs
+  `submit_age_gate`/`get_age_status`; `get_profile` expone `birth_year`+`age_tier`. **Pantalla NEUTRAL**
+  (pide el AÑO, no "¿eres adulto?") + red de seguridad en `CompleteProfileScreen` (se pide UNA vez a los
+  existentes; el gate del arranque pasó a `birthYear==null`). **Un MENOR sigue usando la app** (18+ es solo
+  social, aún no abierto). i18n es/en/pt.
+- **MODERACIÓN base (server-side, sin IA):** tablas `blocks`/`mutes`/`moderation_actions` + `reports`
+  completado (context_type/context_id/status/resolution/handled_by). RPCs de usuario `block_user`/
+  `unblock`/`mute`/`unmute`/`report_user` (auth.uid, no-self, **rate-limited** con `jz_rate_guard`,
+  no-sancionado). Helper **`jz_blocked_between`** (bloqueo en CUALQUIER dirección) + `jz_is_sanctioned`.
+- **COLA DE MODERACIÓN admin** (patrón `get_feedback`, `am_i_admin`): `get_reports` (con contexto/estado),
+  `mod_apply` (warn/suspend/ban), `resolve_report`.
+- **RLS ESTRICTA:** `blocks`/`mutes`/`moderation_actions` RLS ON + SELECT dueño/admin; `reports` +policy
+  admin; **`social_profiles` gateada 18+ Y sin bloqueo** (`jz_is_adult_user` + `jz_blocked_between` en la
+  política → punto REAL donde edad y bloqueo cortan el acceso). **Revocados los write-grants directos** de
+  las 10 tablas sociales (escritura solo por RPC SECURITY DEFINER). Helpers internos revocados; los 2
+  usados en RLS (adult/blocked) quedan ejecutables (o rompería la política).
+- **Verificado cliente REAL (`verify_conversar_p1.py`, JWT) TODO VERDE:** adulto→is_adult, menor→teen,
+  año inválido rechazado; block/mute/report + rate limit + no-self; **bloqueo corta la RLS de
+  social_profiles en AMBAS direcciones**; MENOR no ve social_profiles (gate en RLS); no-admin→`get_reports`
+  "admin only", admin ve reportes, `mod_apply` sanciona, sancionado no reporta; **INSERT directo a
+  blocks/social_profiles DENEGADO (403)**. Verde: analyze 0 (CI-exact) · test 146/146 (+age gate) · build OK.
+- ⚠️ **BLOQUEO de Gian (legal, no código):** la **Ola 1** (chat/amigos) NO debe ABRIRSE al público hasta
+  tener **TÉRMINOS/PRIVACIDAD revisados por abogado** para UGC/social/menores. P1 es solo la compuerta.
+
 ## COMPRENSIÓN más profunda — it A1 (P2 EVAL_AUDIT) ✅ LIVE (mig 145 · 2026-07-10)
 Primer frente del P2 "comprensión reading/listening". **PASO 0 (censo preciso):** el vocab-suelto
 ("¿qué significa/cómo se dice X?") se concentra en **A1** (de 35% · en 33% · **it 29%** · nl 29% · fr A2 26%);
@@ -919,6 +950,15 @@ en B2; andamiaje idéntico listo: STAMP `('pt','c1')=…130`, grupo audio `pt-c1
   Cierre: analyze 0, tests verdes, gh run list SUCCESS, deploy READY. Reporta en 1 línea.
 
 ## Cola (retome exacto — orden sugerido)
+-2. **CONVERSAR · OLA 1 (social ASÍNCRONO cerrado) — retome tras P1 (mig 146):** amigos por código/QR +
+   chat texto 1:1 + notas de voz + corrección entre amigos + rachas/accountability + co-op + postales de
+   voz. Reusar los cimientos P1 (`jz_is_adult_user` como gate 18+, `jz_blocked_between` en RLS,
+   block/mute/report, rate limits, `connections`/`coop_challenges` ya existentes). Datos a añadir:
+   `friend_codes`, `messages`(text/voice), `corrections`; RLS = miembros del thread Y sin bloqueo Y 18+.
+   Stack: **solo Supabase** (Realtime + Storage), sin gasto externo. Ver CONVERSAR_FASE2.md §Ola 1 + §7.
+   ⚠️ **BLOQUEO de Gian (no código): NO ABRIR al público hasta TÉRMINOS/PRIVACIDAD revisados por abogado**
+   para UGC/social/menores. El diseño puede construirse y verificarse en privado; la apertura es la que
+   espera al legal.
 -1. **PLACEMENT · 4 HABILIDADES (retome exacto, misión propia — NO enviar a medias):** añadir LISTENING
    y SPEAKING al examen de ubicación en los 6 cursos. Pasos: (a) AUTORAR banco L/S por curso×nivel —
    listening = MC "escucha y elige" con `payload.say` (frase corta calibrada al CEFR) + 3 opciones

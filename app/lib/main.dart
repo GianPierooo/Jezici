@@ -184,13 +184,15 @@ class _AppGateState extends ConsumerState<AppGate> {
             ref.invalidate(profileProvider); // el onboarding acaba de fijar nombre+adult
           });
         }
-        // RED DE SEGURIDAD del registro: si el perfil quedó sin nombre o sin la
-        // confirmación de mayoría de edad (cuenta vieja, OAuth que saltó el paso,
-        // PWA cacheada), se pide UNA vez aquí. Mientras carga el perfil se muestra
-        // el mapa (no se bloquea el arranque); si llega incompleto, se antepone.
+        // RED DE SEGURIDAD del registro + AGE GATE (Conversar P1): si falta el
+        // nombre o el AÑO de nacimiento (cuenta vieja, OAuth que saltó el paso,
+        // PWA cacheada), se pide UNA vez aquí. El año habilita el gate 18+ SOLO
+        // para lo social (aún no abierto); un MENOR sigue usando la app con normalidad
+        // (por eso el gate es birthYear==null, no is_adult). Mientras carga el
+        // perfil se muestra el mapa; si llega incompleto, se antepone.
         final prof = ref.watch(profileProvider);
         final needsGate = prof.maybeWhen(
-            data: (p) => p.needsName || p.isAdult != true, orElse: () => false);
+            data: (p) => p.needsName || p.birthYear == null, orElse: () => false);
         if (needsGate) {
           return CompleteProfileScreen(
             profile: prof.value!,

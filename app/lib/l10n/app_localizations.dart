@@ -4103,6 +4103,24 @@ abstract class AppLocalizations {
   /// **'Solo falta tu nombre y confirmar que eres mayor de edad. Lo demás es opcional y lo puedes editar en tu Perfil.'**
   String get completeProfileSubtitle;
 
+  /// No description provided for @ageGateTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Un último paso'**
+  String get ageGateTitle;
+
+  /// No description provided for @ageGateSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Para personalizar tu experiencia, dinos tu año de nacimiento. Queda privado.'**
+  String get ageGateSubtitle;
+
+  /// No description provided for @ageGateYearHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Año de nacimiento'**
+  String get ageGateYearHint;
+
   /// No description provided for @profileEditBirthday.
   ///
   /// In es, this message translates to:

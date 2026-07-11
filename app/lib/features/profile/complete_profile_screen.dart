@@ -28,9 +28,15 @@ class CompleteProfileScreen extends ConsumerStatefulWidget {
 class _CompleteProfileScreenState extends ConsumerState<CompleteProfileScreen> {
   late final TextEditingController _name =
       TextEditingController(text: widget.profile.name ?? '');
-  late bool _adultOk = widget.profile.isAdult == true;
+  late int? _birthYear = widget.profile.birthYear;
   bool _saving = false;
   bool _error = false;
+
+  // Solo pedimos el nombre si falta (cuentas viejas / OAuth); el AGE GATE (año)
+  // se pide a todos una vez.
+  bool get _needsName => widget.profile.needsName;
+  bool get _canSave =>
+      (!_needsName || _name.text.trim().isNotEmpty) && _birthYear != null && !_saving;
 
   @override
   void dispose() {
@@ -39,16 +45,19 @@ class _CompleteProfileScreenState extends ConsumerState<CompleteProfileScreen> {
   }
 
   Future<void> _save() async {
-    final n = _name.text.trim();
-    if (n.isEmpty || !_adultOk || _saving) return;
+    if (!_canSave) return;
     setState(() {
       _saving = true;
       _error = false;
     });
     try {
-      await ref
-          .read(progressRepositoryProvider)
-          .setProfile(name: n, isAdult: true);
+      final repo = ref.read(progressRepositoryProvider);
+      if (_needsName) {
+        await repo.setProfile(name: _name.text.trim());
+      }
+      // AGE GATE: el servidor recomputa is_adult REAL desde el año. 18+ es solo
+      // requisito social (aún no abierto); un menor sigue usando la app.
+      await repo.submitAgeGate(_birthYear!);
       widget.onDone();
     } catch (_) {
       if (mounted) {
@@ -63,6 +72,12 @@ class _CompleteProfileScreenState extends ConsumerState<CompleteProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final currentYear = DateTime.now().year;
+    final years = [for (var y = currentYear; y >= currentYear - 100; y--) y];
+    // Copy NEUTRAL (pide el año, no "¿eres adulto?"). Si además falta el nombre,
+    // se pide arriba; si no, solo el año.
+    final title = _needsName ? l10n.completeProfileTitle : l10n.ageGateTitle;
+    final subtitle = _needsName ? l10n.completeProfileSubtitle : l10n.ageGateSubtitle;
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
@@ -74,12 +89,12 @@ class _CompleteProfileScreenState extends ConsumerState<CompleteProfileScreen> {
               const SizedBox(height: 24),
               const Center(child: ParrotMascot(size: 92)),
               const SizedBox(height: 16),
-              Text(l10n.completeProfileTitle,
+              Text(title,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       fontSize: 24, fontWeight: FontWeight.w900, color: AppColors.text)),
               const SizedBox(height: 8),
-              Text(l10n.completeProfileSubtitle,
+              Text(subtitle,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       fontSize: 14,
@@ -87,20 +102,46 @@ class _CompleteProfileScreenState extends ConsumerState<CompleteProfileScreen> {
                       color: AppColors.textMuted,
                       height: 1.4)),
               const SizedBox(height: 24),
-              TextField(
-                controller: _name,
-                textCapitalization: TextCapitalization.words,
-                maxLength: 40,
-                onChanged: (_) => setState(() {}),
+              if (_needsName) ...[
+                TextField(
+                  controller: _name,
+                  textCapitalization: TextCapitalization.words,
+                  maxLength: 40,
+                  onChanged: (_) => setState(() {}),
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.w800, color: AppColors.text),
+                  decoration: InputDecoration(
+                    hintText: l10n.onbNameHint,
+                    counterText: '',
+                    filled: true,
+                    fillColor: Colors.white,
+                    prefixIcon:
+                        const Icon(Icons.person_outline_rounded, color: AppColors.textMuted),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: const BorderSide(color: Color(0xFFE5E7F1), width: 2),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(16),
+                      borderSide: const BorderSide(color: AppColors.primary, width: 2),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+              ],
+              // AGE GATE neutral: dropdown de AÑO de nacimiento.
+              DropdownButtonFormField<int>(
+                initialValue: _birthYear,
+                isExpanded: true,
+                onChanged: (v) => setState(() => _birthYear = v),
                 style: const TextStyle(
                     fontSize: 18, fontWeight: FontWeight.w800, color: AppColors.text),
                 decoration: InputDecoration(
-                  hintText: l10n.onbNameHint,
-                  counterText: '',
+                  hintText: l10n.ageGateYearHint,
                   filled: true,
                   fillColor: Colors.white,
                   prefixIcon:
-                      const Icon(Icons.person_outline_rounded, color: AppColors.textMuted),
+                      const Icon(Icons.cake_outlined, color: AppColors.textMuted),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(16),
                     borderSide: const BorderSide(color: Color(0xFFE5E7F1), width: 2),
@@ -110,27 +151,10 @@ class _CompleteProfileScreenState extends ConsumerState<CompleteProfileScreen> {
                     borderSide: const BorderSide(color: AppColors.primary, width: 2),
                   ),
                 ),
-              ),
-              const SizedBox(height: 12),
-              InkWell(
-                onTap: () => setState(() => _adultOk = !_adultOk),
-                borderRadius: BorderRadius.circular(12),
-                child: Row(
-                  children: [
-                    Checkbox(
-                      value: _adultOk,
-                      activeColor: AppColors.primary,
-                      onChanged: (v) => setState(() => _adultOk = v ?? false),
-                    ),
-                    Expanded(
-                      child: Text(l10n.onbAdultConfirm,
-                          style: const TextStyle(
-                              fontSize: 13.5,
-                              fontWeight: FontWeight.w700,
-                              color: AppColors.text)),
-                    ),
-                  ],
-                ),
+                items: [
+                  for (final y in years)
+                    DropdownMenuItem(value: y, child: Text('$y')),
+                ],
               ),
               if (_error) ...[
                 const SizedBox(height: 8),
@@ -143,8 +167,7 @@ class _CompleteProfileScreenState extends ConsumerState<CompleteProfileScreen> {
               PrimaryButton(
                 label: _saving ? l10n.profileEditSaving : l10n.commonContinue,
                 expand: true,
-                onPressed:
-                    (_name.text.trim().isNotEmpty && _adultOk && !_saving) ? _save : null,
+                onPressed: _canSave ? _save : null,
               ),
             ],
           ),
