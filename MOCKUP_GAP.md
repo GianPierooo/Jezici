@@ -194,7 +194,20 @@ centro de notificaciones, métricas (admin), legal (hoy páginas web públicas),
   - [P1] ⛔ **"Reto de conversación · HOY" NO construido (honesto):** el mockup promete "gana oro por tu
     creatividad" y no existe infra de reto/recompensa → fingirlo sería deshonesto. Diferido a cuando exista la
     lógica real (Fase 2).
-- No implementado del mockup: salas en vivo, reto en pareja, "Compañeros para ti", nota de seguridad, jzLive — todo Fase 2.
+  - [P1] ✅ **REDISEÑO SOCIAL (2026-07-11):** feedback de testers "raro y feo" — Amigos/Chat/Co-op usaban
+    Material por defecto (ListTile, FilledButton, cajas con borde gris) fuera del sistema. Rehechos con el
+    lenguaje de la casa (`friends.dart`): **tarjetas con labio duro `0 5px 0 #ECEDF6` + sombra suave**
+    (`_LipCard` con hundido al tocar), **avatares cuadrado-redondeados con gradiente** (54px r18 del mockup);
+    hub con entrada de Amigos (pila de avatares REALES + badge de solicitudes) + **tarjeta CO-OP del mockup 1:1**
+    (gradiente #EDEBFF→#F3F0FF + "Tú"+pareja solapados con corazón dorado — el reto en pareja del mockup ya es
+    REAL, mig 148); Amigos con **código HERO** (gradiente violeta + Jezi + copiar que muta a ✓ verde),
+    solicitudes con acciones circulares obvias (✓ verde / ✕ gris con labio), racha 🔥 pulsante, **nota de
+    seguridad con escudo**; **chat moderno** (burbujas con cola + hora, la mía gradiente violeta, **corrección
+    INLINE verde** — antes las correcciones NO se veían en el chat —, nota de voz con waveform que respira al
+    sonar, composer pill con 🎤↔➤ animado y grabación con segundos); co-op con barra animada + banner dorado con
+    `JzSheen` al completar. Banner "próximamente" movido AL FINAL (fuera los dos bloques violeta apilados).
+    Reduce-motion-aware, i18n es/en/pt (+5 claves), responsive. +3 widget tests (149/149).
+- No implementado del mockup: salas en vivo con desconocidos, "Compañeros para ti" (descubrimiento de gente), jzLive "320 en línea" — Ola 3 (LiveKit).
 
 ## 10) Cofre
 - Mockup: mockups/Cofre.dc.html · Implementación: `shop/tienda_screen.dart` (fila `_ShopCard` 🎁)

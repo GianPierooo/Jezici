@@ -4250,8 +4250,32 @@ abstract class AppLocalizations {
   /// No description provided for @convVoiceRecording.
   ///
   /// In es, this message translates to:
-  /// **'Grabando… suelta para enviar'**
+  /// **'Grabando'**
   String get convVoiceRecording;
+
+  /// No description provided for @convTapToChat.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca para chatear'**
+  String get convTapToChat;
+
+  /// No description provided for @convCopyMyCode.
+  ///
+  /// In es, this message translates to:
+  /// **'Copiar mi código'**
+  String get convCopyMyCode;
+
+  /// No description provided for @convCorrectionLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Corrección'**
+  String get convCorrectionLabel;
+
+  /// No description provided for @convCoopYou.
+  ///
+  /// In es, this message translates to:
+  /// **'Tú'**
+  String get convCoopYou;
 
   /// No description provided for @convVoiceSend.
   ///

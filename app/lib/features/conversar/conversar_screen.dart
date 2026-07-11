@@ -98,13 +98,13 @@ class ConversarScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                // OLA 1 (social async cerrado): entrada a "Amigos" — solo visible
-                // si el usuario tiene acceso social (18+ y en beta). El público no
-                // ve nada; para ellos sigue el banner honesto de abajo.
+                // OLA 1 (social async ABIERTO 18+): entradas ricas a Amigos y
+                // Co-op — solo visibles con acceso social (adulto verificado).
+                // Jerarquía: primero lo que SÍ puedes hacer HOY; el banner de
+                // "en vivo · próximamente" (Ola 3) va al final, no arriba.
                 const FriendsEntryCard(),
-                // Visión (honesta) de la conversación EN VIVO (Fase 2).
-                _LiveBanner(l10n: l10n),
-                const SizedBox(height: 20),
+                const CoopEntryCard(),
+                const SizedBox(height: 6),
                 Text(l10n.convPracticeHeader,
                     style: const TextStyle(
                         fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
@@ -120,6 +120,9 @@ class ConversarScreen extends ConsumerWidget {
                         builder: (_) => ConversarPracticeScreen(topic: t, lang: lang))),
                   ),
                 const SizedBox(height: 8),
+                // Visión (honesta) de la conversación EN VIVO/salas (Ola 3).
+                _LiveBanner(l10n: l10n),
+                const SizedBox(height: 14),
                 const _InterestCard(),
               ],
             ),

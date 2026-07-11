@@ -2485,7 +2485,19 @@ class AppLocalizationsPt extends AppLocalizations {
   String get convSendCorrection => 'Enviar correção';
 
   @override
-  String get convVoiceRecording => 'Gravando… solte para enviar';
+  String get convVoiceRecording => 'Gravando';
+
+  @override
+  String get convTapToChat => 'Toque para conversar';
+
+  @override
+  String get convCopyMyCode => 'Copiar meu código';
+
+  @override
+  String get convCorrectionLabel => 'Correção';
+
+  @override
+  String get convCoopYou => 'Você';
 
   @override
   String get convVoiceSend => 'Gravar nota de voz';

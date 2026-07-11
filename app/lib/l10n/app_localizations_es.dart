@@ -2482,7 +2482,19 @@ class AppLocalizationsEs extends AppLocalizations {
   String get convSendCorrection => 'Enviar corrección';
 
   @override
-  String get convVoiceRecording => 'Grabando… suelta para enviar';
+  String get convVoiceRecording => 'Grabando';
+
+  @override
+  String get convTapToChat => 'Toca para chatear';
+
+  @override
+  String get convCopyMyCode => 'Copiar mi código';
+
+  @override
+  String get convCorrectionLabel => 'Corrección';
+
+  @override
+  String get convCoopYou => 'Tú';
 
   @override
   String get convVoiceSend => 'Grabar nota de voz';

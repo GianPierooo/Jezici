@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -5,18 +7,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/audio/audio_engine.dart';
 import '../../core/speech/voice_recorder.dart';
 import '../../core/theme/app_colors.dart';
+import '../../core/ui/jz_sheen.dart';
 import '../../core/ui/responsive_center.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
 import '../../ui/primary_button.dart';
 import '../learn/widgets/parrot_mascot.dart';
 
-/// CONVERSAR · OLA 1 — social ASÍNCRONO ABIERTO (18+). Amigos por código + chat
-/// de texto + notas de voz + corrección + racha + retos en pareja (co-op).
-/// Visible solo si `get_social_status.access == true` (adulto verificado; el
-/// abogado aprobó los términos UGC → ya no hay allowlist). Los menores quedan
-/// fuera (jz_social_access). Reportar/bloquear en cada chat; filtro de contacto
-/// + rate limit + RLS server-side.
+/// CONVERSAR · social ASÍNCRONO ABIERTO (18+) — capa VISUAL fiel al lenguaje de
+/// Conversar.dc y del resto de Jezici: tarjetas blancas con labio duro
+/// `0 5px 0 #ECEDF6` + sombra suave, avatares cuadrado-redondeados con
+/// gradiente, chips, CTA 3D, Jezi y motion reduce-motion-aware. La LÓGICA
+/// (amigos/chat/notas de voz/co-op/racha/moderación/RLS) no se toca.
 
 /// Estado social del usuario (acceso + código propio).
 final socialStatusProvider = FutureProvider.autoDispose<Map<String, dynamic>>((ref) async {
@@ -33,13 +35,112 @@ final coopsProvider = FutureProvider.autoDispose<List<Map<String, dynamic>>>((re
   return ref.read(progressRepositoryProvider).listCoops();
 });
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Lenguaje visual compartido
+// ─────────────────────────────────────────────────────────────────────────────
 Color _hex(String s) {
   final v = s.replaceAll('#', '');
   return Color(int.parse('FF$v', radix: 16));
 }
 
+Color _lighten(Color c, [double amt = 0.22]) {
+  final h = HSLColor.fromColor(c);
+  return h.withLightness((h.lightness + amt).clamp(0.0, 1.0)).toColor();
+}
+
+/// Avatar cuadrado-redondeado con gradiente (54×54 radio 18 en el mockup).
+class _Squircle extends StatelessWidget {
+  const _Squircle({required this.color, required this.letter, this.size = 50});
+  final String color, letter;
+  final double size;
+  @override
+  Widget build(BuildContext context) {
+    final c = _hex(color);
+    return Container(
+      width: size,
+      height: size,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+            begin: Alignment.topLeft, end: Alignment.bottomRight, colors: [_lighten(c), c]),
+        borderRadius: BorderRadius.circular(size * 0.33),
+      ),
+      child: Text(letter.isNotEmpty ? letter[0].toUpperCase() : '?',
+          style: TextStyle(
+              color: Colors.white, fontSize: size * 0.4, fontWeight: FontWeight.w900)),
+    );
+  }
+}
+
+/// Tarjeta blanca con LABIO DURO + sombra suave (la firma del mockup) y motion
+/// de presión (se hunde 3px al tocar; reduce-motion la deja fija).
+class _LipCard extends StatefulWidget {
+  const _LipCard({required this.child, this.onTap, this.padding = const EdgeInsets.all(15)});
+  final Widget child;
+  final VoidCallback? onTap;
+  final EdgeInsets padding;
+  @override
+  State<_LipCard> createState() => _LipCardState();
+}
+
+class _LipCardState extends State<_LipCard> {
+  bool _down = false;
+  @override
+  Widget build(BuildContext context) {
+    final reduce = MediaQuery.disableAnimationsOf(context);
+    final pressed = _down && !reduce && widget.onTap != null;
+    return GestureDetector(
+      onTapDown: widget.onTap == null ? null : (_) => setState(() => _down = true),
+      onTapUp: widget.onTap == null ? null : (_) => setState(() => _down = false),
+      onTapCancel: widget.onTap == null ? null : () => setState(() => _down = false),
+      onTap: widget.onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 90),
+        transform: Matrix4.translationValues(0, pressed ? 3 : 0, 0),
+        padding: widget.padding,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+                color: const Color(0xFFECEDF6), offset: Offset(0, pressed ? 2 : 5), blurRadius: 0),
+            const BoxShadow(color: Color(0x143C3778), offset: Offset(0, 12), blurRadius: 22),
+          ],
+        ),
+        child: widget.child,
+      ),
+    );
+  }
+}
+
+/// Chip-botón redondo con labio (aceptar/rechazar solicitudes — acciones obvias).
+class _RoundAction extends StatelessWidget {
+  const _RoundAction(
+      {super.key, required this.icon, required this.color, required this.depth, this.onTap});
+  final IconData icon;
+  final Color color, depth;
+  final VoidCallback? onTap;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 42,
+        height: 42,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(14),
+          boxShadow: [BoxShadow(color: depth, offset: const Offset(0, 4), blurRadius: 0)],
+        ),
+        child: Icon(icon, color: Colors.white, size: 22),
+      ),
+    );
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
-// Tarjeta de entrada a "Amigos" en Conversar (solo si hay acceso social).
+// Entradas del HUB de Conversar (solo si hay acceso social)
 // ─────────────────────────────────────────────────────────────────────────────
 class FriendsEntryCard extends ConsumerWidget {
   const FriendsEntryCard({super.key});
@@ -50,86 +151,230 @@ class FriendsEntryCard extends ConsumerWidget {
     final hasAccess = status.maybeWhen(data: (s) => s['access'] == true, orElse: () => false);
     if (!hasAccess) return const SizedBox.shrink();
     final l10n = AppLocalizations.of(context);
+    final friends = ref.watch(friendsProvider).maybeWhen(
+        data: (d) => (d['friends'] as List?) ?? const [], orElse: () => const []);
+    final pending = ref.watch(friendsProvider).maybeWhen(
+        data: (d) => ((d['incoming'] as List?) ?? const []).length, orElse: () => 0);
     return Padding(
-      padding: const EdgeInsets.only(bottom: 14),
-      child: _GradientCard(
-        onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(builder: (_) => const FriendsScreen())),
-        icon: Icons.forum_rounded,
-        title: l10n.convFriendsTitle,
-        subtitle: l10n.convFriendsSubtitle,
-      ),
-    );
-  }
-}
-
-/// Tarjeta rica con gradiente violeta e icon-tile (lenguaje del mockup).
-class _GradientCard extends StatelessWidget {
-  const _GradientCard(
-      {required this.onTap, required this.icon, required this.title, required this.subtitle});
-  final VoidCallback onTap;
-  final IconData icon;
-  final String title, subtitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        borderRadius: BorderRadius.circular(20),
-        onTap: onTap,
-        child: Ink(
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [Color(0xFF7A6BF0), Color(0xFF6C5CE7), Color(0xFF5B4ECF)],
-            ),
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: const [
-              BoxShadow(color: Color(0x336C5CE7), blurRadius: 18, offset: Offset(0, 8)),
-            ],
-          ),
-          padding: const EdgeInsets.all(16),
-          child: Row(
-            children: [
+      padding: const EdgeInsets.only(bottom: 13),
+      child: _LipCard(
+        onTap: () => Navigator.of(context)
+            .push(MaterialPageRoute(builder: (_) => const FriendsScreen())),
+        child: Row(
+          children: [
+            // Pila de avatares REALES (hasta 3) o icon-tile si aún no hay amigos.
+            if (friends.isEmpty)
               Container(
-                width: 46,
-                height: 46,
+                width: 50,
+                height: 50,
                 decoration: BoxDecoration(
-                  color: Colors.white.withValues(alpha: 0.22),
-                  borderRadius: BorderRadius.circular(13),
-                ),
-                child: Icon(icon, color: Colors.white),
+                    color: AppColors.navActiveBg, borderRadius: BorderRadius.circular(16)),
+                child: const Icon(Icons.forum_rounded, color: AppColors.primary, size: 26),
+              )
+            else
+              SizedBox(
+                width: 50.0 + (friends.length.clamp(1, 3) - 1) * 18.0,
+                height: 50,
+                child: Stack(children: [
+                  for (var i = friends.length.clamp(1, 3) - 1; i >= 0; i--)
+                    Positioned(
+                      left: i * 18.0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16.5),
+                            border: Border.all(color: Colors.white, width: 2.5)),
+                        child: _Squircle(
+                            color: (friends[i]['avatar_color'] ?? '#6C5CE7').toString(),
+                            letter: (friends[i]['name'] ?? '?').toString(),
+                            size: 45),
+                      ),
+                    ),
+                ]),
               ),
-              const SizedBox(width: 14),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(title,
+            const SizedBox(width: 13),
+            Expanded(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Row(children: [
+                  Flexible(
+                    child: Text(l10n.convFriendsTitle,
                         style: const TextStyle(
-                            fontSize: 17, fontWeight: FontWeight.w900, color: Colors.white)),
-                    const SizedBox(height: 2),
-                    Text(subtitle,
-                        style: TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white.withValues(alpha: 0.9))),
+                            fontSize: 16.5, fontWeight: FontWeight.w900, color: AppColors.text)),
+                  ),
+                  if (pending > 0) ...[
+                    const SizedBox(width: 7),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                      decoration: BoxDecoration(
+                          color: AppColors.hearts, borderRadius: BorderRadius.circular(9)),
+                      child: Text('$pending',
+                          style: const TextStyle(
+                              fontSize: 11, fontWeight: FontWeight.w900, color: Colors.white)),
+                    ),
                   ],
-                ),
-              ),
-              const Icon(Icons.chevron_right_rounded, color: Colors.white),
-            ],
-          ),
+                ]),
+                const SizedBox(height: 3),
+                Text(l10n.convFriendsSubtitle,
+                    style: const TextStyle(
+                        fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+              ]),
+            ),
+            const SizedBox(width: 8),
+            Container(
+              width: 30,
+              height: 30,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  color: AppColors.navActiveBg, borderRadius: BorderRadius.circular(10)),
+              child:
+                  const Icon(Icons.chevron_right_rounded, size: 20, color: AppColors.primary),
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
+/// Entrada al CO-OP en el hub — la tarjeta "RETO EN PAREJA" del mockup 1:1
+/// (gradiente violeta claro + dos avatares solapados con corazón).
+class CoopEntryCard extends ConsumerWidget {
+  const CoopEntryCard({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final status = ref.watch(socialStatusProvider);
+    final hasAccess = status.maybeWhen(data: (s) => s['access'] == true, orElse: () => false);
+    if (!hasAccess) return const SizedBox.shrink();
+    final l10n = AppLocalizations.of(context);
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 13),
+      child: GestureDetector(
+        onTap: () =>
+            Navigator.of(context).push(MaterialPageRoute(builder: (_) => const CoopScreen())),
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [Color(0xFFEDEBFF), Color(0xFFF3F0FF)]),
+            borderRadius: BorderRadius.circular(22),
+            boxShadow: const [
+              BoxShadow(color: Color(0xFFDAD5F7), offset: Offset(0, 5), blurRadius: 0),
+              BoxShadow(color: Color(0x1F6C5CE7), offset: Offset(0, 12), blurRadius: 22),
+            ],
+          ),
+          child: Row(children: [
+            _PairArt(youLabel: l10n.convCoopYou),
+            const SizedBox(width: 14),
+            Expanded(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text(l10n.convCoopEntry.toUpperCase(),
+                    style: const TextStyle(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 1,
+                        color: AppColors.primary)),
+                const SizedBox(height: 3),
+                Text(l10n.convCoopEntrySub,
+                    style: const TextStyle(
+                        fontSize: 14.5,
+                        fontWeight: FontWeight.w900,
+                        height: 1.15,
+                        color: AppColors.text)),
+              ]),
+            ),
+            const Icon(Icons.chevron_right_rounded, color: AppColors.primary),
+          ]),
+        ),
+      ),
+    );
+  }
+}
+
+/// Los dos avatares solapados con corazón del mockup (co-op).
+class _PairArt extends StatelessWidget {
+  const _PairArt({required this.youLabel, this.partnerColor, this.partnerLetter});
+  final String youLabel;
+  final String? partnerColor, partnerLetter;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 74,
+      height: 52,
+      child: Stack(clipBehavior: Clip.none, children: [
+        Positioned(
+          left: 0,
+          top: 8,
+          child: Container(
+            width: 40,
+            height: 40,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [Color(0xFF8C7DF2), AppColors.primary]),
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.white, width: 3),
+              boxShadow: const [BoxShadow(color: Color(0x4D6C5CE7), blurRadius: 8, offset: Offset(0, 4))],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(5),
+              child: FittedBox(
+                child: Text(youLabel,
+                    style: const TextStyle(
+                        color: Colors.white, fontSize: 12, fontWeight: FontWeight.w900)),
+              ),
+            ),
+          ),
+        ),
+        Positioned(
+          right: 0,
+          top: 8,
+          child: Container(
+            width: 40,
+            height: 40,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              gradient: partnerColor != null
+                  ? LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [_lighten(_hex(partnerColor!)), _hex(partnerColor!)])
+                  : const LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [Color(0xFFFF8C8C), Color(0xFFFF5C5C)]),
+              shape: BoxShape.circle,
+              border: Border.all(color: Colors.white, width: 3),
+              boxShadow: const [BoxShadow(color: Color(0x4DFF5C5C), blurRadius: 8, offset: Offset(0, 4))],
+            ),
+            child: partnerLetter != null
+                ? Text(partnerLetter![0].toUpperCase(),
+                    style: const TextStyle(
+                        color: Colors.white, fontSize: 15, fontWeight: FontWeight.w900))
+                : const Icon(Icons.add_rounded, color: Colors.white, size: 20),
+          ),
+        ),
+        Positioned(
+          left: 25,
+          top: -4,
+          child: Container(
+            width: 24,
+            height: 24,
+            alignment: Alignment.center,
+            decoration: const BoxDecoration(color: AppColors.gold, shape: BoxShape.circle),
+            child: const Icon(Icons.favorite_rounded, color: Colors.white, size: 13),
+          ),
+        ),
+      ]),
+    );
+  }
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
-// Pantalla HUB de amigos: tu código + agregar + solicitudes + lista + co-op.
+// AMIGOS — hub de amistades: código destacado, agregar, solicitudes, lista.
 // ─────────────────────────────────────────────────────────────────────────────
 class FriendsScreen extends ConsumerStatefulWidget {
   const FriendsScreen({super.key});
@@ -170,6 +415,12 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
     ref.invalidate(friendsProvider);
   }
 
+  void _copyCode(String code) {
+    Clipboard.setData(ClipboardData(text: code));
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).convCodeCopied)));
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -178,7 +429,12 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
     final friends = ref.watch(friendsProvider);
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: AppBar(title: Text(l10n.convFriendsTitle)),
+      appBar: AppBar(
+        backgroundColor: AppColors.background,
+        surfaceTintColor: Colors.transparent,
+        title: Text(l10n.convFriendsTitle,
+            style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
+      ),
       body: SafeArea(
         child: ResponsiveCenter(
           maxWidth: 560,
@@ -188,59 +444,73 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
               ref.invalidate(coopsProvider);
             },
             child: ListView(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.fromLTRB(20, 6, 20, 30),
               children: [
-                _CodeCard(code: myCode),
-                const SizedBox(height: 16),
+                _CodeHero(code: myCode, onCopy: myCode == null ? null : () => _copyCode(myCode)),
+                const SizedBox(height: 14),
+                // Agregar por código — un solo gesto obvio.
                 Row(
                   children: [
                     Expanded(
-                      child: TextField(
-                        controller: _code,
-                        textCapitalization: TextCapitalization.characters,
-                        maxLength: 7,
-                        onChanged: (_) => setState(() {}),
-                        style: const TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w800, letterSpacing: 2),
-                        decoration: InputDecoration(
-                          hintText: l10n.convEnterCode,
-                          counterText: '',
-                          filled: true,
-                          fillColor: Colors.white,
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(14),
-                            borderSide: const BorderSide(color: Color(0xFFE5E7F1), width: 2),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15),
+                          boxShadow: const [
+                            BoxShadow(
+                                color: Color(0xFFECEDF6), offset: Offset(0, 4), blurRadius: 0),
+                          ],
+                        ),
+                        child: TextField(
+                          controller: _code,
+                          textCapitalization: TextCapitalization.characters,
+                          maxLength: 7,
+                          onChanged: (_) => setState(() {}),
+                          onSubmitted: (_) => _addByCode(),
+                          style: const TextStyle(
+                              fontSize: 17, fontWeight: FontWeight.w900, letterSpacing: 3),
+                          decoration: InputDecoration(
+                            hintText: l10n.convEnterCode,
+                            hintStyle: const TextStyle(
+                                fontSize: 13.5,
+                                letterSpacing: 0,
+                                fontWeight: FontWeight.w700,
+                                color: AppColors.textMuted),
+                            counterText: '',
+                            prefixIcon: const Icon(Icons.person_add_alt_1_rounded,
+                                color: AppColors.primary, size: 21),
+                            border: InputBorder.none,
+                            contentPadding:
+                                const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
                           ),
                         ),
                       ),
                     ),
                     const SizedBox(width: 10),
-                    SizedBox(
-                      width: 130,
-                      child: PrimaryButton(
-                        label: l10n.convAddFriend,
-                        onPressed: (_code.text.trim().isNotEmpty && !_sending) ? _addByCode : null,
-                      ),
+                    PrimaryButton(
+                      label: l10n.convAddFriend,
+                      onPressed: (_code.text.trim().isNotEmpty && !_sending) ? _addByCode : null,
                     ),
                   ],
                 ),
-                const SizedBox(height: 6),
-                Text(l10n.convContactFilterNote,
-                    style: const TextStyle(
-                        fontSize: 12, fontWeight: FontWeight.w600, color: AppColors.textMuted)),
-                const SizedBox(height: 18),
-                // Co-op entry
-                _GradientCard(
-                  onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => const CoopScreen())),
-                  icon: Icons.flag_rounded,
-                  title: l10n.convCoopEntry,
-                  subtitle: l10n.convCoopEntrySub,
-                ),
+                const SizedBox(height: 7),
+                Row(children: [
+                  const Icon(Icons.shield_rounded, size: 14, color: Color(0xFFA7ABC3)),
+                  const SizedBox(width: 6),
+                  Expanded(
+                    child: Text(l10n.convContactFilterNote,
+                        style: const TextStyle(
+                            fontSize: 11.5,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.textMuted)),
+                  ),
+                ]),
                 const SizedBox(height: 18),
                 friends.when(
                   loading: () => const Padding(
-                      padding: EdgeInsets.all(24), child: Center(child: CircularProgressIndicator())),
+                      padding: EdgeInsets.all(30),
+                      child: Center(
+                          child: CircularProgressIndicator(color: AppColors.primary))),
                   error: (_, _) => _ErrorRetry(onRetry: () => ref.invalidate(friendsProvider)),
                   data: (data) {
                     final incoming = (data['incoming'] as List?) ?? const [];
@@ -249,35 +519,93 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         if (incoming.isNotEmpty) ...[
-                          Text(l10n.convRequests,
-                              style: const TextStyle(
-                                  fontSize: 13, fontWeight: FontWeight.w900, color: AppColors.textMuted)),
-                          const SizedBox(height: 8),
-                          for (final r in incoming)
-                            _RequestRow(
-                              name: (r['name'] ?? '').toString(),
-                              color: (r['avatar_color'] ?? '#6C5CE7').toString(),
-                              onAccept: () => _respond(r['connection_id'].toString(), true),
-                              onReject: () => _respond(r['connection_id'].toString(), false),
+                          Row(children: [
+                            Text(l10n.convRequests.toUpperCase(),
+                                style: const TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w900,
+                                    letterSpacing: 1,
+                                    color: AppColors.textMuted)),
+                            const SizedBox(width: 7),
+                            Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 7, vertical: 1.5),
+                              decoration: BoxDecoration(
+                                  color: AppColors.hearts,
+                                  borderRadius: BorderRadius.circular(9)),
+                              child: Text('${incoming.length}',
+                                  style: const TextStyle(
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w900,
+                                      color: Colors.white)),
                             ),
-                          const SizedBox(height: 18),
+                          ]),
+                          const SizedBox(height: 10),
+                          for (final r in incoming)
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: _LipCard(
+                                padding: const EdgeInsets.all(12),
+                                child: Row(children: [
+                                  _Squircle(
+                                      color: (r['avatar_color'] ?? '#6C5CE7').toString(),
+                                      letter: (r['name'] ?? '?').toString(),
+                                      size: 46),
+                                  const SizedBox(width: 12),
+                                  Expanded(
+                                    child: Text((r['name'] ?? '').toString(),
+                                        style: const TextStyle(
+                                            fontSize: 15, fontWeight: FontWeight.w900)),
+                                  ),
+                                  _RoundAction(
+                                      icon: Icons.close_rounded,
+                                      color: const Color(0xFFB3B8CC),
+                                      depth: const Color(0xFF9AA0B8),
+                                      onTap: () =>
+                                          _respond(r['connection_id'].toString(), false)),
+                                  const SizedBox(width: 8),
+                                  _RoundAction(
+                                      icon: Icons.check_rounded,
+                                      color: AppColors.success,
+                                      depth: AppColors.successDark,
+                                      onTap: () =>
+                                          _respond(r['connection_id'].toString(), true)),
+                                ]),
+                              ),
+                            ),
+                          const SizedBox(height: 12),
                         ],
                         if (list.isEmpty)
-                          _EmptyFriends(l10n: l10n)
-                        else
+                          _EmptyFriends(
+                              onCopyCode: myCode == null ? null : () => _copyCode(myCode))
+                        else ...[
+                          Text(l10n.convFriendsTitle.toUpperCase(),
+                              style: const TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w900,
+                                  letterSpacing: 1,
+                                  color: AppColors.textMuted)),
+                          const SizedBox(height: 10),
                           for (final f in list)
-                            _FriendRow(
-                              name: (f['name'] ?? '').toString(),
-                              color: (f['avatar_color'] ?? '#6C5CE7').toString(),
-                              streak: (f['streak'] as num?)?.toInt() ?? 0,
-                              onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                                builder: (_) => ChatScreen(
-                                  connectionId: f['connection_id'].toString(),
-                                  friendId: f['user_id'].toString(),
-                                  friendName: (f['name'] ?? '').toString(),
-                                ),
-                              )),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 10),
+                              child: _FriendRow(
+                                name: (f['name'] ?? '').toString(),
+                                color: (f['avatar_color'] ?? '#6C5CE7').toString(),
+                                streak: (f['streak'] as num?)?.toInt() ?? 0,
+                                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (_) => ChatScreen(
+                                    connectionId: f['connection_id'].toString(),
+                                    friendId: f['user_id'].toString(),
+                                    friendName: (f['name'] ?? '').toString(),
+                                    friendColor:
+                                        (f['avatar_color'] ?? '#6C5CE7').toString(),
+                                    streak: (f['streak'] as num?)?.toInt() ?? 0,
+                                  ),
+                                )),
+                              ),
                             ),
+                        ],
                       ],
                     );
                   },
@@ -291,73 +619,129 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
   }
 }
 
-class _CodeCard extends StatelessWidget {
-  const _CodeCard({required this.code});
+/// Tarjeta HERO del código de amigo — lo primero y lo más fácil de la pantalla.
+class _CodeHero extends StatefulWidget {
+  const _CodeHero({required this.code, required this.onCopy});
   final String? code;
+  final VoidCallback? onCopy;
+  @override
+  State<_CodeHero> createState() => _CodeHeroState();
+}
+
+class _CodeHeroState extends State<_CodeHero> {
+  bool _copied = false;
+  Timer? _revert;
+
+  @override
+  void dispose() {
+    _revert?.cancel();
+    super.dispose();
+  }
+
+  void _tapCopy() {
+    if (widget.onCopy == null) return;
+    widget.onCopy!();
+    setState(() => _copied = true);
+    _revert?.cancel();
+    _revert = Timer(const Duration(milliseconds: 1800), () {
+      if (mounted) setState(() => _copied = false);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFFE5E7F1), width: 2),
-      ),
-      child: Row(
-        children: [
-          const ParrotMascot(size: 46),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(l10n.convYourCode,
-                    style: const TextStyle(
-                        fontSize: 12.5, fontWeight: FontWeight.w800, color: AppColors.textMuted)),
-                const SizedBox(height: 2),
-                Text(code ?? '·······',
-                    style: const TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w900,
-                        color: AppColors.text,
-                        letterSpacing: 2)),
-              ],
-            ),
-          ),
-          IconButton(
-            icon: const Icon(Icons.copy_rounded, color: AppColors.primary),
-            onPressed: code == null
-                ? null
-                : () {
-                    Clipboard.setData(ClipboardData(text: code!));
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: Text(l10n.convCodeCopied)));
-                  },
-          ),
+        gradient: const LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xFF7A6BF0), AppColors.primary, Color(0xFF5B4ECF)]),
+        borderRadius: BorderRadius.circular(22),
+        boxShadow: const [
+          BoxShadow(color: Color(0xFF4B3FC9), offset: Offset(0, 5), blurRadius: 0),
+          BoxShadow(color: Color(0x336C5CE7), offset: Offset(0, 14), blurRadius: 24),
         ],
       ),
+      child: Row(children: [
+        const ParrotMascot(size: 52),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(l10n.convYourCode.toUpperCase(),
+                style: TextStyle(
+                    fontSize: 10.5,
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 1.2,
+                    color: Colors.white.withValues(alpha: 0.75))),
+            const SizedBox(height: 5),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.16),
+                borderRadius: BorderRadius.circular(11),
+                border: Border.all(color: Colors.white.withValues(alpha: 0.22)),
+              ),
+              child: Text(widget.code ?? '·······',
+                  style: const TextStyle(
+                      fontSize: 21,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white,
+                      letterSpacing: 3)),
+            ),
+          ]),
+        ),
+        const SizedBox(width: 10),
+        // Copiar con feedback claro: el botón se vuelve verde con ✓ un instante.
+        GestureDetector(
+          onTap: _tapCopy,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 180),
+            width: 46,
+            height: 46,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              color: _copied ? AppColors.success : Colors.white,
+              borderRadius: BorderRadius.circular(15),
+              boxShadow: [
+                BoxShadow(
+                    color: _copied ? AppColors.successDark : const Color(0xFFD8D3F5),
+                    offset: const Offset(0, 4),
+                    blurRadius: 0),
+              ],
+            ),
+            child: Icon(_copied ? Icons.check_rounded : Icons.copy_rounded,
+                color: _copied ? Colors.white : AppColors.primary, size: 22),
+          ),
+        ),
+      ]),
     );
   }
 }
 
 class _EmptyFriends extends StatelessWidget {
-  const _EmptyFriends({required this.l10n});
-  final AppLocalizations l10n;
+  const _EmptyFriends({required this.onCopyCode});
+  final VoidCallback? onCopyCode;
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Padding(
-      padding: const EdgeInsets.only(top: 12),
-      child: Column(
-        children: [
-          const ParrotMascot(size: 84, mood: MascotMood.encourage),
-          const SizedBox(height: 10),
-          Text(l10n.convNoFriends,
+      padding: const EdgeInsets.only(top: 18),
+      child: Column(children: [
+        const ParrotMascot(size: 92, mood: MascotMood.encourage),
+        const SizedBox(height: 12),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Text(l10n.convNoFriends,
               textAlign: TextAlign.center,
               style: const TextStyle(
-                  fontSize: 14, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
-        ],
-      ),
+                  fontSize: 14, fontWeight: FontWeight.w700, height: 1.4, color: AppColors.textMuted)),
+        ),
+        const SizedBox(height: 16),
+        PrimaryButton(
+            label: l10n.convCopyMyCode, icon: Icons.copy_rounded, onPressed: onCopyCode),
+      ]),
     );
   }
 }
@@ -369,42 +753,12 @@ class _ErrorRetry extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     return Padding(
-      padding: const EdgeInsets.all(20),
-      child: Center(
-        child: OutlinedButton.icon(
-          onPressed: onRetry,
-          icon: const Icon(Icons.refresh_rounded),
-          label: Text(l10n.commonRetry),
-        ),
-      ),
-    );
-  }
-}
-
-class _RequestRow extends StatelessWidget {
-  const _RequestRow(
-      {required this.name, required this.color, required this.onAccept, required this.onReject});
-  final String name, color;
-  final VoidCallback onAccept, onReject;
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
-      child: Row(
-        children: [
-          CircleAvatar(
-              backgroundColor: _hex(color),
-              radius: 18,
-              child: Text(name.isNotEmpty ? name[0].toUpperCase() : '?',
-                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w900))),
-          const SizedBox(width: 12),
-          Expanded(child: Text(name, style: const TextStyle(fontWeight: FontWeight.w800))),
-          TextButton(onPressed: onReject, child: Text(l10n.convReject)),
-          const SizedBox(width: 4),
-          FilledButton(onPressed: onAccept, child: Text(l10n.convAccept)),
-        ],
-      ),
+      padding: const EdgeInsets.only(top: 18),
+      child: Column(children: [
+        const ParrotMascot(size: 84, mood: MascotMood.encourage),
+        const SizedBox(height: 12),
+        PrimaryButton(label: l10n.commonRetry, icon: Icons.refresh_rounded, onPressed: onRetry),
+      ]),
     );
   }
 }
@@ -417,26 +771,42 @@ class _FriendRow extends StatelessWidget {
   final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
-      child: Material(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        child: ListTile(
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-              side: const BorderSide(color: Color(0xFFE5E7F1), width: 2)),
-          leading: CircleAvatar(
-              backgroundColor: _hex(color),
-              child: Text(name.isNotEmpty ? name[0].toUpperCase() : '?',
-                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w900))),
-          title: Text(name, style: const TextStyle(fontWeight: FontWeight.w900)),
-          trailing: streak > 0
-              ? _StreakPulse(streak: streak)
-              : const Icon(Icons.chevron_right_rounded, color: AppColors.textMuted),
-          onTap: onTap,
+    final l10n = AppLocalizations.of(context);
+    return _LipCard(
+      onTap: onTap,
+      padding: const EdgeInsets.all(12),
+      child: Row(children: [
+        _Squircle(color: color, letter: name, size: 50),
+        const SizedBox(width: 13),
+        Expanded(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(name,
+                style: const TextStyle(
+                    fontSize: 15.5, fontWeight: FontWeight.w900, color: AppColors.text)),
+            const SizedBox(height: 2),
+            Text(l10n.convTapToChat,
+                style: const TextStyle(
+                    fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+          ]),
         ),
-      ),
+        const SizedBox(width: 8),
+        if (streak > 0)
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+            decoration: BoxDecoration(
+                color: const Color(0xFFFFF0E0), borderRadius: BorderRadius.circular(12)),
+            child: _StreakPulse(streak: streak),
+          )
+        else
+          Container(
+            width: 30,
+            height: 30,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                color: AppColors.navActiveBg, borderRadius: BorderRadius.circular(10)),
+            child: const Icon(Icons.chevron_right_rounded, size: 20, color: AppColors.primary),
+          ),
+      ]),
     );
   }
 }
@@ -464,25 +834,35 @@ class _StreakPulseState extends State<_StreakPulse> with SingleTickerProviderSta
   Widget build(BuildContext context) {
     final reduce = MediaQuery.of(context).disableAnimations;
     final fire = Row(mainAxisSize: MainAxisSize.min, children: [
-      const Text('🔥', style: TextStyle(fontSize: 16)),
+      const Text('🔥', style: TextStyle(fontSize: 15)),
+      const SizedBox(width: 3),
       Text('${widget.streak}',
-          style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.streak)),
+          style: const TextStyle(
+              fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.streak)),
     ]);
     if (reduce) return fire;
     return ScaleTransition(
-      scale: Tween(begin: 0.94, end: 1.08).animate(CurvedAnimation(parent: _c, curve: Curves.easeInOut)),
+      scale:
+          Tween(begin: 0.94, end: 1.08).animate(CurvedAnimation(parent: _c, curve: Curves.easeInOut)),
       child: fire,
     );
   }
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Chat 1:1 (Realtime) — texto + notas de voz + corrección + reportar/bloquear.
+// CHAT 1:1 (Realtime) — burbujas modernas + notas de voz + corrección inline.
 // ─────────────────────────────────────────────────────────────────────────────
 class ChatScreen extends ConsumerStatefulWidget {
-  const ChatScreen(
-      {super.key, required this.connectionId, required this.friendId, required this.friendName});
-  final String connectionId, friendId, friendName;
+  const ChatScreen({
+    super.key,
+    required this.connectionId,
+    required this.friendId,
+    required this.friendName,
+    this.friendColor = '#6C5CE7',
+    this.streak = 0,
+  });
+  final String connectionId, friendId, friendName, friendColor;
+  final int streak;
   @override
   ConsumerState<ChatScreen> createState() => _ChatScreenState();
 }
@@ -493,20 +873,44 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
   bool _sending = false;
   bool _recording = false;
   bool _uploadingVoice = false;
+  int _recSeconds = 0;
+  Timer? _recTimer;
+
+  /// Correcciones por message_id (vienen de list_messages; el stream Realtime
+  /// solo trae la tabla messages). Se refresca al abrir, al corregir y cuando
+  /// llegan mensajes nuevos.
+  Map<String, Map<String, dynamic>> _corrections = {};
+  int _lastMsgCount = -1;
 
   @override
   void initState() {
     super.initState();
     _msg.addListener(_onTextChanged);
+    _loadCorrections();
   }
 
   void _onTextChanged() {
-    // el composer alterna entre 🎤 y ➤ según haya texto
-    if (mounted) setState(() {});
+    if (mounted) setState(() {}); // alterna 🎤 ↔ ➤ según haya texto
+  }
+
+  Future<void> _loadCorrections() async {
+    try {
+      final msgs =
+          await ref.read(progressRepositoryProvider).listChatMessages(widget.connectionId);
+      final map = <String, Map<String, dynamic>>{};
+      for (final m in msgs) {
+        final c = m['correction'];
+        if (c is Map && c['corrected'] != null) {
+          map[m['id'].toString()] = Map<String, dynamic>.from(c);
+        }
+      }
+      if (mounted) setState(() => _corrections = map);
+    } catch (_) {}
   }
 
   @override
   void dispose() {
+    _recTimer?.cancel();
     _msg.removeListener(_onTextChanged);
     _msg.dispose();
     if (_recording) _rec.cancel();
@@ -541,8 +945,18 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                 : l10n.convVoiceMicDenied)));
         return;
       }
-      if (mounted) setState(() => _recording = true);
+      if (mounted) {
+        setState(() {
+          _recording = true;
+          _recSeconds = 0;
+        });
+        _recTimer?.cancel();
+        _recTimer = Timer.periodic(const Duration(seconds: 1), (_) {
+          if (mounted) setState(() => _recSeconds++);
+        });
+      }
     } else {
+      _recTimer?.cancel();
       setState(() {
         _recording = false;
         _uploadingVoice = true;
@@ -563,6 +977,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
   }
 
   void _cancelVoice() {
+    _recTimer?.cancel();
     _rec.cancel();
     if (mounted) setState(() => _recording = false);
   }
@@ -591,16 +1006,41 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
     final result = await showModalBottomSheet<String>(
       context: context,
       isScrollControlled: true,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(26))),
       builder: (ctx) => Padding(
         padding: EdgeInsets.only(
-            left: 20, right: 20, top: 20, bottom: MediaQuery.of(ctx).viewInsets.bottom + 20),
+            left: 20, right: 20, top: 14, bottom: MediaQuery.of(ctx).viewInsets.bottom + 20),
         child: Column(mainAxisSize: MainAxisSize.min, children: [
-          Text(l10n.convCorrect, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w900)),
+          Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                  color: const Color(0xFFE1E3EE), borderRadius: BorderRadius.circular(2))),
+          const SizedBox(height: 14),
+          Row(children: [
+            const Icon(Icons.edit_rounded, color: AppColors.success, size: 20),
+            const SizedBox(width: 8),
+            Text(l10n.convCorrect,
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w900)),
+          ]),
           const SizedBox(height: 12),
-          TextField(controller: ctrl, maxLines: 3, decoration: const InputDecoration(border: OutlineInputBorder())),
-          const SizedBox(height: 12),
+          TextField(
+            controller: ctrl,
+            maxLines: 3,
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: const Color(0xFFF6F7FB),
+              border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(14), borderSide: BorderSide.none),
+            ),
+          ),
+          const SizedBox(height: 14),
           PrimaryButton(
               label: l10n.convSendCorrection,
+              color: AppColors.success,
+              depthColor: AppColors.successDark,
               expand: true,
               onPressed: () => Navigator.of(ctx).pop(ctrl.text.trim())),
         ]),
@@ -608,6 +1048,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
     );
     if (result != null && result.isNotEmpty) {
       await repo.addCorrection(m['id'].toString(), result, null);
+      await _loadCorrections();
     }
   }
 
@@ -618,13 +1059,47 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
-        title: Text(widget.friendName),
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.transparent,
+        elevation: 0,
+        titleSpacing: 0,
+        shape: const Border(bottom: BorderSide(color: Color(0xFFE9EAF2))),
+        title: Row(children: [
+          _Squircle(color: widget.friendColor, letter: widget.friendName, size: 38),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(widget.friendName,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.w900, color: AppColors.text)),
+              if (widget.streak > 0)
+                Text('🔥 ${widget.streak}',
+                    style: const TextStyle(
+                        fontSize: 11.5, fontWeight: FontWeight.w800, color: AppColors.streak)),
+            ]),
+          ),
+        ]),
         actions: [
           PopupMenuButton<String>(
+            icon: const Icon(Icons.more_vert_rounded, color: AppColors.textMuted),
             onSelected: _blockOrReport,
             itemBuilder: (_) => [
-              PopupMenuItem(value: 'report', child: Text(l10n.convReport)),
-              PopupMenuItem(value: 'block', child: Text(l10n.convBlock)),
+              PopupMenuItem(
+                  value: 'report',
+                  child: Row(children: [
+                    const Icon(Icons.flag_rounded, size: 19, color: AppColors.textMuted),
+                    const SizedBox(width: 10),
+                    Text(l10n.convReport),
+                  ])),
+              PopupMenuItem(
+                  value: 'block',
+                  child: Row(children: [
+                    const Icon(Icons.block_rounded, size: 19, color: AppColors.hearts),
+                    const SizedBox(width: 10),
+                    Text(l10n.convBlock),
+                  ])),
             ],
           ),
         ],
@@ -639,34 +1114,53 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                   stream: repo.chatMessagesStream(widget.connectionId),
                   builder: (context, snap) {
                     final msgs = snap.data ?? const [];
+                    // El stream no trae correcciones: refresca el mapa cuando
+                    // cambia el nº de mensajes (llegó algo nuevo).
+                    if (msgs.length != _lastMsgCount) {
+                      _lastMsgCount = msgs.length;
+                      if (msgs.isNotEmpty) {
+                        WidgetsBinding.instance
+                            .addPostFrameCallback((_) => _loadCorrections());
+                      }
+                    }
                     if (msgs.isEmpty) {
                       return Center(
                         child: Column(mainAxisSize: MainAxisSize.min, children: [
-                          const ParrotMascot(size: 90),
-                          const SizedBox(height: 8),
+                          const ParrotMascot(size: 92, mood: MascotMood.encourage),
+                          const SizedBox(height: 10),
                           Text(l10n.convChatEmpty,
                               style: const TextStyle(
-                                  fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w800,
+                                  color: AppColors.textMuted)),
                         ]),
                       );
                     }
                     return ListView.builder(
                       reverse: true,
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.fromLTRB(16, 14, 16, 8),
                       itemCount: msgs.length,
                       itemBuilder: (context, i) {
                         final m = msgs[msgs.length - 1 - i];
                         final mine = m['sender_id'].toString() == repo.currentUserId;
                         final isVoice = (m['kind'] ?? '').toString() == 'voice';
+                        final correction = _corrections[m['id'].toString()];
                         return _Bubble(
                           mine: mine,
+                          time: _fmtTime((m['created_at'] ?? '').toString()),
+                          correction: correction,
                           onCorrect: (mine || isVoice) ? null : () => _correct(m),
                           child: isVoice
                               ? _VoiceBubble(
                                   path: (m['audio_url'] ?? '').toString(),
                                   mine: mine,
                                   repo: repo)
-                              : _TextBubbleBody(text: (m['body'] ?? '').toString(), mine: mine),
+                              : Text((m['body'] ?? '').toString(),
+                                  style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w700,
+                                      height: 1.3,
+                                      color: mine ? Colors.white : AppColors.text)),
                         );
                       },
                     );
@@ -678,6 +1172,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
                 sending: _sending,
                 recording: _recording,
                 uploadingVoice: _uploadingVoice,
+                recSeconds: _recSeconds,
                 onSend: _send,
                 onVoice: _toggleVoice,
                 onCancelVoice: _cancelVoice,
@@ -692,48 +1187,139 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
   }
 }
 
+String _fmtTime(String iso) {
+  final d = DateTime.tryParse(iso)?.toLocal();
+  if (d == null) return '';
+  return '${d.hour.toString().padLeft(2, '0')}:${d.minute.toString().padLeft(2, '0')}';
+}
+
+/// Burbuja moderna: la mía violeta con "cola" (esquina inferior derecha recta),
+/// la del amigo blanca con labio; hora abajo; corrección inline si existe.
+/// Entra con un fade+deslizamiento sutil (reduce-motion la pinta fija).
 class _Bubble extends StatelessWidget {
-  const _Bubble({required this.mine, required this.child, this.onCorrect});
+  const _Bubble(
+      {required this.mine,
+      required this.time,
+      required this.child,
+      this.correction,
+      this.onCorrect});
   final bool mine;
+  final String time;
   final Widget child;
+  final Map<String, dynamic>? correction;
   final VoidCallback? onCorrect;
+
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: mine ? Alignment.centerRight : Alignment.centerLeft,
-      child: GestureDetector(
-        onLongPress: onCorrect,
-        child: Container(
-          margin: const EdgeInsets.symmetric(vertical: 4),
-          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-          constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.72),
+    final l10n = AppLocalizations.of(context);
+    final reduce = MediaQuery.disableAnimationsOf(context);
+    final radius = BorderRadius.only(
+      topLeft: const Radius.circular(18),
+      topRight: const Radius.circular(18),
+      bottomLeft: Radius.circular(mine ? 18 : 6),
+      bottomRight: Radius.circular(mine ? 6 : 18),
+    );
+    final bubble = Column(
+      crossAxisAlignment: mine ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+      children: [
+        Container(
+          margin: const EdgeInsets.only(top: 4),
+          padding: const EdgeInsets.fromLTRB(14, 10, 14, 8),
+          constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width * 0.74),
           decoration: BoxDecoration(
-            color: mine ? AppColors.primary : Colors.white,
-            borderRadius: BorderRadius.circular(16),
-            border: mine ? null : Border.all(color: const Color(0xFFE5E7F1), width: 2),
+            gradient: mine
+                ? const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [Color(0xFF7A6BF0), AppColors.primary])
+                : null,
+            color: mine ? null : Colors.white,
+            borderRadius: radius,
+            boxShadow: mine
+                ? const [BoxShadow(color: Color(0x2E6C5CE7), offset: Offset(0, 5), blurRadius: 12)]
+                : const [BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 3), blurRadius: 0)],
           ),
-          child: child,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              child,
+              if (correction != null) ...[
+                const SizedBox(height: 8),
+                Container(
+                  padding: const EdgeInsets.all(9),
+                  decoration: BoxDecoration(
+                    color: mine ? Colors.white.withValues(alpha: 0.16) : const Color(0xFFEAF7EC),
+                    borderRadius: BorderRadius.circular(11),
+                  ),
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Row(children: [
+                      Icon(Icons.edit_rounded,
+                          size: 13, color: mine ? Colors.white : AppColors.successDark),
+                      const SizedBox(width: 5),
+                      Text(l10n.convCorrectionLabel,
+                          style: TextStyle(
+                              fontSize: 10.5,
+                              fontWeight: FontWeight.w900,
+                              letterSpacing: 0.4,
+                              color: mine ? Colors.white : AppColors.successDark)),
+                    ]),
+                    const SizedBox(height: 3),
+                    Text((correction!['corrected'] ?? '').toString(),
+                        style: TextStyle(
+                            fontSize: 13.5,
+                            fontWeight: FontWeight.w800,
+                            height: 1.3,
+                            color: mine ? Colors.white : const Color(0xFF1E7A44))),
+                    if ((correction!['note'] ?? '').toString().isNotEmpty)
+                      Padding(
+                        padding: const EdgeInsets.only(top: 2),
+                        child: Text((correction!['note']).toString(),
+                            style: TextStyle(
+                                fontSize: 11.5,
+                                fontWeight: FontWeight.w700,
+                                color: mine
+                                    ? Colors.white.withValues(alpha: 0.85)
+                                    : AppColors.textMuted)),
+                      ),
+                  ]),
+                ),
+              ],
+              if (time.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: 3),
+                  child: Text(time,
+                      style: TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w700,
+                          color: mine
+                              ? Colors.white.withValues(alpha: 0.7)
+                              : const Color(0xFFB3B8CC))),
+                ),
+            ],
+          ),
         ),
+      ],
+    );
+    final aligned = Align(
+      alignment: mine ? Alignment.centerRight : Alignment.centerLeft,
+      child: GestureDetector(onLongPress: onCorrect, child: bubble),
+    );
+    if (reduce) return aligned;
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0, end: 1),
+      duration: const Duration(milliseconds: 190),
+      curve: Curves.easeOut,
+      builder: (context, v, w) => Opacity(
+        opacity: v,
+        child: Transform.translate(offset: Offset(0, (1 - v) * 8), child: w),
       ),
+      child: aligned,
     );
   }
 }
 
-class _TextBubbleBody extends StatelessWidget {
-  const _TextBubbleBody({required this.text, required this.mine});
-  final String text;
-  final bool mine;
-  @override
-  Widget build(BuildContext context) {
-    return Text(text,
-        style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w700,
-            color: mine ? Colors.white : AppColors.text));
-  }
-}
-
-/// Reproduce una nota de voz (bucket privado → URL firmada al tocar).
+/// Nota de voz: botón de play + forma de onda decorativa (barras deterministas
+/// por path) que "respira" mientras suena. URL firmada al tocar (bucket privado).
 class _VoiceBubble extends StatefulWidget {
   const _VoiceBubble({required this.path, required this.mine, required this.repo});
   final String path;
@@ -743,15 +1329,24 @@ class _VoiceBubble extends StatefulWidget {
   State<_VoiceBubble> createState() => _VoiceBubbleState();
 }
 
-class _VoiceBubbleState extends State<_VoiceBubble> {
+class _VoiceBubbleState extends State<_VoiceBubble> with SingleTickerProviderStateMixin {
   bool _loading = false;
   bool _playing = false;
+  late final AnimationController _wave =
+      AnimationController(vsync: this, duration: const Duration(milliseconds: 700));
+
+  @override
+  void dispose() {
+    _wave.dispose();
+    super.dispose();
+  }
 
   Future<void> _play() async {
     if (_loading || _playing || widget.path.isEmpty) return;
     setState(() => _loading = true);
     final messenger = ScaffoldMessenger.of(context);
     final l10n = AppLocalizations.of(context);
+    final reduce = MediaQuery.disableAnimationsOf(context);
     try {
       final url = await widget.repo.signedVoiceUrl(widget.path) as String;
       if (!mounted) return;
@@ -759,11 +1354,16 @@ class _VoiceBubbleState extends State<_VoiceBubble> {
         _loading = false;
         _playing = true;
       });
+      if (!reduce) _wave.repeat(reverse: true);
       await AudioEngine.instance.playUrl(url, onComplete: () {
-        if (mounted) setState(() => _playing = false);
+        if (mounted) {
+          _wave.stop();
+          setState(() => _playing = false);
+        }
       });
     } catch (_) {
       if (mounted) {
+        _wave.stop();
         setState(() {
           _loading = false;
           _playing = false;
@@ -775,35 +1375,64 @@ class _VoiceBubbleState extends State<_VoiceBubble> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
     final fg = widget.mine ? Colors.white : AppColors.primary;
+    // Alturas deterministas por path (decorativas, estables entre builds).
+    final seed = widget.path.hashCode;
+    final heights = List<double>.generate(13, (i) => 6.0 + ((seed >> (i * 2)) & 7) * 2.2);
     return InkWell(
       onTap: _play,
+      borderRadius: BorderRadius.circular(12),
       child: Row(mainAxisSize: MainAxisSize.min, children: [
-        _loading
-            ? SizedBox(
-                width: 22,
-                height: 22,
-                child: CircularProgressIndicator(strokeWidth: 2.4, color: fg))
-            : Icon(_playing ? Icons.graphic_eq_rounded : Icons.play_circle_fill_rounded,
-                color: fg, size: 28),
-        const SizedBox(width: 8),
-        Text(l10n.convVoiceNote,
-            style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w800,
-                color: widget.mine ? Colors.white : AppColors.text)),
+        Container(
+          width: 36,
+          height: 36,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            color: widget.mine ? Colors.white.withValues(alpha: 0.22) : AppColors.navActiveBg,
+            shape: BoxShape.circle,
+          ),
+          child: _loading
+              ? SizedBox(
+                  width: 18,
+                  height: 18,
+                  child: CircularProgressIndicator(strokeWidth: 2.2, color: fg))
+              : Icon(_playing ? Icons.pause_rounded : Icons.play_arrow_rounded,
+                  color: fg, size: 23),
+        ),
+        const SizedBox(width: 9),
+        AnimatedBuilder(
+          animation: _wave,
+          builder: (context, _) => Row(mainAxisSize: MainAxisSize.min, children: [
+            for (var i = 0; i < heights.length; i++)
+              Container(
+                width: 3,
+                height: _playing
+                    ? heights[i] * (0.65 + 0.35 * ((_wave.value + i / heights.length) % 1))
+                    : heights[i],
+                margin: const EdgeInsets.symmetric(horizontal: 1.4),
+                decoration: BoxDecoration(
+                  color: widget.mine
+                      ? Colors.white.withValues(alpha: _playing ? 0.95 : 0.75)
+                      : AppColors.primary.withValues(alpha: _playing ? 0.9 : 0.55),
+                  borderRadius: BorderRadius.circular(2),
+                ),
+              ),
+          ]),
+        ),
       ]),
     );
   }
 }
 
+/// Composer: campo pill + botón circular 3D que alterna 🎤 ↔ ➤ (AnimatedSwitcher).
+/// Grabando: barra con punto rojo pulsante + segundos + cancelar + enviar verde.
 class _Composer extends StatelessWidget {
   const _Composer({
     required this.controller,
     required this.sending,
     required this.recording,
     required this.uploadingVoice,
+    required this.recSeconds,
     required this.onSend,
     required this.onVoice,
     required this.onCancelVoice,
@@ -812,70 +1441,108 @@ class _Composer extends StatelessWidget {
   });
   final TextEditingController controller;
   final bool sending, recording, uploadingVoice;
+  final int recSeconds;
   final VoidCallback onSend, onVoice, onCancelVoice;
   final String hint, recordingLabel;
 
   @override
   Widget build(BuildContext context) {
     if (recording) {
-      return Padding(
-        padding: const EdgeInsets.fromLTRB(12, 6, 12, 12),
+      final mm = (recSeconds ~/ 60).toString();
+      final ss = (recSeconds % 60).toString().padLeft(2, '0');
+      return Container(
+        margin: const EdgeInsets.fromLTRB(12, 6, 12, 12),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(26),
+          boxShadow: const [
+            BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 4), blurRadius: 0),
+          ],
+        ),
         child: Row(children: [
-          IconButton(onPressed: onCancelVoice, icon: const Icon(Icons.close_rounded)),
-          const SizedBox(width: 4),
+          IconButton(
+              onPressed: onCancelVoice,
+              icon: const Icon(Icons.close_rounded, color: AppColors.textMuted)),
           const _RecordingDot(),
           const SizedBox(width: 10),
           Expanded(
-            child: Text(recordingLabel,
-                style: const TextStyle(fontWeight: FontWeight.w800, color: AppColors.text)),
+            child: Text('$recordingLabel · $mm:$ss',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                    fontSize: 13.5, fontWeight: FontWeight.w800, color: AppColors.text)),
           ),
-          FloatingActionButton(
-            mini: true,
-            backgroundColor: AppColors.success,
-            onPressed: onVoice,
-            child: const Icon(Icons.send_rounded),
-          ),
+          _RoundAction(
+              icon: Icons.send_rounded,
+              color: AppColors.success,
+              depth: AppColors.successDark,
+              onTap: onVoice),
         ]),
       );
     }
     final hasText = controller.text.trim().isNotEmpty;
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(12, 6, 12, 12),
+    return Container(
+      margin: const EdgeInsets.fromLTRB(12, 6, 12, 12),
       child: Row(
         children: [
           Expanded(
-            child: TextField(
-              controller: controller,
-              minLines: 1,
-              maxLines: 4,
-              textInputAction: TextInputAction.send,
-              onSubmitted: (_) => onSend(),
-              decoration: InputDecoration(
-                hintText: hint,
-                filled: true,
-                fillColor: Colors.white,
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(24), borderSide: BorderSide.none),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(26),
+                boxShadow: const [
+                  BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 4), blurRadius: 0),
+                ],
+              ),
+              child: TextField(
+                controller: controller,
+                minLines: 1,
+                maxLines: 4,
+                textInputAction: TextInputAction.send,
+                onSubmitted: (_) => onSend(),
+                decoration: InputDecoration(
+                  hintText: hint,
+                  hintStyle: const TextStyle(
+                      fontWeight: FontWeight.w700, color: AppColors.textMuted, fontSize: 14),
+                  border: InputBorder.none,
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+                ),
               ),
             ),
           ),
-          const SizedBox(width: 8),
-          if (hasText)
-            FloatingActionButton(
-              mini: true,
-              onPressed: sending ? null : onSend,
-              child: const Icon(Icons.send_rounded),
-            )
-          else
-            FloatingActionButton(
-              mini: true,
-              onPressed: uploadingVoice ? null : onVoice,
-              child: uploadingVoice
-                  ? const SizedBox(
-                      width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
-                  : const Icon(Icons.mic_rounded),
-            ),
+          const SizedBox(width: 9),
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 160),
+            transitionBuilder: (w, a) => ScaleTransition(scale: a, child: w),
+            child: hasText
+                ? _RoundAction(
+                    key: const ValueKey('send'),
+                    icon: Icons.send_rounded,
+                    color: AppColors.primary,
+                    depth: AppColors.primaryDark,
+                    onTap: sending ? null : onSend)
+                : uploadingVoice
+                    ? Container(
+                        key: const ValueKey('up'),
+                        width: 42,
+                        height: 42,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                            color: AppColors.primary, borderRadius: BorderRadius.circular(14)),
+                        child: const SizedBox(
+                            width: 18,
+                            height: 18,
+                            child: CircularProgressIndicator(
+                                strokeWidth: 2, color: Colors.white)),
+                      )
+                    : _RoundAction(
+                        key: const ValueKey('mic'),
+                        icon: Icons.mic_rounded,
+                        color: AppColors.primary,
+                        depth: AppColors.primaryDark,
+                        onTap: onVoice),
+          ),
         ],
       ),
     );
@@ -890,7 +1557,8 @@ class _RecordingDot extends StatefulWidget {
 
 class _RecordingDotState extends State<_RecordingDot> with SingleTickerProviderStateMixin {
   late final AnimationController _c =
-      AnimationController(vsync: this, duration: const Duration(milliseconds: 800))..repeat(reverse: true);
+      AnimationController(vsync: this, duration: const Duration(milliseconds: 800))
+        ..repeat(reverse: true);
   @override
   void dispose() {
     _c.dispose();
@@ -901,7 +1569,9 @@ class _RecordingDotState extends State<_RecordingDot> with SingleTickerProviderS
   Widget build(BuildContext context) {
     final reduce = MediaQuery.of(context).disableAnimations;
     final dot = Container(
-        width: 12, height: 12, decoration: const BoxDecoration(color: Color(0xFFE74C3C), shape: BoxShape.circle));
+        width: 12,
+        height: 12,
+        decoration: const BoxDecoration(color: Color(0xFFE74C3C), shape: BoxShape.circle));
     if (reduce) return dot;
     return FadeTransition(opacity: Tween(begin: 0.35, end: 1.0).animate(_c), child: dot);
   }
@@ -930,8 +1600,17 @@ class CoopScreen extends ConsumerWidget {
     }
     final picked = await showModalBottomSheet<Map<String, dynamic>>(
       context: context,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(26))),
       builder: (ctx) => SafeArea(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
+          const SizedBox(height: 14),
+          Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                  color: const Color(0xFFE1E3EE), borderRadius: BorderRadius.circular(2))),
           Padding(
             padding: const EdgeInsets.all(16),
             child: Text(l10n.convCoopWith,
@@ -939,24 +1618,33 @@ class CoopScreen extends ConsumerWidget {
           ),
           for (final f in friends)
             ListTile(
-              leading: CircleAvatar(
-                  backgroundColor: _hex((f['avatar_color'] ?? '#6C5CE7').toString()),
-                  child: Text((f['name'] ?? '?').toString().isNotEmpty
-                      ? (f['name']).toString()[0].toUpperCase()
-                      : '?',
-                      style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w900))),
+              leading: _Squircle(
+                  color: (f['avatar_color'] ?? '#6C5CE7').toString(),
+                  letter: (f['name'] ?? '?').toString(),
+                  size: 42),
               title: Text((f['name'] ?? '').toString(),
                   style: const TextStyle(fontWeight: FontWeight.w800)),
+              trailing: const Icon(Icons.chevron_right_rounded, color: AppColors.primary),
               onTap: () => Navigator.of(ctx).pop(Map<String, dynamic>.from(f as Map)),
             ),
+          const SizedBox(height: 10),
         ]),
       ),
     );
     if (picked == null || !context.mounted) return;
     final goal = await showModalBottomSheet<int>(
       context: context,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(26))),
       builder: (ctx) => SafeArea(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
+          const SizedBox(height: 14),
+          Container(
+              width: 40,
+              height: 4,
+              decoration: BoxDecoration(
+                  color: const Color(0xFFE1E3EE), borderRadius: BorderRadius.circular(2))),
           Padding(
             padding: const EdgeInsets.all(16),
             child: Text(l10n.convCoopPickGoal,
@@ -964,18 +1652,25 @@ class CoopScreen extends ConsumerWidget {
           ),
           for (final xp in const [100, 300, 500])
             ListTile(
-              leading: const Icon(Icons.bolt_rounded, color: AppColors.streak),
-              title: Text('$xp XP', style: const TextStyle(fontWeight: FontWeight.w800)),
+              leading: Container(
+                width: 42,
+                height: 42,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                    color: const Color(0xFFFFF0E0), borderRadius: BorderRadius.circular(13)),
+                child: const Icon(Icons.bolt_rounded, color: AppColors.streak),
+              ),
+              title: Text('$xp XP', style: const TextStyle(fontWeight: FontWeight.w900)),
+              trailing: const Icon(Icons.chevron_right_rounded, color: AppColors.primary),
               onTap: () => Navigator.of(ctx).pop(xp),
             ),
+          const SizedBox(height: 10),
         ]),
       ),
     );
     if (goal == null) return;
     try {
-      await ref
-          .read(progressRepositoryProvider)
-          .createCoop(picked['user_id'].toString(), goal);
+      await ref.read(progressRepositoryProvider).createCoop(picked['user_id'].toString(), goal);
       ref.invalidate(coopsProvider);
       messenger.showSnackBar(SnackBar(content: Text(l10n.convCoopInvitePending)));
     } catch (_) {
@@ -989,11 +1684,19 @@ class CoopScreen extends ConsumerWidget {
     final coops = ref.watch(coopsProvider);
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: AppBar(title: Text(l10n.convCoopTitle)),
+      appBar: AppBar(
+        backgroundColor: AppColors.background,
+        surfaceTintColor: Colors.transparent,
+        title: Text(l10n.convCoopTitle,
+            style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
+      ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _createFlow(context, ref),
+        backgroundColor: AppColors.primary,
+        foregroundColor: Colors.white,
         icon: const Icon(Icons.add_rounded),
-        label: Text(l10n.convCoopStart),
+        label: Text(l10n.convCoopStart,
+            style: const TextStyle(fontWeight: FontWeight.w900)),
       ),
       body: SafeArea(
         child: ResponsiveCenter(
@@ -1001,12 +1704,14 @@ class CoopScreen extends ConsumerWidget {
           child: RefreshIndicator(
             onRefresh: () async => ref.invalidate(coopsProvider),
             child: coops.when(
-              loading: () => const Center(child: CircularProgressIndicator()),
-              error: (_, _) => _ErrorRetry(onRetry: () => ref.invalidate(coopsProvider)),
+              loading: () =>
+                  const Center(child: CircularProgressIndicator(color: AppColors.primary)),
+              error: (_, _) => Center(
+                  child: _ErrorRetry(onRetry: () => ref.invalidate(coopsProvider))),
               data: (list) {
                 if (list.isEmpty) {
                   return ListView(children: [
-                    const SizedBox(height: 60),
+                    const SizedBox(height: 56),
                     const Center(child: ParrotMascot(size: 100, mood: MascotMood.encourage)),
                     const SizedBox(height: 12),
                     Padding(
@@ -1014,20 +1719,26 @@ class CoopScreen extends ConsumerWidget {
                       child: Text(l10n.convCoopEmpty,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
-                              fontSize: 15, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                              fontSize: 15,
+                              fontWeight: FontWeight.w700,
+                              height: 1.4,
+                              color: AppColors.textMuted)),
                     ),
                   ]);
                 }
                 return ListView(
-                  padding: const EdgeInsets.fromLTRB(16, 16, 16, 90),
+                  padding: const EdgeInsets.fromLTRB(16, 10, 16, 96),
                   children: [
                     Text(l10n.convCoopSubtitle,
                         style: const TextStyle(
-                            fontSize: 13.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
-                    const SizedBox(height: 12),
+                            fontSize: 13.5,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.textMuted)),
+                    const SizedBox(height: 14),
                     for (final c in list)
                       _CoopCard(
                         coop: c,
+                        youLabel: l10n.convCoopYou,
                         onAccept: () => _respond(ref, c['coop_id'].toString(), true),
                         onReject: () => _respond(ref, c['coop_id'].toString(), false),
                       ),
@@ -1043,13 +1754,19 @@ class CoopScreen extends ConsumerWidget {
 }
 
 class _CoopCard extends StatelessWidget {
-  const _CoopCard({required this.coop, required this.onAccept, required this.onReject});
+  const _CoopCard(
+      {required this.coop,
+      required this.youLabel,
+      required this.onAccept,
+      required this.onReject});
   final Map<String, dynamic> coop;
+  final String youLabel;
   final VoidCallback onAccept, onReject;
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final reduce = MediaQuery.disableAnimationsOf(context);
     final name = (coop['partner_name'] ?? '').toString();
     final color = (coop['partner_color'] ?? '#6C5CE7').toString();
     final status = (coop['status'] ?? '').toString();
@@ -1079,85 +1796,122 @@ class _CoopCard extends StatelessWidget {
       badgeText = l10n.convCoopActive;
     }
 
-    return Container(
+    final card = Container(
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(18),
-        border: Border.all(
-            color: completed ? AppColors.success : const Color(0xFFE5E7F1),
-            width: completed ? 2.5 : 2),
-        boxShadow: const [BoxShadow(color: Color(0x11000000), blurRadius: 14, offset: Offset(0, 6))],
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+              color: completed ? const Color(0xFFCBEEDB) : const Color(0xFFECEDF6),
+              offset: const Offset(0, 5),
+              blurRadius: 0),
+          const BoxShadow(color: Color(0x143C3778), offset: Offset(0, 12), blurRadius: 22),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(children: [
-            CircleAvatar(
-                backgroundColor: _hex(color),
-                child: Text(name.isNotEmpty ? name[0].toUpperCase() : '?',
-                    style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w900))),
+            _PairArt(youLabel: youLabel, partnerColor: color, partnerLetter: name.isNotEmpty ? name : '?'),
             const SizedBox(width: 12),
             Expanded(
-              child: Text(name, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w900)),
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              decoration: BoxDecoration(
-                  color: badgeColor.withValues(alpha: 0.14),
-                  borderRadius: BorderRadius.circular(20)),
-              child: Text(badgeText,
-                  style: TextStyle(fontSize: 11.5, fontWeight: FontWeight.w900, color: badgeColor)),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text(name,
+                    style: const TextStyle(fontSize: 15.5, fontWeight: FontWeight.w900)),
+                const SizedBox(height: 5),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
+                  decoration: BoxDecoration(
+                      color: badgeColor.withValues(alpha: 0.13),
+                      borderRadius: BorderRadius.circular(9)),
+                  child: Text(badgeText,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                          fontSize: 11, fontWeight: FontWeight.w900, color: badgeColor)),
+                ),
+              ]),
             ),
           ]),
           if (completed) ...[
-            const SizedBox(height: 12),
-            Row(children: [
-              const Text('🎉', style: TextStyle(fontSize: 22)),
-              const SizedBox(width: 8),
-              Text('+$reward 🪙',
-                  style: const TextStyle(
-                      fontSize: 16, fontWeight: FontWeight.w900, color: AppColors.gold)),
-            ]),
+            const SizedBox(height: 13),
+            JzSheen(
+              borderRadius: BorderRadius.circular(13),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                      colors: [AppColors.goldCtaTop, AppColors.goldCtaBottom]),
+                  borderRadius: BorderRadius.circular(13),
+                ),
+                child: Text('🎉  +$reward 🪙',
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.w900, color: Color(0xFF5B3A00))),
+              ),
+            ),
           ] else if (invited && !iCreated) ...[
             const SizedBox(height: 8),
             Text(l10n.convCoopProgress(0, target),
-                style: const TextStyle(fontWeight: FontWeight.w800, color: AppColors.textMuted)),
+                style:
+                    const TextStyle(fontWeight: FontWeight.w800, color: AppColors.textMuted)),
             const SizedBox(height: 12),
             Row(children: [
-              Expanded(
-                child: OutlinedButton(onPressed: onReject, child: Text(l10n.convCoopReject)),
-              ),
+              _RoundAction(
+                  icon: Icons.close_rounded,
+                  color: const Color(0xFFB3B8CC),
+                  depth: const Color(0xFF9AA0B8),
+                  onTap: onReject),
               const SizedBox(width: 10),
               Expanded(
-                flex: 2,
-                child: FilledButton(onPressed: onAccept, child: Text(l10n.convCoopAccept)),
+                child: PrimaryButton(
+                    label: l10n.convCoopAccept,
+                    color: AppColors.success,
+                    depthColor: AppColors.successDark,
+                    expand: true,
+                    onPressed: onAccept),
               ),
             ]),
           ] else ...[
-            const SizedBox(height: 12),
+            const SizedBox(height: 13),
+            // Barra de progreso VIVA (anima hasta el valor real al construir).
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: LinearProgressIndicator(
-                value: pct,
-                minHeight: 12,
-                backgroundColor: const Color(0xFFEDEEF6),
-                valueColor: AlwaysStoppedAnimation(
-                    expired ? AppColors.textMuted : AppColors.streak),
+              child: TweenAnimationBuilder<double>(
+                tween: Tween(begin: 0, end: pct),
+                duration: reduce ? Duration.zero : const Duration(milliseconds: 650),
+                curve: Curves.easeOutCubic,
+                builder: (context, v, _) => LinearProgressIndicator(
+                  value: v,
+                  minHeight: 12,
+                  backgroundColor: const Color(0xFFEDEEF6),
+                  valueColor: AlwaysStoppedAnimation(
+                      expired ? const Color(0xFFB3B8CC) : AppColors.streak),
+                ),
               ),
             ),
             const SizedBox(height: 8),
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
               Text(l10n.convCoopProgress(progress, target),
-                  style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
-              Text(l10n.convCoopReward(reward),
                   style: const TextStyle(
-                      fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                      fontSize: 13.5, fontWeight: FontWeight.w900, color: AppColors.text)),
+              Flexible(
+                child: Text(l10n.convCoopReward(reward),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                        fontSize: 11.5,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.textMuted)),
+              ),
             ]),
           ],
         ],
       ),
     );
+    return card;
   }
 }

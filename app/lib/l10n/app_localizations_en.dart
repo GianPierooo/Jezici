@@ -2480,7 +2480,19 @@ class AppLocalizationsEn extends AppLocalizations {
   String get convSendCorrection => 'Send correction';
 
   @override
-  String get convVoiceRecording => 'Recording… release to send';
+  String get convVoiceRecording => 'Recording';
+
+  @override
+  String get convTapToChat => 'Tap to chat';
+
+  @override
+  String get convCopyMyCode => 'Copy my code';
+
+  @override
+  String get convCorrectionLabel => 'Correction';
+
+  @override
+  String get convCoopYou => 'You';
 
   @override
   String get convVoiceSend => 'Record a voice note';

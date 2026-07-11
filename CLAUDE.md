@@ -5,6 +5,34 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-11**.
 
+## REDISEÑO UI de CONVERSAR + AMIGOS/CHAT/CO-OP ✅ (2026-07-11 · solo cliente)
+Feedback real de testers: "está raro y feo" — rompía la estética. **Causa concreta (PASO 0):** la sección
+social usaba **Material por defecto** (ListTile, FilledButton, AppBar plano, cajas blancas con borde gris
+2px) sin el lenguaje de la casa; y el hub apilaba DOS bloques violeta idénticos (Amigos + banner) arriba.
+Rehecho `friends.dart` (capa VISUAL + UX; **cero cambios de lógica social/RLS/moderación**):
+- **Lenguaje de la casa en todo:** `_LipCard` (labio duro `0 5px 0 #ECEDF6` + sombra suave + hundido 3px al
+  tocar), avatares **cuadrado-redondeados con gradiente** (54px r18 del mockup), chips, CTA 3D, Nunito, Jezi.
+- **HUB:** entrada de Amigos con **pila de avatares REALES** (hasta 3) + badge rojo de solicitudes pendientes;
+  **tarjeta CO-OP del mockup 1:1** (gradiente #EDEBFF→#F3F0FF, "Tú"+pareja solapados con corazón dorado) —
+  el "reto en pareja" del mockup ya es funcionalidad REAL (mig 148). Jerarquía: primero lo accionable; el
+  banner "en vivo · próximamente" (Ola 3) se movió AL FINAL.
+- **AMIGOS fácil:** **código HERO** (gradiente violeta + Jezi + código en pill + botón copiar que **muta a ✓
+  verde** 1.8s), agregar por código en una fila obvia (icono persona+, submit con Enter), solicitudes con
+  **acciones circulares ✓/✕ con labio**, lista con racha 🔥 pulsante en chip naranja + "Toca para chatear",
+  vacío con Jezi + CTA "Copiar mi código", error con reintentar.
+- **CHAT moderno:** app bar con avatar+nombre+racha, **burbujas con cola y hora** (mía = gradiente violeta),
+  **corrección INLINE** (tarjeta verde con lápiz dentro de la burbuja — ANTES las correcciones NO se veían en
+  el chat: el stream Realtime es solo `messages`; ahora se fusiona con `list_messages` al abrir/corregir/llegar
+  mensajes), **nota de voz con waveform** determinista que respira al sonar, **composer pill** con 🎤↔➤
+  animado (AnimatedSwitcher) y barra de grabación con punto rojo pulsante + contador de segundos, entrada de
+  mensajes con fade+slide sutil. Reportar/bloquear en menú ⋮ con iconos.
+- **CO-OP:** tarjetas con pareja+corazón, barra de progreso **animada** al valor real, banner dorado
+  **JzSheen + 🎉 +N 🪙** al completar; sheets de crear (amigo → meta XP) con estilo de la casa.
+- Reduce-motion-aware TODO; i18n es/en/pt (+5 claves: convTapToChat/convCopyMyCode/convCorrectionLabel/
+  convCoopYou + copy de grabación); responsive (ResponsiveCenter 560/640). Verificado con **goldens temporales**
+  (hub/amigos/co-op/chat renderizan el lenguaje correcto; borrados). Verde: analyze 0 (CI-exact) · test
+  **149/149** (+3 friends_ui: hero+vacío con Jezi, racha 🔥, pt sin español) · build web OK.
+
 ## CONVERSAR · OLA 1 COMPLETA + ABIERTA AL PÚBLICO ✅ LIVE (mig 148 · 2026-07-11)
 Gian: **el abogado APROBÓ los términos UGC/social** → se ABRE lo asíncrono. Decisiones: **18+ solo ·
 sin tutores · SIN IA · solo Supabase.** Sobre los cimientos P1 (mig 146) + Ola 1 cerrada (mig 147):
