@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/foundation.dart' show kIsWeb, Uint8List;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../models/achievement_models.dart';
@@ -614,6 +614,48 @@ class ProgressRepository {
         .eq('connection_id', connectionId)
         .order('created_at')
         .map((rows) => rows.map((e) => Map<String, dynamic>.from(e)).toList());
+  }
+
+  // ── Co-op (retos en pareja) ─────────────────────────────────────────────
+  Future<List<Map<String, dynamic>>> listCoops() async {
+    final res = await _client.rpc('list_coops');
+    return (res as List).map((e) => Map<String, dynamic>.from(e as Map)).toList();
+  }
+
+  Future<Map<String, dynamic>> createCoop(String friendId, int targetXp) async =>
+      Map<String, dynamic>.from(await _client.rpc('create_coop',
+          params: {'p_friend': friendId, 'p_target_xp': targetXp}) as Map);
+
+  Future<void> respondCoop(String coopId, bool accept) async {
+    await _client.rpc('respond_coop', params: {'p_coop_id': coopId, 'p_accept': accept});
+  }
+
+  // ── Notas de voz ────────────────────────────────────────────────────────
+  /// Sube el audio grabado al bucket privado (carpeta de la conexión) y crea el
+  /// mensaje kind=voice. Devuelve el path guardado.
+  Future<String> sendVoiceNote(
+      String connectionId, Uint8List bytes, String ext) async {
+    final path = '$connectionId/${DateTime.now().millisecondsSinceEpoch}.$ext';
+    final mime = ext == 'webm'
+        ? 'audio/webm'
+        : ext == 'ogg'
+            ? 'audio/ogg'
+            : ext == 'mp4' || ext == 'm4a'
+                ? 'audio/mp4'
+                : 'audio/wav';
+    await _client.storage.from('voice-notes').uploadBinary(
+          path,
+          bytes,
+          fileOptions: FileOptions(contentType: mime, upsert: false),
+        );
+    await _client.rpc('send_voice_message',
+        params: {'p_connection_id': connectionId, 'p_path': path});
+    return path;
+  }
+
+  /// URL firmada temporal para reproducir una nota de voz (bucket privado).
+  Future<String> signedVoiceUrl(String path) async {
+    return _client.storage.from('voice-notes').createSignedUrl(path, 3600);
   }
 
   /// Guarda un intento de conversación en solitario (gancho Fase 2).

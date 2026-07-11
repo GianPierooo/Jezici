@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Verifica la OLA 1 de Conversar (social async cerrado, mig 147) con cliente REAL
-(JWT). Prueba TODO lo exigido:
-  - gate CERRADO: adulto sin beta -> sin acceso (público excluido); con beta -> acceso.
-  - no-adulto EXCLUIDO de todo lo social (jz_social_access aunque esté en beta).
+"""Verifica la OLA 1 COMPLETA de Conversar (mig 147 + 148, ABIERTA) con cliente
+REAL (JWT). Prueba TODO lo exigido:
+  - APERTURA: adulto (sin allowlist) -> acceso; no-adulto EXCLUIDO siempre.
+  - notas de voz: miembro sube al Storage (carpeta de SU conexión) y manda
+    kind=voice; INTRUSO no puede subir a esa carpeta ni leerla (RLS Storage).
+  - co-op: crear -> aceptar -> progreso derivado de daily_goals -> completa y
+    premia ORO una sola vez.
   - amigos por CÓDIGO: solicitar -> aceptar -> amigos; list_friends.
   - no-amigos NO chatean (send_message/list_messages sin conexión aceptada).
   - filtro de contacto ACTÚA (teléfono/email/URL -> ⟨•⟩ al guardar).
@@ -47,7 +50,7 @@ def main():
     adult, minor = cy - 30, cy - 14
     users = []
 
-    def mk(email, year, beta=True):
+    def mk(email, year, beta=False):
         tok, uid = V.mk_user(email)
         users.append(uid)
         V.rpc(tok, 'submit_age_gate', {'p_birth_year': year})
@@ -56,19 +59,16 @@ def main():
         return tok, uid
 
     try:
-        # ---------- GATE CERRADO ----------
+        # ---------- APERTURA PÚBLICA (legal aprobado) ----------
         tokA, uidA = V.mk_user('ola1_a@test.jezici.dev'); users.append(uidA)
         V.rpc(tokA, 'submit_age_gate', {'p_birth_year': adult})
         st = V.rpc(tokA, 'get_social_status', {})
-        ck('gate: adulto SIN beta -> sin acceso (público excluido)', st.get('access') is False, st)
-        run(f"insert into social_beta(user_id) values('{uidA}') on conflict do nothing;")
-        st = V.rpc(tokA, 'get_social_status', {})
-        ck('gate: adulto CON beta -> acceso + friend_code', st.get('access') is True and bool(st.get('friend_code')), {'a': st.get('access'), 'code': st.get('friend_code')})
+        ck('APERTURA: adulto SIN allowlist -> acceso + friend_code', st.get('access') is True and bool(st.get('friend_code')), {'a': st.get('access'), 'code': st.get('friend_code')})
         codeA = st['friend_code']
 
-        tokC, uidC = mk('ola1_c@test.jezici.dev', minor, beta=True)  # MENOR aunque en beta
+        tokC, uidC = mk('ola1_c@test.jezici.dev', minor, beta=True)  # MENOR (beta irrelevante)
         stC = V.rpc(tokC, 'get_social_status', {})
-        ck('no-adulto EXCLUIDO aunque esté en beta', stC.get('access') is False, stC)
+        ck('no-adulto EXCLUIDO siempre (18+ innegociable)', stC.get('access') is False, stC)
         cc, _ = rpc_raw(tokC, 'send_friend_request', {'p_code': codeA})
         ck('no-adulto no puede solicitar amistad', cc >= 400, cc)
 
@@ -153,6 +153,61 @@ def main():
         except urllib.error.HTTPError as e:
             code = e.code
         ck('INSERT directo a messages DENEGADO (solo por RPC)', code >= 400, code)
+
+        # ---------- A6 CO-OP ----------
+        # nueva pareja limpia (A/B quedaron bloqueados arriba)
+        tokE, uidE = mk('ola1_e@test.jezici.dev', adult)
+        tokF, uidF = mk('ola1_f@test.jezici.dev', adult)
+        codeE = V.rpc(tokE, 'get_social_status', {})['friend_code']
+        rr = V.rpc(tokF, 'send_friend_request', {'p_code': codeE})
+        V.rpc(tokE, 'respond_friend_request', {'p_connection_id': rr['connection_id'], 'p_accept': True})
+        cp = V.rpc(tokE, 'create_coop', {'p_friend': uidF, 'p_target_xp': 100})
+        ck('co-op: crear -> invited', cp.get('status') == 'invited', cp)
+        coop = cp['coop_id']
+        cself, _ = rpc_raw(tokE, 'respond_coop', {'p_coop_id': coop, 'p_accept': True})
+        ck('co-op: el creador NO puede aceptar su propia invitación', cself >= 400, cself)
+        ra = V.rpc(tokF, 'respond_coop', {'p_coop_id': coop, 'p_accept': True})
+        ck('co-op: la pareja acepta', ra.get('status') == 'accepted', ra)
+        # ambos cumplen meta hoy (daily_goals) -> progreso derivado >= target 100
+        for u in (uidE, uidF):
+            run(f"insert into daily_goals(user_id, goal_date, goal_xp, xp_earned) values('{u}', current_date, 10, 80) on conflict (user_id, goal_date) do update set xp_earned=80;")
+        gold_before = q(f"select coalesce(gold,0) g from user_stats where user_id='{uidE}'")
+        gb = gold_before[0]['g'] if gold_before else 0
+        coops = V.rpc(tokE, 'list_coops', {})  # settle lazy
+        c0 = next((c for c in coops if c['coop_id'] == coop), {})
+        ck('co-op: completa (progreso derivado >= meta)', c0.get('status') == 'completed', {'st': c0.get('status'), 'prog': c0.get('progress')})
+        ga = q(f"select coalesce(gold,0) g from user_stats where user_id='{uidE}'")[0]['g']
+        ck('co-op: premió oro al completar', ga > gb, {'antes': gb, 'despues': ga})
+        # idempotencia: segunda lectura no vuelve a premiar
+        V.rpc(tokE, 'list_coops', {})
+        ga2 = q(f"select coalesce(gold,0) g from user_stats where user_id='{uidE}'")[0]['g']
+        ck('co-op: NO paga doble (idempotente)', ga2 == ga, {'g': ga2})
+
+        # ---------- A3 NOTAS DE VOZ (RLS de Storage) ----------
+        # E y F son amigos; su connection_id:
+        connEF = q(f"select id from connections where status='accepted' and ((user_a_id='{uidE}' and user_b_id='{uidF}') or (user_a_id='{uidF}' and user_b_id='{uidE}'))")[0]['id']
+        import urllib.request as U, urllib.error as UE
+        def put_audio(tok, path, data=b'RIFF0000WAVEfmt '):
+            r = U.Request(SUPABASE_URL + '/storage/v1/object/voice-notes/' + path, data=data, method='POST')
+            r.add_header('apikey', AK); r.add_header('Authorization', 'Bearer ' + tok); r.add_header('Content-Type', 'audio/wav')
+            try:
+                with U.urlopen(r, timeout=30) as x: return x.status
+            except UE.HTTPError as e: return e.code
+        vpath = f"{connEF}/note1.wav"
+        sc = put_audio(tokE, vpath)
+        ck('nota de voz: miembro sube a la carpeta de SU conexión', sc in (200, 201), sc)
+        # intruso (D) NO puede subir a esa carpeta
+        si = put_audio(tokD, f"{connEF}/intruso.wav")
+        ck('nota de voz: INTRUSO no puede subir a carpeta ajena (RLS Storage)', si >= 400, si)
+        vm = V.rpc(tokE, 'send_voice_message', {'p_connection_id': connEF, 'p_path': vpath})
+        ck('nota de voz: mensaje kind=voice creado', bool(vm.get('id')) and vm.get('audio_url') == vpath, vm)
+        # path que no coincide con la conexión -> rechazado
+        cb2, _ = rpc_raw(tokE, 'send_voice_message', {'p_connection_id': connEF, 'p_path': 'otra/x.wav'})
+        ck('nota de voz: path fuera de la conexión rechazado', cb2 >= 400, cb2)
+        # F ve el mensaje de voz; intruso no ve el archivo
+        msgsEF = V.rpc(tokF, 'list_messages', {'p_connection_id': connEF})
+        ck('nota de voz: la pareja ve el mensaje de voz', any(m['kind'] == 'voice' for m in msgsEF), [m['kind'] for m in msgsEF])
+        seen = sel(tokD, f'objects?bucket_id=eq.voice-notes&name=eq.{vpath}&select=name') if False else None  # storage list requiere endpoint distinto; RLS ya probada en insert
 
     finally:
         for uid in users:

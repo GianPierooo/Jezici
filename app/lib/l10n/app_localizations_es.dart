@@ -2482,6 +2482,99 @@ class AppLocalizationsEs extends AppLocalizations {
   String get convSendCorrection => 'Enviar corrección';
 
   @override
+  String get convVoiceRecording => 'Grabando… suelta para enviar';
+
+  @override
+  String get convVoiceSend => 'Grabar nota de voz';
+
+  @override
+  String get convVoiceStop => 'Enviar';
+
+  @override
+  String get convVoiceCancel => 'Cancelar';
+
+  @override
+  String get convVoiceNote => 'Nota de voz';
+
+  @override
+  String get convVoiceMicDenied =>
+      'Activa el micrófono para grabar notas de voz.';
+
+  @override
+  String get convVoiceMicUnsupported =>
+      'Tu navegador no permite grabar audio. Usa Chrome o Edge.';
+
+  @override
+  String get convVoiceSendError => 'No se pudo enviar la nota de voz.';
+
+  @override
+  String get convVoicePlayError => 'No se pudo reproducir la nota.';
+
+  @override
+  String get convCoopTitle => 'Reto en pareja';
+
+  @override
+  String get convCoopSubtitle => 'Sumen XP juntos y ganen oro los dos.';
+
+  @override
+  String get convCoopStart => 'Crear reto';
+
+  @override
+  String get convCoopCreate => 'Invitar a un reto';
+
+  @override
+  String get convCoopInvitePending => 'Invitación enviada';
+
+  @override
+  String get convCoopInviteReceived => 'Te invitó a un reto';
+
+  @override
+  String get convCoopAccept => 'Aceptar reto';
+
+  @override
+  String get convCoopReject => 'Rechazar';
+
+  @override
+  String get convCoopActive => 'Reto activo';
+
+  @override
+  String get convCoopCompleted => '¡Reto completado!';
+
+  @override
+  String get convCoopExpired => 'Reto expirado';
+
+  @override
+  String convCoopProgress(int done, int target) {
+    return '$done / $target XP';
+  }
+
+  @override
+  String convCoopReward(int gold) {
+    return '+$gold oro para ambos al completar';
+  }
+
+  @override
+  String get convCoopPickGoal => 'Meta de XP en equipo';
+
+  @override
+  String get convCoopEmpty => 'Aún no hay retos. Elige un amigo y creen uno.';
+
+  @override
+  String get convCoopWith => '¿Con quién quieres el reto?';
+
+  @override
+  String get convCoopNoFriends => 'Agrega un amigo primero para crear un reto.';
+
+  @override
+  String get convCoopError => 'No se pudo crear el reto.';
+
+  @override
+  String get convCoopEntry => 'Retos en pareja';
+
+  @override
+  String get convCoopEntrySub => 'Sumen XP y ganen oro juntos';
+
+  @override
   String get profileEditBirthday => 'Cumpleaños (día y mes, opcional)';
 
   @override

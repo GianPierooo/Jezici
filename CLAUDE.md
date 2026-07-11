@@ -3,7 +3,39 @@
 > Contexto de arranque para cualquier sesión. **No** es copia de los 21 `.md` de
 > diseño (eso es la carpeta raíz `Jezici_*.md` + `docs/`). Aquí va el ESTADO REAL,
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
-> Última actualización: **2026-07-10**.
+> Última actualización: **2026-07-11**.
+
+## CONVERSAR · OLA 1 COMPLETA + ABIERTA AL PÚBLICO ✅ LIVE (mig 148 · 2026-07-11)
+Gian: **el abogado APROBÓ los términos UGC/social** → se ABRE lo asíncrono. Decisiones: **18+ solo ·
+sin tutores · SIN IA · solo Supabase.** Sobre los cimientos P1 (mig 146) + Ola 1 cerrada (mig 147):
+- **(B) APERTURA:** `jz_social_access(uid)` pasó de `adulto AND (admin OR social_beta)` a **SOLO
+  `jz_is_adult_user(uid)`** → **todo adulto verificado (18+) accede a Conversar social**; los menores
+  siguen EXCLUIDOS (age gate innegociable). `social_beta` queda como tabla inerte (ya no gatea).
+- **(A6) CO-OP (retos en pareja):** `create_coop`/`respond_coop`/`list_coops` sobre `coop_challenges`.
+  **Progreso DERIVADO de `daily_goals` de AMBOS** (anti-trampa: nadie "avanza" a mano; se suma el XP real
+  de los dos desde la aceptación) → al llegar a la meta, `list_coops` hace **settle LAZY** e insertaba oro a
+  los dos **UNA sola vez** (el `update ... where status='active'` es el candado → idempotente). Solo entre
+  amigos aceptados no bloqueados; rate-limit 10 creados/día; vence a 7 días.
+- **(A3) NOTAS DE VOZ:** bucket **privado `voice-notes`** (2MB, mime audio) con **RLS de Storage**: subir/leer
+  solo miembros de la conexión (carpeta = `<connection_id>/...`), el bloqueo corta ambas direcciones; SIN
+  update/delete de usuario (**retención** para investigar reportes). `send_voice_message(conn, path)` valida
+  membresía+aceptada+no-bloqueo+path-de-la-conexión+archivo-existe+rate-limit → mensaje `kind='voice'`.
+  **Cliente web:** grabador `voice_recorder_web.dart` (MediaRecorder + getUserMedia, mismo permiso robusto que
+  el reconocedor; io stub 'unsupported') → sube al Storage → reproduce con **URL firmada** (bucket privado).
+- **(F5/F7 postales/apuesta) RE-ENCOLADAS** (## Cola): incrementos sobre A3/economía; no se enviaron a medias.
+- **(C) UI dinámica:** hub `friends.dart` reescrito — tarjetas con **gradiente violeta + icon-tile**, entrada a
+  co-op, **racha con 🔥 pulsante**, chat con **notas de voz** (mic↔enviar en el composer, punto de grabación
+  animado, burbuja de voz que firma+reproduce), **corrección** long-press, **reportar/bloquear** en el menú,
+  estados vacío/carga/error con guacamayo, **co-op** con barra de progreso + celebración al completar. Todo
+  **reduce-motion-aware**, responsive, i18n **es/en/pt** (40+ claves nuevas convVoice*/convCoop*). El banner
+  "en vivo · próximamente" se conserva SOLO para el audio en vivo/salas (**Ola 3**); lo asíncrono ya es live.
+- **Verificado cliente REAL (`verify_conversar_ola1.py`, JWT) TODO VERDE (34 checks):** apertura (adulto sin
+  allowlist → acceso; menor excluido siempre), amigos por código, no-amigos no chatean, filtro de contacto
+  (tel/email/URL/@→⟨•⟩), corrección, racha, rate-limit, **bloqueo corta RLS ambas direcciones**, insert directo
+  denegado (403); **co-op** crear→aceptar→completa(progreso derivado 160≥100)→premia oro→**no paga doble**;
+  **notas de voz** miembro sube a su carpeta / **intruso RLS-denegado (400)** / mensaje kind=voice / path fuera
+  de conexión rechazado / la pareja lo ve. Verde: analyze 0 (CI-exact) · test 146/146 · build web OK.
+
 
 ## CONVERSAR OLA 1 — social ASÍNCRONO CERRADO (amigos + chat) 🔶 LIVE-CERRADO (mig 147 · 2026-07-11)
 Primera ola social sobre los cimientos P1 (mig 146). Decisiones de Gian: **18+ solo · sin tutores · sin
@@ -980,16 +1012,16 @@ en B2; andamiaje idéntico listo: STAMP `('pt','c1')=…130`, grupo audio `pt-c1
   Cierre: analyze 0, tests verdes, gh run list SUCCESS, deploy READY. Reporta en 1 línea.
 
 ## Cola (retome exacto — orden sugerido)
--2. **CONVERSAR · OLA 1 — restos (retome tras mig 147, A1/A2/A4/A5 ya LIVE-cerrado):**
-   (a) **A3 notas de voz** (misión propia): `messages.kind='voice'`+`audio_url` ya reservado → grabar en
-   web (MediaRecorder, ≤60s) + subir al bucket `audio` (carpeta `voice_notes/<id>`), RLS de Storage por
-   miembro de la conexión, retención para reporte; RPC `send_voice_message(connection_id, audio_url)` +
-   render en ChatScreen (AudioPlayButton). (b) **A6 co-op** (server+cliente): `create_coop`/`accept_coop`/
-   `advance_coop` sobre `coop_challenges` + tarjeta de meta compartida en FriendsScreen. (c) **F5 postales
-   de voz** (sobre A3) y **F7 apuesta con amigo** (reusa `wagers`). Reusar `jz_social_access`/rate limits/
-   RLS de mig 147. Sigue **cerrado** (`social_beta`); apertura = legal.
-   ⚠️ **BLOQUEO de Gian (no código): NO ABRIR al público hasta TÉRMINOS/PRIVACIDAD revisados por abogado**
-   para UGC/social/menores. Todo se construye y verifica en privado (allowlist); la apertura espera al legal.
+-2. **CONVERSAR · OLA 1 ✅ COMPLETA + ABIERTA (mig 148, 2026-07-11).** A3 notas de voz + A6 co-op HECHOS;
+   `jz_social_access` = solo adulto 18+ (allowlist retirada, legal aprobado). **RE-ENCOLADO de la Ola 1:**
+   (a) **F5 postales de voz** — nota de voz sobre un prompt diario a un amigo (sobre A3: reusar el grabador
+   `voice_recorder_web.dart` + `send_voice_message`; añadir `daily_prompts` + tabla de postal); (b) **F7
+   apuesta con amigo** — stake de oro sobre racha compartida (reusar `coop_challenges` + `gold_transactions`,
+   escrow al crear, pago al ganador; guard anti-doble). **OLA 2 (retos/comunidad async ampliada)** y **OLA 3
+   (audio EN VIVO/salas = LiveKit — banner "próximamente" ya puesto)** siguen pendientes; ver CONVERSAR_FASE2.md.
+   Nota UI: **QR del código** de amigo no se añadió (requiere paquete/asset; el código copiable ya funciona) —
+   opcional a futuro. Purga programada del bucket `voice-notes` (retención → borrado tras N días) = diferido
+   (sin cron hoy; borrado solo service_role).
 -1. **PLACEMENT · 4 HABILIDADES (retome exacto, misión propia — NO enviar a medias):** añadir LISTENING
    y SPEAKING al examen de ubicación en los 6 cursos. Pasos: (a) AUTORAR banco L/S por curso×nivel —
    listening = MC "escucha y elige" con `payload.say` (frase corta calibrada al CEFR) + 3 opciones

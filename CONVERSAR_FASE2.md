@@ -14,6 +14,14 @@
 
 ---
 
+> **ESTADO 2026-07-11 — OLA 1 ✅ COMPLETA Y ABIERTA (mig 146/147/148).** Cimientos P1 (age gate 18+,
+> blocks/mutes/reportes/rate/filtro de contacto), Ola 1 (amigos por código, chat 1:1 Realtime, corrección,
+> racha, **notas de voz** con bucket privado+RLS de Storage, **co-op** con progreso derivado anti-trampa).
+> **Gian: abogado aprobó los términos UGC → ABIERTA al público**: `jz_social_access` = SOLO adulto 18+
+> (menores excluidos). Verificado cliente real (34 checks TODO VERDE). **Pendiente:** F5 postales de voz +
+> F7 apuesta (Ola 1, re-encoladas), **Ola 2** (comunidad async ampliada), **Ola 3** (audio en vivo/salas =
+> LiveKit; banner "próximamente" ya en la app), Ola 4 tutores, Ola 5 IA. Ver `## Cola` de CLAUDE.md.
+
 ## 0. PASO 0 — Estado REAL (censo, no supuestos)
 
 ### 0.1 Qué existe en la BD (introspección directa)

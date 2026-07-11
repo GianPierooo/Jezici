@@ -4247,6 +4247,180 @@ abstract class AppLocalizations {
   /// **'Enviar corrección'**
   String get convSendCorrection;
 
+  /// No description provided for @convVoiceRecording.
+  ///
+  /// In es, this message translates to:
+  /// **'Grabando… suelta para enviar'**
+  String get convVoiceRecording;
+
+  /// No description provided for @convVoiceSend.
+  ///
+  /// In es, this message translates to:
+  /// **'Grabar nota de voz'**
+  String get convVoiceSend;
+
+  /// No description provided for @convVoiceStop.
+  ///
+  /// In es, this message translates to:
+  /// **'Enviar'**
+  String get convVoiceStop;
+
+  /// No description provided for @convVoiceCancel.
+  ///
+  /// In es, this message translates to:
+  /// **'Cancelar'**
+  String get convVoiceCancel;
+
+  /// No description provided for @convVoiceNote.
+  ///
+  /// In es, this message translates to:
+  /// **'Nota de voz'**
+  String get convVoiceNote;
+
+  /// No description provided for @convVoiceMicDenied.
+  ///
+  /// In es, this message translates to:
+  /// **'Activa el micrófono para grabar notas de voz.'**
+  String get convVoiceMicDenied;
+
+  /// No description provided for @convVoiceMicUnsupported.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu navegador no permite grabar audio. Usa Chrome o Edge.'**
+  String get convVoiceMicUnsupported;
+
+  /// No description provided for @convVoiceSendError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo enviar la nota de voz.'**
+  String get convVoiceSendError;
+
+  /// No description provided for @convVoicePlayError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo reproducir la nota.'**
+  String get convVoicePlayError;
+
+  /// No description provided for @convCoopTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Reto en pareja'**
+  String get convCoopTitle;
+
+  /// No description provided for @convCoopSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Sumen XP juntos y ganen oro los dos.'**
+  String get convCoopSubtitle;
+
+  /// No description provided for @convCoopStart.
+  ///
+  /// In es, this message translates to:
+  /// **'Crear reto'**
+  String get convCoopStart;
+
+  /// No description provided for @convCoopCreate.
+  ///
+  /// In es, this message translates to:
+  /// **'Invitar a un reto'**
+  String get convCoopCreate;
+
+  /// No description provided for @convCoopInvitePending.
+  ///
+  /// In es, this message translates to:
+  /// **'Invitación enviada'**
+  String get convCoopInvitePending;
+
+  /// No description provided for @convCoopInviteReceived.
+  ///
+  /// In es, this message translates to:
+  /// **'Te invitó a un reto'**
+  String get convCoopInviteReceived;
+
+  /// No description provided for @convCoopAccept.
+  ///
+  /// In es, this message translates to:
+  /// **'Aceptar reto'**
+  String get convCoopAccept;
+
+  /// No description provided for @convCoopReject.
+  ///
+  /// In es, this message translates to:
+  /// **'Rechazar'**
+  String get convCoopReject;
+
+  /// No description provided for @convCoopActive.
+  ///
+  /// In es, this message translates to:
+  /// **'Reto activo'**
+  String get convCoopActive;
+
+  /// No description provided for @convCoopCompleted.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Reto completado!'**
+  String get convCoopCompleted;
+
+  /// No description provided for @convCoopExpired.
+  ///
+  /// In es, this message translates to:
+  /// **'Reto expirado'**
+  String get convCoopExpired;
+
+  /// No description provided for @convCoopProgress.
+  ///
+  /// In es, this message translates to:
+  /// **'{done} / {target} XP'**
+  String convCoopProgress(int done, int target);
+
+  /// No description provided for @convCoopReward.
+  ///
+  /// In es, this message translates to:
+  /// **'+{gold} oro para ambos al completar'**
+  String convCoopReward(int gold);
+
+  /// No description provided for @convCoopPickGoal.
+  ///
+  /// In es, this message translates to:
+  /// **'Meta de XP en equipo'**
+  String get convCoopPickGoal;
+
+  /// No description provided for @convCoopEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no hay retos. Elige un amigo y creen uno.'**
+  String get convCoopEmpty;
+
+  /// No description provided for @convCoopWith.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Con quién quieres el reto?'**
+  String get convCoopWith;
+
+  /// No description provided for @convCoopNoFriends.
+  ///
+  /// In es, this message translates to:
+  /// **'Agrega un amigo primero para crear un reto.'**
+  String get convCoopNoFriends;
+
+  /// No description provided for @convCoopError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo crear el reto.'**
+  String get convCoopError;
+
+  /// No description provided for @convCoopEntry.
+  ///
+  /// In es, this message translates to:
+  /// **'Retos en pareja'**
+  String get convCoopEntry;
+
+  /// No description provided for @convCoopEntrySub.
+  ///
+  /// In es, this message translates to:
+  /// **'Sumen XP y ganen oro juntos'**
+  String get convCoopEntrySub;
+
   /// No description provided for @profileEditBirthday.
   ///
   /// In es, this message translates to:

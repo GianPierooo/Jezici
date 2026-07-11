@@ -2480,6 +2480,100 @@ class AppLocalizationsEn extends AppLocalizations {
   String get convSendCorrection => 'Send correction';
 
   @override
+  String get convVoiceRecording => 'Recording… release to send';
+
+  @override
+  String get convVoiceSend => 'Record a voice note';
+
+  @override
+  String get convVoiceStop => 'Send';
+
+  @override
+  String get convVoiceCancel => 'Cancel';
+
+  @override
+  String get convVoiceNote => 'Voice note';
+
+  @override
+  String get convVoiceMicDenied =>
+      'Enable the microphone to record voice notes.';
+
+  @override
+  String get convVoiceMicUnsupported =>
+      'Your browser can\'t record audio. Use Chrome or Edge.';
+
+  @override
+  String get convVoiceSendError => 'Couldn\'t send the voice note.';
+
+  @override
+  String get convVoicePlayError => 'Couldn\'t play the note.';
+
+  @override
+  String get convCoopTitle => 'Team challenge';
+
+  @override
+  String get convCoopSubtitle => 'Earn XP together and you both get gold.';
+
+  @override
+  String get convCoopStart => 'Create challenge';
+
+  @override
+  String get convCoopCreate => 'Invite to a challenge';
+
+  @override
+  String get convCoopInvitePending => 'Invitation sent';
+
+  @override
+  String get convCoopInviteReceived => 'invited you to a challenge';
+
+  @override
+  String get convCoopAccept => 'Accept challenge';
+
+  @override
+  String get convCoopReject => 'Decline';
+
+  @override
+  String get convCoopActive => 'Active challenge';
+
+  @override
+  String get convCoopCompleted => 'Challenge completed!';
+
+  @override
+  String get convCoopExpired => 'Challenge expired';
+
+  @override
+  String convCoopProgress(int done, int target) {
+    return '$done / $target XP';
+  }
+
+  @override
+  String convCoopReward(int gold) {
+    return '+$gold gold for both on completion';
+  }
+
+  @override
+  String get convCoopPickGoal => 'Team XP goal';
+
+  @override
+  String get convCoopEmpty =>
+      'No challenges yet. Pick a friend and create one.';
+
+  @override
+  String get convCoopWith => 'Who do you want to challenge?';
+
+  @override
+  String get convCoopNoFriends => 'Add a friend first to create a challenge.';
+
+  @override
+  String get convCoopError => 'Couldn\'t create the challenge.';
+
+  @override
+  String get convCoopEntry => 'Team challenges';
+
+  @override
+  String get convCoopEntrySub => 'Earn XP and gold together';
+
+  @override
   String get profileEditBirthday => 'Birthday (day and month, optional)';
 
   @override
