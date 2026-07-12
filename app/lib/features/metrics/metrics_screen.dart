@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/monitoring/sentry_config.dart';
 import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/providers.dart';
@@ -64,6 +65,8 @@ class MetricsScreen extends ConsumerWidget {
               _OnboardingFunnel(),
               _Engagement(),
               _FeedbackMessages(),
+              // Monitoreo de errores (Sentry) — SOLO admin (esta pantalla lo es).
+              const _SentryTestCard(),
               const SizedBox(height: 8),
               Text('Generado: ${m['generated_at'] ?? ''}',
                   style: const TextStyle(fontSize: 11, color: AppColors.textMuted, fontWeight: FontWeight.w600)),
@@ -352,6 +355,95 @@ class _FeedbackMessages extends ConsumerWidget {
         const SizedBox(height: 6),
         Text((f['message'] as String?) ?? '',
             style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.text)),
+      ]),
+    );
+  }
+}
+
+/// Tarjeta de MONITOREO (Sentry) en Métricas (admin-only). Muestra si Sentry
+/// está activo (hay DSN) y deja al admin disparar un evento de PRUEBA
+/// (excepción CAPTURADA, no un crash) para confirmar que llega al dashboard.
+/// NO existe ningún botón de error visible para el público (esta pantalla es
+/// admin-gated desde Ajustes → "Ver métricas").
+class _SentryTestCard extends StatefulWidget {
+  const _SentryTestCard();
+  @override
+  State<_SentryTestCard> createState() => _SentryTestCardState();
+}
+
+class _SentryTestCardState extends State<_SentryTestCard> {
+  bool _busy = false;
+
+  Future<void> _send() async {
+    if (_busy) return;
+    setState(() => _busy = true);
+    final id = await sentryTestEvent();
+    if (!mounted) return;
+    setState(() => _busy = false);
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(
+        behavior: SnackBarBehavior.floating,
+        content: Text(id == null
+            ? 'No se envió (Sentry apagado o error).'
+            : 'Enviado a Sentry ✓  ($id)'),
+      ));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final on = sentryEnabled;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        const Text('Monitoreo de errores (Sentry)',
+            style: TextStyle(fontSize: 13, fontWeight: FontWeight.w900, color: AppColors.textMuted)),
+        const SizedBox(height: 8),
+        Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(18),
+              boxShadow: const [
+                BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 5), blurRadius: 0)
+              ]),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Row(children: [
+              Icon(on ? Icons.check_circle_rounded : Icons.cloud_off_rounded,
+                  size: 18, color: on ? AppColors.success : AppColors.textMuted),
+              const SizedBox(width: 8),
+              Text(on ? 'Activo (DSN configurado)' : 'Apagado (falta SENTRY_DSN)',
+                  style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.text)),
+            ]),
+            const SizedBox(height: 10),
+            Text(
+              on
+                  ? 'Envía un evento de prueba y búscalo en el dashboard de Sentry.'
+                  : 'Añade --dart-define=SENTRY_DSN=… al Build Command de Vercel para activarlo.',
+              style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: AppColors.textMuted),
+            ),
+            const SizedBox(height: 12),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton.icon(
+                onPressed: on && !_busy ? _send : null,
+                style: FilledButton.styleFrom(
+                  backgroundColor: AppColors.primary,
+                  padding: const EdgeInsets.symmetric(vertical: 12),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+                icon: _busy
+                    ? const SizedBox(
+                        width: 16,
+                        height: 16,
+                        child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
+                    : const Icon(Icons.bug_report_rounded, size: 18),
+                label: const Text('Enviar evento de prueba',
+                    style: TextStyle(fontWeight: FontWeight.w900)),
+              ),
+            ),
+          ]),
+        ),
       ]),
     );
   }

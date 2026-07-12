@@ -5,6 +5,30 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-12**.
 
+## SENTRY — monitoreo de errores en producción, integrado a mano ✅ (2026-07-12 · solo cliente)
+Cero IA. PASO 0: Sentry YA estaba cableado limpio de una sesión previa (`sentry_flutter: ^8.9.0`;
+`core/monitoring/sentry_config.dart` con `runWithSentry` que envuelve `runApp` capturando Flutter+nativo+
+zona; lee `SENTRY_DSN` de `--dart-define`, **DSN vacío → NO-OP** y la app arranca igual; `release=jezici@
+${appBuild()}` = sello JZ_BUILD/commit; `sendDefaultPii=false`; `beforeSend` filtra ruido de red; `sentrySetUser`
+solo id opaco, sin email/PII). **NO se usó el wizard automático.** Ajustes de esta sesión:
+- **Config afinada:** `environment` default `beta`→**`production`**; `tracesSampleRate` `0.1`→**`0.2`** (cuida
+  cuota). El DSN **NO se hardcodea** (sigue viniendo de `--dart-define=SENTRY_DSN`).
+- **Modo de PRUEBA admin-gated:** `sentryTestEvent()` (captura una excepción, **no crashea**, devuelve el id) +
+  tarjeta **"Monitoreo de errores (Sentry)"** en `MetricsScreen` (que ya es **admin-only** vía isAdmin) con
+  estado (Activo/Apagado) y botón "Enviar evento de prueba". **NO hay botón de error visible al público.**
+- **Verificado:** compila **con y sin** `SENTRY_DSN` (sin él → Sentry off, arranca igual; con él → el DSN se
+  inyecta en el bundle, build OK). **El proyecto Sentry de Gian RECIBE eventos**: POST directo a la API de
+  ingesta (`.../api/4511724301058048/store/`) con el DSN → **HTTP 200** (event_id `5a6f85…`). analyze 0 · test
+  **165/165** · build web OK.
+- **⚠️ PARA ACTIVARLO EN PRODUCCIÓN (Gian, dashboard — NO tocar vercel.json):** el DSN entra por
+  `--dart-define`, igual que JZ_BUILD. **NO editar el `buildCommand` de `vercel.json`** (cualquier edición rompe
+  el deploy pre-build). En **Vercel → Project Settings → Build & Development → Build Command** (override del
+  dashboard), añade AL FINAL del comando actual, con VALOR LITERAL (sin `$VAR`):
+  ` --dart-define=SENTRY_DSN=https://6d5f60c2afe2f7429f1ca6159c52f2fc@o4511724290703360.ingest.us.sentry.io/4511724301058048`
+  (opcional `--dart-define=SENTRY_ENV=production`, ya es el default). Push/redeploy → confirmar deploy **READY**
+  (no ERROR instantáneo). Luego: Ajustes → Ver métricas → "Enviar evento de prueba" → aparece en Sentry. El DSN
+  de Sentry NO es secreto (va en clientes), por eso el valor literal es seguro.
+
 ## T6 — legal (correo/logo) + bloque de DONACIONES "Aporta un grano de arena" ✅ LIVE (2026-07-12 · solo cliente)
 Cero IA. Cero migración. NO se tocaron cláusulas legales, ni premium/pagos reales (siguen "próximamente"),
 ni economía. Decisiones de Gian: donaciones con Yape (906517394 + QR), Plin, PayPal, Stripe (cuentas suyas).
