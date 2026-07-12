@@ -1586,6 +1586,9 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get mapJumpToCurrent => 'Ir a mi lección';
+
+  @override
   String mapExamUnit(int num) {
     return 'EXAMEN · UNIDAD $num';
   }

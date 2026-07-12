@@ -929,6 +929,7 @@
       }
     }
   },
+  "mapJumpToCurrent": "Ir a mi lección",
   "mapExamUnit": "EXAMEN · UNIDAD {num}",
   "@mapExamUnit": {
     "placeholders": {

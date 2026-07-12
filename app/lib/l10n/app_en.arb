@@ -486,6 +486,7 @@
   "mapSummitPeak": "⛰ THE SUMMIT",
   "mapUnitBanner": "UNIT {num} · {level}",
   "mapUnitBannerLocked": "UNIT {num} · {level} · 🔒 LOCKED",
+  "mapJumpToCurrent": "Jump to my lesson",
   "mapExamUnit": "EXAM · UNIT {num}",
   "@mapExamUnit": {
     "placeholders": {

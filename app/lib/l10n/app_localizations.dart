@@ -2796,6 +2796,12 @@ abstract class AppLocalizations {
   /// **'UNIDAD {num} · {level} · 🔒 BLOQUEADA'**
   String mapUnitBannerLocked(int num, String level);
 
+  /// No description provided for @mapJumpToCurrent.
+  ///
+  /// In es, this message translates to:
+  /// **'Ir a mi lección'**
+  String get mapJumpToCurrent;
+
   /// No description provided for @mapExamUnit.
   ///
   /// In es, this message translates to:

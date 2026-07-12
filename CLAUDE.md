@@ -3,7 +3,41 @@
 > Contexto de arranque para cualquier sesión. **No** es copia de los 21 `.md` de
 > diseño (eso es la carpeta raíz `Jezici_*.md` + `docs/`). Aquí va el ESTADO REAL,
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
-> Última actualización: **2026-07-11**.
+> Última actualización: **2026-07-12**.
+
+## MAPA · PERF 2ª pasada (VENTANA de widgets) + NUBES fog-of-war + botón de salto ✅ (2026-07-12 · solo cliente)
+Gian seguía sintiendo lag pese al −93% de painters (culling+RepaintBoundary). **Se MIDIÓ antes de tocar**
+(benchmark headless, curso 30 unidades ≈ 27.000px): la causa restante NO eran los painters sino la
+**explosión de WIDGETS/CAPAS** — el Stack construía TODOS los `Positioned` del curso entero: **180 nodos
+(150 círculos + 30 portales) + 30 banners + 185 RepaintBoundary** (cada uno = capa REAL del compositor) =
+**6.451 elementos vivos** → layout+composición **19,50 ms/frame** en scroll (el culling de painters no
+ayuda si el árbol entero existe igual).
+- **F1 · VENTANA de widgets (windowing):** solo se CONSTRUYEN los nodos/banners de la banda visible
+  (scroll ± 700px de margen); listener de scroll recalcula los índices de ventana y hace `setState` SOLO
+  cuando cambian (el margen hace de histéresis → setState esporádico, no por frame). Geometría idéntica
+  (mismas y_i), lógica de progresión intacta (los estados se calculan igual; lo no construido simplemente
+  no se pinta). **Medido (mismo benchmark): 19,50 → 5,14 ms/frame (−74%); nodos 180→8; RepaintBoundaries
+  185→15; elementos 6.451→761.** Acumulado de las 2 pasadas: painters −93% Y árbol −88%.
+- **F2 · NUBES de progreso (fog-of-war, decisión de Gian):** `CloudCoverPainter` (nuevo, scroll-culled
+  como los demás) cubre desde encima de la **frontera** (nodo no-locked más alto **+ 2 nodos teaser**
+  grises que asoman) hasta bajo la cima (el certificado queda visible como meta). Manto blanco-lavanda
+  casi opaco + óvalos interiores deterministas + **borde inferior de pompones** + disolución suave en
+  ambos bordes. **Doble beneficio real:** intriga (se despeja al desbloquear, `TweenAnimationBuilder`
+  950ms easeInOutCubic sobre el borde; reduce-motion → sin animación) y RENDIMIENTO (lo tapado **ni se
+  construye**: nodos con `i > visMax` se saltan y `TrailPainter` ganó `topCutY` → el sendero bajo nubes
+  ni se traza). Verificado visual con golden temporal: borde de pompones fundiéndose al mapa, sendero
+  cortado bajo las nubes, teasers grises asomando. No rompe el culling previo (se combinan).
+- **F3 · Botón de SALTO "Ir a mi lección":** pill flotante blanca (labio suave, flecha ↑/↓ según
+  dirección) abajo-derecha (bottom 108 → no tapa el nav), envuelta en `IgnorePointer`+`AnimatedOpacity`
+  → **solo aparece lejos** del nodo actual (|offset − target| > 1,2 viewports). Tap → `animateTo` 650ms
+  easeInOutCubic al `_targetScroll()` existente (reduce-motion → `jumpTo`). i18n es/en/pt
+  (`mapJumpToCurrent`). El "acceso rápido para repasar unidades pasadas" NO se metió (no había diseño
+  limpio sin ensuciar el mapa) → encolado en ## Cola.
+- **NO se tocó lógica** de desbloqueo/gating/progresión (capa build/paint/scroll). Nota: el mission pedía
+  leer/marcar "JEZICI_Checklist_Maestro (T2)" — ese archivo NO existe en el repo (verificado con ls/grep);
+  T2 queda registrado aquí. Verde: analyze 0 (CI-exact) · test **154/154** (+3 `map_window_test`: ventana
+  construye <25 nodos de 150, nubes presentes con progreso bajo y ausentes con curso dominado, botón
+  aparece lejos y el tap vuelve al nodo actual) · build web OK.
 
 ## CONVERSAR · tarjetas de SITUACIÓN = catálogo a color ✅ (2026-07-11 · solo cliente)
 Feedback: las 6 situaciones de práctica en solitario ("Pedir un café", "Presentarte"…) se veían como
@@ -1156,6 +1190,10 @@ en B2; andamiaje idéntico listo: STAMP `('pt','c1')=…130`, grupo audio `pt-c1
    (e) VERIFICAR: `verify_placement_serious.py` + probe de cobertura (las 4 skills aparecen) en ≥2
    cursos, azar→bajo, personas→su nivel, aislamiento. (f) El RE-READ pedagógico NATIVO de los 349 ítems
    existentes (workflow 6 profesores + 2 adversariales, como los cursos) también pendiente aquí.
+0b. **Mapa · acceso rápido para REPASAR unidades pasadas (encolado 2026-07-12):** el botón de salto
+   "Ir a mi lección" ya existe; falta un acceso limpio para saltar a unidades YA completadas (p.ej.
+   long-press en el botón de salto → sheet con lista de unidades completadas → animateTo a esa unidad,
+   o chips por nivel CEFR). Solo scroll/UI, cero lógica. No se metió a medias en la misión del mapa.
 0. **Pulido UI restante (tras el BARRIDO DE FIDELIDAD 2026-07-10 — Certificado y Premium ya i18n/fieles):**
    (a) variante MINI-3D para botones compactos inline (tienda `tienda_screen.dart:202`, congelador
    `streak_screen.dart:296`); (b) **i18n de pantallas secundarias** — títulos/cuerpos en español

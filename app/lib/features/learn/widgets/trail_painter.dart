@@ -13,7 +13,8 @@ import 'package:flutter/material.dart';
 /// banda. Se repinta cuando el scroll cambia (`repaint: scroll`), no cuando la
 /// mascota anima. Visualmente IDÉNTICO (mismos trazos, mismo camino).
 class TrailPainter extends CustomPainter {
-  TrailPainter(this.points, {this.scroll, this.viewH = 0, this.debugScrollTop})
+  TrailPainter(this.points,
+      {this.scroll, this.viewH = 0, this.debugScrollTop, this.topCutY})
       : super(repaint: scroll);
 
   final List<Offset> points;
@@ -22,6 +23,10 @@ class TrailPainter extends CustomPainter {
 
   /// Solo tests (medir la ruta con culling sin un ScrollController real).
   final double? debugScrollTop;
+
+  /// Nubes (fog-of-war): el sendero NO se dibuja por encima de esta y — lo
+  /// tapado por nubes ni se construye ni se rasteriza (perf + intriga).
+  final double? topCutY;
 
   double get _scrollTop =>
       debugScrollTop ?? ((scroll?.hasClients ?? false) ? scroll!.offset : 0);
@@ -46,9 +51,13 @@ class TrailPainter extends CustomPainter {
     if (points.length < 2) return;
 
     // Banda visible en coordenadas de contenido (con margen para el borde).
+    // El corte de NUBES (topCutY) recorta la banda por arriba: el sendero
+    // tapado por nubes ni se construye.
     const margin = 500.0;
-    final double bandTop = viewH > 0 ? _scrollTop - margin : 0;
+    double bandTop = viewH > 0 ? _scrollTop - margin : 0;
     final double bandBot = viewH > 0 ? _scrollTop + viewH + margin : size.height;
+    if (topCutY != null && topCutY! > bandTop) bandTop = topCutY!;
+    if (bandTop >= bandBot) return; // todo tapado por nubes en esta ventana
 
     // Índices de nodos dentro de la banda (+1 vecino a cada lado para continuidad
     // de la curva). Los puntos vienen ordenados de ABAJO (dy grande) hacia ARRIBA
@@ -105,5 +114,6 @@ class TrailPainter extends CustomPainter {
   bool shouldRepaint(covariant TrailPainter oldDelegate) =>
       oldDelegate.points != points ||
       oldDelegate.viewH != viewH ||
-      oldDelegate.scroll != scroll;
+      oldDelegate.scroll != scroll ||
+      oldDelegate.topCutY != topCutY;
 }

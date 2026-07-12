@@ -486,6 +486,7 @@
   "mapSummitPeak": "⛰ O TOPO",
   "mapUnitBanner": "UNIDADE {num} · {level}",
   "mapUnitBannerLocked": "UNIDADE {num} · {level} · 🔒 BLOQUEADA",
+  "mapJumpToCurrent": "Ir para minha lição",
   "mapExamUnit": "EXAME · UNIDADE {num}",
   "@mapExamUnit": {
     "placeholders": {

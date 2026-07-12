@@ -14,6 +14,7 @@ import '../checkpoint/checkpoint_intro_screen.dart';
 import '../lesson/lesson_preview_screen.dart';
 import 'mission_screen.dart';
 import 'widgets/checkpoint_portal.dart';
+import 'widgets/cloud_cover_painter.dart';
 import 'widgets/learn_top_bar.dart';
 import 'widgets/map_node.dart';
 import 'widgets/parrot_mascot.dart';
@@ -112,14 +113,55 @@ class _MapBodyState extends State<_MapBody> {
 
   late List<_Entry> _entries;
 
+  // ── VENTANA de widgets (perf 2ª pasada) ────────────────────────────────────
+  // La 1ª pasada culled los PAINTERS (−93% ms/paint) pero el Stack seguía
+  // construyendo ~500 Positioned y ~185 RepaintBoundaries (capas del compositor)
+  // para TODO el curso → 19,5 ms/frame de layout+composición al hacer scroll.
+  // Ahora solo se CONSTRUYEN los nodos de la banda visible (scroll ± margen);
+  // el listener hace setState únicamente cuando la ventana cambia de índices.
+  static const double _winMargin = 700;
+  int _winLo = 0;
+  int _winHi = 1 << 30;
+  bool _farFromTarget = false; // botón "ir a donde me quedé"
+  double _lastViewH = 0;
+
   @override
   void initState() {
     super.initState();
     _entries = _flatten();
+    _controller.addListener(_onScroll);
     // Arrancar centrado en el nodo actual/disponible (sube al avanzar).
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_controller.hasClients) _controller.jumpTo(_targetScroll());
     });
+  }
+
+  /// Ventana [lo, hi] de índices de nodo cuya y cae en scroll ± margen.
+  (int, int) _windowFor(double offset, double viewH) {
+    final n = _entries.length;
+    final contentH = _topPad + _bottomPad + (n - 1) * _gap;
+    final yTop = offset - _winMargin;
+    final yBot = offset + viewH + _winMargin;
+    // y_i = contentH - _bottomPad - i*_gap  →  i = (contentH - _bottomPad - y)/_gap
+    var lo = ((contentH - _bottomPad - yBot) / _gap).floor() - 1;
+    var hi = ((contentH - _bottomPad - yTop) / _gap).ceil() + 1;
+    lo = lo.clamp(0, n - 1);
+    hi = hi.clamp(0, n - 1);
+    return (lo, hi);
+  }
+
+  void _onScroll() {
+    if (!_controller.hasClients || _lastViewH <= 0) return;
+    final (lo, hi) = _windowFor(_controller.offset, _lastViewH);
+    final far = (_controller.offset - _targetScroll()).abs() >
+        _controller.position.viewportDimension * 1.2;
+    if (lo != _winLo || hi != _winHi || far != _farFromTarget) {
+      setState(() {
+        _winLo = lo;
+        _winHi = hi;
+        _farFromTarget = far;
+      });
+    }
   }
 
   /// Aplana las lecciones de todas las unidades en un solo sendero ascendente.
@@ -259,6 +301,15 @@ class _MapBodyState extends State<_MapBody> {
       ));
   }
 
+  /// Índice más alto NO bloqueado (frontera de avance). −1 si nada desbloqueado.
+  int get _frontierIndex {
+    var f = -1;
+    for (var i = 0; i < _entries.length; i++) {
+      if (_stateFor(_entries[i].lesson, i) != NodeState.locked) f = i;
+    }
+    return f;
+  }
+
   @override
   Widget build(BuildContext context) {
     final entries = _entries;
@@ -274,6 +325,24 @@ class _MapBodyState extends State<_MapBody> {
         final colWidth = math.min(constraints.maxWidth, _maxWidth);
         final dx0 = (layoutWidth - colWidth) / 2;
         final contentHeight = _topPad + _bottomPad + (n - 1) * _gap;
+
+        // Ventana de nodos a CONSTRUIR (perf): scroll actual ± margen.
+        _lastViewH = constraints.maxHeight;
+        final offsetNow = _controller.hasClients ? _controller.offset : 0.0;
+        final (winLo, winHi) = _windowFor(offsetNow, constraints.maxHeight);
+        _winLo = winLo;
+        _winHi = winHi;
+
+        // NUBES de progreso (fog-of-war): lo que está por encima de la frontera
+        // (+2 nodos de "teaser" bloqueados visibles) queda cubierto — y NI SE
+        // CONSTRUYE (perf). La cima (certificado) queda visible como meta.
+        const teaser = 2;
+        final frontier = _frontierIndex;
+        final visMax = frontier < 0 ? (n - 1) : (frontier + teaser).clamp(0, n - 1);
+        final cloudTopY = _topPad * 0.55;
+        final cloudBottomY =
+            contentHeight - _bottomPad - visMax * _gap - _gap * 0.85;
+        final cloudsActive = visMax < n - 1 && cloudBottomY > cloudTopY + 220;
 
         // Centro (x,y) de cada nodo, de abajo (i=0) hacia arriba (columna centrada).
         final centers = <Offset>[
@@ -329,7 +398,10 @@ class _MapBodyState extends State<_MapBody> {
             child: RepaintBoundary(
               child: CustomPaint(
                 painter: TrailPainter(trailPoints,
-                    scroll: _controller, viewH: constraints.maxHeight),
+                    scroll: _controller,
+                    viewH: constraints.maxHeight,
+                    // El sendero tapado por nubes ni se construye ni se pinta.
+                    topCutY: cloudsActive ? cloudBottomY - 20 : null),
                 isComplex: true,
                 willChange: true,
               ),
@@ -348,6 +420,8 @@ class _MapBodyState extends State<_MapBody> {
         // Una unidad está "bloqueada" solo si TODOS sus nodos están bloqueados
         // (la misión inicial de la U1 está locked, pero la U1 no lo está).
         for (var i = 0; i < n; i++) {
+          // Fuera de la ventana visible o tapado por nubes → NO se construye.
+          if (i < winLo || i > winHi || (cloudsActive && i > visMax)) continue;
           if (!entries[i].firstOfUnit) continue;
           final unit = entries[i].unit;
           final unitLocked = [
@@ -362,8 +436,10 @@ class _MapBodyState extends State<_MapBody> {
           ));
         }
 
-        // Nodos + etiquetas.
+        // Nodos + etiquetas — SOLO los de la ventana visible y no tapados por
+        // nubes (el resto ni se construye: era el grueso del coste de frame).
         for (var i = 0; i < n; i++) {
+          if (i < winLo || i > winHi || (cloudsActive && i > visMax)) continue;
           final entry = entries[i];
           final lesson = entry.lesson;
           final c = centers[i];
@@ -443,15 +519,106 @@ class _MapBodyState extends State<_MapBody> {
           }
         }
 
-        return SingleChildScrollView(
-          controller: _controller,
-          child: SizedBox(
-            width: layoutWidth,
-            height: contentHeight,
-            child: Stack(clipBehavior: Clip.none, children: children),
+        // NUBES por ENCIMA de todo lo cubierto. El borde inferior se ANIMA al
+        // despejarse (la frontera sube al desbloquear) — reduce-motion salta.
+        if (cloudsActive) {
+          final reduce = MediaQuery.disableAnimationsOf(context);
+          children.add(Positioned.fill(
+            child: IgnorePointer(
+              child: RepaintBoundary(
+                child: TweenAnimationBuilder<double>(
+                  tween: Tween(begin: cloudBottomY, end: cloudBottomY),
+                  duration: reduce ? Duration.zero : const Duration(milliseconds: 950),
+                  curve: Curves.easeInOutCubic,
+                  builder: (context, animatedBottom, _) => CustomPaint(
+                    painter: CloudCoverPainter(
+                      topY: cloudTopY,
+                      bottomY: animatedBottom,
+                      scroll: _controller,
+                      viewH: constraints.maxHeight,
+                    ),
+                    isComplex: true,
+                    willChange: true,
+                  ),
+                ),
+              ),
+            ),
+          ));
+        }
+
+        return Stack(children: [
+          SingleChildScrollView(
+            controller: _controller,
+            child: SizedBox(
+              width: layoutWidth,
+              height: contentHeight,
+              child: Stack(clipBehavior: Clip.none, children: children),
+            ),
           ),
-        );
+          // Botón flotante "ir a donde me quedé" — solo cuando estás lejos del
+          // nodo actual. No tapa la barra inferior ni el contenido.
+          Positioned(
+            right: 16,
+            bottom: 108,
+            child: IgnorePointer(
+              ignoring: !_farFromTarget,
+              child: AnimatedOpacity(
+                opacity: _farFromTarget ? 1 : 0,
+                duration: const Duration(milliseconds: 220),
+                child: _JumpToCurrentButton(
+                  goesUp: _controller.hasClients &&
+                      _targetScroll() < _controller.offset,
+                  onTap: () {
+                    final target = _targetScroll();
+                    if (MediaQuery.disableAnimationsOf(context)) {
+                      _controller.jumpTo(target);
+                    } else {
+                      _controller.animateTo(target,
+                          duration: const Duration(milliseconds: 650),
+                          curve: Curves.easeInOutCubic);
+                    }
+                  },
+                ),
+              ),
+            ),
+          ),
+        ]);
       },
+    );
+  }
+}
+
+/// Botón flotante discreto "ir a donde me quedé": pill blanca con labio + flecha
+/// según la dirección del nodo actual. Aparece solo lejos del objetivo.
+class _JumpToCurrentButton extends StatelessWidget {
+  const _JumpToCurrentButton({required this.goesUp, required this.onTap});
+  final bool goesUp;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: const [
+            BoxShadow(color: Color(0xFFD8D3F5), offset: Offset(0, 4), blurRadius: 0),
+            BoxShadow(color: Color(0x33283266), offset: Offset(0, 10), blurRadius: 18),
+          ],
+        ),
+        child: Row(mainAxisSize: MainAxisSize.min, children: [
+          Icon(goesUp ? Icons.arrow_upward_rounded : Icons.arrow_downward_rounded,
+              size: 18, color: AppColors.primary),
+          const SizedBox(width: 6),
+          Text(l10n.mapJumpToCurrent,
+              style: const TextStyle(
+                  fontSize: 13, fontWeight: FontWeight.w900, color: AppColors.primary)),
+        ]),
+      ),
     );
   }
 }
