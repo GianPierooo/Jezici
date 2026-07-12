@@ -14,6 +14,7 @@ import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/skill_names.dart';
 import '../notifications/coach_styles.dart';
+import '../notifications/matix_auto.dart';
 import '../../ui/daily_goal_bar.dart';
 import '../../core/ui/jz_glow_pulse.dart';
 import '../../ui/primary_button.dart';
@@ -44,6 +45,10 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
     // la tarjeta del fin muestra el CEFR/progreso POST-lección (dato fresco real).
     ref.invalidate(skillsProvider);
     _loadTip();
+    // T4 · Matix: si con esta lección quedó CUMPLIDA la meta diaria → goal_met
+    // (positivo; el server capa 1/día y respeta estilo/idioma/quiet hours).
+    ref.read(matixAutoProvider).afterLesson(
+        goalXp: widget.summary.dailyGoalXp, earnedXp: widget.summary.dailyXpEarned);
   }
 
   Future<void> _loadTip() async {

@@ -5,6 +5,59 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-12**.
 
+## T4 — NOTIFICACIONES completas + PUSH WEB real + INSTALAR APP + ORO con más usos ✅ LIVE (mig 150/151/152 · 2026-07-12)
+Decisiones de Gian (firmes): **CONGELADOR preventivo SE QUEDA + se AÑADE REVIVIR RACHA caro y limitado.**
+PASO 0 honesto: `matix_fire` (server) ya tenía escalado+techo+quiet_hours pero **solo se disparaba desde
+botones admin**; `push_subscriptions`+`save_push_subscription`+handler push en sw.js YA existían (faltaba
+suscripción cliente + VAPID + sender); **las vidas NO se regeneraban** (hearts_updated_at nunca se leía;
+vidas locales por lección) → el "timer" pedido exigía CONSTRUIR la regeneración de verdad, no un contador falso.
+- **1 · TRIGGERS automáticos** (`matix_auto.dart`; el server aplica techo 1/evento/día + quiet_hours +
+  estilo de coach + push_enabled): `goal_met` (al cumplir la meta con una lección) · `goal_unmet`/`
+  streak_risk` (≥18 h con meta sin cumplir; racha activa → risk con la escalera existente) · `behind_plan`
+  (≥3 días detrás del plan, copy **ligado al MOTIVO del onboarding** — `{motivo}`: "llegas a tiempo para tu
+  examen") · `hearts_out` (al quedarte sin vidas). **matix_fire ganó `p_locale`**: plantillas ahora con
+  columna `locale` y el banco push COMPLETO en **es/en/pt** (~124 plantillas; +goal_met/hearts_out ×4 estilos
+  ×3 idiomas; fix "Tu inglés"→"Tu idioma" multi-curso). Enum +goal_met/hearts_out (mig 150).
+- **2 · PUSH WEB real (sin FCM, GRATIS):** claves **VAPID generadas** (P-256 puro Python); pública en el
+  cliente (`pwa_bridge.dart`), **privada como secret de Edge Function** (Management API, jamás al repo).
+  **Edge Function `matix-push` DESPLEGADA y ACTIVA** (vía Management API): fan-out de notificaciones 'sent'
+  sin `pushed_at` (24 h) → web-push a todas las suscripciones del user, marca pushed_at, borra endpoints
+  muertos (404/410) — **verificada en vivo** ({ok:true, processed:3}). Cliente: tarjeta **"Activar avisos"
+  con permiso EXPLÍCITO** (nunca automático) en el centro de notificaciones → `Notification.requestPermission`
+  + `pushManager.subscribe(VAPID)` + `save_push_subscription` (RLS: cada quien la suya, verificado).
+  **Lazy-cron:** cada arranque/envío invoca el fan-out (un cliente activo empuja los pendientes de los
+  OFFLINE). ⚠️ Honesto: en iPhone el push web SOLO funciona con la PWA **instalada** (iOS 16.4+) — la tarjeta
+  lo dice y enlaza a instalar.
+- **3 · INSTALAR APP:** `beforeinstallprompt` capturado en index.html (`jz*` bridges) → tarjeta violeta
+  "Instalar Jezici" (Chrome/Edge Android+desktop = **prompt nativo**); **iOS/Safari** sin ese evento →
+  sheet con instrucciones (Compartir → Añadir a pantalla de inicio); **standalone → no se muestra** nada.
+- **4 · TIMER de vidas = REGENERACIÓN REAL construida** (no visible-de-mentira): `get_hearts`/`lose_heart`
+  (tick lazy server-side: **1 vida cada 30 min hasta 5**, ancla exacta por intervalos); la lección arranca
+  con las vidas del server y reporta pérdidas best-effort (las vidas gatean solo UX; XP/dominio siguen 100%
+  server); **countdown en vivo** en SinVidas y en el panel de vidas de la barra (Timer 1s + re-consulta al
+  llegar a 0). buy_hearts/use_streak_freeze ahora leen **CONFIG** (`jz_config`: precios/parámetros en una
+  sola fuente; defaults idénticos 50/50 → 0 cambio de precio).
+- **5 · ORO:** (a) comprar vidas YA existía (50, ahora vía config; integrado con precio real del server en
+  sheet+panel); (b) **REVIVIR RACHA** (`revive_streak`): **300 oro** (6× una recarga), **tope 1/30 días**,
+  **ventana 7 días** desde la pérdida, mínimo 3 días de racha — la pérdida se registra en
+  `streaks.lost_streak/lost_at` al resetear (jz_register_activity; **congelador intacto**, verificado);
+  revivida = se SUMA a la racha actual; movimiento auditable `gold_transactions('streak_revive')`. Tarjeta
+  oscura "🕯️ Revive tu racha de N días" en StreakScreen (solo si hay rescate disponible; framing excepcional).
+- **Verificado cliente REAL (`verify_t4.py`, 21 checks TODO VERDE):** goal_met sent+fila in-app; techo capped;
+  hearts_out en INGLÉS usa plantilla en; behind_plan dice "tu examen" (motivo real); suscripción push guardada
+  + **RLS ajena=0** + Edge Function procesa; vidas 5→4 con countdown 1800s → **+31 min = regen a 5** → compra
+  recarga y cobra 50; revive cobra 300 (450→150) y suma 1+12=13 + tx auditable + **2º intento limit_reached** +
+  pérdida vieja **expired** + sin oro insufficient_gold + congelador sigue cobrando 50. Verde: analyze 0
+  (CI-exact) · test **159/159** (+t4: formatCountdown + countdown en SinVidas; no_hearts/lesson_flow
+  actualizados a la regen real) · build web OK.
+- **Re-encolado:** triggers `achievement` (complete_lesson no expone QUÉ logro se desbloqueó) y
+  `exam_countdown` (no hay fecha de examen agendada) — necesitan señal server; **evaluación para usuarios
+  OFFLINE** (streak_risk de quien no abre la app) — requiere modo 'evaluate' en la Edge Function + cron.
+- **⚠️ BLOQUEADO en Gian (opcional, mejora puntualidad):** agendar un cron externo GRATIS (cron-job.org)
+  que llame cada 15 min `POST https://wiauinufpbkmjlbqlkxo.supabase.co/functions/v1/matix-push` con header
+  `Authorization: Bearer <anon key>` → los push salen puntuales aunque nadie tenga la app abierta. (VAPID,
+  secrets y deploy de la función: YA hechos vía API, no requieren nada de Gian.)
+
 ## CONVERSAR · T3 — social FÁCIL: @handle + buscar + perfil público + sugerencias ✅ LIVE (mig 149 · 2026-07-12)
 Sobre P1 (mig 146) + Ola 1 (mig 147/148). Decisiones de Gian: **social 18+ · @handle OBLIGATORIO para usar
 lo social · nombre visible LIBRE (el certificado NO se toca).** PASO 0 (BD real): `users` SIN columna handle;

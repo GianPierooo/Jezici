@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/i18n/locale_controller.dart';
 import '../../data/models/progress_models.dart';
 import '../../data/providers.dart';
 
@@ -56,17 +59,21 @@ class LocalNotifier {
 }
 
 /// El puente cliente del motor: dispara `matix_fire` en el servidor (que elige
-/// el copy del estilo del usuario y respeta techo + quiet_hours) y, si el envío
-/// procede, lanza la notificación local y refresca el centro in-app.
+/// el copy del estilo del usuario EN SU IDIOMA y respeta techo + quiet_hours)
+/// y, si el envío procede, lanza la notificación local, refresca el centro
+/// in-app y empuja la cola Web Push (fan-out best-effort; de paso procesa los
+/// pendientes de usuarios OFFLINE — patrón lazy-cron).
 class MatixService {
   const MatixService(this._ref);
   final Ref _ref;
 
   Future<MatixResult> fire(String trigger) async {
     final repo = _ref.read(progressRepositoryProvider);
-    final res = await repo.matixFire(trigger);
+    final locale = _ref.read(localeProvider);
+    final res = await repo.matixFire(trigger, locale: locale);
     if (res.sent) {
-      await LocalNotifier.instance.show('Matix · Jezici', res.copy);
+      await LocalNotifier.instance.show('Jezi · Jezici', res.copy);
+      unawaited(repo.pushFanout());
     }
     _ref.invalidate(notificationsProvider);
     return res;

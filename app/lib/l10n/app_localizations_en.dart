@@ -2844,4 +2844,95 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get premiumFreeNote =>
       'You\'re on the Free plan. All A1 content is free.';
+
+  @override
+  String noHeartsRegenIn(String time) {
+    return 'Next free heart in $time';
+  }
+
+  @override
+  String get noHeartsRegenGeneric => 'Your hearts refill on their own';
+
+  @override
+  String get noHeartsRegenSub => '1 heart every 30 min, up to 5 ❤️';
+
+  @override
+  String heartsPanelNextIn(String time) {
+    return 'Next heart in $time · 1 every 30 min';
+  }
+
+  @override
+  String streakReviveTitle(int days) {
+    return 'Revive your $days-day streak';
+  }
+
+  @override
+  String get streakReviveSubtitle =>
+      'Exceptional rescue: recover the streak you just lost.';
+
+  @override
+  String get streakReviveCta => 'Revive streak';
+
+  @override
+  String get streakReviveLimit =>
+      'Only 1 rescue every 30 days, within 7 days of losing it.';
+
+  @override
+  String streakRevived(int days) {
+    return '🔥 Streak revived! You\'re at $days days.';
+  }
+
+  @override
+  String get streakReviveUnavailable =>
+      'The rescue isn\'t available right now.';
+
+  @override
+  String get pushOptInTitle => 'Turn on Jezi\'s nudges';
+
+  @override
+  String get pushOptInBody =>
+      'Get a nudge when your streak is at risk — even with the app closed. You decide.';
+
+  @override
+  String get pushOptInCta => 'Enable notifications';
+
+  @override
+  String get pushEnabledTitle => 'Notifications enabled';
+
+  @override
+  String get pushEnabledBody =>
+      'Jezi will nudge you about your streak and goal. Mute it anytime in Settings.';
+
+  @override
+  String get pushDeniedTitle => 'Notifications blocked';
+
+  @override
+  String get pushDeniedBody =>
+      'You blocked them in the browser. Enable them via the lock 🔒 next to the address.';
+
+  @override
+  String get pushIosInstallTitle => 'On iPhone, install the app first';
+
+  @override
+  String get pushIosInstallBody =>
+      'iOS only allows notifications if Jezici is on your home screen (iOS 16.4+). Install it below and come back.';
+
+  @override
+  String get installTitle => 'Install Jezici';
+
+  @override
+  String get installBody =>
+      'Open it as an app — full screen, with notifications.';
+
+  @override
+  String get installIosTitle => 'Add Jezici to your iPhone';
+
+  @override
+  String get installIosStep1 => 'Tap Share in Safari\'s toolbar';
+
+  @override
+  String get installIosStep2 => 'Choose “Add to Home Screen”';
+
+  @override
+  String get installIosStep3 => 'Open Jezici from your home screen';
 }

@@ -8,6 +8,7 @@ import '../../data/providers.dart';
 import '../learn/widgets/parrot_mascot.dart';
 import 'matix_service.dart';
 import 'matix_test_buttons.dart';
+import 'push_install_cards.dart';
 
 /// Centro de notificaciones in-app (Estructura_App §10): el historial de copys
 /// que Matix eligió para el usuario. Demuestra que el tono se ajusta al estilo
@@ -44,6 +45,10 @@ class NotificationCenterScreen extends ConsumerWidget {
         child: ListView(
         padding: const EdgeInsets.fromLTRB(20, 6, 20, 32),
         children: [
+          // T4 · Activar PUSH (permiso EXPLÍCITO, nunca automático) + instalar
+          // la app (Android/desktop: prompt nativo; iOS: instrucciones).
+          const PushOptInCard(),
+          const InstallAppCard(),
           // Probar el motor (Fase 1) — SOLO admin.
           if (isAdmin) ...[
             Container(

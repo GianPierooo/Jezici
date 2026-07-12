@@ -84,6 +84,11 @@ class StreakScreen extends ConsumerWidget {
             ),
             const SizedBox(height: 22),
 
+            // T4 · RESCATE EXCEPCIONAL: revivir una racha recién perdida — CARO
+            // y LIMITADO (server: precio config, 1 vez/30 días, ventana 7 días).
+            // Solo aparece si HAY una racha revivible; perderla debe seguir doliendo.
+            const _ReviveCard(),
+
             Text(l10n.streakMilestonesTitle,
                 style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w900, color: AppColors.text)),
             const SizedBox(height: 4),
@@ -311,6 +316,152 @@ class _FreezeButtonState extends ConsumerState<_FreezeButton> {
           ? const SizedBox(
               width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
           : Text(l10n.streakFreezeBuy, style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 13)),
+    );
+  }
+}
+
+/// T4 · Tarjeta de RESCATE de racha (revive_streak, mig 151): aparece SOLO si
+/// hay una racha revivible (perdida hace poco, dentro de la ventana y sin usar
+/// el rescate del periodo). Caro y limitado a propósito — es una excepción,
+/// no una rutina; el CONGELADOR preventivo sigue siendo el camino barato.
+class _ReviveCard extends ConsumerStatefulWidget {
+  const _ReviveCard();
+  @override
+  ConsumerState<_ReviveCard> createState() => _ReviveCardState();
+}
+
+class _ReviveCardState extends ConsumerState<_ReviveCard> {
+  Map<String, dynamic>? _status;
+  bool _busy = false;
+  String? _error;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  Future<void> _load() async {
+    try {
+      final s = await ref.read(progressRepositoryProvider).streakReviveStatus();
+      if (mounted) setState(() => _status = s);
+    } catch (_) {}
+  }
+
+  Future<void> _revive() async {
+    if (_busy) return;
+    setState(() {
+      _busy = true;
+      _error = null;
+    });
+    final l10n = AppLocalizations.of(context);
+    try {
+      final r = await ref.read(progressRepositoryProvider).reviveStreak();
+      if (!mounted) return;
+      if (r['ok'] == true) {
+        ref.invalidate(homeStatsProvider);
+        setState(() {
+          _status = null; // la tarjeta desaparece: rescate consumido
+          _busy = false;
+        });
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(SnackBar(
+              behavior: SnackBarBehavior.floating,
+              content: Text(l10n.streakRevived((r['streak'] as num?)?.toInt() ?? 0))));
+      } else {
+        setState(() {
+          _busy = false;
+          _error = r['reason'] == 'insufficient_gold'
+              ? l10n.noHeartsInsufficientGold
+              : l10n.streakReviveUnavailable;
+        });
+      }
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        _busy = false;
+        _error = l10n.streakReviveUnavailable;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final s = _status;
+    if (s == null || s['available'] != true) return const SizedBox.shrink();
+    final lost = (s['lost_streak'] as num?)?.toInt() ?? 0;
+    final cost = (s['cost'] as num?)?.toInt() ?? 300;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 22),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Color(0xFF2D2A4A), Color(0xFF1C1B2E)]),
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: const [
+            BoxShadow(color: Color(0x66191141), offset: Offset(0, 8), blurRadius: 20),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(children: [
+              const Text('🕯️', style: TextStyle(fontSize: 26)),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  Text(l10n.streakReviveTitle(lost),
+                      style: const TextStyle(
+                          fontSize: 15.5, fontWeight: FontWeight.w900, color: Colors.white)),
+                  const SizedBox(height: 2),
+                  Text(l10n.streakReviveSubtitle,
+                      style: TextStyle(
+                          fontSize: 11.5,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white.withValues(alpha: 0.75))),
+                ]),
+              ),
+            ]),
+            if (_error != null) ...[
+              const SizedBox(height: 10),
+              Text(_error!,
+                  style: const TextStyle(
+                      fontSize: 12, fontWeight: FontWeight.w800, color: Color(0xFFFF8585))),
+            ],
+            const SizedBox(height: 12),
+            SizedBox(
+              width: double.infinity,
+              child: FilledButton(
+                onPressed: _busy ? null : _revive,
+                style: FilledButton.styleFrom(
+                  backgroundColor: const Color(0xFFF4B400),
+                  foregroundColor: const Color(0xFF5B3A00),
+                  padding: const EdgeInsets.symmetric(vertical: 13),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+                ),
+                child: _busy
+                    ? const SizedBox(
+                        width: 18,
+                        height: 18,
+                        child: CircularProgressIndicator(strokeWidth: 2.2, color: Color(0xFF5B3A00)))
+                    : Text('${l10n.streakReviveCta}  ·  🪙 $cost',
+                        style: const TextStyle(fontSize: 14.5, fontWeight: FontWeight.w900)),
+              ),
+            ),
+            const SizedBox(height: 6),
+            Text(l10n.streakReviveLimit,
+                style: TextStyle(
+                    fontSize: 10.5,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white.withValues(alpha: 0.55))),
+          ],
+        ),
+      ),
     );
   }
 }

@@ -93,6 +93,14 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
     // Analítica (beta): inicio de lección → embudo dentro de la lección.
     ref.read(progressRepositoryProvider).logEvent('lesson_start',
         props: {'lesson_id': widget.lesson.id, 'items': widget.items.length});
+    // T4 (mig 151): las vidas ya son un recurso REAL entre lecciones con
+    // regeneración (1 cada 30 min). La lección arranca con las vidas del
+    // servidor (best-effort: si no llega, se queda el 5 local de siempre).
+    ref.read(progressRepositoryProvider).getHearts().then((h) {
+      if (!mounted || _finished) return;
+      final v = (h['hearts'] as num?)?.toInt();
+      if (v != null && v < _hearts) setState(() => _hearts = v.clamp(0, 5));
+    }).catchError((_) {});
     // Pre-calienta el reconocimiento de voz (permiso de micrófono / motor) si la
     // lección tiene speaking, para que ese ítem no espere al primer uso.
     if (widget.items.any((it) => it.type == ContentItemType.speakingReadAloud)) {
@@ -185,7 +193,10 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
           }
         } else {
           _comboCorrect = 0;
-          _hearts = (_hearts - 1).clamp(0, 5); // resta vida; la economía es server-side
+          _hearts = (_hearts - 1).clamp(0, 5); // resta vida (UX local inmediata)
+          // T4: persiste la pérdida server-side (regen 1/30min la recupera).
+          // Best-effort: las vidas solo gatean la UX; XP/dominio ya son server.
+          ref.read(progressRepositoryProvider).loseHeart().catchError((_) => const <String, dynamic>{});
           FeedbackFx.wrong();
           // Rastrea el fallo para el repaso final + refuerzo en SRS (TASK 1).
           _failed.add((item: _item, correct: res.correctDisplay));

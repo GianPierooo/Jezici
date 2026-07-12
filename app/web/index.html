@@ -164,6 +164,68 @@
       window.addEventListener('webglcontextrestored', jzForceRepaint, true);
     })();
   </script>
+  <!--
+    T4 · Puentes JS para INSTALAR la PWA y para WEB PUSH (VAPID). El trabajo
+    pesado vive aquí (promesas globales jz*) y Dart solo las invoca por
+    js_interop — mínimo binding, deploy-safe (no toca el buildCommand).
+  -->
+  <script>
+    (function () {
+      // ── Instalar app ──
+      window.jzDeferredPrompt = null;
+      window.addEventListener('beforeinstallprompt', function (e) {
+        e.preventDefault();
+        window.jzDeferredPrompt = e;
+      });
+      window.jzCanInstall = function () { return !!window.jzDeferredPrompt; };
+      window.jzIsStandalone = function () {
+        return (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches)
+            || window.navigator.standalone === true;
+      };
+      window.jzShowInstall = async function () {
+        var p = window.jzDeferredPrompt;
+        if (!p) return 'unavailable';
+        p.prompt();
+        try {
+          var r = await p.userChoice;
+          window.jzDeferredPrompt = null;
+          return r.outcome; // 'accepted' | 'dismissed'
+        } catch (_) { return 'dismissed'; }
+      };
+
+      // ── Web Push ──
+      window.jzPushState = async function () {
+        if (!('serviceWorker' in navigator) || !('PushManager' in window) || !('Notification' in window)) {
+          return 'unsupported'; // p. ej. Safari iOS SIN instalar la PWA
+        }
+        if (Notification.permission === 'denied') return 'denied';
+        try {
+          var reg = await navigator.serviceWorker.ready;
+          var sub = await reg.pushManager.getSubscription();
+          return sub ? 'subscribed' : 'ready';
+        } catch (_) { return 'unsupported'; }
+      };
+      // Pide permiso (bajo gesto del usuario) y suscribe. Devuelve JSON o null.
+      window.jzPushSubscribe = async function (vapid) {
+        try {
+          var perm = await Notification.requestPermission();
+          if (perm !== 'granted') return null;
+          var reg = await navigator.serviceWorker.ready;
+          var b64 = vapid.replace(/-/g, '+').replace(/_/g, '/');
+          while (b64.length % 4) b64 += '=';
+          var raw = atob(b64);
+          var key = new Uint8Array(raw.length);
+          for (var i = 0; i < raw.length; i++) key[i] = raw.charCodeAt(i);
+          var sub = await reg.pushManager.getSubscription();
+          if (!sub) {
+            sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: key });
+          }
+          var j = sub.toJSON();
+          return JSON.stringify({ endpoint: j.endpoint, p256dh: j.keys.p256dh, auth: j.keys.auth });
+        } catch (_) { return null; }
+      };
+    })();
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

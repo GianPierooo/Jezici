@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -8,6 +10,7 @@ import '../../core/feedback/feedback_sheet.dart';
 import '../../core/speech/speech_lang.dart';
 import '../../data/providers.dart';
 import '../conversar/conversar_screen.dart';
+import '../notifications/matix_auto.dart';
 import '../leagues/leagues_screen.dart';
 import '../learn/learn_map_screen.dart';
 import '../practice/practice_screen.dart';
@@ -36,6 +39,14 @@ class _HomeShellState extends ConsumerState<HomeShell> with WidgetsBindingObserv
     _logView(0);
     // Música ambiente SOLO en el mapa (tab 0). Arranca si el usuario la activó.
     MusicService.instance.setOnMap(_index == 0);
+    // T4 · Matix automático: una evaluación diaria (meta sin cumplir tarde en
+    // el día / racha en riesgo / atraso vs plan) + fan-out del Web Push
+    // pendiente (lazy-cron: un cliente activo empuja los de los offline).
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      unawaited(ref.read(matixAutoProvider).runDailyChecks());
+      unawaited(ref.read(progressRepositoryProvider).pushFanout());
+    });
   }
 
   @override

@@ -760,12 +760,45 @@ class ProgressRepository {
     });
   }
 
-  /// El MOTOR Matix: dado un trigger, elige el copy del estilo del usuario,
-  /// respeta techo + quiet_hours y lo registra. Devuelve el copy + estado.
-  Future<MatixResult> matixFire(String trigger) async {
-    final res = await _client.rpc('matix_fire', params: {'p_trigger': trigger});
+  /// El MOTOR Matix: dado un trigger, elige el copy del estilo del usuario EN
+  /// SU IDIOMA (locale), respeta techo + quiet_hours y lo registra.
+  Future<MatixResult> matixFire(String trigger, {String locale = 'es'}) async {
+    final res = await _client
+        .rpc('matix_fire', params: {'p_trigger': trigger, 'p_locale': locale});
     return MatixResult.fromJson(Map<String, dynamic>.from(res as Map));
   }
+
+  /// Guarda la suscripción Web Push del dispositivo (RLS: cada quien la suya).
+  Future<void> savePushSubscription(String endpoint, String p256dh, String auth) async {
+    await _client.rpc('save_push_subscription',
+        params: {'p_endpoint': endpoint, 'p_p256dh': p256dh, 'p_auth': auth});
+  }
+
+  /// Empuja las notificaciones pendientes por Web Push (lazy-cron: cualquier
+  /// cliente activo procesa la cola de TODOS). Best-effort, nunca lanza.
+  Future<void> pushFanout() async {
+    try {
+      await _client.functions.invoke('matix-push');
+    } catch (_) {}
+  }
+
+  // ── T4 · Vidas con regeneración REAL (server-side, mig 151) ───────────────
+
+  /// {hearts, max, seconds_to_next, refill_cost} — tick lazy en el servidor.
+  Future<Map<String, dynamic>> getHearts() async =>
+      Map<String, dynamic>.from(await _client.rpc('get_hearts') as Map);
+
+  /// Reporta la pérdida de una vida (best-effort; la UX local no espera).
+  Future<Map<String, dynamic>> loseHeart() async =>
+      Map<String, dynamic>.from(await _client.rpc('lose_heart') as Map);
+
+  // ── T4 · Revivir racha perdida (caro + limitado; congelador intacto) ──────
+
+  Future<Map<String, dynamic>> streakReviveStatus() async =>
+      Map<String, dynamic>.from(await _client.rpc('streak_revive_status') as Map);
+
+  Future<Map<String, dynamic>> reviveStreak() async =>
+      Map<String, dynamic>.from(await _client.rpc('revive_streak') as Map);
 
   // ── Practicar (paso Fase 1) ───────────────────────────────────────────────
 

@@ -2851,4 +2851,93 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get premiumFreeNote =>
       'Você está no plano Grátis. Todo o conteúdo A1 é gratuito.';
+
+  @override
+  String noHeartsRegenIn(String time) {
+    return 'Próxima vida grátis em $time';
+  }
+
+  @override
+  String get noHeartsRegenGeneric => 'Suas vidas se recuperam sozinhas';
+
+  @override
+  String get noHeartsRegenSub => '1 vida a cada 30 min, até 5 ❤️';
+
+  @override
+  String heartsPanelNextIn(String time) {
+    return 'Próxima vida em $time · 1 a cada 30 min';
+  }
+
+  @override
+  String streakReviveTitle(int days) {
+    return 'Reviva sua sequência de $days dias';
+  }
+
+  @override
+  String get streakReviveSubtitle =>
+      'Resgate excepcional: recupere a sequência que você acabou de perder.';
+
+  @override
+  String get streakReviveCta => 'Reviver sequência';
+
+  @override
+  String get streakReviveLimit =>
+      'Só 1 resgate a cada 30 dias, e dentro de 7 dias após perdê-la.';
+
+  @override
+  String streakRevived(int days) {
+    return '🔥 Sequência revivida! Você está com $days dias.';
+  }
+
+  @override
+  String get streakReviveUnavailable => 'O resgate não está disponível agora.';
+
+  @override
+  String get pushOptInTitle => 'Ative os avisos do Jezi';
+
+  @override
+  String get pushOptInBody =>
+      'Receba um empurrão quando sua sequência estiver em risco — mesmo com o app fechado. Você decide.';
+
+  @override
+  String get pushOptInCta => 'Ativar notificações';
+
+  @override
+  String get pushEnabledTitle => 'Notificações ativadas';
+
+  @override
+  String get pushEnabledBody =>
+      'O Jezi vai te avisar sobre sua sequência e sua meta. Silencie quando quiser em Ajustes.';
+
+  @override
+  String get pushDeniedTitle => 'Notificações bloqueadas';
+
+  @override
+  String get pushDeniedBody =>
+      'Você as bloqueou no navegador. Ative no cadeado 🔒 ao lado do endereço.';
+
+  @override
+  String get pushIosInstallTitle => 'No iPhone, instale o app primeiro';
+
+  @override
+  String get pushIosInstallBody =>
+      'O iOS só permite avisos se o Jezici estiver na sua tela de início (iOS 16.4+). Instale abaixo e volte aqui.';
+
+  @override
+  String get installTitle => 'Instalar Jezici';
+
+  @override
+  String get installBody => 'Abra como app — tela cheia e com avisos.';
+
+  @override
+  String get installIosTitle => 'Adicione o Jezici ao seu iPhone';
+
+  @override
+  String get installIosStep1 => 'Toque em Compartilhar na barra do Safari';
+
+  @override
+  String get installIosStep2 => 'Escolha “Adicionar à Tela de Início”';
+
+  @override
+  String get installIosStep3 => 'Abra o Jezici pela tela de início';
 }

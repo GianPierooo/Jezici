@@ -34,6 +34,16 @@ class FakeProgressRepository implements ProgressRepository {
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
   @override
   bool get isSignedIn => true;
+
+  // T4: vidas server-side con regen (el player las consulta al arrancar y
+  // reporta perdidas best-effort). El fake responde lleno y acepta la perdida.
+  @override
+  Future<Map<String, dynamic>> getHearts() async =>
+      {'hearts': 5, 'max': 5, 'seconds_to_next': null, 'refill_cost': 50};
+
+  @override
+  Future<Map<String, dynamic>> loseHeart() async =>
+      {'hearts': 4, 'max': 5, 'seconds_to_next': 1800, 'refill_cost': 50};
   @override
   String? get authMetadataName => null;
   @override
@@ -181,7 +191,8 @@ class FakeProgressRepository implements ProgressRepository {
     required bool pushEnabled,
   }) async {}
   @override
-  Future<MatixResult> matixFire(String trigger) async => MatixResult.fromJson(const {});
+  Future<MatixResult> matixFire(String trigger, {String locale = 'es'}) async =>
+      MatixResult.fromJson(const {});
   @override
   Future<List<NotificationItem>> fetchNotifications() async => const [];
   @override

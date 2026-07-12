@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -5,7 +7,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../data/models/progress_models.dart';
 import '../../../data/providers.dart';
 import '../../../l10n/app_localizations.dart';
-import '../../lesson/widgets/no_hearts_sheet.dart' show kHeartRefillCost;
+import '../../lesson/widgets/no_hearts_sheet.dart' show kHeartRefillCost, formatCountdown;
 import '../../shop/tienda_screen.dart';
 
 /// Paneles de la BARRA SUPERIOR (bottom-sheets): cada stat es tappable y abre un
@@ -159,6 +161,47 @@ class _HeartsPanel extends ConsumerStatefulWidget {
 class _HeartsPanelState extends ConsumerState<_HeartsPanel> {
   bool _busy = false;
   String? _error;
+  int? _hearts; // estado REAL del server (con regen lazy, mig 151)
+  int? _secondsToNext;
+  int _cost = kHeartRefillCost;
+  Timer? _tick;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadHearts();
+  }
+
+  @override
+  void dispose() {
+    _tick?.cancel();
+    super.dispose();
+  }
+
+  Future<void> _loadHearts() async {
+    try {
+      final h = await ref.read(progressRepositoryProvider).getHearts();
+      if (!mounted) return;
+      setState(() {
+        _hearts = (h['hearts'] as num?)?.toInt();
+        _secondsToNext = (h['seconds_to_next'] as num?)?.toInt();
+        _cost = (h['refill_cost'] as num?)?.toInt() ?? kHeartRefillCost;
+      });
+      ref.invalidate(homeStatsProvider); // el tick pudo regenerar vidas
+      _tick?.cancel();
+      if (_secondsToNext != null) {
+        _tick = Timer.periodic(const Duration(seconds: 1), (_) {
+          if (!mounted) return;
+          final s = _secondsToNext;
+          if (s == null || s <= 1) {
+            _loadHearts();
+          } else {
+            setState(() => _secondsToNext = s - 1);
+          }
+        });
+      }
+    } catch (_) {}
+  }
 
   Future<void> _refill() async {
     if (_busy) return;
@@ -196,15 +239,16 @@ class _HeartsPanelState extends ConsumerState<_HeartsPanel> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final stats = ref.watch(homeStatsProvider).value ?? HomeStats.empty;
-    final hearts = stats.hearts.clamp(0, 5);
+    final hearts = (_hearts ?? stats.hearts).clamp(0, 5);
     final full = hearts >= 5;
+    final s = _secondsToNext;
     return _PanelShell(
       icon: Icons.favorite_rounded,
       iconColor: AppColors.hearts,
       children: [
         _PanelTitle(l10n.heartsPanelTitle),
         const SizedBox(height: 10),
-        // Fila de 5 corazones (llenos = vidas actuales).
+        // Fila de 5 corazones (llenos = vidas actuales, con regen del server).
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(
@@ -217,7 +261,11 @@ class _HeartsPanelState extends ConsumerState<_HeartsPanel> {
           ),
         ),
         const SizedBox(height: 14),
-        _PanelBody(full ? l10n.heartsPanelFull : l10n.heartsPanelRegen),
+        // Countdown REAL de la próxima vida (regen server-side, mig 151).
+        if (!full && s != null)
+          _PanelBody(l10n.heartsPanelNextIn(formatCountdown(s)))
+        else
+          _PanelBody(full ? l10n.heartsPanelFull : l10n.heartsPanelRegen),
         if (_error != null) ...[
           const SizedBox(height: 12),
           _ErrorPill(_error!),
@@ -225,7 +273,7 @@ class _HeartsPanelState extends ConsumerState<_HeartsPanel> {
         const SizedBox(height: 18),
         if (!full)
           _PanelButton(
-            label: l10n.noHeartsRefillPriced(kHeartRefillCost),
+            label: l10n.noHeartsRefillPriced(_cost),
             icon: Icons.favorite_rounded,
             color: AppColors.primary,
             depth: AppColors.primaryDark,

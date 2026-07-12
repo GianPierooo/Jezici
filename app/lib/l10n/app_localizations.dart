@@ -4918,6 +4918,156 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Estás en el plan Gratis. Todo el contenido A1 es gratuito.'**
   String get premiumFreeNote;
+
+  /// No description provided for @noHeartsRegenIn.
+  ///
+  /// In es, this message translates to:
+  /// **'Próxima vida gratis en {time}'**
+  String noHeartsRegenIn(String time);
+
+  /// No description provided for @noHeartsRegenGeneric.
+  ///
+  /// In es, this message translates to:
+  /// **'Tus vidas se regeneran solas'**
+  String get noHeartsRegenGeneric;
+
+  /// No description provided for @noHeartsRegenSub.
+  ///
+  /// In es, this message translates to:
+  /// **'1 vida cada 30 min, hasta 5 ❤️'**
+  String get noHeartsRegenSub;
+
+  /// No description provided for @heartsPanelNextIn.
+  ///
+  /// In es, this message translates to:
+  /// **'Próxima vida en {time} · 1 cada 30 min'**
+  String heartsPanelNextIn(String time);
+
+  /// No description provided for @streakReviveTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Revive tu racha de {days} días'**
+  String streakReviveTitle(int days);
+
+  /// No description provided for @streakReviveSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Rescate excepcional: recupera la racha que acabas de perder.'**
+  String get streakReviveSubtitle;
+
+  /// No description provided for @streakReviveCta.
+  ///
+  /// In es, this message translates to:
+  /// **'Revivir racha'**
+  String get streakReviveCta;
+
+  /// No description provided for @streakReviveLimit.
+  ///
+  /// In es, this message translates to:
+  /// **'Solo 1 rescate cada 30 días, y dentro de los 7 días de perderla.'**
+  String get streakReviveLimit;
+
+  /// No description provided for @streakRevived.
+  ///
+  /// In es, this message translates to:
+  /// **'🔥 ¡Racha revivida! Vas por {days} días.'**
+  String streakRevived(int days);
+
+  /// No description provided for @streakReviveUnavailable.
+  ///
+  /// In es, this message translates to:
+  /// **'El rescate no está disponible ahora.'**
+  String get streakReviveUnavailable;
+
+  /// No description provided for @pushOptInTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Activa los avisos de Jezi'**
+  String get pushOptInTitle;
+
+  /// No description provided for @pushOptInBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Recibe un empujón cuando tu racha esté en riesgo — incluso con la app cerrada. Tú decides.'**
+  String get pushOptInBody;
+
+  /// No description provided for @pushOptInCta.
+  ///
+  /// In es, this message translates to:
+  /// **'Activar notificaciones'**
+  String get pushOptInCta;
+
+  /// No description provided for @pushEnabledTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Notificaciones activadas'**
+  String get pushEnabledTitle;
+
+  /// No description provided for @pushEnabledBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Jezi te avisará por tu racha y tu meta. Puedes silenciarlo en Ajustes.'**
+  String get pushEnabledBody;
+
+  /// No description provided for @pushDeniedTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Notificaciones bloqueadas'**
+  String get pushDeniedTitle;
+
+  /// No description provided for @pushDeniedBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Las bloqueaste en el navegador. Actívalas en el candado 🔒 junto a la dirección.'**
+  String get pushDeniedBody;
+
+  /// No description provided for @pushIosInstallTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'En iPhone, primero instala la app'**
+  String get pushIosInstallTitle;
+
+  /// No description provided for @pushIosInstallBody.
+  ///
+  /// In es, this message translates to:
+  /// **'iOS solo permite avisos si Jezici está en tu pantalla de inicio (iOS 16.4+). Instálala abajo y vuelve aquí.'**
+  String get pushIosInstallBody;
+
+  /// No description provided for @installTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Instalar Jezici'**
+  String get installTitle;
+
+  /// No description provided for @installBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Ábrela como app, a pantalla completa y con avisos.'**
+  String get installBody;
+
+  /// No description provided for @installIosTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Añade Jezici a tu iPhone'**
+  String get installIosTitle;
+
+  /// No description provided for @installIosStep1.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca Compartir en la barra de Safari'**
+  String get installIosStep1;
+
+  /// No description provided for @installIosStep2.
+  ///
+  /// In es, this message translates to:
+  /// **'Elige “Añadir a pantalla de inicio”'**
+  String get installIosStep2;
+
+  /// No description provided for @installIosStep3.
+  ///
+  /// In es, this message translates to:
+  /// **'Abre Jezici desde tu pantalla de inicio'**
+  String get installIosStep3;
 }
 
 class _AppLocalizationsDelegate

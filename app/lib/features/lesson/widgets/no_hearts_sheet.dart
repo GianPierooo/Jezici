@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -6,26 +8,23 @@ import '../../../core/ui/responsive_center.dart';
 import '../../../data/providers.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../learn/widgets/parrot_mascot.dart';
+import '../../notifications/matix_auto.dart';
 import '../../premium/premium_screen.dart';
 
 /// Resultado de la hoja "sin vidas".
 enum NoHeartsChoice { refill, quit }
 
-/// Costo de recargar las 5 vidas — MISMA economía que la tienda (buy_hearts,
-/// mig 026). El servidor es la autoridad: cobra y bloquea si no hay oro.
+/// Costo de recargar las 5 vidas — fallback visual; el precio REAL viene del
+/// servidor (jz_config.heart_refill_cost vía get_hearts) y el server cobra.
 const int kHeartRefillCost = 50;
 
 /// Hoja "te quedaste sin vidas" (SinVidas.dc). La recarga **cobra oro de verdad**
-/// (RPC buy_hearts, server-side): descuenta [kHeartRefillCost], y si no hay oro
-/// suficiente NO recarga (aviso inline). Devuelve `refill` SOLO si la compra tuvo
-/// éxito.
+/// (RPC buy_hearts, server-side) y si no hay oro suficiente NO recarga.
 ///
-/// HONESTIDAD (paso 0, verificado en BD/código): NO existe regeneración de vidas
-/// por tiempo — `hearts_updated_at` nunca se lee para sumar vidas, no hay cron, y
-/// en la lección las vidas son LOCALES (empiezan en 5 cada lección). Por eso NO se
-/// muestra un contador "próxima vida gratis en MM:SS" (sería una promesa falsa,
-/// prohibido): en su lugar se dice la verdad — las vidas vuelven GRATIS en la
-/// próxima lección. La recarga de pago sirve para seguir ESTA lección ahora.
+/// T4 (mig 151): las vidas ahora SÍ se regeneran por tiempo (server-side, lazy:
+/// 1 vida cada 30 min hasta 5) → el contador "próxima vida en MM:SS" es REAL
+/// (viene de get_hearts.seconds_to_next y cuenta hacia abajo en vivo). También
+/// dispara el trigger Matix `hearts_out` (techo/estilo/idioma en el server).
 Future<NoHeartsChoice?> showNoHeartsSheet(BuildContext context) {
   return showModalBottomSheet<NoHeartsChoice>(
     context: context,
@@ -51,6 +50,48 @@ class _NoHeartsSheet extends ConsumerStatefulWidget {
 class _NoHeartsSheetState extends ConsumerState<_NoHeartsSheet> {
   bool _busy = false;
   String? _error;
+  int? _secondsToNext; // countdown REAL de la próxima vida (get_hearts)
+  int _cost = kHeartRefillCost;
+  Timer? _tick;
+
+  @override
+  void initState() {
+    super.initState();
+    // Trigger Matix "te quedaste sin vidas" (el server aplica techo/estilo/idioma).
+    ref.read(matixAutoProvider).onHeartsOut();
+    _loadHearts();
+  }
+
+  @override
+  void dispose() {
+    _tick?.cancel();
+    super.dispose();
+  }
+
+  Future<void> _loadHearts() async {
+    try {
+      final h = await ref.read(progressRepositoryProvider).getHearts();
+      if (!mounted) return;
+      setState(() {
+        _secondsToNext = (h['seconds_to_next'] as num?)?.toInt();
+        _cost = (h['refill_cost'] as num?)?.toInt() ?? kHeartRefillCost;
+      });
+      _tick?.cancel();
+      if (_secondsToNext != null) {
+        _tick = Timer.periodic(const Duration(seconds: 1), (_) {
+          if (!mounted) return;
+          final s = _secondsToNext;
+          if (s == null || s <= 1) {
+            _loadHearts(); // llegó una vida → re-consulta el estado real
+          } else {
+            setState(() => _secondsToNext = s - 1);
+          }
+        });
+      }
+    } catch (_) {
+      // Sin red: la tarjeta muestra el copy sin contador (no inventa tiempo).
+    }
+  }
 
   Future<void> _refill() async {
     if (_busy) return;
@@ -143,10 +184,11 @@ class _NoHeartsSheetState extends ConsumerState<_NoHeartsSheet> {
                   style: const TextStyle(
                       fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted, height: 1.4)),
 
-              // Tarjeta HONESTA "cómo vuelven las vidas" (reemplaza el contador
-              // falso): corazón pulsante + copy verdadera (vidas gratis cada lección).
+              // Tarjeta con el COUNTDOWN REAL de regeneración (mig 151):
+              // "próxima vida en MM:SS · 1 cada 30 min". Sin dato (offline) no
+              // muestra tiempo inventado.
               const SizedBox(height: 16),
-              _FreeHeartsCard(l10n: l10n),
+              _RegenCard(l10n: l10n, secondsToNext: _secondsToNext),
 
               if (_error != null) ...[
                 const SizedBox(height: 12),
@@ -196,7 +238,7 @@ class _NoHeartsSheetState extends ConsumerState<_NoHeartsSheet> {
                 trailing: Row(mainAxisSize: MainAxisSize.min, children: [
                   const Icon(Icons.monetization_on_rounded, color: AppColors.gold, size: 16),
                   const SizedBox(width: 3),
-                  Text('$kHeartRefillCost',
+                  Text('$_cost',
                       style: const TextStyle(
                           fontSize: 13, fontWeight: FontWeight.w900, color: Color(0xFFC98A12))),
                 ]),
@@ -231,14 +273,25 @@ class _NoHeartsSheetState extends ConsumerState<_NoHeartsSheet> {
       );
 }
 
-/// Tarjeta honesta: corazón pulsante + "las vidas vuelven gratis en la próxima
-/// lección" (la verdad; NO un contador de regeneración que no existe).
-class _FreeHeartsCard extends StatelessWidget {
-  const _FreeHeartsCard({required this.l10n});
+/// Formatea segundos como MM:SS (o H h MM min si pasa de la hora).
+String formatCountdown(int seconds) {
+  final s = seconds.clamp(0, 359999);
+  final h = s ~/ 3600, m = (s % 3600) ~/ 60, sec = s % 60;
+  if (h > 0) return '$h h ${m.toString().padLeft(2, '0')} min';
+  return '$m:${sec.toString().padLeft(2, '0')}';
+}
+
+/// Tarjeta de regeneración REAL: corazón pulsante + countdown en vivo de la
+/// próxima vida (mig 151: 1 vida cada 30 min server-side). Sin dato → copy
+/// genérico sin tiempo (no inventa).
+class _RegenCard extends StatelessWidget {
+  const _RegenCard({required this.l10n, required this.secondsToNext});
   final AppLocalizations l10n;
+  final int? secondsToNext;
 
   @override
   Widget build(BuildContext context) {
+    final s = secondsToNext;
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
@@ -253,11 +306,14 @@ class _FreeHeartsCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(l10n.noHeartsFreeNext,
+                Text(
+                    s == null
+                        ? l10n.noHeartsRegenGeneric
+                        : l10n.noHeartsRegenIn(formatCountdown(s)),
                     style: const TextStyle(
                         fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.text)),
                 const SizedBox(height: 2),
-                Text(l10n.noHeartsFreeNextSub,
+                Text(l10n.noHeartsRegenSub,
                     style: const TextStyle(
                         fontSize: 11.5, fontWeight: FontWeight.w800, color: Color(0xFF9A9FB8))),
               ],
