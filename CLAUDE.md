@@ -1556,6 +1556,19 @@ flutter build web --release  # esperado: Built build/web (wasm dry-run warning d
   el build que usan los usuarios HOY (no asumir que `main` == producción).
 
 ## Reportes de diagnóstico (raíz)
+- **LAUNCH_AUDIT.md** (2026-07-11, solo lectura) — auditoría PRE-LANZAMIENTO ("¿listo para abrir al público?").
+  Introspección real (BD/RLS por SQL + **cliente real JWT** + navegador). **Veredicto: se puede abrir HOY a
+  público hispanohablante** — SEGURIDAD sólida y verificada (0 tablas sin RLS; **aislamiento AIRTIGHT**: B ve 0
+  filas de A en 9 tablas; **RPCs admin RECHAZADOS** a usuario normal 400/404; Conversar 18+/bloqueo/rate/filtro
+  intactos; grading 42501). Flujo de usuario nuevo sin dead-ends, app carga sin errores/404, 6 cursos OK,
+  responsive OK, honesto. **P1 antes de abrir:** (1) age gate REDUNDANTE (onboarding pide checkbox adulto pero
+  no el AÑO → CompleteProfileScreen aparece a todo registro nuevo); (2) consentimiento legal no persistido si
+  confirm-email ON (`auth_screen.dart:104` retorna antes de `acceptLegal`); (3) dev-tool "Probar a Jezi"
+  (MatixTestButtons) visible sin gate. **i18n P0 (solo bloquea pt/en):** Mi Plan/Cuaderno/Examen de nivel/
+  Notificaciones 100% en español. **Cuentas (Gian):** Google OAuth sin configurar (P0 del botón; email funciona),
+  Sentry sin DSN (P1), confirm-email (P1), cron ligas/JZ_BUILD (P2). Cero cambios de código.
+
+
 - **CONVERSAR_FASE2.md** (2026-07-10, diseño — solo lectura) — investigación + PLAN a fondo de CONVERSAR
   (el gran diferencial, "ADN Tandem"). PASO 0 real: las 8 tablas sociales EXISTEN como stubs vacíos
   (RLS ON, solo SELECT, 0 filas, sin RPCs de escritura); Conversar hoy = práctica async en solitario +
