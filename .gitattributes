@@ -1,0 +1,4 @@
+# Los scripts de shell SIEMPRE con LF: un .sh con CRLF rompe en Linux (Vercel)
+# con "\r: command not found". Blinda build.sh y scripts/*.sh sin importar el SO
+# donde se editen/committeen.
+*.sh text eol=lf
