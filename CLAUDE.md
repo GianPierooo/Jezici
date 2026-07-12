@@ -20,14 +20,33 @@ solo id opaco, sin email/PII). **NO se usó el wizard automático.** Ajustes de 
   inyecta en el bundle, build OK). **El proyecto Sentry de Gian RECIBE eventos**: POST directo a la API de
   ingesta (`.../api/4511724301058048/store/`) con el DSN → **HTTP 200** (event_id `5a6f85…`). analyze 0 · test
   **165/165** · build web OK.
-- **⚠️ PARA ACTIVARLO EN PRODUCCIÓN (Gian, dashboard — NO tocar vercel.json):** el DSN entra por
-  `--dart-define`, igual que JZ_BUILD. **NO editar el `buildCommand` de `vercel.json`** (cualquier edición rompe
-  el deploy pre-build). En **Vercel → Project Settings → Build & Development → Build Command** (override del
-  dashboard), añade AL FINAL del comando actual, con VALOR LITERAL (sin `$VAR`):
-  ` --dart-define=SENTRY_DSN=https://6d5f60c2afe2f7429f1ca6159c52f2fc@o4511724290703360.ingest.us.sentry.io/4511724301058048`
-  (opcional `--dart-define=SENTRY_ENV=production`, ya es el default). Push/redeploy → confirmar deploy **READY**
-  (no ERROR instantáneo). Luego: Ajustes → Ver métricas → "Enviar evento de prueba" → aparece en Sentry. El DSN
-  de Sentry NO es secreto (va en clientes), por eso el valor literal es seguro.
+- **⚠️ ACTIVACIÓN vía `build.sh` (2026-07-12 · commit `c9234f4`) — el Build Command de Vercel topó los 256
+  chars.** El comando histórico (clone flutter + `--dart-define` de SUPABASE) ya estaba al límite → NO cabía
+  añadir `--dart-define=SENTRY_DSN`. **Solución:** se movió TODO el build a **`build.sh`** (raíz del repo), que
+  replica el buildCommand **1:1** + añade `--dart-define=SENTRY_DSN="${SENTRY_DSN:-}"` leyendo la env var del
+  sistema. Así el Build Command del **dashboard** queda en **`bash build.sh`** (13 chars) → caben todos los
+  `--dart-define` sin límite. **`vercel.json` NO se tocó** (su buildCommand sigue byte-idéntico; el override del
+  dashboard tiene precedencia → `build.sh` convive sin romper el deploy viejo, verificado: el deploy de `c9234f4`
+  quedó **READY** aún con el comando antiguo). `SENTRY_DSN` vacío/no seteada → flag vacío → **Sentry NO-OP** y el
+  build NO falla (respeta `String.fromEnvironment('SENTRY_DSN', defaultValue: '')`). `.gitattributes` fuerza
+  `*.sh eol=lf` (un `.sh` con CRLF rompería en Linux/Vercel). Verificado: build web real con los 3 `--dart-define`
+  (SENTRY_DSN seteada) → `Built build/web`; expansión del env OK con y sin la var; analyze 0 · test 165/165 ·
+  CI SUCCESS · deploy READY.
+- **⚠️ PASOS EXACTOS para Gian (dashboard, en ORDEN — transición segura sin deploy roto):**
+  1. **Crear la env var** en **Vercel → Project Settings → Environment Variables**: nombre **`SENTRY_DSN`**,
+     valor (LITERAL) `https://6d5f60c2afe2f7429f1ca6159c52f2fc@o4511724290703360.ingest.us.sentry.io/4511724301058048`,
+     scope **Production** (marca también Preview si quieres Sentry en previews). Save. *(El DSN NO es secreto —
+     va en clientes.)* Opcional: `SENTRY_ENV=production` (ya es el default en código, no hace falta).
+  2. **Cambiar el Build Command** en **Vercel → Project Settings → Build & Development → Build Command**
+     (override del dashboard): pon exactamente **`bash build.sh`** y **Save**. El **Output Directory** sigue
+     **`app/build/web`** (no cambia). **NO tocar `vercel.json`.**
+  3. **Redeploy** (Deployments → último → ⋯ → Redeploy, o un push a `main`) → **confirmar deploy READY** (no
+     ERROR instantáneo pre-build). Como el script clona Flutter y corre el mismo `flutter build web`, tarda ~2 min.
+  4. **Probar:** Ajustes → Ver métricas → tarjeta "Monitoreo de errores (Sentry)" (debe decir **Activo**) →
+     "Enviar evento de prueba" → el issue aparece en el dashboard de Sentry en segundos.
+  - **Orden importa:** crea la env var (paso 1) **antes** de cambiar el Build Command (paso 2); si cambias el
+    comando sin la var, el build igual funciona (SENTRY_DSN vacío → Sentry off), así que no hay riesgo de deploy
+    roto en ningún orden — pero con este orden el primer deploy nuevo ya trae Sentry activo.
 
 ## T6 — legal (correo/logo) + bloque de DONACIONES "Aporta un grano de arena" ✅ LIVE (2026-07-12 · solo cliente)
 Cero IA. Cero migración. NO se tocaron cláusulas legales, ni premium/pagos reales (siguen "próximamente"),
