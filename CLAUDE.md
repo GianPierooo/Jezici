@@ -5,6 +5,31 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-12**.
 
+## T6 — legal (correo/logo) + bloque de DONACIONES "Aporta un grano de arena" ✅ LIVE (2026-07-12 · solo cliente)
+Cero IA. Cero migración. NO se tocaron cláusulas legales, ni premium/pagos reales (siguen "próximamente"),
+ni economía. Decisiones de Gian: donaciones con Yape (906517394 + QR), Plin, PayPal, Stripe (cuentas suyas).
+- **1 · LEGAL (cosmético):** en `web/privacy.html` (3 refs) + `web/terms.html` (1 ref) el correo
+  `shadowgames.devteam@gmail.com` → **`gianpierodaniel@gmail.com`**; el logo del encabezado (era emoji 🦜) →
+  **guacamayo de marca** (`<img src="/brand/jezici_icon.svg">`, ya existía en `web/brand/`; Flutter lo copia a
+  `build/web/`). **NO se tocó el texto de las cláusulas.** El correo NO aparece en Dart (solo en el HTML).
+- **2 · DONACIONES — "Aporta un grano de arena"** (`donations_card.dart`), en **Premium DEBAJO del paywall
+  "próximamente"**. Framing HONESTO: apoyo voluntario, **NO compra que desbloquee nada** (nota explícita).
+  Métodos: **Yape** (número 906517394 + QR + "copiar número"), **Plin** (mismo patrón; nota "mismo número que
+  Yape"), **PayPal** y **Stripe** como ENLACE — si su URL no está configurada aparecen deshabilitados con
+  "Pronto" (no botón muerto). Lenguaje de la casa (tarjeta blanca + Jezi + acentos por método). i18n es/en/pt,
+  responsive, reduce-motion-aware.
+- **CONFIG única `core/config/donations.dart`** (lo que Gian rellena para ACTIVAR, sin tocar código complejo):
+  `paypalUrl`/`stripeUrl` (pega el enlace → el método se vuelve tappable) y reemplazar los PNG placeholder
+  `assets/donations/yape_qr.png` + `plin_qr.png` (mismo nombre) por sus QR reales. `yapeNumber`/`plinNumber`
+  ya puestos (906517394). Los QR placeholder se generaron con aspecto de QR (finder patterns) para que se vea
+  dónde va el asset.
+- **⚠️ PLACEHOLDERS que Gian debe rellenar** (todo en `app/lib/core/config/donations.dart` salvo los QR):
+  (a) `assets/donations/yape_qr.png` ← su QR de Yape; (b) `assets/donations/plin_qr.png` ← su QR de Plin
+  (o el mismo si Yape/Plin comparten); (c) `paypalUrl` = su `paypal.me/...` o botón; (d) `stripeUrl` = su
+  Payment Link del dashboard Stripe. Sin (c)/(d) esos métodos muestran "Pronto".
+- Verde: analyze 0 (CI-exact) · test **165/165** (+3 donations_card: números 906517394 + copiar + PT sin
+  español) · build web OK (correo/logo/QR confirmados en `build/web`). Golden del bloque revisado.
+
 ## T5 — editar perfil dinámico (género + cumpleaños OBLIGATORIOS) + MULTI-IDIOMA ✅ LIVE (mig 153 · 2026-07-12)
 Decisiones de Gian (firmes): **género OBLIGATORIO sin omitir · cumpleaños día Y mes OBLIGATORIOS (el AÑO
 ya lo captura el age gate; NO se re-pide) · avatar = selector de COLORES.** PASO 0 honesto: `set_profile`

@@ -2961,4 +2961,35 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get addLanguageAllStarted =>
       'You\'re already learning every available language.';
+
+  @override
+  String get donateTitle => 'Chip in a grain of sand';
+
+  @override
+  String get donateSubtitle =>
+      'Jezici is free. If it helps you, your support keeps it growing.';
+
+  @override
+  String get donateScanQr => 'Scan the QR or use the number';
+
+  @override
+  String get donateCopied => 'Number copied';
+
+  @override
+  String get donatePlinSameNumber => 'same number as Yape';
+
+  @override
+  String get donateStripe => 'Card (Stripe)';
+
+  @override
+  String donatePayWith(String method) {
+    return 'Donate with $method';
+  }
+
+  @override
+  String get donateSoon => 'Soon';
+
+  @override
+  String get donateVoluntaryNote =>
+      'This is a voluntary tip. It\'s not a purchase and unlocks nothing in the app. Thank you! 🦜';
 }

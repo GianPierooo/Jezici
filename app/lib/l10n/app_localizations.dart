@@ -5116,6 +5116,60 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Ya estás aprendiendo todos los idiomas disponibles.'**
   String get addLanguageAllStarted;
+
+  /// No description provided for @donateTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Aporta un grano de arena'**
+  String get donateTitle;
+
+  /// No description provided for @donateSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Jezici es gratis. Si te sirve, tu apoyo ayuda a que siga creciendo.'**
+  String get donateSubtitle;
+
+  /// No description provided for @donateScanQr.
+  ///
+  /// In es, this message translates to:
+  /// **'Escanea el QR o usa el número'**
+  String get donateScanQr;
+
+  /// No description provided for @donateCopied.
+  ///
+  /// In es, this message translates to:
+  /// **'Número copiado'**
+  String get donateCopied;
+
+  /// No description provided for @donatePlinSameNumber.
+  ///
+  /// In es, this message translates to:
+  /// **'mismo número que Yape'**
+  String get donatePlinSameNumber;
+
+  /// No description provided for @donateStripe.
+  ///
+  /// In es, this message translates to:
+  /// **'Tarjeta (Stripe)'**
+  String get donateStripe;
+
+  /// No description provided for @donatePayWith.
+  ///
+  /// In es, this message translates to:
+  /// **'Donar con {method}'**
+  String donatePayWith(String method);
+
+  /// No description provided for @donateSoon.
+  ///
+  /// In es, this message translates to:
+  /// **'Pronto'**
+  String get donateSoon;
+
+  /// No description provided for @donateVoluntaryNote.
+  ///
+  /// In es, this message translates to:
+  /// **'Es un apoyo voluntario. No es una compra y no desbloquea nada dentro de la app. ¡Gracias! 🦜'**
+  String get donateVoluntaryNote;
 }
 
 class _AppLocalizationsDelegate

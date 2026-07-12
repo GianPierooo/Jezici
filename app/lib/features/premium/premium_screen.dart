@@ -8,6 +8,7 @@ import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
 import '../../ui/primary_button.dart';
 import '../learn/widgets/parrot_mascot.dart';
+import 'donations_card.dart';
 
 /// Paywall de Jezici Premium (Paywall.dc). Fase 1: SIN pagos reales (decisión
 /// beta) → el selector de planes/precios del mockup NO se muestra (sería un
@@ -117,6 +118,10 @@ class PremiumScreen extends ConsumerWidget {
               textAlign: TextAlign.center,
               style: const TextStyle(
                   fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+          // T6 · Donaciones voluntarias (bajo el paywall "próximamente"). NO
+          // desbloquea nada dentro del juego (framing honesto).
+          const SizedBox(height: 22),
+          const DonationsCard(),
         ],
       ),
       ),

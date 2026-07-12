@@ -2962,4 +2962,35 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get addLanguageAllStarted =>
       'Ya estás aprendiendo todos los idiomas disponibles.';
+
+  @override
+  String get donateTitle => 'Aporta un grano de arena';
+
+  @override
+  String get donateSubtitle =>
+      'Jezici es gratis. Si te sirve, tu apoyo ayuda a que siga creciendo.';
+
+  @override
+  String get donateScanQr => 'Escanea el QR o usa el número';
+
+  @override
+  String get donateCopied => 'Número copiado';
+
+  @override
+  String get donatePlinSameNumber => 'mismo número que Yape';
+
+  @override
+  String get donateStripe => 'Tarjeta (Stripe)';
+
+  @override
+  String donatePayWith(String method) {
+    return 'Donar con $method';
+  }
+
+  @override
+  String get donateSoon => 'Pronto';
+
+  @override
+  String get donateVoluntaryNote =>
+      'Es un apoyo voluntario. No es una compra y no desbloquea nada dentro de la app. ¡Gracias! 🦜';
 }

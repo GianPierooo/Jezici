@@ -1074,5 +1074,15 @@
   "settingsMyLanguages": "Meus idiomas",
   "settingsAddLanguage": "Adicionar idioma de aprendizado",
   "addLanguageSubtitle": "Comece um idioma novo",
-  "addLanguageAllStarted": "Você já está aprendendo todos os idiomas disponíveis."
+  "addLanguageAllStarted": "Você já está aprendendo todos os idiomas disponíveis.",
+  "donateTitle": "Contribua com um grão de areia",
+  "donateSubtitle": "O Jezici é grátis. Se te ajuda, seu apoio ajuda a continuar crescendo.",
+  "donateScanQr": "Escaneie o QR ou use o número",
+  "donateCopied": "Número copiado",
+  "donatePlinSameNumber": "mesmo número do Yape",
+  "donateStripe": "Cartão (Stripe)",
+  "donatePayWith": "Doar com {method}",
+  "@donatePayWith": {"placeholders": {"method": {"type": "String"}}},
+  "donateSoon": "Em breve",
+  "donateVoluntaryNote": "É um apoio voluntário. Não é uma compra e não desbloqueia nada no app. Obrigado! 🦜"
 }

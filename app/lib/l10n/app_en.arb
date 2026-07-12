@@ -1074,5 +1074,15 @@
   "settingsMyLanguages": "My languages",
   "settingsAddLanguage": "Add a learning language",
   "addLanguageSubtitle": "Start a new language",
-  "addLanguageAllStarted": "You're already learning every available language."
+  "addLanguageAllStarted": "You're already learning every available language.",
+  "donateTitle": "Chip in a grain of sand",
+  "donateSubtitle": "Jezici is free. If it helps you, your support keeps it growing.",
+  "donateScanQr": "Scan the QR or use the number",
+  "donateCopied": "Number copied",
+  "donatePlinSameNumber": "same number as Yape",
+  "donateStripe": "Card (Stripe)",
+  "donatePayWith": "Donate with {method}",
+  "@donatePayWith": {"placeholders": {"method": {"type": "String"}}},
+  "donateSoon": "Soon",
+  "donateVoluntaryNote": "This is a voluntary tip. It's not a purchase and unlocks nothing in the app. Thank you! 🦜"
 }
