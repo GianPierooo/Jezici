@@ -996,10 +996,10 @@
   },
   "convHandleChip": "Your @username",
   "convAddByCode": "or add by code",
-  "profileEditBirthday": "Birthday (day and month, optional)",
+  "profileEditBirthday": "Birthday (day and month)",
   "profileEditDay": "Day",
   "profileEditMonth": "Month",
-  "profileEditGender": "Gender (optional)",
+  "profileEditGender": "Gender",
   "genderFemale": "Female",
   "genderMale": "Male",
   "genderOther": "Other",
@@ -1066,5 +1066,13 @@
   "installIosTitle": "Add Jezici to your iPhone",
   "installIosStep1": "Tap Share in Safari's toolbar",
   "installIosStep2": "Choose “Add to Home Screen”",
-  "installIosStep3": "Open Jezici from your home screen"
+  "installIosStep3": "Open Jezici from your home screen",
+  "profileEditGenderError": "Choose your gender to save.",
+  "profileEditBirthdayError": "Choose the day and month of your birthday.",
+  "profileEditCountryHint": "Choose your country",
+  "profileEditCountrySearchHint": "Search country…",
+  "settingsMyLanguages": "My languages",
+  "settingsAddLanguage": "Add a learning language",
+  "addLanguageSubtitle": "Start a new language",
+  "addLanguageAllStarted": "You're already learning every available language."
 }

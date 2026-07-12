@@ -69,8 +69,11 @@ class ProfileInfo {
   static final empty = ProfileInfo();
 }
 
-/// Países frecuentes (es→en/pt): ISO-2 → (bandera emoji, nombre).
+/// Países: ISO-2 → (bandera emoji, nombre en español). Lista mundial acotada
+/// (hispanohablantes + donde se hablan los idiomas meta + comunes) para el
+/// BUSCADOR de país del perfil (T5). La bandera se muestra en el perfil público.
 const Map<String, ({String flag, String name})> kCountries = {
+  // Hispanoamérica + España
   'MX': (flag: '🇲🇽', name: 'México'),
   'CO': (flag: '🇨🇴', name: 'Colombia'),
   'AR': (flag: '🇦🇷', name: 'Argentina'),
@@ -80,8 +83,9 @@ const Map<String, ({String flag, String name})> kCountries = {
   'VE': (flag: '🇻🇪', name: 'Venezuela'),
   'EC': (flag: '🇪🇨', name: 'Ecuador'),
   'GT': (flag: '🇬🇹', name: 'Guatemala'),
+  'CU': (flag: '🇨🇺', name: 'Cuba'),
   'BO': (flag: '🇧🇴', name: 'Bolivia'),
-  'DO': (flag: '🇩🇴', name: 'R. Dominicana'),
+  'DO': (flag: '🇩🇴', name: 'República Dominicana'),
   'HN': (flag: '🇭🇳', name: 'Honduras'),
   'PY': (flag: '🇵🇾', name: 'Paraguay'),
   'SV': (flag: '🇸🇻', name: 'El Salvador'),
@@ -89,12 +93,60 @@ const Map<String, ({String flag, String name})> kCountries = {
   'CR': (flag: '🇨🇷', name: 'Costa Rica'),
   'PA': (flag: '🇵🇦', name: 'Panamá'),
   'UY': (flag: '🇺🇾', name: 'Uruguay'),
+  'PR': (flag: '🇵🇷', name: 'Puerto Rico'),
+  // Donde se hablan los idiomas meta
   'US': (flag: '🇺🇸', name: 'Estados Unidos'),
+  'GB': (flag: '🇬🇧', name: 'Reino Unido'),
+  'CA': (flag: '🇨🇦', name: 'Canadá'),
+  'IE': (flag: '🇮🇪', name: 'Irlanda'),
+  'AU': (flag: '🇦🇺', name: 'Australia'),
+  'NZ': (flag: '🇳🇿', name: 'Nueva Zelanda'),
   'BR': (flag: '🇧🇷', name: 'Brasil'),
+  'PT': (flag: '🇵🇹', name: 'Portugal'),
+  'FR': (flag: '🇫🇷', name: 'Francia'),
+  'BE': (flag: '🇧🇪', name: 'Bélgica'),
+  'CH': (flag: '🇨🇭', name: 'Suiza'),
+  'IT': (flag: '🇮🇹', name: 'Italia'),
+  'DE': (flag: '🇩🇪', name: 'Alemania'),
+  'AT': (flag: '🇦🇹', name: 'Austria'),
+  'NL': (flag: '🇳🇱', name: 'Países Bajos'),
+  'LU': (flag: '🇱🇺', name: 'Luxemburgo'),
+  // Otros comunes
+  'MA': (flag: '🇲🇦', name: 'Marruecos'),
+  'GQ': (flag: '🇬🇶', name: 'Guinea Ecuatorial'),
+  'PH': (flag: '🇵🇭', name: 'Filipinas'),
+  'JP': (flag: '🇯🇵', name: 'Japón'),
+  'CN': (flag: '🇨🇳', name: 'China'),
+  'KR': (flag: '🇰🇷', name: 'Corea del Sur'),
+  'IN': (flag: '🇮🇳', name: 'India'),
+  'RU': (flag: '🇷🇺', name: 'Rusia'),
+  'PL': (flag: '🇵🇱', name: 'Polonia'),
+  'SE': (flag: '🇸🇪', name: 'Suecia'),
+  'NO': (flag: '🇳🇴', name: 'Noruega'),
+  'DK': (flag: '🇩🇰', name: 'Dinamarca'),
+  'FI': (flag: '🇫🇮', name: 'Finlandia'),
+  'GR': (flag: '🇬🇷', name: 'Grecia'),
+  'TR': (flag: '🇹🇷', name: 'Turquía'),
+  'ZA': (flag: '🇿🇦', name: 'Sudáfrica'),
+  'EG': (flag: '🇪🇬', name: 'Egipto'),
+  'IL': (flag: '🇮🇱', name: 'Israel'),
+  'AE': (flag: '🇦🇪', name: 'Emiratos Árabes Unidos'),
 };
 
 String? countryFlag(String? iso) => iso == null ? null : kCountries[iso]?.flag;
 String? countryName(String? iso) => iso == null ? null : kCountries[iso]?.name;
+
+/// Normaliza para búsqueda de país: minúsculas sin acentos.
+String normalizeSearch(String s) {
+  const from = 'áàäâãéèëêíìïîóòöôõúùüûñç';
+  const to = 'aaaaaeeeeiiiiooooouuuunc';
+  final b = StringBuffer();
+  for (final ch in s.toLowerCase().split('')) {
+    final i = from.indexOf(ch);
+    b.write(i >= 0 ? to[i] : ch);
+  }
+  return b.toString();
+}
 
 /// Paleta de colores de avatar elegibles (cohesiva con la marca).
 const List<String> kAvatarColors = [

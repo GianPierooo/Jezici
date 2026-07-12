@@ -156,12 +156,17 @@ void _invalidateCourseScope(WidgetRef ref) {
   ref.invalidate(mapUnitsProvider);
 }
 
-/// Hoja para elegir el idioma que se aprende (curso). Reusa `switchCourseFlow`.
-/// El curso activo se marca; tocar otro dispara el cambio + re-placement.
+/// Hoja para CAMBIAR entre los idiomas que el usuario YA aprende (T5: solo los
+/// `started`, no los 6). El activo se marca; tocar otro dispara el cambio. Al
+/// pie, "Añadir idioma" abre el flujo de alta de un idioma nuevo.
 Future<void> showCoursePickerSheet(BuildContext context, WidgetRef ref) async {
   final courses = ref.read(coursesProvider).value;
   if (courses == null || courses.isEmpty) return;
-  final chosen = await showModalBottomSheet<CourseInfo>(
+  // Solo los idiomas que el usuario ya está aprendiendo. Fallback defensivo: si
+  // ninguno viene marcado (dato viejo), muestra el activo.
+  final mine = courses.where((c) => c.started || c.active).toList();
+  const kAdd = '__add__';
+  final chosen = await showModalBottomSheet<Object>(
     context: context,
     backgroundColor: Colors.white,
     shape: const RoundedRectangleBorder(
@@ -185,11 +190,11 @@ Future<void> showCoursePickerSheet(BuildContext context, WidgetRef ref) async {
                       color: const Color(0xFFE1E4F0), borderRadius: BorderRadius.circular(2)),
                 ),
               ),
-              Text(l10n.settingsChooseCourse,
+              Text(l10n.settingsMyLanguages,
                   style: const TextStyle(
                       fontSize: 17, fontWeight: FontWeight.w900, color: AppColors.text)),
               const SizedBox(height: 12),
-              for (final c in courses)
+              for (final c in mine)
                 InkWell(
                   onTap: c.active ? () => Navigator.pop(ctx) : () => Navigator.pop(ctx, c),
                   child: Padding(
@@ -214,6 +219,106 @@ Future<void> showCoursePickerSheet(BuildContext context, WidgetRef ref) async {
                     ]),
                   ),
                 ),
+              const Divider(height: 20, color: Color(0xFFEDEEF6)),
+              InkWell(
+                onTap: () => Navigator.pop(ctx, kAdd),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 12),
+                  child: Row(children: [
+                    Container(
+                      width: 30,
+                      height: 30,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: AppColors.navActiveBg, borderRadius: BorderRadius.circular(9)),
+                      child: const Icon(Icons.add_rounded, color: AppColors.primary, size: 20),
+                    ),
+                    const SizedBox(width: 12),
+                    Text(l10n.settingsAddLanguage,
+                        style: const TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.primary)),
+                  ]),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
+  if (chosen == null || !context.mounted) return;
+  if (chosen == kAdd) {
+    await showAddLanguageSheet(context, ref);
+    return;
+  }
+  await switchCourseFlow(context, ref, chosen as CourseInfo);
+}
+
+/// Hoja "Añadir idioma de aprendizaje" (T5): lista los idiomas que el usuario
+/// AÚN NO estudia (no `started`) → al elegir uno, `switchCourseFlow` lo arranca
+/// (placement o "desde cero") y crea su plan, sin tocar los otros cursos.
+Future<void> showAddLanguageSheet(BuildContext context, WidgetRef ref) async {
+  final courses = ref.read(coursesProvider).value;
+  if (courses == null || courses.isEmpty) return;
+  final available = courses.where((c) => !c.started && !c.active).toList();
+  final chosen = await showModalBottomSheet<CourseInfo>(
+    context: context,
+    backgroundColor: Colors.white,
+    shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(22))),
+    builder: (ctx) {
+      final l10n = AppLocalizations.of(ctx);
+      return SafeArea(
+        top: false,
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Container(
+                  width: 40,
+                  height: 4,
+                  margin: const EdgeInsets.only(bottom: 14),
+                  decoration: BoxDecoration(
+                      color: const Color(0xFFE1E4F0), borderRadius: BorderRadius.circular(2)),
+                ),
+              ),
+              Text(l10n.settingsAddLanguage,
+                  style: const TextStyle(
+                      fontSize: 17, fontWeight: FontWeight.w900, color: AppColors.text)),
+              const SizedBox(height: 4),
+              Text(l10n.addLanguageSubtitle,
+                  style: const TextStyle(
+                      fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+              const SizedBox(height: 12),
+              if (available.isEmpty)
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 18),
+                  child: Text(l10n.addLanguageAllStarted,
+                      style: const TextStyle(
+                          fontSize: 13.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                )
+              else
+                for (final c in available)
+                  InkWell(
+                    onTap: () => Navigator.pop(ctx, c),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 12),
+                      child: Row(children: [
+                        Text(c.flag, style: const TextStyle(fontSize: 22)),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Text(c.targetName,
+                              style: const TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.w800, color: AppColors.text)),
+                        ),
+                        const Icon(Icons.add_circle_outline_rounded,
+                            color: AppColors.primary, size: 22),
+                      ]),
+                    ),
+                  ),
             ],
           ),
         ),

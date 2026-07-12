@@ -2710,7 +2710,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get convAddByCode => 'or add by code';
 
   @override
-  String get profileEditBirthday => 'Birthday (day and month, optional)';
+  String get profileEditBirthday => 'Birthday (day and month)';
 
   @override
   String get profileEditDay => 'Day';
@@ -2719,7 +2719,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profileEditMonth => 'Month';
 
   @override
-  String get profileEditGender => 'Gender (optional)';
+  String get profileEditGender => 'Gender';
 
   @override
   String get genderFemale => 'Female';
@@ -2935,4 +2935,30 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get installIosStep3 => 'Open Jezici from your home screen';
+
+  @override
+  String get profileEditGenderError => 'Choose your gender to save.';
+
+  @override
+  String get profileEditBirthdayError =>
+      'Choose the day and month of your birthday.';
+
+  @override
+  String get profileEditCountryHint => 'Choose your country';
+
+  @override
+  String get profileEditCountrySearchHint => 'Search country…';
+
+  @override
+  String get settingsMyLanguages => 'My languages';
+
+  @override
+  String get settingsAddLanguage => 'Add a learning language';
+
+  @override
+  String get addLanguageSubtitle => 'Start a new language';
+
+  @override
+  String get addLanguageAllStarted =>
+      'You\'re already learning every available language.';
 }

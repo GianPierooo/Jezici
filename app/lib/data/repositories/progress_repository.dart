@@ -146,6 +146,33 @@ class ProgressRepository {
     return ProfileInfo.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
+  /// T5 · Guardado ESTRICTO del formulario "editar perfil": género y cumpleaños
+  /// (día+mes) OBLIGATORIOS, validados también en el servidor (set_profile_required).
+  /// Lanza con el motivo (name_required / gender_required / birthday_required) que
+  /// el cliente mapea a un mensaje. El AÑO del age gate NO se toca.
+  Future<ProfileInfo> setProfileRequired({
+    required String name,
+    required String gender,
+    required int birthdayDay,
+    required int birthdayMonth,
+    String? country,
+    String? bio,
+    String? avatarColor,
+    String? timezone,
+  }) async {
+    final res = await _client.rpc('set_profile_required', params: {
+      'p_name': name,
+      'p_gender': gender,
+      'p_birthday_day': birthdayDay,
+      'p_birthday_month': birthdayMonth,
+      'p_country': country,
+      'p_bio': bio,
+      'p_avatar_color': avatarColor,
+      'p_timezone': timezone,
+    });
+    return ProfileInfo.fromJson(Map<String, dynamic>.from(res as Map));
+  }
+
   /// AGE GATE (Conversar P1): guarda el AÑO de nacimiento (pantalla neutral) y el
   /// servidor recomputa is_adult REAL. Devuelve {age_tier, is_adult}. 18+ es
   /// requisito SOLO de lo social (aún no abierto); un menor sigue usando la app.

@@ -5,6 +5,40 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-12**.
 
+## T5 — editar perfil dinámico (género + cumpleaños OBLIGATORIOS) + MULTI-IDIOMA ✅ LIVE (mig 153 · 2026-07-12)
+Decisiones de Gian (firmes): **género OBLIGATORIO sin omitir · cumpleaños día Y mes OBLIGATORIOS (el AÑO
+ya lo captura el age gate; NO se re-pide) · avatar = selector de COLORES.** PASO 0 honesto: `set_profile`
+es LENIENTE (género fuera de whitelist se IGNORA; día/mes opcionales) — correcto para el paso de NOMBRE del
+onboarding y CompleteProfileScreen (solo envían nombre) → NO se endurece (rompería esos flujos); se añade
+una RPC ESTRICTA para el formulario. `get_courses` NO distinguía qué cursos EMPEZÓ el usuario (solo el
+activo) → el switch del home mostraba los 6.
+- **1 · AVATAR — selector de COLORES:** el `edit_profile_sheet` ahora muestra 8 **muestras circulares** con
+  gradiente; la elegida lleva anillo blanco + check + rebote sutil (`AnimatedScale` easeOutBack,
+  reduce-motion-aware); el **preview grande se tiñe EN VIVO**. Persistido (avatar_color, validado hex server-side).
+- **2 · PAÍS — buscador con BANDERA:** campo que abre un **sheet con buscador** (`normalizeSearch`, sin acentos)
+  sobre **~55 países** (hispanoamérica + donde se hablan los idiomas meta + comunes), cada fila con bandera emoji
+  + nombre; persiste ISO-2. Se muestra en el perfil público (T3).
+- **3 · GÉNERO — OBLIGATORIO:** chips (femenino/masculino/otro/prefiero-no-decir); tocar SELECCIONA (ya NO
+  deselecciona); guardar sin género → error. Validado también server-side (→ `gender_required`).
+- **4 · CUMPLEAÑOS — día Y mes OBLIGATORIOS:** dropdowns sin opción `—`; guardar sin ambos → error. El **AÑO
+  NO se re-pide** (viene del age gate; `set_profile_required` no lo toca). Validado server-side (→ `birthday_required`).
+- **RPC estricta `set_profile_required`** (name+gender+bday obligatorios; hex normalizado; nombre visible sigue
+  LIBRE, no toca certificados). El cliente valida rápido pero **el servidor es la autoridad** (motivos tipados).
+- **5 · MULTI-IDIOMA:** `get_courses` ganó **`started`** (¿tiene `user_plans` en ese curso?). **El switch del
+  home (bandera) muestra SOLO los idiomas que YA aprende** (started) + una fila **"Añadir idioma"**; cambiar entre
+  ellos es instantáneo (`switchCourseFlow` existente). **En Ajustes: "Añadir idioma de aprendizaje"** → lista de
+  los idiomas AÚN NO estudiados → al elegir arranca ese curso (placement o "desde cero" → create_plan) y lo suma
+  a sus activos. **Aislamiento multicurso verificado:** añadir un idioma crea SU plan (course-scoped, UNIQUE
+  user_id+course_id) SIN tocar el progreso de otro.
+- **Verificado cliente REAL (`verify_t5.py`, 18 checks TODO VERDE):** género/cumpleaños/nombre vacío → rechazo
+  server-side; perfil completo guarda (avatar/país/día-mes persisten; **AÑO del age gate intacto**); género basura
+  rechazado; `started` en/pt correcto; **añadir PT no toca el progreso de EN**; los planes coexisten; volver a EN
+  preserva su progreso. Verde: analyze 0 (CI-exact) · test **162/162** (+3 edit_profile_t5: género/cumpleaños
+  obligatorios bloquean, completo guarda) · build web OK · golden del sheet revisado (8 swatches + país con
+  bandera + asteriscos de obligatorio).
+- **Re-encolado:** (a) el buscador de país podría ampliarse a lista mundial completa (hoy ~55 acotada); (b)
+  "editar el @handle" desde el chip (T3 diferido, no de T5).
+
 ## T4 — NOTIFICACIONES completas + PUSH WEB real + INSTALAR APP + ORO con más usos ✅ LIVE (mig 150/151/152 · 2026-07-12)
 Decisiones de Gian (firmes): **CONGELADOR preventivo SE QUEDA + se AÑADE REVIVIR RACHA caro y limitado.**
 PASO 0 honesto: `matix_fire` (server) ya tenía escalado+techo+quiet_hours pero **solo se disparaba desde

@@ -13,7 +13,6 @@ import '../../core/prefs/notify_prefs.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/ui/jz_sheen.dart';
 import '../../core/ui/responsive_center.dart';
-import '../../data/models/course_models.dart';
 import '../../data/models/progress_models.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
@@ -159,7 +158,16 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                   const SizedBox(width: 6),
                   const Icon(Icons.chevron_right_rounded, color: _kChevron, size: 20),
                 ]),
-                onTap: () => _openCoursePicker(courses ?? const []),
+                // Cambiar entre los idiomas que YA aprende (+ "Añadir idioma").
+                onTap: () => showCoursePickerSheet(context, ref),
+              ),
+              _tile(
+                tileBg: AppColors.navActiveBg,
+                icon: const Icon(Icons.add_rounded, color: AppColors.primary, size: 20),
+                title: l10n.settingsAddLanguage,
+                subtitle: l10n.addLanguageSubtitle,
+                trailing: const Icon(Icons.chevron_right_rounded, color: _kChevron, size: 20),
+                onTap: () => showAddLanguageSheet(context, ref),
               ),
               _tile(
                 tileBg: AppColors.navActiveBg,
@@ -582,47 +590,6 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     );
   }
 
-  Future<void> _openCoursePicker(List<CourseInfo> courses) async {
-    if (courses.isEmpty) return;
-    final chosen = await showModalBottomSheet<CourseInfo>(
-      context: context,
-      backgroundColor: Colors.white,
-      shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(22))),
-      builder: (ctx) {
-        final l10n = AppLocalizations.of(ctx);
-        return _sheet(l10n.settingsChooseCourse, [
-          for (final c in courses)
-            InkWell(
-              onTap: c.active ? () => Navigator.pop(ctx) : () => Navigator.pop(ctx, c),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 12),
-                child: Row(children: [
-                  Text(c.flag, style: const TextStyle(fontSize: 22)),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: Text(c.targetName,
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w800,
-                            color: c.active ? AppColors.primary : AppColors.text)),
-                  ),
-                  Icon(
-                    c.active
-                        ? Icons.check_circle_rounded
-                        : Icons.radio_button_unchecked_rounded,
-                    color: c.active ? AppColors.success : const Color(0xFFC9CDDD),
-                    size: 22,
-                  ),
-                ]),
-              ),
-            ),
-        ]);
-      },
-    );
-    if (chosen != null && mounted) await _switchCourse(chosen);
-  }
-
   Future<void> _openMetaSheet(AppLocalizations l10n) async {
     await showModalBottomSheet<void>(
       context: context,
@@ -923,9 +890,6 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     Navigator.of(context).popUntil((r) => r.isFirst);
   }
 
-  // Cambio de curso + re-placement: lógica ÚNICA compartida con la bandera del
-  // top bar del mapa (features/onboarding/course_switcher.dart).
-  Future<void> _switchCourse(CourseInfo c) => switchCourseFlow(context, ref, c);
 }
 
 /// Card blanca con la sombra dura del mockup (0 4 0 #E4E6EE + halo suave).

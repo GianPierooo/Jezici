@@ -4670,7 +4670,7 @@ abstract class AppLocalizations {
   /// No description provided for @profileEditBirthday.
   ///
   /// In es, this message translates to:
-  /// **'Cumpleaños (día y mes, opcional)'**
+  /// **'Cumpleaños (día y mes)'**
   String get profileEditBirthday;
 
   /// No description provided for @profileEditDay.
@@ -4688,7 +4688,7 @@ abstract class AppLocalizations {
   /// No description provided for @profileEditGender.
   ///
   /// In es, this message translates to:
-  /// **'Género (opcional)'**
+  /// **'Género'**
   String get profileEditGender;
 
   /// No description provided for @genderFemale.
@@ -5068,6 +5068,54 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Abre Jezici desde tu pantalla de inicio'**
   String get installIosStep3;
+
+  /// No description provided for @profileEditGenderError.
+  ///
+  /// In es, this message translates to:
+  /// **'Elige tu género para guardar.'**
+  String get profileEditGenderError;
+
+  /// No description provided for @profileEditBirthdayError.
+  ///
+  /// In es, this message translates to:
+  /// **'Elige el día y el mes de tu cumpleaños.'**
+  String get profileEditBirthdayError;
+
+  /// No description provided for @profileEditCountryHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Elige tu país'**
+  String get profileEditCountryHint;
+
+  /// No description provided for @profileEditCountrySearchHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar país…'**
+  String get profileEditCountrySearchHint;
+
+  /// No description provided for @settingsMyLanguages.
+  ///
+  /// In es, this message translates to:
+  /// **'Mis idiomas'**
+  String get settingsMyLanguages;
+
+  /// No description provided for @settingsAddLanguage.
+  ///
+  /// In es, this message translates to:
+  /// **'Añadir idioma de aprendizaje'**
+  String get settingsAddLanguage;
+
+  /// No description provided for @addLanguageSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Empieza un idioma nuevo'**
+  String get addLanguageSubtitle;
+
+  /// No description provided for @addLanguageAllStarted.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya estás aprendiendo todos los idiomas disponibles.'**
+  String get addLanguageAllStarted;
 }
 
 class _AppLocalizationsDelegate
