@@ -23,6 +23,7 @@ void main() {
 
     await tester.pumpWidget(ProviderScope(
       overrides: [
+        suggestionsProvider.overrideWith((ref) async => const <Map<String, dynamic>>[]),
         socialStatusProvider.overrideWith(
             (ref) async => {'access': true, 'is_adult': true, 'friend_code': 'ABC1234'}),
         friendsProvider.overrideWith(
@@ -45,6 +46,7 @@ void main() {
 
     await tester.pumpWidget(ProviderScope(
       overrides: [
+        suggestionsProvider.overrideWith((ref) async => const <Map<String, dynamic>>[]),
         socialStatusProvider.overrideWith(
             (ref) async => {'access': true, 'is_adult': true, 'friend_code': 'ABC1234'}),
         friendsProvider.overrideWith((ref) async => {
@@ -77,6 +79,7 @@ void main() {
 
     await tester.pumpWidget(ProviderScope(
       overrides: [
+        suggestionsProvider.overrideWith((ref) async => const <Map<String, dynamic>>[]),
         socialStatusProvider.overrideWith(
             (ref) async => {'access': true, 'is_adult': true, 'friend_code': 'ABC1234'}),
         friendsProvider.overrideWith(

@@ -605,6 +605,50 @@ class ProgressRepository {
         params: {'p_target': targetId, 'p_reason': reason, 'p_context_type': context});
   }
 
+  Future<void> unblockUser(String targetId) async {
+    await _client.rpc('unblock_user', params: {'p_target': targetId});
+  }
+
+  // ── T3 · social fácil (mig 149): @handle + búsqueda + perfil público + sugerencias
+  // Todo 18+, server-side (SECURITY DEFINER); blocks aplicados en la RLS/lógica en
+  // ambas direcciones. El perfil público expone SOLO la vista acotada.
+
+  /// Elige/actualiza el @handle único. Devuelve {handle} o lanza con el motivo:
+  /// invalid_handle / handle_taken / handle_reserved / handle_change_rate.
+  Future<Map<String, dynamic>> claimHandle(String handle) async =>
+      Map<String, dynamic>.from(
+          await _client.rpc('claim_handle', params: {'p_handle': handle}) as Map);
+
+  /// Privacidad: aparecer o no en búsqueda/sugerencias.
+  Future<void> setDiscoverable(bool on) async {
+    await _client.rpc('set_discoverable', params: {'p_on': on});
+  }
+
+  /// Busca usuarios por nombre o @handle. Solo campos públicos; excluye
+  /// bloqueados (ambas dir) y no-descubribles server-side.
+  Future<List<Map<String, dynamic>>> searchUsers(String q) async {
+    final res = await _client.rpc('search_users', params: {'p_q': q});
+    final list = (res as Map)['results'] as List? ?? const [];
+    return list.map((e) => Map<String, dynamic>.from(e as Map)).toList();
+  }
+
+  /// Perfil PÚBLICO acotado (nunca email/edad/datos privados).
+  Future<Map<String, dynamic>> getPublicProfile(String userId) async =>
+      Map<String, dynamic>.from(
+          await _client.rpc('get_public_profile', params: {'p_user_id': userId}) as Map);
+
+  /// Sugerencias de amigos por señal inocua (mismo curso/nivel cercano).
+  Future<List<Map<String, dynamic>>> suggestFriends() async {
+    final res = await _client.rpc('suggest_friends');
+    final list = (res as Map)['suggestions'] as List? ?? const [];
+    return list.map((e) => Map<String, dynamic>.from(e as Map)).toList();
+  }
+
+  /// Solicita amistad por user_id (desde búsqueda/perfil/sugerencias).
+  Future<Map<String, dynamic>> requestFriend(String userId) async =>
+      Map<String, dynamic>.from(
+          await _client.rpc('request_friend', params: {'p_user_id': userId}) as Map);
+
   /// Stream Realtime de mensajes de una conversación (la RLS aplica también aquí:
   /// un no-miembro/bloqueado no recibe nada).
   Stream<List<Map<String, dynamic>>> chatMessagesStream(String connectionId) {

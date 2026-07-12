@@ -4022,8 +4022,8 @@ abstract class AppLocalizations {
   /// No description provided for @profileMemberSince.
   ///
   /// In es, this message translates to:
-  /// **'Miembro desde {date}'**
-  String profileMemberSince(String date);
+  /// **'Miembro desde {year}'**
+  String profileMemberSince(String year);
 
   /// No description provided for @profileNotebookTitle.
   ///
@@ -4480,6 +4480,192 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Sumen XP y ganen oro juntos'**
   String get convCoopEntrySub;
+
+  /// No description provided for @handleGateTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Elige tu @usuario'**
+  String get handleGateTitle;
+
+  /// No description provided for @handleGateSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Así te encuentran tus amigos. Tu nombre visible sigue siendo libre.'**
+  String get handleGateSubtitle;
+
+  /// No description provided for @handleGateHint.
+  ///
+  /// In es, this message translates to:
+  /// **'tu_usuario'**
+  String get handleGateHint;
+
+  /// No description provided for @handleGateRules.
+  ///
+  /// In es, this message translates to:
+  /// **'3 a 20 letras, números o guion bajo (_).'**
+  String get handleGateRules;
+
+  /// No description provided for @handleGateSave.
+  ///
+  /// In es, this message translates to:
+  /// **'Confirmar @usuario'**
+  String get handleGateSave;
+
+  /// No description provided for @handleGateTaken.
+  ///
+  /// In es, this message translates to:
+  /// **'Ese @usuario ya está tomado. Prueba con otro.'**
+  String get handleGateTaken;
+
+  /// No description provided for @handleGateInvalid.
+  ///
+  /// In es, this message translates to:
+  /// **'Usa 3 a 20 letras, números o guion bajo.'**
+  String get handleGateInvalid;
+
+  /// No description provided for @handleGateReserved.
+  ///
+  /// In es, this message translates to:
+  /// **'Ese @usuario está reservado.'**
+  String get handleGateReserved;
+
+  /// No description provided for @handleGateRateLimit.
+  ///
+  /// In es, this message translates to:
+  /// **'Solo puedes cambiar tu @usuario cada 30 días.'**
+  String get handleGateRateLimit;
+
+  /// No description provided for @handleGateError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo guardar. Intenta de nuevo.'**
+  String get handleGateError;
+
+  /// No description provided for @convSearchTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Buscar amigos'**
+  String get convSearchTitle;
+
+  /// No description provided for @convSearchHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Nombre o @usuario'**
+  String get convSearchHint;
+
+  /// No description provided for @convSearchNoResults.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin resultados para «{q}»'**
+  String convSearchNoResults(String q);
+
+  /// No description provided for @convSuggestionsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Sugerencias para ti'**
+  String get convSuggestionsTitle;
+
+  /// No description provided for @convSuggestionsSub.
+  ///
+  /// In es, this message translates to:
+  /// **'Aprenden tu mismo idioma'**
+  String get convSuggestionsSub;
+
+  /// No description provided for @convViewProfile.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver perfil'**
+  String get convViewProfile;
+
+  /// No description provided for @convPendingSent.
+  ///
+  /// In es, this message translates to:
+  /// **'Pendiente'**
+  String get convPendingSent;
+
+  /// No description provided for @convDiscoverable.
+  ///
+  /// In es, this message translates to:
+  /// **'Aparecer en búsqueda'**
+  String get convDiscoverable;
+
+  /// No description provided for @convDiscoverableSub.
+  ///
+  /// In es, this message translates to:
+  /// **'Otros pueden encontrarte por nombre o @usuario'**
+  String get convDiscoverableSub;
+
+  /// No description provided for @profilePublicTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Perfil'**
+  String get profilePublicTitle;
+
+  /// No description provided for @profileAddFriend.
+  ///
+  /// In es, this message translates to:
+  /// **'Agregar amigo'**
+  String get profileAddFriend;
+
+  /// No description provided for @profileRequestSent.
+  ///
+  /// In es, this message translates to:
+  /// **'Solicitud enviada'**
+  String get profileRequestSent;
+
+  /// No description provided for @profileAcceptRequest.
+  ///
+  /// In es, this message translates to:
+  /// **'Aceptar solicitud'**
+  String get profileAcceptRequest;
+
+  /// No description provided for @profileFriends.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya son amigos'**
+  String get profileFriends;
+
+  /// No description provided for @profileChat.
+  ///
+  /// In es, this message translates to:
+  /// **'Chatear'**
+  String get profileChat;
+
+  /// No description provided for @profileBadges.
+  ///
+  /// In es, this message translates to:
+  /// **'Logros'**
+  String get profileBadges;
+
+  /// No description provided for @profileLanguages.
+  ///
+  /// In es, this message translates to:
+  /// **'Idiomas'**
+  String get profileLanguages;
+
+  /// No description provided for @profileNotFound.
+  ///
+  /// In es, this message translates to:
+  /// **'No se encontró este perfil.'**
+  String get profileNotFound;
+
+  /// No description provided for @profileStreakDays.
+  ///
+  /// In es, this message translates to:
+  /// **'{days, plural, =0{Sin racha} =1{1 día de racha} other{{days} días de racha}}'**
+  String profileStreakDays(int days);
+
+  /// No description provided for @convHandleChip.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu @usuario'**
+  String get convHandleChip;
+
+  /// No description provided for @convAddByCode.
+  ///
+  /// In es, this message translates to:
+  /// **'o agrega por código'**
+  String get convAddByCode;
 
   /// No description provided for @profileEditBirthday.
   ///

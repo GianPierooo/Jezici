@@ -14,6 +14,14 @@
 
 ---
 
+> **ESTADO 2026-07-12 — T3 ✅ social FÁCIL (mig 149).** Sobre la Ola 1 abierta: **@handle único**
+> (case-insensitive, gate obligatorio para lo social, nombre visible libre), **buscar** por nombre/@handle,
+> **perfil público** acotado (solo display_name/@handle/avatar/país/racha/logros/niveles — NUNCA email/edad/
+> datos privados), **sugerencias** por señal inocua (mismo curso/nivel). Todo 18+, RPC SECURITY DEFINER,
+> blocks aplicados en ambas direcciones, rate limits, privacidad "aparecer en búsqueda", aislamiento airtight
+> intacto. Verificado cliente real (`verify_conversar_t3.py`, ~45 checks TODO VERDE). Diferidos: QR, chat desde
+> el perfil (connection_id ya viaja), editar handle, toggle en Ajustes, purga de search_log — ver `## Cola`.
+>
 > **ESTADO 2026-07-11 — OLA 1 ✅ COMPLETA Y ABIERTA (mig 146/147/148).** Cimientos P1 (age gate 18+,
 > blocks/mutes/reportes/rate/filtro de contacto), Ola 1 (amigos por código, chat 1:1 Realtime, corrección,
 > racha, **notas de voz** con bucket privado+RLS de Storage, **co-op** con progreso derivado anti-trampa).

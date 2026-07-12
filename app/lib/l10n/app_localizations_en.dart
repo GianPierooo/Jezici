@@ -2355,8 +2355,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profileNamePlaceholder => 'Set your name';
 
   @override
-  String profileMemberSince(String date) {
-    return 'Member since $date';
+  String profileMemberSince(String year) {
+    return 'Member since $year';
   }
 
   @override
@@ -2602,6 +2602,112 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get convCoopEntrySub => 'Earn XP and gold together';
+
+  @override
+  String get handleGateTitle => 'Pick your @username';
+
+  @override
+  String get handleGateSubtitle =>
+      'This is how friends find you. Your display name stays free.';
+
+  @override
+  String get handleGateHint => 'your_username';
+
+  @override
+  String get handleGateRules => '3 to 20 letters, numbers or underscore (_).';
+
+  @override
+  String get handleGateSave => 'Confirm @username';
+
+  @override
+  String get handleGateTaken => 'That @username is taken. Try another.';
+
+  @override
+  String get handleGateInvalid => 'Use 3 to 20 letters, numbers or underscore.';
+
+  @override
+  String get handleGateReserved => 'That @username is reserved.';
+
+  @override
+  String get handleGateRateLimit =>
+      'You can only change your @username every 30 days.';
+
+  @override
+  String get handleGateError => 'Couldn\'t save. Try again.';
+
+  @override
+  String get convSearchTitle => 'Find friends';
+
+  @override
+  String get convSearchHint => 'Name or @username';
+
+  @override
+  String convSearchNoResults(String q) {
+    return 'No results for \"$q\"';
+  }
+
+  @override
+  String get convSuggestionsTitle => 'Suggestions for you';
+
+  @override
+  String get convSuggestionsSub => 'Learning the same language';
+
+  @override
+  String get convViewProfile => 'View profile';
+
+  @override
+  String get convPendingSent => 'Pending';
+
+  @override
+  String get convDiscoverable => 'Appear in search';
+
+  @override
+  String get convDiscoverableSub => 'Others can find you by name or @username';
+
+  @override
+  String get profilePublicTitle => 'Profile';
+
+  @override
+  String get profileAddFriend => 'Add friend';
+
+  @override
+  String get profileRequestSent => 'Request sent';
+
+  @override
+  String get profileAcceptRequest => 'Accept request';
+
+  @override
+  String get profileFriends => 'You\'re friends';
+
+  @override
+  String get profileChat => 'Chat';
+
+  @override
+  String get profileBadges => 'Achievements';
+
+  @override
+  String get profileLanguages => 'Languages';
+
+  @override
+  String get profileNotFound => 'This profile wasn\'t found.';
+
+  @override
+  String profileStreakDays(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days-day streak',
+      one: '1-day streak',
+      zero: 'No streak',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get convHandleChip => 'Your @username';
+
+  @override
+  String get convAddByCode => 'or add by code';
 
   @override
   String get profileEditBirthday => 'Birthday (day and month, optional)';

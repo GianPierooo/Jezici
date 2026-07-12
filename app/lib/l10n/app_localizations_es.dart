@@ -2356,8 +2356,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get profileNamePlaceholder => 'Pon tu nombre';
 
   @override
-  String profileMemberSince(String date) {
-    return 'Miembro desde $date';
+  String profileMemberSince(String year) {
+    return 'Miembro desde $year';
   }
 
   @override
@@ -2603,6 +2603,113 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get convCoopEntrySub => 'Sumen XP y ganen oro juntos';
+
+  @override
+  String get handleGateTitle => 'Elige tu @usuario';
+
+  @override
+  String get handleGateSubtitle =>
+      'Así te encuentran tus amigos. Tu nombre visible sigue siendo libre.';
+
+  @override
+  String get handleGateHint => 'tu_usuario';
+
+  @override
+  String get handleGateRules => '3 a 20 letras, números o guion bajo (_).';
+
+  @override
+  String get handleGateSave => 'Confirmar @usuario';
+
+  @override
+  String get handleGateTaken => 'Ese @usuario ya está tomado. Prueba con otro.';
+
+  @override
+  String get handleGateInvalid => 'Usa 3 a 20 letras, números o guion bajo.';
+
+  @override
+  String get handleGateReserved => 'Ese @usuario está reservado.';
+
+  @override
+  String get handleGateRateLimit =>
+      'Solo puedes cambiar tu @usuario cada 30 días.';
+
+  @override
+  String get handleGateError => 'No se pudo guardar. Intenta de nuevo.';
+
+  @override
+  String get convSearchTitle => 'Buscar amigos';
+
+  @override
+  String get convSearchHint => 'Nombre o @usuario';
+
+  @override
+  String convSearchNoResults(String q) {
+    return 'Sin resultados para «$q»';
+  }
+
+  @override
+  String get convSuggestionsTitle => 'Sugerencias para ti';
+
+  @override
+  String get convSuggestionsSub => 'Aprenden tu mismo idioma';
+
+  @override
+  String get convViewProfile => 'Ver perfil';
+
+  @override
+  String get convPendingSent => 'Pendiente';
+
+  @override
+  String get convDiscoverable => 'Aparecer en búsqueda';
+
+  @override
+  String get convDiscoverableSub =>
+      'Otros pueden encontrarte por nombre o @usuario';
+
+  @override
+  String get profilePublicTitle => 'Perfil';
+
+  @override
+  String get profileAddFriend => 'Agregar amigo';
+
+  @override
+  String get profileRequestSent => 'Solicitud enviada';
+
+  @override
+  String get profileAcceptRequest => 'Aceptar solicitud';
+
+  @override
+  String get profileFriends => 'Ya son amigos';
+
+  @override
+  String get profileChat => 'Chatear';
+
+  @override
+  String get profileBadges => 'Logros';
+
+  @override
+  String get profileLanguages => 'Idiomas';
+
+  @override
+  String get profileNotFound => 'No se encontró este perfil.';
+
+  @override
+  String profileStreakDays(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: '$days días de racha',
+      one: '1 día de racha',
+      zero: 'Sin racha',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get convHandleChip => 'Tu @usuario';
+
+  @override
+  String get convAddByCode => 'o agrega por código';
 
   @override
   String get profileEditBirthday => 'Cumpleaños (día y mes, opcional)';

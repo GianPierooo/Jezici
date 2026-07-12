@@ -35,6 +35,12 @@ final coopsProvider = FutureProvider.autoDispose<List<Map<String, dynamic>>>((re
   return ref.read(progressRepositoryProvider).listCoops();
 });
 
+/// Sugerencias de amigos (mismo curso/nivel cercano). T3.
+final suggestionsProvider =
+    FutureProvider.autoDispose<List<Map<String, dynamic>>>((ref) async {
+  return ref.read(progressRepositoryProvider).suggestFriends();
+});
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Lenguaje visual compartido
 // ─────────────────────────────────────────────────────────────────────────────
@@ -384,12 +390,77 @@ class FriendsScreen extends ConsumerStatefulWidget {
 
 class _FriendsScreenState extends ConsumerState<FriendsScreen> {
   final _code = TextEditingController();
+  final _search = TextEditingController();
   bool _sending = false;
+  Timer? _debounce;
+  String _query = '';
+  bool _searching = false;
+  List<Map<String, dynamic>> _results = const [];
 
   @override
   void dispose() {
     _code.dispose();
+    _search.dispose();
+    _debounce?.cancel();
     super.dispose();
+  }
+
+  void _onSearchChanged(String v) {
+    final q = v.trim();
+    setState(() => _query = q);
+    _debounce?.cancel();
+    if (q.length < 2) {
+      setState(() {
+        _results = const [];
+        _searching = false;
+      });
+      return;
+    }
+    setState(() => _searching = true);
+    _debounce = Timer(const Duration(milliseconds: 320), _runSearch);
+  }
+
+  Future<void> _runSearch() async {
+    final q = _query;
+    if (q.length < 2) return;
+    try {
+      final r = await ref.read(progressRepositoryProvider).searchUsers(q);
+      if (mounted && _query == q) setState(() => _results = r);
+    } catch (_) {
+      if (mounted && _query == q) setState(() => _results = const []);
+    } finally {
+      if (mounted && _query == q) setState(() => _searching = false);
+    }
+  }
+
+  Future<void> _openProfile(String userId) async {
+    await Navigator.of(context).push(MaterialPageRoute(
+      builder: (_) => PublicProfileScreen(userId: userId),
+    ));
+    ref.invalidate(friendsProvider);
+    ref.invalidate(suggestionsProvider);
+    if (_query.length >= 2) _runSearch();
+  }
+
+  Future<void> _addByUserId(String userId) async {
+    final l10n = AppLocalizations.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    try {
+      await ref.read(progressRepositoryProvider).requestFriend(userId);
+      messenger.showSnackBar(SnackBar(content: Text(l10n.convRequestSent)));
+      ref.invalidate(friendsProvider);
+      ref.invalidate(suggestionsProvider);
+      if (_query.length >= 2) _runSearch();
+    } catch (_) {
+      messenger.showSnackBar(SnackBar(content: Text(l10n.convCodeError)));
+    }
+  }
+
+  Future<void> _toggleDiscoverable(bool on) async {
+    try {
+      await ref.read(progressRepositoryProvider).setDiscoverable(on);
+    } catch (_) {}
+    ref.invalidate(socialStatusProvider);
   }
 
   Future<void> _addByCode() async {
@@ -426,7 +497,17 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
     final l10n = AppLocalizations.of(context);
     final status = ref.watch(socialStatusProvider);
     final myCode = status.maybeWhen(data: (s) => s['friend_code'] as String?, orElse: () => null);
+    final myHandle = status.maybeWhen(data: (s) => s['handle'] as String?, orElse: () => null);
+    final needsHandle =
+        status.maybeWhen(data: (s) => s['needs_handle'] == true, orElse: () => false);
+    final discoverable =
+        status.maybeWhen(data: (s) => s['discoverable'] != false, orElse: () => true);
+    // GATE: para usar lo social hay que elegir @usuario (no se puede saltar).
+    if (needsHandle) {
+      return HandleGateScreen(onDone: () => ref.invalidate(socialStatusProvider));
+    }
     final friends = ref.watch(friendsProvider);
+    final searching = _query.length >= 2;
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
@@ -446,67 +527,33 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
             child: ListView(
               padding: const EdgeInsets.fromLTRB(20, 6, 20, 30),
               children: [
-                _CodeHero(code: myCode, onCopy: myCode == null ? null : () => _copyCode(myCode)),
-                const SizedBox(height: 14),
-                // Agregar por código — un solo gesto obvio.
-                Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15),
-                          boxShadow: const [
-                            BoxShadow(
-                                color: Color(0xFFECEDF6), offset: Offset(0, 4), blurRadius: 0),
-                          ],
-                        ),
-                        child: TextField(
-                          controller: _code,
-                          textCapitalization: TextCapitalization.characters,
-                          maxLength: 7,
-                          onChanged: (_) => setState(() {}),
-                          onSubmitted: (_) => _addByCode(),
-                          style: const TextStyle(
-                              fontSize: 17, fontWeight: FontWeight.w900, letterSpacing: 3),
-                          decoration: InputDecoration(
-                            hintText: l10n.convEnterCode,
-                            hintStyle: const TextStyle(
-                                fontSize: 13.5,
-                                letterSpacing: 0,
-                                fontWeight: FontWeight.w700,
-                                color: AppColors.textMuted),
-                            counterText: '',
-                            prefixIcon: const Icon(Icons.person_add_alt_1_rounded,
-                                color: AppColors.primary, size: 21),
-                            border: InputBorder.none,
-                            contentPadding:
-                                const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 10),
-                    PrimaryButton(
-                      label: l10n.convAddFriend,
-                      onPressed: (_code.text.trim().isNotEmpty && !_sending) ? _addByCode : null,
-                    ),
-                  ],
+                // Tu @usuario (identidad social) — pequeño y claro.
+                if (myHandle != null) ...[
+                  _HandleChip(handle: myHandle),
+                  const SizedBox(height: 12),
+                ],
+                // BUSCADOR — agregar amigos mucho más fácil que solo por código.
+                _SearchField(
+                  controller: _search,
+                  onChanged: _onSearchChanged,
+                  onClear: () {
+                    _search.clear();
+                    _onSearchChanged('');
+                  },
                 ),
-                const SizedBox(height: 7),
-                Row(children: [
-                  const Icon(Icons.shield_rounded, size: 14, color: Color(0xFFA7ABC3)),
-                  const SizedBox(width: 6),
-                  Expanded(
-                    child: Text(l10n.convContactFilterNote,
-                        style: const TextStyle(
-                            fontSize: 11.5,
-                            fontWeight: FontWeight.w700,
-                            color: AppColors.textMuted)),
-                  ),
-                ]),
-                const SizedBox(height: 18),
-                friends.when(
+                const SizedBox(height: 14),
+                if (searching)
+                  _SearchResults(
+                    query: _query,
+                    searching: _searching,
+                    results: _results,
+                    onOpen: _openProfile,
+                    onAdd: _addByUserId,
+                  )
+                else ...[
+                  // Sugerencias (mismo idioma) — descubrimiento inocuo.
+                  _SuggestionsStrip(onOpen: _openProfile, onAdd: _addByUserId),
+                  friends.when(
                   loading: () => const Padding(
                       padding: EdgeInsets.all(30),
                       child: Center(
@@ -610,12 +657,85 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
                     );
                   },
                 ),
+                  const SizedBox(height: 20),
+                  _DiscoverableTile(value: discoverable, onChanged: _toggleDiscoverable),
+                  const SizedBox(height: 14),
+                  _codeSection(l10n, myCode),
+                ],
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  /// Sección "o agrega por código" — se conserva como opción secundaria.
+  Widget _codeSection(AppLocalizations l10n, String? myCode) {
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Row(children: [
+        const Expanded(child: Divider(color: Color(0xFFE6E7F0), thickness: 1.2)),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Text(l10n.convAddByCode,
+              style: const TextStyle(
+                  fontSize: 11.5, fontWeight: FontWeight.w800, color: AppColors.textMuted)),
+        ),
+        const Expanded(child: Divider(color: Color(0xFFE6E7F0), thickness: 1.2)),
+      ]),
+      const SizedBox(height: 12),
+      _CodeHero(code: myCode, onCopy: myCode == null ? null : () => _copyCode(myCode)),
+      const SizedBox(height: 12),
+      Row(children: [
+        Expanded(
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15),
+              boxShadow: const [
+                BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 4), blurRadius: 0),
+              ],
+            ),
+            child: TextField(
+              controller: _code,
+              textCapitalization: TextCapitalization.characters,
+              maxLength: 7,
+              onChanged: (_) => setState(() {}),
+              onSubmitted: (_) => _addByCode(),
+              style: const TextStyle(
+                  fontSize: 17, fontWeight: FontWeight.w900, letterSpacing: 3),
+              decoration: InputDecoration(
+                hintText: l10n.convEnterCode,
+                hintStyle: const TextStyle(
+                    fontSize: 13.5,
+                    letterSpacing: 0,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.textMuted),
+                counterText: '',
+                prefixIcon: const Icon(Icons.tag_rounded, color: AppColors.primary, size: 21),
+                border: InputBorder.none,
+                contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(width: 10),
+        PrimaryButton(
+          label: l10n.convAddFriend,
+          onPressed: (_code.text.trim().isNotEmpty && !_sending) ? _addByCode : null,
+        ),
+      ]),
+      const SizedBox(height: 8),
+      Row(children: [
+        const Icon(Icons.shield_rounded, size: 14, color: Color(0xFFA7ABC3)),
+        const SizedBox(width: 6),
+        Expanded(
+          child: Text(l10n.convContactFilterNote,
+              style: const TextStyle(
+                  fontSize: 11.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+        ),
+      ]),
+    ]);
   }
 }
 
@@ -1913,5 +2033,799 @@ class _CoopCard extends StatelessWidget {
       ),
     );
     return card;
+  }
+}
+
+// ═════════════════════════════════════════════════════════════════════════════
+// T3 · social fácil: @handle gate + buscar + sugerencias + perfil público
+// (capa VISUAL; la lógica y la RLS viven en el servidor, mig 149).
+// ═════════════════════════════════════════════════════════════════════════════
+
+/// Chip "@usuario" — identidad social del usuario.
+class _HandleChip extends StatelessWidget {
+  const _HandleChip({required this.handle});
+  final String handle;
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 9),
+      decoration: BoxDecoration(
+        color: AppColors.navActiveBg,
+        borderRadius: BorderRadius.circular(13),
+      ),
+      child: Row(mainAxisSize: MainAxisSize.min, children: [
+        const Icon(Icons.alternate_email_rounded, size: 16, color: AppColors.primary),
+        const SizedBox(width: 6),
+        Flexible(
+          child: RichText(
+            overflow: TextOverflow.ellipsis,
+            text: TextSpan(children: [
+              TextSpan(
+                  text: '${l10n.convHandleChip}  ',
+                  style: const TextStyle(
+                      fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+              TextSpan(
+                  text: '@$handle',
+                  style: const TextStyle(
+                      fontSize: 13.5, fontWeight: FontWeight.w900, color: AppColors.primary)),
+            ]),
+          ),
+        ),
+      ]),
+    );
+  }
+}
+
+/// Buscador de amigos por nombre o @handle.
+class _SearchField extends StatelessWidget {
+  const _SearchField({required this.controller, required this.onChanged, required this.onClear});
+  final TextEditingController controller;
+  final ValueChanged<String> onChanged;
+  final VoidCallback onClear;
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(15),
+        boxShadow: const [
+          BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 4), blurRadius: 0),
+        ],
+      ),
+      child: TextField(
+        controller: controller,
+        onChanged: onChanged,
+        textInputAction: TextInputAction.search,
+        style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
+        decoration: InputDecoration(
+          hintText: l10n.convSearchHint,
+          hintStyle: const TextStyle(
+              fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.textMuted),
+          prefixIcon: const Icon(Icons.search_rounded, color: AppColors.primary, size: 22),
+          suffixIcon: controller.text.isEmpty
+              ? null
+              : IconButton(
+                  icon: const Icon(Icons.close_rounded, size: 19, color: AppColors.textMuted),
+                  onPressed: onClear),
+          border: InputBorder.none,
+          contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+        ),
+      ),
+    );
+  }
+}
+
+/// Resultados de búsqueda (o estados vacío/cargando).
+class _SearchResults extends StatelessWidget {
+  const _SearchResults({
+    required this.query,
+    required this.searching,
+    required this.results,
+    required this.onOpen,
+    required this.onAdd,
+  });
+  final String query;
+  final bool searching;
+  final List<Map<String, dynamic>> results;
+  final void Function(String userId) onOpen;
+  final void Function(String userId) onAdd;
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    if (searching) {
+      return const Padding(
+        padding: EdgeInsets.all(28),
+        child: Center(child: CircularProgressIndicator(color: AppColors.primary)),
+      );
+    }
+    if (results.isEmpty) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 26),
+        child: Column(children: [
+          const Icon(Icons.search_off_rounded, size: 40, color: Color(0xFFC7CBDD)),
+          const SizedBox(height: 10),
+          Text(l10n.convSearchNoResults(query),
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  fontSize: 13.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+        ]),
+      );
+    }
+    return Column(children: [
+      for (final r in results)
+        Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: _SearchResultRow(data: r, onOpen: onOpen, onAdd: onAdd),
+        ),
+    ]);
+  }
+}
+
+class _SearchResultRow extends StatelessWidget {
+  const _SearchResultRow({required this.data, required this.onOpen, required this.onAdd});
+  final Map<String, dynamic> data;
+  final void Function(String userId) onOpen;
+  final void Function(String userId) onAdd;
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final id = data['user_id'].toString();
+    final name = (data['name'] ?? '').toString();
+    final handle = data['handle'] as String?;
+    final rel = (data['relationship'] ?? 'none').toString();
+    return _LipCard(
+      onTap: () => onOpen(id),
+      padding: const EdgeInsets.all(11),
+      child: Row(children: [
+        _Squircle(color: (data['avatar_color'] ?? '#6C5CE7').toString(), letter: name, size: 46),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(name,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                    fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+            if (handle != null) ...[
+              const SizedBox(height: 1),
+              Text('@$handle',
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                      fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.primary)),
+            ],
+          ]),
+        ),
+        const SizedBox(width: 8),
+        _relTrailing(context, l10n, rel, () => onAdd(id)),
+      ]),
+    );
+  }
+}
+
+/// El control de la derecha según la relación (agregar / pendiente / amigos).
+Widget _relTrailing(
+    BuildContext context, AppLocalizations l10n, String rel, VoidCallback onAdd) {
+  switch (rel) {
+    case 'none':
+      return _RoundAction(
+          icon: Icons.person_add_alt_1_rounded,
+          color: AppColors.primary,
+          depth: const Color(0xFF4B3FC9),
+          onTap: onAdd);
+    case 'pending_out':
+      return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        decoration: BoxDecoration(
+            color: const Color(0xFFF0F0F6), borderRadius: BorderRadius.circular(10)),
+        child: Text(l10n.convPendingSent,
+            style: const TextStyle(
+                fontSize: 11.5, fontWeight: FontWeight.w800, color: AppColors.textMuted)),
+      );
+    case 'pending_in':
+      return _RoundAction(
+          icon: Icons.how_to_reg_rounded,
+          color: AppColors.success,
+          depth: AppColors.successDark,
+          onTap: onAdd);
+    case 'friends':
+      return const Icon(Icons.chevron_right_rounded, color: AppColors.primary, size: 22);
+    default:
+      return const Icon(Icons.chevron_right_rounded, color: Color(0xFFC7CBDD), size: 22);
+  }
+}
+
+/// Carrusel de sugerencias de amigos (mismo idioma/nivel cercano).
+class _SuggestionsStrip extends ConsumerWidget {
+  const _SuggestionsStrip({required this.onOpen, required this.onAdd});
+  final void Function(String userId) onOpen;
+  final void Function(String userId) onAdd;
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    final sug = ref.watch(suggestionsProvider);
+    return sug.maybeWhen(
+      data: (list) {
+        if (list.isEmpty) return const SizedBox.shrink();
+        return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Row(children: [
+            const Icon(Icons.auto_awesome_rounded, size: 16, color: Color(0xFFFF8A3D)),
+            const SizedBox(width: 6),
+            Text(l10n.convSuggestionsTitle.toUpperCase(),
+                style: const TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 0.8,
+                    color: AppColors.textMuted)),
+          ]),
+          const SizedBox(height: 10),
+          SizedBox(
+            height: 178,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.zero,
+              itemCount: list.length,
+              separatorBuilder: (_, _) => const SizedBox(width: 10),
+              itemBuilder: (_, i) =>
+                  _SuggestionCard(data: list[i], onOpen: onOpen, onAdd: onAdd),
+            ),
+          ),
+          const SizedBox(height: 18),
+        ]);
+      },
+      orElse: () => const SizedBox.shrink(),
+    );
+  }
+}
+
+class _SuggestionCard extends StatelessWidget {
+  const _SuggestionCard({required this.data, required this.onOpen, required this.onAdd});
+  final Map<String, dynamic> data;
+  final void Function(String userId) onOpen;
+  final void Function(String userId) onAdd;
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final id = data['user_id'].toString();
+    final name = (data['name'] ?? '').toString();
+    final handle = data['handle'] as String?;
+    final level = (data['level'] ?? '').toString();
+    return SizedBox(
+      width: 138,
+      child: _LipCard(
+        onTap: () => onOpen(id),
+        padding: const EdgeInsets.all(12),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          _Squircle(color: (data['avatar_color'] ?? '#6C5CE7').toString(), letter: name, size: 52),
+          const SizedBox(height: 8),
+          Text(name,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  fontSize: 13.5, fontWeight: FontWeight.w900, color: AppColors.text)),
+          if (handle != null)
+            Text('@$handle',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                    fontSize: 11, fontWeight: FontWeight.w700, color: AppColors.primary)),
+          const SizedBox(height: 6),
+          if (level.isNotEmpty)
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              decoration: BoxDecoration(
+                  color: AppColors.navActiveBg, borderRadius: BorderRadius.circular(8)),
+              child: Text(level,
+                  style: const TextStyle(
+                      fontSize: 10.5, fontWeight: FontWeight.w900, color: AppColors.primary)),
+            ),
+          const Spacer(),
+          SizedBox(
+            width: double.infinity,
+            child: PrimaryButton(label: l10n.convAddFriend, onPressed: () => onAdd(id)),
+          ),
+        ]),
+      ),
+    );
+  }
+}
+
+/// Toggle de privacidad: aparecer o no en búsqueda/sugerencias.
+class _DiscoverableTile extends StatelessWidget {
+  const _DiscoverableTile({required this.value, required this.onChanged});
+  final bool value;
+  final ValueChanged<bool> onChanged;
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return _LipCard(
+      padding: const EdgeInsets.fromLTRB(14, 10, 8, 10),
+      child: Row(children: [
+        Container(
+          width: 36,
+          height: 36,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              color: AppColors.navActiveBg, borderRadius: BorderRadius.circular(11)),
+          child: Icon(value ? Icons.travel_explore_rounded : Icons.visibility_off_rounded,
+              size: 19, color: AppColors.primary),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(l10n.convDiscoverable,
+                style: const TextStyle(
+                    fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.text)),
+            const SizedBox(height: 1),
+            Text(l10n.convDiscoverableSub,
+                style: const TextStyle(
+                    fontSize: 11.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+          ]),
+        ),
+        Switch(
+          value: value,
+          onChanged: onChanged,
+          activeThumbColor: Colors.white,
+          activeTrackColor: AppColors.success,
+        ),
+      ]),
+    );
+  }
+}
+
+/// GATE de @usuario — pantalla dedicada, no se puede saltar para usar lo social.
+class HandleGateScreen extends ConsumerStatefulWidget {
+  const HandleGateScreen({super.key, required this.onDone});
+  final VoidCallback onDone;
+  @override
+  ConsumerState<HandleGateScreen> createState() => _HandleGateScreenState();
+}
+
+class _HandleGateScreenState extends ConsumerState<HandleGateScreen> {
+  final _ctrl = TextEditingController();
+  bool _busy = false;
+  String? _error;
+
+  @override
+  void dispose() {
+    _ctrl.dispose();
+    super.dispose();
+  }
+
+  bool get _valid {
+    final v = _ctrl.text.trim().toLowerCase().replaceAll('@', '');
+    return RegExp(r'^[a-z0-9_]{3,20}$').hasMatch(v) && RegExp(r'[a-z]').hasMatch(v);
+  }
+
+  Future<void> _submit() async {
+    if (!_valid || _busy) return;
+    setState(() {
+      _busy = true;
+      _error = null;
+    });
+    final l10n = AppLocalizations.of(context);
+    try {
+      await ref.read(progressRepositoryProvider).claimHandle(_ctrl.text.trim());
+      widget.onDone();
+    } catch (e) {
+      final s = e.toString();
+      setState(() {
+        _error = s.contains('handle_taken')
+            ? l10n.handleGateTaken
+            : s.contains('handle_reserved')
+                ? l10n.handleGateReserved
+                : s.contains('handle_change_rate')
+                    ? l10n.handleGateRateLimit
+                    : s.contains('invalid_handle')
+                        ? l10n.handleGateInvalid
+                        : l10n.handleGateError;
+      });
+    } finally {
+      if (mounted) setState(() => _busy = false);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Scaffold(
+      backgroundColor: AppColors.background,
+      appBar: AppBar(
+        backgroundColor: AppColors.background,
+        surfaceTintColor: Colors.transparent,
+        title: Text(l10n.convFriendsTitle,
+            style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
+      ),
+      body: SafeArea(
+        child: ResponsiveCenter(
+          maxWidth: 480,
+          child: ListView(
+            padding: const EdgeInsets.fromLTRB(24, 10, 24, 30),
+            children: [
+              const SizedBox(height: 8),
+              const Center(child: ParrotMascot(size: 92, mood: MascotMood.encourage)),
+              const SizedBox(height: 18),
+              Text(l10n.handleGateTitle,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontSize: 23, fontWeight: FontWeight.w900, color: AppColors.text)),
+              const SizedBox(height: 8),
+              Text(l10n.handleGateSubtitle,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.textMuted)),
+              const SizedBox(height: 22),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: const [
+                    BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 4), blurRadius: 0),
+                  ],
+                ),
+                child: TextField(
+                  controller: _ctrl,
+                  autocorrect: false,
+                  onChanged: (_) => setState(() => _error = null),
+                  onSubmitted: (_) => _submit(),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z0-9_@]')),
+                    LengthLimitingTextInputFormatter(21),
+                  ],
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+                  decoration: InputDecoration(
+                    hintText: l10n.handleGateHint,
+                    hintStyle: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.w700, color: AppColors.textMuted),
+                    prefixIcon: const Icon(Icons.alternate_email_rounded,
+                        color: AppColors.primary, size: 21),
+                    border: InputBorder.none,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(_error ?? l10n.handleGateRules,
+                  style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      color: _error != null ? AppColors.hearts : AppColors.textMuted)),
+              const SizedBox(height: 22),
+              SizedBox(
+                width: double.infinity,
+                child: PrimaryButton(
+                  label: l10n.handleGateSave,
+                  onPressed: (_valid && !_busy) ? _submit : null,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// PERFIL PÚBLICO — superficie acotada (nunca email/edad/datos privados).
+class PublicProfileScreen extends ConsumerStatefulWidget {
+  const PublicProfileScreen({super.key, required this.userId});
+  final String userId;
+  @override
+  ConsumerState<PublicProfileScreen> createState() => _PublicProfileScreenState();
+}
+
+class _PublicProfileScreenState extends ConsumerState<PublicProfileScreen> {
+  late Future<Map<String, dynamic>> _future;
+  bool _acting = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _future = ref.read(progressRepositoryProvider).getPublicProfile(widget.userId);
+  }
+
+  void _reload() {
+    setState(() {
+      _future = ref.read(progressRepositoryProvider).getPublicProfile(widget.userId);
+    });
+  }
+
+  Future<void> _add() async {
+    if (_acting) return;
+    setState(() => _acting = true);
+    final l10n = AppLocalizations.of(context);
+    final messenger = ScaffoldMessenger.of(context);
+    try {
+      await ref.read(progressRepositoryProvider).requestFriend(widget.userId);
+      ref.invalidate(friendsProvider);
+      ref.invalidate(suggestionsProvider);
+      _reload();
+    } catch (_) {
+      messenger.showSnackBar(SnackBar(content: Text(l10n.convCodeError)));
+    } finally {
+      if (mounted) setState(() => _acting = false);
+    }
+  }
+
+  Future<void> _block() async {
+    final l10n = AppLocalizations.of(context);
+    final nav = Navigator.of(context);
+    await ref.read(progressRepositoryProvider).blockUser(widget.userId);
+    ref.invalidate(friendsProvider);
+    ref.invalidate(suggestionsProvider);
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.convBlock)));
+      nav.pop();
+    }
+  }
+
+  Future<void> _report() async {
+    final l10n = AppLocalizations.of(context);
+    await ref
+        .read(progressRepositoryProvider)
+        .reportUser(widget.userId, 'profile', context: 'other');
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.convReported)));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Scaffold(
+      backgroundColor: AppColors.background,
+      appBar: AppBar(
+        backgroundColor: AppColors.background,
+        surfaceTintColor: Colors.transparent,
+        title: Text(l10n.profilePublicTitle,
+            style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
+        actions: [
+          PopupMenuButton<String>(
+            icon: const Icon(Icons.more_vert_rounded, color: AppColors.text),
+            onSelected: (v) => v == 'block' ? _block() : _report(),
+            itemBuilder: (_) => [
+              PopupMenuItem(value: 'report', child: Text(l10n.convReport)),
+              PopupMenuItem(value: 'block', child: Text(l10n.convBlock)),
+            ],
+          ),
+        ],
+      ),
+      body: SafeArea(
+        child: ResponsiveCenter(
+          maxWidth: 560,
+          child: FutureBuilder<Map<String, dynamic>>(
+            future: _future,
+            builder: (context, snap) {
+              if (snap.connectionState != ConnectionState.done) {
+                return const Center(child: CircularProgressIndicator(color: AppColors.primary));
+              }
+              if (snap.hasError || snap.data == null) {
+                return Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(28),
+                    child: Text(l10n.profileNotFound,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.textMuted)),
+                  ),
+                );
+              }
+              return _ProfileBody(
+                data: snap.data!,
+                acting: _acting,
+                onAdd: _add,
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ProfileBody extends StatelessWidget {
+  const _ProfileBody({required this.data, required this.acting, required this.onAdd});
+  final Map<String, dynamic> data;
+  final bool acting;
+  final VoidCallback onAdd;
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    final name = (data['name'] ?? '').toString();
+    final handle = data['handle'] as String?;
+    final rel = (data['relationship'] ?? 'none').toString();
+    final country = (data['country'] as String?)?.trim();
+    final memberSince = (data['member_since'] ?? '').toString();
+    final streak = (data['streak'] as num?)?.toInt() ?? 0;
+    final levels = (data['levels'] as List?) ?? const [];
+    final badges = (data['badges'] as List?) ?? const [];
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(20, 8, 20, 30),
+      children: [
+        Container(
+          padding: const EdgeInsets.all(20),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [Color(0xFF7A6BF0), AppColors.primary, Color(0xFF5B4ECF)]),
+            borderRadius: BorderRadius.circular(22),
+            boxShadow: const [
+              BoxShadow(color: Color(0xFF4B3FC9), offset: Offset(0, 5), blurRadius: 0),
+              BoxShadow(color: Color(0x336C5CE7), offset: Offset(0, 14), blurRadius: 24),
+            ],
+          ),
+          child: Column(children: [
+            Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(22),
+                  border: Border.all(color: Colors.white, width: 3)),
+              child: _Squircle(
+                  color: (data['avatar_color'] ?? '#6C5CE7').toString(), letter: name, size: 78),
+            ),
+            const SizedBox(height: 12),
+            Text(name,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                    fontSize: 21, fontWeight: FontWeight.w900, color: Colors.white)),
+            if (handle != null)
+              Text('@$handle',
+                  style: TextStyle(
+                      fontSize: 13.5,
+                      fontWeight: FontWeight.w800,
+                      color: Colors.white.withValues(alpha: 0.85))),
+            const SizedBox(height: 8),
+            Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 14,
+              children: [
+                if (country != null && country.isNotEmpty)
+                  _bannerMeta(Icons.public_rounded, country),
+                if (memberSince.isNotEmpty)
+                  _bannerMeta(Icons.event_rounded, l10n.profileMemberSince(memberSince)),
+                if (streak > 0)
+                  _bannerMeta(
+                      Icons.local_fire_department_rounded, l10n.profileStreakDays(streak)),
+              ],
+            ),
+          ]),
+        ),
+        const SizedBox(height: 16),
+        _profileCta(context, l10n, rel, acting, onAdd),
+        if (levels.isNotEmpty) ...[
+          const SizedBox(height: 20),
+          _sectionHeader(l10n.profileLanguages),
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final lv in levels)
+                _LangChip(
+                    lang: (lv['lang_name'] ?? lv['lang'] ?? '').toString(),
+                    level: (lv['level'] ?? '').toString()),
+            ],
+          ),
+        ],
+        if (badges.isNotEmpty) ...[
+          const SizedBox(height: 20),
+          _sectionHeader(l10n.profileBadges),
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final b in badges) _BadgeChip(name: (b['name'] ?? '').toString()),
+            ],
+          ),
+        ],
+      ],
+    );
+  }
+}
+
+Widget _bannerMeta(IconData icon, String text) =>
+    Row(mainAxisSize: MainAxisSize.min, children: [
+      Icon(icon, size: 14, color: Colors.white.withValues(alpha: 0.85)),
+      const SizedBox(width: 4),
+      Text(text,
+          style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w800,
+              color: Colors.white.withValues(alpha: 0.9))),
+    ]);
+
+Widget _sectionHeader(String t) => Text(t.toUpperCase(),
+    style: const TextStyle(
+        fontSize: 12, fontWeight: FontWeight.w900, letterSpacing: 1, color: AppColors.textMuted));
+
+Widget _profileCta(BuildContext context, AppLocalizations l10n, String rel, bool acting,
+    VoidCallback onAdd) {
+  switch (rel) {
+    case 'none':
+      return SizedBox(
+        width: double.infinity,
+        child: PrimaryButton(label: l10n.profileAddFriend, onPressed: acting ? null : onAdd),
+      );
+    case 'pending_in':
+      return SizedBox(
+        width: double.infinity,
+        child: PrimaryButton(label: l10n.profileAcceptRequest, onPressed: acting ? null : onAdd),
+      );
+    case 'pending_out':
+      return _statusPill(l10n.profileRequestSent, Icons.schedule_rounded);
+    case 'friends':
+      return _statusPill(l10n.profileFriends, Icons.verified_rounded, color: AppColors.success);
+    default:
+      return const SizedBox.shrink();
+  }
+}
+
+Widget _statusPill(String text, IconData icon, {Color color = AppColors.primary}) => Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(vertical: 14),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+          color: color.withValues(alpha: 0.10), borderRadius: BorderRadius.circular(15)),
+      child: Row(mainAxisSize: MainAxisSize.min, children: [
+        Icon(icon, size: 18, color: color),
+        const SizedBox(width: 7),
+        Text(text, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: color)),
+      ]),
+    );
+
+class _LangChip extends StatelessWidget {
+  const _LangChip({required this.lang, required this.level});
+  final String lang, level;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(13),
+          boxShadow: const [
+            BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 3), blurRadius: 0),
+          ]),
+      child: Row(mainAxisSize: MainAxisSize.min, children: [
+        Text(lang,
+            style:
+                const TextStyle(fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.text)),
+        const SizedBox(width: 7),
+        Container(
+          padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 1),
+          decoration: BoxDecoration(
+              color: AppColors.navActiveBg, borderRadius: BorderRadius.circular(7)),
+          child: Text(level,
+              style: const TextStyle(
+                  fontSize: 11, fontWeight: FontWeight.w900, color: AppColors.primary)),
+        ),
+      ]),
+    );
+  }
+}
+
+class _BadgeChip extends StatelessWidget {
+  const _BadgeChip({required this.name});
+  final String name;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+          color: const Color(0xFFFFF4E0), borderRadius: BorderRadius.circular(13)),
+      child: Row(mainAxisSize: MainAxisSize.min, children: [
+        const Icon(Icons.emoji_events_rounded, size: 15, color: Color(0xFFEBA400)),
+        const SizedBox(width: 6),
+        Text(name,
+            style: const TextStyle(
+                fontSize: 12.5, fontWeight: FontWeight.w800, color: Color(0xFF8A6400))),
+      ]),
+    );
   }
 }

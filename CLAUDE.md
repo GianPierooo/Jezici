@@ -5,6 +5,46 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-12**.
 
+## CONVERSAR · T3 — social FÁCIL: @handle + buscar + perfil público + sugerencias ✅ LIVE (mig 149 · 2026-07-12)
+Sobre P1 (mig 146) + Ola 1 (mig 147/148). Decisiones de Gian: **social 18+ · @handle OBLIGATORIO para usar
+lo social · nombre visible LIBRE (el certificado NO se toca).** PASO 0 (BD real): `users` SIN columna handle;
+RLS `users_select_own` = auth.uid()=id (**aislamiento airtight** → search DEBE ser DEFINER); `jz_social_access`
+= solo adulto 18+; connections par canónico; helpers `jz_blocked_between`/`jz_is_sanctioned`/`jz_rate_guard`.
+- **@HANDLE ÚNICO:** `users.handle` + índice UNIQUE **case-insensitive** (`lower(handle)`), `handle_set_at`,
+  `discoverable` (default true). `jz_valid_handle` (3–20 de a-z0-9_, con ≥1 letra). **`claim_handle`** (adulto;
+  normaliza/`@`-strip; colisión→`handle_taken`; formato→`invalid_handle`; reservados→`handle_reserved`; cambio
+  **rate-limited 1/30d**→`handle_change_rate`; re-poner el mismo = no-op). El **nombre visible sigue LIBRE e
+  independiente** (dos usuarios "Sam" coexisten; el handle no). `get_social_status` extendido: `handle`,
+  `needs_handle` (access ∧ handle==null), `discoverable`.
+- **BUSCAR (`search_users`):** por nombre o @handle; **SOLO campos públicos**; excluye en la propia lógica
+  a quien te bloqueó/bloqueaste (ambas dir), menores (18+), no-descubribles (privacidad "aparecer en búsqueda"),
+  sancionados; **rate 30/min** (`social_search_log`, RLS dueño, revocado a REST); comodines LIKE escapados;
+  devuelve `relationship` (none/pending_out/pending_in/friends) para el CTA correcto.
+- **PERFIL PÚBLICO (`get_public_profile`) — superficie RLS nueva y DELIBERADA:** expone SOLO display_name,
+  @handle, avatar, país, año de alta, racha, logros, niveles de idioma (máx CEFR por curso) + relación +
+  `connection_id` (para aceptar/chatear). **NUNCA email/birth_year/edad/bio/progreso**. Bloqueado o
+  no-descubrible-sin-vínculo → `not found` (no revela existencia).
+- **SUGERENCIAS (`suggest_friends`):** señal INOCUA = **mismo curso activo + nivel cercano** (NO ubicación/
+  datos sensibles); excluye amigos, pendientes, bloqueados (ambas dir), menores, no-descubribles, sancionados;
+  sin curso → `[]` (honesto).
+- **`request_friend(user_id)`** + `send_friend_request(code)` refactorizados sobre un helper único
+  `jz_do_friend_request` (adulto-adulto, no-self, no-bloqueo, rate 50/día, auto-acepta si el otro ya pidió).
+  `set_discoverable(on)`. Todo por RPC SECURITY DEFINER; helpers internos revocados; **NADA using(true)**.
+- **CLIENTE (`friends.dart`):** GATE de @usuario (pantalla dedicada con Jezi, no se puede saltar) al entrar
+  a Amigos sin handle; **buscador** prominente con resultados en vivo (debounce) + CTA agregar/pendiente/amigos;
+  **carrusel de sugerencias**; **PublicProfileScreen** (banner + niveles + logros + racha + CTA por relación +
+  reportar/bloquear); toggle de privacidad "Aparecer en búsqueda"; chip "Tu @usuario"; el **código sigue** como
+  opción secundaria. i18n es/en/pt (+40 claves), responsive (RC 480/560), reduce-motion. Agregar amigo mucho
+  más fácil que solo-por-código.
+- **Verificado cliente REAL (`verify_conversar_t3.py`, JWT) TODO VERDE (~45 checks):** handle único (colisión
+  case-insensitive rechazada; nombre SÍ repite; inválido/reservado/rate rechazados; needs_handle gate); búsqueda
+  por nombre/@handle **sin email**, MENOR no aparece ni busca; perfil público **NO expone email/birth_year/
+  age_tier/bio/birthday** (probado explícito), MENOR→not found; `request_friend` pending→pending_in/out→friends;
+  **BLOQUEO corta búsqueda + perfil en AMBAS direcciones**; privacidad off → no aparece ni perfil (pero amigo sí
+  lo ve); sugerencias mismo curso, excluyen pendientes/bloqueados/menores; **aislamiento airtight intacto** (A no
+  ve users de B por REST; `social_search_log` 403 por REST). Verde: analyze 0 (CI-exact) · test **157/157**
+  (+3 social_discovery: gate, buscador, perfil sin campos privados) · build web OK.
+
 ## MAPA · PERF 2ª pasada (VENTANA de widgets) + NUBES fog-of-war + botón de salto ✅ (2026-07-12 · solo cliente)
 Gian seguía sintiendo lag pese al −93% de painters (culling+RepaintBoundary). **Se MIDIÓ antes de tocar**
 (benchmark headless, curso 30 unidades ≈ 27.000px): la causa restante NO eran los painters sino la
@@ -1166,6 +1206,16 @@ en B2; andamiaje idéntico listo: STAMP `('pt','c1')=…130`, grupo audio `pt-c1
   Cierre: analyze 0, tests verdes, gh run list SUCCESS, deploy READY. Reporta en 1 línea.
 
 ## Cola (retome exacto — orden sugerido)
+-3. **CONVERSAR · T3 ✅ social FÁCIL (mig 149, 2026-07-12).** @handle único + buscar + perfil público +
+   sugerencias — todo 18+, server-side, aislamiento airtight intacto. **Diferido/re-encolado:** (a) **QR del
+   @handle/código** (requiere paquete o pintar el QR a mano; el buscador + código copiable ya cubren el alta);
+   (b) **abrir el CHAT directo desde el perfil público** cuando `relationship=friends` (el `connection_id` ya
+   viaja en `get_public_profile`; hoy el perfil muestra "Ya son amigos" y se chatea desde la lista de Amigos —
+   falta el botón "Chatear" que empuje `ChatScreen` con ese connection_id + name/color); (c) **exponer el toggle
+   "Aparecer en búsqueda" también en Ajustes** (hoy vive en la pantalla de Amigos); (d) **editar el @handle**
+   desde el chip "Tu @usuario" (RPC `claim_handle` ya soporta el cambio con rate 1/30d; falta el botón→gate en
+   modo edición); (e) **purga programada de `social_search_log`** (crece sin cron; borrar filas > N días =
+   diferido, sin cron hoy). NADA a medias: lo enviado está verificado con cliente real.
 -2. **CONVERSAR · OLA 1 ✅ COMPLETA + ABIERTA (mig 148, 2026-07-11).** A3 notas de voz + A6 co-op HECHOS;
    `jz_social_access` = solo adulto 18+ (allowlist retirada, legal aprobado). **RE-ENCOLADO de la Ola 1:**
    (a) **F5 postales de voz** — nota de voz sobre un prompt diario a un amigo (sobre A3: reusar el grabador
