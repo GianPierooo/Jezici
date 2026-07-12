@@ -333,8 +333,12 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
 
             // ===== AVANZADO (interno / GDPR) =====
             _header(l10n.settingsSecAdvanced),
-            const _Group(padding: EdgeInsets.all(14), children: [MatixTestButtons()]),
-            const SizedBox(height: 10),
+            // Banco de pruebas del motor (MatixTestButtons) = herramienta interna →
+            // solo admin (el público no lo ve).
+            if (ref.watch(isAdminProvider).maybeWhen(data: (a) => a, orElse: () => false)) ...[
+              const _Group(padding: EdgeInsets.all(14), children: [MatixTestButtons()]),
+              const SizedBox(height: 10),
+            ],
             // "Ver métricas" es INTERNO (admin only server-side, mig 058). Se
             // OCULTA a usuarios normales: no mostrar una puerta cerrada.
             if (ref.watch(isAdminProvider).maybeWhen(data: (a) => a, orElse: () => false))

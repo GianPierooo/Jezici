@@ -2654,14 +2654,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get certRowIssued => 'Emitido el';
 
   @override
-  String get certShare => 'COMPARTIR';
+  String get certShare => 'COPIAR DATOS';
 
   @override
   String get certShareCopied => 'Certificado copiado para compartir ✓';
 
   @override
-  String get certVerifyNote =>
-      'Tu código verifica la autenticidad del certificado.';
+  String get certVerifyNote => 'Guarda tu folio y código de verificación.';
 
   @override
   String get certSealVerified => 'VERIFICADO';

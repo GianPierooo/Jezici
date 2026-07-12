@@ -4574,7 +4574,7 @@ abstract class AppLocalizations {
   /// No description provided for @certShare.
   ///
   /// In es, this message translates to:
-  /// **'COMPARTIR'**
+  /// **'COPIAR DATOS'**
   String get certShare;
 
   /// No description provided for @certShareCopied.
@@ -4586,7 +4586,7 @@ abstract class AppLocalizations {
   /// No description provided for @certVerifyNote.
   ///
   /// In es, this message translates to:
-  /// **'Tu código verifica la autenticidad del certificado.'**
+  /// **'Guarda tu folio y código de verificación.'**
   String get certVerifyNote;
 
   /// No description provided for @certSealVerified.

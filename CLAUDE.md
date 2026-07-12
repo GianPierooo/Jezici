@@ -26,6 +26,27 @@ TTS/banner "en vivo próximamente" intactos):
   Responsive (grid recol­umna) + reduce-motion-aware. Verificado con **goldens temporales** (lista = catálogo a
   color; práctica = escenario tintado; borrados). Verde: analyze 0 (CI-exact) · test 149/149 · build web OK.
 
+## P1 DE CÓDIGO del LAUNCH_AUDIT cerrados (pre-lanzamiento) ✅ (2026-07-11 · solo cliente)
+Los 4 arreglos de código del LAUNCH_AUDIT.md antes de abrir al público. Cero IA, cero cambios de
+seguridad/RLS/placement/economía.
+- **AGE GATE unificado (P1):** el onboarding pedía nombre + checkbox "soy mayor de edad" pero **nunca el
+  AÑO** → `birthYear==null` → `CompleteProfileScreen` reaparecía tras "Empezar mi viaje" (doble pregunta).
+  Ahora el paso de nombre pide el **AÑO de nacimiento** (dropdown, reusa `ageGateYearHint`/`ageGateSubtitle`)
+  y `_continueName`+`_finish` llaman `submit_age_gate(año)` (idempotente) → el servidor recomputa is_adult
+  REAL → **CompleteProfileScreen ya no aparece** para altas nuevas. Verificado cliente real: `submit_age_gate(1990)`
+  → birth_year=1990, age_tier=adult; menor(2014) → age_tier≠adult (age gate intacto).
+- **DEV-TOOL oculto (P1):** el banco "Probar a Jezi" (`MatixTestButtons`) se mostraba a TODOS (tab
+  Notificaciones + Ajustes→Avanzado). Ahora gateado por `isAdminProvider` (como "Ver métricas") → el público
+  no lo ve; `am_i_admin=false` para usuario normal.
+- **CONSENTIMIENTO legal siempre registrado (P1):** con confirm-email ON el alta no tenía sesión y
+  `auth_screen` retornaba antes de `accept_legal` → se perdía. Ahora `_finish` del onboarding llama
+  `acceptLegal(kLegalVersion)` SIEMPRE (con sesión activa). Verificado cliente real: `accept_legal` → 204 +
+  fila en `legal_consents`.
+- **COPY del certificado (P2):** el botón "COMPARTIR" (icono share) solo copiaba → ahora **"COPIAR DATOS"**
+  con icono `copy`; `certVerifyNote` suavizado ("Guarda tu folio y código de verificación" — sin prometer
+  URL de verificación pública inexistente). i18n es/en/pt.
+- Verde: analyze 0 (CI-exact) · test 149/149 (onboarding_target actualizado al dropdown de año) · build web OK.
+
 ## RESPONSIVE en TODAS las pantallas (pre-lanzamiento público) ✅ (2026-07-11 · solo cliente)
 Gian va a lanzar público (dominio propio + LinkedIn) → entra gente de móvil/tablet/desktop ancho.
 **PASO 0 (auditoría real con 4 agentes en paralelo, mirando el código):** ~17 pantallas se **estiraban

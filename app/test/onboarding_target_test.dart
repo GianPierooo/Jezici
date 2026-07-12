@@ -14,6 +14,13 @@ class _FakeRepo implements ProgressRepository {
   final List<String> activeCalls = [];
   final List<String?> nameCalls = [];
   final List<bool?> adultCalls = [];
+  final List<int> ageGateCalls = [];
+  @override
+  Future<Map<String, dynamic>> submitAgeGate(int birthYear) async {
+    ageGateCalls.add(birthYear);
+    return {'is_adult': true};
+  }
+
   @override
   Future<void> setActiveCourse(String courseId) async => activeCalls.add(courseId);
   @override
@@ -77,17 +84,26 @@ void main() {
     expect(find.text('¿Cómo te llamas?'), findsOneWidget);
     await tester.enterText(find.byType(TextField), 'Ana');
     await tester.pump();
-    // Con nombre pero SIN confirmar mayoría de edad, CONTINUAR no avanza.
+    // Con nombre pero SIN AÑO de nacimiento, CONTINUAR no avanza (botón deshabilitado).
     await tester.tap(find.text('CONTINUAR').first);
     await tester.pump();
     expect(fake.nameCalls, isEmpty);
-    await tester.tap(find.byType(Checkbox));
+    // Selecciona el AÑO de nacimiento (age gate unificado en el paso de nombre).
+    // Uso el primer año de la lista (el actual) → siempre visible al abrir el menú.
+    final year = DateTime.now().year;
+    await tester.ensureVisible(find.byType(DropdownButtonFormField<int>));
     await tester.pump();
+    await tester.tap(find.byType(DropdownButtonFormField<int>));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 500));
+    await tester.tap(find.text('$year').last);
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
     await tester.tap(find.text('CONTINUAR').first);
-    await tester.pump(); // _continueName: await setProfile
+    await tester.pump(); // _continueName: await setProfile + submitAgeGate
     await tester.pump(); // _next
     expect(fake.nameCalls, contains('Ana'));
-    expect(fake.adultCalls, contains(true));
+    expect(fake.ageGateCalls, contains(year));
 
     // Paso 3: idioma META. Aparecen los cursos con el nombre en el idioma de la app.
     expect(find.text('¿Qué idioma quieres aprender?'), findsOneWidget);

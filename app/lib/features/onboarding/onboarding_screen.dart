@@ -6,6 +6,7 @@ import '../../core/i18n/locale_controller.dart';
 import '../learn/widgets/parrot_mascot.dart';
 import '../../core/plan/estimation.dart';
 import '../../core/theme/app_colors.dart';
+import '../legal/legal_screen.dart' show kLegalVersion;
 import '../../core/ui/jz_glow_pulse.dart';
 import '../../core/ui/responsive_center.dart';
 import '../../l10n/app_localizations.dart';
@@ -40,7 +41,9 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   static const _total = 12;
   final OnboardingData _data = OnboardingData();
   final TextEditingController _nameCtrl = TextEditingController();
-  bool _adultOk = false; // confirmación "soy mayor de edad" (requerida)
+  // Año de nacimiento (AGE GATE unificado: se pide UNA vez, aquí; el servidor
+  // recomputa is_adult real → CompleteProfileScreen ya no reaparece tras el plan).
+  int? _birthYear;
   int _step = 0;
 
   @override
@@ -130,6 +133,16 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           await repo.setProfile(name: nm);
         } catch (_) {}
       }
+      // Belt idempotente del AGE GATE (por si la escritura al salir del paso falló).
+      if (_birthYear != null) {
+        try {
+          await repo.submitAgeGate(_birthYear!);
+        } catch (_) {}
+      }
+      // Consentimiento legal: se registra SIEMPRE al completar el onboarding (con
+      // sesión activa). Cubre el camino confirm-email ON, donde el alta no tenía
+      // sesión y auth_screen no pudo llamar accept_legal. Idempotente y tolerante.
+      await repo.acceptLegal(kLegalVersion);
       // Asegura que el curso ACTIVO sea el META elegido antes de create_plan
       // (que usa jz_active_course). Idempotente; robustez si el pick falló.
       if (_data.targetCourseId != null) {
@@ -414,7 +427,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         label: l10n.commonContinue,
         expand: true,
         onPressed:
-            (_nameCtrl.text.trim().isNotEmpty && _adultOk) ? _continueName : null,
+            (_nameCtrl.text.trim().isNotEmpty && _birthYear != null) ? _continueName : null,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -427,7 +440,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
             maxLength: 40,
             onChanged: (_) => setState(() {}),
             onSubmitted: (_) {
-              if (_nameCtrl.text.trim().isNotEmpty && _adultOk) _continueName();
+              if (_nameCtrl.text.trim().isNotEmpty && _birthYear != null) _continueName();
             },
             style: const TextStyle(
                 fontSize: 18, fontWeight: FontWeight.w800, color: AppColors.text),
@@ -447,29 +460,39 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
               ),
             ),
           ),
-          const SizedBox(height: 14),
-          // Confirmación de MAYORÍA de edad (gating; no se guarda fecha de
-          // nacimiento con año — minimización de datos).
-          InkWell(
-            onTap: () => setState(() => _adultOk = !_adultOk),
-            borderRadius: BorderRadius.circular(12),
-            child: Row(
-              children: [
-                Checkbox(
-                  value: _adultOk,
-                  activeColor: AppColors.primary,
-                  onChanged: (v) => setState(() => _adultOk = v ?? false),
+          const SizedBox(height: 16),
+          // AGE GATE unificado: AÑO de nacimiento (una sola vez). El servidor
+          // recomputa is_adult REAL → no se vuelve a preguntar la edad tras el plan.
+          Builder(builder: (context) {
+            final cy = DateTime.now().year;
+            final years = [for (var y = cy; y >= cy - 100; y--) y];
+            return DropdownButtonFormField<int>(
+              initialValue: _birthYear,
+              isExpanded: true,
+              onChanged: (v) => setState(() => _birthYear = v),
+              style: const TextStyle(
+                  fontSize: 18, fontWeight: FontWeight.w800, color: AppColors.text),
+              decoration: InputDecoration(
+                hintText: l10n.ageGateYearHint,
+                filled: true,
+                fillColor: Colors.white,
+                prefixIcon: const Icon(Icons.cake_outlined, color: AppColors.textMuted),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: const BorderSide(color: Color(0xFFE5E7F1), width: 2),
                 ),
-                Expanded(
-                  child: Text(l10n.onbAdultConfirm,
-                      style: const TextStyle(
-                          fontSize: 13.5,
-                          fontWeight: FontWeight.w700,
-                          color: AppColors.text)),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(16),
+                  borderSide: const BorderSide(color: AppColors.primary, width: 2),
                 ),
-              ],
-            ),
-          ),
+              ),
+              items: [for (final y in years) DropdownMenuItem(value: y, child: Text('$y'))],
+            );
+          }),
+          const SizedBox(height: 8),
+          Text(l10n.ageGateSubtitle,
+              style: const TextStyle(
+                  fontSize: 12, fontWeight: FontWeight.w600, color: AppColors.textMuted)),
         ],
       ),
     );
@@ -480,13 +503,12 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   Future<void> _continueName() async {
     final n = _nameCtrl.text.trim();
     _data.name = n;
-    if (n.isNotEmpty) {
-      try {
-        await ref
-            .read(progressRepositoryProvider)
-            .setProfile(name: n, isAdult: _adultOk ? true : null);
-      } catch (_) {}
-    }
+    final repo = ref.read(progressRepositoryProvider);
+    try {
+      if (n.isNotEmpty) await repo.setProfile(name: n);
+      // AGE GATE: guarda el AÑO y deja que el servidor recompute is_adult.
+      if (_birthYear != null) await repo.submitAgeGate(_birthYear!);
+    } catch (_) {}
     _next();
   }
 

@@ -227,7 +227,7 @@ class _CertificateScreenState extends ConsumerState<CertificateScreen> {
               // Botón 3D de la casa (labio + hundido).
               PrimaryButton(
                 label: l10n.certShare,
-                icon: Icons.ios_share_rounded,
+                icon: Icons.copy_rounded,
                 expand: true,
                 onPressed: _share,
               ),

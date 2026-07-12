@@ -18,6 +18,10 @@ class NotificationCenterScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final items = ref.watch(notificationsProvider);
+    // El banco de pruebas del motor (MatixTestButtons) es herramienta interna →
+    // solo visible para admin (como "Ver métricas"). El público no lo ve.
+    final isAdmin =
+        ref.watch(isAdminProvider).maybeWhen(data: (a) => a, orElse: () => false);
 
     return Scaffold(
       backgroundColor: AppColors.background,
@@ -40,34 +44,36 @@ class NotificationCenterScreen extends ConsumerWidget {
         child: ListView(
         padding: const EdgeInsets.fromLTRB(20, 6, 20, 32),
         children: [
-          // Probar el motor (Fase 1).
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
-              boxShadow: const [
-                BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 5), blurRadius: 0),
-              ],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text('Probar a Jezi',
+          // Probar el motor (Fase 1) — SOLO admin.
+          if (isAdmin) ...[
+            Container(
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: const [
+                  BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 5), blurRadius: 0),
+                ],
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Text('Probar a Jezi',
+                      style: TextStyle(
+                          fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+                  SizedBox(height: 3),
+                  Text(
+                    'Simula un evento: Jezi elige el copy de tu estilo de coach y te lo manda.',
                     style: TextStyle(
-                        fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
-                SizedBox(height: 3),
-                Text(
-                  'Simula un evento: Jezi elige el copy de tu estilo de coach y te lo manda.',
-                  style: TextStyle(
-                      fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted),
-                ),
-                SizedBox(height: 12),
-                MatixTestButtons(),
-              ],
+                        fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted),
+                  ),
+                  SizedBox(height: 12),
+                  MatixTestButtons(),
+                ],
+              ),
             ),
-          ),
-          const SizedBox(height: 20),
+            const SizedBox(height: 20),
+          ],
           const Text('Recibidas',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
           const SizedBox(height: 10),

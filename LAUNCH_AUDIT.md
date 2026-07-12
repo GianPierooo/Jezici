@@ -8,6 +8,14 @@
 
 ---
 
+> **ACTUALIZACIÓN 2026-07-11 — los 4 P1 de CÓDIGO están CERRADOS** (ver CLAUDE.md §"P1 de código del
+> LAUNCH_AUDIT cerrados"): ✅ age gate unificado (año en el onboarding → no se pregunta dos veces),
+> ✅ dev-tool "Probar a Jezi" oculto tras `isAdminProvider`, ✅ consentimiento legal registrado siempre
+> (accept_legal en `_finish`), ✅ copy del certificado (COPIAR DATOS + nota suavizada). Verificado cliente
+> real. **Quedan pendientes solo las tareas de CUENTA de Gian** (Google OAuth, confirm-email, Sentry) y los
+> **i18n P0** (solo bloquean mercados pt/en). El resto de este documento refleja el estado ANTES de estos
+> arreglos (histórico).
+
 ## 🚦 BLOQUEA LANZAR (lo corto y claro)
 **Nada de SEGURIDAD bloquea** — la parte más crítica al abrir a desconocidos está sólida (ver §4).
 **No hay bloqueantes duros para un lanzamiento a público HISPANOHABLANTE con la app en español.**
