@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/speech/mic_messages.dart';
 import '../../core/speech/speech_lang.dart';
 import '../../core/speech/speech_recognizer.dart';
+import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
@@ -93,7 +94,10 @@ class ConversarScreen extends ConsumerWidget {
         padding: const EdgeInsets.only(bottom: 120),
         children: [
           _Header(speaking: speaking),
-          Padding(
+          // Header full-bleed arriba; el contenido se centra a un ancho sensato
+          // en pantallas anchas (móvil ≤560 → idéntico).
+          ResponsiveCenter(
+            maxWidth: 560,
             padding: const EdgeInsets.fromLTRB(20, 16, 20, 0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -710,7 +714,9 @@ class _ConversarPracticeScreenState extends ConsumerState<ConversarPracticeScree
         title: Text(t.title(l10n), style: const TextStyle(fontWeight: FontWeight.w900)),
       ),
       body: SafeArea(
-        child: ListView(
+        child: ResponsiveCenter(
+          maxWidth: 560,
+          child: ListView(
           padding: const EdgeInsets.fromLTRB(20, 8, 20, 28),
           children: [
             // Escenario — tarjeta tintada con el color de la situación + badge de
@@ -854,6 +860,7 @@ class _ConversarPracticeScreenState extends ConsumerState<ConversarPracticeScree
               ),
             ],
           ],
+        ),
         ),
       ),
     );

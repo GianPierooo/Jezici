@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../core/theme/app_colors.dart';
+import '../../../core/ui/responsive_center.dart';
 import '../../../data/providers.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../learn/widgets/parrot_mascot.dart';
@@ -85,7 +86,9 @@ class _NoHeartsSheetState extends ConsumerState<_NoHeartsSheet> {
     // El loro asoma SOBRE la hoja (SinVidas.dc): Column transparente con el
     // guacamayo y, debajo, la tarjeta blanca que sube un poco bajo él. Scrollable
     // para que nunca desborde en pantallas cortas.
-    return SingleChildScrollView(
+    return ResponsiveCenter(
+      maxWidth: 440,
+      child: SingleChildScrollView(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -95,6 +98,7 @@ class _NoHeartsSheetState extends ConsumerState<_NoHeartsSheet> {
             child: _card(context, l10n),
           ),
         ],
+      ),
       ),
     );
   }

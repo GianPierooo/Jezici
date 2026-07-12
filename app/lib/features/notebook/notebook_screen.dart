@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/speech/speakable_text.dart';
+import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../learn/widgets/parrot_mascot.dart';
 import '../../data/models/tip_models.dart';
@@ -28,7 +29,9 @@ class NotebookScreen extends ConsumerWidget {
         error: (_, _) => const _Empty(),
         data: (tips) => tips.isEmpty
             ? const _Empty()
-            : ListView.separated(
+            : ResponsiveCenter(
+                maxWidth: 560,
+                child: ListView.separated(
                 padding: const EdgeInsets.fromLTRB(20, 8, 20, 30),
                 itemCount: tips.length + 1,
                 separatorBuilder: (_, _) => const SizedBox(height: 12),
@@ -45,6 +48,7 @@ class NotebookScreen extends ConsumerWidget {
                   }
                   return _NotebookTip(tip: tips[i - 1]);
                 },
+              ),
               ),
       ),
     );

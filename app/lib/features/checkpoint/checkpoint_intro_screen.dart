@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/lesson_model.dart';
 import '../../data/providers.dart';
@@ -240,7 +241,9 @@ class CheckpointIntroScreen extends ConsumerWidget {
             // tapaba el botón/última línea ("se corta levemente"). 0 en pantallas sin inset.
             padding: EdgeInsets.fromLTRB(20, 20, 20, 28 + MediaQuery.paddingOf(context).bottom),
             child: SingleChildScrollView(
-            child: Column(
+            child: ResponsiveCenter(
+              maxWidth: 480,
+              child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
@@ -311,6 +314,7 @@ class CheckpointIntroScreen extends ConsumerWidget {
                     style: const TextStyle(
                         fontSize: 11, fontWeight: FontWeight.w800, color: AppColors.textMuted)),
               ],
+            ),
             ),
             ),
           ),

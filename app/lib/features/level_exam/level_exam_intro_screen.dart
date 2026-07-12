@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/providers.dart';
 import '../../ui/primary_button.dart';
@@ -43,7 +44,9 @@ class _State extends ConsumerState<LevelExamIntroScreen> {
         title: Text('Examen de nivel $level', style: const TextStyle(fontWeight: FontWeight.w900)),
       ),
       body: SafeArea(
-        child: Padding(
+        child: ResponsiveCenter(
+          maxWidth: 480,
+          child: Padding(
           padding: const EdgeInsets.fromLTRB(24, 12, 24, 24),
           child: Column(
             children: [
@@ -73,6 +76,7 @@ class _State extends ConsumerState<LevelExamIntroScreen> {
               ),
             ],
           ),
+        ),
         ),
       ),
     );

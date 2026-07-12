@@ -2,6 +2,7 @@ import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/feedback/feedback_fx.dart';
+import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/ui/jz_glow_pulse.dart';
 import '../../data/models/checkpoint_models.dart';
@@ -73,7 +74,9 @@ class _CheckpointResultScreenState extends State<CheckpointResultScreen> {
               // + inset inferior para que el botón al final del scroll despeje la barra
               // de navegación de Android (sweep del mismo patrón de corte).
               padding: EdgeInsets.fromLTRB(20, 18, 20, 24 + MediaQuery.paddingOf(context).bottom),
-              child: Column(
+              child: ResponsiveCenter(
+                maxWidth: 560,
+                child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   // Desglose por las 4 habilidades.
@@ -161,6 +164,7 @@ class _CheckpointResultScreenState extends State<CheckpointResultScreen> {
                     ),
                   ],
                 ],
+              ),
               ),
             ),
           ),

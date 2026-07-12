@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../core/feedback/feedback_fx.dart';
 import '../../core/i18n/learn_lang_names.dart';
+import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/ui/jz_sheen.dart';
 import '../../data/models/achievement_models.dart';
@@ -98,7 +99,9 @@ class _CertificateScreenState extends ConsumerState<CertificateScreen> {
       ),
       body: Stack(
         children: [
-          ListView(
+          ResponsiveCenter(
+            maxWidth: 520,
+            child: ListView(
             // + inset inferior (barra de navegación Android); 0 donde no aplica.
             padding: EdgeInsets.fromLTRB(20, 8, 20, 28 + MediaQuery.paddingOf(context).bottom),
             children: [
@@ -236,6 +239,7 @@ class _CertificateScreenState extends ConsumerState<CertificateScreen> {
                       fontWeight: FontWeight.w700,
                       color: Colors.white.withValues(alpha: 0.65))),
             ],
+          ),
           ),
           Align(
             alignment: Alignment.topCenter,

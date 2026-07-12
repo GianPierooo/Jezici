@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/progress_models.dart';
 import '../../data/providers.dart';
@@ -34,7 +35,9 @@ class NotificationCenterScreen extends ConsumerWidget {
           ),
         ],
       ),
-      body: ListView(
+      body: ResponsiveCenter(
+        maxWidth: 560,
+        child: ListView(
         padding: const EdgeInsets.fromLTRB(20, 6, 20, 32),
         children: [
           // Probar el motor (Fase 1).
@@ -80,6 +83,7 @@ class NotificationCenterScreen extends ConsumerWidget {
                 : Column(children: [for (final n in list) _NotifTile(item: n)]),
           ),
         ],
+      ),
       ),
     );
   }

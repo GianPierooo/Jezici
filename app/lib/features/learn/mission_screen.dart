@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/feedback/feedback_fx.dart';
+import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/lesson_model.dart';
 import '../../data/providers.dart';
@@ -135,7 +136,9 @@ class _MissionScreenState extends ConsumerState<MissionScreen> {
         child: Column(
           children: [
             Expanded(
-              child: ListView(
+              child: ResponsiveCenter(
+                maxWidth: 480,
+                child: ListView(
                 padding: const EdgeInsets.fromLTRB(24, 8, 24, 16),
                 children: [
                   const Center(child: ParrotMascot(size: 72, mood: MascotMood.celebrate)),
@@ -169,8 +172,11 @@ class _MissionScreenState extends ConsumerState<MissionScreen> {
                   ),
                 ],
               ),
+              ),
             ),
-            Padding(
+            ResponsiveCenter(
+              maxWidth: 480,
+              child: Padding(
               padding: const EdgeInsets.fromLTRB(24, 4, 24, 20),
               // Botón 3D de la casa (labio + hundido), coherente con toda la app.
               child: PrimaryButton(
@@ -178,6 +184,7 @@ class _MissionScreenState extends ConsumerState<MissionScreen> {
                 expand: true,
                 onPressed: _loading ? null : _start,
               ),
+            ),
             ),
           ],
         ),

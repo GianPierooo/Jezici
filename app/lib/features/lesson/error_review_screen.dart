@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/ui/jz_transitions.dart';
 import '../../data/models/content_item_model.dart';
@@ -53,7 +54,9 @@ class ErrorReviewScreen extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: ListView(
+              child: ResponsiveCenter(
+                maxWidth: 560,
+                child: ListView(
                 padding: EdgeInsets.fromLTRB(20, 18, 20, 12 + MediaQuery.paddingOf(context).bottom),
                 children: [
                   const Align(alignment: Alignment.centerLeft, child: ParrotArt(size: 44)),
@@ -71,6 +74,7 @@ class ErrorReviewScreen extends StatelessWidget {
                   for (final f in failed) _FailedCard(item: f.item, correct: f.correct, why: _why(l10n, f.item.type)),
                 ],
               ),
+              ),
             ),
             // Acciones: corrección SIEMPRE; reintentar OPCIONAL.
             Container(
@@ -79,7 +83,9 @@ class ErrorReviewScreen extends StatelessWidget {
                 color: AppColors.background,
                 border: Border(top: BorderSide(color: Color(0xFFE7E8F2))),
               ),
-              child: Column(
+              child: ResponsiveCenter(
+                maxWidth: 560,
+                child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   PrimaryButton(
@@ -99,6 +105,7 @@ class ErrorReviewScreen extends StatelessWidget {
                             fontSize: 13.5, fontWeight: FontWeight.w900, color: AppColors.primary)),
                   ),
                 ],
+              ),
               ),
             ),
           ],

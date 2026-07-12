@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/feedback/feedback_fx.dart';
 import '../../core/plan/estimation.dart';
 import '../../core/speech/speakable_text.dart';
+import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../learn/widgets/parrot_mascot.dart';
 import '../../data/models/progress_models.dart';
@@ -135,8 +136,10 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
           Expanded(
             child: SingleChildScrollView(
               padding: const EdgeInsets.fromLTRB(20, 22, 20, 24),
-              child: Column(
-                children: [
+              child: ResponsiveCenter(
+                maxWidth: 480,
+                child: Column(
+                  children: [
                   Row(
                     children: [
                       _RewardTile(
@@ -336,6 +339,7 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
                     ),
                   ),
                 ],
+                ),
               ),
             ),
           ),

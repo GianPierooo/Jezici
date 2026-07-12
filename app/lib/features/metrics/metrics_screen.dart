@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/providers.dart';
 
@@ -28,7 +29,9 @@ class MetricsScreen extends ConsumerWidget {
           int i(String k) => (m[k] as num?)?.toInt() ?? 0;
           String pct(String k) => '${(((m[k] as num?)?.toDouble() ?? 0) * 100).toStringAsFixed(1)}%';
           String num2(String k) => ((m[k] as num?)?.toDouble() ?? 0).toStringAsFixed(2);
-          return ListView(
+          return ResponsiveCenter(
+            maxWidth: 560,
+            child: ListView(
             padding: const EdgeInsets.fromLTRB(20, 12, 20, 28),
             children: [
               _group('Usuarios', [
@@ -65,6 +68,7 @@ class MetricsScreen extends ConsumerWidget {
               Text('Generado: ${m['generated_at'] ?? ''}',
                   style: const TextStyle(fontSize: 11, color: AppColors.textMuted, fontWeight: FontWeight.w600)),
             ],
+          ),
           );
         },
       ),
@@ -89,7 +93,8 @@ class MetricsScreen extends ConsumerWidget {
   Widget _row(String label, String value) => Padding(
         padding: const EdgeInsets.symmetric(vertical: 9),
         child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Text(label, style: const TextStyle(fontSize: 13.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+          Expanded(child: Text(label, style: const TextStyle(fontSize: 13.5, fontWeight: FontWeight.w700, color: AppColors.textMuted))),
+          const SizedBox(width: 12),
           Text(value, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.primary)),
         ]),
       );

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/speech/speakable_text.dart';
+import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/immersion_models.dart';
 import '../../data/providers.dart';
@@ -108,15 +109,18 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
         title: Text(_story?.title ?? 'Historia',
             style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
       ),
-      body: _loading
-          ? const Center(child: CircularProgressIndicator())
-          : _story == null
-              ? const Center(child: Text('No se pudo cargar la historia.'))
-              : switch (_phase) {
-                  _Phase.reading => _reading(),
-                  _Phase.questions => _questions(),
-                  _Phase.result => _resultView(),
-                },
+      body: ResponsiveCenter(
+        maxWidth: 640,
+        child: _loading
+            ? const Center(child: CircularProgressIndicator())
+            : _story == null
+                ? const Center(child: Text('No se pudo cargar la historia.'))
+                : switch (_phase) {
+                    _Phase.reading => _reading(),
+                    _Phase.questions => _questions(),
+                    _Phase.result => _resultView(),
+                  },
+      ),
     );
   }
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/ui/jz_transitions.dart';
 import '../../data/models/content_item_model.dart';
@@ -68,7 +69,9 @@ class _Preview extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final skills = items.map((e) => e.skill).toSet();
-    return Padding(
+    return ResponsiveCenter(
+      maxWidth: 480,
+      child: Padding(
       padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
       child: Column(
         children: [
@@ -127,14 +130,15 @@ class _Preview extends StatelessWidget {
                   ),
                 ],
                 const SizedBox(height: 18),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                Wrap(
+                  spacing: 10,
+                  runSpacing: 8,
+                  alignment: WrapAlignment.center,
                   children: [
                     _MetaChip(
                       icon: Icons.format_list_numbered_rounded,
                       label: l10n.lessonPreviewExerciseCount(items.length),
                     ),
-                    const SizedBox(width: 10),
                     _MetaChip(
                       icon: Icons.bolt_rounded,
                       label: '+${lesson.xpReward} XP',
@@ -165,6 +169,7 @@ class _Preview extends StatelessWidget {
           ),
           const Spacer(),
         ],
+      ),
       ),
     );
   }

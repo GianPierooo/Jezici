@@ -26,6 +26,28 @@ TTS/banner "en vivo próximamente" intactos):
   Responsive (grid recol­umna) + reduce-motion-aware. Verificado con **goldens temporales** (lista = catálogo a
   color; práctica = escenario tintado; borrados). Verde: analyze 0 (CI-exact) · test 149/149 · build web OK.
 
+## RESPONSIVE en TODAS las pantallas (pre-lanzamiento público) ✅ (2026-07-11 · solo cliente)
+Gian va a lanzar público (dominio propio + LinkedIn) → entra gente de móvil/tablet/desktop ancho.
+**PASO 0 (auditoría real con 4 agentes en paralelo, mirando el código):** ~17 pantallas se **estiraban
+de borde a borde** en desktop (no usaban `ResponsiveCenter`); las buenas ya lo usaban. **Un solo patrón**
+en toda la app: `ResponsiveCenter` (Align topCenter + ConstrainedBox maxWidth) — en móvil (ancho ≤ maxWidth)
+**no hace nada** (layout móvil pixel-idéntico), en anchos grandes **centra y limita**. **Cero cambios de
+lógica.** Anchos por tipo: **480** formulario/celebración · **520** certificado · **560** listas/hubs/
+players · **640** lectura/contenido ancho.
+- **Envueltas (antes se estiraban):** misión, lección(preview/fin/repaso), conversar(hub + práctica de
+  situación), checkpoint(intro/resultado), examen(intro/player), certificado, notificaciones, cuaderno,
+  referencia, mi plan, story reader, premium, simulacros, racha, métricas, sheet SinVidas. Los **headers de
+  gradiente full-bleed** (lección fin, checkpoint, conversar) **se conservan a ancho completo**; solo el
+  contenido bajo ellos se centra (patrón: `ResponsiveCenter` con `padding`). El **mapa** sigue full-bleed
+  con la columna de nodos centrada (verificado intacto).
+- **Overflow móvil (390px) arreglado:** lección-preview (Row de chips → **Wrap**) y métricas (`_row` sin
+  `Expanded` → **Expanded**). El resto ya usaba Expanded/Wrap/Flexible.
+- **Teclado móvil:** todos los TextField viven en scrollables → no se tapan (chat, respuesta de práctica,
+  login, cloze de historia, agregar amigo).
+- **Verificado:** analyze 0 (CI-exact) · test 149/149 · build web OK · **golden desktop 1400px** (Conversar
+  hub = header full-bleed + contenido centrado ~560 grid 2col; práctica centrada) revisado y borrado.
+  Matriz completa pantalla×ancho en **RESPONSIVE_AUDIT.md**.
+
 ## REDISEÑO UI de CONVERSAR + AMIGOS/CHAT/CO-OP ✅ (2026-07-11 · solo cliente)
 Feedback real de testers: "está raro y feo" — rompía la estética. **Causa concreta (PASO 0):** la sección
 social usaba **Material por defecto** (ListTile, FilledButton, AppBar plano, cajas blancas con borde gris

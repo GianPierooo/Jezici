@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/constants/skills.dart';
 import '../../core/speech/speakable_text.dart';
+import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/ui/jz_skeleton.dart';
 import '../../core/ui/jz_transitions.dart';
@@ -93,7 +94,9 @@ class _ReferenceScreenState extends ConsumerState<ReferenceScreen> {
     if (data.tips.isEmpty) {
       return RefreshIndicator(
         onRefresh: () async => ref.invalidate(referenceProvider),
-        child: ListView(
+        child: ResponsiveCenter(
+          maxWidth: 560,
+          child: ListView(
           padding: const EdgeInsets.all(20),
           children: [
             const SizedBox(height: 60),
@@ -108,13 +111,16 @@ class _ReferenceScreenState extends ConsumerState<ReferenceScreen> {
             ),
           ],
         ),
+        ),
       );
     }
     final grouped = data.bySkill;
     final weak = data.weakest;
     return RefreshIndicator(
       onRefresh: () async => ref.invalidate(referenceProvider),
-      child: ListView(
+      child: ResponsiveCenter(
+        maxWidth: 560,
+        child: ListView(
         padding: const EdgeInsets.fromLTRB(20, 6, 20, 110),
         children: [
           const Text('Tus conceptos clave, por habilidad. Repasa y practica lo flojo.',
@@ -141,6 +147,7 @@ class _ReferenceScreenState extends ConsumerState<ReferenceScreen> {
               for (final tip in grouped[skill]!) _TipTile(tip: tip),
             ],
         ],
+      ),
       ),
     );
   }

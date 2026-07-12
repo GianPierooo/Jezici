@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/i18n/learn_lang_names.dart';
+import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
@@ -34,7 +35,9 @@ class PremiumScreen extends ConsumerWidget {
         backgroundColor: AppColors.background, elevation: 0, foregroundColor: AppColors.text,
         title: const Text('Jezici Premium', style: TextStyle(fontWeight: FontWeight.w900)),
       ),
-      body: ListView(
+      body: ResponsiveCenter(
+        maxWidth: 480,
+        child: ListView(
         padding: const EdgeInsets.fromLTRB(20, 8, 20, 28),
         children: [
           Container(
@@ -115,6 +118,7 @@ class PremiumScreen extends ConsumerWidget {
               style: const TextStyle(
                   fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
         ],
+      ),
       ),
     );
   }

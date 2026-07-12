@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../premium/premium_screen.dart';
 
@@ -28,7 +29,9 @@ class SimulacrosScreen extends StatelessWidget {
         backgroundColor: AppColors.background, elevation: 0, foregroundColor: AppColors.text,
         title: const Text('Simulacros', style: TextStyle(fontWeight: FontWeight.w900)),
       ),
-      body: ListView(
+      body: ResponsiveCenter(
+        maxWidth: 480,
+        child: ListView(
         padding: const EdgeInsets.fromLTRB(20, 12, 20, 28),
         children: [
           const Text('Practica el examen real',
@@ -61,6 +64,7 @@ class SimulacrosScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w800, color: AppColors.goldDark)),
           ),
         ],
+      ),
       ),
     );
   }

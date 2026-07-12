@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/progress_models.dart';
 import '../../data/providers.dart';
@@ -60,7 +61,9 @@ class MiPlanScreen extends ConsumerWidget {
         ? 'Justo en tu plan'
         : (ahead > 0 ? 'Vas $ahead ${_d(ahead)} adelante 🎉' : 'Vas ${-ahead} ${_d(-ahead)} atrás');
     final proj = t.projectedCompletion;
-    return ListView(
+    return ResponsiveCenter(
+      maxWidth: 480,
+      child: ListView(
       padding: const EdgeInsets.fromLTRB(20, 12, 20, 28),
       children: [
         // Niveles + progreso.
@@ -182,6 +185,7 @@ class MiPlanScreen extends ConsumerWidget {
           onPressed: () => _faster(context, ref, t),
         ),
       ],
+    ),
     );
   }
 

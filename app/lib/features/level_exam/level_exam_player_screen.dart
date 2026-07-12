@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/audio/music_service.dart';
+import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/checkpoint_models.dart';
 import '../../data/providers.dart';
@@ -119,7 +120,9 @@ class _State extends ConsumerState<LevelExamPlayerScreen> {
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SafeArea(
-        child: Column(
+        child: ResponsiveCenter(
+          maxWidth: 560,
+          child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
@@ -207,6 +210,7 @@ class _State extends ConsumerState<LevelExamPlayerScreen> {
               ),
             ),
           ],
+        ),
         ),
       ),
     );
