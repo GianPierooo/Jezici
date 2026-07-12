@@ -1179,6 +1179,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get speakingTalk => 'Speak';
 
   @override
+  String get speakingStop => 'Stop';
+
+  @override
+  String get speakingTapToHear => 'Tap to hear it';
+
+  @override
   String get speakingGood => 'Well pronounced! 🦜';
 
   @override

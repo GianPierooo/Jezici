@@ -2124,6 +2124,18 @@ abstract class AppLocalizations {
   /// **'Hablar'**
   String get speakingTalk;
 
+  /// No description provided for @speakingStop.
+  ///
+  /// In es, this message translates to:
+  /// **'Detener'**
+  String get speakingStop;
+
+  /// No description provided for @speakingTapToHear.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca para oírla'**
+  String get speakingTapToHear;
+
   /// No description provided for @speakingGood.
   ///
   /// In es, this message translates to:

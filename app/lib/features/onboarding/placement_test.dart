@@ -8,6 +8,7 @@ import '../../core/theme/app_colors.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
 import '../lesson/exercises/audio_play_button.dart';
+import '../lesson/exercises/speaking_widgets.dart';
 import 'onboarding_data.dart';
 import 'widgets/onboarding_scaffold.dart';
 
@@ -150,14 +151,17 @@ class _PlacementTestState extends ConsumerState<PlacementTest> {
   }
 
   void _listen() {
-    if (_listening) return;
+    if (_listening) {
+      _rec.stop(); // continuous=true no corta solo → el usuario termina al tocar
+      return;
+    }
     setState(() {
       _listening = true;
       _micError = null;
     });
     _rec.listen(
       localeId: SpeechLang.stt,
-      listenFor: const Duration(seconds: 12),
+      listenFor: const Duration(seconds: 15),
       onResult: (t, isFinal) {
         if (!mounted) return;
         setState(() {
@@ -251,15 +255,10 @@ class _PlacementTestState extends ConsumerState<PlacementTest> {
                         const SizedBox(height: 12),
                         Center(child: AudioPlayButton(url: audioUrl)),
                       ],
-                      // SPEAKING: frase a leer en voz alta.
+                      // SPEAKING: frase a leer en voz alta — TOCAR para oírla (TTS del curso).
                       if (isSpeaking && speakText.isNotEmpty) ...[
                         const SizedBox(height: 10),
-                        Text(speakText,
-                            style: const TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.w900,
-                                color: AppColors.primary,
-                                height: 1.3)),
+                        SpeakablePhrase(text: speakText),
                       ],
                     ],
                   ),
@@ -268,35 +267,8 @@ class _PlacementTestState extends ConsumerState<PlacementTest> {
                   for (final opt in options)
                     OnboardingOption(label: opt, selected: false, onTap: () => _answer(opt))
                 else ...[
-                  // Micrófono + transcripción en vivo + enviar/saltar.
-                  Center(
-                    child: GestureDetector(
-                      onTap: _listen,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 14),
-                        decoration: BoxDecoration(
-                          color: _listening ? AppColors.coral : AppColors.primary,
-                          borderRadius: BorderRadius.circular(16),
-                          boxShadow: [
-                            BoxShadow(
-                                color: _listening ? AppColors.coralDark : AppColors.primaryDark,
-                                offset: const Offset(0, 4),
-                                blurRadius: 0),
-                          ],
-                        ),
-                        child: Row(mainAxisSize: MainAxisSize.min, children: [
-                          Icon(_listening ? Icons.mic_rounded : Icons.mic_none_rounded,
-                              color: Colors.white),
-                          const SizedBox(width: 8),
-                          Text(_listening ? l10n.placementListening : l10n.placementSpeak,
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 16)),
-                        ]),
-                      ),
-                    ),
-                  ),
+                  // Micrófono (tap start / tap detener) + transcripción EN VIVO + enviar/saltar.
+                  Center(child: SpeakMicButton(listening: _listening, onTap: _listen)),
                   if (_micError != null) ...[
                     const SizedBox(height: 12),
                     Container(
@@ -310,18 +282,11 @@ class _PlacementTestState extends ConsumerState<PlacementTest> {
                               fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.coral)),
                     ),
                   ],
-                  if (_transcript.isNotEmpty) ...[
+                  if (_listening || _transcript.isNotEmpty) ...[
                     const SizedBox(height: 12),
-                    Container(
-                      padding: const EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                          color: AppColors.navActiveBg,
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Text('“$_transcript”',
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w800, color: AppColors.primary)),
-                    ),
+                    LiveTranscript(text: _transcript),
+                  ],
+                  if (_transcript.isNotEmpty && !_listening) ...[
                     const SizedBox(height: 10),
                     OnboardingOption(
                       label: l10n.placementSendAnswer,
@@ -330,6 +295,7 @@ class _PlacementTestState extends ConsumerState<PlacementTest> {
                     ),
                   ],
                   const SizedBox(height: 6),
+                  // FALLBACK HONESTO: saltar hablar (excluye la skill, no puntúa en contra).
                   Center(
                     child: TextButton(
                       onPressed: _skipSpeaking,

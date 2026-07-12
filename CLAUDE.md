@@ -26,6 +26,34 @@ TTS/banner "en vivo próximamente" intactos):
   Responsive (grid recol­umna) + reduce-motion-aware. Verificado con **goldens temporales** (lista = catálogo a
   color; práctica = escenario tintado; borrados). Verde: analyze 0 (CI-exact) · test 149/149 · build web OK.
 
+## SPEAKING a fondo — la CAPTURA cortaba en la 1ª pausa (fix real) + UX ✅ (2026-07-12 · solo cliente)
+El audio "no procesaba" y persistía tras el fix robusto anterior (4b27d36 = permiso/errores tipados).
+**DIAGNÓSTICO con evidencia (no adivinar):**
+- **El GRADING NO era el bug.** Porté `speechMatchRatio`/`speechPasses` (text_match.dart) a Python y probé
+  lecturas CORRECTAS reales (contracciones "I'm"→"I am", nombres "Ana"→"Anna", acentos pt/it/de, "è"→"e"):
+  **todas PASAN** (word-overlap ∨ char-ratio, umbral 0.6). Hablar MAL sí reprueba. → grading robusto.
+- **La CAUSA REAL era la CAPTURA** (`speech_recognizer_web.dart`): (1) **`continuous = false`** → el
+  reconocedor FINALIZABA en la PRIMERA pausa; los ítems `speaking_read_aloud` son **frases completas largas**
+  ("Quando tivermos todos os dados e virmos os resultados, tomaremos uma decisão.") → una pausa natural a media
+  frase cortaba la sesión y solo se calificaba el primer fragmento → "no procesa". (2) En **Android** `onend`
+  a veces llega **sin ningún resultado `final`** → `_finalTranscript` vacío → se emitía `('', true)` → score 0
+  → falso "no te escuché" aunque SÍ habló (los parciales interim se descartaban). El idioma del reconocedor
+  (`SpeechLang.stt`) SÍ estaba bien cableado (home_shell + placement) → no era eso.
+- **FIX (captura):** `continuous = TRUE` (acumula todas las cláusulas; termina en el silencio REAL, al tocar
+  Detener, o al tope de 15s) + **rescate del último parcial** en `_handleEnd` (si terminó sin `final`, usa
+  `_lastInterim` en vez de '').
+- **REDISEÑO UX (pedido de Gian):** (1) **transcripción EN VIVO** — lo que se entiende aparece en pantalla
+  mientras habla (`LiveTranscript`); en Android muestra lo que haya. (2) **TAP la frase para OÍRLA** con TTS del
+  curso (`SpeakablePhrase` → `WordTts.speak`/`SpeechLang.tts`); fuera el botón separado "oír el modelo" y el
+  "Ya lo leí" del flujo NORMAL. (3) El **micrófono ALTERNA** (tocar para empezar / tocar **Detener** para
+  finalizar) — necesario con continuous=true. (4) **FALLBACK HONESTO conservado:** si el mic no está
+  (unsupported/denied/no-mic), sigue la salida clara con la causa real + "Ya lo leí" (lección) / "Saltar los
+  ejercicios de hablar" (placement) / modo Escribir (Conversar). Widgets compartidos `speaking_widgets.dart`
+  aplicados coherentes en **lección + placement + Conversar**. i18n es/en/pt (+speakingStop/speakingTapToHear).
+  Reduce-motion-aware. NO se tocó la exclusión de speaking del placement ni el TTS origen/meta.
+- Verde: analyze 0 (CI-exact) · test **151/151** (+speaking_capture: grading aprueba lecturas correctas + el
+  rescate del parcial da "¡Bien!" no "no te escuché"; mic_robustness/placement_flow actualizados) · build web OK.
+
 ## P1 DE CÓDIGO del LAUNCH_AUDIT cerrados (pre-lanzamiento) ✅ (2026-07-11 · solo cliente)
 Los 4 arreglos de código del LAUNCH_AUDIT.md antes de abrir al público. Cero IA, cero cambios de
 seguridad/RLS/placement/economía.

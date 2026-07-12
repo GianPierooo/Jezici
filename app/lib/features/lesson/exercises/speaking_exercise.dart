@@ -7,7 +7,7 @@ import '../../../core/speech/speech_recognizer.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../data/models/content_item_model.dart';
 import '../../../l10n/app_localizations.dart';
-import 'audio_play_button.dart';
+import 'speaking_widgets.dart';
 
 /// Speaking REAL (Fase 1): el usuario escucha el modelo y lee en voz alta.
 /// GA8: usa el reconocedor de voz correcto (Web Speech cruda en web, sin
@@ -37,7 +37,6 @@ class _SpeakingExerciseState extends State<SpeakingExercise> {
 
   String get _expected =>
       (widget.item.payload['text'] ?? widget.item.correctAnswer['expected'] ?? '').toString();
-  String get _audioUrl => (widget.item.payload['audio_url'] ?? '').toString();
 
   @override
   void initState() {
@@ -61,8 +60,13 @@ class _SpeakingExerciseState extends State<SpeakingExercise> {
     super.dispose();
   }
 
-  void _listen() {
-    if (!_available || _listening) return;
+  /// Alterna: si ya escucha, DETIENE (finaliza + califica); si no, empieza.
+  void _toggleListen() {
+    if (!_available) return;
+    if (_listening) {
+      _rec.stop(); // continuous=true no corta solo → el usuario termina al tocar
+      return;
+    }
     setState(() {
       _listening = true;
       _micError = null;
@@ -72,11 +76,11 @@ class _SpeakingExerciseState extends State<SpeakingExercise> {
     HapticFeedback.selectionClick();
     _rec.listen(
       localeId: SpeechLang.stt, // idioma del curso activo (en/pt/fr/it), no inglés fijo
-      listenFor: const Duration(seconds: 12),
+      listenFor: const Duration(seconds: 15),
       onResult: (transcript, isFinal) {
         if (!mounted) return;
         setState(() {
-          _heard = transcript;
+          _heard = transcript; // transcripción EN VIVO (parciales + acumulado)
           if (isFinal) {
             _score = speechMatchRatio(transcript, _expected);
             _listening = false;
@@ -111,29 +115,28 @@ class _SpeakingExerciseState extends State<SpeakingExercise> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Container(
-          padding: const EdgeInsets.all(18),
-          decoration: BoxDecoration(color: AppColors.navActiveBg, borderRadius: BorderRadius.circular(18)),
-          child: Text('“$_expected”',
-              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w900, color: AppColors.primary, height: 1.3)),
-        ),
-        const SizedBox(height: 14),
-        if (_audioUrl.isNotEmpty) Center(child: AudioPlayButton(url: _audioUrl, label: l10n.speakingHearModel, big: false)),
+        // Frase META: TOCAR para oírla (TTS del curso). Fuera el botón separado.
+        SpeakablePhrase(text: _expected),
         const SizedBox(height: 18),
         if (!_ready)
           Center(
               child: Text(l10n.speakingPreparingMic,
                   style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)))
         else if (!_available) ...[
-          // La CAUSA real (sin soporte / permiso bloqueado / sin mic), no un
-          // genérico: el usuario sabe qué hacer y puede continuar con "Ya lo leí".
+          // FALLBACK HONESTO (mic no disponible): la CAUSA real + "Ya lo leí" para
+          // que un usuario de Firefox/Brave/sin-permiso NO quede atascado.
           Text(micMessageFor(l10n, _micError ?? _rec.unavailableReason),
               textAlign: TextAlign.center,
               style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
           const SizedBox(height: 12),
           Center(child: _readItButton()),
         ] else ...[
-          Center(child: _micButton()),
+          Center(child: SpeakMicButton(listening: _listening, onTap: _toggleListen)),
+          // Transcripción EN VIVO mientras habla (o el resultado tras finalizar).
+          if (_listening || (_heard != null && (_heard!.trim().isNotEmpty))) ...[
+            const SizedBox(height: 12),
+            LiveTranscript(text: _heard ?? ''),
+          ],
           if (_micError == SpeechErrors.network) ...[
             const SizedBox(height: 8),
             Text(micMessageFor(l10n, _micError),
@@ -141,18 +144,10 @@ class _SpeakingExerciseState extends State<SpeakingExercise> {
                 style: const TextStyle(
                     fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.coral)),
           ],
-          const SizedBox(height: 10),
-          Center(
-            child: TextButton(
-              onPressed: () => setState(() => _doneManually = true),
-              child: Text(l10n.speakingIReadIt,
-                  style: const TextStyle(fontWeight: FontWeight.w800, color: AppColors.textMuted)),
-            ),
-          ),
         ],
         if (_heard != null && _score != null) ...[
           const SizedBox(height: 8),
-          _Feedback(heard: _heard!, passed: passed, onRetry: _listen),
+          _Feedback(heard: _heard!, passed: passed, onRetry: _toggleListen),
         ],
         if (_doneManually) ...[
           const SizedBox(height: 12),
@@ -168,24 +163,6 @@ class _SpeakingExerciseState extends State<SpeakingExercise> {
           ),
         ],
       ],
-    );
-  }
-
-  Widget _micButton() {
-    final l10n = AppLocalizations.of(context);
-    return GestureDetector(
-      onTap: _listen,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 14),
-        decoration: BoxDecoration(
-            color: _listening ? AppColors.coral : AppColors.primary, borderRadius: BorderRadius.circular(16)),
-        child: Row(mainAxisSize: MainAxisSize.min, children: [
-          Icon(_listening ? Icons.mic_rounded : Icons.mic_none_rounded, color: Colors.white),
-          const SizedBox(width: 8),
-          Text(_listening ? l10n.speakingListening : l10n.speakingTalk,
-              style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 16)),
-        ]),
-      ),
     );
   }
 

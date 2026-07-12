@@ -2,6 +2,48 @@
 
 ---
 
+## Micrófono §2 — CAPTURA que cortaba en la 1ª pausa (fix REAL) + rediseño UX — 2026-07-12 ✅
+> El speaking "no procesaba" y PERSISTÍA tras el fix de 2026-07-09 (permiso/errores tipados). Diagnóstico
+> con el error en la mano, cero IA.
+
+**Diagnóstico (evidencia antes de tocar):**
+- **El GRADING NO era el bug.** `speechMatchRatio`/`speechPasses` (`text_match.dart`) porteado a Python y
+  probado con lecturas CORRECTAS reales: contracciones ("I'm"↔"I am"), nombres ("Ana"↔"Anna"), acentos
+  pt/it/de ("è"→"e", "água"→"agua") → **TODAS aprueban** (word-overlap ∨ char-ratio ≥ 0.6); hablar mal
+  reprueba. El idioma del reconocedor (`SpeechLang.stt`) SÍ estaba cableado (home_shell + placement).
+- **CAUSA REAL = captura** (`speech_recognizer_web.dart`): (1) **`continuous=false`** → finalizaba en la
+  PRIMERA pausa; los `speaking_read_aloud` son frases largas → una pausa a media frase truncaba y solo se
+  calificaba el primer trozo. (2) **Android** termina a veces sin resultado `final` → se emitía `('', true)`
+  → score 0 → falso "no te escuché"; los parciales interim se descartaban.
+
+**Fix (captura):** `continuous=TRUE` (acumula cláusulas; termina en el silencio real / al tocar Detener /
+tope 15 s) + **rescate del último parcial** (`_lastInterim`) en `_handleEnd` cuando no hubo `final`.
+
+**Rediseño UX (lección + placement + Conversar, `speaking_widgets.dart`):** transcripción EN VIVO
+(`LiveTranscript`); **tocar la frase → oírla** con TTS del curso (`SpeakablePhrase`, fuera "oír el modelo");
+micrófono que **alterna** (tocar → Detener); **fallback honesto conservado** (mic no disponible → causa real
++ "Ya lo leí"/saltar/escribir). i18n es/en/pt; reduce-motion-aware.
+
+**Verde:** analyze 0 · test 151/151 (+speaking_capture) · build web OK. **Prueba manual de Gian:** ver
+"§Pasos de verificación de SPEAKING" abajo.
+
+### §Pasos de verificación de SPEAKING (Gian) — Chrome PC y Chrome Android
+1. **Frase corta** (p.ej. "Das ist meine Familie." en el curso de alemán, o "I like coffee." en inglés):
+   toca la frase → debe **oírse en el idioma del curso**. Toca "Hablar", léela, toca **Detener** → la
+   transcripción aparece EN VIVO y sale **"¡Bien pronunciado!"**.
+2. **Frase larga con pausa** (p.ej. la de portugués "Quando tivermos todos os dados…"): léela **haciendo
+   una pausa a media frase**. Antes se cortaba en la pausa; ahora debe capturar la frase COMPLETA (toca
+   Detener al terminar) y aprobar.
+3. **Hablar MAL a propósito** (di algo distinto): debe salir el feedback de reintento (no "¡Bien!"), sin
+   quedar atascado.
+4. **Sin permiso / Firefox / Brave**: debe mostrar la **causa real** (permiso bloqueado / usa Chrome) + la
+   salida honesta ("Ya lo leí" en lección · "Saltar los ejercicios de hablar" en placement · modo Escribir
+   en Conversar) — NUNCA un mic muerto sin explicación.
+5. **Android**: repite 1–2. Aunque los parciales sean escasos, al tocar Detener debe calificar lo dicho
+   (rescate del parcial), no un falso "no te escuché".
+
+---
+
 ## Micrófono robusto y honesto — 2026-07-09 ✅ (cliente; pendiente prueba manual de Gian)
 > Feedback real: "en PC no capta la respuesta hablada; en celular cuesta". Diagnóstico en código, cero IA.
 

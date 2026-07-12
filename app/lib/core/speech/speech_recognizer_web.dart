@@ -125,6 +125,7 @@ class _WebSpeechRecognizer implements SpeechRecognizer {
   Timer? _timeout;
 
   String _finalTranscript = '';
+  String _lastInterim = ''; // último parcial (rescate: Android a veces termina sin 'final')
   SpeechResultCallback? _onResult;
   SpeechErrorCallback? _onError;
   void Function()? _onDone;
@@ -213,13 +214,19 @@ class _WebSpeechRecognizer implements SpeechRecognizer {
     _onError = onError;
     _onDone = onDone;
     _finalTranscript = '';
+    _lastInterim = '';
     _emittedFinal = false;
     _fatalErrored = false;
 
     final sr = _SR._(ctor.callAsConstructor<JSObject>());
     _sr = sr;
     sr.lang = localeId.replaceAll('_', '-');
-    sr.continuous = false;
+    // continuous=TRUE: NO cortar en la primera pausa. Los ítems de lectura son
+    // frases completas; con continuous=false el reconocedor finalizaba el primer
+    // fragmento en la pausa natural a media frase y solo se calificaba ese trozo
+    // ("no procesa"). Con continuous=true acumula todas las cláusulas y termina
+    // en el silencio REAL (usuario terminó) o al tocar detener / al tope de tiempo.
+    sr.continuous = true;
     sr.interimResults = true;
     sr.maxAlternatives = 1;
 
@@ -251,6 +258,7 @@ class _WebSpeechRecognizer implements SpeechRecognizer {
         interim = interim.isEmpty ? txt : '$interim $txt';
       }
     }
+    _lastInterim = interim; // guarda el último parcial para el rescate en _handleEnd
     final live = (_finalTranscript.isEmpty ? interim : '$_finalTranscript $interim').trim();
     _onResult?.call(live, false);
   }
@@ -292,7 +300,13 @@ class _WebSpeechRecognizer implements SpeechRecognizer {
     // que la UI dijera "no te escuché" cuando la causa real era otra.
     if (!_emittedFinal && !_fatalErrored) {
       _emittedFinal = true;
-      _onResult?.call(_finalTranscript.trim(), true);
+      // RESCATE Android: si el motor terminó sin marcar ningún resultado 'final'
+      // pero SÍ hubo parciales (interim), usa el último parcial como transcripción
+      // final en vez de emitir '' (que daba un falso "no te escuché").
+      final text = _finalTranscript.trim().isNotEmpty
+          ? _finalTranscript.trim()
+          : _lastInterim.trim();
+      _onResult?.call(text, true);
     }
     _onDone?.call();
     _sr = null;

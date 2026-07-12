@@ -1178,6 +1178,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get speakingTalk => 'Hablar';
 
   @override
+  String get speakingStop => 'Detener';
+
+  @override
+  String get speakingTapToHear => 'Toca para oírla';
+
+  @override
   String get speakingGood => '¡Bien pronunciado! 🦜';
 
   @override

@@ -642,6 +642,8 @@
   "speakingManualDone": "¡Bien! Sigue practicando en voz alta. 🦜",
   "speakingListening": "Escuchando…",
   "speakingTalk": "Hablar",
+  "speakingStop": "Detener",
+  "speakingTapToHear": "Toca para oírla",
   "speakingGood": "¡Bien pronunciado! 🦜",
   "speakingNoSound": "No te escuché — acércate e inténtalo",
   "speakingOk": "Vas bien. Léelo otra vez si quieres",

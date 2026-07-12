@@ -221,8 +221,8 @@ void main() {
     await tester.tap(find.text('She has two brothers.'));
     await _flush(tester);
 
-    // SPEAKING: frase a leer + mic + saltar (sin opciones).
-    expect(find.text('I like coffee.'), findsOneWidget);
+    // SPEAKING: frase a leer (tocable para oírla) + mic + saltar (sin opciones).
+    expect(find.textContaining('I like coffee.'), findsOneWidget);
     expect(find.text('Hablar'), findsOneWidget);
     await tester.tap(find.text('Saltar los ejercicios de hablar'));
     await _flush(tester);

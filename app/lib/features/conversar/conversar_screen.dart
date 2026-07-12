@@ -630,7 +630,11 @@ class _ConversarPracticeScreenState extends ConsumerState<ConversarPracticeScree
   String _sttBase = ''; // texto ya confirmado antes de la sesión de escucha actual
 
   void _listen() {
-    if (!_sttAvailable || _listening) return;
+    if (!_sttAvailable) return;
+    if (_listening) {
+      _rec.stop(); // continuous=true no corta solo → el usuario termina al tocar
+      return;
+    }
     _sttBase = _text.text.trim(); // conserva lo escrito/confirmado previo
     setState(() {
       _listening = true;
@@ -639,7 +643,7 @@ class _ConversarPracticeScreenState extends ConsumerState<ConversarPracticeScree
     HapticFeedback.selectionClick();
     _rec.listen(
       localeId: SpeechLang.stt, // idioma del curso activo (en/pt/fr/it), no inglés fijo
-      listenFor: const Duration(seconds: 12),
+      listenFor: const Duration(seconds: 15),
       onResult: (transcript, isFinal) {
         if (!mounted) return;
         final clean = transcript.trim();
