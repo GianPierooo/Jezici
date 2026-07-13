@@ -5,6 +5,30 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-12**.
 
+## DONACIONES — métodos de pago ACTIVADOS (PayPal + QR real de Yape) ✅ LIVE (2026-07-12 · commit `2522108`)
+Cero IA, cero cambios de lógica (framing de apoyo voluntario intacto; nada desbloquea contenido). Rellenados los
+placeholders que dejó T6 en `core/config/donations.dart` con los datos reales de Gian:
+- **PayPal ✅ LIVE:** `paypalUrl` = `https://www.paypal.com/donate/?hosted_button_id=7PDSNNUTYRXUG` (botón de
+  donación hospedado). El método deja de estar "Pronto" → **tappable**, abre la URL (label "Donar con PayPal"/
+  "Doar com PayPal"). PayPal es ENLACE, no QR.
+- **Yape ✅ LIVE:** número **906517394** (ya estaba) + **QR REAL** (`app/assets/donations/yape_qr.png`, 659×629,
+  reemplaza el placeholder generado).
+- **Plin ⏳ número LISTO, falta QR:** número 906517394 (mismo que Yape) funcional. Se **BORRÓ** el `plin_qr.png`
+  placeholder (era un QR **FALSO** con aspecto escaneable → engañoso); sin archivo, la fila muestra un icono
+  neutro "sin QR" (`errorBuilder`) + el número copiable sigue operativo. **Gian debe subir su QR real como
+  `app/assets/donations/plin_qr.png`** (PNG cuadrado) para completar.
+- **Stripe ⏳ "Pronto":** `stripeUrl` sigue vacío (Gian aún no generó el Payment Link) → deshabilitado, sin botón
+  muerto. Al pegar el link en `donations.dart` se activa.
+- **Limpieza de assets:** el `yaper_qr.jpg` con typo ya no existe; el pubspec declara el **directorio**
+  `assets/donations/` (un archivo ausente NO rompe el build, degrada a placeholder). ⚠️ Quedó un
+  `app/assets/donations/paypal_qr.png` (128×128) **sin trackear** y **no usado** (PayPal va por URL) — no se
+  commiteó; Gian puede borrarlo (no afecta a producción, no está en git). Test `donations_card` actualizado al
+  comportamiento nuevo (PayPal live, solo 1 "Pronto"/"Em breve" = Stripe). i18n es/en/pt intacto. analyze 0 ·
+  test 165/165 · build web OK (yape_qr real bundleado) · CI SUCCESS · deploy READY.
+- **⚠️ PARA COMPLETAR (Gian):** (a) subir `app/assets/donations/plin_qr.png` (su QR de Plin; PNG cuadrado);
+  (b) pegar el Payment Link de Stripe en `stripeUrl` de `app/lib/core/config/donations.dart`. Nada más — PayPal
+  y Yape ya están live.
+
 ## SENTRY — monitoreo de errores en producción, integrado a mano ✅ (2026-07-12 · solo cliente)
 Cero IA. PASO 0: Sentry YA estaba cableado limpio de una sesión previa (`sentry_flutter: ^8.9.0`;
 `core/monitoring/sentry_config.dart` con `runWithSentry` que envuelve `runApp` capturando Flutter+nativo+
