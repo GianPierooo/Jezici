@@ -39,15 +39,17 @@ void main() {
     expect(find.byType(ParrotMascot), findsWidgets); // Jezi presente (vacío)
   });
 
-  testWidgets('Amigos: lista con racha 🔥 y subtítulo "toca para chatear"', (tester) async {
+  testWidgets('Amigos: lista con racha 🔥 + estado de presencia (en línea / offline)',
+      (tester) async {
     await tester.binding.setSurfaceSize(const Size(430, 1200));
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
+    final nowIso = DateTime.now().toUtc().toIso8601String();
     await tester.pumpWidget(ProviderScope(
       overrides: [
         suggestionsProvider.overrideWith((ref) async => const <Map<String, dynamic>>[]),
-        socialStatusProvider.overrideWith(
-            (ref) async => {'access': true, 'is_adult': true, 'friend_code': 'ABC1234'}),
+        socialStatusProvider.overrideWith((ref) async =>
+            {'access': true, 'is_adult': true, 'handle': 'yo', 'friend_code': 'ABC1234'}),
         friendsProvider.overrideWith((ref) async => {
               'incoming': <dynamic>[],
               'friends': [
@@ -57,6 +59,15 @@ void main() {
                   'name': 'María',
                   'avatar_color': '#FF6B6B',
                   'streak': 3,
+                  'last_seen': nowIso, // latió ahora → "En línea"
+                },
+                {
+                  'connection_id': 'c2',
+                  'user_id': 'u2',
+                  'name': 'Leo',
+                  'avatar_color': '#6C5CE7',
+                  'streak': 0,
+                  'last_seen': null, // sin señal → "Desconectado"
                 },
               ],
             }),
@@ -69,7 +80,10 @@ void main() {
     expect(find.text('María'), findsOneWidget);
     expect(find.text('🔥'), findsOneWidget); // racha compartida pulsante
     expect(find.text('3'), findsOneWidget);
-    expect(find.text('Toca para chatear'), findsOneWidget);
+    // Estado de presencia derivado de last_seen (honesto).
+    expect(find.text('En línea'), findsOneWidget);
+    expect(find.text('Desconectado'), findsOneWidget);
+    expect(find.text('Toca para chatear'), findsNothing);
   });
 
   testWidgets('PT: el hub social no deja español (chrome i18n)', (tester) async {

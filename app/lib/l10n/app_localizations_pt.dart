@@ -2497,6 +2497,39 @@ class AppLocalizationsPt extends AppLocalizations {
   String get convReject => 'Recusar';
 
   @override
+  String get presenceOnline => 'Online';
+
+  @override
+  String get presenceOffline => 'Offline';
+
+  @override
+  String presenceActiveMin(int n) {
+    return 'Ativo há $n min';
+  }
+
+  @override
+  String presenceActiveHours(int n) {
+    return 'Ativo há $n h';
+  }
+
+  @override
+  String presenceActiveDays(int n) {
+    return 'Ativo há $n d';
+  }
+
+  @override
+  String get convRequested => 'Enviado';
+
+  @override
+  String get convOnlineNow => 'Online agora';
+
+  @override
+  String get convShowPresence => 'Mostrar quando estou online';
+
+  @override
+  String get convShowPresenceSub => 'Seus amigos veem seu status \"online\"';
+
+  @override
   String get convNoFriends =>
       'Você ainda não tem amigos. Busque pelo @usuário para adicionar.';
 

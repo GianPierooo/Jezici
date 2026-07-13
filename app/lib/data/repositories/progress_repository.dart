@@ -651,6 +651,19 @@ class ProgressRepository {
     await _client.rpc('set_discoverable', params: {'p_on': on});
   }
 
+  /// Presencia: sella mi last_seen (heartbeat ligero al abrir/volver/periódico).
+  /// Best-effort: nunca debe romper el flujo si falla la red.
+  Future<void> heartbeat() async {
+    try {
+      await _client.rpc('heartbeat');
+    } catch (_) {}
+  }
+
+  /// Privacidad de presencia: mostrar o no "en línea" a los demás.
+  Future<void> setPresence(bool on) async {
+    await _client.rpc('set_presence', params: {'p_on': on});
+  }
+
   /// Busca usuarios por nombre o @handle. Solo campos públicos; excluye
   /// bloqueados (ambas dir) y no-descubribles server-side.
   Future<List<Map<String, dynamic>>> searchUsers(String q) async {

@@ -32,6 +32,24 @@ class _HomeShellState extends ConsumerState<HomeShell> with WidgetsBindingObserv
 
   static const _sections = ['Aprender', 'Practicar', 'Conversar', 'Ligas', 'Perfil'];
 
+  /// Presencia: heartbeat ligero (un UPDATE por PK) para que los amigos vean
+  /// "en línea / activo hace X" honesto. Late al abrir, al volver del background
+  /// y cada 90s en primer plano (barato en red/batería); se PAUSA en background.
+  Timer? _presenceTimer;
+
+  void _beat() => unawaited(ref.read(progressRepositoryProvider).heartbeat());
+
+  void _startPresence() {
+    _beat();
+    _presenceTimer?.cancel();
+    _presenceTimer = Timer.periodic(const Duration(seconds: 90), (_) => _beat());
+  }
+
+  void _stopPresence() {
+    _presenceTimer?.cancel();
+    _presenceTimer = null;
+  }
+
   @override
   void initState() {
     super.initState();
@@ -39,6 +57,7 @@ class _HomeShellState extends ConsumerState<HomeShell> with WidgetsBindingObserv
     _logView(0);
     // Música ambiente SOLO en el mapa (tab 0). Arranca si el usuario la activó.
     MusicService.instance.setOnMap(_index == 0);
+    _startPresence();
     // T4 · Matix automático: una evaluación diaria (meta sin cumplir tarde en
     // el día / racha en riesgo / atraso vs plan) + fan-out del Web Push
     // pendiente (lazy-cron: un cliente activo empuja los de los offline).
@@ -53,13 +72,20 @@ class _HomeShellState extends ConsumerState<HomeShell> with WidgetsBindingObserv
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     MusicService.instance.setOnMap(false); // detén la música al salir del shell
+    _stopPresence();
     super.dispose();
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     // Pausa al backgroundear; reanuda al volver (respeta al usuario / otra app).
-    MusicService.instance.setResumed(state == AppLifecycleState.resumed);
+    final resumed = state == AppLifecycleState.resumed;
+    MusicService.instance.setResumed(resumed);
+    if (resumed) {
+      _startPresence(); // late al volver + reanuda el periódico
+    } else {
+      _stopPresence(); // no gastar batería/red en background
+    }
   }
 
   void _logView(int i) {

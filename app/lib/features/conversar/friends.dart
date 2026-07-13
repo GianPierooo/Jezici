@@ -42,6 +42,99 @@ String sentFriendMessage(Object? result, AppLocalizations l10n) {
   return status == 'accepted' ? l10n.convNowFriends : l10n.convRequestSent;
 }
 
+/// Presencia HONESTA derivada de last_seen (ISO). En línea = latió hace <3 min;
+/// si no hay señal o el otro oculta su presencia → "activo hace X" / desconectado.
+/// Nada inventado: sin last_seen no se dice "en línea".
+class Presence {
+  const Presence(this.online, this.label);
+  final bool online;
+  final String label;
+}
+
+Presence presenceOf(Object? lastSeen, AppLocalizations l10n) {
+  final iso = lastSeen?.toString() ?? '';
+  if (iso.isEmpty) return Presence(false, l10n.presenceOffline);
+  final dt = DateTime.tryParse(iso)?.toLocal();
+  if (dt == null) return Presence(false, l10n.presenceOffline);
+  final diff = DateTime.now().difference(dt);
+  final m = diff.inMinutes;
+  if (m < 3) return Presence(true, l10n.presenceOnline);
+  if (m < 60) return Presence(false, l10n.presenceActiveMin(m));
+  if (diff.inHours < 24) return Presence(false, l10n.presenceActiveHours(diff.inHours));
+  return Presence(false, l10n.presenceActiveDays(diff.inDays));
+}
+
+/// Punto de estado: verde con halo que respira si está en línea, gris si no.
+/// Reduce-motion-aware. Va como badge sobre el avatar.
+class _PresenceDot extends StatefulWidget {
+  const _PresenceDot({required this.online});
+  final bool online;
+  static const double size = 13;
+  @override
+  State<_PresenceDot> createState() => _PresenceDotState();
+}
+
+class _PresenceDotState extends State<_PresenceDot> with SingleTickerProviderStateMixin {
+  AnimationController? _c;
+  @override
+  void initState() {
+    super.initState();
+    if (widget.online) {
+      _c = AnimationController(vsync: this, duration: const Duration(milliseconds: 1400))
+        ..repeat(reverse: true);
+    }
+  }
+
+  @override
+  void dispose() {
+    _c?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final reduce = MediaQuery.of(context).disableAnimations;
+    final color = widget.online ? AppColors.success : const Color(0xFFB9BDD0);
+    final dot = Container(
+      width: _PresenceDot.size,
+      height: _PresenceDot.size,
+      decoration: BoxDecoration(
+        color: color,
+        shape: BoxShape.circle,
+        border: Border.all(color: Colors.white, width: 2),
+        boxShadow: widget.online
+            ? [BoxShadow(color: color.withValues(alpha: 0.55), blurRadius: 5, spreadRadius: 0.5)]
+            : null,
+      ),
+    );
+    if (!widget.online || reduce || _c == null) return dot;
+    return ScaleTransition(
+      scale: Tween(begin: 0.86, end: 1.0).animate(CurvedAnimation(parent: _c!, curve: Curves.easeInOut)),
+      child: dot,
+    );
+  }
+}
+
+/// Avatar cuadrado-redondeado con el punto de presencia abajo-derecha.
+class _StatusAvatar extends StatelessWidget {
+  const _StatusAvatar(
+      {required this.color, required this.letter, required this.online, this.size = 50});
+  final String color, letter;
+  final bool online;
+  final double size;
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: size,
+      height: size,
+      child: Stack(clipBehavior: Clip.none, children: [
+        _Squircle(color: color, letter: letter, size: size),
+        Positioned(right: -2, bottom: -2, child: _PresenceDot(online: online)),
+      ]),
+    );
+  }
+}
+
 /// Estado social del usuario (acceso + código propio).
 final socialStatusProvider = FutureProvider.autoDispose<Map<String, dynamic>>((ref) async {
   return ref.read(progressRepositoryProvider).getSocialStatus();
@@ -417,6 +510,12 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
   bool _searching = false;
   List<Map<String, dynamic>> _results = const [];
 
+  /// Optimismo (inmediatez): a quién ya envié solicitud (botón → "Enviada ✓") y
+  /// qué solicitudes entrantes ya respondí (desaparecen al instante). Se
+  /// reconcilian con el servidor al refrescar.
+  final Set<String> _sentTo = {};
+  final Set<String> _responded = {};
+
   @override
   void dispose() {
     _search.dispose();
@@ -464,6 +563,7 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
   Future<void> _addByUserId(String userId) async {
     final l10n = AppLocalizations.of(context);
     final messenger = ScaffoldMessenger.of(context);
+    setState(() => _sentTo.add(userId)); // feedback INSTANTÁNEO (botón "Enviada ✓")
     try {
       final r = await ref.read(progressRepositoryProvider).requestFriend(userId);
       messenger.showSnackBar(SnackBar(content: Text(sentFriendMessage(r, l10n))));
@@ -471,6 +571,7 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
       ref.invalidate(suggestionsProvider);
       if (_query.length >= 2) _runSearch();
     } catch (e) {
+      if (mounted) setState(() => _sentTo.remove(userId)); // revierte si falló
       messenger.showSnackBar(SnackBar(content: Text(friendErrorMessage(e, l10n, l10n.convAddError))));
     }
   }
@@ -482,8 +583,20 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
     ref.invalidate(socialStatusProvider);
   }
 
+  Future<void> _togglePresence(bool on) async {
+    try {
+      await ref.read(progressRepositoryProvider).setPresence(on);
+    } catch (_) {}
+    ref.invalidate(socialStatusProvider);
+  }
+
   Future<void> _respond(String connectionId, bool accept) async {
-    await ref.read(progressRepositoryProvider).respondFriendRequest(connectionId, accept);
+    setState(() => _responded.add(connectionId)); // la tarjeta desaparece al instante
+    try {
+      await ref.read(progressRepositoryProvider).respondFriendRequest(connectionId, accept);
+    } catch (_) {
+      if (mounted) setState(() => _responded.remove(connectionId)); // revierte si falló
+    }
     ref.invalidate(friendsProvider);
   }
 
@@ -496,6 +609,8 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
         status.maybeWhen(data: (s) => s['needs_handle'] == true, orElse: () => false);
     final discoverable =
         status.maybeWhen(data: (s) => s['discoverable'] != false, orElse: () => true);
+    final showPresence =
+        status.maybeWhen(data: (s) => s['show_presence'] != false, orElse: () => true);
     // GATE: para usar lo social hay que elegir @usuario (no se puede saltar).
     if (needsHandle) {
       return HandleGateScreen(onDone: () => ref.invalidate(socialStatusProvider));
@@ -543,18 +658,26 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
                     results: _results,
                     onOpen: _openProfile,
                     onAdd: _addByUserId,
+                    sentIds: _sentTo,
                   )
                 else ...[
-                  // Sugerencias (mismo idioma) — descubrimiento inocuo.
-                  _SuggestionsStrip(onOpen: _openProfile, onAdd: _addByUserId),
+                  // "Personas para ti" — descubrimiento con presencia (en línea primero).
+                  _SuggestionsStrip(
+                      onOpen: _openProfile, onAdd: _addByUserId, sentIds: _sentTo),
                   friends.when(
+                  // Sin parpadeo: al refrescar (aceptar/enviar) se conserva la
+                  // data anterior en pantalla en vez de mostrar el spinner.
+                  skipLoadingOnRefresh: true,
                   loading: () => const Padding(
                       padding: EdgeInsets.all(30),
                       child: Center(
                           child: CircularProgressIndicator(color: AppColors.primary))),
                   error: (_, _) => _ErrorRetry(onRetry: () => ref.invalidate(friendsProvider)),
                   data: (data) {
-                    final incoming = (data['incoming'] as List?) ?? const [];
+                    // Optimismo: oculta las solicitudes ya respondidas al instante.
+                    final incoming = ((data['incoming'] as List?) ?? const [])
+                        .where((r) => !_responded.contains((r as Map)['connection_id'].toString()))
+                        .toList();
                     final list = (data['friends'] as List?) ?? const [];
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -633,6 +756,7 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
                                 name: (f['name'] ?? '').toString(),
                                 color: (f['avatar_color'] ?? '#6C5CE7').toString(),
                                 streak: (f['streak'] as num?)?.toInt() ?? 0,
+                                lastSeen: f['last_seen'],
                                 onTap: () => Navigator.of(context).push(MaterialPageRoute(
                                   builder: (_) => ChatScreen(
                                     connectionId: f['connection_id'].toString(),
@@ -652,6 +776,8 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
                 ),
                   const SizedBox(height: 20),
                   _DiscoverableTile(value: discoverable, onChanged: _toggleDiscoverable),
+                  const SizedBox(height: 10),
+                  _PresenceTile(value: showPresence, onChanged: _togglePresence),
                 ],
               ],
             ),
@@ -704,18 +830,24 @@ class _ErrorRetry extends StatelessWidget {
 
 class _FriendRow extends StatelessWidget {
   const _FriendRow(
-      {required this.name, required this.color, required this.streak, required this.onTap});
+      {required this.name,
+      required this.color,
+      required this.streak,
+      required this.lastSeen,
+      required this.onTap});
   final String name, color;
   final int streak;
+  final Object? lastSeen;
   final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final p = presenceOf(lastSeen, l10n);
     return _LipCard(
       onTap: onTap,
       padding: const EdgeInsets.all(12),
       child: Row(children: [
-        _Squircle(color: color, letter: name, size: 50),
+        _StatusAvatar(color: color, letter: name, online: p.online, size: 50),
         const SizedBox(width: 13),
         Expanded(
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -723,9 +855,12 @@ class _FriendRow extends StatelessWidget {
                 style: const TextStyle(
                     fontSize: 15.5, fontWeight: FontWeight.w900, color: AppColors.text)),
             const SizedBox(height: 2),
-            Text(l10n.convTapToChat,
-                style: const TextStyle(
-                    fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+            // Estado en vivo: "En línea" (verde) o "Activo hace X" (gris).
+            Text(p.label,
+                style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w800,
+                    color: p.online ? AppColors.success : AppColors.textMuted)),
           ]),
         ),
         const SizedBox(width: 8),
@@ -1958,12 +2093,14 @@ class _SearchResults extends StatelessWidget {
     required this.results,
     required this.onOpen,
     required this.onAdd,
+    required this.sentIds,
   });
   final String query;
   final bool searching;
   final List<Map<String, dynamic>> results;
   final void Function(String userId) onOpen;
   final void Function(String userId) onAdd;
+  final Set<String> sentIds;
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -1990,24 +2127,29 @@ class _SearchResults extends StatelessWidget {
       for (final r in results)
         Padding(
           padding: const EdgeInsets.only(bottom: 10),
-          child: _SearchResultRow(data: r, onOpen: onOpen, onAdd: onAdd),
+          child: _SearchResultRow(
+              data: r, onOpen: onOpen, onAdd: onAdd, sentIds: sentIds),
         ),
     ]);
   }
 }
 
 class _SearchResultRow extends StatelessWidget {
-  const _SearchResultRow({required this.data, required this.onOpen, required this.onAdd});
+  const _SearchResultRow(
+      {required this.data, required this.onOpen, required this.onAdd, required this.sentIds});
   final Map<String, dynamic> data;
   final void Function(String userId) onOpen;
   final void Function(String userId) onAdd;
+  final Set<String> sentIds;
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final id = data['user_id'].toString();
     final name = (data['name'] ?? '').toString();
     final handle = data['handle'] as String?;
-    final rel = (data['relationship'] ?? 'none').toString();
+    // Optimismo: si ya envié (aún sin refrescar el servidor) → "pendiente".
+    final rel =
+        sentIds.contains(id) ? 'pending_out' : (data['relationship'] ?? 'none').toString();
     return _LipCard(
       onTap: () => onOpen(id),
       padding: const EdgeInsets.all(11),
@@ -2072,14 +2214,17 @@ Widget _relTrailing(
 
 /// Carrusel de sugerencias de amigos (mismo idioma/nivel cercano).
 class _SuggestionsStrip extends ConsumerWidget {
-  const _SuggestionsStrip({required this.onOpen, required this.onAdd});
+  const _SuggestionsStrip({required this.onOpen, required this.onAdd, required this.sentIds});
   final void Function(String userId) onOpen;
   final void Function(String userId) onAdd;
+  final Set<String> sentIds;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context);
     final sug = ref.watch(suggestionsProvider);
     return sug.maybeWhen(
+      // Sin parpadeo al refrescar tras enviar una solicitud.
+      skipLoadingOnRefresh: true,
       data: (list) {
         if (list.isEmpty) return const SizedBox.shrink();
         return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -2101,8 +2246,8 @@ class _SuggestionsStrip extends ConsumerWidget {
               padding: EdgeInsets.zero,
               itemCount: list.length,
               separatorBuilder: (_, _) => const SizedBox(width: 10),
-              itemBuilder: (_, i) =>
-                  _SuggestionCard(data: list[i], onOpen: onOpen, onAdd: onAdd),
+              itemBuilder: (_, i) => _SuggestionCard(
+                  data: list[i], onOpen: onOpen, onAdd: onAdd, sentIds: sentIds),
             ),
           ),
           const SizedBox(height: 18),
@@ -2114,10 +2259,12 @@ class _SuggestionsStrip extends ConsumerWidget {
 }
 
 class _SuggestionCard extends StatelessWidget {
-  const _SuggestionCard({required this.data, required this.onOpen, required this.onAdd});
+  const _SuggestionCard(
+      {required this.data, required this.onOpen, required this.onAdd, required this.sentIds});
   final Map<String, dynamic> data;
   final void Function(String userId) onOpen;
   final void Function(String userId) onAdd;
+  final Set<String> sentIds;
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -2125,13 +2272,19 @@ class _SuggestionCard extends StatelessWidget {
     final name = (data['name'] ?? '').toString();
     final handle = data['handle'] as String?;
     final level = (data['level'] ?? '').toString();
+    final p = presenceOf(data['last_seen'], l10n);
+    final sent = sentIds.contains(id);
     return SizedBox(
-      width: 138,
+      width: 142,
       child: _LipCard(
         onTap: () => onOpen(id),
         padding: const EdgeInsets.all(12),
         child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-          _Squircle(color: (data['avatar_color'] ?? '#6C5CE7').toString(), letter: name, size: 52),
+          _StatusAvatar(
+              color: (data['avatar_color'] ?? '#6C5CE7').toString(),
+              letter: name,
+              online: p.online,
+              size: 52),
           const SizedBox(height: 8),
           Text(name,
               maxLines: 1,
@@ -2145,8 +2298,19 @@ class _SuggestionCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                     fontSize: 11, fontWeight: FontWeight.w700, color: AppColors.primary)),
-          const SizedBox(height: 6),
-          if (level.isNotEmpty)
+          const SizedBox(height: 5),
+          // Estado en vivo: "En línea ahora" (verde) o nivel CEFR si offline.
+          if (p.online)
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              decoration: BoxDecoration(
+                  color: AppColors.success.withValues(alpha: 0.14),
+                  borderRadius: BorderRadius.circular(8)),
+              child: Text(l10n.convOnlineNow,
+                  style: const TextStyle(
+                      fontSize: 10, fontWeight: FontWeight.w900, color: AppColors.success)),
+            )
+          else if (level.isNotEmpty)
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
               decoration: BoxDecoration(
@@ -2158,7 +2322,23 @@ class _SuggestionCard extends StatelessWidget {
           const Spacer(),
           SizedBox(
             width: double.infinity,
-            child: PrimaryButton(label: l10n.convAddFriend, onPressed: () => onAdd(id)),
+            child: sent
+                // Optimismo: enviado al instante (chip verde, sin espera).
+                ? Container(
+                    height: 40,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                        color: AppColors.success.withValues(alpha: 0.14),
+                        borderRadius: BorderRadius.circular(14)),
+                    child: Row(mainAxisSize: MainAxisSize.min, children: [
+                      const Icon(Icons.check_rounded, size: 16, color: AppColors.success),
+                      const SizedBox(width: 5),
+                      Text(l10n.convRequested,
+                          style: const TextStyle(
+                              fontSize: 12.5, fontWeight: FontWeight.w900, color: AppColors.success)),
+                    ]),
+                  )
+                : PrimaryButton(label: l10n.convAddFriend, onPressed: () => onAdd(id)),
           ),
         ]),
       ),
@@ -2194,6 +2374,49 @@ class _DiscoverableTile extends StatelessWidget {
                     fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.text)),
             const SizedBox(height: 1),
             Text(l10n.convDiscoverableSub,
+                style: const TextStyle(
+                    fontSize: 11.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+          ]),
+        ),
+        Switch(
+          value: value,
+          onChanged: onChanged,
+          activeThumbColor: Colors.white,
+          activeTrackColor: AppColors.success,
+        ),
+      ]),
+    );
+  }
+}
+
+/// Toggle de privacidad de PRESENCIA: mostrar o no "en línea" a los demás.
+class _PresenceTile extends StatelessWidget {
+  const _PresenceTile({required this.value, required this.onChanged});
+  final bool value;
+  final ValueChanged<bool> onChanged;
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return _LipCard(
+      padding: const EdgeInsets.fromLTRB(14, 10, 8, 10),
+      child: Row(children: [
+        Container(
+          width: 36,
+          height: 36,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+              color: AppColors.navActiveBg, borderRadius: BorderRadius.circular(11)),
+          child: Icon(value ? Icons.podcasts_rounded : Icons.visibility_off_rounded,
+              size: 19, color: AppColors.primary),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(l10n.convShowPresence,
+                style: const TextStyle(
+                    fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.text)),
+            const SizedBox(height: 1),
+            Text(l10n.convShowPresenceSub,
                 style: const TextStyle(
                     fontSize: 11.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
           ]),

@@ -4271,6 +4271,60 @@ abstract class AppLocalizations {
   /// **'Rechazar'**
   String get convReject;
 
+  /// No description provided for @presenceOnline.
+  ///
+  /// In es, this message translates to:
+  /// **'En línea'**
+  String get presenceOnline;
+
+  /// No description provided for @presenceOffline.
+  ///
+  /// In es, this message translates to:
+  /// **'Desconectado'**
+  String get presenceOffline;
+
+  /// No description provided for @presenceActiveMin.
+  ///
+  /// In es, this message translates to:
+  /// **'Activo hace {n} min'**
+  String presenceActiveMin(int n);
+
+  /// No description provided for @presenceActiveHours.
+  ///
+  /// In es, this message translates to:
+  /// **'Activo hace {n} h'**
+  String presenceActiveHours(int n);
+
+  /// No description provided for @presenceActiveDays.
+  ///
+  /// In es, this message translates to:
+  /// **'Activo hace {n} d'**
+  String presenceActiveDays(int n);
+
+  /// No description provided for @convRequested.
+  ///
+  /// In es, this message translates to:
+  /// **'Enviada'**
+  String get convRequested;
+
+  /// No description provided for @convOnlineNow.
+  ///
+  /// In es, this message translates to:
+  /// **'En línea ahora'**
+  String get convOnlineNow;
+
+  /// No description provided for @convShowPresence.
+  ///
+  /// In es, this message translates to:
+  /// **'Mostrar cuando estoy en línea'**
+  String get convShowPresence;
+
+  /// No description provided for @convShowPresenceSub.
+  ///
+  /// In es, this message translates to:
+  /// **'Tus amigos ven tu estado \"en línea\"'**
+  String get convShowPresenceSub;
+
   /// No description provided for @convNoFriends.
   ///
   /// In es, this message translates to:

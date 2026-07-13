@@ -2494,6 +2494,39 @@ class AppLocalizationsEs extends AppLocalizations {
   String get convReject => 'Rechazar';
 
   @override
+  String get presenceOnline => 'En línea';
+
+  @override
+  String get presenceOffline => 'Desconectado';
+
+  @override
+  String presenceActiveMin(int n) {
+    return 'Activo hace $n min';
+  }
+
+  @override
+  String presenceActiveHours(int n) {
+    return 'Activo hace $n h';
+  }
+
+  @override
+  String presenceActiveDays(int n) {
+    return 'Activo hace $n d';
+  }
+
+  @override
+  String get convRequested => 'Enviada';
+
+  @override
+  String get convOnlineNow => 'En línea ahora';
+
+  @override
+  String get convShowPresence => 'Mostrar cuando estoy en línea';
+
+  @override
+  String get convShowPresenceSub => 'Tus amigos ven tu estado \"en línea\"';
+
+  @override
   String get convNoFriends =>
       'Aún no tienes amigos. Búscalos por su @usuario para agregarlos.';
 
