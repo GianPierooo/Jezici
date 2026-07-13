@@ -26,12 +26,13 @@ void main() {
     expect(find.text('Aporta un grano de arena'), findsOneWidget);
     expect(find.text('Yape'), findsOneWidget);
     expect(find.text('Plin'), findsOneWidget);
-    expect(find.text('PayPal'), findsOneWidget);
     expect(find.text('Tarjeta (Stripe)'), findsOneWidget);
     // El número de Yape/Plin (mismo) aparece dos veces (una por método).
     expect(find.text('906517394'), findsNWidgets(2));
-    // PayPal/Stripe sin URL configurada → "Pronto" (no botón muerto).
-    expect(find.text('Pronto'), findsNWidgets(2));
+    // PayPal LIVE → tappable con la etiqueta "Donar con PayPal" (ya no "Pronto").
+    expect(find.text('Donar con PayPal'), findsOneWidget);
+    // Solo Stripe sigue sin URL → "Pronto" (no botón muerto).
+    expect(find.text('Pronto'), findsOneWidget);
   });
 
   testWidgets('copiar número pone 906517394 en el portapapeles', (tester) async {
@@ -64,6 +65,8 @@ void main() {
     await tester.pump();
     expect(find.text('Contribua com um grão de areia'), findsOneWidget);
     expect(find.text('Aporta un grano de arena'), findsNothing);
-    expect(find.text('Em breve'), findsNWidgets(2));
+    // PayPal LIVE en PT; solo Stripe sigue "Em breve".
+    expect(find.text('Doar com PayPal'), findsOneWidget);
+    expect(find.text('Em breve'), findsOneWidget);
   });
 }

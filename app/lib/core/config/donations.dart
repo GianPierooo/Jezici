@@ -5,12 +5,13 @@
 /// del juego (para no chocar con reglas de tiendas ni sobreprometer). Todo lo
 /// que Gian debe rellenar para ACTIVAR cada método vive AQUÍ (una sola fuente):
 ///
-///   1) Yape  → número ya puesto (906517394). Reemplaza el QR:
-///              `app/assets/donations/yape_qr.png`  (mismo nombre, PNG cuadrado).
-///   2) Plin  → usa el MISMO número por defecto (906517394). Si es otro, cámbialo
-///              en [plinNumber]. Reemplaza el QR: `app/assets/donations/plin_qr.png`.
-///   3) PayPal→ pega tu enlace (paypal.me/tuusuario o botón) en [paypalUrl].
-///   4) Stripe→ pega tu Payment Link (dashboard Stripe → Payment links) en [stripeUrl].
+///   1) Yape   ✅ LIVE — número 906517394 + QR real (`assets/donations/yape_qr.png`).
+///   2) Plin   ⏳ número 906517394 (mismo que Yape) LISTO; falta subir el QR en
+///             `app/assets/donations/plin_qr.png` (PNG cuadrado). Sin él, la fila
+///             muestra un icono neutro "sin QR" pero el NÚMERO ya funciona.
+///   3) PayPal ✅ LIVE — enlace de donación en [paypalUrl].
+///   4) Stripe ⏳ pega tu Payment Link (dashboard Stripe → Payment links) en
+///             [stripeUrl]; vacío = "Pronto" (deshabilitado, sin botón muerto).
 ///
 /// Reglas de la UI (honestas): Yape/Plin se muestran como NÚMERO + QR (no botón
 /// web). PayPal/Stripe como ENLACE — si su URL sigue vacía (placeholder), el
@@ -30,8 +31,9 @@ class Donations {
   static const String plinQrAsset = 'assets/donations/plin_qr.png';
   static const bool plinSameAsYape = true; // muestra la nota "mismo número que Yape"
 
-  /// PayPal — PEGA tu enlace (paypal.me/... o botón). Vacío = "Pronto".
-  static const String paypalUrl = '';
+  /// PayPal — enlace de donación (botón "Donate" hospedado). LIVE.
+  static const String paypalUrl =
+      'https://www.paypal.com/donate/?hosted_button_id=7PDSNNUTYRXUG';
 
   /// Stripe — PEGA tu Payment Link (dashboard → Payment links). Vacío = "Pronto".
   static const String stripeUrl = '';
