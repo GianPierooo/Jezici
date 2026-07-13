@@ -5,6 +5,34 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-12**.
 
+## AMISTAD+CHAT — bugs de uso real: código fuera, orden del chat, lag, gate ✅ LIVE (2026-07-13 · solo cliente)
+Pasada SOLO de corrección (el rediseño visual va aparte). Decisión de Gian: **el @handle es la ÚNICA vía de
+agregar**. PASO 0 con 2 usuarios JWT reales: el **servidor de amistad ya funcionaba** (agregar por @handle
+crea pending + notifica a B; `list_messages` devuelve orden cronológico) — los 4 bugs eran de **CLIENTE**.
+Cero migración.
+- **1 · CÓDIGO fuera de la UI:** se quitó el bloque "TU CÓDIGO" + input "agregar por código" (`_codeSection`/
+  `_CodeHero`/`_addByCode`/`_copyCode`/`_code`). Agregar = **solo buscar por @usuario/nombre** → solicitud. La
+  columna `friend_code` **NO se toca en BD** (queda como dato interno no expuesto). Empty-state y copy sin
+  referencias a "código" (i18n es/en/pt). **Amistades existentes intactas.**
+- **2 · GATE DE HANDLE no-muerto (síntoma "la solicitud no llega"):** causa real = el receptor con `@handle=NULL`
+  (p.ej. Gian) topaba con el gate T3 que bloquea Amigos. El servidor SÍ crea la pending + notifica (verificado).
+  Ahora el gate, si el usuario **YA tiene solicitudes entrantes**, las anuncia claro ("Tienes solicitudes
+  esperando. Elige tu @usuario para verlas y aceptarlas" — `list_friends` funciona sin handle, solo exige
+  adulto); tras elegir @usuario, las pendientes aparecen. La notificación además llega por la **campana** (no
+  gateada por handle).
+- **3 · ORDEN DEL CHAT:** el stream Realtime (`.order('created_at')`) viene **DESCENDENTE** → con `reverse:true`
+  los mensajes nuevos salían **ARRIBA**. Fix: se ordena **ASCENDENTE explícito** en el builder (created_at ISO =
+  lexicográfico = cronológico) → el más reciente **ABAJO** y `reverse:true` ancla la vista al último (autoscroll
+  natural al abrir/enviar/recibir).
+- **4 · LAG del chat (causa perfilada):** (a) el stream Realtime se creaba **DENTRO de `build()`** → cada rebuild
+  (incluida **cada tecla**) **RE-SUSCRIBÍA** el canal Realtime = el lag. Ahora se fija **UNA vez en `initState`**.
+  (b) el padre hacía `setState` en **cada tecla** (para el toggle 🎤↔➤) → reconstruía TODA la lista de mensajes;
+  ahora **solo el botón del composer** se reconstruye (`ValueListenableBuilder` sobre el controller) → escribir
+  ya no toca la lista.
+- **Seguridad P1/T3 intacta** (18+, blocks bidireccionales, rate limits, DEFINER; certificación/aislamiento sin
+  tocar). Verificado servidor `verify_friends.py` TODO VERDE (agregar por @handle + notif + orden `list_messages`)
+  + `friends_ui_test` actualizado (sin código en la UI). analyze 0 (CI-exact) · test **167/167** · build web OK.
+
 ## AMISTAD ROTA — diagnóstico con evidencia + fix END-TO-END ✅ LIVE (mig 154/155 · 2026-07-13)
 Feedback real (Gian + tester 18+): (1) agregar por código falla con código correcto; (2) la solicitud
 "no le llega" al otro; (3) sin sugerencias. **PASO 0 con cliente REAL (dos JWT, `repro_friends.py`):** el
