@@ -2459,6 +2459,28 @@ class AppLocalizationsPt extends AppLocalizations {
   String get convCodeError => 'Não foi possível adicionar. Confira o código.';
 
   @override
+  String get convErrAlready => 'Vocês já são amigos.';
+
+  @override
+  String get convErrSelf => 'Esse é o seu próprio código 🙂';
+
+  @override
+  String get convErrRate => 'Você enviou muitos convites hoje. Tente amanhã.';
+
+  @override
+  String get convErrUnavailable =>
+      'Indisponível. A conta precisa poder usar o social (maior de idade).';
+
+  @override
+  String get convErrBlocked => 'Indisponível.';
+
+  @override
+  String get convAddError => 'Não foi possível enviar o convite.';
+
+  @override
+  String get convNowFriends => 'Agora vocês são amigos! 🎉';
+
+  @override
   String get convCodeCopied => 'Código copiado';
 
   @override

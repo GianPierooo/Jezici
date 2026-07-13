@@ -2456,6 +2456,28 @@ class AppLocalizationsEs extends AppLocalizations {
   String get convCodeError => 'No se pudo agregar. Revisa el código.';
 
   @override
+  String get convErrAlready => 'Ya son amigos.';
+
+  @override
+  String get convErrSelf => 'Ese es tu propio código 🙂';
+
+  @override
+  String get convErrRate => 'Enviaste muchas solicitudes hoy. Intenta mañana.';
+
+  @override
+  String get convErrUnavailable =>
+      'No disponible. La cuenta debe poder usar lo social (mayor de edad).';
+
+  @override
+  String get convErrBlocked => 'No disponible.';
+
+  @override
+  String get convAddError => 'No se pudo enviar la solicitud.';
+
+  @override
+  String get convNowFriends => '¡Ya son amigos! 🎉';
+
+  @override
   String get convCodeCopied => 'Código copiado';
 
   @override

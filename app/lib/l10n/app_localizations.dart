@@ -4199,6 +4199,48 @@ abstract class AppLocalizations {
   /// **'No se pudo agregar. Revisa el código.'**
   String get convCodeError;
 
+  /// No description provided for @convErrAlready.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya son amigos.'**
+  String get convErrAlready;
+
+  /// No description provided for @convErrSelf.
+  ///
+  /// In es, this message translates to:
+  /// **'Ese es tu propio código 🙂'**
+  String get convErrSelf;
+
+  /// No description provided for @convErrRate.
+  ///
+  /// In es, this message translates to:
+  /// **'Enviaste muchas solicitudes hoy. Intenta mañana.'**
+  String get convErrRate;
+
+  /// No description provided for @convErrUnavailable.
+  ///
+  /// In es, this message translates to:
+  /// **'No disponible. La cuenta debe poder usar lo social (mayor de edad).'**
+  String get convErrUnavailable;
+
+  /// No description provided for @convErrBlocked.
+  ///
+  /// In es, this message translates to:
+  /// **'No disponible.'**
+  String get convErrBlocked;
+
+  /// No description provided for @convAddError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo enviar la solicitud.'**
+  String get convAddError;
+
+  /// No description provided for @convNowFriends.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Ya son amigos! 🎉'**
+  String get convNowFriends;
+
   /// No description provided for @convCodeCopied.
   ///
   /// In es, this message translates to:

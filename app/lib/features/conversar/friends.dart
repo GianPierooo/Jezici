@@ -20,6 +20,28 @@ import '../learn/widgets/parrot_mascot.dart';
 /// gradiente, chips, CTA 3D, Jezi y motion reduce-motion-aware. La LÓGICA
 /// (amigos/chat/notas de voz/co-op/racha/moderación/RLS) no se toca.
 
+/// Traduce el error REAL del servidor a un mensaje claro. Antes TODO fallo se
+/// mostraba como "revisa el código" (el bug #1: "ya son amigos", "es tu propio
+/// código", "18+", rate limit… todos quedaban ocultos). `fallback` = mensaje por
+/// defecto según el origen (por código vs por perfil/búsqueda).
+String friendErrorMessage(Object e, AppLocalizations l10n, String fallback) {
+  final s = e.toString().toLowerCase();
+  if (s.contains('already friends')) return l10n.convErrAlready;
+  if (s.contains('cannot add yourself')) return l10n.convErrSelf;
+  if (s.contains('rate_limited')) return l10n.convErrRate;
+  if (s.contains('social unavailable') || s.contains('account restricted')) {
+    return l10n.convErrUnavailable;
+  }
+  if (s.contains('unavailable')) return l10n.convErrBlocked;
+  return fallback;
+}
+
+/// Mensaje de éxito: si el envío auto-aceptó (solicitud mutua) → "ya son amigos".
+String sentFriendMessage(Object? result, AppLocalizations l10n) {
+  final status = (result is Map) ? result['status'] : null;
+  return status == 'accepted' ? l10n.convNowFriends : l10n.convRequestSent;
+}
+
 /// Estado social del usuario (acceso + código propio).
 final socialStatusProvider = FutureProvider.autoDispose<Map<String, dynamic>>((ref) async {
   return ref.read(progressRepositoryProvider).getSocialStatus();
@@ -446,13 +468,13 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
     final l10n = AppLocalizations.of(context);
     final messenger = ScaffoldMessenger.of(context);
     try {
-      await ref.read(progressRepositoryProvider).requestFriend(userId);
-      messenger.showSnackBar(SnackBar(content: Text(l10n.convRequestSent)));
+      final r = await ref.read(progressRepositoryProvider).requestFriend(userId);
+      messenger.showSnackBar(SnackBar(content: Text(sentFriendMessage(r, l10n))));
       ref.invalidate(friendsProvider);
       ref.invalidate(suggestionsProvider);
       if (_query.length >= 2) _runSearch();
-    } catch (_) {
-      messenger.showSnackBar(SnackBar(content: Text(l10n.convCodeError)));
+    } catch (e) {
+      messenger.showSnackBar(SnackBar(content: Text(friendErrorMessage(e, l10n, l10n.convAddError))));
     }
   }
 
@@ -470,12 +492,12 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
     final l10n = AppLocalizations.of(context);
     final messenger = ScaffoldMessenger.of(context);
     try {
-      await ref.read(progressRepositoryProvider).sendFriendRequest(c);
+      final r = await ref.read(progressRepositoryProvider).sendFriendRequest(c);
       _code.clear();
       ref.invalidate(friendsProvider);
-      messenger.showSnackBar(SnackBar(content: Text(l10n.convRequestSent)));
-    } catch (_) {
-      messenger.showSnackBar(SnackBar(content: Text(l10n.convCodeError)));
+      messenger.showSnackBar(SnackBar(content: Text(sentFriendMessage(r, l10n))));
+    } catch (e) {
+      messenger.showSnackBar(SnackBar(content: Text(friendErrorMessage(e, l10n, l10n.convCodeError))));
     } finally {
       if (mounted) setState(() => _sending = false);
     }
@@ -2539,12 +2561,13 @@ class _PublicProfileScreenState extends ConsumerState<PublicProfileScreen> {
     final l10n = AppLocalizations.of(context);
     final messenger = ScaffoldMessenger.of(context);
     try {
-      await ref.read(progressRepositoryProvider).requestFriend(widget.userId);
+      final r = await ref.read(progressRepositoryProvider).requestFriend(widget.userId);
+      messenger.showSnackBar(SnackBar(content: Text(sentFriendMessage(r, l10n))));
       ref.invalidate(friendsProvider);
       ref.invalidate(suggestionsProvider);
       _reload();
-    } catch (_) {
-      messenger.showSnackBar(SnackBar(content: Text(l10n.convCodeError)));
+    } catch (e) {
+      messenger.showSnackBar(SnackBar(content: Text(friendErrorMessage(e, l10n, l10n.convAddError))));
     } finally {
       if (mounted) setState(() => _acting = false);
     }
