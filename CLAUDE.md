@@ -5,6 +5,29 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-12**.
 
+## AMIGOS VIVOS — presencia honesta + lista dinámica + inmediatez ✅ LIVE (mig 156 · 2026-07-13)
+Rediseño de Amigos tras el fix de bugs (capa visual + presencia; la lógica social arreglada NO se toca).
+Presencia HONESTA: nada inventado (sin señal → "activo hace X"/desconectado, jamás "en línea" falso).
+- **1 · PRESENCIA (mig 156):** `users.last_seen` + `show_presence` + `heartbeat()` (un UPDATE por PK,
+  barato). El **HomeShell late** al abrir, al volver del background y **cada 90s en primer plano**, y **se
+  PAUSA en background** (sin gasto de batería/red). `list_friends` y `suggest_friends` devuelven `last_seen`
+  (respetando `show_presence`, 18+, blocks, descubribilidad). El cliente deriva **"En línea"** (heartbeat
+  <3 min) / **"Activo hace X min/h/d"** / **"Desconectado"**. Toggle de privacidad `set_presence(on)` para
+  ocultar el "en línea" (get_social_status lo expone).
+- **2 · LISTA dinámica:** `_StatusAvatar` con **punto verde que respira** (reduce-motion-aware) + etiqueta de
+  estado en vivo (verde "En línea" / gris "Activo hace X") en lugar de "toca para chatear"; racha 🔥 pulsante;
+  **orden por actividad (en línea primero, server-side)**; entrada directa al chat.
+- **3 · SUGERENCIAS "Personas para ti":** carrusel con presencia (chip verde **"En línea ahora"**), nivel CEFR
+  si offline, orden en-línea-primero (server), botón claro de agregar. Vacío con Jezi.
+- **4 · INMEDIATEZ (optimismo):** al enviar solicitud el botón pasa a **"Enviada ✓" al instante** (revierte si
+  falla); al **aceptar**, la solicitud **desaparece de inmediato**; **`skipLoadingOnRefresh`** conserva la data
+  al refrescar → **sin parpadeos ni spinner**.
+- **Seguridad P1/T3 intacta** (18+, blocks bidireccionales, DEFINER, no expone datos privados). i18n es/en/pt,
+  responsive, reduce-motion-aware. **Verificado cliente REAL (`verify_presence.py` TODO VERDE):** heartbeat
+  sella last_seen; list_friends lo devuelve + handle; `set_presence(false)` lo **OCULTA** a los demás y `(true)`
+  lo vuelve a mostrar; suggest_friends expone last_seen. + `friends_ui_test` (estado en línea/offline). analyze
+  0 (CI-exact) · test **167/167** · build web OK.
+
 ## AMISTAD+CHAT — bugs de uso real: código fuera, orden del chat, lag, gate ✅ LIVE (2026-07-13 · solo cliente)
 Pasada SOLO de corrección (el rediseño visual va aparte). Decisión de Gian: **el @handle es la ÚNICA vía de
 agregar**. PASO 0 con 2 usuarios JWT reales: el **servidor de amistad ya funcionaba** (agregar por @handle
