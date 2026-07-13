@@ -5,6 +5,29 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-12**.
 
+## PRINCIPIANTE — 2 P0 cerrados: Practicar honesto a cero + onboarding "¿eres nuevo?" ✅ LIVE (2026-07-13 · solo cliente)
+Cierra las 2 peores fricciones del que empieza de cero (PRINCIPIANTE_ANALISIS P0 #1/#5 y #2). Cero IA, sin
+migración. NO toca placement (anti-azar) / certificación / economía.
+- **P0 #1+#5 · el 2º tab "Practicar" ya NO miente a un novato:** el BUG era `dueWords = vocab_total −
+  agendado` → un novato con 0 agendado veía el vocabulario ENTERO como "N palabras por repasar", y al tocar
+  salía "¡Nada que reforzar!" (contradicción). Ahora `dueWords` cuenta **SOLO filas de `user_vocab_srs`
+  VENCIDAS** (due_at ≤ ahora) = palabras que YA VIO (se quitó la query a `vocabulary`). **Estado de
+  BIENVENIDA** para el novato (`hasProgress` = ¿tiene alguna lección con progreso?): "Aún no tienes palabras
+  por repasar. Completa tu primera lección…" + CTA **"Ir a mi lección"** (→ pestaña del mapa vía
+  `homeTabRequestProvider`, un `NotifierProvider` que el HomeShell escucha). Con 0 progreso se **OCULTAN** las
+  secciones que darían "nada que reforzar" (SRS/punto débil/reforzar/Lectura/Redacción/Contrarreloj) y se dejan
+  **Inmersión + Repaso** (útiles desde el día 0). `complete_lesson` NO alimenta el SRS (solo la práctica SRS y
+  los fallos) → por eso la señal de novato es "sin progreso de lecciones", no "SRS vacío".
+- **P0 #2 · el onboarding ya NO empuja al novato a un examen A2:** el paso de nivel usa el **patrón Duolingo
+  "¿Es tu primer contacto con {idioma}?"** SIN default peligroso (antes el default "Sé lo básico" → placement
+  en A2). **"Sí"** → fija A1 y **SALTA** el placement; **"No"** → sub-vista "Sé lo básico / Tengo buen nivel" +
+  corre el placement. Atrás vuelve del sub-paso a la pregunta. El mecanismo "desde cero → A1/Unidad 1"
+  (create_plan) ya existía, intacto.
+- i18n es/en/pt · responsive · reduce-motion-aware. Riverpod 3 (StateProvider removido → NotifierProvider).
+  +practice_screen_test (novato: bienvenida, sin número falso, secciones vacías ocultas). analyze 0 (CI-exact)
+  · test **168/168** · build web OK · CI SUCCESS · deploy READY. **Quedan P1/P2 del análisis** (enseñar antes
+  de examinar; sonidos/pronunciación) en PRINCIPIANTE_ANALISIS.md.
+
 ## AMIGOS VIVOS — presencia honesta + lista dinámica + inmediatez ✅ LIVE (mig 156 · 2026-07-13)
 Rediseño de Amigos tras el fix de bugs (capa visual + presencia; la lógica social arreglada NO se toca).
 Presencia HONESTA: nada inventado (sin señal → "activo hace X"/desconectado, jamás "en línea" falso).
