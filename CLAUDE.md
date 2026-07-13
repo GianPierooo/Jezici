@@ -5,6 +5,29 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-12**.
 
+## TOUR DE BIENVENIDA con Jezi (coach marks) ✅ LIVE (2026-07-13 · solo cliente, flag LOCAL)
+Feedback de Gian. La PRIMERA vez que el usuario llega al mapa, Jezi lo guía por la app con cuadros pequeños
+que resaltan el elemento REAL. Cero IA, sin migración.
+- **Disparo/persistencia:** flag LOCAL `welcome_tour_seen` (`SharedPreferences`, patrón `NotifierProvider`
+  `welcomeTourSeenProvider`): se asume "visto" hasta que la preferencia carga (**no parpadea** a quien ya lo
+  vio) y solo se muestra si la clave no existe → **una vez, nunca más**. Se muestra sobre el mapa (tab 0);
+  al saltar/terminar → `markSeen()`.
+- **Formato:** 8 pasos cortos con Jezi — bienvenida · mapa ("empieza abajo") · barra superior (vidas/oro/racha)
+  · Practicar · Conversar · Ligas · Perfil · cierre con CTA "¡Empezar!". Cada paso **resalta el elemento REAL**
+  (spotlight = fondo oscuro con hueco redondeado + anillo) apuntando a la **barra superior del mapa** y a los
+  **botones del nav inferior** vía `GlobalKeys` (`core/ui/tour_keys.dart`, adjuntadas a `BottomNav.itemKeys` +
+  `LearnTopBar`). Bienvenida/cierre centrados.
+- **UX:** overlay que oscurece el fondo y **absorbe taps** (no toca la UI por error); **Saltar** en cualquier
+  momento, **Atrás/Siguiente**, puntos de progreso, CTA con labio 3D. **Nunca bloquea** (siempre saltable); si
+  un elemento no está montado, el paso se **centra** (degradación con gracia). La tarjeta se coloca debajo/encima
+  del elemento según su posición → apunta bien en **móvil y desktop**. **Reduce-motion-aware**. Lenguaje simple.
+- i18n es/en/pt (24 claves). +`welcome_tour_test` (navega, salta, CTA final PT sin español). analyze 0 (CI-exact)
+  · test **171/171** · build web OK · CI SUCCESS · deploy READY.
+- **Cómo re-verlo (probar como usuario nuevo):** borrar la clave local — en la consola del navegador
+  `localStorage` no aplica (Flutter usa IndexedDB para shared_preferences en web); lo simple es **Ajustes del
+  navegador → borrar datos del sitio** (o una ventana incógnita / otro dispositivo), o **borrar la app** en móvil.
+  Cualquier alta NUEVA lo ve una vez.
+
 ## PRINCIPIANTE — 2 P0 cerrados: Practicar honesto a cero + onboarding "¿eres nuevo?" ✅ LIVE (2026-07-13 · solo cliente)
 Cierra las 2 peores fricciones del que empieza de cero (PRINCIPIANTE_ANALISIS P0 #1/#5 y #2). Cero IA, sin
 migración. NO toca placement (anti-azar) / certificación / economía.
