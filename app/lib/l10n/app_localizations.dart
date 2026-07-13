@@ -1956,6 +1956,24 @@ abstract class AppLocalizations {
   /// **'Te enviamos un correo para confirmar tu cuenta. Ábrelo y vuelve para continuar.'**
   String get authCheckEmail;
 
+  /// No description provided for @authGoogleRetry.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo continuar con Google. Vuelve a intentarlo.'**
+  String get authGoogleRetry;
+
+  /// No description provided for @authBetaGoogleOnly.
+  ///
+  /// In es, this message translates to:
+  /// **'En esta beta, el acceso es solo con Google. El registro por correo volverá en el lanzamiento.'**
+  String get authBetaGoogleOnly;
+
+  /// No description provided for @authContinueLegalPrefix.
+  ///
+  /// In es, this message translates to:
+  /// **'Al continuar, aceptas los '**
+  String get authContinueLegalPrefix;
+
   /// No description provided for @lessonSaveErrorTitle.
   ///
   /// In es, this message translates to:
@@ -4762,6 +4780,12 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Así te encuentran tus amigos. Tu nombre visible sigue siendo libre.'**
   String get handleGateSubtitle;
+
+  /// No description provided for @handleSetupSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Es tu identidad en Jezici: única y para siempre. Elígela para empezar.'**
+  String get handleSetupSubtitle;
 
   /// No description provided for @handleGateHint.
   ///

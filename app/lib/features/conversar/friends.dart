@@ -2434,8 +2434,14 @@ class _PresenceTile extends StatelessWidget {
 
 /// GATE de @usuario — pantalla dedicada, no se puede saltar para usar lo social.
 class HandleGateScreen extends ConsumerStatefulWidget {
-  const HandleGateScreen({super.key, required this.onDone});
+  const HandleGateScreen({super.key, required this.onDone, this.startup = false});
   final VoidCallback onDone;
+
+  /// `true` cuando es el gate OBLIGATORIO del arranque (tras registrarse): el
+  /// @usuario es la identidad de entrada para TODOS. Copy universal, sin barra
+  /// con "atrás" (no hay a dónde volver — es ineludible). `false` = gate de
+  /// Amigos (contexto social).
+  final bool startup;
   @override
   ConsumerState<HandleGateScreen> createState() => _HandleGateScreenState();
 }
@@ -2449,7 +2455,9 @@ class _HandleGateScreenState extends ConsumerState<HandleGateScreen> {
   @override
   void initState() {
     super.initState();
-    _loadPending();
+    // El aviso de "solicitudes esperando" solo aplica al gate de Amigos; en el
+    // arranque (usuario recién registrado) no hay pendientes.
+    if (!widget.startup) _loadPending();
   }
 
   /// ¿Ya me llegaron solicitudes aunque aún no tenga @usuario? list_friends solo
@@ -2507,12 +2515,15 @@ class _HandleGateScreenState extends ConsumerState<HandleGateScreen> {
     final l10n = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: AppColors.background,
-      appBar: AppBar(
-        backgroundColor: AppColors.background,
-        surfaceTintColor: Colors.transparent,
-        title: Text(l10n.convFriendsTitle,
-            style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
-      ),
+      // En el arranque NO hay barra con "atrás" (el @usuario es ineludible).
+      appBar: widget.startup
+          ? null
+          : AppBar(
+              backgroundColor: AppColors.background,
+              surfaceTintColor: Colors.transparent,
+              title: Text(l10n.convFriendsTitle,
+                  style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
+            ),
       body: SafeArea(
         child: ResponsiveCenter(
           maxWidth: 480,
@@ -2527,7 +2538,7 @@ class _HandleGateScreenState extends ConsumerState<HandleGateScreen> {
                   style: const TextStyle(
                       fontSize: 23, fontWeight: FontWeight.w900, color: AppColors.text)),
               const SizedBox(height: 8),
-              Text(l10n.handleGateSubtitle,
+              Text(widget.startup ? l10n.handleSetupSubtitle : l10n.handleGateSubtitle,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.textMuted)),

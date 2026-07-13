@@ -15,6 +15,7 @@ import 'core/theme/app_theme.dart';
 import 'data/providers.dart';
 import 'l10n/app_localizations.dart';
 import 'features/auth/auth_screen.dart';
+import 'features/conversar/friends.dart' show HandleGateScreen;
 import 'features/learn/widgets/parrot_mascot.dart';
 import 'features/notifications/matix_service.dart';
 import 'features/onboarding/onboarding_screen.dart';
@@ -200,6 +201,20 @@ class _AppGateState extends ConsumerState<AppGate> {
               ref.invalidate(profileProvider);
               ref.invalidate(leagueProvider); // el nombre aparece en ligas
             },
+          );
+        }
+        // @HANDLE OBLIGATORIO DE ARRANQUE (beta): el @usuario único es la
+        // identidad de entrada para TODOS. Sin él no se accede al mapa (gate
+        // ineludible, no solo en Amigos). Se pide una vez tras el onboarding;
+        // ya elegido, no reaparece. Mientras el perfil carga se muestra el mapa
+        // (mismo patrón que el age gate); al llegar sin handle, se antepone.
+        final needsHandle = prof.maybeWhen(
+            data: (p) => (p.handle == null || p.handle!.isEmpty),
+            orElse: () => false);
+        if (needsHandle) {
+          return HandleGateScreen(
+            startup: true,
+            onDone: () => ref.invalidate(profileProvider),
           );
         }
         return const HomeShell();

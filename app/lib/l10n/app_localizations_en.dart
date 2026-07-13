@@ -1065,6 +1065,17 @@ class AppLocalizationsEn extends AppLocalizations {
       'We sent you an email to confirm your account. Open it and come back to continue.';
 
   @override
+  String get authGoogleRetry =>
+      'Couldn\'t continue with Google. Please try again.';
+
+  @override
+  String get authBetaGoogleOnly =>
+      'During this beta, sign-in is Google only. Email sign-up returns at launch.';
+
+  @override
+  String get authContinueLegalPrefix => 'By continuing, you accept the ';
+
+  @override
   String get lessonSaveErrorTitle => 'We couldn\'t save your progress';
 
   @override
@@ -2765,6 +2776,10 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get handleGateSubtitle =>
       'This is how friends find you. Your display name stays free.';
+
+  @override
+  String get handleSetupSubtitle =>
+      'It\'s your identity on Jezici: unique and forever. Pick it to get started.';
 
   @override
   String get handleGateHint => 'your_username';

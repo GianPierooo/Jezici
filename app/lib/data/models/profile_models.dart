@@ -15,6 +15,7 @@ class ProfileInfo {
     this.gender,
     this.birthYear,
     this.ageTier,
+    this.handle,
   });
 
   final String? name;
@@ -41,6 +42,10 @@ class ProfileInfo {
   final int? birthYear;
   final String? ageTier; // child | teen | adult (derivado en el servidor)
 
+  /// @usuario único (identidad de arranque OBLIGATORIA para todos, beta).
+  /// null = aún no lo eligió → se pide una vez antes de entrar al mapa.
+  final String? handle;
+
   /// Inicial para el avatar generado.
   String get initial {
     final n = (name ?? '').trim();
@@ -64,6 +69,9 @@ class ProfileInfo {
         gender: j['gender'] as String?,
         birthYear: (j['birth_year'] as num?)?.toInt(),
         ageTier: j['age_tier'] as String?,
+        handle: (j['handle'] as String?)?.trim().isEmpty ?? true
+            ? null
+            : (j['handle'] as String?),
       );
 
   static final empty = ProfileInfo();

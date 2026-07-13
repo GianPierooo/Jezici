@@ -1064,6 +1064,17 @@ class AppLocalizationsEs extends AppLocalizations {
       'Te enviamos un correo para confirmar tu cuenta. Ábrelo y vuelve para continuar.';
 
   @override
+  String get authGoogleRetry =>
+      'No se pudo continuar con Google. Vuelve a intentarlo.';
+
+  @override
+  String get authBetaGoogleOnly =>
+      'En esta beta, el acceso es solo con Google. El registro por correo volverá en el lanzamiento.';
+
+  @override
+  String get authContinueLegalPrefix => 'Al continuar, aceptas los ';
+
+  @override
   String get lessonSaveErrorTitle => 'No se pudo guardar tu progreso';
 
   @override
@@ -2764,6 +2775,10 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get handleGateSubtitle =>
       'Así te encuentran tus amigos. Tu nombre visible sigue siendo libre.';
+
+  @override
+  String get handleSetupSubtitle =>
+      'Es tu identidad en Jezici: única y para siempre. Elígela para empezar.';
 
   @override
   String get handleGateHint => 'tu_usuario';

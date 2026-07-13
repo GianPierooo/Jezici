@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../core/config/auth_config.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/ui/responsive_center.dart';
 import '../../data/providers.dart';
@@ -50,7 +51,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen>
           u.fragment.contains('error=');
       if (hasError) {
         WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (mounted) setState(() => _error = AppLocalizations.of(context).authGoogleError);
+          if (mounted) setState(() => _error = _googleErrorMsg());
         });
       }
     }
@@ -66,6 +67,17 @@ class _AuthScreenState extends ConsumerState<AuthScreen>
   }
 
   static final _emailRe = RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$');
+
+  /// ¿Está disponible el acceso por email? En la beta se oculta (solo Google) —
+  /// pero se conserva como fallback fuera de web (donde no hay OAuth de página).
+  bool get _emailEnabled => kAuthEmailEnabled || !kIsWeb;
+
+  /// Mensaje de error de Google: si el email está disponible sugiere usarlo; si
+  /// no (beta solo-Google), pide reintentar (no menciona un email inexistente).
+  String _googleErrorMsg() {
+    final l10n = AppLocalizations.of(context);
+    return _emailEnabled ? l10n.authGoogleError : l10n.authGoogleRetry;
+  }
 
   Future<void> _submit() async {
     final l10n = AppLocalizations.of(context);
@@ -127,7 +139,6 @@ class _AuthScreenState extends ConsumerState<AuthScreen>
   /// "Continuar con Google": en web dispara un redirect de página completa a
   /// Google; la sesión (o el error) llega al volver a la app. Degrada con gracia.
   Future<void> _google() async {
-    final l10n = AppLocalizations.of(context);
     setState(() {
       _loading = true;
       _error = null;
@@ -140,7 +151,7 @@ class _AuthScreenState extends ConsumerState<AuthScreen>
       if (!mounted) return;
       setState(() {
         _loading = false;
-        _error = l10n.authGoogleError;
+        _error = _googleErrorMsg();
       });
     }
   }
@@ -287,28 +298,23 @@ class _AuthScreenState extends ConsumerState<AuthScreen>
           // retorno trae un error que mostramos con gracia (initState).
           if (kIsWeb) ...[
             _GoogleButton(label: l10n.authContinueGoogle, onTap: _loading ? null : _google),
-            const SizedBox(height: 16),
-            _OrDivider(label: l10n.authOr),
-            const SizedBox(height: 16),
+            if (_emailEnabled) ...[
+              const SizedBox(height: 16),
+              _OrDivider(label: l10n.authOr),
+              const SizedBox(height: 16),
+            ] else ...[
+              // BETA: solo Google. Nota + consentimiento informativo (el registro
+              // legal se persiste en el onboarding con sesión activa).
+              const SizedBox(height: 14),
+              Text(l10n.authBetaGoogleOnly,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted, height: 1.4)),
+              const SizedBox(height: 12),
+              _continueLegal(l10n),
+            ],
           ],
-          _SegToggle(
-            signUp: _signUp,
-            onChanged: (v) => setState(() {
-              _signUp = v;
-              _error = null;
-              _notice = null;
-            }),
-          ),
-          const SizedBox(height: 16),
-          if (_signUp) ...[
-            _field(_name, l10n.authFieldName, Icons.person_outline_rounded,
-                keyboard: TextInputType.name),
-            const SizedBox(height: 11),
-          ],
-          _field(_email, l10n.authFieldEmail, Icons.mail_outline_rounded,
-              keyboard: TextInputType.emailAddress),
-          const SizedBox(height: 11),
-          _field(_password, l10n.authFieldPassword, Icons.lock_outline_rounded, obscure: true),
+          // Error/aviso (también para fallos de Google): visible en ambos modos.
           if (_error != null) ...[
             const SizedBox(height: 12),
             _Pill(
@@ -327,29 +333,74 @@ class _AuthScreenState extends ConsumerState<AuthScreen>
               fg: AppColors.primary,
             ),
           ],
-          if (_signUp) ...[
-            const SizedBox(height: 14),
-            _LegalCheckbox(
-              l10n: l10n,
-              value: _accepted,
+          // Registro/login por EMAIL — oculto en beta (kAuthEmailEnabled=false).
+          if (_emailEnabled) ...[
+            _SegToggle(
+              signUp: _signUp,
               onChanged: (v) => setState(() {
-                _accepted = v;
-                if (v) _error = null;
+                _signUp = v;
+                _error = null;
+                _notice = null;
               }),
-              onTapTerms: () => openLegalPage(kTermsPath),
-              onTapPrivacy: () => openLegalPage(kPrivacyPath),
+            ),
+            const SizedBox(height: 16),
+            if (_signUp) ...[
+              _field(_name, l10n.authFieldName, Icons.person_outline_rounded,
+                  keyboard: TextInputType.name),
+              const SizedBox(height: 11),
+            ],
+            _field(_email, l10n.authFieldEmail, Icons.mail_outline_rounded,
+                keyboard: TextInputType.emailAddress),
+            const SizedBox(height: 11),
+            _field(_password, l10n.authFieldPassword, Icons.lock_outline_rounded, obscure: true),
+            if (_signUp) ...[
+              const SizedBox(height: 14),
+              _LegalCheckbox(
+                l10n: l10n,
+                value: _accepted,
+                onChanged: (v) => setState(() {
+                  _accepted = v;
+                  if (v) _error = null;
+                }),
+                onTapTerms: () => openLegalPage(kTermsPath),
+                onTapPrivacy: () => openLegalPage(kPrivacyPath),
+              ),
+            ],
+            const SizedBox(height: 18),
+            PrimaryButton(
+              label: _loading
+                  ? (_signUp ? l10n.authCtaCreating : l10n.authCtaLoggingIn)
+                  : (_signUp ? l10n.authCtaSignUp : l10n.authCtaSignIn),
+              expand: true,
+              onPressed: (_loading || (_signUp && !_accepted)) ? null : _submit,
             ),
           ],
-          const SizedBox(height: 18),
-          PrimaryButton(
-            label: _loading
-                ? (_signUp ? l10n.authCtaCreating : l10n.authCtaLoggingIn)
-                : (_signUp ? l10n.authCtaSignUp : l10n.authCtaSignIn),
-            expand: true,
-            onPressed: (_loading || (_signUp && !_accepted)) ? null : _submit,
-          ),
         ],
       ),
+    );
+  }
+
+  /// Nota de consentimiento bajo "Continuar con Google" (beta solo-Google):
+  /// "Al continuar, aceptas los Términos y la Política de Privacidad." El registro
+  /// legal formal (versión + fecha) se persiste en el onboarding con sesión activa.
+  Widget _continueLegal(AppLocalizations l10n) {
+    const link = TextStyle(fontSize: 11.5, fontWeight: FontWeight.w900, color: AppColors.primary);
+    const base = TextStyle(fontSize: 11.5, fontWeight: FontWeight.w700, color: AppColors.textMuted, height: 1.4);
+    return Text.rich(
+      TextSpan(style: base, children: [
+        TextSpan(text: l10n.authContinueLegalPrefix),
+        WidgetSpan(
+          alignment: PlaceholderAlignment.middle,
+          child: GestureDetector(onTap: () => openLegalPage(kTermsPath), child: Text(l10n.authLegalTerms, style: link)),
+        ),
+        TextSpan(text: l10n.authLegalAnd),
+        WidgetSpan(
+          alignment: PlaceholderAlignment.middle,
+          child: GestureDetector(onTap: () => openLegalPage(kPrivacyPath), child: Text(l10n.authLegalPrivacy, style: link)),
+        ),
+        TextSpan(text: l10n.authLegalSuffix),
+      ]),
+      textAlign: TextAlign.center,
     );
   }
 

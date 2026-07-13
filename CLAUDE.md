@@ -3,7 +3,53 @@
 > Contexto de arranque para cualquier sesión. **No** es copia de los 21 `.md` de
 > diseño (eso es la carpeta raíz `Jezici_*.md` + `docs/`). Aquí va el ESTADO REAL,
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
-> Última actualización: **2026-07-12**.
+> Última actualización: **2026-07-13**.
+
+## RESET TOTAL DE USUARIOS + REGISTRO SOLO-GOOGLE + @HANDLE OBLIGATORIO ✅ LIVE (mig 157/158 · 2026-07-13)
+Misión destructiva + cambios de auth (Gian coordinó el reseteo con sus testers). Cero IA. **PASO 0 (censo
+real con `reset_census.py` + `reset_probe*` + dry-run con ROLLBACK antes de borrar):** 20 usuarios en
+auth.users/public.users, 2782 filas de datos de usuario en 45 tablas. Mecánica verificada: `public.users.id →
+auth.users` es CASCADE y `public.users` cascada a las 44 tablas de datos de usuario (todas CASCADE) +
+auth.identities/sessions/oauth/etc.
+- **1 · RESETEO (mig 157, irreversible):** `delete from auth.users` (cascada a TODO) + borrado explícito de las
+  4 tablas que NO cascadan (`analytics_events`/`feedback`/`conversation_rooms` = user_id SET NULL,
+  `social_search_log` = sin FK). **Dry-run con ROLLBACK** probó 0 filas de usuario y courses(6)/content(5182)
+  intactos ANTES de comprometer. **Censo post = TODO 0** (auth.users 0, public.users 0, las 45 tablas 0, incl.
+  sociales connections/messages/coop y auth.identities/sessions). **Contenido/config PRESERVADO** (courses 6,
+  units 180, lessons 901, content_items 5182, languages 7, jz_config 8, tips 192, stories 16). Sin políticas ni
+  funciones rotas (am_i_admin/claim_handle intactas). Evidencia en `_reset_census_pre/post.json` (gitignored).
+- **2 · REGISTRO SOLO GOOGLE (beta):** flag `core/config/auth_config.dart` `kAuthEmailEnabled=false` (reactivable
+  → email vuelve en el lanzamiento oficial, NO se borró el código). `auth_screen` oculta email/contraseña/toggle
+  tras el flag y muestra **solo "Continuar con Google"** + nota beta + consentimiento informativo (Términos/
+  Privacidad; el registro legal formal se persiste en el onboarding). Fallback: fuera de web (native, no
+  desplegado) el email sigue disponible para no dejar la pantalla muerta. Error de Google ya no dice "usa tu
+  email" cuando el email está oculto (`authGoogleRetry`). Los datos que Google no da (año/age gate, género…) se
+  siguen pidiendo en el onboarding/CompleteProfile.
+- **3 · @HANDLE ÚNICO OBLIGATORIO EN EL ARRANQUE (mig 158):** el @usuario pasa a ser **identidad de entrada para
+  TODOS** (no solo lo social). `claim_handle` deja de exigir `jz_social_access` (18+) — un menor también necesita
+  su @usuario para entrar; **la descubribilidad/perfil público SIGUEN 18+** (`search_users`/`get_public_profile`/
+  `list_friends`/`request_friend` sin cambios) → un menor con handle **NO** queda expuesto socialmente. `get_profile`
+  ahora devuelve `handle`; el **AppGate** (`main.dart`) antepone el gate `HandleGateScreen(startup:true)` tras el
+  onboarding/age-gate y ANTES del HomeShell si `profile.handle==null` (ineludible, sin "atrás", copy universal
+  `handleSetupSubtitle`). UNIQUE case-insensitive `users_handle_lower_uk` (T3) confirmado; tomado→`handle_taken`,
+  inválido→`invalid_handle`, reservado→`handle_reserved`. i18n es/en/pt (+4 claves).
+- **Verificado cliente REAL (`verify_handle_mandatory.py`, JWT) TODO VERDE:** MENOR (12 años) reclama @handle sin
+  ser adulto; get_profile lo devuelve; tomado case-insensitive→handle_taken; inválido/reservado tipados; adulto
+  reclama válido; **el menor con handle NO aparece en `search_users`** (sigue 18+). Usuarios de prueba borrados
+  (auth.users vuelve a 0). analyze 0 (CI-exact) · test **174/174** (+3 auth_reset) · build web OK.
+- **⚠️ RECUPERACIÓN DE ADMIN (crítico, para Gian):** tras el reseteo **NADIE es admin** (la fila de `admins` se
+  borró). Cuando Gian se registre de nuevo con Google, obtener su nuevo uid y volverlo admin:
+  1. Gian entra a jezici.vercel.app → **Continuar con Google** → onboarding → elige su @usuario.
+  2. Obtener su uid (SQL vía Management API / apply_sql):
+     `select id, email from auth.users where email='gianpierodaniel@gmail.com';`
+  3. Volverlo admin: `insert into public.admins(user_id) values ('<ese_uid>') on conflict do nothing;`
+  4. Verificar: en la app, Ajustes → "Ver métricas (interno)" debe aparecer; `am_i_admin()` → true. Recupera
+     métricas, moderación (`get_reports`/`mod_apply`), Sentry test, feedback (`get_feedback`).
+  (La tabla `admins` = `(user_id uuid, created_at default now())`. El anterior uid de Gian era
+  `7b4a8e40-adf0-4e42-bd1e-1f0bf21e305c` — ya no existe; el nuevo será distinto.)
+- **Google OAuth:** ya configurado (Supabase + Google Cloud, sesión previa). Si tras el reseteo el botón fallara,
+  revisar Supabase → Auth → Providers → Google (Client ID/Secret) y URL Configuration (Site/Redirect) — pasos de
+  Gian, no de código (ver sección "Registro sin fricción" abajo).
 
 ## TOUR DE BIENVENIDA con Jezi (coach marks) ✅ LIVE (2026-07-13 · solo cliente, flag LOCAL)
 Feedback de Gian. La PRIMERA vez que el usuario llega al mapa, Jezi lo guía por la app con cuadros pequeños
