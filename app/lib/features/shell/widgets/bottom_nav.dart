@@ -10,10 +10,14 @@ class BottomNav extends StatelessWidget {
     super.key,
     required this.currentIndex,
     required this.onTap,
+    this.itemKeys,
   });
 
   final int currentIndex;
   final ValueChanged<int> onTap;
+
+  /// Claves opcionales por ítem (el tour de bienvenida las usa para el spotlight).
+  final List<Key>? itemKeys;
 
   static const _items = <IconData>[
     Icons.explore_rounded, // Aprender (mapa/viaje)
@@ -44,6 +48,7 @@ class BottomNav extends StatelessWidget {
         children: [
           for (var i = 0; i < _items.length; i++)
             _NavButton(
+              key: (itemKeys != null && i < itemKeys!.length) ? itemKeys![i] : null,
               icon: _items[i],
               active: i == currentIndex,
               onTap: () => onTap(i),
@@ -56,6 +61,7 @@ class BottomNav extends StatelessWidget {
 
 class _NavButton extends StatelessWidget {
   const _NavButton({
+    super.key,
     required this.icon,
     required this.active,
     required this.onTap,

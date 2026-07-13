@@ -8,8 +8,10 @@ import '../../core/audio/music_service.dart';
 import '../../core/audio/sound_controller.dart';
 import '../../core/feedback/feedback_sheet.dart';
 import '../../core/speech/speech_lang.dart';
+import '../../core/ui/tour_keys.dart';
 import '../../data/providers.dart';
 import '../conversar/conversar_screen.dart';
+import '../onboarding/welcome_tour.dart';
 import '../notifications/matix_auto.dart';
 import '../leagues/leagues_screen.dart';
 import '../learn/learn_map_screen.dart';
@@ -122,6 +124,10 @@ class _HomeShellState extends ConsumerState<HomeShell> with WidgetsBindingObserv
       ProfileScreen(),
     ];
 
+    // Tour de bienvenida: la PRIMERA vez, sobre el mapa (tab 0). Se puede saltar
+    // y no reaparece (flag local welcome_tour_seen). No bloquea permanentemente.
+    final showTour = _index == 0 && !ref.watch(welcomeTourSeenProvider);
+
     return Scaffold(
       extendBody: true,
       body: Stack(
@@ -133,9 +139,17 @@ class _HomeShellState extends ConsumerState<HomeShell> with WidgetsBindingObserv
             bottom: 92,
             child: SafeArea(child: FeedbackFab(section: _sections[_index])),
           ),
+          if (showTour)
+            Positioned.fill(
+              child: WelcomeTour(
+                onFinish: () =>
+                    ref.read(welcomeTourSeenProvider.notifier).markSeen(),
+              ),
+            ),
         ],
       ),
-      bottomNavigationBar: BottomNav(currentIndex: _index, onTap: _select),
+      bottomNavigationBar:
+          BottomNav(currentIndex: _index, onTap: _select, itemKeys: TourKeys.nav),
     );
   }
 }

@@ -12,6 +12,73 @@ class AppLocalizationsPt extends AppLocalizations {
   String get appTitle => 'Jezici';
 
   @override
+  String get tourSkip => 'Pular';
+
+  @override
+  String get tourNext => 'Próximo';
+
+  @override
+  String get tourBack => 'Voltar';
+
+  @override
+  String get tourStart => 'Vamos!';
+
+  @override
+  String get tourWelcomeTitle => 'Oi! Eu sou o Jezi 🦜';
+
+  @override
+  String get tourWelcomeBody =>
+      'Vou te acompanhar na sua jornada. Mostro o app em 20 segundos.';
+
+  @override
+  String get tourMapTitle => 'Seu caminho';
+
+  @override
+  String get tourMapBody =>
+      'Este é o seu mapa. Comece pela sua primeira lição, abaixo.';
+
+  @override
+  String get tourTopbarTitle => 'Seu progresso';
+
+  @override
+  String get tourTopbarBody =>
+      'Aqui você vê suas vidas ❤️, seu ouro 🪙 e sua sequência 🔥 diária.';
+
+  @override
+  String get tourPracticeTitle => 'Praticar';
+
+  @override
+  String get tourPracticeBody =>
+      'Quando aprender palavras, você as revisa aqui para não esquecer.';
+
+  @override
+  String get tourConversarTitle => 'Conversar';
+
+  @override
+  String get tourConversarBody =>
+      'Pratique falando e faça amigos que aprendem com você.';
+
+  @override
+  String get tourLeaguesTitle => 'Ligas';
+
+  @override
+  String get tourLeaguesBody => 'Compita somando XP toda semana.';
+
+  @override
+  String get tourProfileTitle => 'Perfil';
+
+  @override
+  String get tourProfileBody =>
+      'Seu progresso, suas 4 habilidades e seus certificados.';
+
+  @override
+  String get tourDoneTitle => 'Tudo pronto!';
+
+  @override
+  String get tourDoneBody =>
+      'Comece sua primeira lição. Eu aviso quando for hora de praticar.';
+
+  @override
   String get commonContinue => 'CONTINUAR';
 
   @override

@@ -15,6 +15,7 @@ import '../lesson/lesson_preview_screen.dart';
 import 'mission_screen.dart';
 import 'widgets/checkpoint_portal.dart';
 import 'widgets/cloud_cover_painter.dart';
+import '../../core/ui/tour_keys.dart';
 import 'widgets/learn_top_bar.dart';
 import 'widgets/map_node.dart';
 import 'widgets/parrot_mascot.dart';
@@ -64,7 +65,7 @@ class LearnMapScreen extends ConsumerWidget {
           ),
         ),
         // Top bar flotante + barra de progreso del plan persistente (GA9·C).
-        const Positioned(
+        Positioned(
           top: 0,
           left: 0,
           right: 0,
@@ -72,7 +73,10 @@ class LearnMapScreen extends ConsumerWidget {
             bottom: false,
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              children: [LearnTopBar(), PlanProgressStrip()],
+              children: [
+                KeyedSubtree(key: TourKeys.topBar, child: const LearnTopBar()),
+                const PlanProgressStrip(),
+              ],
             ),
           ),
         ),

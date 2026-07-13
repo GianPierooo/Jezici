@@ -106,6 +106,126 @@ abstract class AppLocalizations {
   /// **'Jezici'**
   String get appTitle;
 
+  /// No description provided for @tourSkip.
+  ///
+  /// In es, this message translates to:
+  /// **'Saltar'**
+  String get tourSkip;
+
+  /// No description provided for @tourNext.
+  ///
+  /// In es, this message translates to:
+  /// **'Siguiente'**
+  String get tourNext;
+
+  /// No description provided for @tourBack.
+  ///
+  /// In es, this message translates to:
+  /// **'Atrás'**
+  String get tourBack;
+
+  /// No description provided for @tourStart.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Empezar!'**
+  String get tourStart;
+
+  /// No description provided for @tourWelcomeTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Hola! Soy Jezi 🦜'**
+  String get tourWelcomeTitle;
+
+  /// No description provided for @tourWelcomeBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Te acompaño en tu viaje. Te muestro la app en 20 segundos.'**
+  String get tourWelcomeBody;
+
+  /// No description provided for @tourMapTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu camino'**
+  String get tourMapTitle;
+
+  /// No description provided for @tourMapBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Este es tu mapa. Empieza por tu primera lección, más abajo.'**
+  String get tourMapBody;
+
+  /// No description provided for @tourTopbarTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu progreso'**
+  String get tourTopbarTitle;
+
+  /// No description provided for @tourTopbarBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Aquí ves tus vidas ❤️, tu oro 🪙 y tu racha 🔥 diaria.'**
+  String get tourTopbarBody;
+
+  /// No description provided for @tourPracticeTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Practicar'**
+  String get tourPracticeTitle;
+
+  /// No description provided for @tourPracticeBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuando aprendas palabras, aquí las repasas para no olvidarlas.'**
+  String get tourPracticeBody;
+
+  /// No description provided for @tourConversarTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Conversar'**
+  String get tourConversarTitle;
+
+  /// No description provided for @tourConversarBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Practica hablando y haz amigos que aprenden contigo.'**
+  String get tourConversarBody;
+
+  /// No description provided for @tourLeaguesTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Ligas'**
+  String get tourLeaguesTitle;
+
+  /// No description provided for @tourLeaguesBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Compite sumando XP cada semana.'**
+  String get tourLeaguesBody;
+
+  /// No description provided for @tourProfileTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Perfil'**
+  String get tourProfileTitle;
+
+  /// No description provided for @tourProfileBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu progreso, tus 4 habilidades y tus certificados.'**
+  String get tourProfileBody;
+
+  /// No description provided for @tourDoneTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Listo!'**
+  String get tourDoneTitle;
+
+  /// No description provided for @tourDoneBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Empieza tu primera lección. Yo te aviso cuando toque practicar.'**
+  String get tourDoneBody;
+
   /// No description provided for @commonContinue.
   ///
   /// In es, this message translates to:
