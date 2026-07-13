@@ -4,7 +4,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:jezici/features/conversar/friends.dart';
 import 'package:jezici/features/learn/widgets/parrot_mascot.dart';
 import 'package:jezici/l10n/app_localizations.dart';
-import 'package:jezici/ui/primary_button.dart';
 
 /// Hub de Amigos: agregar es SOLO por @usuario/nombre (el "agregar por código"
 /// fue retirado de la UI — decisión de Gian). El chrome es i18n (sin español en
