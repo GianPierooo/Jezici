@@ -1905,6 +1905,17 @@ flutter build web --release  # esperado: Built build/web (wasm dry-run warning d
   el build que usan los usuarios HOY (no asumir que `main` == producción).
 
 ## Reportes de diagnóstico (raíz)
+- **PRINCIPIANTE_ANALISIS.md** (2026-07-13, solo lectura, cero código) — recorrido del **usuario principiante
+  ABSOLUTO** (llega sin saber nada del idioma). Ground truth: repo + BD real (contenido U1) + 2 agentes de
+  exploración. **3 golpes duros, 2 casi gratis:** (P0 bug) el 2º tab **Practicar miente a cero** — el HERO SRS
+  muestra "N palabras por repasar · antes de que se te olviden" con N = TODO el vocabulario del curso (novato
+  tiene 0 agendado) y el CTA salta "¡Nada que reforzar!" (`progress_repository.dart:932-964`); (P0 UX) el paso
+  "¿cuánto sabes?" tiene **default "Sé lo básico" → placement arranca en A2**, solo "Desde cero" salta el examen
+  → el principiante cae por accidente en 16 preguntas MC/audio/mic en un idioma que no conoce; (P1 pedagógico)
+  **se examina antes de enseñar** (sin tarjeta de concepto ni tip previo — el tip sale al final; producción
+  —typing/hablar— desde el ítem ~6). Gap de contenido: **0 material de sonidos/pronunciación** (crítico de/nl/fr).
+  Gaps priorizados P0→P2 con ayuda/costo + propuestas concretas (reusan audio+imágenes+historias ya existentes) +
+  qué copiar de Duolingo ("¿eres nuevo?", sin examen, mano suave) / Busuu (present→practice). Cero código.
 - **LAUNCH_AUDIT.md** (2026-07-11, solo lectura) — auditoría PRE-LANZAMIENTO ("¿listo para abrir al público?").
   Introspección real (BD/RLS por SQL + **cliente real JWT** + navegador). **Veredicto: se puede abrir HOY a
   público hispanohablante** — SEGURIDAD sólida y verificada (0 tablas sin RLS; **aislamiento AIRTIGHT**: B ve 0
