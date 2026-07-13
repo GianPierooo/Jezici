@@ -5,6 +5,39 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-12**.
 
+## AMISTAD ROTA — diagnóstico con evidencia + fix END-TO-END ✅ LIVE (mig 154/155 · 2026-07-13)
+Feedback real (Gian + tester 18+): (1) agregar por código falla con código correcto; (2) la solicitud
+"no le llega" al otro; (3) sin sugerencias. **PASO 0 con cliente REAL (dos JWT, `repro_friends.py`):** el
+**SERVIDOR de amistad FUNCIONA** — enviar por código crea `pending`, `list_friends.incoming` la devuelve,
+aceptar la vuelve amistad (reproducido 100% con adultos frescos, y enviando al código REAL de leopoldo).
+Datos de prod: **solo 3 de 18 usuarios son adultos** (15 sin `birth_year` → sin acceso social, por age gate);
+los 3 adultos = **Gian (handle NULL)**, leopoldo (V5KP8VL), leo — y **leo↔leopoldo YA son amigos**. Causas RAÍZ:
+- **Síntoma 1 (código "falla"):** el cliente **tragaba el error real** con `catch(_)` → mostraba "Revisa el
+  código" para TODO. En prod: reintentar el código de leopoldo daba `already friends` (ya eran amigos)
+  enmascarado como "revisa el código"; igual `cannot add yourself`, `social unavailable` (no adulto),
+  `rate_limited`. **FIX:** `friendErrorMessage()` traduce el motivo REAL a mensaje claro (i18n es/en/pt) en los
+  **3 puntos de agregar** (código, búsqueda, perfil público); `sentFriendMessage()` distingue enviado vs
+  **mutuo-aceptado** ("¡Ya son amigos!").
+- **Síntoma 2 (no le llega):** `incoming` SÍ trae la solicitud (probado) — pero **NADA avisaba al receptor**
+  → no tenía señal para abrir Amigos. **FIX (mig 154 enum + 155 lógica):** `jz_notify_friend` inserta una
+  **notificación (in-app + push)** al receptor en cada solicitud y al requester al aceptarse; viaja por la
+  tabla `notifications` (`status='sent'` → centro de notificaciones + Edge Function `matix-push`). Best-effort
+  (un fallo de aviso jamás tumba la solicitud). Enum +`friend_request`/`friend_accepted`. La campana no está
+  tras el gate de @handle, así que Gian (handle NULL) VE el aviso aunque su pantalla de Amigos siga pidiéndole
+  elegir @usuario primero.
+- **Síntoma 3 (sin sugerencias):** `suggest_friends` exigía **MISMO curso activo** → en beta chica devolvía `[]`.
+  **FIX:** ahora sugiere a **cualquier ADULTO descubrible** (no yo, no ya conectado, no bloqueado, no sancionado,
+  18+), priorizando mismo curso + nivel cercano + racha. Sin inventar presencia.
+- **Seguridad P1/T3 intacta:** 18+, blocks bidireccionales, rate limits, no-descubribles/menores/sancionados
+  excluidos, todo por RPC SECURITY DEFINER.
+- **Verificado cliente REAL (`verify_friends.py`, TODO VERDE):** código→pending→**notif al receptor (push-ready,
+  pushed_at null)**→incoming→aceptar→**notif al requester**→amigos; `already friends`/`self`/`bad code` tipados;
+  C sin mismo curso recibe sugerencias de adultos reales; **menor** y **no-descubrible** fuera; **bloqueo excluye
+  en AMBAS direcciones**. analyze 0 (CI-exact) · test **167/167** (+friend_error_mapping) · build web OK.
+- **⚠️ Para Gian (no es bug de código):** solo 3/18 testers pusieron su año → los otros 15 no ven lo social (age
+  gate innegociable). Y **tu cuenta tiene @handle NULL** → elige tu @usuario en Amigos para enviar/ver
+  solicitudes en la app (el aviso te llega igual por la campana). Verificación con 2 cuentas más abajo.
+
 ## DONACIONES — métodos de pago ACTIVADOS (PayPal + QR real de Yape) ✅ LIVE (2026-07-12 · commit `2522108`)
 Cero IA, cero cambios de lógica (framing de apoyo voluntario intacto; nada desbloquea contenido). Rellenados los
 placeholders que dejó T6 en `core/config/donations.dart` con los datos reales de Gian:
