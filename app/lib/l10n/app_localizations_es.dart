@@ -2495,7 +2495,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get convNoFriends =>
-      'Aún no tienes amigos. Comparte tu código para agregar a alguien.';
+      'Aún no tienes amigos. Búscalos por su @usuario para agregarlos.';
 
   @override
   String get convChatHint => 'Escribe un mensaje';
@@ -2625,6 +2625,10 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get convCoopEntrySub => 'Sumen XP y ganen oro juntos';
+
+  @override
+  String get handleGatePendingHint =>
+      'Tienes solicitudes de amistad esperando. Elige tu @usuario para verlas y aceptarlas.';
 
   @override
   String get handleGateTitle => 'Elige tu @usuario';

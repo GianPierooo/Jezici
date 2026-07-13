@@ -4274,7 +4274,7 @@ abstract class AppLocalizations {
   /// No description provided for @convNoFriends.
   ///
   /// In es, this message translates to:
-  /// **'Aún no tienes amigos. Comparte tu código para agregar a alguien.'**
+  /// **'Aún no tienes amigos. Búscalos por su @usuario para agregarlos.'**
   String get convNoFriends;
 
   /// No description provided for @convChatHint.
@@ -4522,6 +4522,12 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Sumen XP y ganen oro juntos'**
   String get convCoopEntrySub;
+
+  /// No description provided for @handleGatePendingHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Tienes solicitudes de amistad esperando. Elige tu @usuario para verlas y aceptarlas.'**
+  String get handleGatePendingHint;
 
   /// No description provided for @handleGateTitle.
   ///

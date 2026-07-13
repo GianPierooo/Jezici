@@ -6,9 +6,9 @@ import 'package:jezici/features/learn/widgets/parrot_mascot.dart';
 import 'package:jezici/l10n/app_localizations.dart';
 import 'package:jezici/ui/primary_button.dart';
 
-/// Rediseño social (capa visual): el hub de Amigos usa el lenguaje de la casa
-/// (código hero + estados con Jezi + tarjetas con labio), y el chrome es i18n
-/// (sin español en pt). La lógica social no se toca aquí.
+/// Hub de Amigos: agregar es SOLO por @usuario/nombre (el "agregar por código"
+/// fue retirado de la UI — decisión de Gian). El chrome es i18n (sin español en
+/// pt). La lógica social no se toca aquí.
 MaterialApp _app(Widget child, Locale locale) => MaterialApp(
       locale: locale,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
@@ -17,15 +17,15 @@ MaterialApp _app(Widget child, Locale locale) => MaterialApp(
     );
 
 void main() {
-  testWidgets('Amigos: código HERO + estado vacío con Jezi y CTA copiar', (tester) async {
+  testWidgets('Amigos: SIN bloque de código; estado vacío con Jezi', (tester) async {
     await tester.binding.setSurfaceSize(const Size(430, 1200));
     addTearDown(() => tester.binding.setSurfaceSize(null));
 
     await tester.pumpWidget(ProviderScope(
       overrides: [
         suggestionsProvider.overrideWith((ref) async => const <Map<String, dynamic>>[]),
-        socialStatusProvider.overrideWith(
-            (ref) async => {'access': true, 'is_adult': true, 'friend_code': 'ABC1234'}),
+        socialStatusProvider.overrideWith((ref) async =>
+            {'access': true, 'is_adult': true, 'handle': 'yo_test', 'friend_code': 'ABC1234'}),
         friendsProvider.overrideWith(
             (ref) async => {'incoming': <dynamic>[], 'friends': <dynamic>[]}),
       ],
@@ -34,10 +34,10 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 400));
 
-    expect(find.text('ABC1234'), findsOneWidget); // el código, destacado
-    expect(find.text('Copiar mi código'), findsOneWidget); // CTA del vacío
-    expect(find.byType(ParrotMascot), findsWidgets); // Jezi presente (hero + vacío)
-    expect(find.byType(PrimaryButton), findsWidgets); // CTA 3D de la casa
+    // El código YA NO aparece en la UI (ni el valor ni el CTA de copiar).
+    expect(find.text('ABC1234'), findsNothing);
+    expect(find.text('Copiar mi código'), findsNothing);
+    expect(find.byType(ParrotMascot), findsWidgets); // Jezi presente (vacío)
   });
 
   testWidgets('Amigos: lista con racha 🔥 y subtítulo "toca para chatear"', (tester) async {
@@ -80,8 +80,8 @@ void main() {
     await tester.pumpWidget(ProviderScope(
       overrides: [
         suggestionsProvider.overrideWith((ref) async => const <Map<String, dynamic>>[]),
-        socialStatusProvider.overrideWith(
-            (ref) async => {'access': true, 'is_adult': true, 'friend_code': 'ABC1234'}),
+        socialStatusProvider.overrideWith((ref) async =>
+            {'access': true, 'is_adult': true, 'handle': 'eu_test', 'friend_code': 'ABC1234'}),
         friendsProvider.overrideWith(
             (ref) async => {'incoming': <dynamic>[], 'friends': <dynamic>[]}),
       ],
@@ -90,8 +90,9 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 400));
 
-    expect(find.text('Copiar meu código'), findsOneWidget);
-    expect(find.text('Copiar mi código'), findsNothing);
+    // Estado vacío en portugués (sin español) — sin referencias a "código".
+    expect(find.text('Você ainda não tem amigos. Busque pelo @usuário para adicionar.'),
+        findsOneWidget);
     expect(find.text('Toca para chatear'), findsNothing);
   });
 }

@@ -411,9 +411,7 @@ class FriendsScreen extends ConsumerStatefulWidget {
 }
 
 class _FriendsScreenState extends ConsumerState<FriendsScreen> {
-  final _code = TextEditingController();
   final _search = TextEditingController();
-  bool _sending = false;
   Timer? _debounce;
   String _query = '';
   bool _searching = false;
@@ -421,7 +419,6 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
 
   @override
   void dispose() {
-    _code.dispose();
     _search.dispose();
     _debounce?.cancel();
     super.dispose();
@@ -485,40 +482,15 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
     ref.invalidate(socialStatusProvider);
   }
 
-  Future<void> _addByCode() async {
-    final c = _code.text.trim().toUpperCase();
-    if (c.isEmpty || _sending) return;
-    setState(() => _sending = true);
-    final l10n = AppLocalizations.of(context);
-    final messenger = ScaffoldMessenger.of(context);
-    try {
-      final r = await ref.read(progressRepositoryProvider).sendFriendRequest(c);
-      _code.clear();
-      ref.invalidate(friendsProvider);
-      messenger.showSnackBar(SnackBar(content: Text(sentFriendMessage(r, l10n))));
-    } catch (e) {
-      messenger.showSnackBar(SnackBar(content: Text(friendErrorMessage(e, l10n, l10n.convCodeError))));
-    } finally {
-      if (mounted) setState(() => _sending = false);
-    }
-  }
-
   Future<void> _respond(String connectionId, bool accept) async {
     await ref.read(progressRepositoryProvider).respondFriendRequest(connectionId, accept);
     ref.invalidate(friendsProvider);
-  }
-
-  void _copyCode(String code) {
-    Clipboard.setData(ClipboardData(text: code));
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).convCodeCopied)));
   }
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
     final status = ref.watch(socialStatusProvider);
-    final myCode = status.maybeWhen(data: (s) => s['friend_code'] as String?, orElse: () => null);
     final myHandle = status.maybeWhen(data: (s) => s['handle'] as String?, orElse: () => null);
     final needsHandle =
         status.maybeWhen(data: (s) => s['needs_handle'] == true, orElse: () => false);
@@ -554,7 +526,7 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
                   _HandleChip(handle: myHandle),
                   const SizedBox(height: 12),
                 ],
-                // BUSCADOR — agregar amigos mucho más fácil que solo por código.
+                // BUSCADOR por @usuario / nombre — la ÚNICA vía de agregar amigos.
                 _SearchField(
                   controller: _search,
                   onChanged: _onSearchChanged,
@@ -645,8 +617,7 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
                           const SizedBox(height: 12),
                         ],
                         if (list.isEmpty)
-                          _EmptyFriends(
-                              onCopyCode: myCode == null ? null : () => _copyCode(myCode))
+                          const _EmptyFriends()
                         else ...[
                           Text(l10n.convFriendsTitle.toUpperCase(),
                               style: const TextStyle(
@@ -681,8 +652,6 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
                 ),
                   const SizedBox(height: 20),
                   _DiscoverableTile(value: discoverable, onChanged: _toggleDiscoverable),
-                  const SizedBox(height: 14),
-                  _codeSection(l10n, myCode),
                 ],
               ],
             ),
@@ -692,179 +661,10 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
     );
   }
 
-  /// Sección "o agrega por código" — se conserva como opción secundaria.
-  Widget _codeSection(AppLocalizations l10n, String? myCode) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Row(children: [
-        const Expanded(child: Divider(color: Color(0xFFE6E7F0), thickness: 1.2)),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Text(l10n.convAddByCode,
-              style: const TextStyle(
-                  fontSize: 11.5, fontWeight: FontWeight.w800, color: AppColors.textMuted)),
-        ),
-        const Expanded(child: Divider(color: Color(0xFFE6E7F0), thickness: 1.2)),
-      ]),
-      const SizedBox(height: 12),
-      _CodeHero(code: myCode, onCopy: myCode == null ? null : () => _copyCode(myCode)),
-      const SizedBox(height: 12),
-      Row(children: [
-        Expanded(
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(15),
-              boxShadow: const [
-                BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 4), blurRadius: 0),
-              ],
-            ),
-            child: TextField(
-              controller: _code,
-              textCapitalization: TextCapitalization.characters,
-              maxLength: 7,
-              onChanged: (_) => setState(() {}),
-              onSubmitted: (_) => _addByCode(),
-              style: const TextStyle(
-                  fontSize: 17, fontWeight: FontWeight.w900, letterSpacing: 3),
-              decoration: InputDecoration(
-                hintText: l10n.convEnterCode,
-                hintStyle: const TextStyle(
-                    fontSize: 13.5,
-                    letterSpacing: 0,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.textMuted),
-                counterText: '',
-                prefixIcon: const Icon(Icons.tag_rounded, color: AppColors.primary, size: 21),
-                border: InputBorder.none,
-                contentPadding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(width: 10),
-        PrimaryButton(
-          label: l10n.convAddFriend,
-          onPressed: (_code.text.trim().isNotEmpty && !_sending) ? _addByCode : null,
-        ),
-      ]),
-      const SizedBox(height: 8),
-      Row(children: [
-        const Icon(Icons.shield_rounded, size: 14, color: Color(0xFFA7ABC3)),
-        const SizedBox(width: 6),
-        Expanded(
-          child: Text(l10n.convContactFilterNote,
-              style: const TextStyle(
-                  fontSize: 11.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
-        ),
-      ]),
-    ]);
-  }
-}
-
-/// Tarjeta HERO del código de amigo — lo primero y lo más fácil de la pantalla.
-class _CodeHero extends StatefulWidget {
-  const _CodeHero({required this.code, required this.onCopy});
-  final String? code;
-  final VoidCallback? onCopy;
-  @override
-  State<_CodeHero> createState() => _CodeHeroState();
-}
-
-class _CodeHeroState extends State<_CodeHero> {
-  bool _copied = false;
-  Timer? _revert;
-
-  @override
-  void dispose() {
-    _revert?.cancel();
-    super.dispose();
-  }
-
-  void _tapCopy() {
-    if (widget.onCopy == null) return;
-    widget.onCopy!();
-    setState(() => _copied = true);
-    _revert?.cancel();
-    _revert = Timer(const Duration(milliseconds: 1800), () {
-      if (mounted) setState(() => _copied = false);
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [Color(0xFF7A6BF0), AppColors.primary, Color(0xFF5B4ECF)]),
-        borderRadius: BorderRadius.circular(22),
-        boxShadow: const [
-          BoxShadow(color: Color(0xFF4B3FC9), offset: Offset(0, 5), blurRadius: 0),
-          BoxShadow(color: Color(0x336C5CE7), offset: Offset(0, 14), blurRadius: 24),
-        ],
-      ),
-      child: Row(children: [
-        const ParrotMascot(size: 52),
-        const SizedBox(width: 12),
-        Expanded(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(l10n.convYourCode.toUpperCase(),
-                style: TextStyle(
-                    fontSize: 10.5,
-                    fontWeight: FontWeight.w900,
-                    letterSpacing: 1.2,
-                    color: Colors.white.withValues(alpha: 0.75))),
-            const SizedBox(height: 5),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              decoration: BoxDecoration(
-                color: Colors.white.withValues(alpha: 0.16),
-                borderRadius: BorderRadius.circular(11),
-                border: Border.all(color: Colors.white.withValues(alpha: 0.22)),
-              ),
-              child: Text(widget.code ?? '·······',
-                  style: const TextStyle(
-                      fontSize: 21,
-                      fontWeight: FontWeight.w900,
-                      color: Colors.white,
-                      letterSpacing: 3)),
-            ),
-          ]),
-        ),
-        const SizedBox(width: 10),
-        // Copiar con feedback claro: el botón se vuelve verde con ✓ un instante.
-        GestureDetector(
-          onTap: _tapCopy,
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 180),
-            width: 46,
-            height: 46,
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: _copied ? AppColors.success : Colors.white,
-              borderRadius: BorderRadius.circular(15),
-              boxShadow: [
-                BoxShadow(
-                    color: _copied ? AppColors.successDark : const Color(0xFFD8D3F5),
-                    offset: const Offset(0, 4),
-                    blurRadius: 0),
-              ],
-            ),
-            child: Icon(_copied ? Icons.check_rounded : Icons.copy_rounded,
-                color: _copied ? Colors.white : AppColors.primary, size: 22),
-          ),
-        ),
-      ]),
-    );
-  }
 }
 
 class _EmptyFriends extends StatelessWidget {
-  const _EmptyFriends({required this.onCopyCode});
-  final VoidCallback? onCopyCode;
+  const _EmptyFriends();
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -880,9 +680,6 @@ class _EmptyFriends extends StatelessWidget {
               style: const TextStyle(
                   fontSize: 14, fontWeight: FontWeight.w700, height: 1.4, color: AppColors.textMuted)),
         ),
-        const SizedBox(height: 16),
-        PrimaryButton(
-            label: l10n.convCopyMyCode, icon: Icons.copy_rounded, onPressed: onCopyCode),
       ]),
     );
   }
@@ -1024,15 +821,16 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
   Map<String, Map<String, dynamic>> _corrections = {};
   int _lastMsgCount = -1;
 
+  /// Stream Realtime creado UNA sola vez (no en cada build). Antes vivía en
+  /// `stream:` dentro de build() → cada rebuild (incl. cada tecla) re-suscribía
+  /// el canal Realtime = el LAG del chat. Se fija aquí y no vuelve a crearse.
+  late final Stream<List<Map<String, dynamic>>> _stream;
+
   @override
   void initState() {
     super.initState();
-    _msg.addListener(_onTextChanged);
+    _stream = ref.read(progressRepositoryProvider).chatMessagesStream(widget.connectionId);
     _loadCorrections();
-  }
-
-  void _onTextChanged() {
-    if (mounted) setState(() {}); // alterna 🎤 ↔ ➤ según haya texto
   }
 
   Future<void> _loadCorrections() async {
@@ -1053,7 +851,6 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
   @override
   void dispose() {
     _recTimer?.cancel();
-    _msg.removeListener(_onTextChanged);
     _msg.dispose();
     if (_recording) _rec.cancel();
     super.dispose();
@@ -1253,9 +1050,16 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
             children: [
               Expanded(
                 child: StreamBuilder<List<Map<String, dynamic>>>(
-                  stream: repo.chatMessagesStream(widget.connectionId),
+                  stream: _stream,
                   builder: (context, snap) {
-                    final msgs = snap.data ?? const [];
+                    // Orden CRONOLÓGICO explícito (el stream Realtime puede venir
+                    // descendente → antes los nuevos salían ARRIBA). created_at ISO
+                    // ordena lexicográfico = cronológico. Con reverse:true, el más
+                    // reciente queda ABAJO y la vista se ancla al último mensaje.
+                    final msgs = [...(snap.data ?? const <Map<String, dynamic>>[])]
+                      ..sort((a, b) => (a['created_at'] ?? '')
+                          .toString()
+                          .compareTo((b['created_at'] ?? '').toString()));
                     // El stream no trae correcciones: refresca el mapa cuando
                     // cambia el nº de mensajes (llegó algo nuevo).
                     if (msgs.length != _lastMsgCount) {
@@ -1623,7 +1427,6 @@ class _Composer extends StatelessWidget {
         ]),
       );
     }
-    final hasText = controller.text.trim().isNotEmpty;
     return Container(
       margin: const EdgeInsets.fromLTRB(12, 6, 12, 12),
       child: Row(
@@ -1654,7 +1457,13 @@ class _Composer extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 9),
-          AnimatedSwitcher(
+          // Solo el botón 🎤↔➤ se reconstruye al teclear (ValueListenableBuilder
+          // sobre el controller) → escribir NO reconstruye la lista de mensajes.
+          ValueListenableBuilder<TextEditingValue>(
+            valueListenable: controller,
+            builder: (context, value, _) {
+            final hasText = value.text.trim().isNotEmpty;
+            return AnimatedSwitcher(
             duration: const Duration(milliseconds: 160),
             transitionBuilder: (w, a) => ScaleTransition(scale: a, child: w),
             child: hasText
@@ -1684,6 +1493,8 @@ class _Composer extends StatelessWidget {
                         color: AppColors.primary,
                         depth: AppColors.primaryDark,
                         onTap: onVoice),
+            );
+            },
           ),
         ],
       ),
@@ -2410,6 +2221,24 @@ class _HandleGateScreenState extends ConsumerState<HandleGateScreen> {
   final _ctrl = TextEditingController();
   bool _busy = false;
   String? _error;
+  int _pendingIncoming = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadPending();
+  }
+
+  /// ¿Ya me llegaron solicitudes aunque aún no tenga @usuario? list_friends solo
+  /// exige adulto (no handle) → podemos avisar en el gate en vez de dejar una
+  /// pantalla muerta. Best-effort: si falla, no pasa nada.
+  Future<void> _loadPending() async {
+    try {
+      final f = await ref.read(progressRepositoryProvider).listFriends();
+      final n = (f['incoming'] as List?)?.length ?? 0;
+      if (mounted && n != _pendingIncoming) setState(() => _pendingIncoming = n);
+    } catch (_) {}
+  }
 
   @override
   void dispose() {
@@ -2479,6 +2308,29 @@ class _HandleGateScreenState extends ConsumerState<HandleGateScreen> {
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       fontSize: 14, fontWeight: FontWeight.w600, color: AppColors.textMuted)),
+              // Si YA recibió solicitudes (aunque aún no tenga @usuario), avísale
+              // claramente que están esperando — no una pantalla muerta. list_friends
+              // funciona sin handle (solo exige adulto).
+              if (_pendingIncoming > 0) ...[
+                const SizedBox(height: 16),
+                Container(
+                  padding: const EdgeInsets.all(13),
+                  decoration: BoxDecoration(
+                    color: AppColors.hearts.withValues(alpha: 0.10),
+                    borderRadius: BorderRadius.circular(14),
+                    border: Border.all(color: AppColors.hearts.withValues(alpha: 0.30), width: 1.5),
+                  ),
+                  child: Row(children: [
+                    const Icon(Icons.mark_email_unread_rounded, color: AppColors.hearts, size: 20),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(l10n.handleGatePendingHint,
+                          style: const TextStyle(
+                              fontSize: 12.5, fontWeight: FontWeight.w800, color: AppColors.text, height: 1.3)),
+                    ),
+                  ]),
+                ),
+              ],
               const SizedBox(height: 22),
               Container(
                 decoration: BoxDecoration(

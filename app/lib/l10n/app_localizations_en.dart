@@ -2494,7 +2494,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get convReject => 'Decline';
 
   @override
-  String get convNoFriends => 'No friends yet. Share your code to add one.';
+  String get convNoFriends =>
+      'No friends yet. Search by @username to add someone.';
 
   @override
   String get convChatHint => 'Write a message';
@@ -2625,6 +2626,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get convCoopEntrySub => 'Earn XP and gold together';
+
+  @override
+  String get handleGatePendingHint =>
+      'You have friend requests waiting. Choose your @username to see and accept them.';
 
   @override
   String get handleGateTitle => 'Pick your @username';
