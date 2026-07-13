@@ -149,6 +149,18 @@ final practiceStatusProvider = FutureProvider<PracticeStatus>(
   (ref) => ref.watch(progressRepositoryProvider).fetchPracticeStatus(),
 );
 
+/// Petición de cambio de pestaña del HomeShell (p.ej. "Ir a mi lección" desde
+/// Practicar lleva al mapa, tab 0). El HomeShell la escucha y la consume.
+class HomeTabRequest extends Notifier<int?> {
+  @override
+  int? build() => null;
+  void request(int i) => state = i;
+  void clear() => state = null;
+}
+
+final homeTabRequestProvider =
+    NotifierProvider<HomeTabRequest, int?>(HomeTabRequest.new);
+
 /// Logros/badges (catálogo + estado del usuario).
 final achievementsProvider = FutureProvider<List<Achievement>>(
   (ref) => ref.watch(progressRepositoryProvider).fetchAchievements(),

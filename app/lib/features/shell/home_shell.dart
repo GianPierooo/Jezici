@@ -103,6 +103,13 @@ class _HomeShellState extends ConsumerState<HomeShell> with WidgetsBindingObserv
   Widget build(BuildContext context) {
     ref.watch(soundEnabledProvider); // carga la preferencia de sonido al montar
     ref.watch(musicEnabledProvider); // carga la preferencia de música ambiente
+    // Cambio de pestaña pedido desde otra pantalla (p.ej. "Ir a mi lección" en
+    // Practicar → mapa). Se consume al instante.
+    ref.listen(homeTabRequestProvider, (_, next) {
+      if (next == null) return;
+      _select(next);
+      ref.read(homeTabRequestProvider.notifier).clear();
+    });
     // Idioma de HABLA del curso activo (TTS de tile + reconocedor de speaking):
     // pronuncia/reconoce en el idioma que se aprende (en/pt/fr/it), no en inglés fijo.
     // Se reevalúa al cambiar de curso (coursesProvider se invalida en set_active_course).

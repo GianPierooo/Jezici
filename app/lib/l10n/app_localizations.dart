@@ -1096,6 +1096,30 @@ abstract class AppLocalizations {
   /// **'Intenso'**
   String get onbFrequencyIntense;
 
+  /// No description provided for @onbFirstContactTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Es tu primer contacto con el {course}?'**
+  String onbFirstContactTitle(String course);
+
+  /// No description provided for @onbFirstContactSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Si empiezas de cero, te llevamos directo al inicio, sin examen.'**
+  String get onbFirstContactSubtitle;
+
+  /// No description provided for @onbFirstContactYes.
+  ///
+  /// In es, this message translates to:
+  /// **'Sí, empiezo desde cero'**
+  String get onbFirstContactYes;
+
+  /// No description provided for @onbFirstContactNo.
+  ///
+  /// In es, this message translates to:
+  /// **'No, ya sé algo'**
+  String get onbFirstContactNo;
+
   /// No description provided for @onbStartLevelTitle.
   ///
   /// In es, this message translates to:
@@ -2849,6 +2873,30 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'REPASO ESPACIADO'**
   String get practiceSrsBadge;
+
+  /// No description provided for @practiceWelcomeTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no tienes palabras por repasar'**
+  String get practiceWelcomeTitle;
+
+  /// No description provided for @practiceWelcomeBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Completa tu primera lección y las palabras aparecerán aquí para que no se te olviden.'**
+  String get practiceWelcomeBody;
+
+  /// No description provided for @practiceGoToLesson.
+  ///
+  /// In es, this message translates to:
+  /// **'Ir a mi lección'**
+  String get practiceGoToLesson;
+
+  /// No description provided for @practiceMeanwhileExplore.
+  ///
+  /// In es, this message translates to:
+  /// **'Mientras tanto, explora'**
+  String get practiceMeanwhileExplore;
 
   /// No description provided for @practiceSrsTitle.
   ///

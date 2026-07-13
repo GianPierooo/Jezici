@@ -9,6 +9,7 @@ import '../../data/models/progress_models.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/skill_names.dart';
+import '../../ui/primary_button.dart';
 import '../immersion/immersion_screen.dart';
 import '../learn/widgets/parrot_mascot.dart';
 import '../reference/reference_screen.dart';
@@ -94,91 +95,136 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // HERO · Rescate de palabras (SRS).
-                  _SrsHero(
-                    dueWords: status.dueWords,
-                    loading: _loading == 'srs',
-                    onTap: () => _start('srs', title: l10n.practiceSrsTitle),
-                  ),
-                  const SizedBox(height: 16),
-                  // Refuerza tu punto débil (con CEFR + mini-barra reales).
-                  _WeakRow(
-                    weakSkill: weak,
-                    cefr: weakLevel?.cefrLevel,
-                    progress: weakLevel?.levelProgress ?? 0,
-                    loading: _loading == 'weakness',
-                    onTap: () => _start('weakness', title: l10n.practiceWeakTitle),
-                  ),
-                  const SizedBox(height: 12),
-                  // Reforzar lo que fallé.
-                  _CompactRow(
-                    icon: Icons.build_rounded,
-                    iconBg: const Color(0xFFEDEBFF),
-                    iconColor: AppColors.primary,
-                    title: l10n.practiceReinforceTitle,
-                    subtitle: l10n.practiceReinforceSubtitle,
-                    loading: _loading == 'reinforce_unit',
-                    onTap: () => _start('reinforce_unit', title: l10n.practiceReinforceTitle),
-                  ),
-                  const SizedBox(height: 18),
-                  // Grid 2×2 de modos (integra los extra: repaso, inmersión).
-                  Text(l10n.practiceMoreTitle,
-                      style: const TextStyle(
-                          fontSize: 16, fontWeight: FontWeight.w900, color: AppColors.text)),
-                  const SizedBox(height: 12),
-                  GridView.count(
-                    crossAxisCount: 2,
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    mainAxisSpacing: 11,
-                    crossAxisSpacing: 11,
-                    childAspectRatio: 2.35,
-                    children: [
-                      _ModeTile(
-                        icon: Icons.menu_book_rounded,
-                        iconBg: const Color(0xFFEDEBFF),
-                        iconColor: AppColors.primary,
-                        title: skillName(l10n, 'reading'),
-                        subtitle: l10n.practiceReadingHint,
-                        loading: _loading == 'skillreading',
-                        onTap: () => _start('skill',
-                            skill: 'reading', title: skillName(l10n, 'reading')),
-                      ),
-                      _ModeTile(
-                        icon: Icons.edit_rounded,
-                        iconBg: const Color(0xFFFFEFEF),
-                        iconColor: AppColors.coral,
-                        title: skillName(l10n, 'writing'),
-                        subtitle: l10n.practiceWritingHint,
-                        loading: _loading == 'skillwriting',
-                        onTap: () => _start('skill',
-                            skill: 'writing', title: skillName(l10n, 'writing')),
-                      ),
-                      _ModeTile(
-                        icon: Icons.auto_stories_rounded,
-                        iconBg: const Color(0xFFFFF4D6),
-                        iconColor: AppColors.goldDark,
-                        title: l10n.practiceRepasoTitle,
-                        subtitle: l10n.practiceRepasoSubtitle,
-                        onTap: () => Navigator.of(context).push(jzRoute(const ReferenceScreen())),
-                      ),
-                      _ModeTile(
-                        icon: Icons.headphones_rounded,
-                        iconBg: const Color(0xFFE7F9EF),
-                        iconColor: AppColors.success,
-                        title: l10n.practiceImmersionTitle,
-                        subtitle: l10n.practiceImmersionSubtitle,
-                        onTap: () => Navigator.of(context).push(jzRoute(const ImmersionScreen())),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                  // Banner · Contrarreloj (90 s, alineado al mockup).
-                  _TimedBanner(
-                    loading: _loading == 'timed',
-                    onTap: () =>
-                        _start('timed', timeLimit: 90, title: l10n.practiceTimedTitle),
-                  ),
+                  // NOVATO (sin progreso): en vez de secciones que devuelven
+                  // "nada que reforzar", un estado de BIENVENIDA honesto + lo que
+                  // SÍ sirve desde el día 0 (Repaso + Inmersión).
+                  if (!status.hasProgress) ...[
+                    _SrsWelcome(
+                      onGo: () =>
+                          ref.read(homeTabRequestProvider.notifier).request(0), // → mapa
+                    ),
+                    const SizedBox(height: 18),
+                    Text(l10n.practiceMeanwhileExplore,
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w900, color: AppColors.text)),
+                    const SizedBox(height: 12),
+                    GridView.count(
+                      crossAxisCount: 2,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      mainAxisSpacing: 11,
+                      crossAxisSpacing: 11,
+                      childAspectRatio: 2.35,
+                      children: [
+                        _ModeTile(
+                          icon: Icons.auto_stories_rounded,
+                          iconBg: const Color(0xFFFFF4D6),
+                          iconColor: AppColors.goldDark,
+                          title: l10n.practiceRepasoTitle,
+                          subtitle: l10n.practiceRepasoSubtitle,
+                          onTap: () =>
+                              Navigator.of(context).push(jzRoute(const ReferenceScreen())),
+                        ),
+                        _ModeTile(
+                          icon: Icons.headphones_rounded,
+                          iconBg: const Color(0xFFE7F9EF),
+                          iconColor: AppColors.success,
+                          title: l10n.practiceImmersionTitle,
+                          subtitle: l10n.practiceImmersionSubtitle,
+                          onTap: () =>
+                              Navigator.of(context).push(jzRoute(const ImmersionScreen())),
+                        ),
+                      ],
+                    ),
+                  ] else ...[
+                    // HERO · Rescate de palabras (SRS).
+                    _SrsHero(
+                      dueWords: status.dueWords,
+                      loading: _loading == 'srs',
+                      onTap: () => _start('srs', title: l10n.practiceSrsTitle),
+                    ),
+                    const SizedBox(height: 16),
+                    // Refuerza tu punto débil (con CEFR + mini-barra reales).
+                    _WeakRow(
+                      weakSkill: weak,
+                      cefr: weakLevel?.cefrLevel,
+                      progress: weakLevel?.levelProgress ?? 0,
+                      loading: _loading == 'weakness',
+                      onTap: () => _start('weakness', title: l10n.practiceWeakTitle),
+                    ),
+                    const SizedBox(height: 12),
+                    // Reforzar lo que fallé.
+                    _CompactRow(
+                      icon: Icons.build_rounded,
+                      iconBg: const Color(0xFFEDEBFF),
+                      iconColor: AppColors.primary,
+                      title: l10n.practiceReinforceTitle,
+                      subtitle: l10n.practiceReinforceSubtitle,
+                      loading: _loading == 'reinforce_unit',
+                      onTap: () => _start('reinforce_unit', title: l10n.practiceReinforceTitle),
+                    ),
+                    const SizedBox(height: 18),
+                    // Grid 2×2 de modos (integra los extra: repaso, inmersión).
+                    Text(l10n.practiceMoreTitle,
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w900, color: AppColors.text)),
+                    const SizedBox(height: 12),
+                    GridView.count(
+                      crossAxisCount: 2,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      mainAxisSpacing: 11,
+                      crossAxisSpacing: 11,
+                      childAspectRatio: 2.35,
+                      children: [
+                        _ModeTile(
+                          icon: Icons.menu_book_rounded,
+                          iconBg: const Color(0xFFEDEBFF),
+                          iconColor: AppColors.primary,
+                          title: skillName(l10n, 'reading'),
+                          subtitle: l10n.practiceReadingHint,
+                          loading: _loading == 'skillreading',
+                          onTap: () => _start('skill',
+                              skill: 'reading', title: skillName(l10n, 'reading')),
+                        ),
+                        _ModeTile(
+                          icon: Icons.edit_rounded,
+                          iconBg: const Color(0xFFFFEFEF),
+                          iconColor: AppColors.coral,
+                          title: skillName(l10n, 'writing'),
+                          subtitle: l10n.practiceWritingHint,
+                          loading: _loading == 'skillwriting',
+                          onTap: () => _start('skill',
+                              skill: 'writing', title: skillName(l10n, 'writing')),
+                        ),
+                        _ModeTile(
+                          icon: Icons.auto_stories_rounded,
+                          iconBg: const Color(0xFFFFF4D6),
+                          iconColor: AppColors.goldDark,
+                          title: l10n.practiceRepasoTitle,
+                          subtitle: l10n.practiceRepasoSubtitle,
+                          onTap: () =>
+                              Navigator.of(context).push(jzRoute(const ReferenceScreen())),
+                        ),
+                        _ModeTile(
+                          icon: Icons.headphones_rounded,
+                          iconBg: const Color(0xFFE7F9EF),
+                          iconColor: AppColors.success,
+                          title: l10n.practiceImmersionTitle,
+                          subtitle: l10n.practiceImmersionSubtitle,
+                          onTap: () =>
+                              Navigator.of(context).push(jzRoute(const ImmersionScreen())),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 16),
+                    // Banner · Contrarreloj (90 s, alineado al mockup).
+                    _TimedBanner(
+                      loading: _loading == 'timed',
+                      onTap: () =>
+                          _start('timed', timeLimit: 90, title: l10n.practiceTimedTitle),
+                    ),
+                  ],
                   const SizedBox(height: 14),
                   const _XpNote(),
                 ],
@@ -246,6 +292,49 @@ class _Header extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+// ── Bienvenida a Practicar (novato sin progreso) ─────────────────────────────
+/// En vez del HERO con un número falso de "palabras por repasar" (P0), un
+/// estado honesto: aún no hay nada que repasar; empieza tu primera lección.
+class _SrsWelcome extends StatelessWidget {
+  const _SrsWelcome({required this.onGo});
+  final VoidCallback onGo;
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Container(
+      padding: const EdgeInsets.fromLTRB(18, 18, 18, 18),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(22),
+        boxShadow: const [
+          BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 5), blurRadius: 0),
+        ],
+      ),
+      child: Column(children: [
+        const ParrotMascot(size: 84, mood: MascotMood.encourage),
+        const SizedBox(height: 10),
+        Text(l10n.practiceWelcomeTitle,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+                fontSize: 17, fontWeight: FontWeight.w900, color: AppColors.text)),
+        const SizedBox(height: 6),
+        Text(l10n.practiceWelcomeBody,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+                fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted, height: 1.4)),
+        const SizedBox(height: 16),
+        SizedBox(
+          width: double.infinity,
+          child: PrimaryButton(
+              label: l10n.practiceGoToLesson,
+              icon: Icons.arrow_forward_rounded,
+              onPressed: onGo),
+        ),
+      ]),
     );
   }
 }

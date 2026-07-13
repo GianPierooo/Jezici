@@ -10,10 +10,12 @@ import 'package:jezici/l10n/app_localizations.dart';
 /// Practicar.dc: hub con jerarquía (HERO SRS + fila punto débil + grid + banner)
 /// y TODO por localización (antes salía en español con la app en pt/en).
 void main() {
-  Widget harness(String locale) => ProviderScope(
+  Widget harness(String locale,
+          {PracticeStatus status =
+              const PracticeStatus(dueWords: 24, weakestSkill: 'speaking')}) =>
+      ProviderScope(
         overrides: [
-          practiceStatusProvider
-              .overrideWith((ref) async => const PracticeStatus(dueWords: 24, weakestSkill: 'speaking')),
+          practiceStatusProvider.overrideWith((ref) async => status),
           skillsProvider.overrideWith((ref) async => const [
                 SkillLevel(skill: 'speaking', cefrLevel: 'A2', progressPoints: 40),
               ]),
@@ -44,6 +46,28 @@ void main() {
     expect(find.text('Contrarreloj'), findsOneWidget);
     // 90 s alineado al mockup (no 60).
     expect(find.textContaining('90 s'), findsOneWidget);
+  });
+
+  testWidgets('NOVATO (sin progreso): bienvenida honesta, sin número falso ni secciones vacías',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(500, 1400));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await tester.pumpWidget(harness('es',
+        status: const PracticeStatus(dueWords: 0, hasProgress: false)));
+    await tester.pump();
+    await tester.pump();
+
+    // Estado de bienvenida honesto (P0): nada de "N palabras por repasar".
+    expect(find.text('Aún no tienes palabras por repasar'), findsOneWidget);
+    expect(find.text('Ir a mi lección'), findsOneWidget);
+    expect(find.text('palabras por repasar'), findsNothing); // el HERO falso NO aparece
+    // Secciones que devolverían "nada que reforzar" OCULTAS a cero.
+    expect(find.text('Refuerza tu punto débil'), findsNothing);
+    expect(find.text('Contrarreloj'), findsNothing);
+    // Lo que SÍ sirve al novato sigue disponible.
+    expect(find.text('Mientras tanto, explora'), findsOneWidget);
+    expect(find.text('Inmersión'), findsOneWidget);
+    expect(find.text('Repaso'), findsOneWidget);
   });
 
   testWidgets('PT: todo localizado, sin español filtrado', (tester) async {

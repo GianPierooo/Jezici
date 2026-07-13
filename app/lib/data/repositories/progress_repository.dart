@@ -946,17 +946,28 @@ class ProgressRepository {
   Future<PracticeStatus> fetchPracticeStatus() async {
     final uid = _uid;
     if (uid == null) return PracticeStatus.empty;
-    final vocab = await _client.from('vocabulary').select('id');
+    // Palabras POR REPASAR = SOLO las que el usuario YA VIO (filas en
+    // user_vocab_srs) cuya revisión está VENCIDA (due_at ≤ ahora). Antes se
+    // contaba TODO el vocabulario del curso menos lo agendado → un novato con 0
+    // agendado veía el total del curso como "por repasar" (P0 del análisis).
     final srs = await _client
         .from('user_vocab_srs')
         .select('due_at')
         .eq('user_id', uid);
     final now = DateTime.now();
-    final scheduled = (srs as List).where((r) {
+    final due = (srs as List).where((r) {
       final d = DateTime.tryParse((r as Map)['due_at']?.toString() ?? '');
-      return d != null && d.isAfter(now);
+      return d == null || !d.isAfter(now); // vencida (o sin fecha)
     }).length;
-    final due = ((vocab as List).length - scheduled).clamp(0, 9999);
+
+    // ¿Ya empezó? (alguna lección con progreso). Un novato de cero (sin
+    // progreso) verá un estado de BIENVENIDA en vez de secciones vacías.
+    final lp = await _client
+        .from('user_lesson_progress')
+        .select('lesson_id')
+        .eq('user_id', uid)
+        .limit(1);
+    final hasProgress = (lp as List).isNotEmpty;
 
     // Habilidad más débil por reinforce_score (modelo D8), NO por puntos: en el
     // modelo de dominio progress_points está congelado y daría siempre 'reading'.
@@ -974,7 +985,7 @@ class ProgressRepository {
         }
       }
     } catch (_) {/* sin dominio aún → sin débil destacada */}
-    return PracticeStatus(dueWords: due, weakestSkill: weakest);
+    return PracticeStatus(dueWords: due, weakestSkill: weakest, hasProgress: hasProgress);
   }
 
   /// Historial de notificaciones del usuario (centro in-app).

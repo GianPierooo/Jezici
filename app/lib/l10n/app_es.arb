@@ -219,6 +219,11 @@
   "onbFrequencyRelaxed": "Relajado",
   "onbFrequencyConstant": "Constante",
   "onbFrequencyIntense": "Intenso",
+  "onbFirstContactTitle": "¿Es tu primer contacto con el {course}?",
+  "@onbFirstContactTitle": { "placeholders": { "course": { "type": "String" } } },
+  "onbFirstContactSubtitle": "Si empiezas de cero, te llevamos directo al inicio, sin examen.",
+  "onbFirstContactYes": "Sí, empiezo desde cero",
+  "onbFirstContactNo": "No, ya sé algo",
   "onbStartLevelTitle": "¿Cuánto {course} sabes ya?",
   "@onbStartLevelTitle": {
     "placeholders": {
@@ -945,6 +950,10 @@
   "practiceTitle": "Practicar",
   "practiceHeaderSubtitle": "Refuerza lo que ya viste y no lo olvides 🧠",
   "practiceSrsBadge": "REPASO ESPACIADO",
+  "practiceWelcomeTitle": "Aún no tienes palabras por repasar",
+  "practiceWelcomeBody": "Completa tu primera lección y las palabras aparecerán aquí para que no se te olviden.",
+  "practiceGoToLesson": "Ir a mi lección",
+  "practiceMeanwhileExplore": "Mientras tanto, explora",
   "practiceSrsTitle": "Rescate de palabras",
   "practiceSrsWords": "palabras por repasar",
   "practiceSrsSubtitle": "Antes de que se te olviden",

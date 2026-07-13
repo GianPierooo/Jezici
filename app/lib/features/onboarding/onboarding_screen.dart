@@ -46,6 +46,12 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   int? _birthYear;
   int _step = 0;
 
+  /// Paso de nivel (patrón "¿eres nuevo?"): sub-vista. `_knowsSome`=true tras
+  /// responder "No, ya sé algo" → muestra la elección de nivel + corre placement.
+  /// `_firstContactChoice` guarda la respuesta de la pregunta yes/no.
+  bool _knowsSome = false;
+  String _firstContactChoice = '';
+
   @override
   void initState() {
     super.initState();
@@ -96,8 +102,14 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   bool get _skipPlacement => _data.startLevelHint == 0;
 
   void _next() {
-    // Al salir del paso de nivel de arranque: si eligió "desde cero", salta la
-    // ubicación (8) y el resultado (9) → plan (10) con nivel A1 fijado.
+    // Paso de nivel · patrón "¿eres nuevo?": si respondió "No, ya sé algo", no
+    // avanza todavía → muestra la sub-vista de elección de nivel (basic/good).
+    if (_step == _stepStartLevel && !_knowsSome && _firstContactChoice == 'some') {
+      setState(() => _knowsSome = true);
+      return;
+    }
+    // Al salir del paso de nivel de arranque: si es su primer contacto (hint 0),
+    // salta la ubicación (9) y el resultado (10) → plan con nivel A1 fijado.
     if (_step == _stepStartLevel && _skipPlacement) {
       _data.placementLevel = 'A1';
       _data.skillLevels = {
@@ -115,6 +127,12 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
   }
 
   void _back() {
+    // Desde la sub-vista de nivel (basic/good), atrás vuelve a "¿eres nuevo?".
+    if (_step == _stepStartLevel && _knowsSome) {
+      setState(() => _knowsSome = false);
+      _logStep();
+      return;
+    }
     // Desde el plan, si se saltó la ubicación, vuelve al paso de nivel de arranque.
     final target =
         (_step == _stepPlan && _skipPlacement) ? _stepStartLevel : _step - 1;
@@ -229,17 +247,34 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         return PersonalityTest(
             data: _data, step: _step + 1, total: _total, onBack: _back, onDone: _next);
       case 8:
+        // Sub-vista: ya dijo "sé algo" → elige nivel; luego corre el placement.
+        if (_knowsSome) {
+          return _select(
+            title: l10n.onbStartLevelTitle(courseName),
+            subtitle: l10n.onbStartLevelSubtitle,
+            options: [
+              (l10n.onbStartLevelBasic, '1', Icons.trending_up_rounded),
+              (l10n.onbStartLevelGood, '2', Icons.star_outline_rounded),
+            ],
+            current: (_data.startLevelHint >= 1) ? '${_data.startLevelHint}' : '1',
+            onSelect: (v) => _data.startLevelHint = int.parse(v),
+            allowDefault: true, // pre-selecciona "básico" (ya declaró que sabe algo)
+          );
+        }
+        // Patrón Duolingo "¿eres nuevo?": SIN default peligroso — el usuario elige.
+        // "Sí" → A1 y SALTA el examen; "No" → sub-vista de nivel + placement.
         return _select(
-          title: l10n.onbStartLevelTitle(courseName),
-          subtitle: l10n.onbStartLevelSubtitle,
+          title: l10n.onbFirstContactTitle(courseName),
+          subtitle: l10n.onbFirstContactSubtitle,
           options: [
-            (l10n.onbStartLevelZero, '0', Icons.flag_outlined),
-            (l10n.onbStartLevelBasic, '1', Icons.trending_up_rounded),
-            (l10n.onbStartLevelGood, '2', Icons.star_outline_rounded),
+            (l10n.onbFirstContactYes, '0', Icons.flag_rounded),
+            (l10n.onbFirstContactNo, 'some', Icons.school_rounded),
           ],
-          current: '${_data.startLevelHint}',
-          onSelect: (v) => _data.startLevelHint = int.parse(v),
-          allowDefault: true,
+          current: _firstContactChoice,
+          onSelect: (v) {
+            _firstContactChoice = v;
+            if (v == '0') _data.startLevelHint = 0;
+          },
         );
       case 9:
         // Ubicación sobre el BANCO del curso META elegido (placement_next(courseId)).

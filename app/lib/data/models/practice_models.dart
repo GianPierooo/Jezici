@@ -66,8 +66,14 @@ class PracticeSummary {
 
 /// Estado para las tarjetas de Practicar (palabras por repasar + skill débil).
 class PracticeStatus {
-  const PracticeStatus({required this.dueWords, this.weakestSkill});
+  const PracticeStatus({required this.dueWords, this.weakestSkill, this.hasProgress = true});
   final int dueWords;
   final String? weakestSkill;
+
+  /// ¿El usuario ya empezó (tiene progreso de lecciones)? Un NOVATO de cero
+  /// (false) ve un estado de bienvenida en lugar de secciones vacías. Default
+  /// true para no parpadear a los usuarios existentes durante la carga.
+  final bool hasProgress;
+
   static const empty = PracticeStatus(dueWords: 0);
 }

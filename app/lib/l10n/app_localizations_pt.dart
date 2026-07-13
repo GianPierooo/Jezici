@@ -539,6 +539,21 @@ class AppLocalizationsPt extends AppLocalizations {
   String get onbFrequencyIntense => 'Intenso';
 
   @override
+  String onbFirstContactTitle(String course) {
+    return 'É seu primeiro contato com o $course?';
+  }
+
+  @override
+  String get onbFirstContactSubtitle =>
+      'Se você começa do zero, levamos você direto ao início, sem teste.';
+
+  @override
+  String get onbFirstContactYes => 'Sim, começo do zero';
+
+  @override
+  String get onbFirstContactNo => 'Não, já sei um pouco';
+
+  @override
   String onbStartLevelTitle(String course) {
     return 'Quanto inglês você já sabe?';
   }
@@ -1617,6 +1632,19 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get practiceSrsBadge => 'REVISÃO ESPAÇADA';
+
+  @override
+  String get practiceWelcomeTitle => 'Você ainda não tem palavras para revisar';
+
+  @override
+  String get practiceWelcomeBody =>
+      'Conclua sua primeira lição e as palavras aparecerão aqui para você não esquecê-las.';
+
+  @override
+  String get practiceGoToLesson => 'Ir para minha lição';
+
+  @override
+  String get practiceMeanwhileExplore => 'Enquanto isso, explore';
 
   @override
   String get practiceSrsTitle => 'Resgate de palavras';
