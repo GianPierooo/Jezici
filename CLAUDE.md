@@ -3,7 +3,22 @@
 > Contexto de arranque para cualquier sesión. **No** es copia de los 21 `.md` de
 > diseño (eso es la carpeta raíz `Jezici_*.md` + `docs/`). Aquí va el ESTADO REAL,
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
-> Última actualización: **2026-07-13**.
+> Última actualización: **2026-07-14**.
+
+## 🌐 DOMINIO OFICIAL: **jezici.space** (conectado y LIVE · 2026-07-14)
+El dominio propio de Gian **ya está conectado y sirviendo** (verificado: 200 en `/`, `/privacy`, `/terms`).
+`jezici.vercel.app` sigue respondiendo pero es **legado** — usa `jezici.space` en todo lo nuevo.
+- **URLs canónicas:** app `https://jezici.space` · privacidad `https://jezici.space/privacy` · términos
+  `https://jezici.space/terms` (son las que van en el consentimiento de Google, Search Console, LinkedIn).
+- **El CÓDIGO no requiere cambios** (verificado): el OAuth usa `Uri.base.origin` (deploy-agnóstico) y las
+  páginas legales se abren relativas al origen → funcionan solas en el dominio nuevo. Solo quedaban
+  comentarios citando el dominio viejo.
+- **⚠️ DEPENDE DE GIAN (dashboards) — si no, "Continuar con Google" FALLA en jezici.space:**
+  (a) **Supabase → Auth → URL Configuration**: Site URL = `https://jezici.space` y Redirect URLs debe incluir
+  `https://jezici.space/**`; (b) **Google Cloud → Credentials → OAuth client**: *Authorized JavaScript origins*
+  debe incluir `https://jezici.space` (el redirect URI sigue siendo el de Supabase
+  `https://wiauinufpbkmjlbqlkxo.supabase.co/auth/v1/callback`, no cambia); (c) en la **OAuth consent screen**,
+  actualizar los enlaces de privacidad/términos a los de `jezici.space`.
 
 ## RESET TOTAL DE USUARIOS + REGISTRO SOLO-GOOGLE + @HANDLE OBLIGATORIO ✅ LIVE (mig 157/158 · 2026-07-13)
 Misión destructiva + cambios de auth (Gian coordinó el reseteo con sus testers). Cero IA. **PASO 0 (censo

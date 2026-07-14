@@ -8,13 +8,13 @@ const kLegalVersion = '2026-07-draft';
 /// Rutas PÚBLICAS de las páginas legales, servidas por el deploy SIN login
 /// (Vercel sirve `web/privacy.html`/`web/terms.html`; los rewrites de `vercel.json`
 /// mapean `/privacy`→`/privacy.html` y `/terms`→`/terms.html`). URL estable para
-/// Google OAuth / Search Console: `https://jezici.vercel.app/privacy` y `/terms`.
+/// Google OAuth / Search Console: `https://jezici.space/privacy` y `/terms`.
 /// Una sola fuente de verdad: el HTML público (la app enlaza, no duplica el texto).
 const kPrivacyPath = '/privacy';
 const kTermsPath = '/terms';
 
 /// Abre la página legal pública en una pestaña nueva (web). Construye la URL
-/// absoluta a partir del origen actual → prod jezici.vercel.app, previews su URL.
+/// absoluta a partir del origen actual → prod jezici.space, previews su URL.
 /// No-op fuera de web; nunca crashea (BORRADOR beta, pendiente de revisión legal).
 void openLegalPage(String path) {
   try {

@@ -218,7 +218,7 @@ class ProgressRepository {
 
   /// "Continuar con Google" (OAuth). En web (PWA) hace un redirect de página
   /// completa a Google y vuelve al `redirectTo` = origen actual del sitio
-  /// (deploy-agnóstico: jezici.vercel.app en prod, la preview URL en previews);
+  /// (deploy-agnóstico: jezici.space en prod, la preview URL en previews);
   /// supabase_flutter detecta la sesión en la URL de retorno y `onAuthStateChange`
   /// enruta. Si el proveedor aún no está configurado en Supabase, el retorno trae
   /// un error en la URL que la pantalla de auth muestra con gracia (no crashea).
