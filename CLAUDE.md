@@ -3,7 +3,27 @@
 > Contexto de arranque para cualquier sesión. **No** es copia de los 21 `.md` de
 > diseño (eso es la carpeta raíz `Jezici_*.md` + `docs/`). Aquí va el ESTADO REAL,
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
-> Última actualización: **2026-07-14**.
+> Última actualización: **2026-07-15**.
+
+## LINK PREVIEW (Open Graph + Twitter Card) para compartir en LinkedIn/etc ✅ LIVE (2026-07-15 · solo cliente)
+Al compartir `jezici.space` salía una tarjeta pelada (solo `<title>`). Ahora sale una tarjeta con marca.
+Cero IA, no toca el arranque/PWA/manifest.
+- **Meta tags en `web/index.html`** (`<head>`): Open Graph (`og:type=website`, `og:site_name`, `og:title`
+  "Jezici — Aprende idiomas con un plan real", `og:description`, `og:url=https://jezici.space`,
+  `og:image=https://jezici.space/og-image.png` **URL absoluta** + `og:image:secure_url`/`type`/`width 1200`/
+  `height 630`/`alt`, `og:locale=es_ES`) + Twitter Card (`summary_large_image` + title/description/image/alt).
+  De paso el `<title>` y `<meta description>` pasaron de "aprende inglés" → "aprende idiomas … 6 idiomas".
+- **Imagen `web/og-image.png` (1200×630)**: gradiente violeta de marca + el **guacamayo escarlata Jezi**
+  (portado 1:1 de `ParrotArt`/`_ParrotPainter`, entero con halo) + wordmark "Jezici" + tagline + chips
+  (6 idiomas · 4 habilidades · Certificación real) + `jezici.space`. Generador reproducible
+  `tools/content/gen_og_image.py` (Pillow, render 2x→LANCZOS, dibuja los paths bezier del loro; fuente
+  Segoe UI). Se sirve en la raíz del dominio (`/og-image.png`, como favicon/icons); Vercel sirve el archivo
+  estático antes del rewrite SPA.
+- **Verificado**: build web copia `og-image.png` a `build/web/` y los 8 meta OG/Twitter quedan en el HTML
+  servido; imagen 200 en `https://jezici.space/og-image.png` (tras deploy). analyze 0 · build web OK.
+- **Cómo validar la preview (Gian):** LinkedIn **Post Inspector** (`linkedin.com/post-inspector/`) pegando
+  `https://jezici.space` (fuerza re-scrape y muestra la tarjeta) · `opengraph.xyz` · para WhatsApp/Telegram,
+  pegar el link en un chat. LinkedIn **cachea** la preview: si cambia la imagen, re-inspeccionar para refrescar.
 
 ## 🌐 DOMINIO OFICIAL: **jezici.space** (conectado y LIVE · 2026-07-14)
 El dominio propio de Gian **ya está conectado y sirviendo** (verificado: 200 en `/`, `/privacy`, `/terms`).
