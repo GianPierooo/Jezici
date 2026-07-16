@@ -2083,6 +2083,25 @@ flutter build web --release  # esperado: Built build/web (wasm dry-run warning d
   el build que usan los usuarios HOY (no asumir que `main` == producción).
 
 ## Reportes de diagnóstico (raíz)
+- **ARQUITECTURA_ANALISIS.md** (2026-07-16, solo lectura, cero código) — arquitectura del **cliente Flutter**
+  (el servidor se analiza solo como frontera). Ground truth: repo real + introspección de `app/lib` + churn de
+  `git log` + 2 agentes, con las afirmaciones clave re-verificadas a mano. **Veredicto: NO está mal
+  arquitecturado** — solo 2 archivos fuera de `data/` tocan Supabase (patrón repositorio respetado), DI con un
+  único punto de construcción, modelos inmutables, y **dominio puro ya extraído en 5 sitios** (`grader`,
+  `estimation`, `text_match`, `traveler_level`, `division_theme` — y los 13 unit tests puros son exactamente
+  esos). La deuda está **concentrada en 4 sitios**: (1) **god repository** `progress_repository.dart` (1019
+  LOC, ~96 métodos, **14 dominios**) = **el archivo Dart más tocado del repo, 47 commits/3 meses**; (2) **los
+  errores nunca se diseñaron** — 0 tipos, **82 `catch(_){}` vacíos**, i18n por *substring* de mensajes de
+  Postgres (`friends.dart:27-37`) → hay fallos que **no producen ningún síntoma** (relevante ANTES de activar
+  Sentry); (3) **no hay capa de aplicación** (35 widget tests vs 13 unit; `switchCourseFlow` declara un
+  INVARIANTE pero necesita `BuildContext` → intestable); (4) **reglas en `build()`** (`_stateFor` del mapa,
+  `reward_gold ?? 50` de co-op, umbral `0.8` del examen, regla de meta duplicada **4×** cuando ya existe en
+  `estimation.dart:101`). **Rechaza explícitamente Clean Architecture de manual** (el dominio vive en el
+  servidor por diseño; casos de uso para cada RPC = ceremonia sin retorno) y propone **feature-first
+  pragmático**. Plan incremental de **~13.5 días en 6 fases independientes**, cada una verde y desplegable —
+  piloto = **dominio del mapa** (derivación pura, red de tests ya existente), NO `friends.dart` (peor deuda
+  pero peor piloto). **Lista explícita de qué NO tocar** (servidor, los 20 CustomPainter, pantallas grandes
+  por layout verificadas una a una, interfaces de repo, freezed, go_router).
 - **PRINCIPIANTE_ANALISIS.md** (2026-07-13, solo lectura, cero código) — recorrido del **usuario principiante
   ABSOLUTO** (llega sin saber nada del idioma). Ground truth: repo + BD real (contenido U1) + 2 agentes de
   exploración. **3 golpes duros, 2 casi gratis:** (P0 bug) el 2º tab **Practicar miente a cero** — el HERO SRS
