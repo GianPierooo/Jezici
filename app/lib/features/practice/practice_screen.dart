@@ -12,6 +12,7 @@ import '../../l10n/skill_names.dart';
 import '../../ui/primary_button.dart';
 import '../immersion/immersion_screen.dart';
 import '../learn/widgets/parrot_mascot.dart';
+import 'srs_review_screen.dart';
 import '../reference/reference_screen.dart';
 import 'practice_player_screen.dart';
 
@@ -29,6 +30,39 @@ class PracticeScreen extends ConsumerStatefulWidget {
 
 class _PracticeScreenState extends ConsumerState<PracticeScreen> {
   String? _loading; // modo en carga
+
+  /// SRS: cola propia (vencidas + nuevas con límite del servidor) y pantalla de
+  /// tarjeta escrita con 4 botones. No pasa por PracticePlayerScreen (que sirve
+  /// ítems de contenido); el repaso es otro producto.
+  Future<void> _startSrs() async {
+    if (_loading != null) return;
+    setState(() => _loading = 'srs');
+    final l10n = AppLocalizations.of(context);
+    try {
+      final s = await ref.read(progressRepositoryProvider).startSrs();
+      if (!mounted) return;
+      if (s.cards.isEmpty) {
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(SnackBar(content: Text(l10n.srsNothingDue)));
+        return;
+      }
+      await Navigator.of(context).push(MaterialPageRoute(
+        builder: (_) => SrsReviewScreen(session: s),
+      ));
+      ref.invalidate(practiceStatusProvider);
+      ref.invalidate(srsStatusProvider);
+      ref.invalidate(homeStatsProvider);
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(SnackBar(content: Text(l10n.practiceStartError)));
+      }
+    } finally {
+      if (mounted) setState(() => _loading = null);
+    }
+  }
 
   Future<void> _start(String mode, {String? skill, int? timeLimit, required String title}) async {
     if (_loading != null) return;
@@ -141,7 +175,7 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
                     _SrsHero(
                       dueWords: status.dueWords,
                       loading: _loading == 'srs',
-                      onTap: () => _start('srs', title: l10n.practiceSrsTitle),
+                      onTap: _startSrs,
                     ),
                     const SizedBox(height: 16),
                     // Refuerza tu punto débil (con CEFR + mini-barra reales).

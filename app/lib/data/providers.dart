@@ -149,6 +149,11 @@ final practiceStatusProvider = FutureProvider<PracticeStatus>(
   (ref) => ref.watch(progressRepositoryProvider).fetchPracticeStatus(),
 );
 
+/// Estado del motor SRS (FSRS): vencidas, nuevas restantes hoy y RETENCIÓN.
+final srsStatusProvider = FutureProvider<SrsStatus>(
+  (ref) => ref.watch(progressRepositoryProvider).fetchSrsStatus(),
+);
+
 /// Petición de cambio de pestaña del HomeShell (p.ej. "Ir a mi lección" desde
 /// Practicar lleva al mapa, tab 0). El HomeShell la escucha y la consume.
 class HomeTabRequest extends Notifier<int?> {

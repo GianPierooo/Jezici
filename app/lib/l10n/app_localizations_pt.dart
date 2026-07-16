@@ -1728,6 +1728,79 @@ class AppLocalizationsPt extends AppLocalizations {
   String get practiceSrsTitle => 'Resgate de palavras';
 
   @override
+  String get srsTitle => 'Revisão';
+
+  @override
+  String get srsNewWord => 'NOVA';
+
+  @override
+  String get srsFillBlank => 'COMPLETE A FRASE';
+
+  @override
+  String get srsHowDoYouSay => 'COMO SE DIZ?';
+
+  @override
+  String get srsTypeHint => 'Escreva sua resposta';
+
+  @override
+  String get srsCheck => 'VERIFICAR';
+
+  @override
+  String get srsCorrect => 'Correto!';
+
+  @override
+  String get srsIncorrect => 'A resposta era:';
+
+  @override
+  String get srsHowWasIt => 'Quão difícil foi? Isso define quando ela volta.';
+
+  @override
+  String get srsWillRepeat => 'Você vai revê-la nesta mesma sessão.';
+
+  @override
+  String get srsAgain => 'De novo';
+
+  @override
+  String get srsHard => 'Difícil';
+
+  @override
+  String get srsGood => 'Bom';
+
+  @override
+  String get srsEasy => 'Fácil';
+
+  @override
+  String get srsDoneTitle => 'Revisão concluída!';
+
+  @override
+  String srsDoneSubtitle(int correct, int total) {
+    return '$correct de $total de primeira.';
+  }
+
+  @override
+  String get srsDoneCta => 'PRONTO';
+
+  @override
+  String get srsSendError =>
+      'Não foi possível salvar a revisão. Tente de novo.';
+
+  @override
+  String get srsNothingDue =>
+      'Nada para revisar agora. Volte mais tarde ou faça uma lição.';
+
+  @override
+  String get srsRetention => 'Retenção';
+
+  @override
+  String get srsRetentionEmpty => 'Ainda sem dados';
+
+  @override
+  String get srsDueToday => 'Para revisar hoje';
+
+  @override
+  String get srsCardsTotal => 'Em revisão';
+
+  @override
   String get practiceSrsWords => 'palavras para revisar';
 
   @override

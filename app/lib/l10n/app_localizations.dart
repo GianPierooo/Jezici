@@ -3042,6 +3042,144 @@ abstract class AppLocalizations {
   /// **'Rescate de palabras'**
   String get practiceSrsTitle;
 
+  /// No description provided for @srsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Repaso'**
+  String get srsTitle;
+
+  /// No description provided for @srsNewWord.
+  ///
+  /// In es, this message translates to:
+  /// **'NUEVA'**
+  String get srsNewWord;
+
+  /// No description provided for @srsFillBlank.
+  ///
+  /// In es, this message translates to:
+  /// **'COMPLETA LA FRASE'**
+  String get srsFillBlank;
+
+  /// No description provided for @srsHowDoYouSay.
+  ///
+  /// In es, this message translates to:
+  /// **'¿CÓMO SE DICE?'**
+  String get srsHowDoYouSay;
+
+  /// No description provided for @srsTypeHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe tu respuesta'**
+  String get srsTypeHint;
+
+  /// No description provided for @srsCheck.
+  ///
+  /// In es, this message translates to:
+  /// **'COMPROBAR'**
+  String get srsCheck;
+
+  /// No description provided for @srsCorrect.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Correcto!'**
+  String get srsCorrect;
+
+  /// No description provided for @srsIncorrect.
+  ///
+  /// In es, this message translates to:
+  /// **'La respuesta era:'**
+  String get srsIncorrect;
+
+  /// No description provided for @srsHowWasIt.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Qué tal te costó? Esto decide cuándo vuelve.'**
+  String get srsHowWasIt;
+
+  /// No description provided for @srsWillRepeat.
+  ///
+  /// In es, this message translates to:
+  /// **'La repetirás en esta misma sesión.'**
+  String get srsWillRepeat;
+
+  /// No description provided for @srsAgain.
+  ///
+  /// In es, this message translates to:
+  /// **'Otra vez'**
+  String get srsAgain;
+
+  /// No description provided for @srsHard.
+  ///
+  /// In es, this message translates to:
+  /// **'Difícil'**
+  String get srsHard;
+
+  /// No description provided for @srsGood.
+  ///
+  /// In es, this message translates to:
+  /// **'Bien'**
+  String get srsGood;
+
+  /// No description provided for @srsEasy.
+  ///
+  /// In es, this message translates to:
+  /// **'Fácil'**
+  String get srsEasy;
+
+  /// No description provided for @srsDoneTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Repaso terminado!'**
+  String get srsDoneTitle;
+
+  /// No description provided for @srsDoneSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'{correct} de {total} a la primera.'**
+  String srsDoneSubtitle(int correct, int total);
+
+  /// No description provided for @srsDoneCta.
+  ///
+  /// In es, this message translates to:
+  /// **'LISTO'**
+  String get srsDoneCta;
+
+  /// No description provided for @srsSendError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo guardar el repaso. Inténtalo de nuevo.'**
+  String get srsSendError;
+
+  /// No description provided for @srsNothingDue.
+  ///
+  /// In es, this message translates to:
+  /// **'Nada por repasar ahora. Vuelve más tarde o haz una lección.'**
+  String get srsNothingDue;
+
+  /// No description provided for @srsRetention.
+  ///
+  /// In es, this message translates to:
+  /// **'Retención'**
+  String get srsRetention;
+
+  /// No description provided for @srsRetentionEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún sin datos'**
+  String get srsRetentionEmpty;
+
+  /// No description provided for @srsDueToday.
+  ///
+  /// In es, this message translates to:
+  /// **'Por repasar hoy'**
+  String get srsDueToday;
+
+  /// No description provided for @srsCardsTotal.
+  ///
+  /// In es, this message translates to:
+  /// **'En repaso'**
+  String get srsCardsTotal;
+
   /// No description provided for @practiceSrsWords.
   ///
   /// In es, this message translates to:

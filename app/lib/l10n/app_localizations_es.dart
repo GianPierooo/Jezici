@@ -1725,6 +1725,79 @@ class AppLocalizationsEs extends AppLocalizations {
   String get practiceSrsTitle => 'Rescate de palabras';
 
   @override
+  String get srsTitle => 'Repaso';
+
+  @override
+  String get srsNewWord => 'NUEVA';
+
+  @override
+  String get srsFillBlank => 'COMPLETA LA FRASE';
+
+  @override
+  String get srsHowDoYouSay => '¿CÓMO SE DICE?';
+
+  @override
+  String get srsTypeHint => 'Escribe tu respuesta';
+
+  @override
+  String get srsCheck => 'COMPROBAR';
+
+  @override
+  String get srsCorrect => '¡Correcto!';
+
+  @override
+  String get srsIncorrect => 'La respuesta era:';
+
+  @override
+  String get srsHowWasIt => '¿Qué tal te costó? Esto decide cuándo vuelve.';
+
+  @override
+  String get srsWillRepeat => 'La repetirás en esta misma sesión.';
+
+  @override
+  String get srsAgain => 'Otra vez';
+
+  @override
+  String get srsHard => 'Difícil';
+
+  @override
+  String get srsGood => 'Bien';
+
+  @override
+  String get srsEasy => 'Fácil';
+
+  @override
+  String get srsDoneTitle => '¡Repaso terminado!';
+
+  @override
+  String srsDoneSubtitle(int correct, int total) {
+    return '$correct de $total a la primera.';
+  }
+
+  @override
+  String get srsDoneCta => 'LISTO';
+
+  @override
+  String get srsSendError =>
+      'No se pudo guardar el repaso. Inténtalo de nuevo.';
+
+  @override
+  String get srsNothingDue =>
+      'Nada por repasar ahora. Vuelve más tarde o haz una lección.';
+
+  @override
+  String get srsRetention => 'Retención';
+
+  @override
+  String get srsRetentionEmpty => 'Aún sin datos';
+
+  @override
+  String get srsDueToday => 'Por repasar hoy';
+
+  @override
+  String get srsCardsTotal => 'En repaso';
+
+  @override
   String get practiceSrsWords => 'palabras por repasar';
 
   @override

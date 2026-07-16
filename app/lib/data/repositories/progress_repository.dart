@@ -865,6 +865,29 @@ class ProgressRepository {
     return PracticeSummary.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
+  // ── SRS (motor FSRS server-side · F0+F1) ──────────────────────────────────
+
+  /// Cola de repaso: vencidas + nuevas (el LÍMITE diario lo pone el servidor
+  /// desde jz_config). Tarjetas de ESCRITURA; nunca opción múltiple.
+  Future<SrsSession> startSrs() async {
+    final res = await _client.rpc('start_practice',
+        params: {'p_mode': 'srs', 'p_skill': null, 'p_unit': null});
+    return SrsSession.fromJson(Map<String, dynamic>.from(res as Map));
+  }
+
+  /// Envía la sesión ENTERA de una vez (una sola llamada = un solo pago; pagar
+  /// por tarjeta rompería la economía). Cada entrada: {vocab_id, rating, answer}.
+  /// El servidor califica lo ESCRITO: si está mal, fuerza rating=1 aunque el
+  /// usuario pulse "Fácil" → el rating modula el intervalo, no el pago.
+  Future<PracticeSummary> submitSrs(List<Map<String, dynamic>> answers) =>
+      submitPractice('srs', answers);
+
+  /// Vencidas + nuevas restantes hoy + RETENCIÓN (null si aún no hay maduras).
+  Future<SrsStatus> fetchSrsStatus() async {
+    final res = await _client.rpc('get_srs_status');
+    return SrsStatus.fromJson(Map<String, dynamic>.from(res as Map));
+  }
+
   // ── Logros + certificados (paso Perfil) ───────────────────────────────────
 
   /// Catálogo de logros con el estado del usuario (evalúa y desbloquea al vuelo).

@@ -81,9 +81,16 @@ def main():
     assert ac == PT_COURSE, f"el curso activo debería ser pt: {ac}"
     print("  curso activo:", ac)
 
-    # Recorre dinámicamente TODA la escalera pt sembrada (A1→A2→B1→B2…).
+    # Recorre dinámicamente la escalera pt CERTIFICABLE (la que tiene examen de
+    # nivel). OJO: no son "todos los niveles sembrados". Desde que pt recibió C1
+    # (mig 130) hay contenido C1, pero C1 NO tiene examen de nivel POR DISEÑO
+    # (techo honesto: jz_resolve_exam_level capa en B2 — C1 exigiría evaluar
+    # producción libre = Fase 2). Antes este test leía `units` y asertaba que
+    # C1 debía desbloquear examen → fallaba desde mig 130 contra una decisión
+    # de producto deliberada. Ahora pregunta por los exámenes que EXISTEN.
     levels = [r["cefr_level"] for r in json.loads(
-        run(f"select distinct cefr_level from units where course_id='{PT_COURSE}' order by 1;")[1])]
+        run(f"select distinct e.cefr_level::text as cefr_level from exams e "
+            f"where e.course_id='{PT_COURSE}' and e.type='level' order by 1;")[1])]
     print("niveles pt sembrados:", levels)
     nxt = {"A1": "A2", "A2": "B1", "B1": "B2", "B2": "C1", "C1": "C2"}
     SK = ("reading", "listening", "writing", "speaking")

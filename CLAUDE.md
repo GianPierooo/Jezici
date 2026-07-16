@@ -3,7 +3,60 @@
 > Contexto de arranque para cualquier sesión. **No** es copia de los 21 `.md` de
 > diseño (eso es la carpeta raíz `Jezici_*.md` + `docs/`). Aquí va el ESTADO REAL,
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
-> Última actualización: **2026-07-15**.
+> Última actualización: **2026-07-16**.
+
+## SRS F0+F1 — Practicar deja de ser un quiz de opción múltiple: motor FSRS real ✅ LIVE (mig 159/160/161 · 2026-07-16)
+Fuente de verdad: `PRACTICAR_SRS_ANALISIS.md` (§6 desacoplar motor/contenido · §7 F0/F1 · §3 FSRS sin
+optimizador). Cero IA. **PASO 0 re-confirmado contra la BD** (todo cierto): escalera fija 1/2/4/8/16/30d ·
+`ease` NUNCA se escribía (vestigial) · la cola trataba **las ~480 palabras del curso como vencidas**
+(`s.vocab_id is null`) · servía **opción múltiple** · `complete_lesson` **no tocaba el SRS** (0 menciones).
+- **F0 · Cola honesta + inscripción + ESCRITURA (los 6 idiomas).** `start_practice('srs')` sirve **solo
+  palabras INSCRITAS** + límite de nuevas/día desde `jz_config` (**`srs_new_per_day=10`**, no 15: con un
+  léxico de ~480 el mazo dura ~48 días en vez de ~32 — decisión del análisis §8.3, es config no código).
+  **Adiós al MC**: la tarjeta es de **recuerdo activo escrito**. **DEGRADACIÓN CON GRACIA**: si la palabra
+  tiene oración cloze usable → tarjeta `cloze` (escribe la palabra que falta EN CONTEXTO); si no → `word`
+  (traducción → escribe la palabra). **`complete_lesson` INSCRIBE** (mig 161) por substring sobre TODOS los
+  ítems, **best-effort y al FINAL** (un fallo del SRS jamás tumba el fin de lección); vista→`state='new'`,
+  fallada→`due=now`. Re-ver una palabra ya agendada **NO adelanta** su repaso (rompería el espaciado).
+- **F1 · Motor FSRS-4.5 server-side (mig 159).** `user_vocab_srs` **AMPLIADA** (no recreada): +stability,
+  +difficulty, +state(new/learning/review/relearning), +reps, +lapses, +last_rating, +scheduled_days.
+  `ease`/`strength` quedan **vestigiales** (se dejan de escribir; se borrarán en otra migración). **Tabla
+  nueva `srs_review_log`** (RLS dueño, writes solo por RPC) = requisito de la métrica de retención y del
+  optimizador futuro. **Pesos por defecto de Anki, SIN optimizador** (0 historial que optimizar; Anki mismo
+  optimiza tras ~1.000 reviews) en `jz_fsrs_w()`. **Motor verificado contra sus propiedades conocidas**:
+  S0 Bien=3.71→4d · Fácil=13.82→14d · **R(30,30)=0.9000 exacto** · intervalo≈estabilidad a R_d=0.9 · lapso
+  acotado (S 30→4.35) + `relearning` + vuelve en la sesión. `get_srs_status` → vencidas/nuevas/**retención**
+  (null si no hay maduras: no inventa un número).
+- **DECISIÓN DE DISEÑO (síntesis honesta Anki↔Jezici):** el servidor **califica lo ESCRITO**; si está mal
+  **fuerza rating=1 aunque el usuario pulse "Fácil"** → el botón modula el **intervalo**, nunca el pago ni
+  el XP. La UI lo refleja: en un fallo **solo se ofrece "Otra vez"** (ofrecer "Fácil" sería mentir).
+- **ECONOMÍA intacta:** UN solo pago por sesión (`least(correct*3,20)` + oro 2 = **menos que una lección**,
+  5-10). **Anti-duplicado**: la relapsada que vuelve en la sesión cuenta **una vez** y con su **PRIMERA**
+  respuesta → fallar-y-acertar **no paga**. La racha **no se tocó**: `jz_register_activity` ya la avanza al
+  **CUMPLIR la meta diaria** (regla pre-existente) — el repaso alimenta `daily_goals` igual que una lección.
+- **Verificado cliente REAL (`verify_srs.py` pt+de, 29 checks c/u) TODO VERDE:** cola vacía para el novato ·
+  límite de 10/día · solo cloze|word (**0 opción múltiple**) · califica lo escrito 3/4 · XP 9 + oro 2 ·
+  alimenta daily_goals · FSRS reprograma (review + stability>0) · fallada vuelve en sesión · review_log 4/4 ·
+  repetida cuenta 1 y **no paga** · escribir mal + "Fácil" → **rating forzado a 1** · vencida vuelve · al
+  cumplir la meta **la racha avanza** · **aislamiento multicurso**. **GUARDARRAÍLES VERDES**: `verify_chain`
+  (en, A1→B2 + 4 certs) y `verify_pt_chain` (multicurso, 4 certs). analyze 0 · test **181/181** (+7
+  srs_review) · build web OK.
+- **Bug real cazado por el test** (no era del test): el CTA "COMPROBAR" se calculaba en `build()` y escribir
+  no dispara rebuild → **habría nacido muerto**; arreglado con `ValueListenableBuilder` sobre el controller.
+- **Test obsoleto arreglado (pre-existente, NO regresión mía):** `verify_pt_chain` fallaba desde **mig 130**
+  (pt C1) porque leía los niveles de `units` y asertaba examen para C1 — **pero C1 no tiene examen POR
+  DISEÑO** (techo honesto: `jz_resolve_exam_level` capa en B2; los 6 cursos tienen examen A1–B2 y ninguno
+  C1). Ahora pregunta por los exámenes que EXISTEN. (Probado que no era mío: ese test **nunca llama a
+  `complete_lesson`**.)
+- **DEGRADACIÓN CON GRACIA — cobertura REAL hoy** (por eso F3 es otra misión): cloze **204/2868 (7.1%)** ·
+  escritura-sin-oración **2664**. Por idioma: en 58 · pt 54 · nl 39 · de 28 · it 17 · **fr 8**. **Y NINGUNO
+  tiene audio** (los 1.776 clips cuelgan de listening; `vocabulary` no tiene columna de audio) → el camino de
+  audio está construido (`audio_url` en la tarjeta) pero **hoy no se enciende**: llegará con F3.
+- **Re-encolado (## Cola):** **F2** `lesson_vocab` (el vínculo que falta: hoy la inscripción es por substring,
+  no lematiza → inscribe de menos, nunca basura) · **F3** banco de ~2.664 oraciones nativas + TTS (~15-20
+  días, el grueso; empezar por en/pt, fr es el más crítico) · **F4** P1 del spec (audio-primero, palabras
+  problema, dinamismo). **Techo nombrado:** 480 palabras/curso se agotan en ~48 días a 10/día — el léxico es
+  una semilla, no un léxico de B2/C1.
 
 ## LINK PREVIEW (Open Graph + Twitter Card) para compartir en LinkedIn/etc ✅ LIVE (2026-07-15 · solo cliente)
 Al compartir `jezici.space` salía una tarjeta pelada (solo `<title>`). Ahora sale una tarjeta con marca.

@@ -1724,6 +1724,78 @@ class AppLocalizationsEn extends AppLocalizations {
   String get practiceSrsTitle => 'Word rescue';
 
   @override
+  String get srsTitle => 'Review';
+
+  @override
+  String get srsNewWord => 'NEW';
+
+  @override
+  String get srsFillBlank => 'FILL IN THE SENTENCE';
+
+  @override
+  String get srsHowDoYouSay => 'HOW DO YOU SAY?';
+
+  @override
+  String get srsTypeHint => 'Type your answer';
+
+  @override
+  String get srsCheck => 'CHECK';
+
+  @override
+  String get srsCorrect => 'Correct!';
+
+  @override
+  String get srsIncorrect => 'The answer was:';
+
+  @override
+  String get srsHowWasIt => 'How hard was it? This sets when it comes back.';
+
+  @override
+  String get srsWillRepeat => 'You\'ll see it again in this session.';
+
+  @override
+  String get srsAgain => 'Again';
+
+  @override
+  String get srsHard => 'Hard';
+
+  @override
+  String get srsGood => 'Good';
+
+  @override
+  String get srsEasy => 'Easy';
+
+  @override
+  String get srsDoneTitle => 'Review done!';
+
+  @override
+  String srsDoneSubtitle(int correct, int total) {
+    return '$correct of $total on the first try.';
+  }
+
+  @override
+  String get srsDoneCta => 'DONE';
+
+  @override
+  String get srsSendError => 'Couldn\'t save your review. Please try again.';
+
+  @override
+  String get srsNothingDue =>
+      'Nothing to review right now. Come back later or do a lesson.';
+
+  @override
+  String get srsRetention => 'Retention';
+
+  @override
+  String get srsRetentionEmpty => 'No data yet';
+
+  @override
+  String get srsDueToday => 'Due today';
+
+  @override
+  String get srsCardsTotal => 'In review';
+
+  @override
   String get practiceSrsWords => 'words to review';
 
   @override
