@@ -2083,6 +2083,29 @@ flutter build web --release  # esperado: Built build/web (wasm dry-run warning d
   el build que usan los usuarios HOY (no asumir que `main` == producción).
 
 ## Reportes de diagnóstico (raíz)
+- **PRACTICAR_SRS_ANALISIS.md** (2026-07-16, solo lectura, cero código) — análisis técnico para llevar un
+  **motor SRS serio (estilo Anki)** a Practicar en los 6 idiomas; responde la §5 de `PRACTICAR_SRS_SPEC.md`
+  contra la BD real. **TITULAR: la premisa del spec ("reusar la infraestructura cloze que ya existe") es
+  FALSA** — los cloze existentes enseñan GRAMÁTICA (`am`, `Thank`), no vocabulario: **tarjetas cloze de vocab
+  listas HOY = en 58 · pt 54 · nl 39 · de 28 · it 17 · fr 8**, de ~480/curso (**1.7%–12.4%**; techo optimista
+  "la palabra aparece en alguna oración" = 17.9%–54.9%). **El contenido del P0 no existe: faltan ~2.664
+  oraciones nativas + su audio (~15-20 días) frente a ~3 días de motor.** PASO 0 (medido): (1) el "SRS" de hoy
+  es **escalera fija** (1/2/4/8/16/30d) + **binario** (fallo → strength 0) servido como **opción múltiple**
+  (el anti-feature que el propio spec prohíbe); `ease` existe pero **nunca se escribe**; la cola trata **las
+  480 palabras del curso como vencidas** (`s.vocab_id is null`). (2) **`complete_lesson` NO alimenta el SRS**
+  (confirmado: 0 menciones en sus 167 líneas) → **hoy el SRS solo contiene lo que FALLASTE** (`srs_prioritize_failed`);
+  y **`vocabulary` es una ISLA** — no existe vínculo con lecciones/unidades (falta `lesson_vocab`). (3) `frequency_rank`
+  **100% en los 6** (lo que el spec pide ya está). (4) TTS: pipeline probado en 6 idiomas pero **0 audio de
+  vocabulario** (los 1.776 clips cuelgan de listening). (5) **Economía ya integrada y ya paga menos que una
+  lección** (XP tope 20 + oro 2 vs oro 5-10) → riesgo bajo; los 4 botones deben alimentar **solo al scheduler**
+  (pagar por tarjeta rompería la economía). **Recomendación: FSRS con parámetros por defecto en plpgsql, SIN
+  optimizador** (0 usuarios = 0 historial; Anki mismo optimiza tras ~1.000 reviews) + **`srs_review_log`** desde
+  el día 1 (es lo caro de retrofitear y sin ella no hay métrica de retención). **Discrepa del orden del spec:
+  DESACOPLAR motor y contenido** — que la tarjeta degrade con gracia (cloze+audio si hay oración; **recuerdo
+  activo escrito** si no) → SRS real en los 6 idiomas en **~5-6 días (F0+F1)**, y el banco de oraciones llega
+  incremental por idioma. **Nota de oportunidad: con 0 usuarios es el mejor momento de la historia del proyecto
+  para migrar el esquema del SRS** (después haría falta backfill). Techo nombrado: **480 palabras/curso se
+  agotan en ~32 días** a 15 nuevas/día — el léxico actual es una semilla, no un léxico de B2/C1.
 - **ARQUITECTURA_ANALISIS.md** (2026-07-16, solo lectura, cero código) — arquitectura del **cliente Flutter**
   (el servidor se analiza solo como frontera). Ground truth: repo real + introspección de `app/lib` + churn de
   `git log` + 2 agentes, con las afirmaciones clave re-verificadas a mano. **Veredicto: NO está mal
