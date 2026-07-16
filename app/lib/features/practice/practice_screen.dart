@@ -171,9 +171,16 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
                       ],
                     ),
                   ] else ...[
-                    // HERO · Rescate de palabras (SRS).
+                    // HERO · Rescate de palabras (SRS). El número viene del
+                    // SERVIDOR (get_srs_status): vencidas + nuevas que caben hoy
+                    // = lo que la sesión REALMENTE va a servir. Antes el cliente
+                    // contaba por su cuenta y podía no cuadrar con la sesión.
+                    // Mientras carga, cae al conteo local (no parpadea a 0).
                     _SrsHero(
-                      dueWords: status.dueWords,
+                      dueWords: ref.watch(srsStatusProvider).maybeWhen(
+                            data: (s) => s.sessionCount,
+                            orElse: () => status.dueWords,
+                          ),
                       loading: _loading == 'srs',
                       onTap: _startSrs,
                     ),

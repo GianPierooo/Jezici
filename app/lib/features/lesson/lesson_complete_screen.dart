@@ -8,13 +8,16 @@ import '../../core/speech/speakable_text.dart';
 import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../learn/widgets/parrot_mascot.dart';
+import '../../data/models/lesson_model.dart';
 import '../../data/models/progress_models.dart';
 import '../../data/models/tip_models.dart';
+import '../../data/models/unit_model.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/skill_names.dart';
 import '../notifications/coach_styles.dart';
 import '../notifications/matix_auto.dart';
+import 'lesson_preview_screen.dart';
 import '../../ui/daily_goal_bar.dart';
 import '../../core/ui/jz_glow_pulse.dart';
 import '../../ui/primary_button.dart';
@@ -34,6 +37,22 @@ class LessonCompleteScreen extends ConsumerStatefulWidget {
 class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
   late final ConfettiController _confetti;
   TipModel? _tip;
+
+  /// La SIGUIENTE lección del mapa (el servidor la devuelve en `next_lesson_id`).
+  /// Se resuelve contra `mapUnitsProvider` (normalmente ya cacheado: se viene del
+  /// mapa). `watch` y no `read`: si el mapa aún está cargando, el CTA se actualiza
+  /// solo al llegar en vez de quedarse degradado para siempre. null si no hay
+  /// siguiente (fin de unidad) o no se encuentra → el CTA cae a "volver al mapa".
+  LessonModel? _nextLesson() {
+    final id = widget.summary.nextLessonId;
+    if (id == null || id.isEmpty) return null;
+    for (final u in ref.watch(mapUnitsProvider).value ?? const <UnitModel>[]) {
+      for (final l in u.lessons) {
+        if (l.id == id) return l;
+      }
+    }
+    return null;
+  }
 
   @override
   void initState() {
@@ -334,15 +353,52 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
                     ),
                   ],
                   const SizedBox(height: 22),
-                  // Halo que respira en el CTA de recompensa (guía la atención).
-                  JzGlowPulse(
-                    color: AppColors.primary,
-                    child: PrimaryButton(
-                      label: l10n.commonContinue,
-                      expand: true,
-                      onPressed: () => Navigator.of(context).popUntil((route) => route.isFirst),
-                    ),
-                  ),
+                  // SIGUIENTE PASO (uso real: @eugenio acabó su 1ª lección y se
+                  // quedó sin a dónde ir → el CTA lo soltaba en el mapa y tenía
+                  // que buscar el nodo). El servidor YA devuelve `next_lesson_id`
+                  // y no se usaba: ahora lleva DIRECTO a la siguiente lección.
+                  // Degrada con gracia: si no hay siguiente (fin de unidad) o el
+                  // mapa aún no cargó, se mantiene el "volver al mapa" de siempre.
+                  ...(() {
+                    final next = _nextLesson();
+                    if (next == null) {
+                      return [
+                        JzGlowPulse(
+                          color: AppColors.primary,
+                          child: PrimaryButton(
+                            label: l10n.commonContinue,
+                            expand: true,
+                            onPressed: () =>
+                                Navigator.of(context).popUntil((route) => route.isFirst),
+                          ),
+                        ),
+                      ];
+                    }
+                    return [
+                      JzGlowPulse(
+                        color: AppColors.primary,
+                        child: PrimaryButton(
+                          label: l10n.lessonNextCta,
+                          expand: true,
+                          onPressed: () {
+                            final nav = Navigator.of(context);
+                            nav.popUntil((route) => route.isFirst);
+                            nav.push(MaterialPageRoute(
+                              builder: (_) => LessonPreviewScreen(lesson: next),
+                            ));
+                          },
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      TextButton(
+                        onPressed: () =>
+                            Navigator.of(context).popUntil((route) => route.isFirst),
+                        child: Text(l10n.lessonBackToMap,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w800, color: AppColors.textMuted)),
+                      ),
+                    ];
+                  })(),
                 ],
                 ),
               ),

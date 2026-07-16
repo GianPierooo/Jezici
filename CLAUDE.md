@@ -5,6 +5,37 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-16**.
 
+## EL "MINUTO 4" — los 2 puntos de fuga de @eugenio, cerrados ✅ LIVE (mig 162 · 2026-07-16)
+Vienen de **uso real** (ver el retrato abajo), no de una cola: @eugenio acabó su 1ª lección y (a) su racha
+era imposible, (b) no había a dónde ir. Cero IA.
+- **PASO 0 (medido):** `jz_register_activity` hacía `goal_xp = greatest(10, daily_minutes)` — **usa los
+  minutos como si fueran XP**. Una lección da `xp_reward=15 × accuracy + combo(+2/acierto en racha ≥3)` =
+  **~10 (mala) a ~31 (perfecta)**; la suya al 75% dio **17**. Con 45 min/día → meta 45 → **~3 lecciones
+  seguidas el día 1**. Y `lesson_complete_screen` **recibía `next_lesson_id` del servidor y lo TIRABA**
+  (el CTA hacía `popUntil(isFirst)` = te suelta en el mapa a buscar el nodo).
+- **1 · RACHA ALCANZABLE EL DÍA 1 (mig 162 · rampa).** La meta **comprometida NO se toca** (sigue siendo la
+  suya); solo se **escalona el arranque**: `día 1 = goal_ramp_first_xp` (**15** = exactamente el `xp_reward`
+  de UNA lección → una lección decente ya gana la racha), **+`goal_ramp_step_xp` (10) por día activo**, hasta
+  su meta real, durante `goal_ramp_days` (**3**). Todo en **`jz_config`**, no hardcodeado. Ej. 45 min/día:
+  **15 → 25 → 35 → 45**; 20 min/día: 15 → 20 → 20. **`user_plans.daily_minutes` intacto → `estimation.dart`
+  y la fecha del plan NO cambian** (verificado). Recreada 1:1 desde la definición viva: XP/oro, congelador,
+  hitos y el resto de la racha sin tocar.
+- **2 · "A DÓNDE IR" tras la lección.** El CTA usa el **`next_lesson_id` que el servidor ya daba**: **"SIGUIENTE
+  LECCIÓN"** entra directo a la siguiente + "Volver al mapa" como secundario. **Degrada con gracia**: fin de
+  unidad o lección no encontrada → el "CONTINUAR" de siempre. Y **Practicar deja de ser un vacío**: el HERO usa
+  el conteo **del servidor** (`get_srs_status` = vencidas + nuevas que caben hoy) = lo que la sesión REALMENTE
+  sirve (antes el cliente contaba por su cuenta y no cuadraba).
+- **Verificado cliente REAL (`verify_minuto4.py`) TODO VERDE — reproduce su caso exacto (45 min/día):**
+  1 lección real → **meta del día 15 (no 45) · meta CUMPLIDA · racha 1** (antes 0) · `daily_minutes` sigue 45 ·
+  **next_lesson_id → lesson #2** · **12 palabras inscritas** y Practicar **sirve 10 tarjetas** de ESCRITURA
+  (antes: "nada que repasar"). **GUARDARRAÍL `verify_chain` VERDE** (A1→B2 + certs; toqué `jz_register_activity`,
+  que usa `complete_lesson`). analyze 0 · test **184/184** (+3 minuto4) · build web OK.
+- **2 bugs reales cazados por los tests** (no fallos de test): (a) `_nextLesson()` usaba **`ref.read`** → si el
+  mapa no estaba cacheado el CTA **degradaba para siempre** sin recuperarse → `ref.watch`; (b) el del SRS
+  (`ValueListenableBuilder`) de la tanda anterior.
+- **Pendiente honesto (no tocado):** la **misión de bienvenida** (+25 XP/oro) sigue **sin pasar por
+  `jz_register_activity`** → no cuenta para meta/racha. Inocuo, pero es XP que el usuario ve y no le suma.
+
 ## ADMIN RECUPERADO + RETRATO DE LOS 2 PRIMEROS USUARIOS REALES ✅ (2026-07-16 · solo lectura + 1 insert)
 - **ADMIN ✅ RECUPERADO** (la única escritura): `insert into public.admins(user_id) values
   ('afcaca89-06c8-4b8b-88fa-3434b5bfdfc7')` → **Gian (@gian) es admin**; verificado con el predicado exacto

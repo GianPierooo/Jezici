@@ -1725,6 +1725,12 @@ class AppLocalizationsEs extends AppLocalizations {
   String get practiceSrsTitle => 'Rescate de palabras';
 
   @override
+  String get lessonNextCta => 'SIGUIENTE LECCIÓN';
+
+  @override
+  String get lessonBackToMap => 'Volver al mapa';
+
+  @override
   String get srsTitle => 'Repaso';
 
   @override

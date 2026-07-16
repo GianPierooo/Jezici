@@ -3042,6 +3042,18 @@ abstract class AppLocalizations {
   /// **'Rescate de palabras'**
   String get practiceSrsTitle;
 
+  /// No description provided for @lessonNextCta.
+  ///
+  /// In es, this message translates to:
+  /// **'SIGUIENTE LECCIÓN'**
+  String get lessonNextCta;
+
+  /// No description provided for @lessonBackToMap.
+  ///
+  /// In es, this message translates to:
+  /// **'Volver al mapa'**
+  String get lessonBackToMap;
+
   /// No description provided for @srsTitle.
   ///
   /// In es, this message translates to:

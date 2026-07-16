@@ -1728,6 +1728,12 @@ class AppLocalizationsPt extends AppLocalizations {
   String get practiceSrsTitle => 'Resgate de palavras';
 
   @override
+  String get lessonNextCta => 'PRÓXIMA LIÇÃO';
+
+  @override
+  String get lessonBackToMap => 'Voltar ao mapa';
+
+  @override
   String get srsTitle => 'Revisão';
 
   @override
