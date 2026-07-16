@@ -5,6 +5,42 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-16**.
 
+## ADMIN RECUPERADO + RETRATO DE LOS 2 PRIMEROS USUARIOS REALES ✅ (2026-07-16 · solo lectura + 1 insert)
+- **ADMIN ✅ RECUPERADO** (la única escritura): `insert into public.admins(user_id) values
+  ('afcaca89-06c8-4b8b-88fa-3434b5bfdfc7')` → **Gian (@gian) es admin**; verificado con el predicado exacto
+  de `am_i_admin()`/`jz_is_admin()` (`exists(select 1 from admins where user_id=…)`) → **true**; control:
+  @eugenio → **false**. **Solo 1 fila en `admins`.** Ya ve métricas/moderación/feedback/Sentry test.
+- **CENSO: 2 usuarios reales.** `@gian` (alta 07-13 17:32) y `@eugenio` (alta 07-14 17:20). **Ambos
+  completaron el onboarding ENTERO** (nombre + @handle + age gate + plan A1→B2 + consentimiento legal) y
+  ambos eligieron **inglés** → **el flujo nuevo (solo-Google + @handle obligatorio) funciona end-to-end en
+  producción, con usuarios reales.** Ambos **volvieron** (last_seen 32-59 h tras el alta).
+- **@eugenio (el primer usuario que no es Gian) — línea de tiempo real:**
+  · **07-14 17:20 — rebote #1:** entra al onboarding, pasos 0→2, **retrocede al paso 1 y abandona a los 3
+  segundos**. No vuelve en ~30 h.
+  · **07-15 23:23 — 2º intento:** recorre los pasos 0→11 en 1,5 min → **se queda 15 min parado en el paso 11**
+  → el onboarding **vuelve a empezar desde 0** (23:41) → esta vez corre 0→8 en 21 s y **salta 9/10**
+  (= saltó el placement: "primer contacto") → **onboarding_completed 23:41:42**.
+  · **3 minutos de uso real:** misión de bienvenida (+25 XP/oro) → **1 lección, 52 s, 75 %** (+17 XP, +5 oro)
+  → **nunca empezó la 2ª lección**.
+  · **Luego solo navegó pestañas**: Ligas ×4, Perfil ×4, **Practicar ×4**, Conversar ×1. **07-16 01:15: abre
+  la app, ve el mapa y se va.**
+- **LO MÁS ACCIONABLE (2 hallazgos con dato):**
+  1. **Volvió a Practicar 4 veces y no había nada que hacer.** Su lección NO le inscribió vocabulario porque
+     `complete_lesson` no alimentaba el SRS → veía "Aún no tienes palabras por repasar". **Arreglado HOY**
+     (mig 161): a partir de ahora la 1ª lección ya deja palabras en la agenda.
+  2. **La racha era inalcanzable el día 1.** Eligió **45 min/día** → `jz_register_activity` fija
+     `goal_xp = daily_minutes` = **45 XP**; su lección le dio **17 XP** → necesitaba ~3 lecciones para la
+     racha. Hizo 1. **Racha 0, meta nunca cumplida.** (@gian eligió 20 min → meta 20 XP.)
+- **Detalle menor observado:** la **misión de bienvenida** (+25 XP/oro, `reason='challenge'`) **no pasa por
+  `jz_register_activity`** → no cuenta para la meta diaria ni la racha (@gian tiene 25 XP y **0 filas** en
+  `daily_goals`). Inconsistente pero inocuo; no se tocó.
+- **Salud:** **0 `client_error`** registrados, **0 feedback** enviado, **0 flujos a medias** (nadie sin plan,
+  sin handle ni sin consentimiento). Nada roto: es un problema de **enganche**, no de bugs.
+- **Lectura honesta:** son 2 **testers explorando**, no aprendices. Entre los dos: **3 lecciones completadas
+  en total** (@gian **0**, @eugenio 1 + la misión) y **0 rachas**. El punto de fuga no es el registro (que
+  funciona) sino **el minuto 4**: acabas tu primera lección y no hay un siguiente paso obvio ni recompensa de
+  racha alcanzable. **Nadie ha visto todavía el SRS nuevo** (0 inscritas, 0 reviews: se desplegó hoy).
+
 ## SRS F0+F1 — Practicar deja de ser un quiz de opción múltiple: motor FSRS real ✅ LIVE (mig 159/160/161 · 2026-07-16)
 Fuente de verdad: `PRACTICAR_SRS_ANALISIS.md` (§6 desacoplar motor/contenido · §7 F0/F1 · §3 FSRS sin
 optimizador). Cero IA. **PASO 0 re-confirmado contra la BD** (todo cierto): escalera fija 1/2/4/8/16/30d ·
