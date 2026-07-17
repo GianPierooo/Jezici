@@ -20,6 +20,7 @@ import '../../ui/edit_profile_sheet.dart';
 import '../learn/widgets/parrot_mascot.dart';
 import '../legal/legal_screen.dart';
 import '../metrics/metrics_screen.dart';
+import '../conversar/friends.dart' show BlockedUsersScreen;
 import '../notifications/coach_styles.dart';
 import '../notifications/matix_test_buttons.dart';
 import '../onboarding/course_switcher.dart';
@@ -263,6 +264,15 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                 title: l10n.settingsEditProfile,
                 trailing: const Icon(Icons.chevron_right_rounded, color: _kChevron, size: 20),
                 onTap: _openEditProfile,
+              ),
+              // Usuarios bloqueados (para poder DESBLOQUEAR — antes era permanente).
+              _tile(
+                tileBg: const Color(0xFFFFE9ED),
+                icon: const Icon(Icons.block_rounded, color: Color(0xFFD6294B), size: 19),
+                title: l10n.settingsBlocked,
+                trailing: const Icon(Icons.chevron_right_rounded, color: _kChevron, size: 20),
+                onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (_) => const BlockedUsersScreen())),
               ),
               _tile(
                 tileBg: const Color(0xFFFFF4D6),

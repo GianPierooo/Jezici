@@ -10,6 +10,7 @@ import '../../data/models/league_models.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/division_names.dart';
+import '../conversar/friends.dart' show PublicProfileScreen;
 import '../learn/widgets/parrot_mascot.dart';
 import 'division_theme.dart';
 
@@ -325,6 +326,15 @@ class _Board extends StatelessWidget {
                           isMe: members[i].isMe,
                           promote: lg.movementActive && i < lg.promote,
                           demote: lg.movementActive && i >= n - lg.demote,
+                          // Tocar un jugador (no yo, con user_id) abre su perfil
+                          // público. get_public_profile gatea 18+/bloqueo y devuelve
+                          // "not found" para menores → degrada con gracia.
+                          onTap: (members[i].isMe || members[i].userId == null)
+                              ? null
+                              : () => Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) =>
+                                        PublicProfileScreen(userId: members[i].userId!),
+                                  )),
                         ),
                       ],
                     ],
@@ -914,6 +924,7 @@ class _RankRow extends StatelessWidget {
     required this.isMe,
     this.promote = false,
     this.demote = false,
+    this.onTap,
   });
   final int rank;
   final String name;
@@ -921,6 +932,9 @@ class _RankRow extends StatelessWidget {
   final bool isMe;
   final bool promote;
   final bool demote;
+
+  /// Abre el perfil público al tocar (null = no tappable: soy yo / sin user_id).
+  final VoidCallback? onTap;
 
   static const _avatarColors = [
     AppColors.primary,
@@ -955,7 +969,7 @@ class _RankRow extends StatelessWidget {
                 : null;
     final tagColor =
         isMe ? AppColors.primary : (promote ? const Color(0xFF3CA86A) : const Color(0xFFE0556E));
-    return Container(
+    final row = Container(
       margin: const EdgeInsets.symmetric(vertical: 2),
       padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 9),
       decoration: BoxDecoration(
@@ -1054,8 +1068,19 @@ class _RankRow extends StatelessWidget {
               ],
             ),
           ),
+          if (onTap != null && !isMe) ...[
+            const SizedBox(width: 4),
+            const Icon(Icons.chevron_right_rounded, size: 18, color: Color(0xFFC2C7D6)),
+          ],
         ],
       ),
+    );
+    if (onTap == null) return row;
+    // Tocar la fila abre el perfil público (gateado 18+/bloqueo en el servidor).
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: onTap,
+      child: row,
     );
   }
 }

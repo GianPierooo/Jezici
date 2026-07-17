@@ -6,6 +6,7 @@ class LeagueMember {
     required this.weeklyXp,
     required this.isMe,
     required this.isBot,
+    this.userId,
   });
   final int rank;
   final String name;
@@ -13,12 +14,17 @@ class LeagueMember {
   final bool isMe;
   final bool isBot;
 
+  /// user_id del miembro (para abrir su perfil público al tocarlo). null para
+  /// "yo" y para bots. get_public_profile sigue gateando (18+, bloqueo).
+  final String? userId;
+
   factory LeagueMember.fromJson(Map<String, dynamic> j) => LeagueMember(
         rank: (j['rank'] as num?)?.toInt() ?? 0,
         name: j['name'] as String? ?? 'Aprendiz',
         weeklyXp: (j['weekly_xp'] as num?)?.toInt() ?? 0,
         isMe: j['is_me'] as bool? ?? false,
         isBot: j['is_bot'] as bool? ?? false,
+        userId: j['user_id'] as String?,
       );
 }
 

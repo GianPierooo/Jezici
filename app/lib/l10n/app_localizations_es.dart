@@ -1731,6 +1731,29 @@ class AppLocalizationsEs extends AppLocalizations {
   String get lessonBackToMap => 'Volver al mapa';
 
   @override
+  String get blockedTitle => 'Usuarios bloqueados';
+
+  @override
+  String get blockedSubtitle =>
+      'Ya no ven tu perfil ni pueden escribirte. Desbloquéalos cuando quieras.';
+
+  @override
+  String get blockedEmpty => 'No tienes usuarios bloqueados.';
+
+  @override
+  String get blockedUnblock => 'Desbloquear';
+
+  @override
+  String get blockedLoadError => 'No se pudo cargar la lista.';
+
+  @override
+  String get blockedUnblockError =>
+      'No se pudo desbloquear. Inténtalo de nuevo.';
+
+  @override
+  String get settingsBlocked => 'Usuarios bloqueados';
+
+  @override
   String get srsTitle => 'Repaso';
 
   @override

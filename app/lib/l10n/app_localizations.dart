@@ -3054,6 +3054,48 @@ abstract class AppLocalizations {
   /// **'Volver al mapa'**
   String get lessonBackToMap;
 
+  /// No description provided for @blockedTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Usuarios bloqueados'**
+  String get blockedTitle;
+
+  /// No description provided for @blockedSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Ya no ven tu perfil ni pueden escribirte. Desbloquéalos cuando quieras.'**
+  String get blockedSubtitle;
+
+  /// No description provided for @blockedEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'No tienes usuarios bloqueados.'**
+  String get blockedEmpty;
+
+  /// No description provided for @blockedUnblock.
+  ///
+  /// In es, this message translates to:
+  /// **'Desbloquear'**
+  String get blockedUnblock;
+
+  /// No description provided for @blockedLoadError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo cargar la lista.'**
+  String get blockedLoadError;
+
+  /// No description provided for @blockedUnblockError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo desbloquear. Inténtalo de nuevo.'**
+  String get blockedUnblockError;
+
+  /// No description provided for @settingsBlocked.
+  ///
+  /// In es, this message translates to:
+  /// **'Usuarios bloqueados'**
+  String get settingsBlocked;
+
   /// No description provided for @srsTitle.
   ///
   /// In es, this message translates to:

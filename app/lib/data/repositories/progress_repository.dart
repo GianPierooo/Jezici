@@ -636,6 +636,15 @@ class ProgressRepository {
     await _client.rpc('unblock_user', params: {'p_target': targetId});
   }
 
+  /// A quién he bloqueado (para poder DESBLOQUEAR — antes no había forma de ver
+  /// la lista → el bloqueo era una trampa permanente). Campos mínimos.
+  Future<List<Map<String, dynamic>>> listBlocks() async {
+    final res = await _client.rpc('list_blocks') as Map;
+    return ((res['blocked'] as List?) ?? const [])
+        .map((e) => Map<String, dynamic>.from(e as Map))
+        .toList();
+  }
+
   // ── T3 · social fácil (mig 149): @handle + búsqueda + perfil público + sugerencias
   // Todo 18+, server-side (SECURITY DEFINER); blocks aplicados en la RLS/lógica en
   // ambas direcciones. El perfil público expone SOLO la vista acotada.

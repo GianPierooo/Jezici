@@ -2938,3 +2938,176 @@ class _BadgeChip extends StatelessWidget {
     );
   }
 }
+
+/// USUARIOS BLOQUEADOS — antes se podía bloquear pero NO desbloquear (reportado
+/// por @eugenio): el bloqueo era una trampa permanente. Aquí se listan (list_blocks)
+/// y se pueden DESBLOQUEAR (unblock_user), revirtiendo el block en ambas direcciones.
+class BlockedUsersScreen extends ConsumerStatefulWidget {
+  const BlockedUsersScreen({super.key});
+  @override
+  ConsumerState<BlockedUsersScreen> createState() => _BlockedUsersScreenState();
+}
+
+class _BlockedUsersScreenState extends ConsumerState<BlockedUsersScreen> {
+  List<Map<String, dynamic>>? _list;
+  final _busy = <String>{};
+  String? _error;
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
+
+  Future<void> _load() async {
+    try {
+      final l = await ref.read(progressRepositoryProvider).listBlocks();
+      if (mounted) setState(() => _list = l);
+    } catch (_) {
+      if (mounted) setState(() => _error = AppLocalizations.of(context).blockedLoadError);
+    }
+  }
+
+  Future<void> _unblock(String userId) async {
+    if (_busy.contains(userId)) return;
+    setState(() => _busy.add(userId));
+    try {
+      await ref.read(progressRepositoryProvider).unblockUser(userId);
+      if (!mounted) return;
+      // Optimista: desaparece de la lista al instante.
+      setState(() => _list = (_list ?? []).where((b) => b['user_id'] != userId).toList());
+      // Refresca la red social (vuelven a ser visibles/agregables).
+      ref.invalidate(friendsProvider);
+      ref.invalidate(suggestionsProvider);
+    } catch (_) {
+      if (mounted) {
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).blockedUnblockError)));
+      }
+    } finally {
+      if (mounted) setState(() => _busy.remove(userId));
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Scaffold(
+      backgroundColor: AppColors.background,
+      appBar: AppBar(
+        backgroundColor: AppColors.background,
+        surfaceTintColor: Colors.transparent,
+        title: Text(l10n.blockedTitle,
+            style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
+      ),
+      body: SafeArea(
+        child: ResponsiveCenter(
+          maxWidth: 560,
+          child: _body(l10n),
+        ),
+      ),
+    );
+  }
+
+  Widget _body(AppLocalizations l10n) {
+    if (_error != null) {
+      return _Center(icon: Icons.wifi_off_rounded, text: _error!);
+    }
+    if (_list == null) {
+      return const Center(child: CircularProgressIndicator());
+    }
+    if (_list!.isEmpty) {
+      return _Center(icon: Icons.verified_user_outlined, text: l10n.blockedEmpty);
+    }
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(20, 12, 20, 24),
+      children: [
+        Text(l10n.blockedSubtitle,
+            style: const TextStyle(
+                fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+        const SizedBox(height: 14),
+        for (final b in _list!)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: _LipCard(
+              padding: const EdgeInsets.all(12),
+              child: Row(children: [
+                _Squircle(
+                    color: (b['avatar_color'] ?? '#6C5CE7').toString(),
+                    letter: (b['name'] ?? '?').toString(),
+                    size: 46),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text((b['name'] ?? '').toString(),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w900)),
+                    if (b['handle'] != null)
+                      Text('@${b['handle']}',
+                          style: const TextStyle(
+                              fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                  ]),
+                ),
+                _UnblockButton(
+                  busy: _busy.contains(b['user_id']),
+                  onTap: () => _unblock(b['user_id'].toString()),
+                ),
+              ]),
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+class _UnblockButton extends StatelessWidget {
+  const _UnblockButton({required this.busy, required this.onTap});
+  final bool busy;
+  final VoidCallback onTap;
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return GestureDetector(
+      onTap: busy ? null : onTap,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+        decoration: BoxDecoration(
+          color: AppColors.primary,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: busy
+              ? null
+              : const [BoxShadow(color: Color(0xFF4B3FC9), offset: Offset(0, 3))],
+        ),
+        child: busy
+            ? const SizedBox(
+                width: 16, height: 16,
+                child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
+            : Text(l10n.blockedUnblock,
+                style: const TextStyle(
+                    fontSize: 13, fontWeight: FontWeight.w900, color: Colors.white)),
+      ),
+    );
+  }
+}
+
+class _Center extends StatelessWidget {
+  const _Center({required this.icon, required this.text});
+  final IconData icon;
+  final String text;
+  @override
+  Widget build(BuildContext context) => Center(
+        child: Padding(
+          padding: const EdgeInsets.all(32),
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            const ParrotMascot(size: 84, mood: MascotMood.idle),
+            const SizedBox(height: 16),
+            Text(text,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                    fontSize: 15, fontWeight: FontWeight.w800, color: AppColors.textMuted)),
+          ]),
+        ),
+      );
+}
