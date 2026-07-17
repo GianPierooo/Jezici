@@ -7,6 +7,11 @@ import 'word_tts_io.dart' if (dart.library.js_interop) 'word_tts_web.dart' as im
 /// y con degradación con gracia (nunca crashea, nunca bloquea el armado).
 /// Pronuncia en el idioma del CURSO activo (`SpeechLang.tts`), no en inglés fijo.
 class WordTts {
+  /// Precarga las voces del navegador al arrancar la app (web) para que la PRIMERA
+  /// locución ya salga con la voz nativa correcta (getVoices() llega vacío en el
+  /// primer tick y se puebla async). No-op fuera de web. Idempotente.
+  static void warmUp() => impl.primeVoices();
+
   static void speak(String word) {
     final w = word.trim();
     if (w.isEmpty) return;

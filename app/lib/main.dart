@@ -8,6 +8,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'core/audio/audio_engine.dart';
 import 'core/config/supabase_config.dart';
 import 'core/i18n/locale_controller.dart';
+import 'core/speech/word_tts.dart';
 import 'core/monitoring/crash_reporter.dart';
 import 'core/monitoring/sentry_config.dart';
 import 'core/theme/app_colors.dart';
@@ -24,6 +25,10 @@ import 'features/shell/home_shell.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Precalienta las voces del TTS en vivo (web) para que la 1ª locución ya use la
+  // voz nativa del idioma (getVoices() llega vacío en el primer tick). No-op en io.
+  WordTts.warmUp();
 
   // Cargar .env (dev local). Si no existe, seguimos con --dart-define.
   try {

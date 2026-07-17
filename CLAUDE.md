@@ -5,6 +5,41 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-17**.
 
+## VOZ TTS EN VIVO — fin de las "dos voces" (la robótica del primer toque) ✅ LIVE (2026-07-17 · solo cliente)
+Feedback: en una sesión se oían DOS voces, una que NO suena a inglés real (robótica/acento español) y otra
+que sí. **PASO 0 — traza real de TODO el audio de una sesión (no asumir):** conviven **dos motores**:
+- **Pregrabado (MP3 en Storage) → `AudioEngine`** — generado con **Google Translate TTS** (`translate_tts`),
+  NATIVO por idioma. Lo usan: **listening**, **historias**, y el modelo de **speaking del placement**. Es la
+  voz "buena".
+- **TTS EN VIVO (Web Speech `speechSynthesis`) → `word_tts_web.dart`** — lo usan: tiles de **word_bank/reorder**,
+  **match**, **SpeakablePhrase** (speaking), **SpeakableText** (repaso SRS, glosario, tips). Es la voz que a
+  veces sonaba mal.
+- **CAUSA RAÍZ (reproducida en navegador real, `speechSynthesis.getVoices()` en jezici.space):** (1) **TIMING** —
+  `getVoices()` devuelve **VACÍO (0)** en el primer tick tras cargar la página y se puebla async por
+  `voiceschanged`. El código previo, con la lista vacía, **hablaba igual** → el navegador usaba su voz **POR
+  DEFECTO** (en un equipo en español, una voz ESPAÑOLA) → leía inglés con acento español; solo los toques
+  POSTERIORES (ya con voces) sonaban nativos → **"a veces una, a veces otra"**. (2) **DEVICE sin voz nativa** —
+  fijar solo `lang='en-US'` NO garantiza inglés: si el equipo no tiene voz inglesa instalada, el navegador cae a
+  su voz por defecto (verificado: este entorno headless tiene **solo 3 voces, todas es-ES** → en-US caía a
+  Microsoft Helena español).
+- **FIX (centralizado en el ÚNICO helper `word_tts_web.dart`, por donde pasan TODOS los `WordTts.speak/
+  speakSource`):** (1) si las voces aún no cargaron, **DIFIERE** la locución hasta `voiceschanged` (con fallback
+  temporizado de 350 ms para no quedar en silencio) → **la 1ª locución ya sale con la voz nativa**, no la
+  española; (2) **precarga** al arrancar (`WordTts.warmUp()` en `main`) → caché caliente antes del primer toque;
+  (3) **ranking por calidad estable + caché por idioma** (región exacta +100 · voz Google/Natural/Neural/
+  Microsoft/Premium/Enhanced +20 · `localService` +5; solo del MISMO idioma base, jamás otro) → **misma voz cada
+  vez**; (4) **degradación honesta**: sin voz del idioma → solo `lang` (NUNCA fuerza una voz de otro idioma).
+- **REGLA pregrabado↔TTS** (ya de facto, ahora documentada): si el ítem trae MP3 pregrabado se usa ése; el TTS en
+  vivo es solo para lo que NO tiene clip → **no se mezclan dos voces del mismo origen** en un mismo ítem. El audio
+  de listening/historias (native Google) **no se toca** (guardarraíl: pregrabado + reconocimiento de speaking
+  intactos).
+- **Verificado (Chromium del navegador in-app, jezici.space):** `getVoices()`=0 en el 1er tick (timing bug real);
+  tras `voiceschanged`, el ranking elige la mejor voz disponible (es-ES → Microsoft Helena, score 125) y devuelve
+  `null` (solo `lang`) para idiomas sin voz instalada. **Honesto:** este entorno **no tiene voces en/fr/it/de/nl**
+  → el inglés nativo solo se puede oír en un Chrome de escritorio/Android real (el entorno del usuario) con la voz
+  del idioma instalada; el TTS **depende del navegador** (Chrome/Edge traen buenas voces; Firefox casi ninguna).
+  analyze 0 (CI-exact) · test **184/184** · build web OK.
+
 ## 3 BUGS SOCIALES de USO REAL (4 jugadores en la liga) — cerrados ✅ LIVE (mig 163 · 2026-07-17)
 Vienen de producción (ya hay reales: gian, eugenio, leo, juanflores, ana). Cero IA. Diagnóstico con
 evidencia (cliente real), no parches.
