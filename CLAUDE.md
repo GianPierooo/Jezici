@@ -5,6 +5,37 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-17**.
 
+## SRS F2 — `lesson_vocab`: el vínculo que faltaba (inscripción PRECISA, no substring) ✅ LIVE (mig 165 · 2026-07-17)
+De la ## Cola / PRACTICAR_SRS_ANALISIS §4 paso 2 + §1.2 ("`vocabulary` es una ISLA"). Cero IA, server-only, 6 idiomas.
+- **PASO 0 (BD real):** `complete_lesson` → `jz_srs_enroll(uid,curso,item_ids,failed)` que escanea por **substring
+  whole-word** `correct_answer->>'value'` + `payload.text/say` + `vocabulary.word` — **NO escaneaba los `pairs`
+  del `match`** → **las palabras que la lección enseña por match NO se inscribían**; y no lematiza ("gatos"≠"gato",
+  compuestos DE fallan). `vocabulary` (2.868 palabras, `frequency_rank` 100% en los 6) sin `lesson_vocab` ni
+  `unit_id` = isla. Confirmado: el mapa "qué palabras enseña cada lección" NO existía.
+- **`lesson_vocab(lesson_id, vocab_id, position)` (mig 165):** el mapa que faltaba. **Poblado DERIVANDO** del
+  contenido (cero autoría): tokens normalizados de los textos del ítem (`jz_normalize` + puntuación→espacio) unidos
+  **exacto** a la palabra, **+ los `pairs` del match** (término meta bajo la clave `'en'` — convención del banco en
+  los 6 — casado exacto, arregla el gran hueco), **+ substring whole-word** para vocab multi-palabra en oraciones.
+  `position` = orden de introducción (mín. order_index del ítem que la introdujo). RLS ON sin política (solo lo
+  leen funciones DEFINER). **Cobertura de la derivación:** en **406/468 (87%)** · pt **354/479 (74%)** · nl
+  **335/480 (70%)** · it **314/480 (65%)** · de **313/481 (65%)** · fr **308/480 (64%)**; **899/900 lecciones con
+  ítems tienen mapeo** (la 1 sin mapeo = misión de bienvenida → fallback).
+- **Inscripción PRECISA:** nuevo `jz_srs_enroll_lesson(uid,curso,lección,vistas[],falladas[])` — **VISTAS** =
+  las palabras de `lesson_vocab` de la lección → `state='new'` (no adelanta las ya agendadas); si la lección no
+  tiene mapeo → **FALLBACK** al substring sobre los ítems (0 regresión). **FALLADAS** = item-level `due=now`
+  (prioridad), y `jz_srs_enroll` ahora **también escanea los pares de match** → los match fallados sí inscriben.
+  `complete_lesson` cambia SOLO su bloque SRS (resto byte-idéntico) para llamar a la vía precisa; **best-effort y
+  al final** (un fallo del SRS jamás tumba el fin de lección). **NO se borró el camino substring** (queda de fallback).
+- **Verificado cliente REAL (`verify_srs_f2.py`, pt romance + de germánico) TODO VERDE:** completar una lección
+  inscribe **EXACTAMENTE** las palabras de `lesson_vocab` (pt 10, de 6 — no aproximado por substring); **incluye
+  las palabras del `match`** (3 c/u) que el substring NO veía; las falladas quedan con **prioridad due≤now**;
+  **economía intacta** (xp/oro otorgados) y **mapa intacto** (`next_lesson_id`). **GUARDARRAÍLES VERDES:**
+  `verify_chain` (en A1→B2 + 4 certs) y `verify_pt_chain` (multicurso A1→B2 + 4 certs). analyze 0 (CI-exact) ·
+  test **186/186** · build web OK.
+- **Beneficio extra (barato, sin riesgo):** `lesson_vocab.position` da el **orden de introducción por unidad** y
+  "esta lección/unidad te enseñó estas N palabras" (dato ya consultable). Re-encolado (## Cola): lematización real
+  (hoy exacto/substring — inscribe de menos, nunca basura); exponer "N palabras de la unidad" en la UI de fin/mapa.
+
 ## ENSEÑAR ANTES DE EXAMINAR — tarjeta de presentación al INICIO de la lección ✅ LIVE (mig 164 · 2026-07-17)
 Pedido de uso REAL (@eugenio: "que diga conceptos, teoría + imágenes, estructura de temas") + P1 #4 de
 PRINCIPIANTE_ANALISIS ("se examina antes de enseñar"). Modelo Busuu **present → practice**. Para los 6 idiomas.
