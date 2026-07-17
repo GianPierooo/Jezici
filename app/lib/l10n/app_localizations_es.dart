@@ -1084,6 +1084,27 @@ class AppLocalizationsEs extends AppLocalizations {
   String get lessonNoExercises => 'Esta lección aún no tiene ejercicios.';
 
   @override
+  String get introKicker => 'APRENDE';
+
+  @override
+  String get introMascot => 'Antes de practicar, veamos lo nuevo.';
+
+  @override
+  String get introConceptChip => 'CONCEPTO';
+
+  @override
+  String get introVocabTitle => 'Palabras nuevas';
+
+  @override
+  String get introTapHint => 'Toca una palabra para oírla 🔊';
+
+  @override
+  String get introStart => 'EMPEZAR EJERCICIOS';
+
+  @override
+  String get introSkip => 'Saltar';
+
+  @override
   String get lessonFeedbackNear => '¡Casi! 🦜';
 
   @override

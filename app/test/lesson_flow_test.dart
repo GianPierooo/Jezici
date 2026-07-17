@@ -44,6 +44,11 @@ class FakeProgressRepository implements ProgressRepository {
   @override
   Future<Map<String, dynamic>> loseHeart() async =>
       {'hearts': 4, 'max': 5, 'seconds_to_next': 1800, 'refill_cost': 50};
+
+  // "Enseñar antes de examinar": sin presentación en estos tests (se prueba el loop
+  // de ejercicios; la presentación tiene su propio test).
+  @override
+  Future<LessonIntro?> getLessonIntro(String lessonId) async => null;
   @override
   String? get authMetadataName => null;
   @override

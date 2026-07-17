@@ -75,3 +75,40 @@ class ReferenceData {
             .toList(),
       );
 }
+
+/// Una palabra/frase del set de vocabulario que PRESENTA una lección (get_lesson_intro,
+/// derivada de los pares de los ítems `match`). `imageUrl` puede ser null (degrada a
+/// texto+audio); el audio lo pone el cliente por TTS del idioma del curso al tocar.
+class IntroWord {
+  const IntroWord({required this.term, required this.translation, this.imageUrl});
+  final String term; // texto en el idioma META (lo que se aprende)
+  final String translation; // en español
+  final String? imageUrl;
+
+  factory IntroWord.fromJson(Map<String, dynamic> j) => IntroWord(
+        term: j['term'] as String? ?? '',
+        translation: j['translation'] as String? ?? '',
+        imageUrl: (j['image_url'] as String?)?.isNotEmpty == true
+            ? j['image_url'] as String
+            : null,
+      );
+}
+
+/// Payload de PRESENTACIÓN de una lección ("enseñar antes de examinar"): el concepto
+/// (tip: teoría + ejemplo) y el vocabulario nuevo. Todo DERIVADO de contenido existente.
+class LessonIntro {
+  const LessonIntro({this.tip, this.vocab = const []});
+  final TipModel? tip;
+  final List<IntroWord> vocab;
+
+  bool get isEmpty => tip == null && vocab.isEmpty;
+
+  factory LessonIntro.fromJson(Map<String, dynamic> j) => LessonIntro(
+        tip: j['tip'] is Map
+            ? TipModel.fromJson(Map<String, dynamic>.from(j['tip'] as Map))
+            : null,
+        vocab: ((j['vocab'] as List?) ?? const [])
+            .map((e) => IntroWord.fromJson(Map<String, dynamic>.from(e as Map)))
+            .toList(),
+      );
+}

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,12 +13,14 @@ import '../../core/ui/jz_transitions.dart';
 import '../../core/ui/responsive_center.dart';
 import '../../data/models/content_item_model.dart';
 import '../../data/models/lesson_model.dart';
+import '../../data/models/tip_models.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
 import 'error_review_screen.dart';
 import 'exercises/exercise_registry.dart';
 import 'grading/grader.dart';
 import 'lesson_complete_screen.dart';
+import 'lesson_intro_view.dart';
 import 'widgets/no_hearts_sheet.dart';
 
 enum _Phase { answering, feedback }
@@ -72,6 +76,13 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
   bool _audioUnavailable = false;
   bool _finished = false; // llegó al final (para distinguir salida de abandono)
 
+  /// Fase de PRESENTACIÓN ("enseñar antes de examinar"): se muestra ANTES del primer
+  /// ejercicio. No aplica en reviewMode (repaso de fallos). Si no hay nada que
+  /// presentar (RPC null) o falla/tarda, se entra directo a los ejercicios.
+  bool _presenting = false;
+  LessonIntro? _intro;
+  Timer? _introTimer;
+
   ContentItemModel get _item => widget.items[_index];
   bool get _isStub => isStubType(_item.type);
 
@@ -107,6 +118,44 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
       _speechWarm = createSpeechRecognizer();
       _speechWarm!.init(); // fire-and-forget; init() nunca lanza
     }
+    // Presentación (enseñar antes de examinar): solo en modo normal, no en repaso.
+    if (!widget.reviewMode) _loadIntro();
+  }
+
+  /// Carga el payload de presentación (concepto + vocabulario). Si hay algo que
+  /// mostrar, entra en fase presenting; si es null/error/tarda >3 s, entra directo
+  /// a los ejercicios (nunca bloquea el loop). No toca economía/scoring.
+  void _loadIntro() {
+    _presenting = true; // muestra el loader de presentación mientras carga
+    var settled = false;
+    void toExercises() {
+      if (settled || !mounted) return;
+      settled = true;
+      _introTimer?.cancel();
+      if (_presenting) setState(() => _presenting = false);
+    }
+
+    // Guardarraíl de tiempo: si el RPC tarda, no dejamos al usuario esperando.
+    // Timer cancelable (no deja un timer colgado en tests ni al salir).
+    _introTimer = Timer(const Duration(seconds: 3), toExercises);
+    ref.read(progressRepositoryProvider).getLessonIntro(widget.lesson.id).then((intro) {
+      if (settled || !mounted) return;
+      if (intro == null || intro.isEmpty) {
+        toExercises();
+      } else {
+        settled = true;
+        _introTimer?.cancel();
+        setState(() => _intro = intro);
+      }
+    }).catchError((_) {
+      toExercises();
+    });
+  }
+
+  /// Termina la presentación → primer ejercicio (fase answering, ya inicializada).
+  void _startExercises() {
+    if (!mounted) return;
+    setState(() => _presenting = false);
   }
 
   /// Para un ítem de listening, verifica (best-effort) que su audio exista. Si no
@@ -147,6 +196,7 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
   @override
   void dispose() {
     MusicService.instance.setSuppressed(false); // restaura la música al volver al mapa
+    _introTimer?.cancel();
     _speechWarm?.dispose();
     _answer.dispose();
     super.dispose();
@@ -353,6 +403,23 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
     final l10n = AppLocalizations.of(context);
     final total = widget.items.length;
     final locked = _phase == _Phase.feedback;
+
+    // Fase de PRESENTACIÓN (enseñar antes de examinar), antes del primer ejercicio.
+    if (_presenting) {
+      if (_intro == null) {
+        // Cargando el payload (breve); el guardarraíl de 3 s garantiza avanzar.
+        return const Scaffold(
+          backgroundColor: AppColors.background,
+          body: Center(child: CircularProgressIndicator(color: AppColors.primary)),
+        );
+      }
+      return LessonIntroView(
+        intro: _intro!,
+        title: widget.lesson.title,
+        onStart: _startExercises,
+        onSkip: _startExercises,
+      );
+    }
 
     if (total == 0) {
       return Scaffold(

@@ -1992,6 +1992,48 @@ abstract class AppLocalizations {
   /// **'Esta lección aún no tiene ejercicios.'**
   String get lessonNoExercises;
 
+  /// No description provided for @introKicker.
+  ///
+  /// In es, this message translates to:
+  /// **'APRENDE'**
+  String get introKicker;
+
+  /// No description provided for @introMascot.
+  ///
+  /// In es, this message translates to:
+  /// **'Antes de practicar, veamos lo nuevo.'**
+  String get introMascot;
+
+  /// No description provided for @introConceptChip.
+  ///
+  /// In es, this message translates to:
+  /// **'CONCEPTO'**
+  String get introConceptChip;
+
+  /// No description provided for @introVocabTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Palabras nuevas'**
+  String get introVocabTitle;
+
+  /// No description provided for @introTapHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Toca una palabra para oírla 🔊'**
+  String get introTapHint;
+
+  /// No description provided for @introStart.
+  ///
+  /// In es, this message translates to:
+  /// **'EMPEZAR EJERCICIOS'**
+  String get introStart;
+
+  /// No description provided for @introSkip.
+  ///
+  /// In es, this message translates to:
+  /// **'Saltar'**
+  String get introSkip;
+
   /// No description provided for @lessonFeedbackNear.
   ///
   /// In es, this message translates to:

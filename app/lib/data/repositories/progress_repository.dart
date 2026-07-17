@@ -74,6 +74,16 @@ class ProgressRepository {
     return TipModel.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
+  /// Presentación de la lección ("enseñar antes de examinar"): concepto (tip) +
+  /// vocabulario nuevo (RPC get_lesson_intro, deriva de contenido existente). null
+  /// si no hay nada que presentar → el cliente entra directo a los ejercicios.
+  Future<LessonIntro?> getLessonIntro(String lessonId) async {
+    final res = await _client.rpc('get_lesson_intro', params: {'p_lesson_id': lessonId});
+    if (res == null) return null;
+    final intro = LessonIntro.fromJson(Map<String, dynamic>.from(res as Map));
+    return intro.isEmpty ? null : intro;
+  }
+
   /// Cuaderno de datos: tips vistos por el usuario (RPC get_notebook).
   Future<List<TipModel>> getNotebook() async {
     final res = await _client.rpc('get_notebook');

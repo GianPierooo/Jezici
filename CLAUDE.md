@@ -5,6 +5,35 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-17**.
 
+## ENSEÑAR ANTES DE EXAMINAR — tarjeta de presentación al INICIO de la lección ✅ LIVE (mig 164 · 2026-07-17)
+Pedido de uso REAL (@eugenio: "que diga conceptos, teoría + imágenes, estructura de temas") + P1 #4 de
+PRINCIPIANTE_ANALISIS ("se examina antes de enseñar"). Modelo Busuu **present → practice**. Para los 6 idiomas.
+- **PASO 0 (traza real):** `LessonPlayerScreen` entraba **directo al ejercicio 0** (fase answering); el tip
+  solo salía al FINAL (`lesson_complete`). Piezas reutilizables confirmadas: `get_lesson_tip` (concepto real
+  de la lección, ya existía), `ConceptImage` (imágenes lazy + degradación), el TTS por idioma (recién
+  centralizado), `ParrotMascot`. Hallazgo clave: los ítems `match` traen `payload.pairs` = **término meta bajo
+  la clave `"en"`** (convención del banco en LOS 6 cursos) + traducción `es`; y `vocab_images` (39 conceptos EN)
+  mapea palabra→Twemoji.
+- **`get_lesson_intro(p_lesson_id)` (mig 164, READ-ONLY):** deriva la presentación de lo que la lección YA
+  tiene — **concepto** = el tip (`get_lesson_tip`: title/body/example) · **vocab** = pares de los `match`
+  (término + traducción), con **imagen** de `vocab_images` cuando el concepto coincide (hoy solo inglés →
+  degrada con gracia a texto+audio en el resto). null si no hay nada que presentar. No inventa contenido.
+- **Cliente (fase `presenting` ANTES de answering, no en reviewMode):** `LessonIntroView` — Jezi presenta +
+  **tarjeta de CONCEPTO** (teoría + ejemplo tocable para oírlo) + **tarjetas de VOCAB** (término meta grande
+  tocable→TTS del curso, traducción, imagen si hay via `ConceptImage`) + CTA **"EMPEZAR EJERCICIOS"** (glow) +
+  **"Saltar"** (siempre saltable; no fuerza la teoría). AUDIO por TTS centralizado (`SpeechLang.tts`). El
+  player la carga en `initState` (best-effort): si es null/error/**tarda >3 s** (timer cancelable) → entra
+  directo a los ejercicios. **GUARDARRAÍL:** la fase de presentación NO toca economía/scoring/progresión — el
+  loop de ejercicios, `complete_lesson`, XP/oro y el mapa quedan intactos.
+- **Verificado cliente REAL (`verify_lesson_intro.py`) TODO VERDE:** concepto+vocab en **pt (romance)** y **de
+  (germánico)**; **imagen** adjunta en EN (father→father.png), degrada sin imagen en el resto; **oro/XP NO
+  cambian** tras llamar `get_lesson_intro` (read-only). + widget test `lesson_intro_test` (render ES concepto+
+  vocab+CTA; PT saltable sin español). `lesson_flow_test` intacto (fake repo devuelve intro null → loop igual).
+  analyze 0 (CI-exact) · test **186/186** (+2) · build web OK.
+- **Cobertura honesta:** imágenes hoy solo para conceptos EN de `vocab_images` (39); el resto = texto+audio
+  (degradación con gracia, sin hueco). El vocab sale de los `match` → lecciones sin `match` muestran solo el
+  concepto (o nada → entra directo). Re-encolado: banco de imágenes multi-idioma; tarjetas paginadas "Siguiente".
+
 ## VOZ TTS EN VIVO — fin de las "dos voces" (la robótica del primer toque) ✅ LIVE (2026-07-17 · solo cliente)
 Feedback: en una sesión se oían DOS voces, una que NO suena a inglés real (robótica/acento español) y otra
 que sí. **PASO 0 — traza real de TODO el audio de una sesión (no asumir):** conviven **dos motores**:
