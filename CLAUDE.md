@@ -3,7 +3,33 @@
 > Contexto de arranque para cualquier sesión. **No** es copia de los 21 `.md` de
 > diseño (eso es la carpeta raíz `Jezici_*.md` + `docs/`). Aquí va el ESTADO REAL,
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
-> Última actualización: **2026-07-16**.
+> Última actualización: **2026-07-17**.
+
+## 3 BUGS SOCIALES de USO REAL (4 jugadores en la liga) — cerrados ✅ LIVE (mig 163 · 2026-07-17)
+Vienen de producción (ya hay reales: gian, eugenio, leo, juanflores, ana). Cero IA. Diagnóstico con
+evidencia (cliente real), no parches.
+- **BUG 1 · "Mi liga" mostraba 0 XP mientras "Tablas" mostraba la real.** PASO 0 (BD real): las **dos
+  pantallas leían fuentes DISTINTAS** — `get_leaderboard` (Tablas) suma **`daily_goals` EN VIVO** de la
+  semana; `get_league` (Mi liga) leía **`league_members.weekly_xp`**, columna que **`jz_register_activity`
+  NUNCA escribe** (solo la toca `jz_close_weeks` al cerrar la semana) → **0 para todos** y hasta orden
+  distinto. **FIX (mig 163):** `get_league` ahora usa la **MISMA fuente viva** (`sum(daily_goals.xp_earned)`
+  de la semana `date_trunc('week')`) y **ordena por ella** → misma XP y mismo orden que Tablas. Read-only,
+  no toca economía/racha/rollover. Verificado en vivo: Mi liga == Tablas (eugenio 71, juanflores 36, …).
+- **BUG 2 · bloquear sin desbloquear (trampa, @eugenio).** `unblock_user` **ya existía** pero no había
+  forma de **VER** a quién bloqueaste. **FIX:** nuevo RPC **`list_blocks`** (DEFINER, dueño; devuelve
+  name/handle/avatar/blocked_at de los bloqueados) + pantalla **"Usuarios bloqueados"** en **Ajustes**
+  (`BlockedUsersScreen`) con **desbloquear por fila** (optimista, invalida amigos/sugerencias). El bloqueo
+  se revierte en **ambas direcciones RLS** (ya lo hacía `unblock_user`). i18n es/en/pt.
+- **BUG 3 · ver el perfil público de cualquiera (liga + amigos).** `get_public_profile` (T3) **ya existía**
+  y está **gateado 18+ / bloqueo / sin datos privados**. **FIX (mínimo):** `get_league` ahora expone
+  **`user_id`** (null para "yo") y la **fila de la liga es tappable** → abre `PublicProfileScreen`. En
+  Amigos ya se abría desde búsqueda/sugerencias (`_openProfile`); la fila de un amigo aceptado **sigue
+  abriendo el chat** por diseño (no se tocó).
+- **Verificado cliente REAL (`verify_social_bugs.py`, 2 cuentas) TODO VERDE:** liga==tablas (XP **y**
+  orden; miembros traen user_id, "yo" no); block→`list_blocks` lo ve→con bloqueo el perfil da `not found`
+  (ambas direcciones)→unblock→lista vacía→vuelven a verse; perfil público expone name/@handle y **NO**
+  email/edad/bio/gender; **MENOR no aparece** (18+) y un **menor viewer no accede**. **Liga real intacta**
+  (0 miembros de prueba; 5 reales). analyze 0 (CI-exact) · test **184/184** · build web OK.
 
 ## EL "MINUTO 4" — los 2 puntos de fuga de @eugenio, cerrados ✅ LIVE (mig 162 · 2026-07-16)
 Vienen de **uso real** (ver el retrato abajo), no de una cola: @eugenio acabó su 1ª lección y (a) su racha
