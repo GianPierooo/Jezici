@@ -5,6 +5,32 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-17**.
 
+## LÉXICO Fase 1 · PORTUGUÉS — +191 palabras NUEVAS con oración + audio (autoría) ✅ LIVE (mig 170 · 2026-07-18)
+Réplica de la tanda de inglés (mig 169) para **portugués SOLO**. Mismo pipeline: **10 agentes profesores
+NATIVOS de pt** (240 palabras, 10 temas) + **5 revisores adversariales** + guardas + verify real. **NO toca
+scheduler/economía/placement/certificación/otros 5 idiomas.**
+- **PASO 0:** pt enseñaba **535** palabras (max freq 875). Objetivo: +~200 de alta frecuencia por los mismos 10
+  temas, con oración-ejemplo + audio.
+- **es↔pt es EL par de los FALSOS AMIGOS** (donde el contenido enseña mal). Instruí a autores y revisores con
+  foco extremo. **Resueltos correctos:** escritório=oficina (NO "escritorio") · esquisito=raro (NO exquisito) ·
+  embaraçado=avergonzado (NO embarazada) · chateado=molesto · bravo=enojado · educado=cortés · grosseiro=grosero ·
+  sensível=sensible · presunto=jamón · copo=vaso · taça=copa · gorjeta=propina · vassoura=escoba · gaveta=cajón ·
+  cobertor=manta · poltrona=butaca · alfândega=aduana · troco=cambio · prédio=edificio.
+- **Autoría + revisión:** 240 → guardas deterministas (dedup vs 501 ya en pt, término≠traducción, oración
+  contiene la palabra, dedup entre temas) → **227** → 5 revisores adversariales (falsos amigos): 0 fixes, 0
+  drops → **mi auditoría personal** cazó un residuo: **34 cognados de raíz IDÉNTICA** (esquina, biblioteca,
+  mochila, arroz…) que un hispanohablante ya sabe (bajo valor + rompen el match) → excluidos + 2 dups → **191**.
+  0 traducciones `es` inútiles.
+- **Contenido:** cada palabra → `vocabulary` + `cloze` con audio TTS pt (**191/191** subidos, HEAD 200) + `match`.
+  Tag `vocab_f1`. 232 content_items, 20 lecciones "Vocabulario: <tema>" antes del checkpoint (A2/B1). lesson_vocab vincula.
+- **Resultado:** enseñadas pt **535 → 726 (+191, +36%)**. `vocabulary` 542→733. **Nuevo techo del pt: 726.**
+  F3 encendido también en pt (cloze con audio).
+- **Verificado (`verify_lexico_f1_pt.py`, cliente real) TODO VERDE:** completar "Vocabulario" inscribe las
+  nuevas (24/24), el SRS las sirve como **cloze con audio** (HEAD 200), aislamiento 0 otro curso, economía un
+  pago/lección. **`verify_pt_chain` (multicurso A1→B2 + certs) VERDE**, gating 180/180. analyze 0 · test
+  198/198 · build web OK. Solo pt: en/fr/de/it/nl intactos.
+- **Muestra 5% (falsos amigos) en el reporte.** **Pendiente:** fr/de/it/nl (misma tanda), re-encolado.
+
 ## LÉXICO Fase 1 · INGLÉS — +232 palabras NUEVAS enseñadas con oración + audio (autoría) ✅ LIVE (mig 169 · 2026-07-18)
 De LEXICO_PLAN §3 Fase 1 (§4 integración). **Inglés SOLO** en esta tanda (profundidad>amplitud; los otros 5
 después si demuestra calidad). Pipeline de la casa: **10 agentes profesores nativos** (240 palabras, 10 temas) +
