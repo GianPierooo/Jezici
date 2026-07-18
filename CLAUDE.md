@@ -5,6 +5,29 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-17**.
 
+## LÉXICO Fase 1 · FRANCÉS — +235 palabras NUEVAS con oración + audio (autoría) ✅ LIVE (mig 171 · 2026-07-18)
+Réplica de las tandas en (mig 169) y pt (mig 170) para **francés SOLO**. Mismo pipeline: **10 agentes
+profesores NATIVOS de fr** (240, 10 temas) + **5 revisores adversariales** (falsos amigos es↔fr + GÉNERO) +
+guardas + verify real. **NO toca scheduler/economía/placement/certificación/otros 5 idiomas.**
+- **PASO 0:** fr enseñaba **509** (max freq 812). Objetivo: +~230 de alta frecuencia por los 10 temas.
+- **Falsos amigos es↔fr resueltos correctos:** le bureau=oficina · le trottoir=acera · la mairie=ayuntamiento ·
+  le carrefour=cruce · le feu=semáforo · la monnaie=cambio **vs** la pièce=moneda (distinguidos) · le tonnerre/
+  l'éclair/la foudre=trueno/relámpago/rayo (3 distintos) · gêné=avergonzado · poli=cortés · fâché=enfadado ·
+  méchant=malo · déçu=decepcionado · le tiroir=cajón · la couverture=manta · le balai=escoba · le placard=
+  armario · le stage=pasantía · constipé=estreñido · la boue=barro. **Género** (le/la) verificado por revisores.
+- **Autoría + revisión:** 240 → guardas (dedup vs 458 ya en fr, término≠traducción, oración contiene la palabra,
+  dedup entre temas, **excluye cognados de raíz idéntica** sensible/triste) → **235** → 5 revisores adversariales:
+  **15 fixes** (añadir artículo de género a sustantivos de comida sin él), 0 drops. 0 traducciones duplicadas.
+- **Contenido:** cada palabra → `vocabulary` + `cloze` con audio TTS fr (**235/235** subidos, HEAD 200) + `match`.
+  Tag `vocab_f1`. 290 content_items, 20 lecciones "Vocabulario: <tema>" antes del checkpoint (A2/B1). lesson_vocab vincula.
+- **Resultado:** enseñadas fr **509 → 744 (+235, +46%)**. `vocabulary` 514→749. **Nuevo techo del fr: 744.** F3 encendido en fr.
+- **Verificado (`verify_lexico_f1_fr.py`, cliente real) TODO VERDE:** completar "Vocabulario" inscribe las
+  nuevas (22/22), SRS las sirve como **cloze con audio** (6/6 con audio_url, HEAD 200), aislamiento 0 otro curso,
+  economía un pago/lección. **`verify_c1_chain.py fr` (A1→C1, 30 unidades + audio) VERDE**, gating 180/180.
+  (Nota: `verify_b2_chain fr` "falla" por asertar 24 unidades — fr tiene 30 por C1; es el verificador equivocado
+  para un curso C1, quirk documentado, no regresión.) analyze 0 · test 198/198 · build web OK. en/pt/de/it/nl intactos.
+- **Muestra 5% (falsos amigos + género) en el reporte.** **Pendiente:** de/it/nl (misma tanda), re-encolado.
+
 ## LÉXICO Fase 1 · PORTUGUÉS — +191 palabras NUEVAS con oración + audio (autoría) ✅ LIVE (mig 170 · 2026-07-18)
 Réplica de la tanda de inglés (mig 169) para **portugués SOLO**. Mismo pipeline: **10 agentes profesores
 NATIVOS de pt** (240 palabras, 10 temas) + **5 revisores adversariales** + guardas + verify real. **NO toca
