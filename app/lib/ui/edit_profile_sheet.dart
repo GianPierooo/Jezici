@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import '../core/errors/error_reporter.dart';
 import '../core/theme/app_colors.dart';
 import '../l10n/app_localizations.dart';
 import '../data/models/profile_models.dart';
@@ -87,14 +88,17 @@ class _EditProfileSheetState extends ConsumerState<_EditProfileSheet> {
       ref.invalidate(profileProvider);
       ref.invalidate(leagueProvider); // el nombre aparece en ligas
       if (mounted) Navigator.of(context).pop();
-    } catch (e) {
+    } catch (e, st) {
+      // Motivo tipado (mapeo central) + reporte a Sentry de lo inesperado (los
+      // *_required son validación esperada → no llegan a Sentry).
+      final jz = reportError(e, stackTrace: st, rpc: 'set_profile_required');
+      final s = e.toString();
       if (mounted) {
-        final s = e.toString();
         setState(() {
           _saving = false;
-          _error = s.contains('gender_required')
+          _error = jz.reason == 'gender_required' || s.contains('gender_required')
               ? l10n.profileEditGenderError
-              : s.contains('birthday_required')
+              : jz.reason == 'birthday_required' || s.contains('birthday_required')
                   ? l10n.profileEditBirthdayError
                   : s.contains('name_required')
                       ? l10n.profileEditNameError

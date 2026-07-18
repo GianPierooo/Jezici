@@ -5,6 +5,45 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-17**.
 
+## ERRORES TIPADOS — Sentry y las pantallas VEN los fallos reales ✅ LIVE (2026-07-17 · solo cliente)
+Deuda #2 de ARQUITECTURA_ANALISIS ("los errores nunca se diseñaron"), el fix de mayor ROI. Con 5 usuarios
+reales, un fallo hoy era invisible. Cero IA, sin migración.
+- **PASO 0 (censo real):** **78 `catch (_) {}` vacíos** · 156 `catch (_)` totales · i18n de errores **por
+  substring del texto de Postgres** en 4 sitios (friends ×2, auth_screen, edit_profile) · **1 solo
+  `on AuthException`, CERO `on PostgrestException`** → las ~75 RPC lanzan crudo. Consecuencia: clases enteras
+  de fallo (RPC caído, RLS 42501, rate limit) **sin NINGÚN síntoma** — ni UI ni Sentry. Los errores de negocio
+  del servidor son `raise exception '<texto>'` = **SQLSTATE P0001 genérico** → su TEXTO es el contrato.
+- **Tipo de dominio `core/errors/jz_error.dart`:** `JzErrorKind` (network·auth·denied·rateLimited·conflict·
+  notFound·validation·server·unknown) + `JzError{kind, reason, cause, rpc}` + **`JzError.from(e)` — el mapeo
+  CENTRAL, un solo lugar.** Robusto: usa el **SQLSTATE** donde existe (42501→denied, 23505→conflict, PGRST30x→
+  auth) y una **tabla ORDENADA de tokens** para los P0001 (already_friends, rate_limited, handle_taken,
+  social_unavailable, gender_required…) → `reason` tipado. `shouldReport` = solo los **inesperados** (server/
+  unknown/auth) llegan a Sentry; los esperados del usuario (validación/conflicto/rate/denegado) se muestran
+  pero NO ahogan el dashboard.
+- **`error_reporter.dart` `reportError(e, {rpc})`:** `JzError.from` + **`Sentry.captureException`** con tags
+  (jz_kind/jz_reason/jz_rpc, SIN PII); no-op si Sentry apagado; nunca rompe el flujo. Es el reemplazo honesto
+  del `catch (_) {}` mudo. **`jz_error_message.dart`:** la i18n de errores pasa a basarse en el TIPO (es/en/pt:
+  errNetwork/errAuth/errDenied/errRateLimited/errConflict/errNotFound/errValidation/errServer/errUnknown), no
+  en el texto crudo.
+- **Migrado (los puntos donde un fallo real era invisible):** `friendErrorMessage` y el mapeo de @handle
+  (friends.dart) + edit_profile → ahora enrutan por `JzError.reason` (adiós al `contains()` suelto; el
+  `friend_error_mapping_test` sigue verde por el tipo). **Reporte a Sentry cableado** en los 5 fallos de mayor
+  valor: **grade_item** (calificar), **complete_lesson** (fin de lección — el corazón del loop), **get_skill_
+  mastery** (antes un fallo era indistinguible de "novato sin datos"), **claim_handle**, **set_profile**. El
+  comportamiento visible NO cambia salvo que ahora los errores se VEN.
+- **Guardarraíl:** cero cambios de lógica/scoring/economía/seguridad; los `catch (_) {}` **best-effort legítimos**
+  (heartbeat, logEvent, prefetch, unlock de audio, SRS best-effort) **se conservan** (el propio análisis dice
+  que están bien). analyze 0 (CI-exact) · test **195/195** (+9 `jz_error_test`: SQLSTATE, tokens, shouldReport,
+  idempotencia, i18n es/en/pt; friend_error_mapping intacto) · build web OK.
+- **Cómo Gian ve un error de prueba en Sentry:** Ajustes → **Ver métricas** → tarjeta "Monitoreo de errores
+  (Sentry)" → **"Enviar evento de prueba"** (ya existía; captura una excepción y devuelve su id). Y ahora,
+  **automático:** cualquier fallo real de servidor en grade_item/complete_lesson/get_skill_mastery/claim_handle/
+  set_profile llega a Sentry etiquetado `jz_rpc=<rpc>` `jz_kind=<tipo>` (los de red se filtran solos).
+- **2ª pasada (re-encolado en ## Cola):** auditar los ~74 `catch (_) {}` restantes uno por uno (benigno-
+  documentado vs reportar); migrar el substring de `auth_screen` (hoy `AuthException`-tipado, baja fragilidad);
+  envolver los ~75 `rpc()` del repositorio en un helper que tipe en la frontera; y (SERVIDOR) hacer que los
+  `raise exception` emitan un **SQLSTATE custom** para mapear 100% por código, no por token de texto.
+
 ## SRS F2 — `lesson_vocab`: el vínculo que faltaba (inscripción PRECISA, no substring) ✅ LIVE (mig 165 · 2026-07-17)
 De la ## Cola / PRACTICAR_SRS_ANALISIS §4 paso 2 + §1.2 ("`vocabulary` es una ISLA"). Cero IA, server-only, 6 idiomas.
 - **PASO 0 (BD real):** `complete_lesson` → `jz_srs_enroll(uid,curso,item_ids,failed)` que escanea por **substring

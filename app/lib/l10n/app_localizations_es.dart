@@ -1084,6 +1084,35 @@ class AppLocalizationsEs extends AppLocalizations {
   String get lessonNoExercises => 'Esta lección aún no tiene ejercicios.';
 
   @override
+  String get errNetwork =>
+      'Sin conexión. Revisa tu internet e inténtalo de nuevo.';
+
+  @override
+  String get errAuth => 'Tu sesión expiró. Vuelve a iniciar sesión.';
+
+  @override
+  String get errDenied => 'No tienes acceso a esto.';
+
+  @override
+  String get errRateLimited =>
+      'Vas muy rápido. Espera un momento e inténtalo de nuevo.';
+
+  @override
+  String get errConflict => 'Eso ya existe.';
+
+  @override
+  String get errNotFound => 'No se encontró.';
+
+  @override
+  String get errValidation => 'Revisa los datos e inténtalo de nuevo.';
+
+  @override
+  String get errServer => 'Algo salió mal de nuestro lado. Inténtalo de nuevo.';
+
+  @override
+  String get errUnknown => 'Ocurrió un error. Inténtalo de nuevo.';
+
+  @override
   String get introKicker => 'APRENDE';
 
   @override

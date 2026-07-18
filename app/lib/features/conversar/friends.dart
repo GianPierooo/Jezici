@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/audio/audio_engine.dart';
+import '../../core/errors/error_reporter.dart';
+import '../../core/errors/jz_error.dart';
 import '../../core/speech/voice_recorder.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/ui/jz_sheen.dart';
@@ -24,16 +26,24 @@ import '../learn/widgets/parrot_mascot.dart';
 /// mostraba como "revisa el código" (el bug #1: "ya son amigos", "es tu propio
 /// código", "18+", rate limit… todos quedaban ocultos). `fallback` = mensaje por
 /// defecto según el origen (por código vs por perfil/búsqueda).
+/// Ahora enruta por el TIPO (`JzError`, el mapeo central) en vez de por substring
+/// suelto: la copia FINA de Conversar sale del `reason` tipado; lo no reconocido
+/// cae al fallback del origen.
 String friendErrorMessage(Object e, AppLocalizations l10n, String fallback) {
-  final s = e.toString().toLowerCase();
-  if (s.contains('already friends')) return l10n.convErrAlready;
-  if (s.contains('cannot add yourself')) return l10n.convErrSelf;
-  if (s.contains('rate_limited')) return l10n.convErrRate;
-  if (s.contains('social unavailable') || s.contains('account restricted')) {
-    return l10n.convErrUnavailable;
+  switch (JzError.from(e).reason) {
+    case 'already_friends':
+      return l10n.convErrAlready;
+    case 'self':
+      return l10n.convErrSelf;
+    case 'rate_limited':
+      return l10n.convErrRate;
+    case 'social_unavailable':
+      return l10n.convErrUnavailable;
+    case 'blocked':
+      return l10n.convErrBlocked;
+    default:
+      return fallback;
   }
-  if (s.contains('unavailable')) return l10n.convErrBlocked;
-  return fallback;
 }
 
 /// Mensaje de éxito: si el envío auto-aceptó (solicitud mutua) → "ya son amigos".
@@ -2492,18 +2502,17 @@ class _HandleGateScreenState extends ConsumerState<HandleGateScreen> {
     try {
       await ref.read(progressRepositoryProvider).claimHandle(_ctrl.text.trim());
       widget.onDone();
-    } catch (e) {
-      final s = e.toString();
+    } catch (e, st) {
+      // Motivo tipado (mapeo central) + reporte a Sentry si es un fallo inesperado.
+      final jz = reportError(e, stackTrace: st, rpc: 'claim_handle');
       setState(() {
-        _error = s.contains('handle_taken')
-            ? l10n.handleGateTaken
-            : s.contains('handle_reserved')
-                ? l10n.handleGateReserved
-                : s.contains('handle_change_rate')
-                    ? l10n.handleGateRateLimit
-                    : s.contains('invalid_handle')
-                        ? l10n.handleGateInvalid
-                        : l10n.handleGateError;
+        _error = switch (jz.reason) {
+          'handle_taken' => l10n.handleGateTaken,
+          'handle_reserved' => l10n.handleGateReserved,
+          'handle_change_rate' => l10n.handleGateRateLimit,
+          'invalid_handle' => l10n.handleGateInvalid,
+          _ => l10n.handleGateError,
+        };
       });
     } finally {
       if (mounted) setState(() => _busy = false);

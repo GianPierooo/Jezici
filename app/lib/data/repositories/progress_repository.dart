@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart' show kIsWeb, Uint8List;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
+import '../../core/errors/error_reporter.dart';
 import '../models/achievement_models.dart';
 import '../models/checkpoint_models.dart';
 import '../models/course_models.dart';
@@ -1026,7 +1027,12 @@ class ProgressRepository {
           weakest = m['skill'] as String?;
         }
       }
-    } catch (_) {/* sin dominio aún → sin débil destacada */}
+    } catch (e, st) {
+      // Un novato SIN dominio devuelve datos válidos (skills vacías), no lanza →
+      // llegar aquí es un fallo REAL (RPC caído/RLS), no "sin datos". Se reporta a
+      // Sentry (red se filtra sola) para que deje de confundirse con un novato.
+      reportError(e, stackTrace: st, rpc: 'get_skill_mastery');
+    }
     return PracticeStatus(dueWords: due, weakestSkill: weakest, hasProgress: hasProgress);
   }
 

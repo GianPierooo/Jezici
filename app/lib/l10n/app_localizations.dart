@@ -1992,6 +1992,60 @@ abstract class AppLocalizations {
   /// **'Esta lección aún no tiene ejercicios.'**
   String get lessonNoExercises;
 
+  /// No description provided for @errNetwork.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin conexión. Revisa tu internet e inténtalo de nuevo.'**
+  String get errNetwork;
+
+  /// No description provided for @errAuth.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu sesión expiró. Vuelve a iniciar sesión.'**
+  String get errAuth;
+
+  /// No description provided for @errDenied.
+  ///
+  /// In es, this message translates to:
+  /// **'No tienes acceso a esto.'**
+  String get errDenied;
+
+  /// No description provided for @errRateLimited.
+  ///
+  /// In es, this message translates to:
+  /// **'Vas muy rápido. Espera un momento e inténtalo de nuevo.'**
+  String get errRateLimited;
+
+  /// No description provided for @errConflict.
+  ///
+  /// In es, this message translates to:
+  /// **'Eso ya existe.'**
+  String get errConflict;
+
+  /// No description provided for @errNotFound.
+  ///
+  /// In es, this message translates to:
+  /// **'No se encontró.'**
+  String get errNotFound;
+
+  /// No description provided for @errValidation.
+  ///
+  /// In es, this message translates to:
+  /// **'Revisa los datos e inténtalo de nuevo.'**
+  String get errValidation;
+
+  /// No description provided for @errServer.
+  ///
+  /// In es, this message translates to:
+  /// **'Algo salió mal de nuestro lado. Inténtalo de nuevo.'**
+  String get errServer;
+
+  /// No description provided for @errUnknown.
+  ///
+  /// In es, this message translates to:
+  /// **'Ocurrió un error. Inténtalo de nuevo.'**
+  String get errUnknown;
+
   /// No description provided for @introKicker.
   ///
   /// In es, this message translates to:

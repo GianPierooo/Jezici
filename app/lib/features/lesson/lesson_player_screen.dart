@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/audio/audio_engine.dart';
 import '../../core/audio/music_service.dart';
+import '../../core/errors/error_reporter.dart';
 import '../../core/feedback/feedback_fx.dart';
 import '../../core/speech/speech_recognizer.dart';
 import '../../core/speech/word_tts.dart';
@@ -224,8 +225,12 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
       expected = g.expected;
       res = gradeResultFromServer(
           type: _item.type, correct: g.correct, graded: g.graded, expected: expected, near: g.near);
-    } catch (_) {
-      res = GradeResult.stub; // fallo de red: no penalizar, avanzar
+    } catch (e, st) {
+      // Fallo al calificar (red/servidor): NO penalizar al usuario, avanzar. Pero
+      // ya no es un no-evento: se REPORTA a Sentry (los de red se filtran solos)
+      // para que un grade_item roto deje de ser invisible.
+      reportError(e, stackTrace: st, rpc: 'grade_item');
+      res = GradeResult.stub;
     }
     if (!mounted) return;
     setState(() {
@@ -359,7 +364,10 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
           jzRoute(LessonCompleteScreen(summary: summary, lessonId: widget.lesson.id)),
         );
       }
-    } catch (_) {
+    } catch (e, st) {
+      // El fin de lección (complete_lesson) es el CORAZÓN del loop: si falla, el
+      // usuario ya ve el diálogo de reintento — y ahora Sentry TAMBIÉN lo ve.
+      reportError(e, stackTrace: st, rpc: 'complete_lesson');
       if (!mounted) return;
       Navigator.of(context).pop(); // cerrar loading
       final l10n = AppLocalizations.of(context);
