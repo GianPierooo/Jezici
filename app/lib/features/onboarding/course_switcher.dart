@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../core/errors/error_reporter.dart';
 import '../../core/plan/estimation.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/course_models.dart';
@@ -34,7 +35,7 @@ Future<void> switchCourseFlow(BuildContext context, WidgetRef ref, CourseInfo c)
   bool hasPlan = false;
   try {
     hasPlan = (await repo.fetchPlan(courseId: c.id)) != null;
-  } catch (_) {}
+  } catch (_) {/* lectura defensiva: si falla, tratamos como sin plan (el catch de abajo revierte) */}
   if (!context.mounted) return;
 
   String? choice = 'resume';
@@ -83,7 +84,7 @@ Future<void> switchCourseFlow(BuildContext context, WidgetRef ref, CourseInfo c)
       bool planNow = false;
       try {
         planNow = (await repo.fetchPlan(courseId: c.id)) != null;
-      } catch (_) {}
+      } catch (_) {/* lectura defensiva: sin señal → planNow=false → revertimos */}
       if (!planNow && prev != null && prev.id != c.id) {
         await repo.setActiveCourse(prev.id);
         _invalidateCourseScope(ref);
@@ -100,7 +101,7 @@ Future<void> switchCourseFlow(BuildContext context, WidgetRef ref, CourseInfo c)
       var coach = 'suave';
       try {
         coach = (await repo.fetchSettings()).coachStyle;
-      } catch (_) {}
+      } catch (_) {/* fallback al estilo por defecto si no se pudo leer settings */}
       var goal = 'B1';
       if (CefrTable.rank(goal) > CefrTable.rank(c.maxLevel)) goal = c.maxLevel;
       final est = estimatePlan(
@@ -135,7 +136,10 @@ Future<void> switchCourseFlow(BuildContext context, WidgetRef ref, CourseInfo c)
         SnackBar(content: Text('${c.flag}  ${c.targetName}')),
       );
     }
-  } catch (_) {
+  } catch (e, st) {
+    // El cambio de curso quedó a medias: se avisa al usuario Y se reporta (es un
+    // fallo real del flujo de negocio, no ruido esperado).
+    reportError(e, stackTrace: st, context: 'switch_course');
     if (context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(l10n.courseSwitchFailed)),

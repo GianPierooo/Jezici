@@ -24,6 +24,23 @@ void main() {
         JzErrorKind.auth);
   });
 
+  test('SQLSTATE CUSTOM JZxxx (mig 167): kind por CÓDIGO + reason por MENSAJE', () {
+    // Las RPC migradas levantan jz_err(reason, kind) → code 'JZxxx' + message=token.
+    JzError jz(String code, String msg) =>
+        JzError.from(PostgrestException(message: msg, code: code));
+    expect(jz('JZ409', 'handle_taken').kind, JzErrorKind.conflict);
+    expect(jz('JZ409', 'handle_taken').reason, 'handle_taken'); // token EXACTO, no substring
+    expect(jz('JZ422', 'invalid_handle').kind, JzErrorKind.validation);
+    expect(jz('JZ401', 'auth required').kind, JzErrorKind.auth);
+    expect(jz('JZ403', 'social_unavailable').kind, JzErrorKind.denied);
+    expect(jz('JZ404', 'not_found').kind, JzErrorKind.notFound);
+    expect(jz('JZ429', 'handle_change_rate').kind, JzErrorKind.rateLimited);
+    // Aunque el MENSAJE se reescriba, el KIND se mantiene (viene del código).
+    expect(jz('JZ409', 'ese handle ya existe').kind, JzErrorKind.conflict);
+    // Fallback intacto: sin code JZ (RPC no migrada), el texto sigue mapeando.
+    expect(from('handle_taken').reason, 'handle_taken');
+  });
+
   test('red / timeout → network (benigno, no se reporta)', () {
     expect(JzError.from(const SocketException('no net')).kind, JzErrorKind.network);
     expect(JzError.from(TimeoutException('slow')).kind, JzErrorKind.network);

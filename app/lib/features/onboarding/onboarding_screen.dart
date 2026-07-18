@@ -76,7 +76,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
         _nameCtrl.text = metaName;
         _data.name = metaName;
       }
-    } catch (_) {}
+    } catch (_) {/* best-effort: prellenar el nombre desde el metadata de OAuth; si no, se pide igual */}
     try {
       final p = await repo.fetchProfile();
       final saved = p.name?.trim();
@@ -86,7 +86,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
           _data.name = saved;
         });
       }
-    } catch (_) {}
+    } catch (_) {/* best-effort: prellenar desde get_profile; su fallo ya se reportó en _rpc */}
   }
 
   /// Analítica de drop-off por paso (GA4 · B7).
@@ -149,13 +149,13 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       if (nm.isNotEmpty) {
         try {
           await repo.setProfile(name: nm);
-        } catch (_) {}
+        } catch (_) {/* idempotente: la red de seguridad (CompleteProfileScreen) recupera; reportado en _rpc */}
       }
       // Belt idempotente del AGE GATE (por si la escritura al salir del paso falló).
       if (_birthYear != null) {
         try {
           await repo.submitAgeGate(_birthYear!);
-        } catch (_) {}
+        } catch (_) {/* belt idempotente del age gate; reportado en _rpc si es fallo real */}
       }
       // Consentimiento legal: se registra SIEMPRE al completar el onboarding (con
       // sesión activa). Cubre el camino confirm-email ON, donde el alta no tenía
@@ -166,7 +166,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       if (_data.targetCourseId != null) {
         try {
           await repo.setActiveCourse(_data.targetCourseId!);
-        } catch (_) {}
+        } catch (_) {/* idempotente: robustez si el pick falló; reportado en _rpc */}
       }
       final est = estimatePlan(
         currentLevel: _data.currentLevel,
@@ -543,7 +543,7 @@ class _OnboardingScreenState extends ConsumerState<OnboardingScreen> {
       if (n.isNotEmpty) await repo.setProfile(name: n);
       // AGE GATE: guarda el AÑO y deja que el servidor recompute is_adult.
       if (_birthYear != null) await repo.submitAgeGate(_birthYear!);
-    } catch (_) {}
+    } catch (_) {/* best-effort del paso de nombre: no bloquea el avance; reportado en _rpc */}
     _next();
   }
 

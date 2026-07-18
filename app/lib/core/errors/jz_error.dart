@@ -117,6 +117,28 @@ class JzError implements Exception {
       return JzError(JzErrorKind.auth, cause: e, rpc: rpc);
     }
 
+    // 3b) SQLSTATE CUSTOM 'JZxxx' (2ª pasada de errores tipados): las RPC de
+    //     negocio MIGRADAS levantan `jz_err(reason, kind)` → el KIND viene del
+    //     CÓDIGO (robusto ante reescrituras del texto) y el reason es el MENSAJE
+    //     = token estable EXACTO (no substring). Las RPC aún no migradas siguen
+    //     cayendo a la tabla de tokens por texto (paso 4) → compatibilidad total.
+    if (code.length == 5 && code.startsWith('JZ')) {
+      final r = e is PostgrestException ? e.message.trim() : '';
+      return JzError(
+        switch (code) {
+          'JZ401' => JzErrorKind.auth,
+          'JZ403' => JzErrorKind.denied,
+          'JZ404' => JzErrorKind.notFound,
+          'JZ409' => JzErrorKind.conflict,
+          'JZ429' => JzErrorKind.rateLimited,
+          _ => JzErrorKind.validation, // JZ422 + cualquier otro JZ
+        },
+        reason: r.isEmpty ? null : r,
+        cause: e,
+        rpc: rpc,
+      );
+    }
+
     // 4) Errores de NEGOCIO (raise exception, SQLSTATE P0001): el texto es el
     //    contrato. Tabla ORDENADA de tokens conocidos → (reason, kind). El orden
     //    importa (p.ej. 'social unavailable' antes que 'unavailable').

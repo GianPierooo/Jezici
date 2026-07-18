@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart' show kIsWeb, Uint8List;
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../core/errors/error_reporter.dart';
+import '../../core/errors/jz_error.dart';
 import '../models/achievement_models.dart';
 import '../models/checkpoint_models.dart';
 import '../models/course_models.dart';
@@ -28,6 +29,24 @@ class ProgressRepository {
   String? get currentUserId => _client.auth.currentUser?.id;
   bool get isSignedIn => _client.auth.currentSession != null;
 
+  /// Frontera de RPC: TODA llamada al servidor pasa por aquí para que su error
+  /// quede TIPADO (JzError) por diseño — no caso por caso — y se reporte a Sentry
+  /// EN EL BORDE (los fallos server/unknown/auth que antes se volvían un AsyncError
+  /// invisible de Riverpod). Los errores ESPERADOS de negocio (rls/validación/
+  /// conflicto/rate) se tipan pero NO se reportan (no son ruido). Los best-effort
+  /// muy frecuentes (heartbeat/log_event) pasan `report:false` para no spamear.
+  /// Los sitios que muestran mensaje al usuario hacen `JzError.from(e)` sobre el
+  /// JzError ya lanzado (idempotente) → mismo mensaje, sin doble reporte.
+  Future<dynamic> _rpc(String fn, {Map<String, dynamic>? params, bool report = true}) async {
+    try {
+      return await _client.rpc(fn, params: params);
+    } catch (e, st) {
+      final jz = JzError.from(e, rpc: fn);
+      if (report) reportError(jz, stackTrace: st);
+      throw jz;
+    }
+  }
+
   /// Nombre sugerido para prellenar la captura del onboarding. Google/OAuth
   /// entregan `full_name`/`name` en el metadata de la sesión (el alta por email
   /// no). null si no hay nada usable. No toca la BD; solo lee la sesión local.
@@ -44,8 +63,7 @@ class ProgressRepository {
   /// canónica) sólo se revela DESPUÉS de responder, para el feedback.
   Future<({bool correct, bool near, bool graded, Map<String, dynamic> expected})> gradeItem(
       String itemId, Object? answer) async {
-    final res = await _client
-        .rpc('grade_item', params: {'p_item_id': itemId, 'p_answer': answer});
+    final res = await _rpc('grade_item', params: {'p_item_id': itemId, 'p_answer': answer});
     final m = Map<String, dynamic>.from(res as Map);
     return (
       correct: m['correct'] as bool? ?? false,
@@ -62,7 +80,7 @@ class ProgressRepository {
   Future<void> prioritizeFailedSrs(List<String> itemIds) async {
     if (itemIds.isEmpty) return;
     try {
-      await _client.rpc('srs_prioritize_failed', params: {'p_item_ids': itemIds});
+      await _rpc('srs_prioritize_failed', params: {'p_item_ids': itemIds});
     } catch (_) {/* no bloquear el fin de lección por el SRS */}
   }
 
@@ -70,7 +88,7 @@ class ProgressRepository {
 
   /// Tip post-lección personalizado a la skill más débil (RPC get_lesson_tip).
   Future<TipModel?> getLessonTip(String lessonId) async {
-    final res = await _client.rpc('get_lesson_tip', params: {'p_lesson_id': lessonId});
+    final res = await _rpc('get_lesson_tip', params: {'p_lesson_id': lessonId});
     if (res == null) return null;
     return TipModel.fromJson(Map<String, dynamic>.from(res as Map));
   }
@@ -79,7 +97,7 @@ class ProgressRepository {
   /// vocabulario nuevo (RPC get_lesson_intro, deriva de contenido existente). null
   /// si no hay nada que presentar → el cliente entra directo a los ejercicios.
   Future<LessonIntro?> getLessonIntro(String lessonId) async {
-    final res = await _client.rpc('get_lesson_intro', params: {'p_lesson_id': lessonId});
+    final res = await _rpc('get_lesson_intro', params: {'p_lesson_id': lessonId});
     if (res == null) return null;
     final intro = LessonIntro.fromJson(Map<String, dynamic>.from(res as Map));
     return intro.isEmpty ? null : intro;
@@ -87,7 +105,7 @@ class ProgressRepository {
 
   /// Cuaderno de datos: tips vistos por el usuario (RPC get_notebook).
   Future<List<TipModel>> getNotebook() async {
-    final res = await _client.rpc('get_notebook');
+    final res = await _rpc('get_notebook');
     return (res as List)
         .map((e) => TipModel.fromJson(Map<String, dynamic>.from(e as Map)))
         .toList();
@@ -96,14 +114,14 @@ class ProgressRepository {
   /// Referencia navegable (RPC get_reference): conceptos del curso activo +
   /// habilidad más floja. No marca como visto (es solo navegación).
   Future<ReferenceData> fetchReference() async {
-    final res = await _client.rpc('get_reference');
+    final res = await _rpc('get_reference');
     return ReferenceData.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
   // ── Historias / Inmersión (input comprensible, mig 065) ───────────────────
   /// Lista de historias del curso activo (sin respuestas).
   Future<List<StorySummary>> fetchStories() async {
-    final res = await _client.rpc('get_stories');
+    final res = await _rpc('get_stories');
     return (res as List)
         .map((e) => StorySummary.fromJson(Map<String, dynamic>.from(e as Map)))
         .toList();
@@ -111,13 +129,13 @@ class ProgressRepository {
 
   /// Historia completa: segmentos + glosario + preguntas SIN respuesta.
   Future<StoryDetail> fetchStory(String storyId) async {
-    final res = await _client.rpc('get_story', params: {'p_story_id': storyId});
+    final res = await _rpc('get_story', params: {'p_story_id': storyId});
     return StoryDetail.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
   /// Califica las respuestas server-side (submit_story). answers = [{i, answer}].
   Future<StoryResult> submitStory(String storyId, List<Map<String, dynamic>> answers) async {
-    final res = await _client.rpc('submit_story', params: {'p_story_id': storyId, 'p_answers': answers});
+    final res = await _rpc('submit_story', params: {'p_story_id': storyId, 'p_answers': answers});
     return StoryResult.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
@@ -125,7 +143,7 @@ class ProgressRepository {
 
   /// Perfil propio para el hero (RPC get_profile).
   Future<ProfileInfo> fetchProfile() async {
-    final res = await _client.rpc('get_profile');
+    final res = await _rpc('get_profile');
     return ProfileInfo.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
@@ -143,7 +161,7 @@ class ProgressRepository {
     String? timezone,
     String? gender,
   }) async {
-    final res = await _client.rpc('set_profile', params: {
+    final res = await _rpc('set_profile', params: {
       'p_name': name,
       'p_country': country,
       'p_bio': bio,
@@ -171,7 +189,7 @@ class ProgressRepository {
     String? avatarColor,
     String? timezone,
   }) async {
-    final res = await _client.rpc('set_profile_required', params: {
+    final res = await _rpc('set_profile_required', params: {
       'p_name': name,
       'p_gender': gender,
       'p_birthday_day': birthdayDay,
@@ -188,7 +206,7 @@ class ProgressRepository {
   /// servidor recomputa is_adult REAL. Devuelve {age_tier, is_adult}. 18+ es
   /// requisito SOLO de lo social (aún no abierto); un menor sigue usando la app.
   Future<Map<String, dynamic>> submitAgeGate(int birthYear) async {
-    final res = await _client.rpc('submit_age_gate', params: {'p_birth_year': birthYear});
+    final res = await _rpc('submit_age_gate', params: {'p_birth_year': birthYear});
     return Map<String, dynamic>.from(res as Map);
   }
 
@@ -196,7 +214,7 @@ class ProgressRepository {
 
   /// Cursos disponibles + cuál es el activo del usuario (RPC get_courses).
   Future<List<CourseInfo>> fetchCourses() async {
-    final res = await _client.rpc('get_courses');
+    final res = await _rpc('get_courses');
     return (res as List)
         .map((e) => CourseInfo.fromJson(e as Map<String, dynamic>))
         .toList();
@@ -204,7 +222,7 @@ class ProgressRepository {
 
   /// Cambia el curso activo del usuario (y asegura inscripción, server-side).
   Future<void> setActiveCourse(String courseId) async {
-    await _client.rpc('set_active_course', params: {'p_course_id': courseId});
+    await _rpc('set_active_course', params: {'p_course_id': courseId});
   }
 
   /// Sesión anónima temporal (el onboarding real es el paso G).
@@ -268,7 +286,7 @@ class ProgressRepository {
     // Con courseId → ubica en el banco de ESE curso (fr/it/de/nl re-placement).
     // excludeSkills: p.ej. ['speaking'] si el micrófono no está disponible → el
     // RPC no sirve esa skill y su nivel cae al global (degradación honesta).
-    final res = await _client.rpc('placement_next', params: {
+    final res = await _rpc('placement_next', params: {
       'p_course': courseId,
       'p_start_level': startLevel,
       'p_history': history,
@@ -320,7 +338,7 @@ class ProgressRepository {
     required String estimatedCompletion,
     required Map<String, String> skillLevels,
   }) async {
-    await _client.rpc('create_plan', params: {
+    await _rpc('create_plan', params: {
       'p_coach_style': coachStyle,
       'p_intensity': intensity,
       'p_current_level': currentLevel,
@@ -338,13 +356,13 @@ class ProgressRepository {
   /// Seguimiento del plan (dashboard): adelante/atrás, proyección, progreso.
   Future<PlanTracking> fetchPlanTracking() async {
     if (_uid == null) return PlanTracking.empty;
-    final res = await _client.rpc('get_plan_tracking');
+    final res = await _rpc('get_plan_tracking');
     return PlanTracking.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
   /// Palanca "llegar más rápido": sube min/día y recalcula la fecha (server-side).
   Future<Map<String, dynamic>> updatePlanPace(int dailyMinutes) async {
-    final res = await _client.rpc('update_plan_pace', params: {'p_daily_minutes': dailyMinutes});
+    final res = await _rpc('update_plan_pace', params: {'p_daily_minutes': dailyMinutes});
     return Map<String, dynamic>.from(res as Map);
   }
 
@@ -370,7 +388,7 @@ class ProgressRepository {
 
   /// Arranca el curso: crea progreso + las 4 habilidades (idempotente).
   Future<void> startCourse() async {
-    await _client.rpc('start_course');
+    await _rpc('start_course');
   }
 
   /// Cierra una lección server-side y devuelve el resumen.
@@ -378,7 +396,7 @@ class ProgressRepository {
     String lessonId,
     List<Map<String, dynamic>> answers,
   ) async {
-    final res = await _client.rpc('complete_lesson', params: {
+    final res = await _rpc('complete_lesson', params: {
       'p_lesson_id': lessonId,
       'p_answers': answers,
     });
@@ -388,13 +406,13 @@ class ProgressRepository {
   /// "Empezar el viaje": completa el nodo misión y desbloquea el siguiente.
   /// Devuelve el bono de bienvenida one-time ({first_time, xp_earned, gold_earned}).
   Future<Map<String, dynamic>> completeMission(String lessonId) async {
-    final res = await _client.rpc('complete_mission', params: {'p_lesson_id': lessonId});
+    final res = await _rpc('complete_mission', params: {'p_lesson_id': lessonId});
     return Map<String, dynamic>.from(res as Map);
   }
 
   /// Arma el examen del checkpoint (set aleatorizado, server-side).
   Future<CheckpointStartData> startCheckpoint(String lessonId) async {
-    final res = await _client.rpc('start_checkpoint', params: {'p_lesson_id': lessonId});
+    final res = await _rpc('start_checkpoint', params: {'p_lesson_id': lessonId});
     return CheckpointStartData.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
@@ -404,7 +422,7 @@ class ProgressRepository {
     List<Map<String, dynamic>> answers,
     int timeTakenSec,
   ) async {
-    final res = await _client.rpc('submit_checkpoint', params: {
+    final res = await _rpc('submit_checkpoint', params: {
       'p_lesson_id': lessonId,
       'p_answers': answers,
       'p_time_taken_sec': timeTakenSec,
@@ -471,26 +489,26 @@ class ProgressRepository {
 
   /// Compra un congelador de racha (cuesta oro; el servidor decide).
   Future<Map<String, dynamic>> useStreakFreeze() async {
-    final res = await _client.rpc('use_streak_freeze');
+    final res = await _rpc('use_streak_freeze');
     return Map<String, dynamic>.from(res as Map);
   }
 
   /// Tienda: estado (oro, vidas, congeladores, cofre disponible).
   Future<ShopStatus> fetchShopStatus() async {
     if (_uid == null) return ShopStatus.empty;
-    final res = await _client.rpc('shop_status');
+    final res = await _rpc('shop_status');
     return ShopStatus.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
   /// Abre el cofre diario (recompensa variable de oro, 1/día).
   Future<Map<String, dynamic>> openDailyChest() async {
-    final res = await _client.rpc('open_daily_chest');
+    final res = await _rpc('open_daily_chest');
     return Map<String, dynamic>.from(res as Map);
   }
 
   /// Recarga vidas a 5 (cuesta oro).
   Future<Map<String, dynamic>> buyHearts() async {
-    final res = await _client.rpc('buy_hearts');
+    final res = await _rpc('buy_hearts');
     return Map<String, dynamic>.from(res as Map);
   }
 
@@ -500,7 +518,7 @@ class ProgressRepository {
   /// Borra la cuenta del usuario y TODOS sus datos (derecho de supresión).
   /// El servidor borra auth.users → cascada limpia todo. Luego cierra sesión.
   Future<void> deleteAccount() async {
-    await _client.rpc('delete_account');
+    await _rpc('delete_account');
     await _client.auth.signOut();
   }
 
@@ -508,7 +526,7 @@ class ProgressRepository {
   /// documento (mig 062). Fire-and-forget tolerante: nunca bloquea el alta.
   Future<void> acceptLegal(String version) async {
     try {
-      await _client.rpc('accept_legal', params: {'p_version': version});
+      await _rpc('accept_legal', params: {'p_version': version});
     } catch (_) {}
   }
 
@@ -516,7 +534,7 @@ class ProgressRepository {
   /// re-consentir cuando el texto cambie.
   Future<String?> myLegalVersion() async {
     try {
-      final res = await _client.rpc('my_legal_version');
+      final res = await _rpc('my_legal_version');
       return res as String?;
     } catch (_) {
       return null;
@@ -526,7 +544,7 @@ class ProgressRepository {
   /// Portabilidad GDPR: exporta TODOS los datos del usuario autenticado en JSON
   /// (export_my_data, SECURITY DEFINER acotado a auth.uid()).
   Future<Map<String, dynamic>> exportMyData() async {
-    final res = await _client.rpc('export_my_data');
+    final res = await _rpc('export_my_data');
     return Map<String, dynamic>.from(res as Map);
   }
 
@@ -535,7 +553,7 @@ class ProgressRepository {
   /// Registra un evento (fire-and-forget; nunca rompe el flujo del usuario).
   Future<void> logEvent(String event, {Map<String, dynamic>? props}) async {
     try {
-      await _client.rpc('log_event', params: {'p_event': event, 'p_props': props ?? {}});
+      await _rpc('log_event', params: {'p_event': event, 'p_props': props ?? {}}, report: false);
     } catch (_) {}
   }
 
@@ -544,7 +562,7 @@ class ProgressRepository {
   /// admin rechazan a no-admin); esto es solo para no mostrar una puerta cerrada.
   Future<bool> amIAdmin() async {
     try {
-      final res = await _client.rpc('am_i_admin');
+      final res = await _rpc('am_i_admin');
       return res == true;
     } catch (_) {
       return false; // ante cualquier duda, NO mostrar (fail-closed)
@@ -553,26 +571,26 @@ class ProgressRepository {
 
   /// Métricas agregadas §13 (panel mínimo interno).
   Future<Map<String, dynamic>> fetchMetrics() async {
-    final res = await _client.rpc('get_metrics');
+    final res = await _rpc('get_metrics');
     return Map<String, dynamic>.from(res as Map);
   }
 
   /// Embudo de onboarding (completitud + drop-off por paso) — GA4 B7.
   Future<Map<String, dynamic>> fetchOnboardingFunnel() async {
-    final res = await _client.rpc('get_onboarding_funnel');
+    final res = await _rpc('get_onboarding_funnel');
     return Map<String, dynamic>.from(res as Map);
   }
 
   /// Engagement (uso por sección, feedback, interés Conversar) — GA7.
   Future<Map<String, dynamic>> fetchEngagement() async {
-    final res = await _client.rpc('get_engagement');
+    final res = await _rpc('get_engagement');
     return Map<String, dynamic>.from(res as Map);
   }
 
   /// Mensajes de feedback REALES (texto) — admin only (get_feedback). Antes solo se
   /// veía el conteo por tipo; esto devuelve lo que escribieron los usuarios (sin PII).
   Future<List<Map<String, dynamic>>> fetchFeedback() async {
-    final res = await _client.rpc('get_feedback', params: {'p_limit': 100});
+    final res = await _rpc('get_feedback', params: {'p_limit': 100});
     return ((res as List?) ?? const [])
         .map((e) => Map<String, dynamic>.from(e as Map))
         .toList();
@@ -588,7 +606,7 @@ class ProgressRepository {
     String? appVersion,
     String? platform,
   }) async {
-    await _client.rpc('submit_feedback', params: {
+    await _rpc('submit_feedback', params: {
       'p_screen': screen,
       'p_kind': kind,
       'p_message': message,
@@ -604,53 +622,52 @@ class ProgressRepository {
 
   /// Estado social: {access, is_adult, friend_code}. access=false → oculto.
   Future<Map<String, dynamic>> getSocialStatus() async {
-    final res = await _client.rpc('get_social_status');
+    final res = await _rpc('get_social_status');
     return Map<String, dynamic>.from(res as Map);
   }
 
   Future<Map<String, dynamic>> sendFriendRequest(String code) async =>
       Map<String, dynamic>.from(
-          await _client.rpc('send_friend_request', params: {'p_code': code}) as Map);
+          await _rpc('send_friend_request', params: {'p_code': code}) as Map);
 
   Future<void> respondFriendRequest(String connectionId, bool accept) async {
-    await _client.rpc('respond_friend_request',
+    await _rpc('respond_friend_request',
         params: {'p_connection_id': connectionId, 'p_accept': accept});
   }
 
   Future<Map<String, dynamic>> listFriends() async =>
-      Map<String, dynamic>.from(await _client.rpc('list_friends') as Map);
+      Map<String, dynamic>.from(await _rpc('list_friends') as Map);
 
   Future<Map<String, dynamic>> sendChatMessage(String connectionId, String body) async =>
-      Map<String, dynamic>.from(await _client
-          .rpc('send_message', params: {'p_connection_id': connectionId, 'p_body': body}) as Map);
+      Map<String, dynamic>.from(await _rpc('send_message', params: {'p_connection_id': connectionId, 'p_body': body}) as Map);
 
   Future<List<Map<String, dynamic>>> listChatMessages(String connectionId) async {
-    final res = await _client.rpc('list_messages', params: {'p_connection_id': connectionId});
+    final res = await _rpc('list_messages', params: {'p_connection_id': connectionId});
     return (res as List).map((e) => Map<String, dynamic>.from(e as Map)).toList();
   }
 
   Future<void> addCorrection(String messageId, String corrected, String? note) async {
-    await _client.rpc('add_correction',
+    await _rpc('add_correction',
         params: {'p_message_id': messageId, 'p_corrected': corrected, 'p_note': note});
   }
 
   Future<void> blockUser(String targetId) async {
-    await _client.rpc('block_user', params: {'p_target': targetId});
+    await _rpc('block_user', params: {'p_target': targetId});
   }
 
   Future<void> reportUser(String targetId, String reason, {String context = 'message'}) async {
-    await _client.rpc('report_user',
+    await _rpc('report_user',
         params: {'p_target': targetId, 'p_reason': reason, 'p_context_type': context});
   }
 
   Future<void> unblockUser(String targetId) async {
-    await _client.rpc('unblock_user', params: {'p_target': targetId});
+    await _rpc('unblock_user', params: {'p_target': targetId});
   }
 
   /// A quién he bloqueado (para poder DESBLOQUEAR — antes no había forma de ver
   /// la lista → el bloqueo era una trampa permanente). Campos mínimos.
   Future<List<Map<String, dynamic>>> listBlocks() async {
-    final res = await _client.rpc('list_blocks') as Map;
+    final res = await _rpc('list_blocks') as Map;
     return ((res['blocked'] as List?) ?? const [])
         .map((e) => Map<String, dynamic>.from(e as Map))
         .toList();
@@ -664,30 +681,30 @@ class ProgressRepository {
   /// invalid_handle / handle_taken / handle_reserved / handle_change_rate.
   Future<Map<String, dynamic>> claimHandle(String handle) async =>
       Map<String, dynamic>.from(
-          await _client.rpc('claim_handle', params: {'p_handle': handle}) as Map);
+          await _rpc('claim_handle', params: {'p_handle': handle}) as Map);
 
   /// Privacidad: aparecer o no en búsqueda/sugerencias.
   Future<void> setDiscoverable(bool on) async {
-    await _client.rpc('set_discoverable', params: {'p_on': on});
+    await _rpc('set_discoverable', params: {'p_on': on});
   }
 
   /// Presencia: sella mi last_seen (heartbeat ligero al abrir/volver/periódico).
   /// Best-effort: nunca debe romper el flujo si falla la red.
   Future<void> heartbeat() async {
     try {
-      await _client.rpc('heartbeat');
+      await _rpc('heartbeat', report: false);
     } catch (_) {}
   }
 
   /// Privacidad de presencia: mostrar o no "en línea" a los demás.
   Future<void> setPresence(bool on) async {
-    await _client.rpc('set_presence', params: {'p_on': on});
+    await _rpc('set_presence', params: {'p_on': on});
   }
 
   /// Busca usuarios por nombre o @handle. Solo campos públicos; excluye
   /// bloqueados (ambas dir) y no-descubribles server-side.
   Future<List<Map<String, dynamic>>> searchUsers(String q) async {
-    final res = await _client.rpc('search_users', params: {'p_q': q});
+    final res = await _rpc('search_users', params: {'p_q': q});
     final list = (res as Map)['results'] as List? ?? const [];
     return list.map((e) => Map<String, dynamic>.from(e as Map)).toList();
   }
@@ -695,11 +712,11 @@ class ProgressRepository {
   /// Perfil PÚBLICO acotado (nunca email/edad/datos privados).
   Future<Map<String, dynamic>> getPublicProfile(String userId) async =>
       Map<String, dynamic>.from(
-          await _client.rpc('get_public_profile', params: {'p_user_id': userId}) as Map);
+          await _rpc('get_public_profile', params: {'p_user_id': userId}) as Map);
 
   /// Sugerencias de amigos por señal inocua (mismo curso/nivel cercano).
   Future<List<Map<String, dynamic>>> suggestFriends() async {
-    final res = await _client.rpc('suggest_friends');
+    final res = await _rpc('suggest_friends');
     final list = (res as Map)['suggestions'] as List? ?? const [];
     return list.map((e) => Map<String, dynamic>.from(e as Map)).toList();
   }
@@ -707,7 +724,7 @@ class ProgressRepository {
   /// Solicita amistad por user_id (desde búsqueda/perfil/sugerencias).
   Future<Map<String, dynamic>> requestFriend(String userId) async =>
       Map<String, dynamic>.from(
-          await _client.rpc('request_friend', params: {'p_user_id': userId}) as Map);
+          await _rpc('request_friend', params: {'p_user_id': userId}) as Map);
 
   /// Stream Realtime de mensajes de una conversación (la RLS aplica también aquí:
   /// un no-miembro/bloqueado no recibe nada).
@@ -722,16 +739,16 @@ class ProgressRepository {
 
   // ── Co-op (retos en pareja) ─────────────────────────────────────────────
   Future<List<Map<String, dynamic>>> listCoops() async {
-    final res = await _client.rpc('list_coops');
+    final res = await _rpc('list_coops');
     return (res as List).map((e) => Map<String, dynamic>.from(e as Map)).toList();
   }
 
   Future<Map<String, dynamic>> createCoop(String friendId, int targetXp) async =>
-      Map<String, dynamic>.from(await _client.rpc('create_coop',
+      Map<String, dynamic>.from(await _rpc('create_coop',
           params: {'p_friend': friendId, 'p_target_xp': targetXp}) as Map);
 
   Future<void> respondCoop(String coopId, bool accept) async {
-    await _client.rpc('respond_coop', params: {'p_coop_id': coopId, 'p_accept': accept});
+    await _rpc('respond_coop', params: {'p_coop_id': coopId, 'p_accept': accept});
   }
 
   // ── Notas de voz ────────────────────────────────────────────────────────
@@ -752,7 +769,7 @@ class ProgressRepository {
           bytes,
           fileOptions: FileOptions(contentType: mime, upsert: false),
         );
-    await _client.rpc('send_voice_message',
+    await _rpc('send_voice_message',
         params: {'p_connection_id': connectionId, 'p_path': path});
     return path;
   }
@@ -769,7 +786,7 @@ class ProgressRepository {
     String? content,
     int? selfScore,
   }) async {
-    await _client.rpc('save_conversation_attempt', params: {
+    await _rpc('save_conversation_attempt', params: {
       'p_topic': topic,
       'p_mode': mode,
       'p_content': content,
@@ -781,7 +798,7 @@ class ProgressRepository {
   /// registró bien; false si falló (la UI distingue éxito real de fallo).
   Future<bool> logConversarInterest(bool wouldUse, String? topics) async {
     try {
-      await _client.rpc('log_conversar_interest',
+      await _rpc('log_conversar_interest',
           params: {'p_would_use': wouldUse, 'p_topics': topics});
       return true;
     } catch (_) {
@@ -810,7 +827,7 @@ class ProgressRepository {
     int? dailyMinutes,
     required bool pushEnabled,
   }) async {
-    await _client.rpc('update_settings', params: {
+    await _rpc('update_settings', params: {
       'p_coach_style': coachStyle,
       'p_intensity': intensity,
       'p_quiet_start': quietStart,
@@ -823,14 +840,13 @@ class ProgressRepository {
   /// El MOTOR Matix: dado un trigger, elige el copy del estilo del usuario EN
   /// SU IDIOMA (locale), respeta techo + quiet_hours y lo registra.
   Future<MatixResult> matixFire(String trigger, {String locale = 'es'}) async {
-    final res = await _client
-        .rpc('matix_fire', params: {'p_trigger': trigger, 'p_locale': locale});
+    final res = await _rpc('matix_fire', params: {'p_trigger': trigger, 'p_locale': locale});
     return MatixResult.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
   /// Guarda la suscripción Web Push del dispositivo (RLS: cada quien la suya).
   Future<void> savePushSubscription(String endpoint, String p256dh, String auth) async {
-    await _client.rpc('save_push_subscription',
+    await _rpc('save_push_subscription',
         params: {'p_endpoint': endpoint, 'p_p256dh': p256dh, 'p_auth': auth});
   }
 
@@ -846,26 +862,26 @@ class ProgressRepository {
 
   /// {hearts, max, seconds_to_next, refill_cost} — tick lazy en el servidor.
   Future<Map<String, dynamic>> getHearts() async =>
-      Map<String, dynamic>.from(await _client.rpc('get_hearts') as Map);
+      Map<String, dynamic>.from(await _rpc('get_hearts') as Map);
 
   /// Reporta la pérdida de una vida (best-effort; la UX local no espera).
   Future<Map<String, dynamic>> loseHeart() async =>
-      Map<String, dynamic>.from(await _client.rpc('lose_heart') as Map);
+      Map<String, dynamic>.from(await _rpc('lose_heart') as Map);
 
   // ── T4 · Revivir racha perdida (caro + limitado; congelador intacto) ──────
 
   Future<Map<String, dynamic>> streakReviveStatus() async =>
-      Map<String, dynamic>.from(await _client.rpc('streak_revive_status') as Map);
+      Map<String, dynamic>.from(await _rpc('streak_revive_status') as Map);
 
   Future<Map<String, dynamic>> reviveStreak() async =>
-      Map<String, dynamic>.from(await _client.rpc('revive_streak') as Map);
+      Map<String, dynamic>.from(await _rpc('revive_streak') as Map);
 
   // ── Practicar (paso Fase 1) ───────────────────────────────────────────────
 
   /// Arma una sesión de práctica (srs | weakness | skill | timed | reinforce_unit).
   /// [unit] sólo aplica a 'reinforce_unit' (re-evalúa ítems débiles de la unidad).
   Future<PracticeSession> startPractice(String mode, {String? skill, String? unit}) async {
-    final res = await _client.rpc('start_practice', params: {
+    final res = await _rpc('start_practice', params: {
       'p_mode': mode,
       'p_skill': skill,
       'p_unit': unit,
@@ -878,7 +894,7 @@ class ProgressRepository {
     String mode,
     List<Map<String, dynamic>> answers,
   ) async {
-    final res = await _client.rpc('submit_practice', params: {
+    final res = await _rpc('submit_practice', params: {
       'p_mode': mode,
       'p_answers': answers,
     });
@@ -890,7 +906,7 @@ class ProgressRepository {
   /// Cola de repaso: vencidas + nuevas (el LÍMITE diario lo pone el servidor
   /// desde jz_config). Tarjetas de ESCRITURA; nunca opción múltiple.
   Future<SrsSession> startSrs() async {
-    final res = await _client.rpc('start_practice',
+    final res = await _rpc('start_practice',
         params: {'p_mode': 'srs', 'p_skill': null, 'p_unit': null});
     return SrsSession.fromJson(Map<String, dynamic>.from(res as Map));
   }
@@ -904,7 +920,7 @@ class ProgressRepository {
 
   /// Vencidas + nuevas restantes hoy + RETENCIÓN (null si aún no hay maduras).
   Future<SrsStatus> fetchSrsStatus() async {
-    final res = await _client.rpc('get_srs_status');
+    final res = await _rpc('get_srs_status');
     return SrsStatus.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
@@ -913,7 +929,7 @@ class ProgressRepository {
   /// Catálogo de logros con el estado del usuario (evalúa y desbloquea al vuelo).
   Future<List<Achievement>> fetchAchievements() async {
     if (_uid == null) return const [];
-    final res = await _client.rpc('get_achievements');
+    final res = await _rpc('get_achievements');
     return (res as List)
         .map((e) => Achievement.fromJson(Map<String, dynamic>.from(e as Map)))
         .toList();
@@ -923,19 +939,19 @@ class ProgressRepository {
 
   Future<LevelExamStatus> fetchLevelExamStatus() async {
     if (_uid == null) return LevelExamStatus.empty;
-    final res = await _client.rpc('level_exam_status');
+    final res = await _rpc('level_exam_status');
     return LevelExamStatus.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
   /// Dominio + refuerzo por habilidad (modelo D6/D8): barras de las 4 habilidades.
   Future<SkillMasteryStatus> fetchSkillMastery() async {
     if (_uid == null) return SkillMasteryStatus.empty;
-    final res = await _client.rpc('get_skill_mastery');
+    final res = await _rpc('get_skill_mastery');
     return SkillMasteryStatus.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
   Future<CheckpointStartData> startLevelExam() async {
-    final res = await _client.rpc('start_level_exam');
+    final res = await _rpc('start_level_exam');
     return CheckpointStartData.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
@@ -943,7 +959,7 @@ class ProgressRepository {
     List<Map<String, dynamic>> answers,
     int timeTakenSec,
   ) async {
-    final res = await _client.rpc('submit_level_exam', params: {
+    final res = await _rpc('submit_level_exam', params: {
       'p_answers': answers,
       'p_time_taken_sec': timeTakenSec,
     });
@@ -952,7 +968,7 @@ class ProgressRepository {
 
   /// Liga semanal del usuario (standings; siembra bots si faltan rivales).
   Future<LeagueStanding> fetchLeague() async {
-    final res = await _client.rpc('get_league');
+    final res = await _rpc('get_league');
     return LeagueStanding.fromJson(Map<String, dynamic>.from(res as Map));
   }
 
@@ -966,7 +982,7 @@ class ProgressRepository {
     int limit = 50,
     int offset = 0,
   }) async {
-    final res = await _client.rpc('get_leaderboard', params: {
+    final res = await _rpc('get_leaderboard', params: {
       'p_metric': metric,
       'p_window': window,
       'p_scope': scope,
@@ -979,7 +995,7 @@ class ProgressRepository {
   /// Certificados de nivel emitidos del usuario.
   Future<List<Certificate>> fetchCertificates() async {
     if (_uid == null) return const [];
-    final res = await _client.rpc('get_certificates');
+    final res = await _rpc('get_certificates');
     return (res as List)
         .map((e) => Certificate.fromJson(Map<String, dynamic>.from(e as Map)))
         .toList();
@@ -1016,7 +1032,7 @@ class ProgressRepository {
     // modelo de dominio progress_points está congelado y daría siempre 'reading'.
     String? weakest;
     try {
-      final gm = await _client.rpc('get_skill_mastery');
+      final gm = await _rpc('get_skill_mastery');
       final list = ((gm as Map)['skills'] as List?) ?? const [];
       double best = -1;
       for (final s in list) {
@@ -1027,11 +1043,11 @@ class ProgressRepository {
           weakest = m['skill'] as String?;
         }
       }
-    } catch (e, st) {
+    } catch (_) {
       // Un novato SIN dominio devuelve datos válidos (skills vacías), no lanza →
-      // llegar aquí es un fallo REAL (RPC caído/RLS), no "sin datos". Se reporta a
-      // Sentry (red se filtra sola) para que deje de confundirse con un novato.
-      reportError(e, stackTrace: st, rpc: 'get_skill_mastery');
+      // llegar aquí es un fallo REAL (RPC caído/RLS). Ya quedó TIPADO y REPORTADO
+      // en la frontera `_rpc` (get_skill_mastery); aquí solo degradamos (weakest
+      // queda null) para no confundirlo con un novato ni tumbar la pantalla.
     }
     return PracticeStatus(dueWords: due, weakestSkill: weakest, hasProgress: hasProgress);
   }

@@ -5,6 +5,41 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-17**.
 
+## ERRORES TIPADOS · 2ª PASADA — frontera de RPC + catches auditados + SQLSTATE custom ✅ LIVE (mig 167 · 2026-07-17)
+Cierra lo que la 1ª pasada (JzError) dejó pendiente. Cero IA. Transversal, **sin tocar lógica/economía/
+seguridad**; los mensajes que YA funcionaban (amistad, handle) siguen igual — ahora por CÓDIGO, no substring.
+- **1 · FRONTERA DE RPC (`_rpc`):** las **84 llamadas `_client.rpc(...)` del repo** pasan por un único helper
+  que las TIPA (`JzError.from`, por diseño no caso-por-caso) y REPORTA a Sentry EN EL BORDE (server/unknown/
+  auth) — antes un RPC caído se volvía un `AsyncError` de Riverpod **invisible**. Los errores ESPERADOS
+  (rls/validación/conflicto/rate) se tipan pero NO se reportan (no son ruido). `heartbeat`/`log_event`
+  (muy frecuentes) pasan `report:false`. Los sitios que muestran mensaje usan `JzError.from(e)` (idempotente)
+  → mismo mensaje, sin doble reporte.
+- **2 · AUDITORÍA DE LOS 79 `catch(_){}` (PASO 0):** clasificados. **Infra best-effort legítima** (audio
+  unlock 22, TTS/voz/speech 12, prefs/locale/sound/music 10, main/config/crash 5) → se dejan (su dominio es
+  autoevidente). **Flujos de negocio** documentados o CERRADOS: repo (4, ahora reportan en `_rpc` antes de
+  degradar), friends (privacidad/presencia/merge = best-effort comentados; **block/report ya NO se traga en
+  silencio** → muestra el error tipado, es moderación), course_switcher (3 defensivos comentados + el
+  top-level ahora **reporta** `switch_course`), onboarding (6 best-effort idempotentes comentados: el
+  CompleteProfileScreen recupera), auth_screen (2 catches genéricos ahora **reportan** `auth_submit`/
+  `sign_in_google`).
+- **3 · SQLSTATE CUSTOM (mig 167):** helper server `jz_err(reason, kind)` levanta la clase **`JZ`**
+  (JZ401 auth · JZ403 denied · JZ404 not_found · **JZ409 conflict** · **JZ429 rate** · **JZ422 validation**);
+  **`claim_handle` migrado** (cuerpo VERBATIM de la mig 158, solo los `raise` → `jz_err`) → el cliente mapea
+  el KIND por **CÓDIGO** (robusto ante reescrituras) y el reason por el **MENSAJE = token EXACTO** (no
+  substring). **Compatibilidad total:** el mensaje sigue siendo el token de siempre (`handle_taken`, …) →
+  el fallback por texto del cliente sigue válido; las RPC **no migradas** siguen con P0001+texto (doble red).
+  `JzError.from` extendido para leer `JZxxx`.
+- **4 · auth_screen:** el `_friendly` migra "ya registrado" a reason TIPADO (`JzError.from`); credenciales/
+  contraseña siguen por texto (son de Supabase Auth, no de negocio) documentado.
+- **Verificado cliente REAL (`verify_typed_errors.py`, 2 JWT) TODO VERDE:** claim válido→200 (lógica intacta);
+  tomado→**`{"code":"JZ409","message":"handle_taken"}`**; inválido→JZ422+invalid_handle; reservado→JZ409+
+  handle_reserved; cambio<30d→JZ429+handle_change_rate. **`verify_handle_mandatory.py` funcional VERDE** (el
+  texto sigue en el mensaje → 0 regresión). analyze 0 (CI-exact) · test **196/196** (+1 JZ-code; friend_error_
+  mapping intacto) · build web OK.
+- **Pendiente (3ª pasada, reportado):** migrar a `jz_err` las RPC sociales grandes (`jz_do_friend_request`/
+  `block_user`/`report_user`/`set_profile_required`) y de plan/lección (más superficie, más riesgo — se hace
+  con verify real por función). Los ~49 catches de infra best-effort quedan tal cual (correctos por dominio).
+
 ## AMPLIAR EL LÉXICO — +154 palabras VERIFICADAS y NO INERTES (del contenido, no IA) ✅ LIVE (mig 166 · 2026-07-17)
 De la ## Cola / PRACTICAR_SRS_ANALISIS §5 ("480 palabras/curso es una SEMILLA; a 10/día se agota en ~48 d").
 Cero IA, server-only.

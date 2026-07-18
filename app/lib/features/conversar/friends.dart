@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/audio/audio_engine.dart';
 import '../../core/errors/error_reporter.dart';
 import '../../core/errors/jz_error.dart';
+import '../../core/errors/jz_error_message.dart';
 import '../../core/speech/voice_recorder.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/ui/jz_sheen.dart';
@@ -589,14 +590,14 @@ class _FriendsScreenState extends ConsumerState<FriendsScreen> {
   Future<void> _toggleDiscoverable(bool on) async {
     try {
       await ref.read(progressRepositoryProvider).setDiscoverable(on);
-    } catch (_) {}
+    } catch (_) {/* best-effort: el fallo ya se reportó en _rpc; invalidate re-sincroniza con el server */}
     ref.invalidate(socialStatusProvider);
   }
 
   Future<void> _togglePresence(bool on) async {
     try {
       await ref.read(progressRepositoryProvider).setPresence(on);
-    } catch (_) {}
+    } catch (_) {/* best-effort: reportado en _rpc; invalidate re-sincroniza */}
     ref.invalidate(socialStatusProvider);
   }
 
@@ -990,7 +991,7 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
         }
       }
       if (mounted) setState(() => _corrections = map);
-    } catch (_) {}
+    } catch (_) {/* best-effort: las correcciones son un realce del chat; su fallo ya se reportó en _rpc y el chat sigue */}
   }
 
   @override
@@ -1080,7 +1081,14 @@ class _ChatScreenState extends ConsumerState<ChatScreen> {
         await repo.reportUser(widget.friendId, 'reported from chat');
         messenger.showSnackBar(SnackBar(content: Text(l10n.convReported)));
       }
-    } catch (_) {}
+    } catch (e) {
+      // Bloquear/reportar que falla EN SILENCIO deja al usuario creyendo que
+      // actuó cuando no → moderación de seguridad, no puede tragarse. Se muestra
+      // el error tipado. (El fallo server/red ya se reportó en la frontera _rpc.)
+      if (mounted) {
+        messenger.showSnackBar(SnackBar(content: Text(errorMessageFor(e, l10n))));
+      }
+    }
   }
 
   Future<void> _correct(Map<String, dynamic> m) async {

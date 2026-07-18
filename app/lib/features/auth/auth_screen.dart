@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../core/config/auth_config.dart';
+import '../../core/errors/error_reporter.dart';
+import '../../core/errors/jz_error.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/ui/responsive_center.dart';
 import '../../data/providers.dart';
@@ -125,9 +127,12 @@ class _AuthScreenState extends ConsumerState<AuthScreen>
       if (!mounted) return;
       setState(() {
         _loading = false;
-        _error = _friendly(e.message);
+        _error = _friendly(e);
       });
-    } catch (_) {
+    } catch (e, st) {
+      // Fallo INESPERADO del alta/login (no un AuthException conocido): se tipa y
+      // reporta a Sentry (red se filtra sola) para no perderlo tras el mensaje.
+      reportError(e, stackTrace: st, rpc: 'auth_submit');
       if (!mounted) return;
       setState(() {
         _loading = false;
@@ -147,7 +152,8 @@ class _AuthScreenState extends ConsumerState<AuthScreen>
     try {
       await ref.read(progressRepositoryProvider).signInWithGoogle();
       // No navegamos aquí: en web el navegador ya está redirigiendo.
-    } catch (_) {
+    } catch (e, st) {
+      reportError(e, stackTrace: st, rpc: 'sign_in_google');
       if (!mounted) return;
       setState(() {
         _loading = false;
@@ -156,12 +162,15 @@ class _AuthScreenState extends ConsumerState<AuthScreen>
     }
   }
 
-  String _friendly(String raw) {
+  String _friendly(Object e) {
     final l10n = AppLocalizations.of(context);
-    final m = raw.toLowerCase();
-    if (m.contains('already registered') || m.contains('already been registered')) {
-      return l10n.authErrorDuplicate;
-    }
+    // "Ya registrado" ya es un reason TIPADO (JzError.from → conflict/
+    // already_registered) → robusto ante reescrituras del mensaje.
+    if (JzError.from(e).reason == 'already_registered') return l10n.authErrorDuplicate;
+    // Credenciales inválidas / longitud de contraseña vienen de Supabase Auth
+    // (AuthException), NO son errores de negocio con reason tipado → se
+    // distinguen por el mensaje del proveedor (inherente al flujo de auth).
+    final m = (e is AuthException ? e.message : e.toString()).toLowerCase();
     if (m.contains('invalid login') || m.contains('credentials')) {
       return l10n.authErrorInvalid;
     }
