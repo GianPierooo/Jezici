@@ -5,6 +5,24 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-17**.
 
+## LEXICO_PLAN.md — análisis y plan para ampliar el léxico a un B2 real ✅ (2026-07-17 · solo lectura, cero contenido)
+Responde "¿cómo pasar de ~480 a 4.000-5.000 palabras sin enseñar mal ni tarjetas inertes?" con BD real +
+investigación de fuentes. **TITULAR: el cuello de botella es el CONTENIDO, no el vocabulario** — se enseñan
+solo las vinculadas (`lesson_vocab`): en 424 · pt 417 · nl 344 · fr 342 · it 335 · de 322 (de ~486-542 en
+`vocabulary`); el contenido actual introduce **~2,1-2,8 palabras nuevas/lección** → a ese ritmo 4.000 = 1.600
+lecciones (10× el curso). La palanca = lecciones DE VOCABULARIO densas (~10 nuevas/lección). **Facturas:**
+1.500/idioma ≈ 110-140 lecciones ≈ ~1.000-1.250 ítems (×6 ≈ 6.500-7.500); 4.000 ≈ **~4× todo lo construido en
+3 meses**. **Opción (a) NO EXISTE** (investigado): KELLY no incluye español ni 4 de nuestros 6; Routledge/
+Oxford/Goethe = © sin licencia; Wikdict/Wiktionary = licencia OK pero calidad comunitaria (el fallo
+Brazil/Brazilian a escala); **Tatoeba (CC-BY, humano) = la mejor materia prima… para F3 (oraciones)**, no lista
+curada. **Recomendación:** FASE 0 "cosechar lo sembrado" (cero IA, ~2-3 días: ítems match para las **~840
+sueltas** ya revisadas → +15-40%, techo ~486-542/curso — y el contenido queda EXPRIMIDO); FASE 1 objetivo
+honesto **1.000-1.500/idioma** con el workflow probado de la casa (agentes nativos-IA + doble revisión
+adversarial + verify real + **muestreo humano ≥5%** — nombrado con honestidad: ese pipeline ES IA y es el que
+construyó los 5.182 ítems live), ~3,5-5 días/idioma, orden en→pt→fr→de→it→nl, **cada palabra con oración+audio**
+(paga F3 de paso); FASE 2 (B2, 50-65 días los 6) **solo si la Fase 1 demuestra retención con usuarios reales**.
+Verdad incómoda: no hay lista lista-para-usar legal; es pipeline de agentes (semanas) o humanos (meses+dinero).
+
 ## SRS F4 — Practicar pulido y DINÁMICO (capa de experiencia sobre el motor FSRS) ✅ LIVE (2026-07-17 · solo cliente)
 De PRACTICAR_SRS_ANALISIS §7 F4. Cero IA, cero servidor: **NO se tocó scheduler/inscripción/economía/grading**
 (guardarraíl verificado con `verify_srs.py` pt+de TODO VERDE post-cambio). Para los 6 idiomas (la pantalla es
