@@ -5,6 +5,35 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-17**.
 
+## LÉXICO Fase 0 — "cosechar lo sembrado": +811 palabras ENSEÑADAS (antes inertes) ✅ LIVE (mig 168 · 2026-07-18)
+De LEXICO_PLAN §3 Fase 0. **Cero IA** (reusa traducciones YA revisadas del seed + ítems `match` por PLANTILLA
+determinista, uuid5). Los 6 idiomas. **NO toca scheduler FSRS / economía / gating / certificación.**
+- **PASO 0 (BD real):** 838 palabras en `vocabulary` con traducción revisada del **seed autorado**
+  (`part_of_speech` no nulo; la cosecha de mig 166 ya estaba vinculada) pero SIN `lesson_vocab` → **inertes**
+  (ningún ítem las enseñaba → nunca entran al SRS). El techo real no era "480" sino **322-424 ENSEÑADAS/curso**.
+- **Guardas (precedente Brazil=Brazilian):** excluidas **27** — término==traducción (cognados triviales:
+  gordo, la pasta, afirmar…) y **>4 palabras** (oraciones/idiomas figurados: "Se avessi studiato…",
+  "prendere due piccioni con una fava"=F3). Dentro de cada `match`, `es` normalize-distintos (grading no
+  ambiguo) — **0 colisiones**. Solo traducciones ya revisadas; nada inventado.
+- **Ítems + lecciones:** 248 ítems `match`/`translation` tag **`repaso_vocab`** (NO `unidadN` → checkpoints/
+  exámenes/placement **intactos**, 0 fuga verificada). 174 lecciones "Repaso de vocabulario" ancladas a
+  unidades existentes por **nearest-neighbor** sobre el mapa real freq→unidad (bye→u2, "to imply"→u27),
+  insertadas **ANTES del checkpoint** (DO-block idempotente que desplaza el checkpoint +k; el desbloqueo es
+  por type+unit, no por order → **gating intacto**: 180/180 unidades con 1 checkpoint como nodo final).
+- **Resultado (vinculadas antes→después):** **de 322→489 (+167,+52%) · fr 342→509 (+167,+49%) · it 335→490
+  (+155,+46%) · nl 344→488 (+144,+42%) · pt 417→535 (+118,+28%) · en 424→484 (+60,+14%)** = **+811 palabras
+  enseñadas**. Sueltas restantes = exactamente las 27 excluidas. La re-derivación `lesson_vocab` (lógica mig
+  166) las vincula → dejan de ser inertes.
+- **Verificado cliente REAL (`verify_lexico_f0.py` en+de) TODO VERDE:** completar un "Repaso de vocabulario"
+  inscribe las palabras antes sueltas como **`new`** en el SRS (2/2, 8/8), **aislamiento** 0 de otro curso,
+  economía = un pago por lección (xp 15 oro 10). **Cadenas VERDES:** `verify_chain` (en A1→B2 + certs A1-B2),
+  `verify_pt_chain` (multicurso A1→B2 + certs), `verify_srs_f2` (pt+de). analyze 0 (CI-exact) · test 198/198 ·
+  build web OK. 8 usuarios reales intactos.
+- **Techo tras F0 (honesto):** el contenido del seed queda **EXPRIMIDO** (0 palabras revisadas sin explotar).
+  Subir de aquí (hacia 1.000-1.500/idioma) exige la **Fase 1** de LEXICO_PLAN (autoría de lecciones de
+  vocabulario nuevas + oración + audio). Re-encolado. Nota: las 174 lecciones nuevas engrosan el mapa ~15%
+  (una por unidad tocada); es contenido real, no relleno.
+
 ## LEXICO_PLAN.md — análisis y plan para ampliar el léxico a un B2 real ✅ (2026-07-17 · solo lectura, cero contenido)
 Responde "¿cómo pasar de ~480 a 4.000-5.000 palabras sin enseñar mal ni tarjetas inertes?" con BD real +
 investigación de fuentes. **TITULAR: el cuello de botella es el CONTENIDO, no el vocabulario** — se enseñan

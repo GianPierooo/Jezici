@@ -42,3 +42,4 @@ tools/content/_*
 # codebase-memory-mcp: el grafo vive en ~/.cache/codebase-memory-mcp (por máquina),
 # NO en el repo; reindexar es <1s. Defensivo por si una versión futura escribe aquí.
 .codebase-memory/
+tools/content/_lex0/
