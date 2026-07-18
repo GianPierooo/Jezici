@@ -5,6 +5,31 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-17**.
 
+## LÉXICO Fase 1 · ALEMÁN — +227 palabras NUEVAS con oración + audio (autoría) ✅ LIVE (mig 172 · 2026-07-18)
+Réplica de en/pt/fr (mig 169-171) para **alemán SOLO**. Mismo pipeline: **10 agentes profesores NATIVOS de
+de** (240, 10 temas) + **5 revisores adversariales** (género der/die/das + mayúscula + falsos amigos) + guardas
++ verify real. **NO toca scheduler/economía/placement/certificación/otros 5 idiomas.**
+- **PASO 0:** de enseñaba **489** (max freq 726). Objetivo: +~225 de alta frecuencia por los 10 temas.
+- **FOCO alemán:** cada sustantivo con su **artículo der/die/das** (género obligatorio) + **mayúscula**. Falsos
+  amigos es↔de resueltos: der Chef=jefe · das Gehalt=sueldo (**neutro**, no "der Gehalt"=contenido) · die
+  Aufgabe=tarea · das Rathaus=ayuntamiento · die Ampel=semáforo · der Gehweg=acera · die Kreuzung=cruce ·
+  die Quittung=recibo · das Kleingeld=suelto · der Besen=escoba · der Mülleimer=cubo · der Zoll=aduana ·
+  verpassen=perder · schüchtern=tímido · eifersüchtig=celoso · großzügig=generoso · stur=terco · höflich=cortés.
+- **Autoría + revisión:** 240 → guardas (dedup vs 454, término≠traducción, oración contiene palabra, dedup entre
+  temas, excluye cognados idénticos Tomate/Sofa) → **229** → 5 revisores adversariales: **31 fixes** (añadir el
+  artículo de género que faltaba a sustantivos + `das Gehalt` neutro + gramática Dativ de "kündigen"), 0 drops.
+- **Género preservado con criterio:** los sustantivos cuya oración usa la forma SIN artículo (p.ej. "frisches
+  Gemüse") **conservan der/die/das** en la palabra y quedan como **match+word (sin cloze/audio)** — no se pierde
+  el género. Los que la oración trae con artículo → **cloze+audio**. Resultado: **198 cloze+audio + 29 match+word**.
+- **Contenido:** 246 content_items (198 cloze con audio TTS de **198/198** HEAD 200 + 48 match). Tag `vocab_f1`.
+  20 lecciones "Vocabulario: <tema>" antes del checkpoint (A2/B1). lesson_vocab vincula.
+- **Resultado:** enseñadas de **489 → 714 (+225, +46%)**. `vocabulary` 490→717. **Nuevo techo del de: 714.**
+- **Verificado (`verify_lexico_f1_de.py`, cliente real) TODO VERDE:** completar "Vocabulario" inscribe las
+  nuevas (22/22), SRS las sirve como **cloze con audio** (HEAD 200), aislamiento 0 otro curso, economía un pago/
+  lección. **`verify_c1_chain.py de` (A1→C1, 30 unidades + audio) VERDE**, gating 180/180. analyze 0 · test
+  198/198 · build web OK. en/pt/fr/it/nl intactos.
+- **Muestra 5% (género + mayúscula) en el reporte.** **Pendiente:** it/nl (misma tanda), re-encolado.
+
 ## LÉXICO Fase 1 · FRANCÉS — +235 palabras NUEVAS con oración + audio (autoría) ✅ LIVE (mig 171 · 2026-07-18)
 Réplica de las tandas en (mig 169) y pt (mig 170) para **francés SOLO**. Mismo pipeline: **10 agentes
 profesores NATIVOS de fr** (240, 10 temas) + **5 revisores adversariales** (falsos amigos es↔fr + GÉNERO) +
