@@ -5,6 +5,36 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-17**.
 
+## AMPLIAR EL LÉXICO — +154 palabras VERIFICADAS y NO INERTES (del contenido, no IA) ✅ LIVE (mig 166 · 2026-07-17)
+De la ## Cola / PRACTICAR_SRS_ANALISIS §5 ("480 palabras/curso es una SEMILLA; a 10/día se agota en ~48 d").
+Cero IA, server-only.
+- **PASO 0 (BD real):** `vocabulary` ~480/curso (de 481 · fr/it/nl 480 · pt 479 · en 468 = **2.868**),
+  `frequency_rank` 100% en los 6. **TENSIÓN CRÍTICA reportada ANTES de tocar:** el SRS es **lesson-driven**
+  (`complete_lesson`→`jz_srs_enroll_lesson` inscribe solo lo que `lesson_vocab` dice que la lección enseña) →
+  **añadir palabras a `vocabulary` SIN lección que las enseñe = tarjetas INERTES: nunca entran al SRS.**
+- **Fuente VERIFICADA y NO INERTE (cero IA):** los pares de los ítems `match` **DE TRADUCCIÓN** (prompt
+  "…con su traducción" / "portugués y español"; autorados por nativos + revisión adversarial, YA en
+  producción) que enseñan palabra META + traducción española pero que **aún no estaban en `vocabulary`**.
+  Como el contenido YA las enseña → entran al SRS por F2; no inertes. **GUARDARRAÍL aplicado tras cazar un
+  fallo:** un 1er intento metió `'Brazil'='Brazilian'` de un `match` de **país↔nacionalidad** (la clave `es`
+  ahí NO es español) → se REVIRTIÓ y se restringió a: **solo prompts de traducción** (fuera matiz/colocación/
+  nacionalidad/significado-figurado) + término≠traducción + **≤4 palabras** (fuera oraciones/gramática).
+- **Resultado (mig 166): +154 palabras** — **pt +63 · fr +34 · it +21 · en +18 · de +9 · nl +9** → `vocabulary`
+  **2.868 → 3.022**. `frequency_rank` = order_index de la unidad × 30 (orden de introducción COHERENTE con el
+  currículo); `part_of_speech` null (marca de cosecha; el seed nunca es null). La migración **re-deriva
+  `lesson_vocab`** (lógica de mig 165, idempotente) para que las nuevas queden vinculadas a sus lecciones.
+- **Verificado cliente REAL:** **0 inertes** (todas con `lesson_vocab`); traducciones correctas (afternoon=
+  tarde · Friday=viernes · night=noche · espanhol=español · eu sou=yo soy · das Ende des Films=el final de la
+  película). **`verify_srs_f2.py` TODO VERDE** (pt+de: inscripción==lesson_vocab, falladas con prioridad,
+  economía y mapa intactos). analyze 0 · test 195/195 · build web OK.
+- **TRADE-OFF / techo honesto (lo importante):** el contenido solo contenía **~154** palabras verificadas
+  no-inertes sin explotar — un +5% real y seguro, **NO** los miles que pide un B2 (~4.000-5.000). Ampliar de
+  verdad requiere **una de dos facturas grandes**: (a) un **léxico bilingüe de alta frecuencia con traducciones
+  revisadas por idioma** (NO existe fuente fiable sin IA que yo pueda garantizar para los 6 → no se inventó
+  nada), o (b) **autorar lecciones nuevas** que enseñen esas palabras (la factura de contenido del análisis).
+  Volcar una lista de frecuencia con auto-traducciones violaría el guardarraíl ("no enseñar mal") → NO se hizo.
+  Re-encolado en ## Cola.
+
 ## i18n — pantallas que quedaban en español duro, traducidas (es/en/pt) ✅ LIVE (2026-07-17 · solo cliente)
 Del análisis del principiante/auditorías: varias pantallas tenían texto HARDCODEADO en español → salían en
 español con la app en en/pt. Cero IA. Mismo sistema i18n existente (gen-l10n · `app_es/en/pt.arb` ·
