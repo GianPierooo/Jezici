@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/theme/app_colors.dart';
+import '../../l10n/app_localizations.dart';
 import 'matix_banner.dart';
 import 'matix_service.dart';
 
@@ -19,10 +20,23 @@ class _MatixTestButtonsState extends ConsumerState<MatixTestButtons> {
   String? _busy;
 
   static const _triggers = <_Trig>[
-    _Trig('goal_unmet', 'Meta sin cumplir', Icons.flag_rounded),
-    _Trig('streak_risk', 'Racha en riesgo', Icons.local_fire_department_rounded),
-    _Trig('achievement', 'Logro desbloqueado', Icons.emoji_events_rounded),
+    _Trig('goal_unmet', Icons.flag_rounded),
+    _Trig('streak_risk', Icons.local_fire_department_rounded),
+    _Trig('achievement', Icons.emoji_events_rounded),
   ];
+
+  String _labelFor(String key, AppLocalizations l10n) {
+    switch (key) {
+      case 'goal_unmet':
+        return l10n.matixTestGoalUnmet;
+      case 'streak_risk':
+        return l10n.matixTestStreakRisk;
+      case 'achievement':
+        return l10n.matixTestAchievement;
+      default:
+        return key;
+    }
+  }
 
   Future<void> _fire(String trigger) async {
     setState(() => _busy = trigger);
@@ -33,9 +47,9 @@ class _MatixTestButtonsState extends ConsumerState<MatixTestButtons> {
       if (mounted) {
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
-          ..showSnackBar(const SnackBar(
+          ..showSnackBar(SnackBar(
             behavior: SnackBarBehavior.floating,
-            content: Text('No se pudo disparar la notificación.'),
+            content: Text(AppLocalizations.of(context).matixTestFireError),
           ));
       }
     } finally {
@@ -45,12 +59,13 @@ class _MatixTestButtonsState extends ConsumerState<MatixTestButtons> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         for (final t in _triggers) ...[
           _TriggerButton(
-            label: t.label,
+            label: _labelFor(t.key, l10n),
             icon: t.icon,
             busy: _busy == t.key,
             onTap: _busy == null ? () => _fire(t.key) : null,
@@ -63,9 +78,8 @@ class _MatixTestButtonsState extends ConsumerState<MatixTestButtons> {
 }
 
 class _Trig {
-  const _Trig(this.key, this.label, this.icon);
+  const _Trig(this.key, this.icon);
   final String key;
-  final String label;
   final IconData icon;
 }
 

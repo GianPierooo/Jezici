@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
+import '../../l10n/app_localizations.dart';
 import '../../data/providers.dart';
 import '../../ui/primary_button.dart';
 import 'level_exam_player_screen.dart';
@@ -28,7 +29,7 @@ class _State extends ConsumerState<LevelExamIntroScreen> {
       if (mounted) {
         setState(() => _loading = false);
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('No se pudo iniciar el examen.')));
+          SnackBar(content: Text(AppLocalizations.of(context).examStartError)));
       }
     }
   }
@@ -37,11 +38,12 @@ class _State extends ConsumerState<LevelExamIntroScreen> {
   Widget build(BuildContext context) {
     // El nivel objetivo lo decide el servidor (A1, luego A2, …).
     final level = ref.watch(levelExamStatusProvider).value?.level ?? 'A1';
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
         backgroundColor: AppColors.background, elevation: 0, foregroundColor: AppColors.text,
-        title: Text('Examen de nivel $level', style: const TextStyle(fontWeight: FontWeight.w900)),
+        title: Text(l10n.examLevelTitle(level), style: const TextStyle(fontWeight: FontWeight.w900)),
       ),
       body: SafeArea(
         child: ResponsiveCenter(
@@ -53,24 +55,23 @@ class _State extends ConsumerState<LevelExamIntroScreen> {
               const SizedBox(height: 10),
               const Text('🎓', style: TextStyle(fontSize: 72)),
               const SizedBox(height: 8),
-              Text('Certifica tu nivel $level',
+              Text(l10n.examCertifyLevel(level),
                   style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w900, color: AppColors.text)),
               const SizedBox(height: 6),
-              const Text(
-                'Un examen cronometrado que mezcla las 4 habilidades de todas las unidades. '
-                'Apruébalo y recibes tu certificado con folio y código de verificación.',
+              Text(
+                l10n.examIntroDescription,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 13.5, fontWeight: FontWeight.w700, color: AppColors.textMuted),
+                style: const TextStyle(fontSize: 13.5, fontWeight: FontWeight.w700, color: AppColors.textMuted),
               ),
               const SizedBox(height: 22),
-              const _Bullet(icon: Icons.timer_outlined, text: '10 minutos · 20 preguntas'),
-              const _Bullet(icon: Icons.insights_rounded, text: 'Lectura · Escucha · Escritura · Habla'),
-              const _Bullet(icon: Icons.verified_rounded, text: 'Necesitas 80% para aprobar'),
-              _Bullet(icon: Icons.workspace_premium_rounded, text: 'Al aprobar: certificado $level compartible'),
+              _Bullet(icon: Icons.timer_outlined, text: l10n.examBulletTime),
+              _Bullet(icon: Icons.insights_rounded, text: l10n.examBulletSkills),
+              _Bullet(icon: Icons.verified_rounded, text: l10n.examBulletPass),
+              _Bullet(icon: Icons.workspace_premium_rounded, text: l10n.examBulletCertificate(level)),
               const Spacer(),
               // Botón 3D de la casa (labio + hundido).
               PrimaryButton(
-                label: _loading ? '…' : 'EMPEZAR EXAMEN',
+                label: _loading ? '…' : l10n.examStart,
                 expand: true,
                 onPressed: _loading ? null : _start,
               ),

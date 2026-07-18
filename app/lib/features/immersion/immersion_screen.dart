@@ -6,6 +6,7 @@ import '../../core/ui/jz_transitions.dart';
 import '../../core/ui/responsive_center.dart';
 import '../../data/models/immersion_models.dart';
 import '../../data/providers.dart';
+import '../../l10n/app_localizations.dart';
 import 'story_reader_screen.dart';
 
 /// INMERSIÓN (Metodologia · "Sesión de inmersión"): historias/diálogos cortos
@@ -15,34 +16,35 @@ class ImmersionScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final async = ref.watch(storiesProvider);
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
         backgroundColor: AppColors.background,
         elevation: 0,
-        title: const Text('Inmersión',
-            style: TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
+        title: Text(l10n.immTitle,
+            style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
         iconTheme: const IconThemeData(color: AppColors.text),
       ),
       body: async.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (_, _) => const Center(
+        error: (_, _) => Center(
           child: Padding(
-            padding: EdgeInsets.all(28),
-            child: Text('No se pudieron cargar las historias. Reintenta.',
+            padding: const EdgeInsets.all(28),
+            child: Text(l10n.immLoadError,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                style: const TextStyle(fontWeight: FontWeight.w700, color: AppColors.textMuted)),
           ),
         ),
         data: (stories) {
           if (stories.isEmpty) {
-            return const Center(
+            return Center(
               child: Padding(
-                padding: EdgeInsets.all(28),
-                child: Text('Pronto habrá historias para tu curso. 📖',
+                padding: const EdgeInsets.all(28),
+                child: Text(l10n.immEmpty,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                    style: const TextStyle(fontWeight: FontWeight.w700, color: AppColors.textMuted)),
               ),
             );
           }
@@ -55,13 +57,13 @@ class ImmersionScreen extends ConsumerWidget {
             child: ListView(
             padding: const EdgeInsets.fromLTRB(20, 8, 20, 28),
             children: [
-              const Text('Lee y escucha historias a tu nivel. Luego responde unas preguntas.',
-                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+              Text(l10n.immSubtitle,
+                  style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
               const SizedBox(height: 16),
               for (final level in byLevel.keys) ...[
                 Padding(
                   padding: const EdgeInsets.only(left: 2, bottom: 8, top: 4),
-                  child: Text('Nivel $level',
+                  child: Text(l10n.immLevel(level),
                       style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w900, color: AppColors.text)),
                 ),
                 for (final s in byLevel[level]!) _StoryCard(story: s),

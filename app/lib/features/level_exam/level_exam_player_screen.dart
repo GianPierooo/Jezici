@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/audio/music_service.dart';
 import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
+import '../../l10n/app_localizations.dart';
 import '../../data/models/checkpoint_models.dart';
 import '../../data/providers.dart';
 import '../lesson/exercises/exercise_registry.dart';
@@ -84,21 +85,22 @@ class _State extends ConsumerState<LevelExamPlayerScreen> {
       Navigator.pop(context);
       _submitting = false;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('No se pudo enviar el examen. Intenta de nuevo.')));
+        SnackBar(content: Text(AppLocalizations.of(context).examSubmitError)));
     }
   }
 
   void _confirmExit() {
+    final l10n = AppLocalizations.of(context);
     showDialog<void>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text('¿Salir del examen?'),
-        content: const Text('Perderás el progreso de este intento.'),
+        title: Text(l10n.examLeaveTitle),
+        content: Text(l10n.examLeaveBody),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Seguir')),
+          TextButton(onPressed: () => Navigator.pop(ctx), child: Text(l10n.examLeaveStay)),
           FilledButton(
             onPressed: () { Navigator.pop(ctx); Navigator.of(context).popUntil((r) => r.isFirst); },
-            child: const Text('Salir')),
+            child: Text(l10n.examLeaveConfirm)),
         ],
       ),
     );
@@ -112,7 +114,8 @@ class _State extends ConsumerState<LevelExamPlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    if (_items.isEmpty) return const Scaffold(body: Center(child: Text('Examen sin ítems.')));
+    final l10n = AppLocalizations.of(context);
+    if (_items.isEmpty) return Scaffold(body: Center(child: Text(l10n.examNoItems)));
     final item = _items[_index];
     final total = _items.length;
     final low = _remaining <= 60;
@@ -204,7 +207,7 @@ class _State extends ConsumerState<LevelExamPlayerScreen> {
                 child: Container(
                   height: 56, alignment: Alignment.center,
                   decoration: BoxDecoration(color: AppColors.primary, borderRadius: BorderRadius.circular(16)),
-                  child: Text(isLast ? 'TERMINAR' : 'SIGUIENTE',
+                  child: Text(isLast ? l10n.examFinish : l10n.examNext,
                       style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 16, letterSpacing: 1)),
                 ),
               ),

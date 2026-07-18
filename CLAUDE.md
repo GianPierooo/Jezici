@@ -5,6 +5,30 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-17**.
 
+## i18n — pantallas que quedaban en español duro, traducidas (es/en/pt) ✅ LIVE (2026-07-17 · solo cliente)
+Del análisis del principiante/auditorías: varias pantallas tenían texto HARDCODEADO en español → salían en
+español con la app en en/pt. Cero IA. Mismo sistema i18n existente (gen-l10n · `app_es/en/pt.arb` ·
+`AppLocalizations.of(context)`).
+- **PASO 0 (censo real, grep de literales españoles):** ~**90 strings** en **11 archivos**: mi_plan 23,
+  metrics 24 (admin), reference 8, simulacros 7, story_reader 6, level_exam intro 5 + player 4, immersion 5,
+  notification_center 3, notebook 2 (+contador plural), matix_test 3. Mecanismo confirmado.
+- **Migrado (TODAS las pantallas de usuario) — +84 claves i18n (es/en/pt):** **Mi Plan** (fechas por
+  `MaterialLocalizations`, "adelante/atrás" con **plural ICU**, motivo→enfoque reusando `planFocus*`),
+  **Notificaciones** (centro + "hace X min/h/d"), **Examen de nivel** (intro + player: bullets, diálogo de
+  salir, errores), **Inmersión + Historias** (chrome: títulos, "Oír"/"Glosario"/"Pregunta X de Y", resultado),
+  **Simulacros** (headline, 4 descripciones, mocks), **Repaso/Referencia** (encabezados, "% dominio",
+  reforzar), **Cuaderno** (título + contador plural + estado vacío), **matix_test** (labels admin). Traducciones
+  naturales en/pt (no calcos), terminología consistente (streak/gold/level), placeholders/plurales respetados.
+- **GUARDARRAÍL:** solo cambió el ORIGEN del texto (literal → clave), cero cambios de lógica/layout/
+  comportamiento. El **contenido del servidor NO se traduce en cliente** (títulos de historias, tips, cuerpo de
+  notificaciones, respuesta modelo — vienen por idioma del CURSO). Las pantallas ya traducidas, intactas.
+- **Verificado:** censo post-migración = **0 español suelto** en las 11 pantallas de usuario (el único match
+  restante en mi_plan es un `case 'Examen'` = valor del servidor, no texto mostrado); las 84 claves existen en
+  **es/en/pt** (generadas). analyze 0 (CI-exact) · test **195/195** · build web OK.
+- **PENDIENTE (2ª pasada, honesto):** **`metrics_screen.dart` (24 strings) — ADMIN-ONLY** (solo Gian lo ve;
+  requiere `am_i_admin`), por eso se difirió: es la pantalla menos user-facing. Es la única que queda con
+  español duro. Se migra igual (mismo patrón, prefijo `metrics*`) cuando toque.
+
 ## ERRORES TIPADOS — Sentry y las pantallas VEN los fallos reales ✅ LIVE (2026-07-17 · solo cliente)
 Deuda #2 de ARQUITECTURA_ANALISIS ("los errores nunca se diseñaron"), el fix de mayor ROI. Con 5 usuarios
 reales, un fallo hoy era invisible. Cero IA, sin migración.

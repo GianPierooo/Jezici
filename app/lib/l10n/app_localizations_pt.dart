@@ -1117,6 +1117,407 @@ class AppLocalizationsPt extends AppLocalizations {
   String get errUnknown => 'Algo deu errado. Tente de novo.';
 
   @override
+  String get miplanTitle => 'Meu plano';
+
+  @override
+  String get miplanLoadError => 'Não foi possível carregar seu plano.';
+
+  @override
+  String get miplanNoPlan => 'Você ainda não tem um plano.';
+
+  @override
+  String get miplanProgressLabel => 'PROGRESSO DO PLANO';
+
+  @override
+  String miplanPracticeDays(Object percent, Object met, Object total) {
+    return '$percent% · $met/$total dias de prática';
+  }
+
+  @override
+  String get miplanOnTrack => 'Bem no seu plano';
+
+  @override
+  String miplanAhead(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: 'Você está $days dias adiantado 🎉',
+      one: 'Você está 1 dia adiantado 🎉',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String miplanBehind(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: 'Você está $days dias atrasado',
+      one: 'Você está 1 dia atrasado',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String miplanMetDays(Object met, Object expected) {
+    return 'Você cumpriu $met de $expected dias esperados até hoje.';
+  }
+
+  @override
+  String get miplanProjectedArrival => 'Chegada projetada';
+
+  @override
+  String get miplanEstimatedArrival => 'Chegada estimada';
+
+  @override
+  String miplanOriginalPlan(Object date) {
+    return 'Plano original: $date';
+  }
+
+  @override
+  String get miplanCurrentPace => 'No seu ritmo atual';
+
+  @override
+  String get miplanEstimateHint =>
+      'Pratique alguns dias e ajustaremos a data ao seu ritmo real.';
+
+  @override
+  String get miplanCalculating => 'Calculando…';
+
+  @override
+  String get miplanCalcHint =>
+      'Complete suas primeiras sessões para estimar sua data.';
+
+  @override
+  String get miplanPerDay => 'por dia';
+
+  @override
+  String get miplanPerWeek => 'por semana';
+
+  @override
+  String miplanDaysCount(Object days) {
+    return '$days dias';
+  }
+
+  @override
+  String get miplanFasterCta => 'QUERO CHEGAR MAIS RÁPIDO';
+
+  @override
+  String get miplanPaceSheetTitle => 'Aumente seu ritmo diário';
+
+  @override
+  String get miplanPaceSheetSub =>
+      'Mais minutos por dia = você chega antes. Recalculamos sua data.';
+
+  @override
+  String miplanPaceUpdated(Object min) {
+    return 'Pronto! Agora $min min/dia. Data recalculada.';
+  }
+
+  @override
+  String get miplanPaceError => 'Não foi possível atualizar seu ritmo.';
+
+  @override
+  String get nbTitle => 'Caderno';
+
+  @override
+  String nbLearnedCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count fatos aprendidos',
+      one: '$count fato aprendido',
+    );
+    return '$_temp0 🦜';
+  }
+
+  @override
+  String get nbEmptyTitle => 'Seu caderno está vazio… por enquanto';
+
+  @override
+  String get nbEmptyBody =>
+      'Complete lições e o Jezi vai te ensinar fatos, dicas e erros comuns que ficam salvos aqui.';
+
+  @override
+  String get matixTestGoalUnmet => 'Meta não cumprida';
+
+  @override
+  String get matixTestStreakRisk => 'Sequência em risco';
+
+  @override
+  String get matixTestAchievement => 'Conquista desbloqueada';
+
+  @override
+  String get matixTestFireError => 'Não foi possível enviar a notificação.';
+
+  @override
+  String get examStartError => 'Não foi possível iniciar o exame.';
+
+  @override
+  String examLevelTitle(Object level) {
+    return 'Exame de nível $level';
+  }
+
+  @override
+  String examCertifyLevel(Object level) {
+    return 'Certifique seu nível $level';
+  }
+
+  @override
+  String get examIntroDescription =>
+      'Um exame cronometrado que mistura as 4 habilidades de todas as unidades. Seja aprovado e receba seu certificado com número de série e código de verificação.';
+
+  @override
+  String get examBulletTime => '10 minutos · 20 perguntas';
+
+  @override
+  String get examBulletSkills => 'Leitura · Escuta · Escrita · Fala';
+
+  @override
+  String get examBulletPass => 'Você precisa de 80% para ser aprovado';
+
+  @override
+  String examBulletCertificate(Object level) {
+    return 'Ao ser aprovado: certificado $level compartilhável';
+  }
+
+  @override
+  String get examStart => 'COMEÇAR EXAME';
+
+  @override
+  String get examSubmitError =>
+      'Não foi possível enviar o exame. Tente novamente.';
+
+  @override
+  String get examLeaveTitle => 'Sair do exame?';
+
+  @override
+  String get examLeaveBody => 'Você perderá o progresso desta tentativa.';
+
+  @override
+  String get examLeaveStay => 'Continuar';
+
+  @override
+  String get examLeaveConfirm => 'Sair';
+
+  @override
+  String get examNoItems => 'Exame sem itens.';
+
+  @override
+  String get examFinish => 'CONCLUIR';
+
+  @override
+  String get examNext => 'PRÓXIMA';
+
+  @override
+  String get notifTitle => 'Notificações';
+
+  @override
+  String get notifRefresh => 'Atualizar';
+
+  @override
+  String get notifTestJezi => 'Testar o Jezi';
+
+  @override
+  String get notifTestJeziHint =>
+      'Simula um evento: o Jezi escolhe o texto do seu estilo de coach e te envia.';
+
+  @override
+  String get notifReceived => 'Recebidas';
+
+  @override
+  String notifLoadError(Object error) {
+    return 'Não foi possível carregar.\n$error';
+  }
+
+  @override
+  String get notifEmpty => 'Ainda sem notificações';
+
+  @override
+  String get notifEmptyHint =>
+      'Use \"Testar o Jezi\" para ver como soa o seu coach.';
+
+  @override
+  String get notifAgoNow => 'agora';
+
+  @override
+  String notifAgoMinutes(Object minutes) {
+    return 'há $minutes min';
+  }
+
+  @override
+  String notifAgoHours(Object hours) {
+    return 'há $hours h';
+  }
+
+  @override
+  String notifAgoDays(Object days) {
+    return 'há $days d';
+  }
+
+  @override
+  String get immTitle => 'Imersão';
+
+  @override
+  String get immLoadError =>
+      'Não foi possível carregar as histórias. Tente de novo.';
+
+  @override
+  String get immEmpty => 'Em breve haverá histórias para o seu curso. 📖';
+
+  @override
+  String get immSubtitle =>
+      'Leia e ouça histórias no seu nível. Depois responda algumas perguntas.';
+
+  @override
+  String immLevel(Object level) {
+    return 'Nível $level';
+  }
+
+  @override
+  String get immStoryTitle => 'História';
+
+  @override
+  String get immStoryLoadError => 'Não foi possível carregar a história.';
+
+  @override
+  String get immSubmitError => 'Não foi possível enviar. Tente de novo.';
+
+  @override
+  String get immAnswerQuestions => 'Responder perguntas';
+
+  @override
+  String get immListen => 'Ouvir';
+
+  @override
+  String get immGlossary => 'Glossário';
+
+  @override
+  String immQuestionOf(Object current, Object total) {
+    return 'Pergunta $current de $total';
+  }
+
+  @override
+  String get immWriteWord => 'Escreva a palavra…';
+
+  @override
+  String get immNext => 'Próxima';
+
+  @override
+  String get immSending => 'ENVIANDO…';
+
+  @override
+  String get immFinish => 'Concluir';
+
+  @override
+  String get immPerfect => 'Compreensão perfeita!';
+
+  @override
+  String get immGoodReading => 'Boa leitura!';
+
+  @override
+  String immScoreLine(Object pct, Object correct, Object total) {
+    return '$pct% · $correct/$total corretas';
+  }
+
+  @override
+  String get immDone => 'Pronto';
+
+  @override
+  String immAnswerLabel(Object answer) {
+    return 'Resposta: $answer';
+  }
+
+  @override
+  String get simTitle => 'Simulados';
+
+  @override
+  String get simHeadline => 'Pratique o exame real';
+
+  @override
+  String get simSubtitle =>
+      'Simulados no formato oficial com relatório de banda por seção.';
+
+  @override
+  String get simHowReadingDesc => '100% autocorrigíveis — pontuação imediata.';
+
+  @override
+  String get simHowWritingDesc =>
+      'Escreva e compare com uma resposta modelo + rubrica.';
+
+  @override
+  String get simHowSpeakingDesc =>
+      'Responda em voz alta com o modelo e uma autoavaliação guiada.';
+
+  @override
+  String get simHowBandTitle => 'Relatório de banda';
+
+  @override
+  String get simHowBandDesc => 'Banda estimada por seção e global.';
+
+  @override
+  String get simAvailable => 'Disponíveis';
+
+  @override
+  String get simIncludedPremium => 'Incluídos no Jezici Premium';
+
+  @override
+  String get simMockIeltsAcademic => '4 seções · banda 0–9 · ~2 h 45 min';
+
+  @override
+  String get simMockIeltsGeneral => 'Migração e trabalho · banda 0–9';
+
+  @override
+  String get simMockCambridgeB2 => 'Nível intermediário-alto · 4 habilidades';
+
+  @override
+  String get refTitle => 'Revisão';
+
+  @override
+  String get refNothingToReview =>
+      'Nada para reforçar agora! Você está em dia. 🎉';
+
+  @override
+  String get refStartError => 'Não foi possível iniciar a prática.';
+
+  @override
+  String get refLoadError => 'Não foi possível carregar a revisão.';
+
+  @override
+  String get refEmptyConcepts => 'Ainda não há conceitos para este curso.';
+
+  @override
+  String get refIntro =>
+      'Seus conceitos-chave, por habilidade. Revise e pratique os pontos fracos.';
+
+  @override
+  String get refWeaknessTitle => 'Reforço de pontos fracos';
+
+  @override
+  String refSkillPracticeTitle(Object skill) {
+    return 'Prática de $skill';
+  }
+
+  @override
+  String refWeakPoint(Object skill) {
+    return 'Seu ponto fraco: $skill';
+  }
+
+  @override
+  String get refWeakSubtitle => 'Pratique para aumentar seu domínio.';
+
+  @override
+  String get refPractice => 'Praticar';
+
+  @override
+  String refMasteryPct(Object pct) {
+    return '$pct% domínio';
+  }
+
+  @override
+  String get refSeen => 'visto';
+
+  @override
   String get introKicker => 'APRENDA';
 
   @override

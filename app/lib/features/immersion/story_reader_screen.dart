@@ -6,6 +6,7 @@ import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/immersion_models.dart';
 import '../../data/providers.dart';
+import '../../l10n/app_localizations.dart';
 import '../../ui/primary_button.dart';
 import '../learn/widgets/parrot_mascot.dart';
 import '../lesson/exercises/audio_play_button.dart';
@@ -94,19 +95,20 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
       setState(() => _submitting = false);
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
-        ..showSnackBar(const SnackBar(content: Text('No se pudo enviar. Reintenta.')));
+        ..showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).immSubmitError)));
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
         backgroundColor: AppColors.background,
         elevation: 0,
         iconTheme: const IconThemeData(color: AppColors.text),
-        title: Text(_story?.title ?? 'Historia',
+        title: Text(_story?.title ?? l10n.immStoryTitle,
             style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
       ),
       body: ResponsiveCenter(
@@ -114,7 +116,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
         child: _loading
             ? const Center(child: CircularProgressIndicator())
             : _story == null
-                ? const Center(child: Text('No se pudo cargar la historia.'))
+                ? Center(child: Text(l10n.immStoryLoadError))
                 : switch (_phase) {
                     _Phase.reading => _reading(),
                     _Phase.questions => _questions(),
@@ -150,7 +152,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
           ),
         ),
         _bottomBar(PrimaryButton(
-          label: 'Responder preguntas',
+          label: AppLocalizations.of(context).immAnswerQuestions,
           expand: true,
           onPressed: _startQuestions,
         )),
@@ -173,7 +175,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
           if (seg.audioUrl.isNotEmpty)
             Padding(
               padding: const EdgeInsets.only(top: 2, right: 12),
-              child: AudioPlayButton(url: seg.audioUrl, label: 'Oír', big: false),
+              child: AudioPlayButton(url: seg.audioUrl, label: AppLocalizations.of(context).immListen, big: false),
             ),
           Expanded(
             child: Column(
@@ -204,8 +206,8 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
         shape: const Border(),
         collapsedShape: const Border(),
         leading: const Text('📒', style: TextStyle(fontSize: 20)),
-        title: const Text('Glosario',
-            style: TextStyle(fontSize: 14.5, fontWeight: FontWeight.w900, color: AppColors.text)),
+        title: Text(AppLocalizations.of(context).immGlossary,
+            style: const TextStyle(fontSize: 14.5, fontWeight: FontWeight.w900, color: AppColors.text)),
         childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
         children: [
           for (final g in s.glossary)
@@ -234,6 +236,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
 
   // ── Preguntas de comprensión ──────────────────────────────────────────────
   Widget _questions() {
+    final l10n = AppLocalizations.of(context);
     final q = _story!.questions[_qIndex];
     final total = _story!.questions.length;
     final answered = q.isCloze ? _clozeCtrl.text.trim().isNotEmpty : _answers[q.i] != null;
@@ -254,7 +257,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                 ),
               ),
               const SizedBox(height: 6),
-              Text('Pregunta ${_qIndex + 1} de $total',
+              Text(l10n.immQuestionOf(_qIndex + 1, total),
                   style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w800, color: AppColors.textMuted)),
             ],
           ),
@@ -281,7 +284,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                   textInputAction: TextInputAction.done,
                   style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w800),
                   decoration: InputDecoration(
-                    hintText: 'Escribe la palabra…',
+                    hintText: l10n.immWriteWord,
                     filled: true,
                     fillColor: Colors.white,
                     enabledBorder: OutlineInputBorder(
@@ -298,7 +301,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
           ),
         ),
         _bottomBar(PrimaryButton(
-          label: _qIndex < total - 1 ? 'Siguiente' : (_submitting ? 'ENVIANDO…' : 'Terminar'),
+          label: _qIndex < total - 1 ? l10n.immNext : (_submitting ? l10n.immSending : l10n.immFinish),
           expand: true,
           onPressed: (!answered || _submitting) ? null : _next,
         )),
@@ -342,6 +345,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
 
   // ── Resultado (calificado server-side) ────────────────────────────────────
   Widget _resultView() {
+    final l10n = AppLocalizations.of(context);
     final r = _result!;
     final pct = (r.score * 100).round();
     final good = r.correct == r.total;
@@ -358,12 +362,12 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
               ),
               const SizedBox(height: 8),
               Center(
-                child: Text(good ? '¡Comprensión perfecta!' : '¡Buena lectura!',
+                child: Text(good ? l10n.immPerfect : l10n.immGoodReading,
                     style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w900, color: AppColors.text)),
               ),
               const SizedBox(height: 4),
               Center(
-                child: Text('$pct% · ${r.correct}/${r.total} correctas',
+                child: Text(l10n.immScoreLine(pct, r.correct, r.total),
                     style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800, color: AppColors.textMuted)),
               ),
               if (r.xpEarned > 0) ...[
@@ -384,7 +388,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
           ),
         ),
         _bottomBar(PrimaryButton(
-          label: 'Listo',
+          label: l10n.immDone,
           expand: true,
           onPressed: () => Navigator.of(context).pop(),
         )),
@@ -414,7 +418,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
                     style: const TextStyle(fontSize: 13.5, fontWeight: FontWeight.w800, color: AppColors.text)),
                 if (!pq.correct && pq.expected.isNotEmpty) ...[
                   const SizedBox(height: 3),
-                  Text('Respuesta: ${pq.expected}',
+                  Text(AppLocalizations.of(context).immAnswerLabel(pq.expected),
                       style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.success)),
                 ],
               ],

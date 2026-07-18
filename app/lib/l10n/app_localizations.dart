@@ -2046,6 +2046,654 @@ abstract class AppLocalizations {
   /// **'Ocurrió un error. Inténtalo de nuevo.'**
   String get errUnknown;
 
+  /// No description provided for @miplanTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Mi plan'**
+  String get miplanTitle;
+
+  /// No description provided for @miplanLoadError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo cargar tu plan.'**
+  String get miplanLoadError;
+
+  /// No description provided for @miplanNoPlan.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no tienes un plan.'**
+  String get miplanNoPlan;
+
+  /// No description provided for @miplanProgressLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'AVANCE DEL PLAN'**
+  String get miplanProgressLabel;
+
+  /// No description provided for @miplanPracticeDays.
+  ///
+  /// In es, this message translates to:
+  /// **'{percent}% · {met}/{total} días de práctica'**
+  String miplanPracticeDays(Object percent, Object met, Object total);
+
+  /// No description provided for @miplanOnTrack.
+  ///
+  /// In es, this message translates to:
+  /// **'Justo en tu plan'**
+  String get miplanOnTrack;
+
+  /// No description provided for @miplanAhead.
+  ///
+  /// In es, this message translates to:
+  /// **'{days, plural, =1{Vas 1 día adelante 🎉} other{Vas {days} días adelante 🎉}}'**
+  String miplanAhead(int days);
+
+  /// No description provided for @miplanBehind.
+  ///
+  /// In es, this message translates to:
+  /// **'{days, plural, =1{Vas 1 día atrás} other{Vas {days} días atrás}}'**
+  String miplanBehind(int days);
+
+  /// No description provided for @miplanMetDays.
+  ///
+  /// In es, this message translates to:
+  /// **'Cumpliste {met} de {expected} días esperados a hoy.'**
+  String miplanMetDays(Object met, Object expected);
+
+  /// No description provided for @miplanProjectedArrival.
+  ///
+  /// In es, this message translates to:
+  /// **'Llegada proyectada'**
+  String get miplanProjectedArrival;
+
+  /// No description provided for @miplanEstimatedArrival.
+  ///
+  /// In es, this message translates to:
+  /// **'Llegada estimada'**
+  String get miplanEstimatedArrival;
+
+  /// No description provided for @miplanOriginalPlan.
+  ///
+  /// In es, this message translates to:
+  /// **'Plan original: {date}'**
+  String miplanOriginalPlan(Object date);
+
+  /// No description provided for @miplanCurrentPace.
+  ///
+  /// In es, this message translates to:
+  /// **'Con tu ritmo actual'**
+  String get miplanCurrentPace;
+
+  /// No description provided for @miplanEstimateHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Practica unos días y ajustaremos la fecha a tu ritmo real.'**
+  String get miplanEstimateHint;
+
+  /// No description provided for @miplanCalculating.
+  ///
+  /// In es, this message translates to:
+  /// **'Calculando…'**
+  String get miplanCalculating;
+
+  /// No description provided for @miplanCalcHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Completa tus primeras sesiones para estimar tu fecha.'**
+  String get miplanCalcHint;
+
+  /// No description provided for @miplanPerDay.
+  ///
+  /// In es, this message translates to:
+  /// **'al día'**
+  String get miplanPerDay;
+
+  /// No description provided for @miplanPerWeek.
+  ///
+  /// In es, this message translates to:
+  /// **'por semana'**
+  String get miplanPerWeek;
+
+  /// No description provided for @miplanDaysCount.
+  ///
+  /// In es, this message translates to:
+  /// **'{days} días'**
+  String miplanDaysCount(Object days);
+
+  /// No description provided for @miplanFasterCta.
+  ///
+  /// In es, this message translates to:
+  /// **'QUIERO LLEGAR MÁS RÁPIDO'**
+  String get miplanFasterCta;
+
+  /// No description provided for @miplanPaceSheetTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Sube tu ritmo diario'**
+  String get miplanPaceSheetTitle;
+
+  /// No description provided for @miplanPaceSheetSub.
+  ///
+  /// In es, this message translates to:
+  /// **'Más minutos al día = llegas antes. Recalculamos tu fecha.'**
+  String get miplanPaceSheetSub;
+
+  /// No description provided for @miplanPaceUpdated.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Listo! Ahora {min} min/día. Fecha recalculada.'**
+  String miplanPaceUpdated(Object min);
+
+  /// No description provided for @miplanPaceError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo actualizar el ritmo.'**
+  String get miplanPaceError;
+
+  /// No description provided for @nbTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Cuaderno de datos'**
+  String get nbTitle;
+
+  /// No description provided for @nbLearnedCount.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{{count} dato aprendido} other{{count} datos aprendidos}} 🦜'**
+  String nbLearnedCount(int count);
+
+  /// No description provided for @nbEmptyTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu cuaderno está vacío… por ahora'**
+  String get nbEmptyTitle;
+
+  /// No description provided for @nbEmptyBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Completa lecciones y Jezi te enseñará datos, trucos y errores comunes que se guardarán aquí.'**
+  String get nbEmptyBody;
+
+  /// No description provided for @matixTestGoalUnmet.
+  ///
+  /// In es, this message translates to:
+  /// **'Meta sin cumplir'**
+  String get matixTestGoalUnmet;
+
+  /// No description provided for @matixTestStreakRisk.
+  ///
+  /// In es, this message translates to:
+  /// **'Racha en riesgo'**
+  String get matixTestStreakRisk;
+
+  /// No description provided for @matixTestAchievement.
+  ///
+  /// In es, this message translates to:
+  /// **'Logro desbloqueado'**
+  String get matixTestAchievement;
+
+  /// No description provided for @matixTestFireError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo disparar la notificación.'**
+  String get matixTestFireError;
+
+  /// No description provided for @examStartError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo iniciar el examen.'**
+  String get examStartError;
+
+  /// No description provided for @examLevelTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Examen de nivel {level}'**
+  String examLevelTitle(Object level);
+
+  /// No description provided for @examCertifyLevel.
+  ///
+  /// In es, this message translates to:
+  /// **'Certifica tu nivel {level}'**
+  String examCertifyLevel(Object level);
+
+  /// No description provided for @examIntroDescription.
+  ///
+  /// In es, this message translates to:
+  /// **'Un examen cronometrado que mezcla las 4 habilidades de todas las unidades. Apruébalo y recibes tu certificado con folio y código de verificación.'**
+  String get examIntroDescription;
+
+  /// No description provided for @examBulletTime.
+  ///
+  /// In es, this message translates to:
+  /// **'10 minutos · 20 preguntas'**
+  String get examBulletTime;
+
+  /// No description provided for @examBulletSkills.
+  ///
+  /// In es, this message translates to:
+  /// **'Lectura · Escucha · Escritura · Habla'**
+  String get examBulletSkills;
+
+  /// No description provided for @examBulletPass.
+  ///
+  /// In es, this message translates to:
+  /// **'Necesitas 80% para aprobar'**
+  String get examBulletPass;
+
+  /// No description provided for @examBulletCertificate.
+  ///
+  /// In es, this message translates to:
+  /// **'Al aprobar: certificado {level} compartible'**
+  String examBulletCertificate(Object level);
+
+  /// No description provided for @examStart.
+  ///
+  /// In es, this message translates to:
+  /// **'EMPEZAR EXAMEN'**
+  String get examStart;
+
+  /// No description provided for @examSubmitError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo enviar el examen. Intenta de nuevo.'**
+  String get examSubmitError;
+
+  /// No description provided for @examLeaveTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Salir del examen?'**
+  String get examLeaveTitle;
+
+  /// No description provided for @examLeaveBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Perderás el progreso de este intento.'**
+  String get examLeaveBody;
+
+  /// No description provided for @examLeaveStay.
+  ///
+  /// In es, this message translates to:
+  /// **'Seguir'**
+  String get examLeaveStay;
+
+  /// No description provided for @examLeaveConfirm.
+  ///
+  /// In es, this message translates to:
+  /// **'Salir'**
+  String get examLeaveConfirm;
+
+  /// No description provided for @examNoItems.
+  ///
+  /// In es, this message translates to:
+  /// **'Examen sin ítems.'**
+  String get examNoItems;
+
+  /// No description provided for @examFinish.
+  ///
+  /// In es, this message translates to:
+  /// **'TERMINAR'**
+  String get examFinish;
+
+  /// No description provided for @examNext.
+  ///
+  /// In es, this message translates to:
+  /// **'SIGUIENTE'**
+  String get examNext;
+
+  /// No description provided for @notifTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Notificaciones'**
+  String get notifTitle;
+
+  /// No description provided for @notifRefresh.
+  ///
+  /// In es, this message translates to:
+  /// **'Actualizar'**
+  String get notifRefresh;
+
+  /// No description provided for @notifTestJezi.
+  ///
+  /// In es, this message translates to:
+  /// **'Probar a Jezi'**
+  String get notifTestJezi;
+
+  /// No description provided for @notifTestJeziHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Simula un evento: Jezi elige el copy de tu estilo de coach y te lo manda.'**
+  String get notifTestJeziHint;
+
+  /// No description provided for @notifReceived.
+  ///
+  /// In es, this message translates to:
+  /// **'Recibidas'**
+  String get notifReceived;
+
+  /// No description provided for @notifLoadError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudieron cargar.\n{error}'**
+  String notifLoadError(Object error);
+
+  /// No description provided for @notifEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Sin notificaciones todavía'**
+  String get notifEmpty;
+
+  /// No description provided for @notifEmptyHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Usa \"Probar a Jezi\" para ver cómo suena tu coach.'**
+  String get notifEmptyHint;
+
+  /// No description provided for @notifAgoNow.
+  ///
+  /// In es, this message translates to:
+  /// **'ahora'**
+  String get notifAgoNow;
+
+  /// No description provided for @notifAgoMinutes.
+  ///
+  /// In es, this message translates to:
+  /// **'hace {minutes} min'**
+  String notifAgoMinutes(Object minutes);
+
+  /// No description provided for @notifAgoHours.
+  ///
+  /// In es, this message translates to:
+  /// **'hace {hours} h'**
+  String notifAgoHours(Object hours);
+
+  /// No description provided for @notifAgoDays.
+  ///
+  /// In es, this message translates to:
+  /// **'hace {days} d'**
+  String notifAgoDays(Object days);
+
+  /// No description provided for @immTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Inmersión'**
+  String get immTitle;
+
+  /// No description provided for @immLoadError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudieron cargar las historias. Reintenta.'**
+  String get immLoadError;
+
+  /// No description provided for @immEmpty.
+  ///
+  /// In es, this message translates to:
+  /// **'Pronto habrá historias para tu curso. 📖'**
+  String get immEmpty;
+
+  /// No description provided for @immSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Lee y escucha historias a tu nivel. Luego responde unas preguntas.'**
+  String get immSubtitle;
+
+  /// No description provided for @immLevel.
+  ///
+  /// In es, this message translates to:
+  /// **'Nivel {level}'**
+  String immLevel(Object level);
+
+  /// No description provided for @immStoryTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Historia'**
+  String get immStoryTitle;
+
+  /// No description provided for @immStoryLoadError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo cargar la historia.'**
+  String get immStoryLoadError;
+
+  /// No description provided for @immSubmitError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo enviar. Reintenta.'**
+  String get immSubmitError;
+
+  /// No description provided for @immAnswerQuestions.
+  ///
+  /// In es, this message translates to:
+  /// **'Responder preguntas'**
+  String get immAnswerQuestions;
+
+  /// No description provided for @immListen.
+  ///
+  /// In es, this message translates to:
+  /// **'Oír'**
+  String get immListen;
+
+  /// No description provided for @immGlossary.
+  ///
+  /// In es, this message translates to:
+  /// **'Glosario'**
+  String get immGlossary;
+
+  /// No description provided for @immQuestionOf.
+  ///
+  /// In es, this message translates to:
+  /// **'Pregunta {current} de {total}'**
+  String immQuestionOf(Object current, Object total);
+
+  /// No description provided for @immWriteWord.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe la palabra…'**
+  String get immWriteWord;
+
+  /// No description provided for @immNext.
+  ///
+  /// In es, this message translates to:
+  /// **'Siguiente'**
+  String get immNext;
+
+  /// No description provided for @immSending.
+  ///
+  /// In es, this message translates to:
+  /// **'ENVIANDO…'**
+  String get immSending;
+
+  /// No description provided for @immFinish.
+  ///
+  /// In es, this message translates to:
+  /// **'Terminar'**
+  String get immFinish;
+
+  /// No description provided for @immPerfect.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Comprensión perfecta!'**
+  String get immPerfect;
+
+  /// No description provided for @immGoodReading.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Buena lectura!'**
+  String get immGoodReading;
+
+  /// No description provided for @immScoreLine.
+  ///
+  /// In es, this message translates to:
+  /// **'{pct}% · {correct}/{total} correctas'**
+  String immScoreLine(Object pct, Object correct, Object total);
+
+  /// No description provided for @immDone.
+  ///
+  /// In es, this message translates to:
+  /// **'Listo'**
+  String get immDone;
+
+  /// No description provided for @immAnswerLabel.
+  ///
+  /// In es, this message translates to:
+  /// **'Respuesta: {answer}'**
+  String immAnswerLabel(Object answer);
+
+  /// No description provided for @simTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Simulacros'**
+  String get simTitle;
+
+  /// No description provided for @simHeadline.
+  ///
+  /// In es, this message translates to:
+  /// **'Practica el examen real'**
+  String get simHeadline;
+
+  /// No description provided for @simSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Simulacros con formato oficial y reporte de banda por sección.'**
+  String get simSubtitle;
+
+  /// No description provided for @simHowReadingDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Autocorregibles al 100% — puntaje inmediato.'**
+  String get simHowReadingDesc;
+
+  /// No description provided for @simHowWritingDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe y compara con una respuesta modelo + rúbrica.'**
+  String get simHowWritingDesc;
+
+  /// No description provided for @simHowSpeakingDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Responde en voz alta con el modelo y una autoevaluación guiada.'**
+  String get simHowSpeakingDesc;
+
+  /// No description provided for @simHowBandTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Reporte de banda'**
+  String get simHowBandTitle;
+
+  /// No description provided for @simHowBandDesc.
+  ///
+  /// In es, this message translates to:
+  /// **'Banda estimada por sección y global.'**
+  String get simHowBandDesc;
+
+  /// No description provided for @simAvailable.
+  ///
+  /// In es, this message translates to:
+  /// **'Disponibles'**
+  String get simAvailable;
+
+  /// No description provided for @simIncludedPremium.
+  ///
+  /// In es, this message translates to:
+  /// **'Incluidos en Jezici Premium'**
+  String get simIncludedPremium;
+
+  /// No description provided for @simMockIeltsAcademic.
+  ///
+  /// In es, this message translates to:
+  /// **'4 secciones · banda 0–9 · ~2 h 45 min'**
+  String get simMockIeltsAcademic;
+
+  /// No description provided for @simMockIeltsGeneral.
+  ///
+  /// In es, this message translates to:
+  /// **'Migración y trabajo · banda 0–9'**
+  String get simMockIeltsGeneral;
+
+  /// No description provided for @simMockCambridgeB2.
+  ///
+  /// In es, this message translates to:
+  /// **'Nivel intermedio-alto · 4 destrezas'**
+  String get simMockCambridgeB2;
+
+  /// No description provided for @refTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Repaso'**
+  String get refTitle;
+
+  /// No description provided for @refNothingToReview.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Nada que reforzar ahora! Vas al día. 🎉'**
+  String get refNothingToReview;
+
+  /// No description provided for @refStartError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo iniciar la práctica.'**
+  String get refStartError;
+
+  /// No description provided for @refLoadError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo cargar el repaso.'**
+  String get refLoadError;
+
+  /// No description provided for @refEmptyConcepts.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún no hay conceptos para este curso.'**
+  String get refEmptyConcepts;
+
+  /// No description provided for @refIntro.
+  ///
+  /// In es, this message translates to:
+  /// **'Tus conceptos clave, por habilidad. Repasa y practica lo flojo.'**
+  String get refIntro;
+
+  /// No description provided for @refWeaknessTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Refuerzo de debilidades'**
+  String get refWeaknessTitle;
+
+  /// No description provided for @refSkillPracticeTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Práctica de {skill}'**
+  String refSkillPracticeTitle(Object skill);
+
+  /// No description provided for @refWeakPoint.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu punto flojo: {skill}'**
+  String refWeakPoint(Object skill);
+
+  /// No description provided for @refWeakSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Practica para subir tu dominio.'**
+  String get refWeakSubtitle;
+
+  /// No description provided for @refPractice.
+  ///
+  /// In es, this message translates to:
+  /// **'Practicar'**
+  String get refPractice;
+
+  /// No description provided for @refMasteryPct.
+  ///
+  /// In es, this message translates to:
+  /// **'{pct}% dominio'**
+  String refMasteryPct(Object pct);
+
+  /// No description provided for @refSeen.
+  ///
+  /// In es, this message translates to:
+  /// **'visto'**
+  String get refSeen;
+
   /// No description provided for @introKicker.
   ///
   /// In es, this message translates to:

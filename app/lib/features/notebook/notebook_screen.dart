@@ -5,6 +5,7 @@ import '../../core/speech/speakable_text.dart';
 import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../learn/widgets/parrot_mascot.dart';
+import '../../l10n/app_localizations.dart';
 import '../../data/models/tip_models.dart';
 import '../../data/providers.dart';
 
@@ -15,13 +16,14 @@ class NotebookScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final tipsAsync = ref.watch(notebookProvider);
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
         backgroundColor: AppColors.background,
         elevation: 0,
-        title: const Text('Cuaderno de datos',
-            style: TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
+        title: Text(l10n.nbTitle,
+            style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
         iconTheme: const IconThemeData(color: AppColors.text),
       ),
       body: tipsAsync.when(
@@ -40,7 +42,7 @@ class NotebookScreen extends ConsumerWidget {
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 4),
                       child: Text(
-                        '${tips.length} ${tips.length == 1 ? 'dato aprendido' : 'datos aprendidos'} 🦜',
+                        l10n.nbLearnedCount(tips.length),
                         style: const TextStyle(
                             fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.textMuted),
                       ),
@@ -59,21 +61,22 @@ class _Empty extends StatelessWidget {
   const _Empty();
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    final l10n = AppLocalizations.of(context);
+    return Center(
       child: Padding(
-        padding: EdgeInsets.all(36),
+        padding: const EdgeInsets.all(36),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            ParrotArt(size: 56),
-            SizedBox(height: 14),
-            Text('Tu cuaderno está vacío… por ahora',
+            const ParrotArt(size: 56),
+            const SizedBox(height: 14),
+            Text(l10n.nbEmptyTitle,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w900, color: AppColors.text)),
-            SizedBox(height: 6),
-            Text('Completa lecciones y Jezi te enseñará datos, trucos y errores comunes que se guardarán aquí.',
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w900, color: AppColors.text)),
+            const SizedBox(height: 6),
+            Text(l10n.nbEmptyBody,
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.textMuted)),
+                style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.textMuted)),
           ],
         ),
       ),

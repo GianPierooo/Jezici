@@ -5,6 +5,7 @@ import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/models/progress_models.dart';
 import '../../data/providers.dart';
+import '../../l10n/app_localizations.dart';
 import '../../ui/primary_button.dart';
 
 /// "Mi Plan" — dashboard de seguimiento (GA4 · B2, diferenciador):
@@ -13,53 +14,66 @@ import '../../ui/primary_button.dart';
 class MiPlanScreen extends ConsumerWidget {
   const MiPlanScreen({super.key});
 
-  static const _months = [
-    'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio',
-    'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
-  ];
-  static String fmtDate(DateTime d) => '${d.day} de ${_months[d.month - 1]} de ${d.year}';
+  /// Fecha en el formato del idioma de la app (no hardcodeado en español).
+  static String fmtDate(BuildContext context, DateTime d) =>
+      MaterialLocalizations.of(context).formatMediumDate(d);
 
-  static const _motiveFocus = {
-    'Trabajo': '💼 Enfoque laboral: reuniones, correos y entrevistas.',
-    'Viajes': '✈️ Enfoque viajes: aeropuerto, hotel, direcciones y restaurantes.',
-    'Examen': '🎓 Enfoque examen: simulacros y las 4 habilidades.',
-    'Estudios': '📚 Enfoque estudios: comprensión, escritura y vocabulario.',
-    'Mudanza': '🏠 Enfoque mudanza: trámites, vivienda y vida diaria.',
-    'Placer': '🎬 Enfoque cultura: series, música y conversación.',
-  };
+  /// Texto de enfoque por MOTIVO del plan, localizado (reusa las claves planFocus*
+  /// del onboarding/perfil). La clave (t.motive) es un valor del servidor en español;
+  /// solo el TEXTO mostrado se traduce. null si no hay motivo reconocido.
+  static String? focusText(AppLocalizations l10n, String? motive) {
+    switch (motive) {
+      case 'Trabajo':
+        return '💼 ${l10n.planFocusWork}';
+      case 'Viajes':
+        return '✈️ ${l10n.planFocusTravel}';
+      case 'Examen':
+        return '🎓 ${l10n.planFocusExam}';
+      case 'Estudios':
+        return '📚 ${l10n.planFocusStudies}';
+      case 'Mudanza':
+        return '🏠 ${l10n.planFocusRelocation}';
+      case 'Placer':
+        return '🎬 ${l10n.planFocusCulture}';
+      default:
+        return null;
+    }
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final async = ref.watch(planTrackingProvider);
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
         backgroundColor: AppColors.background, elevation: 0, foregroundColor: AppColors.text,
-        title: const Text('Mi plan', style: TextStyle(fontWeight: FontWeight.w900)),
+        title: Text(l10n.miplanTitle, style: const TextStyle(fontWeight: FontWeight.w900)),
       ),
       body: async.when(
         loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
         error: (e, _) => Center(
           child: Padding(
             padding: const EdgeInsets.all(24),
-            child: Text('No se pudo cargar tu plan.\n$e',
+            child: Text('${l10n.miplanLoadError}\n$e',
                 textAlign: TextAlign.center,
                 style: const TextStyle(fontWeight: FontWeight.w700, color: AppColors.textMuted)),
           ),
         ),
         data: (t) => !t.ok
-            ? const Center(child: Text('Aún no tienes un plan.'))
+            ? Center(child: Text(l10n.miplanNoPlan))
             : _body(context, ref, t),
       ),
     );
   }
 
   Widget _body(BuildContext context, WidgetRef ref, PlanTracking t) {
+    final l10n = AppLocalizations.of(context);
     final ahead = t.aheadBehind;
     final aheadColor = ahead >= 0 ? AppColors.success : AppColors.coral;
     final aheadText = ahead == 0
-        ? 'Justo en tu plan'
-        : (ahead > 0 ? 'Vas $ahead ${_d(ahead)} adelante 🎉' : 'Vas ${-ahead} ${_d(-ahead)} atrás');
+        ? l10n.miplanOnTrack
+        : (ahead > 0 ? l10n.miplanAhead(ahead) : l10n.miplanBehind(-ahead));
     final proj = t.projectedCompletion;
     return ResponsiveCenter(
       maxWidth: 480,
@@ -81,8 +95,8 @@ class MiPlanScreen extends ConsumerWidget {
             children: [
               Row(
                 children: [
-                  const Text('AVANCE DEL PLAN',
-                      style: TextStyle(fontSize: 11, fontWeight: FontWeight.w900, letterSpacing: 1.4, color: Colors.white70)),
+                  Text(l10n.miplanProgressLabel,
+                      style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w900, letterSpacing: 1.4, color: Colors.white70)),
                   const Spacer(),
                   Text('${t.currentLevel} → ${t.goalLevel}',
                       style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: Colors.white)),
@@ -99,7 +113,7 @@ class MiPlanScreen extends ConsumerWidget {
                 ),
               ),
               const SizedBox(height: 8),
-              Text('${(t.progress * 100).round()}% · ${t.goalMetDays}/${t.totalActiveDays} días de práctica',
+              Text(l10n.miplanPracticeDays('${(t.progress * 100).round()}', '${t.goalMetDays}', '${t.totalActiveDays}'),
                   style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w800, color: Colors.white70)),
             ],
           ),
@@ -122,7 +136,7 @@ class MiPlanScreen extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(aheadText, style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: aheadColor)),
-                    Text('Cumpliste ${t.goalMetDays} de ${t.expectedDays} días esperados a hoy.',
+                    Text(l10n.miplanMetDays('${t.goalMetDays}', '${t.expectedDays}'),
                         style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
                   ],
                 ),
@@ -136,47 +150,47 @@ class MiPlanScreen extends ConsumerWidget {
         if (proj != null)
           _InfoCard(
             icon: Icons.event_available_rounded,
-            title: 'Llegada proyectada',
-            value: fmtDate(proj),
+            title: l10n.miplanProjectedArrival,
+            value: fmtDate(context, proj),
             sub: t.estimatedCompletion != null && t.estimatedCompletion != proj
-                ? 'Plan original: ${fmtDate(t.estimatedCompletion!)}'
-                : 'Con tu ritmo actual',
+                ? l10n.miplanOriginalPlan(fmtDate(context, t.estimatedCompletion!))
+                : l10n.miplanCurrentPace,
           )
         else if (t.estimatedCompletion != null)
           _InfoCard(
             icon: Icons.event_available_rounded,
-            title: 'Llegada estimada',
-            value: fmtDate(t.estimatedCompletion!),
-            sub: 'Practica unos días y ajustaremos la fecha a tu ritmo real.',
+            title: l10n.miplanEstimatedArrival,
+            value: fmtDate(context, t.estimatedCompletion!),
+            sub: l10n.miplanEstimateHint,
           )
         else
           _InfoCard(
             icon: Icons.hourglass_empty_rounded,
-            title: 'Llegada proyectada',
-            value: 'Calculando…',
-            sub: 'Completa tus primeras sesiones para estimar tu fecha.',
+            title: l10n.miplanProjectedArrival,
+            value: l10n.miplanCalculating,
+            sub: l10n.miplanCalcHint,
           ),
         const SizedBox(height: 10),
         Row(
           children: [
-            Expanded(child: _Mini(icon: Icons.bolt_rounded, value: '${t.dailyMinutes} min', label: 'al día')),
+            Expanded(child: _Mini(icon: Icons.bolt_rounded, value: '${t.dailyMinutes} min', label: l10n.miplanPerDay)),
             const SizedBox(width: 10),
-            Expanded(child: _Mini(icon: Icons.calendar_today_rounded, value: '${t.daysPerWeek} días', label: 'por semana')),
+            Expanded(child: _Mini(icon: Icons.calendar_today_rounded, value: l10n.miplanDaysCount('${t.daysPerWeek}'), label: l10n.miplanPerWeek)),
           ],
         ),
-        if (_motiveFocus[t.motive] != null) ...[
+        if (focusText(l10n, t.motive) != null) ...[
           const SizedBox(height: 14),
           Container(
             padding: const EdgeInsets.all(15),
             decoration: BoxDecoration(color: AppColors.navActiveBg, borderRadius: BorderRadius.circular(16)),
-            child: Text(_motiveFocus[t.motive]!,
+            child: Text(focusText(l10n, t.motive)!,
                 style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.primary)),
           ),
         ],
         const SizedBox(height: 18),
         // Palanca "llegar más rápido" (botón dorado 3D de la casa).
         PrimaryButton(
-          label: 'QUIERO LLEGAR MÁS RÁPIDO',
+          label: l10n.miplanFasterCta,
           icon: Icons.rocket_launch_rounded,
           expand: true,
           color: AppColors.gold,
@@ -189,9 +203,8 @@ class MiPlanScreen extends ConsumerWidget {
     );
   }
 
-  String _d(int n) => n == 1 ? 'día' : 'días';
-
   Future<void> _faster(BuildContext context, WidgetRef ref, PlanTracking t) async {
+    final l10n = AppLocalizations.of(context);
     const tiers = [10, 15, 20, 30, 45, 60];
     final pick = await showModalBottomSheet<int>(
       context: context,
@@ -204,11 +217,11 @@ class MiPlanScreen extends ConsumerWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Sube tu ritmo diario',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: AppColors.text)),
+              Text(l10n.miplanPaceSheetTitle,
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w900, color: AppColors.text)),
               const SizedBox(height: 4),
-              const Text('Más minutos al día = llegas antes. Recalculamos tu fecha.',
-                  style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+              Text(l10n.miplanPaceSheetSub,
+                  style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
               const SizedBox(height: 14),
               Wrap(
                 spacing: 10, runSpacing: 10,
@@ -246,12 +259,12 @@ class MiPlanScreen extends ConsumerWidget {
       if (context.mounted) {
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
-          ..showSnackBar(SnackBar(content: Text('¡Listo! Ahora $pick min/día. Fecha recalculada.')));
+          ..showSnackBar(SnackBar(content: Text(l10n.miplanPaceUpdated('$pick'))));
       }
     } catch (_) {
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('No se pudo actualizar el ritmo.')));
+            SnackBar(content: Text(l10n.miplanPaceError)));
       }
     }
   }

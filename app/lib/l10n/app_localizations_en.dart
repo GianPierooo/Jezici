@@ -1113,6 +1113,405 @@ class AppLocalizationsEn extends AppLocalizations {
   String get errUnknown => 'Something went wrong. Try again.';
 
   @override
+  String get miplanTitle => 'My plan';
+
+  @override
+  String get miplanLoadError => 'Couldn\'t load your plan.';
+
+  @override
+  String get miplanNoPlan => 'You don\'t have a plan yet.';
+
+  @override
+  String get miplanProgressLabel => 'PLAN PROGRESS';
+
+  @override
+  String miplanPracticeDays(Object percent, Object met, Object total) {
+    return '$percent% · $met/$total practice days';
+  }
+
+  @override
+  String get miplanOnTrack => 'Right on plan';
+
+  @override
+  String miplanAhead(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: 'You\'re $days days ahead 🎉',
+      one: 'You\'re 1 day ahead 🎉',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String miplanBehind(int days) {
+    String _temp0 = intl.Intl.pluralLogic(
+      days,
+      locale: localeName,
+      other: 'You\'re $days days behind',
+      one: 'You\'re 1 day behind',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String miplanMetDays(Object met, Object expected) {
+    return 'You met $met of $expected expected days so far.';
+  }
+
+  @override
+  String get miplanProjectedArrival => 'Projected arrival';
+
+  @override
+  String get miplanEstimatedArrival => 'Estimated arrival';
+
+  @override
+  String miplanOriginalPlan(Object date) {
+    return 'Original plan: $date';
+  }
+
+  @override
+  String get miplanCurrentPace => 'At your current pace';
+
+  @override
+  String get miplanEstimateHint =>
+      'Practice a few days and we\'ll tune the date to your real pace.';
+
+  @override
+  String get miplanCalculating => 'Calculating…';
+
+  @override
+  String get miplanCalcHint =>
+      'Complete your first sessions to estimate your date.';
+
+  @override
+  String get miplanPerDay => 'per day';
+
+  @override
+  String get miplanPerWeek => 'per week';
+
+  @override
+  String miplanDaysCount(Object days) {
+    return '$days days';
+  }
+
+  @override
+  String get miplanFasterCta => 'I WANT TO ARRIVE FASTER';
+
+  @override
+  String get miplanPaceSheetTitle => 'Raise your daily pace';
+
+  @override
+  String get miplanPaceSheetSub =>
+      'More minutes a day = you arrive sooner. We\'ll recalculate your date.';
+
+  @override
+  String miplanPaceUpdated(Object min) {
+    return 'Done! Now $min min/day. Date recalculated.';
+  }
+
+  @override
+  String get miplanPaceError => 'Couldn\'t update your pace.';
+
+  @override
+  String get nbTitle => 'Notebook';
+
+  @override
+  String nbLearnedCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count facts learned',
+      one: '$count fact learned',
+    );
+    return '$_temp0 🦜';
+  }
+
+  @override
+  String get nbEmptyTitle => 'Your notebook is empty… for now';
+
+  @override
+  String get nbEmptyBody =>
+      'Complete lessons and Jezi will teach you facts, tips and common mistakes that get saved here.';
+
+  @override
+  String get matixTestGoalUnmet => 'Goal not met';
+
+  @override
+  String get matixTestStreakRisk => 'Streak at risk';
+
+  @override
+  String get matixTestAchievement => 'Achievement unlocked';
+
+  @override
+  String get matixTestFireError => 'Couldn\'t send the notification.';
+
+  @override
+  String get examStartError => 'Couldn\'t start the exam.';
+
+  @override
+  String examLevelTitle(Object level) {
+    return '$level level exam';
+  }
+
+  @override
+  String examCertifyLevel(Object level) {
+    return 'Certify your $level level';
+  }
+
+  @override
+  String get examIntroDescription =>
+      'A timed exam mixing all 4 skills from every unit. Pass it and get your certificate with a serial number and verification code.';
+
+  @override
+  String get examBulletTime => '10 minutes · 20 questions';
+
+  @override
+  String get examBulletSkills => 'Reading · Listening · Writing · Speaking';
+
+  @override
+  String get examBulletPass => 'You need 80% to pass';
+
+  @override
+  String examBulletCertificate(Object level) {
+    return 'On passing: shareable $level certificate';
+  }
+
+  @override
+  String get examStart => 'START EXAM';
+
+  @override
+  String get examSubmitError => 'Couldn\'t submit the exam. Try again.';
+
+  @override
+  String get examLeaveTitle => 'Leave the exam?';
+
+  @override
+  String get examLeaveBody => 'You\'ll lose this attempt\'s progress.';
+
+  @override
+  String get examLeaveStay => 'Stay';
+
+  @override
+  String get examLeaveConfirm => 'Leave';
+
+  @override
+  String get examNoItems => 'Exam has no items.';
+
+  @override
+  String get examFinish => 'FINISH';
+
+  @override
+  String get examNext => 'NEXT';
+
+  @override
+  String get notifTitle => 'Notifications';
+
+  @override
+  String get notifRefresh => 'Refresh';
+
+  @override
+  String get notifTestJezi => 'Test Jezi';
+
+  @override
+  String get notifTestJeziHint =>
+      'Simulate an event: Jezi picks the copy for your coach style and sends it to you.';
+
+  @override
+  String get notifReceived => 'Received';
+
+  @override
+  String notifLoadError(Object error) {
+    return 'Couldn\'t load them.\n$error';
+  }
+
+  @override
+  String get notifEmpty => 'No notifications yet';
+
+  @override
+  String get notifEmptyHint =>
+      'Use \"Test Jezi\" to hear how your coach sounds.';
+
+  @override
+  String get notifAgoNow => 'now';
+
+  @override
+  String notifAgoMinutes(Object minutes) {
+    return '$minutes min ago';
+  }
+
+  @override
+  String notifAgoHours(Object hours) {
+    return '$hours h ago';
+  }
+
+  @override
+  String notifAgoDays(Object days) {
+    return '$days d ago';
+  }
+
+  @override
+  String get immTitle => 'Immersion';
+
+  @override
+  String get immLoadError => 'Couldn\'t load the stories. Try again.';
+
+  @override
+  String get immEmpty => 'Stories for your course are coming soon. 📖';
+
+  @override
+  String get immSubtitle =>
+      'Read and listen to stories at your level. Then answer a few questions.';
+
+  @override
+  String immLevel(Object level) {
+    return 'Level $level';
+  }
+
+  @override
+  String get immStoryTitle => 'Story';
+
+  @override
+  String get immStoryLoadError => 'Couldn\'t load the story.';
+
+  @override
+  String get immSubmitError => 'Couldn\'t submit. Try again.';
+
+  @override
+  String get immAnswerQuestions => 'Answer questions';
+
+  @override
+  String get immListen => 'Listen';
+
+  @override
+  String get immGlossary => 'Glossary';
+
+  @override
+  String immQuestionOf(Object current, Object total) {
+    return 'Question $current of $total';
+  }
+
+  @override
+  String get immWriteWord => 'Type the word…';
+
+  @override
+  String get immNext => 'Next';
+
+  @override
+  String get immSending => 'SENDING…';
+
+  @override
+  String get immFinish => 'Finish';
+
+  @override
+  String get immPerfect => 'Perfect comprehension!';
+
+  @override
+  String get immGoodReading => 'Nice reading!';
+
+  @override
+  String immScoreLine(Object pct, Object correct, Object total) {
+    return '$pct% · $correct/$total correct';
+  }
+
+  @override
+  String get immDone => 'Done';
+
+  @override
+  String immAnswerLabel(Object answer) {
+    return 'Answer: $answer';
+  }
+
+  @override
+  String get simTitle => 'Mock exams';
+
+  @override
+  String get simHeadline => 'Practice the real exam';
+
+  @override
+  String get simSubtitle =>
+      'Mock exams in the official format with a band report per section.';
+
+  @override
+  String get simHowReadingDesc => '100% auto-graded — instant score.';
+
+  @override
+  String get simHowWritingDesc =>
+      'Write and compare against a model answer + rubric.';
+
+  @override
+  String get simHowSpeakingDesc =>
+      'Answer out loud with the model and a guided self-assessment.';
+
+  @override
+  String get simHowBandTitle => 'Band report';
+
+  @override
+  String get simHowBandDesc => 'Estimated band per section and overall.';
+
+  @override
+  String get simAvailable => 'Available';
+
+  @override
+  String get simIncludedPremium => 'Included in Jezici Premium';
+
+  @override
+  String get simMockIeltsAcademic => '4 sections · band 0–9 · ~2 h 45 min';
+
+  @override
+  String get simMockIeltsGeneral => 'Migration and work · band 0–9';
+
+  @override
+  String get simMockCambridgeB2 => 'Upper-intermediate · 4 skills';
+
+  @override
+  String get refTitle => 'Review';
+
+  @override
+  String get refNothingToReview =>
+      'Nothing to reinforce right now! You\'re all caught up. 🎉';
+
+  @override
+  String get refStartError => 'Couldn\'t start the practice.';
+
+  @override
+  String get refLoadError => 'Couldn\'t load the review.';
+
+  @override
+  String get refEmptyConcepts => 'No concepts yet for this course.';
+
+  @override
+  String get refIntro =>
+      'Your key concepts, by skill. Review and practice your weak spots.';
+
+  @override
+  String get refWeaknessTitle => 'Weakness reinforcement';
+
+  @override
+  String refSkillPracticeTitle(Object skill) {
+    return '$skill practice';
+  }
+
+  @override
+  String refWeakPoint(Object skill) {
+    return 'Your weak spot: $skill';
+  }
+
+  @override
+  String get refWeakSubtitle => 'Practice to raise your mastery.';
+
+  @override
+  String get refPractice => 'Practice';
+
+  @override
+  String refMasteryPct(Object pct) {
+    return '$pct% mastery';
+  }
+
+  @override
+  String get refSeen => 'seen';
+
+  @override
   String get introKicker => 'LEARN';
 
   @override

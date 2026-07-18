@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
+import '../../l10n/app_localizations.dart';
 import '../../data/models/progress_models.dart';
 import '../../data/providers.dart';
 import '../learn/widgets/parrot_mascot.dart';
@@ -18,6 +19,7 @@ class NotificationCenterScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final items = ref.watch(notificationsProvider);
     // El banco de pruebas del motor (MatixTestButtons) es herramienta interna →
     // solo visible para admin (como "Ver métricas"). El público no lo ve.
@@ -30,11 +32,11 @@ class NotificationCenterScreen extends ConsumerWidget {
         backgroundColor: AppColors.background,
         elevation: 0,
         foregroundColor: AppColors.text,
-        title: const Text('Notificaciones',
-            style: TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
+        title: Text(l10n.notifTitle,
+            style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
         actions: [
           IconButton(
-            tooltip: 'Actualizar',
+            tooltip: l10n.notifRefresh,
             onPressed: () => ref.invalidate(notificationsProvider),
             icon: const Icon(Icons.refresh_rounded),
           ),
@@ -62,32 +64,32 @@ class NotificationCenterScreen extends ConsumerWidget {
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text('Probar a Jezi',
-                      style: TextStyle(
+                children: [
+                  Text(l10n.notifTestJezi,
+                      style: const TextStyle(
                           fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
-                  SizedBox(height: 3),
+                  const SizedBox(height: 3),
                   Text(
-                    'Simula un evento: Jezi elige el copy de tu estilo de coach y te lo manda.',
-                    style: TextStyle(
+                    l10n.notifTestJeziHint,
+                    style: const TextStyle(
                         fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted),
                   ),
-                  SizedBox(height: 12),
-                  MatixTestButtons(),
+                  const SizedBox(height: 12),
+                  const MatixTestButtons(),
                 ],
               ),
             ),
             const SizedBox(height: 20),
           ],
-          const Text('Recibidas',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+          Text(l10n.notifReceived,
+              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
           const SizedBox(height: 10),
           items.when(
             loading: () => const Padding(
               padding: EdgeInsets.symmetric(vertical: 30),
               child: Center(child: CircularProgressIndicator(color: AppColors.primary)),
             ),
-            error: (e, _) => Text('No se pudieron cargar.\n$e',
+            error: (e, _) => Text(l10n.notifLoadError('$e'),
                 style: const TextStyle(color: AppColors.textMuted)),
             data: (list) => list.isEmpty
                 ? const _EmptyState()
@@ -105,6 +107,7 @@ class _EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 34, horizontal: 20),
@@ -112,16 +115,16 @@ class _EmptyState extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
       ),
-      child: const Column(
+      child: Column(
         children: [
-          ParrotArt(size: 40),
-          SizedBox(height: 8),
-          Text('Sin notificaciones todavía',
-              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.text)),
-          SizedBox(height: 4),
-          Text('Usa "Probar a Jezi" para ver cómo suena tu coach.',
+          const ParrotArt(size: 40),
+          const SizedBox(height: 8),
+          Text(l10n.notifEmpty,
+              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.text)),
+          const SizedBox(height: 4),
+          Text(l10n.notifEmptyHint,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+              style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
         ],
       ),
     );
@@ -132,13 +135,14 @@ class _NotifTile extends StatelessWidget {
   const _NotifTile({required this.item});
   final NotificationItem item;
 
-  String _ago(DateTime? t) {
+  String _ago(BuildContext context, DateTime? t) {
     if (t == null) return '';
+    final l10n = AppLocalizations.of(context);
     final d = DateTime.now().difference(t);
-    if (d.inMinutes < 1) return 'ahora';
-    if (d.inMinutes < 60) return 'hace ${d.inMinutes} min';
-    if (d.inHours < 24) return 'hace ${d.inHours} h';
-    return 'hace ${d.inDays} d';
+    if (d.inMinutes < 1) return l10n.notifAgoNow;
+    if (d.inMinutes < 60) return l10n.notifAgoMinutes('${d.inMinutes}');
+    if (d.inHours < 24) return l10n.notifAgoHours('${d.inHours}');
+    return l10n.notifAgoDays('${d.inDays}');
   }
 
   @override
@@ -178,7 +182,7 @@ class _NotifTile extends StatelessWidget {
                           style: const TextStyle(
                               fontSize: 11.5, fontWeight: FontWeight.w900, color: AppColors.primary)),
                     ),
-                    Text(_ago(item.sentAt),
+                    Text(_ago(context, item.sentAt),
                         style: const TextStyle(
                             fontSize: 10.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
                   ],

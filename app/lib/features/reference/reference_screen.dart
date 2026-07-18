@@ -7,6 +7,8 @@ import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/ui/jz_skeleton.dart';
 import '../../core/ui/jz_transitions.dart';
+import '../../l10n/app_localizations.dart';
+import '../../l10n/skill_names.dart';
 import '../../data/models/level_exam_models.dart';
 import '../../data/models/tip_models.dart';
 import '../../data/providers.dart';
@@ -44,7 +46,7 @@ class _ReferenceScreenState extends ConsumerState<ReferenceScreen> {
       if (s.items.isEmpty) {
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
-          ..showSnackBar(const SnackBar(content: Text('¡Nada que reforzar ahora! Vas al día. 🎉')));
+          ..showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).refNothingToReview)));
         return;
       }
       await Navigator.of(context).push(jzRoute(
@@ -55,7 +57,7 @@ class _ReferenceScreenState extends ConsumerState<ReferenceScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context)
           ..hideCurrentSnackBar()
-          ..showSnackBar(const SnackBar(content: Text('No se pudo iniciar la práctica.')));
+          ..showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).refStartError)));
       }
     } finally {
       if (mounted) setState(() => _loading = null);
@@ -64,6 +66,7 @@ class _ReferenceScreenState extends ConsumerState<ReferenceScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final refAsync = ref.watch(referenceProvider);
     final mastery = ref.watch(skillMasteryProvider).value;
     return Scaffold(
@@ -71,8 +74,8 @@ class _ReferenceScreenState extends ConsumerState<ReferenceScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.background,
         elevation: 0,
-        title: const Text('Repaso',
-            style: TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
+        title: Text(l10n.refTitle,
+            style: const TextStyle(fontWeight: FontWeight.w900, color: AppColors.text)),
       ),
       body: refAsync.when(
         loading: () => ListView(children: const [JzListSkeleton()]),
@@ -80,9 +83,9 @@ class _ReferenceScreenState extends ConsumerState<ReferenceScreen> {
           child: Column(mainAxisSize: MainAxisSize.min, children: [
             const Icon(Icons.cloud_off_rounded, color: AppColors.textMuted, size: 40),
             const SizedBox(height: 10),
-            const Text('No se pudo cargar el repaso.',
-                style: TextStyle(fontWeight: FontWeight.w800, color: AppColors.textMuted)),
-            TextButton(onPressed: () => ref.invalidate(referenceProvider), child: const Text('Reintentar')),
+            Text(l10n.refLoadError,
+                style: const TextStyle(fontWeight: FontWeight.w800, color: AppColors.textMuted)),
+            TextButton(onPressed: () => ref.invalidate(referenceProvider), child: Text(l10n.commonRetry)),
           ]),
         ),
         data: (data) => _body(context, data, mastery),
@@ -91,6 +94,7 @@ class _ReferenceScreenState extends ConsumerState<ReferenceScreen> {
   }
 
   Widget _body(BuildContext context, ReferenceData data, SkillMasteryStatus? mastery) {
+    final l10n = AppLocalizations.of(context);
     if (data.tips.isEmpty) {
       return RefreshIndicator(
         onRefresh: () async => ref.invalidate(referenceProvider),
@@ -104,9 +108,9 @@ class _ReferenceScreenState extends ConsumerState<ReferenceScreen> {
               child: Column(children: [
                 const Icon(Icons.auto_stories_rounded, color: AppColors.textMuted, size: 44),
                 const SizedBox(height: 12),
-                const Text('Aún no hay conceptos para este curso.',
+                Text(l10n.refEmptyConcepts,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.w800, color: AppColors.textMuted)),
+                    style: const TextStyle(fontWeight: FontWeight.w800, color: AppColors.textMuted)),
               ]),
             ),
           ],
@@ -123,13 +127,13 @@ class _ReferenceScreenState extends ConsumerState<ReferenceScreen> {
         child: ListView(
         padding: const EdgeInsets.fromLTRB(20, 6, 20, 110),
         children: [
-          const Text('Tus conceptos clave, por habilidad. Repasa y practica lo flojo.',
-              style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+          Text(l10n.refIntro,
+              style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
           const SizedBox(height: 14),
           if (weak != null) _WeakBanner(
             skill: weak,
             loading: _loading == 'weakness',
-            onPractice: () => _practice('weakness', title: 'Refuerzo de debilidades'),
+            onPractice: () => _practice('weakness', title: l10n.refWeaknessTitle),
           ),
           for (final skill in _order)
             if ((grouped[skill] ?? const []).isNotEmpty) ...[
@@ -141,7 +145,7 @@ class _ReferenceScreenState extends ConsumerState<ReferenceScreen> {
                 isWeak: skill == weak,
                 canPractice: _gradable.contains(skill),
                 loading: _loading == 'skill$skill',
-                onPractice: () => _practice('skill', skill: skill, title: 'Práctica de ${kSkillEs[skill] ?? skill}'),
+                onPractice: () => _practice('skill', skill: skill, title: l10n.refSkillPracticeTitle(skillName(l10n, skill))),
               ),
               const SizedBox(height: 8),
               for (final tip in grouped[skill]!) _TipTile(tip: tip),
@@ -161,6 +165,7 @@ class _WeakBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     return Container(
       padding: const EdgeInsets.all(15),
       decoration: BoxDecoration(
@@ -175,11 +180,11 @@ class _WeakBanner extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Tu punto flojo: ${kSkillEs[skill] ?? skill}',
+                Text(l10n.refWeakPoint(skillName(l10n, skill)),
                     style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: Colors.white)),
                 const SizedBox(height: 2),
-                const Text('Practica para subir tu dominio.',
-                    style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: Colors.white70)),
+                Text(l10n.refWeakSubtitle,
+                    style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: Colors.white70)),
               ],
             ),
           ),
@@ -191,8 +196,8 @@ class _WeakBanner extends StatelessWidget {
               decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(12)),
               child: loading
                   ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2.2, color: AppColors.primary))
-                  : const Text('Practicar',
-                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.w900, color: AppColors.primary)),
+                  : Text(l10n.refPractice,
+                      style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w900, color: AppColors.primary)),
             ),
           ),
         ],
@@ -221,6 +226,7 @@ class _SkillHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final pct = ((mastery?.masteryPct ?? 0) * 100).round();
     return Row(
       children: [
@@ -240,7 +246,7 @@ class _SkillHeader extends StatelessWidget {
                 Text(kSkillEs[skill] ?? skill,
                     style: const TextStyle(fontSize: 15.5, fontWeight: FontWeight.w900, color: AppColors.text)),
                 const SizedBox(width: 8),
-                Text('$pct% dominio',
+                Text(l10n.refMasteryPct('$pct'),
                     style: const TextStyle(fontSize: 11.5, fontWeight: FontWeight.w800, color: AppColors.textMuted)),
               ]),
               const SizedBox(height: 5),
@@ -319,8 +325,8 @@ class _TipTile extends StatelessWidget {
               const SizedBox(width: 7),
               const Icon(Icons.check_circle_rounded, size: 13, color: AppColors.success),
               const SizedBox(width: 2),
-              const Text('visto',
-                  style: TextStyle(fontSize: 10.5, fontWeight: FontWeight.w800, color: AppColors.success)),
+              Text(AppLocalizations.of(context).refSeen,
+                  style: const TextStyle(fontSize: 10.5, fontWeight: FontWeight.w800, color: AppColors.success)),
             ],
           ]),
           children: [
