@@ -183,6 +183,10 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
                           ),
                       loading: _loading == 'srs',
                       onTap: _startSrs,
+                      retentionPct: ref.watch(srsStatusProvider).maybeWhen(
+                            data: (s) => s.matureCards > 0 ? s.retentionPct : null,
+                            orElse: () => null,
+                          ),
                     ),
                     const SizedBox(height: 16),
                     // Refuerza tu punto débil (con CEFR + mini-barra reales).
@@ -382,10 +386,18 @@ class _SrsWelcome extends StatelessWidget {
 
 // ── HERO · Rescate de palabras (SRS) ─────────────────────────────────────────
 class _SrsHero extends StatelessWidget {
-  const _SrsHero({required this.dueWords, required this.onTap, required this.loading});
+  const _SrsHero({
+    required this.dueWords,
+    required this.onTap,
+    required this.loading,
+    this.retentionPct,
+  });
   final int dueWords;
   final VoidCallback onTap;
   final bool loading;
+
+  /// Retención real (get_srs_status). null = sin reviews maduras → no se pinta.
+  final int? retentionPct;
 
   @override
   Widget build(BuildContext context) {
@@ -467,6 +479,45 @@ class _SrsHero extends StatelessWidget {
               ],
             ),
           ),
+          // RETENCIÓN (F1): solo con reviews maduras — el servidor no inventa
+          // un número y aquí tampoco (null → no se pinta nada).
+          if (retentionPct != null)
+            Padding(
+              padding: const EdgeInsets.fromLTRB(18, 14, 18, 0),
+              child: Row(children: [
+                const Text('🧠', style: TextStyle(fontSize: 15)),
+                const SizedBox(width: 7),
+                Text(l10n.srsRetention,
+                    style: const TextStyle(
+                        fontSize: 12.5, fontWeight: FontWeight.w800,
+                        color: AppColors.textMuted)),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(5),
+                    child: LinearProgressIndicator(
+                      value: retentionPct! / 100,
+                      minHeight: 6,
+                      backgroundColor: const Color(0xFFE9EBF3),
+                      valueColor: AlwaysStoppedAnimation(retentionPct! >= 90
+                          ? AppColors.success
+                          : (retentionPct! >= 75
+                              ? const Color(0xFFE8A33D)
+                              : AppColors.hearts)),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Text('$retentionPct%',
+                    style: TextStyle(
+                        fontSize: 13, fontWeight: FontWeight.w900,
+                        color: retentionPct! >= 90
+                            ? AppColors.success
+                            : (retentionPct! >= 75
+                                ? const Color(0xFFE8A33D)
+                                : AppColors.hearts))),
+              ]),
+            ),
           // CTA "Rescatar ahora".
           Padding(
             padding: const EdgeInsets.fromLTRB(18, 14, 18, 18),

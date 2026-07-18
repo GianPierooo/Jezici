@@ -5,6 +5,34 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-17**.
 
+## SRS F4 — Practicar pulido y DINÁMICO (capa de experiencia sobre el motor FSRS) ✅ LIVE (2026-07-17 · solo cliente)
+De PRACTICAR_SRS_ANALISIS §7 F4. Cero IA, cero servidor: **NO se tocó scheduler/inscripción/economía/grading**
+(guardarraíl verificado con `verify_srs.py` pt+de TODO VERDE post-cambio). Para los 6 idiomas (la pantalla es
+course-agnóstica).
+- **PASO 0 (recorrido real de la sesión) — 9 puntos flojos:** (1) cambio de tarjeta brusco (setState pelado);
+  (2) revelado sin animación, sin háptica/SFX ni reacción de Jezi; (3) contador suelto `N` sin etiqueta;
+  (4) barra de progreso que SALTA y no dice cuántas quedan; (5) botones de rating solo-texto; (6) envío final =
+  spinner mudo; (7) **cierre soso** (sin confeti, sin precisión, sin retención, sin racha/meta — datos que el
+  summary YA traía y se tiraban); (8) **retención (F1) invisible** — `retentionPct` existía y NO se mostraba en
+  ningún lado (las claves i18n `srsRetention*` estaban huérfanas); (9) estados vacíos ya OK (bienvenida con Jezi
+  + CTA; verificados).
+- **Pulido (todo reduce-motion-aware — `Duration.zero` + confeti apagado):** transición entre tarjetas
+  (AnimatedSwitcher slide+fade 240ms, clave `_seq`); revelado con **AnimatedSize + fade/rise** + **háptica/SFX
+  del loop** (`FeedbackFx.correct/wrong` — mismo lenguaje que la lección) + **Jezi reacciona** (celebrate/
+  encourage 40px en la caja de resultado); chip **"N restantes"** (plural ICU); **barra animada** (Tween 380ms);
+  botones de rating con **icono** (↻ Otra vez · ⏳ Difícil · ✓ Bien · ⚡ Fácil) + labio 3D existente; envío con
+  "Guardando tu repaso…".
+- **Cierre celebrado (\_Done reescrito):** confeti sutil (14 partículas, nunca con reduce-motion) + Jezi +
+  **anillo de PRECISIÓN animado** (color por tramo) + chips XP/oro/racha + **"⚡ Meta del día cumplida"**
+  (`goalMet`) + **"¡Tu racha avanzó!"** (`streakAdvanced`) + **tarjeta de RETENCIÓN** (🧠 % + barra + explicación
+  honesta) con dato FRESCO (submitSrs invalida `srsStatusProvider`) — **null → no se pinta** (no se inventa) +
+  CTA con `JzGlowPulse` + entrada fade+rise.
+- **Retención en el HUB:** `_SrsHero` gana fila 🧠 Retención (barra + %, color por tramo ≥90 verde / ≥75 ámbar /
+  rojo) solo con `matureCards > 0` (honesto).
+- **Verificado:** analyze 0 (CI-exact) · test **198/198** (+2 F4: "N restantes" + iconos de rating; los 4 srs
+  previos intactos) · **`verify_srs.py` (cliente real pt+de) TODO VERDE** (economía un-pago-por-sesión, FSRS,
+  racha, aislamiento — 0 regresión; usuarios reales 8/8 intactos) · build web OK. i18n es/en/pt (+6 claves).
+
 ## ERRORES TIPADOS · 2ª PASADA — frontera de RPC + catches auditados + SQLSTATE custom ✅ LIVE (mig 167 · 2026-07-17)
 Cierra lo que la 1ª pasada (JzError) dejó pendiente. Cero IA. Transversal, **sin tocar lógica/economía/
 seguridad**; los mensajes que YA funcionaban (amistad, handle) siguen igual — ahora por CÓDIGO, no substring.

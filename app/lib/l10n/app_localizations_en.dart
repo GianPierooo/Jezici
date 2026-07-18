@@ -2260,6 +2260,33 @@ class AppLocalizationsEn extends AppLocalizations {
       'Nothing to review right now. Come back later or do a lesson.';
 
   @override
+  String srsLeft(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n left',
+      one: '1 left',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get srsSaving => 'Saving your review…';
+
+  @override
+  String get srsAccuracy => 'Accuracy';
+
+  @override
+  String get srsGoalMet => 'Daily goal reached';
+
+  @override
+  String get srsStreakUp => 'Your streak advanced! 🔥';
+
+  @override
+  String get srsRetentionHint =>
+      'Of the words that have matured, this is the share you remember when they come up for review.';
+
+  @override
   String get srsRetention => 'Retention';
 
   @override

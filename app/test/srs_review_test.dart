@@ -97,6 +97,25 @@ void main() {
     expect(find.text('Eu leio um livro.'), findsNothing);
   });
 
+  testWidgets('F4: progreso legible ("N restantes", no numero suelto)', (tester) async {
+    await tester.pumpWidget(app(const SrsSession(cards: [wordCard, clozeCard])));
+    await tester.pump();
+    expect(find.text('2 restantes'), findsOneWidget);
+  });
+
+  testWidgets('F4: el revelado trae icono en los botones de rating', (tester) async {
+    await tester.pumpWidget(app(const SrsSession(cards: [wordCard])));
+    await tester.pump();
+    await tester.enterText(find.byType(TextField), 'gato');
+    await tester.pump();
+    await tester.tap(find.text('COMPROBAR'));
+    await tester.pump();
+    // Micro-lectura de un vistazo: cada boton lleva su icono.
+    expect(find.byIcon(Icons.hourglass_bottom_rounded), findsOneWidget); // Dificil
+    expect(find.byIcon(Icons.check_rounded), findsOneWidget); // Bien
+    expect(find.byIcon(Icons.bolt_rounded), findsOneWidget); // Facil
+  });
+
   testWidgets('i18n PT: la tarjeta no deja espanol', (tester) async {
     await tester.pumpWidget(app(const SrsSession(cards: [wordCard]), locale: 'pt'));
     await tester.pump();

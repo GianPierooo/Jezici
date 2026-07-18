@@ -3954,6 +3954,42 @@ abstract class AppLocalizations {
   /// **'Nada por repasar ahora. Vuelve más tarde o haz una lección.'**
   String get srsNothingDue;
 
+  /// No description provided for @srsLeft.
+  ///
+  /// In es, this message translates to:
+  /// **'{n, plural, one{1 restante} other{{n} restantes}}'**
+  String srsLeft(int n);
+
+  /// No description provided for @srsSaving.
+  ///
+  /// In es, this message translates to:
+  /// **'Guardando tu repaso…'**
+  String get srsSaving;
+
+  /// No description provided for @srsAccuracy.
+  ///
+  /// In es, this message translates to:
+  /// **'Precisión'**
+  String get srsAccuracy;
+
+  /// No description provided for @srsGoalMet.
+  ///
+  /// In es, this message translates to:
+  /// **'Meta del día cumplida'**
+  String get srsGoalMet;
+
+  /// No description provided for @srsStreakUp.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Tu racha avanzó! 🔥'**
+  String get srsStreakUp;
+
+  /// No description provided for @srsRetentionHint.
+  ///
+  /// In es, this message translates to:
+  /// **'De las palabras que ya maduraron, este % es lo que recuerdas cuando toca repasarlas.'**
+  String get srsRetentionHint;
+
   /// No description provided for @srsRetention.
   ///
   /// In es, this message translates to:

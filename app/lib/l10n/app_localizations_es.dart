@@ -2265,6 +2265,33 @@ class AppLocalizationsEs extends AppLocalizations {
       'Nada por repasar ahora. Vuelve más tarde o haz una lección.';
 
   @override
+  String srsLeft(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n restantes',
+      one: '1 restante',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get srsSaving => 'Guardando tu repaso…';
+
+  @override
+  String get srsAccuracy => 'Precisión';
+
+  @override
+  String get srsGoalMet => 'Meta del día cumplida';
+
+  @override
+  String get srsStreakUp => '¡Tu racha avanzó! 🔥';
+
+  @override
+  String get srsRetentionHint =>
+      'De las palabras que ya maduraron, este % es lo que recuerdas cuando toca repasarlas.';
+
+  @override
   String get srsRetention => 'Retención';
 
   @override

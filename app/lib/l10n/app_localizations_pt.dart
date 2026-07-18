@@ -2269,6 +2269,33 @@ class AppLocalizationsPt extends AppLocalizations {
       'Nada para revisar agora. Volte mais tarde ou faça uma lição.';
 
   @override
+  String srsLeft(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n restantes',
+      one: '1 restante',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get srsSaving => 'Salvando sua revisão…';
+
+  @override
+  String get srsAccuracy => 'Precisão';
+
+  @override
+  String get srsGoalMet => 'Meta do dia cumprida';
+
+  @override
+  String get srsStreakUp => 'Sua ofensiva avançou! 🔥';
+
+  @override
+  String get srsRetentionHint =>
+      'Das palavras que já amadureceram, esta é a parcela que você lembra quando chega a hora de revisá-las.';
+
+  @override
   String get srsRetention => 'Retenção';
 
   @override
