@@ -5,6 +5,34 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-17**.
 
+## LÉXICO Fase 1 · INGLÉS — +232 palabras NUEVAS enseñadas con oración + audio (autoría) ✅ LIVE (mig 169 · 2026-07-18)
+De LEXICO_PLAN §3 Fase 1 (§4 integración). **Inglés SOLO** en esta tanda (profundidad>amplitud; los otros 5
+después si demuestra calidad). Pipeline de la casa: **10 agentes profesores nativos** (240 palabras, 10 temas) +
+**5 revisores adversariales** + guardas deterministas + verify real. **NO toca scheduler/economía/placement/
+certificación/otros 5 idiomas.**
+- **PASO 0:** el inglés enseñaba **484** palabras (max freq 1715). Objetivo acotado y verificable: **+~220-240**
+  de alta frecuencia por temas útiles (comida, trabajo, salud, viaje, ciudad, tiempo, compras, hogar, naturaleza,
+  emociones), cada una con **oración-ejemplo + audio** (paga F3 de paso, no nace con la deuda).
+- **Autoría + revisión:** 10 temas × 24 = 240 → guardas deterministas (dedup vs 446 ya en `vocabulary`,
+  término≠traducción, oración contiene la palabra, dedup entre temas) dejan **232**; **5 revisores adversariales**
+  (falsos amigos, acepción, registro, CEFR) → 1 fix, 0 drops; **mi propia auditoría** de las 232 (confident=seguro,
+  upset=molesto, sensitive=sensible, thunder/lightning separados — falsos amigos bien resueltos). 0 traducciones
+  `es` duplicadas.
+- **Contenido:** cada palabra → fila `vocabulary` + **ítem `cloze` en contexto** (`payload.text`=oración +
+  `audio_url`; `correct_answer.value`=palabra) **con audio TTS** (232/232 subidos a Storage, HEAD 200) + **ítem
+  `match`** de reconocimiento. Tag **`vocab_f1`** (NO unidadN → checkpoints/exámenes/placement intactos). 286
+  content_items, 20 lecciones "Vocabulario: <tema>" ancladas ANTES del checkpoint (DO-block idempotente) en
+  unidades A2/B1 (7-16). `lesson_vocab` (F2) las vincula.
+- **Resultado:** enseñadas en **484 → 716 (+232, +48%)**. `vocabulary` 486→718. **Nuevo techo del inglés: 716.**
+- **F3 ENCENDIDO (primer curso):** las tarjetas SRS de estas palabras son **cloze-en-contexto con AUDIO** (antes
+  el camino existía pero 0 cloze tenía audio). Verificado cliente real.
+- **Verificado (`verify_lexico_f1_en.py`, cliente real) TODO VERDE:** completar una lección "Vocabulario"
+  inscribe las nuevas en el SRS (27/27), el **SRS las sirve como cloze con audio** (HEAD 200), aislamiento 0
+  otro curso, economía un pago/lección. **`verify_chain` (en A1→B2 + certs A1-B2) VERDE** (gating 180/180 con
+  checkpoint como nodo final). analyze 0 · test 198/198 · build web OK. Solo-inglés: pt/fr/de/it/nl intactos.
+- **Muestra 5% para Gian** (ver reporte); **excluidas:** 8 duplicados entre temas + guardas. **Pendiente:** los
+  otros 5 idiomas (misma tanda temática), y seguir el inglés hacia ~1.000-1.500 (más temas) — re-encolado.
+
 ## LÉXICO Fase 0 — "cosechar lo sembrado": +811 palabras ENSEÑADAS (antes inertes) ✅ LIVE (mig 168 · 2026-07-18)
 De LEXICO_PLAN §3 Fase 0. **Cero IA** (reusa traducciones YA revisadas del seed + ítems `match` por PLANTILLA
 determinista, uuid5). Los 6 idiomas. **NO toca scheduler FSRS / economía / gating / certificación.**

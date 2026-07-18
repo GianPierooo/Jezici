@@ -43,3 +43,4 @@ tools/content/_*
 # NO en el repo; reindexar es <1s. Defensivo por si una versión futura escribe aquí.
 .codebase-memory/
 tools/content/_lex0/
+tools/content/_lex1/
