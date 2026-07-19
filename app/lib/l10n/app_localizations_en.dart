@@ -3683,6 +3683,19 @@ class AppLocalizationsEn extends AppLocalizations {
       'Open it as an app — full screen, with notifications.';
 
   @override
+  String get installTile => 'Install the app';
+
+  @override
+  String get installValueTitle => 'Add Jezici to your home screen';
+
+  @override
+  String get installValueBody =>
+      'Open it as an app — full screen, one tap from your home screen.';
+
+  @override
+  String get installValueCta => 'Install';
+
+  @override
   String get installIosTitle => 'Add Jezici to your iPhone';
 
   @override

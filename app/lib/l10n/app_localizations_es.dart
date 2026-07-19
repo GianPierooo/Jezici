@@ -3686,6 +3686,19 @@ class AppLocalizationsEs extends AppLocalizations {
       'Ábrela como app, a pantalla completa y con avisos.';
 
   @override
+  String get installTile => 'Instalar la app';
+
+  @override
+  String get installValueTitle => 'Lleva Jezici a tu inicio';
+
+  @override
+  String get installValueBody =>
+      'Ábrela como app, a pantalla completa y con un toque desde tu pantalla de inicio.';
+
+  @override
+  String get installValueCta => 'Instalar';
+
+  @override
   String get installIosTitle => 'Añade Jezici a tu iPhone';
 
   @override

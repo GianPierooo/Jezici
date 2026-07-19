@@ -3692,6 +3692,19 @@ class AppLocalizationsPt extends AppLocalizations {
   String get installBody => 'Abra como app — tela cheia e com avisos.';
 
   @override
+  String get installTile => 'Instalar o app';
+
+  @override
+  String get installValueTitle => 'Adicione o Jezici à tela inicial';
+
+  @override
+  String get installValueBody =>
+      'Abra como app — tela cheia, a um toque da sua tela inicial.';
+
+  @override
+  String get installValueCta => 'Instalar';
+
+  @override
   String get installIosTitle => 'Adicione o Jezici ao seu iPhone';
 
   @override

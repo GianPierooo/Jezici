@@ -28,6 +28,11 @@ bool get canInstall => canInstallImpl();
 /// ¿Safari en iOS/iPadOS? (sin beforeinstallprompt → instrucciones manuales).
 bool get isIosSafari => isIosSafariImpl();
 
+/// ¿Tiene sentido OFRECER instalar? (no está ya instalada Y hay un camino:
+/// prompt nativo capturado en Chrome/Edge, o iOS con el sheet manual). En
+/// navegadores sin camino (Firefox, etc.) es false → no se muestra un botón muerto.
+bool get canOfferInstall => !isStandalone && (canInstall || isIosSafari);
+
 /// Muestra el prompt nativo de instalación. → 'accepted' | 'dismissed' | 'unavailable'.
 Future<String> showInstallPrompt() => showInstallPromptImpl();
 

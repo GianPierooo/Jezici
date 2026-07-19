@@ -21,8 +21,10 @@ import '../learn/widgets/parrot_mascot.dart';
 import '../legal/legal_screen.dart';
 import '../metrics/metrics_screen.dart';
 import '../conversar/friends.dart' show BlockedUsersScreen;
+import '../../core/pwa/pwa_bridge.dart' as pwa;
 import '../notifications/coach_styles.dart';
 import '../notifications/matix_test_buttons.dart';
+import '../notifications/push_install_cards.dart' show showInstallFlow;
 import '../onboarding/course_switcher.dart';
 import '../premium/premium_screen.dart';
 
@@ -340,6 +342,17 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                   onChanged: (v) => ref.read(vibrationEnabledProvider.notifier).set(v),
                 ),
               ),
+              // Instalar la app (PWA): fila FIJA y predecible. Se OCULTA sola si
+              // ya está instalada (standalone) o no hay camino (Firefox, etc.).
+              // Android/desktop → prompt nativo; iOS → sheet manual de 3 pasos.
+              if (pwa.canOfferInstall)
+                _tile(
+                  tileBg: AppColors.navActiveBg,
+                  icon: const Icon(Icons.install_mobile_rounded, color: AppColors.primary, size: 19),
+                  title: l10n.installTile,
+                  trailing: const Icon(Icons.chevron_right_rounded, color: _kChevron, size: 20),
+                  onTap: () => showInstallFlow(context),
+                ),
               _tile(
                 tileBg: const Color(0xFFEEF0F6),
                 icon: const Icon(Icons.shield_rounded, color: Color(0xFF7A809B), size: 19),

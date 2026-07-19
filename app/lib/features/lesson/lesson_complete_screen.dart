@@ -17,6 +17,7 @@ import '../../l10n/app_localizations.dart';
 import '../../l10n/skill_names.dart';
 import '../notifications/coach_styles.dart';
 import '../notifications/matix_auto.dart';
+import '../notifications/push_install_cards.dart' show InstallValueMomentCard;
 import 'lesson_preview_screen.dart';
 import '../../ui/daily_goal_bar.dart';
 import '../../core/ui/jz_glow_pulse.dart';
@@ -399,6 +400,10 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
                       ),
                     ];
                   })(),
+                  // Momento de VALOR: ofrecer instalar la PWA tras completar la
+                  // lección. Se auto-oculta si ya está instalada / sin camino /
+                  // en cooldown tras un rechazo / ya ofrecida esta sesión.
+                  const InstallValueMomentCard(),
                 ],
                 ),
               ),

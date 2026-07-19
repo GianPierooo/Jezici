@@ -1,7 +1,9 @@
 {
     "name": "Jezici — aprende idiomas",
     "short_name": "Jezici",
+    "id": "/",
     "start_url": ".",
+    "scope": "/",
     "display": "standalone",
     "background_color": "#F5F6FB",
     "theme_color": "#6C5CE7",

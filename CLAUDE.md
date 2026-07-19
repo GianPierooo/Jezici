@@ -5,6 +5,38 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-19**.
 
+## PWA INSTALABLE — frente 2: botón fijo en Ajustes + oferta en momento de valor + manifest afinado ✅ LIVE (2026-07-19 · solo cliente)
+Del AUDIO_PWA_ANALISIS.md §2 (pulido + distribución; la app YA cumplía los 4 criterios de instalabilidad de
+Chrome — esto NO tocó elegibilidad). Cero IA, sin migración. NO rompe el flujo existente, la detección
+standalone, el SW ni el push.
+- **PASO 0 (confirmado):** el flujo YA existía — `jzShowInstall()` (prompt nativo de `beforeinstallprompt`),
+  sheet iOS de 3 pasos, detección standalone. Pero el instalador vivía SOLO en el centro de notificaciones
+  (la campana) → poco descubrible.
+- **1 · FILA FIJA "Instalar la app" en Ajustes** (sección OTROS): siempre visible cuando hay camino de
+  instalación y la app NO está instalada; se **OCULTA sola** en standalone o navegadores sin camino (Firefox)
+  vía nuevo `pwa.canOfferInstall` (`!isStandalone && (canInstall || isIosSafari)`). Android/desktop → prompt
+  nativo; iOS → sheet de 3 pasos. Acceso pasivo, predecible, para que cualquiera instale por su cuenta.
+- **2 · OFERTA EN MOMENTO DE VALOR** (`InstallValueMomentCard`, al FIN de la lección/celebración): tarjeta
+  "Lleva Jezici a tu inicio" con CTA + ✕. **Respeta el rechazo:** si el usuario la cierra, no se vuelve a
+  ofrecer automáticamente por **14 días** (pref local `install_offer_dismissed_at`); **máximo 1 por sesión**
+  (bandera en memoria). El botón de Ajustes queda siempre como acceso pasivo. Nunca interrumpe un ejercicio.
+- **3 · Flujo de instalación EXTRAÍDO** a `showInstallFlow(context)` (función compartida por la tarjeta de la
+  campana, la fila de Ajustes y la oferta de valor) → un solo camino, sin duplicar.
+- **4 · MANIFEST afinado:** `"id": "/"` + `"scope": "/"` (identidad estable de la app instalada); SW **v6** con
+  el precache de iconos alineado a `?v=5`; `og:url`/`og:image`/`twitter:image` → host canónico
+  **www.jezici.space** (el apex hace 308→www). **Verificado que sigue instalable:** manifest 200 con id/scope +
+  iconos 192/512 `any`+maskable + SW con fetch handler + HTTPS = los 4 criterios de Chrome intactos.
+- **5 · iOS honesto:** se mantiene el sheet manual de 3 pasos (Safari no tiene `beforeinstallprompt`). NO se
+  promete instalación automática iOS ni push iOS sin instalar (la tarjeta de push ya dice "iOS 16.4+ instalada").
+  **`screenshots` NO se añadió** (requiere capturas reales del mapa/lección como assets; falsearlas se vería
+  mal en la richer install UI → diferido honesto). NO se promete "offline completo" (el SW da shell offline,
+  no lecciones — la app es API-driven).
+- **Verificado:** analyze 0 (CI-exact) · test **205/205** (los widgets se auto-ocultan en el stub io → 0
+  regresión) · build web OK · manifest construido con id/scope + 4 criterios OK. i18n es/en/pt (+4:
+  installTile, installValueTitle/Body/Cta). **Dónde:** manifest/criterios verificados en el build; el prompt
+  NATIVO real solo se ve en Chrome Android/desktop en dispositivo (pendiente de Gian). Frente 1 (audio) ya
+  estaba cerrado. **Re-encolado:** screenshots del manifest cuando haya capturas reales.
+
 ## AUDIO/SPEAKING robusto (P0-A + P0-B) + PANTALLA NEGRA al volver de background ✅ LIVE (2026-07-19 · solo cliente)
 Implementa los P0 de AUDIO_PWA_ANALISIS.md §1.6 + un bug nuevo de tester. Cero IA, sin migración. NO toca el
 audio de lecciones (MP3), el unlock, ni el matching/salidas del speaking.

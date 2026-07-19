@@ -6329,6 +6329,30 @@ abstract class AppLocalizations {
   /// **'Ábrela como app, a pantalla completa y con avisos.'**
   String get installBody;
 
+  /// No description provided for @installTile.
+  ///
+  /// In es, this message translates to:
+  /// **'Instalar la app'**
+  String get installTile;
+
+  /// No description provided for @installValueTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Lleva Jezici a tu inicio'**
+  String get installValueTitle;
+
+  /// No description provided for @installValueBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Ábrela como app, a pantalla completa y con un toque desde tu pantalla de inicio.'**
+  String get installValueBody;
+
+  /// No description provided for @installValueCta.
+  ///
+  /// In es, this message translates to:
+  /// **'Instalar'**
+  String get installValueCta;
+
   /// No description provided for @installIosTitle.
   ///
   /// In es, this message translates to:
