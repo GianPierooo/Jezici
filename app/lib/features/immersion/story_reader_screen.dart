@@ -175,7 +175,7 @@ class _StoryReaderScreenState extends ConsumerState<StoryReaderScreen> {
           if (seg.audioUrl.isNotEmpty)
             Padding(
               padding: const EdgeInsets.only(top: 2, right: 12),
-              child: AudioPlayButton(url: seg.audioUrl, label: AppLocalizations.of(context).immListen, big: false),
+              child: AudioPlayButton(url: seg.audioUrl, label: AppLocalizations.of(context).immListen, big: false, surface: 'story'),
             ),
           Expanded(
             child: Column(

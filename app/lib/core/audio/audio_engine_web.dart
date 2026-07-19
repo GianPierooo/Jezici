@@ -165,9 +165,13 @@ class _WebAudioEngine implements AudioEngine {
   }
 
   @override
-  Future<void> playUrl(String url, {double volume = 1.0, void Function()? onComplete}) async {
+  Future<void> playUrl(String url,
+      {double volume = 1.0, void Function()? onComplete, void Function(String reason)? onError}) async {
     final c = _ensure();
-    if (c == null) return;
+    if (c == null) {
+      onError?.call('no-context'); // sin Web Audio (raro): el llamador lo ve
+      return;
+    }
     await _resumeIfNeeded(c);
     final buf = await _buffer(c, 'u:$url', () async {
       try {
@@ -177,7 +181,10 @@ class _WebAudioEngine implements AudioEngine {
         return null;
       }
     });
-    if (buf == null) return;
+    if (buf == null) {
+      onError?.call('load'); // fetch/CORS falló o el MP3 no decodifica
+      return;
+    }
     // Sustituye cualquier TTS previo (sin solaparse).
     try {
       _urlSrc?.stop();
@@ -197,7 +204,10 @@ class _WebAudioEngine implements AudioEngine {
       _urlSrc = src;
       _duckMusic(15000); // fallback largo por si onended no dispara
       src.start();
-    } catch (_) {}
+    } catch (_) {
+      _unduckMusic();
+      onError?.call('play');
+    }
   }
 
   @override

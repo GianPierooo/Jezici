@@ -48,7 +48,8 @@ class _IoAudioEngine implements AudioEngine {
   }
 
   @override
-  Future<void> playUrl(String url, {double volume = 1.0, void Function()? onComplete}) async {
+  Future<void> playUrl(String url,
+      {double volume = 1.0, void Function()? onComplete, void Function(String reason)? onError}) async {
     try {
       final p = _url ??= AudioPlayer();
       // Cancela la suscripción previa antes de re-suscribir (evita fuga/disparos viejos).
@@ -63,7 +64,10 @@ class _IoAudioEngine implements AudioEngine {
       }
       await p.stop();
       await p.play(UrlSource(url), volume: volume);
-    } catch (_) {}
+    } catch (_) {
+      _unduckMusic();
+      onError?.call('play');
+    }
   }
 
   @override

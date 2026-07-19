@@ -53,6 +53,34 @@ void primeVoices() {
   if (synth != null) _ensureVoices(synth);
 }
 
+/// ¿Ya cargaron las voces del navegador? (getVoices() llega vacío al arrancar y
+/// se puebla async). Sirve para NO avisar "sin voz" antes de tiempo.
+bool ttsVoicesReady() {
+  final synth = _synth();
+  if (synth == null) return false;
+  _ensureVoices(synth);
+  return _voicesCache != null && _voicesCache!.length > 0;
+}
+
+/// ¿El dispositivo tiene ALGUNA voz para el idioma base de [lang] (p.ej. 'fr' de
+/// 'fr-FR')? Si no, el TTS EN VIVO (tiles/SRS/glosario) sale mudo (el audio de
+/// lecciones, que es MP3, no se afecta). null si las voces aún no cargaron.
+bool? ttsHasVoice(String lang) {
+  final synth = _synth();
+  if (synth == null) return false; // sin síntesis: nunca habrá voz
+  _ensureVoices(synth);
+  final voices = _voicesCache;
+  if (voices == null || voices.length == 0) return null; // aún cargando
+  final base = lang.toLowerCase().split('-').first;
+  for (var i = 0; i < voices.length; i++) {
+    final vl = ((voices[i].getProperty('lang'.toJS) as JSString?)?.toDart ?? '')
+        .toLowerCase()
+        .replaceAll('_', '-');
+    if (vl.isNotEmpty && vl.split('-').first == base) return true;
+  }
+  return false;
+}
+
 void speakWord(String word, String lang) {
   try {
     final synth = _synth();

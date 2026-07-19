@@ -3095,6 +3095,18 @@ class AppLocalizationsEn extends AppLocalizations {
       'The voice service didn\'t respond (check your connection). Try again.';
 
   @override
+  String get micWebview =>
+      'This in-app browser can\'t use the microphone. Open Jezici in Chrome or Safari to speak.';
+
+  @override
+  String get audioPlayError => 'Couldn\'t play · tap to retry';
+
+  @override
+  String ttsNoVoiceNotice(String lang) {
+    return 'Your device has no $lang voice to read words aloud on tap. Lesson audio still works.';
+  }
+
+  @override
   String get onbAdultConfirm => 'I confirm that I am an adult';
 
   @override

@@ -13,12 +13,15 @@ typedef SpeechErrorCallback = void Function(String error);
 ///   deshabilitado por el navegador, p.ej. Brave).
 /// - [noMic]: no hay micrófono en el dispositivo.
 /// - [network]: el servicio de voz no respondió (Chrome reconoce en servidores).
+/// - [webview]: navegador IN-APP (Instagram/Facebook/TikTok/WebView) sin voz ni
+///   candado para activar el permiso → hay que abrir en Chrome/Safari.
 /// Otros códigos crudos ('no-speech', 'aborted', 'start-failed') pasan tal cual.
 abstract final class SpeechErrors {
   static const unsupported = 'unsupported';
   static const denied = 'denied';
   static const noMic = 'no-mic';
   static const network = 'network';
+  static const webview = 'webview';
 }
 
 abstract class SpeechRecognizer {

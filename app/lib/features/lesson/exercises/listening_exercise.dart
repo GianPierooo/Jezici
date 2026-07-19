@@ -28,7 +28,7 @@ class ListeningExercise extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const SizedBox(height: 4),
-        AudioPlayButton(url: url),
+        AudioPlayButton(url: url, surface: 'listening'),
         const SizedBox(height: 8),
         Center(
           child: Text(l10n.listeningTapToListen,

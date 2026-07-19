@@ -2,7 +2,9 @@ import 'dart:async';
 import 'dart:js_interop';
 import 'dart:js_interop_unsafe';
 
+import '../errors/error_reporter.dart';
 import 'speech_recognizer_api.dart';
+import 'text_match.dart' show collapseSpeechRepeats;
 
 SpeechRecognizer createSpeechRecognizerImpl() => _WebSpeechRecognizer();
 
@@ -53,9 +55,61 @@ JSFunction? _recognitionCtor() {
   return null;
 }
 
+String _userAgent() {
+  try {
+    final nav = globalContext.getProperty('navigator'.toJS) as JSObject?;
+    return ((nav?.getProperty('userAgent'.toJS) as JSString?)?.toDart ?? '').toLowerCase();
+  } catch (_) {
+    return '';
+  }
+}
+
+int _maxTouchPoints() {
+  try {
+    final nav = globalContext.getProperty('navigator'.toJS) as JSObject?;
+    return (nav?.getProperty('maxTouchPoints'.toJS) as JSNumber?)?.toDartInt ?? 0;
+  } catch (_) {
+    return 0;
+  }
+}
+
+/// ¿Conviene el modo SEGMENTADO (continuous=false)? En WebKit/Safari (todo iOS +
+/// Safari macOS) el modo `continuous` está roto: la sesión se detiene sola, los
+/// parciales se DUPLICAN (el bucle "that weekend that weekend…") y `isFinal` a
+/// veces no llega → el reconocimiento no termina. El patrón estable ahí es
+/// single-shot (continuous=false): el motor reconoce el enunciado y termina. En
+/// Chrome/Edge/Android continuous=true SÍ es mejor (no corta en la 1ª pausa).
+bool _useSegmentedMode() {
+  final ua = _userAgent();
+  final isIos = ua.contains('iphone') || ua.contains('ipad') || ua.contains('ipod');
+  // iPadOS 13+ se anuncia como "Macintosh"; distínguelo por el táctil.
+  final iPadDesktop = ua.contains('macintosh') && _maxTouchPoints() > 1;
+  final isChromium = ua.contains('chrome') ||
+      ua.contains('crios') ||
+      ua.contains('chromium') ||
+      ua.contains('edg') ||
+      ua.contains('android');
+  final isSafari = ua.contains('safari') && !isChromium;
+  return isIos || iPadDesktop || isSafari;
+}
+
+/// Detecta un WebView IN-APP (Instagram, Facebook, TikTok, Line, WebView de
+/// Android). Ahí el micrófono suele estar bloqueado y NO hay candado ni ajustes
+/// de sitio → el mensaje "actívalo en el candado" es engañoso; la UI muestra
+/// "ábrelo en Chrome/Safari" (SpeechErrors.webview).
+bool _isInAppWebView() {
+  final ua = _userAgent();
+  return ua.contains('instagram') ||
+      ua.contains('fban') ||
+      ua.contains('fbav') ||
+      ua.contains('fb_iab') ||
+      ua.contains('line/') ||
+      ua.contains('tiktok') ||
+      ua.contains('musical_ly') ||
+      ua.contains('; wv)'); // Android System WebView
+}
+
 /// Estado del permiso de micrófono vía Permissions API, SIN abrir prompt.
-/// 'granted' | 'denied' | 'prompt' | null (API no disponible — Safari/Firefox
-/// viejos lanzan con name:'microphone'; se trata como desconocido).
 Future<String?> _micPermissionState() async {
   try {
     final nav = globalContext.getProperty('navigator'.toJS) as JSObject?;
@@ -71,11 +125,10 @@ Future<String?> _micPermissionState() async {
 }
 
 /// Pide el micrófono EXPLÍCITAMENTE (getUserMedia) bajo el gesto del usuario y
-/// suelta las pistas al instante (solo queremos resolver el permiso ANTES de
-/// arrancar el reconocimiento — si el prompt se resuelve con el reconocedor ya
-/// corriendo, en Android el primer intento muere en 'no-speech').
-/// Devuelve null si OK; 'denied' | 'no-mic' si falló; null también si la API
-/// no existe (se deja que la propia SpeechRecognition pida y reporte).
+/// suelta las pistas al instante (solo resolver el permiso ANTES de arrancar el
+/// reconocimiento: si el prompt se resuelve con el reconocedor ya corriendo, en
+/// Android el primer intento muere en 'no-speech'). Devuelve null si OK; un
+/// código si falló; null también si la API no existe (que pida SpeechRecognition).
 Future<String?> _requestMic() async {
   JSObject? md;
   try {
@@ -90,7 +143,6 @@ Future<String?> _requestMic() async {
     final stream = await (md.callMethod('getUserMedia'.toJS, constraints)
             as JSPromise<JSObject>)
         .toDart;
-    // Solo era para el permiso: apagar las pistas ya (el reconocedor abre las suyas).
     try {
       final tracks = (stream.callMethod('getTracks'.toJS) as JSArray).toDart;
       for (final t in tracks) {
@@ -110,9 +162,7 @@ Future<String?> _requestMic() async {
         name.contains('Security')) {
       return SpeechErrors.denied;
     }
-    // Error raro (p.ej. NotReadable por otro app usando el mic): que lo intente
-    // la propia SpeechRecognition y reporte su error concreto.
-    return null;
+    return null; // NotReadable, etc.: que lo intente SpeechRecognition.
   }
 }
 
@@ -123,13 +173,15 @@ class _WebSpeechRecognizer implements SpeechRecognizer {
   bool _listening = false;
   bool _micGranted = false;
   Timer? _timeout;
+  bool _cancelled = false; // stop() durante el preflight → no arrancar
 
   String _finalTranscript = '';
-  String _lastInterim = ''; // último parcial (rescate: Android a veces termina sin 'final')
+  String _lastInterim = ''; // último parcial (rescate: a veces termina sin 'final')
   SpeechResultCallback? _onResult;
   SpeechErrorCallback? _onError;
   void Function()? _onDone;
   bool _emittedFinal = false;
+  bool _emittedDone = false;
   bool _fatalErrored = false;
 
   @override
@@ -147,15 +199,16 @@ class _WebSpeechRecognizer implements SpeechRecognizer {
       _available = false;
     }
     if (!_available) {
-      _reason = SpeechErrors.unsupported; // Firefox y afines: no existe la API
+      // Firefox y WebViews sin API. Si es un WebView in-app, mensaje específico.
+      _reason = _isInAppWebView() ? SpeechErrors.webview : SpeechErrors.unsupported;
       return false;
     }
-    // Permiso YA denegado (recordado por el navegador) → cada start moriría en
-    // silencio. Detectarlo SIN prompt para no ofrecer un mic muerto.
     final st = await _micPermissionState();
     if (st == 'denied') {
       _available = false;
-      _reason = SpeechErrors.denied;
+      // En un WebView in-app "denied" suele ser el navegador bloqueando el mic
+      // sin candado que activar → dirígelo a Chrome/Safari.
+      _reason = _isInAppWebView() ? SpeechErrors.webview : SpeechErrors.denied;
       return false;
     }
     if (st == 'granted') _micGranted = true;
@@ -172,61 +225,70 @@ class _WebSpeechRecognizer implements SpeechRecognizer {
   }) {
     if (_listening) return;
     _listening = true; // reserva ya (el preflight de permiso es async)
-    unawaited(_listenImpl(
-        onResult: onResult,
-        onError: onError,
-        onDone: onDone,
-        localeId: localeId,
-        listenFor: listenFor));
-  }
-
-  Future<void> _listenImpl({
-    required SpeechResultCallback onResult,
-    SpeechErrorCallback? onError,
-    void Function()? onDone,
-    required String localeId,
-    required Duration listenFor,
-  }) async {
-    final ctor = _recognitionCtor();
-    if (ctor == null) {
-      _listening = false;
-      _available = false;
-      _reason = SpeechErrors.unsupported;
-      onError?.call(SpeechErrors.unsupported);
-      onDone?.call();
-      return;
-    }
-    // Permiso EXPLÍCITO bajo el gesto, ANTES de arrancar el reconocimiento.
-    if (!_micGranted) {
-      final err = await _requestMic();
-      if (err != null) {
-        _listening = false;
-        _available = false;
-        _reason = err;
-        onError?.call(err);
-        onDone?.call();
-        return;
-      }
-      _micGranted = true;
-    }
-
+    _cancelled = false;
+    // Guarda los callbacks ANTES del preflight → stop() durante el preflight
+    // puede cerrar la sesión (onDone) sin dejar el botón en "Detener".
     _onResult = onResult;
     _onError = onError;
     _onDone = onDone;
     _finalTranscript = '';
     _lastInterim = '';
     _emittedFinal = false;
+    _emittedDone = false;
     _fatalErrored = false;
+    unawaited(_listenImpl(localeId: localeId, listenFor: listenFor));
+  }
 
-    final sr = _SR._(ctor.callAsConstructor<JSObject>());
+  Future<void> _listenImpl({
+    required String localeId,
+    required Duration listenFor,
+  }) async {
+    final ctor = _recognitionCtor();
+    if (ctor == null) {
+      _fail(SpeechErrors.unsupported, available: false);
+      return;
+    }
+    // Permiso EXPLÍCITO bajo el gesto, ANTES de arrancar. Con WATCHDOG: si
+    // getUserMedia cuelga (WebView, mic ocupado) no dejamos el botón atascado.
+    if (!_micGranted) {
+      String? err;
+      try {
+        err = await _requestMic().timeout(
+          const Duration(seconds: 4),
+          onTimeout: () => SpeechErrors.noMic,
+        );
+      } catch (_) {
+        err = null;
+      }
+      if (_cancelled) {
+        // stop() ya cerró la sesión durante el preflight.
+        _listening = false;
+        return;
+      }
+      if (err != null) {
+        _fail(err, available: false);
+        return;
+      }
+      _micGranted = true;
+    }
+    if (_cancelled) {
+      _listening = false;
+      return;
+    }
+
+    final _SR sr;
+    try {
+      sr = _SR._(ctor.callAsConstructor<JSObject>());
+    } catch (_) {
+      _fail('start-failed', available: true);
+      return;
+    }
     _sr = sr;
     sr.lang = localeId.replaceAll('_', '-');
-    // continuous=TRUE: NO cortar en la primera pausa. Los ítems de lectura son
-    // frases completas; con continuous=false el reconocedor finalizaba el primer
-    // fragmento en la pausa natural a media frase y solo se calificaba ese trozo
-    // ("no procesa"). Con continuous=true acumula todas las cláusulas y termina
-    // en el silencio REAL (usuario terminó) o al tocar detener / al tope de tiempo.
-    sr.continuous = true;
+    // WebKit/Safari (iOS): SEGMENTADO (continuous=false) — su continuous produce
+    // el bucle de parciales y sesiones que no terminan. Chrome/Android: continuous
+    // (no corta en la 1ª pausa). El dedup de _handleResult protege en AMBOS.
+    sr.continuous = !_useSegmentedMode();
     sr.interimResults = true;
     sr.maxAlternatives = 1;
 
@@ -238,41 +300,66 @@ class _WebSpeechRecognizer implements SpeechRecognizer {
       sr.start();
       _timeout = Timer(listenFor, stop);
     } catch (_) {
-      _listening = false;
-      onError?.call('start-failed');
-      onDone?.call();
+      _sr = null;
+      _fail('start-failed', available: true);
     }
   }
 
-  // Correcto: itera DESDE resultIndex; los finales se anexan UNA vez; los
-  // interinos se reconstruyen en cada evento (sin acumular duplicados).
+  /// Cierra la sesión por un fallo (emite onError una vez + onDone una vez).
+  void _fail(String code, {required bool available}) {
+    _listening = false;
+    if (!available) {
+      _available = false;
+      _reason = code;
+    }
+    _reportMic(code);
+    _onError?.call(code);
+    _emitDone();
+  }
+
+  void _emitDone() {
+    if (_emittedDone) return;
+    _emittedDone = true;
+    _onDone?.call();
+  }
+
+  // Reconstruye la transcripción DESDE 0 (results es acumulativo) en cada evento
+  // y usa SOLO el último parcial → nunca "acumula" prefijos crecientes (el origen
+  // del bucle). Dedup de finales idénticos + collapse de repeticiones (WebKit).
   void _handleResult(_SREvent e) {
-    var interim = '';
     final results = e.results;
-    for (var i = e.resultIndex; i < results.length; i++) {
+    final finals = <String>[];
+    var lastInterim = '';
+    for (var i = 0; i < results.length; i++) {
       final res = results.item(i);
-      final txt = res.item(0).transcript;
+      final txt = res.item(0).transcript.trim();
+      if (txt.isEmpty) continue;
       if (res.isFinal) {
-        _finalTranscript = (_finalTranscript.isEmpty ? txt : '$_finalTranscript $txt').trim();
+        // WebKit re-emite el mismo 'final' → no anexar un duplicado consecutivo.
+        if (finals.isEmpty || finals.last.toLowerCase() != txt.toLowerCase()) {
+          finals.add(txt);
+        }
       } else {
-        interim = interim.isEmpty ? txt : '$interim $txt';
+        lastInterim = txt; // varios parciales solapados → quédate con el último
       }
     }
-    _lastInterim = interim; // guarda el último parcial para el rescate en _handleEnd
-    final live = (_finalTranscript.isEmpty ? interim : '$_finalTranscript $interim').trim();
-    _onResult?.call(live, false);
+    _finalTranscript = collapseSpeechRepeats(finals.join(' '));
+    _lastInterim = collapseSpeechRepeats(lastInterim);
+    final live = _finalTranscript.isEmpty
+        ? _lastInterim
+        : (_lastInterim.isEmpty ? _finalTranscript : '$_finalTranscript $_lastInterim');
+    _onResult?.call(collapseSpeechRepeats(live), false);
   }
 
   void _handleError(_SRErrEvent e) {
-    // Códigos crudos de la Web Speech API → códigos estandarizados (SpeechErrors)
-    // para que la UI pueda explicar la CAUSA REAL (antes se tragaban y el usuario
-    // veía "no te escuché, sube el volumen" con el permiso denegado).
     final raw = e.error;
     String mapped;
     switch (raw) {
       case 'not-allowed':
-      case 'service-not-allowed': // Brave/política: la API existe, el servicio no
-        mapped = SpeechErrors.denied;
+      case 'service-not-allowed':
+        // Brave/WebView: la API existe pero el servicio/permiso no. En un WebView
+        // in-app no hay candado → mensaje "ábrelo en Chrome/Safari".
+        mapped = _isInAppWebView() ? SpeechErrors.webview : SpeechErrors.denied;
         _available = false;
         _reason = mapped;
         _fatalErrored = true;
@@ -285,43 +372,48 @@ class _WebSpeechRecognizer implements SpeechRecognizer {
         break;
       case 'network':
         mapped = SpeechErrors.network; // transitorio: no mata la disponibilidad
-        _fatalErrored = true; // pero SÍ suprime el final '' engañoso
+        _fatalErrored = true; // pero suprime el final '' engañoso
         break;
       default:
         mapped = raw; // 'no-speech' / 'aborted' / …
     }
+    _reportMic(mapped);
     _onError?.call(mapped);
   }
 
   void _handleEnd() {
     _timeout?.cancel();
     _listening = false;
-    // Con error FATAL (permiso/mic/red) NO se emite el final '' — emitirlo hacía
-    // que la UI dijera "no te escuché" cuando la causa real era otra.
     if (!_emittedFinal && !_fatalErrored) {
       _emittedFinal = true;
-      // RESCATE Android: si el motor terminó sin marcar ningún resultado 'final'
-      // pero SÍ hubo parciales (interim), usa el último parcial como transcripción
-      // final en vez de emitir '' (que daba un falso "no te escuché").
       final text = _finalTranscript.trim().isNotEmpty
           ? _finalTranscript.trim()
           : _lastInterim.trim();
       _onResult?.call(text, true);
     }
-    _onDone?.call();
+    _emitDone();
     _sr = null;
   }
 
   @override
   void stop() {
+    _cancelled = true; // por si estamos en el preflight
     _timeout?.cancel();
-    try {
-      _sr?.stop();
-    } catch (_) {}
+    final sr = _sr;
+    if (sr != null) {
+      try {
+        sr.stop(); // dispara onend → emite final + onDone
+      } catch (_) {}
+    } else if (_listening) {
+      // Estábamos en el preflight (no hay reconocedor que parar): cierra a mano.
+      _listening = false;
+      _emitDone();
+    }
   }
 
   @override
   void dispose() {
+    _cancelled = true;
     _timeout?.cancel();
     try {
       _sr?.abort();
@@ -330,5 +422,22 @@ class _WebSpeechRecognizer implements SpeechRecognizer {
     _onResult = null;
     _onError = null;
     _onDone = null;
+  }
+
+  /// Telemetría de fallos del mic INESPERADOS (para diagnosticar "el speaking
+  /// falla" en dispositivos reales). NO reporta los esperados/benignos: denied
+  /// (el usuario/Brave), unsupported/webview (Firefox/WebView conocidos),
+  /// no-speech/aborted (constantes y normales). Sin PII.
+  void _reportMic(String code) {
+    const skip = {
+      SpeechErrors.denied,
+      SpeechErrors.unsupported,
+      SpeechErrors.webview,
+      'no-speech',
+      'aborted',
+    };
+    if (skip.contains(code)) return;
+    reportError(Exception('mic_$code'),
+        rpc: 'jz_mic', context: 'code=$code;seg=${_useSegmentedMode()}');
   }
 }

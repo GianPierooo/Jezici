@@ -2,14 +2,18 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/audio/music_controller.dart';
 import '../../core/audio/music_service.dart';
 import '../../core/audio/sound_controller.dart';
 import '../../core/feedback/feedback_sheet.dart';
+import '../../core/i18n/learn_lang_names.dart';
 import '../../core/speech/speech_lang.dart';
+import '../../core/speech/word_tts.dart';
 import '../../core/ui/tour_keys.dart';
 import '../../data/providers.dart';
+import '../../l10n/app_localizations.dart';
 import '../conversar/conversar_screen.dart';
 import '../onboarding/welcome_tour.dart';
 import '../notifications/matix_auto.dart';
@@ -38,6 +42,8 @@ class _HomeShellState extends ConsumerState<HomeShell> with WidgetsBindingObserv
   /// "en línea / activo hace X" honesto. Late al abrir, al volver del background
   /// y cada 90s en primer plano (barato en red/batería); se PAUSA en background.
   Timer? _presenceTimer;
+
+  Timer? _voiceCheckTimer; // aviso único "sin voz TTS del idioma"
 
   void _beat() => unawaited(ref.read(progressRepositoryProvider).heartbeat());
 
@@ -68,6 +74,34 @@ class _HomeShellState extends ConsumerState<HomeShell> with WidgetsBindingObserv
       unawaited(ref.read(matixAutoProvider).runDailyChecks());
       unawaited(ref.read(progressRepositoryProvider).pushFanout());
     });
+    // Aviso ÚNICO si el dispositivo NO tiene voz TTS del idioma del curso (el
+    // TTS en vivo de tiles/SRS/glosario saldría mudo; el audio de lecciones no).
+    // Las voces cargan async → esperamos ~2.5 s (ya resuelto el curso activo).
+    _voiceCheckTimer = Timer(const Duration(milliseconds: 2500), _maybeWarnNoVoice);
+  }
+
+  /// Muestra UNA vez (persistido por idioma) que no hay voz TTS instalada del
+  /// idioma que se aprende, aclarando que el audio de lecciones sí funciona.
+  Future<void> _maybeWarnNoVoice() async {
+    if (!mounted) return;
+    final lang = SpeechLang.tts; // BCP-47 del curso, p.ej. 'fr-FR'
+    if (!WordTts.voicesReady) return; // aún cargando: no avisar de más
+    if (WordTts.hasVoiceFor(lang) != false) return; // hay voz (o desconocido)
+    final base = lang.split('-').first;
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final key = 'tts_no_voice_$base';
+      if (prefs.getBool(key) == true) return; // ya avisado para este idioma
+      await prefs.setBool(key, true);
+    } catch (_) {
+      return; // sin prefs: no insistir
+    }
+    if (!mounted) return;
+    final l10n = AppLocalizations.of(context);
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      duration: const Duration(seconds: 8),
+      content: Text(l10n.ttsNoVoiceNotice(learnLangName(l10n, base))),
+    ));
   }
 
   @override
@@ -75,6 +109,7 @@ class _HomeShellState extends ConsumerState<HomeShell> with WidgetsBindingObserv
     WidgetsBinding.instance.removeObserver(this);
     MusicService.instance.setOnMap(false); // detén la música al salir del shell
     _stopPresence();
+    _voiceCheckTimer?.cancel();
     super.dispose();
   }
 

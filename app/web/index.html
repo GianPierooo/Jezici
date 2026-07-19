@@ -175,6 +175,10 @@
       document.addEventListener('visibilitychange', function () {
         if (document.visibilityState === 'visible') jzForceRepaint();
       });
+      // Algunos Android disparan 'focus'/'resume' pero no 'visibilitychange' al
+      // volver de segundo plano; cubrimos ambos (el repintado es idempotente).
+      window.addEventListener('focus', jzForceRepaint);
+      document.addEventListener('resume', jzForceRepaint); // Page Lifecycle API
       // Restauración desde bfcache (volver atrás / reanudar la pestaña).
       window.addEventListener('pageshow', function (e) { if (e.persisted) jzForceRepaint(); });
       // Si el GPU recicló el contexto WebGL en segundo plano: preventDefault permite que

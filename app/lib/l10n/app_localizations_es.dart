@@ -3100,6 +3100,18 @@ class AppLocalizationsEs extends AppLocalizations {
       'El servicio de voz no respondió (revisa tu conexión). Vuelve a intentarlo.';
 
   @override
+  String get micWebview =>
+      'Este navegador dentro de otra app no permite el micrófono. Abre Jezici en Chrome o Safari para hablar.';
+
+  @override
+  String get audioPlayError => 'No se pudo reproducir · toca para reintentar';
+
+  @override
+  String ttsNoVoiceNotice(String lang) {
+    return 'Tu dispositivo no tiene voz de $lang para leer las palabras al tocarlas. El audio de las lecciones sí funciona.';
+  }
+
+  @override
   String get onbAdultConfirm => 'Confirmo que soy mayor de edad';
 
   @override

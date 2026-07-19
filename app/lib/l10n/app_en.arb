@@ -1104,6 +1104,16 @@
   "micDenied": "Microphone permission is blocked. Enable it via the lock 🔒 next to the address bar (or the site settings) and try again.",
   "micNoDevice": "No microphone was detected on this device.",
   "micNetwork": "The voice service didn't respond (check your connection). Try again.",
+  "micWebview": "This in-app browser can't use the microphone. Open Jezici in Chrome or Safari to speak.",
+  "audioPlayError": "Couldn't play · tap to retry",
+  "ttsNoVoiceNotice": "Your device has no {lang} voice to read words aloud on tap. Lesson audio still works.",
+  "@ttsNoVoiceNotice": {
+    "placeholders": {
+      "lang": {
+        "type": "String"
+      }
+    }
+  },
   "onbAdultConfirm": "I confirm that I am an adult",
   "completeProfileTitle": "Complete your profile",
   "completeProfileSubtitle": "We just need your name and a confirmation that you're an adult. Everything else is optional and editable in your Profile.",

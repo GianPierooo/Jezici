@@ -3,7 +3,54 @@
 > Contexto de arranque para cualquier sesión. **No** es copia de los 21 `.md` de
 > diseño (eso es la carpeta raíz `Jezici_*.md` + `docs/`). Aquí va el ESTADO REAL,
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
-> Última actualización: **2026-07-18**.
+> Última actualización: **2026-07-19**.
+
+## AUDIO/SPEAKING robusto (P0-A + P0-B) + PANTALLA NEGRA al volver de background ✅ LIVE (2026-07-19 · solo cliente)
+Implementa los P0 de AUDIO_PWA_ANALISIS.md §1.6 + un bug nuevo de tester. Cero IA, sin migración. NO toca el
+audio de lecciones (MP3), el unlock, ni el matching/salidas del speaking.
+- **BUG DE LA CAPTURA (speaking en bucle) — CAUSA + FIX.** Un tester en **Brave/Android** dijo "Last weekend
+  I played with my friends" y la transcripción en vivo escribió *"that that weekend that weekend that weekend
+  Blade that weekend Blade with my friends"* — texto DUPLICADO EN BUCLE (Brave AQUÍ sí corrió el STT, no dio
+  `service-not-allowed`; el bug era de duplicados, §B1 confirmado). **Causa:** `_handleResult` iteraba desde
+  `resultIndex` y **ACUMULABA** finales (`_finalTranscript += txt`) + concatenaba TODOS los interinos; WebKit/
+  Brave **re-emiten** el mismo parcial creciente → se anexaba el prefijo una y otra vez. **Fix (2 capas):**
+  (1) `_handleResult` **reconstruye DESDE 0** (`results` es acumulativo) y usa **solo el ÚLTIMO interim** →
+  nunca acumula prefijos; (2) **`collapseSpeechRepeats`** (nuevo, en `text_match.dart`, **puro y testeado**)
+  colapsa repeticiones inmediatas de 1–4 palabras → el bucle de la captura queda **"that weekend Blade with my
+  friends"**. 7 tests (`speech_dedup_test.dart`) incluido el caso EXACTO de la captura.
+- **iOS/WebKit → modo SEGMENTADO.** `continuous=true` (el fix de Android) está roto en Safari/iOS (sesiones que
+  no terminan, interim duplicados). Ahora `continuous` es **false en WebKit/iOS** (detección por UA:
+  iPhone/iPad/iPod + iPadOS-como-Mac + Safari-no-Chromium) y **true en Chrome/Android**. El dedup protege en
+  AMBOS. (Chrome/Android conserva su continuous — no se rompe el fix previo.)
+- **Botón de mic ya no se atasca:** watchdog del preflight `getUserMedia` (**4 s** con `.timeout`) + `stop()`
+  **cancela el preflight de verdad** (flag `_cancelled` chequeado tras el await; los callbacks se guardan ANTES
+  del preflight → `onDone` cierra la sesión) + guard `_emittedDone`.
+- **WebView in-app** (Instagram/Facebook/TikTok/WebView): detectado por UA → `SpeechErrors.webview` con mensaje
+  **"ábrelo en Chrome/Safari"** (antes decía "actívalo en el candado 🔒", que no existe ahí).
+- **Telemetría `jz_mic`:** los fallos INESPERADOS del reconocedor (no-mic/network/start-failed/timeout) llegan a
+  Sentry; los benignos/esperados (denied/unsupported/webview/no-speech/aborted) NO (no ahogan el dashboard).
+- **P0-A · el audio ya NO falla en silencio.** `playUrl`/`playAsset` ganan **`onError(reason)`** (antes: `playUrl`
+  no tenía canal de error → botón 12 s mudo, 0 telemetría). `AudioPlayButton` con fallo → **estado LEGIBLE**
+  (ícono coral ↻ + "No se pudo reproducir · toca para reintentar") + **`reportError(jz_audio_play)`** con tags
+  (superficie=listening/placement/story · reason=load/play · host de la URL, sin PII). `_VoiceBubble` del chat
+  gana **failsafe + onError** (antes se quedaba "reproduciendo" PARA SIEMPRE si el clip no decodificaba).
+- **Aviso ÚNICO "sin voz TTS de {idioma}":** tras cargar las voces, si el dispositivo no tiene voz del idioma
+  del curso (el TTS en vivo de tiles/SRS saldría mudo — el "no suena en PC"), un SnackBar lo dice UNA vez
+  (persistido por idioma) aclarando que **el audio de lecciones sí funciona**. (`WordTts.hasVoiceFor`/`voicesReady`.)
+- **PANTALLA NEGRA al volver de background (Flutter web + CanvasKit).** Un tester: "minimizo y vuelvo, todo
+  negro, hay que recargar". **Causa:** al backgroundear, el GPU recicla el contexto WebGL / pausa el pipeline;
+  al volver, CanvasKit no repinta solo. El `index.html` ya despachaba un `resize` sintético, pero **el engine
+  ignora un resize a las MISMAS dimensiones** → no repintaba. **Fix (lever fuerte, lado Dart):** `_AudioUnlockGate`
+  (envuelve TODA la app) ahora es `WidgetsBindingObserver` y en `AppLifecycleState.resumed` llama
+  **`handleMetricsChanged()` + `scheduleWarmUpFrame()`** → fuerza un frame síncrono que re-rasteriza y re-crea la
+  superficie GL, sin recargar, en CUALQUIER pantalla. NO toca el resume del AudioContext (sigue en `_resumeIfNeeded`
+  de cada play). index.html reforzado (focus + Page Lifecycle `resume`).
+- **Verificado:** `collapseSpeechRepeats` con 7 tests (bucle de la captura colapsado + matching 0.6 sigue
+  aprobando + no toca texto limpio). analyze 0 (CI-exact) · test **205/205** (+7 dedup) · build web OK (los
+  archivos web-only compilan a JS). i18n es/en/pt (+3: micWebview, audioPlayError, ttsNoVoiceNotice). **Honesto
+  sobre dónde se verificó:** el dedup y la lógica de plataforma están cubiertos por UNIT TESTS (reproducen el
+  caso real); iOS-segmentado y el repintado en dispositivo real requieren un iPhone/Android físico (no
+  disponible aquí) → verificación de dispositivo pendiente de Gian. Frente PWA (frente 2) NO entra en esta pasada.
 
 ## LÉXICO Fase 1 · COMPLETA en los 6 idiomas — resumen (2026-07-18)
 La Fase 1 de LEXICO_PLAN (autoría de vocabulario NUEVO con oración + audio) está **cerrada en los 6 cursos**

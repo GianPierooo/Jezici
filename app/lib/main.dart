@@ -92,10 +92,19 @@ class JeziciApp extends ConsumerWidget {
   }
 }
 
-/// Envuelve toda la app y desbloquea el AudioContext en el primer toque (un solo
-/// disparo). Un `Listener` por encima del Navigator recibe el `onPointerDown`
-/// aunque un widget hijo también lo maneje (los pointer events se propagan a
-/// todos los listeners del hit-test).
+/// Envuelve toda la app y (1) desbloquea el AudioContext en el primer toque (un
+/// solo disparo) y (2) FUERZA UN REPINTADO al volver de segundo plano.
+///
+/// PANTALLA NEGRA al volver de background (Flutter web + CanvasKit, Android PWA):
+/// al backgroundear, el proceso GPU puede reciclar el contexto WebGL / pausar el
+/// pipeline; al volver, CanvasKit no repinta solo → todo negro y hay que recargar.
+/// El index.html ya despacha un `resize` sintético en `visibilitychange`, pero el
+/// engine IGNORA un resize a las MISMAS dimensiones → no repinta. El lever fuerte
+/// es del lado Dart: en `AppLifecycleState.resumed` re-leemos las métricas y
+/// forzamos un frame síncrono (`scheduleWarmUpFrame`) que re-rasteriza y re-crea
+/// la superficie GL. Como este widget envuelve TODA la app (sobre el Navigator),
+/// cubre cualquier pantalla (mapa, lección, auth…). No toca el AudioContext (su
+/// resume sigue en `_resumeIfNeeded` de cada play), así que no rompe el audio.
 class _AudioUnlockGate extends StatefulWidget {
   const _AudioUnlockGate({required this.child});
   final Widget child;
@@ -104,8 +113,35 @@ class _AudioUnlockGate extends StatefulWidget {
   State<_AudioUnlockGate> createState() => _AudioUnlockGateState();
 }
 
-class _AudioUnlockGateState extends State<_AudioUnlockGate> {
+class _AudioUnlockGateState extends State<_AudioUnlockGate> with WidgetsBindingObserver {
   bool _unlocked = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state != AppLifecycleState.resumed) return;
+    // Repinta al volver: re-lee el tamaño físico (por si cambió) y fuerza un
+    // frame síncrono (layout+paint) → recupera la superficie de CanvasKit sin
+    // recargar. Best-effort: nunca debe romper el arranque normal.
+    final binding = WidgetsBinding.instance;
+    try {
+      binding.handleMetricsChanged();
+    } catch (_) {}
+    try {
+      binding.scheduleWarmUpFrame();
+    } catch (_) {}
+  }
 
   void _onDown(PointerDownEvent _) {
     if (_unlocked) return;

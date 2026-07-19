@@ -12,7 +12,11 @@ abstract class AudioEngine {
   Future<void> playAsset(String assetKey, {double volume = 0.7});
 
   /// TTS / listening desde una URL de red. Cachea el buffer decodificado por URL.
-  Future<void> playUrl(String url, {double volume = 1.0, void Function()? onComplete});
+  /// [onError] se llama con un motivo corto ('no-context'|'load'|'play') si el
+  /// audio NO pudo reproducirse (red/CORS/decode) → el llamador muestra el fallo
+  /// y lo reporta, en vez de un botón mudo. [onComplete] solo al terminar OK.
+  Future<void> playUrl(String url,
+      {double volume = 1.0, void Function()? onComplete, void Function(String reason)? onError});
 
   /// Pre-descarga + decodifica el audio de una URL al caché SIN reproducir, para
   /// que el siguiente `playUrl` sea instantáneo (time-to-first-audio mínimo).

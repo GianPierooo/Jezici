@@ -1817,6 +1817,16 @@
   "micDenied": "El permiso del micrófono está bloqueado. Actívalo en el candado 🔒 junto a la dirección (o en los ajustes del sitio) y reintenta.",
   "micNoDevice": "No se detectó ningún micrófono en este dispositivo.",
   "micNetwork": "El servicio de voz no respondió (revisa tu conexión). Vuelve a intentarlo.",
+  "micWebview": "Este navegador dentro de otra app no permite el micrófono. Abre Jezici en Chrome o Safari para hablar.",
+  "audioPlayError": "No se pudo reproducir · toca para reintentar",
+  "ttsNoVoiceNotice": "Tu dispositivo no tiene voz de {lang} para leer las palabras al tocarlas. El audio de las lecciones sí funciona.",
+  "@ttsNoVoiceNotice": {
+    "placeholders": {
+      "lang": {
+        "type": "String"
+      }
+    }
+  },
   "onbAdultConfirm": "Confirmo que soy mayor de edad",
   "completeProfileTitle": "Completa tu perfil",
   "completeProfileSubtitle": "Solo falta tu nombre y confirmar que eres mayor de edad. Lo demás es opcional y lo puedes editar en tu Perfil.",

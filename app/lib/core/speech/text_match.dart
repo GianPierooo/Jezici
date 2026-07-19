@@ -137,3 +137,43 @@ double speechMatchRatio(String heard, String expected) {
 /// ¿Aprueba? Umbral indulgente por defecto (reconocimiento imperfecto).
 bool speechPasses(String heard, String expected, {double threshold = 0.6}) =>
     speechMatchRatio(heard, expected) >= threshold;
+
+/// Colapsa REPETICIONES CONSECUTIVAS de la transcripción en vivo. Bug real de
+/// WebKit/Safari (y visto en Brave/Android): con `interimResults`, el reconocedor
+/// re-emite el mismo parcial que crece → la UI mostraba texto EN BUCLE, p.ej.
+/// «that that weekend that weekend that weekend Blade that weekend Blade with my
+/// friends». Este colapso deja «that weekend Blade with my friends».
+///
+/// Conservador y determinista: solo quita repeticiones INMEDIATAS (adyacentes)
+/// de 1–4 palabras (elimina la 2ª copia): «that that»→«that», «good morning good
+/// morning»→«good morning», «the the the»→«the». NO toca repeticiones separadas
+/// por otro texto («the dog and the cat» se preserva). Compara en minúsculas y
+/// preserva mayúsculas/acentos del original.
+String collapseSpeechRepeats(String s) {
+  final words = s.split(RegExp(r'\s+')).where((w) => w.isNotEmpty).toList();
+  if (words.length < 2) return words.join(' ');
+  var changed = true;
+  var guard = 0;
+  while (changed && guard++ < 500) {
+    changed = false;
+    // Frases de 4→1 palabras repetidas inmediatamente. El orden (grande→pequeño)
+    // colapsa antes los bigramas/trigramas y luego cualquier palabra doblada.
+    for (var n = 4; n >= 1 && !changed; n--) {
+      for (var i = 0; i + 2 * n <= words.length; i++) {
+        var dup = true;
+        for (var k = 0; k < n; k++) {
+          if (words[i + k].toLowerCase() != words[i + n + k].toLowerCase()) {
+            dup = false;
+            break;
+          }
+        }
+        if (dup) {
+          words.removeRange(i + n, i + 2 * n);
+          changed = true;
+          break;
+        }
+      }
+    }
+  }
+  return words.join(' ');
+}

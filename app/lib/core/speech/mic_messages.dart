@@ -12,6 +12,8 @@ String micMessageFor(AppLocalizations l10n, String? code) {
       return l10n.micNoDevice;
     case SpeechErrors.network:
       return l10n.micNetwork;
+    case SpeechErrors.webview:
+      return l10n.micWebview; // navegador in-app: ábrelo en Chrome/Safari
     default:
       return l10n.micUnsupported;
   }
@@ -22,4 +24,5 @@ String micMessageFor(AppLocalizations l10n, String? code) {
 bool micErrorIsFatal(String code) =>
     code == SpeechErrors.unsupported ||
     code == SpeechErrors.denied ||
-    code == SpeechErrors.noMic;
+    code == SpeechErrors.noMic ||
+    code == SpeechErrors.webview;

@@ -253,7 +253,7 @@ class _PlacementTestState extends ConsumerState<PlacementTest> {
                       // LISTENING: audio del ítem (mismo player del loop).
                       if (audioUrl.isNotEmpty) ...[
                         const SizedBox(height: 12),
-                        Center(child: AudioPlayButton(url: audioUrl)),
+                        Center(child: AudioPlayButton(url: audioUrl, surface: 'placement')),
                       ],
                       // SPEAKING: frase a leer en voz alta — TOCAR para oírla (TTS del curso).
                       if (isSpeaking && speakText.isNotEmpty) ...[

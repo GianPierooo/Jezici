@@ -5279,6 +5279,24 @@ abstract class AppLocalizations {
   /// **'El servicio de voz no respondió (revisa tu conexión). Vuelve a intentarlo.'**
   String get micNetwork;
 
+  /// No description provided for @micWebview.
+  ///
+  /// In es, this message translates to:
+  /// **'Este navegador dentro de otra app no permite el micrófono. Abre Jezici en Chrome o Safari para hablar.'**
+  String get micWebview;
+
+  /// No description provided for @audioPlayError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo reproducir · toca para reintentar'**
+  String get audioPlayError;
+
+  /// No description provided for @ttsNoVoiceNotice.
+  ///
+  /// In es, this message translates to:
+  /// **'Tu dispositivo no tiene voz de {lang} para leer las palabras al tocarlas. El audio de las lecciones sí funciona.'**
+  String ttsNoVoiceNotice(String lang);
+
   /// No description provided for @onbAdultConfirm.
   ///
   /// In es, this message translates to:

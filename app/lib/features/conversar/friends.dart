@@ -1431,20 +1431,34 @@ class _VoiceBubble extends StatefulWidget {
 class _VoiceBubbleState extends State<_VoiceBubble> with SingleTickerProviderStateMixin {
   bool _loading = false;
   bool _playing = false;
+  Timer? _failsafe;
   late final AnimationController _wave =
       AnimationController(vsync: this, duration: const Duration(milliseconds: 700));
 
   @override
   void dispose() {
+    _failsafe?.cancel();
     _wave.dispose();
     super.dispose();
+  }
+
+  void _stopPlaying({bool showError = false}) {
+    _failsafe?.cancel();
+    if (!mounted) return;
+    _wave.stop();
+    setState(() {
+      _loading = false;
+      _playing = false;
+    });
+    if (showError) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(AppLocalizations.of(context).convVoicePlayError)));
+    }
   }
 
   Future<void> _play() async {
     if (_loading || _playing || widget.path.isEmpty) return;
     setState(() => _loading = true);
-    final messenger = ScaffoldMessenger.of(context);
-    final l10n = AppLocalizations.of(context);
     final reduce = MediaQuery.disableAnimationsOf(context);
     try {
       final url = await widget.repo.signedVoiceUrl(widget.path) as String;
@@ -1454,21 +1468,22 @@ class _VoiceBubbleState extends State<_VoiceBubble> with SingleTickerProviderSta
         _playing = true;
       });
       if (!reduce) _wave.repeat(reverse: true);
-      await AudioEngine.instance.playUrl(url, onComplete: () {
-        if (mounted) {
-          _wave.stop();
-          setState(() => _playing = false);
-        }
-      });
+      // Backstop: si el clip no decodifica, antes la burbuja quedaba
+      // "reproduciendo" para SIEMPRE (playUrl no lanzaba). Ahora onError la cierra
+      // y este failsafe cubre el caso extremo de que ni onComplete ni onError lleguen.
+      _failsafe?.cancel();
+      _failsafe = Timer(const Duration(seconds: 12), () => _stopPlaying());
+      await AudioEngine.instance.playUrl(
+        url,
+        onComplete: () => _stopPlaying(),
+        onError: (reason) {
+          reportError(Exception('voice_play_failed'),
+              rpc: 'jz_audio_play', context: 'surface=voice;reason=$reason');
+          _stopPlaying(showError: true);
+        },
+      );
     } catch (_) {
-      if (mounted) {
-        _wave.stop();
-        setState(() {
-          _loading = false;
-          _playing = false;
-        });
-        messenger.showSnackBar(SnackBar(content: Text(l10n.convVoicePlayError)));
-      }
+      _stopPlaying(showError: true);
     }
   }
 

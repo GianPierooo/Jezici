@@ -12,6 +12,14 @@ class WordTts {
   /// primer tick y se puebla async). No-op fuera de web. Idempotente.
   static void warmUp() => impl.primeVoices();
 
+  /// ¿Ya cargaron las voces del navegador? (arrancan async).
+  static bool get voicesReady => impl.ttsVoicesReady();
+
+  /// ¿Hay voz TTS para el idioma base de [lang] (p.ej. 'fr-FR')? null = aún
+  /// cargando; false = el dispositivo no tiene voz → el TTS en vivo saldrá mudo
+  /// (el audio de lecciones, MP3, NO se afecta). Sirve para avisar UNA vez.
+  static bool? hasVoiceFor(String lang) => impl.ttsHasVoice(lang);
+
   static void speak(String word) {
     final w = word.trim();
     if (w.isEmpty) return;
