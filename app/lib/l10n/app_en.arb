@@ -1114,6 +1114,72 @@
       }
     }
   },
+  "metricsTitle": "Metrics",
+  "metricsLoadError": "Couldn't load.",
+  "metricsSecUsers": "Users",
+  "metricsTotal": "Total",
+  "metricsNew7d": "New (7 days)",
+  "metricsSecActivity": "Activity",
+  "metricsStickiness": "Stickiness (DAU/MAU)",
+  "metricsAvgStreak": "Average streak",
+  "metricsLessonsPerActiveDay": "Lessons / active day",
+  "metricsSecRetention": "Retention",
+  "metricsSecLearning": "Learning",
+  "metricsPassCheckpoint": "% pass checkpoint",
+  "metricsPassLevelExam": "% pass level exam",
+  "metricsCertified": "% certified",
+  "metricsSecBusiness": "Business",
+  "metricsPremiumConversion": "Premium conversion",
+  "metricsGeneratedAt": "Generated: {date}",
+  "@metricsGeneratedAt": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "metricsOnbFunnel": "Onboarding funnel",
+  "metricsOnbSteps": "Welcome|Language|Reason|Goal|Commitment|Personality|Start|Placement|Your plan",
+  "metricsCompletedOf": "Completed {completed} / {started}",
+  "@metricsCompletedOf": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "started": {
+        "type": "int"
+      }
+    }
+  },
+  "metricsSectionUsage": "Usage by section (7 days)",
+  "metricsNoViews": "No views recorded yet.",
+  "metricsLessonFunnel": "Lesson funnel (30 days)",
+  "metricsLessonsStarted": "Lessons started",
+  "metricsLessonsCompleted": "Completed",
+  "metricsLessonsQuit": "Abandoned (quit)",
+  "metricsNoHeartsRow": "Ran out of hearts",
+  "metricsCompletionRate": "Completion rate",
+  "metricsFeedbackInterest": "Feedback & interest",
+  "metricsNoFeedback": "No feedback yet.",
+  "metricsLiveInterest": "Live conversation interest (yes/total)",
+  "metricsConvAttempts": "Conversation practices",
+  "metricsUserMessages": "User messages",
+  "metricsNoMessages": "No messages yet.",
+  "metricsSentryTitle": "Error monitoring (Sentry)",
+  "metricsSentryOn": "Active (DSN configured)",
+  "metricsSentryOff": "Off (SENTRY_DSN missing)",
+  "metricsSentryHintOn": "Send a test event and look for it in the Sentry dashboard.",
+  "metricsSentryHintOff": "Add --dart-define=SENTRY_DSN=… to the Vercel Build Command to enable it.",
+  "metricsSentrySend": "Send test event",
+  "metricsSentrySent": "Sent to Sentry ✓  ({id})",
+  "@metricsSentrySent": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "metricsSentryNotSent": "Not sent (Sentry off or error).",
   "onbAdultConfirm": "I confirm that I am an adult",
   "completeProfileTitle": "Complete your profile",
   "completeProfileSubtitle": "We just need your name and a confirmation that you're an adult. Everything else is optional and editable in your Profile.",

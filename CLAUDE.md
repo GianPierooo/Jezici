@@ -5,6 +5,37 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-19**.
 
+## PULIDO MENOR ×3 — speaking P1 + metrics i18n + errores tipados 3ª pasada ✅ LIVE (mig 175 · 2026-07-19)
+Tres frentes chicos de bajo riesgo. Cero IA. Sin tocar lógica de negocio/scoring/economía/seguridad/matching.
+- **F1 · Speaking P1 (AUDIO_PWA_ANALISIS §1.6):** la detección de WebView + mensaje "ábrelo en Chrome/Safari"
+  YA estaba live (pasada P0-B) — verificada contra UAs reales (Instagram/FBAN/`; wv)` → webview=true; Chrome/
+  Brave Android → continuous; Safari iPhone → segmentado). Lo NUEVO: **(a) 1 reintento automático de
+  `no-speech`** — si la sesión termina sin oír nada por un transitorio (empezó a hablar tarde), el reconocedor
+  se re-arma solo UNA vez (`_retriedNoSpeech`; jamás si el usuario detuvo o hubo error real); **(b) `network`
+  ya NO descarta los parciales** — si hubo texto reconocido antes del corte, se CONSERVA y se emite como final
+  (junto al aviso coral que la UI ya pinta); vacío + red → se sigue suprimiendo el "no te escuché" engañoso.
+  Refactor: `_startRecognition()` compartido arranque/reintento. "Mucho ruido" NO se promete (la API no expone SNR).
+- **F2 · metrics_screen 100% i18n:** los ~35 strings hardcodeados en español (la ÚLTIMA pantalla con español
+  suelto, admin-only) migrados a claves `metrics*` es/en/pt (títulos, grupos, embudos, Sentry card, mensajes;
+  los 9 rótulos del embudo de onboarding en UNA clave `metricsOnbSteps` separada por `|`). 0 literales de UI
+  en español restantes (verificado por grep post-migración).
+- **F3 · Errores tipados 3ª pasada (mig 175):** las 4 RPC sociales de más valor migradas a **SQLSTATE custom**
+  con cuerpo VERBATIM (patrón mig 167): **`jz_do_friend_request`** (6 raises → JZ404 not_found · JZ422
+  cannot_add_yourself · JZ403 unavailable · JZ409 already_friends), **`block_user`** (JZ401/JZ422/JZ404),
+  **`report_user`** (JZ401/JZ422/JZ403 account_restricted), **`set_profile_required`** (JZ401 + JZ422
+  name/gender/birthday_required). El MENSAJE = token estable exacto → el cliente mapea kind por CÓDIGO y
+  reason por mensaje; `friendErrorMessage` extendido para aceptar ambos caminos (token viejo Y JZ) → **misma
+  copia fina, 0 regresión**. **Verificado cliente REAL (`verify_typed_errors_social.py`, 2 JWT) TODO VERDE:**
+  válidos → 200 (lógica intacta); self→JZ422+cannot_add_yourself; ya-amigos→JZ409+already_friends;
+  bloqueado→JZ403+unavailable; target inexistente→JZ404+no_such_user; sin género→JZ422+gender_required.
+  **Auditoría catch(_){} 3a:** spot-check de los no-infra restantes (badge pendientes, timer vidas, tip
+  decorativo, locale del placement) = best-effort legítimos ya comentados + reportan en la frontera `_rpc` →
+  0 conversiones nuevas necesarias.
+- **Verificado:** analyze 0 (CI-exact) · test 205/205 · build web OK · verify cliente real TODO VERDE · lógica
+  UA validada contra 8 UAs reales. **Re-encolado (4ª pasada):** migrar a `jz_err` las RPC de plan/lección
+  (create_plan/complete_lesson/grade_item/buy_hearts/revive_streak — más superficie, verify por función); el
+  retry de no-speech y la conservación de parciales requieren mic real → prueba de dispositivo de Gian.
+
 ## PWA INSTALABLE — frente 2: botón fijo en Ajustes + oferta en momento de valor + manifest afinado ✅ LIVE (2026-07-19 · solo cliente)
 Del AUDIO_PWA_ANALISIS.md §2 (pulido + distribución; la app YA cumplía los 4 criterios de instalabilidad de
 Chrome — esto NO tocó elegibilidad). Cero IA, sin migración. NO rompe el flujo existente, la detección

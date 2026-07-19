@@ -5,27 +5,31 @@ import '../../core/monitoring/sentry_config.dart';
 import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../../data/providers.dart';
+import '../../l10n/app_localizations.dart';
 
 /// Panel mínimo de métricas (Especificacion §13). Lee get_metrics() —
 /// herramienta interna; los números son agregados, no datos personales.
+/// i18n es/en/pt (era la última pantalla con español hardcodeado).
 class MetricsScreen extends ConsumerWidget {
   const MetricsScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final async = ref.watch(metricsProvider);
     return Scaffold(
       backgroundColor: AppColors.background,
       appBar: AppBar(
         backgroundColor: AppColors.background, elevation: 0, foregroundColor: AppColors.text,
-        title: const Text('Métricas', style: TextStyle(fontWeight: FontWeight.w900)),
+        title: Text(l10n.metricsTitle, style: const TextStyle(fontWeight: FontWeight.w900)),
         actions: [
           IconButton(onPressed: () => ref.invalidate(metricsProvider), icon: const Icon(Icons.refresh_rounded)),
         ],
       ),
       body: async.when(
         loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
-        error: (e, _) => Center(child: Text('No se pudieron cargar.\n$e', textAlign: TextAlign.center)),
+        error: (e, _) =>
+            Center(child: Text('${l10n.metricsLoadError}\n$e', textAlign: TextAlign.center)),
         data: (m) {
           int i(String k) => (m[k] as num?)?.toInt() ?? 0;
           String pct(String k) => '${(((m[k] as num?)?.toDouble() ?? 0) * 100).toStringAsFixed(1)}%';
@@ -35,32 +39,32 @@ class MetricsScreen extends ConsumerWidget {
             child: ListView(
             padding: const EdgeInsets.fromLTRB(20, 12, 20, 28),
             children: [
-              _group('Usuarios', [
-                _row('Total', '${i('total_users')}'),
-                _row('Nuevos (7 días)', '${i('new_users_7d')}'),
+              _group(l10n.metricsSecUsers, [
+                _row(l10n.metricsTotal, '${i('total_users')}'),
+                _row(l10n.metricsNew7d, '${i('new_users_7d')}'),
               ]),
-              _group('Actividad', [
+              _group(l10n.metricsSecActivity, [
                 _row('DAU', '${i('dau')}'),
                 _row('WAU', '${i('wau')}'),
                 _row('MAU', '${i('mau')}'),
                 // CURR / stickiness: qué fracción de los activos del mes vuelve hoy.
-                _row('Stickiness (DAU/MAU)',
+                _row(l10n.metricsStickiness,
                     i('mau') > 0 ? '${(i('dau') / i('mau') * 100).toStringAsFixed(1)}%' : '—'),
-                _row('Racha media', num2('avg_streak')),
-                _row('Lecciones / día activo', num2('lessons_per_active_day')),
+                _row(l10n.metricsAvgStreak, num2('avg_streak')),
+                _row(l10n.metricsLessonsPerActiveDay, num2('lessons_per_active_day')),
               ]),
-              _group('Retención', [
+              _group(l10n.metricsSecRetention, [
                 _row('D1', pct('retention_d1')),
                 _row('D7', pct('retention_d7')),
                 _row('D30', pct('retention_d30')),
               ]),
-              _group('Aprendizaje', [
-                _row('% aprueba checkpoint', pct('pct_pass_checkpoint')),
-                _row('% aprueba examen de nivel', pct('pct_pass_level_exam')),
-                _row('% certifica', pct('pct_certified')),
+              _group(l10n.metricsSecLearning, [
+                _row(l10n.metricsPassCheckpoint, pct('pct_pass_checkpoint')),
+                _row(l10n.metricsPassLevelExam, pct('pct_pass_level_exam')),
+                _row(l10n.metricsCertified, pct('pct_certified')),
               ]),
-              _group('Negocio', [
-                _row('Conversión premium', pct('conversion_premium')),
+              _group(l10n.metricsSecBusiness, [
+                _row(l10n.metricsPremiumConversion, pct('conversion_premium')),
               ]),
               _OnboardingFunnel(),
               _Engagement(),
@@ -68,7 +72,7 @@ class MetricsScreen extends ConsumerWidget {
               // Monitoreo de errores (Sentry) — SOLO admin (esta pantalla lo es).
               const _SentryTestCard(),
               const SizedBox(height: 8),
-              Text('Generado: ${m['generated_at'] ?? ''}',
+              Text(l10n.metricsGeneratedAt('${m['generated_at'] ?? ''}'),
                   style: const TextStyle(fontSize: 11, color: AppColors.textMuted, fontWeight: FontWeight.w600)),
             ],
           ),
@@ -105,13 +109,12 @@ class MetricsScreen extends ConsumerWidget {
 
 /// Embudo de onboarding (GA4 · B7): usuarios por paso + tasa de finalización.
 class _OnboardingFunnel extends ConsumerWidget {
-  static const _labels = [
-    'Bienvenida', 'Idioma', 'Motivo', 'Meta', 'Compromiso',
-    'Personalidad', 'Arranque', 'Ubicación', 'Tu plan',
-  ];
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
+    // Los rótulos de los 9 pasos viajan en UNA clave separada por '|' (evita 9
+    // claves sueltas); el orden es el de los pasos del onboarding.
+    final labels = l10n.metricsOnbSteps.split('|');
     final async = ref.watch(onboardingFunnelProvider);
     return async.maybeWhen(
       orElse: () => const SizedBox.shrink(),
@@ -123,8 +126,8 @@ class _OnboardingFunnel extends ConsumerWidget {
         return Padding(
           padding: const EdgeInsets.only(bottom: 16),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Text('Embudo de onboarding',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+            Text(l10n.metricsOnbFunnel,
+                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
             const SizedBox(height: 8),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -136,7 +139,8 @@ class _OnboardingFunnel extends ConsumerWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 7),
                     child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                      Text('${(s as Map)['step']}. ${_labels[((s['step'] as num?)?.toInt() ?? 0).clamp(0, 8)]}',
+                      Text(
+                          '${(s as Map)['step']}. ${labels[((s['step'] as num?)?.toInt() ?? 0).clamp(0, labels.length - 1)]}',
                           style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
                       Text('${(s['users'] as num?)?.toInt() ?? 0}',
                           style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.primary)),
@@ -144,7 +148,7 @@ class _OnboardingFunnel extends ConsumerWidget {
                   ),
                 const Divider(height: 18),
                 Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                  Text('Completaron $completed / $started',
+                  Text(l10n.metricsCompletedOf(completed, started),
                       style: const TextStyle(fontSize: 13.5, fontWeight: FontWeight.w800, color: AppColors.text)),
                   Text('${rate.toStringAsFixed(1)}%',
                       style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.success)),
@@ -162,6 +166,7 @@ class _OnboardingFunnel extends ConsumerWidget {
 class _Engagement extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final async = ref.watch(engagementProvider);
     return async.maybeWhen(
       orElse: () => const SizedBox.shrink(),
@@ -187,75 +192,53 @@ class _Engagement extends ConsumerWidget {
                     ]),
                   ),
               ]);
+        Widget lfRow(String label, int value, {Color color = AppColors.primary}) => Padding(
+              padding: const EdgeInsets.symmetric(vertical: 7),
+              child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                Text(label,
+                    style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                Text('$value', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: color)),
+              ]),
+            );
         return Padding(
           padding: const EdgeInsets.only(bottom: 16),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Text('Uso por sección (7 días)',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+            Text(l10n.metricsSectionUsage,
+                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
             const SizedBox(height: 8),
-            _card(rows(usage, 'Aún sin vistas registradas.')),
+            _card(rows(usage, l10n.metricsNoViews)),
             const SizedBox(height: 16),
             // Embudo DENTRO de la lección (30 días): dónde abandonan.
-            const Text('Embudo de lección (30 días)',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+            Text(l10n.metricsLessonFunnel,
+                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
             const SizedBox(height: 8),
             _card(Column(children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 7),
-                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                  const Text('Lecciones iniciadas',
-                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
-                  Text('${lfi('started')}',
-                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.primary)),
-                ]),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 7),
-                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                  const Text('Completadas',
-                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
-                  Text('${lfi('completed')}',
-                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.primary)),
-                ]),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 7),
-                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                  const Text('Abandonadas (salida)',
-                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
-                  Text('${lfi('quit')}',
-                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.coral)),
-                ]),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 7),
-                child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                  const Text('Se quedaron sin vidas',
-                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
-                  Text('${lfi('no_hearts')}',
-                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.coral)),
-                ]),
-              ),
+              lfRow(l10n.metricsLessonsStarted, lfi('started')),
+              lfRow(l10n.metricsLessonsCompleted, lfi('completed')),
+              lfRow(l10n.metricsLessonsQuit, lfi('quit'), color: AppColors.coral),
+              lfRow(l10n.metricsNoHeartsRow, lfi('no_hearts'), color: AppColors.coral),
               const Divider(height: 16),
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                const Text('Tasa de finalización',
-                    style: TextStyle(fontSize: 13.5, fontWeight: FontWeight.w800, color: AppColors.text)),
+                Text(l10n.metricsCompletionRate,
+                    style: const TextStyle(fontSize: 13.5, fontWeight: FontWeight.w800, color: AppColors.text)),
                 Text('${lfRate.toStringAsFixed(1)}%',
                     style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.success)),
               ]),
             ])),
             const SizedBox(height: 16),
-            const Text('Feedback e interés',
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+            Text(l10n.metricsFeedbackInterest,
+                style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
             const SizedBox(height: 8),
             _card(Column(children: [
-              rows(fb, 'Aún sin feedback.'),
+              rows(fb, l10n.metricsNoFeedback),
               const Divider(height: 16),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 7),
                 child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                  const Text('Interés conversación en vivo (sí/total)',
-                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                  Expanded(
+                    child: Text(l10n.metricsLiveInterest,
+                        style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                  ),
                   Text('${interest['would_use_yes'] ?? 0}/${interest['responses'] ?? 0}',
                       style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.primary)),
                 ]),
@@ -263,8 +246,8 @@ class _Engagement extends ConsumerWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 7),
                 child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                  const Text('Prácticas de conversación',
-                      style: TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                  Text(l10n.metricsConvAttempts,
+                      style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
                   Text('${e['conversation_attempts'] ?? 0}',
                       style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.primary)),
                 ]),
@@ -292,6 +275,7 @@ class _FeedbackMessages extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     final async = ref.watch(feedbackProvider);
     return async.maybeWhen(
       orElse: () => const SizedBox.shrink(),
@@ -300,8 +284,8 @@ class _FeedbackMessages extends ConsumerWidget {
           padding: const EdgeInsets.only(bottom: 16),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Row(children: [
-              const Text('Mensajes de usuarios',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
+              Text(l10n.metricsUserMessages,
+                  style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w900, color: AppColors.text)),
               const SizedBox(width: 8),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
@@ -320,8 +304,8 @@ class _FeedbackMessages extends ConsumerWidget {
                 decoration: BoxDecoration(
                     color: Colors.white, borderRadius: BorderRadius.circular(18),
                     boxShadow: const [BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 5), blurRadius: 0)]),
-                child: const Text('Aún sin mensajes.',
-                    style: TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+                child: Text(l10n.metricsNoMessages,
+                    style: const TextStyle(fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
               )
             else
               for (final f in list) _feedbackCard(f),
@@ -377,6 +361,7 @@ class _SentryTestCardState extends State<_SentryTestCard> {
   Future<void> _send() async {
     if (_busy) return;
     setState(() => _busy = true);
+    final l10n = AppLocalizations.of(context);
     final id = await sentryTestEvent();
     if (!mounted) return;
     setState(() => _busy = false);
@@ -384,20 +369,19 @@ class _SentryTestCardState extends State<_SentryTestCard> {
       ..hideCurrentSnackBar()
       ..showSnackBar(SnackBar(
         behavior: SnackBarBehavior.floating,
-        content: Text(id == null
-            ? 'No se envió (Sentry apagado o error).'
-            : 'Enviado a Sentry ✓  ($id)'),
+        content: Text(id == null ? l10n.metricsSentryNotSent : l10n.metricsSentrySent(id)),
       ));
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     final on = sentryEnabled;
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const Text('Monitoreo de errores (Sentry)',
-            style: TextStyle(fontSize: 13, fontWeight: FontWeight.w900, color: AppColors.textMuted)),
+        Text(l10n.metricsSentryTitle,
+            style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w900, color: AppColors.textMuted)),
         const SizedBox(height: 8),
         Container(
           padding: const EdgeInsets.all(16),
@@ -412,14 +396,12 @@ class _SentryTestCardState extends State<_SentryTestCard> {
               Icon(on ? Icons.check_circle_rounded : Icons.cloud_off_rounded,
                   size: 18, color: on ? AppColors.success : AppColors.textMuted),
               const SizedBox(width: 8),
-              Text(on ? 'Activo (DSN configurado)' : 'Apagado (falta SENTRY_DSN)',
+              Text(on ? l10n.metricsSentryOn : l10n.metricsSentryOff,
                   style: const TextStyle(fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.text)),
             ]),
             const SizedBox(height: 10),
             Text(
-              on
-                  ? 'Envía un evento de prueba y búscalo en el dashboard de Sentry.'
-                  : 'Añade --dart-define=SENTRY_DSN=… al Build Command de Vercel para activarlo.',
+              on ? l10n.metricsSentryHintOn : l10n.metricsSentryHintOff,
               style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: AppColors.textMuted),
             ),
             const SizedBox(height: 12),
@@ -438,8 +420,8 @@ class _SentryTestCardState extends State<_SentryTestCard> {
                         height: 16,
                         child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
                     : const Icon(Icons.bug_report_rounded, size: 18),
-                label: const Text('Enviar evento de prueba',
-                    style: TextStyle(fontWeight: FontWeight.w900)),
+                label: Text(l10n.metricsSentrySend,
+                    style: const TextStyle(fontWeight: FontWeight.w900)),
               ),
             ),
           ]),

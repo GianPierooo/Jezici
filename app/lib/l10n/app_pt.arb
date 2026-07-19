@@ -1114,6 +1114,72 @@
       }
     }
   },
+  "metricsTitle": "Métricas",
+  "metricsLoadError": "Não foi possível carregar.",
+  "metricsSecUsers": "Usuários",
+  "metricsTotal": "Total",
+  "metricsNew7d": "Novos (7 dias)",
+  "metricsSecActivity": "Atividade",
+  "metricsStickiness": "Stickiness (DAU/MAU)",
+  "metricsAvgStreak": "Sequência média",
+  "metricsLessonsPerActiveDay": "Lições / dia ativo",
+  "metricsSecRetention": "Retenção",
+  "metricsSecLearning": "Aprendizado",
+  "metricsPassCheckpoint": "% aprova checkpoint",
+  "metricsPassLevelExam": "% aprova exame de nível",
+  "metricsCertified": "% certifica",
+  "metricsSecBusiness": "Negócio",
+  "metricsPremiumConversion": "Conversão premium",
+  "metricsGeneratedAt": "Gerado: {date}",
+  "@metricsGeneratedAt": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "metricsOnbFunnel": "Funil de onboarding",
+  "metricsOnbSteps": "Boas-vindas|Idioma|Motivo|Meta|Compromisso|Personalidade|Início|Nivelamento|Seu plano",
+  "metricsCompletedOf": "Concluíram {completed} / {started}",
+  "@metricsCompletedOf": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "started": {
+        "type": "int"
+      }
+    }
+  },
+  "metricsSectionUsage": "Uso por seção (7 dias)",
+  "metricsNoViews": "Ainda sem visualizações registradas.",
+  "metricsLessonFunnel": "Funil de lição (30 dias)",
+  "metricsLessonsStarted": "Lições iniciadas",
+  "metricsLessonsCompleted": "Concluídas",
+  "metricsLessonsQuit": "Abandonadas (saída)",
+  "metricsNoHeartsRow": "Ficaram sem vidas",
+  "metricsCompletionRate": "Taxa de conclusão",
+  "metricsFeedbackInterest": "Feedback e interesse",
+  "metricsNoFeedback": "Ainda sem feedback.",
+  "metricsLiveInterest": "Interesse em conversa ao vivo (sim/total)",
+  "metricsConvAttempts": "Práticas de conversação",
+  "metricsUserMessages": "Mensagens de usuários",
+  "metricsNoMessages": "Ainda sem mensagens.",
+  "metricsSentryTitle": "Monitoramento de erros (Sentry)",
+  "metricsSentryOn": "Ativo (DSN configurado)",
+  "metricsSentryOff": "Desligado (falta SENTRY_DSN)",
+  "metricsSentryHintOn": "Envie um evento de teste e procure-o no dashboard do Sentry.",
+  "metricsSentryHintOff": "Adicione --dart-define=SENTRY_DSN=… ao Build Command do Vercel para ativá-lo.",
+  "metricsSentrySend": "Enviar evento de teste",
+  "metricsSentrySent": "Enviado ao Sentry ✓  ({id})",
+  "@metricsSentrySent": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "metricsSentryNotSent": "Não foi enviado (Sentry desligado ou erro).",
   "onbAdultConfirm": "Confirmo que sou maior de idade",
   "completeProfileTitle": "Complete seu perfil",
   "completeProfileSubtitle": "Só falta seu nome e a confirmação de que você é maior de idade. O resto é opcional e editável no seu Perfil.",

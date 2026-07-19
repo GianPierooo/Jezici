@@ -5297,6 +5297,258 @@ abstract class AppLocalizations {
   /// **'Tu dispositivo no tiene voz de {lang} para leer las palabras al tocarlas. El audio de las lecciones sí funciona.'**
   String ttsNoVoiceNotice(String lang);
 
+  /// No description provided for @metricsTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Métricas'**
+  String get metricsTitle;
+
+  /// No description provided for @metricsLoadError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudieron cargar.'**
+  String get metricsLoadError;
+
+  /// No description provided for @metricsSecUsers.
+  ///
+  /// In es, this message translates to:
+  /// **'Usuarios'**
+  String get metricsSecUsers;
+
+  /// No description provided for @metricsTotal.
+  ///
+  /// In es, this message translates to:
+  /// **'Total'**
+  String get metricsTotal;
+
+  /// No description provided for @metricsNew7d.
+  ///
+  /// In es, this message translates to:
+  /// **'Nuevos (7 días)'**
+  String get metricsNew7d;
+
+  /// No description provided for @metricsSecActivity.
+  ///
+  /// In es, this message translates to:
+  /// **'Actividad'**
+  String get metricsSecActivity;
+
+  /// No description provided for @metricsStickiness.
+  ///
+  /// In es, this message translates to:
+  /// **'Stickiness (DAU/MAU)'**
+  String get metricsStickiness;
+
+  /// No description provided for @metricsAvgStreak.
+  ///
+  /// In es, this message translates to:
+  /// **'Racha media'**
+  String get metricsAvgStreak;
+
+  /// No description provided for @metricsLessonsPerActiveDay.
+  ///
+  /// In es, this message translates to:
+  /// **'Lecciones / día activo'**
+  String get metricsLessonsPerActiveDay;
+
+  /// No description provided for @metricsSecRetention.
+  ///
+  /// In es, this message translates to:
+  /// **'Retención'**
+  String get metricsSecRetention;
+
+  /// No description provided for @metricsSecLearning.
+  ///
+  /// In es, this message translates to:
+  /// **'Aprendizaje'**
+  String get metricsSecLearning;
+
+  /// No description provided for @metricsPassCheckpoint.
+  ///
+  /// In es, this message translates to:
+  /// **'% aprueba checkpoint'**
+  String get metricsPassCheckpoint;
+
+  /// No description provided for @metricsPassLevelExam.
+  ///
+  /// In es, this message translates to:
+  /// **'% aprueba examen de nivel'**
+  String get metricsPassLevelExam;
+
+  /// No description provided for @metricsCertified.
+  ///
+  /// In es, this message translates to:
+  /// **'% certifica'**
+  String get metricsCertified;
+
+  /// No description provided for @metricsSecBusiness.
+  ///
+  /// In es, this message translates to:
+  /// **'Negocio'**
+  String get metricsSecBusiness;
+
+  /// No description provided for @metricsPremiumConversion.
+  ///
+  /// In es, this message translates to:
+  /// **'Conversión premium'**
+  String get metricsPremiumConversion;
+
+  /// No description provided for @metricsGeneratedAt.
+  ///
+  /// In es, this message translates to:
+  /// **'Generado: {date}'**
+  String metricsGeneratedAt(String date);
+
+  /// No description provided for @metricsOnbFunnel.
+  ///
+  /// In es, this message translates to:
+  /// **'Embudo de onboarding'**
+  String get metricsOnbFunnel;
+
+  /// No description provided for @metricsOnbSteps.
+  ///
+  /// In es, this message translates to:
+  /// **'Bienvenida|Idioma|Motivo|Meta|Compromiso|Personalidad|Arranque|Ubicación|Tu plan'**
+  String get metricsOnbSteps;
+
+  /// No description provided for @metricsCompletedOf.
+  ///
+  /// In es, this message translates to:
+  /// **'Completaron {completed} / {started}'**
+  String metricsCompletedOf(int completed, int started);
+
+  /// No description provided for @metricsSectionUsage.
+  ///
+  /// In es, this message translates to:
+  /// **'Uso por sección (7 días)'**
+  String get metricsSectionUsage;
+
+  /// No description provided for @metricsNoViews.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún sin vistas registradas.'**
+  String get metricsNoViews;
+
+  /// No description provided for @metricsLessonFunnel.
+  ///
+  /// In es, this message translates to:
+  /// **'Embudo de lección (30 días)'**
+  String get metricsLessonFunnel;
+
+  /// No description provided for @metricsLessonsStarted.
+  ///
+  /// In es, this message translates to:
+  /// **'Lecciones iniciadas'**
+  String get metricsLessonsStarted;
+
+  /// No description provided for @metricsLessonsCompleted.
+  ///
+  /// In es, this message translates to:
+  /// **'Completadas'**
+  String get metricsLessonsCompleted;
+
+  /// No description provided for @metricsLessonsQuit.
+  ///
+  /// In es, this message translates to:
+  /// **'Abandonadas (salida)'**
+  String get metricsLessonsQuit;
+
+  /// No description provided for @metricsNoHeartsRow.
+  ///
+  /// In es, this message translates to:
+  /// **'Se quedaron sin vidas'**
+  String get metricsNoHeartsRow;
+
+  /// No description provided for @metricsCompletionRate.
+  ///
+  /// In es, this message translates to:
+  /// **'Tasa de finalización'**
+  String get metricsCompletionRate;
+
+  /// No description provided for @metricsFeedbackInterest.
+  ///
+  /// In es, this message translates to:
+  /// **'Feedback e interés'**
+  String get metricsFeedbackInterest;
+
+  /// No description provided for @metricsNoFeedback.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún sin feedback.'**
+  String get metricsNoFeedback;
+
+  /// No description provided for @metricsLiveInterest.
+  ///
+  /// In es, this message translates to:
+  /// **'Interés conversación en vivo (sí/total)'**
+  String get metricsLiveInterest;
+
+  /// No description provided for @metricsConvAttempts.
+  ///
+  /// In es, this message translates to:
+  /// **'Prácticas de conversación'**
+  String get metricsConvAttempts;
+
+  /// No description provided for @metricsUserMessages.
+  ///
+  /// In es, this message translates to:
+  /// **'Mensajes de usuarios'**
+  String get metricsUserMessages;
+
+  /// No description provided for @metricsNoMessages.
+  ///
+  /// In es, this message translates to:
+  /// **'Aún sin mensajes.'**
+  String get metricsNoMessages;
+
+  /// No description provided for @metricsSentryTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Monitoreo de errores (Sentry)'**
+  String get metricsSentryTitle;
+
+  /// No description provided for @metricsSentryOn.
+  ///
+  /// In es, this message translates to:
+  /// **'Activo (DSN configurado)'**
+  String get metricsSentryOn;
+
+  /// No description provided for @metricsSentryOff.
+  ///
+  /// In es, this message translates to:
+  /// **'Apagado (falta SENTRY_DSN)'**
+  String get metricsSentryOff;
+
+  /// No description provided for @metricsSentryHintOn.
+  ///
+  /// In es, this message translates to:
+  /// **'Envía un evento de prueba y búscalo en el dashboard de Sentry.'**
+  String get metricsSentryHintOn;
+
+  /// No description provided for @metricsSentryHintOff.
+  ///
+  /// In es, this message translates to:
+  /// **'Añade --dart-define=SENTRY_DSN=… al Build Command de Vercel para activarlo.'**
+  String get metricsSentryHintOff;
+
+  /// No description provided for @metricsSentrySend.
+  ///
+  /// In es, this message translates to:
+  /// **'Enviar evento de prueba'**
+  String get metricsSentrySend;
+
+  /// No description provided for @metricsSentrySent.
+  ///
+  /// In es, this message translates to:
+  /// **'Enviado a Sentry ✓  ({id})'**
+  String metricsSentrySent(String id);
+
+  /// No description provided for @metricsSentryNotSent.
+  ///
+  /// In es, this message translates to:
+  /// **'No se envió (Sentry apagado o error).'**
+  String get metricsSentryNotSent;
+
   /// No description provided for @onbAdultConfirm.
   ///
   /// In es, this message translates to:

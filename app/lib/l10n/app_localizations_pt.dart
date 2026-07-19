@@ -3117,6 +3117,142 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
+  String get metricsTitle => 'Métricas';
+
+  @override
+  String get metricsLoadError => 'Não foi possível carregar.';
+
+  @override
+  String get metricsSecUsers => 'Usuários';
+
+  @override
+  String get metricsTotal => 'Total';
+
+  @override
+  String get metricsNew7d => 'Novos (7 dias)';
+
+  @override
+  String get metricsSecActivity => 'Atividade';
+
+  @override
+  String get metricsStickiness => 'Stickiness (DAU/MAU)';
+
+  @override
+  String get metricsAvgStreak => 'Sequência média';
+
+  @override
+  String get metricsLessonsPerActiveDay => 'Lições / dia ativo';
+
+  @override
+  String get metricsSecRetention => 'Retenção';
+
+  @override
+  String get metricsSecLearning => 'Aprendizado';
+
+  @override
+  String get metricsPassCheckpoint => '% aprova checkpoint';
+
+  @override
+  String get metricsPassLevelExam => '% aprova exame de nível';
+
+  @override
+  String get metricsCertified => '% certifica';
+
+  @override
+  String get metricsSecBusiness => 'Negócio';
+
+  @override
+  String get metricsPremiumConversion => 'Conversão premium';
+
+  @override
+  String metricsGeneratedAt(String date) {
+    return 'Gerado: $date';
+  }
+
+  @override
+  String get metricsOnbFunnel => 'Funil de onboarding';
+
+  @override
+  String get metricsOnbSteps =>
+      'Boas-vindas|Idioma|Motivo|Meta|Compromisso|Personalidade|Início|Nivelamento|Seu plano';
+
+  @override
+  String metricsCompletedOf(int completed, int started) {
+    return 'Concluíram $completed / $started';
+  }
+
+  @override
+  String get metricsSectionUsage => 'Uso por seção (7 dias)';
+
+  @override
+  String get metricsNoViews => 'Ainda sem visualizações registradas.';
+
+  @override
+  String get metricsLessonFunnel => 'Funil de lição (30 dias)';
+
+  @override
+  String get metricsLessonsStarted => 'Lições iniciadas';
+
+  @override
+  String get metricsLessonsCompleted => 'Concluídas';
+
+  @override
+  String get metricsLessonsQuit => 'Abandonadas (saída)';
+
+  @override
+  String get metricsNoHeartsRow => 'Ficaram sem vidas';
+
+  @override
+  String get metricsCompletionRate => 'Taxa de conclusão';
+
+  @override
+  String get metricsFeedbackInterest => 'Feedback e interesse';
+
+  @override
+  String get metricsNoFeedback => 'Ainda sem feedback.';
+
+  @override
+  String get metricsLiveInterest => 'Interesse em conversa ao vivo (sim/total)';
+
+  @override
+  String get metricsConvAttempts => 'Práticas de conversação';
+
+  @override
+  String get metricsUserMessages => 'Mensagens de usuários';
+
+  @override
+  String get metricsNoMessages => 'Ainda sem mensagens.';
+
+  @override
+  String get metricsSentryTitle => 'Monitoramento de erros (Sentry)';
+
+  @override
+  String get metricsSentryOn => 'Ativo (DSN configurado)';
+
+  @override
+  String get metricsSentryOff => 'Desligado (falta SENTRY_DSN)';
+
+  @override
+  String get metricsSentryHintOn =>
+      'Envie um evento de teste e procure-o no dashboard do Sentry.';
+
+  @override
+  String get metricsSentryHintOff =>
+      'Adicione --dart-define=SENTRY_DSN=… ao Build Command do Vercel para ativá-lo.';
+
+  @override
+  String get metricsSentrySend => 'Enviar evento de teste';
+
+  @override
+  String metricsSentrySent(String id) {
+    return 'Enviado ao Sentry ✓  ($id)';
+  }
+
+  @override
+  String get metricsSentryNotSent =>
+      'Não foi enviado (Sentry desligado ou erro).';
+
+  @override
   String get onbAdultConfirm => 'Confirmo que sou maior de idade';
 
   @override

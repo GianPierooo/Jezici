@@ -183,6 +183,11 @@ class _WebSpeechRecognizer implements SpeechRecognizer {
   bool _emittedFinal = false;
   bool _emittedDone = false;
   bool _fatalErrored = false;
+  bool _networkErrored = false; // corte de red: conserva parciales si los hay
+  bool _sawNoSpeech = false; // 'no-speech' transitorio en esta sesión
+  bool _retriedNoSpeech = false; // solo UN reintento automático
+  String _localeId = 'en_US';
+  Duration _listenFor = const Duration(seconds: 8);
 
   @override
   bool get available => _available;
@@ -236,13 +241,15 @@ class _WebSpeechRecognizer implements SpeechRecognizer {
     _emittedFinal = false;
     _emittedDone = false;
     _fatalErrored = false;
-    unawaited(_listenImpl(localeId: localeId, listenFor: listenFor));
+    _networkErrored = false;
+    _sawNoSpeech = false;
+    _retriedNoSpeech = false;
+    _localeId = localeId;
+    _listenFor = listenFor;
+    unawaited(_listenImpl());
   }
 
-  Future<void> _listenImpl({
-    required String localeId,
-    required Duration listenFor,
-  }) async {
+  Future<void> _listenImpl() async {
     final ctor = _recognitionCtor();
     if (ctor == null) {
       _fail(SpeechErrors.unsupported, available: false);
@@ -275,7 +282,17 @@ class _WebSpeechRecognizer implements SpeechRecognizer {
       _listening = false;
       return;
     }
+    _startRecognition();
+  }
 
+  /// Construye y arranca el reconocedor (usado por el arranque normal y por el
+  /// reintento automático de 'no-speech').
+  void _startRecognition() {
+    final ctor = _recognitionCtor();
+    if (ctor == null) {
+      _fail(SpeechErrors.unsupported, available: false);
+      return;
+    }
     final _SR sr;
     try {
       sr = _SR._(ctor.callAsConstructor<JSObject>());
@@ -284,7 +301,7 @@ class _WebSpeechRecognizer implements SpeechRecognizer {
       return;
     }
     _sr = sr;
-    sr.lang = localeId.replaceAll('_', '-');
+    sr.lang = _localeId.replaceAll('_', '-');
     // WebKit/Safari (iOS): SEGMENTADO (continuous=false) — su continuous produce
     // el bucle de parciales y sesiones que no terminan. Chrome/Android: continuous
     // (no corta en la 1ª pausa). El dedup de _handleResult protege en AMBOS.
@@ -298,7 +315,7 @@ class _WebSpeechRecognizer implements SpeechRecognizer {
 
     try {
       sr.start();
-      _timeout = Timer(listenFor, stop);
+      _timeout = Timer(_listenFor, stop);
     } catch (_) {
       _sr = null;
       _fail('start-failed', available: true);
@@ -372,9 +389,14 @@ class _WebSpeechRecognizer implements SpeechRecognizer {
         break;
       case 'network':
         mapped = SpeechErrors.network; // transitorio: no mata la disponibilidad
-        _fatalErrored = true; // pero suprime el final '' engañoso
+        // ANTES descartaba TODO lo reconocido (fatal). Ahora: si ya hubo
+        // parciales, se CONSERVAN y se emiten como final en _handleEnd (junto al
+        // aviso de red que la UI ya pinta); sin parciales se sigue suprimiendo
+        // el '' engañoso.
+        _networkErrored = true;
         break;
       default:
+        if (raw == 'no-speech') _sawNoSpeech = true; // candidato a reintento
         mapped = raw; // 'no-speech' / 'aborted' / …
     }
     _reportMic(mapped);
@@ -383,8 +405,27 @@ class _WebSpeechRecognizer implements SpeechRecognizer {
 
   void _handleEnd() {
     _timeout?.cancel();
+    final empty =
+        _finalTranscript.trim().isEmpty && _lastInterim.trim().isEmpty;
+    // REINTENTO automático ÚNICO de 'no-speech': un transitorio (el usuario
+    // empezó a hablar tarde) no debe exigir otro toque. Solo si NO se oyó nada,
+    // el usuario no detuvo, y no hubo un error real (permiso/mic/red).
+    if (_sawNoSpeech &&
+        !_retriedNoSpeech &&
+        empty &&
+        !_cancelled &&
+        !_fatalErrored &&
+        !_networkErrored) {
+      _retriedNoSpeech = true;
+      _sawNoSpeech = false;
+      _sr = null;
+      _startRecognition(); // _listening sigue true: la sesión continúa
+      return;
+    }
     _listening = false;
-    if (!_emittedFinal && !_fatalErrored) {
+    // Con error FATAL (permiso/mic) no se emite final. Con error de RED se
+    // emiten los PARCIALES conservados si los hay; vacío + red → suprimir.
+    if (!_emittedFinal && !_fatalErrored && !(_networkErrored && empty)) {
       _emittedFinal = true;
       final text = _finalTranscript.trim().isNotEmpty
           ? _finalTranscript.trim()

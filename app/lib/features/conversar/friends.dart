@@ -31,16 +31,21 @@ import '../learn/widgets/parrot_mascot.dart';
 /// suelto: la copia FINA de Conversar sale del `reason` tipado; lo no reconocido
 /// cae al fallback del origen.
 String friendErrorMessage(Object e, AppLocalizations l10n, String fallback) {
+  // Acepta el reason del camino por TOKEN de texto (RPC sin migrar) Y el del
+  // camino por SQLSTATE JZ (mig 175: el reason = mensaje EXACTO del servidor).
   switch (JzError.from(e).reason) {
     case 'already_friends':
       return l10n.convErrAlready;
     case 'self':
+    case 'cannot_add_yourself':
       return l10n.convErrSelf;
     case 'rate_limited':
       return l10n.convErrRate;
     case 'social_unavailable':
+    case 'account_restricted':
       return l10n.convErrUnavailable;
     case 'blocked':
+    case 'unavailable':
       return l10n.convErrBlocked;
     default:
       return fallback;
