@@ -2704,6 +2704,24 @@ flutter build web --release  # esperado: Built build/web (wasm dry-run warning d
   el build que usan los usuarios HOY (no asumir que `main` == producción).
 
 ## Reportes de diagnóstico (raíz)
+- **AUDIO_PWA_ANALISIS.md** (2026-07-19, solo lectura, cero código) — análisis a fondo de los DOS frentes con
+  problemas reales en dispositivos: **(1) AUDIO/SPEAKING** y **(2) PWA instalable**. Ground truth: código real
+  (3 agentes: reproducción / reconocimiento / PWA) + **verificación EN VIVO** sobre jezici.space (manifest 200,
+  sw.js v5 con fetch handler, iconos 4/4, CORS de Storage `*` — Storage NO es el problema) + docs actuales (MDN/
+  Chrome/WebKit). **Los 5 hallazgos top:** (1) el path de reproducción falla EN SILENCIO y SIN telemetría (~20
+  `catch(_){}` en `audio_engine_web.dart`; `playUrl` sin canal de error; botón 12 s mudo → "no suena" es
+  indiagnosticable: el fix #1 es INSTRUMENTAR, no adivinar); (2) **`continuous=true` — el fix que arregló
+  Android — es el sospechoso #1 del speaking roto en iOS** (WebKit: continuous inútil, interim duplicados,
+  isFinal que no llega → estándar iOS = push-to-talk por segmentos); (3) TTS en vivo depende de las voces del
+  SO — PC sin voz del idioma = silencio sin aviso (la causa más probable del "no suena en PC"); (4) dos huecos
+  del reconocedor: "Detener" durante el preflight getUserMedia es no-op + el timeout 15 s no cubre el preflight
+  (botón atascado); (5) **la PWA YA cumple HOY los criterios de instalabilidad de Chrome** (verificado en vivo;
+  bridge beforeinstallprompt + tarjeta + sheet iOS construidos) → el frente 2 es pulido/distribución (manifest
+  `id`/`scope`, prompt en momento de valor tras la 1ª lección, fila en Ajustes, og:url→www), no elegibilidad.
+  Con matriz de soporte por navegador (Chrome/Safari iOS/Firefox sin STT/WebView in-app), hipótesis por síntoma,
+  el TECHO honesto (Firefox/WebView sin STT; iOS interim no fiable; ruido/acento sin 100% — ni Duolingo) y plan
+  priorizado: **P0-A telemetría+canal de error de audio (~1 d) · P0-B reconocedor robusto+rama iOS (~1-1.5 d) ·
+  P1 WebView/mensajes/retry/aviso-sin-voz (~1 d) · P2 pulidos**. Frente 1 ANTES que frente 2.
 - **PRACTICAR_SRS_ANALISIS.md** (2026-07-16, solo lectura, cero código) — análisis técnico para llevar un
   **motor SRS serio (estilo Anki)** a Practicar en los 6 idiomas; responde la §5 de `PRACTICAR_SRS_SPEC.md`
   contra la BD real. **TITULAR: la premisa del spec ("reusar la infraestructura cloze que ya existe") es
