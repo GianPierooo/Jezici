@@ -5006,7 +5006,7 @@ abstract class AppLocalizations {
   /// No description provided for @profileStatXp.
   ///
   /// In es, this message translates to:
-  /// **'XP TOTAL'**
+  /// **'XP total'**
   String get profileStatXp;
 
   /// No description provided for @profileStatGold.
@@ -6760,6 +6760,24 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Preparando tu lección…'**
   String get introLoading;
+
+  /// No description provided for @profileStatsHeader.
+  ///
+  /// In es, this message translates to:
+  /// **'Progreso'**
+  String get profileStatsHeader;
+
+  /// No description provided for @profileStatLessons.
+  ///
+  /// In es, this message translates to:
+  /// **'Lecciones'**
+  String get profileStatLessons;
+
+  /// No description provided for @profileStatBestStreak.
+  ///
+  /// In es, this message translates to:
+  /// **'Mejor racha'**
+  String get profileStatBestStreak;
 }
 
 class _AppLocalizationsDelegate

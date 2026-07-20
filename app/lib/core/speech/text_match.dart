@@ -138,27 +138,61 @@ double speechMatchRatio(String heard, String expected) {
 bool speechPasses(String heard, String expected, {double threshold = 0.6}) =>
     speechMatchRatio(heard, expected) >= threshold;
 
-/// Colapsa REPETICIONES CONSECUTIVAS de la transcripción en vivo. Bug real de
-/// WebKit/Safari (y visto en Brave/Android): con `interimResults`, el reconocedor
-/// re-emite el mismo parcial que crece → la UI mostraba texto EN BUCLE, p.ej.
-/// «that that weekend that weekend that weekend Blade that weekend Blade with my
-/// friends». Este colapso deja «that weekend Blade with my friends».
+/// Colapsa un RUN de 3+ palabras idénticas consecutivas a UNA sola («the the the
+/// house»→«the house»). Preserva runs de 1 o 2 → la repetición legítima de énfasis
+/// se conserva («very very good», «bye bye»). Compara en minúsculas, preserva la
+/// forma original de la palabra que sobrevive.
+List<String> _collapseSingleRuns(List<String> w) {
+  final out = <String>[];
+  var i = 0;
+  while (i < w.length) {
+    var j = i + 1;
+    while (j < w.length && w[j].toLowerCase() == w[i].toLowerCase()) {
+      j++;
+    }
+    if (j - i >= 3) {
+      out.add(w[i]); // 3+ iguales seguidas = artefacto → una sola
+    } else {
+      for (var k = i; k < j; k++) {
+        out.add(w[k]); // 1 o 2 → se preserva (énfasis legítimo)
+      }
+    }
+    i = j;
+  }
+  return out;
+}
+
+/// Colapsa las REPETICIONES de la transcripción en vivo. Bug real de WebKit/Safari
+/// (y Brave/Android): con `interimResults` en modo continuo, el reconocedor re-emite
+/// el PREFIJO CRECIENTE completo y los "final" se ACUMULAN, p.ej. «hello my name is
+/// Valentina hello my name is Valentina nice hello my name is Valentina nice to
+/// hello my name is Valentina nice to meet you». Este colapso deja «hello my name
+/// is Valentina nice to meet you».
 ///
-/// Conservador y determinista: solo quita repeticiones INMEDIATAS (adyacentes)
-/// de 1–4 palabras (elimina la 2ª copia): «that that»→«that», «good morning good
-/// morning»→«good morning», «the the the»→«the». NO toca repeticiones separadas
-/// por otro texto («the dog and the cat» se preserva). Compara en minúsculas y
+/// Robusto a repeticiones de FRASES de longitud ARBITRARIA (no solo 1–4 palabras):
+/// colapsa cualquier n-grama (n≥2) repetido inmediatamente, de mayor a menor e
+/// iterativamente (pela la cadena de prefijos crecientes hasta la versión final).
+/// Las palabras sueltas dobladas (n=1) solo se colapsan a partir de 3 → se preserva
+/// la repetición legítima de 2 («very very good»). NO toca repeticiones separadas
+/// por otro texto («the dog and the cat»). Determinista; compara en minúsculas y
 /// preserva mayúsculas/acentos del original.
 String collapseSpeechRepeats(String s) {
-  final words = s.split(RegExp(r'\s+')).where((w) => w.isNotEmpty).toList();
+  var words = s.split(RegExp(r'\s+')).where((w) => w.isNotEmpty).toList();
   if (words.length < 2) return words.join(' ');
+
+  // (A) primero, runs de 3+ palabras idénticas → una (no interfiere con el n≥2).
+  words = _collapseSingleRuns(words);
+
+  // (B) n-gramas (n≥2) repetidos inmediatamente, longitud ARBITRARIA, grande→pequeño
+  //     e iterativo: al quitar la copia del prefijo corto, el prefijo siguiente
+  //     queda como repetición inmediata y también cae → "pela" toda la cadena de
+  //     prefijos crecientes hasta la versión más larga/final.
   var changed = true;
   var guard = 0;
-  while (changed && guard++ < 500) {
+  final maxGuard = words.length + 500; // termina siempre (cada pase borra ≥1)
+  while (changed && guard++ < maxGuard) {
     changed = false;
-    // Frases de 4→1 palabras repetidas inmediatamente. El orden (grande→pequeño)
-    // colapsa antes los bigramas/trigramas y luego cualquier palabra doblada.
-    for (var n = 4; n >= 1 && !changed; n--) {
+    for (var n = words.length ~/ 2; n >= 2 && !changed; n--) {
       for (var i = 0; i + 2 * n <= words.length; i++) {
         var dup = true;
         for (var k = 0; k < n; k++) {
@@ -168,12 +202,15 @@ String collapseSpeechRepeats(String s) {
           }
         }
         if (dup) {
-          words.removeRange(i + n, i + 2 * n);
+          words.removeRange(i + n, i + 2 * n); // quita la 2ª copia (deja la 1ª)
           changed = true;
           break;
         }
       }
     }
   }
+
+  // (C) el pelado de prefijos pudo dejar una palabra triplicada → limpia de nuevo.
+  words = _collapseSingleRuns(words);
   return words.join(' ');
 }

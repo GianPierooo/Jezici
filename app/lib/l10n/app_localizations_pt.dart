@@ -2909,7 +2909,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get profileStatStreak => 'OFENSIVA';
 
   @override
-  String get profileStatXp => 'XP TOTAL';
+  String get profileStatXp => 'XP total';
 
   @override
   String get profileStatGold => 'OURO';
@@ -3931,4 +3931,13 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get introLoading => 'Preparando sua lição…';
+
+  @override
+  String get profileStatsHeader => 'Progresso';
+
+  @override
+  String get profileStatLessons => 'Lições';
+
+  @override
+  String get profileStatBestStreak => 'Melhor sequência';
 }

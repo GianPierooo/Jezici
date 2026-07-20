@@ -119,20 +119,29 @@ void main() {
       'member_since': '2026',
       'relationship': 'none',
       'streak': 4,
+      'longest_streak': 12,
+      'xp_total': 340,
+      'lessons_completed': 21,
+      'achievements_count': 1,
       'levels': [
         {'lang': 'en', 'lang_name': 'English', 'level': 'B1'},
       ],
       'badges': [
         {'code': 'first', 'name': 'Primera lección'},
       ],
-      // (el servidor NUNCA incluye email/birth_year; la UI tampoco los pintaría)
+      // Campos PRIVADOS inyectados a propósito: la UI NUNCA debe pintarlos aunque
+      // aparezcan en el mapa (el servidor tampoco los incluye — doble red).
+      'email': 'bob@secreto.com',
+      'birth_year': 1994,
+      'gender': 'male',
+      'bio': 'texto privado de bio',
     });
     await tester.pumpWidget(ProviderScope(
       overrides: [progressRepositoryProvider.overrideWithValue(repo)],
       child: _app(const PublicProfileScreen(userId: 'u2')),
     ));
     await tester.pump();
-    await tester.pump(const Duration(milliseconds: 300));
+    await tester.pump(const Duration(milliseconds: 900)); // deja correr el contador
 
     expect(find.text('Bob'), findsOneWidget);
     expect(find.text('@bob_m'), findsOneWidget);
@@ -141,5 +150,14 @@ void main() {
     expect(find.text('Primera lección'), findsOneWidget); // logro
     expect(find.text('Agregar amigo'), findsOneWidget); // CTA por relación 'none'
     expect(find.byType(PrimaryButton), findsWidgets);
+    // NUEVO · progreso rico (stats NO sensibles).
+    expect(find.text('PROGRESO'), findsOneWidget); // _sectionHeader va en mayúsculas
+    expect(find.text('XP total'), findsOneWidget);
+    expect(find.text('Lecciones'), findsOneWidget);
+    expect(find.text('Mejor racha'), findsOneWidget);
+    // PRIVACIDAD: ningún dato privado inyectado se renderiza.
+    expect(find.textContaining('bob@secreto.com'), findsNothing);
+    expect(find.textContaining('1994'), findsNothing);
+    expect(find.textContaining('texto privado'), findsNothing);
   });
 }

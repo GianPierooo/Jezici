@@ -5,6 +5,38 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-20**.
 
+## DEDUP DE FRASES LARGAS (speaking) + PERFIL PÚBLICO RICO ✅ LIVE (mig 176 · 2026-07-20)
+Dos frentes con evidencia de captura real. Cero IA. **NO toca matching/salidas del speaking, economía, motor ni gating.**
+- **F1 · DEDUP robusto a FRASES LARGAS** (`text_match.dart` · `collapseSpeechRepeats`, puro + testeado).
+  **Evidencia:** un tester dijo "Hello, my name is Valentina. Nice to meet you" y la transcripción mostró el
+  **PREFIJO CRECIENTE acumulado** («hello my name is Valentina hello my name is Valentina nice hello my name is
+  Valentina nice to hello my name is Valentina nice to meet you»). El dedup previo (mig 175) solo colapsaba
+  n-gramas de **1–4 palabras** → no cazaba la frase larga. **Fix:** ahora colapsa n-gramas repetidos
+  inmediatamente de **longitud ARBITRARIA (n≥2)**, de mayor a menor e **iterativo** → al quitar la copia del
+  prefijo corto, el prefijo siguiente queda como repetición inmediata y también cae → "pela" toda la cadena de
+  prefijos hasta la versión final (el caso queda **«hello my name is Valentina nice to meet you»**). Las palabras
+  sueltas dobladas (n=1) solo se colapsan **a partir de 3** («the the the»→«the») → **se PRESERVA la repetición
+  legítima de énfasis** («very very good», «bye bye»). El reconocedor ya enruta live + final por
+  `collapseSpeechRepeats` → el fix cubre display Y calificación sin tocar la captura ni el matching 0.6.
+  **Tests (`speech_dedup_test`):** el caso EXACTO de la captura + frase larga (5 palabras) repetida 3× + el
+  legítimo «very very good» que NO se colapsa + el matching leniente sigue aprobando tras el colapso.
+- **F2 · PERFIL PÚBLICO rico** (`friends.dart` `PublicProfileScreen`/`_ProfileBody` + **mig 176** server).
+  Antes: avatar+nombre, "ya son amigos", 1 idioma, 1 logro (pobre). Ahora: **cabecera rica** (avatar de COLOR
+  con inicial — decisión de diseño, NO personajes —, nombre, @handle, **racha con LLAMA que respira**
+  reduce-motion-aware, miembro desde) + sección **PROGRESO** con **3 tarjetas de stats de juego** (XP total ·
+  lecciones completadas · mejor racha) con **contador animado** + Jezi + **idiomas** (CEFR por idioma) +
+  **TODOS los logros** (no solo uno; el más reciente con `JzSheen`). **mig 176** extiende `get_public_profile`
+  con esos 4 stats NO sensibles (`xp_total`, `lessons_completed`, `longest_streak`, `achievements_count`),
+  **cuerpo VERBATIM** de la definición viva → todos los guardarraíles de privacidad/seguridad intactos (auth,
+  18+, bloqueo bidireccional, descubribilidad). **NO expone nada nuevo privado.**
+- **Datos que se DECIDIÓ NO mostrar por privacidad:** email, **birth_year/edad exacta**, día/mes de cumpleaños,
+  género, bio. (La liga/posición se difirió — requiere lookup de la semana; marginal. Re-encolado.)
+- **Verificado:** analyze 0 (CI-exact) · test **213/213** (dedup: captura Valentina + frase larga + énfasis
+  legítimo; perfil: stats ricos + **privacidad — campos privados inyectados NO se renderizan**) · build web OK.
+  **Cliente REAL (`verify_public_profile.py`, 2 JWT) TODO VERDE:** los 4 stats presentes; **0 campos privados**
+  (email/birth_year/cumpleaños/género/bio/age_tier); campos públicos intactos; **bloqueo corta el perfil en
+  AMBAS direcciones** (not found). i18n es/en/pt (+4 claves: profileStatsHeader/StatXp/StatLessons/StatBestStreak).
+
 ## APRENDIZAJE E1-E5 — tejer el repaso en el loop + guiar "qué hacer ahora" + teoría visible ✅ LIVE (2026-07-20 · solo cliente)
 Ataca el punto de fuga que reveló `APRENDIZAJE_ANALISIS.md` (7/8 usuarios abandonan antes de la lección 3,
 racha máx = 1 día, **SRS con 0 uso jamás**). Capa de EXPERIENCIA sobre lo que ya existe. Cero IA, cero

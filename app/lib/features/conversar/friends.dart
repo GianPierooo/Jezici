@@ -2779,6 +2779,9 @@ class _ProfileBody extends StatelessWidget {
   final Map<String, dynamic> data;
   final bool acting;
   final VoidCallback onAdd;
+
+  int _int(String k) => (data[k] as num?)?.toInt() ?? 0;
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
@@ -2787,62 +2790,107 @@ class _ProfileBody extends StatelessWidget {
     final rel = (data['relationship'] ?? 'none').toString();
     final country = (data['country'] as String?)?.trim();
     final memberSince = (data['member_since'] ?? '').toString();
-    final streak = (data['streak'] as num?)?.toInt() ?? 0;
+    final streak = _int('streak');
+    final bestStreak = _int('longest_streak');
+    final xp = _int('xp_total');
+    final lessons = _int('lessons_completed');
     final levels = (data['levels'] as List?) ?? const [];
     final badges = (data['badges'] as List?) ?? const [];
+
     return ListView(
       padding: const EdgeInsets.fromLTRB(20, 8, 20, 30),
       children: [
+        // ── Cabecera rica: avatar de color + nombre + @handle + racha viva ──
         Container(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.fromLTRB(20, 22, 20, 18),
           decoration: BoxDecoration(
             gradient: const LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [Color(0xFF7A6BF0), AppColors.primary, Color(0xFF5B4ECF)]),
-            borderRadius: BorderRadius.circular(22),
+            borderRadius: BorderRadius.circular(24),
             boxShadow: const [
-              BoxShadow(color: Color(0xFF4B3FC9), offset: Offset(0, 5), blurRadius: 0),
-              BoxShadow(color: Color(0x336C5CE7), offset: Offset(0, 14), blurRadius: 24),
+              BoxShadow(color: Color(0xFF4B3FC9), offset: Offset(0, 6), blurRadius: 0),
+              BoxShadow(color: Color(0x336C5CE7), offset: Offset(0, 16), blurRadius: 26),
             ],
           ),
           child: Column(children: [
             Container(
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(22),
-                  border: Border.all(color: Colors.white, width: 3)),
+                  borderRadius: BorderRadius.circular(24),
+                  border: Border.all(color: Colors.white, width: 3),
+                  boxShadow: const [
+                    BoxShadow(color: Color(0x33000000), offset: Offset(0, 4), blurRadius: 12),
+                  ]),
               child: _Squircle(
-                  color: (data['avatar_color'] ?? '#6C5CE7').toString(), letter: name, size: 78),
+                  color: (data['avatar_color'] ?? '#6C5CE7').toString(), letter: name, size: 84),
             ),
             const SizedBox(height: 12),
             Text(name,
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                    fontSize: 21, fontWeight: FontWeight.w900, color: Colors.white)),
+                    fontSize: 22, fontWeight: FontWeight.w900, color: Colors.white)),
             if (handle != null)
               Text('@$handle',
                   style: TextStyle(
                       fontSize: 13.5,
                       fontWeight: FontWeight.w800,
                       color: Colors.white.withValues(alpha: 0.85))),
-            const SizedBox(height: 8),
+            if (streak > 0) ...[
+              const SizedBox(height: 11),
+              _FlameChip(streak: streak, l10n: l10n),
+            ],
+            const SizedBox(height: 11),
             Wrap(
               alignment: WrapAlignment.center,
               spacing: 14,
+              runSpacing: 4,
               children: [
                 if (country != null && country.isNotEmpty)
                   _bannerMeta(Icons.public_rounded, country),
                 if (memberSince.isNotEmpty)
                   _bannerMeta(Icons.event_rounded, l10n.profileMemberSince(memberSince)),
-                if (streak > 0)
-                  _bannerMeta(
-                      Icons.local_fire_department_rounded, l10n.profileStreakDays(streak)),
               ],
             ),
           ]),
         ),
         const SizedBox(height: 16),
         _profileCta(context, l10n, rel, acting, onAdd),
+
+        // ── Progreso: stats de juego NO sensibles (XP, lecciones, mejor racha) ──
+        const SizedBox(height: 20),
+        Row(children: [
+          Expanded(child: _sectionHeader(l10n.profileStatsHeader)),
+          const ParrotMascot(size: 34),
+        ]),
+        const SizedBox(height: 10),
+        Row(children: [
+          Expanded(
+              child: _StatTile(
+                  icon: Icons.bolt_rounded,
+                  value: xp,
+                  label: l10n.profileStatXp,
+                  bg: AppColors.navActiveBg,
+                  fg: AppColors.primary)),
+          const SizedBox(width: 10),
+          Expanded(
+              child: _StatTile(
+                  icon: Icons.menu_book_rounded,
+                  value: lessons,
+                  label: l10n.profileStatLessons,
+                  bg: const Color(0xFFE7F9EF),
+                  fg: AppColors.success)),
+          const SizedBox(width: 10),
+          Expanded(
+              child: _StatTile(
+                  icon: Icons.local_fire_department_rounded,
+                  value: bestStreak,
+                  label: l10n.profileStatBestStreak,
+                  bg: const Color(0xFFFFF3E6),
+                  fg: AppColors.streak)),
+        ]),
+
+        // ── Idiomas que estudia (nivel CEFR por idioma) ──
         if (levels.isNotEmpty) ...[
           const SizedBox(height: 20),
           _sectionHeader(l10n.profileLanguages),
@@ -2858,6 +2906,8 @@ class _ProfileBody extends StatelessWidget {
             ],
           ),
         ],
+
+        // ── Logros (TODOS, no solo uno) ──
         if (badges.isNotEmpty) ...[
           const SizedBox(height: 20),
           _sectionHeader(l10n.profileBadges),
@@ -2866,7 +2916,8 @@ class _ProfileBody extends StatelessWidget {
             spacing: 8,
             runSpacing: 8,
             children: [
-              for (final b in badges) _BadgeChip(name: (b['name'] ?? '').toString()),
+              for (var bi = 0; bi < badges.length; bi++)
+                _BadgeChip(name: (badges[bi]['name'] ?? '').toString(), highlight: bi == 0),
             ],
           ),
         ],
@@ -2957,11 +3008,12 @@ class _LangChip extends StatelessWidget {
 }
 
 class _BadgeChip extends StatelessWidget {
-  const _BadgeChip({required this.name});
+  const _BadgeChip({required this.name, this.highlight = false});
   final String name;
+  final bool highlight; // el logro más reciente lleva un brillo sutil (JzSheen)
   @override
   Widget build(BuildContext context) {
-    return Container(
+    final chip = Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
           color: const Color(0xFFFFF4E0), borderRadius: BorderRadius.circular(13)),
@@ -2971,6 +3023,120 @@ class _BadgeChip extends StatelessWidget {
         Text(name,
             style: const TextStyle(
                 fontSize: 12.5, fontWeight: FontWeight.w800, color: Color(0xFF8A6400))),
+      ]),
+    );
+    if (!highlight) return chip;
+    return ClipRRect(borderRadius: BorderRadius.circular(13), child: JzSheen(child: chip));
+  }
+}
+
+/// Tile de stat (no sensible) con contador animado (cuenta hasta el valor).
+/// Reduce-motion-aware (muestra el valor directo).
+class _StatTile extends StatelessWidget {
+  const _StatTile({
+    required this.icon,
+    required this.value,
+    required this.label,
+    required this.bg,
+    required this.fg,
+  });
+  final IconData icon;
+  final int value;
+  final String label;
+  final Color bg;
+  final Color fg;
+
+  @override
+  Widget build(BuildContext context) {
+    final reduce = MediaQuery.of(context).disableAnimations;
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 6),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(18),
+        boxShadow: const [
+          BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 5), blurRadius: 0),
+        ],
+      ),
+      child: Column(children: [
+        Container(
+          width: 40,
+          height: 40,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(13)),
+          child: Icon(icon, color: fg, size: 21),
+        ),
+        const SizedBox(height: 7),
+        reduce
+            ? Text('$value',
+                style: TextStyle(fontSize: 19, fontWeight: FontWeight.w900, color: fg))
+            : TweenAnimationBuilder<double>(
+                duration: const Duration(milliseconds: 800),
+                curve: Curves.easeOutCubic,
+                tween: Tween(begin: 0, end: value.toDouble()),
+                builder: (_, v, _) => Text('${v.round()}',
+                    style: TextStyle(fontSize: 19, fontWeight: FontWeight.w900, color: fg)),
+              ),
+        const SizedBox(height: 2),
+        Text(label,
+            textAlign: TextAlign.center,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+                fontSize: 10.5, fontWeight: FontWeight.w900, color: AppColors.textMuted)),
+      ]),
+    );
+  }
+}
+
+/// Chip de racha con LLAMA que respira (reduce-motion-aware → estática).
+class _FlameChip extends StatefulWidget {
+  const _FlameChip({required this.streak, required this.l10n});
+  final int streak;
+  final AppLocalizations l10n;
+  @override
+  State<_FlameChip> createState() => _FlameChipState();
+}
+
+class _FlameChipState extends State<_FlameChip> with SingleTickerProviderStateMixin {
+  AnimationController? _c;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final reduce = MediaQuery.of(context).disableAnimations;
+    if (!reduce && _c == null) {
+      _c = AnimationController(
+          vsync: this, duration: const Duration(milliseconds: 1100))
+        ..repeat(reverse: true);
+    }
+  }
+
+  @override
+  void dispose() {
+    _c?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    const flame = Text('🔥', style: TextStyle(fontSize: 16));
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
+      decoration: BoxDecoration(
+          color: Colors.white.withValues(alpha: 0.2),
+          borderRadius: BorderRadius.circular(14)),
+      child: Row(mainAxisSize: MainAxisSize.min, children: [
+        _c == null
+            ? flame
+            : ScaleTransition(
+                scale: Tween(begin: 0.85, end: 1.15)
+                    .animate(CurvedAnimation(parent: _c!, curve: Curves.easeInOut)),
+                child: flame),
+        const SizedBox(width: 7),
+        Text(widget.l10n.profileStreakDays(widget.streak),
+            style: const TextStyle(
+                fontSize: 13.5, fontWeight: FontWeight.w900, color: Colors.white)),
       ]),
     );
   }

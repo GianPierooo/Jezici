@@ -2904,7 +2904,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get profileStatStreak => 'RACHA';
 
   @override
-  String get profileStatXp => 'XP TOTAL';
+  String get profileStatXp => 'XP total';
 
   @override
   String get profileStatGold => 'ORO';
@@ -3924,4 +3924,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get introLoading => 'Preparando tu lección…';
+
+  @override
+  String get profileStatsHeader => 'Progreso';
+
+  @override
+  String get profileStatLessons => 'Lecciones';
+
+  @override
+  String get profileStatBestStreak => 'Mejor racha';
 }

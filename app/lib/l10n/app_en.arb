@@ -1409,5 +1409,9 @@
   "lessonWhatNext": "What do you want to do now?",
   "tipCardSeeGuide": "See more concepts in your guide",
   "practiceSrsAllDone": "Reviews up to date",
-  "introLoading": "Getting your lesson ready…"
+  "introLoading": "Getting your lesson ready…",
+  "profileStatsHeader": "Progress",
+  "profileStatXp": "Total XP",
+  "profileStatLessons": "Lessons",
+  "profileStatBestStreak": "Best streak"
 }

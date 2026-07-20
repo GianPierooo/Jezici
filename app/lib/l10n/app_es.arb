@@ -2143,5 +2143,9 @@
   "lessonWhatNext": "¿Qué quieres hacer ahora?",
   "tipCardSeeGuide": "Ver más conceptos en tu guía",
   "practiceSrsAllDone": "Repaso al día",
-  "introLoading": "Preparando tu lección…"
+  "introLoading": "Preparando tu lección…",
+  "profileStatsHeader": "Progreso",
+  "profileStatXp": "XP total",
+  "profileStatLessons": "Lecciones",
+  "profileStatBestStreak": "Mejor racha"
 }
