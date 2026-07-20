@@ -17,8 +17,10 @@ void main() {
         ),
       );
 
+  // Tarjeta de REPASO (no nueva): entra directo a la cara de escritura. Las
+  // NUEVAS pasan primero por la cara de PRESENTACIÓN (P0-B, tests abajo).
   const wordCard = SrsCard(
-    vocabId: 'v1', word: 'gato', translation: 'cat', kind: 'word', isNew: true,
+    vocabId: 'v1', word: 'gato', translation: 'cat', kind: 'word',
   );
   const clozeCard = SrsCard(
     vocabId: 'v2', word: 'livro', translation: 'libro', kind: 'cloze',
@@ -122,5 +124,89 @@ void main() {
     expect(find.text('VERIFICAR'), findsOneWidget);
     expect(find.text('COMPROBAR'), findsNothing);
     expect(find.text('Revisão'), findsOneWidget);
+  });
+
+  // ── CAUSA_RAIZ_RETENCION P0-A: sinonimos validos ACEPTADOS (mig 177) ──────
+  // Los casos EXACTOS de las capturas: hola→hello (la tarjeta guarda "hi"),
+  // gracias→thanks ("thank you"), disculpa→sorry ("excuse me").
+  const holaCard = SrsCard(
+    vocabId: 'h1', word: 'hi', translation: 'hola', kind: 'word',
+    accepted: ['hello', 'hey'],
+  );
+  const graciasCard = SrsCard(
+    vocabId: 'g1', word: 'thank you', translation: 'gracias', kind: 'word',
+    accepted: ['thanks', 'thanks a lot'],
+  );
+  const disculpaCard = SrsCard(
+    vocabId: 'd1', word: 'excuse me', translation: 'disculpa', kind: 'word',
+    accepted: ['sorry', 'pardon'],
+  );
+
+  Future<void> expectAccepted(WidgetTester tester, SrsCard card, String answer) async {
+    await tester.pumpWidget(app(SrsSession(cards: [card])));
+    await tester.pump();
+    await tester.enterText(find.byType(TextField), answer);
+    await tester.pump();
+    await tester.tap(find.text('COMPROBAR'));
+    await tester.pump();
+    expect(find.text('¡Correcto!'), findsOneWidget,
+        reason: '"$answer" debe aceptarse para "${card.translation}"');
+    expect(find.text('Otra vez'), findsNothing);
+  }
+
+  testWidgets('CAPTURA 1: "hello" para hola (tarjeta "hi") -> CORRECTO', (tester) async {
+    await expectAccepted(tester, holaCard, 'hello');
+  });
+
+  testWidgets('CAPTURA 2: "thanks" para gracias (tarjeta "thank you") -> CORRECTO',
+      (tester) async {
+    await expectAccepted(tester, graciasCard, 'thanks');
+  });
+
+  testWidgets('CAPTURA 3: "sorry" para disculpa (tarjeta "excuse me") -> CORRECTO',
+      (tester) async {
+    await expectAccepted(tester, disculpaCard, 'sorry');
+  });
+
+  testWidgets('una respuesta REALMENTE mal sigue siendo mal (no se regala todo)',
+      (tester) async {
+    await tester.pumpWidget(app(const SrsSession(cards: [holaCard])));
+    await tester.pump();
+    await tester.enterText(find.byType(TextField), 'goodbye');
+    await tester.pump();
+    await tester.tap(find.text('COMPROBAR'));
+    await tester.pump();
+    expect(find.text('La respuesta era:'), findsOneWidget);
+    expect(find.text('Otra vez'), findsOneWidget);
+  });
+
+  // ── P0-B: enseñar antes de examinar en produccion ─────────────────────────
+  testWidgets('palabra NUEVA: se PRESENTA primero (verla+oirla), luego se escribe',
+      (tester) async {
+    const newCard = SrsCard(
+      vocabId: 'n1', word: 'gato', translation: 'cat', kind: 'word', isNew: true,
+    );
+    await tester.pumpWidget(app(const SrsSession(cards: [newCard])));
+    await tester.pump();
+
+    // Cara de PRESENTACIÓN: la palabra SE MUESTRA (no se examina a ciegas).
+    expect(find.text('gato'), findsOneWidget);
+    expect(find.text('¡AHORA ESCRÍBELA!'), findsOneWidget);
+    expect(find.byType(TextField), findsNothing); // aún no se pide escribir
+
+    await tester.tap(find.text('¡AHORA ESCRÍBELA!'));
+    await tester.pump();
+
+    // Ahora sí: cara de escritura (recuerdo inmediato de lo recién visto).
+    expect(find.byType(TextField), findsOneWidget);
+    expect(find.text('COMPROBAR'), findsOneWidget);
+  });
+
+  testWidgets('tarjeta de REPASO (no nueva): NO hay presentacion, directo a escribir',
+      (tester) async {
+    await tester.pumpWidget(app(const SrsSession(cards: [wordCard])));
+    await tester.pump();
+    expect(find.byType(TextField), findsOneWidget);
+    expect(find.text('¡AHORA ESCRÍBELA!'), findsNothing);
   });
 }

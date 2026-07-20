@@ -1413,5 +1413,7 @@
   "profileStatsHeader": "Progresso",
   "profileStatXp": "XP total",
   "profileStatLessons": "Lições",
-  "profileStatBestStreak": "Melhor sequência"
+  "profileStatBestStreak": "Melhor sequência",
+  "srsPresentHint": "Veja, toque para ouvir… e agora escreva você.",
+  "srsPresentCta": "AGORA ESCREVA VOCÊ!"
 }

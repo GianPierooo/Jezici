@@ -3940,4 +3940,10 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get profileStatBestStreak => 'Melhor sequência';
+
+  @override
+  String get srsPresentHint => 'Veja, toque para ouvir… e agora escreva você.';
+
+  @override
+  String get srsPresentCta => 'AGORA ESCREVA VOCÊ!';
 }

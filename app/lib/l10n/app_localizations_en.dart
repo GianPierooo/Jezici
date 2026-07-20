@@ -3930,4 +3930,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get profileStatBestStreak => 'Best streak';
+
+  @override
+  String get srsPresentHint => 'Look at it, tap to hear it… now you write it.';
+
+  @override
+  String get srsPresentCta => 'NOW YOU WRITE IT!';
 }

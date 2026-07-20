@@ -79,6 +79,7 @@ class SrsCard {
     this.sentence,
     this.audioUrl,
     this.isNew = false,
+    this.accepted = const [],
   });
 
   final String vocabId;
@@ -88,6 +89,10 @@ class SrsCard {
   final String? sentence; // solo kind='cloze'
   final String? audioUrl; // hoy null: el audio de vocab es F3
   final bool isNew;
+
+  /// Respuestas ACEPTABLES además de [word] (mig 177): sinónimos/variantes
+  /// válidas (hola→hi Y hello). El servidor califica con el mismo conjunto.
+  final List<String> accepted;
 
   bool get isCloze => kind == 'cloze' && (sentence?.isNotEmpty ?? false);
 
@@ -99,6 +104,9 @@ class SrsCard {
         sentence: j['sentence'] as String?,
         audioUrl: j['audio_url'] as String?,
         isNew: j['is_new'] as bool? ?? false,
+        accepted: ((j['accepted'] as List?) ?? const [])
+            .map((e) => e.toString())
+            .toList(),
       );
 }
 

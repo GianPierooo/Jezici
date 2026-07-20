@@ -2147,5 +2147,7 @@
   "profileStatsHeader": "Progreso",
   "profileStatXp": "XP total",
   "profileStatLessons": "Lecciones",
-  "profileStatBestStreak": "Mejor racha"
+  "profileStatBestStreak": "Mejor racha",
+  "srsPresentHint": "Mírala, tócala para oírla… y ahora escríbela tú.",
+  "srsPresentCta": "¡AHORA ESCRÍBELA!"
 }

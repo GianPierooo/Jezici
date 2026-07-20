@@ -65,12 +65,21 @@ class _SrsReviewScreenState extends ConsumerState<SrsReviewScreen> {
 
   SrsCard get _card => _queue.first;
 
-  /// Espejo EXACTO del servidor (jz_grade = exacto o near-match). Solo para el
-  /// feedback inmediato; la autoridad sigue siendo el servidor al enviar.
+  /// Palabras NUEVAS ya presentadas en ESTA sesión (P0-B: enseñar antes de
+  /// examinar en producción — una palabra nueva se PRESENTA primero, luego se
+  /// escribe; nunca se pide de memoria algo que no se mostró).
+  final Set<String> _presented = {};
+
+  /// Espejo EXACTO del servidor (jz_grade = exacto o near-match, contra la forma
+  /// canónica + el conjunto `accepted` de la mig 177 — "hello" cuenta para hola
+  /// aunque la tarjeta guarde "hi"). Solo para el feedback inmediato; la
+  /// autoridad sigue siendo el servidor al enviar.
   void _check() {
     if (_revealed || _ctrl.text.trim().isEmpty) return;
     final user = _ctrl.text.trim();
-    final ok = normalize(user) == normalize(_card.word) || nearMatch([_card.word], user);
+    final candidates = [_card.word, ..._card.accepted];
+    final ok = candidates.any((c) => normalize(user) == normalize(c)) ||
+        nearMatch(candidates, user);
     // Mismo lenguaje de feedback que el loop de lección (háptica + SFX).
     if (ok) {
       FeedbackFx.correct();
@@ -215,9 +224,89 @@ class _SrsReviewScreenState extends ConsumerState<SrsReviewScreen> {
     );
   }
 
+  /// Cara de PRESENTACIÓN de una palabra nueva (P0-B): término grande tocable
+  /// (TTS del curso), traducción, y la oración de contexto si existe. El CTA
+  /// pasa a la cara de escritura — con la palabra recién vista (primera
+  /// exposición = copia con recuerdo inmediato, no examen a ciegas).
+  Widget _presentView(AppLocalizations l10n, SrsCard c) {
+    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      Row(children: [
+        _Chip(label: l10n.srsNewWord, bg: AppColors.navActiveBg, fg: AppColors.primary),
+        const Spacer(),
+        _Chip(
+            label: l10n.srsLeft(_queue.length),
+            bg: const Color(0xFFEFF1F8),
+            fg: AppColors.textMuted),
+      ]),
+      const SizedBox(height: 14),
+      Container(
+        padding: const EdgeInsets.fromLTRB(18, 22, 18, 22),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: const [
+            BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 5), blurRadius: 0),
+          ],
+        ),
+        child: Column(children: [
+          const ParrotMascot(size: 64, mood: MascotMood.encourage),
+          const SizedBox(height: 12),
+          // Término META grande, tocable para oírlo (TTS del curso activo).
+          SpeakableText(
+            c.word,
+            iconSize: 20,
+            style: const TextStyle(
+                fontSize: 26, fontWeight: FontWeight.w900, color: AppColors.text),
+          ),
+          const SizedBox(height: 6),
+          Text(c.translation,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  fontSize: 15.5, fontWeight: FontWeight.w800, color: AppColors.textMuted)),
+          if (c.isCloze) ...[
+            const SizedBox(height: 14),
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                  color: const Color(0xFFF6F7FB), borderRadius: BorderRadius.circular(12)),
+              child: Text(c.sentence!,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                      fontSize: 13.5,
+                      fontWeight: FontWeight.w700,
+                      height: 1.4,
+                      color: AppColors.text)),
+            ),
+          ],
+          const SizedBox(height: 12),
+          Text(l10n.srsPresentHint,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+        ]),
+      ),
+      const SizedBox(height: 18),
+      JzGlowPulse(
+        child: PrimaryButton(
+          label: l10n.srsPresentCta,
+          expand: true,
+          onPressed: () {
+            setState(() => _presented.add(c.vocabId));
+            _focus.requestFocus();
+          },
+        ),
+      ),
+    ]);
+  }
+
   Widget _cardView(AppLocalizations l10n) {
     final c = _card;
     final reduce = MediaQuery.of(context).disableAnimations;
+    // P0-B · ENSEÑAR ANTES DE EXAMINAR EN PRODUCCIÓN: una palabra NUEVA se
+    // PRESENTA primero (verla + oírla) y solo después se pide escribirla.
+    // Nunca se examina de memoria una palabra que no se mostró en la sesión.
+    if (c.isNew && !_presented.contains(c.vocabId)) return _presentView(l10n, c);
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
       Row(children: [
         if (c.isNew)

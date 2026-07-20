@@ -3933,4 +3933,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get profileStatBestStreak => 'Mejor racha';
+
+  @override
+  String get srsPresentHint =>
+      'Mírala, tócala para oírla… y ahora escríbela tú.';
+
+  @override
+  String get srsPresentCta => '¡AHORA ESCRÍBELA!';
 }

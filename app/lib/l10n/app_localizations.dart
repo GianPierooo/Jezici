@@ -6778,6 +6778,18 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Mejor racha'**
   String get profileStatBestStreak;
+
+  /// No description provided for @srsPresentHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Mírala, tócala para oírla… y ahora escríbela tú.'**
+  String get srsPresentHint;
+
+  /// No description provided for @srsPresentCta.
+  ///
+  /// In es, this message translates to:
+  /// **'¡AHORA ESCRÍBELA!'**
+  String get srsPresentCta;
 }
 
 class _AppLocalizationsDelegate

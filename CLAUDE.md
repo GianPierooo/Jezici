@@ -5,6 +5,38 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-20**.
 
+## CAUSA RAÍZ DE RETENCIÓN — el SRS ya NO castiga respuestas correctas ✅ LIVE (mig 177 · 2026-07-20)
+El fix de MAYOR impacto en retención del proyecto (`CAUSA_RAIZ_RETENCION.md`). Capturas reales: "hello" para
+hola → MAL ("era: hi"); "thanks" para gracias → MAL ("era: thank you"); "sorry" para disculpa → MAL. **Tres
+respuestas correctas castigadas** = la causa raíz probable de la racha de 1 día. Cero IA.
+- **POR QUÉ FALLABA (PASO 0):** `submit_practice` calificaba el SRS escrito contra **UNA sola forma**
+  (`jsonb_build_object('value', vocabulary.word)`) aunque `jz_grade_exact` YA soporta un array `accepted`
+  para cloze/translation (nadie lo alimentaba). La BD confirma: "hola" existe DOS veces (hello Y hi) — la
+  tarjeta del row `hi` solo aceptaba "hi"; `thanks`/`sorry` ni existen como filas.
+- **P0-A · CONJUNTO de aceptables (mig 177):** `vocabulary.accepted` (jsonb) poblado DETERMINISTA, 3 fuentes
+  sin autoría masiva: **(a) HERMANOS** — palabras del mismo curso con la misma traducción normalizada se
+  aceptan mutuamente (hello↔hi, coworker↔colleague, meal↔food); **(b) VARIANTES derivadas** — palabra sin su
+  artículo/marcador por idioma meta (en a/an/the/to · fr le/la/l'… · it il/lo/la… · de der/die/das · nl
+  de/het/'t · pt o/a/um) → "der Name" acepta "Name", "to realize" acepta "realize"; **(c) MAPA CURADO** de
+  cortesía/saludos ×6 idiomas (hola/gracias/disculpa/perdón/adiós/lo siento… — obrigado/obrigada AMBOS).
+  **1.622 palabras** ganan aceptables (de 303 · nl 401 · it 347 · fr 272 · pt 195 · en 104). `submit_practice`
+  y `start_practice` (cuerpos VERBATIM, solo el cambio) califican/envían `value + accepted`; el cliente
+  (`SrsCard.accepted` + `_check`) refleja el MISMO criterio → feedback inmediato == server. **Regla de oro:
+  ante la duda, aceptar** (un falso "bien" no cuesta; un falso "mal" expulsa).
+- **P0-B · ENSEÑAR ANTES DE EXAMINAR EN PRODUCCIÓN:** por construcción el SRS solo sirve palabras INSCRITAS
+  (de lecciones COMPLETADAS) — verificado. Y ahora una palabra **NUEVA se PRESENTA primero** en el repaso
+  (`_presentView`: término grande tocable con TTS + traducción + oración + "¡AHORA ESCRÍBELA!") y solo
+  después se pide escribirla — nunca examen a ciegas de primera exposición. Las de repaso entran directo.
+- **P1 · alineación por nivel:** verificado con cliente real — tras completar SOLO la lección 1 (A1), las 13
+  tarjetas servidas son TODAS de esa lección (**0 huérfanas**: toda palabra inscrita viene de una lección
+  completada; el léxico F1 anclado en A2/B1 NO se cuela antes de tiempo).
+- **GUARDARRAÍL VERDE (`verify_srs.py` pt+de):** motor FSRS intacto — rating forzado a 1 en fallo, anti-farmeo,
+  un pago/sesión (xp≤20, oro 2), racha, aislamiento multicurso. 8 usuarios reales intactos.
+- **Verificado:** analyze 0 (CI-exact) · test **219/219** (+6: las 3 CAPTURAS exactas aceptadas + "goodbye"
+  sigue mal + presentación de nuevas + repaso directo) · build web OK · **cliente REAL
+  (`verify_srs_synonyms.py`) TODO VERDE:** hello/thanks/sorry → **3/3 correctas** (antes 0/3); control
+  negativo sigue mal; tarjetas traen `accepted`; P1 0 huérfanas. i18n es/en/pt (+2: srsPresentHint/Cta).
+
 ## DEDUP DE FRASES LARGAS (speaking) + PERFIL PÚBLICO RICO ✅ LIVE (mig 176 · 2026-07-20)
 Dos frentes con evidencia de captura real. Cero IA. **NO toca matching/salidas del speaking, economía, motor ni gating.**
 - **F1 · DEDUP robusto a FRASES LARGAS** (`text_match.dart` · `collapseSpeechRepeats`, puro + testeado).
