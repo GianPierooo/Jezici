@@ -3901,4 +3901,27 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get donateVoluntaryNote =>
       'Es un apoyo voluntario. No es una compra y no desbloquea nada dentro de la app. ¡Gracias! 🦜';
+
+  @override
+  String lessonReviewCta(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Repasar $count palabras',
+      one: 'Repasar 1 palabra',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get lessonWhatNext => '¿Qué quieres hacer ahora?';
+
+  @override
+  String get tipCardSeeGuide => 'Ver más conceptos en tu guía';
+
+  @override
+  String get practiceSrsAllDone => 'Repaso al día';
+
+  @override
+  String get introLoading => 'Preparando tu lección…';
 }

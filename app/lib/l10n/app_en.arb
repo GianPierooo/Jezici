@@ -1403,5 +1403,11 @@
   "donatePayWith": "Donate with {method}",
   "@donatePayWith": {"placeholders": {"method": {"type": "String"}}},
   "donateSoon": "Soon",
-  "donateVoluntaryNote": "This is a voluntary tip. It's not a purchase and unlocks nothing in the app. Thank you! 🦜"
+  "donateVoluntaryNote": "This is a voluntary tip. It's not a purchase and unlocks nothing in the app. Thank you! 🦜",
+  "lessonReviewCta": "{count, plural, =1{Review 1 word} other{Review {count} words}}",
+  "@lessonReviewCta": {"placeholders": {"count": {"type": "int"}}},
+  "lessonWhatNext": "What do you want to do now?",
+  "tipCardSeeGuide": "See more concepts in your guide",
+  "practiceSrsAllDone": "Reviews up to date",
+  "introLoading": "Getting your lesson ready…"
 }

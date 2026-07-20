@@ -3,7 +3,45 @@
 > Contexto de arranque para cualquier sesión. **No** es copia de los 21 `.md` de
 > diseño (eso es la carpeta raíz `Jezici_*.md` + `docs/`). Aquí va el ESTADO REAL,
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
-> Última actualización: **2026-07-19**.
+> Última actualización: **2026-07-20**.
+
+## APRENDIZAJE E1-E5 — tejer el repaso en el loop + guiar "qué hacer ahora" + teoría visible ✅ LIVE (2026-07-20 · solo cliente)
+Ataca el punto de fuga que reveló `APRENDIZAJE_ANALISIS.md` (7/8 usuarios abandonan antes de la lección 3,
+racha máx = 1 día, **SRS con 0 uso jamás**). Capa de EXPERIENCIA sobre lo que ya existe. Cero IA, cero
+migración. **NO toca motor FSRS, inscripción (lesson_vocab), economía (pago por sesión), scoring ni gating.**
+- **E1+E4 · FIN DE LECCIÓN = "qué hacer ahora" GUIADO** (`lesson_complete_screen`): antes el CTA solo
+  empujaba a "siguiente lección" y el repaso quedaba INVISIBLE (nadie abría el SRS). Ahora, jerarquizado:
+  (a) hay siguiente lección → **PRIMARIO** seguir aprendiendo + si hay palabras pendientes en el SRS
+  (`get_srs_status.sessionCount`, refrescado en initState) se ofrece **"Repasar N palabras"** como opción
+  CLARA (coral, SRS accent) — teje el repaso en el loop; (b) fin de unidad + repaso pendiente → **"Repasar N"
+  pasa a PRIMARIO** (paso óptimo cuando no hay lección nueva); (c) sin nada → "Continuar" de siempre. Header
+  "¿Qué quieres hacer ahora?" cuando hay elección. "Repasar" abre la MISMA `SrsReviewScreen` de Practicar
+  (`start_practice('srs')`) — pura navegación.
+- **E2 · TEORÍA VISIBLE** (`_TipCard` del fin de lección): entrada de primer nivel "Ver más conceptos en tu
+  guía" → `ReferenceScreen` (la teoría que ya existe pero vivía enterrada en un tile de Practicar). ≤1 tap,
+  en el momento natural (acaba de leer un concepto). Reusa `get_reference`, 0 contenido nuevo.
+- **E3 · PRESENTACIÓN menos evanescente** (`lesson_player`): el guardarraíl que salta la tarjeta de concepto
+  si el RPC tarda pasó de **3 s → 6 s** (un error del RPC ya salta al instante por catchError; 6 s solo cubre
+  un cuelgue real) → la presentación no se salta por una red algo lenta. Loader honesto ("Preparando tu
+  lección…"). El modo repaso sigue SIN presentación (no se fuerza en cada repetición). Una vez cargada, el
+  usuario controla el avance (ya era así).
+- **E5 · PRACTICAR prioriza por ACCIONABILIDAD** (`practice_screen`): si el SRS tiene vencidas/nuevas hoy
+  (`sessionCount>0`) → el HERO manda arriba (como antes); si es **0** → el HERO grande con "Rescatar 0" (botón
+  muerto) **degrada a una tarjeta compacta honesta "Repaso al día"** (+ retención si hay maduras) y sube el
+  **punto débil** como lo accionable de arriba. El novato (sin progreso) sigue con su bienvenida honesta.
+- **Verificado:** analyze 0 (CI-exact) · test **210/210** (+5 `aprendizaje_flow`: E5 hero-vs-al-día, E1/E4
+  jerarquía con/sin siguiente + repaso) · build web OK. **Cliente REAL (`verify_minuto4.py`) TODO VERDE:** tras
+  1 lección `get_srs_status` da **sesión=13** (→ "Repasar 13 palabras" es un número REAL y `start_practice('srs')`
+  sirve 13 tarjetas de escritura), `next_lesson_id` presente, economía **xp/oro un pago** intacta, **8 usuarios
+  reales intactos**. i18n es/en/pt (+5 claves: lessonReviewCta plural, lessonWhatNext, tipCardSeeGuide,
+  practiceSrsAllDone, introLoading).
+- **Qué esperamos que cambie:** el SRS deja de ser invisible (tras cada lección el repaso es una opción
+  ofrecida, no una pestaña que descubrir) → primeras sesiones de repaso reales; la teoría se alcanza en ≤1 tap
+  desde el punto natural; la presentación no "pasa volando". **Honesto:** esto ayuda a los que LLEGAN; el
+  frente de mayor ROI que queda es la RETENCIÓN pura (por qué la racha máx es 1 — minuto-4→día-2), fuera de
+  esta pasada. **Re-encolado:** medir en `analytics_events` el nombre de pantalla (hoy `screen_view.props->>screen`
+  = null → no se puede medir navegación a Practicar/Referencia); C1-C3 del análisis (curso de gramática, banco
+  de oraciones SRS, vídeo) siguen fuera hasta que el embudo lo justifique.
 
 ## PULIDO MENOR ×3 — speaking P1 + metrics i18n + errores tipados 3ª pasada ✅ LIVE (mig 175 · 2026-07-19)
 Tres frentes chicos de bajo riesgo. Cero IA. Sin tocar lógica de negocio/scoring/economía/seguridad/matching.
@@ -2814,6 +2852,23 @@ flutter build web --release  # esperado: Built build/web (wasm dry-run warning d
   el build que usan los usuarios HOY (no asumir que `main` == producción).
 
 ## Reportes de diagnóstico (raíz)
+- **APRENDIZAJE_ANALISIS.md** (2026-07-20, solo lectura, cero código) — cómo APRENDE el usuario: el apartado
+  **Practicar** + la pregunta de Gian "¿hace falta un apartado ESTUDIAR (teoría/clases)?". Ground truth doble:
+  (A) mapa de estructura del cliente con file:line (Practicar 8 secciones, SRS, Referencia = la teoría que ya
+  existe pero enterrada, tarjeta de presentación saltable+3 s) y (B) **USO REAL de la BD de producción**
+  (`_gt_aprendizaje.py`). **TITULAR — el cuello de botella NO es Practicar ni falta "Estudiar": es
+  activación/retención.** Datos 2026-07-20: 8 usuarios, lecciones completadas leo **31** / resto 0-3 (mediana
+  ~1-2; A1=33 lecciones → **1 de 8 recorrió A1**); **racha máxima histórica = 1 día en los 8** (nadie vuelve un
+  2º día); **el SRS tiene 0 uso — 86 palabras inscritas en 5 usuarios pero `srs_review_log`=0 filas, 0
+  reviews jamás** (ni leo ni eugenio abrieron un repaso); 0 checkpoints/exámenes. **Veredictos:** (1)
+  **"Estudiar" NO como silo** — la teoría ya existe (192 tips + `get_reference` + presentación) pero está
+  escondida/saltable → **integrar y secuenciar**, no fragmentar una app que 7/8 abandonan antes de la lección
+  3; (2) **VÍDEO no ahora** (factura producción×6 idiomas + re-grabación + CDN vs texto+audio+imagen casi
+  gratis; necesidad no probada); (3) lo de mayor ROI es barato y de EXPERIENCIA: tejer "Repasar N" en el fin de
+  lección (para que el SRS deje de tener 0 uso), dar entrada de 1er nivel a Referencia, presentación menos
+  evanescente. **Propuestas separadas EXPERIENCIA (barato, E1-E5) vs CONTENIDO (caro, C1-C3 = esperar).**
+  Honestidad: el siguiente análisis de mayor ROI NO es sobre Practicar, es **por qué la racha máxima es 1**
+  (retención minuto-4→día-2). Cruza con `PRACTICAR_SRS_ANALISIS`, `PRINCIPIANTE_ANALISIS`, `EVAL_AUDIT`.
 - **AUDIO_PWA_ANALISIS.md** (2026-07-19, solo lectura, cero código) — análisis a fondo de los DOS frentes con
   problemas reales en dispositivos: **(1) AUDIO/SPEAKING** y **(2) PWA instalable**. Ground truth: código real
   (3 agentes: reproducción / reconocimiento / PWA) + **verificación EN VIVO** sobre jezici.space (manifest 200,

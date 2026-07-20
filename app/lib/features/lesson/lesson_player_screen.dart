@@ -136,9 +136,12 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
       if (_presenting) setState(() => _presenting = false);
     }
 
-    // Guardarraíl de tiempo: si el RPC tarda, no dejamos al usuario esperando.
+    // Guardarraíl de tiempo: si el RPC CUELGA (no responde ni da error), no
+    // dejamos al usuario esperando. 6 s (antes 3): la presentación es el momento
+    // de ENSEÑAR y no debe saltarse por una red algo lenta — un error del RPC ya
+    // salta al instante por catchError, así que 6 s solo cubre un cuelgue real.
     // Timer cancelable (no deja un timer colgado en tests ni al salir).
-    _introTimer = Timer(const Duration(seconds: 3), toExercises);
+    _introTimer = Timer(const Duration(seconds: 6), toExercises);
     ref.read(progressRepositoryProvider).getLessonIntro(widget.lesson.id).then((intro) {
       if (settled || !mounted) return;
       if (intro == null || intro.isEmpty) {
@@ -415,10 +418,21 @@ class _LessonPlayerScreenState extends ConsumerState<LessonPlayerScreen> {
     // Fase de PRESENTACIÓN (enseñar antes de examinar), antes del primer ejercicio.
     if (_presenting) {
       if (_intro == null) {
-        // Cargando el payload (breve); el guardarraíl de 3 s garantiza avanzar.
-        return const Scaffold(
+        // Cargando el payload (breve); el guardarraíl de 6 s garantiza avanzar.
+        return Scaffold(
           backgroundColor: AppColors.background,
-          body: Center(child: CircularProgressIndicator(color: AppColors.primary)),
+          body: Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const CircularProgressIndicator(color: AppColors.primary),
+                const SizedBox(height: 16),
+                Text(l10n.introLoading,
+                    style: const TextStyle(
+                        fontSize: 13, fontWeight: FontWeight.w800, color: AppColors.textMuted)),
+              ],
+            ),
+          ),
         );
       }
       return LessonIntroView(

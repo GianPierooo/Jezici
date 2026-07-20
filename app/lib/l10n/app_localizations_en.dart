@@ -3898,4 +3898,27 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get donateVoluntaryNote =>
       'This is a voluntary tip. It\'s not a purchase and unlocks nothing in the app. Thank you! 🦜';
+
+  @override
+  String lessonReviewCta(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: 'Review $count words',
+      one: 'Review 1 word',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get lessonWhatNext => 'What do you want to do now?';
+
+  @override
+  String get tipCardSeeGuide => 'See more concepts in your guide';
+
+  @override
+  String get practiceSrsAllDone => 'Reviews up to date';
+
+  @override
+  String get introLoading => 'Getting your lesson ready…';
 }

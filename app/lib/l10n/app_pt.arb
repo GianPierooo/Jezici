@@ -1403,5 +1403,11 @@
   "donatePayWith": "Doar com {method}",
   "@donatePayWith": {"placeholders": {"method": {"type": "String"}}},
   "donateSoon": "Em breve",
-  "donateVoluntaryNote": "É um apoio voluntário. Não é uma compra e não desbloqueia nada no app. Obrigado! 🦜"
+  "donateVoluntaryNote": "É um apoio voluntário. Não é uma compra e não desbloqueia nada no app. Obrigado! 🦜",
+  "lessonReviewCta": "{count, plural, =1{Revisar 1 palavra} other{Revisar {count} palavras}}",
+  "@lessonReviewCta": {"placeholders": {"count": {"type": "int"}}},
+  "lessonWhatNext": "O que você quer fazer agora?",
+  "tipCardSeeGuide": "Veja mais conceitos no seu guia",
+  "practiceSrsAllDone": "Revisão em dia",
+  "introLoading": "Preparando sua lição…"
 }

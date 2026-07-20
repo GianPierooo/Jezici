@@ -5,9 +5,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/feedback/feedback_fx.dart';
 import '../../core/plan/estimation.dart';
 import '../../core/speech/speakable_text.dart';
+import '../../core/ui/jz_transitions.dart';
 import '../../core/ui/responsive_center.dart';
 import '../../core/theme/app_colors.dart';
 import '../learn/widgets/parrot_mascot.dart';
+import '../practice/srs_review_screen.dart';
+import '../reference/reference_screen.dart';
 import '../../data/models/lesson_model.dart';
 import '../../data/models/progress_models.dart';
 import '../../data/models/tip_models.dart';
@@ -38,6 +41,7 @@ class LessonCompleteScreen extends ConsumerStatefulWidget {
 class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
   late final ConfettiController _confetti;
   TipModel? _tip;
+  bool _startingReview = false;
 
   /// La SIGUIENTE lección del mapa (el servidor la devuelve en `next_lesson_id`).
   /// Se resuelve contra `mapUnitsProvider` (normalmente ya cacheado: se viene del
@@ -64,6 +68,10 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
     // Refresca los niveles de skill: complete_lesson ya corrió en el servidor →
     // la tarjeta del fin muestra el CEFR/progreso POST-lección (dato fresco real).
     ref.invalidate(skillsProvider);
+    // El SRS acaba de inscribir el vocabulario de esta lección (server-side).
+    // Refrescamos su estado para saber si ofrecer "Repasar N" (E1): teje el
+    // repaso en el loop de aprendizaje. Read-only (get_srs_status).
+    ref.invalidate(srsStatusProvider);
     _loadTip();
     // T4 · Matix: si con esta lección quedó CUMPLIDA la meta diaria → goal_met
     // (positivo; el server capa 1/día y respeta estilo/idioma/quiet hours).
@@ -76,6 +84,31 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
       final t = await ref.read(progressRepositoryProvider).getLessonTip(widget.lessonId);
       if (mounted) setState(() => _tip = t);
     } catch (_) {}
+  }
+
+  /// E1 · Repasar AHORA lo que la lección acaba de enseñar (teje el repaso en el
+  /// loop). Abre la MISMA sesión de repaso del SRS que Practicar (start_practice
+  /// 'srs' → SrsReviewScreen). No toca economía/motor: solo navega a lo que ya
+  /// existe. Vuelve al mapa primero (deja la pila limpia) y abre el repaso.
+  Future<void> _startReview() async {
+    if (_startingReview) return;
+    setState(() => _startingReview = true);
+    final nav = Navigator.of(context);
+    final l10n = AppLocalizations.of(context);
+    try {
+      final s = await ref.read(progressRepositoryProvider).startSrs();
+      if (!mounted) return;
+      nav.popUntil((route) => route.isFirst);
+      if (s.cards.isNotEmpty) {
+        nav.push(MaterialPageRoute(builder: (_) => SrsReviewScreen(session: s)));
+      }
+    } catch (_) {
+      if (!mounted) return;
+      setState(() => _startingReview = false);
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text(l10n.practiceStartError)));
+    }
   }
 
   @override
@@ -354,49 +387,88 @@ class _LessonCompleteScreenState extends ConsumerState<LessonCompleteScreen> {
                     ),
                   ],
                   const SizedBox(height: 22),
-                  // SIGUIENTE PASO (uso real: @eugenio acabó su 1ª lección y se
-                  // quedó sin a dónde ir → el CTA lo soltaba en el mapa y tenía
-                  // que buscar el nodo). El servidor YA devuelve `next_lesson_id`
-                  // y no se usaba: ahora lleva DIRECTO a la siguiente lección.
-                  // Degrada con gracia: si no hay siguiente (fin de unidad) o el
-                  // mapa aún no cargó, se mantiene el "volver al mapa" de siempre.
+                  // "QUÉ HACER AHORA" — siguiente paso GUIADO y jerarquizado
+                  // (E1+E4). Antes el CTA solo empujaba a "siguiente lección" y
+                  // el repaso quedaba invisible (nadie abría el SRS → 0 uso). Ahora:
+                  //  • hay siguiente lección → PRIMARIO seguir aprendiendo, y si
+                  //    además hay palabras pendientes en el SRS se ofrece "Repasar
+                  //    N" como opción CLARA (teje el repaso en el loop);
+                  //  • fin de unidad + repaso pendiente → el repaso pasa a PRIMARIO
+                  //    (es el paso óptimo cuando no hay lección nueva);
+                  //  • sin nada más → "Continuar" de siempre.
+                  // Todo es NAVEGACIÓN a lo que ya existe: no toca motor/economía.
                   ...(() {
                     final next = _nextLesson();
-                    if (next == null) {
+                    // Vencidas + nuevas que el SRS serviría hoy (get_srs_status,
+                    // refrescado en initState). Mientras carga → 0 (no ofrece de más).
+                    final review = ref.watch(srsStatusProvider).maybeWhen(
+                          data: (s) => s.sessionCount,
+                          orElse: () => 0,
+                        );
+                    void backToMap() =>
+                        Navigator.of(context).popUntil((route) => route.isFirst);
+                    final reviewBtn = PrimaryButton(
+                      label: l10n.lessonReviewCta(review),
+                      icon: Icons.history_rounded,
+                      color: AppColors.coral,
+                      depthColor: AppColors.coralDark,
+                      expand: true,
+                      onPressed: _startingReview ? null : _startReview,
+                    );
+                    final backBtn = TextButton(
+                      onPressed: backToMap,
+                      child: Text(l10n.lessonBackToMap,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w800, color: AppColors.textMuted)),
+                    );
+                    final header = Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: Text(l10n.lessonWhatNext,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w900,
+                              letterSpacing: 0.6,
+                              color: AppColors.textMuted)),
+                    );
+                    if (next != null) {
                       return [
+                        if (review > 0) header,
                         JzGlowPulse(
                           color: AppColors.primary,
                           child: PrimaryButton(
-                            label: l10n.commonContinue,
+                            label: l10n.lessonNextCta,
                             expand: true,
-                            onPressed: () =>
-                                Navigator.of(context).popUntil((route) => route.isFirst),
+                            onPressed: () {
+                              final nav = Navigator.of(context);
+                              nav.popUntil((route) => route.isFirst);
+                              nav.push(MaterialPageRoute(
+                                builder: (_) => LessonPreviewScreen(lesson: next),
+                              ));
+                            },
                           ),
                         ),
+                        if (review > 0) ...[const SizedBox(height: 10), reviewBtn],
+                        const SizedBox(height: 8),
+                        backBtn,
+                      ];
+                    }
+                    if (review > 0) {
+                      return [
+                        header,
+                        JzGlowPulse(color: AppColors.coral, child: reviewBtn),
+                        const SizedBox(height: 8),
+                        backBtn,
                       ];
                     }
                     return [
                       JzGlowPulse(
                         color: AppColors.primary,
                         child: PrimaryButton(
-                          label: l10n.lessonNextCta,
+                          label: l10n.commonContinue,
                           expand: true,
-                          onPressed: () {
-                            final nav = Navigator.of(context);
-                            nav.popUntil((route) => route.isFirst);
-                            nav.push(MaterialPageRoute(
-                              builder: (_) => LessonPreviewScreen(lesson: next),
-                            ));
-                          },
+                          onPressed: backToMap,
                         ),
-                      ),
-                      const SizedBox(height: 8),
-                      TextButton(
-                        onPressed: () =>
-                            Navigator.of(context).popUntil((route) => route.isFirst),
-                        child: Text(l10n.lessonBackToMap,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w800, color: AppColors.textMuted)),
                       ),
                     ];
                   })(),
@@ -671,6 +743,30 @@ class _TipCard extends StatelessWidget {
                 style: const TextStyle(
                     fontSize: 11.5, fontWeight: FontWeight.w800, color: AppColors.coral)),
           ],
+          // E2 · entrada de primer nivel a la TEORÍA (Referencia): el usuario
+          // acaba de leer un concepto → punto natural para explorar la guía
+          // completa (que hoy vive enterrada en un tile de Practicar). ≤1 tap.
+          const SizedBox(height: 12),
+          InkWell(
+            onTap: () => Navigator.of(context).push(jzRoute(const ReferenceScreen())),
+            borderRadius: BorderRadius.circular(10),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 4),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.menu_book_rounded, size: 16, color: AppColors.primary),
+                  const SizedBox(width: 6),
+                  Flexible(
+                    child: Text(l10n.tipCardSeeGuide,
+                        style: const TextStyle(
+                            fontSize: 12.5, fontWeight: FontWeight.w900, color: AppColors.primary)),
+                  ),
+                  const Icon(Icons.chevron_right_rounded, size: 18, color: AppColors.primary),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
     );

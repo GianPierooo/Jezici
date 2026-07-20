@@ -6730,6 +6730,36 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Es un apoyo voluntario. No es una compra y no desbloquea nada dentro de la app. ¡Gracias! 🦜'**
   String get donateVoluntaryNote;
+
+  /// No description provided for @lessonReviewCta.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{Repasar 1 palabra} other{Repasar {count} palabras}}'**
+  String lessonReviewCta(int count);
+
+  /// No description provided for @lessonWhatNext.
+  ///
+  /// In es, this message translates to:
+  /// **'¿Qué quieres hacer ahora?'**
+  String get lessonWhatNext;
+
+  /// No description provided for @tipCardSeeGuide.
+  ///
+  /// In es, this message translates to:
+  /// **'Ver más conceptos en tu guía'**
+  String get tipCardSeeGuide;
+
+  /// No description provided for @practiceSrsAllDone.
+  ///
+  /// In es, this message translates to:
+  /// **'Repaso al día'**
+  String get practiceSrsAllDone;
+
+  /// No description provided for @introLoading.
+  ///
+  /// In es, this message translates to:
+  /// **'Preparando tu lección…'**
+  String get introLoading;
 }
 
 class _AppLocalizationsDelegate

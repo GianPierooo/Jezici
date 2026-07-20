@@ -115,6 +115,15 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
     final skills = ref.watch(skillsProvider).value ?? const <SkillLevel>[];
     final weak = status.weakestSkill;
     final weakLevel = _levelFor(skills, weak);
+    // E5 · priorizar por ACCIONABILIDAD: cuántas palabras serviría el repaso
+    // AHORA (get_srs_status; cae al conteo local mientras carga). Si es 0, el
+    // HERO grande del SRS ("Rescatar 0") sería un botón muerto arriba → se
+    // DEGRADA a una tarjeta compacta "al día" y sube lo que SÍ es accionable.
+    final srsStatus = ref.watch(srsStatusProvider);
+    final srsCount = srsStatus.maybeWhen(
+        data: (s) => s.sessionCount, orElse: () => status.dueWords);
+    final retention = srsStatus.maybeWhen(
+        data: (s) => s.matureCards > 0 ? s.retentionPct : null, orElse: () => null);
 
     return ListView(
       padding: const EdgeInsets.only(bottom: 110),
@@ -176,19 +185,18 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
                     // = lo que la sesión REALMENTE va a servir. Antes el cliente
                     // contaba por su cuenta y podía no cuadrar con la sesión.
                     // Mientras carga, cae al conteo local (no parpadea a 0).
-                    _SrsHero(
-                      dueWords: ref.watch(srsStatusProvider).maybeWhen(
-                            data: (s) => s.sessionCount,
-                            orElse: () => status.dueWords,
-                          ),
-                      loading: _loading == 'srs',
-                      onTap: _startSrs,
-                      retentionPct: ref.watch(srsStatusProvider).maybeWhen(
-                            data: (s) => s.matureCards > 0 ? s.retentionPct : null,
-                            orElse: () => null,
-                          ),
-                    ),
-                    const SizedBox(height: 16),
+                    // Hay repaso AHORA → el HERO del SRS manda arriba (lo más
+                    // accionable). Si no hay nada vencido, se muestra más abajo
+                    // como tarjeta compacta "al día" y sube el punto débil.
+                    if (srsCount > 0) ...[
+                      _SrsHero(
+                        dueWords: srsCount,
+                        loading: _loading == 'srs',
+                        onTap: _startSrs,
+                        retentionPct: retention,
+                      ),
+                      const SizedBox(height: 16),
+                    ],
                     // Refuerza tu punto débil (con CEFR + mini-barra reales).
                     _WeakRow(
                       weakSkill: weak,
@@ -198,6 +206,12 @@ class _PracticeScreenState extends ConsumerState<PracticeScreen> {
                       onTap: () => _start('weakness', title: l10n.practiceWeakTitle),
                     ),
                     const SizedBox(height: 12),
+                    // SRS al día (sin vencidas): tarjeta compacta HONESTA en vez
+                    // de un HERO con "0" y un botón que no haría nada.
+                    if (srsCount == 0) ...[
+                      _SrsAllDone(retentionPct: retention),
+                      const SizedBox(height: 12),
+                    ],
                     // Reforzar lo que fallé.
                     _CompactRow(
                       icon: Icons.build_rounded,
@@ -380,6 +394,63 @@ class _SrsWelcome extends StatelessWidget {
               onPressed: onGo),
         ),
       ]),
+    );
+  }
+}
+
+// ── SRS al día (compacto, sin vencidas) ───────────────────────────────────────
+/// Cuando no hay palabras por repasar hoy, en vez del HERO grande con "0" (un
+/// botón muerto), una tarjeta compacta honesta: repaso al día + retención si
+/// hay reviews maduras. No es tappable (no hay nada que hacer ahora).
+class _SrsAllDone extends StatelessWidget {
+  const _SrsAllDone({this.retentionPct});
+  final int? retentionPct;
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+    return Container(
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: const [
+          BoxShadow(color: Color(0xFFECEDF6), offset: Offset(0, 5), blurRadius: 0),
+        ],
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 46,
+            height: 46,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+                color: const Color(0xFFE7F9EF), borderRadius: BorderRadius.circular(14)),
+            child: const Icon(Icons.verified_rounded, color: AppColors.success, size: 22),
+          ),
+          const SizedBox(width: 13),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(l10n.practiceSrsAllDone,
+                    style: const TextStyle(
+                        fontSize: 14, fontWeight: FontWeight.w900, color: AppColors.text)),
+                const SizedBox(height: 3),
+                Text(
+                    retentionPct != null
+                        ? '${l10n.practiceSrsUpToDate} · 🧠 ${l10n.srsRetention} $retentionPct%'
+                        : l10n.practiceSrsUpToDate,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                        fontSize: 11.5, fontWeight: FontWeight.w800, color: AppColors.textMuted)),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
