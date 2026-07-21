@@ -5,6 +5,46 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-20**.
 
+## ESTUDIAR · E-2 ALEMÁN A1+A2 — 4º idioma + 2 guardas nuevas ✅ LIVE (mig 185 · 2026-07-21)
+Cuarto idioma con teoría rica (de u1-12). Mig 185 = SOLO DATOS. C1 (sin tips) sigue en "teoría en camino".
+- **CONTENIDO:** 36 secciones, **48 ejemplos con audio TTS de (48/48, HEAD 200)**, 36 errores comunes,
+  **60 ítems**. Foco alemán: **género der/die/das** como parte de la palabra · **casos** introducidos sin
+  abrumar (Nominativ vs Akkusativ, y solo el masculino se disfraza) · **orden de palabras** (verbo en 2ª
+  posición, participio al final) · Perfekt con haben/sein · Präteritum war/hatte · **wehtun + Dativ**.
+- **EL ALEMÁN EXPUSO DOS LÍMITES DEL CORRECTOR QUE NINGÚN IDIOMA ANTERIOR TOCÓ:**
+  · **La MAYÚSCULA de los sustantivos es INEVALUABLE** (`jz_normalize` minusculiza → `Haus`=`haus`). La
+    regla más característica del alemán **no se puede examinar**: va a la teoría/pitfall, nunca al quiz.
+    Se instruyó así a los 12 autores desde el brief.
+  · **La transliteración ae/oe/ue/ss**: quien no tiene teclado alemán no escribe `o` por `ö`, escribe **oe**.
+    La guarda ahora añade a cada cloze **ambas** formas (`größer` acepta `grosser` **y** `groesser`) —
+    misma regla de oro, convención que no existía en en/pt/fr.
+- **GUARDA NUEVA (3ª):** el aviso de distancia-1 ahora mira también **lo que el ENUNCIADO cita**
+  («arbeiten = trabajar»): si la respuesta está a una edición del infinitivo que el propio prompt le enseña
+  al alumno, este copia lo que ve y acierta sin conjugar. Lo detectó primero un revisor, se convirtió en
+  guarda.
+- **CALIDAD — 2 que cacé yo con las guardas + 2 ALTA de la revisión:** yo pasé a opción múltiple **U4 y U6**,
+  que evaluaban el **acusativo masculino** con un cloze donde `eine` está a una letra de `einen` (el punto
+  central de ambas unidades habría dado por buena la forma femenina). La revisión cazó **U1** (`ist` a un
+  borrado de `bist` → el error canónico del hispanohablante puntuaba) y **U11** (`wart` a una inserción de
+  `war`, en el ítem cuyo prompt dice "esta forma no lleva -t"). **7 media** (U7 «en preguntas haben va
+  primero» contradicho por su propio quiz con W-Fragen; U8 un cloze que no evaluaba el orden V2 —el tema de
+  la unidad— y perdonaba el infinitivo; **U6 un pitfall PROHIBÍA «Wo gibt es…?», que es correcto y
+  frecuentísimo**; U2 la regla generaba *sechszehn/*siebenzehn; U3 «mein con masculinos» solo vale en
+  nominativo; U9 «auxiliar segundo» contradicho por su pregunta; U12 el enunciado **regalaba** la respuesta
+  «(bleiben)»). **~12 bajas** (mein Freund = novio; «una letra distinta» cuando nach/vor no comparten letras;
+  «warte no existe» siendo verbo real; el matiz dialectal de «bin gewesen» en el sur).
+- **Verificado:** analyze 0 · test 229/229 · build web OK · **BD 60/60** aceptadas por `jz_grade` · **cliente
+  REAL (`verify_study_e2_de.py`) TODO VERDE:** de U1 (A1) y U12 (A2) sirven sesión, audio 8/8, quiz sin
+  exponer respuestas, 60/60 aceptadas, MAYÚSCULAS aceptadas, basura rechazada, no mueve XP/oro,
+  **AISLAMIENTO CUÁDRUPLE (en, pt y fr sirviendo cada uno SU contenido)**, de C1 → null. **Las 6
+  verificaciones previas TODO VERDE.**
+- **DOS FALLOS DEL PROPIO VERIFICADOR, cazados y corregidos** (no del contenido): `.upper()` convierte `ß`
+  en `SS`, así que "la misma respuesta en mayúsculas" era otra cadena; y **la U1 del alemán y la del inglés
+  se titulan IGUAL en español**, así que comparar títulos no probaba aislamiento → ahora compara el texto
+  del ejemplo, con el mismo *fallback* `text`/`en` que usa el cliente (y eso confirmó que las filas del
+  inglés siguen con la clave histórica).
+- **Cobertura de E-2: en 24/24 · pt 24/24 · fr 24/24 · de 12/24.** Quedan de B1+B2, e **it/nl** enteros.
+
 ## ESTUDIAR · E-2 FRANCÉS B1+B2 — fr COMPLETO A1–B2 (3 idiomas cerrados) ✅ LIVE (mig 184 · 2026-07-21)
 Cierra el francés con las **12 unidades B1+B2 (13-24)** → **en, pt y fr quedan los tres COMPLETOS A1–B2
 (24/24 cada uno)**. Mig 184 = SOLO DATOS. Las 6 de C1 (sin tips) siguen en "teoría en camino". E-3 fuera.

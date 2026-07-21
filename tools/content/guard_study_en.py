@@ -32,14 +32,27 @@ TGT = _ARGS[3] if len(_ARGS) > 3 else 'en'  # clave del idioma meta en examples
 OUT = os.path.join(DIR, '_clean.json')
 
 
-def strip_accents(s):
-    """Quita diacríticos y ligaduras: lo que teclea quien no tiene teclado del idioma."""
-    d = unicodedata.normalize('NFD', s or '')
-    out = ''.join(c for c in d if unicodedata.category(c) != 'Mn')
-    return (unicodedata.normalize('NFC', out)
-            .replace('œ', 'oe').replace('Œ', 'Oe')
-            .replace('æ', 'ae').replace('Æ', 'Ae')
-            .replace('ß', 'ss'))
+def sin_diacriticos(s):
+    """Las formas que teclea quien no tiene el teclado del idioma. Devuelve
+    TODAS las plausibles: la vocal pelada (ö→o) y, para el alemán, la
+    transliteración estándar (ö→oe, ß→ss), que es lo que se escribe de verdad."""
+    if not s:
+        return []
+    d = unicodedata.normalize('NFD', s)
+    pelada = unicodedata.normalize(
+        'NFC', ''.join(c for c in d if unicodedata.category(c) != 'Mn'))
+    pelada = (pelada.replace('œ', 'oe').replace('Œ', 'Oe')
+                    .replace('æ', 'ae').replace('Æ', 'Ae')
+                    .replace('ß', 'ss'))
+    trans = s
+    for a, b in (('ä', 'ae'), ('ö', 'oe'), ('ü', 'ue'), ('ß', 'ss'),
+                 ('Ä', 'Ae'), ('Ö', 'Oe'), ('Ü', 'Ue'),
+                 ('œ', 'oe'), ('æ', 'ae')):
+        trans = trans.replace(a, b)
+    trans = unicodedata.normalize(
+        'NFC', ''.join(c for c in unicodedata.normalize('NFD', trans)
+                       if unicodedata.category(c) != 'Mn'))
+    return [x for x in dict.fromkeys([pelada, trans]) if x != s]
 
 
 def norm(s):
@@ -86,8 +99,15 @@ def unit_vocab(d):
         citado += [sec.get('body', '')] + (sec.get('bullets') or [])
     for pf in d.get('pitfalls') or []:
         citado += [pf.get('title', ''), pf.get('body', '')]
+    # El ENUNCIADO del propio ítem también enseña formas del idioma meta
+    # («arbeiten = trabajar»): si la respuesta está a una edición de eso, el
+    # alumno copia lo que ve y acierta sin saber conjugar.
+    for q in d.get('quiz') or []:
+        citado.append(q.get('prompt', ''))
     for t in citado:
         src += re.findall(r'«([^»]{1,60})»', t or '')
+        src += re.findall(r'"([^"]{1,60})"', t or '')
+        src += re.findall(r'\(([^)]{1,40})\)', t or '')
     out = set()
     for t in src:
         out.update(w for w in norm(t).split() if w)
@@ -179,9 +199,9 @@ def main():
                 # ignora los acentos → quien teclea sin ellos acertaría y sería
                 # castigado. Se añade la forma sin acento de cada aceptable.
                 for a in list(acc):
-                    sa = strip_accents(a)
-                    if sa != a and not any(norm(sa) == norm(x) for x in acc):
-                        acc.append(sa)
+                    for sa in sin_diacriticos(a):
+                        if not any(norm(sa) == norm(x) for x in acc):
+                            acc.append(sa)
                 # El grader PERDONA un typo de distancia 1 (verificado: «aux»
                 # acepta «au», «parties» acepta «partis»). Si el propio tema
                 # enseña una forma a 1 edición de la respuesta, el cloze NO

@@ -35,20 +35,23 @@ UA = 'Mozilla/5.0'
 COURSE_EN = '20000000-0000-0000-0000-000000000001'
 COURSE_PT = '20000000-0000-0000-0000-000000000002'
 COURSE_FR = '20000000-0000-0000-0000-000000000003'
+COURSE_DE = '20000000-0000-0000-0000-000000000005'
 NS = uuid.UUID('7b6f2c40-0000-4000-8000-000000000e02')  # namespace E-2
 HERE = os.path.dirname(os.path.abspath(__file__))
 BATCH2 = '--batch2' in sys.argv
-FR = '--fr' in sys.argv or '--fr2' in sys.argv
+DE = '--de' in sys.argv
+FR = ('--fr' in sys.argv or '--fr2' in sys.argv) and not DE
 FR2 = '--fr2' in sys.argv
 PT = ('--pt' in sys.argv or '--pt2' in sys.argv) and not FR
 PT2 = '--pt2' in sys.argv
-LANG = 'fr' if FR else ('pt' if PT else 'en')            # clave del ejemplo + tl del TTS
-COURSE = COURSE_FR if FR else (COURSE_PT if PT else COURSE_EN)
-DATA_ONLY = BATCH2 or PT or FR               # la tabla y las RPCs viven desde mig 178
+LANG = 'de' if DE else 'fr' if FR else ('pt' if PT else 'en')            # clave del ejemplo + tl del TTS
+COURSE = COURSE_DE if DE else COURSE_FR if FR else (COURSE_PT if PT else COURSE_EN)
+DATA_ONLY = BATCH2 or PT or FR or DE               # la tabla y las RPCs viven desde mig 178
 SRC = os.path.join(
-    HERE, ('_study_fr2' if FR2 else '_study_fr') if FR else ('_study_pt' if PT else ('_study_en2' if BATCH2 else '_study_en')),
+    HERE, '_study_de' if DE else ('_study_fr2' if FR2 else '_study_fr') if FR else ('_study_pt' if PT else ('_study_en2' if BATCH2 else '_study_en')),
     '_clean.json')
-MIG = ('20260721120184_study_theory_fr_b1b2.sql' if FR2 else
+MIG = ('20260721120185_study_theory_de.sql' if DE else
+       '20260721120184_study_theory_fr_b1b2.sql' if FR2 else
        '20260721120183_study_theory_fr.sql' if FR else
        '20260721120181_study_theory_pt_b1b2.sql' if PT2 else
        '20260721120180_study_theory_pt.sql' if PT else
@@ -119,7 +122,14 @@ def main():
     if do_audio:
         print('audio: %d subidos, %d fallos' % (ok_audio, fail_audio))
 
-    if FR:
+    if DE:
+        sql = ["""-- ESTUDIAR · Fase E-2 (ALEMÁN) — A1+A2 (unidades 1-12), SOLO DATOS.
+-- La tabla study_theory y las RPCs de mig 178 son course-agnósticas por
+-- construcción (derivan el curso de la unidad) → en/pt/fr intactos.
+-- Los ejemplos traen la clave canónica `text` (idioma meta). NO toca motor FSRS,
+-- economía, gating, certificación ni los otros idiomas. Prueba FORMATIVA.
+"""]
+    elif FR:
         sql = ["""-- ESTUDIAR · Fase E-2 (FRANCÉS) — A1+A2 (unidades 1-12), SOLO DATOS.
 -- La tabla study_theory y las RPCs de mig 178 son course-agnósticas por
 -- construcción (derivan el curso de la unidad) → inglés y portugués intactos.
