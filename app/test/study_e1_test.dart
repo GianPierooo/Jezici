@@ -166,6 +166,11 @@ void _e2() {
     });
     expect(t.sections.first.bullets.length, 2);
     expect(t.examples.first.audioUrl, 'https://x/y.mp3');
+    // clave histórica 'en' (tanda inglés) y clave canónica 'text' (pt y lo nuevo)
+    expect(t.examples.first.target, 'I am Ana.');
+    expect(
+        StudyExample.fromJson({'text': 'Eu sou a Ana.', 'es': 'Soy Ana.'}).target,
+        'Eu sou a Ana.');
     expect(t.pitfalls.length, 1);
     expect(t.hasQuiz, isTrue);
     expect(t.quiz.first.isCloze, isTrue);

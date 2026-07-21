@@ -28,6 +28,7 @@ DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                    _ARGS[0] if _ARGS else '_study_en')
 FROM = int(_ARGS[1]) if len(_ARGS) > 1 else 1
 TO = int(_ARGS[2]) if len(_ARGS) > 2 else 12
+TGT = _ARGS[3] if len(_ARGS) > 3 else 'en'  # clave del idioma meta en examples
 OUT = os.path.join(DIR, '_clean.json')
 
 
@@ -86,9 +87,9 @@ def main():
         if len(exs) != 4:
             errs.append('%d ejemplos (se esperaban 4)' % len(exs))
         for i, e in enumerate(exs):
-            if not e.get('en') or not e.get('es'):
+            if not e.get(TGT) or not e.get('es'):
                 errs.append('ejemplo %d incompleto' % i)
-            elif norm(e['en']) == norm(e['es']):
+            elif norm(e[TGT]) == norm(e['es']):
                 errs.append('ejemplo %d: en == es' % i)
 
         # Quiz

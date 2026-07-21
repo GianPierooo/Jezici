@@ -18,13 +18,17 @@ class StudySection {
 }
 
 class StudyExample {
-  const StudyExample({required this.en, required this.es, this.audioUrl});
-  final String en;
+  const StudyExample({required this.target, required this.es, this.audioUrl});
+
+  /// La frase en el idioma que se aprende (inglés, portugués…).
+  final String target;
   final String es;
   final String? audioUrl;
 
+  /// `text` es la clave CANÓNICA del idioma meta; `en` es el nombre histórico
+  /// que usan las filas de la primera tanda (inglés) → fallback, no regresión.
   factory StudyExample.fromJson(Map<String, dynamic> j) => StudyExample(
-        en: (j['en'] ?? '').toString(),
+        target: (j['text'] ?? j['en'] ?? '').toString(),
         es: (j['es'] ?? '').toString(),
         audioUrl: j['audio_url'] as String?,
       );

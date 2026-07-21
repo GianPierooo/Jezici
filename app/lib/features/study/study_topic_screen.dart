@@ -284,7 +284,7 @@ class _ExampleRow extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(example.en,
+              Text(example.target,
                   style: const TextStyle(
                       fontSize: 14.5, fontWeight: FontWeight.w900, color: AppColors.text)),
               const SizedBox(height: 3),

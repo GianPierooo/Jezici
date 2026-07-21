@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""ESTUDIAR · E-2 (INGLÉS) — genera la migración de la teoría de sesión.
+"""ESTUDIAR · E-2 — genera la migración de la teoría de sesión (inglés / portugués).
 
 Lee `_study_en/_clean.json` (ya pasado por guard_study_en.py + revisión
 adversarial) y:
@@ -11,10 +11,12 @@ adversarial) y:
      grader tolerante de mig 177) + los INSERT idempotentes.
 
 NO toca: motor FSRS, economía, gating, certificación, ni los otros 5 idiomas.
-uso: python gen_study_en.py [--no-audio] [--batch2]
+uso: python gen_study_en.py [--no-audio] [--batch2|--pt]
   --batch2 → lee _study_en2/_clean.json (B1+B2, unidades 13-24) y emite la mig
   179 SOLO-DATOS (la tabla y las RPCs ya viven desde mig 178; los upserts son
   idempotentes por (course_id, unit_order) → 0 riesgo para la tanda 1).
+  --pt     → lee _study_pt/_clean.json (A1+A2 de PORTUGUÉS, unidades 1-12), TTS
+  con tl=pt y emite la mig 180 SOLO-DATOS. El inglés queda intacto (otro course_id).
 """
 import json
 import os
@@ -29,19 +31,27 @@ from apply_sql import env, SUPABASE_URL
 SERVICE = env('SUPABASE_SERVICE_ROLE_KEY') or env('SUPABASE_SERVICE_ROLE')
 UA = 'Mozilla/5.0'
 COURSE_EN = '20000000-0000-0000-0000-000000000001'
+COURSE_PT = '20000000-0000-0000-0000-000000000002'
 NS = uuid.UUID('7b6f2c40-0000-4000-8000-000000000e02')  # namespace E-2
 HERE = os.path.dirname(os.path.abspath(__file__))
 BATCH2 = '--batch2' in sys.argv
-SRC = os.path.join(HERE, '_study_en2' if BATCH2 else '_study_en', '_clean.json')
+PT = '--pt' in sys.argv
+LANG = 'pt' if PT else 'en'            # clave del ejemplo + tl del TTS
+COURSE = COURSE_PT if PT else COURSE_EN
+DATA_ONLY = BATCH2 or PT               # la tabla y las RPCs viven desde mig 178
+SRC = os.path.join(
+    HERE, '_study_pt' if PT else ('_study_en2' if BATCH2 else '_study_en'),
+    '_clean.json')
 OUT = os.path.normpath(os.path.join(
     HERE, '..', '..', 'supabase', 'migrations',
-    '20260721120179_study_theory_en_b1b2.sql' if BATCH2
-    else '20260721120178_study_theory_en.sql'))
+    '20260721120180_study_theory_pt.sql' if PT else
+    ('20260721120179_study_theory_en_b1b2.sql' if BATCH2
+     else '20260721120178_study_theory_en.sql')))
 
 
 def tts(text):
-    url = ('https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=en&q='
-           + urllib.parse.quote(text))
+    url = ('https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=%s&q='
+           % LANG + urllib.parse.quote(text))
     req = urllib.request.Request(url)
     req.add_header('User-Agent', UA)
     req.add_header('Referer', 'https://translate.google.com/')
@@ -79,13 +89,14 @@ def main():
     ok_audio = fail_audio = 0
     for t in topics:
         for i, ex in enumerate(t['examples']):
-            key = str(uuid.uuid5(NS, 'en:%d:%d' % (t['unit_order'], i)))
+            key = str(uuid.uuid5(NS, '%s:%d:%d' % (LANG, t['unit_order'], i)))
+            ex['text'] = ex[LANG]   # clave CANÓNICA del idioma meta (course-agnóstica)
             ex['audio_url'] = ('%s/storage/v1/object/public/audio/study/%s.mp3'
                                % (SUPABASE_URL, key))
             if not do_audio:
                 continue
             try:
-                st = upload(key, tts(ex['en']))
+                st = upload(key, tts(ex[LANG]))
                 if st == 200:
                     ok_audio += 1
                 else:
@@ -100,7 +111,17 @@ def main():
     if do_audio:
         print('audio: %d subidos, %d fallos' % (ok_audio, fail_audio))
 
-    if BATCH2:
+    if PT:
+        sql = ["""-- ESTUDIAR · Fase E-2 (PORTUGUÉS) — A1+A2 (unidades 1-12), SOLO DATOS.
+-- La tabla study_theory y las RPCs get_study_theory/submit_study_quiz ya viven
+-- desde la mig 178 y son course-agnósticas POR CONSTRUCCIÓN: derivan el curso de
+-- la propia unidad (v_unit.course_id), no de un idioma fijo. Aquí
+-- solo se insertan los 12 temas de pt (upsert idempotente por (course_id,
+-- unit_order) → el INGLÉS queda intacto, es otro course_id).
+-- NO toca motor FSRS, economía, gating, certificación ni los otros 5 idiomas.
+-- El quiz sigue siendo FORMATIVO (jz_grade, sin XP/oro).
+"""]
+    elif BATCH2:
         sql = ["""-- ESTUDIAR · Fase E-2 (INGLÉS) — tanda 2: B1+B2 (unidades 13-24), SOLO DATOS.
 -- La tabla study_theory y las RPCs get_study_theory/submit_study_quiz ya viven
 -- desde la mig 178 (tanda 1, A1+A2). Aquí solo se insertan los 12 temas B1+B2
@@ -148,10 +169,10 @@ revoke all on public.study_theory from anon, authenticated;
             "  summary = excluded.summary, sections = excluded.sections,\n"
             "  examples = excluded.examples, pitfalls = excluded.pitfalls,\n"
             "  quiz = excluded.quiz, updated_at = now();"
-            % (COURSE_EN, t['unit_order'], q(t['cefr_level']), q(t['title']), q(t['summary']),
+            % (COURSE, t['unit_order'], q(t['cefr_level']), q(t['title']), q(t['summary']),
                jq(t['sections']), jq(t['examples']), jq(t['pitfalls']), jq(t['quiz'])))
 
-    if not BATCH2:
+    if not DATA_ONLY:
         sql.append(r"""
 -- ── get_study_theory: la sesión de estudio de un tema, SIN las respuestas ────
 create or replace function public.get_study_theory(p_unit_id uuid)

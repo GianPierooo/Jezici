@@ -5,6 +5,42 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-20**.
 
+## ESTUDIAR · Fase E-2 PORTUGUÉS A1+A2 — 2º idioma con teoría rica ✅ LIVE (mig 180 · 2026-07-21)
+Réplica del pipeline del inglés para **pt A1+A2 (unidades 1-12)**. Mig 180 = **SOLO DATOS**: la tabla y las
+RPCs de mig 178 son **course-agnósticas POR CONSTRUCCIÓN** (derivan el curso de `v_unit.course_id`, no de un
+idioma fijo) → el inglés queda intacto (otro `course_id`, verificado). **E-3 (video) sigue fuera.**
+- **CONTENIDO:** 12 temas — 36 secciones, **48 ejemplos con audio TTS pt (48/48, HEAD 200)**, 36 errores
+  comunes, **60 ítems de prueba**. Generador `gen_study_en.py --pt` (tl=pt); guardas parametrizadas por
+  idioma meta: `guard_study_en.py [dir] [desde] [hasta] [clave]`.
+- **CLAVE CANÓNICA `text`:** el cliente leía `j['en']` → con pt habría salido **texto vacío**. Ahora el
+  generador emite `text` (idioma meta, course-agnóstico) y `StudyExample.target` lee **`text` con fallback a
+  `en`** → las filas del inglés (que solo tienen `en`) siguen funcionando: **0 regresión, 0 datos tocados**.
+- **FOCO es↔pt (falsos amigos):** cada tema anticipa dónde falla el hispanohablante POR parecerse — você en
+  3ª persona, meu/minha por la cosa poseída, gostar **DE**, contracciones no/na/do/da, ficar para ubicar,
+  segunda-feira=lunes, fiz/tive, «vou viajar» sin «a», pegar o ônibus, **esquisito**=raro, **sobremesa**=
+  postre, **troco**=cambio, **embaraçada**≠embarazada (grávida), **brincar**=jugar (pular=saltar),
+  **constipado**=estreñido (resfriado=acatarrado).
+- **CALIDAD — lo que cazó la revisión (todo aplicado):** **2 ALTA, ambas del patrón "castiga a quien aplica
+  la PROPIA teoría"** — U3 enseña `de+a=da` y el cloze solo aceptaba `de` (**+`da`**); U9 invitaba en el
+  enunciado a "otra correcta" y castigaba `chamar`/`pedir` un táxi (**añadidos**). **5 media** — U3 «trabalhar
+  se escribe con L» (es **LH**: quien obedeciera escribiría *trabalar*); U5 «contracciones que el español no
+  tiene» (sí las tiene: *del*, *al*); U4 el cloze castigaba «Quanto **é**?» que su propia viñeta enseña
+  (**+`é`**); U11 «los de consonante no cambian de género» daría *ela é trabalhador* (**excepción -or/-ês/-ol**);
+  U11 «Fiquei embaraçada» como producción (en pt-BR suena libresco → **«sem graça»/«envergonhada»**, el aviso
+  del falso amigo se conserva). **7 bajas** (U9 «coger» no existe en portugués — no es que sea vulgar allí;
+  distractor agramatical *subir de ônibus*; U6 «nunca Segunda» falso a principio de frase; U12 constipado
+  precisado a Brasil; U10 el título prometía "y comprar" sin compras; U7 tive/teve; U8 «tu vai»). U1/U10 con
+  portugués impecable.
+- **Verificado:** analyze 0 (CI-exact) · test 229/229 · build web OK · **auto-chequeo BD 60/60** aceptadas por
+  `jz_grade` · **cliente REAL (`verify_study_e2_pt.py`) TODO VERDE:** pt U1 (A1) y U12 (A2) sirven sesión,
+  ejemplos con la **clave canónica `text`**, audio 8/8 HEAD 200, quiz sin exponer answer/accepted, **las 60
+  respuestas correctas se ACEPTAN (0 castigadas)**, MAYÚSCULAS aceptadas, basura rechazada, **no mueve XP ni
+  oro**, **AISLAMIENTO: la U1 del inglés sigue sirviendo SU sesión**, y pt U25 (C1, sin tips) → null.
+  Regresión inglés (`verify_study_e2_b1b2.py`) TODO VERDE.
+- **LO QUE QUEDA en pt:** **B1+B2 (unidades 13-24, 12 temas, todas con tips)** = tanda siguiente con el mismo
+  pipeline; las 6 de C1 no tienen tips → "teoría en camino". Cobertura global de E-2: **en 24/24 (A1–B2) ·
+  pt 12/24**; los otros 4 idiomas siguen con los tips de E-1.
+
 ## ESTUDIAR · Fase E-2 tanda 2 (INGLÉS B1+B2) — inglés COMPLETO A1–B2 ✅ LIVE (mig 179 · 2026-07-21)
 Réplica exacta del pipeline de la tanda 1 para las **12 unidades B1+B2 (13-24)** → **inglés queda COMPLETO
 A1–B2 (24/24 temas con teoría rica)**; las 6 de C1 siguen honestamente en "teoría en camino" (sin tips).
