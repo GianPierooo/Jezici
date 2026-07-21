@@ -6880,6 +6880,72 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Aquí tienes los conceptos de tu curso, nivel por nivel. Se abren según avanzas.'**
   String get tourStudyBody;
+
+  /// No description provided for @studyExamplesHeader.
+  ///
+  /// In es, this message translates to:
+  /// **'Ejemplos'**
+  String get studyExamplesHeader;
+
+  /// No description provided for @studyPitfallsHeader.
+  ///
+  /// In es, this message translates to:
+  /// **'Errores comunes'**
+  String get studyPitfallsHeader;
+
+  /// No description provided for @studyQuizTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Prueba del tema'**
+  String get studyQuizTitle;
+
+  /// No description provided for @studyQuizSubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 pregunta para comprobar} other{{count} preguntas para comprobar}}'**
+  String studyQuizSubtitle(int count);
+
+  /// No description provided for @studyQuizSubmit.
+  ///
+  /// In es, this message translates to:
+  /// **'COMPROBAR'**
+  String get studyQuizSubmit;
+
+  /// No description provided for @studyQuizHint.
+  ///
+  /// In es, this message translates to:
+  /// **'Escribe tu respuesta'**
+  String get studyQuizHint;
+
+  /// No description provided for @studyQuizPassed.
+  ///
+  /// In es, this message translates to:
+  /// **'¡Lo tienes!'**
+  String get studyQuizPassed;
+
+  /// No description provided for @studyQuizRetry.
+  ///
+  /// In es, this message translates to:
+  /// **'Casi. Repasa y vuelve'**
+  String get studyQuizRetry;
+
+  /// No description provided for @studyQuizScore.
+  ///
+  /// In es, this message translates to:
+  /// **'{correct} de {total} correctas'**
+  String studyQuizScore(int correct, int total);
+
+  /// No description provided for @studyQuizExpected.
+  ///
+  /// In es, this message translates to:
+  /// **'Era: {expected}'**
+  String studyQuizExpected(String expected);
+
+  /// No description provided for @studyQuizError.
+  ///
+  /// In es, this message translates to:
+  /// **'No se pudo cargar la prueba. Inténtalo de nuevo.'**
+  String get studyQuizError;
 }
 
 class _AppLocalizationsDelegate

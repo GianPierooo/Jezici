@@ -7,6 +7,7 @@ import 'package:jezici/data/models/unit_model.dart';
 import 'package:jezici/data/providers.dart';
 import 'package:jezici/features/study/study_level_screen.dart';
 import 'package:jezici/features/study/study_model.dart';
+import 'package:jezici/features/study/study_theory_model.dart';
 import 'package:jezici/features/study/study_screen.dart';
 import 'package:jezici/l10n/app_localizations.dart';
 
@@ -140,5 +141,49 @@ void main() {
     expect(find.byIcon(Icons.lock_rounded), findsOneWidget);
     // El tema abierto muestra su teoría existente (1 concepto).
     expect(find.text('1 concepto'), findsOneWidget);
+  });
+
+  _e2();
+}
+
+// ── E-2: la sesión de estudio rica sustituye a los tips, y cae con gracia ────
+void _e2() {
+  test('StudyTheory.fromJson parsea la sesión completa', () {
+    final t = StudyTheory.fromJson({
+      'unit_order': 1, 'cefr_level': 'A1', 'title': 'Saludos', 'summary': 'Resumen',
+      'sections': [
+        {'heading': 'La regla', 'body': 'Explicación', 'bullets': ['uno', 'dos']}
+      ],
+      'examples': [
+        {'en': 'I am Ana.', 'es': 'Soy Ana.', 'audio_url': 'https://x/y.mp3'}
+      ],
+      'pitfalls': [{'title': 'Ojo', 'body': 'No digas...'}],
+      'quiz': [
+        {'id': 'u1q1', 'type': 'cloze', 'prompt': 'Completa', 'text': 'I ___ Ana.'},
+        {'id': 'u1q2', 'type': 'multiple_choice', 'prompt': 'Elige',
+         'options': ['a', 'b', 'c']},
+      ],
+    });
+    expect(t.sections.first.bullets.length, 2);
+    expect(t.examples.first.audioUrl, 'https://x/y.mp3');
+    expect(t.pitfalls.length, 1);
+    expect(t.hasQuiz, isTrue);
+    expect(t.quiz.first.isCloze, isTrue);
+    expect(t.quiz[1].options.length, 3);
+    // El quiz NUNCA trae la respuesta al cliente (grading server-side).
+    expect(t.quiz.first.text, contains('___'));
+  });
+
+  test('el resultado de la prueba indexa por id (repaso honesto)', () {
+    final r = StudyQuizResult.fromJson({
+      'graded': 2, 'correct': 1, 'accuracy': 0.5, 'passed': false,
+      'results': [
+        {'id': 'u1q1', 'correct': true, 'expected': 'am'},
+        {'id': 'u1q2', 'correct': false, 'expected': 'b'},
+      ],
+    });
+    expect(r.accuracyPct, 50);
+    expect(r.passed, isFalse);
+    expect(r.results['u1q2']!['expected'], 'b');
   });
 }

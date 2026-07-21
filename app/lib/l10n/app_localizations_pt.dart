@@ -4016,4 +4016,50 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get tourStudyBody =>
       'Aqui estão os conceitos do seu curso, nível por nível. Eles liberam conforme você avança.';
+
+  @override
+  String get studyExamplesHeader => 'Exemplos';
+
+  @override
+  String get studyPitfallsHeader => 'Erros comuns';
+
+  @override
+  String get studyQuizTitle => 'Teste do tema';
+
+  @override
+  String studyQuizSubtitle(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count perguntas para conferir',
+      one: '1 pergunta para conferir',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get studyQuizSubmit => 'VERIFICAR';
+
+  @override
+  String get studyQuizHint => 'Escreva sua resposta';
+
+  @override
+  String get studyQuizPassed => 'Você entendeu!';
+
+  @override
+  String get studyQuizRetry => 'Quase. Revise e volte';
+
+  @override
+  String studyQuizScore(int correct, int total) {
+    return '$correct de $total corretas';
+  }
+
+  @override
+  String studyQuizExpected(String expected) {
+    return 'Era: $expected';
+  }
+
+  @override
+  String get studyQuizError =>
+      'Não foi possível carregar o teste. Tente novamente.';
 }

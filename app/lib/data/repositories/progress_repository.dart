@@ -103,6 +103,24 @@ class ProgressRepository {
     return intro.isEmpty ? null : intro;
   }
 
+  /// ESTUDIAR E-2: la sesión de estudio rica de un tema (teoría + ejemplos con
+  /// audio + errores comunes + prueba SIN respuestas). null = el tema aún no
+  /// tiene teoría rica → la pantalla cae al estado de E-1 (tips u "en camino").
+  Future<Map<String, dynamic>?> getStudyTheory(String unitId) async {
+    final res = await _rpc('get_study_theory', params: {'p_unit_id': unitId});
+    if (res == null) return null;
+    return Map<String, dynamic>.from(res as Map);
+  }
+
+  /// Envía la prueba del tema. El servidor califica con el grader tolerante
+  /// (jz_grade). Es FORMATIVA: no paga XP/oro ni toca el dominio.
+  Future<Map<String, dynamic>> submitStudyQuiz(
+      String unitId, List<Map<String, dynamic>> answers) async {
+    final res = await _rpc('submit_study_quiz',
+        params: {'p_unit_id': unitId, 'p_answers': answers});
+    return Map<String, dynamic>.from(res as Map);
+  }
+
   /// Cuaderno de datos: tips vistos por el usuario (RPC get_notebook).
   Future<List<TipModel>> getNotebook() async {
     final res = await _rpc('get_notebook');

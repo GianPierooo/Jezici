@@ -5,6 +5,50 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-20**.
 
+## ESTUDIAR · Fase E-2 (INGLÉS) — teoría de sesión + ejemplos con audio + prueba ✅ LIVE (mig 178 · 2026-07-21)
+Llena el hueco que E-1 dejó preparado (`ESTUDIAR_ANALISIS.md` §4/§5). **SOLO inglés**, A1+A2 (unidades 1-12).
+Pipeline de la casa: 12 agentes profesores nativos + guardas deterministas + 3 revisores adversariales +
+verify real. **El VIDEO (E-3) NO entra** — su slot sigue vacío y sin prometer nada.
+- **CONTENIDO (mig 178):** tabla **`study_theory`** (course_id, unit_order, cefr_level, title, summary,
+  sections, examples, pitfalls, quiz) con **12 temas**: 36 secciones, **48 ejemplos con audio TTS**
+  (48/48 subidos, HEAD 200), 37 errores comunes y **61 ítems de prueba**. RLS ON **sin política** (el quiz
+  lleva las respuestas → solo lo leen las RPC DEFINER).
+- **RPCs:** `get_study_theory(unit_id)` devuelve la sesión **SIN answer/accepted** (grading server-side, como
+  todo el contenido) y **null** si el tema aún no tiene teoría rica → la pantalla cae a E-1. `submit_study_quiz`
+  califica con **`jz_grade`** (el MISMO grader tolerante de mig 177). **La prueba es FORMATIVA: NO paga
+  XP/oro ni escribe `user_item_attempts`** → economía, dominio y certificación intactos.
+- **DECISIÓN: el quiz vive en `study_theory`, NO en `content_items`** — reusa los formatos (cloze/
+  multiple_choice) y el grader, pero sin contaminar los pools de práctica/checkpoint/examen (`start_practice`
+  selecciona de `content_items` sin filtrar por tag: meter ahí los ítems los habría filtrado a la práctica).
+- **Cliente:** `study_topic_screen` en cascada honesta — **(1)** sesión rica (resumen + teoría paso a paso con
+  viñetas + ejemplos con `AudioPlayButton` + errores comunes + CTA a la prueba), **(2)** los tips de E-1 si aún
+  no hay sesión, **(3)** "teoría en camino". Nueva `study_quiz_screen` (cloze + opción múltiple, resultado con
+  repaso honesto de lo fallado). El desbloqueo por progreso y "Practícalo" de E-1 **sin tocar**.
+- **CALIDAD — lo que cazaron las guardas y la revisión:** guardas → **1 colisión REAL** en U2 (distractor
+  `His sister's are…` que normaliza IGUAL que el correcto → incalificable). Revisión adversarial (3 bloques) →
+  **U2 reescrito entero** (prometía "números, edad y de dónde eres" y enseñaba posesivos: desajuste heredado
+  título↔tips), 3 enunciados que **castigaban a quien obedecía** (U8 pedía "2 palabras" en hueco de una; U9
+  invitaba a dejarlo vacío en hueco obligatorio; U12 admitía `not` sin contemplarlo), y ~10 reglas mal cerradas
+  ("el adjetivo nunca va tras el sustantivo" vs *The park is big*; "I like to walk" marcado como error y
+  contradicho por su propio quiz; doblado de consonante que daría *rainning*; `-ed` que tachaba la
+  pronunciación correcta de *wanted*; `first floor` falso en inglés americano).
+- **VERIFICACIÓN QUE CAMBIÓ EL RESULTADO (regla de la casa: comprobar, no creer):** los revisores marcaron
+  ~8 hallazgos "alta" por faltar variantes en MAYÚSCULA (`On`, `Should`) y apóstrofo tipográfico (`I’ll`) en
+  `accepted`. **Probado contra el grader real: ya las acepta** (`jz_normalize` minusculiza y equipara `’`) →
+  **falsos positivos, descartados** (habrían inflado las listas de ruido). Pero el mismo test destapó un hueco
+  REAL: `jz_normalize` **EXPANDE** contracciones (`I'll`→`i will`) en vez de borrar apóstrofos, así que escribir
+  **sin apóstrofo** (`Ill`, `doesnt`, `dont`, `didnt`) — lo que más se teclea en móvil — **se marcaba MAL**.
+  Añadido a `accepted` donde aplica: es el bug de la causa raíz, en superficie nueva.
+- **Verificado:** analyze 0 (CI-exact) · test **229/229** (+2 E-2: parseo de la sesión y del resultado) ·
+  build web OK · **auto-chequeo en BD: 61/61** respuestas del banco las acepta `jz_grade`. **Cliente REAL
+  (`verify_study_e2.py`) TODO VERDE:** U1 sirve sesión (3 secciones, 4 ejemplos, 3 errores, 5 ítems); **el quiz
+  NO expone answer/accepted**; audio 4/4 HEAD 200; **las 61 respuestas correctas se ACEPTAN (0 castigadas)**;
+  la misma respuesta en MAYÚSCULAS se acepta; basura → 0 correctas y no aprueba; **la prueba NO mueve XP ni
+  oro**; U25 (C1) → null → "teoría en camino". i18n es/en/pt (+13 claves).
+- **ALCANCE Y LO QUE QUEDA:** cubiertos **12 de los 24** temas con teoría existente. **Quedan 12 (B1+B2,
+  unidades 13-24)** para la tanda siguiente con el mismo pipeline; las **6 de C1** no tienen ni tips → seguirán
+  honestamente en "teoría en camino". **E-3 (video) sigue fuera** hasta que el módulo demuestre uso.
+
 ## ESTUDIAR · Fase E-1 — el tab de teoría, navegable y atado al progreso ✅ LIVE (2026-07-20 · solo cliente)
 El MVP del módulo que pidió Gian (`ESTUDIAR_ANALISIS.md` §3 arquitectura + §5 fase E-1). **Cero IA, cero
 migración, cero contenido nuevo** (eso es E-2/E-3): estructura + desbloqueo + mostrar la teoría que YA existe.

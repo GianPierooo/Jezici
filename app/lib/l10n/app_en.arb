@@ -1435,5 +1435,19 @@
   "@studyUnitProgress": {"placeholders": {"done": {"type": "int"}, "total": {"type": "int"}}},
   "studyFooterNote": "Topics unlock as you progress in Learn.",
   "tourStudyTitle": "Study the theory",
-  "tourStudyBody": "Here are your course concepts, level by level. They unlock as you progress."
+  "tourStudyBody": "Here are your course concepts, level by level. They unlock as you progress.",
+  "studyExamplesHeader": "Examples",
+  "studyPitfallsHeader": "Common mistakes",
+  "studyQuizTitle": "Topic quiz",
+  "studyQuizSubtitle": "{count, plural, =1{1 question to check} other{{count} questions to check}}",
+  "@studyQuizSubtitle": {"placeholders": {"count": {"type": "int"}}},
+  "studyQuizSubmit": "CHECK",
+  "studyQuizHint": "Type your answer",
+  "studyQuizPassed": "You've got it!",
+  "studyQuizRetry": "Almost. Review and come back",
+  "studyQuizScore": "{correct} of {total} correct",
+  "@studyQuizScore": {"placeholders": {"correct": {"type": "int"}, "total": {"type": "int"}}},
+  "studyQuizExpected": "It was: {expected}",
+  "@studyQuizExpected": {"placeholders": {"expected": {"type": "String"}}},
+  "studyQuizError": "The quiz could not be loaded. Please try again."
 }

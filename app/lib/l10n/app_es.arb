@@ -2169,5 +2169,19 @@
   "@studyUnitProgress": {"placeholders": {"done": {"type": "int"}, "total": {"type": "int"}}},
   "studyFooterNote": "Los temas se abren a medida que avanzas en Aprender.",
   "tourStudyTitle": "Estudia la teoría",
-  "tourStudyBody": "Aquí tienes los conceptos de tu curso, nivel por nivel. Se abren según avanzas."
+  "tourStudyBody": "Aquí tienes los conceptos de tu curso, nivel por nivel. Se abren según avanzas.",
+  "studyExamplesHeader": "Ejemplos",
+  "studyPitfallsHeader": "Errores comunes",
+  "studyQuizTitle": "Prueba del tema",
+  "studyQuizSubtitle": "{count, plural, =1{1 pregunta para comprobar} other{{count} preguntas para comprobar}}",
+  "@studyQuizSubtitle": {"placeholders": {"count": {"type": "int"}}},
+  "studyQuizSubmit": "COMPROBAR",
+  "studyQuizHint": "Escribe tu respuesta",
+  "studyQuizPassed": "¡Lo tienes!",
+  "studyQuizRetry": "Casi. Repasa y vuelve",
+  "studyQuizScore": "{correct} de {total} correctas",
+  "@studyQuizScore": {"placeholders": {"correct": {"type": "int"}, "total": {"type": "int"}}},
+  "studyQuizExpected": "Era: {expected}",
+  "@studyQuizExpected": {"placeholders": {"expected": {"type": "String"}}},
+  "studyQuizError": "No se pudo cargar la prueba. Inténtalo de nuevo."
 }

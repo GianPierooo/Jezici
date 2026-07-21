@@ -4,6 +4,7 @@ import '../../core/plan/estimation.dart' show CefrTable;
 import '../../data/models/tip_models.dart';
 import '../../data/models/unit_model.dart';
 import '../../data/providers.dart';
+import 'study_theory_model.dart';
 
 /// ESTUDIAR · Fase E-1 (ESTUDIAR_ANALISIS.md §3/§5) — el MODELO derivado.
 ///
@@ -115,6 +116,14 @@ List<StudyLevel> buildStudyPlan({
     for (final k in keys) StudyLevel(cefr: k, topics: List.unmodifiable(byLevel[k]!)),
   ];
 }
+
+/// E-2 · la sesión de estudio RICA de un tema (null si aún no existe → la
+/// pantalla mantiene el estado de E-1: los tips, o "teoría en camino").
+final studyTheoryProvider =
+    FutureProvider.family<StudyTheory?, String>((ref, unitId) async {
+  final raw = await ref.watch(progressRepositoryProvider).getStudyTheory(unitId);
+  return raw == null ? null : StudyTheory.fromJson(raw);
+});
 
 /// La estructura de Estudiar del curso ACTIVO. Se recompone sola cuando cambia
 /// el progreso (el mapa invalida `lessonProgressProvider` al completar).
