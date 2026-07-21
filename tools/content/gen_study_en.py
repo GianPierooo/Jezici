@@ -38,16 +38,18 @@ COURSE_FR = '20000000-0000-0000-0000-000000000003'
 NS = uuid.UUID('7b6f2c40-0000-4000-8000-000000000e02')  # namespace E-2
 HERE = os.path.dirname(os.path.abspath(__file__))
 BATCH2 = '--batch2' in sys.argv
-FR = '--fr' in sys.argv
+FR = '--fr' in sys.argv or '--fr2' in sys.argv
+FR2 = '--fr2' in sys.argv
 PT = ('--pt' in sys.argv or '--pt2' in sys.argv) and not FR
 PT2 = '--pt2' in sys.argv
 LANG = 'fr' if FR else ('pt' if PT else 'en')            # clave del ejemplo + tl del TTS
 COURSE = COURSE_FR if FR else (COURSE_PT if PT else COURSE_EN)
 DATA_ONLY = BATCH2 or PT or FR               # la tabla y las RPCs viven desde mig 178
 SRC = os.path.join(
-    HERE, '_study_fr' if FR else ('_study_pt' if PT else ('_study_en2' if BATCH2 else '_study_en')),
+    HERE, ('_study_fr2' if FR2 else '_study_fr') if FR else ('_study_pt' if PT else ('_study_en2' if BATCH2 else '_study_en')),
     '_clean.json')
-MIG = ('20260721120183_study_theory_fr.sql' if FR else
+MIG = ('20260721120184_study_theory_fr_b1b2.sql' if FR2 else
+       '20260721120183_study_theory_fr.sql' if FR else
        '20260721120181_study_theory_pt_b1b2.sql' if PT2 else
        '20260721120180_study_theory_pt.sql' if PT else
        '20260721120179_study_theory_en_b1b2.sql' if BATCH2 else

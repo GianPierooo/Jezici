@@ -5,6 +5,36 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-20**.
 
+## ESTUDIAR · E-2 FRANCÉS B1+B2 — fr COMPLETO A1–B2 (3 idiomas cerrados) ✅ LIVE (mig 184 · 2026-07-21)
+Cierra el francés con las **12 unidades B1+B2 (13-24)** → **en, pt y fr quedan los tres COMPLETOS A1–B2
+(24/24 cada uno)**. Mig 184 = SOLO DATOS. Las 6 de C1 (sin tips) siguen en "teoría en camino". E-3 fuera.
+- **CONTENIDO:** 36 secciones, **48 ejemplos con audio TTS fr (48/48, HEAD 200)**, 36 errores comunes,
+  **60 ítems**. Currículo B1/B2 real: subjonctif présent · conditionnel + «si + imparfait» · relativos
+  (dont, où) · concordancia del participio · estilo indirecto · pronombres (le/lui/y/en) · **subjonctif
+  passé** · conditionnel passé e irreal del pasado · discurso indirecto avanzado · participe présent/
+  gérondif/adjectif verbal · conectores + subjonctif · voz pasiva avanzada y mise en relief.
+- **PRIMERA TANDA CON LAS 2 GUARDAS NUEVAS ACTIVAS** (acento auto-aceptado + aviso de distancia-1): los
+  autores ya recibieron el contrato REAL del grader, así que **el diseño de los ítems nació correcto** — los
+  contrastes de una sola letra (parlerai/parlerais, venu/venue, fatigant/fatiguant, les/le) fueron a opción
+  múltiple desde el principio, no hubo que rescatarlos.
+- **CALIDAD — 3 ALTA que la revisión sí cazó (todas aplicadas):** U16 pedía el auxiliar con un cloze donde
+  **`ont` está a un borrado de `sont`** → aceptaba justo el error que evaluaba (**límite honesto de la
+  guarda**: el distractor no aparecía en el texto del tema, así que la guarda no podía verlo — lo cazó el
+  revisor); U20 evaluaba la concordancia (`partie`) en un cloze que perdona la ‑e; **U21 tenía un ítem roto**
+  (tres huecos, una flecha y un fragmento del enunciado dentro del texto, y el prompt pedía "dos palabras"
+  cuando la respuesta era una → quien obedecía fallaba). **5 media** (U14 «Pourriez» aceptaba «Pourrez»;
+  U15 un bullet inducía la agramatical *«qui il aime»*; U20 el prompt pedía el plus-que-parfait cuando el
+  participio ya estaba en el texto; U21 el cloze de `ce que` aceptaba `ce qui` por ser multi-palabra; U24 el
+  pitfall de «se faire» no explicaba lo que medía su propio quiz). **~10 bajas** (absolutos acotados: «si» de
+  condición, «verbos de movimiento» → lista cerrada, «solo los verbos con CD admiten pasiva», «sans que» no
+  es finalidad). **U22 impecable.**
+- **Verificado:** analyze 0 · test 229/229 · build web OK · **BD 60/60** aceptadas por `jz_grade` · **cliente
+  REAL (`verify_study_e2_fr_b1b2.py`) TODO VERDE:** fr U13 (B1) y U22 (B2) sirven sesión, audio 8/8, quiz sin
+  exponer respuestas, 60/60 aceptadas, **sin acentos no castiga**, no mueve XP/oro, **REGRESIÓN fr A1+A2** y
+  **AISLAMIENTO doble (en + pt)**, fr C1 → null. **Las 5 verificaciones previas TODO VERDE.**
+- **Cobertura de E-2: en 24/24 · pt 24/24 · fr 24/24.** Quedan **it/de/nl** enteros (24 temas c/u, con tips)
+  y las 6 de C1 de cada idioma (sin tips). E-3 (video) sigue fuera.
+
 ## ESTUDIAR · E-2 FRANCÉS A1+A2 + **DOS FALLOS DEL CORRECTOR DESTAPADOS** ✅ LIVE (mig 182/183 · 2026-07-21)
 Tercer idioma con teoría rica (fr u1-12). Pero lo importante de esta pasada NO es el contenido: al probar el
 grader REAL antes de briefear (regla de la casa) **se destapó que mi propio brief de las tandas de portugués
