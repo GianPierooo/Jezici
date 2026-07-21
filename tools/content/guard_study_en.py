@@ -22,7 +22,12 @@ import re
 import sys
 import unicodedata
 
-DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), '_study_en')
+# Parametrizable: python guard_study_en.py [dir] [desde] [hasta]
+_ARGS = sys.argv[1:]
+DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                   _ARGS[0] if _ARGS else '_study_en')
+FROM = int(_ARGS[1]) if len(_ARGS) > 1 else 1
+TO = int(_ARGS[2]) if len(_ARGS) > 2 else 12
 OUT = os.path.join(DIR, '_clean.json')
 
 
@@ -41,7 +46,7 @@ def words(s):
 
 def main():
     problems, clean = [], []
-    for n in range(1, 13):
+    for n in range(FROM, TO + 1):
         fn = os.path.join(DIR, 'unit_%d.json' % n)
         if not os.path.exists(fn):
             problems.append('U%d: FALTA el archivo' % n)
@@ -130,7 +135,7 @@ def main():
             clean.append(d)
 
     print('=== GUARDAS ===')
-    print('temas OK: %d/12' % len(clean))
+    print('temas OK: %d/%d' % (len(clean), TO - FROM + 1))
     if problems:
         print('PROBLEMAS:')
         for p in problems:

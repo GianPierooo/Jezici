@@ -5,6 +5,35 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-20**.
 
+## ESTUDIAR · Fase E-2 tanda 2 (INGLÉS B1+B2) — inglés COMPLETO A1–B2 ✅ LIVE (mig 179 · 2026-07-21)
+Réplica exacta del pipeline de la tanda 1 para las **12 unidades B1+B2 (13-24)** → **inglés queda COMPLETO
+A1–B2 (24/24 temas con teoría rica)**; las 6 de C1 siguen honestamente en "teoría en camino" (sin tips).
+**El VIDEO (E-3) sigue fuera** — slot intacto. Mig 179 = **SOLO DATOS** (upsert idempotente por
+(course_id, unit_order); tabla y RPCs viven desde mig 178 → tanda 1 intacta, verificado).
+- **CONTENIDO:** 12 temas B1+B2 — 36 secciones, **48 ejemplos con audio TTS (48/48 subidos, HEAD 200)**,
+  36 errores comunes, **60 ítems de prueba**. Pipeline: 12 profesores nativos + guardas deterministas
+  (parametrizadas `guard_study_en.py [dir] [desde] [hasta]`; la tanda 1 sigue 12/12) + 3 revisores
+  adversariales + verify real. Generador `gen_study_en.py --batch2`.
+- **CALIDAD — lo que cazó la revisión (todo aplicado):** **2 ALTA** — U20 castigaba a quien aplicaba la
+  PROPIA teoría de la unidad (enseña que el retroceso es opcional si sigue vigente y el cloze solo aceptaba
+  `lived` → +`live`); U22 no aceptaba `could`/`might` en el resultado del 3er condicional (la colocación más
+  frecuente con *catch the train*) → añadidos. **4 media** — U14 hueco ambiguo con `planning` (prompt cerrado
+  a 'be going to'); U16 pitfall sobre-cerrado (*while + past simple* ES gramatical); U20 "must→had to" como
+  absoluto (el must de deducción NUNCA cambia) + backshift del pasado presentado como obligatorio (opcional
+  en inglés moderno); U23 "entre comas solo who o which" contradecía su propia sección 3 (whose/where).
+  Varios pulidos (U13 fraseo "sin to", U18 summary honesto, U19 matiz already+past simple, U21 prompt de
+  pasiva cerrado a 'be', U22 bullet de contracciones). U15/U17/U24 impecables. 1 bullet >14 palabras cazado
+  por guardas. **0 falsos positivos esta vez** (los revisores venían calibrados con el comportamiento real
+  del grader — la lección de la tanda 1 se inyectó al brief).
+- **Verificado:** analyze 0 (CI-exact) · test 229/229 · **auto-chequeo BD 60/60** respuestas aceptadas por
+  `jz_grade` · **cliente REAL (`verify_study_e2_b1b2.py`) TODO VERDE:** U13 (B1) y U20 (B2) sirven sesión
+  (secciones+4 ejemplos+pitfalls+prueba), quiz sin exponer answer/accepted, audio 8/8 HEAD 200, **las 60
+  respuestas correctas se ACEPTAN (0 castigadas)**, MAYÚSCULAS aceptadas, basura rechazada, **no mueve XP ni
+  oro**, y REGRESIÓN: U1 (tanda 1) intacta + U25 (C1) → null. Cero cambios de cliente (la cascada de E-2 ya
+  cubría cualquier unidad con teoría).
+- **LO QUE QUEDA:** solo las 6 de C1 (sin tips → autorar desde cero = tanda aparte, si el módulo demuestra
+  uso). E-3 (video) sigue fuera.
+
 ## ESTUDIAR · Fase E-2 (INGLÉS) — teoría de sesión + ejemplos con audio + prueba ✅ LIVE (mig 178 · 2026-07-21)
 Llena el hueco que E-1 dejó preparado (`ESTUDIAR_ANALISIS.md` §4/§5). **SOLO inglés**, A1+A2 (unidades 1-12).
 Pipeline de la casa: 12 agentes profesores nativos + guardas deterministas + 3 revisores adversariales +

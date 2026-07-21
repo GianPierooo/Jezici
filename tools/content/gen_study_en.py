@@ -11,7 +11,10 @@ adversarial) y:
      grader tolerante de mig 177) + los INSERT idempotentes.
 
 NO toca: motor FSRS, economía, gating, certificación, ni los otros 5 idiomas.
-uso: python gen_study_en.py [--no-audio]
+uso: python gen_study_en.py [--no-audio] [--batch2]
+  --batch2 → lee _study_en2/_clean.json (B1+B2, unidades 13-24) y emite la mig
+  179 SOLO-DATOS (la tabla y las RPCs ya viven desde mig 178; los upserts son
+  idempotentes por (course_id, unit_order) → 0 riesgo para la tanda 1).
 """
 import json
 import os
@@ -28,9 +31,12 @@ UA = 'Mozilla/5.0'
 COURSE_EN = '20000000-0000-0000-0000-000000000001'
 NS = uuid.UUID('7b6f2c40-0000-4000-8000-000000000e02')  # namespace E-2
 HERE = os.path.dirname(os.path.abspath(__file__))
-SRC = os.path.join(HERE, '_study_en', '_clean.json')
+BATCH2 = '--batch2' in sys.argv
+SRC = os.path.join(HERE, '_study_en2' if BATCH2 else '_study_en', '_clean.json')
 OUT = os.path.normpath(os.path.join(
-    HERE, '..', '..', 'supabase', 'migrations', '20260721120178_study_theory_en.sql'))
+    HERE, '..', '..', 'supabase', 'migrations',
+    '20260721120179_study_theory_en_b1b2.sql' if BATCH2
+    else '20260721120178_study_theory_en.sql'))
 
 
 def tts(text):
@@ -94,7 +100,16 @@ def main():
     if do_audio:
         print('audio: %d subidos, %d fallos' % (ok_audio, fail_audio))
 
-    sql = ["""-- ESTUDIAR · Fase E-2 (INGLÉS) — teoría de sesión + ejemplos con audio + prueba.
+    if BATCH2:
+        sql = ["""-- ESTUDIAR · Fase E-2 (INGLÉS) — tanda 2: B1+B2 (unidades 13-24), SOLO DATOS.
+-- La tabla study_theory y las RPCs get_study_theory/submit_study_quiz ya viven
+-- desde la mig 178 (tanda 1, A1+A2). Aquí solo se insertan los 12 temas B1+B2
+-- (upsert idempotente por (course_id, unit_order) → la tanda 1 queda intacta).
+-- SOLO inglés. NO toca motor FSRS, economía, gating, certificación ni los otros
+-- 5 idiomas. El quiz sigue siendo FORMATIVO (jz_grade, sin XP/oro).
+"""]
+    else:
+        sql = ["""-- ESTUDIAR · Fase E-2 (INGLÉS) — teoría de sesión + ejemplos con audio + prueba.
 -- Llena el hueco que dejó E-1 en la estructura tab→nivel→tema→teoría. Contenido
 -- autorado por profesores nativos + guardas deterministas + revisión adversarial.
 -- SOLO inglés (course en). NO toca motor FSRS, economía, gating, certificación
@@ -136,7 +151,8 @@ revoke all on public.study_theory from anon, authenticated;
             % (COURSE_EN, t['unit_order'], q(t['cefr_level']), q(t['title']), q(t['summary']),
                jq(t['sections']), jq(t['examples']), jq(t['pitfalls']), jq(t['quiz'])))
 
-    sql.append(r"""
+    if not BATCH2:
+        sql.append(r"""
 -- ── get_study_theory: la sesión de estudio de un tema, SIN las respuestas ────
 create or replace function public.get_study_theory(p_unit_id uuid)
 returns jsonb
