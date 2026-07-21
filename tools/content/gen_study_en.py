@@ -15,6 +15,7 @@ uso: python gen_study_en.py [--no-audio] [--batch2|--pt]
   --batch2 → lee _study_en2/_clean.json (B1+B2, unidades 13-24) y emite la mig
   179 SOLO-DATOS (la tabla y las RPCs ya viven desde mig 178; los upserts son
   idempotentes por (course_id, unit_order) → 0 riesgo para la tanda 1).
+  --fr     → francés A1+A2 (mig 183), TTS tl=fr.
   --pt2    → igual que --pt pero emite la mig 181 (B1+B2, unidades 13-24).
   --pt     → lee _study_pt/_clean.json (A1+A2 de PORTUGUÉS, unidades 1-12), TTS
   con tl=pt y emite la mig 180 SOLO-DATOS. El inglés queda intacto (otro course_id).
@@ -33,23 +34,25 @@ SERVICE = env('SUPABASE_SERVICE_ROLE_KEY') or env('SUPABASE_SERVICE_ROLE')
 UA = 'Mozilla/5.0'
 COURSE_EN = '20000000-0000-0000-0000-000000000001'
 COURSE_PT = '20000000-0000-0000-0000-000000000002'
+COURSE_FR = '20000000-0000-0000-0000-000000000003'
 NS = uuid.UUID('7b6f2c40-0000-4000-8000-000000000e02')  # namespace E-2
 HERE = os.path.dirname(os.path.abspath(__file__))
 BATCH2 = '--batch2' in sys.argv
-PT = '--pt' in sys.argv or '--pt2' in sys.argv
+FR = '--fr' in sys.argv
+PT = ('--pt' in sys.argv or '--pt2' in sys.argv) and not FR
 PT2 = '--pt2' in sys.argv
-LANG = 'pt' if PT else 'en'            # clave del ejemplo + tl del TTS
-COURSE = COURSE_PT if PT else COURSE_EN
-DATA_ONLY = BATCH2 or PT               # la tabla y las RPCs viven desde mig 178
+LANG = 'fr' if FR else ('pt' if PT else 'en')            # clave del ejemplo + tl del TTS
+COURSE = COURSE_FR if FR else (COURSE_PT if PT else COURSE_EN)
+DATA_ONLY = BATCH2 or PT or FR               # la tabla y las RPCs viven desde mig 178
 SRC = os.path.join(
-    HERE, '_study_pt' if PT else ('_study_en2' if BATCH2 else '_study_en'),
+    HERE, '_study_fr' if FR else ('_study_pt' if PT else ('_study_en2' if BATCH2 else '_study_en')),
     '_clean.json')
-OUT = os.path.normpath(os.path.join(
-    HERE, '..', '..', 'supabase', 'migrations',
-    ('20260721120181_study_theory_pt_b1b2.sql' if PT2
-     else '20260721120180_study_theory_pt.sql') if PT else
-    ('20260721120179_study_theory_en_b1b2.sql' if BATCH2
-     else '20260721120178_study_theory_en.sql')))
+MIG = ('20260721120183_study_theory_fr.sql' if FR else
+       '20260721120181_study_theory_pt_b1b2.sql' if PT2 else
+       '20260721120180_study_theory_pt.sql' if PT else
+       '20260721120179_study_theory_en_b1b2.sql' if BATCH2 else
+       '20260721120178_study_theory_en.sql')
+OUT = os.path.normpath(os.path.join(HERE, '..', '..', 'supabase', 'migrations', MIG))
 
 
 def tts(text):
@@ -114,7 +117,14 @@ def main():
     if do_audio:
         print('audio: %d subidos, %d fallos' % (ok_audio, fail_audio))
 
-    if PT:
+    if FR:
+        sql = ["""-- ESTUDIAR · Fase E-2 (FRANCÉS) — A1+A2 (unidades 1-12), SOLO DATOS.
+-- La tabla study_theory y las RPCs de mig 178 son course-agnósticas por
+-- construcción (derivan el curso de la unidad) → inglés y portugués intactos.
+-- Los ejemplos traen la clave canónica `text` (idioma meta). NO toca motor FSRS,
+-- economía, gating, certificación ni los otros idiomas. Prueba FORMATIVA.
+"""]
+    elif PT:
         sql = ["""-- ESTUDIAR · Fase E-2 (PORTUGUÉS) — A1+A2 (unidades 1-12), SOLO DATOS.
 -- La tabla study_theory y las RPCs get_study_theory/submit_study_quiz ya viven
 -- desde la mig 178 y son course-agnósticas POR CONSTRUCCIÓN: derivan el curso de

@@ -32,13 +32,66 @@ TGT = _ARGS[3] if len(_ARGS) > 3 else 'en'  # clave del idioma meta en examples
 OUT = os.path.join(DIR, '_clean.json')
 
 
+def strip_accents(s):
+    """Quita diacríticos y ligaduras: lo que teclea quien no tiene teclado del idioma."""
+    d = unicodedata.normalize('NFD', s or '')
+    out = ''.join(c for c in d if unicodedata.category(c) != 'Mn')
+    return (unicodedata.normalize('NFC', out)
+            .replace('œ', 'oe').replace('Œ', 'Oe')
+            .replace('æ', 'ae').replace('Æ', 'Ae')
+            .replace('ß', 'ss'))
+
+
 def norm(s):
-    """Réplica de jz_normalize: minúsculas, sin acentos, sin puntuación."""
-    s = unicodedata.normalize('NFD', (s or '').lower())
-    s = ''.join(c for c in s if unicodedata.category(c) != 'Mn')
-    s = s.replace('’', "'").replace('‘', "'").replace("'", '')
-    s = re.sub(r'[^a-z0-9 ]', ' ', s)
-    return re.sub(r'\s+', ' ', s).strip()
+    """Réplica FIEL de jz_normalize (verificado contra la BD): minúsculas,
+    apóstrofos fuera, puntuación fuera. **NO toca los acentos** — por eso
+    «mangé» y «mange» son DISTINTAS para el corrector."""
+    v = (s or '').lower()
+    for ch in '’‘´`':
+        v = v.replace(ch, "'")
+    for ch in '“”"':
+        v = v.replace(ch, '')
+    v = re.sub(r"'+", "'", v)
+    v = re.sub(r'[.!?¿¡,;:]', '', v)
+    v = v.replace("'", '')
+    return re.sub(r'\s+', ' ', v).strip()
+
+
+def indel1(a, b):
+    """¿'b' se obtiene de 'a' quitando o añadiendo UNA letra?
+    Es lo ÚNICO que el grader perdona en una respuesta de una sola palabra
+    (verificado: «aux» acepta «au», pero «du» NO acepta «de» — sustituir no se
+    perdona). Por eso solo cuenta inserción/borrado."""
+    if a == b or abs(len(a) - len(b)) != 1:
+        return False
+    lo, hi = (a, b) if len(a) < len(b) else (b, a)
+    i = 0
+    while i < len(lo) and lo[i] == hi[i]:
+        i += 1
+    return lo[i:] == hi[i + 1:]
+
+
+def unit_vocab(d):
+    """Formas del IDIOMA META que el tema enseña. Solo de sitios donde el texto
+    es del idioma meta: los ejemplos, las opciones de las preguntas y lo que la
+    teoría cita entre comillas (la prosa explicativa va en español y no cuenta)."""
+    src = []
+    for ex in d.get('examples') or []:
+        src.append(ex.get(TGT, ''))
+    for q in d.get('quiz') or []:
+        src += (q.get('options') or [])
+        src.append(q.get('text') or '')
+    citado = []
+    for sec in d.get('sections') or []:
+        citado += [sec.get('body', '')] + (sec.get('bullets') or [])
+    for pf in d.get('pitfalls') or []:
+        citado += [pf.get('title', ''), pf.get('body', '')]
+    for t in citado:
+        src += re.findall(r'«([^»]{1,60})»', t or '')
+    out = set()
+    for t in src:
+        out.update(w for w in norm(t).split() if w)
+    return out
 
 
 def words(s):
@@ -46,7 +99,7 @@ def words(s):
 
 
 def main():
-    problems, clean = [], []
+    problems, warns, clean = [], [], []
     for n in range(FROM, TO + 1):
         fn = os.path.join(DIR, 'unit_%d.json' % n)
         if not os.path.exists(fn):
@@ -122,6 +175,26 @@ def main():
                 acc = [a for a in (q.get('accepted') or []) if (a or '').strip()]
                 if not any(norm(a) == norm(ans) for a in acc):
                     acc.append(ans)  # la propia respuesta SIEMPRE se acepta
+                # REGLA DE ORO (verificada contra el grader): el corrector NO
+                # ignora los acentos → quien teclea sin ellos acertaría y sería
+                # castigado. Se añade la forma sin acento de cada aceptable.
+                for a in list(acc):
+                    sa = strip_accents(a)
+                    if sa != a and not any(norm(sa) == norm(x) for x in acc):
+                        acc.append(sa)
+                # El grader PERDONA un typo de distancia 1 (verificado: «aux»
+                # acepta «au», «parties» acepta «partis»). Si el propio tema
+                # enseña una forma a 1 edición de la respuesta, el cloze NO
+                # puede discriminar: ese contraste va en multiple_choice.
+                na = norm(ans)
+                if ' ' not in na:
+                    vecinos = sorted(w for w in unit_vocab(d)
+                                     if indel1(na, w) and not any(norm(a) == w for a in acc))
+                    if vecinos:
+                        warns.append(
+                            'U%d quiz %d: poco discriminante — el tema enseña %s, que el '
+                            'grader perdona como typo de "%s" (falso ACIERTO, nunca un falso fallo)'
+                            % (n, i, '/'.join(vecinos[:3]), ans))
                 # dedup preservando orden
                 seen, ded = set(), []
                 for a in acc:
@@ -136,6 +209,10 @@ def main():
             clean.append(d)
 
     print('=== GUARDAS ===')
+    if warns:
+        print('AVISOS (%d) — el ítem se queda corto, pero NUNCA castiga:' % len(warns))
+        for w in warns:
+            print('  ~ ' + w)
     print('temas OK: %d/%d' % (len(clean), TO - FROM + 1))
     if problems:
         print('PROBLEMAS:')

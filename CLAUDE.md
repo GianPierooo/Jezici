@@ -5,6 +5,46 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-20**.
 
+## ESTUDIAR · E-2 FRANCÉS A1+A2 + **DOS FALLOS DEL CORRECTOR DESTAPADOS** ✅ LIVE (mig 182/183 · 2026-07-21)
+Tercer idioma con teoría rica (fr u1-12). Pero lo importante de esta pasada NO es el contenido: al probar el
+grader REAL antes de briefear (regla de la casa) **se destapó que mi propio brief de las tandas de portugués
+era FALSO**, y con él un defecto vivo en producción.
+- **FALLO 1 (mig 182) · el corrector NO ignora los acentos.** Yo había afirmado lo contrario en pt.
+  `jz_normalize` (leída, no supuesta) minusculiza, quita apóstrofos y puntuación, expande contracciones
+  inglesas… y **NO toca los diacríticos**: `jz_grade('está','esta')` → **RECHAZA**. Consecuencia real: **8
+  cloze castigaban a quien teclea sin acentos** (`é`, `está`, `simpática`, `garçom`, `morávamos`,
+  `caríssimo`, `à`) — justo lo que más se escribe en móvil, y la MISMA clase de bug que la causa raíz de
+  retención (mig 177). **Mig 182:** backfill determinista (cero autoría) que añade a cada `accepted` de cada
+  cloze su forma SIN acento; **la guarda lo hace sola** para todo idioma futuro. Verificado contra el grader:
+  **8/8 aceptadas, 0 castigados**.
+- **FALLO 2 · cloze que no puede discriminar.** El grader perdona **inserción/borrado** de una letra en
+  respuesta de una palabra (`aux` acepta `au`; `parties` acepta `partis`; `devrais` acepta `devais`) pero NO
+  la sustitución (`du` NO acepta `de` — verificado). Es decir: **todo contraste que se juegue en una sola
+  letra final (-s, -e, -x) es inevaluable en cloze**. Los revisores lo detectaron como patrón; se convirtió
+  en **guarda determinista** (compara la respuesta con las formas del idioma meta que el propio tema enseña
+  — ejemplos, opciones y lo citado entre «»). 6 ítems franceses pasados a opción múltiple. **Calibración
+  honesta:** el fallo produce un falso ACIERTO, nunca un falso fallo → es un AVISO, no un bloqueo (la regla
+  de oro prefiere ser generoso); quedan **8 avisos en fr, 10+4 en en, 13 en pt**, documentados, sin castigar
+  a nadie.
+- **CONTENIDO fr:** 12 temas, 36 secciones, **48 ejemplos con audio TTS fr (48/48, HEAD 200)**, 36 errores
+  comunes, **60 ítems**. Foco es↔fr: género (le/la), contracciones au/du/aux, partitivo, negación, y falsos
+  amigos (**parents**=padres · **rester**=quedarse · **quitter**=dejar · **large**=ancho · **gêné**=incómodo ·
+  **l'addition**=la cuenta · **la monnaie**=el cambio · **constipé**=estreñido).
+- **Revisión adversarial (3 nativos):** **3 ALTA** — U7 pedía "las DOS palabras de la negación" y el hueco
+  exigía tres piezas (quien obedecía escribía `ne pas` y fallaba); U9 evaluaba la concordancia del participio
+  en un cloze que daba por bueno `partis`; U12 aceptaba `au` por `aux` **y** `aux` por `au`, con lo que el
+  error que la unidad entera combate puntuaba como correcto. **7 media** (U5 "los minutos se suman con et" —
+  falso salvo quart/demie; U9 "la concordancia se escucha" cuando la -e es muda; U9 monter/sortir con avoir;
+  U2 faltaban 8, 9 y 10; U3 los cloze fijaban género pero no persona → `Ton`/`Son` también valían; U1
+  «le professeur» con traducción femenina; U10 dos cloze idénticos). **~10 bajas.**
+- **Verificado:** analyze 0 · test 229/229 · build web OK · **BD 60/60** aceptadas por `jz_grade` · **cliente
+  REAL (`verify_study_e2_fr.py`) TODO VERDE:** fr U1/U12 sirven sesión con clave canónica `text`, audio 8/8,
+  quiz sin exponer respuestas, 60/60 aceptadas, **escribir SIN ACENTOS no castiga**, basura rechazada, no
+  mueve XP/oro, **AISLAMIENTO doble (inglés Y portugués intactos)**, fr C1 → "teoría en camino". Las 4
+  verificaciones previas TODO VERDE.
+- **Cobertura de E-2: en 24/24 · pt 24/24 · fr 12/24.** Quedan fr B1+B2 (u13-24, con tips) y it/de/nl enteros;
+  C1 sin tips en los 6. E-3 (video) fuera.
+
 ## ESTUDIAR · Fase E-2 PORTUGUÉS B1+B2 — pt COMPLETO A1–B2 (2º idioma cerrado) ✅ LIVE (mig 181 · 2026-07-21)
 Cierra el portugués con las **12 unidades B1+B2 (13-24)** → **pt queda COMPLETO A1–B2 (24/24)**, igual que el
 inglés; las 6 de C1 no tienen tips → siguen honestamente en "teoría en camino". Mig 181 = **SOLO DATOS**
