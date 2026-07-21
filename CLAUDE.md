@@ -5,6 +5,44 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-20**.
 
+## ESTUDIAR · Fase E-2 PORTUGUÉS B1+B2 — pt COMPLETO A1–B2 (2º idioma cerrado) ✅ LIVE (mig 181 · 2026-07-21)
+Cierra el portugués con las **12 unidades B1+B2 (13-24)** → **pt queda COMPLETO A1–B2 (24/24)**, igual que el
+inglés; las 6 de C1 no tienen tips → siguen honestamente en "teoría en camino". Mig 181 = **SOLO DATOS**
+(`gen_study_en.py --pt2`). **E-3 (video) fuera.**
+- **CONTENIDO:** 36 secciones, **48 ejemplos con audio TTS pt (48/48, HEAD 200)**, 36 errores comunes,
+  **60 ítems de prueba**. Currículo real de B1/B2 pt: imperfeito · futuro do pretérito · presente do
+  subjuntivo · relativos (que/quem/onde/cujo) · léxico idiomático del imprevisto (quebrou/deu problema/tem
+  jeito/dá para) · comparativos · subjuntivo avanzado + conectores · **futuro do subjuntivo** (el rasgo que
+  el español no tiene) · período hipotético · voz pasiva + participios dobles · discurso indirecto +
+  colocação pronominal · conectores + regência.
+- **CALIDAD — 1 colisión REAL cazada por las guardas + 3 ALTA de la revisión (todo aplicado):**
+  · **GUARDAS:** U14 oponía `falaria` vs **`falaría`** — difieren SOLO en la tilde y el corrector la ignora
+  → el **calco español habría puntuado como CORRECTO**. Ese contraste es **incalificable por diseño** con
+  este grader: se movió al pitfall (donde sí enseña) y el ítem pasó a `falaria/falarei/falava`.
+  · **3 ALTA, todas del patrón "castiga a quien aplica la PROPIA teoría"**: U14 enseña que «podia» también
+  es cortesía y el cloze solo aceptaba `poderia` (+`podia`, y el hint pasó a "-ria"); U19 tenía la principal
+  en **pretérito perfeito** («explicou»), que exige **imperfeito do subjuntivo** → castigaba a quien aplicaba
+  la concordancia de tiempos que enseña U20 (principal reescrita a presente); U21 pedía el futuro do
+  subjuntivo con un verbo **regular homógrafo del infinitivo** (acertar no demostraba nada) → cambiado a
+  `tiver` con frase portadora.
+  · **8 media:** U15 decía que ter/fazer/vir/poder "no salen del eu" cuando SÍ lo hacen (contradecía su
+  sección 1; faltaba `saber→saiba`); U19 "exigen *presente* do subjuntivo sin excepción" (es el MODO, no el
+  tiempo) y metía «desde que» temporal en la lista; U20 derivaba `falar→falarem` y `vir→vierem` (la regla es
+  sobre el **pretérito**: falaram/vieram) y definía el imperfeito como "misma raíz + -sse" (daría *fizersse*);
+  U16 tenía un cloze con **dos huecos** para una respuesta; U17 enseñaba que «romper» sirve para papel (en
+  pt-BR es **rasgar**); U22 marcaba `tinha pago` como error cuando está consolidado en Brasil; U24 usaba
+  «embora ele é cansado» (mezcla ser/estar con el punto real) y presentaba `caso` con imperfecto como patrón.
+  · **~10 bajas** (enunciados en portuñol, `-íeis` de vós, absolutos suavizados, crase enseñada antes de
+  usarla, ejemplo coloquial marcado como habla). **U23 salió impecable** (el revisor no encontró nada).
+- **Verificado:** analyze 0 (CI-exact) · test 229/229 · **auto-chequeo BD 60/60** aceptadas por `jz_grade` ·
+  **cliente REAL (`verify_study_e2_pt_b1b2.py`) TODO VERDE:** pt U13 (B1) y U22 (B2) sirven sesión, clave
+  canónica `text`, audio 8/8 HEAD 200, quiz sin exponer respuestas, **las 60 respuestas correctas se ACEPTAN
+  (0 castigadas)**, MAYÚSCULAS aceptadas, basura rechazada, **no mueve XP ni oro**, **REGRESIÓN pt U1 (tanda
+  A1+A2) intacta**, **AISLAMIENTO: la U1 del inglés sigue sirviendo SU sesión**, pt U25 (C1) → null.
+  Las 2 verificaciones previas (`verify_study_e2_pt.py`, `verify_study_e2_b1b2.py`) TODO VERDE.
+- **Cobertura de E-2 hoy: inglés 24/24 · portugués 24/24 (ambos A1–B2 completos).** Quedan fr/it/de/nl con
+  los tips de E-1, y C1 sin tips en los 6 → autorar desde cero sería otra tanda. E-3 (video) sigue fuera.
+
 ## ESTUDIAR · Fase E-2 PORTUGUÉS A1+A2 — 2º idioma con teoría rica ✅ LIVE (mig 180 · 2026-07-21)
 Réplica del pipeline del inglés para **pt A1+A2 (unidades 1-12)**. Mig 180 = **SOLO DATOS**: la tabla y las
 RPCs de mig 178 son **course-agnósticas POR CONSTRUCCIÓN** (derivan el curso de `v_unit.course_id`, no de un

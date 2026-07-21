@@ -15,6 +15,7 @@ uso: python gen_study_en.py [--no-audio] [--batch2|--pt]
   --batch2 → lee _study_en2/_clean.json (B1+B2, unidades 13-24) y emite la mig
   179 SOLO-DATOS (la tabla y las RPCs ya viven desde mig 178; los upserts son
   idempotentes por (course_id, unit_order) → 0 riesgo para la tanda 1).
+  --pt2    → igual que --pt pero emite la mig 181 (B1+B2, unidades 13-24).
   --pt     → lee _study_pt/_clean.json (A1+A2 de PORTUGUÉS, unidades 1-12), TTS
   con tl=pt y emite la mig 180 SOLO-DATOS. El inglés queda intacto (otro course_id).
 """
@@ -35,7 +36,8 @@ COURSE_PT = '20000000-0000-0000-0000-000000000002'
 NS = uuid.UUID('7b6f2c40-0000-4000-8000-000000000e02')  # namespace E-2
 HERE = os.path.dirname(os.path.abspath(__file__))
 BATCH2 = '--batch2' in sys.argv
-PT = '--pt' in sys.argv
+PT = '--pt' in sys.argv or '--pt2' in sys.argv
+PT2 = '--pt2' in sys.argv
 LANG = 'pt' if PT else 'en'            # clave del ejemplo + tl del TTS
 COURSE = COURSE_PT if PT else COURSE_EN
 DATA_ONLY = BATCH2 or PT               # la tabla y las RPCs viven desde mig 178
@@ -44,7 +46,8 @@ SRC = os.path.join(
     '_clean.json')
 OUT = os.path.normpath(os.path.join(
     HERE, '..', '..', 'supabase', 'migrations',
-    '20260721120180_study_theory_pt.sql' if PT else
+    ('20260721120181_study_theory_pt_b1b2.sql' if PT2
+     else '20260721120180_study_theory_pt.sql') if PT else
     ('20260721120179_study_theory_en_b1b2.sql' if BATCH2
      else '20260721120178_study_theory_en.sql')))
 
