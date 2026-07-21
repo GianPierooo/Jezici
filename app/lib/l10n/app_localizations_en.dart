@@ -3936,4 +3936,73 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get srsPresentCta => 'NOW YOU WRITE IT!';
+
+  @override
+  String get studyTitle => 'Study';
+
+  @override
+  String get studyKicker => 'YOUR THEORY GUIDE';
+
+  @override
+  String get studySubtitle => 'Your course concepts, level by level.';
+
+  @override
+  String studyTopics(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count topics',
+      one: '1 topic',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String studyOpen(int open, int total) {
+    return '$open of $total unlocked';
+  }
+
+  @override
+  String studyConcepts(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count concepts',
+      one: '1 concept',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get studyConceptsHeader => 'Concepts';
+
+  @override
+  String studyLocked(int unit) {
+    return 'Complete unit $unit to unlock';
+  }
+
+  @override
+  String get studyNoTheoryTitle => 'Theory on the way';
+
+  @override
+  String get studyNoTheoryBody =>
+      'This topic doesn\'t have written theory yet. In the meantime you can practise it in your lessons.';
+
+  @override
+  String get studyPracticeCta => 'PRACTISE IT';
+
+  @override
+  String studyUnitProgress(int done, int total) {
+    return '$done of $total lessons';
+  }
+
+  @override
+  String get studyFooterNote => 'Topics unlock as you progress in Learn.';
+
+  @override
+  String get tourStudyTitle => 'Study the theory';
+
+  @override
+  String get tourStudyBody =>
+      'Here are your course concepts, level by level. They unlock as you progress.';
 }

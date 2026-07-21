@@ -8,8 +8,9 @@ import 'package:flutter/widgets.dart';
 class TourKeys {
   TourKeys._();
 
-  /// Los 5 botones del nav inferior: Aprender, Practicar, Conversar, Ligas, Perfil.
-  static final List<GlobalKey> nav = List.generate(5, (_) => GlobalKey());
+  /// Los 6 botones del nav inferior: Aprender, Estudiar, Practicar, Conversar,
+  /// Ligas, Perfil.
+  static final List<GlobalKey> nav = List.generate(6, (_) => GlobalKey());
 
   /// La barra superior del mapa (vidas ❤️ · oro 🪙 · racha 🔥).
   static final GlobalKey topBar = GlobalKey();

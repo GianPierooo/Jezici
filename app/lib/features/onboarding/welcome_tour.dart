@@ -74,10 +74,13 @@ class _WelcomeTourState extends State<WelcomeTour> {
         _TourStep(l.tourWelcomeTitle, l.tourWelcomeBody),
         _TourStep(l.tourMapTitle, l.tourMapBody, TourKeys.topBar),
         _TourStep(l.tourTopbarTitle, l.tourTopbarBody, TourKeys.topBar),
-        _TourStep(l.tourPracticeTitle, l.tourPracticeBody, TourKeys.nav[1]),
-        _TourStep(l.tourConversarTitle, l.tourConversarBody, TourKeys.nav[2]),
-        _TourStep(l.tourLeaguesTitle, l.tourLeaguesBody, TourKeys.nav[3]),
-        _TourStep(l.tourProfileTitle, l.tourProfileBody, TourKeys.nav[4]),
+        // Índices del nav: 0 Aprender · 1 Estudiar · 2 Practicar · 3 Conversar
+        // · 4 Ligas · 5 Perfil (E-1 insertó "Estudiar" en la posición 1).
+        _TourStep(l.tourStudyTitle, l.tourStudyBody, TourKeys.nav[1]),
+        _TourStep(l.tourPracticeTitle, l.tourPracticeBody, TourKeys.nav[2]),
+        _TourStep(l.tourConversarTitle, l.tourConversarBody, TourKeys.nav[3]),
+        _TourStep(l.tourLeaguesTitle, l.tourLeaguesBody, TourKeys.nav[4]),
+        _TourStep(l.tourProfileTitle, l.tourProfileBody, TourKeys.nav[5]),
         _TourStep(l.tourDoneTitle, l.tourDoneBody),
       ];
 

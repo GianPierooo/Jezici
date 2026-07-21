@@ -21,6 +21,7 @@ import '../leagues/leagues_screen.dart';
 import '../learn/learn_map_screen.dart';
 import '../practice/practice_screen.dart';
 import '../profile/profile_screen.dart';
+import '../study/study_screen.dart';
 import 'widgets/bottom_nav.dart';
 
 /// Scaffold raíz: contenido por pestaña (IndexedStack para preservar estado) +
@@ -36,7 +37,9 @@ class HomeShell extends ConsumerStatefulWidget {
 class _HomeShellState extends ConsumerState<HomeShell> with WidgetsBindingObserver {
   int _index = 0;
 
-  static const _sections = ['Aprender', 'Practicar', 'Conversar', 'Ligas', 'Perfil'];
+  static const _sections = [
+    'Aprender', 'Estudiar', 'Practicar', 'Conversar', 'Ligas', 'Perfil',
+  ];
 
   /// Presencia: heartbeat ligero (un UPDATE por PK) para que los amigos vean
   /// "en línea / activo hace X" honesto. Late al abrir, al volver del background
@@ -153,6 +156,7 @@ class _HomeShellState extends ConsumerState<HomeShell> with WidgetsBindingObserv
     ref.watch(activeCourseTargetProvider).whenData(SpeechLang.setFromCourseTarget);
     const screens = <Widget>[
       LearnMapScreen(),
+      StudyScreen(), // E-1: la teoría del curso, junto al camino
       PracticeScreen(),
       ConversarScreen(),
       LeaguesScreen(),

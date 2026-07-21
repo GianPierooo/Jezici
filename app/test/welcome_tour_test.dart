@@ -44,8 +44,8 @@ void main() {
     var finished = false;
     await tester.pumpWidget(app('pt', () => finished = true));
     await tester.pump();
-    // 8 pasos → 7 toques de "Próximo" para llegar al último.
-    for (var i = 0; i < 7; i++) {
+    // 9 pasos (E-1 añadió "Estudiar") → 8 toques de "Próximo" para el último.
+    for (var i = 0; i < 8; i++) {
       await tester.tap(find.text('Próximo'));
       await tester.pump();
     }

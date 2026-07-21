@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../core/theme/app_colors.dart';
 
 /// Barra inferior SOLO ÍCONOS (Estructura_App §1):
-/// Aprender · Practicar · Conversar · Ligas · Perfil. (GA7: Conversar vuelve como
-/// práctica SEGURA en solitario — sin chat con desconocidos ni IA.)
+/// Aprender · Estudiar · Practicar · Conversar · Ligas · Perfil. (GA7: Conversar
+/// vuelve como práctica SEGURA en solitario — sin chat con desconocidos ni IA.
+/// E-1: "Estudiar" entra junto a Aprender — la teoría al lado del camino.)
 class BottomNav extends StatelessWidget {
   const BottomNav({
     super.key,
@@ -21,6 +22,7 @@ class BottomNav extends StatelessWidget {
 
   static const _items = <IconData>[
     Icons.explore_rounded, // Aprender (mapa/viaje)
+    Icons.menu_book_rounded, // Estudiar (teoría del curso)
     Icons.fitness_center_rounded, // Practicar
     Icons.forum_rounded, // Conversar (taste seguro)
     Icons.emoji_events_rounded, // Ligas

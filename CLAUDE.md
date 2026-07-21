@@ -5,6 +5,43 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-20**.
 
+## ESTUDIAR · Fase E-1 — el tab de teoría, navegable y atado al progreso ✅ LIVE (2026-07-20 · solo cliente)
+El MVP del módulo que pidió Gian (`ESTUDIAR_ANALISIS.md` §3 arquitectura + §5 fase E-1). **Cero IA, cero
+migración, cero contenido nuevo** (eso es E-2/E-3): estructura + desbloqueo + mostrar la teoría que YA existe.
+- **TAB "Estudiar"** (icono libro) insertado en la **posición 1**, entre Aprender y Practicar — la teoría al
+  lado del camino. El nav pasa de 5 a **6 pestañas**; `_sections` (analítica), `TourKeys.nav` (5→6) y los
+  índices del tour se corrigieron, **+1 paso de tour** para el tab nuevo. El mapa sigue en 0 (música y
+  `homeTabRequestProvider.request(0)` intactos).
+- **ESTRUCTURA (§3):** Estudiar → **NIVELES** (A1→A2→B1→B2… los que el curso tenga) → **TEMAS** (= las
+  unidades del nivel) → **TEORÍA** del tema. Todo DERIVADO de lo que ya existe: `mapUnitsProvider` (currículo)
+  + `get_reference` (los 192 tips curados, que traen `unit_order`+`cefr_level`) + `lessonProgressProvider`.
+  **`content_tips.unit_order` casa 1:1 con `units.order_index`** en los 6 cursos (verificado en BD) → cada
+  concepto cae en su tema sin inventar mapeo. La teoría se muestra con su ejemplo **tocable (TTS del curso)**.
+- **DESBLOQUEO DERIVADO del progreso REAL (sin gating paralelo):** un tema se abre cuando el usuario **LLEGÓ**
+  a esa unidad en el mapa (alguna lección `available/in_progress/completed/golden` — los MISMOS estados que
+  usa `learn_map_screen._stateFor`). **Dirección elegida** (el análisis la dejaba abierta): abrir al **llegar**,
+  no al terminar — coherente con "enseñar antes de examinar": la teoría del tema que cursas debe estar
+  disponible MIENTRAS lo cursas. Las unidades no alcanzadas salen con **candado + "Completa la unidad N para
+  desbloquear"**. Toda la derivación vive en una función **pura y testeada** (`buildStudyPlan`).
+- **CONEXIÓN estudiar→practicar:** en un tema abierto, CTA **"PRACTÍCALO"** → `LessonPreviewScreen` de la
+  primera lección abierta de esa unidad. **La inversa (mapa → "estudia la teoría de esto") se DIFIERE**: el
+  nodo del mapa tiene su propio flujo de tap y meterse ahí arriesga el gating; el fin de lección YA tiene
+  "Ver más conceptos en tu guía" (E2 previo) que cubre el 80% del caso. Reportado, no fingido.
+- **HUECOS listos para E-2/E-3 (sin construirlos ni prometerlos):** slots documentados en
+  `study_topic_screen` — E-3 (video) antes de los conceptos (hoy **no se pinta nada**: no hay video, no se
+  promete), E-2 (teoría de sesión + prueba) dentro de la sección de conceptos. La navegación nivel→tema→teoría
+  NO habrá que rehacerla. **Estado honesto** si el tema no tiene teoría: "Teoría en camino" con Jezi (real:
+  **24 de 30 unidades** tienen tips en los 6 cursos; C1 aún no).
+- **Verificado:** analyze 0 (CI-exact) · test **227/227** (+8: `study_e1` — agrupación CEFR, teoría atada al
+  tema, alcanzada→abierta, no alcanzada→candado, usuario nuevo sin nada abierto, avance real, tab y candado en
+  UI; tour actualizado) · build web OK. **Cliente REAL (`verify_study_e1.py`) TODO VERDE:** `get_reference` da
+  **72 conceptos** (A1–B2) todos atados a una unidad real (0 huérfanos); usuario nuevo → **1 de 30 temas
+  abierto** (unidad 1, con 3 conceptos), las lejanas bloqueadas; **completar la unidad 1 ABRE el siguiente
+  tema** (1→2) y el avance del tema es 6/6 real. i18n es/en/pt (+13 claves study*/tourStudy*).
+- **Re-encolado:** E-2 (teoría rica + ejemplos + prueba por tema, pipeline de agentes, empezar por inglés),
+  E-3 (video, solo si el módulo demuestra uso), enlace inverso mapa→Estudiar, y valorar consolidar
+  Referencia (vista plana por habilidad, sigue en Practicar) con Estudiar (vista estructurada por nivel).
+
 ## CAUSA RAÍZ DE RETENCIÓN — el SRS ya NO castiga respuestas correctas ✅ LIVE (mig 177 · 2026-07-20)
 El fix de MAYOR impacto en retención del proyecto (`CAUSA_RAIZ_RETENCION.md`). Capturas reales: "hello" para
 hola → MAL ("era: hi"); "thanks" para gracias → MAL ("era: thank you"); "sorry" para disculpa → MAL. **Tres

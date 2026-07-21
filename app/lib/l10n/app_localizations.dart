@@ -6790,6 +6790,96 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'¡AHORA ESCRÍBELA!'**
   String get srsPresentCta;
+
+  /// No description provided for @studyTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Estudiar'**
+  String get studyTitle;
+
+  /// No description provided for @studyKicker.
+  ///
+  /// In es, this message translates to:
+  /// **'TU GUÍA DE TEORÍA'**
+  String get studyKicker;
+
+  /// No description provided for @studySubtitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Los conceptos de tu curso, nivel por nivel.'**
+  String get studySubtitle;
+
+  /// No description provided for @studyTopics.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 tema} other{{count} temas}}'**
+  String studyTopics(int count);
+
+  /// No description provided for @studyOpen.
+  ///
+  /// In es, this message translates to:
+  /// **'{open} de {total} abiertos'**
+  String studyOpen(int open, int total);
+
+  /// No description provided for @studyConcepts.
+  ///
+  /// In es, this message translates to:
+  /// **'{count, plural, =1{1 concepto} other{{count} conceptos}}'**
+  String studyConcepts(int count);
+
+  /// No description provided for @studyConceptsHeader.
+  ///
+  /// In es, this message translates to:
+  /// **'Conceptos'**
+  String get studyConceptsHeader;
+
+  /// No description provided for @studyLocked.
+  ///
+  /// In es, this message translates to:
+  /// **'Completa la unidad {unit} para desbloquear'**
+  String studyLocked(int unit);
+
+  /// No description provided for @studyNoTheoryTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Teoría en camino'**
+  String get studyNoTheoryTitle;
+
+  /// No description provided for @studyNoTheoryBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Este tema todavía no tiene teoría escrita. Mientras tanto puedes practicarlo en tus lecciones.'**
+  String get studyNoTheoryBody;
+
+  /// No description provided for @studyPracticeCta.
+  ///
+  /// In es, this message translates to:
+  /// **'PRACTÍCALO'**
+  String get studyPracticeCta;
+
+  /// No description provided for @studyUnitProgress.
+  ///
+  /// In es, this message translates to:
+  /// **'{done} de {total} lecciones'**
+  String studyUnitProgress(int done, int total);
+
+  /// No description provided for @studyFooterNote.
+  ///
+  /// In es, this message translates to:
+  /// **'Los temas se abren a medida que avanzas en Aprender.'**
+  String get studyFooterNote;
+
+  /// No description provided for @tourStudyTitle.
+  ///
+  /// In es, this message translates to:
+  /// **'Estudia la teoría'**
+  String get tourStudyTitle;
+
+  /// No description provided for @tourStudyBody.
+  ///
+  /// In es, this message translates to:
+  /// **'Aquí tienes los conceptos de tu curso, nivel por nivel. Se abren según avanzas.'**
+  String get tourStudyBody;
 }
 
 class _AppLocalizationsDelegate

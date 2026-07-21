@@ -3940,4 +3940,74 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get srsPresentCta => '¡AHORA ESCRÍBELA!';
+
+  @override
+  String get studyTitle => 'Estudiar';
+
+  @override
+  String get studyKicker => 'TU GUÍA DE TEORÍA';
+
+  @override
+  String get studySubtitle => 'Los conceptos de tu curso, nivel por nivel.';
+
+  @override
+  String studyTopics(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count temas',
+      one: '1 tema',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String studyOpen(int open, int total) {
+    return '$open de $total abiertos';
+  }
+
+  @override
+  String studyConcepts(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count conceptos',
+      one: '1 concepto',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get studyConceptsHeader => 'Conceptos';
+
+  @override
+  String studyLocked(int unit) {
+    return 'Completa la unidad $unit para desbloquear';
+  }
+
+  @override
+  String get studyNoTheoryTitle => 'Teoría en camino';
+
+  @override
+  String get studyNoTheoryBody =>
+      'Este tema todavía no tiene teoría escrita. Mientras tanto puedes practicarlo en tus lecciones.';
+
+  @override
+  String get studyPracticeCta => 'PRACTÍCALO';
+
+  @override
+  String studyUnitProgress(int done, int total) {
+    return '$done de $total lecciones';
+  }
+
+  @override
+  String get studyFooterNote =>
+      'Los temas se abren a medida que avanzas en Aprender.';
+
+  @override
+  String get tourStudyTitle => 'Estudia la teoría';
+
+  @override
+  String get tourStudyBody =>
+      'Aquí tienes los conceptos de tu curso, nivel por nivel. Se abren según avanzas.';
 }
