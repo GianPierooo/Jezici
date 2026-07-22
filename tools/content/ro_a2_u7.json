@@ -1,0 +1,435 @@
+{
+ "unit": {
+  "order": 7,
+  "title_es": "El pasado: lo que hice",
+  "color": "#8E7CF0",
+  "icon": "history"
+ },
+ "checkpoint_desc": "Repasa el perfectul compus con un único auxiliar («a avea»: am, ai, a, am, ați, au), la formación del participio (-at, -ut, -s, -it), los marcadores de tiempo pasado y la negación «n-am / nu am».",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "Perfectul compus: un solo auxiliar"
+  },
+  {
+   "order": 2,
+   "title_es": "Los participios: -at, -ut, -s, -it"
+  },
+  {
+   "order": 3,
+   "title_es": "Ieri, alaltăieri, săptămâna trecută"
+  },
+  {
+   "order": 4,
+   "title_es": "La negación: nu am / n-am mâncat"
+  }
+ ],
+ "vocab": [
+  [
+   "ieri",
+   "ayer",
+   "adverbio"
+  ],
+  [
+   "alaltăieri",
+   "anteayer",
+   "adverbio"
+  ],
+  [
+   "azi-dimineață",
+   "esta mañana",
+   "adverbio"
+  ],
+  [
+   "săptămâna trecută",
+   "la semana pasada",
+   "adverbio"
+  ],
+  [
+   "acum două zile",
+   "hace dos días",
+   "adverbio"
+  ],
+  [
+   "devreme",
+   "temprano",
+   "adverbio"
+  ],
+  [
+   "târziu",
+   "tarde",
+   "adverbio"
+  ],
+  [
+   "a citi",
+   "leer",
+   "verbo"
+  ],
+  [
+   "a scrie",
+   "escribir",
+   "verbo"
+  ],
+  [
+   "a bea",
+   "beber",
+   "verbo"
+  ],
+  [
+   "a vedea",
+   "ver",
+   "verbo"
+  ],
+  [
+   "a veni",
+   "venir",
+   "verbo"
+  ],
+  [
+   "a dormi",
+   "dormir",
+   "verbo"
+  ],
+  [
+   "a face",
+   "hacer",
+   "verbo"
+  ],
+  [
+   "o carte",
+   "el libro",
+   "sustantivo"
+  ],
+  [
+   "un film",
+   "la película",
+   "sustantivo"
+  ],
+  [
+   "aseară",
+   "anoche",
+   "adverbio"
+  ],
+  [
+   "o scrisoare",
+   "la carta",
+   "sustantivo"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "perfect_compus",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada forma del pasado con su traducción.",
+   "pairs": [
+    [
+     "am fost",
+     "(yo) estuve, he estado"
+    ],
+    [
+     "ai plecat",
+     "(tú) te fuiste"
+    ],
+    [
+     "au venit",
+     "(ellos) vinieron"
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "perfect_compus",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Nosotros hemos visto la película.» ¿Cuál es la forma correcta?",
+   "options": [
+    "Noi am văzut filmul.",
+    "Noi ai văzut filmul.",
+    "Noi a văzut filmul."
+   ],
+   "value": "Noi am văzut filmul."
+  },
+  {
+   "lesson": 1,
+   "topic": "perfect_compus",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Am venit acasă târziu.",
+   "options": [
+    "Am venit acasă târziu.",
+    "Am venit acasă devreme.",
+    "Am plecat de acasă târziu."
+   ],
+   "value": "Am venit acasă târziu."
+  },
+  {
+   "lesson": 1,
+   "topic": "perfect_compus",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Ayer trabajé en casa.",
+   "value": "Ieri am lucrat acasă.",
+   "accepted": [
+    "Ieri am lucrat acasă.",
+    "Ieri am lucrat acasă",
+    "Ieri am lucrat acasa.",
+    "Ieri am lucrat acasa",
+    "Am lucrat acasă ieri.",
+    "Am lucrat acasă ieri",
+    "Am lucrat acasa ieri.",
+    "Am lucrat acasa ieri",
+    "Am lucrat ieri acasă.",
+    "Am lucrat ieri acasa",
+    "Eu am lucrat acasă ieri.",
+    "Eu ieri am lucrat acasă.",
+    "Am lucrat ieri acasa.",
+    "Eu am lucrat acasa ieri.",
+    "Eu ieri am lucrat acasa."
+   ],
+   "source": "Ayer trabajé en casa."
+  },
+  {
+   "lesson": 1,
+   "topic": "perfect_compus",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Ieri am fost la magazin și am mâncat acasă."
+  },
+  {
+   "lesson": 2,
+   "topic": "participiu",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "¿Cuál es el participio del verbo «a scrie» (escribir)?",
+   "options": [
+    "scris",
+    "scriit",
+    "scrisut"
+   ],
+   "value": "scris"
+  },
+  {
+   "lesson": 2,
+   "topic": "participiu",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "¿Cuál es el participio del verbo «a vedea» (ver)?",
+   "options": [
+    "văzut",
+    "vedut",
+    "vezut"
+   ],
+   "value": "văzut"
+  },
+  {
+   "lesson": 2,
+   "topic": "participiu",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con el participio de «a bea»: «Ayer bebí un té.»",
+   "text": "Ieri am ___ un ceai.",
+   "value": "băut",
+   "accepted": [
+    "băut",
+    "baut"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "participiu",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Copiii au dormit bine.",
+   "options": [
+    "Copiii au dormit bine.",
+    "Copiii au mâncat bine.",
+    "Copiii au dormit acasă."
+   ],
+   "value": "Copiii au dormit bine."
+  },
+  {
+   "lesson": 2,
+   "topic": "participiu",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Am scris o scrisoare și am citit o carte."
+  },
+  {
+   "lesson": 3,
+   "topic": "marcatori_timp",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada marcador de tiempo con su traducción.",
+   "pairs": [
+    [
+     "ieri",
+     "ayer"
+    ],
+    [
+     "săptămâna trecută",
+     "la semana pasada"
+    ],
+    [
+     "acum două zile",
+     "hace dos días"
+    ]
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "marcatori_timp",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Azi-dimineață am băut o cafea.",
+   "options": [
+    "Azi-dimineață am băut o cafea.",
+    "Azi-dimineață am băut un ceai.",
+    "Ieri am băut o cafea."
+   ],
+   "value": "Azi-dimineață am băut o cafea."
+  },
+  {
+   "lesson": 3,
+   "topic": "marcatori_timp",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con el participio de «a merge»: «Hace dos días fui al mercado.»",
+   "text": "Acum două zile am ___ la piață.",
+   "value": "mers",
+   "accepted": [
+    "mers"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "marcatori_timp",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Anteayer vi una película.",
+   "value": "Alaltăieri am văzut un film.",
+   "accepted": [
+    "Alaltăieri am văzut un film.",
+    "Alaltăieri am văzut un film",
+    "Alaltaieri am vazut un film.",
+    "Alaltaieri am vazut un film",
+    "Am văzut un film alaltăieri.",
+    "Am văzut un film alaltăieri",
+    "Am vazut un film alaltaieri.",
+    "Am vazut un film alaltaieri",
+    "Eu am văzut un film alaltăieri.",
+    "Am văzut alaltăieri un film.",
+    "Am vazut alaltaieri un film.",
+    "Eu am vazut un film alaltaieri."
+   ],
+   "source": "Anteayer vi una película."
+  },
+  {
+   "lesson": 3,
+   "topic": "marcatori_timp",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena para decir «La semana pasada fuimos a Bucarest». Empieza por «Săptămâna».",
+   "value": "Săptămâna trecută am fost la București",
+   "sequence": [
+    "Săptămâna",
+    "trecută",
+    "am",
+    "fost",
+    "la",
+    "București"
+   ],
+   "distractors": [
+    "sunt",
+    "ieri"
+   ],
+   "tiles": [
+    "am",
+    "București",
+    "fost",
+    "ieri",
+    "la",
+    "sunt",
+    "Săptămâna",
+    "trecută"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "negatie_trecut",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«No he dormido bien.» ¿Cuál es la forma correcta?",
+   "options": [
+    "N-am dormit bine.",
+    "Am nu dormit bine.",
+    "Am dormit nu bine."
+   ],
+   "value": "N-am dormit bine."
+  },
+  {
+   "lesson": 4,
+   "topic": "negatie_trecut",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Nu am lucrat ieri.",
+   "options": [
+    "Nu am lucrat ieri.",
+    "Am lucrat ieri.",
+    "Nu am lucrat azi."
+   ],
+   "value": "Nu am lucrat ieri."
+  },
+  {
+   "lesson": 4,
+   "topic": "negatie_trecut",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Ei n-au plecat cu trenul.",
+   "options": [
+    "Ei n-au plecat cu trenul.",
+    "Ei au plecat cu trenul.",
+    "Ei n-au plecat la gară."
+   ],
+   "value": "Ei n-au plecat cu trenul."
+  },
+  {
+   "lesson": 4,
+   "topic": "negatie_trecut",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena las palabras: «No he leído el libro».",
+   "value": "Nu am citit cartea",
+   "sequence": [
+    "Nu",
+    "am",
+    "citit",
+    "cartea"
+   ],
+   "tiles": [
+    "am",
+    "cartea",
+    "citit",
+    "Nu"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "negatie_trecut",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Ce ai făcut ieri? Eu n-am lucrat."
+  }
+ ]
+}

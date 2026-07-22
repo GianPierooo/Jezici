@@ -1,0 +1,429 @@
+{
+ "unit": {
+  "order": 9,
+  "title_es": "De viaje: trenes, aviones y billetes",
+  "color": "#56CCF2",
+  "icon": "train"
+ },
+ "checkpoint_desc": "Repasa el vocabulario de viaje con su género, «cu» + el medio de transporte con el artículo pegado (cu trenul, cu avionul), comprar un billete y preguntar la hora y el andén, y la diferencia entre a pleca (salir) y a sosi/a ajunge (llegar) en pasado y en futuro.",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "En la estación: tren, billete y maleta"
+  },
+  {
+   "order": 2,
+   "title_es": "Voy en tren: «cu trenul», «cu mașina»"
+  },
+  {
+   "order": 3,
+   "title_es": "Comprar el billete y preguntar"
+  },
+  {
+   "order": 4,
+   "title_es": "Salir y llegar: ayer y mañana"
+  }
+ ],
+ "vocab": [
+  [
+   "un tren",
+   "el tren",
+   "sustantivo"
+  ],
+  [
+   "o gară",
+   "la estación (de tren)",
+   "sustantivo"
+  ],
+  [
+   "un peron",
+   "el andén",
+   "sustantivo"
+  ],
+  [
+   "un bilet",
+   "el billete",
+   "sustantivo"
+  ],
+  [
+   "un loc",
+   "el asiento, la plaza",
+   "sustantivo"
+  ],
+  [
+   "un avion",
+   "el avión",
+   "sustantivo"
+  ],
+  [
+   "un aeroport",
+   "el aeropuerto",
+   "sustantivo"
+  ],
+  [
+   "un autobuz",
+   "el autobús",
+   "sustantivo"
+  ],
+  [
+   "o mașină",
+   "el coche",
+   "sustantivo"
+  ],
+  [
+   "o valiză",
+   "la maleta",
+   "sustantivo"
+  ],
+  [
+   "un hotel",
+   "el hotel",
+   "sustantivo"
+  ],
+  [
+   "o rezervare",
+   "la reserva",
+   "sustantivo"
+  ],
+  [
+   "o călătorie",
+   "el viaje",
+   "sustantivo"
+  ],
+  [
+   "o întârziere",
+   "el retraso",
+   "sustantivo"
+  ],
+  [
+   "a pleca",
+   "irse, salir (un tren, un avión)",
+   "verbo"
+  ],
+  [
+   "a sosi",
+   "llegar",
+   "verbo"
+  ],
+  [
+   "a ajunge",
+   "llegar (a un sitio)",
+   "verbo"
+  ],
+  [
+   "a călători",
+   "viajar",
+   "verbo"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "la_gara",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada palabra rumana con su significado.",
+   "pairs": [
+    [
+     "gară",
+     "la estación (de tren)"
+    ],
+    [
+     "bilet",
+     "el billete"
+    ],
+    [
+     "valiză",
+     "la maleta"
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "la_gara",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "¿Qué significa «Valiza mea este în tren»?",
+   "options": [
+    "Mi maleta está en el tren.",
+    "Mi billete está en el tren.",
+    "Mi maleta está en el avión."
+   ],
+   "value": "Mi maleta está en el tren."
+  },
+  {
+   "lesson": 1,
+   "topic": "la_gara",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Biletul este în valiză.",
+   "options": [
+    "Biletul este în valiză.",
+    "Biletul este în gară.",
+    "Valiza este în tren."
+   ],
+   "value": "Biletul este în valiză."
+  },
+  {
+   "lesson": 1,
+   "topic": "la_gara",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con el artículo pegado al final: «Mi maleta está aquí».",
+   "text": "___ mea este aici.",
+   "value": "Valiza",
+   "accepted": [
+    "Valiza",
+    "valiza"
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "la_gara",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Am un bilet și o valiză mare."
+  },
+  {
+   "lesson": 2,
+   "topic": "cu_trenul",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "Completa: «Merg la Brașov ___.» = «Voy a Brașov en tren.»",
+   "options": [
+    "cu trenul",
+    "cu tren",
+    "în trenul"
+   ],
+   "value": "cu trenul"
+  },
+  {
+   "lesson": 2,
+   "topic": "cu_trenul",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Merg la muncă cu autobuzul.",
+   "options": [
+    "Merg la muncă cu autobuzul.",
+    "Merg la muncă cu mașina.",
+    "Merg la muncă cu trenul."
+   ],
+   "value": "Merg la muncă cu autobuzul."
+  },
+  {
+   "lesson": 2,
+   "topic": "cu_trenul",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Am călătorit cu avionul.",
+   "options": [
+    "Am călătorit cu avionul.",
+    "Am călătorit cu trenul.",
+    "Am călătorit cu mașina."
+   ],
+   "value": "Am călătorit cu avionul."
+  },
+  {
+   "lesson": 2,
+   "topic": "cu_trenul",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena empezando por «Ana» para decir «Ana va en autobús».",
+   "value": "Ana merge cu autobuzul",
+   "sequence": [
+    "Ana",
+    "merge",
+    "cu",
+    "autobuzul"
+   ],
+   "distractors": [
+    "autobuz",
+    "trenul"
+   ],
+   "tiles": [
+    "Ana",
+    "autobuz",
+    "autobuzul",
+    "cu",
+    "merge",
+    "trenul"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "cu_trenul",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Viajo en tren.",
+   "source": "Viajo en tren.",
+   "value": "Călătoresc cu trenul.",
+   "accepted": [
+    "Călătoresc cu trenul.",
+    "Calatoresc cu trenul.",
+    "Eu călătoresc cu trenul.",
+    "Eu calatoresc cu trenul.",
+    "Merg cu trenul.",
+    "Eu merg cu trenul."
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "cumpar_bilet",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada frase de la estación con su significado.",
+   "pairs": [
+    [
+     "Un bilet până la Cluj, vă rog.",
+     "Un billete hasta Cluj, por favor."
+    ],
+    [
+     "La ce oră pleacă trenul?",
+     "¿A qué hora sale el tren?"
+    ],
+    [
+     "De la ce peron?",
+     "¿De qué andén?"
+    ]
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "cumpar_bilet",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "Estás en la taquilla y quieres viajar hasta Iași. ¿Qué dices?",
+   "options": [
+    "Un bilet până la Iași, vă rog.",
+    "Un bilet de la Iași, vă rog.",
+    "Un tren până la Iași, vă rog."
+   ],
+   "value": "Un bilet până la Iași, vă rog."
+  },
+  {
+   "lesson": 3,
+   "topic": "cumpar_bilet",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "De la ce peron pleacă trenul?",
+   "options": [
+    "De la ce peron pleacă trenul?",
+    "La ce oră pleacă trenul?",
+    "De la ce peron pleacă autobuzul?"
+   ],
+   "value": "De la ce peron pleacă trenul?"
+  },
+  {
+   "lesson": 4,
+   "topic": "cumpar_bilet",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Ayer el tren llegó con retraso.",
+   "source": "Ayer el tren llegó con retraso.",
+   "value": "Ieri trenul a sosit cu întârziere.",
+   "accepted": [
+    "Ieri trenul a sosit cu întârziere.",
+    "Trenul a sosit ieri cu întârziere.",
+    "Ieri trenul a ajuns cu întârziere.",
+    "Trenul a ajuns ieri cu întârziere.",
+    "Ieri trenul a ajuns cu intarziere.",
+    "Ieri trenul a sosit cu intarziere.",
+    "Trenul a ajuns ieri cu intarziere.",
+    "Trenul a sosit ieri cu intarziere."
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "cumpar_bilet",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Un bilet până la Cluj, vă rog."
+  },
+  {
+   "lesson": 4,
+   "topic": "plecare_sosire",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "¿Qué significa «Trenul pleacă la ora opt»?",
+   "options": [
+    "El tren sale a las ocho.",
+    "El tren llega a las ocho.",
+    "El tren para a las ocho."
+   ],
+   "value": "El tren sale a las ocho."
+  },
+  {
+   "lesson": 4,
+   "topic": "plecare_sosire",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Trenul sosește la ora zece.",
+   "options": [
+    "Trenul sosește la ora zece.",
+    "Trenul pleacă la ora zece.",
+    "Trenul sosește la ora nouă."
+   ],
+   "value": "Trenul sosește la ora zece."
+  },
+  {
+   "lesson": 4,
+   "topic": "plecare_sosire",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa hablando del futuro: «Mañana iré a Cluj en tren.»",
+   "text": "Mâine ___ la Cluj cu trenul.",
+   "value": "o să merg",
+   "accepted": [
+    "o să merg",
+    "am să merg",
+    "voi merge",
+    "o să plec",
+    "am să plec",
+    "voi pleca",
+    "o sa merg",
+    "am sa merg",
+    "o sa plec",
+    "am sa plec"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "plecare_sosire",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena empezando por «Vreau»: «Quiero ir en tren».",
+   "value": "Vreau să merg cu trenul",
+   "sequence": [
+    "Vreau",
+    "să",
+    "merg",
+    "cu",
+    "trenul"
+   ],
+   "tiles": [
+    "cu",
+    "merg",
+    "să",
+    "trenul",
+    "Vreau"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "plecare_sosire",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Trenul pleacă la ora opt și ajunge la zece."
+  }
+ ]
+}

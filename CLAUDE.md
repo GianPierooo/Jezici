@@ -5,6 +5,45 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-22**.
 
+## 🇷🇴 RUMANO **A2** — el curso ro pasa a A1+A2 y el placement ya ubica en A2 ✅ LIVE (mig 195-197 · 2026-07-22)
+Segunda tanda de ro, siguiendo `IDIOMA_NUEVO_PLAYBOOK.md` **al pie de la letra**. La receta funcionó: el
+cableado bajó de ~20 min a **~3** (1 stamp + 1 modo de placement) y **no hizo falta tocar ni una línea de
+lógica** otra vez.
+- **CONSTRUIDO (A2, unidades 7-12):** el curso pasa a **12 unidades · 60 lecciones · 268 ítems · 216
+  palabras · 118 enseñadas (`lesson_vocab`) · 12 checkpoints · 96 audios TTS ro · 28 ítems de placement**.
+  Reparto R36/W36/L30/S18, idéntico al molde. Currículo A2 real: **perfectul compus** (con UN solo
+  auxiliar, `a avea` — el hispanohablante juega con ventaja frente a fr/it, y se le dice) · **viitor**
+  (`o să` coloquial / `voi` formal) y el **conjunctiv con «să»** donde el español usa infinitivo ·
+  **imperfectul** · comparativo `mai … decât` + `cel/cea mai` · **`mă doare` + artículo enclítico**.
+- **`max_level` sube SOLO a A2** — se deriva de `max(units.cefr_level)` en `get_courses`, no se cablea.
+  Lo que sí hubo que sembrar es el **banco de placement A2**: sin él el estimador no puede ubicar en un
+  nivel aunque el contenido exista. Ahora el placement ubica dentro de lo que EXISTE (A1-A2).
+- **CALIDAD — 3 ALTA (frente a 8 en A1) + ~20 media, todo aplicado.** La caída es el resultado medible de
+  meter las 8 lecciones caras de A1 en el brief: **ninguna de las 3 ALTA fue un error de lengua** (los dos
+  revisores nativos coinciden en que el rumano de las 6 unidades es correcto).
+  · **ALTA SISTÉMICO:** U10-U12 eran las **tres únicas** traducciones del curso que **no aceptaban el
+  pronombre sujeto** («Eu am mâncat…»), que es opcional en rumano y que el resto del curso acepta desde
+  a1_u1 (8 de 9 casos). Con 3 caracteres de diferencia el corrector no lo perdona → castigaba a quien
+  acierta. Es el fallo nº1 de A1, repetido en otra forma.
+  · **U7** su `accepted` rechazaba órdenes correctos («Am lucrat **ieri** acasă», con el adverbio en medio).
+  · **U12** rechazaba «mă doare **în gât**» y «am durere în gât», las dos formas más frecuentes.
+  · **~20 media:** el cloze de U7 aceptaba `băută` (con `a avea` el participio NUNCA concuerda — se cambió
+  el objeto a neutro); un reorder de U8 tenía **dos órdenes neutros válidos**; la L4 de U9 prometía pasado
+  y **no lo medía**; **el vocabulario de U11 iba en INGLÉS** (`adjective`/`noun`…) y ese campo se inserta
+  literal en `vocabulary.part_of_speech`; `a plăti` y `un ochi` nacían inertes o duplicados.
+- **Verificado cliente REAL:** `verify_ro_chain.py` extendido a la **CAMINATA A1→A2** — recorre las 12
+  unidades en orden, **12/12 checkpoints aprobados (≥80%)**, 48 lecciones completadas (llegar a la U7
+  PRUEBA que A1 abrió A2), **118 palabras en el SRS** (164 filas de A2) y **0 de otro curso**, 0 cruces
+  entre los 7 cursos. `verify_new_course.py ro`, `verify_chain`, `verify_pt_chain`,
+  `verify_placement_multi` y `verify_estimator` VERDES.
+- **BUG DE HERRAMIENTA CAZADO (afectaba a otros cursos):** `gen_audio_missing.py` con una clave que no
+  está en `GROUPS` caía en `... or list(GROUPS.keys())` → pedir `ro-a2` antes de registrarlo se puso a
+  **regenerar el audio del INGLÉS B2**. Se vio porque el log decía `[en-b2] items: 87`. Ahora una clave
+  desconocida es un **error explícito** con la lista de válidas. (Costó verlo porque `timeout`/background
+  matan el proceso antes del flush de stdout → usar `python -u` en los scripts largos.)
+- **Queda en ro:** B1, B2 y C1 (3 tandas), tips E-1, teoría E-2, historias y el examen de nivel +
+  certificado (exige el nivel completo).
+
 ## 🇷🇴 IDIOMA NUEVO: **RUMANO (es→ro)** — 7º curso, A1 completo ✅ LIVE (mig 191-193 · 2026-07-22)
 El primer idioma añadido desde los pilotos de julio, y la prueba de que la arquitectura aguanta: **no hizo
 falta tocar NADA de lógica** — ni gating, ni economía, ni FSRS, ni certificación. Todo eso es
@@ -2978,9 +3017,10 @@ en B2; andamiaje idéntico listo: STAMP `('pt','c1')=…130`, grupo audio `pt-c1
 
 ## Cola (retome exacto — orden sugerido)
 -6. **IDIOMAS NUEVOS — el proceso ya está escrito: `IDIOMA_NUEVO_PLAYBOOK.md`.** Rumano (es→ro) es el
-   7º curso, con **A1 completo y verificado**. Para completarlo: **A2/B1/B2** (3 tandas con la misma
-   receta, `gen_course.py ro <nivel>`), **C1** (4ª), tips E-1, teoría E-2, historias, y el **examen de
-   nivel + certificado** (que exige el nivel COMPLETO). Para el SIGUIENTE idioma latino (catalán,
+   7º curso, con **A1 y A2 completos y verificados** (2 tandas, la 2ª siguiendo el playbook al pie de
+   la letra: 3 ALTA frente a 8 en la 1ª). Para completarlo: **B1/B2** (2 tandas con la misma receta,
+   `gen_course.py ro <nivel>`), **C1** (3ª), tips E-1, teoría E-2, historias, y el **examen de nivel +
+   certificado** (que exige el nivel COMPLETO). Para el SIGUIENTE idioma latino (catalán,
    polaco, sueco…): seguir el playbook — la factura medida es **1 nivel por tanda**. Los idiomas de
    **otro alfabeto (ruso/japonés/árabe) NO entran en esta receta**: el corrector, la entrada de texto y
    el modelo de 4 habilidades asumen alfabeto latino → es un proyecto de plataforma, con su análisis

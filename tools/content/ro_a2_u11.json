@@ -1,0 +1,429 @@
+{
+ "unit": {
+  "order": 11,
+  "title_es": "Personas y descripciones",
+  "color": "#F2994A",
+  "icon": "person"
+ },
+ "checkpoint_desc": "Repasa el imperfecto (eram, aveam, mergeam), cuándo usarlo en lugar del perfecto compuesto y los adjetivos de carácter y de físico con su concordancia.",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "Cómo era: el imperfecto"
+  },
+  {
+   "order": 2,
+   "title_es": "Antes y ayer: dos pasados"
+  },
+  {
+   "order": 3,
+   "title_es": "Alto, bajo, simpático"
+  },
+  {
+   "order": 4,
+   "title_es": "Cum era? Describir a alguien"
+  }
+ ],
+ "vocab": [
+  [
+   "înalt",
+   "alto (de estatura)",
+   "adjetivo"
+  ],
+  [
+   "scund",
+   "bajo (de estatura)",
+   "adjetivo"
+  ],
+  [
+   "slab",
+   "delgado",
+   "adjetivo"
+  ],
+  [
+   "harnic",
+   "trabajador",
+   "adjetivo"
+  ],
+  [
+   "leneș",
+   "perezoso",
+   "adjetivo"
+  ],
+  [
+   "prietenos",
+   "amable, sociable",
+   "adjetivo"
+  ],
+  [
+   "timid",
+   "tímido",
+   "adjetivo"
+  ],
+  [
+   "blond",
+   "rubio",
+   "adjetivo"
+  ],
+  [
+   "o barbă",
+   "una barba",
+   "sustantivo"
+  ],
+  [
+   "un păr",
+   "el pelo",
+   "sustantivo"
+  ],
+  [
+   "un copil",
+   "un niño, un hijo",
+   "sustantivo"
+  ],
+  [
+   "o bunică",
+   "una abuela",
+   "sustantivo"
+  ],
+  [
+   "un vecin",
+   "un vecino",
+   "sustantivo"
+  ],
+  [
+   "un sat",
+   "un pueblo",
+   "sustantivo"
+  ],
+  [
+   "a arăta",
+   "tener aspecto, verse",
+   "verbo"
+  ],
+  [
+   "a locui",
+   "vivir, residir",
+   "verbo"
+  ],
+  [
+   "mereu",
+   "siempre",
+   "adverbio"
+  ],
+  [
+   "des",
+   "a menudo",
+   "adverbio"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "imperfect-forme",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Când ___ mic, mă jucam în parc.» Elige la forma correcta:",
+   "options": [
+    "eram",
+    "sunt",
+    "am fost"
+   ],
+   "value": "eram"
+  },
+  {
+   "lesson": 1,
+   "topic": "imperfect-persoana",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Noi ___ la mare în fiecare vară, când eram copii.» Elige la forma correcta:",
+   "options": [
+    "mergeam",
+    "mergeați",
+    "mergeau"
+   ],
+   "value": "mergeam"
+  },
+  {
+   "lesson": 1,
+   "topic": "imperfect-verbe",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada verbo con su traducción.",
+   "pairs": [
+    [
+     "aveam",
+     "(yo) tenía"
+    ],
+    [
+     "mergeam",
+     "iba / íbamos"
+    ],
+    [
+     "făceam",
+     "(yo) hacía"
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "descriere-caracter",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Bunicul meu era foarte harnic.",
+   "options": [
+    "Bunicul meu era foarte harnic.",
+    "Bunicul meu era foarte leneș.",
+    "Bunicul meu era foarte timid."
+   ],
+   "value": "Bunicul meu era foarte harnic."
+  },
+  {
+   "lesson": 1,
+   "topic": "imperfect-obisnuinta",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Când eram copil, locuiam la țară.",
+   "options": [
+    "Când eram copil, locuiam la țară.",
+    "Când eram copil, locuiam la oraș.",
+    "Când eram student, locuiam la țară."
+   ],
+   "value": "Când eram copil, locuiam la țară."
+  },
+  {
+   "lesson": 2,
+   "topic": "imperfect-vs-perfect",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "¿Cuál de estas frases habla de una costumbre del pasado?",
+   "options": [
+    "În fiecare vară mergeam la munte.",
+    "Vara trecută am mers o dată la munte.",
+    "Mâine o să merg la munte."
+   ],
+   "value": "În fiecare vară mergeam la munte."
+  },
+  {
+   "lesson": 2,
+   "topic": "imperfect-obisnuinta",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con la forma correcta del verbo «a merge»:",
+   "text": "Când eram mic, ___ des la bunici.",
+   "value": "mergeam",
+   "accepted": [
+    "mergeam"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "perfect-punctual",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con la forma correcta del verbo «a vedea»:",
+   "text": "Aseară ___ un film foarte bun la televizor.",
+   "value": "am văzut",
+   "accepted": [
+    "am văzut",
+    "am vazut"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "perfect-punctual",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Ieri am mers la piață cu mama.",
+   "options": [
+    "Ieri am mers la piață cu mama.",
+    "Ieri am mers la piață cu tata.",
+    "Ieri am mers la spital cu mama."
+   ],
+   "value": "Ieri am mers la piață cu mama."
+  },
+  {
+   "lesson": 2,
+   "topic": "imperfect-descriere",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Cuando era niño, vivía en un pueblo.",
+   "value": "Când eram copil, locuiam într-un sat.",
+   "accepted": [
+    "Când eram copil, locuiam într-un sat.",
+    "Când eram copil locuiam într-un sat",
+    "Locuiam într-un sat când eram copil.",
+    "Când eram mic, locuiam într-un sat.",
+    "Cand eram copil locuiam intr-un sat",
+    "Cand eram copil, locuiam intr-un sat.",
+    "Cand eram mic, locuiam intr-un sat.",
+    "Locuiam intr-un sat cand eram copil.",
+    "Când eram copil, locuiam la sat.",
+    "Cand eram copil, locuiam la sat.",
+    "Când eram copil, eu locuiam într-un sat.",
+    "Cand eram copil, eu locuiam intr-un sat."
+   ],
+   "source": "Cuando era niño, vivía en un pueblo."
+  },
+  {
+   "lesson": 3,
+   "topic": "adjective-fizic",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Sora mea era foarte ___.» Elige la forma correcta:",
+   "options": [
+    "înaltă",
+    "înalt",
+    "înalți"
+   ],
+   "value": "înaltă"
+  },
+  {
+   "lesson": 3,
+   "topic": "adjective-caracter",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada adjetivo con su significado.",
+   "pairs": [
+    [
+     "harnic",
+     "trabajador"
+    ],
+    [
+     "prietenos",
+     "amable, sociable"
+    ],
+    [
+     "leneș",
+     "perezoso"
+    ]
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "descriere-fizic",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena para decir «Mi hermano era alto y delgado» (empieza por «Fratele»).",
+   "value": "Fratele meu era înalt și slab.",
+   "sequence": [
+    "Fratele",
+    "meu",
+    "era",
+    "înalt",
+    "și",
+    "slab."
+   ],
+   "distractors": [
+    "înaltă",
+    "erau"
+   ],
+   "tiles": [
+    "era",
+    "erau",
+    "Fratele",
+    "meu",
+    "slab.",
+    "înalt",
+    "înaltă",
+    "și"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "imperfect-descriere",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena las palabras (empieza por «Când»): «Cuando era pequeña, vivía en Bucarest».",
+   "value": "Când eram mică, locuiam în București.",
+   "sequence": [
+    "Când",
+    "eram",
+    "mică,",
+    "locuiam",
+    "în",
+    "București."
+   ],
+   "tiles": [
+    "București.",
+    "Când",
+    "eram",
+    "locuiam",
+    "mică,",
+    "în"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "descriere-fizic",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Ea are ochii verzi și părul lung.",
+   "options": [
+    "Ea are ochii verzi și părul lung.",
+    "Ea are ochii albaștri și părul lung.",
+    "Ea are ochii verzi și părul scurt."
+   ],
+   "value": "Ea are ochii verzi și părul lung."
+  },
+  {
+   "lesson": 4,
+   "topic": "descriere-persoane",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Mi profesora era alta y muy simpática.",
+   "value": "Profesoara mea era înaltă și foarte simpatică.",
+   "accepted": [
+    "Profesoara mea era înaltă și foarte simpatică.",
+    "Profesoara mea era înaltă și foarte drăguță.",
+    "Profesoara mea era foarte inalta si simpatica.",
+    "Profesoara mea era inalta si foarte draguta.",
+    "Profesoara mea era inalta si foarte simpatica."
+   ],
+   "source": "Mi profesora era alta y muy simpática."
+  },
+  {
+   "lesson": 4,
+   "topic": "cum-arata",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Cum arăta prietenul tău?",
+   "options": [
+    "Cum arăta prietenul tău?",
+    "Cum arăta vecinul tău?",
+    "Cum arăta fratele tău?"
+   ],
+   "value": "Cum arăta prietenul tău?"
+  },
+  {
+   "lesson": 4,
+   "topic": "imperfect-obisnuinta",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Când eram mic, mergeam la bunici în fiecare vară."
+  },
+  {
+   "lesson": 4,
+   "topic": "descriere-persoane",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Bunica mea era înaltă, blondă și foarte prietenoasă."
+  },
+  {
+   "lesson": 4,
+   "topic": "cum-era",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Cum era profesorul tău preferat?"
+  }
+ ]
+}

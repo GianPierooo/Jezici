@@ -25,6 +25,7 @@ COURSE_NL = "20000000-0000-0000-0000-000000000006"
 COURSE_RO = "20000000-0000-0000-0000-000000000007"
 GROUPS = {
     "ro-a1": (COURSE_RO, "A1", "ro"),
+    "ro-a2": (COURSE_RO, "A2", "ro"),
     "en-b1": (COURSE_EN, "B1", "en"),
     "en-b2": (COURSE_EN, "B2", "en"),
     "en-c1": (COURSE_EN, "C1", "en"),
@@ -111,7 +112,15 @@ def do_group(key):
     return (ok, len(rows))
 
 def main():
-    keys = [a for a in sys.argv[1:] if a in GROUPS] or list(GROUPS.keys())
+    pedidas = sys.argv[1:]
+    desconocidas = [a for a in pedidas if a not in GROUPS]
+    if desconocidas:
+        # Antes esto caia en "regenera TODOS los grupos" en silencio: pedir una
+        # clave con un typo (p.ej. un nivel que aun no esta en GROUPS) reescribia
+        # el audio de OTROS cursos. Ahora es un error explicito.
+        raise SystemExit('grupo(s) desconocido(s): %s | validos: %s'
+                         % (', '.join(desconocidas), ', '.join(sorted(GROUPS))))
+    keys = pedidas or list(GROUPS.keys())
     tot_ok = tot = 0
     for k in keys:
         o, n = do_group(k)

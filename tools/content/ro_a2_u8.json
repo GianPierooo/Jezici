@@ -1,0 +1,434 @@
+{
+ "unit": {
+  "order": 8,
+  "title_es": "Planes y futuro",
+  "color": "#2D9CDB",
+  "icon": "event"
+ },
+ "checkpoint_desc": "Repasa el conjunctiv con «să» después de a vrea, a putea, a trebui y a spera, y las tres formas del futuro (o să merg, voi merge, am să merg) con mâine, poimâine, săptămâna viitoare y anul viitor.",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "Vreau să merg: el «să» obligatorio"
+  },
+  {
+   "order": 2,
+   "title_es": "Mâine, poimâine: planes con «o să»"
+  },
+  {
+   "order": 3,
+   "title_es": "«Voi merge»: el futuro formal"
+  },
+  {
+   "order": 4,
+   "title_es": "La semana y el año que viene"
+  }
+ ],
+ "vocab": [
+  [
+   "mâine",
+   "mañana",
+   "adverbio"
+  ],
+  [
+   "poimâine",
+   "pasado mañana",
+   "adverbio"
+  ],
+  [
+   "diseară",
+   "esta noche",
+   "adverbio"
+  ],
+  [
+   "acasă",
+   "en casa, a casa",
+   "adverbio"
+  ],
+  [
+   "viitor / viitoare",
+   "próximo, que viene (m./f.)",
+   "adjetivo"
+  ],
+  [
+   "o săptămână",
+   "una semana",
+   "sustantivo"
+  ],
+  [
+   "un an",
+   "un año",
+   "sustantivo"
+  ],
+  [
+   "un plan",
+   "un plan",
+   "sustantivo"
+  ],
+  [
+   "o piață",
+   "un mercado; una plaza",
+   "sustantivo"
+  ],
+  [
+   "a vrea",
+   "querer",
+   "verbo"
+  ],
+  [
+   "a putea",
+   "poder",
+   "verbo"
+  ],
+  [
+   "a trebui",
+   "tener que, deber",
+   "verbo"
+  ],
+  [
+   "a spera",
+   "esperar (tener esperanza)",
+   "verbo"
+  ],
+  [
+   "a pleca",
+   "irse, marcharse",
+   "verbo"
+  ],
+  [
+   "a învăța",
+   "aprender",
+   "verbo"
+  ],
+  [
+   "a vizita",
+   "visitar",
+   "verbo"
+  ],
+  [
+   "a ajuta",
+   "ayudar",
+   "verbo"
+  ],
+  [
+   "a sta",
+   "quedarse, estar",
+   "verbo"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "conjunctiv_cu_sa",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada verbo rumano con su significado.",
+   "pairs": [
+    [
+     "a vrea",
+     "querer"
+    ],
+    [
+     "a putea",
+     "poder"
+    ],
+    [
+     "a spera",
+     "esperar (tener esperanza)"
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "conjunctiv_cu_sa",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa para decir «Quiero ir a Cluj mañana».",
+   "text": "Vreau ___ merg la Cluj mâine.",
+   "value": "să",
+   "accepted": [
+    "să",
+    "sa"
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "conjunctiv_cu_sa",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Tengo que irme ahora.",
+   "source": "Tengo que irme ahora.",
+   "value": "Trebuie să plec acum.",
+   "accepted": [
+    "Trebuie să plec acum.",
+    "Trebuie sa plec acum.",
+    "Acum trebuie să plec.",
+    "Acum trebuie sa plec.",
+    "Eu trebuie să plec acum.",
+    "Eu trebuie sa plec acum."
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "conjunctiv_cu_sa",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Pot să te ajut?",
+   "options": [
+    "Pot să te ajut?",
+    "Vreau să te ajut.",
+    "Trebuie să te ajut."
+   ],
+   "value": "Pot să te ajut?"
+  },
+  {
+   "lesson": 1,
+   "topic": "conjunctiv_cu_sa",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Vreau să învăț limba română."
+  },
+  {
+   "lesson": 2,
+   "topic": "o_sa_maine",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "¿Cómo se dice «Mañana voy a salir a las ocho»?",
+   "options": [
+    "Mâine o să plec la ora opt.",
+    "Mâine o plec la ora opt.",
+    "Mâine să plec la ora opt."
+   ],
+   "value": "Mâine o să plec la ora opt."
+  },
+  {
+   "lesson": 2,
+   "topic": "o_sa_maine",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Poimâine o să vină Ana.",
+   "options": [
+    "Poimâine o să vină Ana.",
+    "Poimâine o să plece Ana.",
+    "Poimâine o să lucreze Ana."
+   ],
+   "value": "Poimâine o să vină Ana."
+  },
+  {
+   "lesson": 2,
+   "topic": "o_sa_maine",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Diseară o să stau acasă.",
+   "options": [
+    "Diseară o să stau acasă.",
+    "Diseară o să merg la cinema.",
+    "Diseară o să mănânc la restaurant."
+   ],
+   "value": "Diseară o să stau acasă."
+  },
+  {
+   "lesson": 2,
+   "topic": "o_sa_maine",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena empezando por «Poimâine» para decir «Pasado mañana vamos a comer en casa».",
+   "value": "Poimâine o să mâncăm acasă.",
+   "sequence": [
+    "Poimâine",
+    "o",
+    "să",
+    "mâncăm",
+    "acasă"
+   ],
+   "distractors": [
+    "voi",
+    "mâine"
+   ],
+   "tiles": [
+    "acasă",
+    "mâine",
+    "mâncăm",
+    "o",
+    "Poimâine",
+    "să",
+    "voi"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "o_sa_maine",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Mañana voy a ir al mercado.",
+   "source": "Mañana voy a ir al mercado.",
+   "value": "Mâine o să merg la piață.",
+   "accepted": [
+    "Mâine o să merg la piață.",
+    "Maine o sa merg la piata.",
+    "Mâine voi merge la piață.",
+    "Maine voi merge la piata.",
+    "Mâine am să merg la piață.",
+    "Maine am sa merg la piata.",
+    "O să merg mâine la piață.",
+    "O sa merg maine la piata.",
+    "Voi merge mâine la piață.",
+    "Am să merg mâine la piață.",
+    "Am sa merg maine la piata.",
+    "Voi merge maine la piata."
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "viitor_voi_merge",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada forma rumana con su traducción.",
+   "pairs": [
+    [
+     "voi lucra",
+     "trabajaré"
+    ],
+    [
+     "vei veni",
+     "vendrás"
+    ],
+    [
+     "va pleca",
+     "se irá"
+    ]
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "viitor_voi_merge",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«O să mergem la teatru» escrito en registro formal es…",
+   "options": [
+    "Vom merge la teatru.",
+    "Vor merge la teatru.",
+    "Va merge la teatru."
+   ],
+   "value": "Vom merge la teatru."
+  },
+  {
+   "lesson": 3,
+   "topic": "viitor_voi_merge",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Am să scriu un mesaj» significa…",
+   "options": [
+    "Voy a escribir un mensaje.",
+    "He escrito un mensaje.",
+    "Tengo que escribir un mensaje."
+   ],
+   "value": "Voy a escribir un mensaje."
+  },
+  {
+   "lesson": 3,
+   "topic": "viitor_voi_merge",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Vom pleca la ora nouă.",
+   "options": [
+    "Vom pleca la ora nouă.",
+    "Vom pleca la ora zece.",
+    "Vom mânca la ora nouă."
+   ],
+   "value": "Vom pleca la ora nouă."
+  },
+  {
+   "lesson": 3,
+   "topic": "viitor_voi_merge",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Mâine voi lucra, dar diseară voi fi acasă."
+  },
+  {
+   "lesson": 4,
+   "topic": "planuri_saptamana_viitoare",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Săptămâna viitoare» significa…",
+   "options": [
+    "la semana que viene",
+    "la semana pasada",
+    "toda la semana"
+   ],
+   "value": "la semana que viene"
+  },
+  {
+   "lesson": 4,
+   "topic": "planuri_saptamana_viitoare",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa para decir «El año que viene voy a trabajar en Bucarest».",
+   "text": "Anul viitor ___ la București.",
+   "value": "o să lucrez",
+   "accepted": [
+    "o să lucrez",
+    "o sa lucrez",
+    "voi lucra",
+    "am să lucrez",
+    "am sa lucrez"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "planuri_saptamana_viitoare",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Anul viitor o să învăț limba română.",
+   "options": [
+    "Anul viitor o să învăț limba română.",
+    "Anul viitor o să vizitez România.",
+    "Anul viitor o să lucrez în România."
+   ],
+   "value": "Anul viitor o să învăț limba română."
+  },
+  {
+   "lesson": 4,
+   "topic": "planuri_saptamana_viitoare",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena empezando por «Sper» y terminando en «România»: «Espero ir a Rumanía la semana que viene».",
+   "value": "Sper să merg în România săptămâna viitoare.",
+   "sequence": [
+    "Sper",
+    "să",
+    "merg",
+    "în",
+    "România",
+    "săptămâna",
+    "viitoare"
+   ],
+   "tiles": [
+    "în",
+    "merg",
+    "România",
+    "să",
+    "săptămâna",
+    "Sper",
+    "viitoare"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "planuri_saptamana_viitoare",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Anul viitor o să merg în România cu prietenii."
+  }
+ ]
+}

@@ -1,0 +1,426 @@
+{
+ "unit": {
+  "order": 12,
+  "title_es": "Salud, cuerpo y consejos",
+  "color": "#27AE60",
+  "icon": "healing"
+ },
+ "checkpoint_desc": "Repasa las partes del cuerpo con su género, decir qué te duele con «mă doare» y «mă dor» + el artículo pegado, contar los síntomas y dar consejos con «trebuie să» y «ar trebui să».",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "Partes del cuerpo"
+  },
+  {
+   "order": 2,
+   "title_es": "Mă doare, mă dor"
+  },
+  {
+   "order": 3,
+   "title_es": "Síntomas: febră, gripă, răcit"
+  },
+  {
+   "order": 4,
+   "title_es": "Consejos y consejos del médico"
+  }
+ ],
+ "vocab": [
+  [
+   "un cap",
+   "la cabeza",
+   "sustantivo"
+  ],
+  [
+   "un gât",
+   "la garganta; el cuello",
+   "sustantivo"
+  ],
+  [
+   "o mână (pl. mâinile)",
+   "la mano",
+   "sustantivo"
+  ],
+  [
+   "un picior (pl. picioarele)",
+   "la pierna, el pie",
+   "sustantivo"
+  ],
+  [
+   "un spate",
+   "la espalda",
+   "sustantivo"
+  ],
+  [
+   "un stomac",
+   "el estómago",
+   "sustantivo"
+  ],
+  [
+   "un dinte (pl. dinții)",
+   "el diente",
+   "sustantivo"
+  ],
+  [
+   "un ochi (pl. ochii)",
+   "el ojo",
+   "sustantivo"
+  ],
+  [
+   "a durea",
+   "doler",
+   "verbo"
+  ],
+  [
+   "o febră",
+   "la fiebre",
+   "sustantivo"
+  ],
+  [
+   "o gripă",
+   "la gripe",
+   "sustantivo"
+  ],
+  [
+   "răcit, răcită",
+   "resfriado, acatarrado",
+   "adjetivo"
+  ],
+  [
+   "a tuși",
+   "toser",
+   "verbo"
+  ],
+  [
+   "a trebui",
+   "tener que, deber",
+   "verbo"
+  ],
+  [
+   "a se odihni",
+   "descansar",
+   "verbo"
+  ],
+  [
+   "un doctor",
+   "el médico, el doctor",
+   "sustantivo"
+  ],
+  [
+   "o rețetă",
+   "la receta médica",
+   "sustantivo"
+  ],
+  [
+   "un medicament",
+   "el medicamento",
+   "sustantivo"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "parti_corp",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada parte del cuerpo con su traducción.",
+   "pairs": [
+    [
+     "un cap",
+     "una cabeza"
+    ],
+    [
+     "o mână",
+     "una mano"
+    ],
+    [
+     "un picior",
+     "una pierna, un pie"
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "parti_corp",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "¿Cuál es la forma correcta de «un diente»?",
+   "options": [
+    "un dinte",
+    "o dinte",
+    "un dinți"
+   ],
+   "value": "un dinte"
+  },
+  {
+   "lesson": 1,
+   "topic": "parti_corp",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Mă spăl pe mâini.",
+   "options": [
+    "Mă spăl pe mâini.",
+    "Mă spăl pe dinți.",
+    "Mă spăl pe față."
+   ],
+   "value": "Mă spăl pe mâini."
+  },
+  {
+   "lesson": 1,
+   "topic": "parti_corp",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Tengo dos ojos y dos manos.",
+   "value": "Am doi ochi și două mâini.",
+   "accepted": [
+    "Am doi ochi și două mâini.",
+    "Am doi ochi și două mâini",
+    "Am doi ochi si doua maini.",
+    "Am doi ochi si doua maini",
+    "Eu am doi ochi și două mâini.",
+    "Eu am doi ochi si doua maini."
+   ],
+   "source": "Tengo dos ojos y dos manos."
+  },
+  {
+   "lesson": 1,
+   "topic": "parti_corp",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Mă spăl pe dinți dimineața și seara."
+  },
+  {
+   "lesson": 2,
+   "topic": "ma_doare",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada frase con su traducción.",
+   "pairs": [
+    [
+     "Mă doare gâtul.",
+     "Me duele la garganta."
+    ],
+    [
+     "Mă doare spatele.",
+     "Me duele la espalda."
+    ],
+    [
+     "Mă dor ochii.",
+     "Me duelen los ojos."
+    ]
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "ma_doare",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Me duelen las manos». ¿Cuál es la forma correcta?",
+   "options": [
+    "Mă dor mâinile.",
+    "Mă doare mâinile.",
+    "Mă dor mâna."
+   ],
+   "value": "Mă dor mâinile."
+  },
+  {
+   "lesson": 2,
+   "topic": "ma_doare",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Mă doare stomacul.",
+   "options": [
+    "Mă doare stomacul.",
+    "Mă doare spatele.",
+    "Mă dor picioarele."
+   ],
+   "value": "Mă doare stomacul."
+  },
+  {
+   "lesson": 2,
+   "topic": "ma_doare",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa: «Me duele la cabeza.»",
+   "text": "Mă doare ___.",
+   "value": "capul",
+   "accepted": [
+    "capul"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "ma_doare",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Mă doare gâtul și mă dor picioarele."
+  },
+  {
+   "lesson": 3,
+   "topic": "simptome",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "Una mujer dice «Estoy resfriada». ¿Cuál es la forma correcta?",
+   "options": [
+    "Sunt răcită.",
+    "Sunt răcit.",
+    "Sunt răceală."
+   ],
+   "value": "Sunt răcită."
+  },
+  {
+   "lesson": 3,
+   "topic": "simptome",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Am gripă și mă doare capul.",
+   "options": [
+    "Am gripă și mă doare capul.",
+    "Am gripă și mă doare gâtul.",
+    "Am febră și mă doare capul."
+   ],
+   "value": "Am gripă și mă doare capul."
+  },
+  {
+   "lesson": 3,
+   "topic": "simptome",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Sunt răcită de trei zile.",
+   "options": [
+    "Sunt răcită de trei zile.",
+    "Sunt răcit de o săptămână.",
+    "Am gripă de trei zile."
+   ],
+   "value": "Sunt răcită de trei zile."
+  },
+  {
+   "lesson": 3,
+   "topic": "simptome",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena para decir «Tengo fiebre y toso». Empieza por «Am».",
+   "value": "Am febră și tușesc",
+   "sequence": [
+    "Am",
+    "febră",
+    "și",
+    "tușesc"
+   ],
+   "distractors": [
+    "tușești",
+    "gripă"
+   ],
+   "tiles": [
+    "Am",
+    "febră",
+    "gripă",
+    "tușesc",
+    "tușești",
+    "și"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "simptome",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Toso y me duele la garganta.",
+   "value": "Tușesc și mă doare gâtul.",
+   "accepted": [
+    "Tușesc și mă doare gâtul.",
+    "Tușesc și mă doare gâtul",
+    "Tusesc si ma doare gatul.",
+    "Tusesc si ma doare gatul",
+    "Tușesc și mă doare în gât.",
+    "Tușesc și am durere în gât.",
+    "Eu tușesc și mă doare în gât.",
+    "Eu tușesc și mă doare gâtul.",
+    "Eu tusesc si ma doare gatul.",
+    "Eu tusesc si ma doare in gat.",
+    "Tusesc si am durere in gat.",
+    "Tusesc si ma doare in gat."
+   ],
+   "source": "Toso y me duele la garganta."
+  },
+  {
+   "lesson": 4,
+   "topic": "sfaturi_doctor",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Tienes que descansar». ¿Cuál es la forma correcta?",
+   "options": [
+    "Trebuie să te odihnești.",
+    "Trebuie te odihnești.",
+    "Trebuie să te odihnesc."
+   ],
+   "value": "Trebuie să te odihnești."
+  },
+  {
+   "lesson": 4,
+   "topic": "sfaturi_doctor",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Trebuie să iei un medicament.",
+   "options": [
+    "Trebuie să iei un medicament.",
+    "Trebuie să bei un ceai.",
+    "Ar trebui să mergi la farmacie."
+   ],
+   "value": "Trebuie să iei un medicament."
+  },
+  {
+   "lesson": 4,
+   "topic": "sfaturi_doctor",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa: «El médico escribe una receta.»",
+   "text": "Doctorul scrie o ___.",
+   "value": "rețetă",
+   "accepted": [
+    "rețetă",
+    "reteta"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "sfaturi_doctor",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena las palabras: «Deberías ir al médico». Empieza por «Ar».",
+   "value": "Ar trebui să mergi la doctor",
+   "sequence": [
+    "Ar",
+    "trebui",
+    "să",
+    "mergi",
+    "la",
+    "doctor"
+   ],
+   "tiles": [
+    "Ar",
+    "doctor",
+    "la",
+    "mergi",
+    "să",
+    "trebui"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "sfaturi_doctor",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Ar trebui să bei ceai cald și să te odihnești."
+  }
+ ]
+}

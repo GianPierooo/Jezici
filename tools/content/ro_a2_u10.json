@@ -1,0 +1,429 @@
+{
+ "unit": {
+  "order": 10,
+  "title_es": "Comer fuera y comprar",
+  "color": "#EB5757",
+  "icon": "shopping_bag"
+ },
+ "checkpoint_desc": "Repasa el comparativo «mai … decât», el superlativo «cel mai / cea mai» con su concordancia, el vocabulario del restaurante y de las compras (Cât costă?, a proba, o mărime) y las cantidades mult / puțin / destul / prea.",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "En el restaurante: qué nos recomienda"
+  },
+  {
+   "order": 2,
+   "title_es": "Comparar: mai … decât"
+  },
+  {
+   "order": 3,
+   "title_es": "El superlativo: cel mai / cea mai"
+  },
+  {
+   "order": 4,
+   "title_es": "De compras: Cât costă? y a proba"
+  }
+ ],
+ "vocab": [
+  [
+   "o gustare",
+   "un entrante",
+   "sustantivo"
+  ],
+  [
+   "un fel principal",
+   "un plato principal",
+   "sustantivo"
+  ],
+  [
+   "un desert",
+   "un postre",
+   "sustantivo"
+  ],
+  [
+   "o rochie",
+   "un vestido",
+   "sustantivo"
+  ],
+  [
+   "o mărime",
+   "una talla",
+   "sustantivo"
+  ],
+  [
+   "a recomanda",
+   "recomendar",
+   "verbo"
+  ],
+  [
+   "a costa",
+   "costar",
+   "verbo"
+  ],
+  [
+   "a plăti",
+   "pagar",
+   "verbo"
+  ],
+  [
+   "a proba",
+   "probarse (una prenda)",
+   "verbo"
+  ],
+  [
+   "scump",
+   "caro",
+   "adjetivo"
+  ],
+  [
+   "ieftin",
+   "barato",
+   "adjetivo"
+  ],
+  [
+   "mai",
+   "más (marca el comparativo)",
+   "adverbio"
+  ],
+  [
+   "decât",
+   "que (en la comparación)",
+   "conjuncion"
+  ],
+  [
+   "cel mai / cea mai",
+   "el/la más",
+   "articulo"
+  ],
+  [
+   "prea",
+   "demasiado",
+   "adverbio"
+  ],
+  [
+   "destul",
+   "bastante, suficiente",
+   "adverbio"
+  ],
+  [
+   "mult, multă",
+   "mucho/-a",
+   "adjetivo"
+  ],
+  [
+   "puțin",
+   "poco",
+   "adverbio"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "la_restaurant",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada expresión rumana con su traducción.",
+   "pairs": [
+    [
+     "o gustare",
+     "un entrante"
+    ],
+    [
+     "un fel principal",
+     "un plato principal"
+    ],
+    [
+     "a plăti",
+     "pagar"
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "la_restaurant",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "Estás en un restaurante con un amigo y le preguntas al camarero, tratándolo de usted: «¿Qué nos recomienda?». ¿Cuál es la forma correcta?",
+   "options": [
+    "Ce ne recomandați?",
+    "Ce ne recomanzi?",
+    "Ce vă recomandați?"
+   ],
+   "value": "Ce ne recomandați?"
+  },
+  {
+   "lesson": 1,
+   "topic": "la_restaurant",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Ca fel principal, aș vrea pește.",
+   "options": [
+    "Ca fel principal, aș vrea pește.",
+    "Ca fel principal, aș vrea pui.",
+    "Ca gustare, aș vrea o salată."
+   ],
+   "value": "Ca fel principal, aș vrea pește."
+  },
+  {
+   "lesson": 1,
+   "topic": "la_restaurant",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "He comido bastante, gracias.",
+   "value": "Am mâncat destul, mulțumesc.",
+   "accepted": [
+    "Am mâncat destul, mulțumesc.",
+    "Am mâncat destul, mulțumesc",
+    "Am mancat destul, multumesc.",
+    "Am mancat destul, multumesc",
+    "Am mâncat destul. Mulțumesc.",
+    "Am mancat destul. Multumesc.",
+    "Am mâncat suficient, mulțumesc.",
+    "Am mancat suficient, multumesc.",
+    "Am mâncat suficient, mulțumesc",
+    "Am mancat suficient, multumesc",
+    "Am mâncat destul, eu mulțumesc.",
+    "Am mancat destul, eu multumesc."
+   ],
+   "source": "He comido bastante, gracias."
+  },
+  {
+   "lesson": 1,
+   "topic": "la_restaurant",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Ca desert, aș vrea o înghețată."
+  },
+  {
+   "lesson": 2,
+   "topic": "comparativ",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "Quieres decir «El restaurante nuevo es más barato que este». ¿Cuál es la forma correcta?",
+   "options": [
+    "Restaurantul nou este mai ieftin decât acesta.",
+    "Restaurantul nou este mai ieftină decât acesta.",
+    "Restaurantul nou este ieftin mai decât acesta."
+   ],
+   "value": "Restaurantul nou este mai ieftin decât acesta."
+  },
+  {
+   "lesson": 2,
+   "topic": "comparativ",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Cafeaua este mai ieftină decât berea.",
+   "options": [
+    "Cafeaua este mai ieftină decât berea.",
+    "Cafeaua este mai scumpă decât berea.",
+    "Cafeaua este mai ieftină decât vinul."
+   ],
+   "value": "Cafeaua este mai ieftină decât berea."
+  },
+  {
+   "lesson": 2,
+   "topic": "comparativ",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Andrei mănâncă mai mult decât mine.",
+   "options": [
+    "Andrei mănâncă mai mult decât mine.",
+    "Andrei mănâncă mai puțin decât mine.",
+    "Maria mănâncă mai mult decât mine."
+   ],
+   "value": "Andrei mănâncă mai mult decât mine."
+  },
+  {
+   "lesson": 2,
+   "topic": "comparativ",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa: «El vino es más caro que la cerveza».",
+   "text": "Vinul este ___ scump decât berea.",
+   "value": "mai",
+   "accepted": [
+    "mai"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "comparativ",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena para decir «El té es más barato que el café».",
+   "value": "Ceaiul este mai ieftin decât cafeaua.",
+   "sequence": [
+    "Ceaiul",
+    "este",
+    "mai",
+    "ieftin",
+    "decât",
+    "cafeaua"
+   ],
+   "distractors": [
+    "ieftină",
+    "scump"
+   ],
+   "tiles": [
+    "cafeaua",
+    "Ceaiul",
+    "decât",
+    "este",
+    "ieftin",
+    "ieftină",
+    "mai",
+    "scump"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "superlativ",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada superlativo rumano con su traducción.",
+   "pairs": [
+    [
+     "cel mai bun",
+     "el mejor"
+    ],
+    [
+     "cea mai bună",
+     "la mejor"
+    ],
+    [
+     "cel mai ieftin",
+     "el más barato"
+    ]
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "superlativ",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "Quieres decir «Es la mejor sopa de la ciudad». ¿Cuál es la forma correcta?",
+   "options": [
+    "Este cea mai bună supă din oraș.",
+    "Este cel mai bună supă din oraș.",
+    "Este cea mai bun supă din oraș."
+   ],
+   "value": "Este cea mai bună supă din oraș."
+  },
+  {
+   "lesson": 3,
+   "topic": "superlativ",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Acesta este cel mai bun restaurant din oraș.",
+   "options": [
+    "Acesta este cel mai bun restaurant din oraș.",
+    "Acesta este cel mai scump restaurant din oraș.",
+    "Aceasta este cea mai bună cafenea din oraș."
+   ],
+   "value": "Acesta este cel mai bun restaurant din oraș."
+  },
+  {
+   "lesson": 3,
+   "topic": "superlativ",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa el superlativo: «Aquí está el mejor café de la ciudad».",
+   "text": "Aici este ___ mai bună cafea din oraș.",
+   "value": "cea",
+   "accepted": [
+    "cea"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "superlativ",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Care este cel mai bun desert?"
+  },
+  {
+   "lesson": 4,
+   "topic": "cumparaturi",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "En una tienda oyes «Plata cu cardul, vă rog». ¿Qué significa aquí «plata»?",
+   "options": [
+    "el pago",
+    "la plata (el metal)",
+    "el plato"
+   ],
+   "value": "el pago"
+  },
+  {
+   "lesson": 4,
+   "topic": "cumparaturi",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Cât costă rochia aceasta?",
+   "options": [
+    "Cât costă rochia aceasta?",
+    "Cât costă pantofii aceștia?",
+    "Aveți și o mărime mai mare?"
+   ],
+   "value": "Cât costă rochia aceasta?"
+  },
+  {
+   "lesson": 4,
+   "topic": "cumparaturi",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Es demasiado caro.",
+   "value": "Este prea scump.",
+   "accepted": [
+    "Este prea scump.",
+    "Este prea scump",
+    "E prea scump.",
+    "E prea scump",
+    "Este prea scump!",
+    "E prea scump!"
+   ],
+   "source": "Es demasiado caro."
+  },
+  {
+   "lesson": 4,
+   "topic": "cumparaturi",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena las palabras empezando por «Aveți»: «¿Tienen también una talla más grande?».",
+   "value": "Aveți și o mărime mai mare?",
+   "sequence": [
+    "Aveți",
+    "și",
+    "o",
+    "mărime",
+    "mai",
+    "mare"
+   ],
+   "tiles": [
+    "Aveți",
+    "mai",
+    "mare",
+    "mărime",
+    "o",
+    "și"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "cumparaturi",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Pot să probez rochia aceasta, vă rog?"
+  }
+ ]
+}

@@ -18,14 +18,14 @@ en una lista cerrada en vez de un agujero. Cada fila es una pieza que existe en 
 |---|---|---|---|---|
 | 1 | Fila de idioma | `languages` | la emite `gen_course.py` | ✅ |
 | 2 | Fila de curso | `courses` (source es → target) | la emite `gen_course.py` | ✅ |
-| 3 | Unidades | `units` (6 por nivel CEFR) | `gen_course.py` desde los JSON | ✅ 6 (A1) |
-| 4 | Lecciones + checkpoint | `lessons` (4 `lesson` + 1 `checkpoint` por unidad) | íd. | ✅ 30 |
-| 5 | Ítems de ejercicio | `content_items` (9 tipos) + `lesson_items` | íd. | ✅ 134 |
-| 6 | Exámenes de checkpoint | `exams` type=`checkpoint` (1 por unidad) | íd. | ✅ 6 |
-| 7 | Vocabulario | `vocabulary` (word, translation, `frequency_rank`, pos) | íd., desde el bloque `vocab` | ✅ 108 |
-| 8 | **Vínculo léxico** | `lesson_vocab` | migración que re-deriva la lógica de mig 165 | ✅ 198 filas / 74 palabras |
-| 9 | Audio TTS | Supabase Storage `audio/items/<id>.mp3` | `gen_audio_missing.py <code>-<lvl>` | ✅ 48/48 |
-| 10 | Banco de placement | `content_items` tag `placement` | `gen_placement_multi.py <code>` | ✅ 14 (A1) |
+| 3 | Unidades | `units` (6 por nivel CEFR) | `gen_course.py` desde los JSON | ✅ 12 (A1+A2) |
+| 4 | Lecciones + checkpoint | `lessons` (4 `lesson` + 1 `checkpoint` por unidad) | íd. | ✅ 60 |
+| 5 | Ítems de ejercicio | `content_items` (9 tipos) + `lesson_items` | íd. | ✅ 268 |
+| 6 | Exámenes de checkpoint | `exams` type=`checkpoint` (1 por unidad) | íd. | ✅ 12 |
+| 7 | Vocabulario | `vocabulary` (word, translation, `frequency_rank`, pos) | íd., desde el bloque `vocab` | ✅ 216 |
+| 8 | **Vínculo léxico** | `lesson_vocab` | migración que re-deriva la lógica de mig 165 | ✅ 118 palabras enseñadas |
+| 9 | Audio TTS | Supabase Storage `audio/items/<id>.mp3` | `gen_audio_missing.py <code>-<lvl>` | ✅ 96/96 |
+| 10 | Banco de placement | `content_items` tag `placement` | `gen_placement_multi.py <code>` | ✅ 28 (A1+A2) |
 | 11 | Bandera | `course_models.dart` `flag` | 1 línea | ✅ 🇷🇴 |
 | 12 | TTS/reconocedor | `speech_lang.dart` | 1 `case` (tts + stt) | ✅ ro-RO |
 | 13 | Nombre del idioma en la UI | `learn_lang_names.dart` + 3 `.arb` | 1 clave ×3 | ✅ |
@@ -110,7 +110,7 @@ sale como **AVISO**, no como bloqueo: el fallo produce un falso *acierto*, nunca
 
 | Fase | Coste |
 |---|---|
-| PASO 0 (mapear la anatomía en BD) | ~15 min |
+| PASO 0 (mapear la anatomía en BD) | ~15 min · **en la 2ª tanda, ~2 min** (esta tabla ya existe) |
 | Cableado de código (6 archivos, ~20 líneas) | ~20 min |
 | 6 agentes autores en paralelo | ~7 min de reloj |
 | Guarda + normalización | 1 pasada, 11 arreglos automáticos |
@@ -118,9 +118,22 @@ sale como **AVISO**, no como bloqueo: el fallo produce un falso *acierto*, nunca
 | Generar + aplicar + audio (48 clips) | ~5 min |
 | Verificación de cliente real | ~4 min |
 
-**Un nivel (A1, 6 unidades, 120 ítems, 48 audios) cabe holgadamente en una tanda.**
+**Un nivel (6 unidades, 120 ítems, 48 audios) cabe holgadamente en una tanda.**
 Extrapolación honesta: **A1→B2 son 4 tandas** (una por nivel) y **C1 una quinta**; la
 teoría E-2 (24 temas) es **otra tanda entera** por idioma, medida en las 6 anteriores.
+
+### La 2ª tanda (ro A2) confirmó la receta — y estos son sus números
+
+| Fase | A1 | **A2** |
+|---|---|---|
+| Cableado de código | ~20 min (6 archivos) | **~3 min** (1 stamp + 1 modo de placement) |
+| Autores en paralelo | ~7 min | ~10 min (las unidades A2 son más densas) |
+| Revisión adversarial | ~6 min | ~13 min |
+| Hallazgos ALTA | 8 | **3** (el brief ya llevaba las 8 lecciones de A1) |
+| Verificación | ~4 min | ~6 min (la caminata A1→A2 recorre 60 lecciones) |
+
+**Lo que se transfiere de verdad entre tandas es el BRIEF.** Meter en él las 8 lecciones caras
+de A1 (con nombre y ejemplo) bajó los ALTA de 8 a 3 — y ninguno de los 3 era un error de lengua.
 
 ---
 
@@ -130,9 +143,18 @@ teoría E-2 (24 temas) es **otra tanda entera** por idioma, medida en las 6 ante
    (translation) y `tiles` (word_bank/reorder); el brief pedía `text` y `sequence`. Un
    autor lo detectó solo, los otros no. **Solución permanente:** `guard_course.py`
    normaliza — el brief no tiene que conocer el esquema interno.
-2. **`active` en `get_courses` no significa "habilitado"**, sino "es el curso activo de
+2. **`max_level` NO se cablea:** sale de `max(units.cefr_level)` en `get_courses`. Sembrar las
+   unidades A2 subió el techo solo. Lo que SÍ hay que sembrar es el **banco de placement del nivel
+   nuevo** — sin él el estimador no puede ubicar ahí aunque el contenido exista.
+3. **`active` en `get_courses` no significa "habilitado"**, sino "es el curso activo de
    este usuario". Un verificador que lo asuma da un rojo falso en un curso recién creado.
-3. **`lesson_vocab` no lo crea el generador.** Sin esa migración las palabras quedan
+5. **`gen_audio_missing.py <clave-desconocida>` regeneraba TODOS los grupos EN SILENCIO.**
+   Pedir `ro-a2` antes de registrarlo en `GROUPS` hacía `... or list(GROUPS.keys())` → se puso a
+   reescribir el audio del **inglés B2**. Detectado porque el log decía `[en-b2] items: 87`.
+   **Arreglado:** ahora una clave desconocida es un error explícito con la lista de válidas.
+   *(Y el motivo de que costara verlo: `timeout`/background matan el proceso antes del flush de
+   stdout — usa `python -u` para ver el progreso de los scripts largos.)*
+6. **`lesson_vocab` no lo crea el generador.** Sin esa migración las palabras quedan
    **inertes**: existen en `vocabulary` pero `complete_lesson` no las inscribe en el SRS,
    así que el usuario nunca las repasa. Es la pieza que más fácil se olvida.
 

@@ -33,6 +33,22 @@ BANKS = {
 # NO debe ofrecer ubicar mas arriba (techo honesto, como pt en su dia con B1).
 # NINGUN contraste se juega solo en un diacritico: la guarda los normaliza.
 'ro': {
+'A2': [
+ ('w', 'Ieri ___ mers la piață.', ['am', 'ai', 'are'], 'am'),
+ ('w', 'Vreau ___ merg acasă.', ['să', 'de', 'că'], 'să'),
+ ('w', 'Când eram mic, ___ la bunici în fiecare vară.', ['mergeam', 'merg', 'voi merge'], 'mergeam'),
+ ('w', 'Cafeaua este mai scumpă ___ ceaiul.', ['decât', 'ca', 'de'], 'decât'),
+ ('w', 'Am venit ___ trenul.', ['cu', 'în', 'la'], 'cu'),
+ ('w', 'Mă doare ___ de ieri.', ['capul', 'cap', 'capului'], 'capul'),
+ ('w', 'Ea ___ profesoară acum zece ani.', ['era', 'este', 'sunt'], 'era'),
+ ('r', '«Am plecat» significa:', ['Me fui', 'Me voy', 'Me iré'], 'Me fui'),
+ ('r', '¿Cómo dices «mañana voy a trabajar»?', ['Mâine o să lucrez.', 'Mâine lucrat.', 'Mâine să lucrez am.'], 'Mâine o să lucrez.'),
+ ('r', '«Mai ieftin decât» significa:', ['Más barato que', 'Muy barato', 'El más barato'], 'Más barato que'),
+ ('r', '«Când eram copil» significa:', ['Cuando era niño', 'Cuando fui niño una vez', 'Cuando sea niño'], 'Cuando era niño'),
+ ('r', 'Quieres decir «tengo que irme». ¿Cuál es correcta?', ['Trebuie să plec.', 'Trebuie plec.', 'Trebuie de plec.'], 'Trebuie să plec.'),
+ ('r', '«Mă doare gâtul» significa:', ['Me duele la garganta', 'Me duele la cabeza', 'Tengo fiebre'], 'Me duele la garganta'),
+ ('r', '«Cel mai bun» significa:', ['El mejor', 'Mejor que', 'Bastante bueno'], 'El mejor'),
+],
 'A1': [
  ('w', 'Eu ___ student.', ['sunt', 'este', 'suntem'], 'sunt'),
  ('w', 'Tu ___ din Spania?', ['ești', 'sunt', 'suntem'], 'ești'),
@@ -350,7 +366,19 @@ def main():
     # Modo: sin arg = A1/A2 → mig 110 (histórico, ya aplicado). 'hi' = B1/B2 → mig nueva
     # (los cursos fr/it/de/nl ya llegan a B2; ampliar el techo del placement a su nivel real).
     mode = sys.argv[1] if len(sys.argv) > 1 else 'a1a2'
-    if mode == 'ro':
+    if mode == 'ro2':
+        EMIT = {'A2'}
+        OUT_NAME = '20260722120196_placement_bank_ro_a2.sql'
+        HEADER = [
+            "-- 20260722120196_placement_bank_ro_a2.sql",
+            "-- Amplia el banco de PLACEMENT del curso es->ro a A2, que es el nivel que",
+            "-- el curso acaba de ganar (mig 195). Sin esto el estimador no podia ubicar",
+            "-- por encima de A1 aunque el contenido ya existiera. reading=MC (exacto),",
+            "-- writing=cloze con la guarda anti-colision (normaliza los diacriticos ro).",
+            "-- placement_next(p_course) es course-scoped -> sembrar el banco ES el cableado.",
+            "",
+        ]
+    elif mode == 'ro':
         EMIT = {'A1'}
         OUT_NAME = '20260722120192_placement_bank_ro.sql'
         HEADER = [
@@ -390,7 +418,7 @@ def main():
     rows = []
     counts = {}
     for lang, levels in BANKS.items():
-        if (mode == 'ro') != (lang == 'ro'):
+        if (mode in ('ro', 'ro2')) != (lang == 'ro'):
             continue          # cada migracion siembra SOLO su(s) curso(s)
         cid = COURSES[lang]
         for lvl, items in levels.items():

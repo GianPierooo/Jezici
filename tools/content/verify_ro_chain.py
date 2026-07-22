@@ -46,8 +46,8 @@ def main():
     # "el curso está habilitado" — un usuario nuevo aún no tiene el rumano activo.
     check(len(ro) == 1, 'get_courses OFRECE rumano a un usuario nuevo',
           ro[0].get('target_name') if ro else None)
-    check(ro and ro[0].get('max_level') == 'A1',
-          'techo HONESTO: max_level=A1 (es el único nivel sembrado)',
+    check(ro and ro[0].get('max_level') == 'A2',
+          'max_level=A2 (el techo sube solo al sembrar unidades A2)',
           ro[0].get('max_level') if ro else None)
     V.rpc(tok, 'set_active_course', {'p_course_id': RO})
     ro2 = [c for c in V.rpc(tok, 'get_courses', {}) if c.get('target') == 'ro']
@@ -71,7 +71,8 @@ def main():
         "select id from content_items where course_id='%s' and tags @> array['placement'];" % RO)}
     check(vistos and vistos <= banco,
           'el placement sirve SOLO ítems del banco RUMANO', '%d ítems' % len(vistos))
-    check(nivel == 'A1', 'el placement NO puede ubicar por encima de A1 (techo honesto)', nivel)
+    check(nivel in ('A1', 'A2'),
+          'el placement ubica dentro de lo que EXISTE (A1-A2), nunca por encima', nivel)
 
     # ── 3 · plan + primera lección: economía y progreso REALES ──
     V.rpc(tok, 'create_plan', {
@@ -95,6 +96,46 @@ def main():
           'completar una lección A1 de rumano PAGA XP y oro',
           'xp=%s oro=%s' % (r.get('xp_earned'), r.get('gold_earned')))
     check(r.get('next_lesson_id'), 'el mapa avanza: devuelve next_lesson_id')
+
+    # ── 3b · CAMINATA A1 -> A2: completa las 12 unidades EN ORDEN. El gating es
+    #        por cadena, asi que llegar a la unidad 7 (A2) PRUEBA que A1 abrio A2.
+    unidades = I.run("""select u.id, u.order_index o, u.cefr_level lv from units u
+                         where u.course_id='%s' order by u.order_index;""" % RO)
+    lecciones_ok, chk_ok, a2_visto = 0, 0, False
+    for un in unidades:
+        les = I.run("""select l.id, l.type from lessons l where l.unit_id='%s'
+                        order by l.order_index;""" % un['id'])
+        for le in les:
+            its = I.run("""select li.item_id id, ci.correct_answer->>'value' v
+                             from lesson_items li join content_items ci on ci.id=li.item_id
+                            where li.lesson_id='%s'
+                              and jsonb_typeof(ci.correct_answer->'value')='string'
+                            order by li.order_index;""" % le['id'])
+            ans = [{'item_id': i['id'], 'answer': i['v']} for i in its]
+            if le['type'] == 'checkpoint':
+                # `submit_checkpoint` toma la LECCION directamente (no hay start).
+                sub = V.rpc(tok, 'submit_checkpoint', {
+                    'p_lesson_id': le['id'], 'p_answers': ans, 'p_time_taken_sec': 60})
+                if sub.get('passed'):
+                    chk_ok += 1
+            else:
+                r2 = V.rpc(tok, 'complete_lesson', {'p_lesson_id': le['id'], 'p_answers': ans})
+                if r2.get('ok') is not False:
+                    lecciones_ok += 1
+                if un['lv'] == 'A2':
+                    a2_visto = True
+    check(chk_ok == 12, 'los 12 checkpoints (A1+A2) se APRUEBAN (>=80%%)', '%d/12' % chk_ok)
+    check(a2_visto and lecciones_ok >= 48,
+          'CAMINA A1 -> A2: el gating abre la unidad 7 al terminar A1',
+          '%d lecciones completadas' % lecciones_ok)
+    a2srs = I.run("""select count(*) n from user_vocab_srs s
+                       join vocabulary v on v.id=s.vocab_id
+                       join lesson_vocab lv on lv.vocab_id=v.id
+                       join lessons l on l.id=lv.lesson_id
+                       join units u on u.id=l.unit_id
+                      where s.user_id='%s' and u.course_id='%s' and u.cefr_level='A2';"""
+                  % (uid, RO))[0]['n']
+    check(a2srs > 0, 'las palabras de A2 tambien entran al SRS', '%d' % a2srs)
 
     # ── 4 · las palabras del rumano ENTRAN al SRS (si no, serían inertes) ──
     srs = I.run("""select count(*) n from user_vocab_srs s join vocabulary v on v.id=s.vocab_id
