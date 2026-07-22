@@ -3,7 +3,86 @@
 > Contexto de arranque para cualquier sesión. **No** es copia de los 21 `.md` de
 > diseño (eso es la carpeta raíz `Jezici_*.md` + `docs/`). Aquí va el ESTADO REAL,
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
-> Última actualización: **2026-07-21**.
+> Última actualización: **2026-07-22**.
+
+## ESTUDIAR · E-2 NEERLANDÉS A1–B2 → **E-2 COMPLETO EN LOS 6 IDIOMAS** ✅ LIVE (mig 190 · 2026-07-22)
+Las 24 unidades en UNA tanda. Con esto **en, pt, fr, de, it y nl los SEIS con 24/24 temas** (verificado en
+BD: `study_theory` = 24 por curso). Mig 190 = SOLO DATOS. C1 (0 tips) sigue en "teoría en camino".
+- **CONTENIDO:** 72 secciones, **96 ejemplos con audio TTS nl (96/96, HEAD 200)**, 72 errores comunes,
+  **120 ítems**. Foco nl: **de/het** como parte de la palabra (diminutivo→siempre het, plural→siempre de) ·
+  **orden de palabras** (V2, verbo al final en subordinada, la «tang») · **verbos separables** (opbellen →
+  ik bel op; om je **op te bellen**) · ’t kofschip · falsos amigos (*de baan*=empleo · *bellen*=llamar ·
+  *de room*=nata · *slim*=listo · *de vertraging*=retraso).
+- **EL NEERLANDÉS EXPUSO SU PROPIO LÍMITE DEL CORRECTOR:** la **‑t de la 2ª/3ª persona** (`ik werk`/`jij
+  werkt`) y con ella el famoso **dt-fout** (`word`/`wordt`) son **INEVALUABLES en cloze** — el grader
+  perdona añadir o quitar una letra. Igual la duplicación de vocal (`maak`/`mak`) y `één`/`een`. Todo eso
+  se instruyó a los 24 autores desde el brief → los contrastes nacieron ya en opción múltiple.
+- **UN FALLO SISTÉMICO DE MI PIPELINE, cazado por un revisor (no por las guardas):** la flecha `→` quedó
+  corrompida como « da » en el `body` de **5 unidades** (el alumno leía «zus da zussen»); los `bullets` se
+  salvaron. Corregido determinista en las 9 apariciones.
+- **CALIDAD — 3 ALTA + ~18 media (todo aplicado):**
+  · **U7 (la peor):** el **’t kofschip estaba mal formulado** — decía mirar «la forma de ik», y aplicándolo
+    el alumno escribe ***geleeft** (es *geleefd*), ***gereist** (es *gereisd*) y ***verhuist**… que es
+    justo el verbo del quiz de la U8. La regla mira el INFINITIVO sin ‑en. Es el único hallazgo que
+    **rompía producción de lengua**.
+  · **U9:** los **dos** cloze centrales no medían el tema — el enunciado regalaba el criterio («fíjate: hay
+    un destino»), que es EXACTAMENTE la destreza de la unidad (detectar el destino → elegir el auxiliar).
+  · **U22:** el distractor colocaba «echter» **igual de bien** que la respuesta (su único defecto era el
+    pleonasmo *maar+echter*, que es estilo, no colocación — y la colocación es lo que preguntaba).
+  · **~18 media:** absolutos que la propia unidad desmiente («con *de* siempre ‑e» vs *de gesloten deur*;
+    «movimiento → zijn» vs *ik **heb** gefietst*; «hebben/el verbo ocupa SIEMPRE la 2ª posición» vs sus
+    propios «Heb je…?» y «Zal ik…?»; «nacionalidad = idioma» vs *Peruaans*/*Spaans*); **U19 rechazaba
+    «heeft», que su propia sección 2 autoriza** (el retroceso temporal NO es obligatorio en neerlandés);
+    U17 no enseñaba el desdoblamiento `er … op` que su propio ejemplo exige; U4 «broodje **met** kaas» no
+    es como se pide; U5 la regla de los minutos producía ***twintig over drie**.
+  · **U6, U11 y U24 sin ningún hallazgo de gravedad.**
+- **Verificado:** analyze 0 · test 235/235 · build web OK · **BD 120/120** aceptadas por `jz_grade` ·
+  **cliente REAL (`verify_study_e2_nl.py`) TODO VERDE:** nl U1/U7/U13/U22 (los 4 niveles) sirven sesión,
+  audio 16/16, quiz sin exponer respuestas, 120/120 aceptadas, MAYÚSCULAS aceptadas, basura rechazada, no
+  mueve XP/oro, **AISLAMIENTO QUÍNTUPLE (en, pt, fr, de, it)**, nl C1 → null. Las 5 verificaciones previas
+  TODO VERDE. **Honesto:** el chequeo de "sin diacríticos" se salta en nl (ninguna respuesta lleva
+  diacríticos — no aplica, no es que pase).
+- **Cobertura de E-2: los 6 cursos 24/24.** Solo quedan las 6 de C1 de cada idioma (sin tips → autoría
+  desde cero). E-3 (vídeo) sigue fuera.
+
+## ESTUDIAR · enlace inverso mapa→Estudiar (lo que E-1 difirió) ✅ LIVE (2026-07-22 · solo cliente)
+E-1 lo dejó fuera porque el nodo del mapa tiene su propio flujo de tap y tocarlo arriesgaba el gating. El
+punto de entrada elegido es la **preview de lección** (`LessonPreviewScreen`), que **ya es un destino
+aparte**: se llega tras el tap del nodo, así que el enlace **no toca ni el tap ni el gating**.
+- Enlace **secundario** (`TextButton`, bajo el CTA "EMPEZAR" que no se mueve) → `StudyTopicScreen(unitId:
+  lesson.unitId)`. Cierra el loop en las dos direcciones: Estudiar ya tenía "PRACTÍCALO" → lección.
+- **Nunca es un botón muerto:** solo se pinta si la unidad de esa lección es un tema **ABIERTO** del
+  `studyPlanProvider`. Además evita el único modo de fallo de la pantalla destino (si el tema no está en el
+  plan, `StudyTopicScreen` se queda cargando). Como el desbloqueo de Estudiar se deriva del MISMO progreso
+  del mapa, en la práctica siempre está abierto cuando vienes de ahí.
+- **Verificado:** +2 tests (`study_map_link_test`: la lección de una unidad alcanzada ofrece la teoría y
+  conserva su CTA; la de una unidad no alcanzada no pinta enlace). i18n es/en/pt (+1 clave).
+
+## ERRORES TIPADOS · 4ª PASADA — las RPC de PLAN y LECCIÓN ✅ LIVE (mig 189 · 2026-07-22)
+Lo que la 3ª pasada re-encoló. Patrón de mig 167/175: **cuerpo VERBATIM**, el único cambio es
+`raise exception '<texto>'` → `perform jz_err('<texto>','<kind>')`.
+- **5 RPC migradas, 7 raises:** `create_plan` (auth required→JZ401 · no active course→JZ404),
+  `complete_lesson` (auth required · **lesson not found**→JZ404), `grade_item`, `buy_hearts`,
+  `revive_streak` (auth required). Verificado en BD: **0 raise pelados restantes** y el mismo nº de líneas
+  por función (los cuerpos no se tocaron).
+- **COMPATIBILIDAD TOTAL:** el **MENSAJE sigue siendo el texto de siempre** → el fallback por substring del
+  cliente sigue válido; lo que se gana es el **CÓDIGO**, que resiste una reescritura del texto. Añadida la
+  aguja `no active course` a la tabla de tokens (antes caía en `unknown` y se reportaba a Sentry como si
+  fuera un fallo inesperado).
+- **Superficie MENOR de la esperada, y es un hallazgo:** `buy_hearts` y `revive_streak` **no lanzan** sus
+  motivos de negocio — los devuelven **en el JSON** (`{ok:false, reason:'insufficient_gold'}`). Ahí no hay
+  nada que tipar; se verificó que siguen comportándose así.
+- **Verificado cliente REAL (`verify_typed_errors_lesson.py`, anon + JWT) TODO VERDE:** las 5 sin sesión →
+  **JZ401 + "auth required"**; `complete_lesson` con lección inexistente → **JZ404 + "lesson not found"**;
+  y la LÓGICA intacta: create_plan 200, complete_lesson real **paga (xp 25, oro 10)**, grade_item califica,
+  los dos motivos en JSON siguen viajando en el JSON. **Guardarraíles VERDES: `verify_chain` (en A1→B2 +
+  certs) y `verify_pt_chain` (multicurso)** — el frente tocaba `complete_lesson`.
+- **2 fallos del VERIFICADOR (no de la migración), cazados y corregidos:** enviaba `p_answer` como
+  `{'value': …}` cuando el RPC espera el **valor pelado**, y la clave de `p_answers` es **`item_id`**, no
+  `id` → daba accuracy 0 y un falso rojo.
+- **Re-encolado (5ª pasada):** nada urgente. Las RPC de negocio grandes ya están; lo que queda son los
+  `raise` de helpers internos (revocados al cliente, no los ve nadie) y los ~49 `catch(_){}` de infra
+  best-effort, correctos por dominio.
 
 ## ESTUDIAR · E-2 ITALIANO A1–B2 COMPLETO en UNA tanda (5º idioma) ✅ LIVE (mig 188 · 2026-07-21)
 Las **24 unidades de una vez** (A1+A2+B1+B2), no dos tandas → **en, pt, fr, de e it los cinco COMPLETOS
@@ -2834,6 +2913,15 @@ en B2; andamiaje idéntico listo: STAMP `('pt','c1')=…130`, grupo audio `pt-c1
   Cierre: analyze 0, tests verdes, gh run list SUCCESS, deploy READY. Reporta en 1 línea.
 
 ## Cola (retome exacto — orden sugerido)
+-5. **E-2 ✅ COMPLETO en los 6 idiomas (mig 178-190).** Lo ÚNICO que queda del módulo Estudiar son las
+   **6 unidades de C1 de cada idioma**: no tienen tips, así que habría que autorar la teoría DESDE CERO
+   (no es replicar el pipeline sobre material existente, es escribir el currículo C1 de 6 idiomas = 36
+   temas). Sigue honestamente en "teoría en camino". **E-3 (vídeo) sigue fuera** hasta que el módulo
+   demuestre uso. Re-encolado también: el `_clean.json` de cada idioma queda como fuente re-generable.
+-4. **Errores tipados ✅ 4ª pasada (mig 189).** Ya no queda superficie de negocio sin tipar: las RPC
+   grandes de plan/lección/sociales/handle emiten SQLSTATE JZxxx conservando el texto. Lo que resta son
+   helpers internos revocados al cliente y los ~49 `catch(_){}` de infra best-effort (correctos por
+   dominio). **No hay 5ª pasada pendiente.**
 -3. **CONVERSAR · T3 ✅ social FÁCIL (mig 149, 2026-07-12).** @handle único + buscar + perfil público +
    sugerencias — todo 18+, server-side, aislamiento airtight intacto. **Diferido/re-encolado:** (a) **QR del
    @handle/código** (requiere paquete o pintar el QR a mano; el buscador + código copiable ya cubren el alta);

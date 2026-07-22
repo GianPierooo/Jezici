@@ -181,6 +181,9 @@ const List<_Tok> _tokens = [
       ['social unavailable', 'account restricted', 'not adult', 'adult only', '18+']),
   _Tok('admin_only', JzErrorKind.denied, ['admin only']),
   _Tok('blocked', JzErrorKind.denied, ['blocked', 'unavailable', 'restricted', 'not allowed']),
+  // 'no active course' lo levanta create_plan (mig 189, JZ404): sin esta aguja
+  // caía en `unknown` y se reportaba a Sentry como si fuera un fallo inesperado.
+  _Tok('no_active_course', JzErrorKind.notFound, ['no active course']),
   _Tok('not_found', JzErrorKind.notFound, ['not found', 'no rows', 'does not exist']),
   _Tok('required', JzErrorKind.validation, ['required', 'invalid', 'missing']),
 ];

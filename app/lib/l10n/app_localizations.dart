@@ -6946,6 +6946,12 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'No se pudo cargar la prueba. Inténtalo de nuevo.'**
   String get studyQuizError;
+
+  /// Enlace de la preview de leccion a la teoria de su tema en Estudiar
+  ///
+  /// In es, this message translates to:
+  /// **'Estudia la teoría de esto'**
+  String get lessonStudyTheory;
 }
 
 class _AppLocalizationsDelegate

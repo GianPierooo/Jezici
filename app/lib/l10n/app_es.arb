@@ -240,7 +240,13 @@
   "onbFrequencyConstant": "Constante",
   "onbFrequencyIntense": "Intenso",
   "onbFirstContactTitle": "¿Es tu primer contacto con el {course}?",
-  "@onbFirstContactTitle": { "placeholders": { "course": { "type": "String" } } },
+  "@onbFirstContactTitle": {
+    "placeholders": {
+      "course": {
+        "type": "String"
+      }
+    }
+  },
   "onbFirstContactSubtitle": "Si empiezas de cero, te llevamos directo al inicio, sin examen.",
   "onbFirstContactYes": "Sí, empiezo desde cero",
   "onbFirstContactNo": "No, ya sé algo",
@@ -569,18 +575,45 @@
   "miplanNoPlan": "Aún no tienes un plan.",
   "miplanProgressLabel": "AVANCE DEL PLAN",
   "miplanPracticeDays": "{percent}% · {met}/{total} días de práctica",
-  "@miplanPracticeDays": { "placeholders": { "percent": {}, "met": {}, "total": {} } },
+  "@miplanPracticeDays": {
+    "placeholders": {
+      "percent": {},
+      "met": {},
+      "total": {}
+    }
+  },
   "miplanOnTrack": "Justo en tu plan",
   "miplanAhead": "{days, plural, =1{Vas 1 día adelante 🎉} other{Vas {days} días adelante 🎉}}",
-  "@miplanAhead": { "placeholders": { "days": {"type": "int"} } },
+  "@miplanAhead": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
   "miplanBehind": "{days, plural, =1{Vas 1 día atrás} other{Vas {days} días atrás}}",
-  "@miplanBehind": { "placeholders": { "days": {"type": "int"} } },
+  "@miplanBehind": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
   "miplanMetDays": "Cumpliste {met} de {expected} días esperados a hoy.",
-  "@miplanMetDays": { "placeholders": { "met": {}, "expected": {} } },
+  "@miplanMetDays": {
+    "placeholders": {
+      "met": {},
+      "expected": {}
+    }
+  },
   "miplanProjectedArrival": "Llegada proyectada",
   "miplanEstimatedArrival": "Llegada estimada",
   "miplanOriginalPlan": "Plan original: {date}",
-  "@miplanOriginalPlan": { "placeholders": { "date": {} } },
+  "@miplanOriginalPlan": {
+    "placeholders": {
+      "date": {}
+    }
+  },
   "miplanCurrentPace": "Con tu ritmo actual",
   "miplanEstimateHint": "Practica unos días y ajustaremos la fecha a tu ritmo real.",
   "miplanCalculating": "Calculando…",
@@ -588,16 +621,30 @@
   "miplanPerDay": "al día",
   "miplanPerWeek": "por semana",
   "miplanDaysCount": "{days} días",
-  "@miplanDaysCount": { "placeholders": { "days": {} } },
+  "@miplanDaysCount": {
+    "placeholders": {
+      "days": {}
+    }
+  },
   "miplanFasterCta": "QUIERO LLEGAR MÁS RÁPIDO",
   "miplanPaceSheetTitle": "Sube tu ritmo diario",
   "miplanPaceSheetSub": "Más minutos al día = llegas antes. Recalculamos tu fecha.",
   "miplanPaceUpdated": "¡Listo! Ahora {min} min/día. Fecha recalculada.",
-  "@miplanPaceUpdated": { "placeholders": { "min": {} } },
+  "@miplanPaceUpdated": {
+    "placeholders": {
+      "min": {}
+    }
+  },
   "miplanPaceError": "No se pudo actualizar el ritmo.",
   "nbTitle": "Cuaderno de datos",
   "nbLearnedCount": "{count, plural, =1{{count} dato aprendido} other{{count} datos aprendidos}} 🦜",
-  "@nbLearnedCount": {"placeholders": {"count": {"type": "int"}}},
+  "@nbLearnedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "nbEmptyTitle": "Tu cuaderno está vacío… por ahora",
   "nbEmptyBody": "Completa lecciones y Jezi te enseñará datos, trucos y errores comunes que se guardarán aquí.",
   "matixTestGoalUnmet": "Meta sin cumplir",
@@ -606,15 +653,27 @@
   "matixTestFireError": "No se pudo disparar la notificación.",
   "examStartError": "No se pudo iniciar el examen.",
   "examLevelTitle": "Examen de nivel {level}",
-  "@examLevelTitle": {"placeholders": {"level": {}}},
+  "@examLevelTitle": {
+    "placeholders": {
+      "level": {}
+    }
+  },
   "examCertifyLevel": "Certifica tu nivel {level}",
-  "@examCertifyLevel": {"placeholders": {"level": {}}},
+  "@examCertifyLevel": {
+    "placeholders": {
+      "level": {}
+    }
+  },
   "examIntroDescription": "Un examen cronometrado que mezcla las 4 habilidades de todas las unidades. Apruébalo y recibes tu certificado con folio y código de verificación.",
   "examBulletTime": "10 minutos · 20 preguntas",
   "examBulletSkills": "Lectura · Escucha · Escritura · Habla",
   "examBulletPass": "Necesitas 80% para aprobar",
   "examBulletCertificate": "Al aprobar: certificado {level} compartible",
-  "@examBulletCertificate": {"placeholders": {"level": {}}},
+  "@examBulletCertificate": {
+    "placeholders": {
+      "level": {}
+    }
+  },
   "examStart": "EMPEZAR EXAMEN",
   "examSubmitError": "No se pudo enviar el examen. Intenta de nuevo.",
   "examLeaveTitle": "¿Salir del examen?",
@@ -630,22 +689,42 @@
   "notifTestJeziHint": "Simula un evento: Jezi elige el copy de tu estilo de coach y te lo manda.",
   "notifReceived": "Recibidas",
   "notifLoadError": "No se pudieron cargar.\n{error}",
-  "@notifLoadError": {"placeholders": {"error": {}}},
+  "@notifLoadError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
   "notifEmpty": "Sin notificaciones todavía",
   "notifEmptyHint": "Usa \"Probar a Jezi\" para ver cómo suena tu coach.",
   "notifAgoNow": "ahora",
   "notifAgoMinutes": "hace {minutes} min",
-  "@notifAgoMinutes": {"placeholders": {"minutes": {}}},
+  "@notifAgoMinutes": {
+    "placeholders": {
+      "minutes": {}
+    }
+  },
   "notifAgoHours": "hace {hours} h",
-  "@notifAgoHours": {"placeholders": {"hours": {}}},
+  "@notifAgoHours": {
+    "placeholders": {
+      "hours": {}
+    }
+  },
   "notifAgoDays": "hace {days} d",
-  "@notifAgoDays": {"placeholders": {"days": {}}},
+  "@notifAgoDays": {
+    "placeholders": {
+      "days": {}
+    }
+  },
   "immTitle": "Inmersión",
   "immLoadError": "No se pudieron cargar las historias. Reintenta.",
   "immEmpty": "Pronto habrá historias para tu curso. 📖",
   "immSubtitle": "Lee y escucha historias a tu nivel. Luego responde unas preguntas.",
   "immLevel": "Nivel {level}",
-  "@immLevel": {"placeholders": {"level": {}}},
+  "@immLevel": {
+    "placeholders": {
+      "level": {}
+    }
+  },
   "immStoryTitle": "Historia",
   "immStoryLoadError": "No se pudo cargar la historia.",
   "immSubmitError": "No se pudo enviar. Reintenta.",
@@ -653,7 +732,12 @@
   "immListen": "Oír",
   "immGlossary": "Glosario",
   "immQuestionOf": "Pregunta {current} de {total}",
-  "@immQuestionOf": {"placeholders": {"current": {}, "total": {}}},
+  "@immQuestionOf": {
+    "placeholders": {
+      "current": {},
+      "total": {}
+    }
+  },
   "immWriteWord": "Escribe la palabra…",
   "immNext": "Siguiente",
   "immSending": "ENVIANDO…",
@@ -661,10 +745,20 @@
   "immPerfect": "¡Comprensión perfecta!",
   "immGoodReading": "¡Buena lectura!",
   "immScoreLine": "{pct}% · {correct}/{total} correctas",
-  "@immScoreLine": {"placeholders": {"pct": {}, "correct": {}, "total": {}}},
+  "@immScoreLine": {
+    "placeholders": {
+      "pct": {},
+      "correct": {},
+      "total": {}
+    }
+  },
   "immDone": "Listo",
   "immAnswerLabel": "Respuesta: {answer}",
-  "@immAnswerLabel": {"placeholders": {"answer": {}}},
+  "@immAnswerLabel": {
+    "placeholders": {
+      "answer": {}
+    }
+  },
   "simTitle": "Simulacros",
   "simHeadline": "Practica el examen real",
   "simSubtitle": "Simulacros con formato oficial y reporte de banda por sección.",
@@ -686,13 +780,25 @@
   "refIntro": "Tus conceptos clave, por habilidad. Repasa y practica lo flojo.",
   "refWeaknessTitle": "Refuerzo de debilidades",
   "refSkillPracticeTitle": "Práctica de {skill}",
-  "@refSkillPracticeTitle": {"placeholders": {"skill": {}}},
+  "@refSkillPracticeTitle": {
+    "placeholders": {
+      "skill": {}
+    }
+  },
   "refWeakPoint": "Tu punto flojo: {skill}",
-  "@refWeakPoint": {"placeholders": {"skill": {}}},
+  "@refWeakPoint": {
+    "placeholders": {
+      "skill": {}
+    }
+  },
   "refWeakSubtitle": "Practica para subir tu dominio.",
   "refPractice": "Practicar",
   "refMasteryPct": "{pct}% dominio",
-  "@refMasteryPct": {"placeholders": {"pct": {}}},
+  "@refMasteryPct": {
+    "placeholders": {
+      "pct": {}
+    }
+  },
   "refSeen": "visto",
   "introKicker": "APRENDE",
   "introMascot": "Antes de practicar, veamos lo nuevo.",
@@ -1149,12 +1255,27 @@
   "srsEasy": "Fácil",
   "srsDoneTitle": "¡Repaso terminado!",
   "srsDoneSubtitle": "{correct} de {total} a la primera.",
-  "@srsDoneSubtitle": { "placeholders": { "correct": {"type": "int"}, "total": {"type": "int"} } },
+  "@srsDoneSubtitle": {
+    "placeholders": {
+      "correct": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "srsDoneCta": "LISTO",
   "srsSendError": "No se pudo guardar el repaso. Inténtalo de nuevo.",
   "srsNothingDue": "Nada por repasar ahora. Vuelve más tarde o haz una lección.",
   "srsLeft": "{n, plural, one{1 restante} other{{n} restantes}}",
-  "@srsLeft": {"placeholders": {"n": {"type": "int"}}},
+  "@srsLeft": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "srsSaving": "Guardando tu repaso…",
   "srsAccuracy": "Precisión",
   "srsGoalMet": "Meta del día cumplida",
@@ -1634,7 +1755,7 @@
     }
   },
   "profileStatStreak": "RACHA",
-  "profileStatXp": "XP TOTAL",
+  "profileStatXp": "XP total",
   "profileStatGold": "ORO",
   "profileNoPlan": "Crea tu cuenta en el onboarding para ver tu plan.",
   "profileCertificatesTitle": "Certificados",
@@ -1786,10 +1907,10 @@
     }
   },
   "profileNamePlaceholder": "Pon tu nombre",
-  "profileMemberSince": "Miembro desde {date}",
+  "profileMemberSince": "Miembro desde {year}",
   "@profileMemberSince": {
     "placeholders": {
-      "date": {
+      "year": {
         "type": "String"
       }
     }
@@ -1921,11 +2042,29 @@
   "presenceOnline": "En línea",
   "presenceOffline": "Desconectado",
   "presenceActiveMin": "Activo hace {n} min",
-  "@presenceActiveMin": { "placeholders": { "n": { "type": "int" } } },
+  "@presenceActiveMin": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "presenceActiveHours": "Activo hace {n} h",
-  "@presenceActiveHours": { "placeholders": { "n": { "type": "int" } } },
+  "@presenceActiveHours": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "presenceActiveDays": "Activo hace {n} d",
-  "@presenceActiveDays": { "placeholders": { "n": { "type": "int" } } },
+  "@presenceActiveDays": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "convRequested": "Enviada",
   "convOnlineNow": "En línea ahora",
   "convShowPresence": "Mostrar cuando estoy en línea",
@@ -1966,13 +2105,21 @@
   "convCoopProgress": "{done} / {target} XP",
   "@convCoopProgress": {
     "placeholders": {
-      "done": {"type": "int"},
-      "target": {"type": "int"}
+      "done": {
+        "type": "int"
+      },
+      "target": {
+        "type": "int"
+      }
     }
   },
   "convCoopReward": "+{gold} oro para ambos al completar",
   "@convCoopReward": {
-    "placeholders": {"gold": {"type": "int"}}
+    "placeholders": {
+      "gold": {
+        "type": "int"
+      }
+    }
   },
   "convCoopPickGoal": "Meta de XP en equipo",
   "convCoopEmpty": "Aún no hay retos. Elige un amigo y creen uno.",
@@ -1997,7 +2144,11 @@
   "convSearchHint": "Nombre o @usuario",
   "convSearchNoResults": "Sin resultados para «{q}»",
   "@convSearchNoResults": {
-    "placeholders": {"q": {"type": "String"}}
+    "placeholders": {
+      "q": {
+        "type": "String"
+      }
+    }
   },
   "convSuggestionsTitle": "Sugerencias para ti",
   "convSuggestionsSub": "Aprenden tu mismo idioma",
@@ -2011,16 +2162,16 @@
   "profileAcceptRequest": "Aceptar solicitud",
   "profileFriends": "Ya son amigos",
   "profileChat": "Chatear",
-  "profileMemberSince": "Miembro desde {year}",
-  "@profileMemberSince": {
-    "placeholders": {"year": {"type": "String"}}
-  },
   "profileBadges": "Logros",
   "profileLanguages": "Idiomas",
   "profileNotFound": "No se encontró este perfil.",
   "profileStreakDays": "{days, plural, =0{Sin racha} =1{1 día de racha} other{{days} días de racha}}",
   "@profileStreakDays": {
-    "placeholders": {"days": {"type": "int"}}
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
   },
   "convHandleChip": "Tu @usuario",
   "convAddByCode": "o agrega por código",
@@ -2088,18 +2239,42 @@
   "premiumCtaSnack": "Los pagos llegan pronto. ¡Gracias por tu interés! 💜",
   "premiumFreeNote": "Estás en el plan Gratis. Todo el contenido A1 es gratuito.",
   "noHeartsRegenIn": "Próxima vida gratis en {time}",
-  "@noHeartsRegenIn": {"placeholders": {"time": {"type": "String"}}},
+  "@noHeartsRegenIn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "noHeartsRegenGeneric": "Tus vidas se regeneran solas",
   "noHeartsRegenSub": "1 vida cada 30 min, hasta 5 ❤️",
   "heartsPanelNextIn": "Próxima vida en {time} · 1 cada 30 min",
-  "@heartsPanelNextIn": {"placeholders": {"time": {"type": "String"}}},
+  "@heartsPanelNextIn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "streakReviveTitle": "Revive tu racha de {days} días",
-  "@streakReviveTitle": {"placeholders": {"days": {"type": "int"}}},
+  "@streakReviveTitle": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
   "streakReviveSubtitle": "Rescate excepcional: recupera la racha que acabas de perder.",
   "streakReviveCta": "Revivir racha",
   "streakReviveLimit": "Solo 1 rescate cada 30 días, y dentro de los 7 días de perderla.",
   "streakRevived": "🔥 ¡Racha revivida! Vas por {days} días.",
-  "@streakRevived": {"placeholders": {"days": {"type": "int"}}},
+  "@streakRevived": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
   "streakReviveUnavailable": "El rescate no está disponible ahora.",
   "pushOptInTitle": "Activa los avisos de Jezi",
   "pushOptInBody": "Recibe un empujón cuando tu racha esté en riesgo — incluso con la app cerrada. Tú decides.",
@@ -2135,17 +2310,28 @@
   "donatePlinSameNumber": "mismo número que Yape",
   "donateStripe": "Tarjeta (Stripe)",
   "donatePayWith": "Donar con {method}",
-  "@donatePayWith": {"placeholders": {"method": {"type": "String"}}},
+  "@donatePayWith": {
+    "placeholders": {
+      "method": {
+        "type": "String"
+      }
+    }
+  },
   "donateSoon": "Pronto",
   "donateVoluntaryNote": "Es un apoyo voluntario. No es una compra y no desbloquea nada dentro de la app. ¡Gracias! 🦜",
   "lessonReviewCta": "{count, plural, =1{Repasar 1 palabra} other{Repasar {count} palabras}}",
-  "@lessonReviewCta": {"placeholders": {"count": {"type": "int"}}},
+  "@lessonReviewCta": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "lessonWhatNext": "¿Qué quieres hacer ahora?",
   "tipCardSeeGuide": "Ver más conceptos en tu guía",
   "practiceSrsAllDone": "Repaso al día",
   "introLoading": "Preparando tu lección…",
   "profileStatsHeader": "Progreso",
-  "profileStatXp": "XP total",
   "profileStatLessons": "Lecciones",
   "profileStatBestStreak": "Mejor racha",
   "srsPresentHint": "Mírala, tócala para oírla… y ahora escríbela tú.",
@@ -2154,19 +2340,55 @@
   "studyKicker": "TU GUÍA DE TEORÍA",
   "studySubtitle": "Los conceptos de tu curso, nivel por nivel.",
   "studyTopics": "{count, plural, =1{1 tema} other{{count} temas}}",
-  "@studyTopics": {"placeholders": {"count": {"type": "int"}}},
+  "@studyTopics": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "studyOpen": "{open} de {total} abiertos",
-  "@studyOpen": {"placeholders": {"open": {"type": "int"}, "total": {"type": "int"}}},
+  "@studyOpen": {
+    "placeholders": {
+      "open": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "studyConcepts": "{count, plural, =1{1 concepto} other{{count} conceptos}}",
-  "@studyConcepts": {"placeholders": {"count": {"type": "int"}}},
+  "@studyConcepts": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "studyConceptsHeader": "Conceptos",
   "studyLocked": "Completa la unidad {unit} para desbloquear",
-  "@studyLocked": {"placeholders": {"unit": {"type": "int"}}},
+  "@studyLocked": {
+    "placeholders": {
+      "unit": {
+        "type": "int"
+      }
+    }
+  },
   "studyNoTheoryTitle": "Teoría en camino",
   "studyNoTheoryBody": "Este tema todavía no tiene teoría escrita. Mientras tanto puedes practicarlo en tus lecciones.",
   "studyPracticeCta": "PRACTÍCALO",
   "studyUnitProgress": "{done} de {total} lecciones",
-  "@studyUnitProgress": {"placeholders": {"done": {"type": "int"}, "total": {"type": "int"}}},
+  "@studyUnitProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "studyFooterNote": "Los temas se abren a medida que avanzas en Aprender.",
   "tourStudyTitle": "Estudia la teoría",
   "tourStudyBody": "Aquí tienes los conceptos de tu curso, nivel por nivel. Se abren según avanzas.",
@@ -2174,14 +2396,39 @@
   "studyPitfallsHeader": "Errores comunes",
   "studyQuizTitle": "Prueba del tema",
   "studyQuizSubtitle": "{count, plural, =1{1 pregunta para comprobar} other{{count} preguntas para comprobar}}",
-  "@studyQuizSubtitle": {"placeholders": {"count": {"type": "int"}}},
+  "@studyQuizSubtitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "studyQuizSubmit": "COMPROBAR",
   "studyQuizHint": "Escribe tu respuesta",
   "studyQuizPassed": "¡Lo tienes!",
   "studyQuizRetry": "Casi. Repasa y vuelve",
   "studyQuizScore": "{correct} de {total} correctas",
-  "@studyQuizScore": {"placeholders": {"correct": {"type": "int"}, "total": {"type": "int"}}},
+  "@studyQuizScore": {
+    "placeholders": {
+      "correct": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "studyQuizExpected": "Era: {expected}",
-  "@studyQuizExpected": {"placeholders": {"expected": {"type": "String"}}},
-  "studyQuizError": "No se pudo cargar la prueba. Inténtalo de nuevo."
+  "@studyQuizExpected": {
+    "placeholders": {
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "studyQuizError": "No se pudo cargar la prueba. Inténtalo de nuevo.",
+  "lessonStudyTheory": "Estudia la teoría de esto",
+  "@lessonStudyTheory": {
+    "description": "Enlace de la preview de leccion a la teoria de su tema en Estudiar"
+  }
 }

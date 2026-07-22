@@ -187,7 +187,13 @@
   "onbFrequencyConstant": "Steady",
   "onbFrequencyIntense": "Intense",
   "onbFirstContactTitle": "Is this your first time with {course}?",
-  "@onbFirstContactTitle": { "placeholders": { "course": { "type": "String" } } },
+  "@onbFirstContactTitle": {
+    "placeholders": {
+      "course": {
+        "type": "String"
+      }
+    }
+  },
   "onbFirstContactSubtitle": "If you're starting from zero, we take you straight to the beginning, no test.",
   "onbFirstContactYes": "Yes, I'm starting from scratch",
   "onbFirstContactNo": "No, I already know some",
@@ -360,18 +366,45 @@
   "miplanNoPlan": "You don't have a plan yet.",
   "miplanProgressLabel": "PLAN PROGRESS",
   "miplanPracticeDays": "{percent}% · {met}/{total} practice days",
-  "@miplanPracticeDays": { "placeholders": { "percent": {}, "met": {}, "total": {} } },
+  "@miplanPracticeDays": {
+    "placeholders": {
+      "percent": {},
+      "met": {},
+      "total": {}
+    }
+  },
   "miplanOnTrack": "Right on plan",
   "miplanAhead": "{days, plural, =1{You're 1 day ahead 🎉} other{You're {days} days ahead 🎉}}",
-  "@miplanAhead": { "placeholders": { "days": {"type": "int"} } },
+  "@miplanAhead": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
   "miplanBehind": "{days, plural, =1{You're 1 day behind} other{You're {days} days behind}}",
-  "@miplanBehind": { "placeholders": { "days": {"type": "int"} } },
+  "@miplanBehind": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
   "miplanMetDays": "You met {met} of {expected} expected days so far.",
-  "@miplanMetDays": { "placeholders": { "met": {}, "expected": {} } },
+  "@miplanMetDays": {
+    "placeholders": {
+      "met": {},
+      "expected": {}
+    }
+  },
   "miplanProjectedArrival": "Projected arrival",
   "miplanEstimatedArrival": "Estimated arrival",
   "miplanOriginalPlan": "Original plan: {date}",
-  "@miplanOriginalPlan": { "placeholders": { "date": {} } },
+  "@miplanOriginalPlan": {
+    "placeholders": {
+      "date": {}
+    }
+  },
   "miplanCurrentPace": "At your current pace",
   "miplanEstimateHint": "Practice a few days and we'll tune the date to your real pace.",
   "miplanCalculating": "Calculating…",
@@ -379,16 +412,30 @@
   "miplanPerDay": "per day",
   "miplanPerWeek": "per week",
   "miplanDaysCount": "{days} days",
-  "@miplanDaysCount": { "placeholders": { "days": {} } },
+  "@miplanDaysCount": {
+    "placeholders": {
+      "days": {}
+    }
+  },
   "miplanFasterCta": "I WANT TO ARRIVE FASTER",
   "miplanPaceSheetTitle": "Raise your daily pace",
   "miplanPaceSheetSub": "More minutes a day = you arrive sooner. We'll recalculate your date.",
   "miplanPaceUpdated": "Done! Now {min} min/day. Date recalculated.",
-  "@miplanPaceUpdated": { "placeholders": { "min": {} } },
+  "@miplanPaceUpdated": {
+    "placeholders": {
+      "min": {}
+    }
+  },
   "miplanPaceError": "Couldn't update your pace.",
   "nbTitle": "Notebook",
   "nbLearnedCount": "{count, plural, =1{{count} fact learned} other{{count} facts learned}} 🦜",
-  "@nbLearnedCount": {"placeholders": {"count": {"type": "int"}}},
+  "@nbLearnedCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "nbEmptyTitle": "Your notebook is empty… for now",
   "nbEmptyBody": "Complete lessons and Jezi will teach you facts, tips and common mistakes that get saved here.",
   "matixTestGoalUnmet": "Goal not met",
@@ -397,15 +444,27 @@
   "matixTestFireError": "Couldn't send the notification.",
   "examStartError": "Couldn't start the exam.",
   "examLevelTitle": "{level} level exam",
-  "@examLevelTitle": {"placeholders": {"level": {}}},
+  "@examLevelTitle": {
+    "placeholders": {
+      "level": {}
+    }
+  },
   "examCertifyLevel": "Certify your {level} level",
-  "@examCertifyLevel": {"placeholders": {"level": {}}},
+  "@examCertifyLevel": {
+    "placeholders": {
+      "level": {}
+    }
+  },
   "examIntroDescription": "A timed exam mixing all 4 skills from every unit. Pass it and get your certificate with a serial number and verification code.",
   "examBulletTime": "10 minutes · 20 questions",
   "examBulletSkills": "Reading · Listening · Writing · Speaking",
   "examBulletPass": "You need 80% to pass",
   "examBulletCertificate": "On passing: shareable {level} certificate",
-  "@examBulletCertificate": {"placeholders": {"level": {}}},
+  "@examBulletCertificate": {
+    "placeholders": {
+      "level": {}
+    }
+  },
   "examStart": "START EXAM",
   "examSubmitError": "Couldn't submit the exam. Try again.",
   "examLeaveTitle": "Leave the exam?",
@@ -421,22 +480,42 @@
   "notifTestJeziHint": "Simulate an event: Jezi picks the copy for your coach style and sends it to you.",
   "notifReceived": "Received",
   "notifLoadError": "Couldn't load them.\n{error}",
-  "@notifLoadError": {"placeholders": {"error": {}}},
+  "@notifLoadError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
   "notifEmpty": "No notifications yet",
   "notifEmptyHint": "Use \"Test Jezi\" to hear how your coach sounds.",
   "notifAgoNow": "now",
   "notifAgoMinutes": "{minutes} min ago",
-  "@notifAgoMinutes": {"placeholders": {"minutes": {}}},
+  "@notifAgoMinutes": {
+    "placeholders": {
+      "minutes": {}
+    }
+  },
   "notifAgoHours": "{hours} h ago",
-  "@notifAgoHours": {"placeholders": {"hours": {}}},
+  "@notifAgoHours": {
+    "placeholders": {
+      "hours": {}
+    }
+  },
   "notifAgoDays": "{days} d ago",
-  "@notifAgoDays": {"placeholders": {"days": {}}},
+  "@notifAgoDays": {
+    "placeholders": {
+      "days": {}
+    }
+  },
   "immTitle": "Immersion",
   "immLoadError": "Couldn't load the stories. Try again.",
   "immEmpty": "Stories for your course are coming soon. 📖",
   "immSubtitle": "Read and listen to stories at your level. Then answer a few questions.",
   "immLevel": "Level {level}",
-  "@immLevel": {"placeholders": {"level": {}}},
+  "@immLevel": {
+    "placeholders": {
+      "level": {}
+    }
+  },
   "immStoryTitle": "Story",
   "immStoryLoadError": "Couldn't load the story.",
   "immSubmitError": "Couldn't submit. Try again.",
@@ -444,7 +523,12 @@
   "immListen": "Listen",
   "immGlossary": "Glossary",
   "immQuestionOf": "Question {current} of {total}",
-  "@immQuestionOf": {"placeholders": {"current": {}, "total": {}}},
+  "@immQuestionOf": {
+    "placeholders": {
+      "current": {},
+      "total": {}
+    }
+  },
   "immWriteWord": "Type the word…",
   "immNext": "Next",
   "immSending": "SENDING…",
@@ -452,10 +536,20 @@
   "immPerfect": "Perfect comprehension!",
   "immGoodReading": "Nice reading!",
   "immScoreLine": "{pct}% · {correct}/{total} correct",
-  "@immScoreLine": {"placeholders": {"pct": {}, "correct": {}, "total": {}}},
+  "@immScoreLine": {
+    "placeholders": {
+      "pct": {},
+      "correct": {},
+      "total": {}
+    }
+  },
   "immDone": "Done",
   "immAnswerLabel": "Answer: {answer}",
-  "@immAnswerLabel": {"placeholders": {"answer": {}}},
+  "@immAnswerLabel": {
+    "placeholders": {
+      "answer": {}
+    }
+  },
   "simTitle": "Mock exams",
   "simHeadline": "Practice the real exam",
   "simSubtitle": "Mock exams in the official format with a band report per section.",
@@ -477,13 +571,25 @@
   "refIntro": "Your key concepts, by skill. Review and practice your weak spots.",
   "refWeaknessTitle": "Weakness reinforcement",
   "refSkillPracticeTitle": "{skill} practice",
-  "@refSkillPracticeTitle": {"placeholders": {"skill": {}}},
+  "@refSkillPracticeTitle": {
+    "placeholders": {
+      "skill": {}
+    }
+  },
   "refWeakPoint": "Your weak spot: {skill}",
-  "@refWeakPoint": {"placeholders": {"skill": {}}},
+  "@refWeakPoint": {
+    "placeholders": {
+      "skill": {}
+    }
+  },
   "refWeakSubtitle": "Practice to raise your mastery.",
   "refPractice": "Practice",
   "refMasteryPct": "{pct}% mastery",
-  "@refMasteryPct": {"placeholders": {"pct": {}}},
+  "@refMasteryPct": {
+    "placeholders": {
+      "pct": {}
+    }
+  },
   "refSeen": "seen",
   "introKicker": "LEARN",
   "introMascot": "Before you practice, let's see what's new.",
@@ -706,12 +812,27 @@
   "srsEasy": "Easy",
   "srsDoneTitle": "Review done!",
   "srsDoneSubtitle": "{correct} of {total} on the first try.",
-  "@srsDoneSubtitle": { "placeholders": { "correct": {"type": "int"}, "total": {"type": "int"} } },
+  "@srsDoneSubtitle": {
+    "placeholders": {
+      "correct": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "srsDoneCta": "DONE",
   "srsSendError": "Couldn't save your review. Please try again.",
   "srsNothingDue": "Nothing to review right now. Come back later or do a lesson.",
   "srsLeft": "{n, plural, one{1 left} other{{n} left}}",
-  "@srsLeft": {"placeholders": {"n": {"type": "int"}}},
+  "@srsLeft": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "srsSaving": "Saving your review…",
   "srsAccuracy": "Accuracy",
   "srsGoalMet": "Daily goal reached",
@@ -1058,7 +1179,7 @@
   "profileSkillsDescription": "Lessons raise your MASTERY; your level goes up when you pass the exam.",
   "profileSkillImbalanceWarning": "Your {skillA} is at {pct1}% but your {skillB} at {pct2}% → reinforce {skillB}.",
   "profileStatStreak": "STREAK",
-  "profileStatXp": "TOTAL XP",
+  "profileStatXp": "Total XP",
   "profileStatGold": "GOLD",
   "profileNoPlan": "Create your account in onboarding to see your plan.",
   "profileCertificatesTitle": "Certificates",
@@ -1087,7 +1208,7 @@
   "profilePlanEstimatedCompletion": "You'll arrive around {date}",
   "profilePlanIntensity": "{mins} min/day · {days} days/week",
   "profileNamePlaceholder": "Set your name",
-  "profileMemberSince": "Member since {date}",
+  "profileMemberSince": "Member since {year}",
   "profileNotebookTitle": "Notebook",
   "profileNotebookSubtitle": "Tips and tricks you've learned",
   "profileEditNameError": "Enter your name.",
@@ -1208,11 +1329,29 @@
   "presenceOnline": "Online",
   "presenceOffline": "Offline",
   "presenceActiveMin": "Active {n} min ago",
-  "@presenceActiveMin": { "placeholders": { "n": { "type": "int" } } },
+  "@presenceActiveMin": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "presenceActiveHours": "Active {n} h ago",
-  "@presenceActiveHours": { "placeholders": { "n": { "type": "int" } } },
+  "@presenceActiveHours": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "presenceActiveDays": "Active {n} d ago",
-  "@presenceActiveDays": { "placeholders": { "n": { "type": "int" } } },
+  "@presenceActiveDays": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
   "convRequested": "Sent",
   "convOnlineNow": "Online now",
   "convShowPresence": "Show when I'm online",
@@ -1253,13 +1392,21 @@
   "convCoopProgress": "{done} / {target} XP",
   "@convCoopProgress": {
     "placeholders": {
-      "done": {"type": "int"},
-      "target": {"type": "int"}
+      "done": {
+        "type": "int"
+      },
+      "target": {
+        "type": "int"
+      }
     }
   },
   "convCoopReward": "+{gold} gold for both on completion",
   "@convCoopReward": {
-    "placeholders": {"gold": {"type": "int"}}
+    "placeholders": {
+      "gold": {
+        "type": "int"
+      }
+    }
   },
   "convCoopPickGoal": "Team XP goal",
   "convCoopEmpty": "No challenges yet. Pick a friend and create one.",
@@ -1284,7 +1431,11 @@
   "convSearchHint": "Name or @username",
   "convSearchNoResults": "No results for \"{q}\"",
   "@convSearchNoResults": {
-    "placeholders": {"q": {"type": "String"}}
+    "placeholders": {
+      "q": {
+        "type": "String"
+      }
+    }
   },
   "convSuggestionsTitle": "Suggestions for you",
   "convSuggestionsSub": "Learning the same language",
@@ -1298,16 +1449,23 @@
   "profileAcceptRequest": "Accept request",
   "profileFriends": "You're friends",
   "profileChat": "Chat",
-  "profileMemberSince": "Member since {year}",
   "@profileMemberSince": {
-    "placeholders": {"year": {"type": "String"}}
+    "placeholders": {
+      "year": {
+        "type": "String"
+      }
+    }
   },
   "profileBadges": "Achievements",
   "profileLanguages": "Languages",
   "profileNotFound": "This profile wasn't found.",
   "profileStreakDays": "{days, plural, =0{No streak} =1{1-day streak} other{{days}-day streak}}",
   "@profileStreakDays": {
-    "placeholders": {"days": {"type": "int"}}
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
   },
   "convHandleChip": "Your @username",
   "convAddByCode": "or add by code",
@@ -1354,18 +1512,42 @@
   "premiumCtaSnack": "Payments are coming soon. Thanks for your interest! 💜",
   "premiumFreeNote": "You're on the Free plan. All A1 content is free.",
   "noHeartsRegenIn": "Next free heart in {time}",
-  "@noHeartsRegenIn": {"placeholders": {"time": {"type": "String"}}},
+  "@noHeartsRegenIn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "noHeartsRegenGeneric": "Your hearts refill on their own",
   "noHeartsRegenSub": "1 heart every 30 min, up to 5 ❤️",
   "heartsPanelNextIn": "Next heart in {time} · 1 every 30 min",
-  "@heartsPanelNextIn": {"placeholders": {"time": {"type": "String"}}},
+  "@heartsPanelNextIn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "streakReviveTitle": "Revive your {days}-day streak",
-  "@streakReviveTitle": {"placeholders": {"days": {"type": "int"}}},
+  "@streakReviveTitle": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
   "streakReviveSubtitle": "Exceptional rescue: recover the streak you just lost.",
   "streakReviveCta": "Revive streak",
   "streakReviveLimit": "Only 1 rescue every 30 days, within 7 days of losing it.",
   "streakRevived": "🔥 Streak revived! You're at {days} days.",
-  "@streakRevived": {"placeholders": {"days": {"type": "int"}}},
+  "@streakRevived": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
   "streakReviveUnavailable": "The rescue isn't available right now.",
   "pushOptInTitle": "Turn on Jezi's nudges",
   "pushOptInBody": "Get a nudge when your streak is at risk — even with the app closed. You decide.",
@@ -1401,17 +1583,28 @@
   "donatePlinSameNumber": "same number as Yape",
   "donateStripe": "Card (Stripe)",
   "donatePayWith": "Donate with {method}",
-  "@donatePayWith": {"placeholders": {"method": {"type": "String"}}},
+  "@donatePayWith": {
+    "placeholders": {
+      "method": {
+        "type": "String"
+      }
+    }
+  },
   "donateSoon": "Soon",
   "donateVoluntaryNote": "This is a voluntary tip. It's not a purchase and unlocks nothing in the app. Thank you! 🦜",
   "lessonReviewCta": "{count, plural, =1{Review 1 word} other{Review {count} words}}",
-  "@lessonReviewCta": {"placeholders": {"count": {"type": "int"}}},
+  "@lessonReviewCta": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "lessonWhatNext": "What do you want to do now?",
   "tipCardSeeGuide": "See more concepts in your guide",
   "practiceSrsAllDone": "Reviews up to date",
   "introLoading": "Getting your lesson ready…",
   "profileStatsHeader": "Progress",
-  "profileStatXp": "Total XP",
   "profileStatLessons": "Lessons",
   "profileStatBestStreak": "Best streak",
   "srsPresentHint": "Look at it, tap to hear it… now you write it.",
@@ -1420,19 +1613,55 @@
   "studyKicker": "YOUR THEORY GUIDE",
   "studySubtitle": "Your course concepts, level by level.",
   "studyTopics": "{count, plural, =1{1 topic} other{{count} topics}}",
-  "@studyTopics": {"placeholders": {"count": {"type": "int"}}},
+  "@studyTopics": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "studyOpen": "{open} of {total} unlocked",
-  "@studyOpen": {"placeholders": {"open": {"type": "int"}, "total": {"type": "int"}}},
+  "@studyOpen": {
+    "placeholders": {
+      "open": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "studyConcepts": "{count, plural, =1{1 concept} other{{count} concepts}}",
-  "@studyConcepts": {"placeholders": {"count": {"type": "int"}}},
+  "@studyConcepts": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "studyConceptsHeader": "Concepts",
   "studyLocked": "Complete unit {unit} to unlock",
-  "@studyLocked": {"placeholders": {"unit": {"type": "int"}}},
+  "@studyLocked": {
+    "placeholders": {
+      "unit": {
+        "type": "int"
+      }
+    }
+  },
   "studyNoTheoryTitle": "Theory on the way",
   "studyNoTheoryBody": "This topic doesn't have written theory yet. In the meantime you can practise it in your lessons.",
   "studyPracticeCta": "PRACTISE IT",
   "studyUnitProgress": "{done} of {total} lessons",
-  "@studyUnitProgress": {"placeholders": {"done": {"type": "int"}, "total": {"type": "int"}}},
+  "@studyUnitProgress": {
+    "placeholders": {
+      "done": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "studyFooterNote": "Topics unlock as you progress in Learn.",
   "tourStudyTitle": "Study the theory",
   "tourStudyBody": "Here are your course concepts, level by level. They unlock as you progress.",
@@ -1440,14 +1669,36 @@
   "studyPitfallsHeader": "Common mistakes",
   "studyQuizTitle": "Topic quiz",
   "studyQuizSubtitle": "{count, plural, =1{1 question to check} other{{count} questions to check}}",
-  "@studyQuizSubtitle": {"placeholders": {"count": {"type": "int"}}},
+  "@studyQuizSubtitle": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
   "studyQuizSubmit": "CHECK",
   "studyQuizHint": "Type your answer",
   "studyQuizPassed": "You've got it!",
   "studyQuizRetry": "Almost. Review and come back",
   "studyQuizScore": "{correct} of {total} correct",
-  "@studyQuizScore": {"placeholders": {"correct": {"type": "int"}, "total": {"type": "int"}}},
+  "@studyQuizScore": {
+    "placeholders": {
+      "correct": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
   "studyQuizExpected": "It was: {expected}",
-  "@studyQuizExpected": {"placeholders": {"expected": {"type": "String"}}},
-  "studyQuizError": "The quiz could not be loaded. Please try again."
+  "@studyQuizExpected": {
+    "placeholders": {
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "studyQuizError": "The quiz could not be loaded. Please try again.",
+  "lessonStudyTheory": "Study the theory behind this"
 }

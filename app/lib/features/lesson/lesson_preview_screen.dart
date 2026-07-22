@@ -10,6 +10,8 @@ import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
 import '../../l10n/skill_names.dart';
 import '../../ui/primary_button.dart';
+import '../study/study_model.dart';
+import '../study/study_topic_screen.dart';
 import 'lesson_player_screen.dart';
 
 /// Tarjeta de previsualización: al tocar un nodo del mapa se muestra qué se
@@ -50,7 +52,18 @@ class LessonPreviewScreen extends ConsumerWidget {
                         style: const TextStyle(color: AppColors.textMuted)),
                   ),
                 ),
-                data: (items) => _Preview(lesson: lesson, items: items),
+                // ENLACE INVERSO mapa→Estudiar (E-1 lo dejó diferido). Solo se
+                // ofrece si la unidad de ESTA lección ya es un tema ABIERTO del
+                // plan de estudio — así el enlace nunca es un botón muerto ni
+                // puede llevar a una pantalla que se quede cargando. No toca el
+                // tap del nodo del mapa ni el gating: esta pantalla ya es un
+                // destino aparte y el desbloqueo se deriva del MISMO progreso.
+                data: (items) => _Preview(
+                  lesson: lesson,
+                  items: items,
+                  studyOpen: ref.watch(studyPlanProvider).any((lv) => lv.topics
+                      .any((t) => t.unit.id == lesson.unitId && t.unlocked)),
+                ),
               ),
             ),
           ],
@@ -61,9 +74,13 @@ class LessonPreviewScreen extends ConsumerWidget {
 }
 
 class _Preview extends StatelessWidget {
-  const _Preview({required this.lesson, required this.items});
+  const _Preview({required this.lesson, required this.items, required this.studyOpen});
   final LessonModel lesson;
   final List<ContentItemModel> items;
+
+  /// ¿La unidad de esta lección es un tema ABIERTO en Estudiar? Si no, el
+  /// enlace a la teoría no se pinta (nada de botones muertos).
+  final bool studyOpen;
 
   @override
   Widget build(BuildContext context) {
@@ -167,6 +184,19 @@ class _Preview extends StatelessWidget {
                       jzRoute(LessonPlayerScreen(lesson: lesson, items: items)),
                     ),
           ),
+          // ── Enlace inverso: de la lección a la TEORÍA de su tema ──
+          if (studyOpen) ...[
+            const SizedBox(height: 6),
+            TextButton.icon(
+              onPressed: () => Navigator.of(context).push(
+                jzRoute(StudyTopicScreen(unitId: lesson.unitId)),
+              ),
+              icon: const Icon(Icons.menu_book_rounded, size: 18, color: AppColors.primary),
+              label: Text(l10n.lessonStudyTheory,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.w800, color: AppColors.primary)),
+            ),
+          ],
           const Spacer(),
         ],
       ),

@@ -4056,4 +4056,7 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get studyQuizError =>
       'No se pudo cargar la prueba. Inténtalo de nuevo.';
+
+  @override
+  String get lessonStudyTheory => 'Estudia la teoría de esto';
 }

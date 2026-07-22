@@ -4062,4 +4062,7 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get studyQuizError =>
       'Não foi possível carregar o teste. Tente novamente.';
+
+  @override
+  String get lessonStudyTheory => 'Estude a teoria disto';
 }
