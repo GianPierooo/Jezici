@@ -84,6 +84,10 @@ def indel1(a, b):
     return lo[i:] == hi[i + 1:]
 
 
+# Signos que se pegan a un token citado («piove») y no forman parte de la palabra.
+CITAS = '«»"\'()[]¿?¡!.,;:'
+
+
 def unit_vocab(d):
     """Formas del IDIOMA META que el tema enseña. Solo de sitios donde el texto
     es del idioma meta: los ejemplos, las opciones de las preguntas y lo que la
@@ -110,7 +114,12 @@ def unit_vocab(d):
         src += re.findall(r'\(([^)]{1,40})\)', t or '')
     out = set()
     for t in src:
-        out.update(w for w in norm(t).split() if w)
+        # los signos de cita pegados al token («piove») no forman parte de la
+        # palabra que el tema enseña: se despegan antes de comparar
+        for w in norm(t).split():
+            w = w.strip(CITAS).strip()
+            if w:
+                out.add(w)
     return out
 
 

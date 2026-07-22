@@ -3,7 +3,65 @@
 > Contexto de arranque para cualquier sesión. **No** es copia de los 21 `.md` de
 > diseño (eso es la carpeta raíz `Jezici_*.md` + `docs/`). Aquí va el ESTADO REAL,
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
-> Última actualización: **2026-07-20**.
+> Última actualización: **2026-07-21**.
+
+## ESTUDIAR · E-2 ITALIANO A1–B2 COMPLETO en UNA tanda (5º idioma) ✅ LIVE (mig 188 · 2026-07-21)
+Las **24 unidades de una vez** (A1+A2+B1+B2), no dos tandas → **en, pt, fr, de e it los cinco COMPLETOS
+A1–B2 (24/24)**. Mig 188 = SOLO DATOS. C1 sin tips sigue en "teoría en camino". Queda **nl**.
+- **CONTENIDO:** 72 secciones, **96 ejemplos con audio TTS it (96/96, HEAD 200)**, 72 errores comunes,
+  **120 ítems**. Foco es↔it (el par MÁS cercano): falsos amigos (**salire**=subir · **burro**=mantequilla ·
+  **imbarazzata**=avergonzada≠embarazada · **negozio**=tienda · **costipato** · **tuttavia**≠todavía) ·
+  preposizioni articolate · concordancia del participio · congiuntivo (disparadores que NO coinciden con
+  el español) · doppie consonanti.
+- **EL ITALIANO EXPUSO OTRO LÍMITE DEL CORRECTOR:** las **DOBLES CONSONANTES son inevaluables en cloze**
+  (`anno` acepta `ano`, `sette` acepta `sete` — es un borrado de una letra, que el grader perdona). Igual que
+  el par acento-only (`è`/`e`, `dà`/`da`), porque la guarda añade la forma sin acento. Ambos van SIEMPRE a
+  opción múltiple; se instruyó así a los 24 autores desde el brief.
+- **RECALIBRACIÓN de la guarda (verificada contra el grader, no supuesta):** el aviso de distancia-1 solo
+  aplica a **cloze** — `jz_near_match` devuelve false para `multiple_choice` (probado) → se dejaban de emitir
+  avisos imposibles; y se despegan los signos de cita del token (`piove»` daba un falso positivo).
+- **CALIDAD — 3 falsos aciertos que cacé YO con las guardas + 6 ALTA de la revisión (todo aplicado):**
+  · **YO:** tres cloze aceptaban el **calco español EXACTO que la unidad combatía** — `nel`←`el` ("el
+  centro"), `Sono`←`Son` ("son las siete"), `a`←`al` → a opción múltiple.
+  · **6 ALTA:** **U13** (la peor) su cloze central NO PODÍA medir el congiuntivo — en los verbos en ‑are
+  `tu parli` es **homógrafo del indicativo**, así que quien conjuga mal acierta igual (sujeto → 3ª persona,
+  donde `parli`/`parla` sí discrimina); **U11** un distractor **también era correcto** («È piovuto quando
+  uscivamo» es italiano perfecto, solo invierte los papeles) → dos respuestas válidas; **U22** rechazaba
+  «in quel momento», que su propio ejemplo 4 y su pitfall 3 enseñan (el patrón «castiga a quien aplica la
+  teoría», otra vez); **U9** «movimiento → siempre essere» rompe *viaggiare/camminare*, que son el
+  vocabulario del propio tema («De viaje»); **U6** «nel centro» es **antinatural** (se dice *in centro*) y
+  la propia U8 lo escribía bien → la forma modelo del punto central estaba mal; **U5** la acentuación de
+  *domenica* era falsa (do-MÉ-ni-ca, no esdrújula).
+  · **~20 media** (absolutos que la propia unidad desmiente: «cento no cambia nunca» vs *centotto*; «con
+  avere el participio nunca cambia» vs *l'ho vista*; «la ‑v‑ siempre» vs *ero*; la regla del posesivo
+  estaba **al revés**; «‑are cambia la a» daría *derò/cercerò*; U19 la concordancia de tiempos omitía la
+  **posterioridad** → producía *«Pensavo che venisse»*; U10 «più caffè **di** tè» debe ser *che*; dos
+  enunciados de U9 **regalaban** la elección de auxiliar, que es el tema de la unidad).
+  · **~30 bajas.** **U15, U18, U23 y U24 sin ningún ítem que castigue**; U17-U20 sin ninguna ALTA.
+- **Verificado:** analyze 0 · test 233/233 · build web OK · **BD 120/120** aceptadas por `jz_grade` ·
+  **cliente REAL (`verify_study_e2_it.py`) TODO VERDE:** it U1 (A1), U7 (A2), U13 (B1) y U22 (B2) sirven
+  sesión, audio 16/16, quiz sin exponer respuestas, 120/120 aceptadas, MAYÚSCULAS y **sin acentos** no
+  castigan, basura rechazada, no mueve XP/oro, **AISLAMIENTO CUÁDRUPLE (en, pt, fr, de)**, it C1 → null.
+  Las 4 verificaciones previas TODO VERDE.
+- **Cobertura de E-2: en 24/24 · pt 24/24 · fr 24/24 · de 24/24 · it 24/24.** Queda **nl** entero y las 6
+  de C1 de cada idioma.
+
+## MISIÓN DE BIENVENIDA · su XP ya CUENTA para la meta y la racha ✅ LIVE (mig 187 · 2026-07-21)
+Pendiente conocido del checklist desde el retrato de los primeros usuarios reales: `complete_mission` pagaba
+**+25 XP y +25 oro** pero **NO pasaba por `jz_register_activity`** → ese XP no existía para la meta diaria ni
+para la racha. Evidencia real: **Gian tenía 25 XP y 0 filas en `daily_goals`**. Un usuario nuevo veía XP que
+no le movía nada.
+- **FIX (mig 187):** cuerpo **VERBATIM** de la definición viva; el ÚNICO cambio es
+  `v_activity := jz_register_activity(uid, v_course, v_xp)` con el XP **ya pagado**, y exponerlo en la salida
+  como hace `complete_lesson`. **NO duplica recompensas:** esa función escribe `daily_goals` y avanza la racha,
+  **no paga XP** (cada RPC paga el suyo — leído, no supuesto), y la llamada vive dentro del `if v_first` que ya
+  garantizaba el pago único.
+- **Cero cambio de cliente:** `mission_screen` ya invalidaba `homeStatsProvider` tras la misión → la pastilla
+  de meta y la racha se refrescan solas.
+- **Verificado cliente REAL (`verify_welcome_mission.py`), reproduciendo el caso de @eugenio (45 min/día):**
+  antes → 0 días de actividad y racha 0; después → **racha 1**, fila del día con **25 XP**, meta **15** (la de
+  la rampa) **CUMPLIDA**. Repetir la misión: `first_time=false`, xp/oro 0, **XP total 25 y oro 25 sin
+  duplicar**, un solo día, racha sigue 1. Guardarraíl `verify_chain` (A1→B2 + certs) VERDE.
 
 ## SRS · la calificación deja de ser intrusiva (feedback real) ✅ LIVE (2026-07-21 · solo cliente)
 Un usuario reportó que los 4 botones "¿Qué tal te costó?" tras **CADA** tarjeta molestan y pidió valorar al
@@ -17,6 +75,13 @@ moverla al final rompe el motor. Así que se hizo **no intrusiva**, no se quitó
   en el scheduler, en `submit_practice`, en la economía ni en el grading. El temporizador se cancela al
   ajustar y al salir (`dispose`), y `_rate` guarda contra doble calificación.
 - **Consistente en las dos entradas** (Practicar y el "Repasar N" del fin de lección): es la MISMA pantalla.
+  **VERIFICADO (2026-07-21):** ambas construyen `SrsReviewScreen(session:)` desde el mismo `startSrs()` y con
+  un ÚNICO parámetro → no hay configuración por entrada, el comportamiento es idéntico por construcción.
+  +2 tests: el auto-avance salta **una sola vez** (la tarjeta siguiente NO se arrastra → prueba que el timer
+  se cancela al calificar) y **salir con el temporizador vivo no califica ni revienta**. Honesto: el tap sobre
+  los chips no se puede simular en el harness de widgets (el botón está en pantalla pero el hit-test no
+  impacta), así que esa parte se cubre por el contrato de código (`_rate` cancela el timer y la guarda
+  `if (!_revealed) return` impide la doble calificación) y por los tests de comportamiento, no por un tap.
 - **Verificado:** analyze 0 · test **231/231** (+2 SRS: el auto-avance ocurre SIN intervención; los ajustes
   son visualmente secundarios) · build web OK · **`verify_srs.py` (cliente real pt+de) TODO VERDE** — motor
   FSRS, anti-farmeo, un pago/sesión, racha y aislamiento intactos; 9 usuarios reales sin tocar.

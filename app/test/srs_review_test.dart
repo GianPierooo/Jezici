@@ -118,6 +118,47 @@ void main() {
     expect(bien.style?.fontSize ?? 16, greaterThan(facil.style!.fontSize!));
   });
 
+  testWidgets('el auto-avance salta UNA vez: no arrastra la tarjeta siguiente',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(500, 1100));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await tester.pumpWidget(app(const SrsSession(cards: [wordCard, clozeCard])));
+    await tester.pump();
+    await tester.enterText(find.byType(TextField), 'gato');
+    await tester.pump();
+    await tester.tap(find.text('COMPROBAR'));
+    await tester.pump();
+    expect(find.text('2 restantes'), findsOneWidget);
+
+    // Salta el auto-avance de la PRIMERA tarjeta.
+    await tester.pump(const Duration(milliseconds: 1600));
+    await tester.pump(const Duration(milliseconds: 400));
+    expect(find.text('1 restante'), findsOneWidget);
+
+    // La SEGUNDA aun no se ha respondido: dejar pasar otro plazo entero no
+    // puede calificarla sola (si el timer no se cancelara al calificar, esta
+    // tarjeta se saltaria sin que el usuario la conteste).
+    await tester.pump(const Duration(milliseconds: 2500));
+    expect(find.text('1 restante'), findsOneWidget);
+    expect(find.text('COMPLETA LA FRASE'), findsOneWidget);
+  });
+
+  testWidgets('salir antes del auto-avance no califica ni revienta', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(500, 1100));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await tester.pumpWidget(app(const SrsSession(cards: [wordCard, clozeCard])));
+    await tester.pump();
+    await tester.enterText(find.byType(TextField), 'gato');
+    await tester.pump();
+    await tester.tap(find.text('COMPROBAR'));
+    await tester.pump();
+
+    // El usuario abandona la pantalla con el temporizador en marcha.
+    await tester.pumpWidget(const SizedBox());
+    await tester.pump(const Duration(milliseconds: 2000));
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('fallo -> solo "Otra vez" (el servidor forzaria rating=1)',
       (tester) async {
     await tester.pumpWidget(app(const SrsSession(cards: [wordCard])));
