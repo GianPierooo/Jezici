@@ -6952,6 +6952,12 @@ abstract class AppLocalizations {
   /// In es, this message translates to:
   /// **'Estudia la teoría de esto'**
   String get lessonStudyTheory;
+
+  /// Nombre del idioma rumano, en el idioma de la app
+  ///
+  /// In es, this message translates to:
+  /// **'rumano'**
+  String get learnLangRo;
 }
 
 class _AppLocalizationsDelegate

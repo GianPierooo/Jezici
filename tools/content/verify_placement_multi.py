@@ -68,7 +68,8 @@ def main():
             it = o['item']; iid = it['id']; m = meta.get(iid)
             seen.add(m['course_id'] if m else '?')
             lvl = m['cefr_level']
-            ans = m['correct'] if RANK[lvl] <= persona_rank else next(op for op in m['options'] if op != m['correct'])
+            ans = (m['correct'] if RANK[lvl] <= persona_rank or not m.get('options')
+                   else next(op for op in m['options'] if op != m['correct']))
             hist.append({'item_id': iid, 'answer': ans})
         return None, seen
 
@@ -80,13 +81,21 @@ def main():
         det_ok = det_bad = 0
         for iid in cids:
             m = meta[iid]
+            # Los ítems de SPEAKING del placement (mig 135/139) son `translation`
+            # SIN `options` (read-aloud): no tienen distractor que rechazar, así
+            # que el chequeo determinista de distractores no aplica. Sin este
+            # filtro el verificador reventaba — bit-rot desde mig 135, no un
+            # fallo del banco.
+            if not m.get('options'):
+                continue
             _, good = rpc(tok, 'grade_item', {'p_item_id': iid, 'p_answer': m['correct']})
             wrong = next(o for o in m['options'] if o != m['correct'])
             _, bad = rpc(tok, 'grade_item', {'p_item_id': iid, 'p_answer': wrong})
             if isinstance(good, dict) and good.get('correct') is True: det_ok += 1
             if isinstance(bad, dict) and bad.get('correct') is False: det_bad += 1
-        ck(f'{code} determinista: correctos aceptados', det_ok == len(cids), f"{det_ok}/{len(cids)}")
-        ck(f'{code} determinista: distractores rechazados (sin near-match)', det_bad == len(cids), f"{det_bad}/{len(cids)}")
+        n_mc = sum(1 for i in cids if meta[i].get('options'))
+        ck(f'{code} determinista: correctos aceptados', det_ok == n_mc, f"{det_ok}/{n_mc}")
+        ck(f'{code} determinista: distractores rechazados (sin near-match)', det_bad == n_mc, f"{det_bad}/{n_mc}")
         # 2) Personas (techo B2: los cursos fr/it/de/nl ya llegan a B2)
         for name, prank in [('A1', 0), ('A2', 1), ('B1', 2), ('B2', 3), ('avanzado', 4)]:
             res, seen = run_persona(cid, prank)

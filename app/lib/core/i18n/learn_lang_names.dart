@@ -10,5 +10,6 @@ String learnLangName(AppLocalizations l10n, String code) => switch (code) {
       'it' => l10n.learnLangIt,
       'de' => l10n.learnLangDe,
       'nl' => l10n.learnLangNl,
+      'ro' => l10n.learnLangRo,
       _ => code,
     };

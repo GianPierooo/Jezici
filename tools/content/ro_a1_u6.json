@@ -1,0 +1,418 @@
+{
+ "unit": {
+  "order": 6,
+  "title_es": "La ciudad y direcciones",
+  "color": "#56CCF2",
+  "icon": "map"
+ },
+ "checkpoint_desc": "Repasa los lugares de la ciudad con su género, decir dónde están con «este/sunt» y «se află», pedir y dar direcciones y usar «la», «în» y «pe».",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "Lugares de la ciudad"
+  },
+  {
+   "order": 2,
+   "title_es": "¿Dónde está? este y sunt"
+  },
+  {
+   "order": 3,
+   "title_es": "Pedir y dar direcciones"
+  },
+  {
+   "order": 4,
+   "title_es": "Merg la, sunt în, pe strada"
+  }
+ ],
+ "vocab": [
+  [
+   "o gară",
+   "la estación",
+   "sustantivo"
+  ],
+  [
+   "un muzeu",
+   "el museo",
+   "sustantivo"
+  ],
+  [
+   "o farmacie",
+   "la farmacia",
+   "sustantivo"
+  ],
+  [
+   "un magazin",
+   "la tienda",
+   "sustantivo"
+  ],
+  [
+   "o piață",
+   "la plaza; el mercado",
+   "sustantivo"
+  ],
+  [
+   "un parc",
+   "el parque",
+   "sustantivo"
+  ],
+  [
+   "o stradă",
+   "la calle",
+   "sustantivo"
+  ],
+  [
+   "un hotel",
+   "el hotel",
+   "sustantivo"
+  ],
+  [
+   "un oraș",
+   "la ciudad",
+   "sustantivo"
+  ],
+  [
+   "unde",
+   "dónde",
+   "adverbio"
+  ],
+  [
+   "a merge",
+   "ir",
+   "verbo"
+  ],
+  [
+   "a pleca",
+   "irse, marcharse",
+   "verbo"
+  ],
+  [
+   "a se afla",
+   "estar situado, encontrarse",
+   "verbo"
+  ],
+  [
+   "drept înainte",
+   "todo recto",
+   "adverbio"
+  ],
+  [
+   "la stânga",
+   "a la izquierda",
+   "adverbio"
+  ],
+  [
+   "la dreapta",
+   "a la derecha",
+   "adverbio"
+  ],
+  [
+   "lângă",
+   "al lado de, junto a",
+   "preposicion"
+  ],
+  [
+   "vizavi de",
+   "enfrente de",
+   "preposicion"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "locuri_oras",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada lugar con su traducción. Fíjate en «un» o «o»: te dice el género.",
+   "pairs": [
+    [
+     "o gară",
+     "una estación"
+    ],
+    [
+     "un muzeu",
+     "un museo"
+    ],
+    [
+     "o piață",
+     "una plaza / un mercado"
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "locuri_oras",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "¿Cuál es la forma correcta de «una tienda»?",
+   "options": [
+    "un magazin",
+    "o magazin",
+    "un magazine"
+   ],
+   "value": "un magazin"
+  },
+  {
+   "lesson": 1,
+   "topic": "locuri_oras",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "În oraș sunt două muzee.",
+   "options": [
+    "În oraș sunt două muzee.",
+    "În oraș sunt două hoteluri.",
+    "În oraș este un muzeu."
+   ],
+   "value": "În oraș sunt două muzee."
+  },
+  {
+   "lesson": 1,
+   "topic": "locuri_oras",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "En la ciudad hay un parque.",
+   "value": "În oraș este un parc.",
+   "accepted": [
+    "În oraș este un parc.",
+    "În oraș este un parc",
+    "În oraș e un parc.",
+    "În oraș se află un parc.",
+    "In oras e un parc.",
+    "In oras este un parc",
+    "In oras este un parc.",
+    "In oras se afla un parc."
+   ],
+   "source": "En la ciudad hay un parque."
+  },
+  {
+   "lesson": 1,
+   "topic": "locuri_oras",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "În oraș sunt un parc și un muzeu."
+  },
+  {
+   "lesson": 2,
+   "topic": "unde_este",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada frase con su traducción.",
+   "pairs": [
+    [
+     "Unde este gara?",
+     "¿Dónde está la estación?"
+    ],
+    [
+     "Unde sunt magazinele?",
+     "¿Dónde están las tiendas?"
+    ],
+    [
+     "Hotelul este lângă gară.",
+     "El hotel está delante de la estación."
+    ]
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "unde_este",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "¿Cómo se dice «el museo» en rumano? Recuerda: el artículo determinado se pega al final de la palabra.",
+   "options": [
+    "muzeul",
+    "muzeu",
+    "un muzeu"
+   ],
+   "value": "muzeul"
+  },
+  {
+   "lesson": 2,
+   "topic": "unde_este",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Farmacia este lângă gară.",
+   "options": [
+    "Farmacia este lângă gară.",
+    "Farmacia este lângă parc.",
+    "Hotelul este lângă gară."
+   ],
+   "value": "Farmacia este lângă gară."
+  },
+  {
+   "lesson": 2,
+   "topic": "unde_este",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa: «En la ciudad hay tres farmacias.»",
+   "text": "În oraș ___ trei farmacii.",
+   "value": "sunt",
+   "accepted": [
+    "sunt",
+    "se află",
+    "se afla"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "unde_este",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Unde se află gara, vă rog?"
+  },
+  {
+   "lesson": 3,
+   "topic": "indicatii",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Mergeți drept înainte.",
+   "options": [
+    "Mergeți drept înainte.",
+    "Mergeți la dreapta.",
+    "Mergeți la stânga."
+   ],
+   "value": "Mergeți drept înainte."
+  },
+  {
+   "lesson": 3,
+   "topic": "indicatii",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Luați prima stradă la stânga.",
+   "options": [
+    "Luați prima stradă la stânga.",
+    "Luați prima stradă la dreapta.",
+    "Luați a doua stradă la stânga."
+   ],
+   "value": "Luați prima stradă la stânga."
+  },
+  {
+   "lesson": 3,
+   "topic": "indicatii",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena para decir «La farmacia está a la derecha».",
+   "value": "Farmacia este la dreapta",
+   "sequence": [
+    "Farmacia",
+    "este",
+    "la",
+    "dreapta"
+   ],
+   "distractors": [
+    "stânga"
+   ],
+   "tiles": [
+    "dreapta",
+    "este",
+    "Farmacia",
+    "la",
+    "stânga"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "indicatii",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "El museo está enfrente del parque.",
+   "value": "Muzeul este vizavi de parc.",
+   "accepted": [
+    "Muzeul este vizavi de parc.",
+    "Muzeul este vizavi de parc",
+    "Muzeul se află vizavi de parc.",
+    "Muzeul se afla vizavi de parc."
+   ],
+   "source": "El museo está enfrente del parque."
+  },
+  {
+   "lesson": 3,
+   "topic": "indicatii",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Mergeți pe strada Mare, apoi la stânga."
+  },
+  {
+   "lesson": 4,
+   "topic": "la_in_pe",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Voy a la tienda». ¿Cuál es la forma correcta?",
+   "options": [
+    "Merg la magazin.",
+    "Merg la magazinul.",
+    "Mergem la magazin."
+   ],
+   "value": "Merg la magazin."
+  },
+  {
+   "lesson": 4,
+   "topic": "la_in_pe",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con el artículo pegado al final: «El museo está cerca».",
+   "value": "Muzeul",
+   "text": "___ este aproape.",
+   "accepted": [
+    "Muzeul",
+    "muzeul"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "la_in_pe",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Sunt în parc.",
+   "options": [
+    "Sunt în parc.",
+    "Merg la bancă.",
+    "Sunt în piață."
+   ],
+   "value": "Sunt în parc."
+  },
+  {
+   "lesson": 4,
+   "topic": "la_in_pe",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Los niños juegan DENTRO del parque». ¿Cuál es la forma correcta?",
+   "value": "Copiii se joacă în parc.",
+   "options": [
+    "Copiii se joacă în parc.",
+    "Copiii se joacă la parc.",
+    "Copiii se joacă pe parc."
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "la_in_pe",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena las palabras para decir «El hotel está en la calle Mare».",
+   "value": "Hotelul este pe strada Mare",
+   "sequence": [
+    "Hotelul",
+    "este",
+    "pe",
+    "strada",
+    "Mare"
+   ],
+   "tiles": [
+    "este",
+    "Hotelul",
+    "Mare",
+    "pe",
+    "strada"
+   ]
+  }
+ ]
+}

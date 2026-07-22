@@ -1700,5 +1700,6 @@
     }
   },
   "studyQuizError": "Não foi possível carregar o teste. Tente novamente.",
-  "lessonStudyTheory": "Estude a teoria disto"
+  "lessonStudyTheory": "Estude a teoria disto",
+  "learnLangRo": "romeno"
 }

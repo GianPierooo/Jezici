@@ -2430,5 +2430,9 @@
   "lessonStudyTheory": "Estudia la teoría de esto",
   "@lessonStudyTheory": {
     "description": "Enlace de la preview de leccion a la teoria de su tema en Estudiar"
+  },
+  "learnLangRo": "rumano",
+  "@learnLangRo": {
+    "description": "Nombre del idioma rumano, en el idioma de la app"
   }
 }

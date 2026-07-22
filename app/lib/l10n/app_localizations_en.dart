@@ -4054,4 +4054,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get lessonStudyTheory => 'Study the theory behind this';
+
+  @override
+  String get learnLangRo => 'Romanian';
 }

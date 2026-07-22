@@ -1,0 +1,419 @@
+{
+ "unit": {
+  "order": 2,
+  "title_es": "Números, edad y de dónde vienes",
+  "color": "#2D9CDB",
+  "icon": "pin"
+ },
+ "checkpoint_desc": "Repasa los números 0-20 y las decenas, la regla del «de» a partir de 20, la edad con «a avea» y decir de dónde eres y dónde vives.",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "Los números del 0 al 20"
+  },
+  {
+   "order": 2,
+   "title_es": "Las decenas y la regla del «de»"
+  },
+  {
+   "order": 3,
+   "title_es": "La edad con «a avea»"
+  },
+  {
+   "order": 4,
+   "title_es": "Países y nacionalidades"
+  }
+ ],
+ "vocab": [
+  [
+   "zero",
+   "cero",
+   "numeral"
+  ],
+  [
+   "cinci",
+   "cinco",
+   "numeral"
+  ],
+  [
+   "zece",
+   "diez",
+   "numeral"
+  ],
+  [
+   "cincisprezece",
+   "quince",
+   "numeral"
+  ],
+  [
+   "douăzeci",
+   "veinte",
+   "numeral"
+  ],
+  [
+   "treizeci",
+   "treinta",
+   "numeral"
+  ],
+  [
+   "patruzeci",
+   "cuarenta",
+   "numeral"
+  ],
+  [
+   "o sută",
+   "cien",
+   "numeral"
+  ],
+  [
+   "an",
+   "año",
+   "sustantivo"
+  ],
+  [
+   "leu",
+   "leu (la moneda de Rumanía)",
+   "sustantivo"
+  ],
+  [
+   "a avea",
+   "tener",
+   "verbo"
+  ],
+  [
+   "am",
+   "(yo) tengo",
+   "verbo"
+  ],
+  [
+   "ai",
+   "(tú) tienes",
+   "verbo"
+  ],
+  [
+   "are",
+   "(él/ella) tiene",
+   "verbo"
+  ],
+  [
+   "de",
+   "de (obligatorio tras los números desde 20)",
+   "preposicion"
+  ],
+  [
+   "român",
+   "rumano",
+   "adjetivo"
+  ],
+  [
+   "româncă",
+   "rumana (mujer)",
+   "sustantivo"
+  ],
+  [
+   "a locui",
+   "vivir (residir)",
+   "verbo"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "numere_0_20",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada número rumano con su traducción.",
+   "pairs": [
+    [
+     "patru",
+     "cuatro"
+    ],
+    [
+     "nouă",
+     "nueve"
+    ],
+    [
+     "cincisprezece",
+     "quince"
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "numere_0_20",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "¿Qué número es «șaisprezece»?",
+   "options": [
+    "16",
+    "6",
+    "60"
+   ],
+   "value": "16"
+  },
+  {
+   "lesson": 1,
+   "topic": "numere_0_20",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige el número que oíste.",
+   "say": "nouăsprezece",
+   "options": [
+    "nouăsprezece",
+    "nouă",
+    "nouăzeci"
+   ],
+   "value": "nouăsprezece"
+  },
+  {
+   "lesson": 1,
+   "topic": "numere_0_20",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Escribe en letras el número 15 en rumano.",
+   "text": "15 = ___",
+   "value": "cincisprezece",
+   "accepted": [
+    "cincisprezece"
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "numere_0_20",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "unu, doi, trei, patru, cinci, șase, șapte, opt, nouă, zece"
+  },
+  {
+   "lesson": 2,
+   "topic": "zeci_regula_de",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "Elige la forma correcta para «Tengo veinte años».",
+   "options": [
+    "Am douăzeci de ani.",
+    "Am douăzeci ani.",
+    "Am douăzeci de an."
+   ],
+   "value": "Am douăzeci de ani."
+  },
+  {
+   "lesson": 2,
+   "topic": "zeci_regula_de",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "Elige la forma correcta para «Tengo cinco años».",
+   "options": [
+    "Am cinci ani.",
+    "Am cinci de ani.",
+    "Am cinci de an."
+   ],
+   "value": "Am cinci ani."
+  },
+  {
+   "lesson": 2,
+   "topic": "zeci_regula_de",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Costă o sută de lei.",
+   "options": [
+    "Costă o sută de lei.",
+    "Costă zece lei.",
+    "Costă cincizeci de lei."
+   ],
+   "value": "Costă o sută de lei."
+  },
+  {
+   "lesson": 2,
+   "topic": "zeci_regula_de",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con el número 40 escrito en letras: «Ella tiene cuarenta años».",
+   "text": "Ea are ___ de ani.",
+   "value": "patruzeci",
+   "accepted": [
+    "patruzeci"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "zeci_regula_de",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena para decir «Ella tiene treinta años».",
+   "value": "Ea are treizeci de ani",
+   "sequence": [
+    "Ea",
+    "are",
+    "treizeci",
+    "de",
+    "ani"
+   ],
+   "distractors": [
+    "este",
+    "an"
+   ],
+   "tiles": [
+    "ani",
+    "este",
+    "treizeci",
+    "Ea",
+    "de",
+    "an",
+    "are"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "varsta_a_avea",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "Elige la forma correcta para «¿Cuántos años tienes?».",
+   "options": [
+    "Câți ani ai?",
+    "Câți ani ești?",
+    "Cât ani ai?"
+   ],
+   "value": "Câți ani ai?"
+  },
+  {
+   "lesson": 3,
+   "topic": "varsta_a_avea",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Câți ani ai?",
+   "options": [
+    "Câți ani ai?",
+    "Câți ani are ea?",
+    "De unde ești?"
+   ],
+   "value": "Câți ani ai?"
+  },
+  {
+   "lesson": 3,
+   "topic": "varsta_a_avea",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Tengo treinta años.",
+   "source": "Tengo treinta años.",
+   "value": "Am treizeci de ani.",
+   "accepted": [
+    "Am treizeci de ani.",
+    "Am treizeci de ani",
+    "Eu am treizeci de ani.",
+    "Eu am treizeci de ani"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "varsta_a_avea",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena las palabras: «Él tiene cincuenta años».",
+   "value": "El are cincizeci de ani",
+   "sequence": [
+    "El",
+    "are",
+    "cincizeci",
+    "de",
+    "ani"
+   ],
+   "tiles": [
+    "de",
+    "cincizeci",
+    "El",
+    "ani",
+    "are"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "varsta_a_avea",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Câți ani ai? Am douăzeci și cinci de ani."
+  },
+  {
+   "lesson": 4,
+   "topic": "tari_nationalitati",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada nacionalidad rumana con su traducción.",
+   "pairs": [
+    [
+     "spaniol",
+     "español"
+    ],
+    [
+     "româncă",
+     "rumana"
+    ],
+    [
+     "mexican",
+     "mexicano"
+    ]
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "tari_nationalitati",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Sunt din Mexic.",
+   "options": [
+    "Sunt din Mexic.",
+    "Sunt din Spania.",
+    "Sunt din România."
+   ],
+   "value": "Sunt din Mexic."
+  },
+  {
+   "lesson": 4,
+   "topic": "tari_nationalitati",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Unde locuiești?",
+   "options": [
+    "Unde locuiești?",
+    "De unde ești?",
+    "Câți ani ai?"
+   ],
+   "value": "Unde locuiești?"
+  },
+  {
+   "lesson": 4,
+   "topic": "tari_nationalitati",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Vivo en Madrid.",
+   "source": "Vivo en Madrid.",
+   "value": "Locuiesc în Madrid.",
+   "accepted": [
+    "Locuiesc în Madrid.",
+    "Locuiesc în Madrid",
+    "Eu locuiesc în Madrid.",
+    "Eu locuiesc în Madrid",
+    "Eu locuiesc in Madrid",
+    "Eu locuiesc in Madrid.",
+    "Locuiesc in Madrid",
+    "Locuiesc in Madrid."
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "tari_nationalitati",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Sunt din Spania. Sunt spaniol. Locuiesc în Madrid."
+  }
+ ]
+}

@@ -1,0 +1,421 @@
+{
+ "unit": {
+  "order": 5,
+  "title_es": "El día y la hora",
+  "color": "#9B51E0",
+  "icon": "schedule"
+ },
+ "checkpoint_desc": "Repasa preguntar y decir la hora (y cuarto, y media, menos cuarto), los días de la semana, las partes del día y la rutina diaria en presente.",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "¿Qué hora es?"
+  },
+  {
+   "order": 2,
+   "title_es": "Y cuarto, y media, menos cuarto"
+  },
+  {
+   "order": 3,
+   "title_es": "Los días de la semana"
+  },
+  {
+   "order": 4,
+   "title_es": "Mi rutina: me despierto y me acuesto"
+  }
+ ],
+ "vocab": [
+  [
+   "ceas",
+   "el reloj",
+   "sustantivo"
+  ],
+  [
+   "oră",
+   "la hora",
+   "sustantivo"
+  ],
+  [
+   "sfert",
+   "el cuarto (de hora)",
+   "sustantivo"
+  ],
+  [
+   "jumătate",
+   "la mitad, la media",
+   "sustantivo"
+  ],
+  [
+   "luni",
+   "lunes",
+   "sustantivo"
+  ],
+  [
+   "marți",
+   "martes",
+   "sustantivo"
+  ],
+  [
+   "miercuri",
+   "miércoles",
+   "sustantivo"
+  ],
+  [
+   "joi",
+   "jueves",
+   "sustantivo"
+  ],
+  [
+   "vineri",
+   "viernes",
+   "sustantivo"
+  ],
+  [
+   "sâmbătă",
+   "sábado",
+   "sustantivo"
+  ],
+  [
+   "duminică",
+   "domingo",
+   "sustantivo"
+  ],
+  [
+   "dimineață",
+   "la mañana",
+   "sustantivo"
+  ],
+  [
+   "după-amiază",
+   "la tarde",
+   "sustantivo"
+  ],
+  [
+   "seară",
+   "la tarde-noche",
+   "sustantivo"
+  ],
+  [
+   "a se trezi",
+   "despertarse",
+   "verbo"
+  ],
+  [
+   "a se culca",
+   "acostarse",
+   "verbo"
+  ],
+  [
+   "a mânca",
+   "comer",
+   "verbo"
+  ],
+  [
+   "a lucra",
+   "trabajar",
+   "verbo"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "cat_e_ceasul",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada palabra rumana con su significado.",
+   "pairs": [
+    [
+     "ceas",
+     "el reloj"
+    ],
+    [
+     "oră",
+     "la hora"
+    ],
+    [
+     "dimineață",
+     "la mañana"
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "cat_e_ceasul",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "Completa: «___ ora trei.» = «Son las tres.»",
+   "options": [
+    "Este",
+    "Sunt",
+    "Are"
+   ],
+   "value": "Este"
+  },
+  {
+   "lesson": 1,
+   "topic": "cat_e_ceasul",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa la pregunta «¿Qué hora es?». Recuerda: el rumano pega el artículo al final de la palabra.",
+   "text": "Cât e ___?",
+   "value": "ceasul",
+   "accepted": [
+    "ceasul",
+    "ora"
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "cat_e_ceasul",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Este ora șapte.",
+   "options": [
+    "Este ora șapte.",
+    "Este ora zece.",
+    "Este ora unu."
+   ],
+   "value": "Este ora șapte."
+  },
+  {
+   "lesson": 1,
+   "topic": "cat_e_ceasul",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Cât e ceasul? Este ora trei."
+  },
+  {
+   "lesson": 2,
+   "topic": "sfert_si_jumatate",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "¿Cómo se dice «Son las tres y media»? (el rumano cuenta como el español)",
+   "options": [
+    "Este trei și jumătate.",
+    "Este trei și un sfert.",
+    "Este patru fără un sfert."
+   ],
+   "value": "Este trei și jumătate."
+  },
+  {
+   "lesson": 2,
+   "topic": "sfert_si_jumatate",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Este două și jumătate.",
+   "options": [
+    "Este două și jumătate.",
+    "Este două și un sfert.",
+    "Este două fără un sfert."
+   ],
+   "value": "Este două și jumătate."
+  },
+  {
+   "lesson": 2,
+   "topic": "sfert_si_jumatate",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Este cinci fără un sfert.",
+   "options": [
+    "Este cinci fără un sfert.",
+    "Este cinci și un sfert.",
+    "Este cinci și jumătate."
+   ],
+   "value": "Este cinci fără un sfert."
+  },
+  {
+   "lesson": 2,
+   "topic": "sfert_si_jumatate",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena para decir «Son las ocho y cuarto».",
+   "value": "Este opt și un sfert.",
+   "sequence": [
+    "Este",
+    "opt",
+    "și",
+    "un",
+    "sfert"
+   ],
+   "distractors": [
+    "jumătate",
+    "fără"
+   ],
+   "tiles": [
+    "Este",
+    "fără",
+    "jumătate",
+    "opt",
+    "sfert",
+    "un",
+    "și"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "sfert_si_jumatate",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Son las siete menos cuarto.",
+   "value": "Este șapte fără un sfert.",
+   "accepted": [
+    "Este șapte fără un sfert.",
+    "E șapte fără un sfert.",
+    "Este ora șapte fără un sfert.",
+    "E sapte fara un sfert.",
+    "Este ora sapte fara un sfert.",
+    "Este sapte fara un sfert."
+   ],
+   "source": "Son las siete menos cuarto."
+  },
+  {
+   "lesson": 3,
+   "topic": "zilele_saptamanii",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada día de la semana con su significado.",
+   "pairs": [
+    [
+     "luni",
+     "lunes"
+    ],
+    [
+     "miercuri",
+     "miércoles"
+    ],
+    [
+     "sâmbătă",
+     "sábado"
+    ]
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "zilele_saptamanii",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "¿Qué día viene después de «joi» (jueves)?",
+   "options": [
+    "vineri",
+    "miercuri",
+    "duminică"
+   ],
+   "value": "vineri"
+  },
+  {
+   "lesson": 3,
+   "topic": "zilele_saptamanii",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Astăzi este marți.",
+   "options": [
+    "Astăzi este marți.",
+    "Astăzi este joi.",
+    "Astăzi este duminică."
+   ],
+   "value": "Astăzi este marți."
+  },
+  {
+   "lesson": 3,
+   "topic": "zilele_saptamanii",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano (los días se escriben en minúscula):",
+   "text": "Hoy es miércoles.",
+   "value": "Astăzi este miercuri.",
+   "accepted": [
+    "Astăzi este miercuri.",
+    "Astăzi e miercuri.",
+    "Azi este miercuri.",
+    "Azi e miercuri.",
+    "Astazi e miercuri.",
+    "Astazi este miercuri."
+   ],
+   "source": "Hoy es miércoles."
+  },
+  {
+   "lesson": 3,
+   "topic": "zilele_saptamanii",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Sâmbătă după-amiaza nu lucrez."
+  },
+  {
+   "lesson": 4,
+   "topic": "rutina_zilnica",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Mă culc la ora unsprezece» significa…",
+   "options": [
+    "Me acuesto a las once.",
+    "Me despierto a las once.",
+    "Me lavo a las once."
+   ],
+   "value": "Me acuesto a las once."
+  },
+  {
+   "lesson": 4,
+   "topic": "rutina_zilnica",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa: «Por la mañana me despierto a las siete.» No olvides el pronombre.",
+   "text": "Dimineața ___ la ora șapte.",
+   "value": "mă trezesc",
+   "accepted": [
+    "mă trezesc",
+    "ma trezesc"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "rutina_zilnica",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "La ce oră te culci seara?",
+   "options": [
+    "La ce oră te culci seara?",
+    "La ce oră te trezești dimineața?",
+    "La ce oră mănânci seara?"
+   ],
+   "value": "La ce oră te culci seara?"
+  },
+  {
+   "lesson": 4,
+   "topic": "rutina_zilnica",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena empezando por «La»: «¿A qué hora trabajas el lunes?».",
+   "value": "La ce oră lucrezi luni?",
+   "sequence": [
+    "La",
+    "ce",
+    "oră",
+    "lucrezi",
+    "luni"
+   ],
+   "tiles": [
+    "ce",
+    "La",
+    "lucrezi",
+    "luni",
+    "oră"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "rutina_zilnica",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Dimineața mă trezesc la șapte, mănânc și lucrez."
+  }
+ ]
+}

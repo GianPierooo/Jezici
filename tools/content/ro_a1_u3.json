@@ -1,0 +1,412 @@
+{
+ "unit": {
+  "order": 3,
+  "title_es": "La familia",
+  "color": "#F2994A",
+  "icon": "family_restroom"
+ },
+ "checkpoint_desc": "Repasa el vocabulario de la familia, el artículo pegado al final (băiatul, bunica), un frate / o soră y los posesivos meu y mea.",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "La familia (familia mea)"
+  },
+  {
+   "order": 2,
+   "title_es": "El artículo se pega al final: băiatul"
+  },
+  {
+   "order": 3,
+   "title_es": "Un frate, o soră: el género en las personas"
+  },
+  {
+   "order": 4,
+   "title_es": "Fratele meu, sora mea (posesivos)"
+  }
+ ],
+ "vocab": [
+  [
+   "familie",
+   "familia",
+   "sustantivo"
+  ],
+  [
+   "tată",
+   "padre",
+   "sustantivo"
+  ],
+  [
+   "mamă",
+   "madre",
+   "sustantivo"
+  ],
+  [
+   "părinți",
+   "padres (progenitores)",
+   "sustantivo"
+  ],
+  [
+   "frate",
+   "hermano",
+   "sustantivo"
+  ],
+  [
+   "soră",
+   "hermana",
+   "sustantivo"
+  ],
+  [
+   "fiu",
+   "hijo",
+   "sustantivo"
+  ],
+  [
+   "fiică",
+   "hija",
+   "sustantivo"
+  ],
+  [
+   "copil",
+   "niño / hijo",
+   "sustantivo"
+  ],
+  [
+   "bunic",
+   "abuelo",
+   "sustantivo"
+  ],
+  [
+   "bunică",
+   "abuela",
+   "sustantivo"
+  ],
+  [
+   "soț",
+   "esposo",
+   "sustantivo"
+  ],
+  [
+   "soție",
+   "esposa",
+   "sustantivo"
+  ],
+  [
+   "băiat",
+   "chico",
+   "sustantivo"
+  ],
+  [
+   "fată",
+   "chica",
+   "sustantivo"
+  ],
+  [
+   "meu",
+   "mi (con palabra masculina)",
+   "adjetivo"
+  ],
+  [
+   "mea",
+   "mi (con palabra femenina)",
+   "adjetivo"
+  ],
+  [
+   "acasă",
+   "en casa",
+   "adverbio"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "familia",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada palabra rumana con su traducción.",
+   "pairs": [
+    [
+     "părinți",
+     "padres"
+    ],
+    [
+     "soț",
+     "esposo"
+    ],
+    [
+     "bunică",
+     "abuela"
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "familia",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "En rumano, «copil» significa:",
+   "options": [
+    "niño",
+    "copia",
+    "hermano"
+   ],
+   "value": "niño"
+  },
+  {
+   "lesson": 1,
+   "topic": "familia",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Tata și mama sunt acasă.",
+   "options": [
+    "Tata și mama sunt acasă.",
+    "Bunicul și bunica sunt acasă.",
+    "Fratele și sora sunt acasă."
+   ],
+   "value": "Tata și mama sunt acasă."
+  },
+  {
+   "lesson": 1,
+   "topic": "familia",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Tengo un hermano.",
+   "value": "Am un frate",
+   "accepted": [
+    "Am un frate",
+    "Eu am un frate"
+   ],
+   "source": "Tengo un hermano."
+  },
+  {
+   "lesson": 1,
+   "topic": "familia",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Aceasta este familia mea."
+  },
+  {
+   "lesson": 2,
+   "topic": "articol-hotarat",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«El niño» en rumano se dice:",
+   "options": [
+    "copilul",
+    "el copil",
+    "copila"
+   ],
+   "value": "copilul"
+  },
+  {
+   "lesson": 2,
+   "topic": "articol-hotarat",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "«El chico está en casa». Escribe la palabra que falta con el artículo pegado al final.",
+   "text": "___ este acasă.",
+   "value": "băiatul",
+   "accepted": [
+    "băiatul",
+    "baiatul"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "articol-hotarat",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Bunicul este acasă.",
+   "options": [
+    "Bunicul este acasă.",
+    "Soția este acasă.",
+    "Copilul este acasă."
+   ],
+   "value": "Bunicul este acasă."
+  },
+  {
+   "lesson": 2,
+   "topic": "articol-hotarat",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena para decir «El abuelo y el niño están en casa».",
+   "value": "Bunicul și copilul sunt acasă",
+   "sequence": [
+    "Bunicul",
+    "și",
+    "copilul",
+    "sunt",
+    "acasă"
+   ],
+   "distractors": [
+    "Bunic",
+    "copil"
+   ],
+   "tiles": [
+    "acasă",
+    "Bunic",
+    "Bunicul",
+    "copil",
+    "copilul",
+    "sunt",
+    "și"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "articol-hotarat",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Băiatul și fata sunt acasă."
+  },
+  {
+   "lesson": 3,
+   "topic": "un-o",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada grupo rumano con su traducción.",
+   "pairs": [
+    [
+     "un bunic",
+     "un abuelo"
+    ],
+    [
+     "o bunică",
+     "una abuela"
+    ],
+    [
+     "o fată",
+     "una chica"
+    ]
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "un-o",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Una hermana» en rumano es:",
+   "options": [
+    "o soră",
+    "un soră",
+    "una soră"
+   ],
+   "value": "o soră"
+  },
+  {
+   "lesson": 3,
+   "topic": "un-o",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Am o fiică și un fiu.",
+   "options": [
+    "Am o fiică și un fiu.",
+    "Am o soră și un frate.",
+    "Am un frate și o bunică."
+   ],
+   "value": "Am o fiică și un fiu."
+  },
+  {
+   "lesson": 3,
+   "topic": "un-o",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Ea are un frate.",
+   "options": [
+    "Ea are un frate.",
+    "El are o soră.",
+    "Ea are o fiică."
+   ],
+   "value": "Ea are un frate."
+  },
+  {
+   "lesson": 3,
+   "topic": "un-o",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Ea are un frate și o soră."
+  },
+  {
+   "lesson": 4,
+   "topic": "posesive",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Mi hermana» en rumano es:",
+   "options": [
+    "sora mea",
+    "mea soră",
+    "sora meu"
+   ],
+   "value": "sora mea"
+  },
+  {
+   "lesson": 4,
+   "topic": "posesive",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Mi hermano y mi hermana.",
+   "value": "Fratele meu și sora mea",
+   "accepted": [
+    "Fratele meu și sora mea",
+    "Fratele meu si sora mea"
+   ],
+   "source": "Mi hermano y mi hermana."
+  },
+  {
+   "lesson": 4,
+   "topic": "posesive",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "«Mi hermano tiene un niño». Escribe la palabra que falta: el sustantivo lleva el artículo pegado al final.",
+   "text": "___ meu are un copil.",
+   "value": "fratele",
+   "accepted": [
+    "fratele"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "posesive",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena las palabras: «Mi hermana tiene un hijo».",
+   "value": "Sora mea are un copil",
+   "sequence": [
+    "Sora",
+    "mea",
+    "are",
+    "un",
+    "copil"
+   ],
+   "tiles": [
+    "are",
+    "copil",
+    "mea",
+    "Sora",
+    "un"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "posesive",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Fratele meu are o fiică.",
+   "options": [
+    "Fratele meu are o fiică.",
+    "Sora mea are un fiu.",
+    "Bunica mea este acasă."
+   ],
+   "value": "Fratele meu are o fiică."
+  }
+ ]
+}

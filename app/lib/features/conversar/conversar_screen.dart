@@ -31,6 +31,7 @@ class ConversarScreen extends ConsumerWidget {
       'it': ConvModel("Buongiorno! Vorrei un caffè e una fetta di torta, per favore. Quanto costa?", ["Vorrei un caffè…", "…e qualcosa da mangiare, per favore.", "Quanto costa?"]),
       'de': ConvModel("Guten Tag! Ich hätte gern einen Kaffee und ein Stück Kuchen, bitte. Was kostet das?", ["Ich hätte gern…", "…und etwas zu essen, bitte.", "Was kostet das?"]),
       'nl': ConvModel("Hallo! Mag ik een koffie en een stuk taart, alstublieft? Hoeveel kost dat?", ["Mag ik een koffie…?", "…en iets te eten, alstublieft.", "Hoeveel kost dat?"]),
+      'ro': ConvModel("Bună ziua! Aș vrea o cafea și o felie de tort, vă rog. Cât costă?", ["Aș vrea o cafea…", "…și ceva de mâncare, vă rog.", "Cât costă?"]),
     }),
     ConvTopic('intro', "👋", {
       'en': ConvModel("Hi, I'm Ana. Nice to meet you! I'm from Peru and I work as a teacher.", ["I'm…", "Nice to meet you", "I'm from… / I work as…"]),
@@ -39,6 +40,7 @@ class ConversarScreen extends ConsumerWidget {
       'it': ConvModel("Ciao, mi chiamo Ana, piacere! Vengo dal Perù e faccio l'insegnante.", ["Mi chiamo…, piacere!", "Vengo da…", "Faccio l'insegnante / Lavoro come…"]),
       'de': ConvModel("Hallo! Ich heiße Ana. Ich komme aus Spanien und ich bin Lehrerin. Und du?", ["Ich heiße…", "Ich komme aus…", "Ich bin (von Beruf)…"]),
       'nl': ConvModel("Hoi, ik heet Ana, aangenaam! Ik kom uit Peru en ik werk als lerares.", ["Ik heet…, aangenaam!", "Ik kom uit…", "Ik werk als…"]),
+      'ro': ConvModel("Bună, mă numesc Ana, îmi pare bine! Sunt din Peru și lucrez ca profesoară.", ["Mă numesc…, îmi pare bine!", "Sunt din…", "Lucrez ca…"]),
     }),
     ConvTopic('airport', "✈️", {
       'en': ConvModel("Excuse me, where is gate 12? What time does the flight to Madrid leave?", ["Excuse me…", "Where is…?", "What time does… leave?"]),
@@ -47,6 +49,7 @@ class ConversarScreen extends ConsumerWidget {
       'it': ConvModel("Mi scusi, dov'è l'uscita 12? A che ora parte il volo per Madrid?", ["Mi scusi, dov'è l'uscita…?", "A che ora parte il volo per…?", "Da quale gate parte?"]),
       'de': ConvModel("Entschuldigung, von welchem Gate geht mein Flug? Und wann fliegt die Maschine ab?", ["Von welchem Gate geht…?", "Wann fliegt der Flug ab?", "Entschuldigung,…"]),
       'nl': ConvModel("Pardon, waar is gate 12? En hoe laat vertrekt de vlucht naar Madrid?", ["Pardon, waar is…?", "Hoe laat vertrekt de vlucht naar…?", "gate 12"]),
+      'ro': ConvModel("Scuzați-mă, unde este poarta 12? Și la ce oră pleacă zborul spre Madrid?", ["Scuzați-mă, unde este…?", "La ce oră pleacă zborul spre…?", "poarta 12"]),
     }),
     ConvTopic('weekend', "🌤️", {
       'en': ConvModel("Last weekend I went to the park with my friends and we had lunch together.", ["Last weekend I…", "went / had / saw", "with my friends"]),
@@ -55,6 +58,7 @@ class ConversarScreen extends ConsumerWidget {
       'it': ConvModel("Lo scorso fine settimana sono andata al parco con i miei amici e abbiamo pranzato insieme.", ["Lo scorso fine settimana sono andato/a…", "…con i miei amici.", "Abbiamo pranzato insieme."]),
       'de': ConvModel("Am Wochenende bin ich mit Freunden ins Kino gegangen und am Sonntag habe ich lange geschlafen.", ["Am Wochenende bin ich… gegangen", "Ich habe… gemacht", "Das war schön / schön war es"]),
       'nl': ConvModel("Afgelopen weekend ben ik naar het park gegaan met mijn vrienden en hebben we samen geluncht.", ["Afgelopen weekend ben ik… gegaan", "…met mijn vrienden.", "We hebben samen geluncht."]),
+      'ro': ConvModel("Weekendul trecut am fost în parc cu prietenii mei și am luat masa împreună.", ["Weekendul trecut am fost…", "…cu prietenii mei.", "Am luat masa împreună."]),
     }),
     ConvTopic('interview', "💼", {
       'en': ConvModel("I'm interested in this job because I like working with people and I want to learn.", ["I'm interested because…", "I like…", "I want to…"]),
@@ -63,6 +67,7 @@ class ConversarScreen extends ConsumerWidget {
       'it': ConvModel("Sono interessata a questo lavoro perché mi piace lavorare con le persone e ho voglia di imparare.", ["Sono interessato/a a questo lavoro perché…", "Mi piace lavorare con le persone.", "Ho voglia di imparare / Voglio crescere."]),
       'de': ConvModel("Ich möchte die Stelle, weil die Arbeit sehr interessant ist und weil ich gern im Team arbeite.", ["Ich möchte die Stelle, weil…", "…und weil ich gern… arbeite", "Die Arbeit ist interessant."]),
       'nl': ConvModel("Ik wil deze baan graag omdat ik graag met mensen werk en omdat ik veel wil leren.", ["Ik wil deze baan omdat…", "Ik werk graag met mensen.", "Ik wil veel leren."]),
+      'ro': ConvModel("Îmi doresc acest post pentru că îmi place să lucrez cu oamenii și pentru că vreau să învăț mult.", ["Îmi doresc acest post pentru că…", "Îmi place să lucrez cu oamenii.", "Vreau să învăț mult."]),
     }),
     ConvTopic('directions', "🧭", {
       'en': ConvModel("Excuse me, how do I get to the train station? Is it far from here?", ["How do I get to…?", "Is it far?", "turn left / right"]),
@@ -71,6 +76,7 @@ class ConversarScreen extends ConsumerWidget {
       'it': ConvModel("Mi scusi, come arrivo alla stazione dei treni? È lontano da qui?", ["Mi scusi, come arrivo a…?", "Per andare alla stazione, per favore?", "È lontano da qui?"]),
       'de': ConvModel("Entschuldigung, wie komme ich zum Bahnhof? Ist das weit von hier?", ["Wie komme ich zum…?", "Ist das weit von hier?", "Entschuldigung,…"]),
       'nl': ConvModel("Pardon, hoe kom ik bij het treinstation? Is het ver hiervandaan?", ["Pardon, hoe kom ik bij…?", "Is het ver hiervandaan?", "Kan ik lopen?"]),
+      'ro': ConvModel("Scuzați-mă, cum ajung la gară? Este departe de aici?", ["Scuzați-mă, cum ajung la…?", "Este departe de aici?", "Pot merge pe jos?"]),
     }),
   ];
 
@@ -292,7 +298,7 @@ class ConvTopic {
   final String id;
   final String emoji;
 
-  /// model+tips por idioma META del curso ('en'|'pt'|'fr'|'it'|'de'|'nl').
+  /// model+tips por idioma META del curso ('en'|'pt'|'fr'|'it'|'de'|'nl'|'ro').
   final Map<String, ConvModel> models;
 
   /// El modelo en [lang]; si faltara ese idioma, cae a inglés (nunca rompe).

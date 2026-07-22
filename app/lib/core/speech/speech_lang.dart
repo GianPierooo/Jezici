@@ -34,6 +34,10 @@ class SpeechLang {
         tts = 'nl-NL';
         stt = 'nl_NL';
         break;
+      case 'ro':
+        tts = 'ro-RO';
+        stt = 'ro_RO';
+        break;
       default:
         tts = 'en-US';
         stt = 'en_US';

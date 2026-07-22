@@ -1700,5 +1700,6 @@
     }
   },
   "studyQuizError": "The quiz could not be loaded. Please try again.",
-  "lessonStudyTheory": "Study the theory behind this"
+  "lessonStudyTheory": "Study the theory behind this",
+  "learnLangRo": "Romanian"
 }

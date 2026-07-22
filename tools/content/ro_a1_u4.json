@@ -1,0 +1,429 @@
+{
+ "unit": {
+  "order": 4,
+  "title_es": "Comida y en el café",
+  "color": "#EB5757",
+  "icon": "restaurant"
+ },
+ "checkpoint_desc": "Repasa pedir comida y bebida con «Aș vrea…, vă rog», el género de los alimentos, el verbo «a vrea» y el plural neutro (un pahar / două pahare).",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "La comida y la bebida"
+  },
+  {
+   "order": 2,
+   "title_es": "En el café: Aș vrea…, vă rog"
+  },
+  {
+   "order": 3,
+   "title_es": "El verbo «a vrea» y el neutro"
+  },
+  {
+   "order": 4,
+   "title_es": "Falsos amigos y la cuenta"
+  }
+ ],
+ "vocab": [
+  [
+   "o cafea",
+   "un café",
+   "sustantivo"
+  ],
+  [
+   "un ceai",
+   "un té",
+   "sustantivo"
+  ],
+  [
+   "o bere",
+   "una cerveza",
+   "sustantivo"
+  ],
+  [
+   "o apă",
+   "agua",
+   "sustantivo"
+  ],
+  [
+   "o pâine",
+   "pan",
+   "sustantivo"
+  ],
+  [
+   "o brânză",
+   "queso",
+   "sustantivo"
+  ],
+  [
+   "carne",
+   "carne",
+   "sustantivo"
+  ],
+  [
+   "o supă",
+   "una sopa",
+   "sustantivo"
+  ],
+  [
+   "o ciorbă",
+   "una sopa agria rumana",
+   "sustantivo"
+  ],
+  [
+   "un pahar",
+   "un vaso",
+   "sustantivo"
+  ],
+  [
+   "o sticlă",
+   "una botella",
+   "sustantivo"
+  ],
+  [
+   "o masă",
+   "mesa; comida",
+   "sustantivo"
+  ],
+  [
+   "o plată",
+   "pago",
+   "sustantivo"
+  ],
+  [
+   "o notă",
+   "la nota; la cuenta (nota de plată)",
+   "sustantivo"
+  ],
+  [
+   "cald",
+   "caliente",
+   "adjetivo"
+  ],
+  [
+   "a vrea",
+   "querer",
+   "verbo"
+  ],
+  [
+   "vă rog",
+   "por favor",
+   "interjeccion"
+  ],
+  [
+   "mulțumesc",
+   "gracias",
+   "interjeccion"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "mancare",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada palabra rumana con su traducción.",
+   "pairs": [
+    [
+     "pâine",
+     "el pan"
+    ],
+    [
+     "brânză",
+     "el queso"
+    ],
+    [
+     "carne",
+     "la carne"
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "mancare",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "¿Cómo se dice «un café» (la bebida) en rumano?",
+   "options": [
+    "o cafea",
+    "un cafea",
+    "cafeaua"
+   ],
+   "value": "o cafea"
+  },
+  {
+   "lesson": 1,
+   "topic": "mancare",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "O cafea și o bere, vă rog.",
+   "options": [
+    "O cafea și o bere, vă rog.",
+    "O cafea și un ceai, vă rog.",
+    "O supă și pâine, vă rog."
+   ],
+   "value": "O cafea și o bere, vă rog."
+  },
+  {
+   "lesson": 1,
+   "topic": "mancare",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con la palabra que significa «queso».",
+   "text": "Pâine cu ___, vă rog.",
+   "value": "brânză",
+   "accepted": [
+    "brânză",
+    "brânza",
+    "branza"
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "mancare",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "O cafea și un ceai, vă rog."
+  },
+  {
+   "lesson": 2,
+   "topic": "cafenea",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada palabra rumana con su traducción.",
+   "pairs": [
+    [
+     "un pahar",
+     "un vaso"
+    ],
+    [
+     "o sticlă",
+     "una botella"
+    ],
+    [
+     "o masă",
+     "una mesa"
+    ]
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "cafenea",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "¿Cuál de estas fórmulas significa «por favor»?",
+   "options": [
+    "vă rog",
+    "mulțumesc",
+    "cu plăcere"
+   ],
+   "value": "vă rog"
+  },
+  {
+   "lesson": 2,
+   "topic": "cafenea",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Aș vrea o supă, vă rog.",
+   "options": [
+    "Aș vrea o supă, vă rog.",
+    "Aș vrea o ciorbă, vă rog.",
+    "Aș vrea o bere, vă rog."
+   ],
+   "value": "Aș vrea o supă, vă rog."
+  },
+  {
+   "lesson": 2,
+   "topic": "cafenea",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Quisiera un té, por favor.",
+   "value": "Aș vrea un ceai, vă rog.",
+   "accepted": [
+    "Aș vrea un ceai, vă rog.",
+    "Aș vrea un ceai, vă rog",
+    "As vrea un ceai, va rog",
+    "As vrea un ceai, va rog."
+   ],
+   "source": "Quisiera un té, por favor."
+  },
+  {
+   "lesson": 2,
+   "topic": "cafenea",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Aș vrea o bere, vă rog."
+  },
+  {
+   "lesson": 3,
+   "topic": "avrea",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "Le preguntas a un amigo «¿Quieres un té?». ¿Cuál es la forma correcta?",
+   "options": [
+    "Vrei un ceai?",
+    "Vrea un ceai?",
+    "Vreau un ceai?"
+   ],
+   "value": "Vrei un ceai?"
+  },
+  {
+   "lesson": 3,
+   "topic": "avrea",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Vreau un pahar cu apă.",
+   "options": [
+    "Vreau un pahar cu apă.",
+    "Vreau o sticlă cu apă.",
+    "Vreau o supă cu pâine."
+   ],
+   "value": "Vreau un pahar cu apă."
+  },
+  {
+   "lesson": 3,
+   "topic": "avrea",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Vrei o ciorbă sau o supă?",
+   "options": [
+    "Vrei o ciorbă sau o supă?",
+    "Vrei o cafea sau un ceai?",
+    "Vrea o bere sau o cafea?"
+   ],
+   "value": "Vrei o ciorbă sau o supă?"
+  },
+  {
+   "lesson": 3,
+   "topic": "avrea",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena para decir «Quisiera una sopa y pan, por favor».",
+   "value": "Aș vrea o supă și pâine, vă rog.",
+   "sequence": [
+    "Aș",
+    "vrea",
+    "o",
+    "supă",
+    "și",
+    "pâine",
+    "vă",
+    "rog"
+   ],
+   "distractors": [
+    "un",
+    "vreau"
+   ],
+   "tiles": [
+    "Aș",
+    "o",
+    "pâine",
+    "rog",
+    "supă",
+    "un",
+    "vrea",
+    "vreau",
+    "vă",
+    "și"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "avrea",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena las palabras.",
+   "value": "Vrei două pahare cu apă?",
+   "sequence": [
+    "Vrei",
+    "două",
+    "pahare",
+    "cu",
+    "apă"
+   ],
+   "tiles": [
+    "apă",
+    "cu",
+    "două",
+    "pahare",
+    "Vrei"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "nota",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "¿Qué significa «Ceaiul este cald»?",
+   "options": [
+    "El té está caliente.",
+    "El té es un caldo.",
+    "El té está frío."
+   ],
+   "value": "El té está caliente."
+  },
+  {
+   "lesson": 4,
+   "topic": "nota",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Nota, vă rog. Mulțumesc!",
+   "options": [
+    "Nota, vă rog. Mulțumesc!",
+    "Apa, vă rog. Mulțumesc!",
+    "O cafea, vă rog. Mulțumesc!"
+   ],
+   "value": "Nota, vă rog. Mulțumesc!"
+  },
+  {
+   "lesson": 4,
+   "topic": "nota",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Al final de la comida pides la cuenta al camarero. Completa:",
+   "text": "___, vă rog!",
+   "value": "Nota",
+   "accepted": [
+    "Nota",
+    "nota",
+    "Plata",
+    "plata",
+    "Nota de plată",
+    "Nota de plata"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "nota",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "El vaso está en la mesa.",
+   "value": "Paharul este pe masă.",
+   "accepted": [
+    "Paharul este pe masă.",
+    "Paharul e pe masă.",
+    "Paharul este pe masa",
+    "Paharul e pe masa.",
+    "Paharul este pe masa."
+   ],
+   "source": "El vaso está en la mesa."
+  },
+  {
+   "lesson": 4,
+   "topic": "nota",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Nota, vă rog. Mulțumesc!"
+  }
+ ]
+}

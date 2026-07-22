@@ -22,7 +22,9 @@ COURSE_DE = "20000000-0000-0000-0000-000000000005"
 COURSE_NL = "20000000-0000-0000-0000-000000000006"
 
 # grupo -> (course_id, cefr_level, idioma TTS)
+COURSE_RO = "20000000-0000-0000-0000-000000000007"
 GROUPS = {
+    "ro-a1": (COURSE_RO, "A1", "ro"),
     "en-b1": (COURSE_EN, "B1", "en"),
     "en-b2": (COURSE_EN, "B2", "en"),
     "en-c1": (COURSE_EN, "C1", "en"),

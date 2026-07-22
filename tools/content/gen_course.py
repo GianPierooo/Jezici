@@ -27,6 +27,8 @@ COURSES = {
            'de', 'Deutsch', 'alemán'),
     'nl': ('20000000-0000-0000-0000-000000000006', '10000000-0000-0000-0000-000000000007',
            'nl', 'Nederlands', 'neerlandés'),
+    'ro': ('20000000-0000-0000-0000-000000000007', '10000000-0000-0000-0000-000000000008',
+           'ro', 'Română', 'rumano'),
 }
 # (code, level) -> stamp de la migración
 STAMPS = {
@@ -42,9 +44,11 @@ STAMPS = {
     ('fr', 'c1'): '20260705120126', ('it', 'c1'): '20260705120127',
     ('de', 'c1'): '20260705120128', ('nl', 'c1'): '20260705120129',
     ('pt', 'c1'): '20260705120130',
+    ('ro', 'a1'): '20260722120191',
 }
 # palabra "Unidad" en el idioma meta (para el título del checkpoint)
-UNIT_WORD = {'fr': 'Unité', 'it': 'Unità', 'de': 'Einheit', 'nl': 'Eenheid', 'pt': 'Unidade'}
+UNIT_WORD = {'fr': 'Unité', 'it': 'Unità', 'de': 'Einheit', 'nl': 'Eenheid',
+             'pt': 'Unidade', 'ro': 'Unitatea'}
 DIFF = {'a1': 0.16, 'a2': 0.34, 'b1': 0.52, 'b2': 0.68, 'c1': 0.84}
 ES_LANG = '10000000-0000-0000-0000-000000000001'
 

@@ -5,6 +5,70 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-22**.
 
+## 🇷🇴 IDIOMA NUEVO: **RUMANO (es→ro)** — 7º curso, A1 completo ✅ LIVE (mig 191-193 · 2026-07-22)
+El primer idioma añadido desde los pilotos de julio, y la prueba de que la arquitectura aguanta: **no hizo
+falta tocar NADA de lógica** — ni gating, ni economía, ni FSRS, ni certificación. Todo eso es
+course-agnóstico por construcción (deriva el curso de `jz_active_course()`), así que añadir un idioma es
+**sembrar datos + ~20 líneas de cableado**. El proceso quedó escrito en **`IDIOMA_NUEVO_PLAYBOOK.md`**.
+- **CONSTRUIDO (A1 completo, el molde exacto de los 6 cursos vivos):** curso `…0007` + lengua `…0008`,
+  **6 unidades · 30 lecciones (24 + 6 checkpoints) · 134 ítems · 108 palabras · 198 filas de
+  `lesson_vocab` (74 palabras enseñadas) · 6 exámenes de checkpoint · 48 audios TTS ro (48/48 HEAD 200)
+  · 14 ítems de placement**. Reparto de habilidades idéntico al molde: R36/W36/L30/S18.
+- **La voz TTS rumana EXISTE** (probado ANTES de briefear: `translate_tts tl=ro` devuelve audio/mpeg real).
+  Era la dependencia que podía tumbar el plan; se verificó primero.
+- **Cliente:** bandera 🇷🇴 · `SpeechLang` **ro-RO** (TTS y reconocedor) · nombre del idioma en la UI
+  (i18n es/en/pt) · **los 6 modelos de Conversar en rumano** (sin ellos un rumano habría visto inglés).
+- **TECHO HONESTO:** el placement solo tiene banco **A1**, que es el único nivel sembrado → el estimador
+  **no puede ubicar donde no hay contenido** (verificado: persona que sabe → A1). `max_level=A1`.
+- **FOCO es↔ro (primas hermanas, ahí está el peligro):** artículo **enclítico** (om→omul, băiat→băiatul —
+  no existe «el om»), **tres géneros** (el neutro es masc. en singular y fem. en plural), el **«de» tras
+  los números ≥20** (*douăzeci **de** ani*), y falsos amigos (**a pleca**=irse · **masă**=mesa Y comida ·
+  **cald**=caliente · **copil**=niño/hijo · **plată**=pago · **piață**=plaza/mercado · **a se culca**).
+  La edad va con *a avea*, igual que en español — ventaja del alumno, y así se le dice.
+- **EL RUMANO EXPUSO SU LÍMITE DEL CORRECTOR:** los diacríticos **ă â î ș ț** son inevaluables en lo
+  tecleado (la guarda añade la forma pelada). Instruido a los 6 autores desde el brief → los contrastes
+  finos nacieron en opción múltiple.
+- **CALIDAD — 8 ALTA + 21 media, todo aplicado.** Las 8 ALTA fueron TODAS de diseño de ítem, **cero
+  errores de gramática rumana** en las 6 unidades (lo dicen los dos revisores nativos por separado):
+  · **4 castigaban a quien acierta** — el `accepted` no contemplaba «Eu mă numesc Ana» (que la propia
+  unidad enseña), «Cât e **ora**?», «Sunt **la** parc» y «**Nota de plată**», las cuatro rumano correcto.
+  · **U2** tenía un translation **duplicado literal** de U1, dejando a su lección sin medir su tema.
+  · **U3** su primer ítem enseñaba la equivalencia «forma sin artículo ↔ con artículo» **justo antes de
+  la lección cuyo único tema es que el artículo se pega al final**.
+  · **U5** un enunciado **regalaba** la respuesta y encima su regla era falsa («Sunt orele opt» sí existe).
+  · **U5** un reorder tenía **dos órdenes igualmente correctos** y solo aceptaba uno.
+  · 21 media: género ausente en el vocabulario que el propio checkpoint prometía, un **genitivo (B1)
+  colado en A1**, dos enunciados que descartaban un distractor de antemano, `româncă` como adjetivo…
+- **Verificado cliente REAL:** `verify_new_course.py ro` TODO VERDE (determinista **116/116** correctos +
+  116/116 distractores rechazados, `create_plan`/`start_practice` sirven solo ro, usuario default(en) sin
+  fuga, lección al 100% + checkpoint ≥80%, audio 48/48) · **`verify_ro_chain.py` TODO VERDE** (el
+  recorrido entero: elegir rumano → placement → plan → lección que **paga xp 19/oro 10** → **8 palabras
+  inscritas en el SRS** y 0 de otro curso → `start_practice` sirve 8 tarjetas → **0 cruces entre los 7
+  cursos**). Guardarraíles: `verify_chain`, `verify_pt_chain`, `verify_placement_serious`,
+  `verify_placement_multi` y `verify_estimator` VERDES.
+- **LO QUE QUEDA EN ro** (ninguna sorpresa, está tabulado en el playbook): A2/B1/B2/C1 (4-5 tandas más),
+  tips E-1, teoría E-2, historias, y el examen de nivel + certificado (que exige el nivel COMPLETO).
+
+## DEFECTO VIVO DESTAPADO AL SEMBRAR EL RUMANO · el PLACEMENT castigaba escribir sin acentos ✅ (mig 194)
+Al probar el grader contra el banco nuevo salió que **`jz_grade` RECHAZA la forma sin diacríticos** —y que
+eso no afectaba solo al rumano: **12 ítems del placement de fr(5) it(2) pt(3) de(1) ro(1)** marcaban MAL a
+quien teclea sin acentos, **en el test que decide su nivel**. Es la MISMA causa raíz de mig 177 y mig 182,
+en una superficie nueva; y mi brief afirmaba que una guarda lo cubría — esa guarda existía para
+`study_theory`, **no para `content_items`**.
+- **Arreglo determinista (cero autoría):** a cada cloze/translation de placement con diacríticos se le
+  añade a `accepted` su forma pelada. **Solo amplía**, nunca restringe.
+- **Verificado ANTES de aplicar** que no puede aceptar un distractor: **0 colisiones**. Después:
+  **0 castigados** en los 5 idiomas y **57/57** correctos siguen aceptándose. Estimador y personas intactos.
+- **La guarda es ahora permanente:** `guard_course.py` añade sola la forma sin diacríticos a todo cloze/
+  translation de cualquier idioma futuro. Honesto: **word_bank/reorder NO la necesitan** — el usuario
+  PULSA fichas que ya traen los diacríticos (y `jz_grade` ignora `accepted` en esos dos tipos, verificado).
+
+## BIT-ROT CAZADO: `verify_placement_multi.py` llevaba roto desde mig 135 ✅ (2026-07-22)
+No lo rompió esta tanda: al añadir las habilidades L/S al placement (mig 135/139) aparecieron ítems de
+**speaking** (`translation` SIN `options`), y el verificador asumía que todo ítem tenía distractores →
+`TypeError`. Nadie lo re-corrió desde entonces. Arreglado (los read-aloud no tienen distractor que
+rechazar, así que se excluyen del chequeo determinista) → **TODO VERDE** en fr/it/de/nl.
+
 ## ESTUDIAR · E-2 NEERLANDÉS A1–B2 → **E-2 COMPLETO EN LOS 6 IDIOMAS** ✅ LIVE (mig 190 · 2026-07-22)
 Las 24 unidades en UNA tanda. Con esto **en, pt, fr, de, it y nl los SEIS con 24/24 temas** (verificado en
 BD: `study_theory` = 24 por curso). Mig 190 = SOLO DATOS. C1 (0 tips) sigue en "teoría en camino".
@@ -2913,6 +2977,14 @@ en B2; andamiaje idéntico listo: STAMP `('pt','c1')=…130`, grupo audio `pt-c1
   Cierre: analyze 0, tests verdes, gh run list SUCCESS, deploy READY. Reporta en 1 línea.
 
 ## Cola (retome exacto — orden sugerido)
+-6. **IDIOMAS NUEVOS — el proceso ya está escrito: `IDIOMA_NUEVO_PLAYBOOK.md`.** Rumano (es→ro) es el
+   7º curso, con **A1 completo y verificado**. Para completarlo: **A2/B1/B2** (3 tandas con la misma
+   receta, `gen_course.py ro <nivel>`), **C1** (4ª), tips E-1, teoría E-2, historias, y el **examen de
+   nivel + certificado** (que exige el nivel COMPLETO). Para el SIGUIENTE idioma latino (catalán,
+   polaco, sueco…): seguir el playbook — la factura medida es **1 nivel por tanda**. Los idiomas de
+   **otro alfabeto (ruso/japonés/árabe) NO entran en esta receta**: el corrector, la entrada de texto y
+   el modelo de 4 habilidades asumen alfabeto latino → es un proyecto de plataforma, con su análisis
+   propio (§5 del playbook).
 -5. **E-2 ✅ COMPLETO en los 6 idiomas (mig 178-190).** Lo ÚNICO que queda del módulo Estudiar son las
    **6 unidades de C1 de cada idioma**: no tienen tips, así que habría que autorar la teoría DESDE CERO
    (no es replicar el pipeline sobre material existente, es escribir el currículo C1 de 6 idiomas = 36

@@ -4065,4 +4065,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get lessonStudyTheory => 'Estude a teoria disto';
+
+  @override
+  String get learnLangRo => 'romeno';
 }

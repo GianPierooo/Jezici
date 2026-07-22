@@ -4059,4 +4059,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get lessonStudyTheory => 'Estudia la teoría de esto';
+
+  @override
+  String get learnLangRo => 'rumano';
 }

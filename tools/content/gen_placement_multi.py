@@ -22,11 +22,34 @@ COURSES = {
     'it': '20000000-0000-0000-0000-000000000004',
     'de': '20000000-0000-0000-0000-000000000005',
     'nl': '20000000-0000-0000-0000-000000000006',
+    'ro': '20000000-0000-0000-0000-000000000007',
 }
 
 # (kind, prompt, options, answer). kind: 'w'=cloze(writing), 'r'=mc(reading).
 # reading MC: contenido en idioma meta; algunas comprensión con marco ES.
 BANKS = {
+# ============================== ROMÂNĂ ==============================
+# Solo A1: es el unico nivel sembrado del curso es->ro, asi que el placement
+# NO debe ofrecer ubicar mas arriba (techo honesto, como pt en su dia con B1).
+# NINGUN contraste se juega solo en un diacritico: la guarda los normaliza.
+'ro': {
+'A1': [
+ ('w', 'Eu ___ student.', ['sunt', 'este', 'suntem'], 'sunt'),
+ ('w', 'Tu ___ din Spania?', ['ești', 'sunt', 'suntem'], 'ești'),
+ ('w', 'Noi ___ prieteni.', ['suntem', 'sunt', 'este'], 'suntem'),
+ ('w', 'Eu ___ douăzeci de ani.', ['am', 'sunt', 'are'], 'am'),
+ ('w', 'Ea ___ o soră.', ['are', 'am', 'aveți'], 'are'),
+ ('w', 'Merg ___ magazin.', ['la', 'în', 'pe'], 'la'),
+ ('w', 'Am treizeci ___ ani.', ['de', 'la', 'cu'], 'de'),
+ ('r', '«Mulțumesc» significa:', ['Gracias', 'Adiós', 'Por favor'], 'Gracias'),
+ ('r', '«La revedere» se dice al:', ['Despedirte', 'Saludar', 'Dar las gracias'], 'Despedirte'),
+ ('r', '¿Cuál es «el niño» en rumano?', ['copilul', 'copil', 'copiii'], 'copilul'),
+ ('r', '«Bunica mea» significa:', ['Mi abuela', 'Mi hermana', 'Mi madre'], 'Mi abuela'),
+ ('r', '«A pleca» significa:', ['Irse', 'Plegar', 'Llegar'], 'Irse'),
+ ('r', 'Pides un café en un bar. Dices:', ['Aș vrea o cafea, vă rog.', 'Am o cafea, vă rog.', 'Sunt o cafea, vă rog.'], 'Aș vrea o cafea, vă rog.'),
+ ('r', '«Cât e ceasul?» pregunta por:', ['La hora', 'El precio', 'La edad'], 'La hora'),
+],
+},
 # ============================= FRANÇAIS =============================
 'fr': {
 'A1': [
@@ -327,7 +350,19 @@ def main():
     # Modo: sin arg = A1/A2 → mig 110 (histórico, ya aplicado). 'hi' = B1/B2 → mig nueva
     # (los cursos fr/it/de/nl ya llegan a B2; ampliar el techo del placement a su nivel real).
     mode = sys.argv[1] if len(sys.argv) > 1 else 'a1a2'
-    if mode == 'hi':
+    if mode == 'ro':
+        EMIT = {'A1'}
+        OUT_NAME = '20260722120192_placement_bank_ro.sql'
+        HEADER = [
+            "-- 20260722120192_placement_bank_ro.sql",
+            "-- Banco de PLACEMENT del curso es->ro (...0007), SOLO A1: es el unico nivel",
+            "-- sembrado, asi que el estimador no puede ubicar donde no hay contenido",
+            "-- (techo honesto, igual que pt en su dia). reading=MC (exacto), writing=cloze",
+            "-- con la guarda anti-colision (que ademas normaliza los diacriticos romanos).",
+            "-- placement_next(p_course) ya es course-scoped -> sembrar el banco ES el cableado.",
+            "",
+        ]
+    elif mode == 'hi':
         EMIT = {'B1', 'B2'}
         OUT_NAME = '20260705120122_placement_bank_fritdenl_hi.sql'
         HEADER = [
@@ -355,6 +390,8 @@ def main():
     rows = []
     counts = {}
     for lang, levels in BANKS.items():
+        if (mode == 'ro') != (lang == 'ro'):
+            continue          # cada migracion siembra SOLO su(s) curso(s)
         cid = COURSES[lang]
         for lvl, items in levels.items():
             if lvl not in EMIT:

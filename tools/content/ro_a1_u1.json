@@ -1,0 +1,421 @@
+{
+ "unit": {
+  "order": 1,
+  "title_es": "Saludos y presentarte",
+  "color": "#27AE60",
+  "icon": "waving_hand"
+ },
+ "checkpoint_desc": "Repasa los saludos formales e informales, decir tu nombre, el verbo a fi y de dónde eres.",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "Bună! Saludar y despedirte"
+  },
+  {
+   "order": 2,
+   "title_es": "Mă numesc… decir tu nombre"
+  },
+  {
+   "order": 3,
+   "title_es": "El verbo a fi (ser/estar)"
+  },
+  {
+   "order": 4,
+   "title_es": "¿De dónde eres? Tú y usted"
+  }
+ ],
+ "vocab": [
+  [
+   "bună",
+   "hola (informal)",
+   "interjeccion"
+  ],
+  [
+   "bună ziua",
+   "buenos días / buenas tardes (hasta el anochecer)",
+   "interjeccion"
+  ],
+  [
+   "bună dimineața",
+   "buenos días (por la mañana)",
+   "interjeccion"
+  ],
+  [
+   "bună seara",
+   "buenas tardes-noches (desde el anochecer)",
+   "interjeccion"
+  ],
+  [
+   "noapte bună",
+   "buenas noches (al despedirse)",
+   "interjeccion"
+  ],
+  [
+   "salut",
+   "hola (entre amigos)",
+   "interjeccion"
+  ],
+  [
+   "la revedere",
+   "adiós (formal)",
+   "interjeccion"
+  ],
+  [
+   "îmi pare bine",
+   "encantado / mucho gusto",
+   "expresion"
+  ],
+  [
+   "a fi",
+   "ser / estar",
+   "verbo"
+  ],
+  [
+   "a se numi",
+   "llamarse",
+   "verbo"
+  ],
+  [
+   "nume",
+   "nombre",
+   "sustantivo"
+  ],
+  [
+   "eu",
+   "yo",
+   "pronombre"
+  ],
+  [
+   "tu",
+   "tú",
+   "pronombre"
+  ],
+  [
+   "el",
+   "él",
+   "pronombre"
+  ],
+  [
+   "ea",
+   "ella",
+   "pronombre"
+  ],
+  [
+   "dumneavoastră",
+   "usted",
+   "pronombre"
+  ],
+  [
+   "țară",
+   "país",
+   "sustantivo"
+  ],
+  [
+   "din",
+   "de / desde (procedencia)",
+   "preposicion"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "saludos",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada saludo rumano con su significado.",
+   "pairs": [
+    [
+     "bună dimineața",
+     "buenos días (por la mañana)"
+    ],
+    [
+     "bună seara",
+     "buenas tardes (al llegar)"
+    ],
+    [
+     "la revedere",
+     "adiós (formal)"
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "saludos",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "Entras a una farmacia a las cuatro de la tarde y saludas de forma FORMAL. ¿Qué dices?",
+   "options": [
+    "Bună ziua!",
+    "Bună dimineața!",
+    "Noapte bună!"
+   ],
+   "value": "Bună ziua!"
+  },
+  {
+   "lesson": 1,
+   "topic": "saludos",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "Te despides de tu jefa al salir de la oficina. ¿Cuál es la despedida FORMAL?",
+   "options": [
+    "La revedere!",
+    "Pa!",
+    "Salut!"
+   ],
+   "value": "La revedere!"
+  },
+  {
+   "lesson": 1,
+   "topic": "saludos",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Bună dimineața!",
+   "options": [
+    "Bună dimineața!",
+    "Bună seara!",
+    "Noapte bună!"
+   ],
+   "value": "Bună dimineața!"
+  },
+  {
+   "lesson": 1,
+   "topic": "saludos",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Noapte bună!",
+   "options": [
+    "Noapte bună!",
+    "Bună ziua!",
+    "Bună seara!"
+   ],
+   "value": "Noapte bună!"
+  },
+  {
+   "lesson": 2,
+   "topic": "presentarse",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "Le preguntas el nombre a una señora a la que tratas de usted. ¿Cuál es la forma correcta?",
+   "options": [
+    "Cum vă numiți?",
+    "Cum te numești?",
+    "Cum se numește?"
+   ],
+   "value": "Cum vă numiți?"
+  },
+  {
+   "lesson": 2,
+   "topic": "presentarse",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con el verbo: «Me llamo Maria».",
+   "text": "Mă ___ Maria.",
+   "value": "numesc",
+   "accepted": [
+    "numesc"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "presentarse",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Me llamo Ana.",
+   "source": "Me llamo Ana.",
+   "value": "Mă numesc Ana.",
+   "accepted": [
+    "Mă numesc Ana.",
+    "Mă numesc Ana",
+    "Ma numesc Ana.",
+    "Ma numesc Ana",
+    "Numele meu este Ana.",
+    "Numele meu este Ana",
+    "Mă cheamă Ana.",
+    "Mă cheamă Ana",
+    "Ma cheama Ana",
+    "Ma cheama Ana.",
+    "Eu mă numesc Ana.",
+    "Eu mă numesc Ana",
+    "Numele meu e Ana.",
+    "Numele meu e Ana",
+    "Eu ma numesc Ana",
+    "Eu ma numesc Ana."
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "presentarse",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena las palabras para decir «Encantado de conocerte».",
+   "value": "Îmi pare bine",
+   "sequence": [
+    "Îmi",
+    "pare",
+    "bine"
+   ],
+   "tiles": [
+    "bine",
+    "Îmi",
+    "pare"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "presentarse",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Bună! Mă numesc Ion. Îmi pare bine."
+  },
+  {
+   "lesson": 3,
+   "topic": "verbo_a_fi",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada forma del verbo a fi con su significado.",
+   "pairs": [
+    [
+     "tu ești",
+     "tú eres"
+    ],
+    [
+     "noi suntem",
+     "nosotros somos"
+    ],
+    [
+     "voi sunteți",
+     "vosotros sois"
+    ]
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "verbo_a_fi",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "Completa con el verbo a fi: «Tu ___ din România.» (tú, informal)",
+   "options": [
+    "ești",
+    "este",
+    "sunteți"
+   ],
+   "value": "ești"
+  },
+  {
+   "lesson": 3,
+   "topic": "verbo_a_fi",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con el verbo a fi: «Nosotros somos estudiantes.»",
+   "text": "Noi ___ studenți.",
+   "value": "suntem",
+   "accepted": [
+    "suntem"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "verbo_a_fi",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Ea este profesoară.",
+   "options": [
+    "Ea este profesoară.",
+    "Ea este studentă.",
+    "Ea este din România."
+   ],
+   "value": "Ea este profesoară."
+  },
+  {
+   "lesson": 3,
+   "topic": "verbo_a_fi",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Eu sunt Ana. El este Andrei."
+  },
+  {
+   "lesson": 4,
+   "topic": "origen",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Soy de España.",
+   "source": "Soy de España.",
+   "value": "Sunt din Spania.",
+   "accepted": [
+    "Sunt din Spania.",
+    "Sunt din Spania",
+    "Eu sunt din Spania.",
+    "Eu sunt din Spania"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "origen",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena para decir «¿De qué país eres?».",
+   "value": "Din ce țară ești",
+   "sequence": [
+    "Din",
+    "ce",
+    "țară",
+    "ești"
+   ],
+   "distractors": [
+    "sunteți",
+    "este"
+   ],
+   "tiles": [
+    "ce",
+    "sunteți",
+    "Din",
+    "ești",
+    "este",
+    "țară"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "origen",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Sunt din Spania.",
+   "options": [
+    "Sunt din Spania.",
+    "Sunt din Italia.",
+    "Sunt din România."
+   ],
+   "value": "Sunt din Spania."
+  },
+  {
+   "lesson": 4,
+   "topic": "origen",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Din ce țară ești?",
+   "options": [
+    "Din ce țară ești?",
+    "Din ce țară sunteți?",
+    "Cum te numești?"
+   ],
+   "value": "Din ce țară ești?"
+  },
+  {
+   "lesson": 4,
+   "topic": "origen",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Sunt din Spania. Tu din ce țară ești?"
+  }
+ ]
+}
