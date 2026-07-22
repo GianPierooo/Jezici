@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -58,6 +60,7 @@ class _SrsReviewScreenState extends ConsumerState<SrsReviewScreen> {
 
   @override
   void dispose() {
+    _autoTimer?.cancel();
     _ctrl.dispose();
     _focus.dispose();
     super.dispose();
@@ -90,9 +93,29 @@ class _SrsReviewScreenState extends ConsumerState<SrsReviewScreen> {
       _revealed = true;
       _ok = ok;
     });
+    if (ok) _scheduleAutoGood();
+  }
+
+  /// AUTO-AVANCE tras un ACIERTO (feedback de uso real: elegir entre 3 botones
+  /// después de CADA tarjeta cansa). FSRS necesita una nota POR TARJETA —no se
+  /// puede posponer al final sin romper el scheduler—, así que en vez de quitarla
+  /// se asume la más común ("Bien") y se sigue solo. Ajustar a Difícil/Fácil
+  /// queda como opción discreta durante esta pausa. En un FALLO no hay prisa:
+  /// el usuario tiene que leer la respuesta correcta.
+  static const _autoDelay = Duration(milliseconds: 1400);
+  Timer? _autoTimer;
+
+  void _scheduleAutoGood() {
+    _autoTimer?.cancel();
+    _autoTimer = Timer(_autoDelay, () {
+      if (mounted && _revealed && _ok) _rate(3);
+    });
   }
 
   void _rate(int rating) {
+    _autoTimer?.cancel();
+    _autoTimer = null;
+    if (!_revealed) return; // guarda: nunca calificar dos veces la misma tarjeta
     final card = _card;
     _answers.add({
       'vocab_id': card.vocabId,
@@ -478,40 +501,55 @@ class _SrsReviewScreenState extends ConsumerState<SrsReviewScreen> {
         ]),
       ),
       const SizedBox(height: 14),
-      Text(_ok ? l10n.srsHowWasIt : l10n.srsWillRepeat,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-              fontSize: 12.5, fontWeight: FontWeight.w800, color: AppColors.textMuted)),
-      const SizedBox(height: 10),
-      // Si lo escrito está MAL el servidor fuerza rating=1 → solo "Otra vez".
-      if (!_ok)
+      // ACIERTO → no se obliga a elegir: se sigue solo con "Bien". FALLO → hay
+      // que leer la respuesta, así que el paso es explícito.
+      if (!_ok) ...[
+        Text(l10n.srsWillRepeat,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+                fontSize: 12.5, fontWeight: FontWeight.w800, color: AppColors.textMuted)),
+        const SizedBox(height: 10),
+        // Si lo escrito está MAL el servidor fuerza rating=1 → solo "Otra vez".
         _RateButton(
           label: l10n.srsAgain,
           icon: Icons.replay_rounded,
           color: AppColors.hearts,
           onTap: () => _rate(1),
           expand: true,
-        )
-      else
-        Row(children: [
-          Expanded(child: _RateButton(
+        ),
+      ] else ...[
+        _AutoNextBar(duration: _autoDelay),
+        const SizedBox(height: 10),
+        // El CTA principal es continuar (= "Bien"); ajustar es opcional y
+        // secundario, no una elección obligatoria entre tres botones.
+        _RateButton(
+          label: l10n.srsGood,
+          icon: Icons.check_rounded,
+          color: AppColors.success,
+          onTap: () => _rate(3),
+          expand: true,
+        ),
+        const SizedBox(height: 8),
+        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Flexible(
+            child: Text(l10n.srsHowWasIt,
+                style: const TextStyle(
+                    fontSize: 12, fontWeight: FontWeight.w700, color: AppColors.textMuted)),
+          ),
+          const SizedBox(width: 8),
+          _MiniRate(
               label: l10n.srsHard,
               icon: Icons.hourglass_bottom_rounded,
               color: const Color(0xFFE8A33D),
-              onTap: () => _rate(2))),
-          const SizedBox(width: 8),
-          Expanded(child: _RateButton(
-              label: l10n.srsGood,
-              icon: Icons.check_rounded,
-              color: AppColors.success,
-              onTap: () => _rate(3))),
-          const SizedBox(width: 8),
-          Expanded(child: _RateButton(
+              onTap: () => _rate(2)),
+          const SizedBox(width: 6),
+          _MiniRate(
               label: l10n.srsEasy,
               icon: Icons.bolt_rounded,
               color: AppColors.primary,
-              onTap: () => _rate(4))),
+              onTap: () => _rate(4)),
         ]),
+      ],
     ]);
   }
 
@@ -836,6 +874,76 @@ class _RateButtonState extends State<_RateButton> {
               textAlign: TextAlign.center,
               style: const TextStyle(
                   fontSize: 13.5, fontWeight: FontWeight.w900, color: Colors.white)),
+        ]),
+      ),
+    );
+  }
+}
+
+/// Barra fina que muestra que la tarjeta avanza sola tras un acierto. Es
+/// informativa: la nota ("Bien") se envía igual si el usuario no toca nada.
+/// Con reduce-motion se muestra estática (sin animar), no desaparece: el
+/// usuario debe seguir sabiendo que va a avanzar.
+class _AutoNextBar extends StatelessWidget {
+  const _AutoNextBar({required this.duration});
+  final Duration duration;
+
+  @override
+  Widget build(BuildContext context) {
+    final reduce = MediaQuery.of(context).disableAnimations;
+    final bar = ClipRRect(
+      borderRadius: BorderRadius.circular(99),
+      child: SizedBox(
+        height: 4,
+        child: reduce
+            ? Container(color: AppColors.success.withValues(alpha: 0.35))
+            : TweenAnimationBuilder<double>(
+                tween: Tween(begin: 0, end: 1),
+                duration: duration,
+                builder: (_, t, _) => LinearProgressIndicator(
+                  value: t,
+                  backgroundColor: AppColors.success.withValues(alpha: 0.15),
+                  valueColor: AlwaysStoppedAnimation(
+                      AppColors.success.withValues(alpha: 0.55)),
+                ),
+              ),
+      ),
+    );
+    return Padding(padding: const EdgeInsets.symmetric(horizontal: 40), child: bar);
+  }
+}
+
+/// Ajuste OPCIONAL del intervalo (Difícil / Fácil). Deliberadamente pequeño:
+/// el flujo normal es no tocarlo. FSRS recibe la nota igual.
+class _MiniRate extends StatelessWidget {
+  const _MiniRate(
+      {required this.label,
+      required this.icon,
+      required this.color,
+      required this.onTap});
+  final String label;
+  final IconData icon;
+  final Color color;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(99),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        decoration: BoxDecoration(
+          color: color.withValues(alpha: 0.10),
+          borderRadius: BorderRadius.circular(99),
+          border: Border.all(color: color.withValues(alpha: 0.35)),
+        ),
+        child: Row(mainAxisSize: MainAxisSize.min, children: [
+          Icon(icon, size: 14, color: color),
+          const SizedBox(width: 4),
+          Text(label,
+              style: TextStyle(
+                  fontSize: 12, fontWeight: FontWeight.w900, color: color)),
         ]),
       ),
     );

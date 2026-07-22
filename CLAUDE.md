@@ -5,6 +5,52 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-20**.
 
+## SRS · la calificación deja de ser intrusiva (feedback real) ✅ LIVE (2026-07-21 · solo cliente)
+Un usuario reportó que los 4 botones "¿Qué tal te costó?" tras **CADA** tarjeta molestan y pidió valorar al
+final. **Restricción real (no negociable):** en FSRS la nota es la señal de cuándo repetir ESA palabra →
+moverla al final rompe el motor. Así que se hizo **no intrusiva**, no se quitó.
+- **ACIERTO → avanza SOLO** tras 1,4 s (barra fina que lo anuncia, reduce-motion-aware) guardando **"Bien"**
+  (rating 3, el más común). Ajustar sigue disponible pero como **chips pequeños secundarios** (Difícil /
+  Fácil), no como una elección obligatoria entre tres botones; el CTA grande es "Bien" y tocarlo avanza ya.
+- **FALLO → sin cambios:** "Otra vez" explícito y sin prisa (hay que leer la respuesta correcta).
+- **FSRS SIGUE RECIBIENDO UNA NOTA POR TARJETA** — solo cambia CÓMO se recoge, no qué se envía. Cero cambios
+  en el scheduler, en `submit_practice`, en la economía ni en el grading. El temporizador se cancela al
+  ajustar y al salir (`dispose`), y `_rate` guarda contra doble calificación.
+- **Consistente en las dos entradas** (Practicar y el "Repasar N" del fin de lección): es la MISMA pantalla.
+- **Verificado:** analyze 0 · test **231/231** (+2 SRS: el auto-avance ocurre SIN intervención; los ajustes
+  son visualmente secundarios) · build web OK · **`verify_srs.py` (cliente real pt+de) TODO VERDE** — motor
+  FSRS, anti-farmeo, un pago/sesión, racha y aislamiento intactos; 9 usuarios reales sin tocar.
+
+## ESTUDIAR · E-2 ALEMÁN B1+B2 — de COMPLETO A1–B2 (4º idioma cerrado) ✅ LIVE (mig 186 · 2026-07-21)
+Cierra el alemán → **en, pt, fr y de los cuatro COMPLETOS A1–B2 (24/24)**. Mig 186 = SOLO DATOS. C1 sin tips
+sigue en "teoría en camino". Quedan **it/nl**.
+- **CONTENIDO:** 36 secciones, **48 ejemplos con audio TTS de (48/48, HEAD 200)**, 36 errores comunes,
+  **60 ítems**. Currículo B1/B2 real: Konjunktiv II · subordinadas (weil/dass/obwohl vs denn vs deshalb) ·
+  relativos con caso · pasiva werden+Partizip · preposiciones fijas + genitivo · condicional irreal ·
+  **Konjunktiv I** · pasiva avanzada (modales, man, sich lassen) · Partizip I/II como adjetivo ·
+  je…desto/weder…noch · nominalización y Funktionsverbgefüge · preposiciones de genitivo y da(r)-/wo(r)-.
+- **CALIDAD — 5 ALTA (todas aplicadas):** **U19** (el peor): sus DOS cloze aceptaban la forma equivocada —
+  `habe` acepta `haben`, `komme` acepta `kommen`, que es EXACTAMENTE el error que la unidad existe para
+  corregir → ambos a MC (el Konjunktiv I se juega siempre en una letra: ningún cloze puede medirlo). **U13**:
+  sus dos cloze se jugaban solo en el Umlaut (`hätte`/`hatte`, `Könnten`/`konnten`) y como el sistema acepta
+  la forma sin Umlaut, la prueba de la unidad del Konjunktiv II no medía su propio tema. **U14**: el hueco
+  pedía "la conjunción que manda el verbo al final" y solo aceptaba `weil`, cuando la propia unidad enseña
+  `wenn`/`da`, igual de válidos → enunciado cerrado por causa + `accepted` ampliado. **U18**: la regla "en la
+  principal hätte/wäre va antes del sujeto" es FALSA y la desmentían sus propios 3 ejemplos. **U24**: el
+  cloze rechazaba `aufgrund`, que la unidad enseña dos viñetas antes. **9 media** (U21 la regla «ge- + raíz»
+  daría *gerepariert* —los verbos en ‑ieren no llevan ge‑—; U15 «Plural: siempre die» ignora `denen` en
+  dativo; U17 «an dem Kurs» antinatural → `am Kurs`, y el genitivo de los masculinos débiles; U20 el cloze de
+  `man` aceptaba `Mann`; U23 «no cambia de forma» ignora `des Lesens` y un MC con distractores no-palabra;
+  U22 «sowohl…als auch exige plural» solo vale uniendo sujetos). **~10 bajas.**
+- **Verificado:** analyze 0 · test 231/231 · build web OK · **BD 60/60** aceptadas por `jz_grade` · **cliente
+  REAL (`verify_study_e2_de_b1b2.py`) TODO VERDE:** de U13 (B1) y U22 (B2) sirven sesión, audio 8/8, quiz sin
+  exponer respuestas, 60/60 aceptadas, **escribir SIN UMLAUT no castiga** (`würde`→`wurde`/`wuerde`), no mueve
+  XP/oro, **REGRESIÓN de A1+A2** y **AISLAMIENTO TRIPLE (en, pt, fr)**, de C1 → null. Las 7 verificaciones
+  previas TODO VERDE.
+- **UN FALLO DEL VERIFICADOR, no del contenido:** el chequeo de "sin Umlaut" buscaba la unidad en el curso
+  FRANCÉS (patrón que mi copia no cubrió) → daba falso rojo. Corregido en los dos verificadores de alemán.
+- **Cobertura de E-2: en 24/24 · pt 24/24 · fr 24/24 · de 24/24.** Quedan **it/nl** enteros y las 6 de C1.
+
 ## ESTUDIAR · E-2 ALEMÁN A1+A2 — 4º idioma + 2 guardas nuevas ✅ LIVE (mig 185 · 2026-07-21)
 Cuarto idioma con teoría rica (de u1-12). Mig 185 = SOLO DATOS. C1 (sin tips) sigue en "teoría en camino".
 - **CONTENIDO:** 36 secciones, **48 ejemplos con audio TTS de (48/48, HEAD 200)**, 36 errores comunes,

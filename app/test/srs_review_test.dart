@@ -56,7 +56,9 @@ void main() {
   });
 
   testWidgets('acierto -> revela + 3 botones (Dificil/Bien/Facil)', (tester) async {
-    await tester.pumpWidget(app(const SrsSession(cards: [wordCard])));
+    await tester.binding.setSurfaceSize(const Size(500, 1100));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await tester.pumpWidget(app(const SrsSession(cards: [wordCard, clozeCard])));
     await tester.pump();
 
     await tester.enterText(find.byType(TextField), 'gato');
@@ -65,11 +67,55 @@ void main() {
     await tester.pump();
 
     expect(find.text('¡Correcto!'), findsOneWidget);
-    expect(find.text('Difícil'), findsOneWidget);
+    // El CTA principal es continuar (= "Bien"); ajustar es opcional.
     expect(find.text('Bien'), findsOneWidget);
+    expect(find.text('Difícil'), findsOneWidget);
     expect(find.text('Fácil'), findsOneWidget);
     // "Otra vez" NO se ofrece en un acierto.
     expect(find.text('Otra vez'), findsNothing);
+    // Y AVANZA SOLO: no hay que elegir nada tras cada tarjeta.
+    await tester.pump(const Duration(milliseconds: 1600));
+    await tester.pump(const Duration(milliseconds: 400));
+    expect(find.text('¡Correcto!'), findsNothing);
+  });
+
+  testWidgets('acierto: si el usuario no toca nada, FSRS recibe "Bien" (3)',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(500, 1100));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    // Con una sola tarjeta, al auto-avanzar la sesión termina y se envía.
+    // Sin backend el envío falla y la pantalla se cierra: lo que se comprueba
+    // aquí es que el auto-avance OCURRE sin intervención del usuario.
+    await tester.pumpWidget(app(const SrsSession(cards: [wordCard, clozeCard])));
+    await tester.pump();
+    await tester.enterText(find.byType(TextField), 'gato');
+    await tester.pump();
+    await tester.tap(find.text('COMPROBAR'));
+    await tester.pump();
+    expect(find.text('2 restantes'), findsOneWidget);
+
+    await tester.pump(const Duration(milliseconds: 1600));
+    await tester.pump(const Duration(milliseconds: 400));
+    // La tarjeta se dio por buena y quedó UNA: el rating viajó sin pedir nada.
+    expect(find.text('1 restante'), findsOneWidget);
+    expect(find.text('COMPLETA LA FRASE'), findsOneWidget);
+  });
+
+  testWidgets('acierto: ajustar es OPCIONAL y secundario (chips, no 3 botones)',
+      (tester) async {
+    await tester.pumpWidget(app(const SrsSession(cards: [wordCard, clozeCard])));
+    await tester.pump();
+    await tester.enterText(find.byType(TextField), 'gato');
+    await tester.pump();
+    await tester.tap(find.text('COMPROBAR'));
+    await tester.pump(const Duration(milliseconds: 600));
+
+    // El CTA principal es el grande ("Bien" = lo que se envía solo);
+    // "Difícil" y "Fácil" existen pero como chips pequeños.
+    final bien = tester.widget<Text>(find.text('Bien'));
+    final facil = tester.widget<Text>(find.text('Fácil'));
+    expect(facil.style!.fontSize, 12); // chip discreto
+    expect(bien.style?.fontSize ?? 16, greaterThan(facil.style!.fontSize!));
   });
 
   testWidgets('fallo -> solo "Otra vez" (el servidor forzaria rating=1)',
