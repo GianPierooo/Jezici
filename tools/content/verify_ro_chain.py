@@ -46,8 +46,8 @@ def main():
     # "el curso está habilitado" — un usuario nuevo aún no tiene el rumano activo.
     check(len(ro) == 1, 'get_courses OFRECE rumano a un usuario nuevo',
           ro[0].get('target_name') if ro else None)
-    check(ro and ro[0].get('max_level') == 'A2',
-          'max_level=A2 (el techo sube solo al sembrar unidades A2)',
+    check(ro and ro[0].get('max_level') == 'B1',
+          'max_level=B1 (el techo sube solo al sembrar unidades B1)',
           ro[0].get('max_level') if ro else None)
     V.rpc(tok, 'set_active_course', {'p_course_id': RO})
     ro2 = [c for c in V.rpc(tok, 'get_courses', {}) if c.get('target') == 'ro']
@@ -71,8 +71,8 @@ def main():
         "select id from content_items where course_id='%s' and tags @> array['placement'];" % RO)}
     check(vistos and vistos <= banco,
           'el placement sirve SOLO ítems del banco RUMANO', '%d ítems' % len(vistos))
-    check(nivel in ('A1', 'A2'),
-          'el placement ubica dentro de lo que EXISTE (A1-A2), nunca por encima', nivel)
+    check(nivel in ('A1', 'A2', 'B1'),
+          'el placement ubica dentro de lo que EXISTE (A1-B1), nunca por encima', nivel)
 
     # ── 3 · plan + primera lección: economía y progreso REALES ──
     V.rpc(tok, 'create_plan', {
@@ -124,18 +124,18 @@ def main():
                     lecciones_ok += 1
                 if un['lv'] == 'A2':
                     a2_visto = True
-    check(chk_ok == 12, 'los 12 checkpoints (A1+A2) se APRUEBAN (>=80%%)', '%d/12' % chk_ok)
-    check(a2_visto and lecciones_ok >= 48,
-          'CAMINA A1 -> A2: el gating abre la unidad 7 al terminar A1',
+    check(chk_ok == 18, 'los 18 checkpoints (A1+A2+B1) se APRUEBAN (>=80%%)', '%d/18' % chk_ok)
+    check(a2_visto and lecciones_ok >= 72,
+          'CAMINA A1 -> A2 -> B1: el gating abre cada nivel al terminar el anterior',
           '%d lecciones completadas' % lecciones_ok)
     a2srs = I.run("""select count(*) n from user_vocab_srs s
                        join vocabulary v on v.id=s.vocab_id
                        join lesson_vocab lv on lv.vocab_id=v.id
                        join lessons l on l.id=lv.lesson_id
                        join units u on u.id=l.unit_id
-                      where s.user_id='%s' and u.course_id='%s' and u.cefr_level='A2';"""
+                      where s.user_id='%s' and u.course_id='%s' and u.cefr_level='B1';"""
                   % (uid, RO))[0]['n']
-    check(a2srs > 0, 'las palabras de A2 tambien entran al SRS', '%d' % a2srs)
+    check(a2srs > 0, 'las palabras de B1 tambien entran al SRS', '%d' % a2srs)
 
     # ── 4 · las palabras del rumano ENTRAN al SRS (si no, serían inertes) ──
     srs = I.run("""select count(*) n from user_vocab_srs s join vocabulary v on v.id=s.vocab_id

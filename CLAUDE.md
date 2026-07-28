@@ -5,6 +5,38 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-07-22**.
 
+## 🇷🇴 RUMANO **B1** — el curso ro pasa a A1+A2+B1 y el placement ubica en B1 ✅ LIVE (mig 198-200 · 2026-07-22)
+Tercera tanda de ro por el playbook. **Cero errores de rumano** en las 6 unidades (tercer revisor nativo,
+tercera tanda seguida sin un solo fallo de lengua) — las 2 ALTA fueron de diseño de ítem. El curso pasa a
+**18 unidades · 90 lecciones · 402 ítems · 322 palabras · 175 enseñadas · 18 checkpoints · 144 audios ro ·
+42 ítems de placement**. `max_level=B1`.
+- **CONSTRUIDO (B1, unidades 13-18):** currículo real de B1: **condițional-optativ** (aș/ai/ar + infinitivo
+  sin «a») · conectores y qué pide **conjunctiv** (ca să, fără să, înainte să) vs indicativo · relativos con
+  el **«pe care» + pronombre repetido obligatorio** (cartea pe care **o** citesc — el error nº1 del
+  hispanohablante) · **pasiva** con `a fi` concordado vs el **«se» pasivante** · **pronombres átonos**
+  (îl/o/îi, combinados mi-l/ți-o, `am văzut-o` con el femenino DETRÁS del participio) · **mai mult ca
+  perfectul** (el pluscuamperfecto SINTÉTICO — el rumano es la única lengua romance que lo conserva:
+  `mersesem`, una palabra) + condicional pasado.
+- **PATRÓN NUEVO DE B1 (queda en el playbook):** el condicional tiene el auxiliar en un **monosílabo de 2
+  letras** (aș/ai/ar/am), así que la persona es **inevaluable en cloze** (el corrector perdona la
+  sustitución) — pero **no se puede pasar a MC sin romper el reparto de habilidades** (cloze=writing,
+  MC=reading). La salida limpia: **mover el hueco al VERBO** (la otra mitad de la construcción, que sí
+  discrimina), no cambiar el tipo. Verificado contra `jz_grade`: los cloze reformulados (`citi`, `putea`,
+  `plecaseră`) RECHAZAN el error típico.
+- **CALIDAD — 2 ALTA + ~10 media, todo aplicado:** · **U13** los DOS cloze medían el auxiliar del condicional
+  (inevaluable) → hueco al verbo. · **U14** «Azi nu lucrez…» castigaba `astăzi` y `muncesc`, que la propia
+  unidad enseña (el fallo nº1 del curso, otra vez). · media: U15 rechazaba «de care» (correcto) y el sujeto
+  «eu îl aleg»; U18 su cloze de pluscuamperfecto no medía la persona (sujeto→plural para que discrimine);
+  U17 prometía «i-l» en el título y no lo enseñaba (promesa ajustada a mi-l/mi-o/ți-o); un distractor de U13
+  (indic.+cond.) era defendible. **U16 salió impecable** (el revisor no encontró nada).
+- **Verificado cliente REAL:** `verify_ro_chain.py` extendido a la **CAMINATA A1→A2→B1** — recorre las 18
+  unidades en orden, **18/18 checkpoints ≥80%**, 72 lecciones completadas (el gating abre cada nivel al
+  terminar el anterior), **175 palabras en el SRS** (204 filas de B1), 0 de otro curso, 0 cruces entre los 7
+  cursos. BD B1 **104/104** aceptadas por `jz_grade`. `verify_new_course.py ro`, `verify_chain`,
+  `verify_pt_chain`, `verify_placement_multi` y `verify_estimator` VERDES.
+- **Queda en ro:** B2 y C1 (2 tandas), tips E-1, teoría E-2, historias, y el examen de nivel + certificado
+  (que exige el nivel COMPLETO — con B1 ya se acerca).
+
 ## 🇷🇴 RUMANO **A2** — el curso ro pasa a A1+A2 y el placement ya ubica en A2 ✅ LIVE (mig 195-197 · 2026-07-22)
 Segunda tanda de ro, siguiendo `IDIOMA_NUEVO_PLAYBOOK.md` **al pie de la letra**. La receta funcionó: el
 cableado bajó de ~20 min a **~3** (1 stamp + 1 modo de placement) y **no hizo falta tocar ni una línea de
@@ -3018,9 +3050,9 @@ en B2; andamiaje idéntico listo: STAMP `('pt','c1')=…130`, grupo audio `pt-c1
 ## Cola (retome exacto — orden sugerido)
 -6. **IDIOMAS NUEVOS — el proceso ya está escrito: `IDIOMA_NUEVO_PLAYBOOK.md`.** Rumano (es→ro) es el
    7º curso, con **A1 y A2 completos y verificados** (2 tandas, la 2ª siguiendo el playbook al pie de
-   la letra: 3 ALTA frente a 8 en la 1ª). Para completarlo: **B1/B2** (2 tandas con la misma receta,
-   `gen_course.py ro <nivel>`), **C1** (3ª), tips E-1, teoría E-2, historias, y el **examen de nivel +
-   certificado** (que exige el nivel COMPLETO). Para el SIGUIENTE idioma latino (catalán,
+   la letra) con **A1, A2 y B1 completos y verificados** (3 tandas; 8→3→2 ALTA, 0 errores de lengua en las
+   tres). Para completarlo: **B2** (1 tanda con la misma receta, `gen_course.py ro b2`), **C1** (2ª), tips
+   E-1, teoría E-2, historias, y el **examen de nivel + certificado** (que exige el nivel COMPLETO). Para el SIGUIENTE idioma latino (catalán,
    polaco, sueco…): seguir el playbook — la factura medida es **1 nivel por tanda**. Los idiomas de
    **otro alfabeto (ruso/japonés/árabe) NO entran en esta receta**: el corrector, la entrada de texto y
    el modelo de 4 habilidades asumen alfabeto latino → es un proyecto de plataforma, con su análisis

@@ -33,6 +33,22 @@ BANKS = {
 # NO debe ofrecer ubicar mas arriba (techo honesto, como pt en su dia con B1).
 # NINGUN contraste se juega solo en un diacritico: la guarda los normaliza.
 'ro': {
+'B1': [
+ ('w', 'Dacă aș avea timp, ___ veni cu tine.', ['aș', 'am', 'o'], 'aș'),
+ ('w', 'Cartea pe care ___ citesc este foarte bună.', ['o', 'îl', 'le'], 'o'),
+ ('w', 'Învăț ___ să promovez examenul.', ['ca', 'pentru', 'de'], 'ca'),
+ ('w', 'Casele ___ vând repede în acest oraș.', ['se', 'sunt', 'este'], 'se'),
+ ('w', 'Am întârziat ___ trenul a avut probleme.', ['pentru', 'ca', 'să'], 'pentru'),
+ ('w', 'Când am ajuns, el ___ plecase deja.', ['mai', 'foarte', 'prea'], 'mai'),
+ ('w', 'Nu pot pleca ___ să vorbesc cu ea.', ['fără', 'pentru', 'după'], 'fără'),
+ ('r', '«Aș vrea să vorbesc cu directorul» es:', ['Una petición cortés', 'Una orden', 'Algo que ya pasó'], 'Una petición cortés'),
+ ('r', '¿Cuál es correcta?', ['Omul pe care îl cunosc este medic.', 'Omul pe care cunosc este medic.', 'Omul care îl cunosc este medic.'], 'Omul pe care îl cunosc este medic.'),
+ ('r', '«Se caută vânzător» significa:', ['Se busca vendedor', 'El vendedor busca', 'Buscó al vendedor'], 'Se busca vendedor'),
+ ('r', '«Plecasem deja când a sunat» significa:', ['Ya me había ido cuando llamó', 'Me fui cuando llamó', 'Me iré cuando llame'], 'Ya me había ido cuando llamó'),
+ ('r', 'Quieres decir «me lo das?». ¿Cuál es correcta?', ['Mi-l dai?', 'Îmi îl dai?', 'Mie îl dai?'], 'Mi-l dai?'),
+ ('r', '«Deși era obosit, a venit» significa:', ['Aunque estaba cansado, vino', 'Porque estaba cansado, vino', 'Si estaba cansado, venía'], 'Aunque estaba cansado, vino'),
+ ('r', '«Aș fi venit, dar n-am putut» expresa:', ['Algo que no llegó a pasar', 'Un plan para mañana', 'Una costumbre del pasado'], 'Algo que no llegó a pasar'),
+],
 'A2': [
  ('w', 'Ieri ___ mers la piață.', ['am', 'ai', 'are'], 'am'),
  ('w', 'Vreau ___ merg acasă.', ['să', 'de', 'că'], 'să'),
@@ -366,7 +382,19 @@ def main():
     # Modo: sin arg = A1/A2 → mig 110 (histórico, ya aplicado). 'hi' = B1/B2 → mig nueva
     # (los cursos fr/it/de/nl ya llegan a B2; ampliar el techo del placement a su nivel real).
     mode = sys.argv[1] if len(sys.argv) > 1 else 'a1a2'
-    if mode == 'ro2':
+    if mode == 'ro3':
+        EMIT = {'B1'}
+        OUT_NAME = '20260722120199_placement_bank_ro_b1.sql'
+        HEADER = [
+            "-- 20260722120199_placement_bank_ro_b1.sql",
+            "-- Amplia el banco de PLACEMENT del curso es->ro a B1, el nivel que el curso",
+            "-- acaba de ganar (mig 198). Sin esto el estimador topa en A2 aunque el",
+            "-- contenido B1 exista. reading=MC (exacto), writing=cloze con la guarda",
+            "-- anti-colision (que ademas normaliza los diacriticos romanos).",
+            "-- placement_next(p_course) es course-scoped -> sembrar el banco ES el cableado.",
+            "",
+        ]
+    elif mode == 'ro2':
         EMIT = {'A2'}
         OUT_NAME = '20260722120196_placement_bank_ro_a2.sql'
         HEADER = [
@@ -418,7 +446,7 @@ def main():
     rows = []
     counts = {}
     for lang, levels in BANKS.items():
-        if (mode in ('ro', 'ro2')) != (lang == 'ro'):
+        if (mode in ('ro', 'ro2', 'ro3')) != (lang == 'ro'):
             continue          # cada migracion siembra SOLO su(s) curso(s)
         cid = COURSES[lang]
         for lvl, items in levels.items():

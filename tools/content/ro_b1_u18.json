@@ -1,0 +1,423 @@
+{
+ "unit": {
+  "order": 18,
+  "title_es": "Lo que había pasado y lo que habría pasado",
+  "color": "#56CCF2",
+  "icon": "history_toggle_off"
+ },
+ "checkpoint_desc": "Repasa el mai mult ca perfectul rumano (una sola palabra: plecase, mâncaseră, scrisesem) para lo anterior a otro momento del pasado con «când», «după ce» y «deja», el condicional pasado «aș fi + participio» y el período hipotético irreal «Dacă aș fi știut, aș fi venit».",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "Mai mult ca perfectul: una sola palabra"
+  },
+  {
+   "order": 2,
+   "title_es": "Când, după ce, deja: antes del pasado"
+  },
+  {
+   "order": 3,
+   "title_es": "Aș fi venit: lo que habría pasado"
+  },
+  {
+   "order": 4,
+   "title_es": "Dacă aș fi știut, aș fi venit"
+  }
+ ],
+ "vocab": [
+  [
+   "deja",
+   "ya",
+   "adverbio"
+  ],
+  [
+   "după ce",
+   "después de que",
+   "conjuncion"
+  ],
+  [
+   "a se întâmpla",
+   "pasar, ocurrir, suceder",
+   "verbo"
+  ],
+  [
+   "a afla",
+   "enterarse de, averiguar",
+   "verbo"
+  ],
+  [
+   "o veste",
+   "la noticia",
+   "sustantivo"
+  ],
+  [
+   "un adevăr",
+   "la verdad",
+   "sustantivo"
+  ],
+  [
+   "a suna",
+   "llamar por teléfono; sonar",
+   "verbo"
+  ],
+  [
+   "un mesaj",
+   "el mensaje",
+   "sustantivo"
+  ],
+  [
+   "a rămâne",
+   "quedarse, permanecer",
+   "verbo"
+  ],
+  [
+   "a pierde",
+   "perder",
+   "verbo"
+  ],
+  [
+   "a uita",
+   "olvidar, olvidarse de",
+   "verbo"
+  ],
+  [
+   "din păcate",
+   "por desgracia",
+   "expresion"
+  ],
+  [
+   "altfel",
+   "de otro modo; si no",
+   "adverbio"
+  ],
+  [
+   "singur, singură",
+   "solo, sola",
+   "adjetivo"
+  ],
+  [
+   "o petrecere",
+   "la fiesta",
+   "sustantivo"
+  ],
+  [
+   "imediat",
+   "enseguida, inmediatamente",
+   "adverbio"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "mmcp_forma",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada forma rumana con su traducción. Fíjate: es UNA sola palabra.",
+   "pairs": [
+    [
+     "mâncasem",
+     "yo había comido"
+    ],
+    [
+     "mâncase",
+     "él había comido"
+    ],
+    [
+     "mâncaseră",
+     "ellos habían comido"
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "mmcp_forma",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Yo ya había escrito el mensaje». ¿Cuál es la forma correcta?",
+   "options": [
+    "Scrisesem deja mesajul.",
+    "Scrisese deja mesajul.",
+    "Scriseseră deja mesajul."
+   ],
+   "value": "Scrisesem deja mesajul."
+  },
+  {
+   "lesson": 1,
+   "topic": "mmcp_forma",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Trenul plecase deja din gară.",
+   "options": [
+    "Trenul plecase deja din gară.",
+    "Trenul ajunsese deja în gară.",
+    "Autobuzul plecase deja din oraș."
+   ],
+   "value": "Trenul plecase deja din gară."
+  },
+  {
+   "lesson": 1,
+   "topic": "mmcp_forma",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con el pluscuamperfecto de «a pleca» (ellos, una sola palabra).",
+   "text": "Când am ajuns la gară, trenurile ___ deja.",
+   "value": "plecaseră",
+   "accepted": [
+    "plecaseră",
+    "plecasera"
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "mmcp_forma",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Plecasem deja când a sunat telefonul."
+  },
+  {
+   "lesson": 2,
+   "topic": "anterior_trecut",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Cuando llamé, ellos ya se habían ido». ¿Cuál es la forma correcta?",
+   "options": [
+    "Când am sunat, plecaseră deja.",
+    "Când am sunat, au plecat deja.",
+    "Când sunasem, plecaseră deja."
+   ],
+   "value": "Când am sunat, plecaseră deja."
+  },
+  {
+   "lesson": 2,
+   "topic": "anterior_trecut",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "După ce plecaseră toți, am rămas singur.",
+   "options": [
+    "După ce plecaseră toți, am rămas singur.",
+    "După ce plecaseră toți, am închis ușa.",
+    "După ce veniseră toți, am rămas singur."
+   ],
+   "value": "După ce plecaseră toți, am rămas singur."
+  },
+  {
+   "lesson": 2,
+   "topic": "anterior_trecut",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Uitasem biletele acasă.",
+   "options": [
+    "Uitasem biletele acasă.",
+    "Pierdusem biletele în tren.",
+    "Uitasem telefonul acasă."
+   ],
+   "value": "Uitasem biletele acasă."
+  },
+  {
+   "lesson": 2,
+   "topic": "anterior_trecut",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Cuando llegamos, ellos ya habían comido.",
+   "source": "Cuando llegamos, ellos ya habían comido.",
+   "value": "Când am ajuns, ei mâncaseră deja.",
+   "accepted": [
+    "Când am ajuns, ei mâncaseră deja.",
+    "Când am ajuns, ei mâncaseră deja",
+    "Cand am ajuns, ei mancasera deja.",
+    "Cand am ajuns, ei mancasera deja",
+    "Când am ajuns, mâncaseră deja.",
+    "Cand am ajuns, mancasera deja.",
+    "Când am ajuns, ei deja mâncaseră.",
+    "Cand am ajuns, ei deja mancasera.",
+    "Când am ajuns, deja mâncaseră.",
+    "Când noi am ajuns, ei mâncaseră deja.",
+    "Cand noi am ajuns, ei mancasera deja.",
+    "Cand am ajuns, deja mancasera."
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "anterior_trecut",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena para decir «Ya me había ido cuando me llamaste». Empieza por «Plecasem» y termina con «sunat».",
+   "value": "Plecasem deja când m-ai sunat",
+   "sequence": [
+    "Plecasem",
+    "deja",
+    "când",
+    "m-ai",
+    "sunat"
+   ],
+   "distractors": [
+    "am",
+    "plecat"
+   ],
+   "tiles": [
+    "Plecasem",
+    "am",
+    "când",
+    "deja",
+    "m-ai",
+    "plecat",
+    "sunat"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "conditional_trecut",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada frase con su traducción. Solo cambia la primera palabra.",
+   "pairs": [
+    [
+     "Aș fi plecat.",
+     "Yo me habría ido."
+    ],
+    [
+     "Ar fi plecat.",
+     "Él se habría ido."
+    ],
+    [
+     "Am fi plecat.",
+     "Nosotros nos habríamos ido."
+    ]
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "conditional_trecut",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Yo habría venido a la fiesta». ¿Cuál es la forma correcta?",
+   "options": [
+    "Aș fi venit la petrecere.",
+    "Aș să fi venit la petrecere.",
+    "Aș fi a veni la petrecere."
+   ],
+   "value": "Aș fi venit la petrecere."
+  },
+  {
+   "lesson": 3,
+   "topic": "conditional_trecut",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Ar fi rămas mai mult, dar a pierdut trenul.",
+   "options": [
+    "Ar fi rămas mai mult, dar a pierdut trenul.",
+    "Ar fi plecat mai devreme, dar a pierdut trenul.",
+    "Ar fi rămas mai mult, dar a pierdut biletul."
+   ],
+   "value": "Ar fi rămas mai mult, dar a pierdut trenul."
+  },
+  {
+   "lesson": 3,
+   "topic": "conditional_trecut",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa: «Habría visto el mensaje, pero mi teléfono estaba apagado.»",
+   "text": "Aș fi ___ mesajul, dar telefonul meu era închis.",
+   "value": "văzut",
+   "accepted": [
+    "văzut",
+    "vazut"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "conditional_trecut",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Aș fi venit imediat, dar din păcate am pierdut trenul."
+  },
+  {
+   "lesson": 4,
+   "topic": "ireal_trecut",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Si lo hubiera sabido, te habría llamado». ¿Cuál es la forma correcta?",
+   "options": [
+    "Dacă aș fi știut, te-aș fi sunat.",
+    "Dacă aș fi știut, te-am sunat.",
+    "Dacă să fi știut, te-aș fi sunat."
+   ],
+   "value": "Dacă aș fi știut, te-aș fi sunat."
+  },
+  {
+   "lesson": 4,
+   "topic": "ireal_trecut",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Dacă aș fi știut adevărul, aș fi vorbit cu tine.",
+   "options": [
+    "Dacă aș fi știut adevărul, aș fi vorbit cu tine.",
+    "Dacă aș fi aflat adevărul, aș fi plecat imediat.",
+    "Dacă aș fi știut vestea, aș fi vorbit cu tine."
+   ],
+   "value": "Dacă aș fi știut adevărul, aș fi vorbit cu tine."
+  },
+  {
+   "lesson": 4,
+   "topic": "ireal_trecut",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Si hubiera sabido, habría venido.",
+   "source": "Si hubiera sabido, habría venido.",
+   "value": "Dacă aș fi știut, aș fi venit.",
+   "accepted": [
+    "Dacă aș fi știut, aș fi venit.",
+    "Dacă aș fi știut, aș fi venit",
+    "Daca as fi stiut, as fi venit.",
+    "Daca as fi stiut, as fi venit",
+    "Dacă eu aș fi știut, eu aș fi venit.",
+    "Dacă eu aș fi știut, aș fi venit.",
+    "Dacă aș fi știut, eu aș fi venit.",
+    "Daca eu as fi stiut, eu as fi venit.",
+    "Daca as fi stiut, eu as fi venit.",
+    "Daca eu as fi stiut, as fi venit."
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "ireal_trecut",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena las palabras: «De otro modo, no me habría enterado de la noticia». Empieza por «Altfel» y termina con «vestea».",
+   "value": "Altfel nu aș fi aflat vestea",
+   "sequence": [
+    "Altfel",
+    "nu",
+    "aș",
+    "fi",
+    "aflat",
+    "vestea"
+   ],
+   "tiles": [
+    "Altfel",
+    "aflat",
+    "aș",
+    "fi",
+    "nu",
+    "vestea"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "ireal_trecut",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Dacă aș fi știut ce se întâmplase, aș fi rămas acasă."
+  }
+ ]
+}

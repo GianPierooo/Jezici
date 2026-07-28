@@ -26,6 +26,7 @@ COURSE_RO = "20000000-0000-0000-0000-000000000007"
 GROUPS = {
     "ro-a1": (COURSE_RO, "A1", "ro"),
     "ro-a2": (COURSE_RO, "A2", "ro"),
+    "ro-b1": (COURSE_RO, "B1", "ro"),
     "en-b1": (COURSE_EN, "B1", "en"),
     "en-b2": (COURSE_EN, "B2", "en"),
     "en-c1": (COURSE_EN, "C1", "en"),

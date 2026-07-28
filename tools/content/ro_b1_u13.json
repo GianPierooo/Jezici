@@ -1,0 +1,425 @@
+{
+ "unit": {
+  "order": 13,
+  "title_es": "Cortesía y deseos (condițional)",
+  "color": "#9B51E0",
+  "icon": "auto_awesome"
+ },
+ "checkpoint_desc": "Repasa el condițional-optativ (aș, ai, ar, am, ați, ar + infinitivo SIN «a», una sola forma del verbo para todas las personas), las fórmulas de cortesía «aș vrea» y «v-aș ruga», los consejos y deseos con «ar trebui să» y «mi-ar plăcea», y las frases con «dacă» en las que los dos verbos van en condicional.",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "Aș, ai, ar: el condicional"
+  },
+  {
+   "order": 2,
+   "title_es": "Pedir con cortesía"
+  },
+  {
+   "order": 3,
+   "title_es": "Consejos y deseos"
+  },
+  {
+   "order": 4,
+   "title_es": "Dacă…: si tuviera, iría"
+  }
+ ],
+ "vocab": [
+  [
+   "aș vrea",
+   "quisiera, me gustaría",
+   "expresion"
+  ],
+  [
+   "ar trebui să",
+   "debería, habría que",
+   "expresion"
+  ],
+  [
+   "a plăcea",
+   "gustar, agradar",
+   "verbo"
+  ],
+  [
+   "a putea",
+   "poder",
+   "verbo"
+  ],
+  [
+   "a ruga",
+   "rogar, pedir",
+   "verbo"
+  ],
+  [
+   "a ajuta",
+   "ayudar",
+   "verbo"
+  ],
+  [
+   "o favoare",
+   "el favor",
+   "sustantivo"
+  ],
+  [
+   "a deranja",
+   "molestar",
+   "verbo"
+  ],
+  [
+   "un bilet",
+   "el billete, la entrada",
+   "sustantivo"
+  ],
+  [
+   "o sticlă",
+   "la botella",
+   "sustantivo"
+  ],
+  [
+   "a călători",
+   "viajar",
+   "verbo"
+  ],
+  [
+   "a pleca",
+   "irse, marcharse",
+   "verbo"
+  ],
+  [
+   "un sfat",
+   "el consejo",
+   "sustantivo"
+  ],
+  [
+   "o vară",
+   "el verano",
+   "sustantivo"
+  ],
+  [
+   "dacă",
+   "si (condicional)",
+   "conjuncion"
+  ],
+  [
+   "împreună",
+   "juntos, junto con",
+   "adverbio"
+  ],
+  [
+   "devreme",
+   "temprano",
+   "adverbio"
+  ],
+  [
+   "în locul tău",
+   "en tu lugar",
+   "expresion"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "conditional_forme",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada forma del condicional con su traducción.",
+   "pairs": [
+    [
+     "aș merge",
+     "yo iría"
+    ],
+    [
+     "ai merge",
+     "tú irías"
+    ],
+    [
+     "am merge",
+     "nosotros iríamos"
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "conditional_forme",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Yo iría al teatro». ¿Cuál es la forma correcta?",
+   "options": [
+    "Aș merge la teatru.",
+    "Aș să merg la teatru.",
+    "Aș a merge la teatru."
+   ],
+   "value": "Aș merge la teatru."
+  },
+  {
+   "lesson": 1,
+   "topic": "conditional_forme",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Ei ar veni cu noi.",
+   "options": [
+    "Ei ar veni cu noi.",
+    "Ei ar pleca fără noi.",
+    "Ei ar rămâne acasă."
+   ],
+   "value": "Ei ar veni cu noi."
+  },
+  {
+   "lesson": 1,
+   "topic": "conditional_forme",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena para decir «Viajaríamos por Rumanía». Empieza por «Am».",
+   "value": "Am călători prin România",
+   "sequence": [
+    "Am",
+    "călători",
+    "prin",
+    "România"
+   ],
+   "distractors": [
+    "a",
+    "călătorim"
+   ],
+   "tiles": [
+    "prin",
+    "a",
+    "Am",
+    "călătorim",
+    "România",
+    "călători"
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "conditional_forme",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Aș merge cu tine, dar nu am timp."
+  },
+  {
+   "lesson": 2,
+   "topic": "politete",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "En la taquilla pides una entrada con cortesía. ¿Cuál es la forma correcta?",
+   "options": [
+    "Aș vrea un bilet, vă rog.",
+    "Aș vreau un bilet, vă rog.",
+    "Aș a vrea un bilet, vă rog."
+   ],
+   "value": "Aș vrea un bilet, vă rog."
+  },
+  {
+   "lesson": 2,
+   "topic": "politete",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Ați putea să repetați, vă rog?",
+   "options": [
+    "Ați putea să repetați, vă rog?",
+    "Ați putea să vorbiți mai rar, vă rog?",
+    "Ați putea să deschideți fereastra, vă rog?"
+   ],
+   "value": "Ați putea să repetați, vă rog?"
+  },
+  {
+   "lesson": 2,
+   "topic": "politete",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con el infinitivo SIN «a» que sigue al condicional «ar» (leer).",
+   "text": "Dacă ar avea timp, sora mea ar ___ o carte bună.",
+   "value": "citi",
+   "accepted": [
+    "citi"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "politete",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Quisiera una botella de agua, por favor.",
+   "value": "Aș vrea o sticlă de apă, vă rog.",
+   "accepted": [
+    "Aș vrea o sticlă de apă, vă rog.",
+    "Aș vrea o sticlă de apă, vă rog",
+    "As vrea o sticla de apa, va rog.",
+    "As vrea o sticla de apa, va rog",
+    "Eu aș vrea o sticlă de apă, vă rog.",
+    "Eu as vrea o sticla de apa, va rog.",
+    "Aș dori o sticlă de apă, vă rog.",
+    "As dori o sticla de apa, va rog.",
+    "Aș vrea o sticlă cu apă, vă rog.",
+    "As vrea o sticla cu apa, va rog.",
+    "Aș dori o sticlă cu apă, vă rog.",
+    "As dori o sticla cu apa, va rog."
+   ],
+   "source": "Quisiera una botella de agua, por favor."
+  },
+  {
+   "lesson": 2,
+   "topic": "politete",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "V-aș ruga să-mi faceți o favoare, dacă nu vă deranjează."
+  },
+  {
+   "lesson": 3,
+   "topic": "sfaturi_dorinte",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada frase con su traducción.",
+   "pairs": [
+    [
+     "Ar trebui să dormi mai mult.",
+     "Deberías dormir más."
+    ],
+    [
+     "Mi-ar plăcea să călătoresc.",
+     "Me gustaría viajar."
+    ],
+    [
+     "Ai putea să mă ajuți?",
+     "¿Podrías ayudarme?"
+    ]
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "sfaturi_dorinte",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Me gustaría vivir en Bucarest». ¿Cuál es la forma correcta?",
+   "options": [
+    "Mi-ar plăcea să locuiesc în București.",
+    "Mă ar plăcea să locuiesc în București.",
+    "Mi-aș plăcea să locuiesc în București."
+   ],
+   "value": "Mi-ar plăcea să locuiesc în București."
+  },
+  {
+   "lesson": 3,
+   "topic": "sfaturi_dorinte",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Mi-ar plăcea să învăț limba română.",
+   "options": [
+    "Mi-ar plăcea să învăț limba română.",
+    "Mi-ar plăcea să învăț limba italiană.",
+    "Mi-ar plăcea să lucrez la Roma."
+   ],
+   "value": "Mi-ar plăcea să învăț limba română."
+  },
+  {
+   "lesson": 3,
+   "topic": "sfaturi_dorinte",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Deberías hablar con ella.",
+   "value": "Ar trebui să vorbești cu ea.",
+   "accepted": [
+    "Ar trebui să vorbești cu ea.",
+    "Ar trebui să vorbești cu ea",
+    "Ar trebui sa vorbesti cu ea.",
+    "Ar trebui sa vorbesti cu ea",
+    "Tu ar trebui să vorbești cu ea.",
+    "Tu ar trebui sa vorbesti cu ea."
+   ],
+   "source": "Deberías hablar con ella."
+  },
+  {
+   "lesson": 3,
+   "topic": "sfaturi_dorinte",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena las palabras: «¿Podrías darme un consejo?». Empieza por «Ai».",
+   "value": "Ai putea să-mi dai un sfat",
+   "sequence": [
+    "Ai",
+    "putea",
+    "să-mi",
+    "dai",
+    "un",
+    "sfat"
+   ],
+   "tiles": [
+    "dai",
+    "sfat",
+    "Ai",
+    "un",
+    "putea",
+    "să-mi"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "daca_conditional",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Si tuviera tiempo, iría contigo». ¿Cuál es la forma correcta?",
+   "options": [
+    "Dacă aș avea timp, aș veni cu tine.",
+    "Dacă voi avea timp, aș veni cu tine.",
+    "Dacă aș avea timp, vin cu tine."
+   ],
+   "value": "Dacă aș avea timp, aș veni cu tine."
+  },
+  {
+   "lesson": 4,
+   "topic": "daca_conditional",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Dacă aș avea bani, aș călători în fiecare vară.",
+   "options": [
+    "Dacă aș avea bani, aș călători în fiecare vară.",
+    "Dacă aș avea timp, aș călători în fiecare vară.",
+    "Dacă aș avea bani, mi-aș cumpăra o casă."
+   ],
+   "value": "Dacă aș avea bani, aș călători în fiecare vară."
+  },
+  {
+   "lesson": 4,
+   "topic": "daca_conditional",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Dacă ai veni mai devreme, am putea vorbi.",
+   "options": [
+    "Dacă ai veni mai devreme, am putea vorbi.",
+    "Dacă ai veni mai târziu, am putea vorbi.",
+    "Dacă ai pleca acum, ai ajunge la timp."
+   ],
+   "value": "Dacă ai veni mai devreme, am putea vorbi."
+  },
+  {
+   "lesson": 4,
+   "topic": "daca_conditional",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con el infinitivo SIN «a» que sigue al condicional «am» (poder).",
+   "text": "Dacă tu ai vrea, noi am ___ merge împreună la film.",
+   "value": "putea",
+   "accepted": [
+    "putea"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "daca_conditional",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Dacă aș fi în locul tău, m-aș odihni o zi."
+  }
+ ]
+}

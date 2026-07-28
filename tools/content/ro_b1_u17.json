@@ -1,0 +1,429 @@
+{
+ "unit": {
+  "order": 17,
+  "title_es": "Pronombres átonos: îl, o, îi, mi-l",
+  "color": "#F2994A",
+  "icon": "swap_calls"
+ },
+ "checkpoint_desc": "Repasa los pronombres átonos de acusativo (îl, o, îi, le) y de dativo (îmi, îți, îi, le), su posición delante del verbo pero detrás y con guion en el imperativo, las formas del pasado (l-am văzut, am văzut-o, i-am spus) y las combinadas mmi-o, ți-o, mi-o.",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "Acusativo: îl, o, îi, le"
+  },
+  {
+   "order": 2,
+   "title_es": "Dativo: îmi, îți, îi, le"
+  },
+  {
+   "order": 3,
+   "title_es": "En pasado e imperativo: l-am, dă-mi"
+  },
+  {
+   "order": 4,
+   "title_es": "Combinados: mi-l, mi-o, ți-o"
+  }
+ ],
+ "vocab": [
+  [
+   "a cunoaște",
+   "conocer",
+   "verbo"
+  ],
+  [
+   "a ajuta",
+   "ayudar",
+   "verbo"
+  ],
+  [
+   "a plăcea",
+   "gustar",
+   "verbo"
+  ],
+  [
+   "a da",
+   "dar, entregar",
+   "verbo"
+  ],
+  [
+   "a spune",
+   "decir",
+   "verbo"
+  ],
+  [
+   "a scrie",
+   "escribir",
+   "verbo"
+  ],
+  [
+   "a vedea",
+   "ver",
+   "verbo"
+  ],
+  [
+   "un adevăr",
+   "la verdad",
+   "sustantivo"
+  ],
+  [
+   "o carte",
+   "el libro",
+   "sustantivo"
+  ],
+  [
+   "un copil",
+   "el niño, el hijo",
+   "sustantivo"
+  ],
+  [
+   "un prieten",
+   "el amigo",
+   "sustantivo"
+  ],
+  [
+   "un secret",
+   "el secreto",
+   "sustantivo"
+  ],
+  [
+   "o piață",
+   "el mercado, la plaza",
+   "sustantivo"
+  ],
+  [
+   "o gară",
+   "la estación de tren",
+   "sustantivo"
+  ],
+  [
+   "un profesor",
+   "el profesor",
+   "sustantivo"
+  ],
+  [
+   "o cafea",
+   "el café",
+   "sustantivo"
+  ],
+  [
+   "un ceai",
+   "el té",
+   "sustantivo"
+  ],
+  [
+   "un film",
+   "la película",
+   "sustantivo"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "pronume_acuzativ",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada frase con su traducción.",
+   "pairs": [
+    [
+     "Îl văd pe Andrei.",
+     "Veo a Andrés."
+    ],
+    [
+     "O cunosc pe Maria.",
+     "Conozco a María."
+    ],
+    [
+     "Îi ajut pe copii.",
+     "Ayudo a los niños."
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "pronume_acuzativ",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Conozco a María desde hace años.» ¿Cuál es la forma correcta en rumano?",
+   "options": [
+    "O cunosc pe Maria de ani de zile.",
+    "Îl cunosc pe Maria de ani de zile.",
+    "Cunosc pe Maria de ani de zile."
+   ],
+   "value": "O cunosc pe Maria de ani de zile."
+  },
+  {
+   "lesson": 1,
+   "topic": "pronume_acuzativ",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "O cunosc pe sora ta.",
+   "options": [
+    "O cunosc pe sora ta.",
+    "O cunosc pe mama ta.",
+    "Îi cunosc pe frații tăi."
+   ],
+   "value": "O cunosc pe sora ta."
+  },
+  {
+   "lesson": 1,
+   "topic": "pronume_acuzativ",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con el pronombre: «Los libros son buenos. Los leo cada tarde.»",
+   "text": "Cărțile sunt bune. ___ citesc în fiecare seară.",
+   "value": "Le",
+   "accepted": [
+    "Le",
+    "le"
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "pronume_acuzativ",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "O cunosc pe Maria, dar pe fratele ei nu-l cunosc."
+  },
+  {
+   "lesson": 2,
+   "topic": "pronume_dativ",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada frase con su traducción.",
+   "pairs": [
+    [
+     "Îmi place ceaiul.",
+     "Me gusta el té."
+    ],
+    [
+     "Îți spun un secret.",
+     "Te digo un secreto."
+    ],
+    [
+     "Le scriu prietenilor.",
+     "Les escribo a los amigos."
+    ]
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "pronume_dativ",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Le doy el libro a Ana.» ¿Cuál es la forma correcta en rumano?",
+   "options": [
+    "Îi dau cartea Anei.",
+    "O dau cartea Anei.",
+    "Îi dau cartea pe Ana."
+   ],
+   "value": "Îi dau cartea Anei."
+  },
+  {
+   "lesson": 2,
+   "topic": "pronume_dativ",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Îmi place foarte mult ciocolata.",
+   "options": [
+    "Îmi place foarte mult ciocolata.",
+    "Îmi place foarte mult înghețata.",
+    "Nu-mi place deloc ciocolata."
+   ],
+   "value": "Îmi place foarte mult ciocolata."
+  },
+  {
+   "lesson": 2,
+   "topic": "pronume_dativ",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con el pronombre: «Me gusta mucho esta película.»",
+   "text": "___ place foarte mult filmul acesta.",
+   "value": "Îmi",
+   "accepted": [
+    "Îmi",
+    "îmi",
+    "Imi",
+    "imi"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "pronume_dativ",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Nu-mi place ceaiul, dar îmi place cafeaua."
+  },
+  {
+   "lesson": 3,
+   "topic": "trecut_imperativ",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«¡Dime la verdad!» ¿Cuál es la forma correcta en rumano?",
+   "options": [
+    "Spune-mi adevărul!",
+    "Spune îmi adevărul!",
+    "Îmi spune adevărul!"
+   ],
+   "value": "Spune-mi adevărul!"
+  },
+  {
+   "lesson": 3,
+   "topic": "trecut_imperativ",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "L-am văzut pe Andrei la gară.",
+   "options": [
+    "L-am văzut pe Andrei la gară.",
+    "L-am văzut pe Andrei la școală.",
+    "Am văzut-o pe Ana la gară."
+   ],
+   "value": "L-am văzut pe Andrei la gară."
+  },
+  {
+   "lesson": 3,
+   "topic": "trecut_imperativ",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "I-am spus profesorului totul.",
+   "options": [
+    "I-am spus profesorului totul.",
+    "I-am spus mamei totul.",
+    "Le-am spus copiilor totul."
+   ],
+   "value": "I-am spus profesorului totul."
+  },
+  {
+   "lesson": 3,
+   "topic": "trecut_imperativ",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena para decir «La vi ayer en el mercado». Empieza por «Am» y termina por «piață».",
+   "value": "Am văzut-o ieri în piață",
+   "sequence": [
+    "Am",
+    "văzut-o",
+    "ieri",
+    "în",
+    "piață"
+   ],
+   "distractors": [
+    "L-am",
+    "văzut"
+   ],
+   "tiles": [
+    "Am",
+    "L-am",
+    "ieri",
+    "piață",
+    "în",
+    "văzut",
+    "văzut-o"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "trecut_imperativ",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Le dije la verdad ayer.",
+   "value": "I-am spus adevărul ieri.",
+   "accepted": [
+    "I-am spus adevărul ieri.",
+    "I-am spus adevărul ieri",
+    "I-am spus ieri adevărul.",
+    "Ieri i-am spus adevărul.",
+    "Eu i-am spus adevărul ieri.",
+    "I-am spus adevarul ieri.",
+    "I-am spus adevarul ieri",
+    "I-am spus ieri adevarul.",
+    "Ieri i-am spus adevarul.",
+    "Eu i-am spus adevarul ieri."
+   ],
+   "source": "Le dije la verdad ayer."
+  },
+  {
+   "lesson": 4,
+   "topic": "pronume_combinate",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Me lo dio ayer.» ¿Cuál es la forma correcta en rumano?",
+   "options": [
+    "Mi l-a dat ieri.",
+    "Îmi l-a dat ieri.",
+    "Mi-a dat-l ieri."
+   ],
+   "value": "Mi l-a dat ieri."
+  },
+  {
+   "lesson": 4,
+   "topic": "pronume_combinate",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Mi-o dai mâine, te rog?",
+   "options": [
+    "Mi-o dai mâine, te rog?",
+    "Mi-o dai acum, te rog?",
+    "Ni-l dai mâine, te rog?"
+   ],
+   "value": "Mi-o dai mâine, te rog?"
+  },
+  {
+   "lesson": 4,
+   "topic": "pronume_combinate",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "¿Me lo das mañana?",
+   "value": "Mi-l dai mâine?",
+   "accepted": [
+    "Mi-l dai mâine?",
+    "Mi-l dai mâine",
+    "Mâine mi-l dai?",
+    "Tu mi-l dai mâine?",
+    "Mi-l dai tu mâine?",
+    "Mi-l dai maine?",
+    "Mi-l dai maine",
+    "Maine mi-l dai?",
+    "Tu mi-l dai maine?",
+    "Mi-l dai tu maine?"
+   ],
+   "source": "¿Me lo das mañana?"
+  },
+  {
+   "lesson": 4,
+   "topic": "pronume_combinate",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena las palabras: «Te la doy mañana por la mañana». Empieza por «Ți-o».",
+   "value": "Ți-o dau mâine dimineață",
+   "sequence": [
+    "Ți-o",
+    "dau",
+    "mâine",
+    "dimineață"
+   ],
+   "tiles": [
+    "dau",
+    "dimineață",
+    "mâine",
+    "Ți-o"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "pronume_combinate",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Am o carte nouă. Ți-o dau mâine, dacă vrei."
+  }
+ ]
+}

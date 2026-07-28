@@ -1,0 +1,471 @@
+{
+ "unit": {
+  "order": 14,
+  "title_es": "Unir ideas: porque, aunque, para que",
+  "color": "#2F80ED",
+  "icon": "link"
+ },
+ "checkpoint_desc": "Repasa cómo unir dos ideas en rumano: la causa (pentru că, deoarece, fiindcă, din cauza), la concesión y la condición (deși, cu toate că, dacă), la finalidad con «ca să» + conjunctiv y el tiempo (în timp ce, până când, după ce, înainte să), distinguiendo qué conector pide conjunctiv y cuál va en indicativo.",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "La causa: pentru că, deoarece, fiindcă"
+  },
+  {
+   "order": 2,
+   "title_es": "Deși y dacă: aunque y si"
+  },
+  {
+   "order": 3,
+   "title_es": "La finalidad: ca să + conjunctiv"
+  },
+  {
+   "order": 4,
+   "title_es": "Tiempo y conectores del discurso"
+  }
+ ],
+ "vocab": [
+  [
+   "pentru că",
+   "porque",
+   "conjuncion"
+  ],
+  [
+   "deoarece",
+   "porque, puesto que (más formal)",
+   "conjuncion"
+  ],
+  [
+   "fiindcă",
+   "porque, ya que (más hablado)",
+   "conjuncion"
+  ],
+  [
+   "din cauza",
+   "a causa de, por culpa de",
+   "expresion"
+  ],
+  [
+   "de aceea",
+   "por eso",
+   "expresion"
+  ],
+  [
+   "deși",
+   "aunque, a pesar de que",
+   "conjuncion"
+  ],
+  [
+   "cu toate că",
+   "a pesar de que",
+   "conjuncion"
+  ],
+  [
+   "dacă",
+   "si (condición)",
+   "conjuncion"
+  ],
+  [
+   "ca să",
+   "para, para que (+ conjunctiv)",
+   "conjuncion"
+  ],
+  [
+   "fără să",
+   "sin, sin que (+ conjunctiv)",
+   "conjuncion"
+  ],
+  [
+   "înainte să",
+   "antes de, antes de que (+ conjunctiv)",
+   "conjuncion"
+  ],
+  [
+   "după ce",
+   "después de que (+ indicativo)",
+   "conjuncion"
+  ],
+  [
+   "în timp ce",
+   "mientras",
+   "conjuncion"
+  ],
+  [
+   "până când",
+   "hasta que",
+   "conjuncion"
+  ],
+  [
+   "totuși",
+   "sin embargo, aun así",
+   "adverbio"
+  ],
+  [
+   "prin urmare",
+   "por lo tanto, así pues",
+   "expresion"
+  ],
+  [
+   "în plus",
+   "además",
+   "expresion"
+  ],
+  [
+   "a promova",
+   "aprobar (un examen)",
+   "verbo"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "cauza",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada conector de causa con su traducción.",
+   "pairs": [
+    [
+     "pentru că",
+     "porque"
+    ],
+    [
+     "din cauza ploii",
+     "a causa de la lluvia"
+    ],
+    [
+     "de aceea",
+     "por eso"
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "cauza",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "Elige la frase correcta para decir «No vengo porque llueve».",
+   "options": [
+    "Nu vin deoarece plouă.",
+    "Nu vin deoarece să plouă.",
+    "Nu vin pentru să plouă."
+   ],
+   "value": "Nu vin deoarece plouă."
+  },
+  {
+   "lesson": 1,
+   "topic": "cauza",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Nu vin la petrecere pentru că sunt obosit.",
+   "options": [
+    "Nu vin la petrecere pentru că sunt obosit.",
+    "Nu vin la petrecere pentru că sunt bolnav.",
+    "Vin la petrecere deși sunt obosit."
+   ],
+   "value": "Nu vin la petrecere pentru că sunt obosit."
+  },
+  {
+   "lesson": 1,
+   "topic": "cauza",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Hoy no trabajo porque estoy enfermo.",
+   "value": "Azi nu lucrez pentru că sunt bolnav.",
+   "accepted": [
+    "Azi nu lucrez pentru că sunt bolnav.",
+    "Azi nu lucrez pentru că sunt bolnav",
+    "Azi nu lucrez pentru ca sunt bolnav.",
+    "Azi nu lucrez pentru ca sunt bolnav",
+    "Nu lucrez azi pentru că sunt bolnav.",
+    "Nu lucrez azi pentru ca sunt bolnav.",
+    "Azi nu lucrez fiindcă sunt bolnav.",
+    "Azi nu lucrez fiindca sunt bolnav.",
+    "Nu lucrez azi fiindcă sunt bolnav.",
+    "Nu lucrez azi fiindca sunt bolnav.",
+    "Azi nu lucrez deoarece sunt bolnav.",
+    "Azi nu lucrez deoarece sunt bolnav",
+    "Nu lucrez azi deoarece sunt bolnav.",
+    "Eu nu lucrez azi pentru că sunt bolnav.",
+    "Eu nu lucrez azi pentru ca sunt bolnav.",
+    "Eu azi nu lucrez pentru că sunt bolnav.",
+    "Eu azi nu lucrez pentru ca sunt bolnav.",
+    "Azi nu muncesc pentru că sunt bolnav.",
+    "Azi nu muncesc fiindcă sunt bolnav.",
+    "Azi nu muncesc deoarece sunt bolnav.",
+    "Astăzi nu lucrez pentru că sunt bolnav.",
+    "Astăzi nu lucrez fiindcă sunt bolnav.",
+    "Astăzi nu lucrez deoarece sunt bolnav.",
+    "Astăzi nu muncesc pentru că sunt bolnav.",
+    "Astăzi nu muncesc fiindcă sunt bolnav.",
+    "Astăzi nu muncesc deoarece sunt bolnav.",
+    "Astazi nu lucrez deoarece sunt bolnav.",
+    "Astazi nu lucrez fiindca sunt bolnav.",
+    "Astazi nu lucrez pentru ca sunt bolnav.",
+    "Astazi nu muncesc deoarece sunt bolnav.",
+    "Astazi nu muncesc fiindca sunt bolnav.",
+    "Astazi nu muncesc pentru ca sunt bolnav.",
+    "Azi nu muncesc fiindca sunt bolnav.",
+    "Azi nu muncesc pentru ca sunt bolnav."
+   ],
+   "source": "Hoy no trabajo porque estoy enfermo."
+  },
+  {
+   "lesson": 1,
+   "topic": "cauza",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Nu ies astăzi fiindcă plouă foarte tare."
+  },
+  {
+   "lesson": 2,
+   "topic": "desi_daca",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada conector con su traducción.",
+   "pairs": [
+    [
+     "deși",
+     "aunque"
+    ],
+    [
+     "cu toate că",
+     "a pesar de que"
+    ],
+    [
+     "dacă",
+     "si (condición)"
+    ]
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "desi_daca",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "Elige la frase correcta para decir «Si llueve, me quedo en casa».",
+   "options": [
+    "Dacă plouă, rămân acasă.",
+    "Dacă să plouă, rămân acasă.",
+    "Deși plouă, rămân acasă."
+   ],
+   "value": "Dacă plouă, rămân acasă."
+  },
+  {
+   "lesson": 2,
+   "topic": "desi_daca",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Deși e frig, mergem la munte.",
+   "options": [
+    "Deși e frig, mergem la munte.",
+    "Deși e cald, mergem la mare.",
+    "Dacă e frig, rămânem acasă."
+   ],
+   "value": "Deși e frig, mergem la munte."
+  },
+  {
+   "lesson": 2,
+   "topic": "desi_daca",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "«Aunque llueve, salgo a pasear.» Completa con el verbo «llover».",
+   "text": "Deși ___, ies la plimbare.",
+   "value": "plouă",
+   "accepted": [
+    "plouă",
+    "ploua"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "desi_daca",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Deși sunt obosit, mai lucrez o oră; totuși, mâine mă odihnesc."
+  },
+  {
+   "lesson": 3,
+   "topic": "finalitate",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "Elige la frase correcta para decir «Estudio para aprobar el examen».",
+   "options": [
+    "Învăț ca să promovez examenul.",
+    "Învăț pentru să promovez examenul.",
+    "Învăț ca promovez examenul."
+   ],
+   "value": "Învăț ca să promovez examenul."
+  },
+  {
+   "lesson": 3,
+   "topic": "finalitate",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Merg la piață ca să cumpăr legume.",
+   "options": [
+    "Merg la piață ca să cumpăr legume.",
+    "Merg la piață ca să cumpăr fructe.",
+    "Merg la farmacie ca să cumpăr medicamente."
+   ],
+   "value": "Merg la piață ca să cumpăr legume."
+  },
+  {
+   "lesson": 3,
+   "topic": "finalitate",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "A plecat fără să spună nimic.",
+   "options": [
+    "A plecat fără să spună nimic.",
+    "A plecat fără să mănânce nimic.",
+    "A venit fără să spună nimic."
+   ],
+   "value": "A plecat fără să spună nimic."
+  },
+  {
+   "lesson": 3,
+   "topic": "finalitate",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena para decir «Aprendo rumano para hablar con la abuela». Empieza por «Învăț».",
+   "value": "Învăț română ca să vorbesc cu bunica",
+   "sequence": [
+    "Învăț",
+    "română",
+    "ca",
+    "să",
+    "vorbesc",
+    "cu",
+    "bunica"
+   ],
+   "distractors": [
+    "pentru",
+    "vorbi"
+   ],
+   "tiles": [
+    "bunica",
+    "ca",
+    "cu",
+    "pentru",
+    "română",
+    "să",
+    "vorbesc",
+    "vorbi",
+    "Învăț"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "finalitate",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Trabajo para comprar una casa.",
+   "value": "Muncesc ca să cumpăr o casă.",
+   "accepted": [
+    "Muncesc ca să cumpăr o casă.",
+    "Muncesc ca să cumpăr o casă",
+    "Muncesc ca sa cumpar o casa.",
+    "Muncesc ca sa cumpar o casa",
+    "Lucrez ca să cumpăr o casă.",
+    "Lucrez ca sa cumpar o casa.",
+    "Muncesc să cumpăr o casă.",
+    "Muncesc sa cumpar o casa.",
+    "Lucrez să cumpăr o casă.",
+    "Lucrez sa cumpar o casa.",
+    "Muncesc pentru a cumpăra o casă.",
+    "Muncesc pentru a cumpara o casa.",
+    "Lucrez pentru a cumpăra o casă.",
+    "Lucrez pentru a cumpara o casa.",
+    "Eu muncesc ca să cumpăr o casă.",
+    "Eu muncesc ca sa cumpar o casa.",
+    "Eu lucrez ca să cumpăr o casă.",
+    "Eu lucrez ca sa cumpar o casa."
+   ],
+   "source": "Trabajo para comprar una casa."
+  },
+  {
+   "lesson": 4,
+   "topic": "timp_conectori",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "Elige la frase correcta para decir «Antes de irme, cierro la ventana».",
+   "options": [
+    "Înainte să plec, închid fereastra.",
+    "Înainte plec, închid fereastra.",
+    "Înainte să plec, să închid fereastra."
+   ],
+   "value": "Înainte să plec, închid fereastra."
+  },
+  {
+   "lesson": 4,
+   "topic": "timp_conectori",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "După ce termin lucrul, merg la sală.",
+   "options": [
+    "După ce termin lucrul, merg la sală.",
+    "Merg la sală înainte să termin lucrul.",
+    "Merg acasă după ce termin lucrul."
+   ],
+   "value": "După ce termin lucrul, merg la sală."
+  },
+  {
+   "lesson": 4,
+   "topic": "timp_conectori",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con el conector de tiempo: «Espero hasta que termines».",
+   "text": "Aștept ___ termini.",
+   "value": "până când",
+   "accepted": [
+    "până când",
+    "pana cand",
+    "până ce",
+    "pana ce",
+    "până",
+    "pana"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "timp_conectori",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena las palabras: «Escucho música mientras cocino». Empieza por «Ascult» y termina con «gătesc».",
+   "value": "Ascult muzică în timp ce gătesc",
+   "sequence": [
+    "Ascult",
+    "muzică",
+    "în",
+    "timp",
+    "ce",
+    "gătesc"
+   ],
+   "tiles": [
+    "Ascult",
+    "ce",
+    "gătesc",
+    "muzică",
+    "timp",
+    "în"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "timp_conectori",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Am învățat mult și, în plus, am dormit bine; prin urmare, am promovat examenul."
+  }
+ ]
+}

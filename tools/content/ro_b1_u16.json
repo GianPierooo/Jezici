@@ -1,0 +1,423 @@
+{
+ "unit": {
+  "order": 16,
+  "title_es": "La voz pasiva y el «se» pasivante",
+  "color": "#EB5757",
+  "icon": "swap_horiz"
+ },
+ "checkpoint_desc": "Repasa la pasiva con «a fi» + participio concordado (este vândută / sunt vândute), el agente con «de» y «de către», el «se» pasivante con su concordancia (se vând case) y los impersonales «se poate» y «se spune că».",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "«Este vândută»: la pasiva con a fi"
+  },
+  {
+   "order": 2,
+   "title_es": "El agente: de y de către"
+  },
+  {
+   "order": 3,
+   "title_es": "El «se» pasivante: Se vând case"
+  },
+  {
+   "order": 4,
+   "title_es": "Se poate, se spune că"
+  }
+ ],
+ "vocab": [
+  [
+   "a vinde",
+   "vender",
+   "verbo"
+  ],
+  [
+   "vândut, vândută",
+   "vendido, vendida",
+   "adjetivo"
+  ],
+  [
+   "a scrie",
+   "escribir",
+   "verbo"
+  ],
+  [
+   "o scrisoare",
+   "la carta",
+   "sustantivo"
+  ],
+  [
+   "a trimite",
+   "enviar, mandar",
+   "verbo"
+  ],
+  [
+   "a construi",
+   "construir",
+   "verbo"
+  ],
+  [
+   "a aproba",
+   "aprobar",
+   "verbo"
+  ],
+  [
+   "un proiect",
+   "el proyecto",
+   "sustantivo"
+  ],
+  [
+   "de către",
+   "por (parte de), por (agente formal)",
+   "preposicion"
+  ],
+  [
+   "un vânzător",
+   "el vendedor",
+   "sustantivo"
+  ],
+  [
+   "a căuta",
+   "buscar",
+   "verbo"
+  ],
+  [
+   "a curăța",
+   "limpiar",
+   "verbo"
+  ],
+  [
+   "o cameră",
+   "la habitación",
+   "sustantivo"
+  ],
+  [
+   "un bilet",
+   "el billete, la entrada",
+   "sustantivo"
+  ],
+  [
+   "a fuma",
+   "fumar",
+   "verbo"
+  ],
+  [
+   "o limbă",
+   "la lengua, el idioma",
+   "sustantivo"
+  ],
+  [
+   "se poate",
+   "se puede",
+   "expresion"
+  ],
+  [
+   "se spune că",
+   "se dice que",
+   "expresion"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "pasiv_a_fi",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada frase pasiva con su traducción.",
+   "pairs": [
+    [
+     "Casa este vândută.",
+     "La casa está vendida."
+    ],
+    [
+     "Casele sunt vândute.",
+     "Las casas están vendidas."
+    ],
+    [
+     "Cartea a fost scrisă.",
+     "El libro fue escrito."
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "pasiv_a_fi",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«La escuela fue construida en 1990.» ¿Cuál es la forma correcta?",
+   "options": [
+    "Școala a fost construită în 1990.",
+    "Școala a fost construit în 1990.",
+    "Școala au fost construită în 1990."
+   ],
+   "value": "Școala a fost construită în 1990."
+  },
+  {
+   "lesson": 1,
+   "topic": "pasiv_a_fi",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Casa a fost vândută anul trecut.",
+   "options": [
+    "Casa a fost vândută anul trecut.",
+    "Casa a fost construită anul trecut.",
+    "Mașina a fost vândută anul trecut."
+   ],
+   "value": "Casa a fost vândută anul trecut."
+  },
+  {
+   "lesson": 1,
+   "topic": "pasiv_a_fi",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa: «Las habitaciones son limpiadas todos los días.»",
+   "text": "Camerele ___ curățate în fiecare zi.",
+   "value": "sunt",
+   "accepted": [
+    "sunt"
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "pasiv_a_fi",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Casele sunt vândute, iar camerele sunt curățate."
+  },
+  {
+   "lesson": 2,
+   "topic": "agent_de",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«El libro fue escrito por un profesor rumano.» ¿Cuál es la forma correcta?",
+   "options": [
+    "Cartea a fost scrisă de un profesor român.",
+    "Cartea a fost scrisă pentru un profesor român.",
+    "Cartea a fost scris de un profesor român."
+   ],
+   "value": "Cartea a fost scrisă de un profesor român."
+  },
+  {
+   "lesson": 2,
+   "topic": "agent_de",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Cartea a fost scrisă de o studentă.",
+   "options": [
+    "Cartea a fost scrisă de o studentă.",
+    "Cartea a fost tradusă de o studentă.",
+    "Cartea a fost scrisă de un profesor."
+   ],
+   "value": "Cartea a fost scrisă de o studentă."
+  },
+  {
+   "lesson": 2,
+   "topic": "agent_de",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Proiectul a fost aprobat de către primărie.",
+   "options": [
+    "Proiectul a fost aprobat de către primărie.",
+    "Proiectul a fost respins de către primărie.",
+    "Proiectul a fost aprobat de către director."
+   ],
+   "value": "Proiectul a fost aprobat de către primărie."
+  },
+  {
+   "lesson": 2,
+   "topic": "agent_de",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "La carta fue enviada por el director.",
+   "source": "La carta fue enviada por el director.",
+   "value": "Scrisoarea a fost trimisă de director.",
+   "accepted": [
+    "Scrisoarea a fost trimisă de director.",
+    "Scrisoarea a fost trimisă de director",
+    "Scrisoarea a fost trimisa de director.",
+    "Scrisoarea a fost trimisa de director",
+    "Scrisoarea a fost trimisă de către director.",
+    "Scrisoarea a fost trimisă de către director",
+    "Scrisoarea a fost trimisa de catre director.",
+    "Scrisoarea a fost trimisa de catre director"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "agent_de",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Podul a fost construit de către o firmă italiană."
+  },
+  {
+   "lesson": 3,
+   "topic": "se_pasiv",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada anuncio con su traducción.",
+   "pairs": [
+    [
+     "Se vând case.",
+     "Se venden casas."
+    ],
+    [
+     "Se caută vânzător.",
+     "Se busca vendedor."
+    ],
+    [
+     "Aici se vorbește româna.",
+     "Aquí se habla rumano."
+    ]
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "se_pasiv",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "En la ventanilla: «Aquí se venden entradas». ¿Cuál es la forma correcta?",
+   "options": [
+    "Aici se vând bilete.",
+    "Aici se vinde bilete.",
+    "Aici se vând biletul."
+   ],
+   "value": "Aici se vând bilete."
+  },
+  {
+   "lesson": 3,
+   "topic": "se_pasiv",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Se caută un vânzător pentru magazin.",
+   "options": [
+    "Se caută un vânzător pentru magazin.",
+    "Se caută un bucătar pentru restaurant.",
+    "Se vinde un magazin în centru."
+   ],
+   "value": "Se caută un vânzător pentru magazin."
+  },
+  {
+   "lesson": 3,
+   "topic": "se_pasiv",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena para decir «Se venden casas cerca del mar». Empieza por «Se».",
+   "value": "Se vând case lângă mare",
+   "sequence": [
+    "Se",
+    "vând",
+    "case",
+    "lângă",
+    "mare"
+   ],
+   "distractors": [
+    "vinde",
+    "casa"
+   ],
+   "tiles": [
+    "Se",
+    "casa",
+    "case",
+    "lângă",
+    "mare",
+    "vinde",
+    "vând"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "se_pasiv",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Aquí se hablan tres idiomas.",
+   "source": "Aquí se hablan tres idiomas.",
+   "value": "Aici se vorbesc trei limbi.",
+   "accepted": [
+    "Aici se vorbesc trei limbi.",
+    "Aici se vorbesc trei limbi",
+    "Se vorbesc trei limbi aici.",
+    "Se vorbesc trei limbi aici"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "impersonal_se",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Se dice que va a llover.» ¿Cuál es la forma correcta?",
+   "options": [
+    "Se spune că va ploua.",
+    "Se spun că va ploua.",
+    "Se spune să va ploua."
+   ],
+   "value": "Se spune că va ploua."
+  },
+  {
+   "lesson": 4,
+   "topic": "impersonal_se",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Aici nu se poate fuma.",
+   "options": [
+    "Aici nu se poate fuma.",
+    "Aici nu se poate parca.",
+    "Aici nu se poate intra."
+   ],
+   "value": "Aici nu se poate fuma."
+  },
+  {
+   "lesson": 4,
+   "topic": "impersonal_se",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa: «No se puede entrar al museo sin entrada.»",
+   "text": "Nu se ___ intra în muzeu fără bilet.",
+   "value": "poate",
+   "accepted": [
+    "poate"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "impersonal_se",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena las palabras: «Se dice que la película es muy buena». Empieza por «Se» y termina por «bun».",
+   "value": "Se spune că filmul este foarte bun",
+   "sequence": [
+    "Se",
+    "spune",
+    "că",
+    "filmul",
+    "este",
+    "foarte",
+    "bun"
+   ],
+   "tiles": [
+    "Se",
+    "bun",
+    "că",
+    "este",
+    "filmul",
+    "foarte",
+    "spune"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "impersonal_se",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Se poate plăti cu cardul? Se spune că da."
+  }
+ ]
+}

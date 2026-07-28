@@ -18,14 +18,14 @@ en una lista cerrada en vez de un agujero. Cada fila es una pieza que existe en 
 |---|---|---|---|---|
 | 1 | Fila de idioma | `languages` | la emite `gen_course.py` | ✅ |
 | 2 | Fila de curso | `courses` (source es → target) | la emite `gen_course.py` | ✅ |
-| 3 | Unidades | `units` (6 por nivel CEFR) | `gen_course.py` desde los JSON | ✅ 12 (A1+A2) |
-| 4 | Lecciones + checkpoint | `lessons` (4 `lesson` + 1 `checkpoint` por unidad) | íd. | ✅ 60 |
-| 5 | Ítems de ejercicio | `content_items` (9 tipos) + `lesson_items` | íd. | ✅ 268 |
-| 6 | Exámenes de checkpoint | `exams` type=`checkpoint` (1 por unidad) | íd. | ✅ 12 |
-| 7 | Vocabulario | `vocabulary` (word, translation, `frequency_rank`, pos) | íd., desde el bloque `vocab` | ✅ 216 |
-| 8 | **Vínculo léxico** | `lesson_vocab` | migración que re-deriva la lógica de mig 165 | ✅ 118 palabras enseñadas |
-| 9 | Audio TTS | Supabase Storage `audio/items/<id>.mp3` | `gen_audio_missing.py <code>-<lvl>` | ✅ 96/96 |
-| 10 | Banco de placement | `content_items` tag `placement` | `gen_placement_multi.py <code>` | ✅ 28 (A1+A2) |
+| 3 | Unidades | `units` (6 por nivel CEFR) | `gen_course.py` desde los JSON | ✅ 18 (A1+A2+B1) |
+| 4 | Lecciones + checkpoint | `lessons` (4 `lesson` + 1 `checkpoint` por unidad) | íd. | ✅ 90 |
+| 5 | Ítems de ejercicio | `content_items` (9 tipos) + `lesson_items` | íd. | ✅ 402 |
+| 6 | Exámenes de checkpoint | `exams` type=`checkpoint` (1 por unidad) | íd. | ✅ 18 |
+| 7 | Vocabulario | `vocabulary` (word, translation, `frequency_rank`, pos) | íd., desde el bloque `vocab` | ✅ 322 |
+| 8 | **Vínculo léxico** | `lesson_vocab` | migración que re-deriva la lógica de mig 165 | ✅ 175 palabras enseñadas |
+| 9 | Audio TTS | Supabase Storage `audio/items/<id>.mp3` | `gen_audio_missing.py <code>-<lvl>` | ✅ 144/144 |
+| 10 | Banco de placement | `content_items` tag `placement` | `gen_placement_multi.py <code>` | ✅ 42 (A1+A2+B1) |
 | 11 | Bandera | `course_models.dart` `flag` | 1 línea | ✅ 🇷🇴 |
 | 12 | TTS/reconocedor | `speech_lang.dart` | 1 `case` (tts + stt) | ✅ ro-RO |
 | 13 | Nombre del idioma en la UI | `learn_lang_names.dart` + 3 `.arb` | 1 clave ×3 | ✅ |
@@ -131,6 +131,21 @@ teoría E-2 (24 temas) es **otra tanda entera** por idioma, medida en las 6 ante
 | Revisión adversarial | ~6 min | ~13 min |
 | Hallazgos ALTA | 8 | **3** (el brief ya llevaba las 8 lecciones de A1) |
 | Verificación | ~4 min | ~6 min (la caminata A1→A2 recorre 60 lecciones) |
+
+### La 3ª tanda (ro B1) — el patrón se estabiliza
+
+| Fase | A1 | A2 | **B1** |
+|---|---|---|---|
+| Hallazgos ALTA | 8 | 3 | **2** (+~10 media) |
+| Errores de LENGUA en las 6 unidades | 0 | 0 | **0** (tres revisores, tres tandas) |
+
+B1 es más difícil (condicional, pronombres átonos, `pe care` + pronombre repetido, pluscuamperfecto
+sintético) y aun así los revisores nativos no encontraron **ni un error de rumano** — todos los hallazgos
+fueron de diseño de ítem. **Un patrón nuevo, propio de B1:** el condicional rumano (`aș/ai/ar` + infinitivo)
+tiene el auxiliar en un **monosílabo de 2 letras**, así que la persona es inevaluable en cloze igual que las
+dobles italianas o el Umlaut alemán — pero **no se puede pasar a MC sin romper el reparto de habilidades**
+(cloze es *writing*, MC es *reading*). La salida limpia es **mover el hueco al verbo** (la otra mitad de la
+construcción, que sí discrimina), no cambiar el tipo de ítem.
 
 **Lo que se transfiere de verdad entre tandas es el BRIEF.** Meter en él las 8 lecciones caras
 de A1 (con nombre y ejemplo) bajó los ALTA de 8 a 3 — y ninguno de los 3 era un error de lengua.

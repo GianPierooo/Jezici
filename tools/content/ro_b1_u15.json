@@ -1,0 +1,431 @@
+{
+ "unit": {
+  "order": 15,
+  "title_es": "Frases de relativo: care, pe care, ce",
+  "color": "#27AE60",
+  "icon": "account_tree"
+ },
+ "checkpoint_desc": "Repasa «care» invariable como sujeto, «pe care» con el pronombre átono repetido de forma obligatoria, la preposición delante de «care» (în care, cu care, despre care) y el uso de «ce» tras tot/nimic y de «cine» sin antecedente.",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "«care»: el relativo que no cambia"
+  },
+  {
+   "order": 2,
+   "title_es": "«pe care» y el pronombre repetido"
+  },
+  {
+   "order": 3,
+   "title_es": "Preposición + care: în, cu, despre"
+  },
+  {
+   "order": 4,
+   "title_es": "«ce» y «cine»"
+  }
+ ],
+ "vocab": [
+  [
+   "care",
+   "que, el que, la que (relativo)",
+   "pronombre"
+  ],
+  [
+   "pe care",
+   "que, al que, a la que (objeto directo)",
+   "expresion"
+  ],
+  [
+   "ce",
+   "lo que, que",
+   "pronombre"
+  ],
+  [
+   "cine",
+   "quien, el que (sin antecedente)",
+   "pronombre"
+  ],
+  [
+   "tot ce",
+   "todo lo que",
+   "expresion"
+  ],
+  [
+   "nimic",
+   "nada",
+   "pronombre"
+  ],
+  [
+   "un coleg, o colegă",
+   "el compañero, la compañera (de trabajo o de clase)",
+   "sustantivo"
+  ],
+  [
+   "o clădire",
+   "el edificio",
+   "sustantivo"
+  ],
+  [
+   "o revistă",
+   "la revista",
+   "sustantivo"
+  ],
+  [
+   "un cadou",
+   "el regalo",
+   "sustantivo"
+  ],
+  [
+   "o problemă",
+   "el problema",
+   "sustantivo"
+  ],
+  [
+   "o întrebare",
+   "la pregunta",
+   "sustantivo"
+  ],
+  [
+   "a cunoaște",
+   "conocer",
+   "verbo"
+  ],
+  [
+   "a discuta",
+   "hablar de, comentar",
+   "verbo"
+  ],
+  [
+   "a împrumuta",
+   "prestar; pedir prestado",
+   "verbo"
+  ],
+  [
+   "a se întâmpla",
+   "ocurrir, pasar",
+   "verbo"
+  ],
+  [
+   "a alege",
+   "elegir, escoger",
+   "verbo"
+  ],
+  [
+   "a câștiga",
+   "ganar",
+   "verbo"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "care_subiect",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada frase con su traducción.",
+   "pairs": [
+    [
+     "Omul care vine este colegul meu.",
+     "El hombre que viene es mi compañero."
+    ],
+    [
+     "Fata care cântă este sora mea.",
+     "La chica que canta es mi hermana."
+    ],
+    [
+     "Clădirea care se vede este nouă.",
+     "El edificio que se ve es nuevo."
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "care_subiect",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«La revista que está sobre la mesa es nueva.» Elige la opción correcta.",
+   "options": [
+    "Revista care este pe masă este nouă.",
+    "Revista cine este pe masă este nouă.",
+    "Revista unde este pe masă este nouă."
+   ],
+   "value": "Revista care este pe masă este nouă."
+  },
+  {
+   "lesson": 1,
+   "topic": "care_subiect",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Colegul care lucrează cu mine este din Cluj.",
+   "options": [
+    "Colegul care lucrează cu mine este din Cluj.",
+    "Colegul care locuiește cu mine este din Cluj.",
+    "Fata care lucrează cu mine este din Cluj."
+   ],
+   "value": "Colegul care lucrează cu mine este din Cluj."
+  },
+  {
+   "lesson": 1,
+   "topic": "care_subiect",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "El compañero que me ayuda es rumano.",
+   "source": "El compañero que me ayuda es rumano.",
+   "value": "Colegul care mă ajută este român.",
+   "accepted": [
+    "Colegul care mă ajută este român.",
+    "Colegul care ma ajuta este roman.",
+    "Colegul care mă ajută e român.",
+    "Colegul care ma ajuta e roman."
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "care_subiect",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Clădirea care se vede acolo este foarte veche."
+  },
+  {
+   "lesson": 2,
+   "topic": "pe_care_pronume",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«El libro que leo es interesante.» Elige la opción correcta.",
+   "options": [
+    "Cartea pe care o citesc este interesantă.",
+    "Cartea pe care citesc este interesantă.",
+    "Cartea pe care îl citesc este interesantă."
+   ],
+   "value": "Cartea pe care o citesc este interesantă."
+  },
+  {
+   "lesson": 2,
+   "topic": "pe_care_pronume",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Filmul pe care l-am văzut ieri a fost foarte bun.",
+   "options": [
+    "Filmul pe care l-am văzut ieri a fost foarte bun.",
+    "Filmul pe care l-am văzut ieri a fost foarte lung.",
+    "Cartea pe care am citit-o ieri a fost foarte bună."
+   ],
+   "value": "Filmul pe care l-am văzut ieri a fost foarte bun."
+  },
+  {
+   "lesson": 2,
+   "topic": "pe_care_pronume",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa: «El regalo que elijo es para ti.»",
+   "text": "Cadoul pe care ___ este pentru tine.",
+   "value": "îl aleg",
+   "accepted": [
+    "îl aleg",
+    "il aleg",
+    "eu îl aleg",
+    "eu il aleg"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "pe_care_pronume",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena para decir «El compañero al que conozco trabaja aquí». Empieza por «Colegul» y termina por «aici».",
+   "value": "Colegul pe care îl cunosc lucrează aici",
+   "sequence": [
+    "Colegul",
+    "pe",
+    "care",
+    "îl",
+    "cunosc",
+    "lucrează",
+    "aici"
+   ],
+   "distractors": [
+    "o",
+    "cine"
+   ],
+   "tiles": [
+    "aici",
+    "care",
+    "cine",
+    "Colegul",
+    "cunosc",
+    "îl",
+    "lucrează",
+    "o",
+    "pe"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "pe_care_pronume",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Cartea pe care am împrumutat-o este foarte bună."
+  },
+  {
+   "lesson": 3,
+   "topic": "prepozitie_care",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada grupo de palabras con su traducción.",
+   "pairs": [
+    [
+     "orașul în care locuiesc",
+     "la ciudad en la que vivo"
+    ],
+    [
+     "colega cu care vorbesc",
+     "la compañera con la que hablo"
+    ],
+    [
+     "problema despre care discutăm",
+     "el problema del que hablamos"
+    ]
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "prepozitie_care",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«El edificio en el que trabajo es nuevo.» Elige la opción correcta.",
+   "options": [
+    "Clădirea în care lucrez este nouă.",
+    "Clădirea care lucrez este nouă.",
+    "Clădirea în ce lucrez este nouă."
+   ],
+   "value": "Clădirea în care lucrez este nouă."
+  },
+  {
+   "lesson": 3,
+   "topic": "prepozitie_care",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Colega cu care lucrez este din Iași.",
+   "options": [
+    "Colega cu care lucrez este din Iași.",
+    "Colega cu care lucrez este din Cluj.",
+    "Colega despre care vorbesc este din Iași."
+   ],
+   "value": "Colega cu care lucrez este din Iași."
+  },
+  {
+   "lesson": 3,
+   "topic": "prepozitie_care",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa: «La película de la que hablamos es nueva.»",
+   "text": "Filmul ___ vorbim este nou.",
+   "value": "despre care",
+   "accepted": [
+    "despre care",
+    "de care"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "prepozitie_care",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "El compañero con el que hablo es de Bucarest.",
+   "source": "El compañero con el que hablo es de Bucarest.",
+   "value": "Colegul cu care vorbesc este din București.",
+   "accepted": [
+    "Colegul cu care vorbesc este din București.",
+    "Colegul cu care vorbesc este din Bucuresti.",
+    "Colegul cu care vorbesc e din București.",
+    "Colegul cu care vorbesc e din Bucuresti.",
+    "Colegul cu care eu vorbesc este din București.",
+    "Colegul cu care eu vorbesc este din Bucuresti.",
+    "Colegul cu care eu vorbesc e din București.",
+    "Colegul cu care eu vorbesc e din Bucuresti.",
+    "Colegul cu care vorbesc eu este din București.",
+    "Colegul cu care vorbesc eu este din Bucuresti.",
+    "Colegul cu care vorbesc eu e din București.",
+    "Colegul cu care vorbesc eu e din Bucuresti."
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "ce_cine",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«No entiendo nada de lo que dices.» Elige la opción correcta.",
+   "options": [
+    "Nu înțeleg nimic din ce spui.",
+    "Nu înțeleg nimic din care spui.",
+    "Nu înțeleg nimic din cine spui."
+   ],
+   "value": "Nu înțeleg nimic din ce spui."
+  },
+  {
+   "lesson": 4,
+   "topic": "ce_cine",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Tot ce spui este adevărat.",
+   "options": [
+    "Tot ce spui este adevărat.",
+    "Tot ce scrii este adevărat.",
+    "Nimic din ce spui nu este adevărat."
+   ],
+   "value": "Tot ce spui este adevărat."
+  },
+  {
+   "lesson": 4,
+   "topic": "ce_cine",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Cine vine primul câștigă un cadou.",
+   "options": [
+    "Cine vine primul câștigă un cadou.",
+    "Cine vine primul primește o carte.",
+    "Cine pleacă primul pierde un punct."
+   ],
+   "value": "Cine vine primul câștigă un cadou."
+  },
+  {
+   "lesson": 4,
+   "topic": "ce_cine",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena las palabras: «No sé lo que ha pasado». Empieza por «Nu».",
+   "value": "Nu știu ce s-a întâmplat",
+   "sequence": [
+    "Nu",
+    "știu",
+    "ce",
+    "s-a",
+    "întâmplat"
+   ],
+   "tiles": [
+    "ce",
+    "întâmplat",
+    "Nu",
+    "s-a",
+    "știu"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "ce_cine",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Cine pune o întrebare bună primește un răspuns bun."
+  }
+ ]
+}
