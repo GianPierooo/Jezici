@@ -1,0 +1,428 @@
+{
+ "unit": {
+  "order": 23,
+  "title_es": "Se dice, hace falta: lo impersonal",
+  "color": "#7F8C8D",
+  "icon": "campaign"
+ },
+ "checkpoint_desc": "Repasa las construcciones impersonales del rumano: «se pare că / se spune că / se știe că», «mi se pare că» con el dativo, «e nevoie să / merită să / e cazul să / se cuvine să» + conjunctiv, el reflexivo impersonal «aici se muncește», «nu se știe niciodată», «îmi vine să» y «e greu / ușor / imposibil să», y «a suporta» = soportar/tolerar (¡ojo! «apoyar» es a sprijini / a susține).",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "Se pare, se spune, se știe: lo que se dice"
+  },
+  {
+   "order": 2,
+   "title_es": "E nevoie, merită, e cazul să…"
+  },
+  {
+   "order": 3,
+   "title_es": "Aici se muncește: el impersonal con «se»"
+  },
+  {
+   "order": 4,
+   "title_es": "E greu să… y no soporto (a suporta)"
+  }
+ ],
+ "vocab": [
+  [
+   "a se părea",
+   "parecer (se pare că = parece que)",
+   "verbo"
+  ],
+  [
+   "a se spune",
+   "decirse (se spune că = se dice que)",
+   "verbo"
+  ],
+  [
+   "se știe că",
+   "se sabe que",
+   "expresion"
+  ],
+  [
+   "a suporta",
+   "soportar, tolerar",
+   "verbo"
+  ],
+  [
+   "a merita",
+   "valer la pena, merecer",
+   "verbo"
+  ],
+  [
+   "a se cuveni",
+   "convenir, ser de recibo",
+   "verbo"
+  ],
+  [
+   "e cazul să",
+   "es hora de, toca",
+   "expresion"
+  ],
+  [
+   "o nevoie",
+   "la necesidad",
+   "sustantivo"
+  ],
+  [
+   "o părere",
+   "la opinión",
+   "sustantivo"
+  ],
+  [
+   "îmi vine să",
+   "me dan ganas de",
+   "expresion"
+  ],
+  [
+   "a munci",
+   "trabajar",
+   "verbo"
+  ],
+  [
+   "a accepta",
+   "aceptar",
+   "verbo"
+  ],
+  [
+   "frig",
+   "el frío",
+   "sustantivo"
+  ],
+  [
+   "un zgomot",
+   "el ruido",
+   "sustantivo"
+  ],
+  [
+   "imposibil",
+   "imposible",
+   "adjetivo"
+  ],
+  [
+   "greu",
+   "difícil, pesado",
+   "adjetivo"
+  ],
+  [
+   "ușor",
+   "fácil, ligero",
+   "adjetivo"
+  ],
+  [
+   "niciodată",
+   "nunca",
+   "adverbio"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "se_spune_pare_stie",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada expresión impersonal con su traducción. Fíjate: son tres verbos distintos.",
+   "pairs": [
+    [
+     "Se pare că plouă.",
+     "Parece que llueve."
+    ],
+    [
+     "Se spune că e adevărat.",
+     "Se dice que es verdad."
+    ],
+    [
+     "Se știe că e greu.",
+     "Se sabe que es difícil."
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "se_spune_pare_stie",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Me parece que tienes razón» (con el dativo del pronombre). ¿Cuál es la forma correcta?",
+   "options": [
+    "Mi se pare că ai dreptate.",
+    "Mă pare că ai dreptate.",
+    "Eu par că ai dreptate."
+   ],
+   "value": "Mi se pare că ai dreptate."
+  },
+  {
+   "lesson": 1,
+   "topic": "se_spune_pare_stie",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Se spune că vremea va fi frumoasă mâine.",
+   "options": [
+    "Se spune că vremea va fi frumoasă mâine.",
+    "Se pare că vremea va fi urâtă mâine.",
+    "Se spune că filmul va fi bun mâine."
+   ],
+   "value": "Se spune că vremea va fi frumoasă mâine."
+  },
+  {
+   "lesson": 1,
+   "topic": "se_spune_pare_stie",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "«Me parece que tienes razón.» Completa el sustantivo que falta.",
+   "text": "Mi se pare că ai ___.",
+   "value": "dreptate",
+   "accepted": [
+    "dreptate"
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "se_spune_pare_stie",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Se cuvine să spunem adevărul; după părerea mea, se știe oricum."
+  },
+  {
+   "lesson": 2,
+   "topic": "e_nevoie_merita",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Hace falta que hablemos». ¿Cuál es la forma correcta?",
+   "options": [
+    "E nevoie să vorbim.",
+    "E nevoie vorbim.",
+    "Este nevoie a vorbi."
+   ],
+   "value": "E nevoie să vorbim."
+  },
+  {
+   "lesson": 2,
+   "topic": "e_nevoie_merita",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Merită să vezi filmul acesta, e foarte bun.",
+   "options": [
+    "Merită să vezi filmul acesta, e foarte bun.",
+    "Merită să citești cartea aceasta, e foarte bună.",
+    "Nu merită să vezi filmul acesta, e foarte slab."
+   ],
+   "value": "Merită să vezi filmul acesta, e foarte bun."
+  },
+  {
+   "lesson": 2,
+   "topic": "e_nevoie_merita",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "E cazul să plecăm, s-a făcut târziu.",
+   "options": [
+    "E cazul să plecăm, s-a făcut târziu.",
+    "E cazul să mâncăm, s-a făcut târziu.",
+    "E timpul să plecăm, s-a făcut frig."
+   ],
+   "value": "E cazul să plecăm, s-a făcut târziu."
+  },
+  {
+   "lesson": 2,
+   "topic": "e_nevoie_merita",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Vale la pena intentarlo.",
+   "source": "Vale la pena intentarlo.",
+   "value": "Merită să încerci.",
+   "accepted": [
+    "Merită să încerci.",
+    "Merită să încerci",
+    "Merita sa incerci.",
+    "Merita sa incerci",
+    "Merită să încercăm.",
+    "Merită să încercăm",
+    "Merita sa incercam.",
+    "Merita sa incercam",
+    "Merită să încerc.",
+    "Merita sa incerc."
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "e_nevoie_merita",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena para decir «Hace falta que hablemos más». Empieza por «E» y termina con «mult».",
+   "value": "E nevoie să vorbim mai mult",
+   "sequence": [
+    "E",
+    "nevoie",
+    "să",
+    "vorbim",
+    "mai",
+    "mult"
+   ],
+   "distractors": [
+    "trebuie",
+    "este"
+   ],
+   "tiles": [
+    "să",
+    "E",
+    "trebuie",
+    "vorbim",
+    "nevoie",
+    "mult",
+    "este",
+    "mai"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "reflexiv_impersonal",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada frase impersonal con su traducción. En rumano el «se» + 3ª persona hace lo impersonal.",
+   "pairs": [
+    [
+     "Aici se muncește mult.",
+     "Aquí se trabaja mucho."
+    ],
+    [
+     "Nu se știe niciodată.",
+     "Nunca se sabe."
+    ],
+    [
+     "În România se vorbește românește.",
+     "En Rumanía se habla rumano."
+    ]
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "reflexiv_impersonal",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Me dan ganas de dormir». ¿Cuál es la forma correcta?",
+   "options": [
+    "Îmi vine să dorm.",
+    "Mă vine să dorm.",
+    "Îmi vin să dorm."
+   ],
+   "value": "Îmi vine să dorm."
+  },
+  {
+   "lesson": 3,
+   "topic": "reflexiv_impersonal",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Nu se știe niciodată ce se va întâmpla.",
+   "options": [
+    "Nu se știe niciodată ce se va întâmpla.",
+    "Nu se spune niciodată ce se va întâmpla.",
+    "Nu se știe niciodată ce s-a întâmplat."
+   ],
+   "value": "Nu se știe niciodată ce se va întâmpla."
+  },
+  {
+   "lesson": 3,
+   "topic": "reflexiv_impersonal",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con «a munci» en el reflexivo impersonal (se + 3ª persona del singular): «En esta fábrica se trabaja día y noche.»",
+   "text": "În fabrica asta se ___ zi și noapte.",
+   "value": "muncește",
+   "accepted": [
+    "muncește",
+    "munceste"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "reflexiv_impersonal",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Nu se știe niciodată, așa că merită să încerci."
+  },
+  {
+   "lesson": 4,
+   "topic": "e_greu_a_suporta",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Es difícil aceptar eso». ¿Cuál es la forma correcta?",
+   "options": [
+    "E greu să accepți asta.",
+    "Este greu că accepți asta.",
+    "E greu accepți asta."
+   ],
+   "value": "E greu să accepți asta."
+  },
+  {
+   "lesson": 4,
+   "topic": "e_greu_a_suporta",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "E imposibil să suport atâta zgomot.",
+   "options": [
+    "E imposibil să suport atâta zgomot.",
+    "E imposibil să suport atâta frig.",
+    "E ușor să suport atâta zgomot."
+   ],
+   "value": "E imposibil să suport atâta zgomot."
+  },
+  {
+   "lesson": 4,
+   "topic": "e_greu_a_suporta",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano («soportar/tolerar» es «a suporta»; «apoyar» sería «a sprijini»):",
+   "text": "No soporto el frío.",
+   "source": "No soporto el frío.",
+   "value": "Nu suport frigul.",
+   "accepted": [
+    "Nu suport frigul.",
+    "Nu suport frigul",
+    "Eu nu suport frigul.",
+    "Eu nu suport frigul",
+    "Nu suport frig.",
+    "Nu suport frig"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "e_greu_a_suporta",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena las palabras: «Es imposible soportar tanto ruido». Empieza por «E» y termina con «zgomot».",
+   "value": "E imposibil să suporți atâta zgomot",
+   "sequence": [
+    "E",
+    "imposibil",
+    "să",
+    "suporți",
+    "atâta",
+    "zgomot"
+   ],
+   "tiles": [
+    "să",
+    "zgomot",
+    "E",
+    "suporți",
+    "atâta",
+    "imposibil"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "e_greu_a_suporta",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "E greu să suporți atâta frig, dar merită."
+  }
+ ]
+}

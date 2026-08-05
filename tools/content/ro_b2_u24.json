@@ -1,0 +1,455 @@
+{
+ "unit": {
+  "order": 24,
+  "title_es": "Cuanto más… más: grado y proporción",
+  "color": "#D35400",
+  "icon": "straighten"
+ },
+ "checkpoint_desc": "Repasa la comparación avanzada del rumano: la estructura fija «cu cât… cu atât» (cuanto más… más, con «mai» en las dos mitades), «la fel de / tot atât de… ca» (igual de… que), «pe cât de… pe atât de» (tan… como a la vez), el superlativo absoluto «extrem de / deosebit de / nespus de», «cel mai… dintre» (el más… de), «din ce în ce mai» (cada vez más), «mult prea» (demasiado) y «cu mult mai» (mucho más).",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "Cu cât… cu atât: cuanto más, más"
+  },
+  {
+   "order": 2,
+   "title_es": "La fel de… ca; pe cât de… pe atât de"
+  },
+  {
+   "order": 3,
+   "title_es": "Extrem de… y cel mai… dintre"
+  },
+  {
+   "order": 4,
+   "title_es": "Din ce în ce mai; mult prea; cu mult mai"
+  }
+ ],
+ "vocab": [
+  [
+   "cu cât... cu atât",
+   "cuanto más... más",
+   "expresion"
+  ],
+  [
+   "la fel de",
+   "igual de, tan (como)",
+   "expresion"
+  ],
+  [
+   "pe cât de... pe atât de",
+   "tan... como (a la vez)",
+   "expresion"
+  ],
+  [
+   "din ce în ce mai",
+   "cada vez más",
+   "expresion"
+  ],
+  [
+   "mult prea",
+   "demasiado",
+   "expresion"
+  ],
+  [
+   "cu mult mai",
+   "mucho más",
+   "expresion"
+  ],
+  [
+   "extrem de",
+   "sumamente, extremadamente",
+   "expresion"
+  ],
+  [
+   "deosebit de",
+   "particularmente, especialmente",
+   "expresion"
+  ],
+  [
+   "nespus de",
+   "indeciblemente",
+   "expresion"
+  ],
+  [
+   "harnic, harnică",
+   "trabajador, aplicado",
+   "adjetivo"
+  ],
+  [
+   "deștept, deșteaptă",
+   "listo, inteligente",
+   "adjetivo"
+  ],
+  [
+   "modest, modestă",
+   "modesto, humilde",
+   "adjetivo"
+  ],
+  [
+   "obosit, obosită",
+   "cansado",
+   "adjetivo"
+  ],
+  [
+   "a câștiga",
+   "ganar",
+   "verbo"
+  ],
+  [
+   "a reuși",
+   "conseguir, lograr",
+   "verbo"
+  ],
+  [
+   "a se îngrășa",
+   "engordar",
+   "verbo"
+  ],
+  [
+   "un exercițiu",
+   "el ejercicio",
+   "sustantivo"
+  ],
+  [
+   "a deveni",
+   "volverse, llegar a ser",
+   "verbo"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "cu_cat_cu_atat",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada frase con su traducción. Fíjate en «mai mult» y «mai puțin».",
+   "pairs": [
+    [
+     "Cu cât mănânci mai mult, cu atât te îngrași mai mult.",
+     "Cuanto más comes, más engordas."
+    ],
+    [
+     "Cu cât dormi mai puțin, cu atât ești mai obosit.",
+     "Cuanto menos duermes, más cansado estás."
+    ],
+    [
+     "Cu cât aștepți mai mult, cu atât e mai greu.",
+     "Cuanto más esperas, más difícil es."
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "cu_cat_cu_atat",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Cuanto más lees, más aprendes». ¿Cuál es la forma correcta?",
+   "options": [
+    "Cu cât citești mai mult, cu atât înveți mai mult.",
+    "Cât citești mai mult, atât înveți mai mult.",
+    "Cu cât mai citești, cu atât mai înveți."
+   ],
+   "value": "Cu cât citești mai mult, cu atât înveți mai mult."
+  },
+  {
+   "lesson": 1,
+   "topic": "cu_cat_cu_atat",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Cu cât muncești mai mult, cu atât câștigi mai bine.",
+   "options": [
+    "Cu cât muncești mai mult, cu atât câștigi mai bine.",
+    "Cu cât muncești mai mult, cu atât obosești mai tare.",
+    "Cu cât dormi mai mult, cu atât câștigi mai bine."
+   ],
+   "value": "Cu cât muncești mai mult, cu atât câștigi mai bine."
+  },
+  {
+   "lesson": 1,
+   "topic": "cu_cat_cu_atat",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa: «Cuanto más lees, mejor aprendes.» Escribe la palabra que falta tras el segundo «cu».",
+   "text": "Cu cât citești mai mult, cu ___ înveți mai bine.",
+   "value": "atât",
+   "accepted": [
+    "atât",
+    "atat"
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "cu_cat_cu_atat",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Cu cât încerci mai des, cu atât reușești mai ușor."
+  },
+  {
+   "lesson": 2,
+   "topic": "la_fel_de",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Este coche es tan rápido como el tren». ¿Cuál es la forma correcta?",
+   "options": [
+    "Mașina aceasta este la fel de rapidă ca trenul.",
+    "Mașina aceasta este așa de rapidă ca trenul.",
+    "Mașina aceasta este mai rapidă ca trenul."
+   ],
+   "value": "Mașina aceasta este la fel de rapidă ca trenul."
+  },
+  {
+   "lesson": 2,
+   "topic": "la_fel_de",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Sora mea este la fel de talentată ca mine.",
+   "options": [
+    "Sora mea este la fel de talentată ca mine.",
+    "Sora mea este la fel de talentată ca tine.",
+    "Sora mea este la fel de harnică ca mine."
+   ],
+   "value": "Sora mea este la fel de talentată ca mine."
+  },
+  {
+   "lesson": 2,
+   "topic": "la_fel_de",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Ella es tan trabajadora como su hermano.",
+   "source": "Ella es tan trabajadora como su hermano.",
+   "value": "Ea este la fel de harnică ca fratele ei.",
+   "accepted": [
+    "Ea este la fel de harnică ca fratele ei.",
+    "Ea este la fel de harnică ca fratele ei",
+    "Ea este la fel de harnica ca fratele ei.",
+    "Ea este la fel de harnica ca fratele ei",
+    "Este la fel de harnică ca fratele ei.",
+    "Este la fel de harnica ca fratele ei.",
+    "Ea este la fel de harnică ca și fratele ei.",
+    "Ea este la fel de harnica ca si fratele ei.",
+    "Ea este tot atât de harnică ca fratele ei.",
+    "Ea este tot atat de harnica ca fratele ei.",
+    "Este tot atât de harnică ca fratele ei.",
+    "Este tot atat de harnica ca fratele ei.",
+    "Ea e la fel de harnică ca fratele ei.",
+    "Ea e la fel de harnică ca fratele ei",
+    "Ea e la fel de harnica ca fratele ei.",
+    "Ea e la fel de harnica ca fratele ei"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "pe_cat_de",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena para decir «Es tan inteligente como trabajador». Empieza por «Este» y termina con «harnic».",
+   "value": "Este pe cât de inteligent pe atât de harnic",
+   "sequence": [
+    "Este",
+    "pe",
+    "cât",
+    "de",
+    "inteligent",
+    "pe",
+    "atât",
+    "de",
+    "harnic"
+   ],
+   "distractors": [
+    "mai",
+    "ca"
+   ],
+   "tiles": [
+    "de",
+    "pe",
+    "inteligent",
+    "cât",
+    "harnic",
+    "atât",
+    "Este",
+    "pe",
+    "mai",
+    "de",
+    "ca"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "pe_cat_de",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Ești pe cât de deșteaptă, pe atât de modestă."
+  },
+  {
+   "lesson": 3,
+   "topic": "superlativ_absolut",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada superlativo absoluto con su traducción.",
+   "pairs": [
+    [
+     "extrem de scump",
+     "sumamente caro"
+    ],
+    [
+     "deosebit de frumos",
+     "particularmente hermoso"
+    ],
+    [
+     "nespus de fericit",
+     "indeciblemente feliz"
+    ]
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "cel_mai_dintre",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Es el mejor alumno de todos». ¿Cuál es la forma correcta?",
+   "options": [
+    "Este cel mai bun elev dintre toți.",
+    "Este mai bun elev dintre toți.",
+    "Este cel mai bun elev între toți."
+   ],
+   "value": "Este cel mai bun elev dintre toți."
+  },
+  {
+   "lesson": 3,
+   "topic": "cel_mai_dintre",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Acest oraș este cel mai frumos dintre toate.",
+   "options": [
+    "Acest oraș este cel mai frumos dintre toate.",
+    "Acest oraș este cel mai mare dintre toate.",
+    "Acest sat este cel mai frumos dintre toate."
+   ],
+   "value": "Acest oraș este cel mai frumos dintre toate."
+  },
+  {
+   "lesson": 3,
+   "topic": "superlativ_absolut",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con un adverbio que signifique «sumamente» (y que exija «de» antes del adjetivo): «Fue un día sumamente hermoso, como se ve rara vez.»",
+   "text": "A fost o zi ___ de frumoasă, cum rar se vede.",
+   "value": "extrem",
+   "accepted": [
+    "extrem",
+    "deosebit",
+    "nespus"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "superlativ_absolut",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Orașul acesta este cu mult mai mare și deosebit de frumos."
+  },
+  {
+   "lesson": 4,
+   "topic": "din_ce_in_ce",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Cada día hace cada vez más frío». ¿Cuál es la forma correcta?",
+   "options": [
+    "În fiecare zi este din ce în ce mai frig.",
+    "În fiecare zi este din ce mai frig.",
+    "În fiecare zi este mai din ce în ce frig."
+   ],
+   "value": "În fiecare zi este din ce în ce mai frig."
+  },
+  {
+   "lesson": 4,
+   "topic": "din_ce_in_ce",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Vremea devine din ce în ce mai caldă.",
+   "options": [
+    "Vremea devine din ce în ce mai caldă.",
+    "Vremea devine din ce în ce mai rece.",
+    "Marea devine din ce în ce mai caldă."
+   ],
+   "value": "Vremea devine din ce în ce mai caldă."
+  },
+  {
+   "lesson": 4,
+   "topic": "mult_prea",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Această cameră este mult prea mică pentru noi.",
+   "options": [
+    "Această cameră este mult prea mică pentru noi.",
+    "Această cameră este mult prea mare pentru noi.",
+    "Această cameră este mult prea mică pentru voi."
+   ],
+   "value": "Această cameră este mult prea mică pentru noi."
+  },
+  {
+   "lesson": 4,
+   "topic": "din_ce_in_ce",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "El examen es cada vez más difícil.",
+   "source": "El examen es cada vez más difícil.",
+   "value": "Examenul este din ce în ce mai greu.",
+   "accepted": [
+    "Examenul este din ce în ce mai greu.",
+    "Examenul este din ce în ce mai greu",
+    "Examenul este din ce in ce mai greu.",
+    "Examenul este din ce in ce mai greu",
+    "Examenul devine din ce în ce mai greu.",
+    "Examenul devine din ce in ce mai greu.",
+    "Examenul este tot mai greu.",
+    "Examenul este tot mai greu",
+    "Examenul devine tot mai greu.",
+    "Examenul este din ce în ce mai dificil.",
+    "Examenul este din ce in ce mai dificil.",
+    "Examenul e din ce în ce mai greu.",
+    "Examenul e din ce în ce mai greu",
+    "Examenul e din ce in ce mai greu.",
+    "Examenul e din ce in ce mai greu"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "mult_prea",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena las palabras: «Este ejercicio es demasiado difícil para mí». Empieza por «Exercițiul» y termina con «mine».",
+   "value": "Exercițiul acesta este mult prea greu pentru mine",
+   "sequence": [
+    "Exercițiul",
+    "acesta",
+    "este",
+    "mult",
+    "prea",
+    "greu",
+    "pentru",
+    "mine"
+   ],
+   "tiles": [
+    "prea",
+    "Exercițiul",
+    "greu",
+    "este",
+    "mine",
+    "mult",
+    "acesta",
+    "pentru"
+   ]
+  }
+ ]
+}

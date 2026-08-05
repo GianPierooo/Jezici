@@ -1,0 +1,413 @@
+{
+ "unit": {
+  "order": 22,
+  "title_es": "Conectar ideas con registro culto",
+  "color": "#C0392B",
+  "icon": "account_tree"
+ },
+ "checkpoint_desc": "Repasa los conectores cultos de B2: consecuencia (prin urmare, așadar, în consecință), concesión y contraste (cu toate acestea, totuși, în ciuda + genitivo, pe de o parte… pe de altă parte), la trampa causa positiva «datorită» vs causa negativa «din cauza» (ambos con genitivo), la condición «cu condiția să» + conjunctiv e «în caz că», y la proporción «pe măsură ce» e «în măsura în care».",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "Consecuencia: prin urmare, așadar"
+  },
+  {
+   "order": 2,
+   "title_es": "Concesión y contraste"
+  },
+  {
+   "order": 3,
+   "title_es": "Datorită vs din cauza"
+  },
+  {
+   "order": 4,
+   "title_es": "Condición y proporción"
+  }
+ ],
+ "vocab": [
+  [
+   "prin urmare",
+   "por lo tanto",
+   "expresion"
+  ],
+  [
+   "așadar",
+   "así pues, por consiguiente",
+   "conjuncion"
+  ],
+  [
+   "în consecință",
+   "en consecuencia",
+   "expresion"
+  ],
+  [
+   "cu toate acestea",
+   "sin embargo, con todo",
+   "expresion"
+  ],
+  [
+   "totuși",
+   "sin embargo, aun así",
+   "adverbio"
+  ],
+  [
+   "în ciuda",
+   "a pesar de",
+   "preposicion"
+  ],
+  [
+   "pe de o parte",
+   "por una parte",
+   "expresion"
+  ],
+  [
+   "pe de altă parte",
+   "por otra parte",
+   "expresion"
+  ],
+  [
+   "datorită",
+   "gracias a (causa positiva)",
+   "preposicion"
+  ],
+  [
+   "din cauza",
+   "por culpa de (causa negativa)",
+   "preposicion"
+  ],
+  [
+   "cu condiția să",
+   "a condición de que",
+   "expresion"
+  ],
+  [
+   "în caz că",
+   "en caso de que",
+   "expresion"
+  ],
+  [
+   "pe măsură ce",
+   "a medida que",
+   "expresion"
+  ],
+  [
+   "în măsura în care",
+   "en la medida en que",
+   "expresion"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "consecinta",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada conector de consecuencia con su traducción.",
+   "pairs": [
+    [
+     "prin urmare",
+     "por lo tanto"
+    ],
+    [
+     "așadar",
+     "así pues"
+    ],
+    [
+     "în consecință",
+     "en consecuencia"
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "consecinta",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Está enfermo, por lo tanto no viene». ¿Cuál es la forma correcta?",
+   "options": [
+    "Este bolnav, prin urmare nu vine.",
+    "Este bolnav, prin urmare să nu vină.",
+    "Este bolnav, din cauza nu vine."
+   ],
+   "value": "Este bolnav, prin urmare nu vine."
+  },
+  {
+   "lesson": 1,
+   "topic": "consecinta",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Nu mai avem bani, prin urmare renunțăm la vacanță.",
+   "options": [
+    "Nu mai avem bani, prin urmare renunțăm la vacanță.",
+    "Nu mai avem timp, prin urmare renunțăm la vacanță.",
+    "Nu mai avem bani, prin urmare amânăm vacanța."
+   ],
+   "value": "Nu mai avem bani, prin urmare renunțăm la vacanță."
+  },
+  {
+   "lesson": 1,
+   "topic": "consecinta",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "No tengo tiempo, por lo tanto no puedo ir.",
+   "value": "Nu am timp, prin urmare nu pot să merg.",
+   "accepted": [
+    "Nu am timp, prin urmare nu pot să merg.",
+    "Nu am timp, prin urmare nu pot să merg",
+    "Nu am timp, prin urmare nu pot sa merg.",
+    "Nu am timp, prin urmare nu pot sa merg",
+    "Nu am timp, prin urmare nu pot merge.",
+    "Nu am timp, prin urmare nu pot merge",
+    "Nu am timp, așadar nu pot să merg.",
+    "Nu am timp, asadar nu pot sa merg.",
+    "Nu am timp, așadar nu pot merge.",
+    "Nu am timp, în consecință nu pot să merg.",
+    "Nu am timp, in consecinta nu pot sa merg.",
+    "Nu am timp, asadar nu pot merge."
+   ],
+   "source": "No tengo tiempo, por lo tanto no puedo ir."
+  },
+  {
+   "lesson": 1,
+   "topic": "consecinta",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Nu am dormit bine, prin urmare sunt obosit astăzi."
+  },
+  {
+   "lesson": 2,
+   "topic": "concesie_contrast",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada conector con su traducción.",
+   "pairs": [
+    [
+     "cu toate acestea",
+     "sin embargo"
+    ],
+    [
+     "pe de o parte",
+     "por una parte"
+    ],
+    [
+     "pe de altă parte",
+     "por otra parte"
+    ]
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "concesie_contrast",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Estaba cansado; sin embargo, siguió trabajando». ¿Cuál es la forma correcta?",
+   "options": [
+    "Era obosit; cu toate acestea, a continuat să lucreze.",
+    "Era obosit; cu toate acestea, a continuat să lucrează.",
+    "Era obosit; cu toate acestea, a continuat lucreze."
+   ],
+   "value": "Era obosit; cu toate acestea, a continuat să lucreze."
+  },
+  {
+   "lesson": 2,
+   "topic": "concesie_contrast",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Pe de o parte îmi place orașul, pe de altă parte prefer liniștea.",
+   "options": [
+    "Pe de o parte îmi place orașul, pe de altă parte prefer liniștea.",
+    "Pe de o parte îmi place orașul, pe de altă parte prefer natura.",
+    "Pe de o parte îmi place satul, pe de altă parte prefer liniștea."
+   ],
+   "value": "Pe de o parte îmi place orașul, pe de altă parte prefer liniștea."
+  },
+  {
+   "lesson": 2,
+   "topic": "concesie_contrast",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con el conector que significa «sin embargo».",
+   "text": "Biletele erau scumpe; ___, am mers la concert.",
+   "value": "totuși",
+   "accepted": [
+    "totuși",
+    "totusi",
+    "cu toate acestea",
+    "cu toate astea",
+    "însă",
+    "insa"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "concesie_contrast",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena para decir «A pesar de la lluvia, hemos salido». Empieza por «În».",
+   "value": "În ciuda ploii am ieșit",
+   "sequence": [
+    "În",
+    "ciuda",
+    "ploii",
+    "am",
+    "ieșit"
+   ],
+   "distractors": [
+    "deși",
+    "plouă"
+   ],
+   "tiles": [
+    "ploii",
+    "deși",
+    "am",
+    "În",
+    "plouă",
+    "ieșit",
+    "ciuda"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "datorita_dincauza",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Llegué tarde por culpa del tráfico». ¿Cuál es la forma correcta?",
+   "options": [
+    "Am întârziat din cauza traficului.",
+    "Am întârziat datorită traficului.",
+    "Am întârziat din cauza trafic."
+   ],
+   "value": "Am întârziat din cauza traficului."
+  },
+  {
+   "lesson": 3,
+   "topic": "datorita_dincauza",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Datorită efortului tău, am reușit împreună.",
+   "options": [
+    "Datorită efortului tău, am reușit împreună.",
+    "Datorită sprijinului tău, am reușit împreună.",
+    "Datorită efortului tău, am câștigat concursul."
+   ],
+   "value": "Datorită efortului tău, am reușit împreună."
+  },
+  {
+   "lesson": 3,
+   "topic": "datorita_dincauza",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Gracias a tu ayuda, he terminado el proyecto.",
+   "value": "Datorită ajutorului tău, am terminat proiectul.",
+   "accepted": [
+    "Datorită ajutorului tău, am terminat proiectul.",
+    "Datorită ajutorului tău, am terminat proiectul",
+    "Datorita ajutorului tau, am terminat proiectul.",
+    "Datorita ajutorului tau, am terminat proiectul",
+    "Datorită ajutorului tău am terminat proiectul.",
+    "Datorita ajutorului tau am terminat proiectul."
+   ],
+   "source": "Gracias a tu ayuda, he terminado el proyecto."
+  },
+  {
+   "lesson": 3,
+   "topic": "datorita_dincauza",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena las palabras: «Gracias al médico, me siento mejor». Empieza por «Datorită».",
+   "value": "Datorită medicului mă simt mai bine",
+   "sequence": [
+    "Datorită",
+    "medicului",
+    "mă",
+    "simt",
+    "mai",
+    "bine"
+   ],
+   "tiles": [
+    "simt",
+    "medicului",
+    "bine",
+    "Datorită",
+    "mă",
+    "mai"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "datorita_dincauza",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Din cauza vremii, meciul a fost anulat, dar nu ne-am supărat."
+  },
+  {
+   "lesson": 4,
+   "topic": "conditie_proportie",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Te ayudo, a condición de que me escuches». ¿Cuál es la forma correcta?",
+   "options": [
+    "Te ajut, cu condiția să mă asculți.",
+    "Te ajut, cu condiția mă asculți.",
+    "Te ajut, cu condiția că mă asculți."
+   ],
+   "value": "Te ajut, cu condiția să mă asculți."
+  },
+  {
+   "lesson": 4,
+   "topic": "conditie_proportie",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "În caz că plouă, luăm umbrela.",
+   "options": [
+    "În caz că plouă, luăm umbrela.",
+    "În caz că plouă, rămânem acasă.",
+    "În caz că ninge, luăm umbrela."
+   ],
+   "value": "În caz că plouă, luăm umbrela."
+  },
+  {
+   "lesson": 4,
+   "topic": "conditie_proportie",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Pe măsură ce înaintăm, drumul devine mai greu.",
+   "options": [
+    "Pe măsură ce înaintăm, drumul devine mai greu.",
+    "Pe măsură ce înaintăm, drumul devine mai ușor.",
+    "Pe măsură ce urcăm, drumul devine mai greu."
+   ],
+   "value": "Pe măsură ce înaintăm, drumul devine mai greu."
+  },
+  {
+   "lesson": 4,
+   "topic": "conditie_proportie",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con la locución «a condición de que» (tres palabras, la última introduce el conjunctiv «fii»).",
+   "text": "Îți împrumut cartea, ___ să fii atent cu ea.",
+   "value": "cu condiția",
+   "accepted": [
+    "cu condiția",
+    "cu conditia"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "conditie_proportie",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Te voi ajuta în măsura în care îmi permite timpul."
+  }
+ ]
+}

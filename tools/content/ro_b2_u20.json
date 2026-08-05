@@ -1,0 +1,426 @@
+{
+ "unit": {
+  "order": 20,
+  "title_es": "Contar lo que dijo (estilo indirecto)",
+  "color": "#2C3E50",
+  "icon": "record_voice_over"
+ },
+ "checkpoint_desc": "Repasa la vorbirea indirecta: el paso del estilo directo al indirecto con «că», el desplazamiento de tiempos (present→imperfect, perfect compus→mai mult ca perfectul), el imperativo reportado que se vuelve «să» + conjunctiv (mi-a spus SĂ plec, no «că»), las preguntas indirectas de sí/no con «dacă» y con interrogativo (unde/când/ce), y los deícticos que se desplazan (aici→acolo, azi→în acea zi, mâine→a doua zi).",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "Contar con «că»: los tiempos"
+  },
+  {
+   "order": 2,
+   "title_es": "«Să», no «că»: la orden reportada"
+  },
+  {
+   "order": 3,
+   "title_es": "Preguntas indirectas: dacă"
+  },
+  {
+   "order": 4,
+   "title_es": "Aquí→allí: los deícticos"
+  }
+ ],
+ "vocab": [
+  [
+   "a povesti",
+   "contar, relatar",
+   "verbo"
+  ],
+  [
+   "a întreba",
+   "preguntar",
+   "verbo"
+  ],
+  [
+   "a explica",
+   "explicar",
+   "verbo"
+  ],
+  [
+   "a tăcea",
+   "callar, callarse",
+   "verbo"
+  ],
+  [
+   "a se afla",
+   "encontrarse, hallarse",
+   "verbo"
+  ],
+  [
+   "a întârzia",
+   "llegar tarde, retrasarse",
+   "verbo"
+  ],
+  [
+   "a termina",
+   "terminar, acabar",
+   "verbo"
+  ],
+  [
+   "a se simți",
+   "sentirse",
+   "verbo"
+  ],
+  [
+   "dacă",
+   "si (en pregunta indirecta)",
+   "conjuncion"
+  ],
+  [
+   "acolo",
+   "allí, allá",
+   "adverbio"
+  ],
+  [
+   "mereu",
+   "siempre",
+   "adverbio"
+  ],
+  [
+   "obosit",
+   "cansado",
+   "adjetivo"
+  ],
+  [
+   "ocupat",
+   "ocupado",
+   "adjetivo"
+  ],
+  [
+   "a doua zi",
+   "al día siguiente",
+   "expresion"
+  ],
+  [
+   "în acea zi",
+   "aquel día",
+   "expresion"
+  ],
+  [
+   "o gară",
+   "una estación (de tren)",
+   "sustantivo"
+  ],
+  [
+   "un examen",
+   "un examen",
+   "sustantivo"
+  ],
+  [
+   "o întâlnire",
+   "una cita, un encuentro",
+   "sustantivo"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "tiempos_indirecto",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja la frase en estilo indirecto con su traducción.",
+   "pairs": [
+    [
+     "Mi-a spus că era obosit",
+     "Me dijo que estaba cansado"
+    ],
+    [
+     "Mi-a spus că plecase deja",
+     "Me dijo que ya se había ido"
+    ],
+    [
+     "Mi-a spus că va veni",
+     "Me dijo que vendría"
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "tiempos_indirecto",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "Directo: «Am terminat deja». ¿Cómo se cuenta después (anterioridad)?",
+   "options": [
+    "Mi-a spus că terminase deja.",
+    "Mi-a spus că să termine deja.",
+    "Mi-a spus dacă terminase deja."
+   ],
+   "value": "Mi-a spus că terminase deja."
+  },
+  {
+   "lesson": 1,
+   "topic": "tiempos_indirecto",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Mi-a spus că era foarte ocupat.",
+   "options": [
+    "Mi-a spus că era foarte ocupat.",
+    "Mi-a spus că era foarte obosit.",
+    "Mi-a spus că era foarte fericit."
+   ],
+   "value": "Mi-a spus că era foarte ocupat."
+  },
+  {
+   "lesson": 1,
+   "topic": "tiempos_indirecto",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Me dijo que estaba cansado.",
+   "value": "Mi-a spus că era obosit.",
+   "accepted": [
+    "Mi-a spus că era obosit.",
+    "Mi-a spus că era obosit",
+    "Mi-a spus că e obosit.",
+    "Mi-a spus că este obosit.",
+    "Mi-a spus ca e obosit.",
+    "Mi-a spus ca era obosit",
+    "Mi-a spus ca era obosit.",
+    "Mi-a spus ca este obosit."
+   ],
+   "source": "Me dijo que estaba cansado."
+  },
+  {
+   "lesson": 1,
+   "topic": "tiempos_indirecto",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Bunicul povestea mereu că plecase la Paris în tinerețe."
+  },
+  {
+   "lesson": 2,
+   "topic": "orden_sa",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "Directo: «Închide ușa!». ¿Cómo se cuenta la orden que me dio?",
+   "options": [
+    "Mi-a spus să închid ușa.",
+    "Mi-a spus că închid ușa.",
+    "Mi-a spus să închizi ușa."
+   ],
+   "value": "Mi-a spus să închid ușa."
+  },
+  {
+   "lesson": 2,
+   "topic": "orden_sa",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "Directo: «Vino aici!». Cuento lo que me pidió (sobre otro lugar):",
+   "options": [
+    "Mi-a spus să vin acolo.",
+    "Mi-a spus că vin acolo.",
+    "Mi-a spus să vii acolo."
+   ],
+   "value": "Mi-a spus să vin acolo."
+  },
+  {
+   "lesson": 2,
+   "topic": "orden_sa",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "I-am spus să nu întârzie la întâlnire.",
+   "options": [
+    "I-am spus să nu întârzie la întâlnire.",
+    "I-am spus să nu uite de întâlnire.",
+    "I-am spus să vină la întâlnire."
+   ],
+   "value": "I-am spus să nu întârzie la întâlnire."
+  },
+  {
+   "lesson": 2,
+   "topic": "orden_sa",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena para decir «El profesor me dijo que cerrara la puerta». Empieza por «Profesorul» y termina en «ușa».",
+   "value": "Profesorul mi-a spus să închid ușa",
+   "sequence": [
+    "Profesorul",
+    "mi-a",
+    "spus",
+    "să",
+    "închid",
+    "ușa"
+   ],
+   "distractors": [
+    "că",
+    "închide"
+   ],
+   "tiles": [
+    "mi-a",
+    "că",
+    "să",
+    "Profesorul",
+    "închide",
+    "ușa",
+    "spus",
+    "închid"
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "orden_sa",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Maria mi-a spus să tac și să o ascult."
+  },
+  {
+   "lesson": 3,
+   "topic": "intrebare_indirecta",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "Directo: «Vii mâine?». ¿Cómo se cuenta la pregunta al día siguiente?",
+   "options": [
+    "M-a întrebat dacă vin a doua zi.",
+    "M-a întrebat că vin a doua zi.",
+    "M-a întrebat dacă vii mâine."
+   ],
+   "value": "M-a întrebat dacă vin a doua zi."
+  },
+  {
+   "lesson": 3,
+   "topic": "intrebare_indirecta",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Me preguntó dónde vivía yo.",
+   "value": "M-a întrebat unde locuiam.",
+   "accepted": [
+    "M-a întrebat unde locuiam.",
+    "M-a întrebat unde locuiam",
+    "M-a întrebat unde locuiesc.",
+    "M-a întrebat unde locuiesc eu.",
+    "M-a intrebat unde locuiam",
+    "M-a intrebat unde locuiam.",
+    "M-a intrebat unde locuiesc eu.",
+    "M-a intrebat unde locuiesc."
+   ],
+   "source": "Me preguntó dónde vivía yo."
+  },
+  {
+   "lesson": 3,
+   "topic": "intrebare_indirecta",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "M-a întrebat dacă vreau o cafea.",
+   "options": [
+    "M-a întrebat dacă vreau o cafea.",
+    "M-a întrebat dacă vreau un ceai.",
+    "M-a întrebat dacă am o mașină."
+   ],
+   "value": "M-a întrebat dacă vreau o cafea."
+  },
+  {
+   "lesson": 3,
+   "topic": "intrebare_indirecta",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa la pregunta indirecta de sí/no (= «si»). Ojo: aquí NO va el conector de las afirmaciones.",
+   "text": "M-a întrebat ___ am terminat treaba.",
+   "value": "dacă",
+   "accepted": [
+    "dacă",
+    "daca"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "intrebare_indirecta",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena las palabras: «No sé si tiene razón». Empieza por «Nu».",
+   "value": "Nu știu dacă are dreptate",
+   "sequence": [
+    "Nu",
+    "știu",
+    "dacă",
+    "are",
+    "dreptate"
+   ],
+   "tiles": [
+    "are",
+    "dacă",
+    "dreptate",
+    "Nu",
+    "știu"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "deictice",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja el desplazamiento del deíctico con su equivalente en español.",
+   "pairs": [
+    [
+     "azi → în acea zi",
+     "hoy → aquel día"
+    ],
+    [
+     "mâine → a doua zi",
+     "mañana → al día siguiente"
+    ],
+    [
+     "aici → acolo",
+     "aquí → allá"
+    ]
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "deictice",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Ne-a explicat unde se află gara.",
+   "options": [
+    "Ne-a explicat unde se află gara.",
+    "Ne-a explicat unde se află muzeul.",
+    "Ne-a explicat când pleacă trenul."
+   ],
+   "value": "Ne-a explicat unde se află gara."
+  },
+  {
+   "lesson": 4,
+   "topic": "deictice",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Profesorul a spus că vom avea un examen a doua zi.",
+   "options": [
+    "Profesorul a spus că vom avea un examen a doua zi.",
+    "Profesorul a spus că vom avea o pauză a doua zi.",
+    "Profesorul a spus că nu vom avea ore a doua zi."
+   ],
+   "value": "Profesorul a spus că vom avea un examen a doua zi."
+  },
+  {
+   "lesson": 4,
+   "topic": "deictice",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "En el estilo indirecto «aici» se convierte en su opuesto de lugar. Completa (allá):",
+   "text": "Mi-a spus să merg ___, nu să rămân aici.",
+   "value": "acolo",
+   "accepted": [
+    "acolo"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "deictice",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "L-am întrebat dacă se simte bine în acea zi."
+  }
+ ]
+}

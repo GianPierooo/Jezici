@@ -3,7 +3,57 @@
 > Contexto de arranque para cualquier sesión. **No** es copia de los 21 `.md` de
 > diseño (eso es la carpeta raíz `Jezici_*.md` + `docs/`). Aquí va el ESTADO REAL,
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
-> Última actualización: **2026-07-22**.
+> Última actualización: **2026-08-05**.
+
+## 🇷🇴 RUMANO **B2** — cadena A1→B2 COMPLETA y CERTIFICABLE, como los otros 6 idiomas ✅ LIVE (mig 20260722120201-203 · 2026-08-05)
+Cuarta tanda de ro por el playbook, la que cierra la cadena. **Cero errores de rumano** en las 6 unidades
+(cuarto revisor nativo, cuarta tanda seguida sin un solo fallo de lengua) — los 2 hallazgos ALTA fueron de
+diseño de ítem, reincidencia del patrón B1. El curso pasa a **24 unidades · 120 lecciones · 536 ítems ·
+422 palabras · 231 enseñadas · 24 checkpoints · 192 audios ro · 56 ítems de placement**. `max_level=B2`.
+**Con B2, ro CERTIFICA A1–B2** (examen de nivel + certificado), como los otros 6 cursos — era la pieza que
+faltaba para que el idioma jugara en igualdad.
+- **CONSTRUIDO (B2, unidades 19-24):** currículo real de B2: **conjunctiv en subordinadas complejas** (opinión/
+  duda/emoción — «Nu cred să fie adevărat», el contraste con el indicativo de certeza) · **vorbirea indirectă**
+  (estilo indirecto: retroceso de tiempos, «a spus că…», deícticos que cambian) · **verbos de fase** (a începe,
+  a continua, a înceta + gerundio/infinitivo — los matices de empezar/seguir/soler/estar a punto que el español
+  resuelve distinto) · **conectores de registro culto** (cu toate că/totuși/prin urmare, la frontera entre habla
+  y escritura formal) · **construcciones impersonales** (se spune, e nevoie, trebuie — el «se» impersonal más
+  allá de la pasiva de B1) · **grado y proporción correlativos** («cu cât… cu atât» — cuanto más… más).
+- **REINCIDENCIA DEL PATRÓN B1 (2 casos, ambos resueltos moviendo el hueco, no cambiando el tipo):** U19 el
+  cloze de conjunctiv pedía «meargă» (diptongación e→ea de «a merge») pero el error típico «mergă» está a
+  UNA edición → perdonado; se cambió el verbo a «a fi»→«fie» (irregular, el indicativo «este/e» queda lejos,
+  SÍ discrimina). U22 el cloze «cu condiția să» no medía el contraste să/că (en multi-palabra el corrector
+  perdona una sustitución, y «cu condiția că» —el error, que la propia MC de la lección marca mal— está a 1
+  sustitución) → el hueco sale de «să» (que queda fijo en el texto) y pide solo la locución «cu condiția»,
+  que sí discrimina de «în caz că»/«dacă». Verificado contra `jz_grade`: ambos cloze reformulados RECHAZAN
+  el error típico.
+- **CALIDAD — 2 ALTA + ~5 media, todo aplicado:** además de los 2 ALTA de arriba (U19/U22, ambos críticos por
+  romper la medición del punto gramatical de su propia unidad) · **U24** (el pool del que sale el examen de
+  certificación) 2 translation castigaban la cópula corta «e» (correcta y frecuentísima: «este»→«e» son 3
+  ediciones, fuera de la tolerancia) — crítico porque de esta unidad sale el examen B2; y una fila de match
+  no llevaba «mai» en la segunda mitad de «cu cât… cu atât», contra la regla que la propia unidad enseña ·
+  **U21** el fallo recurrente del curso otra vez: 2 traducciones no aceptaban el sujeto opcional «Eu»; un
+  distractor con infinitivo largo («a începe a cânta») era rumano literario defendible → cambiado a uno
+  inequívocamente agramatical. **U20, U23** sin hallazgos de gravedad (U23 solo un ajuste de `guard_course.py`:
+  el enunciado citaba literalmente la respuesta «dreptate» → reformulado).
+- **CON B2 COMPLETO: ro YA CERTIFICA A1–B2, verificado con CLIENTE REAL (`verify_ro_cert.py`, nuevo) —
+  y sin tocar una línea de lógica.** El examen de nivel + certificado (`level_exam_status`/`start_level_exam`/
+  `submit_level_exam`) ya era course-agnóstico desde mig 144 (course_id en certificates + fila de examen por
+  curso) → bastaba con que el CONTENIDO de B2 existiera. Se emitieron 4 certificados reales sobre un usuario
+  de prueba: **JZC-A1-20260805-4F18C · JZC-A2-20260805-F0B9A · JZC-B1-20260805-95CEC · JZC-B2-20260805-18791**
+  (folio real, no simulado). Confirma también que el modelo per-skill (`get_skill_mastery`) y el gate ≥80%
+  por habilidad funcionan igual para ro que para los 6 cursos existentes.
+- **Verificado cliente REAL:** `verify_ro_chain.py` extendido a la **CAMINATA A1→A2→B1→B2** — recorre las 24
+  unidades en orden, **24/24 checkpoints ≥80%**, 96 lecciones completadas (el gating abre cada nivel al
+  terminar el anterior), **231 palabras en el SRS** (incl. las de B2), 0 de otro curso, 0 cruces entre los 7
+  cursos. `verify_new_course.py ro`, `verify_placement_multi.py`, `verify_estimator.py` VERDES. Guardarraíles
+  de los cursos existentes intactos: `verify_chain` (en, A1→B2 + certs) y `verify_pt_chain` (multicurso)
+  VERDES — cero regresión en los otros 6 idiomas. analyze 0 · test 235/235 · build web OK.
+- **Playbook actualizado** (`IDIOMA_NUEVO_PLAYBOOK.md`): las 18 piezas a sus totales B2, y el ítem 18
+  (examen+certificado) pasa de ⛔ pendiente a ✅ — con la nota de que llegó GRATIS por diseño course-agnóstico.
+- **Queda en ro:** C1 (2 tandas más, el idioma tiene el mismo techo que fr/it/de/nl/pt en su día — ninguna
+  sorpresa), tips E-1, teoría E-2, historias. Con B2 y certificación, ro ya juega en igualdad de condiciones
+  con los otros 6 cursos hasta el nivel B2.
 
 ## 🇷🇴 RUMANO **B1** — el curso ro pasa a A1+A2+B1 y el placement ubica en B1 ✅ LIVE (mig 198-200 · 2026-07-22)
 Tercera tanda de ro por el playbook. **Cero errores de rumano** en las 6 unidades (tercer revisor nativo,
@@ -3049,14 +3099,14 @@ en B2; andamiaje idéntico listo: STAMP `('pt','c1')=…130`, grupo audio `pt-c1
 
 ## Cola (retome exacto — orden sugerido)
 -6. **IDIOMAS NUEVOS — el proceso ya está escrito: `IDIOMA_NUEVO_PLAYBOOK.md`.** Rumano (es→ro) es el
-   7º curso, con **A1 y A2 completos y verificados** (2 tandas, la 2ª siguiendo el playbook al pie de
-   la letra) con **A1, A2 y B1 completos y verificados** (3 tandas; 8→3→2 ALTA, 0 errores de lengua en las
-   tres). Para completarlo: **B2** (1 tanda con la misma receta, `gen_course.py ro b2`), **C1** (2ª), tips
-   E-1, teoría E-2, historias, y el **examen de nivel + certificado** (que exige el nivel COMPLETO). Para el SIGUIENTE idioma latino (catalán,
-   polaco, sueco…): seguir el playbook — la factura medida es **1 nivel por tanda**. Los idiomas de
-   **otro alfabeto (ruso/japonés/árabe) NO entran en esta receta**: el corrector, la entrada de texto y
-   el modelo de 4 habilidades asumen alfabeto latino → es un proyecto de plataforma, con su análisis
-   propio (§5 del playbook).
+   7º curso, con **A1, A2, B1 y B2 completos y verificados** (4 tandas; 8→3→2→2 ALTA, 0 errores de lengua
+   en las cuatro) y **certifica A1–B2** (examen de nivel + certificado, igual que los otros 6 — llegó
+   gratis por diseño course-agnóstico, sin tocar lógica). Para completarlo del todo: **C1** (2ª, el único
+   nivel que falta — ningún idioma llega a C1 en 1 tanda), tips E-1, teoría E-2, historias. Para el
+   SIGUIENTE idioma latino (catalán, polaco, sueco…): seguir el playbook — la factura medida es **1 nivel
+   por tanda**. Los idiomas de **otro alfabeto (ruso/japonés/árabe) NO entran en esta receta**: el
+   corrector, la entrada de texto y el modelo de 4 habilidades asumen alfabeto latino → es un proyecto de
+   plataforma, con su análisis propio (§5 del playbook).
 -5. **E-2 ✅ COMPLETO en los 6 idiomas (mig 178-190).** Lo ÚNICO que queda del módulo Estudiar son las
    **6 unidades de C1 de cada idioma**: no tienen tips, así que habría que autorar la teoría DESDE CERO
    (no es replicar el pipeline sobre material existente, es escribir el currículo C1 de 6 idiomas = 36

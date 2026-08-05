@@ -33,6 +33,22 @@ BANKS = {
 # NO debe ofrecer ubicar mas arriba (techo honesto, como pt en su dia con B1).
 # NINGUN contraste se juega solo en un diacritico: la guarda los normaliza.
 'ro': {
+'B2': [
+ ('w', 'Mă bucur ___ ai venit la petrecere.', ['că', 'să', 'dacă'], 'că'),
+ ('w', 'Mi-a spus ___ plec imediat.', ['să', 'că', 'dacă'], 'să'),
+ ('w', 'M-a întrebat ___ vin sau nu.', ['dacă', 'că', 'ce'], 'dacă'),
+ ('w', 'Am reușit ___ efortului tău.', ['datorită', 'din cauza', 'pentru'], 'datorită'),
+ ('w', 'Nu am ieșit ___ ploii.', ['din cauza', 'datorită', 'grație'], 'din cauza'),
+ ('w', 'Cu cât citești mai mult, ___ atât înțelegi mai bine.', ['cu', 'pe', 'la'], 'cu'),
+ ('w', 'Sunt ___ cale să plec de acasă.', ['pe', 'în', 'la'], 'pe'),
+ ('r', '«Datorită» se usa para algo:', ['Positivo (gracias a)', 'Negativo (por culpa de)', 'Neutro'], 'Positivo (gracias a)'),
+ ('r', '«Mi-a spus să plec» significa:', ['Me dijo que me fuera', 'Me dijo que se iba', 'Me preguntó si me iba'], 'Me dijo que me fuera'),
+ ('r', '«Se pare că va ploua» significa:', ['Parece que va a llover', 'Se dice que llueve', 'Hace falta que llueva'], 'Parece que va a llover'),
+ ('r', '«Obișnuiam să merg la mare» significa:', ['Solía ir al mar', 'Iré al mar', 'Fui al mar una vez'], 'Solía ir al mar'),
+ ('r', '«Nu suport frigul» significa:', ['No soporto el frío', 'No aguanto de pie', 'No apoyo el frío'], 'No soporto el frío'),
+ ('r', '¿Cuál es correcta? «Cada vez trabaja más»:', ['Muncește din ce în ce mai mult.', 'Muncește cât mai mult din ce.', 'Muncește tot mai la mult.'], 'Muncește din ce în ce mai mult.'),
+ ('r', '«Cu toate acestea, a reușit» significa:', ['Sin embargo, lo logró', 'Por lo tanto, lo logró', 'Gracias a esto, lo logró'], 'Sin embargo, lo logró'),
+],
 'B1': [
  ('w', 'Dacă aș avea timp, ___ veni cu tine.', ['aș', 'am', 'o'], 'aș'),
  ('w', 'Cartea pe care ___ citesc este foarte bună.', ['o', 'îl', 'le'], 'o'),
@@ -382,7 +398,18 @@ def main():
     # Modo: sin arg = A1/A2 → mig 110 (histórico, ya aplicado). 'hi' = B1/B2 → mig nueva
     # (los cursos fr/it/de/nl ya llegan a B2; ampliar el techo del placement a su nivel real).
     mode = sys.argv[1] if len(sys.argv) > 1 else 'a1a2'
-    if mode == 'ro3':
+    if mode == 'ro4':
+        EMIT = {'B2'}
+        OUT_NAME = '20260722120202_placement_bank_ro_b2.sql'
+        HEADER = [
+            "-- 20260722120202_placement_bank_ro_b2.sql",
+            "-- Amplia el banco de PLACEMENT del curso es->ro a B2, con lo que el techo",
+            "-- del estimador sube a B2 y la cadena A1-B2 queda completa y certificable",
+            "-- como los otros 6 cursos. reading=MC (exacto), writing=cloze con la guarda",
+            "-- anti-colision (normaliza los diacriticos romanos). course-scoped.",
+            "",
+        ]
+    elif mode == 'ro3':
         EMIT = {'B1'}
         OUT_NAME = '20260722120199_placement_bank_ro_b1.sql'
         HEADER = [
@@ -446,7 +473,7 @@ def main():
     rows = []
     counts = {}
     for lang, levels in BANKS.items():
-        if (mode in ('ro', 'ro2', 'ro3')) != (lang == 'ro'):
+        if (mode in ('ro', 'ro2', 'ro3', 'ro4')) != (lang == 'ro'):
             continue          # cada migracion siembra SOLO su(s) curso(s)
         cid = COURSES[lang]
         for lvl, items in levels.items():

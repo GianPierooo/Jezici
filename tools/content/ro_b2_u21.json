@@ -1,0 +1,418 @@
+{
+ "unit": {
+  "order": 21,
+  "title_es": "Empezar, seguir, dejar: verbos de fase",
+  "color": "#16A085",
+  "icon": "trending_up"
+ },
+ "checkpoint_desc": "Repasa los verbos de fase con «să» (a începe/continua/înceta să), «a se apuca de» y «a termina de», «obișnuia să» (solía) y «a fi pe cale să» (estar a punto de), la intensidad progresiva «din ce în ce mai / tot mai», el aspecto con «încă» (todavía), «a ajunge să» y «a sfârși prin a», y los falsos amigos «a realiza» (darse cuenta) y «eventual» (posiblemente).",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "Empezar, seguir, dejar de: a începe să"
+  },
+  {
+   "order": 2,
+   "title_es": "Ponerse a, estar a punto de, soler"
+  },
+  {
+   "order": 3,
+   "title_es": "Cada vez más: din ce în ce mai"
+  },
+  {
+   "order": 4,
+   "title_es": "Llegar a, acabar por: ajunge, sfârși"
+  }
+ ],
+ "vocab": [
+  [
+   "a începe",
+   "empezar, comenzar",
+   "verbo"
+  ],
+  [
+   "a continua",
+   "continuar, seguir",
+   "verbo"
+  ],
+  [
+   "a înceta",
+   "dejar de, cesar",
+   "verbo"
+  ],
+  [
+   "a se apuca",
+   "ponerse a, meterse a",
+   "verbo"
+  ],
+  [
+   "a termina",
+   "terminar, acabar",
+   "verbo"
+  ],
+  [
+   "a obișnui",
+   "soler, acostumbrar",
+   "verbo"
+  ],
+  [
+   "a fi pe cale să",
+   "estar a punto de",
+   "expresion"
+  ],
+  [
+   "a ajunge",
+   "llegar (a)",
+   "verbo"
+  ],
+  [
+   "a sfârși",
+   "acabar, terminar",
+   "verbo"
+  ],
+  [
+   "din ce în ce mai",
+   "cada vez más",
+   "expresion"
+  ],
+  [
+   "tot mai",
+   "cada vez más",
+   "adverbio"
+  ],
+  [
+   "încă",
+   "todavía, aún",
+   "adverbio"
+  ],
+  [
+   "treptat",
+   "gradualmente, poco a poco",
+   "adverbio"
+  ],
+  [
+   "un obicei",
+   "la costumbre, el hábito",
+   "sustantivo"
+  ],
+  [
+   "a realiza",
+   "darse cuenta de; llevar a cabo",
+   "verbo"
+  ],
+  [
+   "eventual",
+   "posiblemente, quizá",
+   "adverbio"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "faze_sa",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada frase rumana con su traducción.",
+   "pairs": [
+    [
+     "Am început să citesc.",
+     "Empecé a leer."
+    ],
+    [
+     "Continuă să citească.",
+     "Sigue leyendo."
+    ],
+    [
+     "A încetat să fumeze.",
+     "Dejó de fumar."
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "faze_sa",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Los niños empezaron a cantar». ¿Cuál es la forma correcta? (los verbos de fase piden «să» + conjunctiv, no infinitivo)",
+   "options": [
+    "Copiii au început să cânte.",
+    "Copiii au început de cântat.",
+    "Copiii au început să cântă."
+   ],
+   "value": "Copiii au început să cânte."
+  },
+  {
+   "lesson": 1,
+   "topic": "faze_sa",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Continuăm să lucrăm până diseară.",
+   "options": [
+    "Continuăm să lucrăm până diseară.",
+    "Continuăm să vorbim până diseară.",
+    "Continuăm să lucrăm până mâine."
+   ],
+   "value": "Continuăm să lucrăm până diseară."
+  },
+  {
+   "lesson": 1,
+   "topic": "faze_sa",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con el participio de «a înceta» (dejar de): «Dejó de fumar hace un año.»",
+   "text": "A ___ să fumeze acum un an.",
+   "value": "încetat",
+   "accepted": [
+    "încetat",
+    "incetat"
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "faze_sa",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Am început să învăț română acum doi ani."
+  },
+  {
+   "lesson": 2,
+   "topic": "apuca_cale",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Estaba a punto de salir cuando llamaste». ¿Cuál es la forma correcta?",
+   "options": [
+    "Eram pe cale să plec când ai sunat.",
+    "Eram pe cale să plecat când ai sunat.",
+    "Eram la cale să plec când ai sunat."
+   ],
+   "value": "Eram pe cale să plec când ai sunat."
+  },
+  {
+   "lesson": 2,
+   "topic": "apuca_cale",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Bunica obișnuia să facă prăjituri duminica.",
+   "options": [
+    "Bunica obișnuia să facă prăjituri duminica.",
+    "Bunica obișnuia să facă prăjituri sâmbăta.",
+    "Bunicul obișnuia să facă prăjituri duminica."
+   ],
+   "value": "Bunica obișnuia să facă prăjituri duminica."
+  },
+  {
+   "lesson": 2,
+   "topic": "apuca_cale",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "M-am apucat de lucru abia aseară.",
+   "options": [
+    "M-am apucat de lucru abia aseară.",
+    "M-am apucat de treabă abia aseară.",
+    "M-am apucat de lucru abia azi."
+   ],
+   "value": "M-am apucat de lucru abia aseară."
+  },
+  {
+   "lesson": 2,
+   "topic": "apuca_cale",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Terminé de comer y salí.",
+   "source": "Terminé de comer y salí.",
+   "value": "Am terminat de mâncat și am ieșit.",
+   "accepted": [
+    "Am terminat de mâncat și am ieșit.",
+    "Am terminat de mâncat și am ieșit",
+    "Am terminat de mancat si am iesit.",
+    "Am terminat de mancat si am iesit",
+    "Am terminat de mâncat, apoi am ieșit.",
+    "Am terminat de mancat, apoi am iesit.",
+    "Eu am terminat de mâncat și am ieșit.",
+    "Eu am terminat de mancat si am iesit."
+   ]
+  },
+  {
+   "lesson": 2,
+   "topic": "apuca_cale",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena para decir «Me puse a trabajar enseguida». Empieza por «M-am» y termina con «lucru».",
+   "value": "M-am apucat imediat de lucru",
+   "sequence": [
+    "M-am",
+    "apucat",
+    "imediat",
+    "de",
+    "lucru"
+   ],
+   "distractors": [
+    "treabă",
+    "să"
+   ],
+   "tiles": [
+    "M-am",
+    "apucat",
+    "să",
+    "imediat",
+    "treabă",
+    "de",
+    "lucru"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "intensitate",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada expresión de intensidad con su traducción.",
+   "pairs": [
+    [
+     "din ce în ce mai greu",
+     "cada vez más difícil"
+    ],
+    [
+     "tot mai des",
+     "cada vez más a menudo"
+    ],
+    [
+     "treptat",
+     "poco a poco"
+    ]
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "intensitate",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Todavía trabajo aquí, pero cada vez menos». ¿Cuál es la forma correcta?",
+   "options": [
+    "Încă lucrez aici, dar din ce în ce mai puțin.",
+    "Deja lucrez aici, dar din ce în ce mai puțin.",
+    "Încă lucrez aici, dar din ce în ce mai mult."
+   ],
+   "value": "Încă lucrez aici, dar din ce în ce mai puțin."
+  },
+  {
+   "lesson": 3,
+   "topic": "intensitate",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Zilele devin din ce în ce mai scurte toamna.",
+   "options": [
+    "Zilele devin din ce în ce mai scurte toamna.",
+    "Zilele devin din ce în ce mai lungi toamna.",
+    "Nopțile devin din ce în ce mai scurte toamna."
+   ],
+   "value": "Zilele devin din ce în ce mai scurte toamna."
+  },
+  {
+   "lesson": 3,
+   "topic": "intensitate",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con el adverbio «bien»: «Habla rumano cada vez mejor.»",
+   "text": "Vorbește româna din ce în ce mai ___.",
+   "value": "bine",
+   "accepted": [
+    "bine"
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "intensitate",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Vremea devine din ce în ce mai rece și zilele sunt tot mai scurte."
+  },
+  {
+   "lesson": 4,
+   "topic": "ajunge_sfarsi",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Al final acabó por aceptar la oferta». ¿Cuál es la forma correcta? («acabar por» = a sfârși PRIN A + infinitivo)",
+   "options": [
+    "Până la urmă a sfârșit prin a accepta oferta.",
+    "Până la urmă a sfârșit să accepte oferta.",
+    "Până la urmă a sfârșit de a accepta oferta."
+   ],
+   "value": "Până la urmă a sfârșit prin a accepta oferta."
+  },
+  {
+   "lesson": 4,
+   "topic": "ajunge_sfarsi",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "După ani de muncă, a ajuns să conducă firma.",
+   "options": [
+    "După ani de muncă, a ajuns să conducă firma.",
+    "După ani de muncă, a ajuns să conducă școala.",
+    "După luni de muncă, a ajuns să conducă firma."
+   ],
+   "value": "După ani de muncă, a ajuns să conducă firma."
+  },
+  {
+   "lesson": 4,
+   "topic": "ajunge_sfarsi",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano (usa «a realiza» = darse cuenta):",
+   "text": "Me di cuenta de que había olvidado las llaves.",
+   "source": "Me di cuenta de que había olvidado las llaves.",
+   "value": "Am realizat că uitasem cheile.",
+   "accepted": [
+    "Am realizat că uitasem cheile.",
+    "Am realizat că uitasem cheile",
+    "Am realizat ca uitasem cheile.",
+    "Am realizat ca uitasem cheile",
+    "Mi-am dat seama că uitasem cheile.",
+    "Mi-am dat seama ca uitasem cheile.",
+    "Mi-am dat seama că uitasem cheile",
+    "Mi-am dat seama ca uitasem cheile",
+    "Eu am realizat că uitasem cheile.",
+    "Eu am realizat ca uitasem cheile."
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "ajunge_sfarsi",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena las palabras: «Posiblemente terminaré el trabajo antes de la noche». Empieza por «Eventual» y termina con «diseară».",
+   "value": "Eventual voi termina treaba până diseară",
+   "sequence": [
+    "Eventual",
+    "voi",
+    "termina",
+    "treaba",
+    "până",
+    "diseară"
+   ],
+   "tiles": [
+    "treaba",
+    "Eventual",
+    "până",
+    "termina",
+    "diseară",
+    "voi"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "ajunge_sfarsi",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Am realizat că a devenit un obicei să întârzii mereu."
+  }
+ ]
+}

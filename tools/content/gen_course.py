@@ -47,6 +47,7 @@ STAMPS = {
     ('ro', 'a1'): '20260722120191',
     ('ro', 'a2'): '20260722120195',
     ('ro', 'b1'): '20260722120198',
+    ('ro', 'b2'): '20260722120201',
 }
 # palabra "Unidad" en el idioma meta (para el título del checkpoint)
 UNIT_WORD = {'fr': 'Unité', 'it': 'Unità', 'de': 'Einheit', 'nl': 'Eenheid',

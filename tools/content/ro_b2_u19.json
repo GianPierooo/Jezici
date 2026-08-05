@@ -1,0 +1,412 @@
+{
+ "unit": {
+  "order": 19,
+  "title_es": "Opinión, duda y emoción (conjunctiv)",
+  "color": "#8E44AD",
+  "icon": "psychology"
+ },
+ "checkpoint_desc": "Repasa cuándo la subordinada pide conjunctiv con «să» (emoción: mă bucur să, mi-e teamă să; voluntad y necesidad: vreau să, e nevoie să, merită să, se cuvine să; posibilidad y duda: e posibil să, mă îndoiesc că, nu cred să vină) frente al indicativo tras la certeza (știu că, e clar că, sunt sigur că vine), el aviso de no calcar «de que» (mă bucur CĂ vine, no «de că»), y la fórmula «indiferent ce ai spune».",
+ "lessons": [
+  {
+   "order": 1,
+   "title_es": "Emoción: alegría, pena y miedo"
+  },
+  {
+   "order": 2,
+   "title_es": "Certeza frente a duda"
+  },
+  {
+   "order": 3,
+   "title_es": "Querer, hacer falta, valer la pena"
+  },
+  {
+   "order": 4,
+   "title_es": "Creo que… / No creo que…"
+  }
+ ],
+ "vocab": [
+  [
+   "a se bucura",
+   "alegrarse",
+   "verbo"
+  ],
+  [
+   "îmi pare rău",
+   "lamento, lo siento",
+   "expresion"
+  ],
+  [
+   "mi-e teamă",
+   "tengo miedo",
+   "expresion"
+  ],
+  [
+   "a se îndoi",
+   "dudar",
+   "verbo"
+  ],
+  [
+   "e posibil",
+   "es posible",
+   "expresion"
+  ],
+  [
+   "e nevoie",
+   "hace falta, es necesario",
+   "expresion"
+  ],
+  [
+   "a merita",
+   "merecer, valer la pena",
+   "verbo"
+  ],
+  [
+   "se cuvine",
+   "corresponde, conviene",
+   "expresion"
+  ],
+  [
+   "indiferent",
+   "no importa (lo que), sea cual sea",
+   "adverbio"
+  ],
+  [
+   "sigur",
+   "seguro",
+   "adjetivo"
+  ],
+  [
+   "a avea dreptate",
+   "tener razón",
+   "expresion"
+  ],
+  [
+   "o ședință",
+   "la reunión",
+   "sustantivo"
+  ],
+  [
+   "bolnav",
+   "enfermo",
+   "adjetivo"
+  ],
+  [
+   "a întârzia",
+   "retrasarse, llegar tarde",
+   "verbo"
+  ],
+  [
+   "a încerca",
+   "intentar, probar",
+   "verbo"
+  ],
+  [
+   "adevărul",
+   "la verdad",
+   "sustantivo"
+  ]
+ ],
+ "items": [
+  {
+   "lesson": 1,
+   "topic": "emotie_conjunctiv",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada frase de emoción con su traducción.",
+   "pairs": [
+    [
+     "Mă bucur să te văd.",
+     "Me alegro de verte."
+    ],
+    [
+     "Îmi pare rău că pleci.",
+     "Lamento que te vayas."
+    ],
+    [
+     "Mi-e teamă să conduc pe ninsoare.",
+     "Me da miedo conducir con nieve."
+    ]
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "emotie_conjunctiv",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Me alegro de que estés aquí». En rumano NO se calca «de que». ¿Cuál es la forma correcta?",
+   "options": [
+    "Mă bucur că ești aici.",
+    "Mă bucur de că ești aici.",
+    "Mă bucur ești aici."
+   ],
+   "value": "Mă bucur că ești aici."
+  },
+  {
+   "lesson": 1,
+   "topic": "emotie_conjunctiv",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Mă bucur să te revăd după atâția ani.",
+   "options": [
+    "Mă bucur să te revăd după atâția ani.",
+    "Mă bucur să te revăd după atâtea luni.",
+    "Îmi pare rău că pleci așa devreme."
+   ],
+   "value": "Mă bucur să te revăd după atâția ani."
+  },
+  {
+   "lesson": 1,
+   "topic": "emotie_conjunctiv",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con la expresión de miedo (tengo miedo).",
+   "text": "Mi-e ___ să merg singur noaptea prin oraș.",
+   "value": "teamă",
+   "accepted": [
+    "teamă",
+    "teama",
+    "frică",
+    "frica"
+   ]
+  },
+  {
+   "lesson": 1,
+   "topic": "emotie_conjunctiv",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Mă bucur că ai venit, dar îmi pare rău că trebuie să pleci curând."
+  },
+  {
+   "lesson": 2,
+   "topic": "certitudine_indoiala",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Sé que viene mañana». Tras la certeza «știu că» va el indicativo. ¿Cuál es la forma correcta?",
+   "options": [
+    "Știu că vine mâine.",
+    "Știu să vină mâine.",
+    "Știu că să vină mâine."
+   ],
+   "value": "Știu că vine mâine."
+  },
+  {
+   "lesson": 2,
+   "topic": "certitudine_indoiala",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "E posibil să întârzii puțin la ședință.",
+   "options": [
+    "E posibil să întârzii puțin la ședință.",
+    "E posibil să ajung mai devreme la ședință.",
+    "E sigur că ajung la timp la birou."
+   ],
+   "value": "E posibil să întârzii puțin la ședință."
+  },
+  {
+   "lesson": 2,
+   "topic": "certitudine_indoiala",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Mă îndoiesc că el are dreptate.",
+   "options": [
+    "Mă îndoiesc că el are dreptate.",
+    "Sunt sigur că el are dreptate.",
+    "Mă îndoiesc că ei au timp."
+   ],
+   "value": "Mă îndoiesc că el are dreptate."
+  },
+  {
+   "lesson": 2,
+   "topic": "certitudine_indoiala",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Es posible que llueva esta noche.",
+   "value": "E posibil să plouă diseară.",
+   "accepted": [
+    "E posibil să plouă diseară.",
+    "E posibil să plouă diseară",
+    "E posibil sa ploua diseara.",
+    "E posibil sa ploua diseara",
+    "S-ar putea să plouă diseară.",
+    "S-ar putea să plouă diseară",
+    "S-ar putea sa ploua diseara.",
+    "S-ar putea sa ploua diseara",
+    "E posibil să plouă astă-seară.",
+    "E posibil sa ploua asta-seara."
+   ],
+   "source": "Es posible que llueva esta noche."
+  },
+  {
+   "lesson": 2,
+   "topic": "certitudine_indoiala",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Sunt sigur că știe adevărul, dar mă îndoiesc că îl va spune."
+  },
+  {
+   "lesson": 3,
+   "topic": "vointa_necesitate",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«Vale la pena intentarlo». ¿Cuál es la forma correcta?",
+   "options": [
+    "Merită să încerci.",
+    "Merită încerci.",
+    "Merită că încerci."
+   ],
+   "value": "Merită să încerci."
+  },
+  {
+   "lesson": 3,
+   "topic": "vointa_necesitate",
+   "skill": "reading",
+   "type": "match",
+   "prompt": "Empareja cada frase de voluntad o necesidad con su traducción.",
+   "pairs": [
+    [
+     "Vreau să te ajut.",
+     "Quiero ayudarte."
+    ],
+    [
+     "E nevoie să plecăm acum.",
+     "Hace falta que nos vayamos ahora."
+    ],
+    [
+     "Se cuvine să mulțumești.",
+     "Corresponde dar las gracias."
+    ]
+   ]
+  },
+  {
+   "lesson": 3,
+   "topic": "vointa_necesitate",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "E nevoie să vorbim serios despre asta.",
+   "options": [
+    "E nevoie să vorbim serios despre asta.",
+    "E nevoie să plecăm imediat de aici.",
+    "Merită să mai așteptăm puțin."
+   ],
+   "value": "E nevoie să vorbim serios despre asta."
+  },
+  {
+   "lesson": 3,
+   "topic": "vointa_necesitate",
+   "skill": "writing",
+   "type": "translation",
+   "prompt": "Traduce al rumano:",
+   "text": "Quiero que vengas conmigo.",
+   "value": "Vreau să vii cu mine.",
+   "accepted": [
+    "Vreau să vii cu mine.",
+    "Vreau să vii cu mine",
+    "Vreau sa vii cu mine.",
+    "Vreau sa vii cu mine",
+    "Eu vreau să vii cu mine.",
+    "Eu vreau sa vii cu mine."
+   ],
+   "source": "Quiero que vengas conmigo."
+  },
+  {
+   "lesson": 3,
+   "topic": "vointa_necesitate",
+   "skill": "writing",
+   "type": "word_bank",
+   "prompt": "Ordena para decir «Hace falta que hablemos». Empieza por «E».",
+   "value": "E nevoie să vorbim",
+   "sequence": [
+    "E",
+    "nevoie",
+    "să",
+    "vorbim"
+   ],
+   "distractors": [
+    "că",
+    "noi"
+   ],
+   "tiles": [
+    "vorbim",
+    "noi",
+    "să",
+    "E",
+    "nevoie",
+    "că"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "cred_ca_nu_cred",
+   "skill": "reading",
+   "type": "multiple_choice",
+   "prompt": "«No creo que venga hoy». Con «nu cred să» el verbo va en conjunctiv. ¿Cuál es la forma correcta?",
+   "options": [
+    "Nu cred să vină astăzi.",
+    "Nu cred că vină astăzi.",
+    "Nu cred vine astăzi."
+   ],
+   "value": "Nu cred să vină astăzi."
+  },
+  {
+   "lesson": 4,
+   "topic": "cred_ca_nu_cred",
+   "skill": "listening",
+   "type": "listening",
+   "prompt": "Escucha y elige la frase que oíste.",
+   "say": "Indiferent ce ai spune, eu tot plec.",
+   "options": [
+    "Indiferent ce ai spune, eu tot plec.",
+    "Indiferent ce ai face, eu tot rămân.",
+    "Cred că ai dreptate în privința asta."
+   ],
+   "value": "Indiferent ce ai spune, eu tot plec."
+  },
+  {
+   "lesson": 4,
+   "topic": "cred_ca_nu_cred",
+   "skill": "writing",
+   "type": "cloze",
+   "prompt": "Completa con el conjunctiv de «a fi» tras «să» (no creo que sea verdad).",
+   "text": "Nu cred să ___ adevărat ce spune.",
+   "value": "fie",
+   "accepted": [
+    "fie"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "cred_ca_nu_cred",
+   "skill": "writing",
+   "type": "reorder",
+   "prompt": "Ordena las palabras: «Creo que tiene razón». Empieza por «Cred».",
+   "value": "Cred că are dreptate",
+   "sequence": [
+    "Cred",
+    "că",
+    "are",
+    "dreptate"
+   ],
+   "tiles": [
+    "are",
+    "Cred",
+    "dreptate",
+    "că"
+   ]
+  },
+  {
+   "lesson": 4,
+   "topic": "cred_ca_nu_cred",
+   "skill": "speaking",
+   "type": "speaking_read_aloud",
+   "prompt": "Lee en voz alta:",
+   "read": "Indiferent ce spun ceilalți, merită să încerci din nou."
+  }
+ ]
+}

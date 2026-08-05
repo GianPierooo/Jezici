@@ -18,14 +18,14 @@ en una lista cerrada en vez de un agujero. Cada fila es una pieza que existe en 
 |---|---|---|---|---|
 | 1 | Fila de idioma | `languages` | la emite `gen_course.py` | ✅ |
 | 2 | Fila de curso | `courses` (source es → target) | la emite `gen_course.py` | ✅ |
-| 3 | Unidades | `units` (6 por nivel CEFR) | `gen_course.py` desde los JSON | ✅ 18 (A1+A2+B1) |
-| 4 | Lecciones + checkpoint | `lessons` (4 `lesson` + 1 `checkpoint` por unidad) | íd. | ✅ 90 |
-| 5 | Ítems de ejercicio | `content_items` (9 tipos) + `lesson_items` | íd. | ✅ 402 |
-| 6 | Exámenes de checkpoint | `exams` type=`checkpoint` (1 por unidad) | íd. | ✅ 18 |
-| 7 | Vocabulario | `vocabulary` (word, translation, `frequency_rank`, pos) | íd., desde el bloque `vocab` | ✅ 322 |
-| 8 | **Vínculo léxico** | `lesson_vocab` | migración que re-deriva la lógica de mig 165 | ✅ 175 palabras enseñadas |
-| 9 | Audio TTS | Supabase Storage `audio/items/<id>.mp3` | `gen_audio_missing.py <code>-<lvl>` | ✅ 144/144 |
-| 10 | Banco de placement | `content_items` tag `placement` | `gen_placement_multi.py <code>` | ✅ 42 (A1+A2+B1) |
+| 3 | Unidades | `units` (6 por nivel CEFR) | `gen_course.py` desde los JSON | ✅ 24 (A1–B2) |
+| 4 | Lecciones + checkpoint | `lessons` (4 `lesson` + 1 `checkpoint` por unidad) | íd. | ✅ 120 |
+| 5 | Ítems de ejercicio | `content_items` (9 tipos) + `lesson_items` | íd. | ✅ 536 |
+| 6 | Exámenes de checkpoint | `exams` type=`checkpoint` (1 por unidad) | íd. | ✅ 24 |
+| 7 | Vocabulario | `vocabulary` (word, translation, `frequency_rank`, pos) | íd., desde el bloque `vocab` | ✅ 422 |
+| 8 | **Vínculo léxico** | `lesson_vocab` | migración que re-deriva la lógica de mig 165 | ✅ 231 palabras enseñadas |
+| 9 | Audio TTS | Supabase Storage `audio/items/<id>.mp3` | `gen_audio_missing.py <code>-<lvl>` | ✅ 192/192 |
+| 10 | Banco de placement | `content_items` tag `placement` | `gen_placement_multi.py <code>` | ✅ 56 (A1–B2) |
 | 11 | Bandera | `course_models.dart` `flag` | 1 línea | ✅ 🇷🇴 |
 | 12 | TTS/reconocedor | `speech_lang.dart` | 1 `case` (tts + stt) | ✅ ro-RO |
 | 13 | Nombre del idioma en la UI | `learn_lang_names.dart` + 3 `.arb` | 1 clave ×3 | ✅ |
@@ -33,7 +33,7 @@ en una lista cerrada en vez de un agujero. Cada fila es una pieza que existe en 
 | 15 | Tips (teoría E-1) | `content_tips` | autoría, 1 por unidad | ⛔ pendiente |
 | 16 | Teoría de sesión (E-2) | `study_theory` | pipeline E-2 | ⛔ pendiente |
 | 17 | Historias (inmersión) | `stories` | `gen_stories.py` | ⛔ pendiente |
-| 18 | Exámenes de nivel + certificado | `exams` type=`level` | requiere el nivel COMPLETO | ⛔ (necesita B2) |
+| 18 | Exámenes de nivel + certificado | `exams` type=`level` (on-demand, course-agnóstico) | **con B2 completo: certifica A1–B2** | ✅ JZC-A1..B2 |
 
 **Lo que NO hay que tocar y por qué:** el gating, la economía, el scheduler FSRS, la
 certificación y las RPC son **course-agnósticos por construcción** (derivan el curso de
@@ -149,6 +149,17 @@ construcción, que sí discrimina), no cambiar el tipo de ítem.
 
 **Lo que se transfiere de verdad entre tandas es el BRIEF.** Meter en él las 8 lecciones caras
 de A1 (con nombre y ejemplo) bajó los ALTA de 8 a 3 — y ninguno de los 3 era un error de lengua.
+
+### La 4ª tanda (ro B2) — el curso queda COMPLETO y CERTIFICABLE
+
+Con B2 la cadena A1→B2 **certifica**, como los otros 6 cursos: la maquinaria de exámenes de nivel
+(`level_exam_status`/`start_level_exam`/`submit_level_exam`) es **course-agnóstica** (mig 144), así que
+NO se sembró ni una fila de examen de nivel — se crea on-demand y emite `JZC-A1..B2-…`. Verificado con
+`verify_ro_cert.py` (clon de `verify_chain` sobre el curso ro): los 4 certificados salen, con divergencia
+per-skill y todo. **Con esto, para el próximo idioma latino, "certificar A1–B2" NO es trabajo extra: sale
+solo al sembrar las 24 unidades.** El patrón B1 (mover el hueco a la mitad que discrimina) volvió a
+aparecer en B2 con el conjunctiv (`meargă`/`mergă` a 1 letra → verbo irregular `fie`), y también el fallo
+nº1 del curso (la cópula corta `e` y el sujeto `Eu` sin aceptar) — 4 tandas, mismo patrón, misma cura.
 
 ---
 
