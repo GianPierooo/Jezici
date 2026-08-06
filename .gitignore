@@ -39,6 +39,9 @@ __pycache__/
 # Content QA working artifacts (regenerables)
 tools/content/_*
 
+# PDFs de temario generados por gen_syllabus_pdf.py (regenerables desde la BD)
+tools/content/outputs/
+
 # codebase-memory-mcp: el grafo vive en ~/.cache/codebase-memory-mcp (por máquina),
 # NO en el repo; reindexar es <1s. Defensivo por si una versión futura escribe aquí.
 .codebase-memory/
