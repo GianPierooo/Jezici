@@ -5,6 +5,29 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-08-05**.
 
+## GENERADOR DE TEMARIO — PDF profesional 100% desde la BD ✅ (2026-08-05 · solo tooling, cero prod)
+Pedido de Gian: un PDF de temario "qué se ve en cada clase" para subir a Drive como documentación oficial.
+`tools/content/gen_syllabus_pdf.py` (nuevo) lee el currículo REAL — units, lessons, content_items,
+vocabulary, lesson_vocab, study_theory/content_tips, exams — y arma un syllabus con reportlab: portada de
+marca, índice con bookmarks (unidad + lección), y por lección el objetivo + tabla de vocabulario nuevo +
+punto de gramática (teoría E-2 rica si existe, tips E-1 si no, **"teoría en camino" honesto si tampoco** —
+cero contenido inventado) + resumen de ejercicios (tipo + habilidad + cuántos, **sin prompts ni respuestas**
+— el temario dice qué se enseña, no es banco de respuestas).
+- **Checkpoint fiel a producción:** en vez de leer `lesson_items` (que para checkpoints queda con una foto
+  vieja, no la que sirve `start_checkpoint` en producción), replica EXACTAMENTE su consulta real
+  (`course_id + cefr_level + tag unidadN`, mig 020) — banco real, 3R+3W+2L+2S, 5 min, ≥80%.
+- **Solo lectura** (Management API introspection, igual que el resto de `tools/content/`) — cero escritura,
+  cero migración, cero código de producción tocado.
+- **Bug real de reportlab 5.0 cazado y documentado en el código:** un `Paragraph` con `backColor`+
+  `borderPadding` subestima su propia altura en `wrap()` por el valor del padding superior → se solapaba
+  con el flowable anterior (visto en 2 pantallazos reales antes del fix). Fix: anteponer un `Spacer` del
+  mismo alto que el padding — reproducido en aislado, verificado antes/después.
+- **Muestra generada y enviada a Gian:** `outputs/temario_en_a1.pdf` (inglés A1, 6 unidades, 27 páginas,
+  313 palabras de vocabulario listadas, 6 bookmarks). `outputs/` gitignored (regenerable).
+- **Uso:** `python gen_syllabus_pdf.py --course <en|pt|fr|it|de|nl|ro> --level <A1..C1>` (o sin `--level`
+  para las 5 juntas en un solo PDF). Pendiente de que Gian apruebe el formato antes de escalar a los demás
+  niveles/idiomas.
+
 ## ESTUDIAR · BUG CRÍTICO — la teoría no cambiaba con el curso activo ✅ (2026-08-05 · solo cliente)
 Reportado: un usuario de portugués (u otro idioma) veía teoría de INGLÉS en el tab Estudiar. **PASO 0
 (cliente real, servidor):** el SERVIDOR **siempre fue correcto** — `get_study_theory(unit_id)` deriva el
