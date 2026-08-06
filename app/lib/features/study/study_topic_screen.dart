@@ -83,11 +83,19 @@ class StudyTopicScreen extends ConsumerWidget {
                     // Cuando exista video para este tema/idioma se renderiza
                     // aquí, ENCIMA de la teoría. Hoy no hay ninguno.
 
-                    ...ref.watch(studyTheoryProvider(unitId)).maybeWhen(
+                    // NOTA: mientras la sesión E-2 del tema está cargando (`loading`)
+                    // se muestra un loader neutro, NUNCA los tips E-1 — evita un
+                    // parpadeo con teoría de OTRO idioma si `referenceProvider`
+                    // (curso-scoped, ver `course_switcher._invalidateCourseScope`)
+                    // aún no terminó de refrescar tras un cambio de curso reciente.
+                    // `error` sí cae a los tips (degradación con gracia, ya elegida
+                    // para el resto de la pantalla).
+                    ...ref.watch(studyTheoryProvider(unitId)).when(
                           data: (t) => t == null
                               ? _tipsFallback(l10n, topic)
                               : _richSession(context, l10n, t),
-                          orElse: () => _tipsFallback(l10n, topic),
+                          loading: () => const [_TheoryLoading()],
+                          error: (_, _) => _tipsFallback(l10n, topic),
                         ),
 
                     const SizedBox(height: 12),
@@ -457,6 +465,19 @@ class _ConceptCard extends StatelessWidget {
       ),
     );
   }
+}
+
+/// Cargando la sesión E-2 del tema. Neutro a propósito: NUNCA se sustituye
+/// por los tips E-1 mientras carga (evitaría un parpadeo con la teoría de
+/// OTRO idioma si `referenceProvider` todavía no refrescó tras un cambio de
+/// curso reciente — ver `course_switcher._invalidateCourseScope`).
+class _TheoryLoading extends StatelessWidget {
+  const _TheoryLoading();
+  @override
+  Widget build(BuildContext context) => const Padding(
+        padding: EdgeInsets.only(top: 40),
+        child: Center(child: CircularProgressIndicator(color: AppColors.primary)),
+      );
 }
 
 /// Estado HONESTO cuando el tema aún no tiene teoría (p.ej. C1).

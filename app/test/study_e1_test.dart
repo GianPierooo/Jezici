@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -9,6 +11,7 @@ import 'package:jezici/features/study/study_level_screen.dart';
 import 'package:jezici/features/study/study_model.dart';
 import 'package:jezici/features/study/study_theory_model.dart';
 import 'package:jezici/features/study/study_screen.dart';
+import 'package:jezici/features/study/study_topic_screen.dart';
 import 'package:jezici/l10n/app_localizations.dart';
 
 /// ESTUDIAR · Fase E-1: estructura navegable (nivel → tema → teoría) con el
@@ -190,5 +193,58 @@ void _e2() {
     expect(r.accuracyPct, 50);
     expect(r.passed, isFalse);
     expect(r.results['u1q2']!['expected'], 'b');
+  });
+
+  // ── BUG cruce de idioma: mientras la sesión E-2 carga, NUNCA se muestran
+  // los tips E-1 (podrían venir de un `referenceProvider` aún no refrescado
+  // tras un cambio de curso reciente → teoría de OTRO idioma). Ver
+  // `course_switch_theory_test.dart` para el fix en la raíz (invalidación).
+  testWidgets('StudyTopicScreen: mientras E-2 carga NO se pintan los tips (evita el cruce de idioma)',
+      (tester) async {
+    final u = UnitModel(
+        id: 'u1', courseId: 'c', cefrLevel: 'A1', orderIndex: 1, title: 'Saludos',
+        lessons: const [
+          LessonModel(id: 'l1', unitId: 'u1', orderIndex: 1, title: 'L1', type: LessonType.lesson),
+        ]);
+    // Simula un tip que quedó de OTRO curso (referenceProvider aún no refrescado).
+    final t = TipModel(
+        id: 't-en', type: 'tip_idioma', skill: 'reading', cefrLevel: 'A1',
+        title: 'Concepto t-en', body: 'Explicación t-en', example: 'Ejemplo t-en', unitOrder: 1);
+
+    final pending = Completer<Map<String, dynamic>?>(); // la sesión E-2 nunca resuelve en este pump
+
+    await tester.pumpWidget(ProviderScope(
+      overrides: [
+        mapUnitsProvider.overrideWith((ref) async => [u]),
+        lessonProgressProvider.overrideWith((ref) async => {'l1': 'available'}),
+        referenceProvider.overrideWith(
+            (ref) async => ReferenceData(weakest: 'reading', tips: [t])),
+        studyTheoryProvider.overrideWith((ref, unitId) => pending.future.then(
+            (j) => j == null ? null : StudyTheory.fromJson(j))),
+      ],
+      child: MaterialApp(
+        locale: const Locale('es'),
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
+        home: const MediaQuery(
+          data: MediaQueryData(disableAnimations: true),
+          child: StudyTopicScreen(unitId: 'u1'),
+        ),
+      ),
+    ));
+    await tester.pump();
+    await tester.pump();
+
+    // Mientras studyTheoryProvider está en `loading`, NO se pinta el tip E-1
+    // (antes `maybeWhen(orElse: ...)` sí lo hacía → posible cruce de idioma).
+    expect(find.text('Concepto t-en'), findsNothing);
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+
+    pending.complete(null); // resuelve: sin sesión E-2 para este tema
+    await tester.pump();
+    await tester.pump();
+
+    // Ya resuelto (null = sin E-2 rica) → cae al tip E-1, como siempre.
+    expect(find.text('Concepto t-en'), findsOneWidget);
   });
 }

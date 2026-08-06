@@ -158,6 +158,18 @@ void _invalidateCourseScope(WidgetRef ref) {
   ref.invalidate(planTrackingProvider);
   ref.invalidate(userPlanProvider);
   ref.invalidate(mapUnitsProvider);
+  // BUG (Estudiar servía la teoría del curso ANTERIOR): estos 3 también son
+  // course-scoped server-side (jz_active_course()) pero se quedaban fuera de
+  // la lista → tras cambiar de curso conservaban el AsyncValue del curso
+  // VIEJO hasta que el usuario visitaba su propia pantalla (Referencia/
+  // Cuaderno/Inmersión) y la invalidaba de rebote. `studyPlanProvider`
+  // (el tab Estudiar) deriva sus tips E-1 de `referenceProvider` → con la
+  // caché vieja, unía las unidades FRESCAS del curso nuevo con la teoría
+  // STALE del curso anterior (emparejadas solo por `unit_order`, que
+  // coincide entre cursos) → se veía la teoría de otro idioma.
+  ref.invalidate(referenceProvider);
+  ref.invalidate(notebookProvider);
+  ref.invalidate(storiesProvider);
 }
 
 /// Hoja para CAMBIAR entre los idiomas que el usuario YA aprende (T5: solo los

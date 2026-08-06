@@ -5,6 +5,40 @@
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
 > Última actualización: **2026-08-05**.
 
+## ESTUDIAR · BUG CRÍTICO — la teoría no cambiaba con el curso activo ✅ (2026-08-05 · solo cliente)
+Reportado: un usuario de portugués (u otro idioma) veía teoría de INGLÉS en el tab Estudiar. **PASO 0
+(cliente real, servidor):** el SERVIDOR **siempre fue correcto** — `get_study_theory(unit_id)` deriva el
+`course_id` del PROPIO `unit_id` (no de `jz_active_course()`), y `get_reference()` sí usa
+`jz_active_course()` en vivo; verificado con JWT real: pedir la unidad 1 de EN y de PT con el mismo activo
+devuelve **títulos que DIFIEREN** («Saludos y presentarte» vs «Hola e mucho gusto»), 0 tips compartidos
+entre cursos, y ro (aún sin teoría) → `null`/`[]` honesto, nunca el contenido de otro idioma.
+- **CAUSA RAÍZ real, 100% de CLIENTE:** `_invalidateCourseScope()` (`course_switcher.dart`) — el ÚNICO
+  choke-point que Ajustes Y la bandera del top bar usan para refrescar el estado tras cambiar de curso —
+  invalidaba `mapUnitsProvider`/`lessonProgressProvider`/etc. pero **NO `referenceProvider`** (ni
+  `notebookProvider`/`storiesProvider`, mismo patrón). `studyPlanProvider` (el tab Estudiar) combina
+  `mapUnitsProvider` (FRESCO tras el cambio) con `referenceProvider.tips` (STALE, del curso VIEJO) casando
+  ambos solo por `unit_order` (que **coincide entre cursos**) → la unidad 3 del curso nuevo se pintaba con
+  el tip de la unidad 3 del curso ANTERIOR, de otro idioma. Solo se "autocuraba" si el usuario visitaba
+  Referencia/Cuaderno/Inmersión (que sí se invalidan a sí mismos al abrirse) o recargaba la app.
+- **ARREGLO (reutiliza el MISMO mecanismo que ya usan Aprender/Practicar, sin inventar uno nuevo):** se
+  añaden `referenceProvider`, `notebookProvider` y `storiesProvider` a `_invalidateCourseScope()` — los 3
+  son course-scoped server-side igual que `mapUnitsProvider`, y quedaban fuera de la lista por el mismo
+  descuido. **+1 fix menor en la misma cadena** (`study_topic_screen.dart`): mientras la sesión E-2 rica de
+  un tema está `loading`, ya NO cae a los tips E-1 (`.maybeWhen(orElse:...)` → `.when(loading: ...)`) —
+  evita un parpadeo con teoría de otro idioma justo tras un cambio de curso, antes de que
+  `referenceProvider` termine de refrescar.
+- **Cobertura de teoría por idioma (para el estado honesto que debe verse en Estudiar):** E-2 rica
+  **24/24 unidades en en/pt/fr/de/it/nl**; **ro con 0** (aún no tiene ni E-1 ni E-2 → "teoría en camino",
+  el estado correcto — NUNCA debe mostrar la de otro idioma, y con el fix no lo hace).
+- **Verificado:** `verify_study_cross_course.py` (cliente real JWT, servidor) TODO VERDE — confirma el
+  contrato del servidor que sostiene el fix. **`course_switch_theory_test.dart`** (NUEVO, ejercita el
+  camino REAL `switchCourseFlow`/`_invalidateCourseScope`, no una reimplementación): probado que **FALLA
+  sin el fix** (revertido y re-confirmado) y pasa con él — cambiar de curso re-consulta `referenceProvider`
+  y Estudiar/Referencia dejan de arrastrar la teoría del curso anterior. +1 test en `study_e1_test.dart`
+  para el parpadeo (`StudyTopicScreen` en `loading` no pinta tips). analyze 0 · test 237/237 · build web OK.
+  **NO se tocó** el desbloqueo por progreso (deriva de `mapUnitsProvider`/`lessonProgressProvider`, ya
+  correctos), el aislamiento server-side (ya airtight), ni Aprender/SRS.
+
 ## 🇷🇴 RUMANO **B2** — cadena A1→B2 COMPLETA y CERTIFICABLE, como los otros 6 idiomas ✅ LIVE (mig 20260722120201-203 · 2026-08-05)
 Cuarta tanda de ro por el playbook, la que cierra la cadena. **Cero errores de rumano** en las 6 unidades
 (cuarto revisor nativo, cuarta tanda seguida sin un solo fallo de lengua) — los 2 hallazgos ALTA fueron de
