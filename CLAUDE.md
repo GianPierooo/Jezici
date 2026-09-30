@@ -3,7 +3,19 @@
 > Contexto de arranque para cualquier sesión. **No** es copia de los 21 `.md` de
 > diseño (eso es la carpeta raíz `Jezici_*.md` + `docs/`). Aquí va el ESTADO REAL,
 > qué está verde, qué falta y cómo verificar. Mantener corto y al día.
-> Última actualización: **2026-08-05**.
+> Última actualización: **2026-09-30**.
+
+## PANTALLA EN BLANCO en jezici.space — CERRADO, era caché de navegador ✅ (2026-09-30)
+Gian reportó `jezici.space` en blanco (16-sep). Investigación exhaustiva (servidor, Supabase,
+deploy Vercel, clave anon, CI) — **todo sano**. Con debug markers en `main()` (build local con las
+MISMAS credenciales de prod) se confirmó que Flutter arranca y construye la pantalla de auth sin
+ningún error: el código nunca fue el problema. **Causa real: caché vieja del navegador de Gian**
+sirviendo un `main.dart.js`/`flutter_bootstrap.js` desactualizado — un refresco forzado
+(Ctrl/Cmd+Shift+R) lo resolvió, confirmado por Gian. **No se tocó código de producción.**
+Riesgo residual (no confirmado, no urgente): `main.dart.js` no lleva hash de contenido en el
+nombre ni cache-busting explícito (solo `Cache-Control: public, max-age=0, must-revalidate`) → si
+volviera a pasar con otro usuario, la mitigación sería añadir versionado al nombre del archivo o
+un query-param de cache-busting ligado al commit. Re-encolado solo si se repite.
 
 ## GENERADOR DE TEMARIO — PDF profesional 100% desde la BD ✅ (2026-08-05 · solo tooling, cero prod)
 Pedido de Gian: un PDF de temario "qué se ve en cada clase" para subir a Drive como documentación oficial.
